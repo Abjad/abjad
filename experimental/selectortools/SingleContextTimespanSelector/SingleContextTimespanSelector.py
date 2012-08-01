@@ -61,3 +61,10 @@ class SingleContextTimespanSelector(TimespanSelector):
         Return string.
         '''
         return self._context
+
+    ### PUBLIC METHODS ###
+
+    def get_context_name(self, score_name):
+        '''Return explicit context name or else score name.
+        '''
+        return self.context or score_name

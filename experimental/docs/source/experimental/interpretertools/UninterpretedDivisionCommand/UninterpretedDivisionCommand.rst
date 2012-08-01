@@ -9,13 +9,13 @@ interpretertools.UninterpretedDivisionCommand
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.context_name
+
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.duration
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.fresh
-
-.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.source_context_name
 
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.storage_format
 

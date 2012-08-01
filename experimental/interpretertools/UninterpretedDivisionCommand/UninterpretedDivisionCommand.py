@@ -10,14 +10,14 @@ class UninterpretedDivisionCommand(DivisionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, value, duration, fresh, truncate, source_context_name):
+    def __init__(self, value, duration, fresh, truncate, context_name):
         assert isinstance(fresh, bool), repr(fresh)
         assert isinstance(truncate, bool), repr(truncate)
-        assert isinstance(source_context_name, str)
+        assert isinstance(context_name, str)
         DivisionCommand.__init__(self, value, duration)
         self._fresh = fresh
         self._truncate = truncate
-        self._source_context_name = source_context_name
+        self._context_name = context_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -28,10 +28,10 @@ class UninterpretedDivisionCommand(DivisionCommand):
         return self._fresh
 
     @property
-    def source_context_name(self):
-        '''Name of source context giving rise to uninterpreted division command.
+    def context_name(self):
+        '''Name of context giving rise to uninterpreted division command.
         '''
-        return self._source_context_name
+        return self._context_name
 
     @property
     def truncate(self):

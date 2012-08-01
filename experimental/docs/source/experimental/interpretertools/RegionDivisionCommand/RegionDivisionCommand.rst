@@ -9,15 +9,15 @@ interpretertools.RegionDivisionCommand
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.context_name
+
+    Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
+
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.duration
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.fresh
-
-    Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
-
-.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.source_context_name
 
     Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
 

@@ -152,3 +152,15 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         Return none.
         '''
         return None
+
+    ### PUBLIC METHODS ###
+
+    def get_context_name(self, score_name):
+        '''Get background measure selector context name.
+
+        Background measure slice selectors always return score context name
+        because measures can only be set at the score level.
+
+        Return string.
+        '''
+        return score_name

@@ -201,12 +201,19 @@ class ConcreteInterpreter(Interpreter):
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
         #self._debug(resolved_single_context_setting.target, 'cris')
+
+        # TODO: should be able to say the following simpler line:
+        #context_name = resolved_single_context_setting.target.get_context_name(segment_specification.score_name)
+        context_name = resolved_single_context_setting.target.reference.get_context_name(
+            segment_specification.score_name)
+
+        #self._debug(context_name)
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.value,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
-            'FOO CONTEXT NAME'
+            context_name
             )
         return command
 
@@ -325,13 +332,11 @@ class ConcreteInterpreter(Interpreter):
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
-                # not sure about the following line
-                #args = (segment_specification.time_signatures, segment_specification.duration, True, False)
-                #command = interpretertools.UninterpretedDivisionCommand(*args)
                 command = interpretertools.UninterpretedDivisionCommand(
                     segment_specification.time_signatures,
                     segment_specification.duration,
-                    True, False,
+                    True, 
+                    False,
                     self.score_specification.score_name
                     )
                 uninterpreted_division_commands.append(command)
@@ -530,12 +535,14 @@ class ConcreteInterpreter(Interpreter):
         #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
         duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
+        context_name = resolved_single_context_setting.target.get_context_name(segment_specification.score_name)
+        #self._debug(context_name)
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.value,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
-            'FOO IMPLEMENT ME CONTEXT NAME'
+            context_name
             )
         #print command
         return command
@@ -679,7 +686,7 @@ class ConcreteInterpreter(Interpreter):
                     duration = last_region_division_command.duration + uninterpreted_division_command.duration
                     fresh = last_region_division_command.fresh
                     truncate = uninterpreted_division_command.truncate
-                    context_name = 'IMPLEMENT ME CONTEXT NAME'
+                    context_name = uninterpreted_division_command.context_name
                     args = (value, duration, fresh, truncate, context_name)
                     region_division_command = interpretertools.RegionDivisionCommand(*args)
                     region_division_commands[-1] = region_division_command
