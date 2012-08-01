@@ -10,7 +10,7 @@ class UninterpretedDivisionCommand(DivisionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, value, duration, start_offset, stop_offset, fresh, truncate, context_name):
+    def __init__(self, value, duration, start_offset, stop_offset, context_name, fresh, truncate):
         assert isinstance(fresh, bool), repr(fresh)
         assert isinstance(truncate, bool), repr(truncate)
         assert isinstance(context_name, (str, type(None)))

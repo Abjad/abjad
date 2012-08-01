@@ -206,9 +206,9 @@ class ConcreteInterpreter(Interpreter):
             duration,
             0,
             0,
+            resolved_single_context_setting.target.context_name,
             resolved_single_context_setting.fresh,
-            resolved_single_context_setting.truncate,
-            resolved_single_context_setting.target.context_name
+            resolved_single_context_setting.truncate
             )
         return command
 
@@ -343,9 +343,9 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification.duration,
                     0,
                     0,
+                    self.score_specification.score_name,
                     True, 
-                    False,
-                    self.score_specification.score_name
+                    False
                     )
                 uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
@@ -548,9 +548,9 @@ class ConcreteInterpreter(Interpreter):
             duration,
             0,
             0,
+            resolved_single_context_setting.target.context_name,
             resolved_single_context_setting.fresh,
-            resolved_single_context_setting.truncate,
-            resolved_single_context_setting.target.context_name
+            resolved_single_context_setting.truncate
             )
         #print command
         return command
@@ -697,9 +697,9 @@ class ConcreteInterpreter(Interpreter):
                         duration,
                         0,
                         0,
+                        uninterpreted_division_command.context_name,
                         last_region_division_command.fresh,
-                        uninterpreted_division_command.truncate,
-                        uninterpreted_division_command.context_name
+                        uninterpreted_division_command.truncate
                         )
                     region_division_commands[-1] = region_division_command
         return region_division_commands
