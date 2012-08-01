@@ -151,35 +151,11 @@ class ConcreteInterpreter(Interpreter):
     def apply_registration(self):
         pass
 
-    def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
-        from experimental import interpretertools
-        region_division_commands = []
-        if not uninterpreted_division_commands:
-            return []
-        if any([x.value is None for x in uninterpreted_division_commands]):
-            return []
-        assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
-        for uninterpreted_division_command in uninterpreted_division_commands:
-            if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
-                region_division_command = interpretertools.RegionDivisionCommand(
-                    *uninterpreted_division_command.vector)
-                region_division_commands.append(region_division_command)
-            else:
-                last_region_division_command = region_division_commands[-1]
-                assert last_region_division_command.value == uninterpreted_division_command.value
-                if last_region_division_command.truncate:
-                    region_division_command = interpretertools.RegionDivisionCommand(
-                        *uninterpreted_division_command.vector)
-                    region_division_commands.append(region_division_command)
-                else:
-                    value = last_region_division_command.value
-                    duration = last_region_division_command.duration + uninterpreted_division_command.duration
-                    fresh = last_region_division_command.fresh
-                    truncate = uninterpreted_division_command.truncate
-                    args = (value, duration, fresh, truncate)
-                    region_division_command = interpretertools.RegionDivisionCommand(*args)
-                    region_division_commands[-1] = region_division_command
-        return region_division_commands
+    def attribute_request_to_resolved_single_context_setting(self, attribute_request):
+        segment_specification = self.get_segment_specification(attribute_request.segment_name)
+        context_proxy = segment_specification.resolved_single_context_settings[attribute_request.context_name]
+        resolved_single_context_setting = context_proxy.get_setting(attribute=attribute_request.attribute)
+        return resolved_single_context_setting
 
     def calculate_segment_offset_pairs(self):
         '''Set ``'segment_durations'`` property on score specification.
@@ -333,6 +309,9 @@ class ConcreteInterpreter(Interpreter):
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
+    def get_segment_specification(self, segment_index):
+        return self.score_specification.segment_specifications[segment_index]
+
     def get_uninterpreted_division_commands_for_voice(self, voice):
         from experimental import interpretertools
         uninterpreted_division_commands = []
@@ -352,9 +331,9 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
-        #for rscs in resolved_single_context_settings:
-        #    self._debug(rscs, 'rscs')
-        #print ''
+        for rscs in resolved_single_context_settings:
+            #self._debug(rscs, 'rscs')
+            print ''
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
             #self._debug(resolved_single_context_setting, 'rscs')
@@ -369,6 +348,8 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise NotImplementedError(resolved_single_context_setting.target)
             uninterpreted_division_commands.append(uninterpreted_division_command)
+            #self._debug(uninterpreted_division_command, 'uidc')
+        print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -458,20 +439,6 @@ class ConcreteInterpreter(Interpreter):
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
 
-#    # alphabetize me
-#    def attribute_indicator_to_resolved_single_context_setting(self, indicator):
-#        segment_specification = self.score_specification.segment_specifications[indicator.segment_name]
-#        context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
-#        resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
-#        return resolved_single_context_setting
-
-    # alphabetize me
-    def attribute_request_to_resolved_single_context_setting(self, attribute_request):
-        segment_specification = self.score_specification.segment_specifications[attribute_request.segment_name]
-        context_proxy = segment_specification.resolved_single_context_settings[attribute_request.context_name]
-        resolved_single_context_setting = context_proxy.get_setting(attribute=attribute_request.attribute)
-        return resolved_single_context_setting
-
     def resolve_attribute_request(self, attribute_request):
         from experimental import requesttools
         assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
@@ -510,34 +477,18 @@ class ConcreteInterpreter(Interpreter):
         else:
             return single_context_setting.source
 
-    def single_context_timespan_selector_to_uninterpreted_division_command(
-        self, segment_specification, resolved_single_context_setting):
-        from experimental import interpretertools
-        #print 'here!'
-        #print resolved_single_context_setting.storage_format
-        assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
-        duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
-        args = (
-            resolved_single_context_setting.value,
-            duration,
-            resolved_single_context_setting.fresh,
-            resolved_single_context_setting.truncate)
-        command = interpretertools.UninterpretedDivisionCommand(*args)
-        #print command
-        return command
-
     def single_context_timespan_selector_to_duration(self, selector):
         if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
             if isinstance(selector.timespan.selector, selectortools.SegmentSelector):
                 segment_index = selector.timespan.selector.index
-                segment_specification = self.score_specification.segment_specifications[segment_index]
+                segment_specification = self.get_segment_specification(segment_index)
                 return segment_specification.duration
             elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
                 if isinstance(
                     selector.timespan.selector.inequality.timespan.selector, 
                     selectortools.SegmentSelector):
                     segment_index = selector.timespan.selector.inequality.timespan.selector.index
-                    segment_specification = self.score_specification.segment_specifications[segment_index]
+                    segment_specification = self.get_segment_specification(segment_index)
                     start = selector.timespan.selector.start
                     stop = selector.timespan.selector.stop
                     time_signatures = segment_specification.time_signatures[start:stop] 
@@ -563,8 +514,21 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError(selector.timespan)
 
-    def get_segment_specification(self, segment_index):
-        return self.score_specification.segment_specifications[segment_index]
+    def single_context_timespan_selector_to_uninterpreted_division_command(
+        self, segment_specification, resolved_single_context_setting):
+        from experimental import interpretertools
+        #print 'here!'
+        #print resolved_single_context_setting.storage_format
+        assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
+        duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
+        args = (
+            resolved_single_context_setting.value,
+            duration,
+            resolved_single_context_setting.fresh,
+            resolved_single_context_setting.truncate)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
+        #print command
+        return command
 
     def store_additional_single_context_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -641,7 +605,7 @@ class ConcreteInterpreter(Interpreter):
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
         segment_index = selectortools.selector_to_segment_index(resolved_single_context_setting.target)
-        segment_specification = self.score_specification.segment_specifications[segment_index]
+        segment_specification = self.get_segment_specification(segment_index)
         self.store_resolved_single_context_setting(
             segment_specification, resolved_single_context_setting,
             clear_persistent_first=clear_persistent_first)
@@ -679,6 +643,36 @@ class ConcreteInterpreter(Interpreter):
             assert setting.target.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting(setting, clear_persistent_first=True)
+
+    def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
+        from experimental import interpretertools
+        region_division_commands = []
+        if not uninterpreted_division_commands:
+            return []
+        if any([x.value is None for x in uninterpreted_division_commands]):
+            return []
+        assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
+        for uninterpreted_division_command in uninterpreted_division_commands:
+            if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
+                region_division_command = interpretertools.RegionDivisionCommand(
+                    *uninterpreted_division_command.vector)
+                region_division_commands.append(region_division_command)
+            else:
+                last_region_division_command = region_division_commands[-1]
+                assert last_region_division_command.value == uninterpreted_division_command.value
+                if last_region_division_command.truncate:
+                    region_division_command = interpretertools.RegionDivisionCommand(
+                        *uninterpreted_division_command.vector)
+                    region_division_commands.append(region_division_command)
+                else:
+                    value = last_region_division_command.value
+                    duration = last_region_division_command.duration + uninterpreted_division_command.duration
+                    fresh = last_region_division_command.fresh
+                    truncate = uninterpreted_division_command.truncate
+                    args = (value, duration, fresh, truncate)
+                    region_division_command = interpretertools.RegionDivisionCommand(*args)
+                    region_division_commands[-1] = region_division_command
+        return region_division_commands
 
     def unpack_multiple_context_settings_for_score(self):
         for segment_specification in self.score_specification.segment_specifications:
