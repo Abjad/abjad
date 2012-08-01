@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.duration
 
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.start_offset
+
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.stop_offset
+
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

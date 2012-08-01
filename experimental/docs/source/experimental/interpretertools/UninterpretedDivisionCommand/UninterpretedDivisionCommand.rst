@@ -17,6 +17,14 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.fresh
 
+.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.start_offset
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.stop_offset
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

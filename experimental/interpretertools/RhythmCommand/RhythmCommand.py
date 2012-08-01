@@ -9,8 +9,8 @@ class RhythmCommand(Command):
     
     ### INITIALIZER ###
 
-    def __init__(self, value, duration, fresh):
-        Command.__init__(self, value, duration)
+    def __init__(self, value, duration, start_offset, stop_offset, fresh):
+        Command.__init__(self, value, duration, start_offset, stop_offset)
         self._fresh = fresh
 
     ### READ-ONLY PUBLIC PROPERTIES ###

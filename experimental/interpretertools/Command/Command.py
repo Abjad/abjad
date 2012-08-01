@@ -1,5 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
+from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -8,7 +9,7 @@ class Command(AbjadObject):
 
     Abstract command class from which concrete command classes inherit.
 
-    Basically a ``(value, duration)`` pair.
+    Basically a fancy tuple.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -18,9 +19,14 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     @abstractmethod
-    def __init__(self, value, duration):
+    def __init__(self, value, duration, start_offset, stop_offset):
+        duration = durationtools.Duration(duration)
+        start_offset = durationtools.Offset(start_offset)
+        stop_offset = durationtools.Offset(stop_offset)
         self._value = value
         self._duration = duration
+        self._start_offset = start_offset
+        self._stop_offset = stop_offset
 
     ### SPECIAL METHODS ###
 
@@ -40,9 +46,17 @@ class Command(AbjadObject):
         return self._duration
 
     @property
-    def vector(self):
-        return self._mandatory_argument_values
+    def start_offset(self):
+        return self._start_offset
+
+    @property
+    def stop_offset(self):
+        return self._stop_offset
 
     @property
     def value(self):
         return self._value
+
+    @property
+    def vector(self):
+        return self._mandatory_argument_values

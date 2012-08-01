@@ -204,6 +204,8 @@ class ConcreteInterpreter(Interpreter):
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             duration,
+            0,
+            0,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
             resolved_single_context_setting.target.context_name
@@ -289,7 +291,12 @@ class ConcreteInterpreter(Interpreter):
             rhythm_commands.extend(commands)
         if not rhythm_commands:
             rhythm_command = interpretertools.RhythmCommand(
-                library.rest_filled_tokens, self.score_specification.duration, True)
+                library.rest_filled_tokens, 
+                self.score_specification.duration, 
+                0,
+                0,
+                True
+                )
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
@@ -308,7 +315,10 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_command = interpretertools.RhythmCommand(
                     resolved_single_context_setting.resolved_value, 
                     segment_specification.duration, 
-                    resolved_single_context_setting.fresh)
+                    0,
+                    0,
+                    resolved_single_context_setting.fresh
+                    )
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
@@ -321,6 +331,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
+            # CURRENT WORK:
             #self._debug(commands, 'commands')
             if commands:
                 uninterpreted_division_commands.extend(commands)
@@ -328,6 +339,8 @@ class ConcreteInterpreter(Interpreter):
                 command = interpretertools.UninterpretedDivisionCommand(
                     segment_specification.time_signatures,
                     segment_specification.duration,
+                    0,
+                    0,
                     True, 
                     False,
                     self.score_specification.score_name
@@ -531,6 +544,8 @@ class ConcreteInterpreter(Interpreter):
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             duration,
+            0,
+            0,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
             resolved_single_context_setting.target.context_name
@@ -674,13 +689,16 @@ class ConcreteInterpreter(Interpreter):
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
                 else:
-                    value = last_region_division_command.value
                     duration = last_region_division_command.duration + uninterpreted_division_command.duration
-                    fresh = last_region_division_command.fresh
-                    truncate = uninterpreted_division_command.truncate
-                    context_name = uninterpreted_division_command.context_name
-                    args = (value, duration, fresh, truncate, context_name)
-                    region_division_command = interpretertools.RegionDivisionCommand(*args)
+                    region_division_command = interpretertools.RegionDivisionCommand(
+                        last_region_division_command.value,
+                        duration,
+                        0,
+                        0,
+                        last_region_division_command.fresh,
+                        uninterpreted_division_command.truncate,
+                        uninterpreted_division_command.context_name
+                        )
                     region_division_commands[-1] = region_division_command
         return region_division_commands
 
