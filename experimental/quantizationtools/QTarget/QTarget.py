@@ -1,11 +1,20 @@
 from abc import abstractmethod, abstractproperty
 from abjad.tools import abctools
+from abjad.tools import chordtools
+from abjad.tools import marktools
+from abjad.tools import notetools
+from abjad.tools import resttools
+from abjad.tools import sequencetools
+from abjad.tools import spannertools
+from abjad.tools import tietools
+from experimental.quantizationtools.ConcatenatingGraceHandler import ConcatenatingGraceHandler
 from experimental.quantizationtools.DistanceHeuristic import DistanceHeuristic
 from experimental.quantizationtools.GraceHandler import GraceHandler
 from experimental.quantizationtools.Heuristic import Heuristic
 from experimental.quantizationtools.JobHandler import JobHandler
 from experimental.quantizationtools.QEventSequence import QEventSequence
 from experimental.quantizationtools.SerialJobHandler import SerialJobHandler
+import bisect
 
 
 class QTarget(abctools.AbjadObject):
@@ -28,7 +37,7 @@ class QTarget(abctools.AbjadObject):
         assert isinstance(q_event_sequence, QEventSequence)
 
         if grace_handler is None:
-            grace_handler = GraceHandler()
+            grace_handler = ConcatenatingGraceHandler()
         assert isinstance(grace_handler, GraceHandler)
 
         if heuristic is None:
@@ -36,12 +45,12 @@ class QTarget(abctools.AbjadObject):
         assert isinstance(heuristic, Heuristic)
 
         if job_handler is None:
-            job_handler = SingleProcessJobHandler()
+            job_handler = SerialJobHandler()
         assert isinstance(job_handler, JobHandler)
 
         # parcel QEvents out to each beat
         beats = self.beats
-        offsets = sorted([beat.offset for beat in beats])
+        offsets = sorted([beat.offset_in_ms for beat in beats])
         for q_event in q_event_sequence:
             index = bisect.bisect(offsets, q_event.offset) - 1
             beat = beats[index]
@@ -52,10 +61,10 @@ class QTarget(abctools.AbjadObject):
         jobs = [job for job in jobs if job]
         jobs = job_handler(jobs)
         for job in jobs:
-            beats[job.job_id].q_grids = job.q_grids
+            beats[job.job_id]._q_grids = job.q_grids
 
         # select the best QGrid for each beat, according to the Heuristic
-        heuristic(self)
+        beats = heuristic(beats)
 
         # shift QEvents attached to each QGrid's "next downbeat"
         # over to the next QGrid's first leaf - the real downbeat
@@ -118,9 +127,9 @@ class QTarget(abctools.AbjadObject):
         self._notate_one_leaf(leaves[-1], grace_handler)
         
     def _notate_one_leaf(self, leaf, grace_handler):
-        leaf_annotations = marktools.get_annotation_attached_to_component(leaf)
+        leaf_annotations = marktools.get_annotations_attached_to_component(leaf)
         if leaf_annotations:
-            pitches, grace_container = grace_handler(leaf_annotations[0])
+            pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:
                 new_leaf = resttools.Rest(leaf)
             elif len(pitches) == 1:
@@ -142,8 +151,8 @@ class QTarget(abctools.AbjadObject):
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
         for one, two in sequencetools.iterate_sequence_pairwise_strict(beats):
-            one_q_events = first.q_grid.next_downbeat.q_events
-            two_q_events = second.leaves[0].q_events
+            one_q_events = one.q_grid.next_downbeat.q_events
+            two_q_events = two.q_grid.leaves[0].q_events
             while one_q_events:
                 two_q_events.append(one_q_events.pop())
 

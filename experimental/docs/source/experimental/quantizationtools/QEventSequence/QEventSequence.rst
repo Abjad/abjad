@@ -9,7 +9,7 @@ quantizationtools.QEventSequence
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.duration
+.. autoattribute:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.duration_in_ms
 
 .. autoattribute:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.storage_format
 
@@ -100,8 +100,6 @@ Special Methods
     Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__repr__
-
-    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.__rmul__
 

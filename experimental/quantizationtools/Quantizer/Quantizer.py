@@ -5,7 +5,11 @@ from experimental.quantizationtools.QSchema import QSchema
 
 
 class Quantizer(abctools.AbjadObject):
-    
+
+    ### INITIALIZER ###
+
+    def __init__(self):
+        pass    
 
     ### SPECIAL METHODS ###
 
@@ -24,3 +28,5 @@ class Quantizer(abctools.AbjadObject):
             grace_handler=grace_handler,
             heuristic=heuristic,
             job_handler=job_handler)
+
+        return notation

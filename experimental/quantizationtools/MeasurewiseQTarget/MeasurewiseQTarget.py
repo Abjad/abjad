@@ -1,5 +1,9 @@
+from abjad.tools import measuretools
+from abjad.tools import sequencetools
+from abjad.tools import voicetools
 from experimental.quantizationtools.QTarget import QTarget
 from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
+import copy
 
 
 class MeasurewiseQTarget(QTarget):
@@ -8,7 +12,7 @@ class MeasurewiseQTarget(QTarget):
 
     @property
     def beats(self):
-        return tuple([beat for beat in item.beats for item in self.items])
+        return tuple([beat for item in self.items for beat in item.beats])
 
     @property
     def item_klass(self):

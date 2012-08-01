@@ -20,7 +20,9 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration):
+    def __init__(self, duration=None):
+        if duration is None:
+            duration = (1, 16)
         duration = durationtools.Duration(duration)
         assert durationtools.is_binary_rational(duration)
         self._duration = duration

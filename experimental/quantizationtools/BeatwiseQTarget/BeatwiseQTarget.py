@@ -1,5 +1,8 @@
+from abjad.tools import sequencetools   
+from abjad.tools import voicetools
 from experimental.quantizationtools.QTarget import QTarget
 from experimental.quantizationtools.QTargetBeat import QTargetBeat
+import copy
 
 
 class BeatwiseQTarget(QTarget): 

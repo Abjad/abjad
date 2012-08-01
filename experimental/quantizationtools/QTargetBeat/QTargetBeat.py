@@ -3,6 +3,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QuantizationJob import QuantizationJob
 from experimental.quantizationtools.QEvent import QEvent
+from experimental.quantizationtools.QEventProxy import QEventProxy
 from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
@@ -13,7 +14,7 @@ class QTargetBeat(abctools.AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = ('_beatspan', '_distances', '_grouping', '_offset_in_ms',
-        '_q_events', '_q_grids', '_search_tree', '_tempo')
+        '_q_events', '_q_grid', '_q_grids', '_search_tree', '_tempo')
 
     ### INITIALIZER ###
 
@@ -37,6 +38,7 @@ class QTargetBeat(abctools.AbjadObject):
         self._distances = {}
         self._offset_in_ms = offset_in_ms
         self._q_events = q_events
+        self._q_grid = None
         self._q_grids = q_grids
         self._search_tree = search_tree
         self._tempo = tempo
@@ -75,6 +77,10 @@ class QTargetBeat(abctools.AbjadObject):
     def q_events(self):
         return self._q_events
 
+    @property
+    def q_grid(self):
+        return self._q_grid
+    
     @property
     def q_grids(self):
         return self._q_grids

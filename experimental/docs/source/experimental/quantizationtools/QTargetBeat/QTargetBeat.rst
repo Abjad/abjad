@@ -19,6 +19,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.q_events
 
+.. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.q_grid
+
 .. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.q_grids
 
 .. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.search_tree
