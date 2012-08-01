@@ -8,3 +8,6 @@
         selectortools.SingleContextCounttimeComponentItemSelector
         selectortools.SingleContextCounttimeComponentSliceSelector
    ... to cause naming parallelism between the two selector types.
+
+3. Extend all selector classes with read-only 'context_name' property (string).
+   Extend all selector classes with read-only 'context_names' property (list).  
