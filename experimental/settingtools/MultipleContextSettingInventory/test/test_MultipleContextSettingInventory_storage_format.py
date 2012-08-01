@@ -3,8 +3,8 @@ from experimental import *
 from experimental.specificationtools import library
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
-from experimental.selectortools.SingleContextCounttimeComponentSelector import \
-    SingleContextCounttimeComponentSelector
+from experimental.selectortools.SingleContextCounttimeComponentItemSelector import \
+    SingleContextCounttimeComponentItemSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector
 from experimental.timespantools.Timepoint import Timepoint

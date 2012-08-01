@@ -2,7 +2,7 @@
 
 2. Rename ratio selector 'index' keyword to 'item'.
    Also rename ...
-        selectortools.SingleContextCounttimeComponentSelector
+        selectortools.SingleContextCounttimeComponentItemSelector
         selectortools.SingleContextCounttimeComponentSliceSelector
    ... to ...
         selectortools.SingleContextCounttimeComponentItemSelector

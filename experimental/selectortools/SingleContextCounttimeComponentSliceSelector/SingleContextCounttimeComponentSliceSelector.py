@@ -39,12 +39,12 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     ::
 
-        >>> measure_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> measure_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
 
     ::
 
-        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... measure_selector, klass=Tuplet, index=-1)
 
     ::
@@ -56,8 +56,8 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
         >>> z(leaf_slice_selector)
         selectortools.SingleContextCounttimeComponentSliceSelector(
-            selectortools.SingleContextCounttimeComponentSelector(
-                selectortools.SingleContextCounttimeComponentSelector(
+            selectortools.SingleContextCounttimeComponentItemSelector(
+                selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

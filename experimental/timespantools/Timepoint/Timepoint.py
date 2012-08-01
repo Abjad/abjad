@@ -74,7 +74,7 @@ class Timepoint(AbjadObject):
 
         >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> counttime_component_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> counttime_component_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', inequality=inequality, klass=Note, index=10)
 
     ::
@@ -85,7 +85,7 @@ class Timepoint(AbjadObject):
 
         >>> z(timepoint)
         timespantools.Timepoint(
-            anchor=selectortools.SingleContextCounttimeComponentSelector(
+            anchor=selectortools.SingleContextCounttimeComponentItemSelector(
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -135,7 +135,7 @@ class Timepoint(AbjadObject):
 
         >>> z(timepoint)
         timespantools.Timepoint(
-            anchor=selectortools.SingleContextCounttimeComponentSelector(
+            anchor=selectortools.SingleContextCounttimeComponentItemSelector(
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -241,7 +241,7 @@ class Timepoint(AbjadObject):
         '''Timepoint anchor specified by user.
         
             >>> z(timepoint.anchor)
-            selectortools.SingleContextCounttimeComponentSelector(
+            selectortools.SingleContextCounttimeComponentItemSelector(
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

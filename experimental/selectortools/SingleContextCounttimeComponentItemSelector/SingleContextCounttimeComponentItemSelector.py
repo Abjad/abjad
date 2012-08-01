@@ -8,20 +8,20 @@ from experimental.selectortools.ItemSelector import ItemSelector
 import types
 
 
-class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
+class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
         >>> from experimental import *
 
     Select ``'Voice 1'`` counttime measure ``3``::
 
-        >>> measure_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> measure_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', klass=Measure, index=3)
 
     ::
 
         >>> z(measure_selector)
-        selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             klass=measuretools.Measure,
             index=3
@@ -34,13 +34,13 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
     ::
 
-        >>> measure_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> measure_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
 
     ::
 
         >>> z(measure_selector)
-        selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -57,14 +57,14 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
     Select ``'Voice 1'`` counttime measure ``3`` to start during segment ``'red'``.
     Then select tuplet ``-1`` in this measure::
 
-        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... measure_selector, klass=Tuplet, index=-1)
 
     ::
 
         >>> z(tuplet_selector)
-        selectortools.SingleContextCounttimeComponentSelector(
-            selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
+            selectortools.SingleContextCounttimeComponentItemSelector(
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -84,15 +84,15 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
     Select ``'Voice 1'`` counttime measure ``3`` to start during segment ``'red'``.
     Then select note ``0`` in tuplet ``-1`` in this measure::
 
-        >>> note_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> note_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... tuplet_selector, klass=Note, index=0) 
 
     ::
 
         >>> z(note_selector)
-        selectortools.SingleContextCounttimeComponentSelector(
-            selectortools.SingleContextCounttimeComponentSelector(
-                selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
+            selectortools.SingleContextCounttimeComponentItemSelector(
+                selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -114,13 +114,13 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
     Select ``'Voice 1'`` note ``3``::
 
-        >>> note_selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> note_selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', klass=Note, index=3)
 
     ::
 
         >>> z(note_selector)
-        selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             klass=notetools.Note,
             index=3
@@ -128,13 +128,13 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
     Select ``'Voice 1'`` note ``3`` to start during segment ``'red'``::
 
-        >>> selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', inequality=inequality, klass=Note, index=3)
 
     ::
 
         >>> z(selector)
-        selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -156,13 +156,13 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
     ::
 
-        >>> selector = selectortools.SingleContextCounttimeComponentSelector(
+        >>> selector = selectortools.SingleContextCounttimeComponentItemSelector(
         ... 'Voice 1', inequality=inequality, klass=Chord, predicate=predicate, index=20)
 
     ::
 
         >>> z(selector)
-        selectortools.SingleContextCounttimeComponentSelector(
+        selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -285,7 +285,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
             >>> z(selector.start)
             timespantools.Timepoint(
-                anchor=selectortools.SingleContextCounttimeComponentSelector(
+                anchor=selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -313,7 +313,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
             >>> z(selector.stop)
             timespantools.Timepoint(
-                anchor=selectortools.SingleContextCounttimeComponentSelector(
+                anchor=selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -349,7 +349,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
 
             >>> z(selector.timespan)
             timespantools.SingleSourceTimespan(
-                selector=selectortools.SingleContextCounttimeComponentSelector(
+                selector=selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
