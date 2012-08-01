@@ -25,6 +25,8 @@ def parse_rtm_syntax(rtm):
 
     for node in result:
         tuplet = node((1, 4))
+        # following line added 2012-08-01. tb.
+        tuplet = tuplet[0]
         if tuplet.is_trivial:
             con.extend(tuplet[:])
         else:

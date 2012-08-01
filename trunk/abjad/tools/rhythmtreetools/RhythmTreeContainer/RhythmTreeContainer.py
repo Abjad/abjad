@@ -75,8 +75,11 @@ class RhythmTreeContainer(RhythmTreeNode):
     ::
 
         >>> container((1, 4))
-        FixedDurationTuplet(1/4, [c'8, {@ 5:4 c'8., c'8 @}])
-        >>> f(_)
+        [FixedDurationTuplet(1/4, [c'8, {@ 5:4 c'8., c'8 @}])]
+
+    ::
+
+        >>> f(_[0])
         \times 2/3 {
             c'8
             \times 4/5 {
