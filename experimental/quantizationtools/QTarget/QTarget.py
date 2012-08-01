@@ -132,7 +132,7 @@ class QTarget(abctools.AbjadObject):
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:
                 new_leaf = resttools.Rest(leaf)
-            elif len(pitches) == 1:
+            elif 1 < len(pitches):
                 new_leaf = chordtools.Chord(leaf)
                 new_leaf.written_pitches = pitches
             else:

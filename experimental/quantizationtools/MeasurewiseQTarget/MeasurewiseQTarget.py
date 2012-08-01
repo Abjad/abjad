@@ -29,7 +29,7 @@ class MeasurewiseQTarget(QTarget):
         for beat in q_target_measure.beats:
             measure.extend(beat.q_grid(beat.beatspan))
         copy.copy(q_target_measure.tempo)(measure)
-        voice.extend(measure)
+        voice.append(measure)
 
         # generate the rest pairwise, comparing tempi
         for q_target_measure_one, q_target_measure_two in \
@@ -39,7 +39,7 @@ class MeasurewiseQTarget(QTarget):
                 measure.extend(beat.q_grid(beat.beatspan))
             if q_target_measure_two.tempo != q_target_measure_one.tempo:
                 copy.copy(q_target_measure_two.tempo)(measure)
-            voice.extend(measure)
+            voice.append(measure)
 
         # apply tie chains, pitches, grace containers
         self._notate_leaves_pairwise(voice, grace_handler)
