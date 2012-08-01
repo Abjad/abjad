@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.index
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.inequality
 
@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.klass
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.segment_index
 
@@ -49,7 +49,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.__eq__
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.__ge__
 

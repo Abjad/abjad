@@ -6,7 +6,7 @@ from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.ItemSelector import ItemSelector
 
 
-class BackgroundElementSelector(ItemSelector, InequalitySelector):
+class BackgroundElementItemSelector(ItemSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select exactly one background element.

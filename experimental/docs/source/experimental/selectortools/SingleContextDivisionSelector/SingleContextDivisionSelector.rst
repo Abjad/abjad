@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.index
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.inequality
 
@@ -23,7 +23,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.klass
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.segment_index
 
@@ -48,7 +48,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.__eq__
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. automethod:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.__ge__
 

@@ -1,7 +1,7 @@
-from experimental.selectortools.BackgroundElementSelector import BackgroundElementSelector
+from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
 
 
-class BackgroundMeasureSelector(BackgroundElementSelector):
+class BackgroundMeasureSelector(BackgroundElementItemSelector):
     r'''.. versionadded:: 1.0
 
 
@@ -68,7 +68,7 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     def __init__(self, inequality=None, index=0):
         from abjad.tools import measuretools
-        BackgroundElementSelector.__init__(
+        BackgroundElementItemSelector.__init__(
             self, klass=measuretools.Measure, index=index, inequality=inequality)
 
     ### PUBLIC METHODS ###

@@ -1,9 +1,9 @@
 from experimental import divisiontools
 from experimental import helpertools
-from experimental.selectortools.BackgroundElementSelector import BackgroundElementSelector
+from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
 
 
-class SingleContextDivisionSelector(BackgroundElementSelector):
+class SingleContextDivisionSelector(BackgroundElementItemSelector):
     r'''.. versionadded:: 1.0
 
     Select division ``3`` in ``'Voice 1'``::
@@ -85,7 +85,7 @@ class SingleContextDivisionSelector(BackgroundElementSelector):
     def __init__(self, voice, inequality=None, index=0):
         from experimental import selectortools
         from experimental import interpretertools
-        BackgroundElementSelector.__init__(
+        BackgroundElementItemSelector.__init__(
             self, klass=divisiontools.Division, index=index, inequality=inequality)
         voice = helpertools.expr_to_component_name(voice)
         self._voice = voice

@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.index
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.inequality
 
@@ -23,7 +23,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.klass
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.segment_index
 
@@ -46,7 +46,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__eq__
 
-    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__ge__
 

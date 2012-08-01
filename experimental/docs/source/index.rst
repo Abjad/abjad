@@ -293,7 +293,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
+   experimental/selectortools/BackgroundElementItemSelector/BackgroundElementItemSelector
    experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
    experimental/selectortools/InequalitySelector/InequalitySelector
    experimental/selectortools/ItemSelector/ItemSelector

@@ -1,7 +1,7 @@
-from experimental.selectortools.BackgroundElementSelector import BackgroundElementSelector
+from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
 
 
-class SegmentSelector(BackgroundElementSelector):
+class SegmentSelector(BackgroundElementItemSelector):
     r'''.. versionadded:: 1.0
 
     Select segment ``3``::
@@ -25,7 +25,7 @@ class SegmentSelector(BackgroundElementSelector):
 
     def __init__(self, inequality=None, index=0):
         from experimental import specificationtools
-        BackgroundElementSelector.__init__(self, 
+        BackgroundElementItemSelector.__init__(self, 
             klass=specificationtools.Segment, inequality=inequality, index=index)
 
     ### READ-ONLY PROPERTIES ###
