@@ -3,7 +3,7 @@ from experimental import helpertools
 from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
 
 
-class SingleContextDivisionSelector(BackgroundElementItemSelector):
+class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
     r'''.. versionadded:: 1.0
 
     Select division ``3`` in ``'Voice 1'``::
@@ -12,8 +12,8 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selectortools.SingleContextDivisionSelector('Voice 1', index=3)
-        SingleContextDivisionSelector('Voice 1', index=3)
+        >>> selectortools.SingleContextDivisionItemSelector('Voice 1', index=3)
+        SingleContextDivisionItemSelector('Voice 1', index=3)
 
     Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
@@ -22,12 +22,12 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selector = selectortools.SingleContextDivisionSelector('Voice 1', inequality=inequality, index=-1)
+        >>> selector = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, index=-1)
 
     ::
 
         >>> z(selector)
-        selectortools.SingleContextDivisionSelector(
+        selectortools.SingleContextDivisionItemSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -51,12 +51,12 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
         
         >>> timespan = measure.timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
-        >>> division = selectortools.SingleContextDivisionSelector('Voice 1', inequality=inequality, index=-1)
+        >>> division = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, index=-1)
 
     ::
 
         >>> z(division)
-        selectortools.SingleContextDivisionSelector(
+        selectortools.SingleContextDivisionItemSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

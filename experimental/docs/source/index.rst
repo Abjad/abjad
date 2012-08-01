@@ -320,7 +320,7 @@ Unstable packages (load manually)
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/SingleContextCounttimeComponentItemSelector/SingleContextCounttimeComponentItemSelector
    experimental/selectortools/SingleContextCounttimeComponentSliceSelector/SingleContextCounttimeComponentSliceSelector
-   experimental/selectortools/SingleContextDivisionSelector/SingleContextDivisionSelector
+   experimental/selectortools/SingleContextDivisionItemSelector/SingleContextDivisionItemSelector
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
 

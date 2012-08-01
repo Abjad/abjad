@@ -19,8 +19,8 @@ def source_to_request(source, callback=None, count=None, offset=None):
 
     ... as output.
 
-    If `source` is a ``SingleContextDivisionSelector`` then return updated
-    ``SingleContextDivisionSelector``.
+    If `source` is a ``SingleContextDivisionItemSelector`` then return updated
+    ``SingleContextDivisionItemSelector``.
 
     If `source` is a constant then return `source` unchanged.
 
