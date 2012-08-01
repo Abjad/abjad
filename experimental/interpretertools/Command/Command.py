@@ -19,14 +19,16 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     @abstractmethod
-    def __init__(self, value, duration, start_offset, stop_offset):
+    def __init__(self, value, duration, start_offset, stop_offset, context_name):
         duration = durationtools.Duration(duration)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)
+        assert isinstance(context_name, (str, type(None))), repr(context_name)
         self._value = value
         self._duration = duration
         self._start_offset = start_offset
         self._stop_offset = stop_offset
+        self._context_name = context_name
 
     ### SPECIAL METHODS ###
 
@@ -40,6 +42,12 @@ class Command(AbjadObject):
         return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def context_name(self):
+        '''Name of context giving rise to command.
+        '''
+        return self._context_name
 
     @property
     def duration(self):

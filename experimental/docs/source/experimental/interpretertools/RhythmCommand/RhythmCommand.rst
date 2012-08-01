@@ -9,6 +9,10 @@ interpretertools.RhythmCommand
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.context_name
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.duration
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`

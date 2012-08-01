@@ -9,6 +9,8 @@ interpretertools.Command
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.context_name
+
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.duration
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.start_offset

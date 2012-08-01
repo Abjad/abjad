@@ -295,6 +295,7 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.duration, 
                 0,
                 0,
+                'FOO CONTEXT NAME',
                 True
                 )
             rhythm_commands.append(rhythm_command)
@@ -317,6 +318,7 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification.duration, 
                     0,
                     0,
+                    'FOO CONTEXT NAME',
                     resolved_single_context_setting.fresh
                     )
             rhythm_commands.append(rhythm_command)

@@ -9,6 +9,10 @@ interpretertools.DivisionCommand
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.context_name
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.duration
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
