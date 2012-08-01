@@ -9,7 +9,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to resolved `value` for single-context `target`::
+    Set `attribute` to `resolved_value` for single-context `target`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -58,24 +58,23 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     Resolved single-context settings are create from single-context settings.
 
-    The resolved `value` of a resolved single-context setting derives from
+    The `resolved_value` of a resolved single-context setting derives from
     the `source` of a single-context setting.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, value, target, persist=True, truncate=False, fresh=True):
+    def __init__(self, attribute, source, resolved_value, target, persist=True, truncate=False, fresh=True):
         SingleContextSetting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
-        assert value is not None, repr(value)
+        assert resolved_value is not None, repr(resolved_value)
         assert isinstance(fresh, bool), repr(fresh)
-        self._value = value
+        self._resolved_value = resolved_value
         self._fresh = fresh
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    # TODO: change name to self.resolved_value
     @property
-    def value(self):
+    def resolved_value(self):
         '''Value of resolved source.
         '''
-        return self._value
+        return self._resolved_value

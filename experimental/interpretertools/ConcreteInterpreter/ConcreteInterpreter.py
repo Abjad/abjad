@@ -202,7 +202,7 @@ class ConcreteInterpreter(Interpreter):
         duration = sum(durations)
         #self._debug(resolved_single_context_setting.target, 'cris')
         command = interpretertools.UninterpretedDivisionCommand(
-            resolved_single_context_setting.value,
+            resolved_single_context_setting.resolved_value,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
@@ -306,7 +306,7 @@ class ConcreteInterpreter(Interpreter):
                 raise Exception('implement me when it comes time.')
             else:
                 rhythm_command = interpretertools.RhythmCommand(
-                    resolved_single_context_setting.value, 
+                    resolved_single_context_setting.resolved_value, 
                     segment_specification.duration, 
                     resolved_single_context_setting.fresh)
             rhythm_commands.append(rhythm_command)
@@ -451,7 +451,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
         resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
             attribute_request)
-        value = resolved_single_context_setting.value
+        value = resolved_single_context_setting.resolved_value
         assert value is not None, repr(value)
         if attribute_request.callback is not None:
             value = attribute_request.callback(value)
@@ -529,7 +529,7 @@ class ConcreteInterpreter(Interpreter):
         assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
         duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
         command = interpretertools.UninterpretedDivisionCommand(
-            resolved_single_context_setting.value,
+            resolved_single_context_setting.resolved_value,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
