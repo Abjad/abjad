@@ -90,7 +90,7 @@ class SegmentSpecification(Specification):
         callback=None, count=None, offset=None, persist=True, truncate=False):
         #self._debug(contexts, 'contexts')
         #self._debug(timespan, 'timespan')
-        target = selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=timespan)
+        target = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
         #self._debug(target, 'target')
         #print ''
         return self._set_attribute(attribute, target, source,
@@ -417,7 +417,7 @@ class SegmentSpecification(Specification):
             
             >>> z(selector)
             selectortools.MultipleContextDivisionSliceSelector(
-                contexts=['Voice 1', 'Voice 3'],
+                context_names=['Voice 1', 'Voice 3'],
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -433,7 +433,7 @@ class SegmentSpecification(Specification):
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextDivisionSliceSelector(
-            contexts=contexts, inequality=inequality, start=start, stop=stop)
+            context_names=contexts, inequality=inequality, start=start, stop=stop)
         return selector
 
     def select_duration_ratio(self, ratio, index, contexts=None):
@@ -446,7 +446,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.DurationRatioItemSelector(
                 selectortools.MultipleContextTimespanSelector(
-                    contexts=['Voice 1', 'Voice 3'],
+                    context_names=['Voice 1', 'Voice 3'],
                     timespan=timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
@@ -459,7 +459,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
+        selector = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=self.timespan)
         selector = selectortools.DurationRatioItemSelector(selector, ratio, index)
         return selector
 
@@ -473,7 +473,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.MultipleContextCounttimeComponentSliceSelector(
-                contexts=['Voice 1', 'Voice 3'],
+                context_names=['Voice 1', 'Voice 3'],
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -490,7 +490,7 @@ class SegmentSpecification(Specification):
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
-            contexts=contexts, inequality=inequality, klass=leaftools.Leaf, 
+            context_names=contexts, inequality=inequality, klass=leaftools.Leaf, 
             start=start, stop=stop)
         return selector
 
@@ -505,7 +505,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.MultipleContextCounttimeComponentSliceSelector(
-                contexts=['Voice 1', 'Voice 3'],
+                context_names=['Voice 1', 'Voice 3'],
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -525,7 +525,7 @@ class SegmentSpecification(Specification):
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
-            contexts=contexts, inequality=inequality, klass=(notetools.Note, chordtools.Chord),
+            context_names=contexts, inequality=inequality, klass=(notetools.Note, chordtools.Chord),
             start=start, stop=stop)
         return selector
 
@@ -571,7 +571,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioItemSelector(
                 selectortools.MultipleContextDivisionSliceSelector(
-                    contexts=['Voice 1', 'Voice 3'],
+                    context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -604,7 +604,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioItemSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
-                    contexts=['Voice 1', 'Voice 3'],
+                    context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -638,7 +638,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioItemSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
-                    contexts=['Voice 1', 'Voice 3'],
+                    context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -696,7 +696,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.MultipleContextTimespanSelector(
-                contexts=['Grouped Rhythmic Staves Score'],
+                context_names=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
@@ -707,7 +707,7 @@ class SegmentSpecification(Specification):
         Return multiple-context timespan selector.
         '''
         contexts = self._context_token_to_context_names(contexts)
-        return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
+        return selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=self.timespan)
 
     def set_aggregate(self, source, contexts=None,
         count=None, persist=True, offset=None):
@@ -755,7 +755,7 @@ class SegmentSpecification(Specification):
                 'divisions',
                 [(3, 16)],
                 selectortools.MultipleContextTimespanSelector(
-                    contexts=['Voice 1', 'Voice 3'],
+                    context_names=['Voice 1', 'Voice 3'],
                     timespan=timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'

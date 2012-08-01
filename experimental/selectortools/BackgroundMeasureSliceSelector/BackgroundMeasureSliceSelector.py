@@ -128,14 +128,6 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
-        '''To satisfy selector interface.
-
-        Return none.
-        '''
-        return
-
-    @property
     def context_name(self):
         '''Return none.
         '''
@@ -146,18 +138,6 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         '''Return empty list.
         '''
         return []
-
-    @property
-    def contexts(self):
-        '''Read-only attribute set always to none.
-
-        Helps fulfill the selector interface.
-
-        (All selectors should have a 'contexts' attribute.)
-        
-        Return none.
-        '''
-        return
 
     ### PUBLIC METHODS ###
 

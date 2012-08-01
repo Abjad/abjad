@@ -27,7 +27,7 @@ class MultipleContextSetting(Setting):
             'time_signatures',
             [(4, 8), (3, 8)],
             selectortools.MultipleContextTimespanSelector(
-                contexts=['Grouped Rhythmic Staves Score'],
+                context_names=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
@@ -61,14 +61,14 @@ class MultipleContextSetting(Setting):
         from experimental import settingtools
         from experimental import specificationtools
         settings = []
-        contexts = self.target.contexts or [self.target.contexts]
-        assert contexts, repr(contexts)
-        for context in contexts:
+        context_names = self.target.context_names or [None]
+        assert isinstance(context_names, list), repr(context_names)
+        for context_name in context_names:
             if isinstance(self.target, selectortools.RatioSelector):
                 target = copy.deepcopy(self.target)
-                target.reference._context = context
+                target.reference._context_name = context_name
             else:
-                target = selectortools.SingleContextTimespanSelector(context, 
+                target = selectortools.SingleContextTimespanSelector(context_name, 
                     timespan=copy.deepcopy(self.target.timespan))
             setting = settingtools.SingleContextSetting(self.attribute, self.source, target,
                 persist=self.persist, truncate=self.truncate)

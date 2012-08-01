@@ -9,19 +9,11 @@ selectortools.CountRatioItemSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.context
-
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
-
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.context_name
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.context_names
-
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
-
-.. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.contexts
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 

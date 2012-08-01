@@ -16,13 +16,13 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
         >>> segment_selector = selectortools.SegmentSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(segment_selector.timespan)
         >>> selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
-        ... contexts=['Voice 1', 'Voice 3'], inequality=inequality, klass=leaftools.Leaf, stop=40)
+        ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, klass=leaftools.Leaf, stop=40)
 
     ::
 
         >>> z(selector)
         selectortools.MultipleContextCounttimeComponentSliceSelector(
-            contexts=['Voice 1', 'Voice 3'],
+            context_names=['Voice 1', 'Voice 3'],
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
@@ -40,7 +40,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
 
     ### INITIALIZER ##
 
-    def __init__(self, contexts=None, inequality=None, klass=None, predicate=None, start=None, stop=None):
+    def __init__(self, context_names=None, inequality=None, klass=None, predicate=None, start=None, stop=None):
         from experimental import helpertools
         from experimental import selectortools
         from experimental import specificationtools
@@ -48,7 +48,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
-        self._contexts = contexts
+        self._context_names = context_names or []
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass
@@ -66,11 +66,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
     def context_names(self):
         '''Return list of context names.
         '''
-        return self.contexts
-
-    @property
-    def contexts(self):
-        return self._contexts
+        return self._context_names
 
     @property
     def klass(self):

@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.context_names
 
-.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.contexts
-
 .. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

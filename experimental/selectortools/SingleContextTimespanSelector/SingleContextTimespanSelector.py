@@ -34,16 +34,16 @@ class SingleContextTimespanSelector(TimespanSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, context, timespan):
-        assert isinstance(context, (str, contexttools.Context)), repr(context)
+    def __init__(self, context_name, timespan):
+        assert isinstance(context_name, str), repr(context_name)
         TimespanSelector.__init__(self, timespan=timespan)
-        self._context = context
+        self._context_name = context_name
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.context == expr.context:
+            if self.context_name == expr.context_name:
                 if self.timespan == expr.timespan:
                     return True
         return False
@@ -51,21 +51,15 @@ class SingleContextTimespanSelector(TimespanSelector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context(self):
+    def context_name(self):
         '''Context name of selector specified by user::
 
-            >>> selector.context
+            >>> selector.context_name
             'Voice 1'
 
         Return string.
         '''
-        return self._context
-
-    @property
-    def context_name(self):
-        '''Return string.
-        '''
-        return self._context
+        return self._context_name
 
     @property
     def context_names(self):
@@ -78,4 +72,4 @@ class SingleContextTimespanSelector(TimespanSelector):
     def get_context_name(self, score_name):
         '''Return explicit context name or else score name.
         '''
-        return self.context or score_name
+        return self.context_name or score_name

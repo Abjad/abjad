@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.context_names
 
-.. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.contexts
-
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

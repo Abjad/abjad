@@ -16,13 +16,13 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
         >>> segment_selector = selectortools.SegmentSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(segment_selector.timespan)
         >>> division_selector = selectortools.MultipleContextDivisionSliceSelector(
-        ... contexts=['Voice 1', 'Voice 3'], inequality=inequality, stop=5)
+        ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, stop=5)
 
     ::
 
         >>> z(division_selector)
         selectortools.MultipleContextDivisionSliceSelector(
-            contexts=['Voice 1', 'Voice 3'],
+            context_names=['Voice 1', 'Voice 3'],
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
@@ -39,19 +39,19 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, contexts=None, inequality=None, start=None, stop=None):
+    def __init__(self, context_names=None, inequality=None, start=None, stop=None):
         from experimental import interpretertools
         BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
             inequality=inequality, start=start, stop=stop)
-        assert isinstance(contexts, (list, type(None))), repr(contexts)
-        contexts = self._process_contexts(contexts)
-        self._contexts = contexts
+        assert isinstance(context_names, (list, type(None))), repr(context_names)
+        context_names = self._process_contexts(context_names)
+        self._context_names = context_names
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.contexts == expr.contexts:
+            if self.context_names == expr.context_names:
                 if self.inequality == expr.inequality:
                     if self.start == expr.start:
                         if self.stop == expr.stop:
@@ -70,8 +70,4 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     def context_names(self):
         '''Return list of context names.
         '''
-        return self.contexts
-    
-    @property
-    def contexts(self):
-        return self._contexts
+        return self._context_names

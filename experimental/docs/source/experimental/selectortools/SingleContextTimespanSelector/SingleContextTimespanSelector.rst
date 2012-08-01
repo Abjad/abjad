@@ -9,8 +9,6 @@ selectortools.SingleContextTimespanSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.context
-
 .. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.context_name
 
 .. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.context_names

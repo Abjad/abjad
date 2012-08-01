@@ -15,7 +15,7 @@ def test_SegmentSpecification_select_timespan_01():
 
     selection_1 = segment.select_timespan()
     selection_2 = selectortools.MultipleContextTimespanSelector(
-        contexts=['Grouped Rhythmic Staves Score'],
+        context_names=['Grouped Rhythmic Staves Score'],
         timespan=timespantools.SingleSourceTimespan(selector=selectortools.SegmentSelector(index='red')))
 
     assert selection_1 == selection_2

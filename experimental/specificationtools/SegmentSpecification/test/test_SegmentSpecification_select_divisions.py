@@ -16,7 +16,7 @@ def test_SegmentSpecification_select_divisions_01():
 
     selector_1 = segment.select_divisions(contexts=contexts, stop=5)
     selector_2 = selectortools.MultipleContextDivisionSliceSelector(
-        contexts=['Voice 1', 'Voice 3'],
+        context_names=['Voice 1', 'Voice 3'],
         inequality=timespantools.TimespanInequality(
             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
             timespantools.SingleSourceTimespan(

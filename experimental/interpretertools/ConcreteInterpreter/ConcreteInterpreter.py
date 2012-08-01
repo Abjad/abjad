@@ -553,7 +553,7 @@ class ConcreteInterpreter(Interpreter):
 
     def store_resolved_single_context_setting(self,
         segment_specification, resolved_single_context_setting, clear_persistent_first=False):
-        context_name = resolved_single_context_setting.target.context
+        context_name = resolved_single_context_setting.target.context_name
         if context_name is None:
             context_name = segment_specification.resolved_single_context_settings.score_name
         attribute = resolved_single_context_setting.attribute
@@ -656,7 +656,8 @@ class ConcreteInterpreter(Interpreter):
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
                 setting = setting.copy_setting_to_segment(segment_specification.segment_name)
-            assert setting.target.context == segment_specification.score_name, repr(setting)
+            #assert setting.target.context == segment_specification.score_name, repr(setting)
+            assert setting.target.context_name == segment_specification.score_name, repr(setting)
             assert setting.target.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting(setting, clear_persistent_first=True)

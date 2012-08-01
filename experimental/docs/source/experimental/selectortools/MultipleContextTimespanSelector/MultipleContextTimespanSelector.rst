@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.context_names
 
-.. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.contexts
-
 .. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.segment_index
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

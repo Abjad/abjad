@@ -17,14 +17,14 @@ class MultipleContextTimespanSelector(TimespanSelector):
 
     ::
 
-        >>> contexts = ['Voice 1', 'Voice 3']
-        >>> selector = selectortools.MultipleContextTimespanSelector(contexts, segment_selector.timespan)
+        >>> context_names = ['Voice 1', 'Voice 3']
+        >>> selector = selectortools.MultipleContextTimespanSelector(context_names, segment_selector.timespan)
 
     ::
 
         >>> z(selector)
         selectortools.MultipleContextTimespanSelector(
-            contexts=['Voice 1', 'Voice 3'],
+            context_names=['Voice 1', 'Voice 3'],
             timespan=timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentSelector(
                     index='red'
@@ -37,18 +37,18 @@ class MultipleContextTimespanSelector(TimespanSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, contexts=None, timespan=None):
-        assert isinstance(contexts, (list, type(None))), repr(contexts)
+    def __init__(self, context_names=None, timespan=None):
+        assert isinstance(context_names, (list, type(None))), repr(context_names)
         # TODO: can we allow both single- and multiple-source timespans?
         assert isinstance(timespan, (SingleSourceTimespan, type(None))), repr(timespan)
         TimespanSelector.__init__(self, timespan=timespan)
-        self._contexts = contexts
+        self._context_names = context_names or []
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.contexts == expr.contexts:
+            if self.context_names == expr.context_names:
                 if self.timespan == expr.timespan:
                     return True
         return False
@@ -65,13 +65,4 @@ class MultipleContextTimespanSelector(TimespanSelector):
     def context_names(self):
         '''Return list of context names.
         '''
-
-    @property
-    def contexts(self):
-        '''Contexts specified by user.
-
-        Value of none taken equal to all contexts in score.
-
-        Return list of strings or none.
-        '''
-        return self._contexts
+        return self._context_names
