@@ -89,6 +89,18 @@ class QTarget(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _copy_leaf_type_and_pitches(self, leaf_one, leaf_two):
+        index = leaf_two.parent.index(leaf_two)
+        duration = leaf_two.written_duration
+        if isinstance(leaf_one, notetools.Note):
+            new_leaf = notetools.Note(leaf_one.written_pitch, duration)
+        elif isinstance(leaf_one, chordtools.Chord):
+            new_leaf = chordtools.Chord(leaf_one.written_pitches, duration)
+        else:
+            new_leaf = resttools.Rest(duration)
+        leaf_two.parent[index] = new_leaf
+        return new_leaf
+
     def _notate_leaves_pairwise(self, voice, grace_handler):
         # check first against second, notating first, tying as necessry
         leaves = voice.leaves
@@ -97,6 +109,7 @@ class QTarget(abctools.AbjadObject):
             if not marktools.get_annotations_attached_to_component(leaf_two):
                 klass = tietools.TieSpanner
                 spanner = tuple(spannertools.get_spanners_attached_to_component(leaf_one, klass))
+                leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
                 if spanner:
                     spanner.append(leaf_two)
                 else:
