@@ -780,7 +780,6 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         timespan = timespan or self.timespan
-        # TODO: figure out what should go in the line immediately below
         contexts = contexts or [self.score_name]
         return self._set_attribute_new(
             'divisions',

@@ -2,8 +2,7 @@ from abjad.tools import *
 from experimental import specificationtools
 
 
-# TODO: rename test file to indicate specific type of setting
-def test_ScoreSpecification_settings_01():
+def test_ScoreSpecification_single_context_settings_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
