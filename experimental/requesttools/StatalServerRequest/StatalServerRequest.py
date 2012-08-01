@@ -6,7 +6,7 @@ class StatalServerRequest(Request):
 
     ::
 
-        >>> from experimental import requesttools
+        >>> from experimental import *
 
     Request `statal_server`.
     Apply any of `callback`, `count`, `offset` that are not none.

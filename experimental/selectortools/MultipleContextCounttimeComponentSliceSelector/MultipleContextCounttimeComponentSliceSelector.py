@@ -7,9 +7,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
 
     ::
 
-        >>> from experimental import helpertools
-        >>> from experimental import selectortools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select the first ``40`` leaves starting in segment ``'red'``.
     Do this in both ``'Voice 1'`` and ``'Voice 3'``::

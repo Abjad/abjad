@@ -8,7 +8,7 @@ class TimespanInequalityTemplate(AbjadObject):
 
     Expression starts during timespan::
 
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 

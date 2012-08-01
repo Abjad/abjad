@@ -6,8 +6,7 @@ def is_background_element_klass(expr):
 
     True when `expr` is any of ``Segment``, ``Measure`` or ``Division``::
 
-        >>> from experimental import helpertools
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     ::
 

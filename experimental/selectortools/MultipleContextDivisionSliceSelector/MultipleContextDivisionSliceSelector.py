@@ -7,8 +7,7 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     ::
 
-        >>> from experimental import selectortools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select the first five divisions starting in segment ``'red'``.
     Do this in both ``'Voice 1'`` and ``'Voice 3'``::

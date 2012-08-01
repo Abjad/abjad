@@ -6,7 +6,7 @@ class SegmentSelector(BackgroundElementSelector):
 
     Select segment ``3``::
 
-        >>> from experimental import selectortools
+        >>> from experimental import *
 
     ::
 

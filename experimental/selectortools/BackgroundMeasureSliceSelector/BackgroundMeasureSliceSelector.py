@@ -6,9 +6,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select all measures in score::
 
-        >>> from experimental import helpertools
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     ::
 
@@ -31,10 +29,6 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         BackgroundMeasureSliceSelector(start=3, stop=6)
 
     Select all measures starting during segment ``'red'``::
-
-        >>> from experimental import timespantools
-
-    ::
 
         >>> timespan = selectortools.SegmentSelector(index='red').timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)

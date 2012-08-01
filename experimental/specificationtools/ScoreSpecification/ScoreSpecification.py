@@ -14,8 +14,7 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> from experimental import helpertools
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     Score specification::
 

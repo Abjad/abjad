@@ -10,10 +10,7 @@ class Timepoint(AbjadObject):
 
     Timepoint equal to the left edge of score::
 
-        >>> from experimental import helpertools
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 

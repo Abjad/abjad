@@ -6,7 +6,7 @@ class AttributeRequest(Request):
 
     ::
 
-        >>> from experimental import requesttools
+        >>> from experimental import *
 
     Request `attribute` for `segment_name` in `context_name`.
     Apply any of `callback`, `count`, `offset` that are not none::

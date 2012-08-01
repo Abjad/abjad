@@ -17,10 +17,6 @@ class SingleContextDivisionSelector(BackgroundElementSelector):
 
     Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
-        >>> from experimental import timespantools
-
-    ::
-
         >>> timespan = selectortools.SegmentSelector(index='red').timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 

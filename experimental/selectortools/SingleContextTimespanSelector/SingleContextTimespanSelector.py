@@ -7,8 +7,7 @@ class SingleContextTimespanSelector(TimespanSelector):
 
     ::
 
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     Select the timespan of segment ``'red'`` in ``'Voice 1'``::
 

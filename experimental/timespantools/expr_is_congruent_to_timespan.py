@@ -3,7 +3,7 @@ def expr_is_congruent_to_timespan(timespan=None):
 
     Make timespan inequality template indicating that expression is congruent to timespan::
 
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 

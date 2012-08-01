@@ -3,7 +3,7 @@ def expr_stops_after_timespan_stops(timespan=None):
 
     Make timespan inequality template indicating that expression stops after timespan stops::
 
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 

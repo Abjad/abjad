@@ -6,7 +6,7 @@ class SegmentIndexExpression(AbjadObject):
 
     Delayed evaluation wrapper similar to Mathematica ``Hold[]``::
 
-        >>> from experimental import helpertools
+        >>> from experimental import *
 
     ::
 

@@ -8,8 +8,7 @@ class MultipleContextTimespanSelector(TimespanSelector):
 
     ::
 
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     Select the timespan of segment ``'red'``. Do this for both ``'Voice 1'`` and ``'Voice 3'``.
         

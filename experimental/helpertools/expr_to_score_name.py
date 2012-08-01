@@ -3,8 +3,7 @@ def expr_to_score_name(expr):
     
     Change score specification to score specification name::
 
-        >>> from experimental import helpertools
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     ::
 

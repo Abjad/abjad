@@ -8,9 +8,7 @@ class MixedSourceTimespan(Timespan):
 
     Mixed-source timespan.
 
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     SingleSourceTimespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::

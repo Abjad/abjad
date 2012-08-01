@@ -7,8 +7,7 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     ::
 
-        >>> from experimental import selectortools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select measure ``3`` in score::
 

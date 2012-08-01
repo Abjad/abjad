@@ -6,7 +6,7 @@ class HandlerRequest(Request):
 
     ::
 
-        >>> from experimental import requesttools
+        >>> from experimental import *
 
     Request `handler`.
     Apply any of `callback`, `count`, `offset` that are not none.

@@ -11,10 +11,7 @@ import types
 class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
-        >>> from experimental import helpertools
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select ``'Voice 1'`` counttime measure ``3``::
 

@@ -3,9 +3,8 @@ def expr_to_segment_name(expr):
     
     Change segment specification to segment name::
 
-        >>> from abjad.tools import scoretemplatetools
-        >>> from experimental import helpertools
-        >>> from experimental import specificationtools
+        >>> from abjad.tools import *
+        >>> from experimental import *
 
     ::
 

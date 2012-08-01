@@ -8,9 +8,7 @@ class TimespanInequality(AbjadObject):
 
     Test for all objects that start during segment ``'red'``::
 
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 

@@ -7,8 +7,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
 
     Partition `reference` by ratio of durations. Then select exactly one part.
 
-        >>> from experimental import selectortools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select all background measures starting during segment ``'red'`` in ``'Voice 1'``.
     Then partition these measures ``1:1`` by their duration.

@@ -9,9 +9,7 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
     Select zero or more counttime components in `reference` container
     restricted according to keywords.
 
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select the first five counttime components in ``'Voice 1'``::
 

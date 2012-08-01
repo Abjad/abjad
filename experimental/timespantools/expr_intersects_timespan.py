@@ -3,7 +3,7 @@ def expr_intersects_timespan(timespan=None):
 
     Make timespan inequality template indicating that expression intersects timespan::
 
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 

@@ -3,7 +3,7 @@ def expr_overlaps_stop_of_timespan(timespan=None):
 
     Make timespan inequality template indicating that expression overlaps stop of timespan::
 
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     ::
 
