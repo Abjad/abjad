@@ -657,13 +657,20 @@ class ConcreteInterpreter(Interpreter):
         assert sequencetools.all_are_equal(start_segment_names)
         #self._debug(uninterpreted_division_commands)
         for uninterpreted_division_command in uninterpreted_division_commands:
-            commands_to_remove = []
+            commands_to_remove, commands_to_shorten = [], []
             for command in result:
                 if uninterpreted_division_command.start_offset <= command.start_offset:
                     commands_to_remove.append(command)
+                if command.start_offset < uninterpreted_division_command.start_offset < command.stop_offset:
+                    commands_to_shorten.append(command)
             for command_to_remove in commands_to_remove:
                 result.remove(command_to_remove)
+            for command_to_shorten in commands_to_shorten:
+                command_to_shorten._stop_offset = uninterpreted_division_command.start_offset
+                duration = command_to_shorten.stop_offset - command_to_shorten.start_offset
+                command_to_shorten._duration = duration
             result.append(uninterpreted_division_command)
+        #self._debug(result)
         return result
 
     def store_additional_single_context_settings(self):

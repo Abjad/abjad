@@ -62,3 +62,25 @@ def test_single_segment_solo_timespan_boundary_cases_03():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_single_segment_solo_timespan_boundary_cases_04():
+    '''Second division overlaps and shortens the first.
+    Result is two separate division regions that both express in score.
+    Both the (compositional) order of specification
+    and the (temporal) order of performance matter in this example.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template) 
+    segment = score_specification.append_segment('red') 
+    segment.set_time_signatures([(4, 8), (3, 8)])
+    first_measure = segment.select_background_measure(1)
+    segment.set_divisions_new([(3, 16)])
+    segment.set_divisions_new([(1, 16)], timespan=first_measure)
+    segment.set_rhythm(library.thirty_seconds)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
