@@ -5,7 +5,7 @@ from experimental.specificationtools import library
 
 def test_single_segment_solo_timespan_boundary_cases_01():
     '''Second division setting overwrites first division setting.
-    Division settings overlap each other exactly.
+    Same size settings.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
