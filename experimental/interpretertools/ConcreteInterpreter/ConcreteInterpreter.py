@@ -344,7 +344,7 @@ class ConcreteInterpreter(Interpreter):
             #self._debug('segment')
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            commands = self.sort_uninterpreted_division_commands(commands)
+            commands = self.sort_and_split_uninterpreted_division_commands(commands)
             #self._debug(commands, 'commands')
             if commands:
                 uninterpreted_division_commands.extend(commands)
@@ -651,25 +651,47 @@ class ConcreteInterpreter(Interpreter):
         #print command
         return command
 
-    def sort_uninterpreted_division_commands(self, uninterpreted_division_commands):
+    def sort_and_split_uninterpreted_division_commands(self, uninterpreted_division_commands):
         result = []
         start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
         assert sequencetools.all_are_equal(start_segment_names)
         #self._debug(uninterpreted_division_commands)
         for uninterpreted_division_command in uninterpreted_division_commands:
-            commands_to_remove, commands_to_shorten = [], []
+            command_was_split = False
+            commands_to_remove, commands_to_shorten, commands_to_split = [], [], []
             for command in result:
                 if uninterpreted_division_command.start_offset <= command.start_offset:
                     commands_to_remove.append(command)
                 if command.start_offset < uninterpreted_division_command.start_offset < command.stop_offset:
-                    commands_to_shorten.append(command)
+                    if uninterpreted_division_command.stop_offset < command.stop_offset:
+                        commands_to_split.append(command)
+                    else:
+                        commands_to_shorten.append(command)
             for command_to_remove in commands_to_remove:
                 result.remove(command_to_remove)
             for command_to_shorten in commands_to_shorten:
                 command_to_shorten._stop_offset = uninterpreted_division_command.start_offset
                 duration = command_to_shorten.stop_offset - command_to_shorten.start_offset
+                duration = durationtools.Duration(duration)
                 command_to_shorten._duration = duration
-            result.append(uninterpreted_division_command)
+            for command_to_split in commands_to_split:
+                left_command = command_to_split
+                middle_command = uninterpreted_division_command
+                right_command = copy.deepcopy(left_command)
+                left_command._stop_offset = middle_command.start_offset
+                left_duration = left_command.stop_offset - left_command.start_offset
+                left_duration = durationtools.Duration(left_duration)
+                left_command._duration = left_duration
+                right_command._start_offset = middle_command.stop_offset
+                right_duration = right_command.stop_offset - right_command.start_offset
+                right_duration = durationtools.Duration(right_duration)
+                right_command._duration = right_duration
+                command_was_split = True
+            if command_was_split:
+                result.append(middle_command)
+                result.append(right_command)
+            else:
+                result.append(uninterpreted_division_command)
         #self._debug(result)
         return result
 
