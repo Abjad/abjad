@@ -335,10 +335,13 @@ class ConcreteInterpreter(Interpreter):
 
     def get_uninterpreted_division_commands_for_voice(self, voice):
         from experimental import interpretertools
+        #self._debug(voice)
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
+            #self._debug('segment')
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
+            #self._debug(commands, 'commands that start during segment')
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
@@ -352,14 +355,16 @@ class ConcreteInterpreter(Interpreter):
                     False
                     )
                 uninterpreted_division_commands.append(command)
+            #for x in uninterpreted_division_commands:
+            #    self._debug(x, 'udc')
+            #uninterpreted_division_commands = self.sort_uninterpreted_division_commands(
+            #    uninterpreted_division_commands)
+            #print ''
         return uninterpreted_division_commands
 
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
-        #for rscs in resolved_single_context_settings:
-        #    self._debug(rscs, 'rscs')
-        #    print ''
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
             #self._debug(resolved_single_context_setting, 'rscs')
@@ -386,7 +391,6 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
-
     def instantiate_score(self):
         score = self.score_specification.score_template()
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
@@ -395,10 +399,11 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        self._debug(uninterpreted_division_commands, 'udc')
+        #for x in uninterpreted_division_commands:
+        #    self._debug(x, 'udc')
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
-        self._debug(uninterpreted_division_commands, 'rdc')
+        #self._debug(uninterpreted_division_commands, 'rdc')
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands)
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
@@ -553,13 +558,13 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification = self.get_segment_specification(segment_index)
                     start = selector.timespan.selector.start
                     stop = selector.timespan.selector.stop
-                    #time_signatures = segment_specification.time_signatures[start:stop] 
-                    #durations = [durationtools.Duration(x) for x in time_signatures]
-                    #duration = durationtools.Duration(sum(durations))
-                    time_signatures_before = segment_specification.time_signatures[:start]
-                    durations_before = [durationtools.Duration(x) for x in time_signatures_before]
+                    start = start or 0
+                    #self._debug((start, stop))
+                    durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]
+                    durations_before = durations[:start]
                     duration_before = sum(durations_before)
-                    return durationtools.Offset(duration_before)
+                    start_offset = durationtools.Offset(duration_before)
+                    return start_offset
                 else:
                     raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
@@ -570,7 +575,6 @@ class ConcreteInterpreter(Interpreter):
                     ratio = selector.timespan.selector.ratio
                     index = selector.timespan.selector.index
                     parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    #part = parts[index]
                     parts_before = parts[:index]
                     duration_before = sum(parts_before)
                     return durationtools.Offset(duration_before) 
@@ -595,13 +599,11 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification = self.get_segment_specification(segment_index)
                     start = selector.timespan.selector.start
                     stop = selector.timespan.selector.stop
-                    time_signatures = segment_specification.time_signatures[start:stop] 
-                    durations = [durationtools.Duration(x) for x in time_signatures]
-                    duration = durationtools.Duration(sum(durations))
-                    time_signatures_before = segment_specification.time_signatures[:start]
-                    durations_before = [durationtools.Duration(x) for x in time_signatures_before]
-                    duration_before = sum(durations_before)
-                    return durationtools.Offset(duration_before + duration)
+                    durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]
+                    durations_up_through = durations[:stop]
+                    duration_up_through = sum(durations_up_through)
+                    stop_offset = durationtools.Offset(duration_up_through)
+                    return stop_offset
                 else:
                     raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
@@ -634,6 +636,7 @@ class ConcreteInterpreter(Interpreter):
         duration = self.single_context_timespan_selector_to_duration(selector)
         start_offset = self.single_context_timespan_selector_to_start_offset(selector)
         stop_offset = self.single_context_timespan_selector_to_stop_offset(selector)
+        #self._debug((start_offset, stop_offset))
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             duration,
@@ -645,6 +648,18 @@ class ConcreteInterpreter(Interpreter):
             )
         #print command
         return command
+
+    def sort_uninterpreted_division_commands(self, uninterpreted_division_commands):
+        result = []
+        for uninterpreted_division_command in uninterpreted_division_commands:
+            commands_to_remove = []
+            for command in result:
+                if command.start_offset == uninterpreted_division_command.start_offset:
+                    commands_to_remove.append(command)
+            for command_to_remove in commands_to_remove:
+                result.remove(command_to_remove)
+            result.append(uninterpreted_division_command)
+        return result
 
     def store_additional_single_context_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
