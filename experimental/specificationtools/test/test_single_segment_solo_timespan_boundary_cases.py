@@ -5,7 +5,7 @@ from experimental.specificationtools import library
 
 def test_single_segment_solo_timespan_boundary_cases_01():
     '''Second division setting overwrites first division setting.
-    Same size settings.
+    Settings stop and start at same time.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -25,6 +25,7 @@ def test_single_segment_solo_timespan_boundary_cases_01():
 def test_single_segment_solo_timespan_boundary_cases_02():
     '''Second division setting overrides first division setting.
     First setting smaller than second setting.
+    Settings start at same time.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -38,5 +39,5 @@ def test_single_segment_solo_timespan_boundary_cases_02():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name, go=True)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

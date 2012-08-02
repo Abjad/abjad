@@ -655,6 +655,7 @@ class ConcreteInterpreter(Interpreter):
         result = []
         start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
         assert sequencetools.all_are_equal(start_segment_names)
+        #self._debug(uninterpreted_division_commands)
         for uninterpreted_division_command in uninterpreted_division_commands:
             commands_to_remove = []
             for command in result:
