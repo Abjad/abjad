@@ -302,7 +302,7 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.duration, 
                 segment_specification.segment_name,
                 0,
-                0,
+                segment_specification.duration,
                 'FOO CONTEXT NAME',
                 True
                 )
@@ -326,7 +326,7 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification.duration, 
                     segment_specification.segment_name,
                     0,
-                    0,
+                    segment_specification.duration,
                     'FOO CONTEXT NAME',
                     resolved_single_context_setting.fresh
                     )

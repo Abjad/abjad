@@ -16,7 +16,6 @@ class UninterpretedDivisionCommand(DivisionCommand):
         assert isinstance(fresh, bool), repr(fresh)
         assert isinstance(truncate, bool), repr(truncate)
         assert isinstance(context_name, (str, type(None)))
-        assert stop_offset - start_offset == duration, repr((stop_offset, start_offset, duration))
         DivisionCommand.__init__(
             self, value, duration, start_segment_name, start_offset, stop_offset, context_name)
         self._fresh = fresh

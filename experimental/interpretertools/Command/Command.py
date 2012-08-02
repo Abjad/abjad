@@ -24,8 +24,7 @@ class Command(AbjadObject):
         assert isinstance(start_segment_name, str)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)
-        # TODO: uncomment assertion after calculating RhythmCommand offsets correctly
-        #assert stop_offset - start_offset == duration, repr((stop_offset, start_offset, duration))
+        assert stop_offset - start_offset == duration, repr((stop_offset, start_offset, duration))
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         self._value = value
         self._duration = duration
