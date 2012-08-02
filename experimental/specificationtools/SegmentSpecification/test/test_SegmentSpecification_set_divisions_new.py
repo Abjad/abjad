@@ -14,10 +14,10 @@ def test_SegmentSpecification_set_divisions_new_01():
     segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
-    first_measure = segment.select_background_measures(stop=1).timespan
-    second_measure = segment.select_background_measures(start=-1).timespan
-    first_half = segment.select_segment_duration_ratio_item((1, 1), 0).timespan
-    second_half = segment.select_segment_duration_ratio_item((1, 1), 1).timespan
+    first_measure = segment.select_background_measures(stop=1)
+    second_measure = segment.select_background_measures(start=-1)
+    first_half = segment.select_segment_duration_ratio_item((1, 1), 0)
+    second_half = segment.select_segment_duration_ratio_item((1, 1), 1)
 
     segment.set_divisions_new([(3, 16)], timespan=first_measure, contexts=['Voice 1'], persist=False)
     segment.set_divisions_new([(5, 16)], timespan=second_measure, contexts=['Voice 1'], persist=False)

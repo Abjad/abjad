@@ -15,9 +15,9 @@ def test_single_segment_solo_with_multiple_division_regions_01():
     segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
 
-    first_measure = segment.select_background_measure(0).timespan
-    second_measure = segment.select_background_measure(1).timespan
-    third_measure = segment.select_background_measure(2).timespan
+    first_measure = segment.select_background_measure(0)
+    second_measure = segment.select_background_measure(1)
+    third_measure = segment.select_background_measure(2)
 
     # TODO: make it possible to eliminate contexts assignment in arbitrary ones of these settings
     #segment.set_divisions_new([(2, 32)], timespan=first_measure, contexts=['Voice 1'])

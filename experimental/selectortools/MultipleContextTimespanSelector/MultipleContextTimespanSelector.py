@@ -18,18 +18,19 @@ class MultipleContextTimespanSelector(TimespanSelector):
     ::
 
         >>> context_names = ['Voice 1', 'Voice 3']
-        >>> selector = selectortools.MultipleContextTimespanSelector(context_names, segment_selector.timespan)
+        >>> selector = selectortools.MultipleContextTimespanSelector(
+        ... segment_selector.timespan, context_names=context_names)
 
     ::
 
         >>> z(selector)
         selectortools.MultipleContextTimespanSelector(
-            context_names=['Voice 1', 'Voice 3'],
-            timespan=timespantools.SingleSourceTimespan(
+            timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentItemSelector(
                     index='red'
                     )
-                )
+                ),
+            context_names=['Voice 1', 'Voice 3']
             )
 
     All mutliple-context timespan selector properties are read-only.
@@ -37,11 +38,9 @@ class MultipleContextTimespanSelector(TimespanSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, context_names=None, timespan=None):
+    def __init__(self, timespan, context_names=None):
         assert isinstance(context_names, (list, type(None))), repr(context_names)
-        # TODO: can we allow both single- and multiple-source timespans?
-        assert isinstance(timespan, (SingleSourceTimespan, type(None))), repr(timespan)
-        TimespanSelector.__init__(self, timespan=timespan)
+        TimespanSelector.__init__(self, timespan)
         self._context_names = context_names or []
 
     ### SPECIAL METHODS ###

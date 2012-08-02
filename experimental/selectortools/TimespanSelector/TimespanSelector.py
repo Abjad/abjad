@@ -18,9 +18,7 @@ class TimespanSelector(Selector):
     @abstractmethod
     def __init__(self, timespan):
         from experimental import timespantools
-        # TODO: do not allow none timespan
-        #assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
+        timespan = timespantools.expr_to_timespan(timespan)
         Selector.__init__(self)
         self._timespan = timespan
 

@@ -432,3 +432,4 @@ Unstable packages (load manually)
    experimental/timespantools/expr_stops_during_timespan
    experimental/timespantools/expr_stops_when_timespan_starts
    experimental/timespantools/expr_stops_when_timespan_stops
+   experimental/timespantools/expr_to_timespan

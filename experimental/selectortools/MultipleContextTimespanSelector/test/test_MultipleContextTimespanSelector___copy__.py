@@ -9,7 +9,7 @@ def test_MultipleContextTimespanSelector___copy___01():
 
     context_names = ['Voice 1', 'Voice 3']
     selection_1 = selectortools.MultipleContextTimespanSelector(
-        context_names=context_names, timespan=segment_selector.timespan)
+        segment_selector.timespan, context_names=context_names)
     selection_2 = copy.deepcopy(selection_1)
 
     assert isinstance(selection_1, selectortools.MultipleContextTimespanSelector)

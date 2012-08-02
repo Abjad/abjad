@@ -34,7 +34,7 @@ class TimespanInequality(AbjadObject):
 
     def __init__(self, timespan_inequality_template, timespan):
         from experimental import timespantools
-        assert isinstance(timespan, timespantools.SingleSourceTimespan), repr(timespan)
+        timespan = timespantools.expr_to_timespan(timespan)
         assert isinstance(timespan_inequality_template, timespantools.TimespanInequalityTemplate), repr(
             timespan_inequality_template)
         self._timespan = timespan

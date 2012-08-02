@@ -17,7 +17,7 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
 
     Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
-        >>> timespan = selectortools.SegmentItemSelector(index='red').timespan
+        >>> timespan = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
@@ -43,13 +43,13 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
     Select the last ``'Voice 1'`` division to start during the last measure to start during 
     segment ``'red'``::
 
-        >>> timespan = selectortools.SegmentItemSelector(index='red').timespan
+        >>> timespan = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
         >>> measure = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
 
     ::
         
-        >>> timespan = measure.timespan
+        >>> timespan = measure
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
         >>> division = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, index=-1)
 

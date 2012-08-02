@@ -446,12 +446,12 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.DurationRatioItemSelector(
                 selectortools.MultipleContextTimespanSelector(
-                    context_names=['Voice 1', 'Voice 3'],
-                    timespan=timespantools.SingleSourceTimespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
                             index='red'
                             )
-                        )
+                        ),
+                    context_names=['Voice 1', 'Voice 3']
                     ),
                 mathtools.Ratio(1, 1, 1),
                 index=-1
@@ -696,12 +696,12 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.MultipleContextTimespanSelector(
-                context_names=['Grouped Rhythmic Staves Score'],
-                timespan=timespantools.SingleSourceTimespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
-                    )
+                    ),
+                context_names=['Grouped Rhythmic Staves Score']
                 )
 
         Return multiple-context timespan selector.
@@ -755,12 +755,12 @@ class SegmentSpecification(Specification):
                 'divisions',
                 [(3, 16)],
                 selectortools.MultipleContextTimespanSelector(
-                    context_names=['Voice 1', 'Voice 3'],
-                    timespan=timespantools.SingleSourceTimespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
                             index='red'
                             )
-                        )
+                        ),
+                    context_names=['Voice 1', 'Voice 3']
                     ),
                 persist=True,
                 truncate=False
