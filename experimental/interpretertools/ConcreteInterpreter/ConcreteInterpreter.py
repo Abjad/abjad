@@ -344,7 +344,8 @@ class ConcreteInterpreter(Interpreter):
             #self._debug('segment')
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            #self._debug(commands, 'commands that start during segment')
+            commands = self.sort_uninterpreted_division_commands(commands)
+            #self._debug(commands, 'commands')
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
@@ -359,10 +360,6 @@ class ConcreteInterpreter(Interpreter):
                     False
                     )
                 uninterpreted_division_commands.append(command)
-            #for x in uninterpreted_division_commands:
-            #    self._debug(x, 'udc')
-            #uninterpreted_division_commands = self.sort_uninterpreted_division_commands(
-            #    uninterpreted_division_commands)
         #print ''
         return uninterpreted_division_commands
 
@@ -656,6 +653,8 @@ class ConcreteInterpreter(Interpreter):
 
     def sort_uninterpreted_division_commands(self, uninterpreted_division_commands):
         result = []
+        start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
+        assert sequencetools.all_are_equal(start_segment_names)
         for uninterpreted_division_command in uninterpreted_division_commands:
             commands_to_remove = []
             for command in result:
