@@ -8,9 +8,9 @@ def test_ScoreSpecification_interpret_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecification(score_template)
     
-    score = specification.interpret()
+    score = score_specification.interpret()
 
     r'''
     \context Score = "Grouped Rhythmic Staves Score" <<
@@ -33,13 +33,13 @@ def test_ScoreSpecification_interpret_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification_1 = specificationtools.ScoreSpecification(score_template)
+    score_specification_1 = specificationtools.ScoreSpecification(score_template)
 
-    score_1 = specification_1.interpret()
+    score_1 = score_specification_1.interpret()
 
-    specification_2 = specificationtools.ScoreSpecification(score_template)
-    segment = specification_2.append_segment('red')
-    score_2 = specification_2.interpret()
+    score_specification_2 = specificationtools.ScoreSpecification(score_template)
+    segment = score_specification_2.append_segment('red')
+    score_2 = score_specification_2.interpret()
 
     assert score_1.lilypond_format == score_2.lilypond_format
 
@@ -49,12 +49,12 @@ def test_ScoreSpecification_interpret_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = specificationtools.ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
-    score = specification.interpret()
+    score = score_specification.interpret()
 
     r'''
     \context Score = "Grouped Rhythmic Staves Score" <<
@@ -89,9 +89,9 @@ def test_ScoreSpecification_interpret_03():
 #def test_ScoreSpecification_interpret_04():
 #    py.test.skip('unskip after integrating pitch.')
 #
-#    specification = specificationtools.ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)
+#    score_specification = specificationtools.ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)
 #
-#    segment = specification.append_segment('A')
+#    segment = score_specification.append_segment('A')
 #    segment.set_tempo(108)
 #    segment.set_time_signatures([(2, 8), (2, 8), (3, 8), (2, 8), (3, 8)])
 #    segment.set_aggregate([-38, -36, -34, -29, -28, -25, -21, -20, -19, -18, -15, -11])

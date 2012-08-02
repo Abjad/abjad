@@ -24,8 +24,8 @@ class SegmentDivisionList(DivisionList):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        >>> specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = specification.append_segment('red')
+        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> segment = score_specification.append_segment('red')
 
     ::
 
@@ -35,19 +35,19 @@ class SegmentDivisionList(DivisionList):
 
     ::
 
-        >>> segment = specification.append_segment('blue')
-        >>> segment = specification.append_segment('green')
+        >>> segment = score_specification.append_segment('blue')
+        >>> segment = score_specification.append_segment('green')
 
     ::
 
-        >>> score = specification.interpret()
+        >>> score = score_specification.interpret()
 
     Notice that ``'Voice 1'`` has only one division region division list.
 
     The reason for this is that the composer specified only one division-maker
     for the entire score::
 
-        >>> for x in specification.contexts['Voice 1']['division_region_division_lists']: x
+        >>> for x in score_specification.contexts['Voice 1']['division_region_division_lists']: x
         ... 
         DivisionRegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
 
@@ -55,7 +55,7 @@ class SegmentDivisionList(DivisionList):
 
     The reason for this is that the composer specified three different segments::
 
-        >>> for x in specification.contexts['Voice 1']['segment_division_lists']: x
+        >>> for x in score_specification.contexts['Voice 1']['segment_division_lists']: x
         ... 
         SegmentDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [2, 16)')
         SegmentDivisionList('(1, 16], [3, 16], [3, 16], [3, 16], [3, 16], [1, 16)')

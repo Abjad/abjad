@@ -4,19 +4,21 @@ from experimental import *
 
 def test_ScoreSpecification_segments_01():
 
-    specification = specificationtools.ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(1))
-    assert not specification.segment_specifications
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    assert not score_specification.segment_specifications
 
 
 def test_ScoreSpecification_segments_02():
 
-    specification = specificationtools.ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
 
-    specification.append_segment('red')
-    assert len(specification.segment_specifications) == 1
+    score_specification.append_segment('red')
+    assert len(score_specification.segment_specifications) == 1
 
-    specification.append_segment('blue')
-    assert len(specification.segment_specifications) == 2
+    score_specification.append_segment('blue')
+    assert len(score_specification.segment_specifications) == 2
 
-    specification.segment_specifications.pop()
-    assert len(specification.segment_specifications) == 1
+    score_specification.segment_specifications.pop()
+    assert len(score_specification.segment_specifications) == 1
