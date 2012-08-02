@@ -1,3 +1,7 @@
 1. Make divisions (ie, nonreduced fractions) partitionable.
 
 2. Rename ratio selector 'index' keyword to 'item'.
+
+3. Change specification.append_segment() to specification.append_segment('red') in test files.
+
+4. Change specification to score_specification in test files.

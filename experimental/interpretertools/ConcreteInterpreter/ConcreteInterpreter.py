@@ -803,17 +803,21 @@ class ConcreteInterpreter(Interpreter):
                     region_division_commands.append(region_division_command)
                 else:
                     duration = last_region_division_command.duration + uninterpreted_division_command.duration
+                    start_offset = last_region_division_command.start_offset
+                    stop_offset = last_region_division_command.stop_offset + \
+                        uninterpreted_division_command.duration
                     region_division_command = interpretertools.RegionDivisionCommand(
                         last_region_division_command.value,
                         duration,
-                        uninterpreted_division_command.start_segment_name,
-                        0,
-                        0,
+                        last_region_division_command.start_segment_name,
+                        start_offset,
+                        stop_offset,
                         uninterpreted_division_command.context_name,
                         last_region_division_command.fresh,
                         uninterpreted_division_command.truncate
                         )
                     region_division_commands[-1] = region_division_command
+        #self._debug(region_division_commands)
         return region_division_commands
 
     def unpack_multiple_context_settings_for_score(self):
