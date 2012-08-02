@@ -7,7 +7,7 @@ def test_SegmentSpecification_multiple_context_settings_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     assert not segment.multiple_context_settings
     assert not segment.single_context_settings
 

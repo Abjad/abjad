@@ -25,7 +25,7 @@ class SegmentDivisionList(DivisionList):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         >>> specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = specification.append_segment()
+        >>> segment = specification.append_segment('red')
 
     ::
 
@@ -35,8 +35,8 @@ class SegmentDivisionList(DivisionList):
 
     ::
 
-        >>> segment = specification.append_segment()
-        >>> segment = specification.append_segment()
+        >>> segment = specification.append_segment('blue')
+        >>> segment = specification.append_segment('green')
 
     ::
 

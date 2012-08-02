@@ -10,7 +10,7 @@ def test_SegmentSpecification_select_ratio_of_background_measures_01():
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(template)
 
-    segment = score_specification.append_segment()
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     selector = segment.select_ratio_of_background_measures((1, 1), 0)

@@ -11,12 +11,12 @@ def test_multisegment_solo_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
 
     score = specification.interpret()
 
@@ -35,12 +35,12 @@ def test_multisegment_solo_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
     
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
 
     score = specification.interpret()
     
@@ -57,12 +57,12 @@ def test_multisegment_solo_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(14, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
 
     score = specification.interpret()
 
@@ -81,12 +81,12 @@ def test_multisegment_solo_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(14, 16)], contexts=segment.v1, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
 
     score = specification.interpret()
 
@@ -104,12 +104,12 @@ def test_multisegment_solo_05():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(20, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
 
     score = specification.interpret()
 
@@ -128,12 +128,12 @@ def test_multisegment_solo_06():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
     
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(20, 16)], contexts=segment.v1, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
 
     score = specification.interpret()
     
@@ -151,13 +151,13 @@ def test_multisegment_solo_07():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
     
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(15, 8)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = specification.append_segment()
-    segment = specification.append_segment()
+    segment = specification.append_segment('blue')
+    segment = specification.append_segment('green')
 
     score = specification.interpret()
     

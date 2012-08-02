@@ -8,12 +8,12 @@ def test_ScoreSpecification_append_segment_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
-    assert segment.segment_name == '1'
+    segment = specification.append_segment('red')
+    assert segment.segment_name == 'red'
     assert len(specification.segment_specifications) == 1
     
-    segment = specification.append_segment(name='foo')
-    assert segment.segment_name == 'foo'
+    segment = specification.append_segment('blue')
+    assert segment.segment_name == 'blue'
     assert len(specification.segment_specifications) == 2
 
 
@@ -25,6 +25,6 @@ def test_ScoreSpecification_append_segment_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    specification.append_segment('1')
+    specification.append_segment('red')
 
-    py.test.raises(Exception, "specification.append_segment('1')")
+    py.test.raises(Exception, "specification.append_segment('red')")

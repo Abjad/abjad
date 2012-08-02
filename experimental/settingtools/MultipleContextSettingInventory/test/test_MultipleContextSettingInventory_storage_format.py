@@ -18,7 +18,7 @@ def test_MultipleContextSettingInventory_storage_format_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment()
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     multiple_context_setting_inventory_1 = segment.multiple_context_settings
@@ -34,7 +34,7 @@ def test_MultipleContextSettingInventory_storage_format_01():
                 context_names=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='1'
+                        index='red'
                         )
                     )
                 ),
@@ -44,7 +44,7 @@ def test_MultipleContextSettingInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontext_names=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentItemSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\tpersist=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontext_names=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentItemSelector(\n\t\t\t\t\tindex='red'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\tpersist=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     multiple_context_setting_inventory_2 = eval(storage_format)
 

@@ -12,7 +12,7 @@ def test_single_segment_solo_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
@@ -32,7 +32,7 @@ def test_single_segment_solo_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
     
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(14, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
@@ -53,7 +53,7 @@ def test_single_segment_solo_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     specification = specificationtools.ScoreSpecification(score_template)
     
-    segment = specification.append_segment()
+    segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(20, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)

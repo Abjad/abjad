@@ -32,7 +32,7 @@ def test_SegmentSpecification_set_divisions_new_01():
     segment.set_divisions_new([(3, 16)], timespan=second_half, contexts=['Voice 4'], persist=False)
 
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment()
+    segment = score_specification.append_segment('blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

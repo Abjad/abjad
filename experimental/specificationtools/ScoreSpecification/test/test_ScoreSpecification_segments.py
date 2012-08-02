@@ -12,10 +12,10 @@ def test_ScoreSpecification_segments_02():
 
     specification = specificationtools.ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(1))
 
-    specification.append_segment()
+    specification.append_segment('red')
     assert len(specification.segment_specifications) == 1
 
-    specification.append_segment()
+    specification.append_segment('blue')
     assert len(specification.segment_specifications) == 2
 
     specification.segment_specifications.pop()
