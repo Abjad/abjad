@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.duration
 
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.resolved_value
+
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.start_offset
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.start_segment_name
@@ -22,8 +24,6 @@ Read-only Properties
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: experimental.interpretertools.Command.Command.Command.value
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.vector
 

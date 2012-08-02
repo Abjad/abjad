@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.resolved_value
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.start_offset
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -32,10 +36,6 @@ Read-only Properties
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.value
-
-    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.vector
 

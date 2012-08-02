@@ -115,7 +115,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
             voice_divisions, rhythm_region_lengths)
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
-        input_pairs = [(command.value, command.duration) for command in rhythm_commands]
+        input_pairs = [(command.resolved_value, command.duration) for command in rhythm_commands]
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             rhythm_region_durations, input_pairs)
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
@@ -269,7 +269,7 @@ class ConcreteInterpreter(Interpreter):
             return []
         result = [copy.deepcopy(rhythm_commands[0])]
         for rhythm_command in rhythm_commands[1:]:
-            if rhythm_command.value == result[-1].value and not rhythm_command.fresh:
+            if rhythm_command.resolved_value == result[-1].resolved_value and not rhythm_command.fresh:
                 result[-1]._duration += rhythm_command.duration
             else:
                 result.append(copy.deepcopy(rhythm_command))
@@ -448,17 +448,17 @@ class ConcreteInterpreter(Interpreter):
         return voice_division_list
 
     def region_division_command_to_division_region_division_list(self, region_division_command):
-        if isinstance(region_division_command.value, list):
-            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
+        if isinstance(region_division_command.resolved_value, list):
+            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.resolved_value]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
-        elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
-            division_request = region_division_command.value
+        elif isinstance(region_division_command.resolved_value, selectortools.SingleContextDivisionSliceSelector):
+            division_request = region_division_command.resolved_value
             divisions = self.division_request_to_divisions(division_request)
         else:
-            raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
+            raise NotImplementedError('implement for {!r}.'.format(revision_division_command.resolved_value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list.fresh = region_division_command.fresh
         division_region_division_list.truncate = region_division_command.truncate
@@ -477,11 +477,11 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
         resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
             attribute_request)
-        value = resolved_single_context_setting.resolved_value
-        assert value is not None, repr(value)
+        resolved_value = resolved_single_context_setting.resolved_value
+        assert resolved_value is not None, repr(resolved_value)
         if attribute_request.callback is not None:
-            value = attribute_request.callback(value)
-        result = requesttools.resolve_request_offset_and_count(attribute_request, value)
+            resolved_value = attribute_request.callback(resolved_value)
+        result = requesttools.resolve_request_offset_and_count(attribute_request, resolved_value)
         return result
 
     def resolve_single_context_setting(self, single_context_setting):
@@ -786,7 +786,7 @@ class ConcreteInterpreter(Interpreter):
         region_division_commands = []
         if not uninterpreted_division_commands:
             return []
-        if any([x.value is None for x in uninterpreted_division_commands]):
+        if any([x.resolved_value is None for x in uninterpreted_division_commands]):
             return []
         assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
         for uninterpreted_division_command in uninterpreted_division_commands:
@@ -796,7 +796,7 @@ class ConcreteInterpreter(Interpreter):
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
-                assert last_region_division_command.value == uninterpreted_division_command.value
+                assert last_region_division_command.resolved_value == uninterpreted_division_command.resolved_value
                 if last_region_division_command.truncate:
                     region_division_command = interpretertools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
@@ -807,7 +807,7 @@ class ConcreteInterpreter(Interpreter):
                     stop_offset = last_region_division_command.stop_offset + \
                         uninterpreted_division_command.duration
                     region_division_command = interpretertools.RegionDivisionCommand(
-                        last_region_division_command.value,
+                        last_region_division_command.resolved_value,
                         duration,
                         last_region_division_command.start_segment_name,
                         start_offset,

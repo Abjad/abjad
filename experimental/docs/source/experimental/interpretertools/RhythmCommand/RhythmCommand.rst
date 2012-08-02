@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.fresh
 
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.resolved_value
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.start_offset
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -34,10 +38,6 @@ Read-only Properties
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.value
-
-    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.vector
 
