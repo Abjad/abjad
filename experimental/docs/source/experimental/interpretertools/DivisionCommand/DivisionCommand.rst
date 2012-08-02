@@ -21,6 +21,10 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.start_segment_name
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.stop_offset
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`

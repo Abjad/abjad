@@ -23,6 +23,10 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.start_segment_name
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.stop_offset
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`

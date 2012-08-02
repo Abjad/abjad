@@ -19,13 +19,15 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     @abstractmethod
-    def __init__(self, value, duration, start_offset, stop_offset, context_name):
+    def __init__(self, value, duration, start_segment_name, start_offset, stop_offset, context_name):
         duration = durationtools.Duration(duration)
+        assert isinstance(start_segment_name, str)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         self._value = value
         self._duration = duration
+        self._start_segment_name = start_segment_name
         self._start_offset = start_offset
         self._stop_offset = stop_offset
         self._context_name = context_name
@@ -56,6 +58,10 @@ class Command(AbjadObject):
     @property
     def start_offset(self):
         return self._start_offset
+
+    @property
+    def start_segment_name(self):
+        return self._start_segment_name
 
     @property
     def stop_offset(self):

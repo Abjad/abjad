@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.start_offset
 
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.start_segment_name
+
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.stop_offset
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.storage_format

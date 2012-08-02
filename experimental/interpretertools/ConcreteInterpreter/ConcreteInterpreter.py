@@ -210,6 +210,7 @@ class ConcreteInterpreter(Interpreter):
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             duration,
+            segment_specification.segment_name,
             start_offset,
             stop_offset,
             resolved_single_context_setting.target.context_name,
@@ -299,6 +300,7 @@ class ConcreteInterpreter(Interpreter):
             rhythm_command = interpretertools.RhythmCommand(
                 library.rest_filled_tokens, 
                 self.score_specification.duration, 
+                segment_specification.segment_name,
                 0,
                 0,
                 'FOO CONTEXT NAME',
@@ -322,6 +324,7 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_command = interpretertools.RhythmCommand(
                     resolved_single_context_setting.resolved_value, 
                     segment_specification.duration, 
+                    segment_specification.segment_name,
                     0,
                     0,
                     'FOO CONTEXT NAME',
@@ -348,6 +351,7 @@ class ConcreteInterpreter(Interpreter):
                 command = interpretertools.UninterpretedDivisionCommand(
                     segment_specification.time_signatures,
                     segment_specification.duration,
+                    segment_specification.segment_name,
                     0,
                     segment_specification.duration,
                     self.score_specification.score_name,
@@ -359,7 +363,7 @@ class ConcreteInterpreter(Interpreter):
             #    self._debug(x, 'udc')
             #uninterpreted_division_commands = self.sort_uninterpreted_division_commands(
             #    uninterpreted_division_commands)
-            #print ''
+        #print ''
         return uninterpreted_division_commands
 
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
@@ -640,6 +644,7 @@ class ConcreteInterpreter(Interpreter):
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             duration,
+            segment_specification.segment_name,
             start_offset,
             stop_offset,
             resolved_single_context_setting.target.context_name,
@@ -802,6 +807,7 @@ class ConcreteInterpreter(Interpreter):
                     region_division_command = interpretertools.RegionDivisionCommand(
                         last_region_division_command.value,
                         duration,
+                        uninterpreted_division_command.start_segment_name,
                         0,
                         0,
                         uninterpreted_division_command.context_name,
