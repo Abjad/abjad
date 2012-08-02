@@ -659,7 +659,7 @@ class ConcreteInterpreter(Interpreter):
         for uninterpreted_division_command in uninterpreted_division_commands:
             commands_to_remove = []
             for command in result:
-                if command.start_offset == uninterpreted_division_command.start_offset:
+                if uninterpreted_division_command.start_offset <= command.start_offset:
                     commands_to_remove.append(command)
             for command_to_remove in commands_to_remove:
                 result.remove(command_to_remove)
