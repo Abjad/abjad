@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.identifiers
+
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 .. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

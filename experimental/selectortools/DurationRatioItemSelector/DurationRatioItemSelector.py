@@ -20,7 +20,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
     ::
 
         >>> duration_ratio_item_selector = selectortools.DurationRatioItemSelector(
-        ... background_measure_selector, (1, 1), index=0)
+        ... background_measure_selector, (1, 1), identifier=0)
 
     ::
 
@@ -37,7 +37,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
                     )
                 ),
             mathtools.Ratio(1, 1),
-            index=0
+            identifier=0
             )
 
     All duration ratio item selector properties are read-only.
@@ -45,6 +45,6 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, index=None):
+    def __init__(self, reference, ratio, identifier=None):
         RatioSelector.__init__(self, reference, ratio)
-        ItemSelector.__init__(self, index=index)
+        ItemSelector.__init__(self, identifier=identifier)

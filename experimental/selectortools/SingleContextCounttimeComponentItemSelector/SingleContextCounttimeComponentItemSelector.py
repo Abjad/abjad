@@ -16,7 +16,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
     Select ``'Voice 1'`` counttime measure ``3``::
 
         >>> measure_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', klass=Measure, index=3)
+        ... 'Voice 1', klass=Measure, identifier=3)
 
     ::
 
@@ -24,7 +24,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
         selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             klass=measuretools.Measure,
-            index=3
+            identifier=3
             )
 
     Select ``'Voice 1'`` counttime measure ``3`` starting during segment ``'red'``::
@@ -35,7 +35,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
     ::
 
         >>> measure_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
+        ... 'Voice 1', inequality=inequality, klass=Measure, identifier=3)
 
     ::
 
@@ -51,14 +51,14 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                     )
                 ),
             klass=measuretools.Measure,
-            index=3
+            identifier=3
             )
 
     Select ``'Voice 1'`` counttime measure ``3`` to start during segment ``'red'``.
     Then select tuplet ``-1`` in this measure::
 
         >>> tuplet_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... measure_selector, klass=Tuplet, index=-1)
+        ... measure_selector, klass=Tuplet, identifier=-1)
 
     ::
 
@@ -75,17 +75,17 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         )
                     ),
                 klass=measuretools.Measure,
-                index=3
+                identifier=3
                 ),
             klass=tuplettools.Tuplet,
-            index=-1
+            identifier=-1
             )
 
     Select ``'Voice 1'`` counttime measure ``3`` to start during segment ``'red'``.
     Then select note ``0`` in tuplet ``-1`` in this measure::
 
         >>> note_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... tuplet_selector, klass=Note, index=0) 
+        ... tuplet_selector, klass=Note, identifier=0) 
 
     ::
 
@@ -103,19 +103,19 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                             )
                         ),
                     klass=measuretools.Measure,
-                    index=3
+                    identifier=3
                     ),
                 klass=tuplettools.Tuplet,
-                index=-1
+                identifier=-1
                 ),
             klass=notetools.Note,
-            index=0
+            identifier=0
             )
 
     Select ``'Voice 1'`` note ``3``::
 
         >>> note_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', klass=Note, index=3)
+        ... 'Voice 1', klass=Note, identifier=3)
 
     ::
 
@@ -123,13 +123,13 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
         selectortools.SingleContextCounttimeComponentItemSelector(
             'Voice 1',
             klass=notetools.Note,
-            index=3
+            identifier=3
             )
 
     Select ``'Voice 1'`` note ``3`` to start during segment ``'red'``::
 
         >>> selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', inequality=inequality, klass=Note, index=3)
+        ... 'Voice 1', inequality=inequality, klass=Note, identifier=3)
 
     ::
 
@@ -145,7 +145,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                     )
                 ),
             klass=notetools.Note,
-            index=3
+            identifier=3
             )
 
     Select ``'Voice 1'`` chord ``20`` with at least six pitches
@@ -157,7 +157,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
     ::
 
         >>> selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', inequality=inequality, klass=Chord, predicate=predicate, index=20)
+        ... 'Voice 1', inequality=inequality, klass=Chord, predicate=predicate, identifier=20)
 
     ::
 
@@ -174,7 +174,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                 ),
             klass=chordtools.Chord,
             predicate=helpertools.Callback('lambda x: 6 <= len(x)'),
-            index=20
+            identifier=20
             )
 
     Counttime component selectors are immutable.
@@ -182,13 +182,13 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, inequality=None, klass=None, predicate=None, index=None):
+    def __init__(self, reference, inequality=None, klass=None, predicate=None, identifier=None):
         from experimental import helpertools
         from experimental import selectortools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        ItemSelector.__init__(self, index=index)
+        ItemSelector.__init__(self, identifier=identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
         if isinstance(klass, tuple):
@@ -216,7 +216,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
             return False
         elif not self.predicate == other.predicate:
             return False
-        elif not self.index == other.index:
+        elif not self.identifier == other.identifier:
             return False
         else:
             return True
@@ -286,7 +286,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         ),
                     klass=chordtools.Chord,
                     predicate=helpertools.Callback('lambda x: 6 <= len(x)'),
-                    index=20
+                    identifier=20
                     ),
                 edge=Left
                 )
@@ -314,7 +314,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         ),
                     klass=chordtools.Chord,
                     predicate=helpertools.Callback('lambda x: 6 <= len(x)'),
-                    index=20
+                    identifier=20
                     ),
                 edge=Right
                 )
@@ -350,7 +350,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         ),
                     klass=chordtools.Chord,
                     predicate=helpertools.Callback('lambda x: 6 <= len(x)'),
-                    index=20
+                    identifier=20
                     )
                 )
 

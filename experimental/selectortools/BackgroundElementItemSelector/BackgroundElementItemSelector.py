@@ -19,10 +19,10 @@ class BackgroundElementItemSelector(ItemSelector, InequalitySelector):
     ### INITIALIZER ###
     
     @abstractmethod
-    def __init__(self, klass=None, inequality=None, index=0):
+    def __init__(self, klass=None, inequality=None, identifier=0):
         from experimental import selectortools
         assert helpertools.is_background_element_klass(klass), repr(klass)
-        ItemSelector.__init__(self, index=index)
+        ItemSelector.__init__(self, identifier=identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
@@ -33,7 +33,7 @@ class BackgroundElementItemSelector(ItemSelector, InequalitySelector):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.klass == expr.klass:
-                if self.index == expr.index:
+                if self.identifier == expr.identifier:
                     return True
         return False
 

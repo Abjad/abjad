@@ -75,7 +75,7 @@ class Timepoint(AbjadObject):
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> counttime_component_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', inequality=inequality, klass=Note, index=10)
+        ... 'Voice 1', inequality=inequality, klass=Note, identifier=10)
 
     ::
 
@@ -96,7 +96,7 @@ class Timepoint(AbjadObject):
                         )
                     ),
                 klass=notetools.Note,
-                index=10
+                identifier=10
                 )
             )
 
@@ -146,7 +146,7 @@ class Timepoint(AbjadObject):
                         )
                     ),
                 klass=notetools.Note,
-                index=10
+                identifier=10
                 ),
             edge=Right
             )
@@ -252,7 +252,7 @@ class Timepoint(AbjadObject):
                         )
                     ),
                 klass=notetools.Note,
-                index=10
+                identifier=10
                 )
 
         Value of none is taken equal the entire score.

@@ -9,7 +9,7 @@ selectortools.BackgroundMeasureItemSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.index
+.. autoattribute:: experimental.selectortools.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.identifier
 
     Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
 

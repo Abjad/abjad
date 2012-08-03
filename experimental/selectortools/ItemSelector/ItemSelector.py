@@ -12,16 +12,16 @@ class ItemSelector(Selector):
     ### INITIALIZER ##
 
     @abstractmethod
-    def __init__(self, index=None):
-        assert isinstance(index, (int, str, type(None))), repr(index)
-        self._index = index
+    def __init__(self, identifier=None):
+        assert isinstance(identifier, (int, str, type(None))), repr(identifier)
+        self._identifier = identifier
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def index(self):
-        '''Index of item selector.
+    def identifier(self):
+        '''Item selector identifier.
 
         Return integer, string, held expression or none.
         '''
-        return self._index
+        return self._identifier

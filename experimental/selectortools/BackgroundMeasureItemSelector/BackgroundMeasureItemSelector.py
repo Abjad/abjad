@@ -11,8 +11,8 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
 
     Select measure ``3`` in score::
 
-        >>> selectortools.BackgroundMeasureItemSelector(index=3)
-        BackgroundMeasureItemSelector(index=3)
+        >>> selectortools.BackgroundMeasureItemSelector(identifier=3)
+        BackgroundMeasureItemSelector(identifier=3)
 
     Select the last measure to start in the first third of the score::
 
@@ -22,7 +22,7 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
+        >>> selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, identifier=-1)
 
     ::
     
@@ -34,7 +34,7 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
                     multiplier=Fraction(1, 3)
                     )
                 ),
-            index=-1
+            identifier=-1
             )
 
     Select the first measure starting during segment ``'red'``::
@@ -58,7 +58,7 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
                         )
                     )
                 ),
-            index=0
+            identifier=0
             )
 
     Measure selector properties are read-only.
@@ -66,10 +66,10 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, index=0):
+    def __init__(self, inequality=None, identifier=0):
         from abjad.tools import measuretools
         BackgroundElementItemSelector.__init__(
-            self, klass=measuretools.Measure, index=index, inequality=inequality)
+            self, klass=measuretools.Measure, identifier=identifier, inequality=inequality)
 
     ### PUBLIC METHODS ###
 

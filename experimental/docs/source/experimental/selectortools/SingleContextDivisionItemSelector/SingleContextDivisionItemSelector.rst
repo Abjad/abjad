@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.context_names
 
-.. autoattribute:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.index
+.. autoattribute:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.identifier
 
     Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
 

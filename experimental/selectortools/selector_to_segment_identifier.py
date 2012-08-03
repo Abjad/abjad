@@ -9,17 +9,17 @@ def selector_to_segment_identifier(selector):
     
     # TODO: Change explicit checks to recursive search for SegmentItemSelector.
     if isinstance(selector, selectortools.RatioSelector):
-        segment_identifier = selector.reference.timespan.selector.inequality.timespan.selector.index
+        segment_identifier = selector.reference.timespan.selector.inequality.timespan.selector.identifier
     elif isinstance(selector, selectortools.SingleContextTimespanSelector):
         if isinstance(
             selector.timespan.selector, selectortools.SegmentItemSelector):
-            segment_identifier = selector.timespan.selector.index
+            segment_identifier = selector.timespan.selector.identifier
         elif isinstance(
             selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
             if isinstance(
                 selector.timespan.selector.inequality.timespan.selector,
                 selectortools.SegmentItemSelector):
-                segment_identifier = selector.timespan.selector.inequality.timespan.selector.index
+                segment_identifier = selector.timespan.selector.inequality.timespan.selector.identifier
             else:
                 raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
         elif isinstance(
@@ -27,7 +27,7 @@ def selector_to_segment_identifier(selector):
             if isinstance(
                 selector.timespan.selector.reference.selector,
                 selectortools.SegmentItemSelector):
-                segment_identifier = selector.timespan.selector.reference.selector.index
+                segment_identifier = selector.timespan.selector.reference.selector.identifier
             else:
                 raise NotImplementedError(selector.timespan.selector.reference.selector)
         else:

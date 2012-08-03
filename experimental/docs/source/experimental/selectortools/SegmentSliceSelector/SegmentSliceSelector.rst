@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.context_names
 
+.. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.identifiers
+
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

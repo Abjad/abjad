@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.identifiers
+
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 .. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.ratio
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`

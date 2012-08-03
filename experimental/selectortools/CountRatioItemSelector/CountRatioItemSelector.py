@@ -20,7 +20,7 @@ class CountRatioItemSelector(RatioSelector, ItemSelector):
     ::
 
         >>> count_ratio_item_selector = selectortools.CountRatioItemSelector(
-        ... background_measure_selector, (1, 1), index=0)
+        ... background_measure_selector, (1, 1), identifier=0)
 
     ::
 
@@ -37,7 +37,7 @@ class CountRatioItemSelector(RatioSelector, ItemSelector):
                     )
                 ),
             mathtools.Ratio(1, 1),
-            index=0
+            identifier=0
             )
 
     All count ratio item selector properties are read-only.
@@ -45,7 +45,7 @@ class CountRatioItemSelector(RatioSelector, ItemSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, index=None):
+    def __init__(self, reference, ratio, identifier=None):
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         RatioSelector.__init__(self, reference, ratio)
-        ItemSelector.__init__(self, index=index)
+        ItemSelector.__init__(self, identifier=identifier)

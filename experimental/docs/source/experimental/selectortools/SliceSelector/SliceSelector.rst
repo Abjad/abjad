@@ -17,6 +17,8 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.identifiers
+
 .. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

@@ -27,7 +27,7 @@ class SegmentItemSelector(BackgroundElementItemSelector):
         from experimental import specificationtools
         self._identifier = identifier
         BackgroundElementItemSelector.__init__(self, 
-            klass=specificationtools.Segment, inequality=inequality, index=identifier)
+            klass=specificationtools.Segment, inequality=inequality, identifier=identifier)
 
     ### READ-ONLY PROPERTIES ###
 

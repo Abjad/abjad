@@ -16,7 +16,7 @@ class MixedSourceTimespan(Timespan):
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
+        >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, identifier=-1)
         >>> start_timepoint = timespantools.Timepoint(anchor=measure_selector)
 
     ::
@@ -45,7 +45,7 @@ class MixedSourceTimespan(Timespan):
                                 )
                             )
                         ),
-                    index=-1
+                    identifier=-1
                     )
                 ),
             stop_timepoint=timespantools.Timepoint(
@@ -58,7 +58,7 @@ class MixedSourceTimespan(Timespan):
                                 )
                             )
                         ),
-                    index=0
+                    identifier=0
                     ),
                 edge=Right
                 )

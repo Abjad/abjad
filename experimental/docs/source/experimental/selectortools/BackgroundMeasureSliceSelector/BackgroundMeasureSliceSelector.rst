@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.context_names
 
+.. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.identifiers
+
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

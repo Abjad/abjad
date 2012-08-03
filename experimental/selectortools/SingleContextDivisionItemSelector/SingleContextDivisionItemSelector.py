@@ -12,8 +12,8 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selectortools.SingleContextDivisionItemSelector('Voice 1', index=3)
-        SingleContextDivisionItemSelector('Voice 1', index=3)
+        >>> selectortools.SingleContextDivisionItemSelector('Voice 1', identifier=3)
+        SingleContextDivisionItemSelector('Voice 1', identifier=3)
 
     Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
@@ -22,7 +22,7 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selector = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, index=-1)
+        >>> selector = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, identifier=-1)
 
     ::
 
@@ -37,7 +37,7 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
                         )
                     )
                 ),
-            index=-1
+            identifier=-1
             )
 
     Select the last ``'Voice 1'`` division to start during the last measure to start during 
@@ -45,13 +45,13 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
 
         >>> timespan = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
-        >>> measure = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
+        >>> measure = selectortools.BackgroundMeasureItemSelector(inequality=inequality, identifier=-1)
 
     ::
         
         >>> timespan = measure
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
-        >>> division = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, index=-1)
+        >>> division = selectortools.SingleContextDivisionItemSelector('Voice 1', inequality=inequality, identifier=-1)
 
     ::
 
@@ -70,11 +70,11 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
                                     )
                                 )
                             ),
-                        index=-1
+                        identifier=-1
                         )
                     )
                 ),
-            index=-1
+            identifier=-1
             )
 
     Division selectors are immutable.
@@ -82,11 +82,11 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice, inequality=None, index=0):
+    def __init__(self, voice, inequality=None, identifier=0):
         from experimental import selectortools
         from experimental import interpretertools
         BackgroundElementItemSelector.__init__(
-            self, klass=divisiontools.Division, index=index, inequality=inequality)
+            self, klass=divisiontools.Division, identifier=identifier, inequality=inequality)
         voice = helpertools.expr_to_component_name(voice)
         self._voice = voice
 

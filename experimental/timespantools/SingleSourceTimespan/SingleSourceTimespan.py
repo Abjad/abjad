@@ -66,7 +66,7 @@ class SingleSourceTimespan(Timespan):
                             )
                         )
                     ),
-                index=0
+                identifier=0
                 )
             )
 
@@ -92,7 +92,7 @@ class SingleSourceTimespan(Timespan):
                             )
                         )
                     ),
-                index=0
+                identifier=0
                 )
             )
 

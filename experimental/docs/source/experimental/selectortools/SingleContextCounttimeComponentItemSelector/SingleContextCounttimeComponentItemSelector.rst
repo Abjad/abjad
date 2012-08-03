@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.context_names
 
-.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.index
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.identifier
 
     Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
 
