@@ -65,3 +65,9 @@ class MultipleContextTimespanSelector(TimespanSelector):
         '''Return list of context names.
         '''
         return self._context_names
+
+    @property
+    def segment_identifier(self):
+        '''Delegate to ``self.timespan.segment_identifier``.
+        '''
+        return self.timespan.segment_identifier
