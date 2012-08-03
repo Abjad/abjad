@@ -29,7 +29,7 @@ class MultipleContextSetting(Setting):
             selectortools.MultipleContextTimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     ),
                 context_names=['Grouped Rhythmic Staves Score']

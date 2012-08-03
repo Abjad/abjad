@@ -4,7 +4,7 @@ import copy
 
 def test_SegmentItemSelector___copy___01():
 
-    selector_1 = selectortools.SegmentItemSelector(index='red')
+    selector_1 = selectortools.SegmentItemSelector(identifier='red')
     selector_2 = copy.copy(selector_1)
     selector_3 = copy.deepcopy(selector_1)
 

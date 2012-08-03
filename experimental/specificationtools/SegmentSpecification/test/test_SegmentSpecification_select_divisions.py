@@ -21,7 +21,7 @@ def test_SegmentSpecification_select_divisions_01():
             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
             timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentItemSelector(
-                    index='red'
+                    identifier='red'
                     )
                 )
             ),

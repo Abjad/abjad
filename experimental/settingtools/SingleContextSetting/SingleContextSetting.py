@@ -44,7 +44,7 @@ class SingleContextSetting(Setting):
                 'Voice 1',
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     )
                 ),
@@ -94,7 +94,7 @@ class SingleContextSetting(Setting):
                     'Voice 1',
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -134,5 +134,5 @@ class SingleContextSetting(Setting):
         from experimental import specificationtools
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
         segment_name = helpertools.expr_to_segment_name(segment)
-        segment_selector = selectortools.SegmentItemSelector(index=segment_name)
+        segment_selector = selectortools.SegmentItemSelector(identifier=segment_name)
         self.target._timespan = segment_selector.timespan

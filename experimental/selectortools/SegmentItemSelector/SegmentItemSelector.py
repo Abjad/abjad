@@ -10,23 +10,25 @@ class SegmentItemSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selectortools.SegmentItemSelector(index=3)
-        SegmentItemSelector(index=3)
+        >>> selectortools.SegmentItemSelector(identifier=3)
+        SegmentItemSelector(identifier=3)
 
     Select segment ``'red'``::
 
-        >>> selectortools.SegmentItemSelector(index='red')
-        SegmentItemSelector(index='red')
+        >>> selectortools.SegmentItemSelector(identifier='red')
+        SegmentItemSelector(identifier='red')
 
     Segment selectors are immutable.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, index=0):
+    #def __init__(self, inequality=None, index=0):
+    def __init__(self, inequality=None, identifier=0):
         from experimental import specificationtools
+        self._identifier = identifier
         BackgroundElementItemSelector.__init__(self, 
-            klass=specificationtools.Segment, inequality=inequality, index=index)
+            klass=specificationtools.Segment, inequality=inequality, index=identifier)
 
     ### READ-ONLY PROPERTIES ###
 
@@ -41,3 +43,11 @@ class SegmentItemSelector(BackgroundElementItemSelector):
         '''Return empty list.
         '''
         return []
+
+    @property
+    def identifier(self):
+        return self._identifier
+
+    @property
+    def segment_identifier(self):
+        return self._identifier

@@ -37,12 +37,12 @@ class SingleSourceTimespan(Timespan):
 
     Timespan of the segment with name ``'red'``::
 
-        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
 
     ::
 
         >>> timespantools.SingleSourceTimespan(selector=segment_selector)
-        SingleSourceTimespan(selector=SegmentItemSelector(index='red'))
+        SingleSourceTimespan(selector=SegmentItemSelector(identifier='red'))
 
     Timespan of the first measure that starts during segment ``'red'``::
 
@@ -62,7 +62,7 @@ class SingleSourceTimespan(Timespan):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -88,7 +88,7 @@ class SingleSourceTimespan(Timespan):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),

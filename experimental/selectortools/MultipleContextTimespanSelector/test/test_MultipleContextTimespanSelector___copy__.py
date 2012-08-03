@@ -5,7 +5,7 @@ import copy
 
 def test_MultipleContextTimespanSelector___copy___01():
 
-    segment_selector = selectortools.SegmentItemSelector(index='red')
+    segment_selector = selectortools.SegmentItemSelector(identifier='red')
 
     context_names = ['Voice 1', 'Voice 3']
     selection_1 = selectortools.MultipleContextTimespanSelector(

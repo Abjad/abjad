@@ -43,7 +43,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
                 'Voice 1',
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     )
                 ),

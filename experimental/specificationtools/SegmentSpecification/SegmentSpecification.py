@@ -226,11 +226,11 @@ class SegmentSpecification(Specification):
         '''Segment specification selector::
 
             >>> segment.selector
-            SegmentItemSelector(index='red')
+            SegmentItemSelector(identifier='red')
 
         Return segment selector.
         '''
-        return selectortools.SegmentItemSelector(index=self.segment_name)
+        return selectortools.SegmentItemSelector(identifier=self.segment_name)
 
     @property
     def single_context_settings(self):
@@ -248,7 +248,7 @@ class SegmentSpecification(Specification):
         '''Segment specification start timepoint.
 
             >>> segment.start
-            Timepoint(anchor=SegmentItemSelector(index='red'), edge=Left)
+            Timepoint(anchor=SegmentItemSelector(identifier='red'), edge=Left)
 
         Return timepoint.
         '''
@@ -259,7 +259,7 @@ class SegmentSpecification(Specification):
         '''Segment specification stop timepoint.
 
             >>> segment.stop
-            Timepoint(anchor=SegmentItemSelector(index='red'), edge=Right)
+            Timepoint(anchor=SegmentItemSelector(identifier='red'), edge=Right)
 
         Return timepoint.
         '''
@@ -304,7 +304,7 @@ class SegmentSpecification(Specification):
         '''Segment specification timespan.
 
             >>> segment.timespan
-            SingleSourceTimespan(selector=SegmentItemSelector(index='red'))
+            SingleSourceTimespan(selector=SegmentItemSelector(identifier='red'))
 
         Return timespan.
         '''
@@ -336,7 +336,7 @@ class SegmentSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -364,7 +364,7 @@ class SegmentSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -391,7 +391,7 @@ class SegmentSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -422,7 +422,7 @@ class SegmentSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -448,7 +448,7 @@ class SegmentSpecification(Specification):
                 selectortools.MultipleContextTimespanSelector(
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         ),
                     context_names=['Voice 1', 'Voice 3']
@@ -478,7 +478,7 @@ class SegmentSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -510,7 +510,7 @@ class SegmentSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -543,7 +543,7 @@ class SegmentSpecification(Specification):
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         )
@@ -576,7 +576,7 @@ class SegmentSpecification(Specification):
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         )
@@ -609,7 +609,7 @@ class SegmentSpecification(Specification):
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         ),
@@ -643,7 +643,7 @@ class SegmentSpecification(Specification):
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         ),
@@ -676,7 +676,7 @@ class SegmentSpecification(Specification):
             selectortools.DurationRatioItemSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
@@ -698,7 +698,7 @@ class SegmentSpecification(Specification):
             selectortools.MultipleContextTimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     ),
                 context_names=['Grouped Rhythmic Staves Score']
@@ -757,7 +757,7 @@ class SegmentSpecification(Specification):
                 selectortools.MultipleContextTimespanSelector(
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         ),
                     context_names=['Voice 1', 'Voice 3']

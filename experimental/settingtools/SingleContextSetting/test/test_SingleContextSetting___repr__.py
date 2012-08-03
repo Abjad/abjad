@@ -9,7 +9,7 @@ def test_SingleContextSetting___repr___01():
     '''Repr is evaluable.
     '''
 
-    segment_selector = SegmentItemSelector(index='1')
+    segment_selector = SegmentItemSelector(identifier='1')
     target = SingleContextTimespanSelector('Voice 1', timespan=segment_selector.timespan)
     setting_1 = SingleContextSetting('time_signatures', [(4, 8), (3, 8)], target, fresh=False)
 

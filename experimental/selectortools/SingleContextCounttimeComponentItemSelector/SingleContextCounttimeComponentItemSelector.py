@@ -29,7 +29,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
 
     Select ``'Voice 1'`` counttime measure ``3`` starting during segment ``'red'``::
 
-        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
 
     ::
@@ -46,7 +46,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     )
                 ),
@@ -70,7 +70,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
-                            index='red'
+                            identifier='red'
                             )
                         )
                     ),
@@ -98,7 +98,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         ),
@@ -140,7 +140,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     )
                 ),
@@ -168,7 +168,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
-                        index='red'
+                        identifier='red'
                         )
                     )
                 ),
@@ -291,7 +291,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         ),
@@ -319,7 +319,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         ),
@@ -355,7 +355,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentItemSelector(
-                                index='red'
+                                identifier='red'
                                 )
                             )
                         ),
