@@ -16,7 +16,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(segment_selector.timespan)
         >>> selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
-        ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, klass=leaftools.Leaf, stop=40)
+        ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, klass=leaftools.Leaf, stop_identifier=40)
 
     ::
 
@@ -32,7 +32,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
                     )
                 ),
             klass=leaftools.Leaf,
-            stop=40
+            stop_identifier=40
             )
 
     Multiple context counttime component slice selector properties are read-only.
@@ -40,13 +40,14 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
 
     ### INITIALIZER ##
 
-    def __init__(self, context_names=None, inequality=None, klass=None, predicate=None, start=None, stop=None):
+    def __init__(self, context_names=None, inequality=None, klass=None, predicate=None, 
+        start_identifier=None, stop_identifier=None):
         from experimental import helpertools
         from experimental import selectortools
         from experimental import specificationtools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        SliceSelector.__init__(self, start=start, stop=stop)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         self._context_names = context_names or []
         if isinstance(klass, tuple):

@@ -42,7 +42,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two ``'Voice 1'`` divisions starting during segment ``'red'``::
 
-        >>> divisions = selectortools.SingleContextDivisionSliceSelector('Voice 1', inequality=inequality, start=-2)
+        >>> divisions = selectortools.SingleContextDivisionSliceSelector('Voice 1', inequality=inequality, start_identifier=-2)
 
     ::
 
@@ -57,7 +57,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
                         )
                     )
                 ),
-            start=-2
+            start_identifier=-2
             )
 
     Division slice selectors are immutable.
@@ -65,11 +65,11 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice, inequality=None, start=None, stop=None):
+    def __init__(self, voice, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import selectortools
         from experimental import interpretertools
         BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
-            inequality=inequality, start=start, stop=stop)
+            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
         voice = helpertools.expr_to_component_name(voice)     
         self._voice = voice
 

@@ -29,11 +29,11 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.start
+.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.start_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.stop
+.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.stop_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 

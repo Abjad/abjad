@@ -16,7 +16,7 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(segment_selector.timespan)
         >>> division_selector = selectortools.MultipleContextDivisionSliceSelector(
-        ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, stop=5)
+        ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, stop_identifier=5)
 
     ::
 
@@ -31,7 +31,7 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
                         )
                     )
                 ),
-            stop=5
+            stop_identifier=5
             )
 
     ``MultipleContextDivisionSliceSelector`` properties are read-only.
@@ -39,10 +39,10 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, context_names=None, inequality=None, start=None, stop=None):
+    def __init__(self, context_names=None, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import interpretertools
         BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
-            inequality=inequality, start=start, stop=stop)
+            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         context_names = self._process_contexts(context_names)
         self._context_names = context_names
@@ -53,8 +53,8 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
         if isinstance(expr, type(self)):
             if self.context_names == expr.context_names:
                 if self.inequality == expr.inequality:
-                    if self.start == expr.start:
-                        if self.stop == expr.stop:
+                    if self.start_identifier == expr.start_identifier:
+                        if self.stop_identifier == expr.stop_identifier:
                             return True
         return False
 

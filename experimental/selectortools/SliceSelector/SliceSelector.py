@@ -13,9 +13,9 @@ class SliceSelector(Selector):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, start=None, stop=None):
-        self._start = start
-        self._stop = stop
+    def __init__(self, start_identifier=None, stop_identifier=None):
+        self._start_identifier = start_identifier
+        self._stop_identifier = stop_identifier
 
     ### PRIVATE METHODS ###
 
@@ -32,17 +32,17 @@ class SliceSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def start(self):
-        '''Start index of slice selector.
+    def start_identifier(self):
+        '''Slice selector start identifier.
 
         Return integer, string, held expression or none.
         '''
-        return self._start
+        return self._start_identifier
 
     @property
-    def stop(self):
-        '''Stop index of slice selector.
+    def stop_identifier(self):
+        '''Slice selector stop identifier.
 
         Return integer, string, held expression or none.
         '''
-        return self._stop
+        return self._stop_identifier

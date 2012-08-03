@@ -13,18 +13,18 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     Select the first five counttime components in ``'Voice 1'``::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', stop=5)
-        SingleContextCounttimeComponentSliceSelector('Voice 1', stop=5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', stop_identifier=5)
+        SingleContextCounttimeComponentSliceSelector('Voice 1', stop_identifier=5)
 
     Select the last five counttime components in ``'Voice 1'``::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start=-5)
-        SingleContextCounttimeComponentSliceSelector('Voice 1', start=-5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=-5)
+        SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=-5)
 
     Select counttime components from ``5`` up to but not including ``-5`` in ``'Voice 1'``::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
-        SingleContextCounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=5, stop_identifier=-5)
+        SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=5, stop_identifier=-5)
 
     Select all counttime components in ``'Voice 1'``::
 
@@ -50,7 +50,7 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
     ::
 
         >>> leaf_slice_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
-        ... tuplet_selector, klass=leaftools.Leaf, start=-3)
+        ... tuplet_selector, klass=leaftools.Leaf, start_identifier=-3)
 
     ::
 
@@ -74,7 +74,7 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
                 index=-1
                 ),
             klass=leaftools.Leaf,
-            start=-3
+            start_identifier=-3
             )
 
     Counttime component slice selectors are immutable.
@@ -82,13 +82,14 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, inequality=None, klass=None, predicate=None, start=None, stop=None):
+    def __init__(self, reference, inequality=None, klass=None, predicate=None, 
+        start_identifier=None, stop_identifier=None):
         from experimental import helpertools
         from experimental import selectortools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        SliceSelector.__init__(self, start=start, stop=stop)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality

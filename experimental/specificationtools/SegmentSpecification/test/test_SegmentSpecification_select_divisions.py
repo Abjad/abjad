@@ -25,7 +25,7 @@ def test_SegmentSpecification_select_divisions_01():
                     )
                 )
             ),
-        stop=5
+        stop_identifier=5
         )
 
     assert selector_1 == selector_2

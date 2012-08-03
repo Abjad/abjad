@@ -100,12 +100,12 @@ class SingleSourceTimespan(Timespan):
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
+        >>> segment_slice_selector = selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=stop)
 
     ::
 
         >>> timespantools.SingleSourceTimespan(selector=segment_slice_selector)
-        SingleSourceTimespan(selector=SegmentSliceSelector(start='red', stop=SegmentIdentifierExpression("'blue' + 1")))
+        SingleSourceTimespan(selector=SegmentSliceSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.
     '''

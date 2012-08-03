@@ -27,11 +27,11 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.start
+.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.start_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.stop
+.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.stop_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 

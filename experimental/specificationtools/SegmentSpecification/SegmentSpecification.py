@@ -340,15 +340,16 @@ class SegmentSpecification(Specification):
                             )
                         )
                     ),
-                start=0,
-                stop=1
+                start_identifier=0,
+                stop_identifier=1
                 )
 
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         start, stop = n, n + 1
-        selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
+        selector = selectortools.BackgroundMeasureSliceSelector(
+            inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
     def select_background_measures(self, start=None, stop=None):
@@ -368,13 +369,14 @@ class SegmentSpecification(Specification):
                             )
                         )
                     ),
-                stop=5
+                stop_identifier=5
                 )
 
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
+        selector = selectortools.BackgroundMeasureSliceSelector(
+            inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
     
     def select_division(self, voice, n):
@@ -395,8 +397,8 @@ class SegmentSpecification(Specification):
                             )
                         )
                     ),
-                start=0,
-                stop=1
+                start_identifier=0,
+                stop_identifier=1
                 )
 
         Return selector.
@@ -404,7 +406,7 @@ class SegmentSpecification(Specification):
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.SingleContextDivisionSliceSelector(
-            voice, inequality=inequality, start=start, stop=stop)
+            voice, inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
     def select_divisions(self, contexts=None, start=None, stop=None):
@@ -426,14 +428,14 @@ class SegmentSpecification(Specification):
                             )
                         )
                     ),
-                stop=5
+                stop_identifier=5
                 )
 
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextDivisionSliceSelector(
-            context_names=contexts, inequality=inequality, start=start, stop=stop)
+            context_names=contexts, inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
     def select_duration_ratio(self, ratio, index, contexts=None):
@@ -483,7 +485,7 @@ class SegmentSpecification(Specification):
                         )
                     ),
                 klass=leaftools.Leaf,
-                stop=40
+                stop_identifier=40
                 )
 
         Return selector.
@@ -491,7 +493,7 @@ class SegmentSpecification(Specification):
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
             context_names=contexts, inequality=inequality, klass=leaftools.Leaf, 
-            start=start, stop=stop)
+            start_identifier=start, stop_identifier=stop)
         return selector
 
     def select_notes_and_chords(self, contexts=None, start=None, stop=None):
@@ -518,7 +520,7 @@ class SegmentSpecification(Specification):
                     notetools.Note,
                     chordtools.Chord
                     ]),
-                stop=40
+                stop_identifier=40
                 )
 
         Return selector.
@@ -526,7 +528,7 @@ class SegmentSpecification(Specification):
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
             context_names=contexts, inequality=inequality, klass=(notetools.Note, chordtools.Chord),
-            start=start, stop=stop)
+            start_identifier=start, stop_identifier=stop)
         return selector
 
     def select_ratio_of_background_measures(self, ratio, index=0, is_count=True):

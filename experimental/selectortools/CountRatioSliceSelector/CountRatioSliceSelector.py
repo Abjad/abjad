@@ -20,7 +20,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
     ::
 
         >>> count_ratio_slice_selector = selectortools.CountRatioSliceSelector(
-        ... background_measure_selector, (1, 1, 1, 1), start=-2)
+        ... background_measure_selector, (1, 1, 1, 1), start_identifier=-2)
 
     ::
 
@@ -37,7 +37,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
                     )
                 ),
             mathtools.Ratio(1, 1, 1, 1),
-            start=-2
+            start_identifier=-2
             )
 
     All count-ratio slice selector properties are read-only.
@@ -45,7 +45,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, start=None, stop=None):
+    def __init__(self, reference, ratio, start_identifier=None, stop_identifier=None):
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         RatioSelector.__init__(self, reference, ratio)
-        SliceSelector.__init__(self, start=start, stop=stop)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)

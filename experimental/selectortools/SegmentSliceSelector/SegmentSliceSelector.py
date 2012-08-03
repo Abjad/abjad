@@ -16,58 +16,58 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
 
     Select segments from ``3`` forward::
 
-        >>> selectortools.SegmentSliceSelector(start=3)
-        SegmentSliceSelector(start=3)
+        >>> selectortools.SegmentSliceSelector(start_identifier=3)
+        SegmentSliceSelector(start_identifier=3)
 
     Select segments up to but not including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(stop=6)
-        SegmentSliceSelector(stop=6)
+        >>> selectortools.SegmentSliceSelector(stop_identifier=6)
+        SegmentSliceSelector(stop_identifier=6)
 
     Select segments up to and including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(stop=6+1)
-        SegmentSliceSelector(stop=7)
+        >>> selectortools.SegmentSliceSelector(stop_identifier=6+1)
+        SegmentSliceSelector(stop_identifier=7)
 
     Select segments from ``3`` up to but not including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(start=3, stop=6)
-        SegmentSliceSelector(start=3, stop=6)
+        >>> selectortools.SegmentSliceSelector(start_identifier=3, stop_identifier=6)
+        SegmentSliceSelector(start_identifier=3, stop_identifier=6)
 
     Select segments from ``3`` up to and including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(start=3, stop=6+1)
-        SegmentSliceSelector(start=3, stop=7)
+        >>> selectortools.SegmentSliceSelector(start_identifier=3, stop_identifier=6+1)
+        SegmentSliceSelector(start_identifier=3, stop_identifier=7)
 
     Select segments from ``'red'`` forward::
 
-        >>> selectortools.SegmentSliceSelector(start='red')
-        SegmentSliceSelector(start='red')
+        >>> selectortools.SegmentSliceSelector(start_identifier='red')
+        SegmentSliceSelector(start_identifier='red')
 
     Select segments up to but not including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(stop='blue')
-        SegmentSliceSelector(stop='blue')
+        >>> selectortools.SegmentSliceSelector(stop_identifier='blue')
+        SegmentSliceSelector(stop_identifier='blue')
 
     Select segments up to and including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(stop=helpertools.SegmentIdentifierExpression("'blue' + 1"))
-        SegmentSliceSelector(stop=SegmentIdentifierExpression("'blue' + 1"))
+        >>> selectortools.SegmentSliceSelector(stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        SegmentSliceSelector(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select segments from ``'red'`` up to but not including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(start='red', stop='blue')
-        SegmentSliceSelector(start='red', stop='blue')
+        >>> selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier='blue')
+        SegmentSliceSelector(start_identifier='red', stop_identifier='blue')
 
     Select segments from ``'red'`` up to and including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(start='red', stop=helpertools.SegmentIdentifierExpression("'blue' + 1"))
-        SegmentSliceSelector(start='red', stop=SegmentIdentifierExpression("'blue' + 1"))
+        >>> selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        SegmentSliceSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select three segments from ``'red'``::
 
-        >>> selectortools.SegmentSliceSelector(start='red', stop=helpertools.SegmentIdentifierExpression("'red' + 3"))
-        SegmentSliceSelector(start='red', stop=SegmentIdentifierExpression("'red' + 3"))
+        >>> selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
+        SegmentSliceSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
 
     Select all segments starting during the first third of the score:
 
@@ -92,7 +92,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two segments starting during the first third of the score::
 
-        >>> selector = selectortools.SegmentSliceSelector(inequality=inequality, start=-2)
+        >>> selector = selectortools.SegmentSliceSelector(inequality=inequality, start_identifier=-2)
 
     ::
 
@@ -104,7 +104,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
                     multiplier=Fraction(1, 3)
                     )
                 ),
-            start=-2
+            start_identifier=-2
             )
 
     All segment slice selector properties are read-only.
@@ -112,10 +112,10 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, start=None, stop=None):
+    def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import specificationtools
         BackgroundElementSliceSelector.__init__(self, specificationtools.Segment,
-            inequality=inequality, start=start, stop=stop)
+            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

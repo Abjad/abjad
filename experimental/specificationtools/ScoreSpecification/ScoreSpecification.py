@@ -379,8 +379,8 @@ class ScoreSpecification(Specification):
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSliceSelector(
-                            start='red',
-                            stop=helpertools.SegmentIdentifierExpression("'red' + 3")
+                            start_identifier='red',
+                            stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                             )
                         )
                     )
@@ -396,7 +396,7 @@ class ScoreSpecification(Specification):
         expression = '{!r} + {}'.format(start_segment_name, segment_count)
         held_expression = helpertools.SegmentIdentifierExpression(expression)
         start, stop = start_segment_name, held_expression
-        selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
+        selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
         inequality = timespantools.expr_starts_during_timespan(selector.timespan)
         selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
 

@@ -228,11 +228,12 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
-        start_segment_expr = division_request.inequality.timespan.selector.start
-        stop_segment_expr = division_request.inequality.timespan.selector.stop
+        start_segment_expr = division_request.inequality.timespan.selector.start_identifier
+        stop_segment_expr = division_request.inequality.timespan.selector.stop_identifier
         start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
             start_segment_expr)
-        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(stop_segment_expr)
+        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
+            stop_segment_expr)
         segment_count =  stop_segment_index - start_segment_index
         start_offset, stop_offset = self.score_specification.segment_name_to_segment_offsets(
             start_segment_index, segment_count)
@@ -522,8 +523,8 @@ class ConcreteInterpreter(Interpreter):
                     selectortools.SegmentItemSelector):
                     segment_index = selector.timespan.selector.inequality.timespan.selector.index
                     segment_specification = self.get_segment_specification(segment_index)
-                    start = selector.timespan.selector.start
-                    stop = selector.timespan.selector.stop
+                    start = selector.timespan.selector.start_identifier
+                    stop = selector.timespan.selector.stop_identifier
                     time_signatures = segment_specification.time_signatures[start:stop] 
                     durations = [durationtools.Duration(x) for x in time_signatures]
                     duration = durationtools.Duration(sum(durations))
@@ -557,8 +558,8 @@ class ConcreteInterpreter(Interpreter):
                     selectortools.SegmentItemSelector):
                     segment_index = selector.timespan.selector.inequality.timespan.selector.index
                     segment_specification = self.get_segment_specification(segment_index)
-                    start = selector.timespan.selector.start
-                    stop = selector.timespan.selector.stop
+                    start = selector.timespan.selector.start_identifier
+                    stop = selector.timespan.selector.stop_identifier
                     start = start or 0
                     #self._debug((start, stop))
                     durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]
@@ -598,8 +599,8 @@ class ConcreteInterpreter(Interpreter):
                     selectortools.SegmentItemSelector):
                     segment_index = selector.timespan.selector.inequality.timespan.selector.index
                     segment_specification = self.get_segment_specification(segment_index)
-                    start = selector.timespan.selector.start
-                    stop = selector.timespan.selector.stop
+                    start = selector.timespan.selector.start_identifier
+                    stop = selector.timespan.selector.stop_identifier
                     durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]
                     durations_up_through = durations[:stop]
                     duration_up_through = sum(durations_up_through)

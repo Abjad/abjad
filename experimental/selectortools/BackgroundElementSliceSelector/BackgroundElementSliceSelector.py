@@ -14,10 +14,10 @@ class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, klass, inequality=None, start=None, stop=None):
+    def __init__(self, klass, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import selectortools
         assert helpertools.is_background_element_klass(klass), repr(klass)
-        SliceSelector.__init__(self, start=start, stop=stop)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)

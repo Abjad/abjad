@@ -15,18 +15,18 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select measures from ``3`` forward::
 
-        >>> selectortools.BackgroundMeasureSliceSelector(start=3)
-        BackgroundMeasureSliceSelector(start=3)
+        >>> selectortools.BackgroundMeasureSliceSelector(start_identifier=3)
+        BackgroundMeasureSliceSelector(start_identifier=3)
 
     Select measures up to but not including ``6``::
 
-        >>> selectortools.BackgroundMeasureSliceSelector(stop=6)
-        BackgroundMeasureSliceSelector(stop=6)
+        >>> selectortools.BackgroundMeasureSliceSelector(stop_identifier=6)
+        BackgroundMeasureSliceSelector(stop_identifier=6)
 
     Select measures from ``3`` up to but not including ``6``::
 
-        >>> selectortools.BackgroundMeasureSliceSelector(start=3, stop=6)
-        BackgroundMeasureSliceSelector(start=3, stop=6)
+        >>> selectortools.BackgroundMeasureSliceSelector(start_identifier=3, stop_identifier=6)
+        BackgroundMeasureSliceSelector(start_identifier=3, stop_identifier=6)
 
     Select all measures starting during segment ``'red'``::
 
@@ -53,7 +53,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two measures during segment ``'red'``::
 
-        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=-2)
+        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start_identifier=-2)
 
     ::
     
@@ -67,13 +67,13 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
                         )
                     )
                 ),
-            start=-2
+            start_identifier=-2
             )
 
     Select all the measures that start during the three contiguous segments starting with ``'red'``::
 
         >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
-        >>> selector = selectortools.SegmentSliceSelector(start='red', stop=expr)
+        >>> selector = selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=expr)
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=selector)
 
     ::
@@ -88,8 +88,8 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSliceSelector(
-                        start='red',
-                        stop=helpertools.SegmentIdentifierExpression("'red' + 3")
+                        start_identifier='red',
+                        stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                         )
                     )
                 )
@@ -97,7 +97,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=-2)
+        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start_identifier=-2)
 
     ::
 
@@ -107,12 +107,12 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSliceSelector(
-                        start='red',
-                        stop=helpertools.SegmentIdentifierExpression("'red' + 3")
+                        start_identifier='red',
+                        stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                         )
                     )
                 ),
-            start=-2
+            start_identifier=-2
             )
 
     Measure slice selectors are immutable.
@@ -120,10 +120,10 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, start=None, stop=None):
+    def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
         from abjad.tools import measuretools
         BackgroundElementSliceSelector.__init__(self, measuretools.Measure,
-            inequality=inequality, start=start, stop=stop)
+            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -21,9 +21,9 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.start
+.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.start_identifier
 
-.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.stop
+.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.stop_identifier
 
 .. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.storage_format
 

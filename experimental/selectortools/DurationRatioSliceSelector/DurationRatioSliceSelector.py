@@ -20,7 +20,7 @@ class DurationRatioSliceSelector(RatioSelector, SliceSelector):
     ::
 
         >>> duration_ratio_slice_selector = selectortools.DurationRatioSliceSelector(
-        ... background_measure_selector, (1, 1, 1, 1), start=-2)
+        ... background_measure_selector, (1, 1, 1, 1), start_identifier=-2)
 
     ::
 
@@ -37,7 +37,7 @@ class DurationRatioSliceSelector(RatioSelector, SliceSelector):
                     )
                 ),
             mathtools.Ratio(1, 1, 1, 1),
-            start=-2
+            start_identifier=-2
             )
 
     All duration-ratio slice selector properties are read-only.
@@ -45,6 +45,6 @@ class DurationRatioSliceSelector(RatioSelector, SliceSelector):
 
     ### INTIALIZER ###
 
-    def __init__(self, reference, ratio, start=None, stop=None):
+    def __init__(self, reference, ratio, start_identifier=None, stop_identifier=None):
         RatioSelector.__init__(self, reference, ratio)
-        SliceSelector.__init__(self, start=start, stop=stop)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)

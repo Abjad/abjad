@@ -25,11 +25,11 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.start
+.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.start_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.stop
+.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.stop_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
