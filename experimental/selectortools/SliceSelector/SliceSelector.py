@@ -32,6 +32,14 @@ class SliceSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def identifiers(self):
+        '''Slice selector start- and stop-identifiers.
+
+        Return pair.
+        '''
+        return self.start_identifier, self.stop_identifier
+        
+    @property
     def start_identifier(self):
         '''Slice selector start identifier.
 
