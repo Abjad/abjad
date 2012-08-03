@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.index
 
+    Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
+
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

@@ -40,14 +40,6 @@ class BackgroundElementItemSelector(ItemSelector, InequalitySelector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def index(self):
-        '''Background element selector index initialized by user.
-
-        Return integer or string.
-        '''
-        return self._index
-
-    @property
     def klass(self):
         '''Background element selector class initialized by user.
 

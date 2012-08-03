@@ -236,17 +236,6 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
         return [self.context_name]
 
     @property
-    def index(self):
-        '''Index of counttime component selector specified by user::
-
-            >>> selector.index
-            20
-
-        Return integer or none.
-        '''
-        return self._index
-
-    @property
     def klass(self):
         '''Class of counttime component selector specified by user::
 

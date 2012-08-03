@@ -19,6 +19,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector.index
 
+    Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
+
 .. autoattribute:: experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

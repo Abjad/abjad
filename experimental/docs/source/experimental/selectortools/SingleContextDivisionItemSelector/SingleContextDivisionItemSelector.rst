@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.index
 
-    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
+    Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.inequality
 
