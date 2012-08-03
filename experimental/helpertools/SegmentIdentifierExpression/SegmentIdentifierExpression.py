@@ -1,7 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SegmentIndexExpression(AbjadObject):
+class SegmentIdentifierExpression(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Delayed evaluation wrapper similar to Mathematica ``Hold[]``::
@@ -10,8 +10,8 @@ class SegmentIndexExpression(AbjadObject):
 
     ::
 
-        >>> helpertools.SegmentIndexExpression("'red' + 3")
-        SegmentIndexExpression("'red' + 3")
+        >>> helpertools.SegmentIdentifierExpression("'red' + 3")
+        SegmentIdentifierExpression("'red' + 3")
 
     Delays evaluation of string argument until later in interpretation.
 

@@ -144,7 +144,7 @@ Unstable packages (load manually)
    experimental/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
    experimental/helpertools/Callback/Callback
    experimental/helpertools/KlassInventory/KlassInventory
-   experimental/helpertools/SegmentIndexExpression/SegmentIndexExpression
+   experimental/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
 .. rubric:: functions
 

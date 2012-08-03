@@ -290,25 +290,25 @@ class ScoreSpecification(Specification):
     def segment_index_expression_to_segment_index(self, segment_index_expression):
         r'''Segment index expression to segment index::
 
-            >>> segment_index_expression = helpertools.SegmentIndexExpression("'red'")
+            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'red'")
             >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             0
 
         ::
 
-            >>> segment_index_expression = helpertools.SegmentIndexExpression("'orange'")
+            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'orange'")
             >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             1
 
         ::
 
-            >>> segment_index_expression = helpertools.SegmentIndexExpression("'yellow'")
+            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'yellow'")
             >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             2
 
         ::
 
-            >>> segment_index_expression = helpertools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
+            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'red' + 'orange' + 'yellow'")
             >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             3
 
@@ -380,7 +380,7 @@ class ScoreSpecification(Specification):
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSliceSelector(
                             start='red',
-                            stop=helpertools.SegmentIndexExpression("'red' + 3")
+                            stop=helpertools.SegmentIdentifierExpression("'red' + 3")
                             )
                         )
                     )
@@ -394,7 +394,7 @@ class ScoreSpecification(Specification):
 
         # make selector
         expression = '{!r} + {}'.format(start_segment_name, segment_count)
-        held_expression = helpertools.SegmentIndexExpression(expression)
+        held_expression = helpertools.SegmentIdentifierExpression(expression)
         start, stop = start_segment_name, held_expression
         selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
         inequality = timespantools.expr_starts_during_timespan(selector.timespan)
