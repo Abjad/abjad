@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
 
 
@@ -56,3 +57,10 @@ class SegmentItemSelector(BackgroundElementItemSelector):
     def get_duration(self, score_specification):
         segment_specification = score_specification.get_segment_specification(self)
         return segment_specification.duration
+
+    def get_segment_start_offset(self, score_specification):
+        return durationtools.Offset(0)
+
+    def get_segment_stop_offset(self, score_specification):
+        segment_specification = score_specification.get_segment_specification(self)
+        return durationtools.Offset(segment_specification.duration)

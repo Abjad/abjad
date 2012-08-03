@@ -30,6 +30,18 @@ Methods
 
     Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
 
+.. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.get_segment_start_offset
+
+    Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+
+.. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.get_segment_stop_offset
+
+    Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+
 Special Methods
 ---------------
 

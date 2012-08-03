@@ -43,6 +43,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.timespan
 
+Methods
+-------
+
+.. automethod:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 

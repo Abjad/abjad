@@ -21,6 +21,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.Selector.Selector.Selector.timespan
 
+Methods
+-------
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_segment_offsets
+
 Special Methods
 ---------------
 

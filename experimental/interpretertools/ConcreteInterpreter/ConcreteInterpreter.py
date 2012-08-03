@@ -511,92 +511,13 @@ class ConcreteInterpreter(Interpreter):
         else:
             return single_context_setting.source
 
-    def single_context_timespan_selector_to_start_offset(self, selector):
-        if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
-            if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
-                return durationtools.Offset(0)
-            elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
-                if isinstance(
-                    selector.timespan.selector.inequality.timespan.selector, 
-                    selectortools.SegmentItemSelector):
-                    segment_specification = self.get_segment_specification(selector)
-                    start = selector.timespan.selector.start_identifier
-                    stop = selector.timespan.selector.stop_identifier
-                    start = start or 0
-                    #self._debug((start, stop))
-                    durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]
-                    durations_before = durations[:start]
-                    duration_before = sum(durations_before)
-                    start_offset = durationtools.Offset(duration_before)
-                    return start_offset
-                else:
-                    raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
-            elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
-                if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    segment_specification = self.get_segment_specification(selector)
-                    duration = segment_specification.duration
-                    ratio = selector.timespan.selector.ratio
-                    ratio_part = selector.timespan.selector.part
-                    parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    parts_before = parts[:ratio_part]
-                    duration_before = sum(parts_before)
-                    return durationtools.Offset(duration_before) 
-                else:
-                    raise NotImplementedError(selector.timespan.selector.reference)
-            else:
-                raise NotImplementedError(selector.timespan.selector)
-        else:
-            raise NotImplementedError(selector.timespan)
-
-    def single_context_timespan_selector_to_stop_offset(self, selector):
-        if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
-            if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
-                segment_specification = self.get_segment_specification(selector)
-                return durationtools.Offset(segment_specification.duration)
-            elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
-                if isinstance(
-                    selector.timespan.selector.inequality.timespan.selector, 
-                    selectortools.SegmentItemSelector):
-                    segment_specification = self.get_segment_specification(selector)
-                    start = selector.timespan.selector.start_identifier
-                    stop = selector.timespan.selector.stop_identifier
-                    durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]
-                    durations_up_through = durations[:stop]
-                    duration_up_through = sum(durations_up_through)
-                    stop_offset = durationtools.Offset(duration_up_through)
-                    return stop_offset
-                else:
-                    raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
-            elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
-                if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    segment_specification = self.get_segment_specification(selector)
-                    duration = segment_specification.duration
-                    ratio = selector.timespan.selector.ratio
-                    ratio_part = selector.timespan.selector.part
-                    parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    part = parts[ratio_part]
-                    duration = part
-                    parts_before = parts[:ratio_part]
-                    duration_before = sum(parts_before)
-                    return durationtools.Offset(duration_before + duration) 
-                else:
-                    raise NotImplementedError(selector.timespan.selector.reference)
-            else:
-                raise NotImplementedError(selector.timespan.selector)
-        else:
-            raise NotImplementedError(selector.timespan)
-
     def single_context_timespan_selector_to_uninterpreted_division_command(
         self, segment_specification, resolved_single_context_setting):
         from experimental import interpretertools
-        #print 'here!'
-        #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_identifier == segment_specification.segment_name
         selector = resolved_single_context_setting.target
         duration = selector.get_duration(self.score_specification)
-        start_offset = self.single_context_timespan_selector_to_start_offset(selector)
-        stop_offset = self.single_context_timespan_selector_to_stop_offset(selector)
-        #self._debug((start_offset, stop_offset))
+        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             duration,

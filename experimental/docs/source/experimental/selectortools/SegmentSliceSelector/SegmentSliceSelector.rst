@@ -45,6 +45,13 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+Methods
+-------
+
+.. automethod:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 

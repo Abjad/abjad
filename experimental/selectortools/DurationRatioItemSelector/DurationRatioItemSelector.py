@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from experimental.selectortools.RatioSelector import RatioSelector
 
@@ -70,3 +71,20 @@ class DurationRatioItemSelector(RatioSelector):
         parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
         part = parts[self.part]
         return part
+
+    def get_segment_start_offset(self, score_specification):
+        reference_duration = self.reference.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
+        parts_before = parts[:self.part]
+        duration_before = sum(parts_before)
+        return durationtools.Offset(duration_before) 
+
+    def get_segment_stop_offset(self, score_specification):
+        reference_duration = self.reference.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
+        part = parts[self.part]
+        duration = part
+        parts_before = parts[:self.part]
+        duration_before = sum(parts_before)
+        stop_offset = duration_before + duration
+        return durationtools.Offset(stop_offset)

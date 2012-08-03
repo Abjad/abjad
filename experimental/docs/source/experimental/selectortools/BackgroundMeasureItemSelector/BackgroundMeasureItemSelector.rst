@@ -40,6 +40,10 @@ Methods
 
 .. automethod:: experimental.selectortools.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.context_names
 
+.. automethod:: experimental.selectortools.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.BackgroundMeasureItemSelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 

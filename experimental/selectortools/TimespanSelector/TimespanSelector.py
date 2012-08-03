@@ -38,3 +38,13 @@ class TimespanSelector(Selector):
         '''Delegate to ``self.timespan.get_duration()``.
         '''
         return self.timespan.get_duration(score_specification)
+
+    def get_segment_start_offset(self, score_specification):
+        '''Delegate to ``self.timespan.get_segment_start_offset()``.
+        '''
+        return self.timespan.get_segment_start_offset(score_specification)
+
+    def get_segment_stop_offset(self, score_specification):
+        '''Delegate to ``self.timespan.get_segment_stop_offset()``.
+        '''
+        return self.timespan.get_segment_stop_offset(score_specification)

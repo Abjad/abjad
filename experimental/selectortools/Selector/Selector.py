@@ -76,3 +76,10 @@ class Selector(AbjadObject):
         '''
         from experimental import timespantools
         return timespantools.SingleSourceTimespan(selector=self)
+
+    ### PUBLIC METHODS ###
+
+    def get_segment_offsets(self, score_specification):
+        start_offset = self.get_segment_start_offset(score_specification)
+        stop_offset = self.get_segment_stop_offset(score_specification)
+        return start_offset, stop_offset

@@ -38,6 +38,14 @@ Methods
 
 .. automethod:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.get_duration
 
+.. automethod:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.get_segment_start_offset
+
+.. automethod:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.get_segment_stop_offset
+
 Special Methods
 ---------------
 

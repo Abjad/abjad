@@ -189,3 +189,13 @@ class SingleSourceTimespan(Timespan):
         '''Delegate to ``self.selector.get_timespan()``.
         '''
         return self.selector.get_duration(score_specification)
+
+    def get_segment_start_offset(self, score_specification):
+        '''Delegate to ``self.selector.get_segment_start_offset()``.
+        '''
+        return self.selector.get_segment_start_offset(score_specification)
+
+    def get_segment_stop_offset(self, score_specification):
+        '''Delegate to ``self.selector.get_segment_stop_offset()``.
+        '''
+        return self.selector.get_segment_stop_offset(score_specification)

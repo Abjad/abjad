@@ -39,6 +39,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.voice
 
+Methods
+-------
+
+.. automethod:: experimental.selectortools.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.SingleContextDivisionItemSelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 
