@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.index
 
-.. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.segment_index
+.. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 

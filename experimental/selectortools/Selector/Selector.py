@@ -61,10 +61,10 @@ class Selector(AbjadObject):
         pass
 
     @property
-    def segment_index(self):
-        '''Segment index of selector, if it exists.
+    def segment_identifier(self):
+        '''Segment identifier of selector, if it exists.
 
-        Raise exception when no segment index can be recursively found.
+        Raise exception when no segment identifier can be recursively found.
         '''
         from experimental import selectortools
         return selectortools.selector_to_segment_identifier(self)

@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.inequality
 
-.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.segment_index
+.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 

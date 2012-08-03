@@ -17,7 +17,7 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.segment_index
+.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 

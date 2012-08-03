@@ -632,7 +632,7 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         #print 'here!'
         #print resolved_single_context_setting.storage_format
-        assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
+        assert resolved_single_context_setting.target.segment_identifier == segment_specification.segment_name
         selector = resolved_single_context_setting.target
         duration = self.single_context_timespan_selector_to_duration(selector)
         start_offset = self.single_context_timespan_selector_to_start_offset(selector)

@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.reference
 
-.. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.segment_index
+.. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
