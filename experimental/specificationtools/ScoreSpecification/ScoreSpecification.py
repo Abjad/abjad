@@ -287,50 +287,50 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def segment_index_expression_to_segment_index(self, segment_index_expression):
+    def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
 
-            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'red'")
-            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'red'")
+            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
             0
 
         ::
 
-            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'orange'")
-            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'orange'")
+            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
             1
 
         ::
 
-            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'yellow'")
-            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'yellow'")
+            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
             2
 
         ::
 
-            >>> segment_index_expression = helpertools.SegmentIdentifierExpression("'red' + 'orange' + 'yellow'")
-            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'red' + 'orange' + 'yellow'")
+            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
             3
 
         Evaluate strings directlly::
 
-            >>> score_specification.segment_index_expression_to_segment_index('yellow')
+            >>> score_specification.segment_identifier_expression_to_segment_index('yellow')
             2
 
         Return integers unchanged::
 
-            >>> score_specification.segment_index_expression_to_segment_index(0)
+            >>> score_specification.segment_identifier_expression_to_segment_index(0)
             0
 
         Return nonnegative integer.
         '''
-        if isinstance(segment_index_expression, int):
-            return segment_index_expression
-        if isinstance(segment_index_expression, str):
-            return self.segment_name_to_segment_index(segment_index_expression)
+        if isinstance(segment_identifier_expression, int):
+            return segment_identifier_expression
+        if isinstance(segment_identifier_expression, str):
+            return self.segment_name_to_segment_index(segment_identifier_expression)
         quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
-        quoted_segment_names = quoted_string_pattern.findall(segment_index_expression.string)
-        modified_string = str(segment_index_expression.string)
+        quoted_segment_names = quoted_string_pattern.findall(segment_identifier_expression.string)
+        modified_string = str(segment_identifier_expression.string)
         for quoted_segment_name in quoted_segment_names:
             segment_name = quoted_segment_name[1:-1]
             segment_index = self.segment_name_to_segment_index(segment_name)

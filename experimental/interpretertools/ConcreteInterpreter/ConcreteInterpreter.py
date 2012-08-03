@@ -230,9 +230,9 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(divisions, list), divisions
         start_segment_expr = division_request.inequality.timespan.selector.start
         stop_segment_expr = division_request.inequality.timespan.selector.stop
-        start_segment_index = self.score_specification.segment_index_expression_to_segment_index(
+        start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
             start_segment_expr)
-        stop_segment_index = self.score_specification.segment_index_expression_to_segment_index(stop_segment_expr)
+        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(stop_segment_expr)
         segment_count =  stop_segment_index - start_segment_index
         start_offset, stop_offset = self.score_specification.segment_name_to_segment_offsets(
             start_segment_index, segment_count)

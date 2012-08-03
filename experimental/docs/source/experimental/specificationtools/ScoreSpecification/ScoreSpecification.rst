@@ -40,7 +40,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_index_expression_to_segment_index
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_identifier_expression_to_segment_index
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_segment_index
 
