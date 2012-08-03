@@ -511,23 +511,6 @@ class ConcreteInterpreter(Interpreter):
         else:
             return single_context_setting.source
 
-    # TODO: replace this with selector.get_duration(self.score_specification)
-    def single_context_timespan_selector_to_duration(self, selector):
-        if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
-            if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
-                return selector.get_duration(self.score_specification)
-            elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
-                return selector.get_duration(self.score_specification)
-            elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
-                if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    return selector.get_duration(self.score_specification)
-                else:
-                    raise NotImplementedError(selector.timespan.selector.reference)
-            else:
-                raise NotImplementedError(selector.timespan.selector)
-        else:
-            raise NotImplementedError(selector.timespan)
-
     def single_context_timespan_selector_to_start_offset(self, selector):
         if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
             if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
@@ -610,8 +593,7 @@ class ConcreteInterpreter(Interpreter):
         #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_identifier == segment_specification.segment_name
         selector = resolved_single_context_setting.target
-        # TODO: change this to selector.get_duration(self.score_specification)
-        duration = self.single_context_timespan_selector_to_duration(selector)
+        duration = selector.get_duration(self.score_specification)
         start_offset = self.single_context_timespan_selector_to_start_offset(selector)
         stop_offset = self.single_context_timespan_selector_to_stop_offset(selector)
         #self._debug((start_offset, stop_offset))
