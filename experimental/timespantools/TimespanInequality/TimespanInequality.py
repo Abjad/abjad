@@ -52,6 +52,12 @@ class TimespanInequality(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def segment_identifier(self):
+        '''Return ``self.timespan.segment_identifier``.
+        '''
+        return self.timespan.segment_identifier
+
+    @property
     def timespan(self):
         '''SingleSourceTimespan of inequality.
 

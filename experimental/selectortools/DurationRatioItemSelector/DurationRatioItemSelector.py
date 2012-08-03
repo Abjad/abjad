@@ -56,6 +56,6 @@ class DurationRatioItemSelector(RatioSelector):
 
     @property
     def segment_identifier(self):
-        '''Return ``self.reference.selector.segment_identifier``.
+        '''Return ``self.reference.segment_identifier``.
         '''
         return self.reference.segment_identifier

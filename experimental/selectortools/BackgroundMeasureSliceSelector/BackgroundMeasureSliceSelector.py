@@ -141,6 +141,6 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     @property
     def segment_identifier(self):
-        '''Return ``self.inequality.timespan.selector.segment_identifier``.
+        '''Return ``self.inequality.segment_identifier``.
         '''
-        return self.inequality.timespan.selector.segment_identifier
+        return self.inequality.segment_identifier
