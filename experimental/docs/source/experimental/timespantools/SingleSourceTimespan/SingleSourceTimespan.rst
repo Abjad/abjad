@@ -27,6 +27,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.right_addendum
 
+.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.segment_identifier
+
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.selector
 
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.storage_format

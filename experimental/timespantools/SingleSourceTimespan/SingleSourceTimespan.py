@@ -170,6 +170,12 @@ class SingleSourceTimespan(Timespan):
         return self._right_addendum
 
     @property
+    def segment_identifier(self):
+        '''Return ``self.selector.segment_identifier``.
+        '''
+        return self.selector.segment_identifier
+
+    @property
     def selector(self):
         '''Selector specified by user.
 
