@@ -268,12 +268,11 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
         '''
         return self._reference
 
-    # change to self.start_offset
     @property
-    def start(self):
+    def start_timepoint(self):
         '''Leftmost timepoint of counttime component::
 
-            >>> z(selector.start)
+            >>> z(selector.start_timepoint)
             timespantools.Timepoint(
                 anchor=selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
@@ -297,12 +296,11 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
         from experimental import timespantools
         return timespantools.Timepoint(anchor=self, edge=Left)
 
-    # change to self.stop_offset
     @property
-    def stop(self):
+    def stop_timepoint(self):
         '''Rightmost timepoint of counttime component::
 
-            >>> z(selector.stop)
+            >>> z(selector.stop_timepoint)
             timespantools.Timepoint(
                 anchor=selectortools.SingleContextCounttimeComponentItemSelector(
                     'Voice 1',
@@ -332,7 +330,7 @@ class SingleContextCounttimeComponentItemSelector(ItemSelector, InequalitySelect
 
         Return pair.
         '''
-        return self.start, self.stop
+        return self.start_timepoint, self.stop_timepoint
 
     @property
     def timespan(self):

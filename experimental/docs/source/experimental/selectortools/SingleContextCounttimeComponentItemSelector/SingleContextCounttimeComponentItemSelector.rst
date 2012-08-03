@@ -31,9 +31,9 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.start
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.start_timepoint
 
-.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.stop
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.stop_timepoint
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.SingleContextCounttimeComponentItemSelector.storage_format
 
