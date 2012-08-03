@@ -1,3 +1,5 @@
 1. Make divisions (ie, nonreduced fractions) partitionable.
 
 2. Rename ratio selector 'index' keyword to 'item'.
+
+3. Rename segment 'index' to 'identifier'.
