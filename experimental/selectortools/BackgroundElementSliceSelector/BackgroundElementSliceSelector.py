@@ -32,19 +32,3 @@ class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
         Return class.
         '''
         return self._klass
-
-    @property
-    def start(self):
-        '''Background element slice selector start.
-
-        Return integer, string, held expression or none.
-        '''
-        return self._start
-
-    @property
-    def stop(self):
-        '''Background element slice selector stop.
-
-        Return integer, string, held expression or none.
-        '''
-        return self._stop

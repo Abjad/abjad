@@ -23,7 +23,6 @@ class SegmentItemSelector(BackgroundElementItemSelector):
 
     ### INITIALIZER ###
 
-    #def __init__(self, inequality=None, index=0):
     def __init__(self, inequality=None, identifier=0):
         from experimental import specificationtools
         self._identifier = identifier

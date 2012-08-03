@@ -134,19 +134,3 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
         Return voice name or counttime component selector.
         '''
         return self._reference
-
-    @property
-    def start(self):
-        '''Slice select start initializer by user.
-
-        Return integer or none.
-        '''
-        return self._start
-
-    @property
-    def stop(self):
-        '''Slice select stop initializer by user.
-
-        Return integer or none.
-        '''
-        return self._stop

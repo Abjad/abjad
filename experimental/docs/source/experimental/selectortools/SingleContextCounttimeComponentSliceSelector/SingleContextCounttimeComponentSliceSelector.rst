@@ -29,7 +29,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.start
 
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.stop
+
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.storage_format
 
