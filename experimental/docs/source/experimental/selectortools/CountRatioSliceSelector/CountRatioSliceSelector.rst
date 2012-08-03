@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.identifiers
-
-    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
-
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.ratio
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
@@ -33,13 +29,9 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.start_identifier
+.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.start_part
 
-    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
-
-.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.stop_identifier
-
-    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.stop_part
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.storage_format
 

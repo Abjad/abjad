@@ -438,7 +438,7 @@ class SegmentSpecification(Specification):
             context_names=contexts, inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_duration_ratio(self, ratio, index, contexts=None):
+    def select_duration_ratio(self, ratio, part, contexts=None):
         '''Select the last third of the timespan of segment::
 
             >>> selector = segment.select_duration_ratio((1, 1, 1), -1, contexts=['Voice 1', 'Voice 3'])
@@ -456,13 +456,13 @@ class SegmentSpecification(Specification):
                     context_names=['Voice 1', 'Voice 3']
                     ),
                 mathtools.Ratio(1, 1, 1),
-                identifier=-1
+                -1
                 )
 
         Return selector.
         '''
         selector = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=self.timespan)
-        selector = selectortools.DurationRatioItemSelector(selector, ratio, index)
+        selector = selectortools.DurationRatioItemSelector(selector, ratio, part)
         return selector
 
     def select_leaves(self, contexts=None, start=None, stop=None):
@@ -531,7 +531,7 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_ratio_of_background_measures(self, ratio, index=0, is_count=True):
+    def select_ratio_of_background_measures(self, ratio, part, is_count=True):
         r'''Select the first third of background measures starting during segment::
 
             >>> selector = segment.select_ratio_of_background_measures((1, 1, 1), 0)
@@ -551,19 +551,19 @@ class SegmentSpecification(Specification):
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
-                identifier=0
+                0
                 )
 
         Return selector.
         '''
         selector = self.select_background_measures()
         if is_count:
-            selector = selectortools.CountRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.CountRatioItemSelector(selector, ratio, part)
         else:
-            selector = selectortools.DurationRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.DurationRatioItemSelector(selector, ratio, part)
         return selector
 
-    def select_ratio_of_divisions(self, ratio, index, contexts=None, is_count=True):
+    def select_ratio_of_divisions(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of divisions starting during segment::
 
             >>> selector = segment.select_ratio_of_divisions((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
@@ -584,19 +584,19 @@ class SegmentSpecification(Specification):
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
-                identifier=0
+                0
                 )
 
         Return selector.
         '''
         selector = self.select_divisions(contexts=contexts)
         if is_count:
-            selector = selectortools.CountRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.CountRatioItemSelector(selector, ratio, part)
         else:
-            selector = selectortools.DurationRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.DurationRatioItemSelector(selector, ratio, part)
         return selector
 
-    def select_ratio_of_leaves(self, ratio, index, contexts=None, is_count=True):
+    def select_ratio_of_leaves(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of leaves starting during segment::
 
             >>> selector = segment.select_ratio_of_leaves((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
@@ -618,19 +618,19 @@ class SegmentSpecification(Specification):
                     klass=leaftools.Leaf
                     ),
                 mathtools.Ratio(1, 1, 1),
-                identifier=0
+                0
                 )
 
         Return selector.
         '''
         selector = self.select_leaves(contexts=contexts)
         if is_count:
-            selector = selectortools.CountRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.CountRatioItemSelector(selector, ratio, part)
         else:
-            selector = selectortools.DurationRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.DurationRatioItemSelector(selector, ratio, part)
         return selector
 
-    def select_ratio_of_notes_and_chords(self, ratio, index, contexts=None, is_count=True):
+    def select_ratio_of_notes_and_chords(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of notes and chords starting during segment::
 
             >>> selector = segment.select_ratio_of_notes_and_chords((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
@@ -655,19 +655,19 @@ class SegmentSpecification(Specification):
                         ])
                     ),
                 mathtools.Ratio(1, 1, 1),
-                identifier=0
+                0
                 )
 
         Return selector.
         '''
         selector = self.select_notes_and_chords(contexts=contexts)
         if is_count:
-            selector = selectortools.CountRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.CountRatioItemSelector(selector, ratio, part)
         else:
-            selector = selectortools.DurationRatioItemSelector(selector, ratio, identifier=index)
+            selector = selectortools.DurationRatioItemSelector(selector, ratio, part)
         return selector
 
-    def select_segment_duration_ratio_item(self, ratio, item):
+    def select_segment_duration_ratio_item(self, ratio, part):
         r'''Select the first third of segment ``'red'``::
 
             >>> selector = segment.select_segment_duration_ratio_item((1, 1, 1), 0)
@@ -682,12 +682,12 @@ class SegmentSpecification(Specification):
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
-                identifier=0
+                0
                 )
 
-        Return duration-ratio item selector.
+        Return duration-ratio part selector.
         '''
-        return selectortools.DurationRatioItemSelector(self.timespan, ratio, identifier=item)
+        return selectortools.DurationRatioItemSelector(self.timespan, ratio, part)
 
     def select_timespan(self, contexts=None):
         '''Select contexts::

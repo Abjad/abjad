@@ -1,6 +1,1 @@
 1. Make divisions (ie, nonreduced fractions) partitionable.
-
-2. Rename ratio selector 'index' keyword to 'part'.
-   This will avoid conceptual conflicts with Item to constrast with Slice.
-
-3. Rename segment 'index' to 'identifier'.

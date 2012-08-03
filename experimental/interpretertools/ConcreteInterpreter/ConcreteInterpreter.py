@@ -194,14 +194,14 @@ class ConcreteInterpreter(Interpreter):
         assert resolved_single_context_setting.target.reference.inequality.timespan.selector.identifier == \
             segment_specification.segment_name
         ratio = resolved_single_context_setting.target.ratio
-        identifier = resolved_single_context_setting.target.identifier
+        ratio_part = resolved_single_context_setting.target.part
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
-        part = parts[identifier]
+        part = parts[ratio_part]
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
         #self._debug(resolved_single_context_setting.target, 'cris')
-        parts_before = parts[:identifier]
+        parts_before = parts[:ratio_part]
         durations_before = [
             sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
         duration_before = sum(durations_before)
@@ -537,9 +537,9 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification = self.get_segment_specification(segment_identifier)
                     duration = segment_specification.duration
                     ratio = selector.timespan.selector.ratio
-                    identifier = selector.timespan.selector.identifier
+                    ratio_part = selector.timespan.selector.part
                     parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    part = parts[identifier]
+                    part = parts[ratio_part]
                     return part
                 else:
                     raise NotImplementedError(selector.timespan.selector.reference)
@@ -575,9 +575,9 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification = self.get_segment_specification(segment_identifier)
                     duration = segment_specification.duration
                     ratio = selector.timespan.selector.ratio
-                    identifier = selector.timespan.selector.identifier
+                    ratio_part = selector.timespan.selector.part
                     parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    parts_before = parts[:identifier]
+                    parts_before = parts[:ratio_part]
                     duration_before = sum(parts_before)
                     return durationtools.Offset(duration_before) 
                 else:
@@ -614,11 +614,11 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification = self.get_segment_specification(segment_identifier)
                     duration = segment_specification.duration
                     ratio = selector.timespan.selector.ratio
-                    identifier = selector.timespan.selector.identifier
+                    ratio_part = selector.timespan.selector.part
                     parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    part = parts[identifier]
+                    part = parts[ratio_part]
                     duration = part
-                    parts_before = parts[:identifier]
+                    parts_before = parts[:ratio_part]
                     duration_before = sum(parts_before)
                     return durationtools.Offset(duration_before + duration) 
                 else:

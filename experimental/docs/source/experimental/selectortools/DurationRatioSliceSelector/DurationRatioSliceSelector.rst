@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
-.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.identifiers
-
-    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
-
 .. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.ratio
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
@@ -33,13 +29,9 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.start_identifier
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.start_part
 
-    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
-
-.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.stop_identifier
-
-    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.stop_part
 
 .. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.storage_format
 

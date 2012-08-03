@@ -1,8 +1,7 @@
 from experimental.selectortools.RatioSelector import RatioSelector
-from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class CountRatioSliceSelector(RatioSelector, SliceSelector):
+class CountRatioSliceSelector(RatioSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by `ratio` of counts. Then select zero or more contiguous parts.
@@ -20,7 +19,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
     ::
 
         >>> count_ratio_slice_selector = selectortools.CountRatioSliceSelector(
-        ... background_measure_selector, (1, 1, 1, 1), start_identifier=-2)
+        ... background_measure_selector, (1, 1, 1, 1), start_part=-2)
 
     ::
 
@@ -37,7 +36,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
                     )
                 ),
             mathtools.Ratio(1, 1, 1, 1),
-            start_identifier=-2
+            start_part=-2
             )
 
     All count-ratio slice selector properties are read-only.
@@ -45,7 +44,18 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, start_identifier=None, stop_identifier=None):
+    def __init__(self, reference, ratio, start_part=None, stop_part=None):
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         RatioSelector.__init__(self, reference, ratio)
-        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        self._start_part = start_part
+        self._stop_part = stop_part
+
+    ### PUBLIC READ-ONLY PROPERTIES ###
+
+    @property
+    def start_part(self):
+        return self._start_part
+
+    @property
+    def stop_part(self):
+        return self._stop_part

@@ -1,8 +1,7 @@
 from experimental.selectortools.RatioSelector import RatioSelector
-from experimental.selectortools.ItemSelector import ItemSelector
 
 
-class DurationRatioItemSelector(RatioSelector, ItemSelector):
+class DurationRatioItemSelector(RatioSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by ratio of durations. Then select exactly one part.
@@ -20,7 +19,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
     ::
 
         >>> duration_ratio_item_selector = selectortools.DurationRatioItemSelector(
-        ... background_measure_selector, (1, 1), identifier=0)
+        ... background_measure_selector, (1, 1), 0)
 
     ::
 
@@ -37,7 +36,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
                     )
                 ),
             mathtools.Ratio(1, 1),
-            identifier=0
+            0
             )
 
     All duration ratio item selector properties are read-only.
@@ -45,6 +44,12 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, identifier=None):
+    def __init__(self, reference, ratio, part):
         RatioSelector.__init__(self, reference, ratio)
-        ItemSelector.__init__(self, identifier=identifier)
+        self._part = part
+
+    ### PUBLIC READ-ONLY PROPERTIES ###
+
+    @property
+    def part(self):
+        return self._part
