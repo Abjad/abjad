@@ -514,14 +514,14 @@ class ConcreteInterpreter(Interpreter):
     def single_context_timespan_selector_to_duration(self, selector):
         if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
             if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
-                segment_identifier = selector.timespan.selector.identifier
+                segment_identifier = selector.segment_identifier
                 segment_specification = self.get_segment_specification(segment_identifier)
                 return segment_specification.duration
             elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
                 if isinstance(
                     selector.timespan.selector.inequality.timespan.selector, 
                     selectortools.SegmentItemSelector):
-                    segment_identifier = selector.timespan.selector.inequality.timespan.selector.identifier
+                    segment_identifier = selector.segment_identifier
                     segment_specification = self.get_segment_specification(segment_identifier)
                     start = selector.timespan.selector.start_identifier
                     stop = selector.timespan.selector.stop_identifier
@@ -533,7 +533,7 @@ class ConcreteInterpreter(Interpreter):
                     raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
                 if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    segment_identifier = selector.timespan.selector.reference.selector.identifier
+                    segment_identifier = selector.segment_identifier
                     segment_specification = self.get_segment_specification(segment_identifier)
                     duration = segment_specification.duration
                     ratio = selector.timespan.selector.ratio
@@ -556,7 +556,7 @@ class ConcreteInterpreter(Interpreter):
                 if isinstance(
                     selector.timespan.selector.inequality.timespan.selector, 
                     selectortools.SegmentItemSelector):
-                    segment_identifier = selector.timespan.selector.inequality.timespan.selector.identifier
+                    segment_identifier = selector.segment_identifier
                     segment_specification = self.get_segment_specification(segment_identifier)
                     start = selector.timespan.selector.start_identifier
                     stop = selector.timespan.selector.stop_identifier
@@ -571,7 +571,7 @@ class ConcreteInterpreter(Interpreter):
                     raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
                 if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    segment_identifier = selector.timespan.selector.reference.selector.identifier
+                    segment_identifier = selector.segment_identifier
                     segment_specification = self.get_segment_specification(segment_identifier)
                     duration = segment_specification.duration
                     ratio = selector.timespan.selector.ratio
@@ -590,14 +590,14 @@ class ConcreteInterpreter(Interpreter):
     def single_context_timespan_selector_to_stop_offset(self, selector):
         if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
             if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
-                segment_identifier = selector.timespan.selector.identifier
+                segment_identifier = selector.segment_identifier
                 segment_specification = self.get_segment_specification(segment_identifier)
                 return durationtools.Offset(segment_specification.duration)
             elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
                 if isinstance(
                     selector.timespan.selector.inequality.timespan.selector, 
                     selectortools.SegmentItemSelector):
-                    segment_identifier = selector.timespan.selector.inequality.timespan.selector.identifier
+                    segment_identifier = selector.segment_identifier
                     segment_specification = self.get_segment_specification(segment_identifier)
                     start = selector.timespan.selector.start_identifier
                     stop = selector.timespan.selector.stop_identifier
@@ -610,7 +610,7 @@ class ConcreteInterpreter(Interpreter):
                     raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
                 if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    segment_identifier = selector.timespan.selector.reference.selector.identifier
+                    segment_identifier = selector.segment_identifier
                     segment_specification = self.get_segment_specification(segment_identifier)
                     duration = segment_specification.duration
                     ratio = selector.timespan.selector.ratio
