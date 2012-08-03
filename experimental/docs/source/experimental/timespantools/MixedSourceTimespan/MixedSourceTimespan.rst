@@ -21,9 +21,9 @@ Read-only Properties
 
     Inherited from :py:class:`Timespan.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
 
-.. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.start
+.. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.start_timepoint
 
-.. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.stop
+.. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.stop_timepoint
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.storage_format
 

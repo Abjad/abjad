@@ -10,30 +10,32 @@ class MixedSourceTimespan(Timespan):
 
         >>> from experimental import *
 
-    SingleSourceTimespan starting at the left edge of the last measure in the segment with name ``'red'``
-    and stopping at the right edge of the first measure in the segment with name ``'blue'``::
+    Mixed-source timespan starting at the left edge of the last measure in the segment 
+    with name ``'red'`` and stopping at the right edge of the first measure in the segment 
+    with name ``'blue'``::
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
-        >>> start = timespantools.Timepoint(anchor=measure_selector)
+        >>> start_timepoint = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='blue')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality)
-        >>> stop = timespantools.Timepoint(anchor=measure_selector, edge=Right)
+        >>> stop_timepoint = timespantools.Timepoint(anchor=measure_selector, edge=Right)
         
     ::
 
-        >>> timespan = timespantools.MixedSourceTimespan(start=start, stop=stop)
+        >>> timespan = timespantools.MixedSourceTimespan(
+        ... start_timepoint=start_timepoint, stop_timepoint=stop_timepoint)
 
     ::
 
         >>> z(timespan)
         timespantools.MixedSourceTimespan(
-            start=timespantools.Timepoint(
+            start_timepoint=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureItemSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -46,7 +48,7 @@ class MixedSourceTimespan(Timespan):
                     index=-1
                     )
                 ),
-            stop=timespantools.Timepoint(
+            stop_timepoint=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureItemSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -67,19 +69,19 @@ class MixedSourceTimespan(Timespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, start=None, stop=None):
-        assert isinstance(start, (Timepoint, type(None))), repr(start)
-        assert isinstance(stop, (Timepoint, type(None))), repr(stop)
+    def __init__(self, start_timepoint=None, stop_timepoint=None):
+        assert isinstance(start_timepoint, (Timepoint, type(None))), repr(start_timepoint)
+        assert isinstance(stop_timepoint, (Timepoint, type(None))), repr(stop_timepoint)
         Timespan.__init__(self)
-        self._start = start
-        self._stop = stop
+        self._start_timepoint = start_timepoint
+        self._stop_timepoint = stop_timepoint
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         if isintance(expr, type(self)):
-            if self.start == expr.start:
-                if self.stop == expr.stop:
+            if self.start_timepoint == expr.start_timepoint:
+                if self.stop_timepoint == expr.stop_timepoint:
                     return True
         return False
 
@@ -91,7 +93,7 @@ class MixedSourceTimespan(Timespan):
 
         Return boolean.
         '''
-        return self.start.anchor == self.stop.anchor
+        return self.start_timepoint.anchor == self.stop_timepoint.anchor
 
 
     def encompasses_one_object_exactly(self):
@@ -109,11 +111,11 @@ class MixedSourceTimespan(Timespan):
 
         Return boolean.
         '''
-        if self.start.anchor == self.stop.anchor:
-            if self.start.edge in (None, Left):
-                if self.stop.edge == Right:
-                    if self.start.multiplier is self.stop.multiplier is None:
-                        if self.start.addendum is self.stop.addendum is None:
+        if self.start_timepoint.anchor == self.stop_timepoint.anchor:
+            if self.start_timepoint.edge in (None, Left):
+                if self.stop_timepoint.edge == Right:
+                    if self.start_timepoint.multiplier is self.stop_timepoint.multiplier is None:
+                        if self.start_timepoint.addendum is self.stop_timepoint.addendum is None:
                             return True
         return False
 
@@ -125,17 +127,17 @@ class MixedSourceTimespan(Timespan):
 
 
     @property
-    def start(self):
-        '''SingleSourceTimespan start specified by user.
+    def start_timepoint(self):
+        '''Mixed-source timespan start timepoint specified by user.
 
         Return timepoint or none.
         '''
-        return self._start
+        return self._start_timepoint
 
     @property
-    def stop(self):
-        '''SingleSourceTimespan stop specified by user.
+    def stop_timepoint(self):
+        '''Mixed-source timepsan stop timepoint specified by user.
 
         Return timepoint or none.
         '''
-        return self._stop
+        return self._stop_timepoint
