@@ -37,6 +37,11 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+Methods
+-------
+
+.. automethod:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.get_duration
+
 Special Methods
 ---------------
 

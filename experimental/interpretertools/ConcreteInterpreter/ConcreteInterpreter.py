@@ -520,13 +520,7 @@ class ConcreteInterpreter(Interpreter):
                 return selector.get_duration(self.score_specification)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
                 if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
-                    segment_specification = self.get_segment_specification(selector)
-                    duration = segment_specification.duration
-                    ratio = selector.timespan.selector.ratio
-                    ratio_part = selector.timespan.selector.part
-                    parts = mathtools.divide_number_by_ratio(duration, ratio)
-                    part = parts[ratio_part]
-                    return part
+                    return selector.get_duration(self.score_specification)
                 else:
                     raise NotImplementedError(selector.timespan.selector.reference)
             else:

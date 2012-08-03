@@ -27,6 +27,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.timespan
 
+Methods
+-------
+
+.. automethod:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.get_duration
+
 Special Methods
 ---------------
 

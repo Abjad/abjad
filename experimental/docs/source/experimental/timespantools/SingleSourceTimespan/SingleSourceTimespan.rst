@@ -35,6 +35,11 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.get_duration
+
 Special Methods
 ---------------
 

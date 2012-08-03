@@ -19,6 +19,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.timespan_inequality_template
 
+Methods
+-------
+
+.. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.get_duration
+
 Special Methods
 ---------------
 

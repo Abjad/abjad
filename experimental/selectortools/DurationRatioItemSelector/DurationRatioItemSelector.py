@@ -1,3 +1,4 @@
+from abjad.tools import mathtools
 from experimental.selectortools.RatioSelector import RatioSelector
 
 
@@ -59,3 +60,13 @@ class DurationRatioItemSelector(RatioSelector):
         '''Return ``self.reference.segment_identifier``.
         '''
         return self.reference.segment_identifier
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        '''Ask reference for reference duration. Then do ratio math on reference duration.
+        '''
+        reference_duration = self.reference.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
+        part = parts[self.part]
+        return part
