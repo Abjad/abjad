@@ -244,10 +244,10 @@ class SegmentSpecification(Specification):
         return Specification.single_context_settings.fget(self)
 
     @property
-    def start(self):
+    def start_timepoint(self):
         '''Segment specification start timepoint.
 
-            >>> segment.start
+            >>> segment.start_timepoint
             Timepoint(anchor=SegmentItemSelector(identifier='red'), edge=Left)
 
         Return timepoint.
@@ -255,10 +255,10 @@ class SegmentSpecification(Specification):
         return timespantools.Timepoint(anchor=self.selector, edge=Left)
 
     @property
-    def stop(self):
+    def stop_timepoint(self):
         '''Segment specification stop timepoint.
 
-            >>> segment.stop
+            >>> segment.stop_timepoint
             Timepoint(anchor=SegmentItemSelector(identifier='red'), edge=Right)
 
         Return timepoint.
