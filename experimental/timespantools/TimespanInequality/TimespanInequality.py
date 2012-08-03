@@ -53,7 +53,7 @@ class TimespanInequality(AbjadObject):
 
     @property
     def segment_identifier(self):
-        '''Return ``self.timespan.segment_identifier``.
+        '''Delegate to ``self.timespan.segment_identifier``.
         '''
         return self.timespan.segment_identifier
 
@@ -72,3 +72,10 @@ class TimespanInequality(AbjadObject):
         Return timespan inequality or timespan inequality template object.
         '''
         return self._timespan_inequality_template
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        '''Delegate to ``self.timespan.get_duration()``.
+        '''
+        return self.timespan.get_duration(score_specification)

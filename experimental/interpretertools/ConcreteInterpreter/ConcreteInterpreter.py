@@ -335,8 +335,7 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_commands
 
     def get_segment_specification(self, expr):
-        segment_identifier = getattr(expr, 'segment_identifier', expr)
-        return self.score_specification.segment_specifications[segment_identifier]
+        return self.score_specification.get_segment_specification(expr)
 
     def get_uninterpreted_division_commands_for_voice(self, voice):
         from experimental import interpretertools
@@ -512,24 +511,13 @@ class ConcreteInterpreter(Interpreter):
         else:
             return single_context_setting.source
 
+    # TODO: replace this with selector.get_duration(self.score_specification)
     def single_context_timespan_selector_to_duration(self, selector):
         if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
             if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
-                segment_specification = self.get_segment_specification(selector)
-                return segment_specification.duration
+                return selector.get_duration(self.score_specification)
             elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
-                if isinstance(
-                    selector.timespan.selector.inequality.timespan.selector, 
-                    selectortools.SegmentItemSelector):
-                    segment_specification = self.get_segment_specification(selector)
-                    start = selector.timespan.selector.start_identifier
-                    stop = selector.timespan.selector.stop_identifier
-                    time_signatures = segment_specification.time_signatures[start:stop] 
-                    durations = [durationtools.Duration(x) for x in time_signatures]
-                    duration = durationtools.Duration(sum(durations))
-                    return duration
-                else:
-                    raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
+                return selector.get_duration(self.score_specification)
             elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
                 if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
                     segment_specification = self.get_segment_specification(selector)
@@ -628,6 +616,7 @@ class ConcreteInterpreter(Interpreter):
         #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_identifier == segment_specification.segment_name
         selector = resolved_single_context_setting.target
+        # TODO: change this to selector.get_duration(self.score_specification)
         duration = self.single_context_timespan_selector_to_duration(selector)
         start_offset = self.single_context_timespan_selector_to_start_offset(selector)
         stop_offset = self.single_context_timespan_selector_to_stop_offset(selector)

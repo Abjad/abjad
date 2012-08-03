@@ -69,6 +69,6 @@ class SingleContextTimespanSelector(TimespanSelector):
 
     @property
     def segment_identifier(self):
-        '''Return ``self.timespan.segment_identifier``.
+        '''Delegate to ``self.timespan.segment_identifier``.
         '''
         return self.timespan.segment_identifier

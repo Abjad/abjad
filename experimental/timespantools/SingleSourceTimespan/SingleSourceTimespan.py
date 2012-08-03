@@ -182,3 +182,10 @@ class SingleSourceTimespan(Timespan):
         Return selector or none.
         '''
         return self._selector
+    
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        '''Delegate to ``self.selector.get_timespan()``.
+        '''
+        return self.selector.get_duration(score_specification)

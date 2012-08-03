@@ -251,6 +251,10 @@ class ScoreSpecification(Specification):
         self.segment_specifications.append(segment_specification)
         return segment_specification
 
+    def get_segment_specification(self, expr):
+        segment_identifier = getattr(expr, 'segment_identifier', expr)
+        return self.segment_specifications[segment_identifier]
+
     def interpret(self):
         r'''Interpret score specification::
 

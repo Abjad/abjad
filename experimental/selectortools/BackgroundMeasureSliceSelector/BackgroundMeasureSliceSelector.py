@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
 
 
@@ -144,3 +145,15 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         '''Return ``self.inequality.segment_identifier``.
         '''
         return self.inequality.segment_identifier
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        '''Calculcate making assumptions about segment to which selector refers.
+        '''
+        segment_specification = score_specification.get_segment_specification(self)
+        start, stop = self.identifiers
+        time_signatures = segment_specification.time_signatures[start:stop]
+        durations = [durationtools.Duration(x) for x in time_signatures]
+        duration = durationtools.Duration(sum(durations))
+        return duration

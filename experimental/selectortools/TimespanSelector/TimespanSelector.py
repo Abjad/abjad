@@ -31,3 +31,10 @@ class TimespanSelector(Selector):
         Return timespan or none.
         '''
         return self._timespan
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        '''Delegate to ``self.timespan.get_duration()``.
+        '''
+        return self.timespan.get_duration(score_specification)

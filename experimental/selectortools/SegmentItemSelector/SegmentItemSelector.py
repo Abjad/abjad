@@ -50,3 +50,9 @@ class SegmentItemSelector(BackgroundElementItemSelector):
     @property
     def segment_identifier(self):
         return self._identifier
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        segment_specification = score_specification.get_segment_specification(self)
+        return segment_specification.duration
