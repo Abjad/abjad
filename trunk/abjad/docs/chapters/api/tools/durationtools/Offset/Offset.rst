@@ -189,8 +189,6 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__sub__
 
-    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
-
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__truediv__
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
