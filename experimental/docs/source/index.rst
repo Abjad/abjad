@@ -329,7 +329,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/selector_to_segment_index
+   experimental/selectortools/selector_to_segment_identifier
 
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

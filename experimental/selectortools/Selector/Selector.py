@@ -67,7 +67,7 @@ class Selector(AbjadObject):
         Raise exception when no segment index can be recursively found.
         '''
         from experimental import selectortools
-        return selectortools.selector_to_segment_index(self)
+        return selectortools.selector_to_segment_identifier(self)
 
     @property
     def timespan(self):

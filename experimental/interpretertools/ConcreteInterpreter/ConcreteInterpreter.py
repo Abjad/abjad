@@ -766,7 +766,7 @@ class ConcreteInterpreter(Interpreter):
         If setting persists then store setting in score resolved single-context settings, too.
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
-        segment_index = selectortools.selector_to_segment_index(resolved_single_context_setting.target)
+        segment_index = selectortools.selector_to_segment_identifier(resolved_single_context_setting.target)
         segment_specification = self.get_segment_specification(segment_index)
         self.store_resolved_single_context_setting(
             segment_specification, resolved_single_context_setting,
