@@ -672,7 +672,6 @@ class ConcreteInterpreter(Interpreter):
             for command_to_shorten in commands_to_shorten:
                 command_to_shorten._stop_offset = uninterpreted_division_command.start_offset
                 duration = command_to_shorten.stop_offset - command_to_shorten.start_offset
-                duration = durationtools.Duration(duration)
                 command_to_shorten._duration = duration
             for command_to_split in commands_to_split:
                 left_command = command_to_split
@@ -680,11 +679,9 @@ class ConcreteInterpreter(Interpreter):
                 right_command = copy.deepcopy(left_command)
                 left_command._stop_offset = middle_command.start_offset
                 left_duration = left_command.stop_offset - left_command.start_offset
-                left_duration = durationtools.Duration(left_duration)
                 left_command._duration = left_duration
                 right_command._start_offset = middle_command.stop_offset
                 right_duration = right_command.stop_offset - right_command.start_offset
-                right_duration = durationtools.Duration(right_duration)
                 right_command._duration = right_duration
                 command_was_split = True
             if command_was_split:
