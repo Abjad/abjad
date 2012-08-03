@@ -66,3 +66,9 @@ class SingleContextTimespanSelector(TimespanSelector):
         '''Return length-``1`` list.
         '''
         return [self.context_name]
+
+    @property
+    def segment_identifier(self):
+        '''Return ``self.timespan.selector.segment_identifier``.
+        '''
+        return self.timespan.selector.segment_identifier

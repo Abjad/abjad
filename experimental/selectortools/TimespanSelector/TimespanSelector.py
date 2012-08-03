@@ -26,7 +26,7 @@ class TimespanSelector(Selector):
 
     @property
     def timespan(self):
-        '''Timespan of inequality.
+        '''Timespan of timespan selector.
     
         Return timespan or none.
         '''

@@ -62,12 +62,11 @@ class Selector(AbjadObject):
 
     @property
     def segment_identifier(self):
-        '''Segment identifier of selector, if it exists.
+        '''Selector segment identifier.
 
-        Raise exception when no segment identifier can be recursively found.
+        Raise exception when no segment identifier can be found.
         '''
-        from experimental import selectortools
-        return selectortools.selector_to_segment_identifier(self)
+        raise NotImplementedError('implement for {!r}.'.format(self))
 
     @property
     def timespan(self):
