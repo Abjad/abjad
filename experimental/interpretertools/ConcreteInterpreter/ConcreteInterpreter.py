@@ -311,8 +311,9 @@ class ConcreteInterpreter(Interpreter):
             #self._debug('segment')
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            commands = self.sort_and_split_uninterpreted_division_commands(commands)
             #self._debug(commands, 'commands')
+            commands = self.sort_and_split_uninterpreted_division_commands(commands)
+            #self._debug(commands, 'sorted')
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
@@ -501,22 +502,31 @@ class ConcreteInterpreter(Interpreter):
         assert sequencetools.all_are_equal(start_segment_names)
         #self._debug(uninterpreted_division_commands)
         for uninterpreted_division_command in uninterpreted_division_commands:
-            command_was_split = False
-            commands_to_remove, commands_to_shorten, commands_to_split = [], [], []
+            command_was_delayed, command_was_split = False, False
+            commands_to_remove, commands_to_shorten, commands_to_delay, commands_to_split = [], [], [], []
             for command in result:
                 if uninterpreted_division_command.start_offset <= command.start_offset:
-                    commands_to_remove.append(command)
+                    if command.stop_offset <= uninterpreted_division_command.stop_offset:
+                        commands_to_remove.append(command)
+                    else:
+                        commands_to_delay.append(command)
                 if command.start_offset < uninterpreted_division_command.start_offset < command.stop_offset:
                     if uninterpreted_division_command.stop_offset < command.stop_offset:
                         commands_to_split.append(command)
                     else:
                         commands_to_shorten.append(command)
+            #print commands_to_remove, commands_to_shorten, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
                 result.remove(command_to_remove)
             for command_to_shorten in commands_to_shorten:
                 command_to_shorten._stop_offset = uninterpreted_division_command.start_offset
                 duration = command_to_shorten.stop_offset - command_to_shorten.start_offset
                 command_to_shorten._duration = duration
+            for command_to_delay in commands_to_delay:
+                command_to_delay._start_offset = uninterpreted_division_command.stop_offset
+                duration = command_to_delay.stop_offset - command_to_delay.start_offset
+                command_to_delay._duration = duration
+                command_was_delayed = True
             for command_to_split in commands_to_split:
                 left_command = command_to_split
                 middle_command = uninterpreted_division_command
@@ -528,7 +538,10 @@ class ConcreteInterpreter(Interpreter):
                 right_duration = right_command.stop_offset - right_command.start_offset
                 right_command._duration = right_duration
                 command_was_split = True
-            if command_was_split:
+            if command_was_delayed:
+                index = result.index(command)
+                result.insert(index, uninterpreted_division_command)
+            elif command_was_split:
                 result.append(middle_command)
                 result.append(right_command)
             else:
