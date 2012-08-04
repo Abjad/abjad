@@ -718,11 +718,11 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_divisions_new(self, source, timespan=None, contexts=None,
+    def set_divisions(self, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         r'''Set divisions of segment `contexts` to `source`::
 
-            >>> setting = segment.set_divisions_new([(3, 16)], contexts=['Voice 1', 'Voice 3'])
+            >>> setting = segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -850,7 +850,7 @@ class SegmentSpecification(Specification):
         string = 'sequencetools.reverse_sequence'
         contexts = contexts or self
         callback = helpertools.Callback(eval(string), string)
-        return self.set_divisions_new(source, contexts=contexts,
+        return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
     def set_rotated_divisions(self, source, n, contexts=None,
@@ -863,7 +863,7 @@ class SegmentSpecification(Specification):
         contexts = contexts or self
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
         callback = helpertools.Callback(eval(string), string)
-        return self.set_divisions_new(source, contexts=contexts,
+        return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
     def set_tempo(self, source, contexts=None,

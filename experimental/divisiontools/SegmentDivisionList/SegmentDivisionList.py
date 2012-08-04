@@ -29,7 +29,7 @@ class SegmentDivisionList(DivisionList):
     ::
 
         >>> setting = segment.set_time_signatures([(4, 8), (3, 8)])
-        >>> setting = segment.set_divisions_new([(3, 16)], contexts=segment.v1)
+        >>> setting = segment.set_divisions([(3, 16)], contexts=segment.v1)
         >>> setting = segment.set_rhythm(library.thirty_seconds)
 
     ::

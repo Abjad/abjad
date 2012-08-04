@@ -12,8 +12,8 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
-    segment.set_divisions_new([(3, 16)], contexts='Voice 1', truncate=True)
-    segment.set_divisions_new([(4, 16)], contexts='Voice 2', truncate=True)
+    segment.set_divisions([(3, 16)], contexts='Voice 1', truncate=True)
+    segment.set_divisions([(4, 16)], contexts='Voice 2', truncate=True)
 
     source_1 = score_specification.select_divisions('Voice 1', 'red', segment_count=1)
     source_2 = score_specification.select_divisions('Voice 2', 'red', segment_count=1)

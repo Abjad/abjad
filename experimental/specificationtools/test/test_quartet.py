@@ -24,7 +24,7 @@ def test_quartet_01():
     segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
-    segment.set_divisions_new([(3, 16)], contexts=upper)
+    segment.set_divisions([(3, 16)], contexts=upper)
     segment.set_rhythm(library.thirty_seconds, contexts=upper)
 
     lower = [segment.v3, segment.v4]
@@ -58,11 +58,11 @@ def test_quartet_02():
     segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
-    segment.set_divisions_new([(5, 16)], contexts=upper)
+    segment.set_divisions([(5, 16)], contexts=upper)
     segment.set_rhythm(library.thirty_seconds, contexts=upper)
 
     lower = [segment.v3, segment.v4]
-    segment.set_divisions_new([(4, 16), (3, 16)], contexts=lower)
+    segment.set_divisions([(4, 16), (3, 16)], contexts=lower)
     segment.set_rhythm(library.note_filled_tokens, contexts=lower)
 
     segment = score_specification.append_segment(name='T2')

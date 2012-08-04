@@ -19,12 +19,12 @@ def test_single_segment_solo_with_multiple_division_regions_01():
     third_measure = segment.select_background_measure(2)
 
     # TODO: make it possible to eliminate contexts assignment in arbitrary ones of these settings
-    #segment.set_divisions_new([(2, 32)], timespan=first_measure, contexts=['Voice 1'])
-    segment.set_divisions_new([(2, 32)], timespan=first_measure)
-    #segment.set_divisions_new([(3, 32)], timespan=second_measure, contexts=['Voice 1'])
-    segment.set_divisions_new([(3, 32)], timespan=second_measure)
-    #segment.set_divisions_new([(4, 32)], timespan=third_measure, contexts=['Voice 1'])
-    segment.set_divisions_new([(4, 32)], timespan=third_measure)
+    #segment.set_divisions([(2, 32)], timespan=first_measure, contexts=['Voice 1'])
+    segment.set_divisions([(2, 32)], timespan=first_measure)
+    #segment.set_divisions([(3, 32)], timespan=second_measure, contexts=['Voice 1'])
+    segment.set_divisions([(3, 32)], timespan=second_measure)
+    #segment.set_divisions([(4, 32)], timespan=third_measure, contexts=['Voice 1'])
+    segment.set_divisions([(4, 32)], timespan=third_measure)
 
     segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()

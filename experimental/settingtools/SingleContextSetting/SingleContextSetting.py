@@ -24,7 +24,7 @@ class SingleContextSetting(Setting):
     ::
 
         >>> contexts = ['Voice 1', 'Voice 3']
-        >>> multiple_context_setting = segment.set_divisions_new([(3, 16)], contexts=contexts)
+        >>> multiple_context_setting = segment.set_divisions([(3, 16)], contexts=contexts)
 
     ::
 
