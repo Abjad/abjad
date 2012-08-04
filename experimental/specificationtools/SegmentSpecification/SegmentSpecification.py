@@ -179,7 +179,7 @@ class SegmentSpecification(Specification):
 
     @property
     def score_model(self):
-        '''Segment score model::
+        '''Segment specification score model::
 
             >>> segment.score_model
             Score-"Grouped Rhythmic Staves Score"<<1>>
@@ -228,7 +228,7 @@ class SegmentSpecification(Specification):
             >>> segment.selector
             SegmentItemSelector(identifier='red')
 
-        Return segment selector.
+        Return selector.
         '''
         return selectortools.SegmentItemSelector(identifier=self.segment_name)
 

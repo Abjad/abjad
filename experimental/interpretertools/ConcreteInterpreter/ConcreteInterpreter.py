@@ -187,37 +187,26 @@ class ConcreteInterpreter(Interpreter):
 
     def count_ratio_item_selector_to_uninterpreted_division_command(
         self, segment_specification, resolved_single_context_setting):
-        from experimental import interpretertools
-        assert isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector)
-        assert isinstance(resolved_single_context_setting.target.reference,
-            selectortools.BackgroundMeasureSliceSelector)
-        assert resolved_single_context_setting.target.reference.inequality.timespan.selector.identifier == \
-            segment_specification.segment_name
-        ratio = resolved_single_context_setting.target.ratio
-        ratio_part = resolved_single_context_setting.target.part
+        selector = resolved_single_context_setting.target
+        assert isinstance(selector, selectortools.CountRatioItemSelector)
+        assert isinstance(selector.reference, selectortools.BackgroundMeasureSliceSelector)
+        assert selector.segment_identifier == segment_specification.segment_name
+        ratio = selector.ratio
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
-        part = parts[ratio_part]
+        part = parts[selector.part]
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
-        #self._debug(resolved_single_context_setting.target, 'cris')
-        parts_before = parts[:ratio_part]
+        parts_before = parts[:selector.part]
         durations_before = [
             sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
         duration_before = sum(durations_before)
         start_offset = duration_before
         stop_offset = duration_before + duration
-        command = interpretertools.UninterpretedDivisionCommand(
-            resolved_single_context_setting.resolved_value,
-            duration,
-            segment_specification.segment_name,
-            start_offset,
-            stop_offset,
-            resolved_single_context_setting.target.context_name,
-            resolved_single_context_setting.fresh,
-            resolved_single_context_setting.truncate
-            )
-        return command
+        segment_name = segment_specification.segment_name
+        uninterpreted_division_command = self.make_uninterpreted_division_command(
+            resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
+        return uninterpreted_division_command
 
     def division_request_to_divisions(self, division_request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.voice)
@@ -369,7 +358,6 @@ class ConcreteInterpreter(Interpreter):
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            #self._debug(resolved_single_context_setting, 'rscs')
             if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
                 uninterpreted_division_command = \
                     self.count_ratio_item_selector_to_uninterpreted_division_command(
@@ -381,8 +369,6 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise NotImplementedError(resolved_single_context_setting.target)
             uninterpreted_division_commands.append(uninterpreted_division_command)
-            #self._debug(uninterpreted_division_command, 'uidc')
-        #print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -438,6 +424,21 @@ class ConcreteInterpreter(Interpreter):
         segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
         return segment_division_lists
+
+    def make_uninterpreted_division_command(
+        self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
+        from experimental import interpretertools
+        uninterpreted_division_command = interpretertools.UninterpretedDivisionCommand(
+            resolved_single_context_setting.resolved_value,
+            duration,
+            segment_name,
+            start_offset,
+            stop_offset,
+            resolved_single_context_setting.target.context_name,
+            resolved_single_context_setting.fresh,
+            resolved_single_context_setting.truncate
+            )
+        return uninterpreted_division_command
 
     def make_voice_division_list_for_voice(self, voice):
         division_region_division_lists = self.score_specification.contexts[voice.name][
@@ -513,23 +514,14 @@ class ConcreteInterpreter(Interpreter):
 
     def single_context_timespan_selector_to_uninterpreted_division_command(
         self, segment_specification, resolved_single_context_setting):
-        from experimental import interpretertools
         assert resolved_single_context_setting.target.segment_identifier == segment_specification.segment_name
         selector = resolved_single_context_setting.target
         duration = selector.get_duration(self.score_specification)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
-        command = interpretertools.UninterpretedDivisionCommand(
-            resolved_single_context_setting.resolved_value,
-            duration,
-            segment_specification.segment_name,
-            start_offset,
-            stop_offset,
-            resolved_single_context_setting.target.context_name,
-            resolved_single_context_setting.fresh,
-            resolved_single_context_setting.truncate
-            )
-        #print command
-        return command
+        segment_name = segment_specification.segment_name
+        uninterpreted_division_command = self.make_uninterpreted_division_command(
+            resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
+        return uninterpreted_division_command
 
     def sort_and_split_uninterpreted_division_commands(self, uninterpreted_division_commands):
         result = []
