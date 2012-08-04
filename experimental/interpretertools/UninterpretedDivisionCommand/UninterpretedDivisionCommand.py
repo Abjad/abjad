@@ -10,13 +10,14 @@ class UninterpretedDivisionCommand(DivisionCommand):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        resolved_value, duration, start_segment_name, start_offset, stop_offset, context_name, fresh, truncate):
+    def __init__(self, resolved_value, start_segment_name, context_name, 
+        duration, start_offset, stop_offset, fresh, truncate):
         assert isinstance(fresh, bool), repr(fresh)
         assert isinstance(truncate, bool), repr(truncate)
         assert isinstance(context_name, (str, type(None)))
         DivisionCommand.__init__(
-            self, resolved_value, duration, start_segment_name, start_offset, stop_offset, context_name)
+            self, resolved_value, start_segment_name, context_name,
+            duration, start_offset, stop_offset)
         self._fresh = fresh
         self._truncate = truncate
 

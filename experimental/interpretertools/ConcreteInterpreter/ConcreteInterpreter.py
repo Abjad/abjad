@@ -266,11 +266,11 @@ class ConcreteInterpreter(Interpreter):
         if not rhythm_commands:
             rhythm_command = interpretertools.RhythmCommand(
                 library.rest_filled_tokens, 
-                self.score_specification.duration, 
                 segment_specification.segment_name,
+                'FOO CONTEXT NAME',
+                self.score_specification.duration, 
                 0,
                 segment_specification.duration,
-                'FOO CONTEXT NAME',
                 True
                 )
             rhythm_commands.append(rhythm_command)
@@ -290,11 +290,11 @@ class ConcreteInterpreter(Interpreter):
             else:
                 rhythm_command = interpretertools.RhythmCommand(
                     resolved_single_context_setting.resolved_value, 
-                    segment_specification.duration, 
                     segment_specification.segment_name,
+                    'FOO CONTEXT NAME',
+                    segment_specification.duration, 
                     0,
                     segment_specification.duration,
-                    'FOO CONTEXT NAME',
                     resolved_single_context_setting.fresh
                     )
             rhythm_commands.append(rhythm_command)
@@ -318,11 +318,11 @@ class ConcreteInterpreter(Interpreter):
             elif segment_specification.time_signatures:
                 command = interpretertools.UninterpretedDivisionCommand(
                     segment_specification.time_signatures,
-                    segment_specification.duration,
                     segment_specification.segment_name,
+                    self.score_specification.score_name,
+                    segment_specification.duration,
                     0,
                     segment_specification.duration,
-                    self.score_specification.score_name,
                     True, 
                     False
                     )
@@ -401,11 +401,11 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         uninterpreted_division_command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
-            duration,
             segment_name,
+            resolved_single_context_setting.target.context_name,
+            duration,
             start_offset,
             stop_offset,
-            resolved_single_context_setting.target.context_name,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate
             )
@@ -679,11 +679,11 @@ class ConcreteInterpreter(Interpreter):
                         uninterpreted_division_command.duration
                     region_division_command = interpretertools.RegionDivisionCommand(
                         last_region_division_command.resolved_value,
-                        duration,
                         last_region_division_command.start_segment_name,
+                        uninterpreted_division_command.context_name,
+                        duration,
                         start_offset,
                         stop_offset,
-                        uninterpreted_division_command.context_name,
                         last_region_division_command.fresh,
                         uninterpreted_division_command.truncate
                         )

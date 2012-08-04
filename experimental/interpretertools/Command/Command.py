@@ -19,7 +19,7 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     @abstractmethod
-    def __init__(self, resolved_value, duration, start_segment_name, start_offset, stop_offset, context_name):
+    def __init__(self, resolved_value, start_segment_name, context_name, duration, start_offset, stop_offset):
         duration = durationtools.Duration(duration)
         assert isinstance(start_segment_name, str)
         start_offset = durationtools.Offset(start_offset)
