@@ -39,13 +39,13 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     ::
 
-        >>> measure_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... 'Voice 1', inequality=inequality, klass=Measure, identifier=3)
+        >>> measure_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
+        ... 'Voice 1', inequality=inequality, klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
-        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentItemSelector(
-        ... measure_selector, klass=Tuplet, identifier=-1)
+        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
+        ... measure_selector, klass=Tuplet, start_identifier=-1)
 
     ::
 
@@ -56,8 +56,8 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
         >>> z(leaf_slice_selector)
         selectortools.SingleContextCounttimeComponentSliceSelector(
-            selectortools.SingleContextCounttimeComponentItemSelector(
-                selectortools.SingleContextCounttimeComponentItemSelector(
+            selectortools.SingleContextCounttimeComponentSliceSelector(
+                selectortools.SingleContextCounttimeComponentSliceSelector(
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -68,10 +68,11 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
                             )
                         ),
                     klass=measuretools.Measure,
-                    identifier=3
+                    start_identifier=3,
+                    stop_identifier=4
                     ),
                 klass=tuplettools.Tuplet,
-                identifier=-1
+                start_identifier=-1
                 ),
             klass=leaftools.Leaf,
             start_identifier=-3
