@@ -330,7 +330,8 @@ class ConcreteInterpreter(Interpreter):
         #print ''
         return uninterpreted_division_commands
 
-    def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
+    def get_uninterpreted_division_commands_that_start_during_segment(self, 
+        segment_specification, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
         uninterpreted_division_commands = []

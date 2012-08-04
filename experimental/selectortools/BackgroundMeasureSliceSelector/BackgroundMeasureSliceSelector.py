@@ -153,6 +153,8 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         '''
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
+        start = start or 0
+        stop = stop or None
         time_signatures = segment_specification.time_signatures[start:stop]
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = durationtools.Duration(sum(durations))
@@ -162,6 +164,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
+        stop = stop or None
         durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_before = durations[:start]
         duration_before = sum(durations_before)
@@ -171,6 +174,8 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
     def get_segment_stop_offset(self, score_specification):
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
+        start = start or 0
+        stop = stop or None
         durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_up_through = durations[:stop]
         duration_up_through = sum(durations_up_through)
