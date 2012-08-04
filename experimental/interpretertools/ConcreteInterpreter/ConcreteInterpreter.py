@@ -492,6 +492,7 @@ class ConcreteInterpreter(Interpreter):
         segment_name = segment_specification.segment_name
         uninterpreted_division_command = self.make_uninterpreted_division_command(
             resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
+        #self._debug(uninterpreted_division_command, 'udc')
         return uninterpreted_division_command
 
     def sort_and_split_uninterpreted_division_commands(self, uninterpreted_division_commands):
