@@ -191,18 +191,8 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(selector, selectortools.CountRatioItemSelector)
         assert isinstance(selector.reference, selectortools.BackgroundMeasureSliceSelector)
         assert selector.segment_identifier == segment_specification.segment_name
-        ratio = selector.ratio
-        time_signatures = segment_specification.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
-        part = parts[selector.part]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = sum(durations)
-        parts_before = parts[:selector.part]
-        durations_before = [
-            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
-        duration_before = sum(durations_before)
-        start_offset = duration_before
-        stop_offset = duration_before + duration
+        duration = selector.get_duration(self.score_specification)
+        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
         segment_name = segment_specification.segment_name
         uninterpreted_division_command = self.make_uninterpreted_division_command(
             resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)

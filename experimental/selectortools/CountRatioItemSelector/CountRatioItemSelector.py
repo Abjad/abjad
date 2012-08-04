@@ -1,3 +1,5 @@
+from abjad.tools import durationtools
+from abjad.tools import sequencetools
 from experimental.selectortools.RatioSelector import RatioSelector
 
 
@@ -64,3 +66,39 @@ class CountRatioItemSelector(RatioSelector):
         '''Return ``self.reference.segment_identifier``.
         '''
         return self.reference.segment_identifier
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        segment_specification = score_specification.get_segment_specification(self)
+        time_signatures = segment_specification.time_signatures[:]
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        part = parts[self.part]
+        durations = [durationtools.Duration(x) for x in part]
+        duration = durationtools.Duration(sum(durations))
+        return duration
+
+    def get_segment_start_offset(self, score_specification):
+        segment_specification = score_specification.get_segment_specification(self)
+        time_signatures = segment_specification.time_signatures[:]
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        parts_before = parts[:self.part]
+        durations_before = [
+            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
+        duration_before = sum(durations_before)
+        return durationtools.Offset(duration_before)
+
+    def get_segment_stop_offset(self, score_specification):
+        segment_specification = score_specification.get_segment_specification(self)
+        time_signatures = segment_specification.time_signatures[:]
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        part = parts[self.part]
+        durations = [durationtools.Duration(x) for x in part]
+        duration = durationtools.Duration(sum(durations))
+        parts_before = parts[:self.part]
+        durations_before = [
+            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
+        duration_before = sum(durations_before)
+        start_offset = durationtools.Offset(duration_before)
+        stop_offset = duration_before + duration
+        return durationtools.Offset(stop_offset)

@@ -40,9 +40,15 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.get_duration
+
 .. automethod:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.get_segment_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.get_segment_start_offset
+
+.. automethod:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.get_segment_stop_offset
 
 Special Methods
 ---------------
