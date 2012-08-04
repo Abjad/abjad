@@ -316,7 +316,6 @@ Unstable packages (load manually)
    experimental/selectortools/SegmentItemSelector/SegmentItemSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/SingleContextCounttimeComponentSliceSelector/SingleContextCounttimeComponentSliceSelector
-   experimental/selectortools/SingleContextDivisionItemSelector/SingleContextDivisionItemSelector
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
