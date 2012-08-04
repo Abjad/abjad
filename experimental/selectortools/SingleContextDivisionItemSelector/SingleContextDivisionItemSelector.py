@@ -45,7 +45,7 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
 
         >>> timespan = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
-        >>> measure = selectortools.BackgroundMeasureItemSelector(inequality=inequality, identifier=-1)
+        >>> measure = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start_identifier=-1)
 
     ::
         
@@ -61,7 +61,7 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.BackgroundMeasureItemSelector(
+                    selector=selectortools.BackgroundMeasureSliceSelector(
                         inequality=timespantools.TimespanInequality(
                             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                             timespantools.SingleSourceTimespan(
@@ -70,7 +70,7 @@ class SingleContextDivisionItemSelector(BackgroundElementItemSelector):
                                     )
                                 )
                             ),
-                        identifier=-1
+                        start_identifier=-1
                         )
                     )
                 ),
