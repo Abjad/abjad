@@ -185,19 +185,6 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def count_ratio_item_selector_to_uninterpreted_division_command(
-        self, segment_specification, resolved_single_context_setting):
-        selector = resolved_single_context_setting.target
-        assert isinstance(selector, selectortools.CountRatioItemSelector)
-        assert isinstance(selector.reference, selectortools.BackgroundMeasureSliceSelector)
-        assert selector.segment_identifier == segment_specification.segment_name
-        duration = selector.get_duration(self.score_specification)
-        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
-        segment_name = segment_specification.segment_name
-        uninterpreted_division_command = self.make_uninterpreted_division_command(
-            resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
-        return uninterpreted_division_command
-
     def division_request_to_divisions(self, division_request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.voice)
         assert isinstance(voice, voicetools.Voice), voice
@@ -348,16 +335,9 @@ class ConcreteInterpreter(Interpreter):
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
-                uninterpreted_division_command = \
-                    self.count_ratio_item_selector_to_uninterpreted_division_command(
-                    segment_specification, resolved_single_context_setting)
-            elif isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector):
-                uninterpreted_division_command = \
-                    self.single_context_timespan_selector_to_uninterpreted_division_command(
-                    segment_specification, resolved_single_context_setting)
-            else:
-                raise NotImplementedError(resolved_single_context_setting.target)
+            uninterpreted_division_command = \
+                self.resolved_single_context_setting_to_uninterpreted_division_command(
+                resolved_single_context_setting, segment_specification)
             uninterpreted_division_commands.append(uninterpreted_division_command)
         return uninterpreted_division_commands
 
@@ -502,10 +482,10 @@ class ConcreteInterpreter(Interpreter):
         else:
             return single_context_setting.source
 
-    def single_context_timespan_selector_to_uninterpreted_division_command(
-        self, segment_specification, resolved_single_context_setting):
-        assert resolved_single_context_setting.target.segment_identifier == segment_specification.segment_name
+    def resolved_single_context_setting_to_uninterpreted_division_command(
+        self, resolved_single_context_setting, segment_specification):
         selector = resolved_single_context_setting.target
+        assert selector.segment_identifier == segment_specification.segment_name
         duration = selector.get_duration(self.score_specification)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
         segment_name = segment_specification.segment_name
