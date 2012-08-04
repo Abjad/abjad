@@ -20,12 +20,12 @@ class TimeRatioPartSelector(RatioSelector):
 
     ::
 
-        >>> duration_ratio_item_selector = selectortools.TimeRatioPartSelector(
+        >>> time_ratio_part_selector = selectortools.TimeRatioPartSelector(
         ... background_measure_selector, (1, 1), 0)
 
     ::
 
-        >>> z(duration_ratio_item_selector)
+        >>> z(time_ratio_part_selector)
         selectortools.TimeRatioPartSelector(
             selectortools.BackgroundMeasureSliceSelector(
                 inequality=timespantools.TimespanInequality(

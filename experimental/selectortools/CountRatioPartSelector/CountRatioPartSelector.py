@@ -20,12 +20,12 @@ class CountRatioPartSelector(RatioSelector):
 
     ::
 
-        >>> count_ratio_item_selector = selectortools.CountRatioPartSelector(
+        >>> count_ratio_part_selector = selectortools.CountRatioPartSelector(
         ... background_measure_selector, (1, 1), 0)
 
     ::
 
-        >>> z(count_ratio_item_selector)
+        >>> z(count_ratio_part_selector)
         selectortools.CountRatioPartSelector(
             selectortools.BackgroundMeasureSliceSelector(
                 inequality=timespantools.TimespanInequality(

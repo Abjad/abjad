@@ -438,10 +438,10 @@ class SegmentSpecification(Specification):
             context_names=contexts, inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_duration_ratio(self, ratio, part, contexts=None):
+    def select_timespan_ratio_part(self, ratio, part, contexts=None):
         '''Select the last third of the timespan of segment::
 
-            >>> selector = segment.select_duration_ratio((1, 1, 1), -1, contexts=['Voice 1', 'Voice 3'])
+            >>> selector = segment.select_timespan_ratio_part((1, 1, 1), -1, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -667,10 +667,10 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_segment_duration_ratio_item(self, ratio, part):
+    def select_segment_timespan_ratio_part(self, ratio, part):
         r'''Select the first third of segment ``'red'``::
 
-            >>> selector = segment.select_segment_duration_ratio_item((1, 1, 1), 0)
+            >>> selector = segment.select_segment_timespan_ratio_part((1, 1, 1), 0)
 
         ::
 
