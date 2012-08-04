@@ -11,7 +11,7 @@ def test_single_segment_nonbinary_solo_01():
 
     segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(1, 5)], contexts=segment.v1)
+    segment.set_divisions_new([(1, 5)], contexts=segment.v1)
     segment.set_rhythm(library.tuplet_monads)
 
     score = score_specification.interpret()
