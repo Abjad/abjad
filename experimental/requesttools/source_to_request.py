@@ -19,9 +19,6 @@ def source_to_request(source, callback=None, count=None, offset=None):
 
     ... as output.
 
-    If `source` is a ``SingleContextDivisionItemSelector`` then return updated
-    ``SingleContextDivisionItemSelector``.
-
     If `source` is a constant then return `source` unchanged.
 
     If `source` is already a request then set `callback`, `count` or `offset`
