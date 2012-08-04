@@ -1,6 +1,5 @@
 from abjad.tools import *
 from experimental import *
-from experimental.specificationtools import library
 
 
 def test_SegmentSpecification_select_background_measure_01():

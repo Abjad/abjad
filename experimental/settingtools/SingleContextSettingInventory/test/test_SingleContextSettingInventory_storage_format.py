@@ -1,7 +1,5 @@
 from abjad.tools import *
 from experimental import *
-from experimental.specificationtools import library
-from experimental.specificationtools import ScoreSpecification
 from experimental.settingtools import SingleContextSettingInventory
 
 

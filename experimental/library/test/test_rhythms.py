@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.specificationtools import library
+from experimental import library
 
 
 def test_rhythms_01():

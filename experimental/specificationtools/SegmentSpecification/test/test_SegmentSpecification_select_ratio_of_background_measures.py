@@ -1,8 +1,5 @@
 from abjad.tools import *
-from experimental import selectortools
-from experimental import specificationtools
-from experimental import helpertools
-from experimental.specificationtools import library
+from experimental import *
 
 
 def test_SegmentSpecification_select_ratio_of_background_measures_01():

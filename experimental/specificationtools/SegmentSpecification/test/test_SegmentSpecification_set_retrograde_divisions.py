@@ -1,7 +1,5 @@
 from abjad.tools import *
-from experimental import helpertools
-from experimental import specificationtools
-from experimental.specificationtools import library
+from experimental import *
 
 
 def test_SegmentSpecification_set_retrograde_divisions_01():

@@ -258,7 +258,7 @@ class ConcreteInterpreter(Interpreter):
 
     def get_rhythm_commands_for_voice(self, voice):
         from experimental import interpretertools
-        from experimental.specificationtools import library
+        from experimental import library
         rhythm_commands = []
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_rhythm_commands_that_start_during_segment(segment_specification, voice.name)
@@ -278,7 +278,7 @@ class ConcreteInterpreter(Interpreter):
 
     def get_rhythm_commands_that_start_during_segment(self, segment_specification, voice_name):
         from experimental import interpretertools
-        from experimental.specificationtools import library
+        from experimental import library
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'rhythm', voice_name)
         if resolved_single_context_settings is None:
