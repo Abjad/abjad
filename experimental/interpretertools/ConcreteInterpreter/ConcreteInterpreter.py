@@ -285,7 +285,7 @@ class ConcreteInterpreter(Interpreter):
             return []
         rhythm_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
+            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioPartSelector):
                 raise Exception('implement me when it comes time.')
             else:
                 rhythm_command = interpretertools.RhythmCommand(

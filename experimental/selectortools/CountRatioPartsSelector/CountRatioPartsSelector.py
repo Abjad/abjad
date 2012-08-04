@@ -1,7 +1,7 @@
 from experimental.selectortools.RatioSelector import RatioSelector
 
 
-class CountRatioSliceSelector(RatioSelector):
+class CountRatioPartsSelector(RatioSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by `ratio` of counts. Then select zero or more contiguous parts.
@@ -18,13 +18,13 @@ class CountRatioSliceSelector(RatioSelector):
 
     ::
 
-        >>> count_ratio_slice_selector = selectortools.CountRatioSliceSelector(
+        >>> count_ratio_slice_selector = selectortools.CountRatioPartsSelector(
         ... background_measure_selector, (1, 1, 1, 1), start_part=-2)
 
     ::
 
         >>> z(count_ratio_slice_selector)
-        selectortools.CountRatioSliceSelector(
+        selectortools.CountRatioPartsSelector(
             selectortools.BackgroundMeasureSliceSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

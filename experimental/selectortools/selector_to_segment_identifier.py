@@ -24,7 +24,7 @@ def selector_to_segment_identifier(selector):
 #            else:
 #                raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
 #        elif isinstance(
-#            selector.timespan.selector, selectortools.DurationRatioItemSelector):
+#            selector.timespan.selector, selectortools.TimeRatioPartSelector):
 #            if isinstance(
 #                selector.timespan.selector.reference.selector,
 #                selectortools.SegmentItemSelector):

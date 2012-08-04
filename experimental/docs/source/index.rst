@@ -309,10 +309,8 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundMeasureItemSelector/BackgroundMeasureItemSelector
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
-   experimental/selectortools/CountRatioItemSelector/CountRatioItemSelector
-   experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
-   experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
-   experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
+   experimental/selectortools/CountRatioPartSelector/CountRatioPartSelector
+   experimental/selectortools/CountRatioPartsSelector/CountRatioPartsSelector
    experimental/selectortools/MultipleContextCounttimeComponentSliceSelector/MultipleContextCounttimeComponentSliceSelector
    experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
    experimental/selectortools/MultipleContextTimespanSelector/MultipleContextTimespanSelector
@@ -323,6 +321,8 @@ Unstable packages (load manually)
    experimental/selectortools/SingleContextDivisionItemSelector/SingleContextDivisionItemSelector
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
+   experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
+   experimental/selectortools/TimeRatioPartsSelector/TimeRatioPartsSelector
 
 .. rubric:: functions
 

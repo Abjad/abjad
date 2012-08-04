@@ -1,7 +1,7 @@
 from experimental.selectortools.RatioSelector import RatioSelector
 
 
-class DurationRatioSliceSelector(RatioSelector):
+class TimeRatioPartsSelector(RatioSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by ratio of durations. Then select zero or more contiguous parts.
@@ -18,13 +18,13 @@ class DurationRatioSliceSelector(RatioSelector):
 
     ::
 
-        >>> duration_ratio_slice_selector = selectortools.DurationRatioSliceSelector(
+        >>> duration_ratio_slice_selector = selectortools.TimeRatioPartsSelector(
         ... background_measure_selector, (1, 1, 1, 1), start_part=-2)
 
     ::
 
         >>> z(duration_ratio_slice_selector)
-        selectortools.DurationRatioSliceSelector(
+        selectortools.TimeRatioPartsSelector(
             selectortools.BackgroundMeasureSliceSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

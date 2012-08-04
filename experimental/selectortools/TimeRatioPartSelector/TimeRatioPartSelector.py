@@ -1,17 +1,17 @@
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
+from abjad.tools import mathtools
 from experimental.selectortools.RatioSelector import RatioSelector
 
 
-class CountRatioItemSelector(RatioSelector):
+class TimeRatioPartSelector(RatioSelector):
     r'''.. versionadded:: 1.0
-    
-    Partition `reference` by `ratio` of counts. Then select exactly one part.
+
+    Partition `reference` by ratio of durations. Then select exactly one part.
 
         >>> from experimental import *
 
     Select all background measures starting during segment ``'red'`` in ``'Voice 1'``.
-    Then partition these measures ``1:1`` by their count.
+    Then partition these measures ``1:1`` by their duration.
     Then select part ``0`` of this partition::
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
@@ -20,13 +20,13 @@ class CountRatioItemSelector(RatioSelector):
 
     ::
 
-        >>> count_ratio_item_selector = selectortools.CountRatioItemSelector(
+        >>> duration_ratio_item_selector = selectortools.TimeRatioPartSelector(
         ... background_measure_selector, (1, 1), 0)
 
     ::
 
-        >>> z(count_ratio_item_selector)
-        selectortools.CountRatioItemSelector(
+        >>> z(duration_ratio_item_selector)
+        selectortools.TimeRatioPartSelector(
             selectortools.BackgroundMeasureSliceSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -41,13 +41,12 @@ class CountRatioItemSelector(RatioSelector):
             0
             )
 
-    All count ratio item selector properties are read-only.
+    All duration ratio item selector properties are read-only.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, part):
-        assert self._interprets_as_sliceable_selector(reference), repr(reference)
         RatioSelector.__init__(self, reference, ratio)
         self._part = part
 
@@ -55,10 +54,6 @@ class CountRatioItemSelector(RatioSelector):
 
     @property
     def part(self):
-        '''Count-ratio item-selector part.
-
-        Return integer.
-        '''
         return self._part
 
     @property
@@ -70,35 +65,26 @@ class CountRatioItemSelector(RatioSelector):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification):
-        segment_specification = score_specification.get_segment_specification(self)
-        time_signatures = segment_specification.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        '''Ask reference for reference duration. Then do ratio math on reference duration.
+        '''
+        reference_duration = self.reference.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
         part = parts[self.part]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = durationtools.Duration(sum(durations))
-        return duration
+        return part
 
     def get_segment_start_offset(self, score_specification):
-        segment_specification = score_specification.get_segment_specification(self)
-        time_signatures = segment_specification.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        reference_duration = self.reference.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
         parts_before = parts[:self.part]
-        durations_before = [
-            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
-        duration_before = sum(durations_before)
-        return durationtools.Offset(duration_before)
+        duration_before = sum(parts_before)
+        return durationtools.Offset(duration_before) 
 
     def get_segment_stop_offset(self, score_specification):
-        segment_specification = score_specification.get_segment_specification(self)
-        time_signatures = segment_specification.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        reference_duration = self.reference.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
         part = parts[self.part]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = durationtools.Duration(sum(durations))
+        duration = part
         parts_before = parts[:self.part]
-        durations_before = [
-            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
-        duration_before = sum(durations_before)
-        start_offset = durationtools.Offset(duration_before)
+        duration_before = sum(parts_before)
         stop_offset = duration_before + duration
         return durationtools.Offset(stop_offset)
