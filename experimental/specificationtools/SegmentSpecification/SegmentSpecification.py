@@ -58,6 +58,7 @@ class SegmentSpecification(Specification):
 
     ### PRIVATE METHODS ###
 
+    # DEPRECATED: pass timespan and contexts separately everywhere in system
     def _expr_to_selector(self, expr):
         r'''Return `expr` when `expr` is already a selector.
         Otherwise assume `expr` to be contexts and create and 
@@ -66,8 +67,9 @@ class SegmentSpecification(Specification):
         if isinstance(expr, selectortools.Selector):
             return expr
         elif isinstance(expr, (str, list, type(self))):
-            return self.select_timespan(contexts=expr)
+            return self.select_segment_timespan(contexts=expr)
 
+    # DEPRECATED: pass timespan and contexts separately everywhere in system
     def _set_attribute(self, attribute, target, source, 
         callback=None, count=None, offset=None, persist=True, truncate=False):
         r'''Generalized method to create ``MultipleContextSetting`` objects.
@@ -88,11 +90,7 @@ class SegmentSpecification(Specification):
 
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
-        #self._debug(contexts, 'contexts')
-        #self._debug(timespan, 'timespan')
         target = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
-        #self._debug(target, 'target')
-        #print ''
         return self._set_attribute(attribute, target, source,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
@@ -296,7 +294,8 @@ class SegmentSpecification(Specification):
                 attribute='time_signatures')
         except MissingContextSettingError:
             return []
-        assert isinstance(resolved_single_context_setting.resolved_value, list), resolved_single_context_setting.resolved_value
+        assert isinstance(resolved_single_context_setting.resolved_value, list), repr(
+            resolved_single_context_setting.resolved_value)
         return resolved_single_context_setting.resolved_value
 
     @property
@@ -436,33 +435,6 @@ class SegmentSpecification(Specification):
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextDivisionSliceSelector(
             context_names=contexts, inequality=inequality, start_identifier=start, stop_identifier=stop)
-        return selector
-
-    def select_timespan_ratio_part(self, ratio, part, contexts=None):
-        '''Select the last third of the timespan of segment::
-
-            >>> selector = segment.select_timespan_ratio_part((1, 1, 1), -1, contexts=['Voice 1', 'Voice 3'])
-
-        ::
-
-            >>> z(selector)
-            selectortools.TimeRatioPartSelector(
-                selectortools.MultipleContextTimespanSelector(
-                    timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentItemSelector(
-                            identifier='red'
-                            )
-                        ),
-                    context_names=['Voice 1', 'Voice 3']
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                -1
-                )
-
-        Return selector.
-        '''
-        selector = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=self.timespan)
-        selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
     def select_leaves(self, contexts=None, start=None, stop=None):
@@ -689,10 +661,10 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.TimeRatioPartSelector(self.timespan, ratio, part)
 
-    def select_timespan(self, contexts=None):
+    def select_segment_timespan(self, contexts=None):
         '''Select contexts::
 
-            >>> selector = segment.select_timespan()
+            >>> selector = segment.select_segment_timespan()
 
         ::
 
