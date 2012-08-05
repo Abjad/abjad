@@ -479,7 +479,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartsSelector(
+            selectortools.CountRatioPartSelector(
                 selectortools.MultipleContextDivisionSliceSelector(
                     context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
@@ -492,20 +492,16 @@ class SegmentSpecification(Specification):
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
-                start_part=0,
-                stop_part=1 
+                0
                 )
 
         Return selector.
         '''
-        start_part, stop_part = helpertools.index_to_slice_pair(part)
         selector = self.select_divisions(contexts=contexts)
-        args = (selector, ratio)
-        kwargs = {'start_part': start_part, 'stop_part': stop_part}
         if is_count:
-            selector = selectortools.CountRatioPartsSelector(*args, **kwargs)
+            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
         else:
-            selector = selectortools.TimeRatioPartsSelector(*args, **kwargs)
+            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
     def select_leaves(self, contexts=None, start=None, stop=None):
@@ -547,7 +543,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartsSelector(
+            selectortools.CountRatioPartSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
                     context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
@@ -561,20 +557,16 @@ class SegmentSpecification(Specification):
                     klass=leaftools.Leaf
                     ),
                 mathtools.Ratio(1, 1, 1),
-                start_part=0,
-                stop_part=1
+                0
                 )
 
         Return selector.
         '''
-        start_part, stop_part = helpertools.index_to_slice_pair(part)
         selector = self.select_leaves(contexts=contexts)
-        args = (selector, ratio)
-        kwargs = {'start_part': start_part, 'stop_part': stop_part}
         if is_count:
-            selector = selectortools.CountRatioPartsSelector(*args, **kwargs)
+            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
         else:
-            selector = selectortools.TimeRatioPartsSelector(*args, **kwargs)
+            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
     def select_notes_and_chords(self, contexts=None, start=None, stop=None):
@@ -620,7 +612,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartsSelector(
+            selectortools.CountRatioPartSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
                     context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
@@ -637,20 +629,16 @@ class SegmentSpecification(Specification):
                         ])
                     ),
                 mathtools.Ratio(1, 1, 1),
-                start_part=0,
-                stop_part=1
+                0
                 )
 
         Return selector.
         '''
-        start_part, stop_part = helpertools.index_to_slice_pair(part)
         selector = self.select_notes_and_chords(contexts=contexts)
-        args = (selector, ratio)
-        kwargs = {'start_part': start_part, 'stop_part': stop_part}
         if is_count:
-            selector = selectortools.CountRatioPartsSelector(*args, **kwargs)
+            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
         else:
-            selector = selectortools.TimeRatioPartsSelector(*args, **kwargs)
+            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
     def select_segment_timespan_ratio_part(self, ratio, part):
