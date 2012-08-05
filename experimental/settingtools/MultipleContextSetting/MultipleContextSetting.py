@@ -64,7 +64,7 @@ class MultipleContextSetting(Setting):
         context_names = self.target.context_names or [None]
         assert isinstance(context_names, list), repr(context_names)
         for context_name in context_names:
-            if isinstance(self.target, selectortools.RatioSelector):
+            if isinstance(self.target, selectortools.RatioPartSelector):
                 target = copy.deepcopy(self.target)
                 target.reference._context_name = context_name
             else:

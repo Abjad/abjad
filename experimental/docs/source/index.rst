@@ -296,7 +296,7 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
    experimental/selectortools/InequalitySelector/InequalitySelector
-   experimental/selectortools/RatioSelector/RatioSelector
+   experimental/selectortools/RatioPartSelector/RatioPartSelector
    experimental/selectortools/Selector/Selector
    experimental/selectortools/SliceSelector/SliceSelector
    experimental/selectortools/TimespanSelector/TimespanSelector

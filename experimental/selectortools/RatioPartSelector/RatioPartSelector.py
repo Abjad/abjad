@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from experimental.selectortools.Selector import Selector
 
 
-class RatioSelector(Selector):
+class RatioPartSelector(Selector):
     r'''.. versionadded:: 1.0
     
     Abstract count-ratio selector class from which concrete count-ratio selectors inherit.
@@ -17,10 +17,11 @@ class RatioSelector(Selector):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, reference, ratio):
+    def __init__(self, reference, ratio, part):
         ratio = mathtools.Ratio(ratio)
         self._reference = reference
         self._ratio = ratio
+        self._part = part
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -37,6 +38,14 @@ class RatioSelector(Selector):
         return self.reference.context_names
 
     @property
+    def part(self):
+        '''Ratio-part selector part.
+
+        Return integer.
+        '''
+        return self._part
+
+    @property
     def ratio(self):
         '''Ratio of count-ratio selector.
 
@@ -51,3 +60,9 @@ class RatioSelector(Selector):
         Return voice name or sliceable selector.
         '''
         return self._reference
+
+    @property
+    def segment_identifier(self):
+        '''Delegate to ``self.reference.segment_identifier``.
+        '''
+        return self.reference.segment_identifier

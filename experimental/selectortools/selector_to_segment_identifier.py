@@ -9,7 +9,7 @@ def selector_to_segment_identifier(selector):
     '''
     from experimental import selectortools
     
-#    if isinstance(selector, selectortools.RatioSelector):
+#    if isinstance(selector, selectortools.RatioPartSelector):
 #        segment_identifier = selector.reference.timespan.selector.inequality.timespan.selector.identifier
 #    elif isinstance(selector, selectortools.SingleContextTimespanSelector):
 #        if isinstance(

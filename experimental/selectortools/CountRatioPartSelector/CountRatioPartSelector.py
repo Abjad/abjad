@@ -1,9 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from experimental.selectortools.RatioSelector import RatioSelector
+from experimental.selectortools.RatioPartSelector import RatioPartSelector
 
 
-class CountRatioPartSelector(RatioSelector):
+class CountRatioPartSelector(RatioPartSelector):
     r'''.. versionadded:: 1.0
     
     Partition `reference` by `ratio` of counts. Then select exactly one part.
@@ -48,24 +48,7 @@ class CountRatioPartSelector(RatioSelector):
 
     def __init__(self, reference, ratio, part):
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
-        RatioSelector.__init__(self, reference, ratio)
-        self._part = part
-
-    ### PUBLIC READ-ONLY PROPERTIES ###
-
-    @property
-    def part(self):
-        '''Count-ratio item-selector part.
-
-        Return integer.
-        '''
-        return self._part
-
-    @property
-    def segment_identifier(self):
-        '''Return ``self.reference.segment_identifier``.
-        '''
-        return self.reference.segment_identifier
+        RatioPartSelector.__init__(self, reference, ratio, part)
 
     ### PUBLIC METHODS ###
 

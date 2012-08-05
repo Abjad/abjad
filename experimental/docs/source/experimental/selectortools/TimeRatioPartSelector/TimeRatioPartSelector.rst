@@ -11,23 +11,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.context_name
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.context_names
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.part
 
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
+
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.ratio
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.reference
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.segment_identifier
+
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.storage_format
 

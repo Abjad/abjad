@@ -1,9 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from experimental.selectortools.RatioSelector import RatioSelector
+from experimental.selectortools.RatioPartSelector import RatioPartSelector
 
 
-class TimeRatioPartSelector(RatioSelector):
+class TimeRatioPartSelector(RatioPartSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by ratio of durations. Then select exactly one part.
@@ -47,20 +47,7 @@ class TimeRatioPartSelector(RatioSelector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, part):
-        RatioSelector.__init__(self, reference, ratio)
-        self._part = part
-
-    ### PUBLIC READ-ONLY PROPERTIES ###
-
-    @property
-    def part(self):
-        return self._part
-
-    @property
-    def segment_identifier(self):
-        '''Return ``self.reference.segment_identifier``.
-        '''
-        return self.reference.segment_identifier
+        RatioPartSelector.__init__(self, reference, ratio, part)
 
     ### PUBLIC METHODS ###
 

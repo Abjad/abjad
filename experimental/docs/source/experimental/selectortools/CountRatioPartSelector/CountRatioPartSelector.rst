@@ -11,23 +11,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.context_name
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.context_names
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.part
 
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
+
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.ratio
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.reference
 
-    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.segment_identifier
+
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.storage_format
 
