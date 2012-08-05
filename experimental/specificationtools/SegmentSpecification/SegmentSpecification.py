@@ -505,10 +505,10 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_ratio_of_background_measures(self, ratio, part, is_count=True):
+    def select_background_measures_ratio_part(self, ratio, part, is_count=True):
         r'''Select the first third of background measures starting during segment::
 
-            >>> selector = segment.select_ratio_of_background_measures((1, 1, 1), 0)
+            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0)
 
         ::
 
@@ -537,10 +537,10 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_ratio_of_divisions(self, ratio, part, contexts=None, is_count=True):
+    def select_divisions_ratio_part(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of divisions starting during segment::
 
-            >>> selector = segment.select_ratio_of_divisions((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
+            >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -570,10 +570,10 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_ratio_of_leaves(self, ratio, part, contexts=None, is_count=True):
+    def select_leaves_ratio_part(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of leaves starting during segment::
 
-            >>> selector = segment.select_ratio_of_leaves((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
+            >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -604,10 +604,10 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_ratio_of_notes_and_chords(self, ratio, part, contexts=None, is_count=True):
+    def select_notes_and_chords_ratio_part(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of notes and chords starting during segment::
 
-            >>> selector = segment.select_ratio_of_notes_and_chords((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
+            >>> selector = segment.select_notes_and_chords_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
