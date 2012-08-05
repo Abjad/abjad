@@ -21,8 +21,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.klass
 
-    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
-
 .. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.segment_identifier
 
 .. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.storage_format
@@ -54,8 +52,6 @@ Special Methods
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.__eq__
-
-    Inherited from :py:class:`BackgroundElementItemSelector.BackgroundElementItemSelector <experimental.selectortools.BackgroundElementItemSelector.BackgroundElementItemSelector.BackgroundElementItemSelector>`
 
 .. automethod:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.__ge__
 

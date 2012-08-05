@@ -10,6 +10,8 @@ class BackgroundElementItemSelector(ItemSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select exactly one background element.
+
+    .. note:: deprecated.
     '''
 
     ### CLASS ATTRIBUTES ###

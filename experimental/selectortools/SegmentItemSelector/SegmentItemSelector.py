@@ -1,8 +1,8 @@
 from abjad.tools import durationtools
-from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
+from experimental.selectortools.InequalitySelector import InequalitySelector
 
 
-class SegmentItemSelector(BackgroundElementItemSelector):
+class SegmentItemSelector(InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select segment ``3``::
@@ -26,9 +26,18 @@ class SegmentItemSelector(BackgroundElementItemSelector):
 
     def __init__(self, inequality=None, identifier=0):
         from experimental import specificationtools
+        InequalitySelector.__init__(self, inequality=inequality)
         self._identifier = identifier
-        BackgroundElementItemSelector.__init__(self, 
-            klass=specificationtools.Segment, inequality=inequality, identifier=identifier)
+        self._klass = specificationtools.Segment
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.klass == expr.klass:
+                if self.identifier == expr.identifier:
+                    return True
+        return False
 
     ### READ-ONLY PROPERTIES ###
 
@@ -47,6 +56,10 @@ class SegmentItemSelector(BackgroundElementItemSelector):
     @property
     def identifier(self):
         return self._identifier
+
+    @property
+    def klass(self):
+        return self._klass
 
     @property
     def segment_identifier(self):
