@@ -308,7 +308,6 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/CountRatioPartSelector/CountRatioPartSelector
-   experimental/selectortools/CountRatioPartsSelector/CountRatioPartsSelector
    experimental/selectortools/MultipleContextCounttimeComponentSliceSelector/MultipleContextCounttimeComponentSliceSelector
    experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
    experimental/selectortools/MultipleContextTimespanSelector/MultipleContextTimespanSelector
