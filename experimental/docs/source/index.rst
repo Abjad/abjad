@@ -317,7 +317,6 @@ Unstable packages (load manually)
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
-   experimental/selectortools/TimeRatioPartsSelector/TimeRatioPartsSelector
 
 .. rubric:: functions
 
