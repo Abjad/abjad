@@ -154,6 +154,7 @@ Unstable packages (load manually)
    experimental/helpertools/expr_to_component_name
    experimental/helpertools/expr_to_score_name
    experimental/helpertools/expr_to_segment_name
+   experimental/helpertools/index_to_slice_pair
    experimental/helpertools/is_background_element_klass
    experimental/helpertools/is_counttime_component_klass_expr
    experimental/helpertools/read_test_output

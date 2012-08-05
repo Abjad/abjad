@@ -380,6 +380,38 @@ class SegmentSpecification(Specification):
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
     
+    def select_background_measures_ratio_part(self, ratio, part, is_count=True):
+        r'''Select the first third of background measures starting during segment::
+
+            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0)
+
+        ::
+
+            >>> z(selector)
+            selectortools.CountRatioPartSelector(
+                selectortools.BackgroundMeasureSliceSelector(
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.SingleSourceTimespan(
+                            selector=selectortools.SegmentItemSelector(
+                                identifier='red'
+                                )
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                0
+                )
+
+        Return selector.
+        '''
+        selector = self.select_background_measures()
+        if is_count:
+            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
+        else:
+            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
+        return selector
+
     def select_division(self, voice, n):
         '''Select `voice` division `n` that starts during segment::
 
@@ -439,6 +471,43 @@ class SegmentSpecification(Specification):
             context_names=contexts, inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
+    def select_divisions_ratio_part(self, ratio, part, contexts=None, is_count=True):
+        r'''Select the first third of divisions starting during segment::
+
+            >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
+
+        ::
+
+            >>> z(selector)
+            selectortools.CountRatioPartsSelector(
+                selectortools.MultipleContextDivisionSliceSelector(
+                    context_names=['Voice 1', 'Voice 3'],
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.SingleSourceTimespan(
+                            selector=selectortools.SegmentItemSelector(
+                                identifier='red'
+                                )
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                start_part=0,
+                stop_part=1 
+                )
+
+        Return selector.
+        '''
+        start_part, stop_part = helpertools.index_to_slice_pair(part)
+        selector = self.select_divisions(contexts=contexts)
+        args = (selector, ratio)
+        kwargs = {'start_part': start_part, 'stop_part': stop_part}
+        if is_count:
+            selector = selectortools.CountRatioPartsSelector(*args, **kwargs)
+        else:
+            selector = selectortools.TimeRatioPartsSelector(*args, **kwargs)
+        return selector
+
     def select_leaves(self, contexts=None, start=None, stop=None):
         '''Select the first ``40`` leaves that start during segment::
 
@@ -468,6 +537,44 @@ class SegmentSpecification(Specification):
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
             context_names=contexts, inequality=inequality, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop)
+        return selector
+
+    def select_leaves_ratio_part(self, ratio, part, contexts=None, is_count=True):
+        r'''Select the first third of leaves starting during segment::
+
+            >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
+
+        ::
+
+            >>> z(selector)
+            selectortools.CountRatioPartsSelector(
+                selectortools.MultipleContextCounttimeComponentSliceSelector(
+                    context_names=['Voice 1', 'Voice 3'],
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.SingleSourceTimespan(
+                            selector=selectortools.SegmentItemSelector(
+                                identifier='red'
+                                )
+                            )
+                        ),
+                    klass=leaftools.Leaf
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                start_part=0,
+                stop_part=1
+                )
+
+        Return selector.
+        '''
+        start_part, stop_part = helpertools.index_to_slice_pair(part)
+        selector = self.select_leaves(contexts=contexts)
+        args = (selector, ratio)
+        kwargs = {'start_part': start_part, 'stop_part': stop_part}
+        if is_count:
+            selector = selectortools.CountRatioPartsSelector(*args, **kwargs)
+        else:
+            selector = selectortools.TimeRatioPartsSelector(*args, **kwargs)
         return selector
 
     def select_notes_and_chords(self, contexts=None, start=None, stop=None):
@@ -505,105 +612,6 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_background_measures_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of background measures starting during segment::
-
-            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0)
-
-        ::
-
-            >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.BackgroundMeasureSliceSelector(
-                    inequality=timespantools.TimespanInequality(
-                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.SingleSourceTimespan(
-                            selector=selectortools.SegmentItemSelector(
-                                identifier='red'
-                                )
-                            )
-                        )
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        selector = self.select_background_measures()
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
-
-    def select_divisions_ratio_part(self, ratio, part, contexts=None, is_count=True):
-        r'''Select the first third of divisions starting during segment::
-
-            >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
-
-        ::
-
-            >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.MultipleContextDivisionSliceSelector(
-                    context_names=['Voice 1', 'Voice 3'],
-                    inequality=timespantools.TimespanInequality(
-                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.SingleSourceTimespan(
-                            selector=selectortools.SegmentItemSelector(
-                                identifier='red'
-                                )
-                            )
-                        )
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        selector = self.select_divisions(contexts=contexts)
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
-
-    def select_leaves_ratio_part(self, ratio, part, contexts=None, is_count=True):
-        r'''Select the first third of leaves starting during segment::
-
-            >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
-
-        ::
-
-            >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.MultipleContextCounttimeComponentSliceSelector(
-                    context_names=['Voice 1', 'Voice 3'],
-                    inequality=timespantools.TimespanInequality(
-                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.SingleSourceTimespan(
-                            selector=selectortools.SegmentItemSelector(
-                                identifier='red'
-                                )
-                            )
-                        ),
-                    klass=leaftools.Leaf
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        selector = self.select_leaves(contexts=contexts)
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
-
     def select_notes_and_chords_ratio_part(self, ratio, part, contexts=None, is_count=True):
         r'''Select the first third of notes and chords starting during segment::
 
@@ -612,7 +620,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartSelector(
+            selectortools.CountRatioPartsSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
                     context_names=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
@@ -629,16 +637,20 @@ class SegmentSpecification(Specification):
                         ])
                     ),
                 mathtools.Ratio(1, 1, 1),
-                0
+                start_part=0,
+                stop_part=1
                 )
 
         Return selector.
         '''
+        start_part, stop_part = helpertools.index_to_slice_pair(part)
         selector = self.select_notes_and_chords(contexts=contexts)
+        args = (selector, ratio)
+        kwargs = {'start_part': start_part, 'stop_part': stop_part}
         if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
+            selector = selectortools.CountRatioPartsSelector(*args, **kwargs)
         else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
+            selector = selectortools.TimeRatioPartsSelector(*args, **kwargs)
         return selector
 
     def select_segment_timespan_ratio_part(self, ratio, part):
