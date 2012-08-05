@@ -93,7 +93,6 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
-        self._inequality = inequality
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass

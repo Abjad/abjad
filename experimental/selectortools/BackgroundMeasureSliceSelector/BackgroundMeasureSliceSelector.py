@@ -1,8 +1,9 @@
 from abjad.tools import durationtools
-from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
+from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
+class BackgroundMeasureSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select all measures in score::
@@ -123,8 +124,9 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
         from abjad.tools import measuretools
-        BackgroundElementSliceSelector.__init__(self, measuretools.Measure,
-            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        InequalitySelector.__init__(self, inequality=inequality)
+        self._klass = measuretools.Measure
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -139,6 +141,10 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         '''Return empty list.
         '''
         return []
+
+    @property
+    def klass(self):
+        return self._klass
 
     @property
     def segment_identifier(self):

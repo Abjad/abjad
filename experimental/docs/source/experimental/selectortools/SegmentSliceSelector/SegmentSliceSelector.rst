@@ -23,8 +23,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.klass
 
-    Inherited from :py:class:`BackgroundElementSliceSelector.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
-
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

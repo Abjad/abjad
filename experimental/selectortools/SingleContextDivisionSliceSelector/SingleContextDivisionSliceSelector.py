@@ -1,9 +1,10 @@
 from experimental import divisiontools
 from experimental import helpertools
-from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
+from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
+class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -68,8 +69,8 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     def __init__(self, voice, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import selectortools
         from experimental import interpretertools
-        BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
-            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        InequalitySelector.__init__(self, inequality=inequality)
         voice = helpertools.expr_to_component_name(voice)     
         self._voice = voice
 

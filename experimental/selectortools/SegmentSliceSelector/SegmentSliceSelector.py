@@ -1,8 +1,9 @@
 from experimental import helpertools
-from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
+from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SegmentSliceSelector(BackgroundElementSliceSelector):
+class SegmentSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -114,8 +115,9 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
 
     def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import specificationtools
-        BackgroundElementSliceSelector.__init__(self, specificationtools.Segment,
-            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        InequalitySelector.__init__(self, inequality=inequality)
+        self._klass = specificationtools.Segment
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -130,3 +132,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
         '''Return empty list.
         '''
         return []
+
+    @property
+    def klass(self):
+        return self._klass

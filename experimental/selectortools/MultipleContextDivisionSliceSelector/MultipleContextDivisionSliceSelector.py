@@ -1,9 +1,10 @@
 from experimental import divisiontools
 from experimental.exceptions import *
-from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
+from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
+class MultipleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -41,9 +42,9 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     def __init__(self, context_names=None, inequality=None, start_identifier=None, stop_identifier=None):
         from experimental import interpretertools
-        BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
-            inequality=inequality, start_identifier=start_identifier, stop_identifier=stop_identifier)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
+        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        InequalitySelector.__init__(self, inequality=inequality)
         context_names = self._process_contexts(context_names)
         self._context_names = context_names
 
