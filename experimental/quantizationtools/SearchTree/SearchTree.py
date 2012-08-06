@@ -63,16 +63,24 @@ class SearchTree(abctools.AbjadObject):
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
 
     def find_divisible_leaf_indices_and_subdivisions(self, q_grid):
+        # TODO: This should actually check for all QEvents which fall within the leaf's duration,
+        # including QEvents attached to the next leaf
+        # It may be prudent to actually store QEvents in two lists: before_offset and after_offset
         indices, subdivisions = [], []
-        for i, leaf in enumerate(q_grid.leaves[:-1]):
-            if leaf.q_events and leaf.is_divisible:
-                if len(leaf.q_events) == 1 and leaf.q_events[0].offset == leaf.offset:
-                    continue # a perfect match, don't bother to continue subdivision
-                parentage_ratios = leaf.parentage_ratios
+
+        leaves = q_grid.leaves
+        i = 0
+        for leaf_one, leaf_two in sequencetools.iterate_sequence_pairwise_strict(leaves):
+            if (leaf_one.succeeding_q_event_proxies or leaf_two.preceding_q_event_proxies) \
+                and leaf_one.is_divisible:
+                #if len(leaf_one.q_event_proxies) == 1 and leaf_one.q_event_proxies[0].offset == leaf_one.offset:
+                #    continue # a perfect match, don't bother to continue subdivision
+                parentage_ratios = leaf_one.parentage_ratios
                 leaf_subdivisions = self.find_leaf_subdivisions(parentage_ratios)
                 if leaf_subdivisions:
                     indices.append(i)
                     subdivisions.append(tuple(leaf_subdivisions))
+            i += 1
         return indices, subdivisions
 
     @abstractmethod

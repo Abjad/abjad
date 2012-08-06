@@ -63,6 +63,11 @@ class QTarget(abctools.AbjadObject):
         for job in jobs:
             beats[job.job_id]._q_grids = job.q_grids
 
+        for i, beat in enumerate(beats):
+            print i, len(beat.q_grids)
+            for q_event in beat.q_events:
+                print '\t{}'.format(q_event.offset)
+
         # select the best QGrid for each beat, according to the Heuristic
         beats = heuristic(beats)
 
@@ -112,17 +117,18 @@ class QTarget(abctools.AbjadObject):
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
         # check first against second, notating first, tying as necessry
-        leaves = voice.leaves
-        for leaf_one, leaf_two in sequencetools.iterate_sequence_pairwise_strict(leaves):
+        # keep track of the leaf index, as we're muting the structure as we go
+        leaves = list(voice.leaves)
+        for i in range(len(leaves) - 1):
+            leaf_one, leaf_two = leaves[i], leaves[i + 1]
             leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
+            leaves[i] = leaf_one
             if not marktools.get_annotations_attached_to_component(leaf_two):
                 klass = tietools.TieSpanner
-                spanner = tuple(spannertools.get_spanners_attached_to_component(leaf_one, klass))
+                spanner = tuple(spannertools.get_spanners_attached_to_component(leaf_one, klass))[0]
                 leaf_two = self._copy_leaf_type_and_pitches(leaf_one, leaf_two)
-                if spanner:
-                    spanner.append(leaf_two)
-                else:
-                    klass([leaf_one, leaf_two])
+                leaves[i + 1] = leaf_two
+                spanner.append(leaf_two)
         # notate final leaf, if necessary
         self._notate_one_leaf(leaves[-1], grace_handler)
         
@@ -142,6 +148,7 @@ class QTarget(abctools.AbjadObject):
                 grace_container(new_leaf)
             leaf.parent[leaf.parent.index(leaf)] = new_leaf
             leaf = new_leaf
+            tietools.TieSpanner(leaf)
         return leaf
 
     @abstractmethod
@@ -151,8 +158,8 @@ class QTarget(abctools.AbjadObject):
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats
         for one, two in sequencetools.iterate_sequence_pairwise_strict(beats):
-            one_q_events = one.q_grid.next_downbeat.q_events
-            two_q_events = two.q_grid.leaves[0].q_events
+            one_q_events = one.q_grid.next_downbeat.q_event_proxies
+            two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
                 two_q_events.append(one_q_events.pop())
 

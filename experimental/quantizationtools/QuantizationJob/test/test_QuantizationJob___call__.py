@@ -1,7 +1,10 @@
 from experimental import quantizationtools
+import py.test
 
 
+@py.test.skip()
 def test_QuantizationJob___call___01():
+
     job_id = 1
     definition = {
             2: {

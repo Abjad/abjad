@@ -28,6 +28,8 @@ class QGrid(abctools.AbjadObject):
 
         self._root_node = root_node
         self._next_downbeat = next_downbeat
+        self._next_downbeat._offset = durationtools.Offset(1)
+        self._next_downbeat._offsets_are_current = True
 
     ### SPECIAL METHODS ###
 
@@ -40,8 +42,8 @@ class QGrid(abctools.AbjadObject):
             else:
                 result_leaves.append(x)
         for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):
-            if q_grid_leaf.q_events:
-                q_events = [q_event_proxy.q_event for q_event_proxy in q_grid_leaf.q_events]
+            if q_grid_leaf.q_event_proxies:
+                q_events = [q_event_proxy.q_event for q_event_proxy in q_grid_leaf.q_event_proxies]
                 q_events.sort(key=lambda x: x.index)
                 marktools.Annotation('q_events', tuple(q_events))(result_leaf)
         return result
@@ -81,14 +83,14 @@ class QGrid(abctools.AbjadObject):
 
     @property
     def distance(self):
-        q_event_count = 0
+        count = 0
         absolute_distance = 0
         for leaf, offset in zip(self.leaves, self.offsets):
-            for q_event in leaf.q_events:
-                absolute_distance += abs(q_event.offset - offset)
-                q_event_count += 1
-        if q_event_count:
-            return absolute_distance / q_event_count
+            for q_event_proxy in leaf.q_event_proxies:
+                absolute_distance += abs(q_event_proxy.offset - offset)
+                count += 1
+        if count:
+            return absolute_distance / count
         return None
 
     @property
@@ -102,25 +104,25 @@ class QGrid(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def fit_q_events(self, q_events):
-        assert all([isinstance(x, QEventProxy) for x in q_events])
+    def fit_q_events(self, q_event_proxies):
+        assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
         leaves, offsets = self.leaves, self.offsets
-        for q_event in q_events:
-            idx = bisect.bisect_left(offsets, q_event.offset)
-            if q_event.offset == offsets[idx]:
-                leaves[idx].q_events.append(q_event)
+        for q_event_proxy in q_event_proxies:
+            idx = bisect.bisect_left(offsets, q_event_proxy.offset)
+            if q_event_proxy.offset == offsets[idx]:
+                leaves[idx].q_event_proxies.append(q_event_proxy)
             else:
                 left, right = offsets[idx - 1], offsets[idx]
-                left_diff = abs(left - q_event.offset)
-                right_diff = abs(right - q_event.offset)
+                left_diff = abs(left - q_event_proxy.offset)
+                right_diff = abs(right - q_event_proxy.offset)
                 if right_diff < left_diff:
-                    leaves[idx].q_events.append(q_event)
+                    leaves[idx].q_event_proxies.append(q_event_proxy)
                 else:
-                    leaves[idx - 1].q_events.append(q_event)
+                    leaves[idx - 1].q_event_proxies.append(q_event_proxy)
 
     def sort_q_events_by_index(self):
         for leaf in self.leaves:
-            leaf.q_events.sort(key=lambda x: x.index)
+            leaf.q_event_proxies.sort(key=lambda x: x.index)
 
     def subdivide_leaf(self, leaf, subdivisions):
         container = QGridContainer(
@@ -132,7 +134,7 @@ class QGrid(abctools.AbjadObject):
             leaf.parent[index] = container
         else: # otherwise, our root node is just a QGridLeaf
             self._root_node = container
-        return leaf.q_events
+        return leaf.q_event_proxies
 
     def subdivide_leaves(self, pairs):
         pairs = sorted(dict(pairs).items())
@@ -142,7 +144,7 @@ class QGrid(abctools.AbjadObject):
         all_leaves = self.leaves
         leaves_to_subdivide = [all_leaves[idx] for idx in leaf_indices]
 
-        q_events = []
+        q_event_proxies = []
         for i, leaf in enumerate(leaves_to_subdivide):
 
             next_leaf = all_leaves[all_leaves.index(leaf) + 1]
@@ -151,9 +153,10 @@ class QGrid(abctools.AbjadObject):
             else:
                 next_leaf_offset = next_leaf.offset
             
-            q_events.extend(self.subdivide_leaf(leaf, subdivisions[i]))
-            for q_event in tuple(next_leaf.q_events):
-                if q_event.offset < next_leaf_offset:
-                    q_events.append(next_leaf.q_events.pop(next_leaf.q_events.index(q_event)))
+            q_event_proxies.extend(self.subdivide_leaf(leaf, subdivisions[i]))
+            for q_event_proxy in tuple(next_leaf.q_event_proxies):
+                if q_event_proxy.offset < next_leaf_offset:
+                    idx = next_leaf.q_event_proxies.index(q_event_proxy)
+                    q_event_proxies.append(next_leaf.q_event_proxies.pop(idx))
 
-        return q_events
+        return q_event_proxies

@@ -35,14 +35,14 @@ def test_SimpleSearchTree_generate_all_subdivision_commands_01():
         )
         
     new_q_grid = copy.copy(q_grid)
-    q_events = new_q_grid.subdivide_leaves(commands[0])
-    new_q_grid.fit_q_events(q_events)
+    q_event_proxies = new_q_grid.subdivide_leaves(commands[0])
+    new_q_grid.fit_q_events(q_event_proxies)
     new_q_grid.sort_q_events_by_index()
     new_commands = search_tree.generate_all_subdivision_commands(new_q_grid)
 
-    assert new_q_grid.leaves[0].q_events == [a, b, c]
-    assert new_q_grid.leaves[1].q_events == [d, e, f, g, h, i]
-    assert new_q_grid.leaves[2].q_events == [j, k]
+    assert new_q_grid.leaves[0].q_event_proxies == [a, b, c]
+    assert new_q_grid.leaves[1].q_event_proxies == [d, e, f, g, h, i]
+    assert new_q_grid.leaves[2].q_event_proxies == [j, k]
     assert new_commands == (
         ((0, (1, 1)), (1, (1, 1))), 
         ((0, (1, 1)), (1, (1, 1, 1))), 
@@ -51,15 +51,15 @@ def test_SimpleSearchTree_generate_all_subdivision_commands_01():
         )
 
     new_q_grid = copy.copy(q_grid)
-    q_events = new_q_grid.subdivide_leaves(commands[1])
-    new_q_grid.fit_q_events(q_events)
+    q_event_proxies = new_q_grid.subdivide_leaves(commands[1])
+    new_q_grid.fit_q_events(q_event_proxies)
     new_q_grid.sort_q_events_by_index()
     new_commands = search_tree.generate_all_subdivision_commands(new_q_grid)
 
-    assert new_q_grid.leaves[0].q_events == [a]
-    assert new_q_grid.leaves[1].q_events == [b, c]
-    assert new_q_grid.leaves[2].q_events == [d, e, f]
-    assert new_q_grid.leaves[3].q_events == [g, h]
-    assert new_q_grid.leaves[4].q_events == [i, j]
-    assert new_q_grid.leaves[5].q_events == [k]
+    assert new_q_grid.leaves[0].q_event_proxies == [a]
+    assert new_q_grid.leaves[1].q_event_proxies == [b, c]
+    assert new_q_grid.leaves[2].q_event_proxies == [d, e, f]
+    assert new_q_grid.leaves[3].q_event_proxies == [g, h]
+    assert new_q_grid.leaves[4].q_event_proxies == [i, j]
+    assert new_q_grid.leaves[5].q_event_proxies == [k]
     assert new_commands == ()

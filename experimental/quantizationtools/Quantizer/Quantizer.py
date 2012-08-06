@@ -22,15 +22,12 @@ class Quantizer(abctools.AbjadObject):
             q_schema = MeasurewiseQSchema()
         assert isinstance(q_schema, QSchema)
 
-        print q_schema
-
         q_target = q_schema(q_event_sequence.duration_in_ms)
-
-        print q_target
 
         notation = q_target(q_event_sequence,
             grace_handler=grace_handler,
             heuristic=heuristic,
             job_handler=job_handler)
 
+        #return notation, q_target
         return notation

@@ -9,17 +9,17 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = ('_duration', '_is_divisible', '_offset', '_offsets_are_current',
-        '_parent', '_q_events')
+        '_parent', '_q_event_proxies')
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=1, q_events=None, is_divisible=True):
+    def __init__(self, duration=1, q_event_proxies=None, is_divisible=True):
         rhythmtreetools.RhythmTreeNode.__init__(self, duration)
-        if q_events is None:
-            q_events = []
+        if q_event_proxies is None:
+            self._q_event_proxies = []
         else:
-            assert all([isinstance(x, QEventProxy) for x in q_events])
-        self._q_events = list(q_events)
+            assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
+            self._q_event_proxies = list(q_event_proxies)            
         self._is_divisible = bool(is_divisible)
 
     ### SPECIAL METHODS ###
@@ -35,13 +35,13 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
     def __eq__(self, other):
         if type(self) == type(other):
             if self.duration == other.duration:
-                if self.q_events == other.q_events:
+                if self.q_event_proxies == other.q_event_proxies:
                     if self._is_divisible == other.is_divisible:
                         return True
         return False
 
     def __getnewargs__(self):
-        return (self.duration, tuple(self.q_events), self.is_divisible)
+       return (self.duration, tuple(self.q_event_proxies), self.is_divisible)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -50,9 +50,17 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
         return str(self.duration)
 
     @property
-    def q_events(self):
-        return self._q_events
-    
+    def preceding_q_event_proxies(self):
+        return [x for x in self._q_event_proxies if x.offset < self.offset]
+
+    @property
+    def q_event_proxies(self):
+        return self._q_event_proxies
+
+    @property
+    def succeeding_q_event_proxies(self):
+        return [x for x in self._q_event_proxies if self.offset <= x.offset]
+
     ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply

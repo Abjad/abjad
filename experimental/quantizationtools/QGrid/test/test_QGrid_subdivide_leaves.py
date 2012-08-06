@@ -13,8 +13,8 @@ def test_QGrid_subdivide_leaves_01():
     f = QEventProxy(SilentQEvent((19, 20), ['F']), (19, 20))
     g = QEventProxy(SilentQEvent(1,        ['G']), 1)
 
-    q_grid.leaves[0].q_events.extend([a, b, c, d])
-    q_grid.leaves[1].q_events.extend([e, f, g])
+    q_grid.leaves[0].q_event_proxies.extend([a, b, c, d])
+    q_grid.leaves[1].q_event_proxies.extend([e, f, g])
 
     assert q_grid.root_node.rtm_format == '1'
 
@@ -23,9 +23,9 @@ def test_QGrid_subdivide_leaves_01():
     assert q_events == [a, b, c, d, e, f]
     assert q_grid.root_node.rtm_format == '(1 (1 1))'
 
-    q_grid.leaves[0].q_events.extend([a, b])
-    q_grid.leaves[1].q_events.extend([c, d, e])
-    q_grid.leaves[2].q_events.append(f)
+    q_grid.leaves[0].q_event_proxies.extend([a, b])
+    q_grid.leaves[1].q_event_proxies.extend([c, d, e])
+    q_grid.leaves[2].q_event_proxies.append(f)
 
     q_events = q_grid.subdivide_leaves([(0, (1, 1)), (1, (1, 1))])
 
@@ -45,8 +45,8 @@ def test_QGrid_subdivide_leaves_02():
     f = QEventProxy(SilentQEvent((19, 20), ['F']), (19, 20))
     g = QEventProxy(SilentQEvent(1,        ['G']), 1)
 
-    q_grid.leaves[0].q_events.extend([a, b, c, d])
-    q_grid.leaves[1].q_events.extend([e, f, g])
+    q_grid.leaves[0].q_event_proxies.extend([a, b, c, d])
+    q_grid.leaves[1].q_event_proxies.extend([e, f, g])
 
     assert q_grid.root_node.rtm_format == '1'
 
@@ -55,9 +55,9 @@ def test_QGrid_subdivide_leaves_02():
     assert q_events == [a, b, c, d, e, f]
     assert q_grid.root_node.rtm_format == '(1 (1 1))'
 
-    q_grid.leaves[0].q_events.extend([a, b])
-    q_grid.leaves[1].q_events.extend([c, d, e])
-    q_grid.leaves[2].q_events.append(f)
+    q_grid.leaves[0].q_event_proxies.extend([a, b])
+    q_grid.leaves[1].q_event_proxies.extend([c, d, e])
+    q_grid.leaves[2].q_event_proxies.append(f)
 
     q_events = q_grid.subdivide_leaves([(0, (3, 4, 5))])
 
