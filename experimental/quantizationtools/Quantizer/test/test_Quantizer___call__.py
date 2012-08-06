@@ -4,11 +4,12 @@ from experimental import *
 
 def test_Quantizer___call___01():
 
-    ms = [1500, -1000, 1000, 1000, -1000, 1000, -1000, 500]
-    seq = quantizationtools.QEventSequence.from_millisecond_durations(ms)
-    q = quantizationtools.Quantizer()
+    milliseconds = [1500, -1000, 1000, 1000, -1000, 1000, -1000, 500]
+    sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
+    partitioner = quantizationtools.NullPartitioner()
+    quantizer = quantizationtools.Quantizer()
 
-    result = q(seq)
+    result = quantizer(sequence, partitioner=partitioner)
 
     assert isinstance(result, Voice)
     assert result.prolated_duration == 2
@@ -50,11 +51,12 @@ def test_Quantizer___call___01():
 
 def test_Quantizer___call___02():
 
-    ms = [250, 1000, 1000, 1000, 750]
-    seq = quantizationtools.QEventSequence.from_millisecond_durations(ms)
-    q = quantizationtools.Quantizer()
+    milliseconds = [250, 1000, 1000, 1000, 750]
+    sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
+    partitioner = quantizationtools.NullPartitioner()
+    quantizer = quantizationtools.Quantizer()
 
-    result = q(seq)
+    result = quantizer(sequence, partitioner=partitioner)
 
     r'''
     \new Voice {
@@ -88,11 +90,12 @@ def test_Quantizer___call___03():
         {'search_tree': quantizationtools.SimpleSearchTree({5: None})},
         {'search_tree': quantizationtools.SimpleSearchTree({7: None})},
         )
-    ms = [250, 250, 250, 250] * 4
-    seq = quantizationtools.QEventSequence.from_millisecond_durations(ms)
-    q = quantizationtools.Quantizer()
+    milliseconds = [250, 250, 250, 250] * 4
+    sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
+    partitioner = quantizationtools.NullPartitioner()
+    quantizer = quantizationtools.Quantizer()
 
-    result = q(seq, q_schema=q_schema)
+    result = quantizer(sequence, q_schema=q_schema, partitioner=partitioner)
 
     r'''
     \new Voice {

@@ -12,6 +12,8 @@ from experimental.quantizationtools.DistanceHeuristic import DistanceHeuristic
 from experimental.quantizationtools.GraceHandler import GraceHandler
 from experimental.quantizationtools.Heuristic import Heuristic
 from experimental.quantizationtools.JobHandler import JobHandler
+from experimental.quantizationtools.NaivePartitioner import NaivePartitioner
+from experimental.quantizationtools.Partitioner import Partitioner
 from experimental.quantizationtools.QEventSequence import QEventSequence
 from experimental.quantizationtools.SerialJobHandler import SerialJobHandler
 import bisect
@@ -32,7 +34,8 @@ class QTarget(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_event_sequence, grace_handler=None, heuristic=None, job_handler=None):
+    def __call__(self, q_event_sequence, grace_handler=None, heuristic=None, job_handler=None,
+        partitioner=None):
 
         assert isinstance(q_event_sequence, QEventSequence)
 
@@ -47,6 +50,10 @@ class QTarget(abctools.AbjadObject):
         if job_handler is None:
             job_handler = SerialJobHandler()
         assert isinstance(job_handler, JobHandler)
+
+        if partitioner is None:
+            partitioner = NaivePartitioner()
+        assert isinstance(partitioner, Partitioner)
 
         # parcel QEvents out to each beat
         beats = self.beats
@@ -80,7 +87,7 @@ class QTarget(abctools.AbjadObject):
 
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
-        return self._notate(grace_handler)
+        return self._notate(grace_handler, partitioner)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -114,6 +121,10 @@ class QTarget(abctools.AbjadObject):
             new_leaf = resttools.Rest(duration)
         leaf_two.parent[index] = new_leaf
         return new_leaf
+
+    @abstractmethod
+    def _notate(self, grace_handler, partitioner):
+        raise NotImplemented
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
         # check first against second, notating first, tying as necessry
@@ -151,10 +162,6 @@ class QTarget(abctools.AbjadObject):
             tietools.TieSpanner(new_leaf)
             return new_leaf
         return leaf
-
-    @abstractmethod
-    def _notate(self, grace_handler):
-        raise NotImplemented
 
     def _shift_downbeat_q_events_to_next_q_grid(self):
         beats = self.beats

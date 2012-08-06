@@ -19,7 +19,7 @@ class BeatwiseQTarget(QTarget):
 
     ### PRIVATE METHODS ###
 
-    def _notate(self, grace_handler):
+    def _notate(self, grace_handler, partitioner):
         voice = voicetools.Voice()
 
         # generate the first
@@ -37,5 +37,8 @@ class BeatwiseQTarget(QTarget):
 
         # apply tie chains, pitches, grace containers
         self._notate_leaves_pairwise(voice, grace_handler)
+
+        # partition tie chains in voice
+        partitioner(voice)
 
         return voice

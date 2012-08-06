@@ -211,6 +211,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/Heuristic/Heuristic
    experimental/quantizationtools/JobHandler/JobHandler
+   experimental/quantizationtools/Partitioner/Partitioner
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
@@ -231,6 +232,8 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
+   experimental/quantizationtools/NaivePartitioner/NaivePartitioner
+   experimental/quantizationtools/NullPartitioner/NullPartitioner
    experimental/quantizationtools/ParallelJobHandler/ParallelJobHandler
    experimental/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent

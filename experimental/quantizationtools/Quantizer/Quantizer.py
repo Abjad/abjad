@@ -14,7 +14,7 @@ class Quantizer(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_event_sequence, q_schema=None, grace_handler=None,
-        heuristic=None, job_handler=None):
+        heuristic=None, job_handler=None, partitioner=None):
 
         q_event_sequence = QEventSequence(q_event_sequence)
 
@@ -27,7 +27,8 @@ class Quantizer(abctools.AbjadObject):
         notation = q_target(q_event_sequence,
             grace_handler=grace_handler,
             heuristic=heuristic,
-            job_handler=job_handler)
+            job_handler=job_handler,
+            partitioner=partitioner)
 
         #return notation, q_target
         return notation

@@ -20,7 +20,7 @@ class MeasurewiseQTarget(QTarget):
 
     ### PRIVATE METHODS ###
 
-    def _notate(self, grace_handler):
+    def _notate(self, grace_handler, partitioner):
         voice = voicetools.Voice()
 
         # generate the first
@@ -43,6 +43,10 @@ class MeasurewiseQTarget(QTarget):
 
         # apply tie chains, pitches, grace containers
         self._notate_leaves_pairwise(voice, grace_handler)
+
+        # partition tiechains in each measure
+        for measure in voice:
+            partitioner(measure)
 
         return voice
 
