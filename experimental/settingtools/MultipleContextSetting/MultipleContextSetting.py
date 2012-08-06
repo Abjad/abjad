@@ -79,8 +79,6 @@ class MultipleContextSetting(Setting):
                 selector = copy.deepcopy(self.selector)
                 selector.reference._context_name = context_name
             else:
-                #selector = selectortools.SingleContextTimespanSelector(context_name, 
-                #    timespan=copy.deepcopy(self.selector.timespan))
                 selector = selectortools.TimespanSelector(copy.deepcopy(self.selector.timespan))
             setting = settingtools.SingleContextSetting(
                 self.attribute, 
