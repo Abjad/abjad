@@ -9,6 +9,8 @@ quantizationtools.ConcatenatingGraceHandler
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler.grace_duration
+
 .. autoattribute:: experimental.quantizationtools.ConcatenatingGraceHandler.ConcatenatingGraceHandler.ConcatenatingGraceHandler.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
