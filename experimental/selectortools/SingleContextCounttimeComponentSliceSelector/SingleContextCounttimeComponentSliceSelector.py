@@ -11,27 +11,27 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
         >>> from experimental import *
 
-    Select the first five counttime components in ``'Voice 1'``::
+    Select the first five counttime components::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', stop_identifier=5)
-        SingleContextCounttimeComponentSliceSelector('Voice 1', stop_identifier=5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector(stop_identifier=5)
+        SingleContextCounttimeComponentSliceSelector(stop_identifier=5)
 
-    Select the last five counttime components in ``'Voice 1'``::
+    Select the last five counttime components::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=-5)
-        SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=-5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector(start_identifier=-5)
+        SingleContextCounttimeComponentSliceSelector(start_identifier=-5)
 
-    Select counttime components from ``5`` up to but not including ``-5`` in ``'Voice 1'``::
+    Select counttime components from ``5`` up to but not including ``-5``::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=5, stop_identifier=-5)
-        SingleContextCounttimeComponentSliceSelector('Voice 1', start_identifier=5, stop_identifier=-5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
+        SingleContextCounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
 
-    Select all counttime components in ``'Voice 1'``::
+    Select all counttime components::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1')
-        SingleContextCounttimeComponentSliceSelector('Voice 1')
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector()
+        SingleContextCounttimeComponentSliceSelector()
 
-    Select counttime measure ``3`` to starting during segment ``'red'`` in  ``'Voice 1'``.
+    Select counttime measure ``3`` to starting during segment ``'red'``.
     Then select the last three leaves in tuplet ``-1`` in this measure::
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
@@ -40,25 +40,26 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
     ::
 
         >>> measure_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
-        ... 'Voice 1', inequality=inequality, klass=Measure, start_identifier=3, stop_identifier=4)
+        ... inequality=inequality, klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
         >>> tuplet_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
-        ... measure_selector, klass=Tuplet, start_identifier=-1)
+        ... selector=measure_selector, klass=Tuplet, start_identifier=-1)
 
     ::
 
         >>> leaf_slice_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
-        ... tuplet_selector, klass=leaftools.Leaf, start_identifier=-3)
+        ... selector=tuplet_selector, klass=leaftools.Leaf, start_identifier=-3)
 
     ::
 
         >>> z(leaf_slice_selector)
         selectortools.SingleContextCounttimeComponentSliceSelector(
-            selectortools.SingleContextCounttimeComponentSliceSelector(
-                selectortools.SingleContextCounttimeComponentSliceSelector(
-                    'Voice 1',
+            klass=leaftools.Leaf,
+            selector=selectortools.SingleContextCounttimeComponentSliceSelector(
+                klass=tuplettools.Tuplet,
+                selector=selectortools.SingleContextCounttimeComponentSliceSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -71,10 +72,8 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
                     start_identifier=3,
                     stop_identifier=4
                     ),
-                klass=tuplettools.Tuplet,
                 start_identifier=-1
                 ),
-            klass=leaftools.Leaf,
             start_identifier=-3
             )
 
@@ -83,16 +82,16 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, inequality=None, klass=None, predicate=None, 
+    def __init__(self, inequality=None, klass=None, predicate=None, selector=None,
         start_identifier=None, stop_identifier=None):
         from experimental import helpertools
         from experimental import selectortools
-        assert self._interprets_as_sliceable_selector(reference), repr(reference)
+        assert selector is None or self._interprets_as_sliceable_selector(selector), repr(selector)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
-        self._reference = self._reference_to_storable_form(reference)
+        self._selector = selector
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass
@@ -129,9 +128,7 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
         return self._predicate
 
     @property
-    def reference(self):
-        '''Reference container of counttime component slice selector specified by user.
-
-        Return voice name or counttime component selector.
+    def selector(self):
+        '''To allow selectors to reference each other recursively.
         '''
-        return self._reference
+        return self._selector
