@@ -85,12 +85,10 @@ class SegmentSpecification(Specification):
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
-    # DEPRECATED: eliminate multiple-context selectors.
-    # DEPRECATED: then pass selectors and contexts separately everywhere in system.
-    def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
+    def _set_attribute_new(self, attribute, source, selector=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         contexts = self._context_token_to_context_names(contexts)
-        selector = selectortools.TimespanSelector(timespan)
+        selector = selectortools.TimespanSelector(selector)
         return self._set_attribute(attribute, selector, source,
             callback=callback, contexts=contexts, count=count, 
             offset=offset, persist=persist, truncate=truncate)
@@ -717,7 +715,7 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_divisions(self, source, timespan=None, contexts=None,
+    def set_divisions(self, source, selector=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         r'''Set divisions of segment `contexts` to `source`::
 
@@ -743,11 +741,12 @@ class SegmentSpecification(Specification):
 
         Create, store and return ``MultipleContextSetting``.
         '''
-        timespan = timespan or self.timespan
+        #timespan = timespan or self.timespan
+        selector = selector or self.timespan # TODO: eventually use self.select_segment_timespan() instead
         contexts = contexts or [self.score_name]
         return self._set_attribute_new(
             'divisions',
-            source, timespan=timespan, contexts=contexts,
+            source, selector=selector, contexts=contexts,
             callback=callback, count=count, offset=offset,
             persist=persist, truncate=truncate,
             )

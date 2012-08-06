@@ -18,17 +18,17 @@ def test_SegmentSpecification_set_divisions_01():
     first_half = segment.select_segment_timespan_ratio_part((1, 1), 0)
     second_half = segment.select_segment_timespan_ratio_part((1, 1), 1)
 
-    segment.set_divisions([(3, 16)], timespan=first_measure, contexts=['Voice 1'], persist=False)
-    segment.set_divisions([(5, 16)], timespan=second_measure, contexts=['Voice 1'], persist=False)
+    segment.set_divisions([(3, 16)], selector=first_measure, contexts=['Voice 1'], persist=False)
+    segment.set_divisions([(5, 16)], selector=second_measure, contexts=['Voice 1'], persist=False)
 
-    segment.set_divisions([(5, 16)], timespan=first_measure, contexts=['Voice 2'], persist=False)
-    segment.set_divisions([(3, 16)], timespan=second_measure, contexts=['Voice 2'], persist=False)
+    segment.set_divisions([(5, 16)], selector=first_measure, contexts=['Voice 2'], persist=False)
+    segment.set_divisions([(3, 16)], selector=second_measure, contexts=['Voice 2'], persist=False)
 
-    segment.set_divisions([(3, 16)], timespan=first_half, contexts=['Voice 3'], persist=False)
-    segment.set_divisions([(5, 16)], timespan=second_half, contexts=['Voice 3'], persist=False)
+    segment.set_divisions([(3, 16)], selector=first_half, contexts=['Voice 3'], persist=False)
+    segment.set_divisions([(5, 16)], selector=second_half, contexts=['Voice 3'], persist=False)
 
-    segment.set_divisions([(5, 16)], timespan=first_half, contexts=['Voice 4'], persist=False)
-    segment.set_divisions([(3, 16)], timespan=second_half, contexts=['Voice 4'], persist=False)
+    segment.set_divisions([(5, 16)], selector=first_half, contexts=['Voice 4'], persist=False)
+    segment.set_divisions([(3, 16)], selector=second_half, contexts=['Voice 4'], persist=False)
 
     segment.set_rhythm(library.thirty_seconds)
     segment = score_specification.append_segment('blue')

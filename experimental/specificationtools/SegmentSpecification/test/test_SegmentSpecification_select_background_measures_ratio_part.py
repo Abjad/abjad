@@ -11,10 +11,10 @@ def test_SegmentSpecification_select_background_measures_ratio_part_01():
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     selector = segment.select_background_measures_ratio_part((1, 1), 0)
-    segment.set_divisions([(3, 16)], timespan=selector, truncate=True)
+    segment.set_divisions([(3, 16)], selector=selector, truncate=True)
 
     selector = segment.select_background_measures_ratio_part((1, 1), 1)
-    segment.set_divisions([(5, 16)], timespan=selector, truncate=True)
+    segment.set_divisions([(5, 16)], selector=selector, truncate=True)
 
     segment.set_rhythm(library.thirty_seconds)
 

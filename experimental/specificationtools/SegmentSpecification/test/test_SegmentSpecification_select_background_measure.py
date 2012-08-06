@@ -12,7 +12,7 @@ def test_SegmentSpecification_select_background_measure_01():
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = segment.select_background_measure(-1)
     segment.set_divisions([(2, 32)])
-    segment.set_divisions([(3, 32)], timespan=last_measure)
+    segment.set_divisions([(3, 32)], selector=last_measure)
     segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -31,7 +31,7 @@ def test_SegmentSpecification_select_background_measure_02():
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = segment.select_background_measure(1)
     segment.set_divisions([(2, 32)])
-    segment.set_divisions([(3, 32)], timespan=last_measure)
+    segment.set_divisions([(3, 32)], selector=last_measure)
     segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
