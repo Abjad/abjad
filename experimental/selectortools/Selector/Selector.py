@@ -44,7 +44,7 @@ class Selector(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @abstractproperty
+    @property
     def context_name(self):
         '''Name of context against which selector defines.
 
@@ -52,7 +52,7 @@ class Selector(AbjadObject):
         '''
         pass
 
-    @abstractproperty
+    @property
     def context_names(self):
         '''List of context names against which selector defines.
 

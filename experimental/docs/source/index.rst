@@ -308,7 +308,6 @@ Unstable packages (load manually)
    experimental/selectortools/RatioPartSelector/RatioPartSelector
    experimental/selectortools/Selector/Selector
    experimental/selectortools/SliceSelector/SliceSelector
-   experimental/selectortools/TimespanSelector/TimespanSelector
 
 .. rubric:: concrete classes
 
@@ -326,6 +325,7 @@ Unstable packages (load manually)
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
+   experimental/selectortools/TimespanSelector/TimespanSelector
 
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
