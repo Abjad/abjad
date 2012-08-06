@@ -51,7 +51,8 @@ class MultipleContextSetting(Setting):
     def __init__(self, attribute, source, selector, context_names=None, persist=True, truncate=False):
         Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
-        assert self.selector.context_names == context_names, repr((self.selector.context_names, context_names))
+        if self.selector.context_names:
+            assert self.selector.context_names == context_names, repr((self.selector.context_names, context_names))
         self._context_names = context_names
 
     ### READ-ONLY PUBLIC PROPERTIES ###

@@ -90,8 +90,7 @@ class SegmentSpecification(Specification):
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         contexts = self._context_token_to_context_names(contexts)
-        selector = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
-        #selector = selectortools.SingleContextTimespanSelector('FOO', timespan)
+        selector = selectortools.TimespanSelector(timespan)
         return self._set_attribute(attribute, selector, source,
             callback=callback, contexts=contexts, count=count, 
             offset=offset, persist=persist, truncate=truncate)
@@ -730,13 +729,12 @@ class SegmentSpecification(Specification):
             settingtools.MultipleContextSetting(
                 'divisions',
                 [(3, 16)],
-                selectortools.MultipleContextTimespanSelector(
+                selectortools.TimespanSelector(
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
                             identifier='red'
                             )
-                        ),
-                    context_names=['Voice 1', 'Voice 3']
+                        )
                     ),
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True,
