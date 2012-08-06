@@ -286,6 +286,16 @@ Unstable packages (load manually)
    experimental/requesttools/resolve_request_offset_and_count
    experimental/requesttools/source_to_request
 
+:py:mod:`segmenttools <experimental.segmenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/segmenttools/Segment/Segment
+
 :py:mod:`selectortools <experimental.selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -346,7 +356,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/Segment/Segment
    experimental/specificationtools/Specification/Specification
 
 .. rubric:: concrete classes

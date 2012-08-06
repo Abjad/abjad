@@ -10,7 +10,7 @@ def is_background_element_klass(expr):
 
     ::
 
-        >>> helpertools.is_background_element_klass(specificationtools.Segment)
+        >>> helpertools.is_background_element_klass(segmenttools.Segment)
         True
 
     Otherwise false::
@@ -21,6 +21,6 @@ def is_background_element_klass(expr):
     Return boolean.
     '''
     from experimental import divisiontools
-    from experimental import specificationtools
+    from experimental import segmenttools
 
-    return expr in (specificationtools.Segment, measuretools.Measure, divisiontools.Division)
+    return expr in (segmenttools.Segment, measuretools.Measure, divisiontools.Division)

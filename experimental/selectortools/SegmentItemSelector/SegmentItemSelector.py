@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from experimental import segmenttools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 
 
@@ -25,10 +26,9 @@ class SegmentItemSelector(InequalitySelector):
     ### INITIALIZER ###
 
     def __init__(self, inequality=None, identifier=0):
-        from experimental import specificationtools
         InequalitySelector.__init__(self, inequality=inequality)
         self._identifier = identifier
-        self._klass = specificationtools.Segment
+        self._klass = segmenttools.Segment
 
     ### SPECIAL METHODS ###
 

@@ -1,61 +1,61 @@
-specificationtools.Segment
-==========================
+segmenttools.Segment
+====================
 
-.. inheritance-diagram:: experimental.specificationtools.Segment.Segment.Segment
+.. inheritance-diagram:: experimental.segmenttools.Segment.Segment.Segment
    :private-bases:
 
-.. autoclass:: experimental.specificationtools.Segment.Segment.Segment
+.. autoclass:: experimental.segmenttools.Segment.Segment.Segment
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.specificationtools.Segment.Segment.Segment.storage_format
+.. autoattribute:: experimental.segmenttools.Segment.Segment.Segment.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__delattr__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__eq__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__ge__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__gt__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__hash__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__hash__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__le__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__lt__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__ne__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__repr__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__setattr__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.specificationtools.Segment.Segment.Segment.__str__
+.. automethod:: experimental.segmenttools.Segment.Segment.Segment.__str__
 
     Inherited from :py:class:`__builtin__.object`
