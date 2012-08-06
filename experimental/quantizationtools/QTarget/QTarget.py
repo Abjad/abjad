@@ -63,10 +63,10 @@ class QTarget(abctools.AbjadObject):
         for job in jobs:
             beats[job.job_id]._q_grids = job.q_grids
 
-        for i, beat in enumerate(beats):
-            print i, len(beat.q_grids)
-            for q_event in beat.q_events:
-                print '\t{}'.format(q_event.offset)
+        #for i, beat in enumerate(beats):
+        #    print i, len(beat.q_grids)
+        #    for q_event in beat.q_events:
+        #        print '\t{}'.format(q_event.offset)
 
         # select the best QGrid for each beat, according to the Heuristic
         beats = heuristic(beats)
