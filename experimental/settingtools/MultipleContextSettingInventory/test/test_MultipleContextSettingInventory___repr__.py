@@ -5,7 +5,6 @@ from experimental.selectortools.TimespanSelector import TimespanSelector
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 

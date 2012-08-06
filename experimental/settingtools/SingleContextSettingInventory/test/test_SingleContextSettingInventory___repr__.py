@@ -3,7 +3,6 @@ from experimental import *
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.settingtools.SingleContextSettingInventory import SingleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector
 
 
 def test_SingleContextSettingInventory___repr___01():
