@@ -47,8 +47,20 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute, source, target, persist=True, truncate=False):
+    def __init__(self, attribute, source, target, context_names=None, persist=True, truncate=False):
         Setting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
+        assert isinstance(context_names, (list, type(None))), repr(context_names)
+        self._context_names = context_names
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def context_names(self):
+        '''Multiple-context setting context names.
+    
+        Return list of strings or none.
+        '''
+        return self._context_names
 
     ### PUBLIC METHODS ###
 

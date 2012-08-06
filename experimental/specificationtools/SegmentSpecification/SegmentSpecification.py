@@ -69,9 +69,10 @@ class SegmentSpecification(Specification):
         elif isinstance(expr, (str, list, type(self))):
             return self.select_segment_timespan(contexts=expr)
 
-    # DEPRECATED: pass timespan and contexts separately everywhere in system
+    # DEPRECATED: eliminate multiple-context selectors.
+    # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute(self, attribute, target, source, 
-        callback=None, count=None, offset=None, persist=True, truncate=False):
+        callback=None, contexts=None, count=None, offset=None, persist=True, truncate=False):
         r'''Generalized method to create ``MultipleContextSetting`` objects.
         Select `attribute` from `source` and set on `target`.
         All other set methods call this method.
@@ -81,20 +82,26 @@ class SegmentSpecification(Specification):
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persist, type(True)), repr(persist)
         assert isinstance(truncate, type(True)), repr(truncate)
+        if isinstance(contexts, str):
+            contexts = [contexts]
+        assert isinstance(contexts, (list, type(None)))
         target = self._expr_to_selector(target)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, target,
-            persist=persist, truncate=truncate)
+            context_names=contexts, persist=persist, truncate=truncate)
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
+    # DEPRECATED: eliminate multiple-context selectors.
+    # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         if isinstance(contexts, str):
             contexts = [contexts]
         target = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
         return self._set_attribute(attribute, target, source,
-            callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
+            callback=callback, contexts=contexts, count=count, 
+            offset=offset, persist=persist, truncate=truncate)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -738,6 +745,7 @@ class SegmentSpecification(Specification):
                         ),
                     context_names=['Voice 1', 'Voice 3']
                     ),
+                context_names=['Voice 1', 'Voice 3'],
                 persist=True,
                 truncate=False
                 )
