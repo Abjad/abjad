@@ -40,8 +40,7 @@ class SingleContextSetting(Setting):
         settingtools.SingleContextSetting(
             'divisions',
             [(3, 16)],
-            selectortools.SingleContextTimespanSelector(
-                'Voice 1',
+            selectortools.TimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
                         identifier='red'
@@ -101,8 +100,7 @@ class SingleContextSetting(Setting):
             settingtools.SingleContextSetting(
                 'divisions',
                 [(3, 16)],
-                selectortools.SingleContextTimespanSelector(
-                    'Voice 1',
+                selectortools.TimespanSelector(
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentItemSelector(
                             identifier='red'

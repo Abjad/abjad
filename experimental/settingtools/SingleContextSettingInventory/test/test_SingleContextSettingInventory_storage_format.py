@@ -23,23 +23,20 @@ def test_SingleContextSettingInventory_storage_format_01():
         settingtools.SingleContextSetting(
             'time_signatures',
             [(4, 8), (3, 8)],
-            selectortools.SingleContextTimespanSelector(
-                'Grouped Rhythmic Staves Score',
+            selectortools.TimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
                         identifier='red'
                         )
                     )
                 ),
-            context_names='Grouped Rhythmic Staves Score',
+            context_name='Grouped Rhythmic Staves Score',
             persist=True,
             truncate=False,
             fresh=True
             )
         ])
     '''
-
-    assert storage_format == "settingtools.SingleContextSettingInventory([\n\tsettingtools.SingleContextSetting(\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tselectortools.SingleContextTimespanSelector(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\ttimespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentItemSelector(\n\t\t\t\t\tidentifier='red'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\tcontext_name='Grouped Rhythmic Staves Score',\n\t\tpersist=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
 
     setting_inventory_2 = eval(storage_format)
 

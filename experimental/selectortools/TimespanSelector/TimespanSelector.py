@@ -26,6 +26,20 @@ class TimespanSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def context_name(self):
+        raise Exception('do not use.')
+
+    @property
+    def context_names(self):
+        raise Exception('do not use.')
+
+    @property
+    def segment_identifier(self):
+        '''Delegate to ``self.timespan.segment_identifier``.
+        '''
+        return self.timespan.segment_identifier
+    
+    @property
     def timespan(self):
         '''Timespan of timespan selector.
     

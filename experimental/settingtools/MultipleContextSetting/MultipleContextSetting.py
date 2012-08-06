@@ -50,8 +50,6 @@ class MultipleContextSetting(Setting):
     def __init__(self, attribute, source, selector, context_names=None, persist=True, truncate=False):
         Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
-        if self.selector.context_names:
-            assert self.selector.context_names == context_names, repr((self.selector.context_names, context_names))
         self._context_names = context_names
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -81,10 +79,15 @@ class MultipleContextSetting(Setting):
                 selector = copy.deepcopy(self.selector)
                 selector.reference._context_name = context_name
             else:
-                selector = selectortools.SingleContextTimespanSelector(context_name, 
-                    timespan=copy.deepcopy(self.selector.timespan))
-            setting = settingtools.SingleContextSetting(self.attribute, self.source, selector,
+                #selector = selectortools.SingleContextTimespanSelector(context_name, 
+                #    timespan=copy.deepcopy(self.selector.timespan))
+                selector = selectortools.TimespanSelector(copy.deepcopy(self.selector.timespan))
+            setting = settingtools.SingleContextSetting(
+                self.attribute, 
+                self.source, 
+                selector,
                 context_name=context_name,
-                persist=self.persist, truncate=self.truncate)
+                persist=self.persist, 
+                truncate=self.truncate)
             settings.append(setting)
         return settings

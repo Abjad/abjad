@@ -39,14 +39,14 @@ class ResolvedSingleContextSetting(SingleContextSetting):
             'divisions',
             [(3, 16)],
             [(3, 16)],
-            selectortools.SingleContextTimespanSelector(
-                'Voice 1',
+            selectortools.TimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
                         identifier='red'
                         )
                     )
                 ),
+            context_name='Voice 1',
             persist=True,
             truncate=False,
             fresh=True
@@ -64,8 +64,10 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, resolved_value, selector, persist=True, truncate=False, fresh=True):
-        SingleContextSetting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
+    def __init__(self, attribute, source, resolved_value, selector, 
+        context_name=None, persist=True, truncate=False, fresh=True):
+        SingleContextSetting.__init__(self, 
+            attribute, source, selector, context_name=context_name, persist=persist, truncate=truncate)
         assert resolved_value is not None, repr(resolved_value)
         assert isinstance(fresh, bool), repr(fresh)
         self._resolved_value = resolved_value
