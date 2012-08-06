@@ -11,15 +11,15 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, attribute, source, target, persist=True, truncate=False):
+    def __init__(self, attribute, source, selector, persist=True, truncate=False):
         from experimental import selectortools
         assert isinstance(attribute, str)
-        assert isinstance(target, (selectortools.Selector, type(None)))
+        assert isinstance(selector, (selectortools.Selector, type(None)))
         assert isinstance(persist, bool)
         assert isinstance(truncate, bool)
         self._attribute = attribute
         self._source = source
-        self._target = target
+        self._selector = selector
         self._persist = persist
         self._truncate = truncate
 
@@ -51,20 +51,20 @@ class Setting(AbjadObject):
         return self._persist
 
     @property
+    def selector(self):
+        '''Setting selector.
+
+        Return selector or none.
+        '''
+        return self._selector
+
+    @property
     def source(self):
         '''Setting source.
 
         Many different return types are possible.
         '''
         return self._source
-
-    @property
-    def target(self):
-        '''Setting target.
-
-        Return selector or none.
-        '''
-        return self._target
 
     @property
     def truncate(self):

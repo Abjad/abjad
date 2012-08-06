@@ -285,7 +285,7 @@ class ConcreteInterpreter(Interpreter):
             return []
         rhythm_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioPartSelector):
+            if isinstance(resolved_single_context_setting.selector, selectortools.CountRatioPartSelector):
                 raise Exception('implement me when it comes time.')
             else:
                 rhythm_command = interpretertools.RhythmCommand(
@@ -403,7 +403,7 @@ class ConcreteInterpreter(Interpreter):
         uninterpreted_division_command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             segment_name,
-            resolved_single_context_setting.target.context_name,
+            resolved_single_context_setting.selector.context_name,
             duration,
             start_offset,
             stop_offset,
@@ -466,7 +466,7 @@ class ConcreteInterpreter(Interpreter):
             single_context_setting.attribute,
             single_context_setting.source,
             value,
-            single_context_setting.target,
+            single_context_setting.selector,
             )
         resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
             *args,
@@ -486,7 +486,7 @@ class ConcreteInterpreter(Interpreter):
 
     def resolved_single_context_setting_to_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_specification):
-        selector = resolved_single_context_setting.target
+        selector = resolved_single_context_setting.selector
         assert selector.segment_identifier == segment_specification.segment_name
         duration = selector.get_duration(self.score_specification)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
@@ -555,7 +555,7 @@ class ConcreteInterpreter(Interpreter):
 
     def store_resolved_single_context_setting(self,
         segment_specification, resolved_single_context_setting, clear_persistent_first=False):
-        context_name = resolved_single_context_setting.target.context_name
+        context_name = resolved_single_context_setting.selector.context_name
         if context_name is None:
             context_name = segment_specification.resolved_single_context_settings.score_name
         attribute = resolved_single_context_setting.attribute
@@ -623,7 +623,7 @@ class ConcreteInterpreter(Interpreter):
         If setting persists then store setting in score resolved single-context settings, too.
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
-        selector = resolved_single_context_setting.target
+        selector = resolved_single_context_setting.selector
         segment_specification = self.get_segment_specification(selector)
         self.store_resolved_single_context_setting(
             segment_specification, resolved_single_context_setting,
@@ -658,9 +658,8 @@ class ConcreteInterpreter(Interpreter):
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
                 setting = setting.copy_setting_to_segment(segment_specification.segment_name)
-            #assert setting.target.context == segment_specification.score_name, repr(setting)
-            assert setting.target.context_name == segment_specification.score_name, repr(setting)
-            assert setting.target.timespan == segment_specification.timespan, [
+            assert setting.selector.context_name == segment_specification.score_name, repr(setting)
+            assert setting.selector.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting(setting, clear_persistent_first=True)
 

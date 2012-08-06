@@ -10,7 +10,7 @@ class MultipleContextSetting(Setting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `source` for multiple-context `target`:: 
+    Set `attribute` to `source` for multiple-context `selector`:: 
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -48,10 +48,10 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute, source, target, context_names=None, persist=True, truncate=False):
-        Setting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
+    def __init__(self, attribute, source, selector, context_names=None, persist=True, truncate=False):
+        Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
-        assert self.target.context_names == context_names, repr((self.target.context_names, context_names))
+        assert self.selector.context_names == context_names, repr((self.selector.context_names, context_names))
         self._context_names = context_names
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -77,13 +77,13 @@ class MultipleContextSetting(Setting):
         context_names = self.context_names
         assert isinstance(context_names, list), repr(context_names)
         for context_name in context_names:
-            if isinstance(self.target, selectortools.RatioPartSelector):
-                target = copy.deepcopy(self.target)
-                target.reference._context_name = context_name
+            if isinstance(self.selector, selectortools.RatioPartSelector):
+                selector = copy.deepcopy(self.selector)
+                selector.reference._context_name = context_name
             else:
-                target = selectortools.SingleContextTimespanSelector(context_name, 
-                    timespan=copy.deepcopy(self.target.timespan))
-            setting = settingtools.SingleContextSetting(self.attribute, self.source, target,
+                selector = selectortools.SingleContextTimespanSelector(context_name, 
+                    timespan=copy.deepcopy(self.selector.timespan))
+            setting = settingtools.SingleContextSetting(self.attribute, self.source, selector,
                 context_name=context_name,
                 persist=self.persist, truncate=self.truncate)
             settings.append(setting)

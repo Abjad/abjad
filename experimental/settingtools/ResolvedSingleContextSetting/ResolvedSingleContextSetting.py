@@ -9,7 +9,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `resolved_value` for single-context `target`::
+    Set `attribute` to `resolved_value` for single-context `selector`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -64,8 +64,8 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, resolved_value, target, persist=True, truncate=False, fresh=True):
-        SingleContextSetting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
+    def __init__(self, attribute, source, resolved_value, selector, persist=True, truncate=False, fresh=True):
+        SingleContextSetting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert resolved_value is not None, repr(resolved_value)
         assert isinstance(fresh, bool), repr(fresh)
         self._resolved_value = resolved_value

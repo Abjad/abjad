@@ -71,7 +71,7 @@ class SegmentSpecification(Specification):
 
     # DEPRECATED: eliminate multiple-context selectors.
     # DEPRECATED: then pass selectors and contexts separately everywhere in system.
-    def _set_attribute(self, attribute, target, source, 
+    def _set_attribute(self, attribute, selector, source, 
         callback=None, contexts=None, count=None, offset=None, persist=True, truncate=False):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
@@ -79,9 +79,9 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         contexts = self._context_token_to_context_names(contexts)
         assert isinstance(contexts, (list, type(None)))
-        target = self._expr_to_selector(target)
+        selector = self._expr_to_selector(selector)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
-        multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, target,
+        multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, selector,
             context_names=contexts, persist=persist, truncate=truncate)
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
@@ -91,8 +91,8 @@ class SegmentSpecification(Specification):
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         contexts = self._context_token_to_context_names(contexts)
-        target = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
-        return self._set_attribute(attribute, target, source,
+        selector = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
+        return self._set_attribute(attribute, selector, source,
             callback=callback, contexts=contexts, count=count, 
             offset=offset, persist=persist, truncate=truncate)
 

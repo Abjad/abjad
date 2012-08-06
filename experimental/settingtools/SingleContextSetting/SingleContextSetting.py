@@ -11,7 +11,7 @@ class SingleContextSetting(Setting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `source` for single-context `target`::
+    Set `attribute` to `source` for single-context `selector`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -63,9 +63,8 @@ class SingleContextSetting(Setting):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, target, context_name=None, persist=True, truncate=False, fresh=True):
-    #def __init__(self, attribute, source, target, persist=True, truncate=False, fresh=True):
-        Setting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
+    def __init__(self, attribute, source, selector, context_name=None, persist=True, truncate=False, fresh=True):
+        Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         assert isinstance(fresh, bool)
         self._fresh = fresh
@@ -123,21 +122,21 @@ class SingleContextSetting(Setting):
     ### PUBLIC METHODS ###
 
     def copy_setting_to_segment(self, segment):
-        '''Create new setting. Set new setting target to timespan of `segment`.
+        '''Create new setting. Set new setting selector to timespan of `segment`.
         Set new setting `fresh` to false.
 
         Only works when self encompasses one segment exactly.
 
         Return new setting.
         '''
-        assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
+        assert self.selector.timespan.encompasses_one_segment_exactly, repr(self)
         new = copy.deepcopy(self)
         new.set_setting_to_segment(segment)
         new._fresh = False
         return new
 
     def set_setting_to_segment(self, segment):
-        '''Set target of self to timespan of entire `segment`.
+        '''Set selector of self to timespan of entire `segment`.
 
         Only works when self encompasses one segment exactly.
 
@@ -145,7 +144,7 @@ class SingleContextSetting(Setting):
         '''
         from experimental import selectortools
         from experimental import specificationtools
-        assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
+        assert self.selector.timespan.encompasses_one_segment_exactly, repr(self)
         segment_name = helpertools.expr_to_segment_name(segment)
         segment_selector = selectortools.SegmentItemSelector(identifier=segment_name)
-        self.target._timespan = segment_selector.timespan
+        self.selector._timespan = segment_selector.timespan
