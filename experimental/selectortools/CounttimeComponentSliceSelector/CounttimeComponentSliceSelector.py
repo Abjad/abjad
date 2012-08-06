@@ -3,7 +3,7 @@ from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
+class CounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components in `reference` container
@@ -13,23 +13,23 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     Select the first five counttime components::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector(stop_identifier=5)
-        SingleContextCounttimeComponentSliceSelector(stop_identifier=5)
+        >>> selectortools.CounttimeComponentSliceSelector(stop_identifier=5)
+        CounttimeComponentSliceSelector(stop_identifier=5)
 
     Select the last five counttime components::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector(start_identifier=-5)
-        SingleContextCounttimeComponentSliceSelector(start_identifier=-5)
+        >>> selectortools.CounttimeComponentSliceSelector(start_identifier=-5)
+        CounttimeComponentSliceSelector(start_identifier=-5)
 
     Select counttime components from ``5`` up to but not including ``-5``::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
-        SingleContextCounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
+        >>> selectortools.CounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
+        CounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
 
     Select all counttime components::
 
-        >>> selectortools.SingleContextCounttimeComponentSliceSelector()
-        SingleContextCounttimeComponentSliceSelector()
+        >>> selectortools.CounttimeComponentSliceSelector()
+        CounttimeComponentSliceSelector()
 
     Select counttime measure ``3`` to starting during segment ``'red'``.
     Then select the last three leaves in tuplet ``-1`` in this measure::
@@ -39,27 +39,27 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
 
     ::
 
-        >>> measure_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
+        >>> measure_selector = selectortools.CounttimeComponentSliceSelector(
         ... inequality=inequality, klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
-        >>> tuplet_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
+        >>> tuplet_selector = selectortools.CounttimeComponentSliceSelector(
         ... selector=measure_selector, klass=Tuplet, start_identifier=-1)
 
     ::
 
-        >>> leaf_slice_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
+        >>> leaf_slice_selector = selectortools.CounttimeComponentSliceSelector(
         ... selector=tuplet_selector, klass=leaftools.Leaf, start_identifier=-3)
 
     ::
 
         >>> z(leaf_slice_selector)
-        selectortools.SingleContextCounttimeComponentSliceSelector(
+        selectortools.CounttimeComponentSliceSelector(
             klass=leaftools.Leaf,
-            selector=selectortools.SingleContextCounttimeComponentSliceSelector(
+            selector=selectortools.CounttimeComponentSliceSelector(
                 klass=tuplettools.Tuplet,
-                selector=selectortools.SingleContextCounttimeComponentSliceSelector(
+                selector=selectortools.CounttimeComponentSliceSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
