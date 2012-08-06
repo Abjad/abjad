@@ -291,6 +291,45 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
+    def request_divisions(self, voice, start_segment, segment_count=1):
+        r'''Request `voice` divisions starting in `start_segment`
+        for a total of `segment_count` segments.
+
+            >>> selector = score_specification.request_divisions('Voice 1', 'red', segment_count=3)
+
+        ::
+
+            >>> z(selector)
+            selectortools.SingleContextDivisionSliceSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSliceSelector(
+                            start_identifier='red',
+                            stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
+                            )
+                        )
+                    )
+                )
+
+        Return single-context division slice selector.
+        '''
+        # process input
+        start_segment_name = helpertools.expr_to_segment_name(start_segment)
+        voice_name = helpertools.expr_to_component_name(voice)
+
+        # make selector
+        expression = '{!r} + {}'.format(start_segment_name, segment_count)
+        held_expression = helpertools.SegmentIdentifierExpression(expression)
+        start, stop = start_segment_name, held_expression
+        selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
+        inequality = timespantools.expr_starts_during_timespan(selector.timespan)
+        selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
+
+        # return selector
+        return selector
+
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
 
@@ -367,42 +406,3 @@ class ScoreSpecification(Specification):
             start_offset_pair = self.segment_offset_pairs[start_segment_index]
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
-
-    def select_divisions(self, voice, start_segment, segment_count=1):
-        r'''Select `voice` divisions starting in `start_segment`
-        for a total of `segment_count` segments.
-
-            >>> selector = score_specification.select_divisions('Voice 1', 'red', segment_count=3)
-
-        ::
-
-            >>> z(selector)
-            selectortools.SingleContextDivisionSliceSelector(
-                'Voice 1',
-                inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentSliceSelector(
-                            start_identifier='red',
-                            stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                            )
-                        )
-                    )
-                )
-
-        Return single-context division slice selector.
-        '''
-        # process input
-        start_segment_name = helpertools.expr_to_segment_name(start_segment)
-        voice_name = helpertools.expr_to_component_name(voice)
-
-        # make selector
-        expression = '{!r} + {}'.format(start_segment_name, segment_count)
-        held_expression = helpertools.SegmentIdentifierExpression(expression)
-        start, stop = start_segment_name, held_expression
-        selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
-        inequality = timespantools.expr_starts_during_timespan(selector.timespan)
-        selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
-
-        # return selector
-        return selector
