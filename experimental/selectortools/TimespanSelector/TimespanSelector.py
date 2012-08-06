@@ -1,5 +1,3 @@
-from abc import ABCMeta
-from abc import abstractmethod
 from experimental.selectortools.Selector import Selector
 
 
@@ -9,13 +7,8 @@ class TimespanSelector(Selector):
     Timespan selector.
     '''
     
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = ABCMeta
-
     ### INTIALIZER ###
 
-    @abstractmethod
     def __init__(self, timespan):
         from experimental import timespantools
         timespan = timespantools.expr_to_timespan(timespan)

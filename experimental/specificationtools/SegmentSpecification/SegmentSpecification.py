@@ -73,12 +73,11 @@ class SegmentSpecification(Specification):
     # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute(self, attribute, selector, source, 
         callback=None, contexts=None, count=None, offset=None, persist=True, truncate=False):
+        contexts = self._context_token_to_context_names(contexts)
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persist, type(True)), repr(persist)
         assert isinstance(truncate, type(True)), repr(truncate)
-        contexts = self._context_token_to_context_names(contexts)
-        assert isinstance(contexts, (list, type(None)))
         selector = self._expr_to_selector(selector)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, selector,
@@ -92,6 +91,7 @@ class SegmentSpecification(Specification):
         callback=None, count=None, offset=None, persist=True, truncate=False):
         contexts = self._context_token_to_context_names(contexts)
         selector = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
+        #selector = selectortools.SingleContextTimespanSelector('FOO', timespan)
         return self._set_attribute(attribute, selector, source,
             callback=callback, contexts=contexts, count=count, 
             offset=offset, persist=persist, truncate=truncate)

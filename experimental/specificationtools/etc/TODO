@@ -7,4 +7,6 @@
    This will also mean modeling context explicitly in SingleContextSetting
    and MultipleContextSetting.
 
-3. Make divisions (ie, nonreduced fractions) partitionable.
+3. Part of 2 will mean a TimespanSelector that is free of context. Which is good.
+
+4. Make divisions (ie, nonreduced fractions) partitionable.
