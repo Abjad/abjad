@@ -34,6 +34,7 @@ class MultipleContextSetting(Setting):
                     ),
                 context_names=['Grouped Rhythmic Staves Score']
                 ),
+            context_names=['Grouped Rhythmic Staves Score'],
             persist=True,
             truncate=False
             )
@@ -50,6 +51,7 @@ class MultipleContextSetting(Setting):
     def __init__(self, attribute, source, target, context_names=None, persist=True, truncate=False):
         Setting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
+        assert self.target.context_names == context_names, repr((self.target.context_names, context_names))
         self._context_names = context_names
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -74,6 +76,7 @@ class MultipleContextSetting(Setting):
         from experimental import specificationtools
         settings = []
         context_names = self.target.context_names or [None]
+        #context_names = self.context_names or [None]
         assert isinstance(context_names, list), repr(context_names)
         for context_name in context_names:
             if isinstance(self.target, selectortools.RatioPartSelector):

@@ -82,8 +82,11 @@ class SegmentSpecification(Specification):
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persist, type(True)), repr(persist)
         assert isinstance(truncate, type(True)), repr(truncate)
-        if isinstance(contexts, str):
-            contexts = [contexts]
+#        if isinstance(contexts, str):
+#            contexts = [contexts]
+#        if contexts is None:
+#            contexts = [self.score_name]
+        contexts = self._context_token_to_context_names(contexts)
         assert isinstance(contexts, (list, type(None)))
         target = self._expr_to_selector(target)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
@@ -96,8 +99,9 @@ class SegmentSpecification(Specification):
     # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
-        if isinstance(contexts, str):
-            contexts = [contexts]
+#        if isinstance(contexts, str):
+#            contexts = [contexts]
+        contexts = self._context_token_to_context_names(contexts)
         target = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
         return self._set_attribute(attribute, target, source,
             callback=callback, contexts=contexts, count=count, 
@@ -648,28 +652,6 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_segment_timespan_ratio_part(self, ratio, part):
-        r'''Select the first third of segment ``'red'``::
-
-            >>> selector = segment.select_segment_timespan_ratio_part((1, 1, 1), 0)
-
-        ::
-
-            >>> z(selector)
-            selectortools.TimeRatioPartSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return duration-ratio part selector.
-        '''
-        return selectortools.TimeRatioPartSelector(self.timespan, ratio, part)
-
     def select_segment_timespan(self, contexts=None):
         '''Select contexts::
 
@@ -691,6 +673,28 @@ class SegmentSpecification(Specification):
         '''
         contexts = self._context_token_to_context_names(contexts)
         return selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=self.timespan)
+
+    def select_segment_timespan_ratio_part(self, ratio, part):
+        r'''Select the first third of segment ``'red'``::
+
+            >>> selector = segment.select_segment_timespan_ratio_part((1, 1, 1), 0)
+
+        ::
+
+            >>> z(selector)
+            selectortools.TimeRatioPartSelector(
+                timespantools.SingleSourceTimespan(
+                    selector=selectortools.SegmentItemSelector(
+                        identifier='red'
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                0
+                )
+
+        Return duration-ratio part selector.
+        '''
+        return selectortools.TimeRatioPartSelector(self.timespan, ratio, part)
 
     def set_aggregate(self, source, contexts=None,
         count=None, persist=True, offset=None):
@@ -847,7 +851,7 @@ class SegmentSpecification(Specification):
         contexts = contexts or self
         attribute = 'rhythm'
         return self._set_attribute(attribute, contexts, source, 
-            count=count, offset=offset, persist=persist)
+            contexts=contexts, count=count, offset=offset, persist=persist)
 
     def set_retrograde_divisions(self, source, contexts=None,
         count=None, offset=None, persist=True, truncate=True):
