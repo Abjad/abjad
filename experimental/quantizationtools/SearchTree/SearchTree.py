@@ -73,13 +73,14 @@ class SearchTree(abctools.AbjadObject):
         for leaf_one, leaf_two in sequencetools.iterate_sequence_pairwise_strict(leaves):
             if (leaf_one.succeeding_q_event_proxies or leaf_two.preceding_q_event_proxies) \
                 and leaf_one.is_divisible:
-                #if len(leaf_one.q_event_proxies) == 1 and leaf_one.q_event_proxies[0].offset == leaf_one.offset:
-                #    continue # a perfect match, don't bother to continue subdivision
-                parentage_ratios = leaf_one.parentage_ratios
-                leaf_subdivisions = self.find_leaf_subdivisions(parentage_ratios)
-                if leaf_subdivisions:
-                    indices.append(i)
-                    subdivisions.append(tuple(leaf_subdivisions))
+                if len(leaf_one.q_event_proxies) == 1 and leaf_one.q_event_proxies[0].offset == leaf_one.offset:
+                    pass # a perfect match, don't bother to continue subdivision
+                else:
+                    parentage_ratios = leaf_one.parentage_ratios
+                    leaf_subdivisions = self.find_leaf_subdivisions(parentage_ratios)
+                    if leaf_subdivisions:
+                        indices.append(i)
+                        subdivisions.append(tuple(leaf_subdivisions))
             i += 1
         return indices, subdivisions
 
