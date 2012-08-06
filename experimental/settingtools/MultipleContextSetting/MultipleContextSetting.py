@@ -74,7 +74,6 @@ class MultipleContextSetting(Setting):
         from experimental import selectortools
         from experimental import settingtools
         settings = []
-        #context_names = self.target.context_names or [None]
         context_names = self.context_names
         assert isinstance(context_names, list), repr(context_names)
         for context_name in context_names:
@@ -85,6 +84,7 @@ class MultipleContextSetting(Setting):
                 target = selectortools.SingleContextTimespanSelector(context_name, 
                     timespan=copy.deepcopy(self.target.timespan))
             setting = settingtools.SingleContextSetting(self.attribute, self.source, target,
+                context_name=context_name,
                 persist=self.persist, truncate=self.truncate)
             settings.append(setting)
         return settings

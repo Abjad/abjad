@@ -48,6 +48,7 @@ class SingleContextSetting(Setting):
                         )
                     )
                 ),
+            context_name='Voice 1',
             persist=True,
             truncate=False,
             fresh=True
@@ -62,23 +63,23 @@ class SingleContextSetting(Setting):
 
     ### INITIALIZER ###
 
-    #def __init__(self, attribute, source, target, context_name=None, persist=True, truncate=False, fresh=True):
-    def __init__(self, attribute, source, target, persist=True, truncate=False, fresh=True):
+    def __init__(self, attribute, source, target, context_name=None, persist=True, truncate=False, fresh=True):
+    #def __init__(self, attribute, source, target, persist=True, truncate=False, fresh=True):
         Setting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
-        #assert isinstance(context_name, (str, type(None)))
+        assert isinstance(context_name, (str, type(None)))
         assert isinstance(fresh, bool)
         self._fresh = fresh
-        #self._context_name = context_name
+        self._context_name = context_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-#    @property
-#    def context_name(self):
-#        '''Single-context setting context name.
-#
-#        Return string or none.
-#        '''
-#        return self._context_name
+    @property
+    def context_name(self):
+        '''Single-context setting context name.
+
+        Return string or none.
+        '''
+        return self._context_name
 
     @property
     def fresh(self):
@@ -109,6 +110,7 @@ class SingleContextSetting(Setting):
                             )
                         )
                     ),
+                context_name='Voice 1',
                 persist=True,
                 truncate=False,
                 fresh=True

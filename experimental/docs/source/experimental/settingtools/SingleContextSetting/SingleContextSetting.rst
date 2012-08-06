@@ -13,6 +13,8 @@ Read-only Properties
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.context_name
+
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.fresh
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persist
