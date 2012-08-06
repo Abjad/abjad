@@ -147,8 +147,9 @@ class QTarget(abctools.AbjadObject):
             if grace_container:
                 grace_container(new_leaf)
             leaf.parent[leaf.parent.index(leaf)] = new_leaf
-            leaf = new_leaf
-            tietools.TieSpanner(leaf)
+            marktools.move_marks(leaf, new_leaf)
+            tietools.TieSpanner(new_leaf)
+            return new_leaf
         return leaf
 
     @abstractmethod

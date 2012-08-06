@@ -16,16 +16,16 @@ class ConcatenatingGraceHandler(GraceHandler):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_duration',)
+    __slots__ = ('_grace_duration',)
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=None):
-        if duration is None:
-            duration = (1, 16)
-        duration = durationtools.Duration(duration)
-        assert durationtools.is_binary_rational(duration)
-        self._duration = duration
+    def __init__(self, grace_duration=None):
+        if grace_duration is None:
+            grace_duration = (1, 16)
+        grace_duration = durationtools.Duration(grace_duration)
+        assert durationtools.is_binary_rational(grace_duration)
+        self._grace_duration = grace_duration
 
     ### SPECIAL METHODS ###
 
@@ -43,13 +43,19 @@ class ConcatenatingGraceHandler(GraceHandler):
             for q_event in grace_events:
                 if isinstance(q_event, PitchedQEvent):
                     if len(q_event.pitches) == 1:
-                        leaf = notetools.Note(q_event.pitches[0], self.duration)
+                        leaf = notetools.Note(q_event.pitches[0], self.grace_duration)
                     else:
-                        leaf = chordtools.Chord(q_event.pitches, self.duration)
+                        leaf = chordtools.Chord(q_event.pitches, self.grace_duration)
                 else:
-                    leaf = resttools.Rest(self.duration)
+                    leaf = resttools.Rest(self.grace_duration)
                 grace_container.append(leaf)
         else:
             grace_container = None
 
         return pitches, grace_container
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def grace_duration(self):
+        return self._grace_duration
