@@ -15,6 +15,14 @@ class TimespanSelector(Selector):
         Selector.__init__(self)
         self._timespan = timespan
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.timespan == expr.timespan:
+                return True
+        return False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

@@ -60,14 +60,10 @@ class SegmentSpecification(Specification):
 
     # DEPRECATED: pass timespan and contexts separately everywhere in system
     def _expr_to_selector(self, expr):
-        r'''Return `expr` when `expr` is already a selector.
-        Otherwise assume `expr` to be contexts and create and 
-        return a multiple-context timespan selector.
-        '''
         if isinstance(expr, selectortools.Selector):
             return expr
-        elif isinstance(expr, (str, list, type(self))):
-            return self.select_segment_timespan(contexts=expr)
+        else:
+            return self.select_segment_timespan()
 
     # DEPRECATED: eliminate multiple-context selectors.
     # DEPRECATED: then pass selectors and contexts separately everywhere in system.
@@ -79,6 +75,7 @@ class SegmentSpecification(Specification):
         assert isinstance(persist, type(True)), repr(persist)
         assert isinstance(truncate, type(True)), repr(truncate)
         selector = self._expr_to_selector(selector)
+        assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, selector,
             context_names=contexts, persist=persist, truncate=truncate)
@@ -638,7 +635,7 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_segment_timespan(self, contexts=None):
+    def select_segment_timespan(self):
         '''Select contexts::
 
             >>> selector = segment.select_segment_timespan()
@@ -646,19 +643,17 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.MultipleContextTimespanSelector(
+            selectortools.TimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
                         identifier='red'
                         )
-                    ),
-                context_names=['Grouped Rhythmic Staves Score']
+                    )
                 )
 
-        Return multiple-context timespan selector.
+        Return timespan selector.
         '''
-        contexts = self._context_token_to_context_names(contexts)
-        return selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=self.timespan)
+        return selectortools.TimespanSelector(self.timespan)
 
     def select_segment_timespan_ratio_part(self, ratio, part):
         r'''Select the first third of segment ``'red'``::
@@ -741,8 +736,7 @@ class SegmentSpecification(Specification):
 
         Create, store and return ``MultipleContextSetting``.
         '''
-        #timespan = timespan or self.timespan
-        selector = selector or self.timespan # TODO: eventually use self.select_segment_timespan() instead
+        selector = selector or self.select_segment_timespan()
         contexts = contexts or [self.score_name]
         return self._set_attribute_new(
             'divisions',

@@ -49,8 +49,6 @@ Special Methods
 
 .. automethod:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

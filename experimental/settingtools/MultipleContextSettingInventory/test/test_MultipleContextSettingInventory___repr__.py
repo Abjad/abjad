@@ -1,6 +1,7 @@
 from abjad.tools import *
 from experimental import *
 from experimental.selectortools.SegmentItemSelector import SegmentItemSelector
+from experimental.selectortools.TimespanSelector import TimespanSelector
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification

@@ -27,13 +27,12 @@ def test_MultipleContextSettingInventory_storage_format_01():
         settingtools.MultipleContextSetting(
             'time_signatures',
             [(4, 8), (3, 8)],
-            selectortools.MultipleContextTimespanSelector(
+            selectortools.TimespanSelector(
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentItemSelector(
                         identifier='red'
                         )
-                    ),
-                context_names=['Grouped Rhythmic Staves Score']
+                    )
                 ),
             context_names=['Grouped Rhythmic Staves Score'],
             persist=True,
@@ -41,8 +40,6 @@ def test_MultipleContextSettingInventory_storage_format_01():
             )
         ])
     '''
-
-    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\ttimespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentItemSelector(\n\t\t\t\t\tidentifier='red'\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\tcontext_names=['Grouped Rhythmic Staves Score']\n\t\t\t),\n\t\tcontext_names=['Grouped Rhythmic Staves Score'],\n\t\tpersist=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     multiple_context_setting_inventory_2 = eval(storage_format)
 
