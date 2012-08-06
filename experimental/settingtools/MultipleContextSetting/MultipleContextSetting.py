@@ -73,10 +73,9 @@ class MultipleContextSetting(Setting):
         '''
         from experimental import selectortools
         from experimental import settingtools
-        from experimental import specificationtools
         settings = []
-        context_names = self.target.context_names or [None]
-        #context_names = self.context_names or [None]
+        #context_names = self.target.context_names or [None]
+        context_names = self.context_names
         assert isinstance(context_names, list), repr(context_names)
         for context_name in context_names:
             if isinstance(self.target, selectortools.RatioPartSelector):

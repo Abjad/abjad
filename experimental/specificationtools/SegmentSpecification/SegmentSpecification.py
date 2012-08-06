@@ -73,19 +73,10 @@ class SegmentSpecification(Specification):
     # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute(self, attribute, target, source, 
         callback=None, contexts=None, count=None, offset=None, persist=True, truncate=False):
-        r'''Generalized method to create ``MultipleContextSetting`` objects.
-        Select `attribute` from `source` and set on `target`.
-        All other set methods call this method.
-        Create, store and return ``MultipleContextSetting``.
-        '''
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persist, type(True)), repr(persist)
         assert isinstance(truncate, type(True)), repr(truncate)
-#        if isinstance(contexts, str):
-#            contexts = [contexts]
-#        if contexts is None:
-#            contexts = [self.score_name]
         contexts = self._context_token_to_context_names(contexts)
         assert isinstance(contexts, (list, type(None)))
         target = self._expr_to_selector(target)
@@ -99,8 +90,6 @@ class SegmentSpecification(Specification):
     # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
-#        if isinstance(contexts, str):
-#            contexts = [contexts]
         contexts = self._context_token_to_context_names(contexts)
         target = selectortools.MultipleContextTimespanSelector(context_names=contexts, timespan=timespan)
         return self._set_attribute(attribute, target, source,
