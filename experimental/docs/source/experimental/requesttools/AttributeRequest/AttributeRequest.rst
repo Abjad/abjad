@@ -9,6 +9,14 @@ requesttools.AttributeRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.attribute
+
+.. autoattribute:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.context_name
+
+.. autoattribute:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.segment_identifier
+
+.. autoattribute:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.selector
+
 .. autoattribute:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

@@ -152,7 +152,7 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def attribute_request_to_resolved_single_context_setting(self, attribute_request):
-        segment_specification = self.get_segment_specification(attribute_request.segment_name)
+        segment_specification = self.get_segment_specification(attribute_request.segment_identifier)
         context_proxy = segment_specification.resolved_single_context_settings[attribute_request.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=attribute_request.attribute)
         return resolved_single_context_setting

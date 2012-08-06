@@ -310,12 +310,22 @@ class SegmentSpecification(Specification):
     def request_time_signatures(self, context_name=None, callback=None, count=None, offset=None):
         r'''Select time signatures in `context_name` that start during segment::
 
-            >>> segment.request_time_signatures()
-            AttributeRequest('time_signatures', 'red')
+            >>> request = segment.request_time_signatures()
+
+        ::
+
+            >>> z(request)
+            requesttools.AttributeRequest(
+                'time_signatures',
+                selectortools.SegmentItemSelector(
+                    identifier='red'
+                    )
+                )
 
         Return attribute request.
         '''
-        return requesttools.AttributeRequest('time_signatures', self.segment_name, 
+        selector = self.select_segment()
+        return requesttools.AttributeRequest('time_signatures', selector,
             context_name=context_name, callback=callback, count=count, offset=offset)
 
     def select_background_measure(self, n):
@@ -627,6 +637,9 @@ class SegmentSpecification(Specification):
         else:
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
+
+    def select_segment(self):
+        return selectortools.SegmentItemSelector(identifier=self.segment_name)
 
     def select_segment_timespan(self):
         '''Select contexts::
