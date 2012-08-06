@@ -206,6 +206,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/quantizationtools/BeatHierarchy/BeatHierarchy
    experimental/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
    experimental/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
    experimental/quantizationtools/GraceHandler/GraceHandler
