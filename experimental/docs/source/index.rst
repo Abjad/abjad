@@ -317,13 +317,6 @@ Unstable packages (load manually)
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
 
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/selectortools/selector_to_segment_identifier
-
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
