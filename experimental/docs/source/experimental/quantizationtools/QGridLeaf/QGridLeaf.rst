@@ -25,6 +25,8 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.preceding_q_event_proxies
+
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolated_duration
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
@@ -33,7 +35,7 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
-.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.q_events
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.q_event_proxies
 
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.root_node
 
@@ -44,6 +46,8 @@ Read-only Properties
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.succeeding_q_event_proxies
 
 Read/write Properties
 ---------------------
