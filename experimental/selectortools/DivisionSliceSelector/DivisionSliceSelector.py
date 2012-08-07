@@ -4,7 +4,7 @@ from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
+class DivisionSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -13,8 +13,8 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
 
     Select all ``'Voice 1'`` divisions in score::
 
-        >>> selectortools.SingleContextDivisionSliceSelector('Voice 1')
-        SingleContextDivisionSliceSelector('Voice 1')
+        >>> selectortools.DivisionSliceSelector('Voice 1')
+        DivisionSliceSelector('Voice 1')
 
     Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
 
@@ -24,12 +24,12 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
 
     ::
 
-        >>> divisions = selectortools.SingleContextDivisionSliceSelector('Voice 1', inequality=inequality)
+        >>> divisions = selectortools.DivisionSliceSelector('Voice 1', inequality=inequality)
 
     ::
 
         >>> z(divisions)
-        selectortools.SingleContextDivisionSliceSelector(
+        selectortools.DivisionSliceSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -43,12 +43,12 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
 
     Select the last two ``'Voice 1'`` divisions starting during segment ``'red'``::
 
-        >>> divisions = selectortools.SingleContextDivisionSliceSelector('Voice 1', inequality=inequality, start_identifier=-2)
+        >>> divisions = selectortools.DivisionSliceSelector('Voice 1', inequality=inequality, start_identifier=-2)
 
     ::
 
         >>> z(divisions)
-        selectortools.SingleContextDivisionSliceSelector(
+        selectortools.DivisionSliceSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
