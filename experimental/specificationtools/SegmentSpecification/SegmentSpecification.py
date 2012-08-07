@@ -74,13 +74,9 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         selector = self._expr_to_selector(selector)
         assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
-        #self._debug(source, 'set_attribute')
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
-        #self._debug(source, 'request')
         multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, selector,
             context_names=contexts, persist=persist, truncate=truncate)
-        #self._debug(multiple_context_setting, 'mcs')
-        #print ''
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
@@ -637,10 +633,23 @@ class SegmentSpecification(Specification):
         return selector
 
     def select_segment(self):
+        '''Select segment::
+
+            >>> selector = segment.select_segment()
+
+        ::
+
+            >>> z(selector)
+            selectortools.SegmentItemSelector(
+                identifier='red'
+                )
+
+        Return selector.
+        '''
         return selectortools.SegmentItemSelector(identifier=self.segment_name)
 
     def select_segment_timespan(self):
-        '''Select contexts::
+        '''Select segment timespan::
 
             >>> selector = segment.select_segment_timespan()
 
@@ -655,12 +664,12 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Return timespan selector.
+        Return selector.
         '''
         return selectortools.TimespanSelector(self.timespan)
 
     def select_segment_timespan_ratio_part(self, ratio, part):
-        r'''Select the first third of segment ``'red'``::
+        r'''Select the first third of the timespan of segment ``'red'``::
 
             >>> selector = segment.select_segment_timespan_ratio_part((1, 1, 1), 0)
 
@@ -677,8 +686,9 @@ class SegmentSpecification(Specification):
                 0
                 )
 
-        Return duration-ratio part selector.
+        Return selector.
         '''
+        # TODO: pass in self.select_segment() instead of self.timespan
         return selectortools.TimeRatioPartSelector(self.timespan, ratio, part)
 
     def set_aggregate(self, source, contexts=None,

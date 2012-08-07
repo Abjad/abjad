@@ -47,6 +47,8 @@ class TimeRatioPartSelector(RatioPartSelector):
     ### INITIALIZER ###
 
     def __init__(self, selector, ratio, part):
+        from experimental import selectortools
+        # TODO: assert isinstance(selector, selectortools.Selector)
         RatioPartSelector.__init__(self, selector, ratio, part)
 
     ### PUBLIC METHODS ###
