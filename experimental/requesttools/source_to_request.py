@@ -26,7 +26,6 @@ def source_to_request(source, callback=None, count=None, offset=None):
     '''
     from experimental import handlertools
     from experimental import requesttools
-    from experimental import selectortools
     from experimental import statalservertools
 
     assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
@@ -48,13 +47,6 @@ def source_to_request(source, callback=None, count=None, offset=None):
         if offset is not None:
             assert count is None
             request = requesttools.HandlerRequest(source, offset=offset)
-    # this branch is to be eventually deprecated
-    elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
-        if any([x is not None for x in (callback, count, offset)]):
-            request = copy.copy(source)
-            request.callback = callback
-            request.count = count
-            request.offset = offset
     elif any([x is not None for x in (callback, count, offset)]):
         raise ValueError("'callback', 'count' or 'offset' set on nonstatal source: {!r}.".format(source))
     else:
