@@ -47,7 +47,8 @@ class CountRatioPartSelector(RatioPartSelector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, part):
-        assert self._interprets_as_sliceable_selector(reference), repr(reference)
+        from experimental import selectortools
+        assert isinstance(reference, selectortools.SliceSelector)
         RatioPartSelector.__init__(self, reference, ratio, part)
 
     ### PUBLIC METHODS ###
