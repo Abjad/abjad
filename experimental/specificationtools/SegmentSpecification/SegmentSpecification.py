@@ -676,8 +676,8 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return selectortools.TimeRatioPartSelector(selector, ratio, part)
 
-    def set_aggregate(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_aggregate(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set aggregate of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -687,8 +687,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_articulations(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_articulations(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set articulations of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -698,8 +698,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_chord_treatment(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_chord_treatment(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set chord treatment of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -709,8 +709,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_divisions(self, source, selector=None, contexts=None,
-        callback=None, count=None, offset=None, persist=True, truncate=False):
+    def set_divisions(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set divisions of segment `contexts` to `source`::
 
             >>> setting = segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
@@ -742,8 +742,8 @@ class SegmentSpecification(Specification):
             callback=callback, contexts=contexts, count=count, 
             offset=offset, persist=persist, truncate=truncate)
 
-    def set_dynamics(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_dynamics(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set dynamics of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -753,8 +753,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_marks(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_marks(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set marks of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -764,8 +764,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_markup(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_markup(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set markup of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -775,8 +775,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_pitch_classes(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_pitch_classes(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set pitch-classes of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -786,8 +786,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_pitch_class_application(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_pitch_class_application(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set pitch-class application of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -797,8 +797,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_pitch_class_transform(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_pitch_class_transform(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set pitch-class transform of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -808,8 +808,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_registration(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_registration(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set registration of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -819,8 +819,10 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_rhythm(self, source, selector=None, contexts=None,
-        callback=None, count=None, offset=None, persist=True, truncate=False):
+    #def set_rhythm(self, source, selector=None, contexts=None,
+    #    callback=None, count=None, offset=None, persist=True, truncate=False):
+    def set_rhythm(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set rhythm of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -832,8 +834,8 @@ class SegmentSpecification(Specification):
             callback=callback, contexts=contexts, count=count, 
             offset=offset, persist=persist, truncate=truncate)
 
-    def set_retrograde_divisions(self, source, contexts=None,
-        count=None, offset=None, persist=True, truncate=True):
+    def set_retrograde_divisions(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=True):
         r'''Set divisions of segment `contexts` to retrograde `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -844,8 +846,8 @@ class SegmentSpecification(Specification):
         return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
-    def set_rotated_divisions(self, source, n, contexts=None,
-        count=None, offset=None, persist=True, truncate=True):
+    def set_rotated_divisions(self, source, n, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=True):
         r'''Set divisions of segment `contexts` to `source` rotated by integer `n`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -857,8 +859,8 @@ class SegmentSpecification(Specification):
         return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
-    def set_tempo(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_tempo(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set tempo of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
@@ -868,8 +870,8 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_time_signatures(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_time_signatures(self, source, callback=None, contexts=None, count=None, 
+        offset=None, persist=True, selector=None, truncate=False):
         r'''Set time signatures according to `source` for segment `contexts`.
 
         Create, store and return ``MultipleContextSetting``.
