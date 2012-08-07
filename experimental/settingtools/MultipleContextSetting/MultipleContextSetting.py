@@ -75,9 +75,10 @@ class MultipleContextSetting(Setting):
         context_names = self.context_names
         assert isinstance(context_names, list), repr(context_names)
         for context_name in context_names:
+            # TODO: eliminate type-check branching here
             if isinstance(self.selector, selectortools.RatioPartSelector):
                 selector = copy.deepcopy(self.selector)
-                selector.reference._context_name = context_name
+                selector.selector._context_name = context_name
             else:
                 selector = selectortools.TimespanSelector(copy.deepcopy(self.selector.timespan))
             setting = settingtools.SingleContextSetting(

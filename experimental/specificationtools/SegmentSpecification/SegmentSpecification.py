@@ -80,13 +80,11 @@ class SegmentSpecification(Specification):
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
-    def _set_attribute_new(self, attribute, source, selector=None, contexts=None,
-        callback=None, count=None, offset=None, persist=True, truncate=False):
-        contexts = self._context_token_to_context_names(contexts)
-        selector = selectortools.TimespanSelector(selector)
-        return self._set_attribute(attribute, selector, source,
-            callback=callback, contexts=contexts, count=count, 
-            offset=offset, persist=persist, truncate=truncate)
+#    def _set_attribute_new(self, attribute, source, selector=None, contexts=None,
+#        callback=None, count=None, offset=None, persist=True, truncate=False):
+#        return self._set_attribute(attribute, selector, source,
+#            callback=callback, contexts=contexts, count=count, 
+#            offset=offset, persist=persist, truncate=truncate)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -748,14 +746,12 @@ class SegmentSpecification(Specification):
 
         Create, store and return ``MultipleContextSetting``.
         '''
+        attribute = 'divisions'
         selector = selector or self.select_segment_timespan()
         contexts = contexts or [self.score_name]
-        return self._set_attribute_new(
-            'divisions',
-            source, selector=selector, contexts=contexts,
-            callback=callback, count=count, offset=offset,
-            persist=persist, truncate=truncate,
-            )
+        return self._set_attribute(attribute, selector, source,
+            callback=callback, contexts=contexts, count=count, 
+            offset=offset, persist=persist, truncate=truncate)
 
     def set_dynamics(self, source, contexts=None,
         count=None, persist=True, offset=None):
