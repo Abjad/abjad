@@ -65,28 +65,16 @@ class MultipleContextSetting(Setting):
     ### PUBLIC METHODS ###
 
     def unpack(self):
-        '''Unpack multiple-context setting.
-
-        Return list of single-context settings.
-        '''
-        from experimental import selectortools
         from experimental import settingtools
-        settings = []
-        context_names = self.context_names
-        assert isinstance(context_names, list), repr(context_names)
-        for context_name in context_names:
-            # TODO: eliminate type-check branching here
-            if isinstance(self.selector, selectortools.RatioPartSelector):
-                selector = copy.deepcopy(self.selector)
-                selector.selector._context_name = context_name
-            else:
-                selector = selectortools.TimespanSelector(copy.deepcopy(self.selector.timespan))
-            setting = settingtools.SingleContextSetting(
+        single_context_settings = []
+        for context_name in self.context_names:
+            selector = copy.deepcopy(self.selector)
+            single_context_setting = settingtools.SingleContextSetting(
                 self.attribute, 
                 self.source, 
                 selector,
                 context_name=context_name,
                 persist=self.persist, 
                 truncate=self.truncate)
-            settings.append(setting)
-        return settings
+            single_context_settings.append(single_context_setting)
+        return single_context_settings
