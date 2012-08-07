@@ -74,8 +74,8 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
         voice = helpertools.expr_to_component_name(voice)     
         self._voice = voice
 
-    def __repr__(self):
-        return '{}()'.format(self._class_name)
+#    def __repr__(self):
+#        return '{}()'.format(self._class_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

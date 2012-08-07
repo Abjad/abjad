@@ -185,7 +185,9 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
+    # this is to be eventually deprecated
     def division_request_to_divisions(self, division_request):
+        assert isinstance(division_request, selectortools.SingleContextDivisionSliceSelector)
         voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.voice)
         assert isinstance(voice, voicetools.Voice), voice
         division_region_division_lists = self.score_specification.contexts[voice.name][
@@ -194,12 +196,42 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
-        start_segment_expr = division_request.inequality.timespan.selector.start_identifier
-        stop_segment_expr = division_request.inequality.timespan.selector.stop_identifier
+        start_segment_identifier = division_request.inequality.timespan.selector.start_identifier
+        stop_segment_identifier = division_request.inequality.timespan.selector.stop_identifier
         start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
-            start_segment_expr)
+            start_segment_identifier)
         stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
-            stop_segment_expr)
+            stop_segment_identifier)
+        segment_count =  stop_segment_index - start_segment_index
+        start_offset, stop_offset = self.score_specification.segment_name_to_segment_offsets(
+            start_segment_index, segment_count)
+        total_amount = stop_offset - start_offset
+        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
+        divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
+        divisions = divisions[1]
+        if division_request.callback is not None:
+            divisions = division_request.callback(divisions)
+        return divisions
+
+    # this is to eventually replace the method immediately above
+    def division_request_to_divisions_new(self, division_request):
+        assert isinstance(division_request, requesttools.AttributeRequest)
+        assert division_request.attribute == 'divisions'
+        #self._debug(division_request, 'REQ')
+        voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.context_name)
+        assert isinstance(voice, voicetools.Voice), voice
+        division_region_division_lists = self.score_specification.contexts[voice.name][
+            'division_region_division_lists']
+        divisions = []
+        for division_region_division_list in division_region_division_lists:
+            divisions.extend(division_region_division_list)
+        assert isinstance(divisions, list), divisions
+        start_segment_identifier = division_request.selector.start_identifier
+        stop_segment_identifier = division_request.selector.stop_identifier
+        start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
+            start_segment_identifier)
+        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
+            stop_segment_identifier)
         segment_count =  stop_segment_index - start_segment_index
         start_offset, stop_offset = self.score_specification.segment_name_to_segment_offsets(
             start_segment_index, segment_count)
@@ -423,17 +455,24 @@ class ConcreteInterpreter(Interpreter):
         return voice_division_list
 
     def region_division_command_to_division_region_division_list(self, region_division_command):
-        if isinstance(region_division_command.resolved_value, list):
-            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.resolved_value]
+        #self._debug(region_division_command, 'rdc')
+        resolved_value = region_division_command.resolved_value
+        if isinstance(resolved_value, list):
+            divisions = [mathtools.NonreducedFraction(x) for x in resolved_value]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
-        elif isinstance(region_division_command.resolved_value, selectortools.SingleContextDivisionSliceSelector):
-            division_request = region_division_command.resolved_value
+        # this branch is to be eventually deprecated
+        elif isinstance(resolved_value, selectortools.SingleContextDivisionSliceSelector):
+            division_request = resolved_value
             divisions = self.division_request_to_divisions(division_request)
+        elif isinstance(resolved_value, requesttools.AttributeRequest):
+            assert resolved_value.attribute == 'divisions'
+            division_request = resolved_value
+            divisions = self.division_request_to_divisions_new(division_request)
         else:
-            raise NotImplementedError('implement for {!r}.'.format(region_division_command.resolved_value))
+            raise NotImplementedError('implement for {!r}.'.format(resolved_value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list.fresh = region_division_command.fresh
         division_region_division_list.truncate = region_division_command.truncate
@@ -601,7 +640,8 @@ class ConcreteInterpreter(Interpreter):
                     single_context_setting = resolved_single_context_setting.copy_setting_to_segment(
                         segment_specification)
                     single_context_settings.append(single_context_setting)
-            #self._debug(single_context_settings, 'SCS')
+            #for scs in single_context_settings:
+            #    self._debug(scs, 'SCS')
             #print ''
             self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
 
@@ -633,6 +673,7 @@ class ConcreteInterpreter(Interpreter):
         If setting persists then store setting in score resolved single-context settings, too.
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
+        #self._debug(resolved_single_context_setting, 'rscs')
         selector = resolved_single_context_setting.selector
         segment_specification = self.get_segment_specification(selector)
         self.store_resolved_single_context_setting(

@@ -7,13 +7,11 @@ from experimental.settingtools.MultipleContextSettingInventory import MultipleCo
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
-import py
 
 
 def test_MultipleContextSettingInventory___repr___01():
     '''Repr is evaluable.
     '''
-    py.test.skip('unskip after integrating division attribute requests and restoring full reprs.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
