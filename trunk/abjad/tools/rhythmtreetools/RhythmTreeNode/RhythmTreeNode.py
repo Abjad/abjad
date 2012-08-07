@@ -94,6 +94,15 @@ class RhythmTreeNode(abctools.AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def depth(self):
+        node = self
+        depth = 0
+        while node.parent is not None:
+            depth += 1
+            node = node.parent
+        return depth
+
+    @property
     def improper_parentage(self):
         node = self
         parentage = [node]
