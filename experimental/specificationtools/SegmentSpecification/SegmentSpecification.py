@@ -677,10 +677,8 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.TimeRatioPartSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
+                selectortools.SegmentItemSelector(
+                    identifier='red'
                     ),
                 mathtools.Ratio(1, 1, 1),
                 0
@@ -688,8 +686,8 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        # TODO: pass in self.select_segment() instead of self.timespan
-        return selectortools.TimeRatioPartSelector(self.timespan, ratio, part)
+        selector = self.select_segment()
+        return selectortools.TimeRatioPartSelector(selector, ratio, part)
 
     def set_aggregate(self, source, contexts=None,
         count=None, persist=True, offset=None):

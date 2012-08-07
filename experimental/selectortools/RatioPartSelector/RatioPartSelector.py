@@ -18,6 +18,8 @@ class RatioPartSelector(Selector):
 
     @abstractmethod
     def __init__(self, selector, ratio, part):
+        assert isinstance(selector, Selector)
+        assert isinstance(part, int)
         ratio = mathtools.Ratio(ratio)
         self._selector = selector
         self._ratio = ratio
