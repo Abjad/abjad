@@ -9,10 +9,6 @@ selectortools.CounttimeComponentSliceSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.context_name
-
-.. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.context_names
-
 .. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.identifiers
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`

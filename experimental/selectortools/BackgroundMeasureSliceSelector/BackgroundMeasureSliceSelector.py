@@ -131,18 +131,6 @@ class BackgroundMeasureSliceSelector(SliceSelector, InequalitySelector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
-        '''Return none.
-        '''
-        return
-
-    @property
-    def context_names(self):
-        '''Return empty list.
-        '''
-        return []
-
-    @property
     def klass(self):
         return self._klass
 

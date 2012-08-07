@@ -9,14 +9,6 @@ selectortools.TimeRatioPartSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.context_name
-
-    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
-
-.. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.context_names
-
-    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
-
 .. autoattribute:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.part
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`

@@ -45,22 +45,6 @@ class Selector(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
-        '''Name of context against which selector defines.
-
-        Return string or none.
-        '''
-        pass
-
-    @property
-    def context_names(self):
-        '''List of context names against which selector defines.
-
-        Return list of zero or more strings.
-        '''
-        pass
-
-    @property
     def segment_identifier(self):
         '''Selector segment identifier.
 

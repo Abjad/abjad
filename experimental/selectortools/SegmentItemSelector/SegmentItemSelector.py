@@ -42,18 +42,6 @@ class SegmentItemSelector(InequalitySelector):
     ### READ-ONLY PROPERTIES ###
 
     @property
-    def context_name(self):
-        '''Return none.
-        '''
-        return
-
-    @property
-    def context_names(self):
-        '''Return empty list.
-        '''
-        return []
-
-    @property
     def identifier(self):
         return self._identifier
 

@@ -26,18 +26,6 @@ class RatioPartSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
-        '''Return string or raise exception.
-        '''
-        return self.reference.context_name
-
-    @property
-    def context_names(self):
-        '''Return length-``0`` or -``1`` list.
-        '''
-        return self.reference.context_names
-
-    @property
     def part(self):
         '''Ratio-part selector part.
 
@@ -53,11 +41,12 @@ class RatioPartSelector(Selector):
         '''
         return self._ratio
 
+    # TODO: perhaps change name to 'self.selector'?
     @property
     def reference(self):
         '''Reference of count-ratio selector.
 
-        Return voice name or sliceable selector.
+        Return sliceable selector.
         '''
         return self._reference
 

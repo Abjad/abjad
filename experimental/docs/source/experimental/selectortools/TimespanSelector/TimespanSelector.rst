@@ -9,10 +9,6 @@ selectortools.TimespanSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.context_name
-
-.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.context_names
-
 .. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.segment_identifier
 
 .. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.storage_format

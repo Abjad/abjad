@@ -15,9 +15,6 @@ class TimespanSelector(Selector):
         Selector.__init__(self)
         self._timespan = timespan
 
-#    def __repr__(self):
-#        return '{}()'.format(self._class_name)
-    
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
@@ -27,14 +24,6 @@ class TimespanSelector(Selector):
         return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def context_name(self):
-        raise Exception('do not use.')
-
-    @property
-    def context_names(self):
-        raise Exception('do not use.')
 
     @property
     def segment_identifier(self):

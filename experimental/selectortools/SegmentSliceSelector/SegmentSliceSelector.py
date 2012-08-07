@@ -1,4 +1,3 @@
-from experimental import helpertools
 from experimental import segmenttools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
@@ -120,18 +119,6 @@ class SegmentSliceSelector(SliceSelector, InequalitySelector):
         self._klass = segmenttools.Segment
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def context_name(self):
-        '''Return none.
-        '''
-        return
-
-    @property
-    def context_names(self):
-        '''Return empty list.
-        '''
-        return []
 
     @property
     def klass(self):

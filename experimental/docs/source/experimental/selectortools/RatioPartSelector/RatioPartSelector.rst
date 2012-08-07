@@ -9,10 +9,6 @@ selectortools.RatioPartSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.context_name
-
-.. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.context_names
-
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.part
 
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.ratio

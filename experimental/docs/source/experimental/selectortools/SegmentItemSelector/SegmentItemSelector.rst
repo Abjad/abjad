@@ -9,10 +9,6 @@ selectortools.SegmentItemSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.context_name
-
-.. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.context_names
-
 .. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.identifier
 
 .. autoattribute:: experimental.selectortools.SegmentItemSelector.SegmentItemSelector.SegmentItemSelector.inequality

@@ -9,14 +9,6 @@ selectortools.DivisionSliceSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.context_name
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.context_names
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.identifiers
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
