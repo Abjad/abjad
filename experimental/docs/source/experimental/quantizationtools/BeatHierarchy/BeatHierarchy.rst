@@ -9,9 +9,15 @@ quantizationtools.BeatHierarchy
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.root_node
+
+.. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.rtm_format
+
 .. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.time_signature
 
 Special Methods
 ---------------
