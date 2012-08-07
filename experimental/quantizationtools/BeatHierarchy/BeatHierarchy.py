@@ -60,6 +60,23 @@ class BeatHierarchy(abctools.AbjadObject):
         recurse(root, factors)
         self._root_node = root
 
+    ### SPECIAL METHODS ###
+
+    def __iter__(self):
+        def recurse(node):
+            result = []
+            for child in node:
+                if isinstance(child, rhythmtreetools.RhythmTreeLeaf):
+                    result.append(child)
+                else:
+                    result.extend(recurse(child))
+            result.append(node)
+            return result
+        result = recurse(self.root_node)
+        denominator = self.time_signature.denominator
+        for x in result:
+            yield (x.offset / denominator, (x.offset + x.duration) / denominator)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

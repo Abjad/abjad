@@ -42,6 +42,8 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.object`
 
+.. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__iter__
+
 .. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
