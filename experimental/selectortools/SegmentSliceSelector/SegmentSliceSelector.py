@@ -136,3 +136,9 @@ class SegmentSliceSelector(SliceSelector, InequalitySelector):
     @property
     def klass(self):
         return self._klass
+
+    @property
+    def segment_identifier(self):
+        '''Temporary hack. Generalize later.
+        '''
+        return self.start_identifier
