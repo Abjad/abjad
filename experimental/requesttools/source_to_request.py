@@ -34,7 +34,7 @@ def source_to_request(source, callback=None, count=None, offset=None):
     assert isinstance(offset, (int, type(None))), repr(offset)
 
     if isinstance(source, requesttools.Request):
-        request = source
+        request = copy.copy(source)
         if callback is not None:
             request.callback = callback
         if count is not None:
@@ -48,7 +48,7 @@ def source_to_request(source, callback=None, count=None, offset=None):
         if offset is not None:
             assert count is None
             request = requesttools.HandlerRequest(source, offset=offset)
-    # DEPRECATED: selectors should no longer be used as requests
+    # this branch is to be eventually deprecated
     elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
         if any([x is not None for x in (callback, count, offset)]):
             request = copy.copy(source)

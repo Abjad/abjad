@@ -296,43 +296,21 @@ class ScoreSpecification(Specification):
         r'''Request `voice` divisions starting in `start_segment`
         for a total of `segment_count` segments.
 
-            >>> selector = score_specification.request_divisions('Voice 1', 'red', segment_count=3)
+            >>> request = score_specification.request_divisions('Voice 1', 'red', segment_count=3)
 
         ::
 
-            >>> z(selector)
-            selectortools.SingleContextDivisionSliceSelector(
-                'Voice 1',
-                inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentSliceSelector(
-                            start_identifier='red',
-                            stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                            )
-                        )
-                    )
+            >>> z(request)
+            requesttools.AttributeRequest(
+                'divisions',
+                selectortools.SegmentSliceSelector(
+                    start_identifier='red',
+                    stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
+                    ),
+                context_name='Voice 1'
                 )
 
-        Return single-context division slice selector.
-        '''
-        # process input
-        start_segment_name = helpertools.expr_to_segment_name(start_segment)
-        voice_name = helpertools.expr_to_component_name(voice)
-
-        # make selector
-        expression = '{!r} + {}'.format(start_segment_name, segment_count)
-        held_expression = helpertools.SegmentIdentifierExpression(expression)
-        start, stop = start_segment_name, held_expression
-        selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
-        inequality = timespantools.expr_starts_during_timespan(selector.timespan)
-        selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
-
-        # return selector
-        return selector
-
-    def request_divisions_new(self, voice, start_segment, segment_count=1):
-        r'''Return attribute request. This method will replace the one above.
+        Return attribute request.
         '''
         start_segment_name = helpertools.expr_to_segment_name(start_segment)
         voice_name = helpertools.expr_to_component_name(voice)
@@ -340,8 +318,6 @@ class ScoreSpecification(Specification):
         held_expression = helpertools.SegmentIdentifierExpression(expression)
         start, stop = start_segment_name, held_expression
         selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
-        inequality = timespantools.expr_starts_during_timespan(selector.timespan)
-        #selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
         request = requesttools.AttributeRequest('divisions', selector, context_name=voice_name)
         return request
 

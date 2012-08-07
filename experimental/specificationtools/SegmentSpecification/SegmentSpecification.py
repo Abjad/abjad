@@ -7,8 +7,6 @@ from experimental import settingtools
 from experimental import timespantools
 from experimental.exceptions import *
 from experimental.specificationtools.Specification import Specification
-from experimental.statalservertools.StatalServer import StatalServer
-import copy
 
 
 class SegmentSpecification(Specification):
