@@ -1,5 +1,3 @@
-from experimental import divisiontools
-from experimental import helpertools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -11,12 +9,12 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
 
         >>> from experimental import *
 
-    Select all ``'Voice 1'`` divisions in score::
+    Select all divisions::
 
-        >>> selectortools.DivisionSliceSelector('Voice 1')
-        DivisionSliceSelector('Voice 1')
+        >>> selectortools.DivisionSliceSelector()
+        DivisionSliceSelector()
 
-    Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
+    Select all divisions starting during segment ``'red'``::
 
         >>> segment = selectortools.SegmentItemSelector(identifier='red')
         >>> timespan = segment.timespan
@@ -24,13 +22,12 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
 
     ::
 
-        >>> divisions = selectortools.DivisionSliceSelector('Voice 1', inequality=inequality)
+        >>> divisions = selectortools.DivisionSliceSelector(inequality=inequality)
 
     ::
 
         >>> z(divisions)
         selectortools.DivisionSliceSelector(
-            'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
@@ -41,15 +38,14 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
                 )
             )
 
-    Select the last two ``'Voice 1'`` divisions starting during segment ``'red'``::
+    Select the last two divisions starting during segment ``'red'``::
 
-        >>> divisions = selectortools.DivisionSliceSelector('Voice 1', inequality=inequality, start_identifier=-2)
+        >>> divisions = selectortools.DivisionSliceSelector(inequality=inequality, start_identifier=-2)
 
     ::
 
         >>> z(divisions)
         selectortools.DivisionSliceSelector(
-            'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
@@ -66,35 +62,20 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice, inequality=None, start_identifier=None, stop_identifier=None):
-        from experimental import selectortools
-        from experimental import interpretertools
+    def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
+        from experimental import divisiontools
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
-        voice = helpertools.expr_to_component_name(voice)     
-        self._voice = voice
-
-#    def __repr__(self):
-#        return '{}()'.format(self._class_name)
+        self._klass = divisiontools.Division
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_name(self):
-        '''Return string.
-        '''
-        return self._voice
+    def klass(self):
+        return self._klass
 
     @property
-    def context_names(self):
-        '''Return length-``1`` list.
+    def segment_identifier(self):
+        '''Return ``self.inequality.segment_identifier``.
         '''
-        return [self.context_name]
-
-    @property
-    def voice(self):
-        '''Name of division slice selector voice initialized by user.
-
-        Return string.
-        '''
-        return self._voice
+        return self.inequality.segment_identifier

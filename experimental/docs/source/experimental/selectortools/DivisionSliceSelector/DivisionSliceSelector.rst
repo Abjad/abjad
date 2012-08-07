@@ -11,7 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.context_name
 
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.context_names
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.identifiers
 
@@ -21,9 +25,9 @@ Read-only Properties
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
-.. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.segment_identifier
+.. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.klass
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+.. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.segment_identifier
 
 .. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.start_identifier
 
@@ -40,8 +44,6 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.timespan
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. autoattribute:: experimental.selectortools.DivisionSliceSelector.DivisionSliceSelector.DivisionSliceSelector.voice
 
 Methods
 -------

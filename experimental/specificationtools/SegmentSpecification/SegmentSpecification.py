@@ -418,16 +418,15 @@ class SegmentSpecification(Specification):
             selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
         return selector
 
-    def select_division(self, voice, n):
-        '''Select `voice` division `n` that starts during segment::
+    def select_division(self, n):
+        '''Select division ``0`` that starts during segment::
 
-            >>> selector = segment.select_division('Voice 1', 0)
+            >>> selector = segment.select_division(0)
 
         ::
             
             >>> z(selector)
             selectortools.DivisionSliceSelector(
-                'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -445,19 +444,18 @@ class SegmentSpecification(Specification):
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.DivisionSliceSelector(
-            voice, inequality=inequality, start_identifier=start, stop_identifier=stop)
+            inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_divisions(self, voice, start=None, stop=None):
-        '''Select the first five ``'Voice 1'`` divisions that start during segment::
+    def select_divisions(self, start=None, stop=None):
+        '''Select the first five divisions that start during segment::
 
-            >>> selector = segment.select_divisions('Voice 1', stop=5)
+            >>> selector = segment.select_divisions(stop=5)
 
         ::
             
             >>> z(selector)
             selectortools.DivisionSliceSelector(
-                'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -472,21 +470,20 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.DivisionSliceSelector(voice,
+        selector = selectortools.DivisionSliceSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_divisions_ratio_part(self, voice, ratio, part, is_count=True):
-        r'''Select the first third of ``'Voice 1'`` divisions starting during segment::
+    def select_divisions_ratio_part(self, ratio, part, is_count=True):
+        r'''Select the first third of divisions starting during segment::
 
-            >>> selector = segment.select_divisions_ratio_part('Voice 1', (1, 1, 1), 0)
+            >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0)
 
         ::
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
                 selectortools.DivisionSliceSelector(
-                    'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -502,7 +499,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = self.select_divisions(voice)
+        selector = self.select_divisions()
         if is_count:
             selector = selectortools.CountRatioPartSelector(selector, ratio, part)
         else:
