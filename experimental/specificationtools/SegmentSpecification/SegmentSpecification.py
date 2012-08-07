@@ -56,35 +56,24 @@ class SegmentSpecification(Specification):
 
     ### PRIVATE METHODS ###
 
-    # DEPRECATED: pass timespan and contexts separately everywhere in system
+    # DEPRECATED: pass selectors and contexts separately everywhere in system.
     def _expr_to_selector(self, expr):
         if isinstance(expr, selectortools.Selector):
             return expr
-        else:
+        elif expr == self:
             return self.select_segment_timespan()
+        else:
+            raise Exception(expr)
 
-    # DEPRECATED: eliminate multiple-context selectors.
-    # DEPRECATED: then pass selectors and contexts separately everywhere in system.
     def _set_attribute(self, attribute, selector, source, 
         callback=None, contexts=None, count=None, offset=None, persist=True, truncate=False):
         contexts = self._context_token_to_context_names(contexts)
-        assert attribute in self.attributes, repr(attribute)
-        assert isinstance(count, (int, type(None))), repr(count)
-        assert isinstance(persist, type(True)), repr(persist)
-        assert isinstance(truncate, type(True)), repr(truncate)
         selector = self._expr_to_selector(selector)
-        assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, selector,
             context_names=contexts, persist=persist, truncate=truncate)
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
-
-#    def _set_attribute_new(self, attribute, source, selector=None, contexts=None,
-#        callback=None, count=None, offset=None, persist=True, truncate=False):
-#        return self._set_attribute(attribute, selector, source,
-#            callback=callback, contexts=contexts, count=count, 
-#            offset=offset, persist=persist, truncate=truncate)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -830,16 +819,18 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_rhythm(self, source, contexts=None,
-        count=None, persist=True, offset=None):
+    def set_rhythm(self, source, selector=None, contexts=None,
+        callback=None, count=None, offset=None, persist=True, truncate=False):
         r'''Set rhythm of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
-        contexts = contexts or self
         attribute = 'rhythm'
-        return self._set_attribute(attribute, contexts, source, 
-            contexts=contexts, count=count, offset=offset, persist=persist)
+        selector = selector or self.select_segment_timespan()
+        contexts = contexts or [self.score_name]
+        return self._set_attribute(attribute, selector, source,
+            callback=callback, contexts=contexts, count=count, 
+            offset=offset, persist=persist, truncate=truncate)
 
     def set_retrograde_divisions(self, source, contexts=None,
         count=None, offset=None, persist=True, truncate=True):
