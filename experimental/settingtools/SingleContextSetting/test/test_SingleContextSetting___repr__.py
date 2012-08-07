@@ -3,11 +3,13 @@ from experimental.selectortools.TimespanSelector import TimespanSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
+import py
 
 
 def test_SingleContextSetting___repr___01():
     '''Repr is evaluable.
     '''
+    py.test.skip('unskip after integrating division attribute requests.')
 
     segment_selector = SegmentItemSelector(identifier='red')
     selector = TimespanSelector(segment_selector.timespan)

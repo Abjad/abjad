@@ -433,7 +433,7 @@ class ConcreteInterpreter(Interpreter):
             division_request = region_division_command.resolved_value
             divisions = self.division_request_to_divisions(division_request)
         else:
-            raise NotImplementedError('implement for {!r}.'.format(revision_division_command.resolved_value))
+            raise NotImplementedError('implement for {!r}.'.format(region_division_command.resolved_value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list.fresh = region_division_command.fresh
         division_region_division_list.truncate = region_division_command.truncate
@@ -462,7 +462,7 @@ class ConcreteInterpreter(Interpreter):
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
-        value = self.resolve_single_context_setting_source(single_context_setting)
+        value = self.resolve_single_context_setting_source(single_context_setting.source)
         args = (
             single_context_setting.attribute,
             single_context_setting.source,
@@ -478,13 +478,16 @@ class ConcreteInterpreter(Interpreter):
             )
         return resolved_single_context_setting
 
-    def resolve_single_context_setting_source(self, single_context_setting):
-        if isinstance(single_context_setting.source, requesttools.AttributeRequest):
-            return self.resolve_attribute_request(single_context_setting.source)
-        elif isinstance(single_context_setting.source, requesttools.StatalServerRequest):
-            return single_context_setting.source()
+    def resolve_single_context_setting_source(self, source):
+        if isinstance(source, requesttools.AttributeRequest) and source.attribute == 'time_signatures':
+            return self.resolve_attribute_request(source)
+        # the following line should be resolvable
+        elif isinstance(source, requesttools.AttributeRequest) and source.attribute == 'divisions':
+            return source
+        elif isinstance(source, requesttools.StatalServerRequest):
+            return source()
         else:
-            return single_context_setting.source
+            return source
 
     def resolved_single_context_setting_to_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_specification):
@@ -588,14 +591,18 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             single_context_settings = segment_specification.single_context_settings.get_settings(
                 attribute='divisions')
+            #self._debug(single_context_settings, 'scs')
             if not single_context_settings:
                 single_context_settings = []
                 resolved_single_context_settings = \
                     self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='divisions')
                 for resolved_single_context_setting in resolved_single_context_settings:
-                    single_context_setting = resolved_single_context_setting.copy_setting_to_segment(segment_specification)
+                    single_context_setting = resolved_single_context_setting.copy_setting_to_segment(
+                        segment_specification)
                     single_context_settings.append(single_context_setting)
+            #self._debug(single_context_settings, 'SCS')
+            #print ''
             self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
@@ -634,6 +641,7 @@ class ConcreteInterpreter(Interpreter):
 
     def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
         for single_context_setting in single_context_settings:
+            #self._debug(single_context_setting, 'scs')
             self.store_single_context_setting(
                 single_context_setting, clear_persistent_first=clear_persistent_first)
 

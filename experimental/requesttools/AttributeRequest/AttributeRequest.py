@@ -44,6 +44,9 @@ class AttributeRequest(Request):
         self._selector = selector
         self._context_name = context_name
 
+    def __repr__(self):
+        return '{}({!r})'.format(self._class_name, self.attribute)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

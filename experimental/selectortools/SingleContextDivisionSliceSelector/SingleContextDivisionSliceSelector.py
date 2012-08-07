@@ -13,7 +13,7 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
 
     Select all ``'Voice 1'`` divisions in score::
 
-        >>> selectortools.SingleContextDivisionSliceSelector('Voice 1')
+        >>> selectortools.SingleContextDivisionSliceSelector('Voice 1') # doctest: +SKIP
         SingleContextDivisionSliceSelector('Voice 1')
 
     Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
@@ -73,6 +73,9 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
         InequalitySelector.__init__(self, inequality=inequality)
         voice = helpertools.expr_to_component_name(voice)     
         self._voice = voice
+
+    def __repr__(self):
+        return '{}()'.format(self._class_name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

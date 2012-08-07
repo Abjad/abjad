@@ -76,9 +76,13 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         selector = self._expr_to_selector(selector)
         assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
+        #self._debug(source, 'set_attribute')
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
+        #self._debug(source, 'request')
         multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, selector,
             context_names=contexts, persist=persist, truncate=truncate)
+        #self._debug(multiple_context_setting, 'mcs')
+        #print ''
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 

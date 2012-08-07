@@ -1,6 +1,7 @@
 from abjad.tools import *
 from experimental import helpertools
 from experimental import interpretertools
+from experimental import requesttools
 from experimental import selectortools
 from experimental import timespantools
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
@@ -329,6 +330,20 @@ class ScoreSpecification(Specification):
 
         # return selector
         return selector
+
+    def request_divisions_new(self, voice, start_segment, segment_count=1):
+        r'''Return attribute request. This method will replace the one above.
+        '''
+        start_segment_name = helpertools.expr_to_segment_name(start_segment)
+        voice_name = helpertools.expr_to_component_name(voice)
+        expression = '{!r} + {}'.format(start_segment_name, segment_count)
+        held_expression = helpertools.SegmentIdentifierExpression(expression)
+        start, stop = start_segment_name, held_expression
+        selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
+        inequality = timespantools.expr_starts_during_timespan(selector.timespan)
+        #selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
+        request = requesttools.AttributeRequest('divisions', selector, context_name=voice_name)
+        return request
 
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::

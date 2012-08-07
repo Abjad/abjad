@@ -15,6 +15,9 @@ class TimespanSelector(Selector):
         Selector.__init__(self)
         self._timespan = timespan
 
+    def __repr__(self):
+        return '{}()'.format(self._class_name)
+    
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
