@@ -9,6 +9,10 @@ quantizationtools.QGridLeaf
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depth
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.improper_parentage
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
