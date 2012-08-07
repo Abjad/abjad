@@ -448,17 +448,16 @@ class SegmentSpecification(Specification):
             voice, inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_divisions(self, contexts=None, start=None, stop=None):
-        '''Select the first five divisions that start during segment::
+    def select_divisions(self, voice, start=None, stop=None):
+        '''Select the first five ``'Voice 1'`` divisions that start during segment::
 
-            >>> contexts = ['Voice 1', 'Voice 3']
-            >>> selector = segment.select_divisions(contexts=contexts, stop=5)
+            >>> selector = segment.select_divisions('Voice 1', stop=5)
 
         ::
             
             >>> z(selector)
-            selectortools.MultipleContextDivisionSliceSelector(
-                context_names=['Voice 1', 'Voice 3'],
+            selectortools.SingleContextDivisionSliceSelector(
+                'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -473,21 +472,21 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.MultipleContextDivisionSliceSelector(
-            context_names=contexts, inequality=inequality, start_identifier=start, stop_identifier=stop)
+        selector = selectortools.SingleContextDivisionSliceSelector(voice,
+            inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_divisions_ratio_part(self, ratio, part, contexts=None, is_count=True):
-        r'''Select the first third of divisions starting during segment::
+    def select_divisions_ratio_part(self, voice, ratio, part, is_count=True):
+        r'''Select the first third of ``'Voice 1'`` divisions starting during segment::
 
-            >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
+            >>> selector = segment.select_divisions_ratio_part('Voice 1', (1, 1, 1), 0)
 
         ::
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
-                selectortools.MultipleContextDivisionSliceSelector(
-                    context_names=['Voice 1', 'Voice 3'],
+                selectortools.SingleContextDivisionSliceSelector(
+                    'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -503,7 +502,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = self.select_divisions(contexts=contexts)
+        selector = self.select_divisions(voice)
         if is_count:
             selector = selectortools.CountRatioPartSelector(selector, ratio, part)
         else:
