@@ -6,7 +6,7 @@ from experimental.selectortools.RatioPartSelector import RatioPartSelector
 class CountRatioPartSelector(RatioPartSelector):
     r'''.. versionadded:: 1.0
     
-    Partition `reference` by `ratio` of counts. Then select exactly one part.
+    Partition `selector` by `ratio` of counts. Then select exactly one part.
 
         >>> from experimental import *
 
@@ -46,10 +46,10 @@ class CountRatioPartSelector(RatioPartSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, part):
+    def __init__(self, selector, ratio, part):
         from experimental import selectortools
-        assert isinstance(reference, selectortools.SliceSelector)
-        RatioPartSelector.__init__(self, reference, ratio, part)
+        assert isinstance(selector, selectortools.SliceSelector)
+        RatioPartSelector.__init__(self, selector, ratio, part)
 
     ### PUBLIC METHODS ###
 

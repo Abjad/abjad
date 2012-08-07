@@ -17,9 +17,9 @@ class RatioPartSelector(Selector):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, reference, ratio, part):
+    def __init__(self, selector, ratio, part):
         ratio = mathtools.Ratio(ratio)
-        self._reference = reference
+        self._selector = selector
         self._ratio = ratio
         self._part = part
 
@@ -35,23 +35,22 @@ class RatioPartSelector(Selector):
 
     @property
     def ratio(self):
-        '''Ratio of count-ratio selector.
+        '''Ratio-part selector ratio.
 
         Return ratio.
         '''
         return self._ratio
 
-    # TODO: perhaps change name to 'self.selector'?
     @property
-    def reference(self):
-        '''Reference of count-ratio selector.
+    def selector(self):
+        '''Ratio-part selector selector.
 
         Return sliceable selector.
         '''
-        return self._reference
+        return self._selector
 
     @property
     def segment_identifier(self):
-        '''Delegate to ``self.reference.segment_identifier``.
+        '''Delegate to ``self.selector.segment_identifier``.
         '''
-        return self.reference.segment_identifier
+        return self.selector.segment_identifier

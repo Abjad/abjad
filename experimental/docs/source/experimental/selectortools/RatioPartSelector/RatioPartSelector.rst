@@ -13,9 +13,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.ratio
 
-.. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.reference
-
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.segment_identifier
+
+.. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.selector
 
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.storage_format
 

@@ -6,7 +6,7 @@ from experimental.selectortools.RatioPartSelector import RatioPartSelector
 class TimeRatioPartSelector(RatioPartSelector):
     r'''.. versionadded:: 1.0
 
-    Partition `reference` by ratio of durations. Then select exactly one part.
+    Partition `selector` by ratio of durations. Then select exactly one part.
 
         >>> from experimental import *
 
@@ -46,27 +46,27 @@ class TimeRatioPartSelector(RatioPartSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, reference, ratio, part):
-        RatioPartSelector.__init__(self, reference, ratio, part)
+    def __init__(self, selector, ratio, part):
+        RatioPartSelector.__init__(self, selector, ratio, part)
 
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification):
-        reference_duration = self.reference.get_duration(score_specification)
-        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
+        selector_duration = self.selector.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         part = parts[self.part]
         return part
 
     def get_segment_start_offset(self, score_specification):
-        reference_duration = self.reference.get_duration(score_specification)
-        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
+        selector_duration = self.selector.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         parts_before = parts[:self.part]
         duration_before = sum(parts_before)
         return durationtools.Offset(duration_before) 
 
     def get_segment_stop_offset(self, score_specification):
-        reference_duration = self.reference.get_duration(score_specification)
-        parts = mathtools.divide_number_by_ratio(reference_duration, self.ratio)
+        selector_duration = self.selector.get_duration(score_specification)
+        parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         part = parts[self.part]
         duration = part
         parts_before = parts[:self.part]

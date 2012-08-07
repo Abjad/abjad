@@ -5,8 +5,7 @@ from experimental.selectortools.SliceSelector import SliceSelector
 class CounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
-    Select zero or more counttime components in `reference` container
-    restricted according to keywords.
+    Select zero or more counttime components restricted according to keywords.
 
         >>> from experimental import *
 
@@ -116,6 +115,10 @@ class CounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
 
     @property
     def selector(self):
-        '''To allow selectors to reference each other recursively.
+        '''Counttime component slice selector selector.
+
+        To allow selectors to selector recursively.
+
+        Return slice selector.
         '''
         return self._selector
