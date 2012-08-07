@@ -13,7 +13,7 @@ class SingleContextDivisionSliceSelector(SliceSelector, InequalitySelector):
 
     Select all ``'Voice 1'`` divisions in score::
 
-        >>> selectortools.SingleContextDivisionSliceSelector('Voice 1') # doctest: +SKIP
+        >>> selectortools.SingleContextDivisionSliceSelector('Voice 1')
         SingleContextDivisionSliceSelector('Voice 1')
 
     Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
