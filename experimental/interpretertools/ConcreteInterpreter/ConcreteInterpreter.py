@@ -618,7 +618,7 @@ class ConcreteInterpreter(Interpreter):
                     new_settings.append(new_setting)
             #for new_setting in new_settings:
             #    self._debug(new_setting, 'NS')
-            #print ''
+            print ''
             self.store_single_context_settings(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
@@ -657,10 +657,13 @@ class ConcreteInterpreter(Interpreter):
             clear_persistent_first=clear_persistent_first)
 
     def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
-        for single_context_setting in single_context_settings:
-            #self._debug(single_context_setting, 'scs')
+        if single_context_settings:
             self.store_single_context_setting(
-                single_context_setting, clear_persistent_first=clear_persistent_first)
+                single_context_settings[0], clear_persistent_first=clear_persistent_first)
+            for single_context_setting in single_context_settings[1:]:
+                #self.store_single_context_setting(
+                #    single_context_setting, clear_persistent_first=clear_persistent_first)
+                self.store_single_context_setting(single_context_setting, clear_persistent_first=False)
 
     def store_single_context_time_signature_settings(self):
         '''For each segment:
