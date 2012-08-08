@@ -303,7 +303,7 @@ class SegmentSpecification(Specification):
     ### PUBLIC METHODS ###
 
     def request_time_signatures(self, context_name=None, callback=None, count=None, offset=None):
-        r'''Select time signatures in `context_name` that start during segment::
+        r'''Request segment time signatures in `context_name`::
 
             >>> request = segment.request_time_signatures()
 
@@ -324,7 +324,7 @@ class SegmentSpecification(Specification):
             context_name=context_name, callback=callback, count=count, offset=offset)
 
     def select_background_measure(self, n):
-        '''Select background measure `n` that starts during segment::
+        '''Select segment background measure ``0``::
 
             >>> selector = segment.select_background_measure(0)
 
@@ -353,7 +353,7 @@ class SegmentSpecification(Specification):
         return selector
 
     def select_background_measures(self, start=None, stop=None):
-        '''Select the first five background measures that start during segment::
+        '''Select the first five segment background measures::
 
             >>> selector = segment.select_background_measures(stop=5)
 
@@ -380,8 +380,8 @@ class SegmentSpecification(Specification):
         return selector
     
     def select_background_measures_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of background measures 
-        calculated according to number of measures::
+        r'''Select the first third of segment background measures 
+        calculated according to count of segment background measures::
 
             >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
 
@@ -403,8 +403,8 @@ class SegmentSpecification(Specification):
                 0
                 )
 
-        Select the first third of background measures calculcated
-        according to measure duration::
+        Select the first third of segment background measures calculcated
+        according to duration of segment background measures::
 
             >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
 
@@ -432,7 +432,7 @@ class SegmentSpecification(Specification):
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_division(self, n):
-        '''Select division ``0`` that starts during segment::
+        '''Select segment division ``0``::
 
             >>> selector = segment.select_division(0)
 
@@ -461,7 +461,7 @@ class SegmentSpecification(Specification):
         return selector
 
     def select_divisions(self, start=None, stop=None):
-        '''Select the first five divisions that start during segment::
+        '''Select the first five segment divisions::
 
             >>> selector = segment.select_divisions(stop=5)
 
@@ -488,7 +488,7 @@ class SegmentSpecification(Specification):
         return selector
 
     def select_divisions_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of divisions starting during segment::
+        r'''Select the first third of segment divisions::
 
             >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0)
 
@@ -516,7 +516,7 @@ class SegmentSpecification(Specification):
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_leaves(self, start=None, stop=None):
-        '''Select the first ``40`` leaves that start during segment::
+        '''Select the first ``40`` segment leaves::
 
             >>> selector = segment.select_leaves(stop=40)
 
@@ -545,7 +545,7 @@ class SegmentSpecification(Specification):
         return selector
 
     def select_leaves_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of leaves starting during segment::
+        r'''Select the first third of segment leaves::
 
             >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0)
 
@@ -574,7 +574,7 @@ class SegmentSpecification(Specification):
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_notes_and_chords(self, start=None, stop=None):
-        '''Select the first ``40`` notes and chords that start during segment.
+        '''Select the first ``40`` segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords(stop=40)
 
@@ -606,7 +606,7 @@ class SegmentSpecification(Specification):
         return selector
 
     def select_notes_and_chords_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of notes and chords starting during segment::
+        r'''Select the first third of segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
 
@@ -654,7 +654,7 @@ class SegmentSpecification(Specification):
         return selectortools.SegmentItemSelector(identifier=self.segment_name)
 
     def select_segment_ratio_part(self, ratio, part):
-        r'''Select the first third of segment ``'red'``::
+        r'''Select the first third of segment::
 
             >>> selector = segment.select_segment_ratio_part((1, 1, 1), 0)
 
