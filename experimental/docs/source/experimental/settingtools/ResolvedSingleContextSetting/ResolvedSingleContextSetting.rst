@@ -50,10 +50,6 @@ Methods
 
     Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
-.. automethod:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.set_setting_to_segment
-
-    Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
-
 Special Methods
 ---------------
 

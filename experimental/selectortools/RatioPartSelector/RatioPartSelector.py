@@ -56,3 +56,10 @@ class RatioPartSelector(Selector):
         '''Delegate to ``self.selector.segment_identifier``.
         '''
         return self.selector.segment_identifier
+
+    ### PUBLIC METHODS ###
+
+    def set_segment_identifier(self, segment_identifier):
+        '''Delegate to ``self.selector.set_segment_identifier()``.
+        '''
+        self.selector.set_segment_identifier(segment_identifier)

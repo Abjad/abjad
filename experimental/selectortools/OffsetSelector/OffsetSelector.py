@@ -96,3 +96,8 @@ class OffsetSelector(Selector):
         elif self.stop_offset < 0:
             return self.selector.get_duration(score_specification) + self.stop_offset
         return self.stop_offset
+
+    def set_segment_identifier(self, segment_identifier):
+        '''Delegate to ``self.selector.set_segment_identifier()``.
+        '''
+        return self.selector.set_segment_identifier(segment_identifier)

@@ -65,3 +65,7 @@ class SingleSegmentSelector(InequalitySelector):
     def get_segment_stop_offset(self, score_specification):
         segment_specification = score_specification.get_segment_specification(self)
         return durationtools.Offset(segment_specification.duration)
+
+    def set_segment_identifier(self, segment_identifier):
+        assert isinstance(segment_identifier, (str, int))
+        self._identifier = segment_identifier

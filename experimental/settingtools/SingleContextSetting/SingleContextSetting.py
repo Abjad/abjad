@@ -114,29 +114,14 @@ class SingleContextSetting(Setting):
     def copy_setting_to_segment(self, segment):
         '''Create new setting. 
 
-        Set new setting to `segment`.
-
         Set new setting `fresh` to false.
 
-        [Only works when self selector is already a segment selector.]
+        Set new setting selector to `segment`.
 
         Return new setting.
         '''
-        #assert self.selector.timespan.encompasses_one_segment_exactly, repr(self)
         new_setting = copy.deepcopy(self)
-        new_setting.set_selector_to_segment(segment)
         new_setting._fresh = False
-        return new_setting
-
-    def set_selector_to_segment(self, segment):
-        '''Set selector to `segment`.
-
-        [Only works when selector is already segment selector.]
-
-        Return none.
-        '''
-        from experimental import selectortools
-        assert isinstance(self.selector, selectortools.SingleSegmentSelector) 
         segment_name = helpertools.expr_to_segment_name(segment)
-        segment_selector = selectortools.SingleSegmentSelector(identifier=segment_name)
-        self._selector = segment_selector
+        new_setting.selector.set_segment_identifier(segment_name)
+        return new_setting

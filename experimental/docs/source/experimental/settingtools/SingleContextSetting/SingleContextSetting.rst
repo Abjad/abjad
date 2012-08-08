@@ -40,8 +40,6 @@ Methods
 
 .. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.copy_setting_to_segment
 
-.. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.set_setting_to_segment
-
 Special Methods
 ---------------
 

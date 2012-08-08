@@ -42,6 +42,8 @@ Methods
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_segment_stop_offset
 
+.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.set_segment_identifier
+
 Special Methods
 ---------------
 

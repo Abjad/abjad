@@ -40,6 +40,8 @@ Methods
 
 .. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_segment_stop_offset
 
+.. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.set_segment_identifier
+
 Special Methods
 ---------------
 
