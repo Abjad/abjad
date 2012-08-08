@@ -372,7 +372,9 @@ class ConcreteInterpreter(Interpreter):
         #print ''
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
-        #self._debug(uninterpreted_division_commands, 'rdc')
+        #for x in region_division_commands:
+        #    self._debug(x, 'rdc')
+        #print ''
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands)
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
@@ -618,7 +620,7 @@ class ConcreteInterpreter(Interpreter):
                     new_settings.append(new_setting)
             #for new_setting in new_settings:
             #    self._debug(new_setting, 'NS')
-            print ''
+            #print ''
             self.store_single_context_settings(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
@@ -710,8 +712,12 @@ class ConcreteInterpreter(Interpreter):
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
-                assert last_region_division_command.resolved_value == uninterpreted_division_command.resolved_value
-                if last_region_division_command.truncate:
+                #assert last_region_division_command.resolved_value==uninterpreted_division_command.resolved_value
+                if uninterpreted_division_command.resolved_value != last_region_division_command.resolved_value:
+                    region_division_command = interpretertools.RegionDivisionCommand(
+                        *uninterpreted_division_command.vector)
+                    region_division_commands.append(region_division_command)
+                elif last_region_division_command.truncate:
                     region_division_command = interpretertools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
