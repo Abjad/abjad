@@ -27,6 +27,12 @@ class OffsetSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def segment_identifier(self):
+        '''Delegate to ``self.selector.segment_identifier``.
+        '''
+        return self.selector.segment_identifier
+
+    @property
     def selector(self):
         '''Offset selector selector.
 
@@ -43,9 +49,50 @@ class OffsetSelector(Selector):
         return self._start_offset
 
     @property
+    def start_offset_value(self):
+        '''Offset selector start offset (numeric) value.
+
+        Return offset.
+        '''
+        if self.start_offset is None:
+            return durationtools.Offset(0)
+        return self.start_offset
+
+    @property
     def stop_offset(self):
         '''Offset selector stop offset.
 
         Return offset or none.
         '''
         return self._stop_offset
+
+    @property
+    def stop_offset_value(self):
+        '''Offset selector stop offset (numeric) value.
+        
+        Return offset.
+        '''
+        if self.stop_offset is None:
+            return durationtools.Offset(self.selector.duration)
+        return self.stop_offset
+
+    ### PUBLIC METHODS ##
+
+    def get_duration(self, score_specification):
+        return self.get_segment_stop_offset(score_specification) - \
+            self.get_segment_start_offset(score_specification)
+
+    def get_segment_start_offset(self, score_specification):
+        if self.start_offset is None:
+            return durationtools.Offset(0)
+        elif self.start_offset < 0:
+            return self.selector.get_duration(score_specification) + self.start_offset
+        else:
+            return self.start_offset
+
+    def get_segment_stop_offset(self, score_specification):
+        if self.stop_offset is None:
+            return durationtools.Offset(self.selector.get_duration(score_specification))
+        elif self.stop_offset < 0:
+            return self.selector.get_duration(score_specification) + self.stop_offset
+        return self.stop_offset

@@ -24,7 +24,7 @@ class Selector(AbjadObject):
 
         Raise exception when no segment identifier can be found.
         '''
-        raise NotImplementedError('implement for {!r}.'.format(self))
+        raise NotImplementedError("Implement '{}.segment_identifier' soon.".format(self._class_name))
 
     @property
     def timespan(self):

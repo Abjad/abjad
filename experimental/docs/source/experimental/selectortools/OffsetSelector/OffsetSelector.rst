@@ -11,13 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.segment_identifier
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.selector
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.start_offset
 
+.. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.start_offset_value
+
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_offset
+
+.. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_offset_value
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.storage_format
 
@@ -30,9 +32,15 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_duration
+
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_segment_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_segment_start_offset
+
+.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_segment_stop_offset
 
 Special Methods
 ---------------
