@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSpecification_select_segment_timespan_01():
+def test_SegmentSpecification_select_segment_01():
     '''Trivial test to ensure selection of entire segment works.
 
     This is default behavior for the case where selector is left unspecified.
