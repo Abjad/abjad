@@ -115,7 +115,7 @@ def test_single_segment_solo_timespan_boundary_cases_06():
     score_specification = specificationtools.ScoreSpecification(score_template) 
     segment = score_specification.append_segment('red') 
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    middle_measure = segment.select_segment_timespan_ratio_part((4, 3, 2), 1)
+    middle_measure = segment.select_segment_ratio_part((4, 3, 2), 1)
     segment.set_divisions([(3, 16)])
     segment.set_divisions([(1, 16)], selector=middle_measure)
     segment.set_rhythm(library.thirty_seconds)

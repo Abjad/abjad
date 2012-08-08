@@ -15,8 +15,8 @@ def test_SegmentSpecification_set_divisions_01():
 
     first_measure = segment.select_background_measures(stop=1)
     second_measure = segment.select_background_measures(start=-1)
-    first_half = segment.select_segment_timespan_ratio_part((1, 1), 0)
-    second_half = segment.select_segment_timespan_ratio_part((1, 1), 1)
+    first_half = segment.select_segment_ratio_part((1, 1), 0)
+    second_half = segment.select_segment_ratio_part((1, 1), 1)
 
     segment.set_divisions([(3, 16)], selector=first_measure, contexts=['Voice 1'], persist=False)
     segment.set_divisions([(5, 16)], selector=second_measure, contexts=['Voice 1'], persist=False)

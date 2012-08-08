@@ -380,7 +380,7 @@ class SegmentSpecification(Specification):
         return selector
     
     def select_background_measures_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of `segment` background measures 
+        r'''Select the first third of background measures 
         calculated according to number of measures::
 
             >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
@@ -403,7 +403,7 @@ class SegmentSpecification(Specification):
                 0
                 )
 
-        Select the first third of `segment` background measures calculcated
+        Select the first third of background measures calculcated
         according to measure duration::
 
             >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
@@ -653,10 +653,10 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SegmentItemSelector(identifier=self.segment_name)
 
-    def select_segment_timespan_ratio_part(self, ratio, part):
-        r'''Select the first third of the timespan of segment ``'red'``::
+    def select_segment_ratio_part(self, ratio, part):
+        r'''Select the first third of segment ``'red'``::
 
-            >>> selector = segment.select_segment_timespan_ratio_part((1, 1, 1), 0)
+            >>> selector = segment.select_segment_ratio_part((1, 1, 1), 0)
 
         ::
 
