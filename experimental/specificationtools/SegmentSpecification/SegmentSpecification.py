@@ -219,17 +219,6 @@ class SegmentSpecification(Specification):
         return self._segment_name
 
     @property
-    def selector(self):
-        '''Segment specification selector::
-
-            >>> segment.selector
-            SegmentItemSelector(identifier='red')
-
-        Return selector.
-        '''
-        return selectortools.SegmentItemSelector(identifier=self.segment_name)
-
-    @property
     def single_context_settings(self):
         r'''Segment specification single-context settings::
 
@@ -249,7 +238,8 @@ class SegmentSpecification(Specification):
 
         Return timepoint.
         '''
-        return timespantools.Timepoint(anchor=self.selector, edge=Left)
+        selector = self.select_segment()
+        return timespantools.Timepoint(anchor=selector, edge=Left)
 
     @property
     def stop_timepoint(self):
@@ -260,7 +250,8 @@ class SegmentSpecification(Specification):
 
         Return timepoint.
         '''
-        return timespantools.Timepoint(anchor=self.selector, edge=Right)
+        selector = self.select_segment()
+        return timespantools.Timepoint(anchor=selector, edge=Right)
 
     @property
     def storage_format(self):
@@ -306,7 +297,8 @@ class SegmentSpecification(Specification):
 
         Return timespan.
         '''
-        return timespantools.SingleSourceTimespan(selector=self.selector)
+        selector = self.select_segment()
+        return timespantools.SingleSourceTimespan(selector=selector)
 
     ### PUBLIC METHODS ###
 
