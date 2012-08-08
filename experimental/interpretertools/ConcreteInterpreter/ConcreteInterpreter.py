@@ -310,9 +310,12 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice)
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            #self._debug('segment')
+            #self._debug(segment_specification, 'segment')
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
+            #for command in commands:
+            #    self._debug(command, 'command')
+            #print ''
             #self._debug(commands, 'commands')
             commands = self.sort_and_split_uninterpreted_division_commands(commands)
             #self._debug(commands, 'sorted')
@@ -335,14 +338,17 @@ class ConcreteInterpreter(Interpreter):
 
     def get_uninterpreted_division_commands_that_start_during_segment(self, 
         segment_specification, context_name):
+        #self._debug(segment_specification, 'segment')
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
+            #self._debug(resolved_single_context_setting, 'rscs')
             uninterpreted_division_command = \
                 self.resolved_single_context_setting_to_uninterpreted_division_command(
                 resolved_single_context_setting, segment_specification)
             uninterpreted_division_commands.append(uninterpreted_division_command)
+        #print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -363,6 +369,7 @@ class ConcreteInterpreter(Interpreter):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         #for x in uninterpreted_division_commands:
         #    self._debug(x, 'udc')
+        #print ''
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         #self._debug(uninterpreted_division_commands, 'rdc')
@@ -565,7 +572,6 @@ class ConcreteInterpreter(Interpreter):
 
     def store_resolved_single_context_setting(self,
         segment_specification, resolved_single_context_setting, clear_persistent_first=False):
-        #context_name = resolved_single_context_setting.selector.context_name
         context_name = resolved_single_context_setting.context_name
         if context_name is None:
             context_name = segment_specification.resolved_single_context_settings.score_name
@@ -589,27 +595,31 @@ class ConcreteInterpreter(Interpreter):
     def store_single_context_division_settings(self):
         '''For every segment specification:
 
-        Get every single-context division setting defined for segment.
+        Get new single-context division settings for segment.
 
-        Then store every single-context division setting in context proxy dictionaries.
+        If no new single-context division settings exist, then copy existing
+        resolved single-context division settings from global score context.
+
+        Then store single-context division settings in global score context.
         '''
         for segment_specification in self.score_specification.segment_specifications:
-            single_context_settings = segment_specification.single_context_settings.get_settings(
-                attribute='divisions')
-            #self._debug(single_context_settings, 'scs')
-            if not single_context_settings:
-                single_context_settings = []
-                resolved_single_context_settings = \
-                    self.score_specification.resolved_single_context_settings.get_settings(
-                    attribute='divisions')
-                for resolved_single_context_setting in resolved_single_context_settings:
-                    single_context_setting = resolved_single_context_setting.copy_setting_to_segment(
-                        segment_specification)
-                    single_context_settings.append(single_context_setting)
-            #for scs in single_context_settings:
-            #    self._debug(scs, 'SCS')
+            new_settings = segment_specification.single_context_settings.get_settings(attribute='divisions')
+            #self._debug(segment_specification, 'segment')
+            #for new_setting in new_settings:
+            #    self._debug(new_setting, 'ns')
             #print ''
-            self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
+            if not new_settings:
+                new_settings = []
+                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
+                    attribute='divisions')
+                for existing_setting in existing_settings:
+                    #self._debug(existing_setting, 'es')
+                    new_setting = existing_setting.copy_setting_to_segment(segment_specification)
+                    new_settings.append(new_setting)
+            #for new_setting in new_settings:
+            #    self._debug(new_setting, 'NS')
+            #print ''
+            self.store_single_context_settings(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -680,8 +690,8 @@ class ConcreteInterpreter(Interpreter):
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting(setting, clear_persistent_first=True)
 
-    # CURRENT WORK: extend this method to handle overlapping uninterpreted division commands
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
+        #self._debug(len(uninterpreted_division_commands), 'total')
         from experimental import interpretertools
         region_division_commands = []
         if not uninterpreted_division_commands:
@@ -690,6 +700,7 @@ class ConcreteInterpreter(Interpreter):
             return []
         assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
         for uninterpreted_division_command in uninterpreted_division_commands:
+            #self._debug(uninterpreted_division_command, 'udc')
             if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
                 region_division_command = interpretertools.RegionDivisionCommand(
                     *uninterpreted_division_command.vector)

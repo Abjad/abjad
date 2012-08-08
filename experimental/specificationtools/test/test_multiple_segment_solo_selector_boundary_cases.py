@@ -18,5 +18,5 @@ def test_multiple_segment_solo_selector_boundary_cases_01():
     score = score_specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
-    #helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
+    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
     #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
