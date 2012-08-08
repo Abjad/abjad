@@ -112,23 +112,26 @@ class SingleContextSetting(Setting):
     ### PUBLIC METHODS ###
 
     def copy_setting_to_segment(self, segment):
-        '''Create new setting. Set new setting selector to timespan of `segment`.
+        '''Create new setting. 
+
+        Set new setting to `segment`.
+
         Set new setting `fresh` to false.
 
-        Only works when self encompasses one segment exactly.
+        [Only works when self selector is already a segment selector.]
 
         Return new setting.
         '''
-        assert self.selector.timespan.encompasses_one_segment_exactly, repr(self)
-        new = copy.deepcopy(self)
-        new.set_setting_to_segment(segment)
-        new._fresh = False
-        return new
+        #assert self.selector.timespan.encompasses_one_segment_exactly, repr(self)
+        new_setting = copy.deepcopy(self)
+        new_setting.set_selector_to_segment(segment)
+        new_setting._fresh = False
+        return new_setting
 
-    def set_setting_to_segment(self, segment):
-        '''Set selector of self to `segment` selector.
+    def set_selector_to_segment(self, segment):
+        '''Set selector to `segment`.
 
-        Only works when selector of self is already segment selector.
+        [Only works when selector is already segment selector.]
 
         Return none.
         '''
