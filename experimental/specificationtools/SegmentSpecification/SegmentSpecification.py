@@ -653,6 +653,27 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SingleSegmentSelector(identifier=self.segment_name)
 
+    def select_segment_offsets(self, start=None, stop=None):
+        r'''Select segment from ``1/8`` to ``3/8``::
+
+            >>> selector = segment.select_segment_offsets(start=(1, 8), stop=(3, 8))
+
+        ::
+
+            >>> z(selector)
+            selectortools.OffsetSelector(
+                selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    ),
+                start_offset=durationtools.Offset(1, 8),
+                stop_offset=durationtools.Offset(3, 8)
+                )
+
+        Return selector.
+        '''
+        selector = self.select_segment()
+        return selectortools.OffsetSelector(selector, start_offset=start, stop_offset=stop)
+
     def select_segment_ratio_part(self, ratio, part):
         r'''Select the first third of segment::
 
