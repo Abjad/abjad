@@ -15,29 +15,7 @@ def test_SingleContextSettingInventory_storage_format_01():
     score_specification.interpret()
 
     setting_inventory_1 = segment.single_context_settings
-
     storage_format = setting_inventory_1.storage_format
-
-    r'''
-    settingtools.SingleContextSettingInventory([
-        settingtools.SingleContextSetting(
-            'time_signatures',
-            [(4, 8), (3, 8)],
-            selectortools.TimespanSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    )
-                ),
-            context_name='Grouped Rhythmic Staves Score',
-            persist=True,
-            truncate=False,
-            fresh=True
-            )
-        ])
-    '''
-
     setting_inventory_2 = eval(storage_format)
 
     assert isinstance(setting_inventory_1, SingleContextSettingInventory)

@@ -18,28 +18,7 @@ def test_MultipleContextSettingInventory_storage_format_01():
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     multiple_context_setting_inventory_1 = segment.multiple_context_settings
-
     storage_format = multiple_context_setting_inventory_1.storage_format
-
-    r'''
-    settingtools.MultipleContextSettingInventory([
-        settingtools.MultipleContextSetting(
-            'time_signatures',
-            [(4, 8), (3, 8)],
-            selectortools.TimespanSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    )
-                ),
-            context_names=['Grouped Rhythmic Staves Score'],
-            persist=True,
-            truncate=False
-            )
-        ])
-    '''
-
     multiple_context_setting_inventory_2 = eval(storage_format)
 
     assert isinstance(multiple_context_setting_inventory_1, MultipleContextSettingInventory)
