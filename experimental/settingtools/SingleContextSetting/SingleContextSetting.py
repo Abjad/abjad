@@ -40,12 +40,8 @@ class SingleContextSetting(Setting):
         settingtools.SingleContextSetting(
             'divisions',
             [(3, 16)],
-            selectortools.TimespanSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    )
+            selectortools.SegmentItemSelector(
+                identifier='red'
                 ),
             context_name='Voice 1',
             persist=True,
@@ -100,12 +96,8 @@ class SingleContextSetting(Setting):
             settingtools.SingleContextSetting(
                 'divisions',
                 [(3, 16)],
-                selectortools.TimespanSelector(
-                    timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentItemSelector(
-                            identifier='red'
-                            )
-                        )
+                selectortools.SegmentItemSelector(
+                    identifier='red'
                     ),
                 context_name='Voice 1',
                 persist=True,
@@ -143,6 +135,10 @@ class SingleContextSetting(Setting):
         from experimental import selectortools
         from experimental import specificationtools
         assert self.selector.timespan.encompasses_one_segment_exactly, repr(self)
+        #self._debug(self.selector, 'self.selector')
         segment_name = helpertools.expr_to_segment_name(segment)
         segment_selector = selectortools.SegmentItemSelector(identifier=segment_name)
-        self.selector._timespan = segment_selector.timespan
+        if isinstance(self.selector, selectortools.SegmentItemSelector):
+            self._selector = segment_selector
+        else:
+            self.selector._timespan = segment_selector.timespan

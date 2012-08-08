@@ -39,12 +39,8 @@ class ResolvedSingleContextSetting(SingleContextSetting):
             'divisions',
             [(3, 16)],
             [(3, 16)],
-            selectortools.TimespanSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    )
+            selectortools.SegmentItemSelector(
+                identifier='red'
                 ),
             context_name='Voice 1',
             persist=True,

@@ -61,7 +61,7 @@ class SegmentSpecification(Specification):
         offset=None, persist=True, selector=None, truncate=False):
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
         contexts = self._context_token_to_context_names(contexts)
-        selector = selector or self.select_segment_timespan()
+        selector = selector or self.select_segment()
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             source, 
@@ -653,26 +653,6 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SegmentItemSelector(identifier=self.segment_name)
 
-    def select_segment_timespan(self):
-        '''Select segment timespan::
-
-            >>> selector = segment.select_segment_timespan()
-
-        ::
-
-            >>> z(selector)
-            selectortools.TimespanSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    )
-                )
-
-        Return selector.
-        '''
-        return selectortools.TimespanSelector(self.timespan)
-
     def select_segment_timespan_ratio_part(self, ratio, part):
         r'''Select the first third of the timespan of segment ``'red'``::
 
@@ -739,12 +719,8 @@ class SegmentSpecification(Specification):
             settingtools.MultipleContextSetting(
                 'divisions',
                 [(3, 16)],
-                selectortools.TimespanSelector(
-                    timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentItemSelector(
-                            identifier='red'
-                            )
-                        )
+                selectortools.SegmentItemSelector(
+                    identifier='red'
                     ),
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True,

@@ -26,12 +26,8 @@ class MultipleContextSetting(Setting):
         settingtools.MultipleContextSetting(
             'time_signatures',
             [(4, 8), (3, 8)],
-            selectortools.TimespanSelector(
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
-                        identifier='red'
-                        )
-                    )
+            selectortools.SegmentItemSelector(
+                identifier='red'
                 ),
             context_names=['Grouped Rhythmic Staves Score'],
             persist=True,
