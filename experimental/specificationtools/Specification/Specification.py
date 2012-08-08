@@ -3,6 +3,7 @@ from abc import abstractmethod
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
+from experimental import selectortools
 from experimental import settingtools
 
 
@@ -71,6 +72,12 @@ class Specification(AbjadObject):
         for context in contexttools.iterate_contexts_forward_in_expr(score):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
+
+    def _wrap_selector_with_ratio_part_selector(self, selector, ratio, part, is_count=True):
+        if is_count:
+            return selectortools.CountRatioPartSelector(selector, ratio, part)
+        else:
+            return selectortools.TimeRatioPartSelector(selector, ratio, part)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

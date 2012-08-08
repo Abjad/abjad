@@ -429,11 +429,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_background_measures()
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
+        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_division(self, n):
         '''Select division ``0`` that starts during segment::
@@ -517,11 +513,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_divisions()
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
+        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_leaves(self, start=None, stop=None):
         '''Select the first ``40`` leaves that start during segment::
@@ -579,11 +571,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_leaves()
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
+        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_notes_and_chords(self, start=None, stop=None):
         '''Select the first ``40`` notes and chords that start during segment.
@@ -647,11 +635,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_notes_and_chords()
-        if is_count:
-            selector = selectortools.CountRatioPartSelector(selector, ratio, part)
-        else:
-            selector = selectortools.TimeRatioPartSelector(selector, ratio, part)
-        return selector
+        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_segment(self):
         '''Select segment::
