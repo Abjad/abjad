@@ -325,7 +325,6 @@ Unstable packages (load manually)
    experimental/selectortools/SegmentItemSelector/SegmentItemSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
-   experimental/selectortools/TimespanSelector/TimespanSelector
 
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
