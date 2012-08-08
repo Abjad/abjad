@@ -16,7 +16,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> background_measure_selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality)
+        >>> background_measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
 
     ::
 
@@ -27,7 +27,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
         >>> z(count_ratio_part_selector)
         selectortools.CountRatioPartSelector(
-            selectortools.BackgroundMeasureSliceSelector(
+            selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(

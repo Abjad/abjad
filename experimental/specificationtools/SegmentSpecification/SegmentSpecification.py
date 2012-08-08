@@ -331,7 +331,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.BackgroundMeasureSliceSelector(
+            selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -348,7 +348,7 @@ class SegmentSpecification(Specification):
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         start, stop = n, n + 1
-        selector = selectortools.BackgroundMeasureSliceSelector(
+        selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
@@ -360,7 +360,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.BackgroundMeasureSliceSelector(
+            selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -375,7 +375,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.BackgroundMeasureSliceSelector(
+        selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
     
@@ -389,7 +389,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
-                selectortools.BackgroundMeasureSliceSelector(
+                selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -412,7 +412,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.TimeRatioPartSelector(
-                selectortools.BackgroundMeasureSliceSelector(
+                selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -439,7 +439,7 @@ class SegmentSpecification(Specification):
         ::
             
             >>> z(selector)
-            selectortools.DivisionSliceSelector(
+            selectortools.DivisionSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -456,7 +456,7 @@ class SegmentSpecification(Specification):
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         start, stop = n, n + 1
-        selector = selectortools.DivisionSliceSelector(
+        selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
@@ -468,7 +468,7 @@ class SegmentSpecification(Specification):
         ::
             
             >>> z(selector)
-            selectortools.DivisionSliceSelector(
+            selectortools.DivisionSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -483,7 +483,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.DivisionSliceSelector(
+        selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
@@ -496,7 +496,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
-                selectortools.DivisionSliceSelector(
+                selectortools.DivisionSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -523,7 +523,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CounttimeComponentSliceSelector(
+            selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -539,7 +539,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.CounttimeComponentSliceSelector(
+        selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop)
         return selector
@@ -553,7 +553,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
-                selectortools.CounttimeComponentSliceSelector(
+                selectortools.CounttimeComponentSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -581,7 +581,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CounttimeComponentSliceSelector(
+            selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
@@ -600,7 +600,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
-        selector = selectortools.CounttimeComponentSliceSelector(
+        selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop)
         return selector
@@ -614,7 +614,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
-                selectortools.CounttimeComponentSliceSelector(
+                selectortools.CounttimeComponentSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(

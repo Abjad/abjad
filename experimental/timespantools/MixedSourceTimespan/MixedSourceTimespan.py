@@ -16,14 +16,14 @@ class MixedSourceTimespan(Timespan):
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start_identifier=-1)
+        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
         >>> start_timepoint = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SegmentItemSelector(identifier='blue')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, stop_identifier=1)
+        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
         >>> stop_timepoint = timespantools.Timepoint(anchor=measure_selector, edge=Right)
         
     ::
@@ -36,7 +36,7 @@ class MixedSourceTimespan(Timespan):
         >>> z(timespan)
         timespantools.MixedSourceTimespan(
             start_timepoint=timespantools.Timepoint(
-                anchor=selectortools.BackgroundMeasureSliceSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -49,7 +49,7 @@ class MixedSourceTimespan(Timespan):
                     )
                 ),
             stop_timepoint=timespantools.Timepoint(
-                anchor=selectortools.BackgroundMeasureSliceSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(

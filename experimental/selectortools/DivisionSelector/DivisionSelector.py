@@ -2,7 +2,7 @@ from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class DivisionSliceSelector(SliceSelector, InequalitySelector):
+class DivisionSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -11,8 +11,8 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
 
     Select all divisions::
 
-        >>> selectortools.DivisionSliceSelector()
-        DivisionSliceSelector()
+        >>> selectortools.DivisionSelector()
+        DivisionSelector()
 
     Select all divisions starting during segment ``'red'``::
 
@@ -22,12 +22,12 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
 
     ::
 
-        >>> divisions = selectortools.DivisionSliceSelector(inequality=inequality)
+        >>> divisions = selectortools.DivisionSelector(inequality=inequality)
 
     ::
 
         >>> z(divisions)
-        selectortools.DivisionSliceSelector(
+        selectortools.DivisionSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
@@ -40,12 +40,12 @@ class DivisionSliceSelector(SliceSelector, InequalitySelector):
 
     Select the last two divisions starting during segment ``'red'``::
 
-        >>> divisions = selectortools.DivisionSliceSelector(inequality=inequality, start_identifier=-2)
+        >>> divisions = selectortools.DivisionSelector(inequality=inequality, start_identifier=-2)
 
     ::
 
         >>> z(divisions)
-        selectortools.DivisionSliceSelector(
+        selectortools.DivisionSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(

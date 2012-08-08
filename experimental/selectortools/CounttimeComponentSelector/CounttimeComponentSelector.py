@@ -2,7 +2,7 @@ from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class CounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
+class CounttimeComponentSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components restricted according to keywords.
@@ -11,23 +11,23 @@ class CounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
 
     Select the first five counttime components::
 
-        >>> selectortools.CounttimeComponentSliceSelector(stop_identifier=5)
-        CounttimeComponentSliceSelector(stop_identifier=5)
+        >>> selectortools.CounttimeComponentSelector(stop_identifier=5)
+        CounttimeComponentSelector(stop_identifier=5)
 
     Select the last five counttime components::
 
-        >>> selectortools.CounttimeComponentSliceSelector(start_identifier=-5)
-        CounttimeComponentSliceSelector(start_identifier=-5)
+        >>> selectortools.CounttimeComponentSelector(start_identifier=-5)
+        CounttimeComponentSelector(start_identifier=-5)
 
     Select counttime components from ``5`` up to but not including ``-5``::
 
-        >>> selectortools.CounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
-        CounttimeComponentSliceSelector(start_identifier=5, stop_identifier=-5)
+        >>> selectortools.CounttimeComponentSelector(start_identifier=5, stop_identifier=-5)
+        CounttimeComponentSelector(start_identifier=5, stop_identifier=-5)
 
     Select all counttime components::
 
-        >>> selectortools.CounttimeComponentSliceSelector()
-        CounttimeComponentSliceSelector()
+        >>> selectortools.CounttimeComponentSelector()
+        CounttimeComponentSelector()
 
     Select counttime measure ``3`` to starting during segment ``'red'``.
     Then select the last three leaves in tuplet ``-1`` in this measure::
@@ -37,27 +37,27 @@ class CounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
 
     ::
 
-        >>> measure_selector = selectortools.CounttimeComponentSliceSelector(
+        >>> measure_selector = selectortools.CounttimeComponentSelector(
         ... inequality=inequality, klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
-        >>> tuplet_selector = selectortools.CounttimeComponentSliceSelector(
+        >>> tuplet_selector = selectortools.CounttimeComponentSelector(
         ... selector=measure_selector, klass=Tuplet, start_identifier=-1)
 
     ::
 
-        >>> leaf_slice_selector = selectortools.CounttimeComponentSliceSelector(
+        >>> leaf_slice_selector = selectortools.CounttimeComponentSelector(
         ... selector=tuplet_selector, klass=leaftools.Leaf, start_identifier=-3)
 
     ::
 
         >>> z(leaf_slice_selector)
-        selectortools.CounttimeComponentSliceSelector(
+        selectortools.CounttimeComponentSelector(
             klass=leaftools.Leaf,
-            selector=selectortools.CounttimeComponentSliceSelector(
+            selector=selectortools.CounttimeComponentSelector(
                 klass=tuplettools.Tuplet,
-                selector=selectortools.CounttimeComponentSliceSelector(
+                selector=selectortools.CounttimeComponentSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
