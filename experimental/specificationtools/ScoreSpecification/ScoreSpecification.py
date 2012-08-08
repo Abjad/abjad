@@ -61,17 +61,15 @@ class ScoreSpecification(Specification):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_names(self):
-        r'''Score specification context names::
+    def abbreviated_context_names(self):
+        r'''Score specification abbreviated context names::
 
-            >>> score_specification.context_names
+            >>> score_specification.abbreviated_context_names
             ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-
-        Only names for which context abbreviations exist are included.
 
         Return list of strings.
         '''
-        return Specification.context_names.fget(self)
+        return Specification.abbreviated_context_names.fget(self)
 
     @property
     def contexts(self):

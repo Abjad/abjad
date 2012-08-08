@@ -32,7 +32,7 @@ class Specification(AbjadObject):
     def __init__(self, score_template):
         from experimental import specificationtools
         self._score_template = score_template
-        self._context_names = []
+        self._abbreviated_context_names = []
         self._resolved_single_context_settings = specificationtools.ContextProxyDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
         self._contexts = specificationtools.ContextProxyDictionary(self.score_template())
@@ -47,9 +47,10 @@ class Specification(AbjadObject):
             context_names = context_token
         elif isinstance(context_token, type(self)):
             context_names = [context_token.score_name]
-        elif context_token in self.context_names:
+        elif context_token in self.abbreviated_context_names:
             context_names = [context_token]
-        elif isinstance(context_token, (tuple, list)) and all([x in self.context_names for x in context_token]):
+        elif isinstance(context_token, (tuple, list)) and all([
+            x in self.abbreviated_context_names for x in context_token]):
             context_names = context_token
         elif isinstance(context_token, contexttools.Context):
             context_names = [context_token.name]
@@ -63,15 +64,15 @@ class Specification(AbjadObject):
         self.context_name_abbreviations = getattr(self.score_template, 'context_name_abbreviations', {})
         for context_name_abbreviation, context_name in self.context_name_abbreviations.iteritems():
             setattr(self, context_name_abbreviation, context_name)
-            self._context_names.append(context_name)
+            self._abbreviated_context_names.append(context_name)
         score = self.score_template()
         self._score_name = score.name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def context_names(self):
-        return self._context_names
+    def abbreviated_context_names(self):
+        return self._abbreviated_context_names
 
     @property
     def contexts(self):

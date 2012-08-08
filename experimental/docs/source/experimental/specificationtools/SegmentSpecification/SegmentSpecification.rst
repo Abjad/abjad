@@ -9,7 +9,7 @@ specificationtools.SegmentSpecification
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_names
+.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.abbreviated_context_names
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.contexts
 

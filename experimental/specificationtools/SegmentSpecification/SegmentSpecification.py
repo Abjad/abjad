@@ -76,17 +76,15 @@ class SegmentSpecification(Specification):
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
-    def context_names(self):
-        r'''Segment specification context names::
+    def abbreviated_context_names(self):
+        r'''Segment specification abbreviated context names::
 
-            >>> segment.context_names
+            >>> segment.abbreviated_context_names
             ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-
-        Only names for which context abbreviations exist are included.
 
         Return list of strings.
         '''
-        return Specification.context_names.fget(self)
+        return Specification.abbreviated_context_names.fget(self)
 
     @property
     def contexts(self):
