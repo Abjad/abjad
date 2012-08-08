@@ -380,14 +380,38 @@ class SegmentSpecification(Specification):
         return selector
     
     def select_background_measures_ratio_part(self, ratio, part, is_count=True):
-        r'''Select the first third of background measures starting during segment::
+        r'''Select the first third of `segment` background measures 
+        calculated according to number of measures::
 
-            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0)
+            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
 
         ::
 
             >>> z(selector)
             selectortools.CountRatioPartSelector(
+                selectortools.BackgroundMeasureSliceSelector(
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.SingleSourceTimespan(
+                            selector=selectortools.SegmentItemSelector(
+                                identifier='red'
+                                )
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                0
+                )
+
+        Select the first third of `segment` background measures calculcated
+        according to measure duration::
+
+            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
+
+        ::
+
+            >>> z(selector)
+            selectortools.TimeRatioPartSelector(
                 selectortools.BackgroundMeasureSliceSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
