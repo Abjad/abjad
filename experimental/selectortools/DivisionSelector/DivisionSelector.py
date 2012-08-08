@@ -16,7 +16,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     Select all divisions starting during segment ``'red'``::
 
-        >>> segment = selectortools.SegmentItemSelector(identifier='red')
+        >>> segment = selectortools.SingleSegmentSelector(identifier='red')
         >>> timespan = segment.timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
@@ -31,7 +31,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )
@@ -49,7 +49,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )

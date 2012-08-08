@@ -322,8 +322,8 @@ Unstable packages (load manually)
    experimental/selectortools/CountRatioPartSelector/CountRatioPartSelector
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
-   experimental/selectortools/SegmentItemSelector/SegmentItemSelector
-   experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
+   experimental/selectortools/SegmentSelector/SegmentSelector
+   experimental/selectortools/SingleSegmentSelector/SingleSegmentSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
 
 :py:mod:`settingtools <experimental.settingtools>`

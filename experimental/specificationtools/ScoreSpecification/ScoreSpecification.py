@@ -323,7 +323,7 @@ class ScoreSpecification(Specification):
             >>> z(request)
             requesttools.AttributeRequest(
                 'divisions',
-                selectortools.SegmentSliceSelector(
+                selectortools.SegmentSelector(
                     start_identifier='red',
                     stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                     ),
@@ -337,7 +337,7 @@ class ScoreSpecification(Specification):
         expression = '{!r} + {}'.format(start_segment_name, segment_count)
         held_expression = helpertools.SegmentIdentifierExpression(expression)
         start, stop = start_segment_name, held_expression
-        selector = selectortools.SegmentSliceSelector(start_identifier=start, stop_identifier=stop)
+        selector = selectortools.SegmentSelector(start_identifier=start, stop_identifier=stop)
         request = requesttools.AttributeRequest('divisions', selector, context_name=voice_name)
         return request
 

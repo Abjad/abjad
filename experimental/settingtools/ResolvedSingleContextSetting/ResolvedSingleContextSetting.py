@@ -39,7 +39,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
             'divisions',
             [(3, 16)],
             [(3, 16)],
-            selectortools.SegmentItemSelector(
+            selectortools.SingleSegmentSelector(
                 identifier='red'
                 ),
             context_name='Voice 1',

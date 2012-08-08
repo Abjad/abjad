@@ -3,7 +3,7 @@ from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SegmentSliceSelector(SliceSelector, InequalitySelector):
+class SegmentSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -12,63 +12,63 @@ class SegmentSliceSelector(SliceSelector, InequalitySelector):
 
     Select all segments in score::
 
-        >>> selectortools.SegmentSliceSelector()
-        SegmentSliceSelector()
+        >>> selectortools.SegmentSelector()
+        SegmentSelector()
 
     Select segments from ``3`` forward::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier=3)
-        SegmentSliceSelector(start_identifier=3)
+        >>> selectortools.SegmentSelector(start_identifier=3)
+        SegmentSelector(start_identifier=3)
 
     Select segments up to but not including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(stop_identifier=6)
-        SegmentSliceSelector(stop_identifier=6)
+        >>> selectortools.SegmentSelector(stop_identifier=6)
+        SegmentSelector(stop_identifier=6)
 
     Select segments up to and including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(stop_identifier=6+1)
-        SegmentSliceSelector(stop_identifier=7)
+        >>> selectortools.SegmentSelector(stop_identifier=6+1)
+        SegmentSelector(stop_identifier=7)
 
     Select segments from ``3`` up to but not including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier=3, stop_identifier=6)
-        SegmentSliceSelector(start_identifier=3, stop_identifier=6)
+        >>> selectortools.SegmentSelector(start_identifier=3, stop_identifier=6)
+        SegmentSelector(start_identifier=3, stop_identifier=6)
 
     Select segments from ``3`` up to and including ``6``::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier=3, stop_identifier=6+1)
-        SegmentSliceSelector(start_identifier=3, stop_identifier=7)
+        >>> selectortools.SegmentSelector(start_identifier=3, stop_identifier=6+1)
+        SegmentSelector(start_identifier=3, stop_identifier=7)
 
     Select segments from ``'red'`` forward::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier='red')
-        SegmentSliceSelector(start_identifier='red')
+        >>> selectortools.SegmentSelector(start_identifier='red')
+        SegmentSelector(start_identifier='red')
 
     Select segments up to but not including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(stop_identifier='blue')
-        SegmentSliceSelector(stop_identifier='blue')
+        >>> selectortools.SegmentSelector(stop_identifier='blue')
+        SegmentSelector(stop_identifier='blue')
 
     Select segments up to and including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
-        SegmentSliceSelector(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
+        >>> selectortools.SegmentSelector(stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        SegmentSelector(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select segments from ``'red'`` up to but not including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier='blue')
-        SegmentSliceSelector(start_identifier='red', stop_identifier='blue')
+        >>> selectortools.SegmentSelector(start_identifier='red', stop_identifier='blue')
+        SegmentSelector(start_identifier='red', stop_identifier='blue')
 
     Select segments from ``'red'`` up to and including ``'blue'``::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
-        SegmentSliceSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
+        >>> selectortools.SegmentSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select three segments from ``'red'``::
 
-        >>> selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
-        SegmentSliceSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
+        >>> selectortools.SegmentSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
+        SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
 
     Select all segments starting during the first third of the score:
 
@@ -77,12 +77,12 @@ class SegmentSliceSelector(SliceSelector, InequalitySelector):
 
     ::
 
-        >>> selector = selectortools.SegmentSliceSelector(inequality=inequality)
+        >>> selector = selectortools.SegmentSelector(inequality=inequality)
 
     ::
 
         >>> z(selector)
-        selectortools.SegmentSliceSelector(
+        selectortools.SegmentSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
@@ -93,12 +93,12 @@ class SegmentSliceSelector(SliceSelector, InequalitySelector):
 
     Select the last two segments starting during the first third of the score::
 
-        >>> selector = selectortools.SegmentSliceSelector(inequality=inequality, start_identifier=-2)
+        >>> selector = selectortools.SegmentSelector(inequality=inequality, start_identifier=-2)
 
     ::
 
         >>> z(selector)
-        selectortools.SegmentSliceSelector(
+        selectortools.SegmentSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(

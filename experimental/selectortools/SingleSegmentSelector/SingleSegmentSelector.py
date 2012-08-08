@@ -3,7 +3,7 @@ from experimental import segmenttools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 
 
-class SegmentItemSelector(InequalitySelector):
+class SingleSegmentSelector(InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select segment ``3``::
@@ -12,13 +12,13 @@ class SegmentItemSelector(InequalitySelector):
 
     ::
 
-        >>> selectortools.SegmentItemSelector(identifier=3)
-        SegmentItemSelector(identifier=3)
+        >>> selectortools.SingleSegmentSelector(identifier=3)
+        SingleSegmentSelector(identifier=3)
 
     Select segment ``'red'``::
 
-        >>> selectortools.SegmentItemSelector(identifier='red')
-        SegmentItemSelector(identifier='red')
+        >>> selectortools.SingleSegmentSelector(identifier='red')
+        SingleSegmentSelector(identifier='red')
 
     Segment selectors are immutable.
     '''

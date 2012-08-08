@@ -37,12 +37,12 @@ class SingleSourceTimespan(Timespan):
 
     Timespan of the segment with name ``'red'``::
 
-        >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
+        >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
 
     ::
 
         >>> timespantools.SingleSourceTimespan(selector=segment_selector)
-        SingleSourceTimespan(selector=SegmentItemSelector(identifier='red'))
+        SingleSourceTimespan(selector=SingleSegmentSelector(identifier='red'))
 
     Timespan of the first measure that starts during segment ``'red'``::
 
@@ -61,7 +61,7 @@ class SingleSourceTimespan(Timespan):
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentItemSelector(
+                        selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
                         )
@@ -86,7 +86,7 @@ class SingleSourceTimespan(Timespan):
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentItemSelector(
+                        selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
                         )
@@ -99,12 +99,12 @@ class SingleSourceTimespan(Timespan):
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segment_slice_selector = selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=stop)
+        >>> segment_slice_selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=stop)
 
     ::
 
         >>> timespantools.SingleSourceTimespan(selector=segment_slice_selector)
-        SingleSourceTimespan(selector=SegmentSliceSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
+        SingleSourceTimespan(selector=SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.
     '''
@@ -152,7 +152,7 @@ class SingleSourceTimespan(Timespan):
         '''
         from experimental import selectortools
         if self.encompasses_one_object_exactly:
-            if isinstance(self.selector, selectortools.SegmentItemSelector):
+            if isinstance(self.selector, selectortools.SingleSegmentSelector):
                 return True
         return False
 

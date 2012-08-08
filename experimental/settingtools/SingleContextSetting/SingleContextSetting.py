@@ -40,7 +40,7 @@ class SingleContextSetting(Setting):
         settingtools.SingleContextSetting(
             'divisions',
             [(3, 16)],
-            selectortools.SegmentItemSelector(
+            selectortools.SingleSegmentSelector(
                 identifier='red'
                 ),
             context_name='Voice 1',
@@ -96,7 +96,7 @@ class SingleContextSetting(Setting):
             settingtools.SingleContextSetting(
                 'divisions',
                 [(3, 16)],
-                selectortools.SegmentItemSelector(
+                selectortools.SingleSegmentSelector(
                     identifier='red'
                     ),
                 context_name='Voice 1',
@@ -133,7 +133,7 @@ class SingleContextSetting(Setting):
         Return none.
         '''
         from experimental import selectortools
-        assert isinstance(self.selector, selectortools.SegmentItemSelector) 
+        assert isinstance(self.selector, selectortools.SingleSegmentSelector) 
         segment_name = helpertools.expr_to_segment_name(segment)
-        segment_selector = selectortools.SegmentItemSelector(identifier=segment_name)
+        segment_selector = selectortools.SingleSegmentSelector(identifier=segment_name)
         self._selector = segment_selector

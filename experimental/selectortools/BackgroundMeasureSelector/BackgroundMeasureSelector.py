@@ -32,7 +32,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     Select all measures starting during segment ``'red'``::
 
-        >>> timespan = selectortools.SegmentItemSelector(identifier='red')
+        >>> timespan = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
@@ -46,7 +46,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )
@@ -64,7 +64,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentItemSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )
@@ -75,7 +75,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     Select all the measures that start during the three contiguous segments starting with ``'red'``::
 
         >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
-        >>> selector = selectortools.SegmentSliceSelector(start_identifier='red', stop_identifier=expr)
+        >>> selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=expr)
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=selector)
 
     ::
@@ -89,7 +89,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSliceSelector(
+                    selector=selectortools.SegmentSelector(
                         start_identifier='red',
                         stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                         )
@@ -108,7 +108,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSliceSelector(
+                    selector=selectortools.SegmentSelector(
                         start_identifier='red',
                         stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                         )

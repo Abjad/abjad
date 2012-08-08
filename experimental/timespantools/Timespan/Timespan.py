@@ -39,6 +39,6 @@ class Timespan(AbjadObject):
     @property
     def is_segment_slice(self):
         if hasattr(self, 'selector'):
-            if isinstance(self.selector, selectortools.SegmentSliceSelector):
+            if isinstance(self.selector, selectortools.SegmentSelector):
                 return True
         return False

@@ -24,7 +24,7 @@ class AttributeRequest(Request):
         >>> z(request)
         requesttools.AttributeRequest(
             'time_signatures',
-            selectortools.SegmentItemSelector(
+            selectortools.SingleSegmentSelector(
                 identifier='red'
                 )
             )

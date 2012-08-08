@@ -12,7 +12,7 @@ class TimespanInequality(AbjadObject):
 
     ::
 
-        >>> segment_selector = selectortools.SegmentItemSelector(identifier='red')
+        >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> timespan_inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
 
     ::
@@ -21,7 +21,7 @@ class TimespanInequality(AbjadObject):
         timespantools.TimespanInequality(
             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
             timespantools.SingleSourceTimespan(
-                selector=selectortools.SegmentItemSelector(
+                selector=selectortools.SingleSegmentSelector(
                     identifier='red'
                     )
                 )
