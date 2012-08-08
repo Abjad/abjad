@@ -33,6 +33,7 @@ class Specification(AbjadObject):
         from experimental import specificationtools
         self._score_template = score_template
         self._abbreviated_context_names = []
+        self._context_names = []
         self._resolved_single_context_settings = specificationtools.ContextProxyDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
         self._contexts = specificationtools.ContextProxyDictionary(self.score_template())
@@ -67,12 +68,19 @@ class Specification(AbjadObject):
             self._abbreviated_context_names.append(context_name)
         score = self.score_template()
         self._score_name = score.name
+        for context in contexttools.iterate_contexts_forward_in_expr(score):
+            if hasattr(context, 'name'):
+                self._context_names.append(context.name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def abbreviated_context_names(self):
         return self._abbreviated_context_names
+
+    @property
+    def context_names(self):
+        return self._context_names
 
     @property
     def contexts(self):

@@ -72,6 +72,28 @@ class ScoreSpecification(Specification):
         return Specification.abbreviated_context_names.fget(self)
 
     @property
+    def context_names(self):
+        r'''Score specification context names::
+
+            >>> for x in score_specification.context_names:
+            ...     x
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Voice 1'
+            'Staff 2'
+            'Voice 2'
+            'Staff 3'
+            'Voice 3'
+            'Staff 4'
+            'Voice 4'
+
+        Return list of strings.
+        '''
+        return Specification.context_names.fget(self)
+
+    @property
     def contexts(self):
         r'''Score specification context proxy dictionary::
 
