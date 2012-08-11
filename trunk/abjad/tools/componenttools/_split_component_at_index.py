@@ -4,7 +4,7 @@ from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components 
 
 # TODO: is there any reason not to make this public?
 # TODO: and shouldn't this be named split_container_at_index()?
-def _split_component_at_index(component, i, spanners='unfractured'):
+def _split_component_at_index(component, i, fracture_spanners=False):
     '''.. versionadded:: 1.1
 
     General component index split algorithm.
@@ -26,11 +26,11 @@ def _split_component_at_index(component, i, spanners='unfractured'):
     if isinstance(component, Leaf):
         #raise Exception # debug
         if i <= 0:
-            if spanners == 'fractured':
+            if fracture_spanners:
                 spannertools.fracture_spanners_attached_to_component(component, direction='left')
             return None, component
         else:
-            if spanners == 'fractured':
+            if fracture_spanners:
                 spannertools.fracture_spanners_attached_to_component(component, direction='right')
             return component, None
 
@@ -91,9 +91,8 @@ def _split_component_at_index(component, i, spanners='unfractured'):
         right._switch(None)
 
     # fracture spanners, if requested
-    if spanners == 'fractured':
+    if fracture_spanners:
         if len(halves) == 2:
-            #left.spanners.fracture(direction='right')
             spannertools.fracture_spanners_attached_to_component(left, direction='right')
 
     # return new left and right halves

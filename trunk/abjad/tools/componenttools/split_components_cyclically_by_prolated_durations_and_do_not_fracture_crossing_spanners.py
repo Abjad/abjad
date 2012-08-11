@@ -62,4 +62,4 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
     '''
 
     return split_components_by_prolated_durations(components, durations,
-        spanners='unfractured', cyclic=True, tie_after=tie_after)
+        fracture_spanners=False, cyclic=True, tie_after=tie_after)

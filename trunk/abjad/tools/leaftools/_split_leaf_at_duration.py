@@ -3,7 +3,7 @@ from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_
 from abjad.tools import durationtools
 
 
-def _split_leaf_at_duration(leaf, split_dur, spanners='unfractured', tie_after=False):
+def _split_leaf_at_duration(leaf, split_dur, fracture_spanners=False, tie_after=False):
     '''Split leaf into left and right lists.
     Left list may be list of one note, many tied notes, or tuplet.
     Right list may be list of one note, many tied notes, or tuplet.
@@ -49,13 +49,8 @@ def _split_leaf_at_duration(leaf, split_dur, spanners='unfractured', tie_after=F
     leaf_left_of_split = left_leaf_list[-1]
     leaf_right_of_split = right_leaf_list[0]
 
-    if spanners == 'fractured':
-        #leaf_left_of_split.spanners.fracture(direction='right')
+    if fracture_spanners:
         spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction='right')
-    elif spanners == 'unfractured':
-        pass
-    else:
-        raise ValueError("keyword must be 'fractured' or 'unfractured'.")
 
     if tie_after:
         tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)

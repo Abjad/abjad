@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 
 # TODO: fix bug that unintentionally fractures ties.
 def split_components_by_prolated_durations(components, durations,
-    spanners='unfractured', cyclic=False, tie_after=False):
+    fracture_spanners=False, cyclic=False, tie_after=False):
     '''..versionadded:: 2.0
     
     Split `components` by prolated `durations`.
@@ -59,7 +59,7 @@ def split_components_by_prolated_durations(components, durations,
             local_split_duration = next_split_point - cum_duration
             #print cum_duration, next_split_point, x, part, local_split_duration
             left_list, right_list = _split_component_at_duration(x, local_split_duration,
-                spanners=spanners, tie_after=tie_after)
+                fracture_spanners=fracture_spanners, tie_after=tie_after)
             #print 'left_list, right_list %s, %s' % (left_list, right_list)
             part.extend(left_list)
             result.append(part)

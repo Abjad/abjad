@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 # TODO: is there any reason not to make this public?
-def _split_component_at_duration(component, duration, spanners='unfractured', tie_after=False):
+def _split_component_at_duration(component, duration, fracture_spanners=False, tie_after=False):
     '''.. versionadded:: 1.1
         
     Split `component` at prolated `duration`.
@@ -81,7 +81,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
         left_list, right_list = _split_leaf_at_duration(bottom,
-            split_point_in_bottom, spanners=spanners, tie_after=tie_after)
+            split_point_in_bottom, fracture_spanners=fracture_spanners, tie_after=tie_after)
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]
@@ -110,7 +110,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
         raise ValueError('should we be able to get here?')
 
     # fracture leaf spanners if requested
-    if spanners == 'fractured':
+    if fracture_spanners:
         spannertools.fracture_spanners_attached_to_component(leaf_right_of_split, direction='left')
 
     # crawl back up through duration-crossing containers and split each
@@ -119,7 +119,8 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     for duration_crossing_container in reversed(duration_crossing_containers):
         assert isinstance(duration_crossing_container, containertools.Container)
         i = duration_crossing_container.index(prev)
-        left, right = _split_component_at_index(duration_crossing_container, i, spanners=spanners)
+        left, right = _split_component_at_index(
+            duration_crossing_container, i, fracture_spanners=fracture_spanners)
         prev = right
 
     # NOTE: If tie chain here is convenience, then fusing is good.

@@ -55,4 +55,4 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
     '''
 
     return split_components_by_prolated_durations(components, durations,
-        spanners='unfractured', tie_after=tie_after)
+        fracture_spanners=False, tie_after=tie_after)

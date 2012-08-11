@@ -57,4 +57,4 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
     '''
 
     return _split_component_at_duration(component, prolated_duration,
-        spanners = 'fractured', tie_after = tie_after)
+        fracture_spanners=True, tie_after=tie_after)
