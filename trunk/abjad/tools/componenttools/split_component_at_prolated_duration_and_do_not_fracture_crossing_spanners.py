@@ -1,9 +1,11 @@
-from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
+from abjad.tools.componenttools.split_component_at_prolated_duration import split_component_at_prolated_duration
 
 
 def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
     component, prolated_duration, tie_after=False):
     r'''.. versionadded:: 1.1
+
+    .. note:: Deprecated. Use ``componenttools.split_component_at_prolated_duration()`` instead.
 
     Split `component` at `prolated_duration` and do not fracture crossing spanners.
 
@@ -60,5 +62,5 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
         ``componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()``.
     '''
 
-    return _split_component_at_duration(component, prolated_duration,
+    return split_component_at_prolated_duration(component, prolated_duration,
         fracture_spanners=False, tie_after=tie_after)

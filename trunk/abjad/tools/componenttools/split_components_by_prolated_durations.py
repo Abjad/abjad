@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
+from abjad.tools.componenttools.split_component_at_prolated_duration import split_component_at_prolated_duration
 from abjad.tools import durationtools
 
 
@@ -284,7 +284,7 @@ def split_components_by_prolated_durations(components, durations,
             #print 'must split %s' % x
             local_split_duration = next_split_point - cum_duration
             #print cum_duration, next_split_point, x, part, local_split_duration
-            left_list, right_list = _split_component_at_duration(x, local_split_duration,
+            left_list, right_list = split_component_at_prolated_duration(x, local_split_duration,
                 fracture_spanners=fracture_spanners, tie_after=tie_after)
             #print 'left_list, right_list %s, %s' % (left_list, right_list)
             part.extend(left_list)

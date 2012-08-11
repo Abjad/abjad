@@ -188,6 +188,7 @@ Composition packages
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/replace_components_with_children_of_components
    tools/componenttools/report_component_format_contributions_as_string
+   tools/componenttools/split_component_at_prolated_duration
    tools/componenttools/split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
    tools/componenttools/split_component_at_prolated_duration_and_fracture_crossing_spanners
    tools/componenttools/split_components_by_prolated_durations
