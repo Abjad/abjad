@@ -5,10 +5,14 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
     components, durations, tie_after=False):
     r'''.. versionadded:: 1.1
 
+    .. note:: Deprecated. Use ``componenttools.split_components_by_durations()`` instead.  
+
     Partition `components` cyclically by prolated `durations` and fracture spanners::
 
-        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+
+    ::
+
         >>> beamtools.BeamSpanner(staff[0])
         BeamSpanner(|2/8(2)|)
         >>> beamtools.BeamSpanner(staff[1])
@@ -34,7 +38,8 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
     ::
 
         >>> durations = [Duration(3, 32)]
-        >>> componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(staff.leaves, durations)
+        >>> componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners(
+        ... staff.leaves, durations)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
         [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
