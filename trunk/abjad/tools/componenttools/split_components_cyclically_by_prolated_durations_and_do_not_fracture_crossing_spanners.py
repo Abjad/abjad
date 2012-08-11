@@ -7,7 +7,7 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
 
     .. note:: Deprecated. Use ``componenttools.split_components_by_durations()`` instead.
 
-    Partition `components` cyclically by prolated `durations` and do not fracture spanners::
+    Split `components` cyclically by prolated `durations` and do not fracture spanners::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
 

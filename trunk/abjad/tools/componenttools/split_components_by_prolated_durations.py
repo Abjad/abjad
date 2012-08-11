@@ -5,9 +5,235 @@ from abjad.tools import durationtools
 # TODO: fix bug that unintentionally fractures ties.
 def split_components_by_prolated_durations(components, durations,
     fracture_spanners=False, cyclic=False, tie_after=False):
-    '''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
     
-    Split `components` by prolated `durations`.
+    Example 1. Split components cyclically and do not fracture crossing spanners::
+
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner(|2/8(2)|)
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner(|2/8(2)|)
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> componenttools.split_components_by_prolated_durations(staff.leaves, [Duration(3, 32)], cyclic=True)
+        [[Note("c'16.")], [Note("c'32"), Note("d'16")],
+        [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'16. [ (
+                c'32
+                d'16
+                d'16 ]
+            }
+            {
+                e'32 [
+                e'16.
+                f'16.
+                f'32 ] )
+            }
+        }
+
+    Example 2. Split components cyclically and fracture spanners::
+
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner(|2/8(2)|)
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner(|2/8(2)|)
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> result = componenttools.split_components_by_prolated_durations(
+        ... staff.leaves, [Duration(3, 32)], cyclic=True, fracture_spanners=True)
+
+    ::
+
+        >>> result
+        [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
+        [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'16. ( ) [
+                c'32 (
+                d'16 )
+                d'16 ] (
+            }
+            {
+                e'32 ) [
+                e'16. (
+                f'16. )
+                f'32 ] ( )
+            }
+        }
+
+    Example 3. Split components once and do not fracture crossing spanners::
+
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner(|2/8(2)|)
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner(|2/8(2)|)
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
+
+    ::
+
+        >>> parts = componenttools.split_components_by_prolated_durations(
+        ... staff[:1], durations, cyclic=False, fracture_spanners=False)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 1/32
+                c'32 [ (
+            }
+            {
+                \time 3/32
+                c'16.
+            }
+            {
+                \time 4/32
+                d'8 ]
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    Example 4. Split components once and fracture crossing spanners::
+
+        >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner(|2/8(2)|)
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner(|2/8(2)|)
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
+        >>> parts = componenttools.split_components_by_prolated_durations(
+        ... staff[:1], durations, cyclic=False, fracture_spanners=True)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 1/32
+                c'32 [ ] ( )
+            }
+            {
+                \time 3/32
+                c'16. [ ] ( )
+            }
+            {
+                \time 4/32
+                d'8 [ ] (
+            }
+            {
+                \time 2/8
+                e'8 [
+                f'8 ] )
+            }
+        }
 
     Return list of newly split parts.
     '''
