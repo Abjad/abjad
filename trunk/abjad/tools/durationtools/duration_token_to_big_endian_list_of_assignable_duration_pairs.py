@@ -13,7 +13,9 @@ def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_toke
 
         >>> duration_tokens = [(n, 16) for n in range(10, 20)]
         >>> for duration_token in duration_tokens:
-        ...     print duration_token, durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_token)
+        ... pairs = durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs(
+        ...     duration_token)
+        ...     print duration_token, pairs
         ...
         (10, 16) ((8, 16), (2, 16))
         (11, 16) ((8, 16), (3, 16))

@@ -133,19 +133,22 @@ def _scopy_leaf(leaf, start, stop):
 
 
 def _scopy_container(container, start, stop):
+    from abjad.tools import componenttools
     from abjad.tools import leaftools
-    from abjad.tools.componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners import split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners
+
     container, first_dif, second_dif = _get_lcopy(container, start, stop)
     #print first_dif, second_dif
     leaf_start = container.leaves[0]
     leaf_end = container.leaves[-1]
     # split first leaf
-    leaf_start_splitted = split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(leaf_start, first_dif)
+    leaf_start_splitted = componenttools.split_component_at_prolated_duration(
+        leaf_start, first_dif, fracture_spanners=False)
     if len(leaf_start_splitted) == 2:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(
             leaf_start_splitted[0][0])
     # split second leaf
-    leaf_end_splitted = split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(leaf_end, second_dif)
+    leaf_end_splitted = componenttools.split_component_at_prolated_duration(
+        leaf_end, second_dif, fracture_spanners=False)
     if len(leaf_end_splitted) == 2:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(
             leaf_end_splitted[1][0])
