@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def _split_components_by_prolated_durations(components, durations,
+def split_components_by_prolated_durations(components, durations,
     spanners='unfractured', cyclic=False, tie_after=False):
     '''..versionadded:: 2.0
     
