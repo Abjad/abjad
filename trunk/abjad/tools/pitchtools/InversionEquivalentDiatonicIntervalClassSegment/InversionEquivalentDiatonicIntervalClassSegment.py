@@ -8,7 +8,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalObjectSegment):
     Abjad model of inversion-equivalent diatonic interval-class segment::
 
         >>> pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
-            [('major', 2), ('major', 9), ('minor', -2), ('minor', -9)])
+        ... [('major', 2), ('major', 9), ('minor', -2), ('minor', -9)])
         InversionEquivalentDiatonicIntervalClassSegment(M2, M2, m2, m2)
 
     Inversion-equivalent diatonic interval-class segments are immutable.
@@ -34,7 +34,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(IntervalObjectSegment):
         Otherwise false::
 
             >>> dics = pitchtools.InversionEquivalentDiatonicIntervalClassSegment(
-                [('major', 3), ('minor', 6), ('major', 6)])
+            ... [('major', 3), ('minor', 6), ('major', 6)])
             >>> dics.is_tertian
             True
 
