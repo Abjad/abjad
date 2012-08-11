@@ -9,12 +9,14 @@ def is_time_signature_with_equivalent_binary_representation(expr):
 
     ::
 
-        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((3, 12)))
+        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation(
+        ... contexttools.TimeSignatureMark((3, 12)))
         True
 
     Otherwise false::
 
-        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((4, 12)))
+        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation(
+        ... contexttools.TimeSignatureMark((4, 12)))
         False
 
     ::

@@ -14,9 +14,10 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
 
     ::
 
-        >>> for note_or_chord in instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(staff):
-        ...   note_or_chord
-        Chord('<d fs>8')
+        >>> list(
+        ... instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(
+        ... staff))
+        [Chord('<d fs>8')]
 
     Return generator.
     '''
