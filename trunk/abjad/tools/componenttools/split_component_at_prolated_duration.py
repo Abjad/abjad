@@ -2,15 +2,114 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-# TODO: is there any reason not to make this public?
 def split_component_at_prolated_duration(component, duration, fracture_spanners=False, tie_after=False):
-    '''.. versionadded:: 1.1
+    r'''.. versionadded:: 1.1
         
     Split `component` at prolated `duration`.
 
     General component duration split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keywords control spanner behavior at split-time.
+
+    Split `component` at `prolated_duration` and do not fracture crossing spanners::
+
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner(|2/8(2)|)
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner(|2/8(2)|)
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> halves = componenttools.split_component_at_prolated_duration(
+        ... staff.leaves[0], Duration(1, 32), fracture_spanners=False)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'32 [ (
+                c'16.
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    Example 2. Split component at prolated duration at fracture crossing spanners::
+
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner(|2/8(2)|)
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner(|2/8(2)|)
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'8 [ (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> halves = componenttools.split_component_at_prolated_duration(
+        ... staff.leaves[0], Duration(1, 32), fracture_spanners=True)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'32 ( ) [
+                c'16. (
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
 
     Return pair of left and right part-lists.
     '''
