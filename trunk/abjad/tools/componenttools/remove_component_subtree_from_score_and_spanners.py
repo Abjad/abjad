@@ -1,19 +1,15 @@
 def remove_component_subtree_from_score_and_spanners(components):
     r'''.. versionadded:: 1.1
 
-    Remove arbitrary `components` and children of `components` from score and spanners::
+    Example 1. Remove one leaf from score::
 
-        >>> score = Voice(notetools.make_repeated_notes(2))
-        >>> score.insert(1, Container(notetools.make_repeated_notes(2)))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
-        >>> beamtools.BeamSpanner(score.leaves)
-        BeamSpanner(c'8, d'8, e'8, f'8)
-        >>> spannertools.GlissandoSpanner(score.leaves)
+        >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
+        >>> spannertools.GlissandoSpanner(voice.leaves)
         GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        >>> f(score)
+        >>> f(voice)
         \new Voice {
             c'8 [ \glissando
             {
@@ -23,16 +19,14 @@ def remove_component_subtree_from_score_and_spanners(components):
             f'8 ]
         }
 
-    Examples refer to the score above.
+    ::
 
-    Remove one leaf from score::
-
-        >>> componenttools.remove_component_subtree_from_score_and_spanners(score.leaves[1:2]) # doctest: +SKIP
-        (Note(d', 8),)
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(voice.leaves[1:2])
+        (Note("d'8"),)
 
     ::
 
-        >>> f(score) # doctest: +SKIP
+        >>> f(voice)
         \new Voice {
             c'8 [ \glissando
             {
@@ -41,14 +35,32 @@ def remove_component_subtree_from_score_and_spanners(components):
             f'8 ]
         }
 
-    Remove contiguous leaves from score::
+    Example 2. Remove contiguous leaves from score::
 
-        >>> result = componenttools.remove_component_subtree_from_score_and_spanners(score.leaves[:2]) # doctest: +SKIP
-        (Note(c', 8), Note(d', 8))
+        >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
+        >>> spannertools.GlissandoSpanner(voice.leaves)
+        GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        >>> f(score) # doctest: +SKIP
+        >>> f(voice)
+        \new Voice {
+            c'8 [ \glissando
+            {
+                d'8 \glissando
+                e'8 \glissando
+            }
+            f'8 ]
+        }
+
+    ::
+
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(voice.leaves[:2])
+        (Note("c'8"), Note("d'8"))
+
+    ::
+
+        >>> f(voice)
         \new Voice {
             {
                 e'8 [ \glissando
@@ -56,30 +68,65 @@ def remove_component_subtree_from_score_and_spanners(components):
             f'8 ]
         }
 
-    Remove noncontiguous leaves from score::
+    Example 3. Remove noncontiguous leaves from score::
 
-        >>> componenttools.remove_component_subtree_from_score_and_spanners([score.leaves[0], score.leaves[2]]) # doctest: +SKIP
-        [Note(c', 8), Note(e', 8)]
+        >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
+        >>> spannertools.GlissandoSpanner(voice.leaves)
+        GlissandoSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        >>> f(score) # doctest: +SKIP
+        >>> f(voice)
         \new Voice {
+            c'8 [ \glissando
             {
-                d'8 [ \glissando
+                d'8 \glissando
+                e'8 \glissando
             }
             f'8 ]
         }
 
-    Remove container from score::
+    ::
 
-        >>> result = componenttools.remove_component_subtree_from_score_and_spanners(score[1:2])
-        >>> result # doctest: +SKIP
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(
+        ... [voice.leaves[0], voice.leaves[2]])
+        [Note("c'8"), Note("e'8")]
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            { d'8 [ \glissando
+            }
+            f'8 ]
+        }
+
+    Example 4. Remove container from score::
+
+        >>> voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
+        >>> spannertools.GlissandoSpanner(voice.leaves)
+        GlissandoSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            c'8 [ \glissando
+            {
+                d'8 \glissando
+                e'8 \glissando
+            }
+            f'8 ]
+        }
+
+    ::
+
+        >>> componenttools.remove_component_subtree_from_score_and_spanners(voice[1:2])
         [{d'8, e'8}]
 
     ::
 
-        >>> f(score) # doctest: +SKIP
+        >>> f(voice)
         \new Voice {
             c'8 [ \glissando
             f'8 ]
@@ -95,9 +142,9 @@ def remove_component_subtree_from_score_and_spanners(components):
         renamed ``componenttools.detach()`` to
         ``componenttools.remove_component_subtree_from_score_and_spanners()``.
     '''
+    from abjad.tools import componenttools
     from abjad.tools.spannertools._withdraw_components_in_expr_from_attached_spanners import \
         _withdraw_components_in_expr_from_attached_spanners
-    from abjad.tools import componenttools
 
     assert componenttools.all_are_components(components)
 
