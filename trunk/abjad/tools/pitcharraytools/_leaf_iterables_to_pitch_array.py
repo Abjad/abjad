@@ -20,8 +20,8 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate=True):
     tokens = notetools.make_quarter_notes_with_lilypond_multipliers([0], time_intervals)
     for leaf_iterable, pitch_array_row in zip(leaf_iterables, pitch_array.rows):
         durations = leaftools.list_prolated_durations_of_leaves_in_expr(leaf_iterable)
-        parts = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners(
-            tokens, durations)
+        parts = componenttools.split_components_by_prolated_durations(
+            tokens, durations, cyclic=False, fracture_spanners=False)
         part_lengths = [len(part) for part in parts]
         cells = pitch_array_row.cells
         grouped_cells = sequencetools.partition_sequence_once_by_counts_without_overhang(cells, part_lengths)

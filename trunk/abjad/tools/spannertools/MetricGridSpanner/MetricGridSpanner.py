@@ -218,8 +218,10 @@ class MetricGridSpanner(Spanner):
         '''
         from abjad.tools import componenttools
         leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
-        componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
-            leaves, [x[0].duration for x in self.meters], tie_after = True)
+        #componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
+        #    leaves, [x[0].duration for x in self.meters], tie_after = True)
+        componenttools.split_components_by_prolated_durations(leaves, [x[0].duration for x in self.meters], 
+            cyclic=True, fracture_spanners=False, tie_after=True)
         #self._fuse_tied_leaves_within_measures()
 
     def splitting_condition(self, leaf):
