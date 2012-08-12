@@ -11,7 +11,8 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
 
         >>> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
         >>> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
-        >>> pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators)
+        >>> pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(
+        ... notes, subrun_indicators)
 
         >>> t = []
         >>> for x in notes:

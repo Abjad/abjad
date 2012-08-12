@@ -6,8 +6,18 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(chromatic_pitch_n
 
     Change `chromatic_pitch_names_string` to named chromatic pitch list::
 
-        >>> pitchtools.chromatic_pitch_names_string_to_named_chromatic_pitch_list("cs, cs cs' cs''")
-        [NamedChromaticPitch('cs,'), NamedChromaticPitch('cs'), NamedChromaticPitch("cs'"), NamedChromaticPitch("cs''")]
+        >>> string = "cs, cs cs' cs''"
+        >>> result = pitchtools.chromatic_pitch_names_string_to_named_chromatic_pitch_list(string)
+       
+    ::
+
+        >>> for named_chromatic_pitch in result:
+        ...     named_chromatic_pitch
+        ...
+        NamedChromaticPitch('cs,')
+        NamedChromaticPitch('cs') 
+        NamedChromaticPitch("cs'") 
+        NamedChromaticPitch("cs''")
 
     Return list of named chromatic pitches.
     '''

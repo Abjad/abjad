@@ -1,6 +1,3 @@
-from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
-
-
 def get_spanners_attached_to_any_improper_child_of_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -24,40 +21,46 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
 
     ::
 
-        >>> len(spannertools.get_spanners_attached_to_any_improper_child_of_component(staff)) == 4
-        True
+        >>> len(spannertools.get_spanners_attached_to_any_improper_child_of_component(staff))
+        4
 
     Get all spanners of `klass` attached to any proper children of `component`::
 
         >>> spanner_klass = spannertools.SlurSpanner
-        >>> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klass) # doctest: +SKIP
-        set([SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
+        >>> result = spannertools.get_spanners_attached_to_any_proper_child_of_component(
+        ... staff, spanner_klass)
+
+    ::
+
+        >>> list(sorted(result))
+        [SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)]
 
     Get all spanners of any `klass` attached to any proper children of `component`::
 
         >>> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
-        >>> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klasses) # doctest: +SKIP
-        set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
+        >>> result = spannertools.get_spanners_attached_to_any_proper_child_of_component(
+        ... staff, spanner_klasses) 
+
+    ::
+
+        >>> list(sorted(result))
+        [BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)]
 
     Return unordered set of zero or more spanners.
-
-    .. versionchanged:: 2.0
-        renamed ``spannertools.get_all_spanners_attached_to_any_improper_children_of_component()`` to
-        ``spannertools.get_spanners_attached_to_any_improper_child_of_component()``.
     '''
-    from abjad.tools.componenttools.Component import Component
     from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     # note: externalization of (old) component spanner aggregator 'contained' property
     result = set([])
 
     # inspect component itself
-    result.update(get_spanners_attached_to_component(component, klass))
+    result.update(spannertools.get_spanners_attached_to_component(component, klass))
 
     # iterate proper children of component
-    children = componenttools.iterate_components_forward_in_expr(component, Component)
+    children = componenttools.iterate_components_forward_in_expr(component, componenttools.Component)
     for child in children:
-        result.update(get_spanners_attached_to_component(child, klass))
+        result.update(spannertools.get_spanners_attached_to_component(child, klass))
 
     # return result
     return result
