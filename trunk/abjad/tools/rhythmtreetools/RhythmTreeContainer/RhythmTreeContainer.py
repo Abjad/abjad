@@ -31,11 +31,11 @@ class RhythmTreeContainer(RhythmTreeNode):
             children=(
                 RhythmTreeLeaf(
                     duration=1,
-                    pitched=True,
+                    is_pitched=True,
                     ),
                 RhythmTreeLeaf(
                     duration=2,
-                    pitched=True,
+                    is_pitched=True,
                     ),
             ),
             duration=1
@@ -52,17 +52,17 @@ class RhythmTreeContainer(RhythmTreeNode):
             children=(
                 RhythmTreeLeaf(
                     duration=1,
-                    pitched=True,
+                    is_pitched=True,
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
                             duration=3,
-                            pitched=True,
+                            is_pitched=True,
                             ),
                         RhythmTreeLeaf(
                             duration=2,
-                            pitched=True,
+                            is_pitched=True,
                             ),
                     ),
                     duration=2
@@ -138,23 +138,23 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=1,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=1,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=1,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=4,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=3
@@ -533,7 +533,7 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -547,11 +547,11 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -568,25 +568,25 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                         ),
                         duration=7
@@ -626,11 +626,11 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -646,21 +646,21 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                         ),
                         duration=4
@@ -669,11 +669,11 @@ class RhythmTreeContainer(RhythmTreeNode):
                         children=(
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
                                 duration=1,
-                                pitched=True,
+                                is_pitched=True,
                                 ),
                         ),
                         duration=5
@@ -742,11 +742,11 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -763,15 +763,15 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=100,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -805,11 +805,11 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -831,7 +831,7 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -863,11 +863,11 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=2,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1
@@ -884,7 +884,7 @@ class RhythmTreeContainer(RhythmTreeNode):
                 children=(
                     RhythmTreeLeaf(
                         duration=3,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=1

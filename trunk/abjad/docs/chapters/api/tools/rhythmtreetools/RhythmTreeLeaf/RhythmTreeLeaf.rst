@@ -62,7 +62,7 @@ Read/write Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
-.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.pitched
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.is_pitched
 
 Special Methods
 ---------------

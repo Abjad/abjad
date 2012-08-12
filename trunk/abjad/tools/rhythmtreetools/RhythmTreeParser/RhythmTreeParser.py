@@ -19,28 +19,28 @@ class RhythmTreeParser(abctools.Parser):
             children=(
                 RhythmTreeLeaf(
                     duration=1,
-                    pitched=True,
+                    is_pitched=True,
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
                             duration=1,
-                            pitched=True,
+                            is_pitched=True,
                             ),
                         RhythmTreeLeaf(
                             duration=1,
-                            pitched=False,
+                            is_pitched=False,
                             ),
                         RhythmTreeLeaf(
                             duration=1,
-                            pitched=True,
+                            is_pitched=True,
                             ),
                     ),
                     duration=2
                     ),
                 RhythmTreeLeaf(
                     duration=2,
-                    pitched=False,
+                    is_pitched=False,
                     ),
             ),
             duration=1
