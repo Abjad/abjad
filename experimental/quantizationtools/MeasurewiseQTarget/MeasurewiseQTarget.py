@@ -20,7 +20,7 @@ class MeasurewiseQTarget(QTarget):
 
     ### PRIVATE METHODS ###
 
-    def _notate(self, grace_handler, partitioner):
+    def _notate(self, grace_handler, attack_point_optimizer):
         voice = voicetools.Voice()
 
         # generate the first
@@ -46,7 +46,7 @@ class MeasurewiseQTarget(QTarget):
 
         # partition tiechains in each measure
         for measure in voice:
-            partitioner(measure)
+            attack_point_optimizer(measure)
 
         return voice
 

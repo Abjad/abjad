@@ -12,8 +12,8 @@ from experimental.quantizationtools.DistanceHeuristic import DistanceHeuristic
 from experimental.quantizationtools.GraceHandler import GraceHandler
 from experimental.quantizationtools.Heuristic import Heuristic
 from experimental.quantizationtools.JobHandler import JobHandler
-from experimental.quantizationtools.NaivePartitioner import NaivePartitioner
-from experimental.quantizationtools.Partitioner import Partitioner
+from experimental.quantizationtools.NaiveAttackPointOptimizer import NaiveAttackPointOptimizer
+from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
 from experimental.quantizationtools.QEventSequence import QEventSequence
 from experimental.quantizationtools.SerialJobHandler import SerialJobHandler
 import bisect
@@ -35,7 +35,7 @@ class QTarget(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_event_sequence, grace_handler=None, heuristic=None, job_handler=None,
-        partitioner=None):
+        attack_point_optimizer=None):
 
         assert isinstance(q_event_sequence, QEventSequence)
 
@@ -51,9 +51,9 @@ class QTarget(abctools.AbjadObject):
             job_handler = SerialJobHandler()
         assert isinstance(job_handler, JobHandler)
 
-        if partitioner is None:
-            partitioner = NaivePartitioner()
-        assert isinstance(partitioner, Partitioner)
+        if attack_point_optimizer is None:
+            attack_point_optimizer = NaiveAttackPointOptimizer()
+        assert isinstance(attack_point_optimizer, AttackPointOptimizer)
 
         # parcel QEvents out to each beat
         beats = self.beats
@@ -87,7 +87,7 @@ class QTarget(abctools.AbjadObject):
 
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
-        return self._notate(grace_handler, partitioner)
+        return self._notate(grace_handler, attack_point_optimizer)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -123,7 +123,7 @@ class QTarget(abctools.AbjadObject):
         return new_leaf
 
     @abstractmethod
-    def _notate(self, grace_handler, partitioner):
+    def _notate(self, grace_handler, attack_point_optimizer):
         raise NotImplemented
 
     def _notate_leaves_pairwise(self, voice, grace_handler):

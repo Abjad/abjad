@@ -6,10 +6,10 @@ def test_Quantizer___call___01():
 
     milliseconds = [1500, -1000, 1000, 1000, -1000, 1000, -1000, 500]
     sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
-    partitioner = quantizationtools.NullPartitioner()
+    attack_point_optimizer = quantizationtools.NullAttackPointOptimizer()
     quantizer = quantizationtools.Quantizer()
 
-    result = quantizer(sequence, partitioner=partitioner)
+    result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
     assert isinstance(result, Voice)
     assert result.prolated_duration == 2
@@ -53,10 +53,10 @@ def test_Quantizer___call___02():
 
     milliseconds = [250, 1000, 1000, 1000, 750]
     sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
-    partitioner = quantizationtools.NullPartitioner()
+    attack_point_optimizer = quantizationtools.NullAttackPointOptimizer()
     quantizer = quantizationtools.Quantizer()
 
-    result = quantizer(sequence, partitioner=partitioner)
+    result = quantizer(sequence, attack_point_optimizer=attack_point_optimizer)
 
     r'''
     \new Voice {
@@ -92,10 +92,10 @@ def test_Quantizer___call___03():
         )
     milliseconds = [250, 250, 250, 250] * 4
     sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)
-    partitioner = quantizationtools.NullPartitioner()
+    attack_point_optimizer = quantizationtools.NullAttackPointOptimizer()
     quantizer = quantizationtools.Quantizer()
 
-    result = quantizer(sequence, q_schema=q_schema, partitioner=partitioner)
+    result = quantizer(sequence, q_schema=q_schema, attack_point_optimizer=attack_point_optimizer)
 
     r'''
     \new Voice {

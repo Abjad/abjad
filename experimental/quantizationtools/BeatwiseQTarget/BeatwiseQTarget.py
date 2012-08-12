@@ -19,7 +19,7 @@ class BeatwiseQTarget(QTarget):
 
     ### PRIVATE METHODS ###
 
-    def _notate(self, grace_handler, partitioner):
+    def _notate(self, grace_handler, attack_point_optimizer):
         voice = voicetools.Voice()
 
         # generate the first
@@ -39,6 +39,6 @@ class BeatwiseQTarget(QTarget):
         self._notate_leaves_pairwise(voice, grace_handler)
 
         # partition tie chains in voice
-        partitioner(voice)
+        attack_point_optimizer(voice)
 
         return voice

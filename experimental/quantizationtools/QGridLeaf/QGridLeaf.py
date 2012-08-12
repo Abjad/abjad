@@ -43,6 +43,12 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
     def __getnewargs__(self):
        return (self.duration, tuple(self.q_event_proxies), self.is_divisible)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+        
+    @property
+    def _pretty_rtm_format_pieces(self):
+        return [str(self.duration)]
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

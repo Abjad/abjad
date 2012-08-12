@@ -9,6 +9,10 @@ quantizationtools.BeatHierarchy
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.big_endian
+
+.. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.pretty_rtm_format
+
 .. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.root_node
 
 .. autoattribute:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.rtm_format

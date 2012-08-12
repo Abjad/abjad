@@ -21,13 +21,15 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
+.. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.depthwise_inventory
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.improper_parentage
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.leaves
-
-.. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.node_klass
 
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.offset
 
@@ -38,6 +40,10 @@ Read-only Properties
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parentage_ratios
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.pretty_rtm_format
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
@@ -97,6 +103,10 @@ Methods
 
 Special Methods
 ---------------
+
+.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__add__
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
 
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__call__
 

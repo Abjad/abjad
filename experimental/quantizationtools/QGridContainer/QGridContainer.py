@@ -4,6 +4,12 @@ from experimental.quantizationtools.QGridLeaf import QGridLeaf
 
 class QGridContainer(rhythmtreetools.RhythmTreeContainer):
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _node_klass(self):
+        return (type(self), QGridLeaf)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -18,6 +24,3 @@ class QGridContainer(rhythmtreetools.RhythmTreeContainer):
             return result
         return tuple(recurse(self))
 
-    @property
-    def node_klass(self):
-        return (type(self), QGridLeaf)

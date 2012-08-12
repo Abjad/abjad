@@ -1,9 +1,9 @@
 from abjad.tools import leaftools
 from abjad.tools import tietools
-from experimental.quantizationtools.Partitioner import Partitioner
+from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
 
 
-class NaivePartitioner(Partitioner):
+class NaiveAttackPointOptimizer(AttackPointOptimizer):
 
     ### SPECIAL METHODS ###
 

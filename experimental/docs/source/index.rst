@@ -206,12 +206,13 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
    experimental/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
    experimental/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/Heuristic/Heuristic
    experimental/quantizationtools/JobHandler/JobHandler
-   experimental/quantizationtools/Partitioner/Partitioner
+   experimental/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
@@ -233,8 +234,8 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
-   experimental/quantizationtools/NaivePartitioner/NaivePartitioner
-   experimental/quantizationtools/NullPartitioner/NullPartitioner
+   experimental/quantizationtools/NaiveAttackPointOptimizer/NaiveAttackPointOptimizer
+   experimental/quantizationtools/NullAttackPointOptimizer/NullAttackPointOptimizer
    experimental/quantizationtools/ParallelJobHandler/ParallelJobHandler
    experimental/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent

@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depthwise_inventory
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.improper_parentage
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
@@ -30,6 +34,10 @@ Read-only Properties
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.preceding_q_event_proxies
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.pretty_rtm_format
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolated_duration
 
