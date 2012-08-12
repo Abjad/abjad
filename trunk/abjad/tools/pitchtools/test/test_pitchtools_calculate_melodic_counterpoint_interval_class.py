@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_01():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_01():
     '''Ascending intervals greater than an octave.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(
@@ -17,7 +17,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_class_01():
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(2)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_02():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_02():
     '''Ascending octave.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(
@@ -25,7 +25,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_class_02():
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(8)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_03():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_03():
     '''Ascending intervals less than an octave.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(
@@ -41,7 +41,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_class_03():
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(2)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_04():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_04():
     '''Unison.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(
@@ -49,7 +49,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_class_04():
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(1)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_05():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_05():
     '''Descending intervals greater than an octave.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(
@@ -65,7 +65,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_class_05():
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-2)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_06():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_06():
     '''Descending octave.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(
@@ -73,7 +73,7 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_class_06():
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-8)
 
 
-def test_pitchtools_calculate_harmonic_counterpoint_interval_class_07():
+def test_pitchtools_calculate_melodic_counterpoint_interval_class_07():
     '''Descending intervals less than an octave.'''
 
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class(

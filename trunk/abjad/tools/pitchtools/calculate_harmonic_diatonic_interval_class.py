@@ -13,7 +13,7 @@ def calculate_harmonic_diatonic_interval_class(pitch_carrier_1, pitch_carrier_2)
     from abjad.tools import pitchtools
 
     # get melodic diatonic interval
-    mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+    mdi = pitchtools.calculate_melodic_diatonic_interval(
         pitch_carrier_1, pitch_carrier_2)
 
     # return harmonic diatonic interval-class

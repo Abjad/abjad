@@ -32,7 +32,7 @@ def are_scalar_notes(*expr):
         componenttools.iterate_components_forward_in_expr(expr, Note)):
         try:
             assert not (left.written_pitch == right.written_pitch)
-            mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
+            mdi = pitchtools.calculate_melodic_diatonic_interval(left, right)
             assert mdi.number <= 2
             if direction_string is None:
                 direction_string = mdi.direction_string

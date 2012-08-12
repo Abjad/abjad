@@ -13,7 +13,7 @@ def calculate_harmonic_chromatic_interval_class(pitch_carrier_1, pitch_carrier_2
     from abjad.tools import pitchtools
 
     # get melodic chromatic interval
-    mci = pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
+    mci = pitchtools.calculate_melodic_chromatic_interval(
         pitch_carrier_1, pitch_carrier_2)
 
     # return harmonic chromatic interval-class

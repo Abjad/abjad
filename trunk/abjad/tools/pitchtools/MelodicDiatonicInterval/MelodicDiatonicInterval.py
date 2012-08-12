@@ -45,7 +45,7 @@ class MelodicDiatonicInterval(DiatonicIntervalObject, MelodicIntervalObject):
             raise TypeError('%s must be melodic diatonic interval.' % arg)
         dummy_pitch = pitchtools.NamedChromaticPitch(0)
         new_pitch = dummy_pitch + self + arg
-        return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+        return pitchtools.calculate_melodic_diatonic_interval(
             dummy_pitch, new_pitch)
 
     def __copy__(self, *args):
@@ -60,7 +60,7 @@ class MelodicDiatonicInterval(DiatonicIntervalObject, MelodicIntervalObject):
         dummy_pitch = pitchtools.NamedChromaticPitch(0)
         for i in range(abs(arg)):
             dummy_pitch += self
-        result = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+        result = pitchtools.calculate_melodic_diatonic_interval(
             pitchtools.NamedChromaticPitch(0), dummy_pitch)
         if arg < 0:
             return -result
@@ -84,7 +84,7 @@ class MelodicDiatonicInterval(DiatonicIntervalObject, MelodicIntervalObject):
             raise TypeError('%s must be melodic diatonic interval.' % arg)
         dummy_pitch = pitchtools.NamedChromaticPitch(0)
         new_pitch = dummy_pitch + self - arg
-        return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+        return pitchtools.calculate_melodic_diatonic_interval(
             dummy_pitch, new_pitch)
 
     ### PUBLIC PROPERTIES ###
