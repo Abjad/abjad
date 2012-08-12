@@ -88,6 +88,6 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClassObject, HarmonicInterva
         middle = low + mdi
         octave = pitchtools.MelodicDiatonicInterval('perfect', 8)
         high = low + octave
-        hdi = pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
+        hdi = pitchtools.calculate_harmonic_diatonic_interval_class(
             middle, high)
         return hdi

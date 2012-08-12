@@ -31,7 +31,7 @@ def are_stepwise_notes(*expr):
         componenttools.iterate_components_forward_in_expr(expr, Note)):
         try:
             assert not (left.written_pitch == right.written_pitch)
-            hdi = pitchtools.calculate_harmonic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(left, right)
+            hdi = pitchtools.calculate_harmonic_diatonic_interval(left, right)
             assert hdi.number <= 2
         except AssertionError:
             return False
