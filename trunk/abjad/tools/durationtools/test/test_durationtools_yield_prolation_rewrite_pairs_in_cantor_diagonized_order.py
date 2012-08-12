@@ -2,9 +2,9 @@ from abjad import *
 from abjad.tools import durationtools
 
 
-def test_durationtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_01():
+def test_durationtools_yield_prolation_rewrite_pairs_in_cantor_diagonalized_order_01():
 
-    pairs = durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 8))
+    pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(Fraction(1, 8))
 
     assert pairs == (
         (Fraction(1, 1), Fraction(1, 8)),
@@ -17,10 +17,10 @@ def test_durationtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_d
         (Fraction(16, 31), Fraction(31, 128)))
 
 
-def test_durationtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_02():
+def test_durationtools_yield_prolation_rewrite_pairs_in_cantor_diagonalized_order_02():
 
 
-    pairs = durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 12))
+    pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(Fraction(1, 12))
 
     assert pairs == (
         (Fraction(2, 3), Fraction(1, 8)),
@@ -32,10 +32,10 @@ def test_durationtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_d
         (Fraction(32, 45), Fraction(15, 128)))
 
 
-def test_durationtools_yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order_03():
+def test_durationtools_yield_prolation_rewrite_pairs_in_cantor_diagonalized_order_03():
 
 
-    pairs = durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(5, 48))
+    pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(Fraction(5, 48))
 
     assert pairs == (
         (Fraction(5, 6), Fraction(1, 8)),

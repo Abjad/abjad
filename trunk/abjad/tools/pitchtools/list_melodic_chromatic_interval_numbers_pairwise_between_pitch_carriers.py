@@ -1,5 +1,6 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
+    get_named_chromatic_pitch_from_pitch_carrier
 from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 
@@ -26,34 +27,43 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(pitc
 
     ::
 
-        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(staff)
+        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
+        ... staff)
         [2, 2, 1, 2, 2, 2, 1]
 
     ::
 
-        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(staff, wrap=True)
+        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
+        ... staff, wrap=True)
         [2, 2, 1, 2, 2, 2, 1, -12]
 
     ::
 
-        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
-        >>> notes.reverse()
-        >>> notes
-        [Note("c''8"), Note("b'8"), Note("a'8"), Note("g'8"), Note("f'8"), Note("e'8"), Note("d'8"), Note("c'8")]
+        >>> notes = [
+        ...     Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), 
+        ...     Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
 
     ::
 
-        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(notes)
+        >>> notes.reverse()
+
+    ::
+
+        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
+        ... notes)
         [-1, -2, -2, -2, -1, -2, -2]
 
     ::
 
-        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(notes, wrap=True)
+        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
+        ... notes, wrap=True)
         [-1, -2, -2, -2, -1, -2, -2, 12]
 
-    When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+    When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` 
+    as last in series.
 
-    When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+    When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` 
+    as last in series.
 
     Return list.
 

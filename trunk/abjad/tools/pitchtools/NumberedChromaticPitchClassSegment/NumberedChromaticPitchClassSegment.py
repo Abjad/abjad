@@ -50,8 +50,11 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def inversion_equivalent_chromatic_interval_class_segment(self):
         '''Read-only inversion-equivalent chromatic interval-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.inversion_equivalent_chromatic_interval_class_segment
+            >>> segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+        ::
+
+            >>> segment.inversion_equivalent_chromatic_interval_class_segment
             InversionEquivalentChromaticIntervalClassSegment(0.5, 4.5, 1, 3.5, 3.5)
 
         Return inversion-equivalent chromatic interval-class segment.
@@ -63,10 +66,10 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
 
     @property
     def numbered_chromatic_pitch_class_set(self):
-        '''Read-only numbered chromatic pitch-class set from numbered chromatic pitch-class segment::
+        '''Read-only numbered chromatic pitch-class set from numbered chromatic 
+        pitch-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.numbered_chromatic_pitch_class_set
+            >>> segment.numbered_chromatic_pitch_class_set
             NumberedChromaticPitchClassSet([6, 7, 10, 10.5])
 
         Return numbered chromatic pitch-class set.
@@ -79,8 +82,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def alpha(self):
         '''Morris alpha transform of numbered chromatic pitch-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.alpha()
+            >>> segment.alpha()
             NumberedChromaticPitchClassSegment([11, 11.5, 7, 6, 11.5, 6])
 
         Return numbered chromatic pitch-class segment.
@@ -106,8 +108,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def invert(self):
         '''Invert numbered chromatic pitch-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.invert()
+            >>> segment.invert()
             NumberedChromaticPitchClassSegment([2, 1.5, 6, 5, 1.5, 5])
 
         Return numbered chromatic pitch-class segment.
@@ -117,8 +118,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def multiply(self, n):
         '''Multiply numbered chromatic pitch-class segment by `n`::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.multiply(5)
+            >>> segment.multiply(5)
             NumberedChromaticPitchClassSegment([2, 4.5, 6, 11, 4.5, 11])
 
         Return numbered chromatic pitch-class segment.
@@ -128,8 +128,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def retrograde(self):
         '''Retrograde of numbered chromatic pitch-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.retrograde()
+            >>> segment.retrograde()
             NumberedChromaticPitchClassSegment([7, 10.5, 7, 6, 10.5, 10])
 
         Return numbered chromatic pitch-class segment.
@@ -139,8 +138,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def rotate(self, n):
         '''Rotate numbered chromatic pitch-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.rotate(1)
+            >>> segment.rotate(1)
             NumberedChromaticPitchClassSegment([7, 10, 10.5, 6, 7, 10.5])
 
         Return numbered chromatic pitch-class segment.
@@ -152,8 +150,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     def transpose(self, n):
         '''Transpose numbered chromatic pitch-class segment::
 
-            numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
-            numbered_chromatic_pitch_class_segment.transpose(10)
+            >>> segment.transpose(10)
             NumberedChromaticPitchClassSegment([8, 8.5, 4, 5, 8.5, 5])
 
         Return numbered chromatic pitch-class segment.

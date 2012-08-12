@@ -1,9 +1,8 @@
-from abjad.tools.durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order import yield_all_assignable_rationals_in_cantor_diagonalized_order
 from fractions import Fraction
 
 
-def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
-    prolated_duration, minimum_written_duration = Fraction(1, 128)):
+def yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+    prolated_duration, minimum_written_duration=Fraction(1, 128)):
     r'''.. versionadded:: 2.0
 
     Yield all prolation rewrite pairs of `prolated_duration` in Cantor diagonalized order.
@@ -16,7 +15,11 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
 
     ::
 
-        >>> pairs = durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 8))
+        >>> pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+        ... Fraction(1, 8))
+
+    ::
+
         >>> for pair in pairs: pair
         ...
         (Fraction(1, 1), Fraction(1, 8))
@@ -28,9 +31,13 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
         (Fraction(16, 15), Fraction(15, 128))
         (Fraction(16, 31), Fraction(31, 128))
 
-    The different ways to notate a prolated duration of ``1/12``. ::
+    The different ways to notate a prolated duration of ``1/12``::
 
-        >>> pairs = durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(1, 12))
+        >>> pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+        ... Fraction(1, 12))
+
+    ::
+
         >>> for pair in pairs: pair
         ...
         (Fraction(2, 3), Fraction(1, 8))
@@ -41,9 +48,13 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
         (Fraction(32, 21), Fraction(7, 128))
         (Fraction(32, 45), Fraction(15, 128))
 
-    The different ways to notate a prolated duration of ``5/48``. ::
+    The different ways to notate a prolated duration of ``5/48``::
 
-        >>> pairs = durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(Fraction(5, 48))
+        >>> pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+        ... Fraction(5, 48))
+
+    ::
+
         >>> for pair in pairs: pair
         ...
         (Fraction(5, 6), Fraction(1, 8))
@@ -56,9 +67,10 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
 
     Return generator of paired fractions.
     '''
-    from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
+    from abjad.tools import durationtools
+    from abjad.tools import tuplettools
 
-    generator = yield_all_assignable_rationals_in_cantor_diagonalized_order()
+    generator = durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
     pairs = []
 
     while True:
@@ -67,6 +79,6 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
             pairs = tuple(pairs)
             return pairs
         prolation = prolated_duration / written_duration
-        if is_proper_tuplet_multiplier(prolation):
+        if tuplettools.is_proper_tuplet_multiplier(prolation):
             pair = (prolation, written_duration)
             pairs.append(pair)

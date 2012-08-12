@@ -394,7 +394,7 @@ Composition packages
    tools/durationtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
    tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order
    tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
-   tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
+   tools/durationtools/yield_prolation_rewrite_pairs_in_cantor_diagonalized_order
 
 :py:mod:`gracetools <abjad.tools.gracetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1167,7 +1167,7 @@ Composition packages
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation
    tools/pitchtools/transpose_chromatic_pitch_by_melodic_chromatic_interval_segment
-   tools/pitchtools/transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number
+   tools/pitchtools/transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number
    tools/pitchtools/transpose_chromatic_pitch_number_by_octave_transposition_mapping
    tools/pitchtools/transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell
    tools/pitchtools/transpose_pitch_carrier_by_melodic_interval

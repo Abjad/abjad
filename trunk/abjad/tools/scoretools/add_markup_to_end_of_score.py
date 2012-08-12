@@ -7,10 +7,17 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
     Add `markup` to end of `score`::
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> markup = r'\italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }'
+        >>> markup = r'\italic \right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }'
         >>> markup = markuptools.Markup(markup, 'down')
-        >>> scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
-        Markup(('\\italic \\right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }',), direction='_')(f'4)
+        >>> markup = scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
+
+    ::
+
+        >>> z(markup)
+        markuptools.Markup(
+            ('\\italic \\right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }',),
+            direction='_'
+            )
 
     ::
 
@@ -20,7 +27,8 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
             d'4
             e'4
             \once \override TextScript #'extra-offset = #'(4 . -2)
-            f'4 _ \markup { \italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." } }
+            f'4 _ \markup { 
+                \italic \right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." } }
         }
 
     Return `markup`.
