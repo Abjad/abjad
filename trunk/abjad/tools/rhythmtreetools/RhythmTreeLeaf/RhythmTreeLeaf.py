@@ -95,6 +95,13 @@ class RhythmTreeLeaf(RhythmTreeNode):
     def rtm_format(self):
         '''The node's RTM format:
 
+        ::
+
+            >>> rhythmtreetools.RhythmTreeLeaf(1, pitched=True).rtm_format
+            '1'
+            >>> rhythmtreetools.RhythmTreeLeaf(5, pitched=False).rtm_format
+            '-5'
+
         Return string.
         '''
         if self.pitched:
@@ -106,7 +113,22 @@ class RhythmTreeLeaf(RhythmTreeNode):
     @apply
     def pitched():
         def fget(self):
-            '''True if leaf is pitched.'''
+            '''True if leaf is pitched:
+
+            ::
+
+                >>> leaf = rhythmtreetools.RhythmTreeLeaf()
+                >>> leaf.pitched
+                True
+
+            ::
+
+                >>> leaf.pitched = False
+                >>> leaf.pitched
+                False
+
+            Return boolean.
+            '''
             return self._pitched
         def fset(self, arg):
             self._pitched = bool(arg)

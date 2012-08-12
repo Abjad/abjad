@@ -207,9 +207,30 @@ class RhythmTreeContainer(RhythmTreeNode):
         tuplettools.remove_trivial_tuplets_in_expr(result)
         return result
 
-    def __contains__(self, node):
+    def __contains__(self, expr):
+        '''True if expr is in container, otherwise False:
+
+        ::
+
+            >>> container = rhythmtreetools.RhythmTreeContainer()
+            >>> a = rhythmtreetools.RhythmTreeLeaf()
+            >>> b = rhythmtreetools.RhythmTreeLeaf()
+            >>> container.append(a)
+
+        ::
+
+            >>> a in container
+            True
+
+        ::
+
+            >>> b in container
+            False
+
+        Return boolean.
+        '''
         for x in self._children:
-            if x is node:
+            if x is expr:
                 return True
         return False
     
@@ -221,6 +242,34 @@ class RhythmTreeContainer(RhythmTreeNode):
             )
 
     def __delitem__(self, i):
+        '''Find node at index or slice `i` in container and detach from parentage:
+
+        ::
+
+            >>> container = rhythmtreetools.RhythmTreeContainer()
+            >>> leaf = rhythmtreetools.RhythmTreeLeaf()
+
+        ::
+
+            >>> container.append(leaf)
+            >>> container.children == (leaf,)
+            True
+            >>> leaf.parent is container
+            True
+
+        ::
+
+            >>> del(container[0])
+
+        ::
+
+            >>> container.children == ()
+            True
+            >>> leaf.parent is None
+            True
+
+        Return `None`.
+        '''
         nodes = self[i]
         if not isinstance(nodes, list):
             nodes = [nodes]
@@ -229,6 +278,10 @@ class RhythmTreeContainer(RhythmTreeNode):
         self._mark_entire_tree_for_later_update()
 
     def __eq__(self, other):
+        '''True if type, duration and children are equivalent, otherwise False.
+
+        Return boolean.
+        '''
         if type(self) == type(other):
             if self.duration == other.duration:
                 if self.children == other.children:
@@ -236,6 +289,33 @@ class RhythmTreeContainer(RhythmTreeNode):
         return False
 
     def __getitem__(self, i):
+        '''Return node at index `i` in container:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer()
+            >>> b = rhythmtreetools.RhythmTreeLeaf()
+            >>> c = rhythmtreetools.RhythmTreeContainer()
+            >>> d = rhythmtreetools.RhythmTreeLeaf()
+            >>> e = rhythmtreetools.RhythmTreeLeaf()
+            >>> f = rhythmtreetools.RhythmTreeLeaf()
+
+        ::
+
+            >>> a.extend([b, c, f])
+            >>> c.extend([d, e])
+
+        ::
+
+            >>> a[0] is b
+            True
+            >>> a[1] is c
+            True
+            >>> a[2] is f
+            True
+
+        Return `RhythmTreeNode` instance.    
+        '''
         return self._children[i]
 
     def __getnewargs__(self):
@@ -263,6 +343,39 @@ class RhythmTreeContainer(RhythmTreeNode):
         return '\n'.join(result)
 
     def __setitem__(self, i, expr):
+        '''Set `expr` in self at nonnegative integer index `i`, or set `expr` in self at slice i.
+        Replace contents of `self[i]` with `expr`.
+        Attach parentage to contents of `expr`, and detach parentage of any replaced nodes.
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer()
+            >>> b = rhythmtreetools.RhythmTreeLeaf()
+            >>> c = rhythmtreetools.RhythmTreeLeaf()
+
+        ::
+
+            >>> a.append(b)
+            >>> b.parent is a
+            True
+            >>> a.children == (b,)
+            True
+
+        ::
+
+            >>> a[0] = c
+
+        ::
+
+            >>> c.parent is a
+            True
+            >>> b.parent is None
+            True
+            >>> a.children == (c,)
+            True
+
+        Return `None`.
+        '''
         from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
 
         proper_parentage = self.proper_parentage

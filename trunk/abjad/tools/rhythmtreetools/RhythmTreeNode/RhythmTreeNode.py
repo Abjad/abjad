@@ -37,6 +37,9 @@ class RhythmTreeNode(abctools.AbjadObject):
     def __getnewargs__(self):
         raise NotImplemented
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     ### PRIVATE METHODS ###
 
     def _get_node_state_flags(self):
