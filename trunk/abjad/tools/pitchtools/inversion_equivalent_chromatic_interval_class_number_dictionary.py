@@ -1,16 +1,14 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(
-    pitches):
+def inversion_equivalent_chromatic_interval_class_number_dictionary(pitches):
     r'''.. versionadded:: 1.1
 
     Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
     dictionary::
 
         >>> chord = Chord("<c' d' b''>4")
-        >>> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(
+        >>> vector = pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary(
         ... chord.written_pitches)
         >>> for i in range(7):
         ...     print '\t%s\t%s' % (i, vector[i])
@@ -28,11 +26,12 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
 
     Return dictionary.
     '''
+    from abjad.tools import pitchtools
 
     numbers = []
 
     for pitch in pitches:
-        if not isinstance(pitch, NamedChromaticPitch):
+        if not isinstance(pitch, pitchtools.NamedChromaticPitch):
             raise ValueError
         numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
 

@@ -1,17 +1,17 @@
-def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair(  chromatic_pitch_class_name):
+def split_chromatic_pitch_class_name(chromatic_pitch_class_name):
     '''.. versionadded:: 1.1
 
     Change `chromatic_pitch_class_name` to diatonic pitch-class name / alphabetic
     accidental abbreviation pair::
 
-        >>> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('cs')
+        >>> pitchtools.split_chromatic_pitch_class_name('cs')
         ('c', 's')
 
     Return pair of strings.
 
     .. versionchanged:: 2.0
         renamed ``pitchtools.name_to_letter_accidental()`` to
-        ``pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair()``.
+        ``pitchtools.split_chromatic_pitch_class_name()``.
     '''
 
     if len(chromatic_pitch_class_name) == 1:

@@ -11,6 +11,9 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
         ... tuplettools.FixedDurationTuplet(Duration(2, 8), staff[:3])
         ... f(staff)
         ... '''
+
+    ::
+
         >>> stringtools.format_input_lines_as_regression_test(input_lines) # doctest: +SKIP
 
             staff = Staff("c'8 d'8 e'8 f'8")
@@ -38,7 +41,8 @@ def format_input_lines_as_regression_test(input_lines, tab_width=3):
             }
 
             assert componenttools.is_well_formed_component(staff)
-            assert staff.lilypond_format == "\\new Staff {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\tf'8 ]\n}"
+            assert staff.lilypond_format == "\\new Staff {
+                \n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\tf'8 ]\n}"
             '''
 
     Format expressions intelligently.

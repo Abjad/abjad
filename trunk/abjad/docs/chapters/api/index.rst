@@ -1067,7 +1067,6 @@ Composition packages
    tools/pitchtools/calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
    tools/pitchtools/chromatic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/chromatic_pitch_class_name_to_diatonic_pitch_class_name
-   tools/pitchtools/chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair
    tools/pitchtools/chromatic_pitch_class_number_to_chromatic_pitch_class_name
    tools/pitchtools/chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
    tools/pitchtools/chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
@@ -1115,6 +1114,7 @@ Composition packages
    tools/pitchtools/instantiate_pitch_and_interval_test_collection
    tools/pitchtools/inventory_aggregate_subsets
    tools/pitchtools/inventory_inversion_equivalent_diatonic_interval_classes
+   tools/pitchtools/inversion_equivalent_chromatic_interval_class_number_dictionary
    tools/pitchtools/is_alphabetic_accidental_abbreviation
    tools/pitchtools/is_chromatic_pitch_class_name
    tools/pitchtools/is_chromatic_pitch_class_name_octave_number_pair
@@ -1150,7 +1150,6 @@ Composition packages
    tools/pitchtools/named_chromatic_pitch_and_clef_to_staff_position_number
    tools/pitchtools/named_chromatic_pitch_tokens_to_named_chromatic_pitches
    tools/pitchtools/named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary
-   tools/pitchtools/named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary
    tools/pitchtools/octave_number_to_octave_tick_string
    tools/pitchtools/octave_tick_string_to_octave_number
    tools/pitchtools/ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers
@@ -1164,6 +1163,7 @@ Composition packages
    tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
+   tools/pitchtools/split_chromatic_pitch_class_name
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation
    tools/pitchtools/transpose_chromatic_pitch_by_melodic_chromatic_interval_segment

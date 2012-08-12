@@ -8,8 +8,8 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
 
         >>> chromatic_pitch_class_numbers = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
         >>> colors = ['red', 'green', 'blue']
-        >>> pitchtools.NumberedChromaticPitchClassColorMap(chromatic_pitch_class_numbers, colors)
-        NumberedChromaticPitchClassColorMap([[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]], ['red', 'green', 'blue'])
+        >>> mapping = pitchtools.NumberedChromaticPitchClassColorMap(
+        ... chromatic_pitch_class_numbers, colors)
 
     Numbered chromatic pitch-class color maps are immutable.
     '''

@@ -1,7 +1,5 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
-from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
 
 
 def remove_leaf_and_shrink_durated_parent_containers(leaf):
@@ -9,10 +7,14 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
     Remove `leaf` and shrink durated parent containers::
 
-        >>> measure = Measure((4, 8), tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(measure)
+        >>> measure = Measure((4, 8), [])
+        >>> measure.append(tuplettools.FixedDurationTuplet((2, 8), "c'8 d'8 e'8"))
+        >>> measure.append(tuplettools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8"))
         >>> beamtools.BeamSpanner(measure.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
+
+    ::
+
         >>> f(measure)
         {
             \time 4/8
@@ -52,9 +54,10 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
     Return none.
     '''
+    from abjad.tools import componenttools
     from abjad.tools import contexttools
-    from abjad.tools.measuretools.Measure import Measure
-    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+    from abjad.tools import measuretools
+    from abjad.tools import tuplettools
 
     prolated_leaf_duration = leaf.prolated_duration
     prolations = leaf._prolations
@@ -63,11 +66,11 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
     while parent is not None and not parent.is_parallel:
         cur_prolation *= prolations[i]
-        if isinstance(parent, FixedDurationTuplet):
+        if isinstance(parent, tuplettools.FixedDurationTuplet):
             candidate_new_parent_dur = parent.target_duration - cur_prolation * leaf.written_duration
             if durationtools.Duration(0) < candidate_new_parent_dur:
                 parent.target_duration = candidate_new_parent_dur
-        elif isinstance(parent, Measure):
+        elif isinstance(parent, measuretools.Measure):
             parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
             old_denominator = parent_time_signature.denominator
             naive_meter = parent_time_signature.duration - prolated_leaf_duration
@@ -83,18 +86,18 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             new_prolation = durationtools.positive_integer_to_implied_prolation_multipler(new_denominator)
             adjusted_prolation = old_prolation / new_prolation
             for x in parent:
-                if isinstance(x, FixedDurationTuplet):
+                if isinstance(x, tuplettools.FixedDurationTuplet):
                     x.target_duration *= adjusted_prolation
                 else:
                     if adjusted_prolation != 1:
                         new_target = x.preprolated_duration * adjusted_prolation
-                        FixedDurationTuplet(new_target, [x])
+                        tuplettools.FixedDurationTuplet(new_target, [x])
         parent = parent._parent
         i += 1
-    parentage = get_proper_parentage_of_component(leaf)
-    remove_component_subtree_from_score_and_spanners([leaf])
+    parentage = componenttools.get_proper_parentage_of_component(leaf)
+    componenttools.remove_component_subtree_from_score_and_spanners([leaf])
     for x in parentage:
         if not len(x):
-            remove_component_subtree_from_score_and_spanners([x])
+            componenttools.remove_component_subtree_from_score_and_spanners([x])
         else:
             break

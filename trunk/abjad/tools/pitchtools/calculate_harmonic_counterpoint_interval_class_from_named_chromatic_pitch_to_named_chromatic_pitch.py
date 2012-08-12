@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch import calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch
-
-
 def calculate_harmonic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
     pitch_carrier_1, pitch_carrier_2):
     '''.. versionadded:: 2.0
@@ -14,9 +11,10 @@ def calculate_harmonic_counterpoint_interval_class_from_named_chromatic_pitch_to
 
     Return harmonic counterpoint interval-class.
     '''
+    from abjad.tools import pitchtools
 
     # get melodic diatonic interval
-    mdi = calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+    mdi = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
         pitch_carrier_1, pitch_carrier_2)
 
     # return harmonic counterpoint interval-class

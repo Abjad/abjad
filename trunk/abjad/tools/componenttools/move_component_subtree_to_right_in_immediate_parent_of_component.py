@@ -6,12 +6,11 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     Move `component` subtree to right in immediate parent of `component`::
 
-        >>> t = Voice("c'8 d'8 e'8 f'8")
-        >>> beamtools.BeamSpanner(t[:2])
-        BeamSpanner(c'8, d'8)
-        >>> beamtools.BeamSpanner(t[2:])
-        BeamSpanner(e'8, f'8)
-        >>> f(t)
+        >>> voice = Voice("c'8 [ d'8 ] e'8 [ f'8 ]")
+
+    ::
+
+        >>> f(voice)
         \new Voice {
             c'8 [
             d'8 ]
@@ -21,8 +20,12 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     ::
 
-        >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(t[1])
-        >>> f(t)
+        >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(
+        ... voice[1])
+
+    ::
+
+        >>> f(voice)
         \new Voice {
             c'8 [
             e'8 ]
@@ -34,16 +37,21 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     .. todo:: add ``n = 1`` keyword to generalize flipped distance.
 
-    .. todo:: make ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()`` work when spanners
-        attach to children of component:
+    .. todo:: make 
+        ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()`` 
+        work when spanners attach to children of component:
 
     ::
 
-        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        >>> beamtools.BeamSpanner(voice.leaves[:4])
-        BeamSpanner(c'8, c'8, c'8, c'8)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])
+        >>> voice = Voice(r"\times 2/3 { c'8 [ d'8 e'8 } \times 2/3 { f'8 ] g'8 a'8 }")
+
+    ::
+
+        >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(
+        ... voice[0])
+
+    ::
+
         >>> f(voice)
         \new Voice {
             \times 2/3 {
@@ -57,6 +65,9 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
                 e'8
             }
         }
+
+    ::
+
         >>> componenttools.is_well_formed_component(voice)
         False
 
