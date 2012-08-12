@@ -48,6 +48,16 @@ class RhythmTreeLeaf(RhythmTreeNode):
     ### SPECIAL METHODS ###
 
     def __call__(self, pulse_duration):
+        '''Generate Abjad score components:
+
+        ::
+
+            >>> leaf = rhythmtreetools.RhythmTreeLeaf(5)
+            >>> leaf((1, 4))
+            [Note("c'1"), Note("c'4")]
+
+        Return sequence of components.
+        '''
         pulse_duration = durationtools.Duration(pulse_duration)
         total_duration = pulse_duration * self.duration
         if self.pitched:
@@ -73,10 +83,20 @@ class RhythmTreeLeaf(RhythmTreeNode):
         result.append('\t)')
         return '\n'.join(result)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _pretty_rtm_format_pieces(self):
+        return [str(self.duration)]
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def rtm_format(self):
+        '''The node's RTM format:
+
+        Return string.
+        '''
         if self.pitched:
             return '{}'.format(self.duration)
         return '-{}'.format(self.duration)

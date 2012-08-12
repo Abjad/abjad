@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import tietools
 from abjad.tools import tuplettools
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 import copy
@@ -109,7 +110,82 @@ class RhythmTreeContainer(RhythmTreeNode):
 
     ### SPECIAL METHODS ###
 
+    def __add__(self, expr):
+        '''Concatenate containers self and expr. The operation c = a + b
+        returns a new RhythmTreeContainer c with the content of both a and b,
+        and a duration equal to the sum of the durations of a and b. The
+        operation is non-commutative: the content of the first operand will be
+        placed before the content of the second operand:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeParser()('(1 (1 1 1))')[0]
+            >>> b = rhythmtreetools.RhythmTreeParser()('(2 (3 4))')[0]
+
+        ::
+
+            >>> c = a + b
+
+        ::
+
+            >>> c.duration
+            3
+
+        ::
+
+            >>> c
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=1,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=1,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=1,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=4,
+                        pitched=True,
+                        ),
+                ),
+                duration=3
+                )
+
+        '''
+        from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
+        if isinstance(expr, str):
+            expr = RhythmTreeParser()(expr)
+            assert 1 == len(expr) and isinstance(expr[0], type(self))
+            expr = expr[0]
+        container = type(self)(self.duration + expr.duration)
+        container.extend(self[:])
+        container.extend(expr[:])
+        return container
+
     def __call__(self, pulse_duration):
+        '''Generate Abjad score components:
+
+        ::
+
+            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+
+        ::
+
+            >>> tree((1, 4))
+            [FixedDurationTuplet(1/4, [c'16, {@ 3:2 c'16, c'16, c'16 @}, c'8])]
+
+        Return sequence of components.
+        '''
         pulse_duration = durationtools.Duration(pulse_duration)
         assert 0 < pulse_duration
         def recurse(node, duration):
@@ -120,7 +196,10 @@ class RhythmTreeContainer(RhythmTreeNode):
                 if isinstance(x, type(self)):
                     tuplet.extend(recurse(x, durationtools.Duration(x.duration, denominator)))
                 else:
-                    tuplet.extend(x((1, denominator)))
+                    leaves = x((1, denominator))
+                    tuplet.extend(leaves)
+                    if 1 < len(leaves):
+                        tietools.TieSpanner(leaves)
             if tuplet.multiplier == 1:
                 return tuplet[:]
             return [tuplet]
@@ -167,6 +246,7 @@ class RhythmTreeContainer(RhythmTreeNode):
             yield child
 
     def __len__(self):
+        '''Return nonnegative integer number of nodes in container.'''
         return len(self._children)
 
     def __repr__(self):
@@ -193,7 +273,7 @@ class RhythmTreeContainer(RhythmTreeNode):
                 assert len(expr) == 1
                 expr = expr[0]
             else:
-                assert isinstance(expr, self.node_klass)
+                assert isinstance(expr, self._node_klass)
             old = self[i]
             assert expr not in proper_parentage
             old._switch_parent(None)
@@ -205,7 +285,7 @@ class RhythmTreeContainer(RhythmTreeNode):
             elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
                 expr = RhythmTreeParser()(expr[0])
             else:
-                assert all([isinstance(x, self.node_klass) for x in expr])
+                assert all([isinstance(x, self._node_klass) for x in expr])
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
@@ -221,22 +301,95 @@ class RhythmTreeContainer(RhythmTreeNode):
             self._children.__setitem__(slice(start, start), expr)
         self._mark_entire_tree_for_later_update()
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _node_klass(self):
+        return RhythmTreeNode
+
+    @property
+    def _pretty_rtm_format_pieces(self):
+        result = []
+        result.append('({} ('.format(self.duration))
+        for child in self:
+            result.extend(['\t' + x for x in child._pretty_rtm_format_pieces])
+        result[-1] = result[-1] + '))'
+        return result
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def children(self):
+        '''The children of a `RhythmTreeContainer` instance:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer()
+            >>> b = rhythmtreetools.RhythmTreeContainer()
+            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> d = rhythmtreetools.RhythmTreeLeaf()
+            >>> e = rhythmtreetools.RhythmTreeContainer()
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+
+        ::
+
+            >>> a.children == (b, c)
+            True
+
+        ::
+
+            >>> b.children == (d, e)
+            True
+
+        ::
+
+            >>> e.children == ()
+            True
+
+        Return tuple of `RhythmTreeNode` instances.
+        '''
         return tuple(self._children)
 
     @property
     def contents_duration(self):
+        '''The total duration of the children of a `RhythmTreeContainer` instance:
+
+        ::
+
+            >>> rtm = '(1 (1 (2 (1 1 1)) 2))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+
+        ::
+
+            >>> tree.contents_duration
+            5
+
+        ::
+
+            >>> tree[1].contents_duration
+            3
+
+        Return int.
+        '''
         return sum([x.duration for x in self])
 
     @property
-    def node_klass(self):
-        return RhythmTreeNode
-
-    @property
     def rtm_format(self):
+        '''The node's RTM format:
+
+        ::
+
+            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> tree.rtm_format
+            '(1 ((1 (1 1)) (1 (1 1))))'
+
+        Return string.
+        '''
         return '({} ({}))'.format(
             self.duration,
             ' '.join([x.rtm_format for x in self]))
@@ -244,18 +397,211 @@ class RhythmTreeContainer(RhythmTreeNode):
     ### PUBLIC METHODS ###
 
     def append(self, node):
+        '''Append `node` to container:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer(1)
+            >>> b = rhythmtreetools.RhythmTreeLeaf(2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                duration=1
+                )
+
+        ::
+
+            >>> a.append(b)
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        ::
+
+            >>> a.append(c)
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        It is also possible to append with valid RTM strings, so long as they parse
+        to a single tree:
+
+        ::
+
+            >>> a.append('(7 (1 1 1))')
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                    RhythmTreeContainer(
+                        children=(
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                        ),
+                        duration=7
+                        ),
+                ),
+                duration=1
+                )
+
+        Return `None`.
+        '''
         self.__setitem__(
             slice(len(self), len(self)), 
             [node]
             )
 
-    def extend(self, nodes):
+    def extend(self, expr):
+        '''Extend `expr` against container:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer(1)
+            >>> b = rhythmtreetools.RhythmTreeLeaf(2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                duration=1
+                )
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        It is also possible to extend with valid RTM strings:
+
+        ::
+
+            >>> a.extend('(4 (1 1)) (5 (1 1))')
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                    RhythmTreeContainer(
+                        children=(
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                        ),
+                        duration=4
+                        ),
+                    RhythmTreeContainer(
+                        children=(
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                            RhythmTreeLeaf(
+                                duration=1,
+                                pitched=True,
+                                ),
+                        ),
+                        duration=5
+                        ),
+                ),
+                duration=1
+                )
+
+        Return `None`.
+        '''
         self.__setitem__(
             slice(len(self), len(self)),
-            nodes.__getitem__(slice(0, len(nodes)))
+            #nodes.__getitem__(slice(0, len(nodes)))
+            expr
             )
 
     def index(self, node):
+        '''Index `node` in container:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer(1)
+            >>> b = rhythmtreetools.RhythmTreeLeaf(2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
+
+        ::
+
+            >>> a.extend([b, c])
+
+        ::
+
+            >>> a.index(b)
+            0
+
+        ::
+
+            >>> a.index(c)
+            1
+
+        Return nonnegative integer.
+        '''
         for i, element in enumerate(self._children):
             if element is node:
                 return i
@@ -263,16 +609,175 @@ class RhythmTreeContainer(RhythmTreeNode):
             raise ValueError('node {!r} not in {!r}.'.format(node, self))
 
     def insert(self, i, node):
+        '''Insert `node` in container at index `i`:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer(1)
+            >>> b = rhythmtreetools.RhythmTreeLeaf(2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
+            >>> d = rhythmtreetools.RhythmTreeLeaf(100)
+
+        ::
+
+            >>> a.extend([b, c])
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        ::
+
+            >>> a.insert(1, d)
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=100,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+
+        Return `None`.
+        '''
         self.__setitem__(
             slice(i, i), 
             [node]
             )
 
     def pop(self, i=-1):
+        '''Pop node at index `i` from container:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer(1)
+            >>> b = rhythmtreetools.RhythmTreeLeaf(2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
+
+        ::
+
+            >>> a.extend([b, c])
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        ::
+
+            >>> node = a.pop()
+
+        ::
+
+            >>> node == c
+            True
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        Return node.
+        '''
         node = self[i]
         del(self[i])
         return node
 
     def remove(self, node):
+        '''Remove `node` from container:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer(1)
+            >>> b = rhythmtreetools.RhythmTreeLeaf(2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
+
+        ::
+
+            >>> a.extend([b, c])
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=2,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        ::
+
+            >>> a.remove(b)
+
+        ::
+
+            >>> a
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=3,
+                        pitched=True,
+                        ),
+                ),
+                duration=1
+                )
+
+        Return `None`.
+        '''
         i = self.index(node)
         del(self[i])

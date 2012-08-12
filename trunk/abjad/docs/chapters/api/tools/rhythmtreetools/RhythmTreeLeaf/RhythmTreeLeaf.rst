@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.depthwise_inventory
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.improper_parentage
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
@@ -26,6 +30,10 @@ Read-only Properties
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.parentage_ratios
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf.pretty_rtm_format
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 

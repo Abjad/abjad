@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.depth
 
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.depthwise_inventory
+
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.improper_parentage
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.offset
@@ -18,6 +20,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.parent
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.parentage_ratios
+
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.pretty_rtm_format
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.prolated_duration
 

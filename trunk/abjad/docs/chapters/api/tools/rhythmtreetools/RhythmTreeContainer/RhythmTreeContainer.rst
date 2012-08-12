@@ -17,11 +17,13 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
-.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.improper_parentage
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.depthwise_inventory
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
-.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.node_klass
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.improper_parentage
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.offset
 
@@ -32,6 +34,10 @@ Read-only Properties
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.parentage_ratios
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.pretty_rtm_format
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
@@ -77,6 +83,8 @@ Methods
 
 Special Methods
 ---------------
+
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__add__
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__call__
 
