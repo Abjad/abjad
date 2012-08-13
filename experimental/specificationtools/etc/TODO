@@ -1,7 +1,4 @@
-1.  Change the order of UninterpretedDvisionCommand arguments from ...
-        duration, start_offset, stop_offset
-    ... to ...
-        start_offset, stop_offset, duration
-    ... instead.
+1.  Author tests to make sure that persistent overlapping division selectors 
+    can be overwritten in a subsequent segment.
 
-2. Make divisions (ie, nonreduced fractions) partitionable.
+2.  Make divisions (ie, nonreduced fractions) partitionable.
