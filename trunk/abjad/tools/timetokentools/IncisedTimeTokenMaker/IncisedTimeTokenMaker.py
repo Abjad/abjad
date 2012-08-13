@@ -11,11 +11,13 @@ import types
 class IncisedTimeTokenMaker(TimeTokenMaker):
     '''.. versionadded 2.8
 
-    Abstract base class for time token makers that incise some or all of the time tokens they produce.
+    Abstract base class for time token makers that incise some or 
+    all of the time tokens they produce.
 
     Time token makers can incise the edge of every time token.
     
-    Or time token makers can incise only the start of the first time token and the end of the last time token.
+    Or time token makers can incise only the start of the first time token 
+    and the end of the last time token.
     '''
 
     ### CLASS ATTRIBUTES ###

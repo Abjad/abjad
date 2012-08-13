@@ -19,8 +19,13 @@ def get_marks_attached_to_components_in_expr(expr):
 
     ::
 
-        >>> marktools.get_marks_attached_to_components_in_expr(staff)
-        (DynamicMark('pp')(c'4), Articulation('staccato')(d'4), DynamicMark('ff')(e'4), Articulation('staccato')(f'4))
+        >>> for mark in marktools.get_marks_attached_to_components_in_expr(staff):
+        ...     mark
+        ...
+        DynamicMark('pp')(c'4)
+        Articulation('staccato')(d'4)
+        DynamicMark('ff')(e'4) 
+        Articulation('staccato')(f'4)
 
     Return tuple of zero or more marks.
     '''

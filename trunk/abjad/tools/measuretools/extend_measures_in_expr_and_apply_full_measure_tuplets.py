@@ -1,7 +1,4 @@
-from abjad.tools.measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr import _apply_full_measure_tuplets_to_contents_of_measures_in_expr
-
-
-def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(expr, supplement):
+def extend_measures_in_expr_and_apply_full_measure_tuplets(expr, supplement):
     r'''.. versionadded:: 2.0
 
     Extend measures in `expr` with `supplement` and apply full-measure tuplets to contents
@@ -29,7 +26,8 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(e
     ::
 
         >>> supplement = [Rest((1, 16))]
-        >>> measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(staff, supplement)
+        >>> measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
+        ... staff, supplement)
 
     ::
 
@@ -56,5 +54,7 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(e
 
     Return none.
     '''
+    from abjad.tools.measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr import \
+        _apply_full_measure_tuplets_to_contents_of_measures_in_expr
 
     return _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement)

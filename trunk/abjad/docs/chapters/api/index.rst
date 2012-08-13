@@ -840,7 +840,7 @@ Composition packages
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in_expr
    tools/measuretools/comment_measures_in_container_with_measure_numbers
-   tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents
+   tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets
    tools/measuretools/fill_measures_in_expr_with_big_endian_notes
    tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
    tools/measuretools/fill_measures_in_expr_with_little_endian_notes
