@@ -102,7 +102,7 @@ Composition packages
    tools/componenttools/copy_components_and_immediate_parent_of_first_component
    tools/componenttools/copy_components_and_remove_spanners
    tools/componenttools/copy_governed_component_subtree_by_leaf_range
-   tools/componenttools/copy_governed_component_subtree_from_prolated_offset_to
+   tools/componenttools/copy_governed_component_subtree_from_offset_to
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/extend_in_parent_of_component_and_do_not_grow_spanners
    tools/componenttools/extend_in_parent_of_component_and_grow_spanners
@@ -120,7 +120,7 @@ Composition packages
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_improper_contents_of_component
    tools/componenttools/get_improper_descendents_of_component
-   tools/componenttools/get_improper_descendents_of_component_that_cross_prolated_offset
+   tools/componenttools/get_improper_descendents_of_component_that_cross_offset
    tools/componenttools/get_improper_descendents_of_component_that_start_with_component
    tools/componenttools/get_improper_descendents_of_component_that_stop_with_component
    tools/componenttools/get_improper_parentage_of_component
@@ -220,19 +220,19 @@ Composition packages
    tools/containertools/all_are_containers
    tools/containertools/color_contents_of_container
    tools/containertools/delete_contents_of_container
-   tools/containertools/delete_contents_of_container_starting_at_or_after_prolated_offset
-   tools/containertools/delete_contents_of_container_starting_before_or_at_prolated_offset
-   tools/containertools/delete_contents_of_container_starting_strictly_after_prolated_offset
-   tools/containertools/delete_contents_of_container_starting_strictly_before_prolated_offset
+   tools/containertools/delete_contents_of_container_starting_at_or_after_offset
+   tools/containertools/delete_contents_of_container_starting_before_or_at_offset
+   tools/containertools/delete_contents_of_container_starting_strictly_after_offset
+   tools/containertools/delete_contents_of_container_starting_strictly_before_offset
    tools/containertools/eject_contents_of_container
    tools/containertools/fuse_like_named_contiguous_containers_in_expr
-   tools/containertools/get_element_starting_at_exactly_prolated_offset
+   tools/containertools/get_element_starting_at_exactly_offset
    tools/containertools/get_first_container_in_improper_parentage_of_component
    tools/containertools/get_first_container_in_proper_parentage_of_component
-   tools/containertools/get_first_element_starting_at_or_after_prolated_offset
-   tools/containertools/get_first_element_starting_before_or_at_prolated_offset
-   tools/containertools/get_first_element_starting_strictly_after_prolated_offset
-   tools/containertools/get_first_element_starting_strictly_before_prolated_offset
+   tools/containertools/get_first_element_starting_at_or_after_offset
+   tools/containertools/get_first_element_starting_before_or_at_offset
+   tools/containertools/get_first_element_starting_strictly_after_offset
+   tools/containertools/get_first_element_starting_strictly_before_offset
    tools/containertools/insert_component_and_do_not_fracture_crossing_spanners
    tools/containertools/insert_component_and_fracture_crossing_spanners
    tools/containertools/iterate_containers_backward_in_expr
@@ -1892,7 +1892,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/verticalitytools/get_vertical_moment_at_prolated_offset_in_expr
+   tools/verticalitytools/get_vertical_moment_at_offset_in_expr
    tools/verticalitytools/get_vertical_moment_starting_with_component
    tools/verticalitytools/iterate_vertical_moments_backward_in_expr
    tools/verticalitytools/iterate_vertical_moments_forward_in_expr
@@ -2154,8 +2154,8 @@ Internal packages
 .. toctree::
    :maxdepth: 1
 
+   tools/offsettools/update_offset_values_of_component
    tools/offsettools/update_offset_values_of_component_in_seconds
-   tools/offsettools/update_prolated_offset_values_of_component
 
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

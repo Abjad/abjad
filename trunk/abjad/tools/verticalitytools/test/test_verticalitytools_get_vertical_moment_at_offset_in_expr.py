@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import verticalitytools
 
 
-def test_VerticalMoment___eq___01():
+def test_verticalitytools_get_vertical_moment_at_offset_in_expr_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -39,21 +39,27 @@ def test_VerticalMoment___eq___01():
     >>
     '''
 
-    vertical_moment_1 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        piano_staff, durationtools.Offset(1, 8))
+    def piano_staff_moment(prolated_offset):
+        return verticalitytools.get_vertical_moment_at_offset_in_expr(
+            piano_staff, prolated_offset)
 
-    "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
+    vm = piano_staff_moment(durationtools.Offset(0, 8))
+    assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
 
-    vertical_moment_2 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        piano_staff, durationtools.Offset(1, 8))
+    vm = piano_staff_moment(durationtools.Offset(1, 8))
+    assert vm.leaves == (piano_staff[0][0], piano_staff[1][1])
 
-    "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
+    vm = piano_staff_moment(durationtools.Offset(2, 8))
+    assert vm.leaves == (piano_staff[0][1], piano_staff[1][2])
 
-    assert vertical_moment_1 == vertical_moment_2
-    assert not vertical_moment_1 != vertical_moment_2
+    vm = piano_staff_moment(durationtools.Offset(3, 8))
+    assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
+
+    vm = piano_staff_moment(durationtools.Offset(99, 8))
+    assert vm.leaves == ()
 
 
-def test_VerticalMoment___eq___02():
+def test_verticalitytools_get_vertical_moment_at_offset_in_expr_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -89,15 +95,21 @@ def test_VerticalMoment___eq___02():
     >>
     '''
 
-    vertical_moment_1 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        piano_staff, durationtools.Offset(1, 8))
+    def scorewide_vertical_moment(prolated_offset):
+        return verticalitytools.get_vertical_moment_at_offset_in_expr(
+            score, prolated_offset)
 
-    "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
+    vm = scorewide_vertical_moment(durationtools.Offset(0, 8))
+    assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-    vertical_moment_2 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        (piano_staff[0], piano_staff[1]), durationtools.Offset(1, 8))
+    vm = scorewide_vertical_moment(durationtools.Offset(1, 8))
+    assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-    "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
+    vm = scorewide_vertical_moment(durationtools.Offset(2, 8))
+    assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-    assert not vertical_moment_1 == vertical_moment_2
-    assert vertical_moment_1 != vertical_moment_2
+    vm = scorewide_vertical_moment(durationtools.Offset(3, 8))
+    assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])
+
+    vm = scorewide_vertical_moment(durationtools.Offset(99, 8))
+    assert vm.leaves == ()

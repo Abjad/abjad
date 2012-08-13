@@ -133,7 +133,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
     global_split_point = component.start_offset + duration
 
     # get duration crossers, if any
-    contents = componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(
+    contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
         component, duration)
 
     #print component, global_split_point, contents
@@ -163,7 +163,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
             measuretools.scale_measure_denominator_and_adjust_measure_contents(
                 measure, nonbinary_product)
             # rederive duration crosses with possibly new measure contents
-            contents = componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(
+            contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
                 component, duration)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')

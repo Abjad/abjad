@@ -73,4 +73,4 @@ def get_vertical_moment_starting_with_component(component, governor=None):
     if governor is None:
         governor = componenttools.component_to_score_root(component)
 
-    return verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset)
+    return verticalitytools.get_vertical_moment_at_offset_in_expr(governor, prolated_offset)

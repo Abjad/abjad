@@ -639,7 +639,7 @@ Many new functions are available in the ``componenttools`` package.
     componenttools.get_improper_contents_of_component_that_stop_with_component()
     componenttools.get_proper_descendents_of_component()
     componenttools.get_improper_descendents_of_component()
-    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset
+    componenttools.get_improper_descendents_of_component_that_cross_offset
     componenttools.get_improper_descendents_of_component_that_start_with_component
     componenttools.get_improper_descendents_of_component_that_stop_with_component
     componenttools.get_lineage_of_component()

@@ -324,7 +324,7 @@ class Component(AbjadObject):
         from abjad.tools import offsettools
         components = self._iterate_score_components_depth_first()
         for component in components:
-            offsettools.update_prolated_offset_values_of_component(component)
+            offsettools.update_offset_values_of_component(component)
             component._prolated_offset_values_are_current = True
 
     ### PRIVATE UPDATE METHODS ###
