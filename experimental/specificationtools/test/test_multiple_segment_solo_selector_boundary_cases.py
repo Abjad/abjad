@@ -3,7 +3,8 @@ from experimental import *
 
 
 def test_multiple_segment_solo_selector_boundary_cases_01():
-    '''Overlapping division commands both persist.
+    '''Division region overlaped by segment ratio part selector.
+    Time signatures constant.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -23,8 +24,8 @@ def test_multiple_segment_solo_selector_boundary_cases_01():
 
 
 def test_multiple_segment_solo_selector_boundary_cases_02():
-    '''Overlapping division commands both persist.
-    Selector here picks out a single measure.
+    '''Division region overlapped by background measure selector.
+    Time signatures constant.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -44,7 +45,8 @@ def test_multiple_segment_solo_selector_boundary_cases_02():
 
 
 def test_multiple_segment_solo_selector_boundary_cases_03():
-    '''Same as above but second segment changes time signatures.
+    '''Division region overlapped by background measure selector.
+    Time signatures change.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -66,6 +68,7 @@ def test_multiple_segment_solo_selector_boundary_cases_03():
 
 def test_multiple_segment_solo_selector_boundary_cases_04():
     '''Division region overlapped by segment offset selector.
+    Time signatures change.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -87,6 +90,7 @@ def test_multiple_segment_solo_selector_boundary_cases_04():
 
 def test_multiple_segment_solo_selector_boundary_cases_05():
     '''Division region overlapped by segment ratio part selector.
+    Time signatures change.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
