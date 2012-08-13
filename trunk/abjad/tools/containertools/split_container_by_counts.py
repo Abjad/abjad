@@ -1,22 +1,219 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import sequencetools
-from abjad.tools.componenttools.all_are_components import all_are_components
 
 
 def split_container_by_counts(components, counts, fracture_spanners=False, cyclic=False):
-    '''Partition Python list of zero or more Abjad components.
+    '''.. versionadded:: 1.1
+
+    Partition Python list of zero or more Abjad components.
     Partition by zero or more positive integers in counts list.
     Fracture spanners or not according to keyword.
     Read counts in list cyclically or not according to keyword.
     Return list of component lists.
-    # QUESTION: is there any component copying in this function? #
+
+    Example 1. Split container cyclically by counts and do not fracture crossing spanners::
+
+        >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> voice = Voice([container])
+        >>> beam = beamtools.BeamSpanner(voice)
+        >>> slur = spannertools.SlurSpanner(container)
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+    ::
+
+        >>> containertools.split_container_by_counts(container, [1, 3], cyclic=True, fracture_spanners=False)
+        [[{c'8}], [{d'8, e'8, f'8}], [{g'8}], [{a'8, b'8, c''8}]]
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 [ (
+            }
+            {
+                d'8
+                e'8
+                f'8
+            }
+            {
+                g'8
+            }
+            {
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+    Example 2. Split container cyclically by counts and fracture crossing spanners::
+
+        >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> voice = Voice([container])
+        >>> beam = beamtools.BeamSpanner(voice)
+        >>> slur = spannertools.SlurSpanner(container)
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+    ::
+
+        >>> containertools.split_container_by_counts(container, [1, 3], cyclic=True, fracture_spanners=True)
+        [[{c'8}], [{d'8, e'8, f'8}], [{g'8}], [{a'8, b'8, c''8}]]
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 ( ) [
+            }
+            {
+                d'8 (
+                e'8
+                f'8 )
+            }
+            {
+                g'8 ( )
+            }
+            {
+                a'8 (
+                b'8
+                c''8 ] )
+            }
+        }
+
+    Example 3. Split container once by counts and do not fracture crossing spanners::
+
+        >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> voice = Voice([container])
+        >>> beam = beamtools.BeamSpanner(voice)
+        >>> slur = spannertools.SlurSpanner(container)
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+    ::
+
+        >>> containertools.split_container_by_counts(container, [1, 3], cyclic=False, fracture_spanners=False)
+        [[{c'8}], [{d'8, e'8, f'8}], [{g'8, a'8, b'8, c''8}]]
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 [ (
+            }
+            {
+                d'8
+                e'8
+                f'8
+            }
+            {
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+
+    Example 4. Split container once by counts and fracture crossing spanners::
+
+        >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> voice = Voice([container])
+        >>> beam = beamtools.BeamSpanner(voice)
+        >>> slur = spannertools.SlurSpanner(container)
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 [ (
+                d'8
+                e'8
+                f'8
+                g'8
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+    ::
+
+        >>> containertools.split_container_by_counts(container, [1, 3], cyclic=False, fracture_spanners=True)
+        [[{c'8}], [{d'8, e'8, f'8}], [{g'8, a'8, b'8, c''8}]]
+
+    ::
+
+        >>> f(voice)
+        \new Voice {
+            {
+                c'8 ( ) [
+            }
+            {
+                d'8 (
+                e'8
+                f'8 )
+            }
+            {
+                g'8 (
+                a'8
+                b'8
+                c''8 ] )
+            }
+        }
+
+    Return list of split parts.
     '''
     from abjad.tools import containertools
+    from abjad.tools import leaftools
 
     # check input
-    #assert all_are_components(components, klasses=Container)
-    assert isinstance(components, Container)
+    assert isinstance(components, containertools.Container)
     components = [components]
 
     assert sequencetools.all_are_positive_integers(counts)
@@ -51,7 +248,7 @@ def split_container_by_counts(components, counts, fracture_spanners=False, cycli
         except IndexError:
             break
         # if current component is a leaf, add to part
-        if isinstance(x, Leaf):
+        if isinstance(x, leaftools.Leaf):
             part.append(x)
             cum_comp_in_this_part += 1
             comp_still_needed = count - cum_comp_in_this_part
