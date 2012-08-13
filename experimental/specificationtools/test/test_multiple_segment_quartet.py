@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_quartet_01():
+def test_multiple_segment_quartet_01():
     '''Create 4-staff score S with sections T1, T2.
     Set T1 time signatures equal to [(3, 8), (3, 8), (2, 8), (2, 8)].
     Set T1 1 & 2 divisions equal to a repeating pattern of [(3, 16)].
@@ -41,11 +41,10 @@ def test_quartet_01():
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
-
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_quartet_02():
+def test_multiple_segment_quartet_02():
     '''As above with different divisions.
     
     Tests for spanning divisions in 1 & 2 and also in 3 & 4.
@@ -76,5 +75,4 @@ def test_quartet_02():
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
-
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
