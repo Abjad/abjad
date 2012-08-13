@@ -270,9 +270,9 @@ class ConcreteInterpreter(Interpreter):
                 library.rest_filled_tokens, 
                 segment_specification.segment_name,
                 'FOO CONTEXT NAME',
-                self.score_specification.duration, 
                 0,
                 segment_specification.duration,
+                self.score_specification.duration, 
                 True
                 )
             rhythm_commands.append(rhythm_command)
@@ -294,9 +294,9 @@ class ConcreteInterpreter(Interpreter):
                     resolved_single_context_setting.resolved_value, 
                     segment_specification.segment_name,
                     'FOO CONTEXT NAME',
-                    segment_specification.duration, 
                     0,
                     segment_specification.duration,
+                    segment_specification.duration, 
                     resolved_single_context_setting.fresh
                     )
             rhythm_commands.append(rhythm_command)
@@ -326,8 +326,8 @@ class ConcreteInterpreter(Interpreter):
                     segment_specification.time_signatures,
                     segment_specification.segment_name,
                     self.score_specification.score_name,
-                    segment_specification.duration,
                     0,
+                    segment_specification.duration,
                     segment_specification.duration,
                     True, 
                     False
@@ -414,11 +414,10 @@ class ConcreteInterpreter(Interpreter):
         uninterpreted_division_command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.resolved_value,
             segment_name,
-            #resolved_single_context_setting.selector.context_name,
             resolved_single_context_setting.context_name,
-            duration,
             start_offset,
             stop_offset,
+            duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate
             )
@@ -712,7 +711,6 @@ class ConcreteInterpreter(Interpreter):
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
-                #assert last_region_division_command.resolved_value==uninterpreted_division_command.resolved_value
                 if uninterpreted_division_command.resolved_value != last_region_division_command.resolved_value:
                     region_division_command = interpretertools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
@@ -730,9 +728,9 @@ class ConcreteInterpreter(Interpreter):
                         last_region_division_command.resolved_value,
                         last_region_division_command.start_segment_name,
                         uninterpreted_division_command.context_name,
-                        duration,
                         start_offset,
                         stop_offset,
+                        duration,
                         last_region_division_command.fresh,
                         uninterpreted_division_command.truncate
                         )
