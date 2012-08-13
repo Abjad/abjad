@@ -2,7 +2,7 @@ from abjad.tools import sequencetools
 
 
 def split_container_by_counts(components, counts, fracture_spanners=False, cyclic=False):
-    '''.. versionadded:: 1.1
+    r'''.. versionadded:: 1.1
 
     Partition Python list of zero or more Abjad components.
     Partition by zero or more positive integers in counts list.
