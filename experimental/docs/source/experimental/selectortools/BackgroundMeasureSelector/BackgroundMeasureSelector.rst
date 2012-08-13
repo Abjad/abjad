@@ -50,6 +50,8 @@ Methods
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_segment_stop_offset
 
+.. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.set_segment_identifier
+
 Special Methods
 ---------------
 

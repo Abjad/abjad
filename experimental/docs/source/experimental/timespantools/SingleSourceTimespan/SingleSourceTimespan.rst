@@ -44,6 +44,8 @@ Methods
 
 .. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.get_segment_stop_offset
 
+.. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.set_segment_identifier
+
 Special Methods
 ---------------
 

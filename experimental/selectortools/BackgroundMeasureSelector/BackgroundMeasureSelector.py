@@ -136,7 +136,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     @property
     def segment_identifier(self):
-        '''Return ``self.inequality.segment_identifier``.
+        '''Delegate to ``self.inequality.segment_identifier``.
         '''
         return self.inequality.segment_identifier
 
@@ -178,3 +178,8 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         duration_up_through = sum(durations_up_through)
         stop_offset = durationtools.Offset(duration_up_through)
         return stop_offset
+
+    def set_segment_identifier(self, segment_identifier):
+        '''Delegate to ``self.inequality.set_segment_identifier()``.
+        '''
+        self.inequality.set_segment_identifier(segment_identifier)

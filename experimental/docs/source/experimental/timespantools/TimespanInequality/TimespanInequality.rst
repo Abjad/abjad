@@ -24,6 +24,8 @@ Methods
 
 .. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.get_duration
 
+.. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.set_segment_identifier
+
 Special Methods
 ---------------
 

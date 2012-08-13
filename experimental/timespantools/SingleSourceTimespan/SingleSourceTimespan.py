@@ -170,7 +170,7 @@ class SingleSourceTimespan(Timespan):
 
     @property
     def segment_identifier(self):
-        '''Return ``self.selector.segment_identifier``.
+        '''Delegate to ``self.selector.segment_identifier``.
         '''
         return self.selector.segment_identifier
 
@@ -198,3 +198,8 @@ class SingleSourceTimespan(Timespan):
         '''Delegate to ``self.selector.get_segment_stop_offset()``.
         '''
         return self.selector.get_segment_stop_offset(score_specification)
+
+    def set_segment_identifier(self, segment_identifier):
+        '''Delegate to ``self.selector.set_segment_identifier()``.
+        '''
+        return self.selector.set_segment_identifier(segment_identifier)
