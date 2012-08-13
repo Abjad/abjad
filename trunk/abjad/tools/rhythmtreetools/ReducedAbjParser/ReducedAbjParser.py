@@ -1,8 +1,147 @@
 import copy
-from abjad.tools import *
+from abjad.tools import abctools
+from abjad.tools import chordtools
+from abjad.tools import containertools
+from abjad.tools import durationtools
+from abjad.tools import marktools
+from abjad.tools import mathtools
+from abjad.tools import measuretools
+from abjad.tools import notetools
+from abjad.tools import pitchtools
+from abjad.tools import resttools
+from abjad.tools import sequencetools
+from abjad.tools import tietools
+from abjad.tools import tuplettools
 
 
 class ReducedAbjParser(abctools.Parser):
+    r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax:
+
+    ::
+
+        >>> parser = rhythmtreetools.ReducedAbjParser()
+
+    Understands LilyPond-like representation of notes, chords and rests:
+
+    ::
+
+        >>> string = "c'4 r8. <b d' fs'>16"
+        >>> result = parser(string)
+        >>> f(result)
+        {
+            c'4
+            r8.
+            <b d' fs'>16
+        }
+
+    Also parses bare duration as notes on middle-C, and negative bare durations
+    as rests:
+
+    ::
+
+        >>> string = '4 -8 16. -32'
+        >>> result = parser(string)
+        >>> f(result)
+        {
+            c'4
+            r8
+            c'16.
+            r32
+        }
+
+    Note that the leaf syntax is greedy, and therefore duration specifiers
+    following pitch specifiers will be treated as part of the same expression.
+    The following produces 2 leaves, rather than 3:
+
+    ::
+
+        >>> string = "4 d' 4"
+        >>> result = parser(string)
+        >>> f(result)
+        {
+            c'4
+            d'4
+        }
+
+    Understands LilyPond-like default durations:
+    
+    ::
+    
+        >>> string = "c'4 d' e' f'"
+        >>> result = parser(string)
+        >>> f(result)
+        {
+            c'4
+            d'4
+            e'4
+            f'4
+        }
+    
+    Also understands various types of container specifications.
+    
+    Can create arbitrarily nested tuplets:
+    
+    ::
+    
+        >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
+        >>> result = parser(string)
+        >>> f(result)
+        {
+            \times 2/3 {
+                c'4
+                c'4
+                \fraction \times 3/5 {
+                    c'8
+                    c'8
+                    c'8
+                }
+            }
+        }
+
+    Can also create empty `FixedDurationContainers`:
+
+    ::
+
+        >>> string = '(1 4) (2 4) (3 4) (4 4)'
+        >>> result = parser(string)
+        >>> for x in result: x
+        ... 
+        FixedDurationContainer(Duration(1, 4), [])
+        FixedDurationContainer(Duration(1, 2), [])
+        FixedDurationContainer(Duration(3, 4), [])
+        FixedDurationContainer(Duration(1, 1), [])
+
+    Can create measures too:
+
+    ::
+
+        >>> string = '| 4/4 4 4 4 4 || 3/8 8 8 8 |'
+        >>> result = parser(string)
+        >>> for x in result: x
+        ...
+        Measure(4/4, [c'4, c'4, c'4, c'4])
+        Measure(3/8, [c'8, c'8, c'8])
+
+    Finally, understands ties:
+
+    ::
+
+        >>> string = '4 ~ 4'
+        >>> result = parser(string)
+        >>> f(result)
+        {
+            c'4 ~
+            c'4
+        }
+
+    Return `ReducedAbjParser` instance.
+    '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, debug=False):
+        abctools.Parser.__init__(self, debug=debug)
+        self._default_duration = durationtools.Duration((1, 4))
 
     ### LEX SETUP ###
 
@@ -10,25 +149,32 @@ class ReducedAbjParser(abctools.Parser):
         'APOSTROPHE',
         'BRACE_L',
         'BRACE_R',
+        'CARAT_L',
+        'CARAT_R',
         'COMMA',
         'DOT',
         'FRACTION',
-        'INTEGER',
+        'INTEGER_N',
+        'INTEGER_P',
         'PAREN_L',
         'PAREN_R',
         'PIPE',
         'PITCHNAME',
+        'RESTNAME',
         'TILDE',
     )
 
     t_APOSTROPHE = "'"
     t_BRACE_L = '{'
     t_BRACE_R = '}'
+    t_CARAT_L = '\<'
+    t_CARAT_R = '\>'
     t_COMMA = ','
     t_DOT = '\.'
     t_PAREN_L = '\('
     t_PAREN_R = '\)'
     t_PIPE = '\|'
+    t_RESTNAME = 'r'
     t_TILDE = '~'
 
     t_ignore = ' \t\r'
@@ -40,13 +186,18 @@ class ReducedAbjParser(abctools.Parser):
     ### LEX METHODS ###
 
     def t_FRACTION(self, t):
-        r'(-?[1-9]\d*/[1-9]\d*)'
+        r'([1-9]\d*/[1-9]\d*)'
         parts = t.value.split('/')
         t.value = mathtools.NonreducedFraction(int(parts[0]), int(parts[1]))
         return t
 
-    def t_INTEGER(self, t):
-        r'(-?[1-9]\d*)'
+    def t_INTEGER_N(self, t):
+        r'(-[1-9]\d*)'
+        t.value = int(t.value)
+        return t
+
+    def t_INTEGER_P(self, t):
+        r'([1-9]\d*)'
         t.value = int(t.value)
         return t
 
@@ -72,6 +223,18 @@ class ReducedAbjParser(abctools.Parser):
     def p_apostrophes__apostrophes__APOSTROPHE(self, p):
         '''apostrophes : apostrophes APOSTROPHE'''
         p[0] = p[1] + 1 
+
+    def p_chord_body__chord_pitches(self, p):
+        '''chord_body : chord_pitches'''
+        p[0] = chordtools.Chord(p[1], self._default_duration)
+
+    def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
+        '''chord_body : chord_pitches positive_leaf_duration'''
+        p[0] = chordtools.Chord(p[1], p[2])
+
+    def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
+        '''chord_pitches : CARAT_L pitches CARAT_R'''
+        p[0] = p[2]
 
     def p_commas__COMMA(self, p):
         '''commas : COMMA'''
@@ -123,43 +286,52 @@ class ReducedAbjParser(abctools.Parser):
         '''fixed_duration_container : pair'''
         p[0] = containertools.FixedDurationContainer(p[1])
 
-    def p_leaf__leaf_duration__post_events(self, p):
-        '''leaf : leaf_duration post_events'''
-        leaf_duration = p[1]
-        post_events = p[2]
-        if 0 < p[1]:
-            p[0] = notetools.Note(0, leaf_duration)
-        else:
-            p[0] = resttools.Rest(abs(leaf_duration))
-        if post_events:
-            marktools.Annotation('post events', post_events)(p[0])
+    def p_leaf__leaf_body__post_events(self, p):
+        '''leaf : leaf_body post_events'''
+        p[0] = p[1]
+        if p[2]:
+            marktools.Annotation('post events', tuple(p[2]))(p[0])
 
-    def p_leaf__pitch__leaf_duration__post_events(self, p):
-        '''leaf : pitch leaf_duration post_events'''
-        pitch = p[1]
-        leaf_duration = abs(p[2])
-        post_events = p[3]
-        p[0] = notetools.Note(pitch, leaf_duration)
-        if post_events:
-            marktools.Annotation('post events', post_events)(p[0])
+    def p_leaf_body__chord_body(self, p):
+        '''leaf_body : chord_body'''
+        p[0] = p[1]
 
-    def p_leaf_duration__INTEGER__dots(self, p):
-        '''leaf_duration : INTEGER dots'''
-        duration_log = p[1]
-        dots = '.' * p[2]
-        if duration_log < 0:
-            p[0] = -durationtools.Duration('{}{}'.format(abs(duration_log), dots))
-        else:
-            p[0] = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
-        
+    def p_leaf_body__note_body(self, p):
+        '''leaf_body : note_body'''
+        p[0] = p[1]
+
+    def p_leaf_body__rest_body(self, p):
+        '''leaf_body : rest_body'''
+        p[0] = p[1]
+
     def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
         '''measure : PIPE FRACTION component_list PIPE'''
         p[0] = measuretools.Measure(p[2].pair)
         for x in p[3]:
             p[0].append(x)
 
-    def p_pair__PAREN_L__INTEGER__INTEGER__PAREN_R(self, p):
-        '''pair : PAREN_L INTEGER INTEGER PAREN_R'''
+    def p_negative_leaf_duration__INTEGER_N__dots(self, p):
+        '''negative_leaf_duration : INTEGER_N dots'''
+        duration_log = p[1]
+        dots = '.' * p[2]
+        duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
+        self._default_duration = duration
+        p[0] = duration
+
+    def p_note_body__pitch(self, p):
+        '''note_body : pitch'''
+        p[0] = notetools.Note(p[1], self._default_duration)
+
+    def p_note_body__pitch__positive_leaf_duration(self, p):
+        '''note_body : pitch positive_leaf_duration'''
+        p[0] = notetools.Note(p[1], p[2])
+
+    def p_note_body__positive_leaf_duration(self, p):
+        '''note_body : positive_leaf_duration'''
+        p[0] = notetools.Note(0, p[1])
+
+    def p_pair__PAREN_L__INTEGER_P__INTEGER_P__PAREN_R(self, p):
+        '''pair : PAREN_L INTEGER_P INTEGER_P PAREN_R'''
         p[0] = durationtools.Duration(p[2], p[3])
 
     def p_pitch__PITCHNAME(self, p):
@@ -174,6 +346,22 @@ class ReducedAbjParser(abctools.Parser):
         '''pitch : PITCHNAME commas'''
         p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + ',' * p[2])
 
+    def p_pitches__pitch(self, p):
+        '''pitches : pitch'''
+        p[0] = [p[1]]
+
+    def p_pitches__pitches__pitch(self, p):
+        '''pitches : pitches pitch'''
+        p[0] = p[1] + [p[2]]
+
+    def p_positive_leaf_duration__INTEGER_P__dots(self, p):
+        '''positive_leaf_duration : INTEGER_P dots'''
+        duration_log = p[1]
+        dots = '.' * p[2]
+        duration = durationtools.Duration('{}{}'.format(abs(duration_log), dots))
+        self._default_duration = duration
+        p[0] = duration       
+
     def p_post_event__tie(self, p):
         '''post_event : tie'''
         p[0] = p[1]
@@ -185,6 +373,18 @@ class ReducedAbjParser(abctools.Parser):
     def p_post_events__post_events__post_event(self, p):
         '''post_events : post_events post_event'''
         p[0] = p[1] + [p[2]]
+
+    def p_rest_body__negative_leaf_duration(self, p):
+        '''rest_body : negative_leaf_duration'''
+        p[0] = resttools.Rest(p[1])
+
+    def p_rest_body__RESTNAME(self, p):
+        '''rest_body : RESTNAME'''
+        p[0] = resttools.Rest(self._default_duration) 
+
+    def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
+        '''rest_body : RESTNAME positive_leaf_duration'''
+        p[0] = resttools.Rest(p[2])
 
     def p_start__EMPTY(self, p):
         '''start : '''
@@ -257,3 +457,6 @@ class ReducedAbjParser(abctools.Parser):
             marktools.detach_annotations_attached_to_component(leaf)
 
         return parsed
+
+    def _setup(self):
+        self._default_duration = durationtools.Duration((1, 4))
