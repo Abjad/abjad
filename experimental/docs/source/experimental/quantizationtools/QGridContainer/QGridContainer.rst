@@ -162,7 +162,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__ne__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__repr__
 
