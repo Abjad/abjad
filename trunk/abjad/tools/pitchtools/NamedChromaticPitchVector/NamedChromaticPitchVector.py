@@ -6,7 +6,8 @@ class NamedChromaticPitchVector(ObjectVector):
 
     Abjad model of named chromatic pitch vector::
 
-        >>> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(["c''", "c''", "cs''", "cs''", "cs''"])
+        >>> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(
+        ...     ["c''", "c''", "cs''", "cs''", "cs''"])
 
     ::
 

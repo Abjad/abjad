@@ -1,6 +1,3 @@
-from abjad.tools.containertools.get_first_element_starting_strictly_before_prolated_offset import get_first_element_starting_strictly_before_prolated_offset
-
-
 def delete_contents_of_container_starting_strictly_before_prolated_offset(container, prolated_offset):
     r'''.. versionadded:: 2.0
 
@@ -22,7 +19,8 @@ def delete_contents_of_container_starting_strictly_before_prolated_offset(contai
 
     ::
 
-        >>> containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(staff, Duration(1, 8))
+        >>> containertools.delete_contents_of_container_starting_strictly_before_prolated_offset(
+        ...     staff, Duration(1, 8))
         Staff{3}
 
     ::
@@ -40,10 +38,12 @@ def delete_contents_of_container_starting_strictly_before_prolated_offset(contai
         renamed ``containertools.contents_delete_starting_before_prolated_offset()`` to
         ``containertools.delete_contents_of_container_starting_strictly_before_prolated_offset()``.
     '''
+    from abjad.tools import containertools
 
     # get index
     try:
-        element = get_first_element_starting_strictly_before_prolated_offset(container, prolated_offset)
+        element = containertools.get_first_element_starting_strictly_before_prolated_offset(
+            container, prolated_offset)
         index = container.index(element)
 
     # return container if no index

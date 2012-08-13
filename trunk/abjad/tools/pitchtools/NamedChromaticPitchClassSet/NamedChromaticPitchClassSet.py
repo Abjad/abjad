@@ -6,7 +6,8 @@ class NamedChromaticPitchClassSet(PitchClassObjectSet):
 
     Abjad model of a named chromatic pitch-class set::
 
-        >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
+        >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(
+        ...     ['gs', 'g', 'as', 'c', 'cs'])
 
     ::
 
@@ -102,8 +103,9 @@ class NamedChromaticPitchClassSet(PitchClassObjectSet):
     def named_chromatic_pitch_classes(self):
         '''Read-only named chromatic pitch-classes::
 
-            >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
-            >>> for x in named_chromatic_pitch_class_set.named_chromatic_pitch_classes: x # doctest: +SKIP
+            >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(
+            ...     ['gs', 'g', 'as', 'c', 'cs'])
+            >>> for x in named_chromatic_pitch_class_set.named_chromatic_pitch_classes: x
             ...
             NamedChromaticPitchClass('as')
             NamedChromaticPitchClass('c')

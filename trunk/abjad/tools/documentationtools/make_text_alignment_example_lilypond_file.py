@@ -42,7 +42,8 @@ def make_text_alignment_example_lilypond_file(music=None):
             bottom-margin = #10
             left-margin = #10
             line-width = #150
-            system-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 15) (stretchability . 0))
+            system-system-spacing = #'(
+                (basic_distance . 0) (minimum_distance . 0) (padding . 15) (stretchability . 0))
         }
 
         \score {

@@ -11,9 +11,11 @@ class TextSpanner(Spanner):
 
     ::
 
-        >>> markup = markuptools.Markup(markuptools.MarkupCommand('bold', markuptools.MarkupCommand('italic', 'foo')))
+        >>> markup = markuptools.Markup(markuptools.MarkupCommand(
+        ...     'bold', markuptools.MarkupCommand('italic', 'foo')))
         >>> text_spanner.override.text_spanner.bound_details__left__text = markup
-        >>> markup = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
+        >>> markup = markuptools.Markup(
+        ...     markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
         >>> text_spanner.override.text_spanner.bound_details__right__text = markup
         >>> text_spanner.override.text_spanner.dash_fraction = 1
 
@@ -21,8 +23,10 @@ class TextSpanner(Spanner):
 
         >>> f(staff)
         \new Staff {
-            \override TextSpanner #'bound-details #'left #'text = \markup { \bold \italic foo }
-            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . -1) }
+            \override TextSpanner #'bound-details #'left #'text = \markup { 
+                \bold \italic foo }
+            \override TextSpanner #'bound-details #'right #'text = \markup {
+                \draw-line #'(0 . -1) }
             \override TextSpanner #'dash-fraction = #1
             c'8 \startTextSpan
             d'8

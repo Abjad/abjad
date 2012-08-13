@@ -1136,7 +1136,6 @@ Composition packages
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
    tools/pitchtools/list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers
    tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers
-   tools/pitchtools/list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class
    tools/pitchtools/list_named_chromatic_pitches_in_expr
    tools/pitchtools/list_numbered_chromatic_pitch_classes_in_expr
    tools/pitchtools/list_octave_transpositions_of_pitch_carrier_within_pitch_range
@@ -1159,6 +1158,7 @@ Composition packages
    tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
+   tools/pitchtools/sort_named_chromatic_pitch_carriers_in_expr
    tools/pitchtools/split_chromatic_pitch_class_name
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation

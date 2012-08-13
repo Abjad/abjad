@@ -16,7 +16,8 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        >>> lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
+        >>> spacing_vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+        >>> lilypond_file.paper_block.system_system_spacing = spacing_vector
 
     ::
 
@@ -29,7 +30,8 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
         \include "/abjad/trunk/abjad/cfg/abjad.scm"
 
         \paper {
-            system-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))
+            system-system-spacing = #'(
+                (basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))
         }
 
         \score {
