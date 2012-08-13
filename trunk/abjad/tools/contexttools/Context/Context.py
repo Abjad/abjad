@@ -9,7 +9,8 @@ class Context(Container):
 
     Abjad model of a horizontal layer of music.
 
-        >>> context = contexttools.Context(name='MeterVoice', context_name='TimeSignatureContext')
+        >>> context = contexttools.Context(
+        ... name='MeterVoice', context_name='TimeSignatureContext')
 
     ::
 
@@ -218,7 +219,8 @@ class Context(Container):
         def fget(self):
             r'''Set indicator of nonsemantic voice::
 
-                >>> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
+                >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
+                ...     [(1, 8), (5, 16), (5, 16)])
                 >>> voice = Voice(measures)
                 >>> voice.name = 'HiddenTimeSignatureVoice'
 
