@@ -25,7 +25,7 @@ class BeatHierarchy(abctools.AbjadObject):
     ::
 
         >>> quantizationtools.BeatHierarchy((4, 4))
-        BeatHierarchy(TimeSignatureMark((4, 4)), big_endian=False)
+        BeatHierarchy(TimeSignatureMark((4, 4)), big_endian=True)
 
     ::
 
@@ -264,11 +264,11 @@ class BeatHierarchy(abctools.AbjadObject):
                 children=(
                     RhythmTreeLeaf(
                         duration=1,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                     RhythmTreeLeaf(
                         duration=1,
-                        pitched=True,
+                        is_pitched=True,
                         ),
                 ),
                 duration=2
