@@ -7,7 +7,12 @@ class _WindInstrument(_Instrument):
 
     Abjad model of the wind instrument.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
 
     def __init__(self, **kwargs):
         _Instrument.__init__(self, **kwargs)

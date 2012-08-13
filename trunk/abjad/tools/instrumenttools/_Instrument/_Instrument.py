@@ -8,7 +8,12 @@ class _Instrument(contexttools.InstrumentMark):
 
     Abjad model of the musical instrument.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
 
     def __init__(self, 
         instrument_name=None, 

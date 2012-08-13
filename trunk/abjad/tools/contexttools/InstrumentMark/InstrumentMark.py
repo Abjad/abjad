@@ -138,7 +138,8 @@ class InstrumentMark(ContextMark):
 
             >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
             >>> instrument.lilypond_format
-            ['\\set Staff.instrumentName = \\markup { Flute }', '\\set Staff.shortInstrumentName = \\markup { Fl. }']
+            ['\\set Staff.instrumentName = \\markup { Flute }', 
+                '\\set Staff.shortInstrumentName = \\markup { Fl. }']
 
         Return list.
         '''
