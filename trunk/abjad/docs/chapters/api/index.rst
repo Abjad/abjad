@@ -843,8 +843,8 @@ Composition packages
    tools/measuretools/fill_measures_in_expr_with_big_endian_notes
    tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
    tools/measuretools/fill_measures_in_expr_with_little_endian_notes
-   tools/measuretools/fill_measures_in_expr_with_meter_denominator_notes
    tools/measuretools/fill_measures_in_expr_with_repeated_notes
+   tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
    tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
    tools/measuretools/fuse_measures
    tools/measuretools/get_first_measure_in_improper_parentage_of_component
@@ -858,10 +858,10 @@ Composition packages
    tools/measuretools/list_time_signatures_of_measures_in_expr
    tools/measuretools/make_measures_with_full_measure_spacer_skips
    tools/measuretools/measure_to_one_line_input_string
+   tools/measuretools/move_full_measure_tuplet_prolation_to_measure_time_signature
    tools/measuretools/move_measure_prolation_to_full_measure_tuplet
-   tools/measuretools/move_prolation_of_full_measure_tuplet_to_meter_of_measure
    tools/measuretools/multiply_contents_of_measures_in_expr
-   tools/measuretools/multiply_contents_of_measures_in_expr_and_scale_meter_denominators
+   tools/measuretools/multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators
    tools/measuretools/pad_measures_in_expr_with_rests
    tools/measuretools/pad_measures_in_expr_with_skips
    tools/measuretools/pitch_array_row_to_measure
@@ -869,7 +869,7 @@ Composition packages
    tools/measuretools/replace_contents_of_measures_in_expr
    tools/measuretools/report_time_signature_distribution
    tools/measuretools/scale_contents_of_measures_in_expr
-   tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
+   tools/measuretools/scale_measure_and_adjust_time_signature
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
    tools/measuretools/set_always_format_time_signature_of_measures_in_expr
    tools/measuretools/set_measure_denominator_and_adjust_numerator

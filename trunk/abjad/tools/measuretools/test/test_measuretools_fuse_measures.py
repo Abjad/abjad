@@ -284,7 +284,7 @@ def test_measuretools_fuse_measures_09():
     t = Staff([
         Measure((9, 80), []),
         Measure((2, 16), [])])
-    measuretools.fill_measures_in_expr_with_meter_denominator_notes(t)
+    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes(t)
 
     r'''
     \new Staff {

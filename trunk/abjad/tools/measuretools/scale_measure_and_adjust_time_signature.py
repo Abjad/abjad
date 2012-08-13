@@ -4,13 +4,13 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier=1):
+def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     r'''.. versionadded:: 2.0
 
     Scale `measure` by `multiplier` and adjust meter::
 
         >>> t = Measure((3, 8), "c'8 d'8 e'8")
-        >>> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
+        >>> measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
         Measure(3/12, [c'8, d'8, e'8])
 
     ::

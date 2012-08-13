@@ -3,7 +3,7 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 from abjad.tools import durationtools
 
 
-def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
+def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     r'''.. versionadded:: 1.1
 
     Move prolation of full-measure tuplet to meter of measure.
@@ -11,7 +11,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
     Measures usually become nonbinary as as result::
 
         >>> t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-        >>> measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+        >>> measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     ::
 
@@ -29,7 +29,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
 
     .. versionchanged:: 2.0
         renamed ``measuretools.subsume()`` to
-        ``measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure()``.
+        ``measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature()``.
     '''
     from abjad.tools.tuplettools.Tuplet import Tuplet
     from abjad.tools import componenttools

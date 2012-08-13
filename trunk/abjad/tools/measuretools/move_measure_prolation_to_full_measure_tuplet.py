@@ -12,7 +12,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
     Turn nonbinary measures into binary measures containing a single fixed-duration tuplet.
 
-    This is the inverse of measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure().
+    This is the inverse of measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature().
 
     Note that not all nonbinary measures can be made binary.
 

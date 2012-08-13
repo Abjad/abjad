@@ -1,10 +1,10 @@
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools.measuretools.multiply_contents_of_measures_in_expr import multiply_contents_of_measures_in_expr
-from abjad.tools.measuretools.scale_measure_by_multiplier_and_adjust_meter import scale_measure_by_multiplier_and_adjust_meter
+from abjad.tools.measuretools.scale_measure_and_adjust_time_signature import scale_measure_and_adjust_time_signature
 from abjad.tools import durationtools
 
 
-def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, concentration_pairs):
+def multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators(expr, concentration_pairs):
     '''.. versionadded:: 1.1
 
     Mutiply contents of measures in `expr` and scale meter denominators.
@@ -21,24 +21,24 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
     Return Python list of transformed measures::
 
         >>> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
-        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
+        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators(t, [(3, 3)])[0])
         |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
     ::
 
         >>> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
-        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
+        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators(t, [(3, 2)])[0])
         |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
     ::
 
         >>> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
-        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
+        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators(t, [(3, 1)])[0])
         |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 
     .. versionchanged:: 2.0
         renamed ``measuretools.concentrate()`` to
-        ``measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators()``.
+        ``measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()``.
     '''
 
     assert isinstance(concentration_pairs, list)
@@ -52,7 +52,7 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
         spin_count, scalar_denominator = concentration_pair
         multiply_contents_of_measures_in_expr(measure, spin_count)
         multiplier = durationtools.Duration(1, scalar_denominator)
-        scale_measure_by_multiplier_and_adjust_meter(measure, multiplier)
+        scale_measure_and_adjust_time_signature(measure, multiplier)
         result.append(measure)
 
     return result

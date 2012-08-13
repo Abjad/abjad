@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_01():
+def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signature_01():
     '''Subsume complete binary tuplet.'''
 
     t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     r'''
     {
@@ -22,12 +22,12 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
     assert t.lilypond_format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n}"
 
 
-def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_02():
+def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signature_02():
     '''Subsume complete nonbinary tuplet.'''
 
     t = Measure((3, 16), [
         tuplettools.FixedDurationTuplet(Duration(3, 16), "c'16 d'16 e'16 f'16 g'16")])
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     r'''
     {
@@ -46,12 +46,12 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
     assert t.lilypond_format == "{\n\t\\time 15/80\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'32.\n\t\td'32.\n\t\te'32.\n\t\tf'32.\n\t\tg'32.\n\t}\n}"
 
 
-def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_03():
+def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signature_03():
     '''Subsume 7:6 tuplet.'''
 
     t = Measure((6, 8), [
         tuplettools.FixedDurationTuplet(Duration(6, 8), "c'8 d'8 e'8 f'8 g'8 a'8 b'8")])
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     r'''
     {
@@ -72,12 +72,12 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
     assert t.lilypond_format == "{\n\t\\time 21/28\n\t\\scaleDurations #'(4 . 7) {\n\t\tc'8.\n\t\td'8.\n\t\te'8.\n\t\tf'8.\n\t\tg'8.\n\t\ta'8.\n\t\tb'8.\n\t}\n}"
 
 
-def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_04():
+def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signature_04():
     '''Subsume tuplet in nonassignable measure.'''
 
     t = Measure((5, 8), [
         tuplettools.FixedDurationTuplet(Duration(5, 8), "c'8 d'8 e'8 f'8 g'8 a'8")])
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     r'''
     {
@@ -104,7 +104,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 
 
 
-def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_05():
+def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signature_05():
     '''Subsume nested tuplet.'''
 
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
@@ -128,7 +128,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
     }
     '''
 
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     r'''
     {
@@ -149,7 +149,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
     assert t.lilypond_format == "{\n\t\\time 3/12\n\t\\scaleDurations #'(2 . 3) {\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\td'16\n\t\t\te'16\n\t\t}\n\t\tf'8\n\t\tg'8\n\t}\n}"
 
 
-def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_06():
+def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signature_06():
     '''Submsume 6:5. Time signature should go from 5/16 to 15/48.'''
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c'8 d'8 e'8")
@@ -166,7 +166,7 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
     }
     '''
 
-    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure(t)
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)
 
     r'''
     {
