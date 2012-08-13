@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 def split_container_at_index(component, i, fracture_spanners=False):
-    '''.. versionadded:: 1.1
+    r'''.. versionadded:: 1.1
 
     General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
