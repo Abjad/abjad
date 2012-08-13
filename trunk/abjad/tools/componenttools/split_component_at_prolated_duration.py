@@ -119,7 +119,6 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
     from abjad.tools import measuretools
     from abjad.tools import spannertools
     from abjad.tools import tietools
-    from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
     from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
 
     duration = durationtools.Duration(duration)
@@ -218,7 +217,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
     for duration_crossing_container in reversed(duration_crossing_containers):
         assert isinstance(duration_crossing_container, containertools.Container)
         i = duration_crossing_container.index(prev)
-        left, right = _split_component_at_index(
+        left, right = containertools.split_container_at_index(
             duration_crossing_container, i, fracture_spanners=fracture_spanners)
         prev = right
 

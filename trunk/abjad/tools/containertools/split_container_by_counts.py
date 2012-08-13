@@ -1,11 +1,10 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import sequencetools
-from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 from abjad.tools.componenttools.all_are_components import all_are_components
 
 
-def _split_container_by_counts(components, counts, fracture_spanners=False, cyclic=False):
+def split_container_by_counts(components, counts, fracture_spanners=False, cyclic=False):
     '''Partition Python list of zero or more Abjad components.
     Partition by zero or more positive integers in counts list.
     Fracture spanners or not according to keyword.
@@ -13,6 +12,7 @@ def _split_container_by_counts(components, counts, fracture_spanners=False, cycl
     Return list of component lists.
     # QUESTION: is there any component copying in this function? #
     '''
+    from abjad.tools import containertools
 
     # check input
     #assert all_are_components(components, klasses=Container)
@@ -57,12 +57,13 @@ def _split_container_by_counts(components, counts, fracture_spanners=False, cycl
             comp_still_needed = count - cum_comp_in_this_part
             # if part is now full, fracture spanners right of leaf
             if comp_still_needed == 0:
-                _split_component_at_index(x, 100, fracture_spanners=fracture_spanners)
+                containertools.split_container_at_index(x, 100, fracture_spanners=fracture_spanners)
         # if current component is container
         else:
             # try to grab enough container contents to fill current part
             comp_still_needed = count - cum_comp_in_this_part
-            left, right = _split_component_at_index(x, comp_still_needed, fracture_spanners=fracture_spanners)
+            left, right = containertools.split_container_at_index(
+                x, comp_still_needed, fracture_spanners=fracture_spanners)
             # accept whatever num of container contents came back and append
             part.append(left)
             cum_comp_in_this_part += len(left)

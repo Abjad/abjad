@@ -1,7 +1,7 @@
-
-
 def split_container_cyclically_by_counts_and_fracture_crossing_spanners(container, counts):
     r'''Split `container` cyclically by `counts` and fracture crossing spanners::
+
+    .. note:: Deprecated. Use ``containertools.split_container_by_counts()`` instead.
 
         >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
         >>> voice = Voice([container])
@@ -57,6 +57,6 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
         renamed ``partition.cyclic_fractured_by_counts()`` to
         ``containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners()``.
     '''
-    from abjad.tools.containertools._split_container_by_counts import _split_container_by_counts
+    from abjad.tools import containertools
 
-    return _split_container_by_counts(container, counts, fracture_spanners=True, cyclic=True)
+    return containertools.split_container_by_counts(container, counts, fracture_spanners=True, cyclic=True)

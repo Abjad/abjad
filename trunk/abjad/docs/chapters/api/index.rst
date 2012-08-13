@@ -257,8 +257,10 @@ Composition packages
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
    tools/containertools/set_container_multiplier
+   tools/containertools/split_container_at_index
    tools/containertools/split_container_at_index_and_do_not_fracture_crossing_spanners
    tools/containertools/split_container_at_index_and_fracture_crossing_spanners
+   tools/containertools/split_container_by_counts
    tools/containertools/split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners
    tools/containertools/split_container_cyclically_by_counts_and_fracture_crossing_spanners
    tools/containertools/split_container_once_by_counts_and_do_not_fracture_crossing_spanners

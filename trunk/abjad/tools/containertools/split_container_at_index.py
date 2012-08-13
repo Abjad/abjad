@@ -1,10 +1,7 @@
 from abjad.tools import durationtools
-from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 
 
-# TODO: is there any reason not to make this public?
-# TODO: and shouldn't this be named split_container_at_index()?
-def _split_component_at_index(component, i, fracture_spanners=False):
+def split_container_at_index(component, i, fracture_spanners=False):
     '''.. versionadded:: 1.1
 
     General component index split algorithm.
@@ -12,18 +9,18 @@ def _split_component_at_index(component, i, fracture_spanners=False):
     Keyword controls spanner behavior at split time.
     Use containertools.split_container_at_index_and_fracture_crossing_spanners() to fracture spanners.
     Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() 
-        to leave spanners unchanged.
+    to leave spanners unchanged.
     '''
     from abjad.tools import spannertools
+    from abjad.tools import componenttools
+    from abjad.tools import containertools
     from abjad.tools import contexttools
-    from abjad.tools.leaftools.Leaf import Leaf
-    from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
-    from abjad.tools.measuretools.Measure import Measure
-    from abjad.tools.tuplettools.Tuplet import Tuplet
-    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+    from abjad.tools import leaftools
+    from abjad.tools import measuretools
+    from abjad.tools import tuplettools
 
     # convenience leaf index split definition
-    if isinstance(component, Leaf):
+    if isinstance(component, leaftools.Leaf):
         #raise Exception # debug
         if i <= 0:
             if fracture_spanners:
@@ -43,7 +40,7 @@ def _split_component_at_index(component, i, fracture_spanners=False):
     right_music = component[i:]
 
     # instantiate new left and right containers
-    if isinstance(component, Measure):
+    if isinstance(component, measuretools.Measure):
         meter_denominator = contexttools.get_effective_time_signature(component).denominator
         left_duration = sum([x.prolated_duration for x in left_music])
         left_pair = \
@@ -57,19 +54,19 @@ def _split_component_at_index(component, i, fracture_spanners=False):
             right_duration, meter_denominator)
         right_meter = contexttools.TimeSignatureMark(right_pair)
         right = component.__class__(right_meter, right_music)
-    elif isinstance(component, FixedDurationTuplet):
+    elif isinstance(component, tuplettools.FixedDurationTuplet):
         left = component.__class__(1, left_music)
         right = component.__class__(1, right_music)
-        set_container_multiplier(left, container_multiplier)
-        set_container_multiplier(right, container_multiplier)
-    elif isinstance(component, Tuplet):
+        containertools.set_container_multiplier(left, container_multiplier)
+        containertools.set_container_multiplier(right, container_multiplier)
+    elif isinstance(component, tuplettools.Tuplet):
         left = component.__class__(container_multiplier, left_music)
         right = component.__class__(container_multiplier, right_music)
     else:
         left = component.__class__(left_music)
         right = component.__class__(right_music)
-        set_container_multiplier(left, container_multiplier)
-        set_container_multiplier(right, container_multiplier)
+        containertools.set_container_multiplier(left, container_multiplier)
+        containertools.set_container_multiplier(right, container_multiplier)
 
     # save left and right halves together for iteration
     halves = [left, right]
@@ -79,7 +76,7 @@ def _split_component_at_index(component, i, fracture_spanners=False):
     spannertools.move_spanners_from_component_to_children_of_component(component)
 
     # incorporate left and right parents in score, if possible
-    parent, start, stop = get_parent_and_start_stop_indices_of_components([component])
+    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
     if parent is not None:
         # to avoid pychecker slice assignment error
         #parent._music[start:stop+1] = nonempty_halves

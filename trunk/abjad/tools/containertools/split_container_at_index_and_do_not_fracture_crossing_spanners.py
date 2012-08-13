@@ -1,9 +1,7 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
-
-
 def split_container_at_index_and_do_not_fracture_crossing_spanners(container, index):
     r'''Split `container` at `index` and do not fracture crossing spanners::
+
+    .. note:: Deprecated. Use ``containertools.split_container_at_index()`` instead.
 
         >>> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
@@ -66,5 +64,6 @@ def split_container_at_index_and_do_not_fracture_crossing_spanners(container, in
         renamed ``split.unfractured_at_index()`` to
         ``containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()``.
     '''
+    from abjad.tools import containertools
 
-    return _split_component_at_index(container, index, fracture_spanners=False)
+    return containertools.split_container_at_index(container, index, fracture_spanners=False)
