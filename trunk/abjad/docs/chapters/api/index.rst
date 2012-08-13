@@ -510,7 +510,6 @@ Composition packages
    tools/iotools/show
    tools/iotools/spawn_subprocess
    tools/iotools/write_expr_to_ly
-   tools/iotools/write_expr_to_ly_and_to_pdf_and_show
    tools/iotools/write_expr_to_pdf
    tools/iotools/z
 
