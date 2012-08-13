@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_multiple_segment_solo_nonpersistent_division_overlap_01():
+def test_multiple_segment_solo_nonpersistent_overlapping_division_selectors_01():
     '''Nonpersistent overlapping background measure division selector.
     '''
 
@@ -23,7 +23,7 @@ def test_multiple_segment_solo_nonpersistent_division_overlap_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_nonpersistent_division_overlap_02():
+def test_multiple_segment_solo_nonpersistent_overlapping_division_selectors_02():
     '''Nonpersistent overlapping background measures ratio part division selector.
     '''
 
@@ -44,7 +44,7 @@ def test_multiple_segment_solo_nonpersistent_division_overlap_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_nonpersistent_division_overlap_03():
+def test_multiple_segment_solo_nonpersistent_overlapping_division_selectors_03():
     '''Nonpersistent overlapping segment offsets division selector.
     '''
 
@@ -65,7 +65,7 @@ def test_multiple_segment_solo_nonpersistent_division_overlap_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_nonpersistent_division_overlap_04():
+def test_multiple_segment_solo_nonpersistent_overlapping_division_selectors_04():
     '''Nonpersistent overlapping segment ratio part division selector.
     '''
 
