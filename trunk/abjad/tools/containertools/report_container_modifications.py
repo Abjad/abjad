@@ -1,7 +1,7 @@
 from abjad.tools.containertools._report_container_modifications import _report_container_modifications
 
 
-def report_container_modifications_as_string(container):
+def report_container_modifications(container):
     r'''Report `container` modifications as string:
 
     ::
@@ -26,7 +26,7 @@ def report_container_modifications_as_string(container):
 
     ::
 
-        >>> string = containertools.report_container_modifications_as_string(container)
+        >>> string = containertools.report_container_modifications(container)
 
     ::
 

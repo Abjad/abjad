@@ -187,7 +187,7 @@ Composition packages
    tools/componenttools/partition_components_once_by_prolated_durations_le_without_overhang
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/replace_components_with_children_of_components
-   tools/componenttools/report_component_format_contributions_as_string
+   tools/componenttools/report_component_format_contributions
    tools/componenttools/split_component_at_prolated_duration
    tools/componenttools/split_components_by_prolated_durations
    tools/componenttools/sum_duration_of_components_in_seconds
@@ -253,7 +253,7 @@ Composition packages
    tools/containertools/replace_smaller_left_half_of_elements_in_container_with_little_endian_rests
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_big_endian_rests
    tools/containertools/replace_smaller_right_half_of_elements_in_container_with_little_endian_rests
-   tools/containertools/report_container_modifications_as_string
+   tools/containertools/report_container_modifications
    tools/containertools/reverse_contents_of_container
    tools/containertools/scale_contents_of_container
    tools/containertools/set_container_multiplier
@@ -867,7 +867,7 @@ Composition packages
    tools/measuretools/pitch_array_row_to_measure
    tools/measuretools/pitch_array_to_measures
    tools/measuretools/replace_contents_of_measures_in_expr
-   tools/measuretools/report_meter_distribution_as_string
+   tools/measuretools/report_time_signature_distribution
    tools/measuretools/scale_contents_of_measures_in_expr
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
