@@ -1,6 +1,3 @@
-from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
-
-
 def report_spanner_format_contributions(component, klass=None):
     r'''.. versionadded:: 1.1
 
@@ -30,15 +27,12 @@ def report_spanner_format_contributions(component, klass=None):
                 (
 
     Return string.
-
-    .. versionchanged:: 2.9
-        renamed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component()`` to
-        ``spannertools.report_spanner_format_contributions()``.
     '''
+    from abjad.tools import spannertools
 
     result = ''
     locations = ('_format_before_leaf', '_format_right_of_leaf', '_format_after_leaf')
-    spanners = list(get_spanners_attached_to_component(component, klass))
+    spanners = list(spannertools.get_spanners_attached_to_component(component, klass))
     spanners.sort(lambda x, y: cmp(x._class_name, y._class_name))
     for spanner in spanners:
         result += '%s\n' % spanner._class_name

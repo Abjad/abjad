@@ -860,8 +860,8 @@ Composition packages
    tools/measuretools/measure_to_one_line_input_string
    tools/measuretools/move_full_measure_tuplet_prolation_to_measure_time_signature
    tools/measuretools/move_measure_prolation_to_full_measure_tuplet
+   tools/measuretools/multiply_and_scale_contents_of_measures_in_expr
    tools/measuretools/multiply_contents_of_measures_in_expr
-   tools/measuretools/multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators
    tools/measuretools/pad_measures_in_expr_with_rests
    tools/measuretools/pad_measures_in_expr_with_skips
    tools/measuretools/pitch_array_row_to_measure
@@ -1076,7 +1076,6 @@ Composition packages
    tools/pitchtools/chromatic_pitch_name_to_octave_number
    tools/pitchtools/chromatic_pitch_names_string_to_named_chromatic_pitch_list
    tools/pitchtools/chromatic_pitch_number_and_accidental_semitones_to_octave_number
-   tools/pitchtools/chromatic_pitch_number_diatonic_pitch_class_name_to_accidental_octave_number_pair
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_class_number
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_name
    tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple
@@ -1084,6 +1083,7 @@ Composition packages
    tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_number
    tools/pitchtools/chromatic_pitch_number_to_octave_number
    tools/pitchtools/clef_and_staff_position_number_to_named_chromatic_pitch
+   tools/pitchtools/contains_subsegment
    tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
@@ -1133,8 +1133,8 @@ Composition packages
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
-   tools/pitchtools/list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers
-   tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers
+   tools/pitchtools/list_inversion_equivalent_chromatic_interval_classes_pairwise
+   tools/pitchtools/list_melodic_chromatic_interval_numbers_pairwise
    tools/pitchtools/list_named_chromatic_pitches_in_expr
    tools/pitchtools/list_numbered_chromatic_pitch_classes_in_expr
    tools/pitchtools/list_octave_transpositions_of_pitch_carrier_within_pitch_range
@@ -1146,7 +1146,6 @@ Composition packages
    tools/pitchtools/named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary
    tools/pitchtools/octave_number_to_octave_tick_string
    tools/pitchtools/octave_tick_string_to_octave_number
-   tools/pitchtools/ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers
    tools/pitchtools/pentatonic_pitch_number_to_chromatic_pitch_number
    tools/pitchtools/permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row
    tools/pitchtools/pitch_class_octave_number_string_to_chromatic_pitch_name
@@ -1158,6 +1157,7 @@ Composition packages
    tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
    tools/pitchtools/sort_named_chromatic_pitch_carriers_in_expr
+   tools/pitchtools/spell_chromatic_pitch_number
    tools/pitchtools/split_chromatic_pitch_class_name
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation

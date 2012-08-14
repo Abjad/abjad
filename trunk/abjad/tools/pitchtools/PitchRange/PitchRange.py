@@ -22,14 +22,14 @@ class PitchRange(AbjadObject):
     Pitch ranges are immutable.
     """
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_start', '_stop', '_pitch_range_name', '_pitch_range_name_markup', )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools
-#        if len(args) == 0:
-#            object.__setattr__(self, '_start', None)
-#            object.__setattr__(self, '_stop', None)
-#        elif len(args) == 1 and isinstance(args[0], type(self)):
         if len(args) == 1 and isinstance(args[0], type(self)):
             if args[0].start_pitch_is_included_in_range:
                 indicator = 'inclusive'
@@ -323,7 +323,8 @@ class PitchRange(AbjadObject):
 
         ::
 
-            >>> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name_markup=Markup('four-octave range'))
+            >>> pitch_range = pitchtools.PitchRange(-12, 36, 
+            ...     pitch_range_name_markup=Markup('four-octave range'))
             >>> pitch_range.pitch_range_name_markup
             Markup(('four-octave range',))
 

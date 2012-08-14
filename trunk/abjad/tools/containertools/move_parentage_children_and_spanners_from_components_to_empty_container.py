@@ -1,16 +1,8 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools._give_donor_components_position_in_parent_to_recipient_components import _give_donor_components_position_in_parent_to_recipient_components
-from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components import _give_music_from_donor_components_to_recipient_components
-from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
+def move_parentage_children_and_spanners_from_components_to_empty_container(components, container):
+    r'''Move parentage, children and spanners from donor `components` 
+    to recipient empty `container`::
 
-
-def move_parentage_children_and_spanners_from_components_to_empty_container(donors, recipient):
-    r'''Move parentage, children and spanners from `components` to empty `container`::
-
-        >>> voice = Voice(Container("c'8 c'8") * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        >>> beamtools.BeamSpanner(voice.leaves)
-        BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
+        >>> voice = Voice("{ c'8 [ d'8 } { e'8 f'8 } { g'8 a'8 ] }")
 
     ::
 
@@ -33,7 +25,8 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(dono
     ::
 
         >>> tuplet = Tuplet(Fraction(3, 4), [])
-        >>> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[:2], tuplet)
+        >>> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
+        ... voice[:2], tuplet)
 
     ::
 
@@ -53,21 +46,24 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(dono
 
 
     Return none.
-
-    .. versionchanged:: 2.0
-        renamed ``scoretools.donate()`` to
-        ``containertools.move_parentage_children_and_spanners_from_components_to_empty_container()``.
     '''
+    from abjad.tools.componenttools._give_donor_components_position_in_parent_to_recipient_components import \
+        _give_donor_components_position_in_parent_to_recipient_components
+    from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components import \
+        _give_music_from_donor_components_to_recipient_components
+    from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import \
+        _give_spanners_that_dominate_donor_components_to_recipient_components
     from abjad.tools import componenttools
+    from abjad.tools import containertools
 
-    assert componenttools.all_are_contiguous_components_in_same_parent(donors)
+    assert componenttools.all_are_contiguous_components_in_same_parent(components)
 
-    if not isinstance(recipient, Container):
+    if not isinstance(container, containertools.Container):
         raise TypeError
 
-    if not len(recipient) == 0:
+    if not len(container) == 0:
         raise MusicContentsError
 
-    _give_music_from_donor_components_to_recipient_components(donors, recipient)
-    _give_spanners_that_dominate_donor_components_to_recipient_components(donors, [recipient])
-    _give_donor_components_position_in_parent_to_recipient_components(donors, [recipient])
+    _give_music_from_donor_components_to_recipient_components(components, container)
+    _give_spanners_that_dominate_donor_components_to_recipient_components(components, [container])
+    _give_donor_components_position_in_parent_to_recipient_components(components, [container])

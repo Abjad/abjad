@@ -1,5 +1,4 @@
 from abjad.tools import contexttools
-from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed=True):
@@ -54,12 +53,14 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed=True)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(
+        ...     staff, percussion_clef_is_allowed=True)
         True
 
     Disallow percussion clef when `percussion_clef_is_allowed` is false::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed=False)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(
+        ...     staff, percussion_clef_is_allowed=False)
         False
 
     Return boolean.
@@ -67,7 +68,7 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
     from abjad.tools import leaftools
 
     for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
-        instrument = get_effective_instrument(note_or_chord)
+        instrument = contexttools.get_effective_instrument(note_or_chord)
         if not instrument:
             return False
         clef = contexttools.get_effective_clef(note_or_chord)

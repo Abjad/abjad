@@ -6,7 +6,9 @@ def component_to_containment_signature(component):
 
     Change `component` to containment signature::
 
-        >>> score = Score(r"""\context Staff = "CustomStaff" { \context Voice = "CustomVoice" { c' d' e' f' } }""")
+        >>> score = Score(
+        ... r"""\context Staff = "CustomStaff" { """
+        ...     r"""\context Voice = "CustomVoice" { c' d' e' f' } }""")
         >>> score.name = 'CustomScore'
 
     ::
@@ -25,8 +27,8 @@ def component_to_containment_signature(component):
 
     ::
 
-        >>> componenttools.component_to_containment_signature(score.leaves[0]) # doctest: +SKIP
-        ContainmentSignature(Note-4530011616, Voice-'CustomVoice', Staff-4532347408, Score-'CustomScore')
+        >>> componenttools.component_to_containment_signature(score.leaves[0])
+        ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
 
     Containment signature gives first voice, staff, staff group and score in parentage.
 

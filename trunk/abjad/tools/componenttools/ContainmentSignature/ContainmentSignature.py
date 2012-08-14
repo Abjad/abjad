@@ -6,7 +6,8 @@ class ContainmentSignature(AbjadObject):
 
     Containment signature of Abjad component::
 
-        >>> score = Score(r"""\context Staff = "CustomStaff" { \context Voice = "CustomVoice" { c' d' e' f' } }""")
+        >>> score = Score(r"""\context Staff = "CustomStaff" { """
+        ...     r"""\context Voice = "CustomVoice" { c' d' e' f' } }""")
         >>> score.name = 'CustomScore'
 
     ::
@@ -25,8 +26,8 @@ class ContainmentSignature(AbjadObject):
 
     ::
 
-        >>> componenttools.component_to_containment_signature(score.leaves[0]) # doctest: +SKIP
-        ContainmentSignature(Note-4530011616, Voice-'CustomVoice', Staff-4532347408, Score-'CustomScore')
+        >>> componenttools.component_to_containment_signature(score.leaves[0])
+        ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
 
     Returned only by componenttools.component_to_containment_signature().
 

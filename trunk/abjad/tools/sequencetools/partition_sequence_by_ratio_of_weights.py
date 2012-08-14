@@ -1,7 +1,4 @@
 from abjad.tools import mathtools
-from abjad.tools.mathtools.cumulative_sums import cumulative_sums
-from abjad.tools.mathtools.weight import weight
-from abjad.tools.sequencetools.flatten_sequence import flatten_sequence
 from fractions import Fraction
 
 
@@ -35,12 +32,14 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
 
     ::
 
-        >>> sequencetools.partition_sequence_by_ratio_of_weights([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights(
+        ...     [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1])
         [[1, 1, 1, 1, 1, 1, 2, 2], [2, 2, 2, 2]]
 
     ::
 
-        >>> sequencetools.partition_sequence_by_ratio_of_weights([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1, 1])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights(
+        ...     [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1, 1])
         [[1, 1, 1, 1, 1, 1], [2, 2, 2], [2, 2, 2]]
 
 
@@ -49,10 +48,11 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
 
     Return list of lists.
     '''
+    from abjad.tools import sequencetools
 
-    list_weight = weight(sequence)
+    list_weight = mathtools.weight(sequence)
     weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)
-    cumulative_weights = cumulative_sums(weights_parts)
+    cumulative_weights = mathtools.cumulative_sums(weights_parts)
 
     result = []
     sublist = []
@@ -62,7 +62,7 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
         if not isinstance(n, (int, long, float, Fraction)):
             raise TypeError('must be number.')
         sublist.append(n)
-        while cur_cumulative_weight <= weight(flatten_sequence(result)):
+        while cur_cumulative_weight <= mathtools.weight(sequencetools.flatten_sequence(result)):
             try:
                 cur_cumulative_weight = cumulative_weights.pop(0)
                 sublist = []

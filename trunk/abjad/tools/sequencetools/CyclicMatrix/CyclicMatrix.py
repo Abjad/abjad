@@ -13,7 +13,8 @@ class CyclicMatrix(Matrix):
 
     ::
 
-        >>> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+        >>> cyclic_matrix = sequencetools.CyclicMatrix(
+        ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
     ::
 
@@ -42,7 +43,8 @@ class CyclicMatrix(Matrix):
 
     Initialize from columns::
 
-        >>> cyclic_matrix = sequencetools.CyclicMatrix(columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> cyclic_matrix = sequencetools.CyclicMatrix(
+        ...     columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
 
@@ -124,7 +126,8 @@ class CyclicMatrix(Matrix):
     def columns(self):
         '''Read-only columns::
 
-            >>> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> cyclic_matrix = sequencetools.CyclicMatrix(
+            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 
@@ -139,7 +142,8 @@ class CyclicMatrix(Matrix):
     def rows(self):
         '''Read-only rows::
 
-            >>> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> cyclic_matrix = sequencetools.CyclicMatrix(
+            ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 

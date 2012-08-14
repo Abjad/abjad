@@ -17,8 +17,17 @@ def get_spanners_attached_to_any_improper_parent_of_component(component, klass=N
 
     ::
 
-        >>> spannertools.get_spanners_attached_to_any_improper_parent_of_component(staff[0]) # doctest: +SKIP
-        set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8, e'8, f'8), TrillSpanner({c'8, d'8, e'8, f'8})])
+        >>> result = list(sorted(
+        ... spannertools.get_spanners_attached_to_any_improper_parent_of_component(staff[0])))
+
+    ::
+
+        >>> for spanner in result:
+        ...     spanner
+        ...
+        BeamSpanner(c'8, d'8, e'8, f'8)
+        SlurSpanner(c'8, d'8, e'8, f'8)
+        TrillSpanner({c'8, d'8, e'8, f'8})
 
     Return unordered set of zero or more spanners.
 

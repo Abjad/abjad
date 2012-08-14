@@ -3,10 +3,12 @@ def component_to_score_index(component):
 
     Change `component` to score index::
 
-        >>> staff_1 = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        >>> staff_2 = Staff([tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
+        >>> staff_1 = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
+        >>> staff_2 = Staff(r"\times 2/3 { b'8 c''8 d''8 }")
         >>> score = Score([staff_1, staff_2])
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+
+    ::
+
         >>> f(score)
         \new Score <<
             \new Staff {

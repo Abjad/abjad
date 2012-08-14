@@ -1,10 +1,7 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
-from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 
-def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
-    pitch_carriers, wrap=False):
+def list_inversion_equivalent_chromatic_interval_classes_pairwise(pitch_carriers, wrap=False):
     r'''.. versionadded:: 2.0
 
     List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`::
@@ -27,7 +24,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         ... staff, wrap=False)
         
     ::
@@ -44,7 +41,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         ... staff, wrap=True)
 
     ::
@@ -66,7 +63,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         ... notes, wrap=False)
 
     ::
@@ -83,7 +80,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise(
         ... notes, wrap=True)
 
     ::
@@ -105,13 +102,14 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     Return list.
     '''
+    from abjad.tools import pitchtools
 
     result = []
 
     if len(pitch_carriers) == 0:
         return result
     elif len(pitch_carriers) == 1:
-        if is_pitch_carrier(pitch_carriers[0]):
+        if pitchtools.is_pitch_carrier(pitch_carriers[0]):
             return result
         else:
             raise TypeError('must be Abjad pitch, note, note head or chord.')
@@ -122,8 +120,8 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
         pairs = sequencetools.iterate_sequence_pairwise_strict(pitch_carriers)
 
     for first_carrier, second_carrier in pairs:
-        first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first_carrier)
-        second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second_carrier)
+        first_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(first_carrier)
+        second_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(second_carrier)
         mdi = second_pitch - first_pitch
         iecic = mdi.inversion_equivalent_chromatic_interval_class
         result.append(iecic)

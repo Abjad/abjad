@@ -1,5 +1,4 @@
 from abjad.tools import durationtools
-from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
 
 
 def copy_components_and_immediate_parent_of_first_component(components):
@@ -17,9 +16,12 @@ def copy_components_and_immediate_parent_of_first_component(components):
     equals the tuplet multiplier of the parent of the
     first element in `components`. ::
 
-        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> voice = Voice(r"\times 2/3 { c'8 d' e' } \times 2/3 { f'8 g' a' }")
+        >>> voice.append(r"\times 2/3 { b'8 c'' d'' }")
         >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
+
+    ::
+
         >>> f(voice)
         \new Voice {
             \times 2/3 {
@@ -38,29 +40,19 @@ def copy_components_and_immediate_parent_of_first_component(components):
                 d''8
             }
         }
-        >>> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:2])
-        >>> new_tuplet
-        FixedDurationTuplet(1/6, [c'8, d'8])
-        >>> f(new_tuplet)
-        \times 2/3 {
-            c'8 [
-            d'8 ]
-        }
+
+    ::
+
+        >>> leaves = voice.leaves[:2]
+        >>> componenttools.copy_components_and_immediate_parent_of_first_component(leaves)
+        Tuplet(2/3, [c'8, d'8])
 
     Parent-contiguity is not required.
     Thread-contiguous `components` suffice. ::
 
-        >>> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:5])
-        >>> new_tuplet
-        FixedDurationTuplet(5/12, [c'8, d'8, e'8, f'8, g'8])
-        >>> f(new_tuplet)
-        \times 2/3 {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-            g'8
-        }
+        >>> leaves = voice.leaves[:5]
+        >>> componenttools.copy_components_and_immediate_parent_of_first_component(leaves)
+        Tuplet(2/3, [c'8, d'8, e'8, f'8, g'8])
 
     .. note:: this function copies only the *immediate parent* of
         the first element in `components`. This function ignores any further
@@ -88,7 +80,6 @@ def copy_components_and_immediate_parent_of_first_component(components):
     parent = components[0]._parent
 
     # new: remember parent multiplier, if any
-    #parent_multiplier = getattr(parent.duration, 'multiplier', 1)
     parent_multiplier = getattr(parent, 'multiplier', 1)
 
     # new: remember parent denominator, if any
@@ -104,22 +95,12 @@ def copy_components_and_immediate_parent_of_first_component(components):
     parent._music = []
 
     # copy parent without music
-    result = copy_components_and_fracture_crossing_spanners([parent])[0]
+    result = componenttools.copy_components_and_fracture_crossing_spanners([parent])[0]
 
     # give music back to parent
     parent._music = parents_music
 
-#   # populate result with references to input list
-#   result._music.extend(components)
-#
-#   # populate result with deepcopy of input list and fracture spanners
-#   result = copy_components_and_fracture_crossing_spanners([result])[0]
-#
-#   # point elements in result to result as new parent
-#   for element in result:
-#      element._switch(result)
-
-    new_components = copy_components_and_fracture_crossing_spanners(components)
+    new_components = componenttools.copy_components_and_fracture_crossing_spanners(components)
 
     result.extend(new_components)
 

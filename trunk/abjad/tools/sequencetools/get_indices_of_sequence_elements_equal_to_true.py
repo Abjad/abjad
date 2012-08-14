@@ -6,8 +6,11 @@ def get_indices_of_sequence_elements_equal_to_true(sequence):
         >>> from abjad.tools import sequencetools
 
     ::
+        >>> sequence = [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1]
 
-        >>> sequencetools.get_indices_of_sequence_elements_equal_to_true([0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1])
+    ::
+
+        >>> sequencetools.get_indices_of_sequence_elements_equal_to_true(sequence)
         (3, 4, 5, 9, 10, 11, 12)
 
     Return newly constructed tuple of zero or more nonnegative integers.
