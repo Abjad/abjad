@@ -1,4 +1,4 @@
-from abjad.tools.durationtools import Duration
+from abjad.tools import durationtools
 
 
 # TODO: implement corresponding function to rest left half
@@ -41,16 +41,15 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
         renamed ``leaftools.shorten()`` to
         ``leaftools.split_leaf_at_prolated_duration_and_rest_right_half()``.
     '''
-    from abjad.tools.resttools.Rest import Rest
-    from abjad.tools.componenttools.move_parentage_and_spanners_from_components_to_components import move_parentage_and_spanners_from_components_to_components
     from abjad.tools import componenttools
+    from abjad.tools import resttools
 
-    prolated_duration = Duration(prolated_duration)
+    prolated_duration = durationtools.Duration(prolated_duration)
 
     left, right = componenttools.split_component_at_prolated_duration(
         leaf, prolated_duration, fracture_spanners=False)
     for leaf in right:
-        rest = Rest(leaf)
-        move_parentage_and_spanners_from_components_to_components([leaf], [rest])
+        rest = resttools.Rest(leaf)
+        componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [rest])
 
     return left, right

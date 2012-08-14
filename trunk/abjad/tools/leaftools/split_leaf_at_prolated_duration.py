@@ -1,9 +1,7 @@
-from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_leaf_duration
 from abjad.tools import durationtools
 
 
-def _split_leaf_at_duration(leaf, split_dur, fracture_spanners=False, tie_after=False):
+def split_leaf_at_prolated_duration(leaf, split_dur, fracture_spanners=False, tie_after=False):
     '''Split leaf into left and right lists.
     Left list may be list of one note, many tied notes, or tuplet.
     Right list may be list of one note, many tied notes, or tuplet.
@@ -12,10 +10,11 @@ def _split_leaf_at_duration(leaf, split_dur, fracture_spanners=False, tie_after=
     '''
     from abjad.tools import contexttools
     from abjad.tools import componenttools
+    from abjad.tools import leaftools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
-    assert isinstance(leaf, Leaf)
+    assert isinstance(leaf, leaftools.Leaf)
     split_dur = durationtools.Duration(split_dur)
 
     leaf_multiplied_duration = leaf.multiplied_duration
@@ -42,8 +41,8 @@ def _split_leaf_at_duration(leaf, split_dur, fracture_spanners=False, tie_after=
         delattr(leaf, '_after_grace')
         delattr(leaf, 'after_grace')
 
-    left_leaf_list = set_preprolated_leaf_duration(leaf, unprolated_split_dur)
-    right_leaf_list = set_preprolated_leaf_duration(
+    left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, unprolated_split_dur)
+    right_leaf_list = leaftools.set_preprolated_leaf_duration(
         new_leaf, leaf_multiplied_duration - unprolated_split_dur)
 
     leaf_left_of_split = left_leaf_list[-1]

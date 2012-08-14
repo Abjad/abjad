@@ -612,6 +612,7 @@ Composition packages
    tools/leaftools/scale_preprolated_leaf_duration
    tools/leaftools/set_preprolated_leaf_duration
    tools/leaftools/show_leaves
+   tools/leaftools/split_leaf_at_prolated_duration
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 

@@ -119,7 +119,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
     from abjad.tools import measuretools
     from abjad.tools import spannertools
     from abjad.tools import tietools
-    from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
+    from abjad.tools.leaftools.split_leaf_at_prolated_duration import split_leaf_at_prolated_duration
 
     duration = durationtools.Duration(duration)
     assert 0 <= duration
@@ -178,7 +178,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
         assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
-        left_list, right_list = _split_leaf_at_duration(bottom,
+        left_list, right_list = split_leaf_at_prolated_duration(bottom,
             split_point_in_bottom, fracture_spanners=fracture_spanners, tie_after=tie_after)
         right = right_list[0]
         leaf_right_of_split = right
