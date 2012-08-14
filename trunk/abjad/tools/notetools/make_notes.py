@@ -49,7 +49,7 @@ def make_notes(pitches, durations, direction='big-endian'):
         ``notetools.make_notes()``.
     '''
     # TODO: any reason to keep this private?
-    from abjad.tools.leaftools._construct_unprolated_notes import _construct_unprolated_notes
+    from abjad.tools import notetools
     from abjad.tools import tuplettools
 
     if pitchtools.is_named_chromatic_pitch_token(pitches):
@@ -78,6 +78,13 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     durations = durationtools.group_duration_tokens_by_implied_prolation(durations)
 
+    def _make_unprolated_notes(pitches, durations, direction='big-endian'):
+        assert len(pitches) == len(durations)
+        result = []
+        for pitch, dur in zip(pitches, durations):
+            result.extend(notetools.make_tied_note(pitch, dur, direction))
+        return result
+
     result = []
     for duration in durations:
         # get factors in denominator of duration group duration other than 1, 2.
@@ -87,7 +94,7 @@ def make_notes(pitches, durations, direction='big-endian'):
         ps = pitches[0:len(duration)]
         pitches = pitches[len(duration):]
         if len(factors) == 0:
-            result.extend(_construct_unprolated_notes(ps, duration, direction))
+            result.extend(_make_unprolated_notes(ps, duration, direction))
         else:
             # compute prolation
             denominator = duration[0][1]
@@ -95,10 +102,9 @@ def make_notes(pitches, durations, direction='big-endian'):
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
             duration = [ratio * durationtools.Duration(*d) for d in duration]
-            # make notes
-            ns = _construct_unprolated_notes(ps, duration, direction)
+            ns = _make_unprolated_notes(ps, duration, direction)
             t = tuplettools.Tuplet(multiplier, ns)
             result.append(t)
 
-    # return resul
+    # return result
     return result
