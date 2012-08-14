@@ -566,9 +566,13 @@ class ConcreteInterpreter(Interpreter):
                 result.append(right_command)
             else:
                 result.append(uninterpreted_division_command)
+            result.sort()
             #for udc in result:
             #    self._debug(udc, 'udc')
             #print ''
+        #for udc in result:
+        #    self._debug(udc, 'udc')
+        #print ''
         return result
 
     def store_additional_single_context_settings(self):

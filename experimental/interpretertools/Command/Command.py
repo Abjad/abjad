@@ -44,6 +44,9 @@ class Command(AbjadObject):
                 return True
         return False
 
+    def __lt__(self, expr):
+        return self.starts_before(expr)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

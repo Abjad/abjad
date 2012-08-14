@@ -131,7 +131,6 @@ def test_single_segment_solo_overlapping_division_selectors_07():
     '''Three division selectors sitting exactly on top of each other.
     Only the topmost (ie, lexically last) is expressed.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template) 
@@ -152,7 +151,6 @@ def test_single_segment_solo_overlapping_division_selectors_08():
     '''Two fractional division selectors sitting exactly on top of each other.
     Only the topmost is expressed.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template) 
@@ -173,7 +171,6 @@ def test_single_segment_solo_overlapping_division_selectors_08():
 def test_single_segment_solo_overlapping_division_selectors_09():
     '''Two fractional division selectors partially overlapping.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template) 
@@ -189,4 +186,4 @@ def test_single_segment_solo_overlapping_division_selectors_09():
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

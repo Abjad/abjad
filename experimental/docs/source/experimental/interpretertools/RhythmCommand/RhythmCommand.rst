@@ -127,7 +127,7 @@ Special Methods
 
 .. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.__lt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.__ne__
 

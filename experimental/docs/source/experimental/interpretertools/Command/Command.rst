@@ -83,8 +83,6 @@ Special Methods
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.__lt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.interpretertools.Command.Command.Command.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
