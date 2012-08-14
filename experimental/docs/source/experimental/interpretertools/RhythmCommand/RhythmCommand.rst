@@ -43,6 +43,61 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+Methods
+-------
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.contains
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.curtails
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.delays
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.equals
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.overlaps_start_of
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.overlaps_stop_of
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.properly_covers
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.starts_before
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.starts_before_or_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.starts_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.stops_before
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.stops_before_or_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.stops_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 Special Methods
 ---------------
 

@@ -49,6 +49,61 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+Methods
+-------
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.contains
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.curtails
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.delays
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.equals
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.overlaps_start_of
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.overlaps_stop_of
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.properly_covers
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.starts_before
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.starts_before_or_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.starts_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.stops_before
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.stops_before_or_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.stops_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 Special Methods
 ---------------
 

@@ -45,6 +45,61 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+Methods
+-------
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.contains
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.curtails
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.delays
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.equals
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.overlaps_start_of
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.overlaps_stop_of
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.properly_covers
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.starts_before
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.starts_before_or_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.starts_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.stops_before
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.stops_before_or_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.stops_with
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 Special Methods
 ---------------
 

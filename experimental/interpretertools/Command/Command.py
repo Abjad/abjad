@@ -75,3 +75,44 @@ class Command(AbjadObject):
     @property
     def vector(self):
         return self._mandatory_argument_values
+
+    ### PUBLIC METHODS ###
+
+    def contains(self, expr):
+        return self.starts_before_or_with(expr) and expr.stops_before_or_with(self)        
+
+    def curtails(self, expr):
+        return expr.start_offset < self.start_offset <= expr.stop_offset <= self.stop_offset
+
+    def delays(self, expr):
+        return self.start_offset <= expr.start_offset < self.stop_offset
+
+    def equals(self, expr):
+        return self.starts_with(expr) and self.stops_with(expr)
+
+    def overlaps_start_of(self, expr):
+        return self.start_offset < expr.start_offset < self.stop_offset
+
+    def overlaps_stop_of(self, expr):
+        return self.start_offset < expr.stop_offset < self.stop_offset 
+
+    def properly_covers(self, expr):
+        return self.start_offset < expr.start_offset and expr.stop_offset < self.stop_offset        
+
+    def starts_before(self, expr):
+        return self.start_offset < expr.start_offset
+
+    def starts_before_or_with(self, expr):
+        return self.start_offset <= expr.start_offset
+
+    def starts_with(self, expr):
+        return self.start_offset == expr.start_offset
+
+    def stops_before(self, expr):
+        return self.stop_offset < expr.stop_offset
+
+    def stops_before_or_with(self, expr):
+        return self.stop_offset <= expr.stop_offset
+
+    def stops_with(self, expr):
+        return self.stop_offset == expr.stop_offset

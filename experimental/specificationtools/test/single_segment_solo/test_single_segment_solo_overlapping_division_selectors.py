@@ -147,7 +147,7 @@ def test_single_segment_solo_overlapping_division_selectors_07():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_overlapping_division_selectors_07():
+def test_single_segment_solo_overlapping_division_selectors_08():
     '''Two fractional division selectors sitting exactly on top of each other.
     Only the topmost is expressed.
     '''
@@ -168,23 +168,23 @@ def test_single_segment_solo_overlapping_division_selectors_07():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_overlapping_division_selectors_08():
-    '''Two fractional division selectors partially overlapping.
-    '''
-    py.test.skip('working on this one now.')
-
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template) 
-    segment = score_specification.append_segment('red') 
-    segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    segment.set_divisions([(3, 16)])
-    middle_measure = segment.select_background_measure(1)
-    segment.set_divisions([(2, 16)], selector=middle_measure)
-    arbitrary_chunk = segment.select_segment_offsets((5, 8), (6, 8))
-    segment.set_divisions([(1, 16)], selector=arbitrary_chunk)
-    segment.set_rhythm(library.thirty_seconds)
-    score = score_specification.interpret()
-
-    current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+#def test_single_segment_solo_overlapping_division_selectors_09():
+#    '''Two fractional division selectors partially overlapping.
+#    '''
+#    py.test.skip('working on this one now.')
+#
+#    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+#    score_specification = specificationtools.ScoreSpecification(score_template) 
+#    segment = score_specification.append_segment('red') 
+#    segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
+#    segment.set_divisions([(3, 16)])
+#    middle_measure = segment.select_background_measure(1)
+#    segment.set_divisions([(2, 16)], selector=middle_measure)
+#    arbitrary_chunk = segment.select_segment_offsets((5, 8), (6, 8))
+#    segment.set_divisions([(1, 16)], selector=arbitrary_chunk)
+#    segment.set_rhythm(library.thirty_seconds)
+#    score = score_specification.interpret()
+#
+#    current_function_name = introspectiontools.get_current_function_name()
+#    helpertools.write_test_output(score, __file__, current_function_name)
+#    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
