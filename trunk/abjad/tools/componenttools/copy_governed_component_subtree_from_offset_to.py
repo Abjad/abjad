@@ -141,13 +141,13 @@ def _scopy_container(container, start, stop):
     leaf_start = container.leaves[0]
     leaf_end = container.leaves[-1]
     # split first leaf
-    leaf_start_splitted = componenttools.split_component_at_prolated_duration(
+    leaf_start_splitted = componenttools.split_component_at_offset(
         leaf_start, first_dif, fracture_spanners=False)
     if len(leaf_start_splitted) == 2:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(
             leaf_start_splitted[0][0])
     # split second leaf
-    leaf_end_splitted = componenttools.split_component_at_prolated_duration(
+    leaf_end_splitted = componenttools.split_component_at_offset(
         leaf_end, second_dif, fracture_spanners=False)
     if len(leaf_end_splitted) == 2:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(

@@ -129,7 +129,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
     meters = [Duration(*meter) for meter in meters]
 
-    componenttools.split_components_by_prolated_durations(t.leaves, meters, 
+    componenttools.split_components_by_offsets(t.leaves, meters, 
         cyclic=False, fracture_spanners=False, tie_after=True)
 
     r'''

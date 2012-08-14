@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def split_component_at_prolated_duration(component, duration, fracture_spanners=False, tie_after=False):
+def split_component_at_offset(component, duration, fracture_spanners=False, tie_after=False):
     r'''.. versionadded:: 1.1
         
     Split `component` at prolated `duration`.
@@ -42,7 +42,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
 
     ::
 
-        >>> halves = componenttools.split_component_at_prolated_duration(
+        >>> halves = componenttools.split_component_at_offset(
         ... staff.leaves[0], Duration(1, 32), fracture_spanners=False)
 
     ::
@@ -92,7 +92,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
 
     ::
 
-        >>> halves = componenttools.split_component_at_prolated_duration(
+        >>> halves = componenttools.split_component_at_offset(
         ... staff.leaves[0], Duration(1, 32), fracture_spanners=True)
 
     ::
@@ -119,7 +119,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
     from abjad.tools import measuretools
     from abjad.tools import spannertools
     from abjad.tools import tietools
-    from abjad.tools.leaftools.split_leaf_at_prolated_duration import split_leaf_at_prolated_duration
+    from abjad.tools.leaftools.split_leaf_at_offset import split_leaf_at_offset
 
     duration = durationtools.Duration(duration)
     assert 0 <= duration
@@ -178,7 +178,7 @@ def split_component_at_prolated_duration(component, duration, fracture_spanners=
         assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
-        left_list, right_list = split_leaf_at_prolated_duration(bottom,
+        left_list, right_list = split_leaf_at_offset(bottom,
             split_point_in_bottom, fracture_spanners=fracture_spanners, tie_after=tie_after)
         right = right_list[0]
         leaf_right_of_split = right

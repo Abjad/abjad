@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 
 
-def split_leaf_at_prolated_duration(leaf, split_dur, fracture_spanners=False, tie_after=False):
+def split_leaf_at_offset(leaf, split_dur, fracture_spanners=False, tie_after=False):
     '''Split leaf into left and right lists.
     Left list may be list of one note, many tied notes, or tuplet.
     Right list may be list of one note, many tied notes, or tuplet.

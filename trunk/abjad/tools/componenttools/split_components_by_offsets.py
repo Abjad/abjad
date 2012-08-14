@@ -1,9 +1,9 @@
-from abjad.tools.componenttools.split_component_at_prolated_duration import split_component_at_prolated_duration
+from abjad.tools.componenttools.split_component_at_offset import split_component_at_offset
 from abjad.tools import durationtools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_by_prolated_durations(components, durations,
+def split_components_by_offsets(components, durations,
     fracture_spanners=False, cyclic=False, tie_after=False):
     r'''.. versionadded:: 2.0
     
@@ -37,7 +37,7 @@ def split_components_by_prolated_durations(components, durations,
 
     ::
 
-        >>> componenttools.split_components_by_prolated_durations(staff.leaves, [Duration(3, 32)], cyclic=True)
+        >>> componenttools.split_components_by_offsets(staff.leaves, [Duration(3, 32)], cyclic=True)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
@@ -90,7 +90,7 @@ def split_components_by_prolated_durations(components, durations,
 
     ::
 
-        >>> result = componenttools.split_components_by_prolated_durations(
+        >>> result = componenttools.split_components_by_offsets(
         ... staff.leaves, [Duration(3, 32)], cyclic=True, fracture_spanners=True)
 
     ::
@@ -152,7 +152,7 @@ def split_components_by_prolated_durations(components, durations,
 
     ::
 
-        >>> parts = componenttools.split_components_by_prolated_durations(
+        >>> parts = componenttools.split_components_by_offsets(
         ... staff[:1], durations, cyclic=False, fracture_spanners=False)
 
     ::
@@ -209,7 +209,7 @@ def split_components_by_prolated_durations(components, durations,
     ::
 
         >>> durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-        >>> parts = componenttools.split_components_by_prolated_durations(
+        >>> parts = componenttools.split_components_by_offsets(
         ... staff[:1], durations, cyclic=False, fracture_spanners=True)
 
     ::
@@ -284,7 +284,7 @@ def split_components_by_prolated_durations(components, durations,
             #print 'must split %s' % x
             local_split_duration = next_split_point - cum_duration
             #print cum_duration, next_split_point, x, part, local_split_duration
-            left_list, right_list = split_component_at_prolated_duration(x, local_split_duration,
+            left_list, right_list = split_component_at_offset(x, local_split_duration,
                 fracture_spanners=fracture_spanners, tie_after=tie_after)
             #print 'left_list, right_list %s, %s' % (left_list, right_list)
             part.extend(left_list)

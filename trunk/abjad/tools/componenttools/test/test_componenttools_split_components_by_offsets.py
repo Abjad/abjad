@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_split_components_by_prolated_durations_01():
+def test_componenttools_split_components_by_offsets_01():
     '''Cyclically duration partition one leaf in score.  Do not fracture spanners.
     '''
 
@@ -27,7 +27,7 @@ def test_componenttools_split_components_by_prolated_durations_01():
     '''
 
     durations = [Duration(3, 64)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[0][1:2], durations, cyclic=True, fracture_spanners=False)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -54,7 +54,7 @@ def test_componenttools_split_components_by_prolated_durations_01():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32.\n\t\td'32. ~\n\t\td'64 ~\n\t\td'64 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_02():
+def test_componenttools_split_components_by_offsets_02():
     '''Cyclically duration partition multiple leaves in score.  Do not fracture spanners.
     '''
 
@@ -81,7 +81,7 @@ def test_componenttools_split_components_by_prolated_durations_02():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t.leaves, durations, cyclic=True, fracture_spanners=False)
 
     r'''
@@ -108,7 +108,7 @@ def test_componenttools_split_components_by_prolated_durations_02():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ (\n\t\tc'32\n\t\td'16\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 [\n\t\te'16.\n\t\tf'16.\n\t\tf'32 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_03():
+def test_componenttools_split_components_by_offsets_03():
     '''Cyclically duration partition one measure in score.  Do not fracture spanners.
     '''
 
@@ -135,7 +135,7 @@ def test_componenttools_split_components_by_prolated_durations_03():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:1], durations, cyclic=True, fracture_spanners=False)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -167,7 +167,7 @@ def test_componenttools_split_components_by_prolated_durations_03():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_04():
+def test_componenttools_split_components_by_offsets_04():
     '''Cyclically duration partition multiple measures in score.  Do not fracture spanners.
     '''
 
@@ -194,7 +194,7 @@ def test_componenttools_split_components_by_prolated_durations_04():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=True, fracture_spanners=False)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -237,13 +237,13 @@ def test_componenttools_split_components_by_prolated_durations_04():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_05():
+def test_componenttools_split_components_by_offsets_05():
     '''Cyclically duration partition list of leaves outside of score.
     '''
 
     leaves = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         leaves, durations, cyclic=True, fracture_spanners=False)
 
     assert len(parts) == 6
@@ -271,7 +271,7 @@ def test_componenttools_split_components_by_prolated_durations_05():
 
 # TODO: Fix cyclic duration partition bug with spanners on outside-of-score measures #
 
-def test_componenttools_split_components_by_prolated_durations_06():
+def test_componenttools_split_components_by_offsets_06():
     '''Cyclically duration partition list of measures outside of score.  Do not fracture spanners.
     '''
 
@@ -281,7 +281,7 @@ def test_componenttools_split_components_by_prolated_durations_06():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(measures)
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         measures, durations, cyclic=True, fracture_spanners=False)
 
     assert len(parts) == 6
@@ -329,7 +329,7 @@ def test_componenttools_split_components_by_prolated_durations_06():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_07():
+def test_componenttools_split_components_by_offsets_07():
     '''Duration partition one leaf in score.  Read durations cyclically in list.
     Do not fracture spanners. Do add tie after each split.
     '''
@@ -357,7 +357,7 @@ def test_componenttools_split_components_by_prolated_durations_07():
     '''
 
     durations = [Duration(1, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[0][1:], durations, cyclic=True, fracture_spanners=False, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -384,7 +384,7 @@ def test_componenttools_split_components_by_prolated_durations_07():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_08():
+def test_componenttools_split_components_by_offsets_08():
     '''Duration partition multiple leaves in score.
     Read durations cyclically in list.
     Do not fracture spanners. Do add tie after each leaf split.
@@ -413,7 +413,7 @@ def test_componenttools_split_components_by_prolated_durations_08():
     '''
 
     durations = [Duration(1, 16)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t.leaves, durations, cyclic=True, fracture_spanners=False, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -441,7 +441,7 @@ def test_componenttools_split_components_by_prolated_durations_08():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_09():
+def test_componenttools_split_components_by_offsets_09():
     '''Duration partition one measure in score.
     Read durations cyclically in list.
     Do not fracture spanners. Do add tie after each leaf split.
@@ -470,7 +470,7 @@ def test_componenttools_split_components_by_prolated_durations_09():
     '''
 
     durations = [Duration(1, 16)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:1], durations, cyclic=True, fracture_spanners=False, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -505,7 +505,7 @@ def test_componenttools_split_components_by_prolated_durations_09():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\tc'16\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_10():
+def test_componenttools_split_components_by_offsets_10():
     '''Duration partition multiple measures in score.
     Read durations cyclically in list.
     Do not fracture spanners. Do add tie after each leaf split.
@@ -534,7 +534,7 @@ def test_componenttools_split_components_by_prolated_durations_10():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=True, fracture_spanners=False, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -577,7 +577,7 @@ def test_componenttools_split_components_by_prolated_durations_10():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_11():
+def test_componenttools_split_components_by_offsets_11():
     '''Cyclically duration partition one leaf in score.  Fracture spanners.
     '''
 
@@ -604,7 +604,7 @@ def test_componenttools_split_components_by_prolated_durations_11():
     '''
 
     durations = [Duration(3, 64)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[0][1:2], durations, cyclic=True, fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -630,7 +630,7 @@ def test_componenttools_split_components_by_prolated_durations_11():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. )\n\t\td'32. ( )\n\t\td'64 ( ~\n\t\td'64 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_12():
+def test_componenttools_split_components_by_offsets_12():
     '''Cyclically duration partition multiple leaves in score.  Fracture spanners.
     '''
 
@@ -657,7 +657,7 @@ def test_componenttools_split_components_by_prolated_durations_12():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t.leaves, durations, cyclic=True, fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -685,7 +685,7 @@ def test_componenttools_split_components_by_prolated_durations_12():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [\n\t\tc'32 (\n\t\td'16 )\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 ) [\n\t\te'16. (\n\t\tf'16. )\n\t\tf'32 ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_13():
+def test_componenttools_split_components_by_offsets_13():
     '''Cyclically duration partition one measure in score.  Fracture spanners.
     '''
 
@@ -712,7 +712,7 @@ def test_componenttools_split_components_by_prolated_durations_13():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:1], durations, cyclic=True, fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -744,7 +744,7 @@ def test_componenttools_split_components_by_prolated_durations_13():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_14():
+def test_componenttools_split_components_by_offsets_14():
     '''Cyclically duration partition multiple measures in score.  Fracture spanners.
     '''
 
@@ -771,7 +771,7 @@ def test_componenttools_split_components_by_prolated_durations_14():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=True, fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -814,13 +814,13 @@ def test_componenttools_split_components_by_prolated_durations_14():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_15():
+def test_componenttools_split_components_by_offsets_15():
     '''Cyclically duration partition list of leaves outside of score.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         notes, durations, cyclic=True, fracture_spanners=True)
 
     assert len(parts) == 6
@@ -846,7 +846,7 @@ def test_componenttools_split_components_by_prolated_durations_15():
     assert t.lilypond_format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_16():
+def test_componenttools_split_components_by_offsets_16():
     '''Cyclically duration partition list of measures outside of score.  Fracture spanners.
     '''
 
@@ -856,7 +856,7 @@ def test_componenttools_split_components_by_prolated_durations_16():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(measures)
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         measures, durations, cyclic=True, fracture_spanners=True)
 
     assert len(parts) == 6
@@ -904,7 +904,7 @@ def test_componenttools_split_components_by_prolated_durations_16():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_17():
+def test_componenttools_split_components_by_offsets_17():
     '''Duration partition one leaf in score.
     Read durations cyclically in list.
     Fracture spanners but add tie after each split.
@@ -933,7 +933,7 @@ def test_componenttools_split_components_by_prolated_durations_17():
     '''
 
     durations = [Duration(1, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[0][1:], durations, cyclic=True, fracture_spanners=True, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -960,7 +960,7 @@ def test_componenttools_split_components_by_prolated_durations_17():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_18():
+def test_componenttools_split_components_by_offsets_18():
     '''Duration partition multiple leaves in score.
     Read durations cyclically in list.
     Fracture spanners but add tie after each split.
@@ -989,7 +989,7 @@ def test_componenttools_split_components_by_prolated_durations_18():
     '''
 
     durations = [Duration(1, 16)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t.leaves, durations, cyclic=True, fracture_spanners=True, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -1017,7 +1017,7 @@ def test_componenttools_split_components_by_prolated_durations_18():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_19():
+def test_componenttools_split_components_by_offsets_19():
     '''Duration partition one measure in score.
     Read durations cyclically in list.
     Fracture spanners but add tie after each split.
@@ -1046,7 +1046,7 @@ def test_componenttools_split_components_by_prolated_durations_19():
     '''
 
     durations = [Duration(1, 16)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:1], durations, cyclic=True, fracture_spanners=True, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -1082,7 +1082,7 @@ def test_componenttools_split_components_by_prolated_durations_19():
 
 
 
-def test_componenttools_split_components_by_prolated_durations_20():
+def test_componenttools_split_components_by_offsets_20():
     '''Duration partition multiple measures in score.
     Read durations cyclically in list.
     Fracture spanners but add tie after each split.
@@ -1111,7 +1111,7 @@ def test_componenttools_split_components_by_prolated_durations_20():
     '''
 
     durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=True, fracture_spanners=True, tie_after=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -1154,7 +1154,7 @@ def test_componenttools_split_components_by_prolated_durations_20():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_21():
+def test_componenttools_split_components_by_offsets_21():
     '''Duration partition one container in score
         Do no fracture spanners.'''
 
@@ -1178,7 +1178,7 @@ def test_componenttools_split_components_by_prolated_durations_21():
     '''
 
     durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:1], durations, cyclic=False, fracture_spanners=False)
 
     r'''
@@ -1205,7 +1205,7 @@ def test_componenttools_split_components_by_prolated_durations_21():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_22():
+def test_componenttools_split_components_by_offsets_22():
     '''Duration partition multiple containers in score.
         Do not fracture spanners.'''
 
@@ -1229,7 +1229,7 @@ def test_componenttools_split_components_by_prolated_durations_22():
     '''
 
     durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=False, fracture_spanners=False)
 
     r'''
@@ -1258,7 +1258,7 @@ def test_componenttools_split_components_by_prolated_durations_22():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'32 [\n\t}\n\t{\n\t\te'16.\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_23():
+def test_componenttools_split_components_by_offsets_23():
     '''Duration partition one container in score, and fracture spanners.
     '''
 
@@ -1284,7 +1284,7 @@ def test_componenttools_split_components_by_prolated_durations_23():
     '''
 
     durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:1], durations, cyclic=False, fracture_spanners=True)
 
     r'''
@@ -1314,7 +1314,7 @@ def test_componenttools_split_components_by_prolated_durations_23():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_24():
+def test_componenttools_split_components_by_offsets_24():
     '''Duration partition multiple containers in score, and fracture spanners.
     '''
 
@@ -1340,7 +1340,7 @@ def test_componenttools_split_components_by_prolated_durations_24():
     '''
 
     durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=False, fracture_spanners=True)
 
     r'''
@@ -1374,7 +1374,7 @@ def test_componenttools_split_components_by_prolated_durations_24():
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_prolated_durations_25():
+def test_componenttools_split_components_by_offsets_25():
     '''Duration partition container outside of score.
     This example includes no spanners.
     Spanners do not apply outside of score.
@@ -1386,7 +1386,7 @@ def test_componenttools_split_components_by_prolated_durations_25():
     "[{c'8, d'8}, {e'8, f'8}]"
 
     durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t, durations, cyclic=False, fracture_spanners=True)
 
     "[[{c'32}], [{c'16.}], [{d'8}, {e'32}], [{e'16., f'8}]]"
@@ -1394,7 +1394,7 @@ def test_componenttools_split_components_by_prolated_durations_25():
     assert len(parts) == 4
 
 
-def test_componenttools_split_components_by_prolated_durations_26():
+def test_componenttools_split_components_by_offsets_26():
     '''Duration partition one leaf outside of score.
     '''
 
@@ -1403,7 +1403,7 @@ def test_componenttools_split_components_by_prolated_durations_26():
     "c'4"
 
     durations = [Duration(1, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         [t], durations, cyclic=False, fracture_spanners=True)
 
     "[[Note(c', 32)], [Note(c', 8), Note(c', 32)], [Note(c', 16)]]"
@@ -1411,7 +1411,7 @@ def test_componenttools_split_components_by_prolated_durations_26():
     assert len(parts) == 3
 
 
-def test_componenttools_split_components_by_prolated_durations_27():
+def test_componenttools_split_components_by_offsets_27():
     '''Duration partition leaf in score and fracture spanners.
     '''
 
@@ -1425,7 +1425,7 @@ def test_componenttools_split_components_by_prolated_durations_27():
     '''
 
     durations = [Duration(1, 64), Duration(5, 64)]
-    parts = componenttools.split_components_by_prolated_durations(
+    parts = componenttools.split_components_by_offsets(
         t[:], durations, cyclic=False, fracture_spanners=True)
 
     r'''
