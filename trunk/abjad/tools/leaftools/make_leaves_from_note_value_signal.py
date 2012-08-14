@@ -1,9 +1,8 @@
-from abjad.tools.leaftools.make_leaves import make_leaves
 from abjad.tools import durationtools
 
 
-def make_leaves_from_note_value_signal(
-    note_value_signal, denominator_of_signal, tied_rests = False):
+def make_leaves_from_note_value_signal(note_value_signal, denominator_of_signal, 
+    tied_rests=False, use_skips=False):
     r'''.. versionadded:: 2.0
 
     Make leaves from `note_value_signal` and `denominator_of_signal`::
@@ -29,8 +28,13 @@ def make_leaves_from_note_value_signal(
 
     Set the pitch of all notes to middle C.
 
+    When ``use_skips=False`` use skips instead of rests.
+
+    .. note:: Add skip example.
+
     Return list of notes and / or rests.
     '''
+    from abjad.tools import leaftools
 
     result = []
 
@@ -38,9 +42,9 @@ def make_leaves_from_note_value_signal(
         if note_value == 0:
             raise ValueError('note values must be nonzero.')
         elif 0 < note_value:
-            leaves = make_leaves([0], [durationtools.Duration(note_value, denominator_of_signal)])
+            leaves = leaftools.make_leaves([0], [durationtools.Duration(note_value, denominator_of_signal)])
         else:
-            leaves = make_leaves([None], [durationtools.Duration(-note_value, denominator_of_signal)],
+            leaves = leaftools.make_leaves([None], [durationtools.Duration(-note_value, denominator_of_signal)],
                 tied_rests = tied_rests)
         result.extend(leaves)
 

@@ -59,6 +59,7 @@ Composition packages
    tools/chordtools/get_note_head_from_chord_by_pitch
    tools/chordtools/iterate_chords_backward_in_expr
    tools/chordtools/iterate_chords_forward_in_expr
+   tools/chordtools/make_tied_chord
    tools/chordtools/yield_all_subchords_of_chord
    tools/chordtools/yield_groups_of_chords_in_sequence
 
@@ -599,6 +600,7 @@ Composition packages
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
    tools/leaftools/make_leaves_from_note_value_signal
+   tools/leaftools/make_tied_leaf
    tools/leaftools/remove_initial_rests_from_sequence
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/remove_outer_rests_from_sequence
@@ -906,6 +908,7 @@ Composition packages
    tools/notetools/make_repeated_notes_from_time_signature
    tools/notetools/make_repeated_notes_from_time_signatures
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
+   tools/notetools/make_tied_note
    tools/notetools/yield_groups_of_notes_in_sequence
 
 :py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
@@ -1192,6 +1195,7 @@ Composition packages
    tools/resttools/make_repeated_rests_from_time_signature
    tools/resttools/make_repeated_rests_from_time_signatures
    tools/resttools/make_rests
+   tools/resttools/make_tied_rest
    tools/resttools/replace_leaves_in_expr_with_rests
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence

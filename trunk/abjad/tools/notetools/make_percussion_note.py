@@ -1,4 +1,3 @@
-from abjad.tools.notetools.Note import Note
 from abjad.tools import durationtools
 
 
@@ -37,24 +36,21 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
         renamed ``construct.percussion_note()`` to
         ``notetools.make_percussion_note()``.
     '''
-    from abjad.tools.leaftools._construct_tied_leaf import _construct_tied_leaf
-    from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
-    from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
-    from abjad.tools.resttools.Rest import Rest
+    from abjad.tools import leaftools
+    from abjad.tools import notetools
+    from abjad.tools import resttools
 
     total_duration = durationtools.Duration(*durationtools.duration_token_to_duration_pair(total_duration))
     max_note_duration = durationtools.Duration(*durationtools.duration_token_to_duration_pair(max_note_duration))
 
     if max_note_duration < total_duration:
         rest_duration = total_duration - max_note_duration
-        r = _construct_tied_rest(rest_duration)
-        n = _construct_tied_note(pitch, max_note_duration)
+        r = resttools.make_tied_rest(rest_duration)
+        n = notetools.make_tied_note(pitch, max_note_duration)
     else:
-        #n = _construct_tied_note(pitch, total_duration)
-        n = _construct_tied_leaf(Note, total_duration,
-            pitches = pitch, tied = False)
+        n = leaftools.make_tied_leaf(notetools.Note, total_duration, pitches=pitch, tied=False)
         if 1 < len(n):
             for i in range(1, len(n)):
-                n[i] = Rest(n[i])
+                n[i] = resttools.Rest(n[i])
         r = []
     return n + r

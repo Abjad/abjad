@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 
 
-def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None, tied=True):
+def make_tied_leaf(kind, dur, direction='big-endian', pitches=None, tied=True):
     '''Return list of leaves to fill the given duration `dur`.
     Leaves returned are tie-spanned.
 

@@ -23,8 +23,8 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
                 2    0.000    0.000    0.002    0.001 all_are_thread_contiguous_components.py:9(all_
                52    0.001    0.000    0.002    0.000 component_to_thread_signature.py:5(component_t
                 1    0.000    0.000    0.002    0.002 _construct_unprolated_notes.py:4(_construct_unp
-                8    0.000    0.000    0.002    0.000 _construct_tied_note.py:5(_construct_tied_note)
-                8    0.000    0.000    0.002    0.000 _construct_tied_leaf.py:5(_construct_tied_leaf)
+                8    0.000    0.000    0.002    0.000 make_tied_note.py:5(make_tied_note)
+                8    0.000    0.000    0.002    0.000 make_tied_leaf.py:5(make_tied_leaf)
 
     Function wraps the built-in Python ``cProfile`` module.
 

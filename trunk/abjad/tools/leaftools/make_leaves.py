@@ -3,11 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
-from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
-from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from numbers import Number
+import numbers
 
 
 # TODO: Change leaftools.make_leaves() signature to allow ('c', 4) named pairs
@@ -16,9 +12,6 @@ from numbers import Number
 
 # TODO: Extend leaftools.make_leaves() to accept Abjad Pitch instances. Ex:
 #       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
-
-# TODO: Deprecate construct.engender() in favor of leaftools.make_leaves();
-#       Only possible after the two extensions to leaftools.make_leaves(), above.
 
 def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     r'''.. versionadded:: 1.1
@@ -95,15 +88,18 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
         renamed ``construct.leaves()`` to
         ``leaftools.make_leaves()``.
     '''
-    from abjad.tools.tuplettools.Tuplet import Tuplet
+    from abjad.tools import chordtools
+    from abjad.tools import notetools
+    from abjad.tools import resttools
+    from abjad.tools import tuplettools
 
     def _make_leaf_on_pitch(pch, ds, direction):
-        if isinstance(pch, (int, long, float, NamedChromaticPitch)):
-            leaves = _construct_tied_note(pch, ds, direction)
+        if isinstance(pch, (int, long, float, pitchtools.NamedChromaticPitch)):
+            leaves = notetools.make_tied_note(pch, ds, direction)
         elif isinstance(pch, (tuple, list)):
-            leaves = _construct_tied_chord(pch, ds, direction)
+            leaves = chordtools.make_tied_chord(pch, ds, direction)
         elif pch is None:
-            leaves = _construct_tied_rest(ds, direction, tied_rests)
+            leaves = resttools.make_tied_rest(ds, direction, tied_rests)
         else:
             raise ValueError("Unknown pitch token %s." % pch)
         return leaves
@@ -112,7 +108,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
         pitches = [pitches]
 
     #if durationtools.is_duration_token(durations):
-    if isinstance(durations, (Number, tuple)):
+    if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
     # change Durations to duration tokens.
@@ -150,7 +146,6 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
             leaves = []
             for pch, dur in zip(ps, ds):
                 leaves.extend( _make_leaf_on_pitch(pch, dur, direction))
-            #t = Tuplet(multiplier, leaves)
-            t = Tuplet(multiplier, leaves)
+            t = tuplettools.Tuplet(multiplier, leaves)
             result.append(t)
     return result
