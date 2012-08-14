@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_single_segment_solo_timespan_boundary_cases_01():
+def test_single_segment_solo_overlapping_division_selectors_01():
     '''Second division setting overwrites first division setting.
     Settings stop and start at same time.
     '''
@@ -21,7 +21,7 @@ def test_single_segment_solo_timespan_boundary_cases_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_timespan_boundary_cases_02():
+def test_single_segment_solo_overlapping_division_selectors_02():
     '''Second division setting overrides first division setting.
     First setting smaller than second setting.
     Settings start at same time.
@@ -42,7 +42,7 @@ def test_single_segment_solo_timespan_boundary_cases_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_timespan_boundary_cases_03():
+def test_single_segment_solo_overlapping_division_selectors_03():
     '''Second division setting overrides first division setting.
     First setting smaller than second setting.
     First setting starts after second setting.
@@ -63,7 +63,7 @@ def test_single_segment_solo_timespan_boundary_cases_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_timespan_boundary_cases_04():
+def test_single_segment_solo_overlapping_division_selectors_04():
     '''Second division overlaps and shortens the first.
     Result is two separate division regions that both express in score.
     Both the (compositional) order of specification
@@ -85,7 +85,7 @@ def test_single_segment_solo_timespan_boundary_cases_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_timespan_boundary_cases_05():
+def test_single_segment_solo_overlapping_division_selectors_05():
     '''Second division sits in the middle of the first.
     Three division regions result.
     '''
@@ -105,7 +105,7 @@ def test_single_segment_solo_timespan_boundary_cases_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_timespan_boundary_cases_06():
+def test_single_segment_solo_overlapping_division_selectors_06():
     '''Second division sits in the middle of the first.
     Three division regions result.
     Same as above but with a different selector.
