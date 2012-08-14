@@ -30,19 +30,19 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.interpretertools.Command.Command.Command.contains
-
 .. automethod:: experimental.interpretertools.Command.Command.Command.curtails
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.delays
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.equals
 
+.. automethod:: experimental.interpretertools.Command.Command.Command.improperly_contains
+
 .. automethod:: experimental.interpretertools.Command.Command.Command.overlaps_start_of
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.overlaps_stop_of
 
-.. automethod:: experimental.interpretertools.Command.Command.Command.properly_covers
+.. automethod:: experimental.interpretertools.Command.Command.Command.properly_contains
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.starts_before
 

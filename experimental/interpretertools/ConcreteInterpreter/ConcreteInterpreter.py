@@ -520,28 +520,28 @@ class ConcreteInterpreter(Interpreter):
         result = []
         start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
         assert sequencetools.all_are_equal(start_segment_names)
-        #self._debug(uninterpreted_division_commands)
+        #for udc in uninterpreted_division_commands:
+        #    self._debug(udc, 'udc')
+        #print ''
         for uninterpreted_division_command in uninterpreted_division_commands:
             command_was_delayed, command_was_split = False, False
-            commands_to_remove, commands_to_shorten, commands_to_delay, commands_to_split = [], [], [], []
+            commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
             for command in result:
-                if uninterpreted_division_command.start_offset <= command.start_offset:
-                    if command.stop_offset <= uninterpreted_division_command.stop_offset:
-                        commands_to_remove.append(command)
-                    else:
-                        commands_to_delay.append(command)
-                if command.start_offset < uninterpreted_division_command.start_offset < command.stop_offset:
-                    if uninterpreted_division_command.stop_offset < command.stop_offset:
-                        commands_to_split.append(command)
-                    else:
-                        commands_to_shorten.append(command)
-            #print commands_to_remove, commands_to_shorten, commands_to_delay, commands_to_split
+                if uninterpreted_division_command.improperly_contains(command):
+                    commands_to_remove.append(command)
+                elif uninterpreted_division_command.delays(command):
+                    commands_to_delay.append(command)
+                elif uninterpreted_division_command.curtails(command):
+                    commands_to_curtail.append(command)
+                elif command.properly_contains(uninterpreted_division_command):
+                    commands_to_split.append(command)
+            #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
                 result.remove(command_to_remove)
-            for command_to_shorten in commands_to_shorten:
-                command_to_shorten._stop_offset = uninterpreted_division_command.start_offset
-                duration = command_to_shorten.stop_offset - command_to_shorten.start_offset
-                command_to_shorten._duration = duration
+            for command_to_curtail in commands_to_curtail:
+                command_to_curtail._stop_offset = uninterpreted_division_command.start_offset
+                duration = command_to_curtail.stop_offset - command_to_curtail.start_offset
+                command_to_curtail._duration = duration
             for command_to_delay in commands_to_delay:
                 command_to_delay._start_offset = uninterpreted_division_command.stop_offset
                 duration = command_to_delay.stop_offset - command_to_delay.start_offset
@@ -566,7 +566,9 @@ class ConcreteInterpreter(Interpreter):
                 result.append(right_command)
             else:
                 result.append(uninterpreted_division_command)
-        #self._debug(result)
+            #for udc in result:
+            #    self._debug(udc, 'udc')
+            #print ''
         return result
 
     def store_additional_single_context_settings(self):

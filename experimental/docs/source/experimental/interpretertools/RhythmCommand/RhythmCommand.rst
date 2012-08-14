@@ -46,10 +46,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.contains
-
-    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
-
 .. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.curtails
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -62,6 +58,10 @@ Methods
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.improperly_contains
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.overlaps_start_of
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -70,7 +70,7 @@ Methods
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.properly_covers
+.. automethod:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.properly_contains
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

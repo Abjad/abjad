@@ -48,10 +48,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.contains
-
-    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
-
 .. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.curtails
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -64,6 +60,10 @@ Methods
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.improperly_contains
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.overlaps_start_of
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -72,7 +72,7 @@ Methods
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.properly_covers
+.. automethod:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.properly_contains
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

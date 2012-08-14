@@ -52,10 +52,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.contains
-
-    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
-
 .. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.curtails
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -68,6 +64,10 @@ Methods
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.improperly_contains
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.overlaps_start_of
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -76,7 +76,7 @@ Methods
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.properly_covers
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.properly_contains
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
