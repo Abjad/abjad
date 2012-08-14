@@ -74,6 +74,12 @@ sixty_fourths.name = 'sixty_fourths'
 __all__.append(sixty_fourths.name)
 
 
+skip_filled_tokens = timetokentools.RestFilledTimeTokenMaker()
+skip_filled_tokens.use_skips = True
+skip_filled_tokens.name = 'skip_filled_tokens'
+__all__.append(skip_filled_tokens.name)
+
+
 pattern, denominator, prolation_addenda  = [1], 32, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
