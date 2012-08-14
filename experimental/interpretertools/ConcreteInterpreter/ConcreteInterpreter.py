@@ -63,7 +63,8 @@ class ConcreteInterpreter(Interpreter):
     def add_division_lists_to_voice(self, voice):
         #self._debug(voice)
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
-        #self._debug(division_region_division_lists, 'drdl')
+        #for drdl in division_region_division_lists:
+        #    self._debug(drdl, 'drdl')
         if division_region_division_lists:
             self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
                 division_region_division_lists
@@ -316,9 +317,10 @@ class ConcreteInterpreter(Interpreter):
             #for command in commands:
             #    self._debug(command, 'command')
             #print ''
-            #self._debug(commands, 'commands')
             commands = self.sort_and_split_uninterpreted_division_commands(commands)
-            #self._debug(commands, 'sorted')
+            #for command in commands:
+            #    self._debug(command, 'sorted')
+            #print ''
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
