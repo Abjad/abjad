@@ -1,11 +1,9 @@
-from abjad.tools import *
+from abjad import *
 from experimental import *
 
 
-def test_single_segment_solo_multiple_division_selectors_01():
-    '''Three measures and three division regions.
-    One division region per measure.
-    Selection handle by measure index.
+def test_single_segment_solo_nonoverlapping_division_selectors_01():
+    '''Nonoverlapping background measure selectors.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -13,17 +11,11 @@ def test_single_segment_solo_multiple_division_selectors_01():
     segment = score_specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     first_measure = segment.select_background_measure(0)
-    second_measure = segment.select_background_measure(1)
-    third_measure = segment.select_background_measure(2)
-
-    # TODO: make it possible to eliminate contexts assignment in arbitrary ones of these settings
-    #segment.set_divisions([(2, 32)], selector=first_measure, contexts=['Voice 1'])
     segment.set_divisions([(2, 32)], selector=first_measure)
-    #segment.set_divisions([(3, 32)], selector=second_measure, contexts=['Voice 1'])
+    second_measure = segment.select_background_measure(1)
     segment.set_divisions([(3, 32)], selector=second_measure)
-    #segment.set_divisions([(4, 32)], selector=third_measure, contexts=['Voice 1'])
+    third_measure = segment.select_background_measure(2)
     segment.set_divisions([(4, 32)], selector=third_measure)
-
     segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
