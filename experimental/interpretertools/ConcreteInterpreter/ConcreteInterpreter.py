@@ -268,7 +268,7 @@ class ConcreteInterpreter(Interpreter):
             rhythm_commands.extend(commands)
         if not rhythm_commands:
             rhythm_command = interpretertools.RhythmCommand(
-                library.rest_filled_tokens, 
+                library.skip_filled_tokens, 
                 segment_specification.segment_name,
                 'FOO CONTEXT NAME',
                 0,
