@@ -19,64 +19,20 @@
 			\context Voice = "Voice 1" {
 				{
 					\set stemLeftBeamCount = #0
-					\set stemRightBeamCount = #3
-					c'32 [
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #1
-					c'32
-				}
-				{
-					\set stemLeftBeamCount = #1
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
-				}
-				{
-					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #2
 					c'16 [
 					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
+				}
+				{
+					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
@@ -91,8 +47,32 @@
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
+				}
+				{
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
 					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
+				}
+				{
+					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #1
+					c'16
+				}
+				{
 					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #0
 					c'16 ]
