@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_single_segment_solo_set_rhythm_01():
+def test_single_segment_solo_overlapping_rhythm_selectors_01():
     '''Two nonoverlapping rhythm selectors in one segment.
     '''
 
@@ -21,7 +21,7 @@ def test_single_segment_solo_set_rhythm_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_set_rhythm_02():
+def test_single_segment_solo_overlapping_rhythm_selectors_02():
     '''Two overlapping rhythm selectors in one segment.
     '''
 
