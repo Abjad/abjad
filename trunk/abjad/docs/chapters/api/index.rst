@@ -239,7 +239,7 @@ Composition packages
    tools/containertools/iterate_containers_backward_in_expr
    tools/containertools/iterate_containers_forward_in_expr
    tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
-   tools/containertools/remove_empty_containers_in_expr
+   tools/containertools/remove_leafless_containers_in_expr
    tools/containertools/repeat_contents_of_container
    tools/containertools/repeat_last_n_elements_of_container
    tools/containertools/replace_contents_of_target_container_with_contents_of_source_container
@@ -484,8 +484,8 @@ Composition packages
    tools/instrumenttools/list_secondary_instruments
    tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
    tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
-   tools/instrumenttools/transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch
-   tools/instrumenttools/transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch
+   tools/instrumenttools/transpose_from_fingered_pitch_to_sounding_pitch
+   tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
 
 :py:mod:`iotools <abjad.tools.iotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1088,7 +1088,6 @@ Composition packages
    tools/pitchtools/chromatic_pitch_number_to_octave_number
    tools/pitchtools/clef_and_staff_position_number_to_named_chromatic_pitch
    tools/pitchtools/contains_subsegment
-   tools/pitchtools/diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval
    tools/pitchtools/diatonic_pitch_class_name_to_chromatic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_name_to_diatonic_pitch_class_number
    tools/pitchtools/diatonic_pitch_class_number_to_chromatic_pitch_class_number
@@ -1109,6 +1108,7 @@ Composition packages
    tools/pitchtools/expr_to_melodic_chromatic_interval_segment
    tools/pitchtools/get_named_chromatic_pitch_from_pitch_carrier
    tools/pitchtools/get_numbered_chromatic_pitch_class_from_pitch_carrier
+   tools/pitchtools/harmonic_chromatic_interval_class_number_dictionary
    tools/pitchtools/insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list
    tools/pitchtools/instantiate_pitch_and_interval_test_collection
    tools/pitchtools/inventory_aggregate_subsets
@@ -1147,7 +1147,6 @@ Composition packages
    tools/pitchtools/make_n_middle_c_centered_pitches
    tools/pitchtools/named_chromatic_pitch_and_clef_to_staff_position_number
    tools/pitchtools/named_chromatic_pitch_tokens_to_named_chromatic_pitches
-   tools/pitchtools/named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary
    tools/pitchtools/octave_number_to_octave_tick_string
    tools/pitchtools/octave_tick_string_to_octave_number
    tools/pitchtools/pentatonic_pitch_number_to_chromatic_pitch_number
@@ -1161,6 +1160,7 @@ Composition packages
    tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
    tools/pitchtools/sort_named_chromatic_pitch_carriers_in_expr
+   tools/pitchtools/spell_chromatic_interval_number
    tools/pitchtools/spell_chromatic_pitch_number
    tools/pitchtools/split_chromatic_pitch_class_name
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches

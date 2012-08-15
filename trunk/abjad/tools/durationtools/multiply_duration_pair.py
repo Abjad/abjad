@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def multiply_duration_pair(pair, multiplier):
@@ -13,7 +13,8 @@ def multiply_duration_pair(pair, multiplier):
         >>> durationtools.multiply_duration_pair((4, 8), Fraction(4, 5))
         (16, 40)
 
-    Naive multiplication with no simplification of anything intended for certain types of meter multiplication.
+    Naive multiplication with no simplification of anything intended 
+    for certain types of meter multiplication.
 
     Return integer pair.
 
@@ -23,6 +24,6 @@ def multiply_duration_pair(pair, multiplier):
     '''
 
     assert isinstance(pair, tuple)
-    assert isinstance(multiplier, Fraction)
+    assert isinstance(multiplier, fractions.Fraction)
 
     return pair[0] * multiplier.numerator, pair[1] * multiplier.denominator

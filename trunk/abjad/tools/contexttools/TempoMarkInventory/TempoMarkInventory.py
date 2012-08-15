@@ -7,8 +7,17 @@ class TempoMarkInventory(ObjectInventory):
 
     Abjad model of an ordered list of tempo marks::
 
-        >>> contexttools.TempoMarkInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
-        TempoMarkInventory([TempoMark('Andante', Duration(1, 8), 72), TempoMark('Allegro', Duration(1, 8), 84)])
+        >>> inventory = contexttools.TempoMarkInventory([
+        ...     ('Andante', Duration(1, 8), 72), 
+        ...     ('Allegro', Duration(1, 8), 84)])
+
+    ::
+
+        >>> for tempo_mark in inventory:
+        ...     tempo_mark
+        ...
+        TempoMark('Andante', Duration(1, 8), 72)
+        TempoMark('Allegro', Duration(1, 8), 84)
 
     Tempo mark inventories implement list interface and are mutable.
     '''

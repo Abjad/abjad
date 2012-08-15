@@ -10,7 +10,11 @@ def group_duration_tokens_by_implied_prolation(durations):
 
     ::
 
-        >>> durationtools.group_duration_tokens_by_implied_prolation([(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)])
+        >>> duration_tokens = [(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)]
+
+    ::
+
+        >>> durationtools.group_duration_tokens_by_implied_prolation(duration_tokens)
         [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]
 
     Return list of integer pair lists.

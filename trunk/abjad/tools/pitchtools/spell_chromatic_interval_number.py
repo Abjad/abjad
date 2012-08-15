@@ -1,23 +1,17 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 
 
-def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(
-    diatonic_interval_number, chromatic_interval_number):
+def spell_chromatic_interval_number(diatonic_interval_number, chromatic_interval_number):
     '''.. versionadded:: 2.0
 
-    Change `diatonic_interval_number` and `chromatic_interval_number`
-    to melodic diatonic interval::
+    Spell `chromatic_interval_number` according to `diatonic_interval_number`::
 
-        >>> pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, 1)
+        >>> pitchtools.spell_chromatic_interval_number(2, 1)
         MelodicDiatonicInterval('+m2')
 
     Return melodic diatonic interval.
     '''
-
-    #diatonic_interval_number = abs(diatonic_interval_number)
-    #chromatic_interval_number = abs(chromatic_interval_number)
-    #print diatonic_interval_number, chromatic_interval_number
+    from abjad.tools import pitchtools
 
     if not isinstance(chromatic_interval_number, int):
         raise IntervalError('can not determine diatonic interval from float.')
@@ -25,31 +19,19 @@ def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_i
     direction_number = mathtools.sign(chromatic_interval_number)
 
     if diatonic_interval_number == 1:
-        #if chromatic_interval_number == -1:
         if chromatic_interval_number % 12 == 11:
             quality_string = 'augmented'
         elif chromatic_interval_number % 12 == 0:
             quality_string = 'perfect'
-        elif chromatic_interval_number % 12== 1:
+        elif chromatic_interval_number % 12 == 1:
             quality_string = 'augmented'
         if not direction_number == 0:
             diatonic_interval_number *= direction_number
-        #diatonic_interval = DiatonicInterval(
-        #   quality_string, diatonic_interval_number)
-        diatonic_interval = MelodicDiatonicInterval(
-            quality_string, diatonic_interval_number)
+        diatonic_interval = pitchtools.MelodicDiatonicInterval(quality_string, diatonic_interval_number)
         return diatonic_interval
 
-#   if diatonic_interval_number in [7, 8]:
-#      diatonic_interval_class_number = diatonic_interval_number
-#   else:
-#      diatonic_interval_class_number = diatonic_interval_number % 7
-
     diatonic_interval_class_number = diatonic_interval_number % 7
-
     chromatic_interval_class_number = abs(chromatic_interval_number) % 12
-
-    #print diatonic_interval_class_number, chromatic_interval_class_number
 
     if diatonic_interval_class_number == 0:
         if chromatic_interval_class_number == 9:
@@ -128,9 +110,6 @@ def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_i
     if not direction_number == 0:
         diatonic_interval_number *= direction_number
 
-    #diatonic_interval = DiatonicInterval(
-    #    quality_string, diatonic_interval_number)
-    diatonic_interval = MelodicDiatonicInterval(
-        quality_string, diatonic_interval_number)
+    diatonic_interval = pitchtools.MelodicDiatonicInterval(quality_string, diatonic_interval_number)
 
     return diatonic_interval

@@ -6,7 +6,8 @@ class InstrumentInventory(ObjectInventory):
 
     Abjad model of an ordered list of instruments::
 
-        >>> inventory = instrumenttools.InstrumentInventory([instrumenttools.Flute(), instrumenttools.Guitar()])
+        >>> inventory = instrumenttools.InstrumentInventory(
+        ...     [instrumenttools.Flute(), instrumenttools.Guitar()])
 
     ::
 

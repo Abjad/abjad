@@ -5,8 +5,7 @@ from abjad.tools import componenttools
 def fuse_like_named_contiguous_containers_in_expr(expr):
     r'''Fuse like-named contiguous containers in `expr`::
 
-        >>> staff = Staff(Voice("c'8 c'8") * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff.leaves)
+        >>> staff = Staff(r"\new Voice { c'8 d'8 } \new Voice { e'8 f'8 }")
         >>> staff[0].name = 'soprano'
         >>> staff[1].name = 'soprano'
 
@@ -67,7 +66,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
             componenttools.remove_component_subtree_from_score_and_spanners([next_component])
             merged = True
     if merged:
-        containertools.remove_empty_containers_in_expr(expr)
+        containertools.remove_leafless_containers_in_expr(expr)
         return expr.pop(0)
     else:
         print 'debug did not merge'

@@ -1,5 +1,4 @@
-from abjad.tools.durationtools.duration_token_to_duration_pair import duration_token_to_duration_pair
-from fractions import Fraction
+import fractions
 
 
 def rational_to_duration_pair_with_specified_integer_denominator(duration, integer_denominator):
@@ -13,7 +12,8 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
 
         >>> for n in range(1, 17):
         ...     rational = Fraction(n, 16)
-        ...     pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(rational, 16)
+        ...     pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+        ...         rational, 16)
         ...     print '%s\t%s' % (rational, pair)
         ...
         1/16    (1, 16)
@@ -39,10 +39,11 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
         renamed ``durationtools.in_terms_of()`` to
         ``durationtools.rational_to_duration_pair_with_specified_integer_denominator()``.
     '''
+    from abjad.tools import durationtools
 
-    assert isinstance(duration, (Fraction, int, long, tuple))
-    n, d = duration_token_to_duration_pair(duration)
-    multiplier = Fraction(integer_denominator, d)
+    assert isinstance(duration, (fractions.Fraction, int, long, tuple))
+    n, d = durationtools.duration_token_to_duration_pair(duration)
+    multiplier = fractions.Fraction(integer_denominator, d)
     new_numerator = multiplier * n
     new_denominator = multiplier * d
     if new_numerator.denominator == 1 and new_denominator.denominator == 1:

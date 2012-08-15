@@ -1,6 +1,5 @@
 from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
-from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
-from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
+from abjad.tools import lilypondproxytools
 
 
 class ContextBlock(AttributedBlock):
@@ -19,7 +18,8 @@ class ContextBlock(AttributedBlock):
 
         >>> context_block.context_name = 'Score'
         >>> context_block.override.bar_number.transparent = True
-        >>> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
+        >>> scheme = schemetools.Scheme('end-of-line-invisible')
+        >>> context_block.override.time_signature.break_visibility = scheme
         >>> context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 45))
 
     ::
@@ -98,7 +98,7 @@ class ContextBlock(AttributedBlock):
         '''Read-only reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = LilyPondGrobOverrideComponentPlugIn()
+            self._override = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -106,7 +106,7 @@ class ContextBlock(AttributedBlock):
         '''Read-only reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = LilyPondContextSettingComponentPlugIn()
+            self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
     ### READ / WRITE PUBLIC PROPERTIES ###

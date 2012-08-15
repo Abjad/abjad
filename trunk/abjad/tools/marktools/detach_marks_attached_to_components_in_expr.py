@@ -1,6 +1,3 @@
-from abjad.tools.marktools.detach_marks_attached_to_component import detach_marks_attached_to_component
-
-
 def detach_marks_attached_to_components_in_expr(expr):
     r'''.. versionadded:: 2.9
 
@@ -20,8 +17,13 @@ def detach_marks_attached_to_components_in_expr(expr):
 
     ::
 
-        >>> marktools.detach_marks_attached_to_components_in_expr(staff)
-        (Articulation('staccato'), Articulation('marcato'), Articulation('staccato'), Articulation('marcato'))
+        >>> for mark in marktools.detach_marks_attached_to_components_in_expr(staff):
+        ...     mark
+        ...
+        Articulation('staccato')
+        Articulation('marcato')
+        Articulation('staccato')
+        Articulation('marcato')
 
     ::
 
@@ -36,9 +38,10 @@ def detach_marks_attached_to_components_in_expr(expr):
     Return tuple of zero or more detached marks.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import marktools
 
     result = []
     for component in componenttools.iterate_components_forward_in_expr(expr):
-        result.extend(detach_marks_attached_to_component(component))
+        result.extend(marktools.detach_marks_attached_to_component(component))
 
     return tuple(result)

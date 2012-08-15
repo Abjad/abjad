@@ -7,7 +7,8 @@ def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
         >>> clef = contexttools.ClefMark('treble')
         >>> for note in staff:
         ...   written_pitch = note.written_pitch
-        ...   number = pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number(written_pitch, clef)
+        ...   number = pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number(
+        ...         written_pitch, clef)
         ...   print '%s\t%s' % (written_pitch, number)
         c'    -6
         d'    -5

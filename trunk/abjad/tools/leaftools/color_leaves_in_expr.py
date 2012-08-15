@@ -1,15 +1,12 @@
-from abjad.tools.leaftools.color_leaf import color_leaf
-from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
-
-
 def color_leaves_in_expr(expr, color):
     r""".. versionadded:: 2.0
 
     Color leaves in `expr`::
 
-        >>> staff = Staff([Note(1, (3, 16)), Rest((3, 16)), skiptools.Skip((3, 16)), Chord([0, 1, 9], (3, 16))])
-        >>> beamtools.BeamSpanner(staff.leaves)
-        BeamSpanner(cs'8., r8., s8., <c' cs' a'>8.)
+        >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
+        
+    ::
+
         >>> f(staff)
         \new Staff {
             cs'8. [
@@ -42,6 +39,7 @@ def color_leaves_in_expr(expr, color):
 
     Return none.
     """
+    from abjad.tools import leaftools
 
-    for leaf in iterate_leaves_forward_in_expr(expr):
-        color_leaf(leaf, color)
+    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+        leaftools.color_leaf(leaf, color)

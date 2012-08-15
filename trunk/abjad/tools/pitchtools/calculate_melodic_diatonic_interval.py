@@ -24,7 +24,7 @@ def calculate_melodic_diatonic_interval(pitch_carrier_1, pitch_carrier_2):
         abs(pitch_2.numbered_chromatic_pitch))
 
     absolute_diatonic_interval = \
-        pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(
+        pitchtools.spell_chromatic_interval_number(
         diatonic_interval_number, chromatic_interval_number)
 
     if pitch_2 < pitch_1:

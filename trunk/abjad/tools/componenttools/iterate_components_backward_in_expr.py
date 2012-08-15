@@ -6,8 +6,10 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     Iterate components backward in `expr`::
 
-        >>> staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
+
+    ::
+
         >>> f(staff)
         \new Staff {
             \times 2/3 {
@@ -21,6 +23,9 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
                 a'8
             }
         }
+
+    ::
+
         >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note):
         ...     x
         ...
@@ -36,7 +41,8 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start=0, stop=4):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, 
+        ...     start=0, stop=4):
         ...     x
         ...
         Note("a'8")
@@ -46,7 +52,8 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start=4):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, 
+        ...     start=4):
         ...     x
         ...
         Note("d'8")
@@ -54,7 +61,8 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start=4, stop=6):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, 
+        ...     start=4, stop=6):
         ...     x
         ...
         Note("d'8")
