@@ -101,8 +101,6 @@ class ConcreteInterpreter(Interpreter):
         voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
         #self._debug(voice_division_durations, 'vdd')
 
-        # NEXT TODO: Implement slicing-and-dicing logic on rhythm commands.
-        #            Logic should parallel division command sort-and-split logic.
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rc')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
@@ -273,10 +271,11 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
+            #commands = self.sort_and_split_commands(commands)
             rhythm_commands.extend(commands)
-        if not rhythm_commands:
-            rhythm_command = self.make_default_rhythm_command_for_segment(segment_specification)
-            rhythm_commands.append(rhythm_command)
+            if not rhythm_commands:
+                command = self.make_default_rhythm_command_for_segment(segment_specification)
+                rhythm_commands.append(command)
         return rhythm_commands
 
     def get_rhythm_commands_that_start_during_segment(self, segment_specification, context_name):
@@ -301,7 +300,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            commands = self.sort_and_split_uninterpreted_division_commands(commands)
+            commands = self.sort_and_split_commands(commands)
             uninterpreted_division_commands.extend(commands)
             if not commands and segment_specification.time_signatures:
                 command = self.make_default_uninterpreted_division_command_for_segment(segment_specification)
@@ -534,7 +533,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(uninterpreted_division_command, 'udc')
         return uninterpreted_division_command
 
-    def sort_and_split_uninterpreted_division_commands(self, uninterpreted_division_commands):
+    def sort_and_split_commands(self, uninterpreted_division_commands):
         result = []
         start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
         assert sequencetools.all_are_equal(start_segment_names)
