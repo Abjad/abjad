@@ -61,10 +61,10 @@ def test_leaftools_make_leaves_03():
 
 
 def test_leaftools_make_leaves_04():
-    '''Leaves constructor can take an optional 'tied_rests' keyword argument.
+    '''Leaves constructor can take an optional 'tie_rests' keyword argument.
     '''
 
-    leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)], tied_rests=True)
+    leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)], tie_rests=True)
     assert len(leaves) == 4
     for l in leaves:
       assert isinstance(l, Rest)
@@ -79,7 +79,7 @@ def test_leaftools_make_leaves_04():
 
 
 def test_leaftools_make_leaves_05():
-    ''''tied_rests' is False by default.'''
+    ''''tie_rests' is False by default.'''
 
     leaves = leaftools.make_leaves([None], [(5, 32), (5, 32)])
     assert len(leaves) == 4

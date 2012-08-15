@@ -13,7 +13,7 @@ import numbers
 # TODO: Extend leaftools.make_leaves() to accept Abjad Pitch instances. Ex:
 #       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
 
-def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
+def make_leaves(pitches, durations, direction='big-endian', tie_rests=False):
     r'''.. versionadded:: 1.1
 
     Construct a list of notes, rests or chords.
@@ -65,17 +65,17 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     Set `direction` to ``'little-endian'`` to return tied leaf
     durations from least to greatest. ::
 
-        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)], direction = 'little-endian'))
+        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)], direction='little-endian'))
         >>> f(staff)
         \new Staff {
             ef''16 ~
             ef''2.
         }
 
-    Set `tied_rests` to true to return tied rests for durations like
+    Set `tie_rests` to true to return tied rests for durations like
     ``5/16`` and ``9/16``. ::
 
-        >>> staff = Staff(leaftools.make_leaves([None], [(5, 16)], tied_rests = True))
+        >>> staff = Staff(leaftools.make_leaves([None], [(5, 16)], tie_rests=True))
         >>> f(staff)
         \new Staff {
             r4 ~
@@ -93,59 +93,57 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     from abjad.tools import resttools
     from abjad.tools import tuplettools
 
-    def _make_leaf_on_pitch(pch, ds, direction):
-        if isinstance(pch, (int, long, float, pitchtools.NamedChromaticPitch)):
-            leaves = notetools.make_tied_note(pch, ds, direction)
-        elif isinstance(pch, (tuple, list)):
-            leaves = chordtools.make_tied_chord(pch, ds, direction)
-        elif pch is None:
-            leaves = resttools.make_tied_rest(ds, direction, tied_rests)
+    def _make_leaf_on_pitch(pitch, duration, direction):
+        if isinstance(pitch, (int, long, float, pitchtools.NamedChromaticPitch)):
+            leaves = notetools.make_tied_note(pitch, duration, direction)
+        elif isinstance(pitch, (tuple, list)):
+            leaves = chordtools.make_tied_chord(pitch, duration, direction)
+        elif pitch is None:
+            leaves = resttools.make_tied_rest(duration, direction, tied=tie_rests)
         else:
-            raise ValueError("Unknown pitch token %s." % pch)
+            raise ValueError('Unknown pitch {!r}.'.format(pitch))
         return leaves
 
     if pitchtools.is_named_chromatic_pitch_token(pitches):
         pitches = [pitches]
 
-    #if durationtools.is_duration_token(durations):
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
-    # change Durations to duration tokens.
-    durations = [durationtools.duration_token_to_duration_pair(dur) for dur in durations]
+    # change durations to duration tokens
+    durations = [durationtools.duration_token_to_duration_pair(duration) for duration in durations]
 
     # set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
-    #durations = sequencetools.resize(durations, size)
-    #pitches = sequencetools.resize(pitches, size)
     durations = sequencetools.repeat_sequence_to_length(durations, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    durations = durationtools.group_duration_tokens_by_implied_prolation(durations)
+    duration_groups = durationtools.group_duration_tokens_by_implied_prolation(durations)
 
     result = []
-    for ds in durations:
-        # get factors in denominator of duration group ds other than 1, 2.
-        factors = set(mathtools.factors(ds[0][1]))
+    for duration_group in duration_groups:
+        # get factors in denominator of duration group other than 1, 2.
+        factors = set(mathtools.factors(duration_group[0][1]))
         factors.discard(1)
         factors.discard(2)
-        ps = pitches[0:len(ds)]
-        pitches = pitches[len(ds):]
+        ps = pitches[0:len(duration_group)]
+        pitches = pitches[len(duration_group):]
         if len(factors) == 0:
-            for pch, dur in zip(ps, ds):
-                leaves = _make_leaf_on_pitch(pch, dur, direction)
+            for pitch, duration in zip(ps, duration_group):
+                leaves = _make_leaf_on_pitch(pitch, duration, direction)
                 result.extend(leaves)
         else:
             # compute prolation
-            denominator = ds[0][1]
+            denominator = duration_group[0][1]
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / durationtools.Duration(*multiplier)
-            ds = [ratio * durationtools.Duration(*d) for d in ds]
+            duration_group = [ratio * durationtools.Duration(*duration) for duration in duration_group]
             # make leaves
             leaves = []
-            for pch, dur in zip(ps, ds):
-                leaves.extend( _make_leaf_on_pitch(pch, dur, direction))
-            t = tuplettools.Tuplet(multiplier, leaves)
-            result.append(t)
+            for pitch, duration in zip(ps, duration_group):
+                leaves.extend(_make_leaf_on_pitch(pitch, duration, direction))
+            tuplet = tuplettools.Tuplet(multiplier, leaves)
+            result.append(tuplet)
+
     return result

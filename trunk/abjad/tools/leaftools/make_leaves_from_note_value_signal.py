@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 def make_leaves_from_note_value_signal(note_value_signal, denominator_of_signal, 
-    tied_rests=False, use_skips=False):
+    tie_rests=False, use_skips=False):
     r'''.. versionadded:: 2.0
 
     Make leaves from `note_value_signal` and `denominator_of_signal`::
@@ -45,7 +45,7 @@ def make_leaves_from_note_value_signal(note_value_signal, denominator_of_signal,
             leaves = leaftools.make_leaves([0], [durationtools.Duration(note_value, denominator_of_signal)])
         else:
             leaves = leaftools.make_leaves([None], [durationtools.Duration(-note_value, denominator_of_signal)],
-                tied_rests = tied_rests)
+                tie_rests = tie_rests)
         result.extend(leaves)
 
     return result
