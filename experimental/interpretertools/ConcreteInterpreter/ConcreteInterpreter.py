@@ -99,20 +99,25 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice_division_list, 'vdl')
         voice_divisions = voice_division_list.divisions
         voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
+        #self._debug(voice_division_durations, 'vdd')
+
+        # NEXT TODO: Implement slicing-and-dicing logic on rhythm commands.
+        #            Logic should parallel division command sort-and-split logic.
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        #for rc in rhythm_commands:
-        #    self._debug(rc, 'rc')
-        #print ''
+        #self._debug_values(rhythm_commands, 'rc')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
+        #self._debug_values(rhythm_commands, 'rc')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
-        division_region_division_lists = self.score_specification.contexts[voice.name][
-            'division_region_division_lists']
-        #self._debug(division_region_division_lists)
+        #self._debug(rhythm_command_durations, 'rcd')
+
+        key = 'division_region_division_lists'
+        division_region_division_lists = self.score_specification.contexts[voice.name][key]
+        #self._debug_values(division_region_division_lists, 'drdl')
         division_region_durations = [x.duration for x in division_region_division_lists]
-        #self._debug(division_region_durations)
-        #self._debug(rhythm_command_durations)
+        #self._debug(division_region_durations, 'drd')
         rhythm_region_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
+        #self._debug(rhythm_region_durations, 'rrd')
         args = (voice_division_durations, rhythm_region_durations)
         rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
         assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
@@ -264,24 +269,13 @@ class ConcreteInterpreter(Interpreter):
         return result
 
     def get_rhythm_commands_for_voice(self, voice):
-        from experimental import interpretertools
-        from experimental import library
         rhythm_commands = []
-        voice_name = voice.name
         for segment_specification in self.score_specification.segment_specifications:
-            commands = self.get_rhythm_commands_that_start_during_segment(segment_specification, voice_name)
+            commands = self.get_rhythm_commands_that_start_during_segment(
+                segment_specification, voice.name)
             rhythm_commands.extend(commands)
-        #self._debug_values(rhythm_commands, 'rc')
         if not rhythm_commands:
-            rhythm_command = interpretertools.RhythmCommand(
-                library.skip_filled_tokens, 
-                segment_specification.segment_name,
-                self.score_specification.score_name,
-                0,
-                segment_specification.duration,
-                self.score_specification.duration, 
-                True
-                )
+            rhythm_command = self.make_default_rhythm_command_for_segment(segment_specification)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
@@ -303,35 +297,15 @@ class ConcreteInterpreter(Interpreter):
         return self.score_specification.get_segment_specification(expr)
 
     def get_uninterpreted_division_commands_for_voice(self, voice):
-        from experimental import interpretertools
-        #self._debug(voice)
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            #self._debug(segment_specification, 'segment')
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            #for command in commands:
-            #    self._debug(command, 'command')
-            #print ''
             commands = self.sort_and_split_uninterpreted_division_commands(commands)
-            #for command in commands:
-            #    self._debug(command, 'sorted')
-            #print ''
-            if commands:
-                uninterpreted_division_commands.extend(commands)
-            elif segment_specification.time_signatures:
-                command = interpretertools.UninterpretedDivisionCommand(
-                    segment_specification.time_signatures,
-                    segment_specification.segment_name,
-                    self.score_specification.score_name,
-                    0,
-                    segment_specification.duration,
-                    segment_specification.duration,
-                    True, 
-                    False
-                    )
+            uninterpreted_division_commands.extend(commands)
+            if not commands and segment_specification.time_signatures:
+                command = self.make_default_uninterpreted_division_command_for_segment(segment_specification)
                 uninterpreted_division_commands.append(command)
-        #print ''
         return uninterpreted_division_commands
 
     def get_uninterpreted_division_commands_that_start_during_segment(self, 
@@ -363,16 +337,38 @@ class ConcreteInterpreter(Interpreter):
         score.insert(0, context)
         return score
 
+    def make_default_rhythm_command_for_segment(self, segment_specification):
+        from experimental import interpretertools
+        from experimental import library
+        return interpretertools.RhythmCommand(
+            library.skip_filled_tokens, 
+            segment_specification.segment_name,
+            self.score_specification.score_name,
+            0,
+            segment_specification.duration,
+            segment_specification.duration,
+            True
+            )
+
+    def make_default_uninterpreted_division_command_for_segment(self, segment_specification):
+        from experimental import interpretertools
+        return interpretertools.UninterpretedDivisionCommand(
+            segment_specification.time_signatures,
+            segment_specification.segment_name,
+            self.score_specification.score_name,
+            0,
+            segment_specification.duration,
+            segment_specification.duration,
+            True, 
+            False
+            )
+
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        #for x in uninterpreted_division_commands:
-        #    self._debug(x, 'udc')
-        #print ''
+        #self._debug_values(uninterpreted_division_commands, 'udc')
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
-        #for x in region_division_commands:
-        #    self._debug(x, 'rdc')
-        #print ''
+        #self._debug_values(region_division_commands, 'rdc')
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands)
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
@@ -542,9 +538,7 @@ class ConcreteInterpreter(Interpreter):
         result = []
         start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
         assert sequencetools.all_are_equal(start_segment_names)
-        #for udc in uninterpreted_division_commands:
-        #    self._debug(udc, 'udc')
-        #print ''
+        #self._debug_values(uninterpreted_division_commands, 'udc')
         for uninterpreted_division_command in uninterpreted_division_commands:
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
@@ -589,12 +583,8 @@ class ConcreteInterpreter(Interpreter):
             else:
                 result.append(uninterpreted_division_command)
             result.sort()
-            #for udc in result:
-            #    self._debug(udc, 'udc')
-            #print ''
-        #for udc in result:
-        #    self._debug(udc, 'udc')
-        #print ''
+            #self._debug_values(result, 'udc')
+        #self._debug_values(result, 'udc')
         return result
 
     def store_additional_single_context_settings(self):
@@ -636,9 +626,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             new_settings = segment_specification.single_context_settings.get_settings(attribute='divisions')
             #self._debug(segment_specification, 'segment')
-            #for new_setting in new_settings:
-            #    self._debug(new_setting, 'ns')
-            #print ''
+            #self._debug_values(new_settings, 'ns')
             if not new_settings:
                 new_settings = []
                 existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
@@ -647,9 +635,7 @@ class ConcreteInterpreter(Interpreter):
                     #self._debug(existing_setting, 'es')
                     new_setting = existing_setting.copy_setting_to_segment(segment_specification)
                     new_settings.append(new_setting)
-            #for new_setting in new_settings:
-            #    self._debug(new_setting, 'NS')
-            #print ''
+            #self._debug_values(new_settings, 'NS')
             self.store_single_context_settings(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
