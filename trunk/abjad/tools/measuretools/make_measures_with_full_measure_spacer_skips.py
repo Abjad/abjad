@@ -1,6 +1,4 @@
 from abjad.tools import contexttools
-from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import fill_measures_in_expr_with_full_measure_spacer_skips
 
 
 def make_measures_with_full_measure_spacer_skips(time_signatures):
@@ -37,13 +35,14 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
         renamed ``measuretools.make()`` to
         ``measuretools.make_measures_with_full_measure_spacer_skips()``.
     '''
+    from abjad.tools import measuretools
 
     # check input
     time_signatures = [contexttools.TimeSignatureMark(x) for x in time_signatures]
 
     # make measures
-    measures = [Measure(x, []) for x in time_signatures]
-    fill_measures_in_expr_with_full_measure_spacer_skips(measures)
+    measures = [measuretools.Measure(x, []) for x in time_signatures]
+    measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(measures)
 
     # return measures
     return measures

@@ -1795,6 +1795,7 @@ Composition packages
    tools/timetokentools/OutputIncisedRestFilledTimeTokenMaker/OutputIncisedRestFilledTimeTokenMaker
    tools/timetokentools/RestFilledTimeTokenMaker/RestFilledTimeTokenMaker
    tools/timetokentools/SignalFilledTimeTokenMaker/SignalFilledTimeTokenMaker
+   tools/timetokentools/SkipFilledTimeTokenMaker/SkipFilledTimeTokenMaker
    tools/timetokentools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
    tools/timetokentools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
    tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker

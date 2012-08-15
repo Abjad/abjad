@@ -54,6 +54,8 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__repr__
 
+    Inherited from :py:class:`timetokentools.TimeTokenMaker <abjad.tools.timetokentools.TimeTokenMaker.TimeTokenMaker.TimeTokenMaker>`
+
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
