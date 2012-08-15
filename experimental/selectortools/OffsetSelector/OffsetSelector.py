@@ -78,23 +78,23 @@ class OffsetSelector(Selector):
 
     ### PUBLIC METHODS ##
 
-    def get_duration(self, score_specification):
-        return self.get_segment_stop_offset(score_specification) - \
-            self.get_segment_start_offset(score_specification)
+    def get_duration(self, score_specification, context_name):
+        return self.get_segment_stop_offset(score_specification, context_name) - \
+            self.get_segment_start_offset(score_specification, context_name)
 
-    def get_segment_start_offset(self, score_specification):
+    def get_segment_start_offset(self, score_specification, context_name):
         if self.start_offset is None:
             return durationtools.Offset(0)
         elif self.start_offset < 0:
-            return self.selector.get_duration(score_specification) + self.start_offset
+            return self.selector.get_duration(score_specification, context_name) + self.start_offset
         else:
             return self.start_offset
 
-    def get_segment_stop_offset(self, score_specification):
+    def get_segment_stop_offset(self, score_specification, context_name):
         if self.stop_offset is None:
-            return durationtools.Offset(self.selector.get_duration(score_specification))
+            return durationtools.Offset(self.selector.get_duration(score_specification, context_name))
         elif self.stop_offset < 0:
-            return self.selector.get_duration(score_specification) + self.stop_offset
+            return self.selector.get_duration(score_specification, context_name) + self.stop_offset
         return self.stop_offset
 
     def set_segment_identifier(self, segment_identifier):

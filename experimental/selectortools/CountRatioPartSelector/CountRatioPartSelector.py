@@ -53,7 +53,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification):
+    def get_duration(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
@@ -62,7 +62,7 @@ class CountRatioPartSelector(RatioPartSelector):
         duration = durationtools.Duration(sum(durations))
         return duration
 
-    def get_segment_start_offset(self, score_specification):
+    def get_segment_start_offset(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
@@ -72,7 +72,7 @@ class CountRatioPartSelector(RatioPartSelector):
         duration_before = sum(durations_before)
         return durationtools.Offset(duration_before)
 
-    def get_segment_stop_offset(self, score_specification):
+    def get_segment_stop_offset(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)

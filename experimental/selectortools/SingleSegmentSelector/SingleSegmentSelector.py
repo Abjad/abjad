@@ -55,14 +55,14 @@ class SingleSegmentSelector(InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification):
+    def get_duration(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         return segment_specification.duration
 
-    def get_segment_start_offset(self, score_specification):
+    def get_segment_start_offset(self, score_specification, context_name):
         return durationtools.Offset(0)
 
-    def get_segment_stop_offset(self, score_specification):
+    def get_segment_stop_offset(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         return durationtools.Offset(segment_specification.duration)
 

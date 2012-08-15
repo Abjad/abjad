@@ -37,7 +37,7 @@ class Selector(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_segment_offsets(self, score_specification):
-        start_offset = self.get_segment_start_offset(score_specification)
-        stop_offset = self.get_segment_stop_offset(score_specification)
+    def get_segment_offsets(self, score_specification, context_name):
+        start_offset = self.get_segment_start_offset(score_specification, context_name)
+        stop_offset = self.get_segment_stop_offset(score_specification, context_name)
         return start_offset, stop_offset

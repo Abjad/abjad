@@ -142,37 +142,36 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification):
+    def get_duration(self, score_specification, context_name):
         '''Calculcate making assumptions about segment to which selector refers.
         '''
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        #self._debug((start, stop), 'identifiers')
         time_signatures = segment_specification.time_signatures[start:stop]
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = durationtools.Duration(sum(durations))
         return duration
 
-    def get_segment_start_offset(self, score_specification):
+    # TODO: change name to self.get_start_offset_in_segment
+    def get_segment_start_offset(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        #self._debug((start, stop), 'identifiers')
         durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_before = durations[:start]
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
         return start_offset
 
-    def get_segment_stop_offset(self, score_specification):
+    # TODO: change name to self.get_stop_offset_in_segment
+    def get_segment_stop_offset(self, score_specification, context_name):
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        #self._debug((start, stop), 'identifiers')
         durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_up_through = durations[:stop]
         duration_up_through = sum(durations_up_through)

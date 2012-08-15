@@ -51,21 +51,21 @@ class TimeRatioPartSelector(RatioPartSelector):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification):
-        selector_duration = self.selector.get_duration(score_specification)
+    def get_duration(self, score_specification, context_name):
+        selector_duration = self.selector.get_duration(score_specification, context_name)
         parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         part = parts[self.part]
         return part
 
-    def get_segment_start_offset(self, score_specification):
-        selector_duration = self.selector.get_duration(score_specification)
+    def get_segment_start_offset(self, score_specification, context_name):
+        selector_duration = self.selector.get_duration(score_specification, context_name)
         parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         parts_before = parts[:self.part]
         duration_before = sum(parts_before)
         return durationtools.Offset(duration_before) 
 
-    def get_segment_stop_offset(self, score_specification):
-        selector_duration = self.selector.get_duration(score_specification)
+    def get_segment_stop_offset(self, score_specification, context_name):
+        selector_duration = self.selector.get_duration(score_specification, context_name)
         parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         part = parts[self.part]
         duration = part

@@ -72,8 +72,7 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
             self.score_specification.contexts[voice.name]['segment_division_lists'] = segment_division_lists
-            self.add_segment_division_lists_to_voice(
-                voice, segment_division_lists)
+            self.add_segment_division_lists_to_voice(voice, segment_division_lists)
             #self._debug(voice_division_list, 'vdl')
             #self._debug(segment_division_lists, 'sdl')
 
@@ -515,8 +514,9 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_specification):
         selector = resolved_single_context_setting.selector
         assert selector.segment_identifier == segment_specification.segment_name
-        duration = selector.get_duration(self.score_specification)
-        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
+        context_name = resolved_single_context_setting.context_name
+        duration = selector.get_duration(self.score_specification, context_name)
+        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
         rhythm_command = self.make_rhythm_command(
             resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
@@ -527,8 +527,9 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_specification):
         selector = resolved_single_context_setting.selector
         assert selector.segment_identifier == segment_specification.segment_name
-        duration = selector.get_duration(self.score_specification)
-        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
+        context_name = resolved_single_context_setting.context_name
+        duration = selector.get_duration(self.score_specification, context_name)
+        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
         uninterpreted_division_command = self.make_uninterpreted_division_command(
             resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)

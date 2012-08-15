@@ -75,10 +75,10 @@ class TimespanInequality(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification):
+    def get_duration(self, score_specification, context_name):
         '''Delegate to ``self.timespan.get_duration()``.
         '''
-        return self.timespan.get_duration(score_specification)
+        return self.timespan.get_duration(score_specification, context_name)
 
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.timespan.set_segment_identifier()``.
