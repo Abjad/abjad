@@ -267,15 +267,16 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         from experimental import library
         rhythm_commands = []
+        voice_name = voice.name
         for segment_specification in self.score_specification.segment_specifications:
-            commands = self.get_rhythm_commands_that_start_during_segment(segment_specification, voice.name)
+            commands = self.get_rhythm_commands_that_start_during_segment(segment_specification, voice_name)
             rhythm_commands.extend(commands)
         #self._debug_values(rhythm_commands, 'rc')
         if not rhythm_commands:
             rhythm_command = interpretertools.RhythmCommand(
                 library.skip_filled_tokens, 
                 segment_specification.segment_name,
-                'FOO CONTEXT NAME',
+                self.score_specification.score_name,
                 0,
                 segment_specification.duration,
                 self.score_specification.duration, 
@@ -379,6 +380,20 @@ class ConcreteInterpreter(Interpreter):
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
             division_region_division_lists[:]
         return division_region_division_lists
+
+    def make_rhythm_command(
+        self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
+        from experimental import interpretertools
+        rhythm_command = interpretertools.RhythmCommand(
+            resolved_single_context_setting.resolved_value, 
+            segment_name,
+            resolved_single_context_setting.context_name,
+            start_offset,
+            stop_offset,
+            duration,
+            resolved_single_context_setting.fresh
+            )
+        return rhythm_command
 
     def make_rhythms_and_add_to_voice(self, voice, rhythm_makers, rhythm_region_division_lists):
         for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
@@ -499,22 +514,16 @@ class ConcreteInterpreter(Interpreter):
         else:
             return source
 
-    def resolved_single_context_setting_to_rhythm_command(self,
-        resolved_single_context_setting, segment_specification):
-        from experimental import interpretertools
-        from experimental import library
-        if isinstance(resolved_single_context_setting.selector, selectortools.CountRatioPartSelector):
-            raise Exception('implement me when it comes time.')
-        else:
-            rhythm_command = interpretertools.RhythmCommand(
-                resolved_single_context_setting.resolved_value, 
-                segment_specification.segment_name,
-                'FOO CONTEXT NAME',
-                0,
-                segment_specification.duration,
-                segment_specification.duration, 
-                resolved_single_context_setting.fresh
-                )
+    def resolved_single_context_setting_to_rhythm_command(
+        self, resolved_single_context_setting, segment_specification):
+        selector = resolved_single_context_setting.selector
+        assert selector.segment_identifier == segment_specification.segment_name
+        duration = selector.get_duration(self.score_specification)
+        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification)
+        segment_name = segment_specification.segment_name
+        rhythm_command = self.make_rhythm_command(
+            resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
+        #self._debug(rhythm_command, 'rc')
         return rhythm_command
 
     def resolved_single_context_setting_to_uninterpreted_division_command(
