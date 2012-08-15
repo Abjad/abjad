@@ -269,13 +269,15 @@ class ConcreteInterpreter(Interpreter):
     def get_rhythm_commands_for_voice(self, voice):
         rhythm_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            commands = self.get_rhythm_commands_that_start_during_segment(
+            raw_commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            #commands = self.sort_and_split_raw_commands(commands)
-            rhythm_commands.extend(commands)
-            if not rhythm_commands:
-                command = self.make_default_rhythm_command_for_segment(segment_specification)
-                rhythm_commands.append(command)
+            #cooked_commands = self.sort_and_split_raw_commands(raw_commands)
+            cooked_commands = raw_commands
+            if cooked_commands:
+                rhythm_commands.extend(cooked_commands)
+            else:
+                default_command = self.make_default_rhythm_command_for_segment(segment_specification)
+                rhythm_commands.append(default_command)
         return rhythm_commands
 
     def get_rhythm_commands_that_start_during_segment(self, segment_specification, context_name):
@@ -298,11 +300,12 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_for_voice(self, voice):
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            commands = self.get_uninterpreted_division_commands_that_start_during_segment(
+            raw_commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            commands = self.sort_and_split_raw_commands(commands)
-            uninterpreted_division_commands.extend(commands)
-            if not commands and segment_specification.time_signatures:
+            cooked_commands = self.sort_and_split_raw_commands(raw_commands)
+            if cooked_commands:
+                uninterpreted_division_commands.extend(cooked_commands)
+            elif segment_specification.time_signatures:
                 command = self.make_default_uninterpreted_division_command_for_segment(segment_specification)
                 uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
