@@ -96,9 +96,13 @@ class ConcreteInterpreter(Interpreter):
         voice_division_list = self.get_voice_division_list(voice)
         if len(voice_division_list) == 0:
             return
+        #self._debug(voice_division_list, 'vdl')
         voice_divisions = voice_division_list.divisions
         voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+        #for rc in rhythm_commands:
+        #    self._debug(rc, 'rc')
+        #print ''
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         division_region_division_lists = self.score_specification.contexts[voice.name][
@@ -266,6 +270,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_rhythm_commands_that_start_during_segment(segment_specification, voice.name)
             rhythm_commands.extend(commands)
+        #self._debug_values(rhythm_commands, 'rc')
         if not rhythm_commands:
             rhythm_command = interpretertools.RhythmCommand(
                 library.skip_filled_tokens, 
@@ -279,28 +284,18 @@ class ConcreteInterpreter(Interpreter):
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
-    def get_rhythm_commands_that_start_during_segment(self, segment_specification, voice_name):
-        from experimental import interpretertools
-        from experimental import library
+    def get_rhythm_commands_that_start_during_segment(self, segment_specification, context_name):
+        #self._debug(segment_specification, 'segment')
         resolved_single_context_settings = self.get_resolved_single_context_settings(
-            segment_specification, 'rhythm', voice_name)
-        if resolved_single_context_settings is None:
-            return []
+            segment_specification, 'rhythm', context_name, include_improper_parentage=True)
         rhythm_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            if isinstance(resolved_single_context_setting.selector, selectortools.CountRatioPartSelector):
-                raise Exception('implement me when it comes time.')
-            else:
-                rhythm_command = interpretertools.RhythmCommand(
-                    resolved_single_context_setting.resolved_value, 
-                    segment_specification.segment_name,
-                    'FOO CONTEXT NAME',
-                    0,
-                    segment_specification.duration,
-                    segment_specification.duration, 
-                    resolved_single_context_setting.fresh
-                    )
+            #self._debug(resolved_single_context_setting)
+            rhythm_command = \
+                self.resolved_single_context_setting_to_rhythm_command(
+                resolved_single_context_setting, segment_specification)
             rhythm_commands.append(rhythm_command)
+        #print ''
         return rhythm_commands
 
     def get_segment_specification(self, expr):
@@ -503,6 +498,24 @@ class ConcreteInterpreter(Interpreter):
             return source()
         else:
             return source
+
+    def resolved_single_context_setting_to_rhythm_command(self,
+        resolved_single_context_setting, segment_specification):
+        from experimental import interpretertools
+        from experimental import library
+        if isinstance(resolved_single_context_setting.selector, selectortools.CountRatioPartSelector):
+            raise Exception('implement me when it comes time.')
+        else:
+            rhythm_command = interpretertools.RhythmCommand(
+                resolved_single_context_setting.resolved_value, 
+                segment_specification.segment_name,
+                'FOO CONTEXT NAME',
+                0,
+                segment_specification.duration,
+                segment_specification.duration, 
+                resolved_single_context_setting.fresh
+                )
+        return rhythm_command
 
     def resolved_single_context_setting_to_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_specification):
