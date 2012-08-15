@@ -195,6 +195,12 @@ class AbjadObject(object):
         else:
             print 'debug ({}): {!r}'.format(annotation, value)
 
+    def _debug_values(self, values, annotation=None):
+        for value in values:
+            self._debug(value, annotation=annotation)
+        if values:
+            print ''
+
     @classmethod
     def _get_keyword_argument_names(cls):
         if hasattr(cls.__init__, '__func__'):
