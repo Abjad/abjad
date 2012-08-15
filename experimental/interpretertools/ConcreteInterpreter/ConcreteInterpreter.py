@@ -271,7 +271,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            #commands = self.sort_and_split_commands(commands)
+            #commands = self.sort_and_split_raw_commands(commands)
             rhythm_commands.extend(commands)
             if not rhythm_commands:
                 command = self.make_default_rhythm_command_for_segment(segment_specification)
@@ -300,7 +300,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            commands = self.sort_and_split_commands(commands)
+            commands = self.sort_and_split_raw_commands(commands)
             uninterpreted_division_commands.extend(commands)
             if not commands and segment_specification.time_signatures:
                 command = self.make_default_uninterpreted_division_command_for_segment(segment_specification)
@@ -533,38 +533,38 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(uninterpreted_division_command, 'udc')
         return uninterpreted_division_command
 
-    def sort_and_split_commands(self, uninterpreted_division_commands):
-        result = []
-        start_segment_names = [x.start_segment_name for x in uninterpreted_division_commands]
+    def sort_and_split_raw_commands(self, raw_commands):
+        cooked_commands = []
+        start_segment_names = [x.start_segment_name for x in raw_commands]
         assert sequencetools.all_are_equal(start_segment_names)
-        #self._debug_values(uninterpreted_division_commands, 'udc')
-        for uninterpreted_division_command in uninterpreted_division_commands:
+        #self._debug_values(raw_commands, 'udc')
+        for raw_command in raw_commands:
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
-            for command in result:
-                if uninterpreted_division_command.improperly_contains(command):
-                    commands_to_remove.append(command)
-                elif uninterpreted_division_command.delays(command):
-                    commands_to_delay.append(command)
-                elif uninterpreted_division_command.curtails(command):
-                    commands_to_curtail.append(command)
-                elif command.properly_contains(uninterpreted_division_command):
-                    commands_to_split.append(command)
+            for cooked_command in cooked_commands:
+                if raw_command.improperly_contains(cooked_command):
+                    commands_to_remove.append(cooked_command)
+                elif raw_command.delays(cooked_command):
+                    commands_to_delay.append(cooked_command)
+                elif raw_command.curtails(cooked_command):
+                    commands_to_curtail.append(cooked_command)
+                elif cooked_command.properly_contains(raw_command):
+                    commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
-                result.remove(command_to_remove)
+                cooked_commands.remove(command_to_remove)
             for command_to_curtail in commands_to_curtail:
-                command_to_curtail._stop_offset = uninterpreted_division_command.start_offset
+                command_to_curtail._stop_offset = raw_command.start_offset
                 duration = command_to_curtail.stop_offset - command_to_curtail.start_offset
                 command_to_curtail._duration = duration
             for command_to_delay in commands_to_delay:
-                command_to_delay._start_offset = uninterpreted_division_command.stop_offset
+                command_to_delay._start_offset = raw_command.stop_offset
                 duration = command_to_delay.stop_offset - command_to_delay.start_offset
                 command_to_delay._duration = duration
                 command_was_delayed = True
             for command_to_split in commands_to_split:
                 left_command = command_to_split
-                middle_command = uninterpreted_division_command
+                middle_command = raw_command
                 right_command = copy.deepcopy(left_command)
                 left_command._stop_offset = middle_command.start_offset
                 left_duration = left_command.stop_offset - left_command.start_offset
@@ -574,17 +574,17 @@ class ConcreteInterpreter(Interpreter):
                 right_command._duration = right_duration
                 command_was_split = True
             if command_was_delayed:
-                index = result.index(command)
-                result.insert(index, uninterpreted_division_command)
+                index = cooked_commands.index(cooked_command)
+                cooked_commands.insert(index, raw_command)
             elif command_was_split:
-                result.append(middle_command)
-                result.append(right_command)
+                cooked_commands.append(middle_command)
+                cooked_commands.append(right_command)
             else:
-                result.append(uninterpreted_division_command)
-            result.sort()
-            #self._debug_values(result, 'udc')
-        #self._debug_values(result, 'udc')
-        return result
+                cooked_commands.append(raw_command)
+            cooked_commands.sort()
+            #self._debug_values(cooked_commands, 'udc')
+        #self._debug_values(cooked_commands, 'udc')
+        return cooked_commands
 
     def store_additional_single_context_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
