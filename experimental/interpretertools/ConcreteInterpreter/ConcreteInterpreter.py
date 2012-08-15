@@ -271,8 +271,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             raw_commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            #cooked_commands = self.sort_and_split_raw_commands(raw_commands)
-            cooked_commands = raw_commands
+            cooked_commands = self.sort_and_split_raw_commands(raw_commands)
             if cooked_commands:
                 rhythm_commands.extend(cooked_commands)
             else:
@@ -540,7 +539,7 @@ class ConcreteInterpreter(Interpreter):
         cooked_commands = []
         start_segment_names = [x.start_segment_name for x in raw_commands]
         assert sequencetools.all_are_equal(start_segment_names)
-        #self._debug_values(raw_commands, 'udc')
+        #self._debug_values(raw_commands, 'raw')
         for raw_command in raw_commands:
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
@@ -585,8 +584,8 @@ class ConcreteInterpreter(Interpreter):
             else:
                 cooked_commands.append(raw_command)
             cooked_commands.sort()
-            #self._debug_values(cooked_commands, 'udc')
-        #self._debug_values(cooked_commands, 'udc')
+            #self._debug_values(cooked_commands, 'cooked')
+        #self._debug_values(cooked_commands, 'cooked')
         return cooked_commands
 
     def store_additional_single_context_settings(self):
