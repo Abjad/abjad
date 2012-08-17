@@ -1,8 +1,7 @@
 from abjad.tools import durationtools
 
 
-def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
-    direction = 'automatic'):
+def _replace_first_n_elements_in_container_with_rests(container, i, rested_half, direction='automatic'):
     r'''Replace the `i` elements in the `rested_half` of `container` with rests::
 
         >>> from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import _replace_first_n_elements_in_container_with_rests
@@ -44,52 +43,13 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
             b'8
         }
 
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
-        >>> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'automatic')
-        Staff{4}
-        >>> f(staff)
-        \new Staff {
-            c'8
-            d'8
-            r2
-            r8
-        }
-
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
-        >>> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'big-endian')
-        Staff{4}
-        >>> f(staff)
-        \new Staff {
-            c'8
-            d'8
-            r2
-            r8
-        }
-
-    ::
-
-        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8")
-        >>> _replace_first_n_elements_in_container_with_rests(staff, 2, 'right', 'little-endian')
-        Staff{4}
-        >>> f(staff)
-        \new Staff {
-            c'8
-            d'8
-            r8
-            r2
-        }
-
     Return `container`.
 
     Set `direction` to control the order of rests created.
 
-    .. todo: replace 'left' and 'right' with positive and negative
-        values of `i`.
+    .. todo: replace 'left' and 'right' with positive and negative values of `i`.
     '''
+    from abjad.tools import containertools
     from abjad.tools import resttools
 
     # assert keyword values
@@ -109,7 +69,9 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
     if rested_half == 'left':
         elements_to_replace = container[:i]
     elif rested_half == 'right':
+        # BUG: positive i should be replaced with negative i
         elements_to_replace = container[i:]
+        #elements_to_replace = container[-i:]
 
     # if there are elements to replace
     if elements_to_replace:
@@ -124,7 +86,32 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
         if rested_half == 'left':
             container[:i] = rests
         else:
+            # BUG: positive i should be replaced with negative i
             container[i:] = rests
+            #container[-i:] = rests
 
     # return container
     return container
+
+    # TODO: eventually replace with call to conainertools.replace_container_slice_with_rests().
+#    if rested_half == 'left':
+#        start, stop = None, i
+#    elif rested_half == 'right':
+#        start, stop = -i, None
+#    else:
+#        raise ValueError
+#
+#    if direction == 'big-endian':
+#        big_endian = True
+#    elif direction == 'little-endian':
+#        big_endian = False
+#    elif direction == 'automatic':
+#        if rested_half == 'left':
+#            big_endian = True
+#        else:
+#            big_endian = False
+#    else:
+#        raise ValueError
+#
+#    return containertools.replace_container_slice_with_rests(
+#        container, start=start, stop=stop, big_endian=big_endian)

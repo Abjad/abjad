@@ -1,6 +1,3 @@
-from abjad.tools.containertools._replace_first_n_elements_in_container_with_rests import _replace_first_n_elements_in_container_with_rests
-
-
 def replace_n_edge_elements_in_container_with_rests(container, n):
     r'''.. versionadded:: 2.0
 
@@ -70,8 +67,9 @@ def replace_n_edge_elements_in_container_with_rests(container, n):
         renamed ``containertools.replace_first_n_elements_in_container_with_rests()`` to
         ``containertools.replace_n_edge_elements_in_container_with_rests()``.
     '''
+    from abjad.tools import containertools
 
     if 0 <= n:
-        return _replace_first_n_elements_in_container_with_rests(container, n, 'left', 'big-endian')
+        return containertools.replace_container_slice_with_rests(container, stop=n, big_endian=True)
     else:
-        return _replace_first_n_elements_in_container_with_rests(container, n, 'right', 'little-endian')
+        return containertools.replace_container_slice_with_rests(container, start=n, big_endian=False)

@@ -3,7 +3,7 @@ from abjad.tools.containertools._replace_first_n_elements_in_container_with_rest
 
 
 def _replace_half_of_elements_in_container_with_rests(container, rested_half, bigger_half,
-    rest_direction = 'automatic'):
+    rest_direction='automatic'):
     r'''Turn the left half of `container` into rests with the left
     half of `container` holding a greater number of elements
     than the right half::
@@ -104,13 +104,11 @@ def _replace_half_of_elements_in_container_with_rests(container, rested_half, bi
         return container
 
     # determine split index
-    halves = mathtools.partition_integer_into_halves(
-        len(container), bigger = bigger_half)
+    halves = mathtools.partition_integer_into_halves(len(container), bigger=bigger_half)
     i = halves[0]
 
     # rest container in place at split index
-    _replace_first_n_elements_in_container_with_rests(
-        container, i, rested_half, direction = rest_direction)
+    _replace_first_n_elements_in_container_with_rests(container, i, rested_half, direction=rest_direction)
 
     # return rested container
     return container
