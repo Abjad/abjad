@@ -9,6 +9,8 @@ documentationtools.InheritanceGraph
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.graphviz_format
+
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.root_class
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.storage_format

@@ -68,6 +68,7 @@ Reference manual
     chapters/reference_manual/notes/index
     chapters/reference_manual/named_chromatic_pitch/index
     chapters/reference_manual/python_basics/index
+    chapters/reference_manual/quantization/index
     chapters/reference_manual/rests/index
     chapters/reference_manual/scores/index
     chapters/reference_manual/spanners/index
