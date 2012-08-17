@@ -131,5 +131,38 @@ class InheritanceGraph(ImmutableDictionary):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def graphviz_format(self):
+        result = ['digraph I {']
+
+        def get_klass_name(klass):
+            parts = klass.__module__.split('.') + [klass.__name__]
+            name = [parts[0]]
+            for part in parts[1:]:
+                if part != name[-1]:
+                    name.append(part)
+            if name[0] in ('abjad', 'experimental'):
+                return '.'.join(name[-2:])
+            return '.'.join(name)
+
+        for klass in self:
+            name = get_klass_name(klass)
+            if inspect.isabstract(klass):
+                result += ['\t"{}" [shape=diamond];'.format(name)]
+            else:
+                result += ['\t"{}" [shape=box];'.format(name)]
+
+        for parent, children in self.iteritems():
+            for child in children:
+                parent_name = get_klass_name(parent)
+                child_name = get_klass_name(child)
+                result += ['\t"{}" -> "{}";'.format(parent_name, child_name)]
+
+        result += ['}']
+
+        return '\n'.join(result)
+        
+
+
+    @property
     def root_class(self):
         return self._root_class
