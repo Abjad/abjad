@@ -3,12 +3,12 @@ def truncate_sequence_to_sum(sequence, target_sum):
 
     Truncate `sequence` to `target_sum`::
 
-        >>> from abjad.tools import sequencetools
+        >>> sequence = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
     ::
 
         >>> for n in range(10):
-        ...     print n, sequencetools.truncate_sequence_to_sum([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10], n)
+        ...     print n, sequencetools.truncate_sequence_to_sum(sequence, n)
         ...
         0 []
         1 [-1, 2]
@@ -45,13 +45,11 @@ def truncate_sequence_to_sum(sequence, target_sum):
     if total < 0:
         raise ValueError
 
-    #assert 0 <= total
     result = []
 
     if total == 0:
         return result
 
-    #kind = type(sequence)
     accumulation = 0
     for e in sequence:
         accumulation += e
@@ -60,5 +58,5 @@ def truncate_sequence_to_sum(sequence, target_sum):
         else:
             result.append(total - sum(result))
             break
-    #return kind(result)
+
     return result

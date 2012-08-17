@@ -46,11 +46,13 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
 
     Works when measures contain stacked voices. ::
 
-        >>> measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
+        >>> measure = measuretools.DynamicMeasure(
+        ...     Voice(notetools.make_repeated_notes(2)) * 2)
         >>> measure.is_parallel = True
         >>> t = Staff(measure * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        >>> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64))
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+        >>> measuretools.pad_measures_in_expr_with_skips(
+        ...     t, Duration(1, 32), Duration(1, 64))
 
     ::
 
@@ -93,7 +95,8 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
         >>> t = measuretools.DynamicMeasure("c'8 d'8")
         >>> beamtools.BeamSpanner(t[:])
         BeamSpanner(c'8, d'8)
-        >>> measuretools.pad_measures_in_expr_with_skips(t, Duration(1, 32), Duration(1, 64), splice = True)
+        >>> measuretools.pad_measures_in_expr_with_skips(
+        ...     t, Duration(1, 32), Duration(1, 64), splice = True)
 
     ::
 

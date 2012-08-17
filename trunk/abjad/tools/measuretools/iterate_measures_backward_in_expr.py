@@ -8,7 +8,7 @@ def iterate_measures_backward_in_expr(expr, start=0, stop=None):
     Iterate measures backward in `expr`::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

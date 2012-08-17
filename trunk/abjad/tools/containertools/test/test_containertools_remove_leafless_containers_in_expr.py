@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_remove_leafless_containers_in_expr_01():
 
     staff = Staff(Container(notetools.make_repeated_notes(2)) * 4)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff.leaves)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff.leaves)
     beamtools.BeamSpanner(staff[:])
     containertools.delete_contents_of_container(staff[1])
     containertools.delete_contents_of_container(staff[-1])

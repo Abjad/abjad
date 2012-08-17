@@ -9,7 +9,7 @@ def get_improper_descendents_of_component_that_cross_offset(component, prolated_
     Get improper contents of `component` that cross `prolated_offset`::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

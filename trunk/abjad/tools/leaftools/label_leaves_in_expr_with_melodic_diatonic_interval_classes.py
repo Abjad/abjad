@@ -6,8 +6,12 @@ def label_leaves_in_expr_with_melodic_diatonic_interval_classes(expr, markup_dir
 
     Label leaves in `expr` with melodic diatonic interval classes::
 
-        >>> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
+        >>> notes = notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)])
+        >>> staff = Staff(notes)
         >>> leaftools.label_leaves_in_expr_with_melodic_diatonic_interval_classes(staff)
+
+    ::
+
         >>> f(staff)
         \new Staff {
             c'8 ^ \markup { +aug8 }

@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.measuretools.Measure import Measure
+from abjad.tools import componenttools
 
 
 def all_are_measures(expr):
@@ -11,8 +10,12 @@ def all_are_measures(expr):
 
     ::
 
-        >>> measures
-        [Measure(3/4, [c'4, d'4, e'4]), Measure(3/4, [c'4, d'4, e'4]), Measure(3/4, [c'4, d'4, e'4])]
+        >>> for measure in measures:
+        ...     measure
+        ...
+        Measure(3/4, [c'4, d'4, e'4])
+        Measure(3/4, [c'4, d'4, e'4])
+        Measure(3/4, [c'4, d'4, e'4])
 
     ::
 
@@ -33,5 +36,6 @@ def all_are_measures(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import measuretools
 
-    return all_are_components(expr, klasses=(Measure,))
+    return componenttools.all_are_components(expr, klasses=(measuretools.Measure,))

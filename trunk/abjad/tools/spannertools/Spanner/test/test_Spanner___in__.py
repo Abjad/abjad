@@ -5,7 +5,7 @@ def test_Spanner___in___01():
     '''Spanner containment tests components.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     p = beamtools.BeamSpanner(t[1])
 
     r'''
@@ -34,7 +34,7 @@ def test_Spanner___in___02():
     '''Spanner containment tests components.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     p = beamtools.BeamSpanner(t[:])
 
     r'''

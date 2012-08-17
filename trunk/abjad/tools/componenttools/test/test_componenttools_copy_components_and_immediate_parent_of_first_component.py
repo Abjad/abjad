@@ -64,7 +64,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     '''Copy adjacent, whole tuplets from staff.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[1:])
 
     r'''

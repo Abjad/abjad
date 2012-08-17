@@ -11,7 +11,7 @@ def get_prev_measure_from_component(component):
     in `component`. This starts the process of backwards measure iteration. ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> measuretools.get_prev_measure_from_component(staff)
         Measure(2/8, [e'8, f'8])
 
@@ -23,7 +23,7 @@ def get_prev_measure_from_component(component):
     preceeding `component`, return measure immediately preceeding component. ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> measuretools.get_prev_measure_from_component(staff[-1])
         Measure(2/8, [c'8, d'8])
 
@@ -31,7 +31,7 @@ def get_prev_measure_from_component(component):
     preceeding `component`, return ``None``. ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> measuretools.get_prev_measure_from_component(staff[0]) is None
         True
 
@@ -39,7 +39,7 @@ def get_prev_measure_from_component(component):
     of `component`, return the measure in the parentage of `component`. ::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> measuretools.get_prev_measure_from_component(staff.leaves[0])
         Measure(2/8, [c'8, d'8])
 

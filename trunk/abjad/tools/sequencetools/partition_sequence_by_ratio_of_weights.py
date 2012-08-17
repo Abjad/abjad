@@ -1,16 +1,11 @@
+import fractions
 from abjad.tools import mathtools
-from fractions import Fraction
 
 
 def partition_sequence_by_ratio_of_weights(sequence, weights):
     '''.. versionadded:: 2.0
 
     Partition `sequence` by ratio of `weights`::
-
-        >>> from abjad.tools import sequencetools
-
-    ::
-
 
         >>> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1])
         [[1, 1, 1], [1, 1, 1, 1], [1, 1, 1]]
@@ -59,7 +54,7 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     result.append(sublist)
     cur_cumulative_weight = cumulative_weights.pop(0)
     for n in sequence:
-        if not isinstance(n, (int, long, float, Fraction)):
+        if not isinstance(n, (int, long, float, fractions.Fraction)):
             raise TypeError('must be number.')
         sublist.append(n)
         while cur_cumulative_weight <= mathtools.weight(sequencetools.flatten_sequence(result)):

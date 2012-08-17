@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
 class NamedChromaticPitchClass(PitchClassObject):
@@ -7,7 +6,11 @@ class NamedChromaticPitchClass(PitchClassObject):
 
     Abjad model of named chromatic pitch-class::
 
-        >>> pitchtools.NamedChromaticPitchClass('cs')
+        >>> ncpc = pitchtools.NamedChromaticPitchClass('cs')
+
+    ::
+
+        >>> ncpc
         NamedChromaticPitchClass('cs')
 
     Named chromatic pitch-classes are immutable.
@@ -28,7 +31,7 @@ class NamedChromaticPitchClass(PitchClassObject):
             chromatic_pitch_class_name = pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name(arg)
         else:
             try:
-                named_chromatic_pitch_carrier = get_named_chromatic_pitch_from_pitch_carrier(arg)
+                named_chromatic_pitch_carrier = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(arg)
             except (ValueError, TypeError):
                 raise ValueError
             if hasattr(named_chromatic_pitch_carrier, '_chromatic_pitch_name'):
@@ -137,8 +140,7 @@ class NamedChromaticPitchClass(PitchClassObject):
     def numbered_chromatic_pitch_class(self):
         '''Read-only numbered chromatic pitch-class::
 
-            >>> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
-            >>> named_chromatic_pitch_class.numbered_chromatic_pitch_class
+            >>> ncpc.numbered_chromatic_pitch_class
             NumberedChromaticPitchClass(1)
 
         Return numbered chromatic pitch-class.
@@ -151,8 +153,7 @@ class NamedChromaticPitchClass(PitchClassObject):
     def apply_accidental(self, accidental):
         '''Apply `accidental`::
 
-            >>> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
-            >>> named_chromatic_pitch_class.apply_accidental('qs')
+            >>> ncpc.apply_accidental('qs')
             NamedChromaticPitchClass('ctqs')
 
         Return named chromatic pitch-class.
@@ -166,8 +167,7 @@ class NamedChromaticPitchClass(PitchClassObject):
     def transpose(self, melodic_diatonic_interval):
         '''Transpose named chromatic pitch-class by `melodic_diatonic_interval`::
 
-            >>> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
-            >>> named_chromatic_pitch_class.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
+            >>> ncpc.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
             NamedChromaticPitchClass('ds')
 
         Return named chromatic pitch-class.

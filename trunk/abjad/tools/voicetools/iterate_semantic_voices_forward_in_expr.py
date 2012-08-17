@@ -1,13 +1,10 @@
-from abjad.tools.voicetools.Voice import Voice
-from abjad.tools import componenttools
-
-
 def iterate_semantic_voices_forward_in_expr(expr):
     r'''.. versionadded:: 2.0
 
     Iterate semantic voices forward in `expr`::
 
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     [(3, 8), (5, 16), (5, 16)])
         >>> meter_voice = Voice(measures)
         >>> meter_voice.name = 'TimeSignatuerVoice'
         >>> meter_voice.is_nonsemantic = True
@@ -48,7 +45,8 @@ def iterate_semantic_voices_forward_in_expr(expr):
 
     Return generator.
     '''
+    from abjad.tools import voicetools
 
-    for voice in componenttools.iterate_components_forward_in_expr(expr, Voice):
+    for voice in voicetools.iterate_voices_forward_in_expr(expr):
         if not voice.is_nonsemantic:
             yield voice

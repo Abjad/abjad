@@ -6,9 +6,11 @@ from ply import lex
 class SchemeParser(abctools.Parser):
     '''`SchemeParser` mimics how LilyPond's embedded Scheme parser behaves.
 
-    It parses a single Scheme expression and then stops, by raising a `SchemeParserFinishedException`.
+    It parses a single Scheme expression and then stops, 
+    by raising a `SchemeParserFinishedException`.
 
-    The parsed expression and its exact length in characters are cached on the `SchemeParser` instance.
+    The parsed expression and its exact length in characters 
+    are cached on the `SchemeParser` instance.
 
     It is intended to be used only in conjunction with `LilyPondParser`.
 

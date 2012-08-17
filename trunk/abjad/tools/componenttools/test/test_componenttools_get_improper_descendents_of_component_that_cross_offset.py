@@ -5,7 +5,7 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
     '''Staff and first measure cross offset at 1/8.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -27,7 +27,7 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
     '''Staff, first measure and first note cross 1/16.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -49,7 +49,7 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
     '''Nothing crosses 0.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -71,7 +71,7 @@ def test_componenttools_get_improper_descendents_of_component_that_cross_offset_
     '''Nothing crosses 100.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {

@@ -8,7 +8,7 @@ def test_componenttools_all_are_thread_contiguous_components_01():
 
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(2, Voice(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -36,7 +36,7 @@ def test_componenttools_all_are_thread_contiguous_components_02():
     t.insert(2, Voice(notetools.make_repeated_notes(2)))
     Container(t[:2])
     Container(t[-2:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -69,7 +69,7 @@ def test_componenttools_all_are_thread_contiguous_components_03():
     t.insert(2, Voice(notetools.make_repeated_notes(2)))
     Container(t[:2])
     Container(t[-2:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -152,7 +152,7 @@ def test_componenttools_all_are_thread_contiguous_components_10():
     '''False when components belonging to same thread are ommitted.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t.leaves)
 
     r'''

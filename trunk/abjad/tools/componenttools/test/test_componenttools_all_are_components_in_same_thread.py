@@ -91,7 +91,7 @@ def test_componenttools_all_are_components_in_same_thread_06():
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -119,7 +119,7 @@ def test_componenttools_all_are_components_in_same_thread_07():
     '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -144,7 +144,7 @@ def test_componenttools_all_are_components_in_same_thread_08():
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -174,7 +174,7 @@ def test_componenttools_all_are_components_in_same_thread_09():
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t[0].name = 'foo'
     t[1].name = 'foo'
 
@@ -203,7 +203,7 @@ def test_componenttools_all_are_components_in_same_thread_10():
     '''
 
     t = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t[0].name = 'foo'
     t[1].name = 'bar'
 
@@ -229,7 +229,7 @@ def test_componenttools_all_are_components_in_same_thread_11():
     '''
 
     t = Container(Staff([Voice(notetools.make_repeated_notes(2))]) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -257,7 +257,7 @@ def test_componenttools_all_are_components_in_same_thread_12():
     '''
 
     t = Container(Staff(Voice(notetools.make_repeated_notes(2)) * 2) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t[0].is_parallel = True
     t[1].is_parallel = True
 
@@ -294,7 +294,7 @@ def test_componenttools_all_are_components_in_same_thread_13():
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -318,7 +318,7 @@ def test_componenttools_all_are_components_in_same_thread_14():
     '''
 
     t = Container(Staff(Note(0, (1, 8)) * 4) * 2)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     t[0].name = 'foo'
     t[1].name = 'foo'
 
@@ -348,7 +348,7 @@ def test_componenttools_all_are_components_in_same_thread_15():
     '''
 
     t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -377,7 +377,7 @@ def test_componenttools_all_are_components_in_same_thread_16():
     '''
 
     t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -407,7 +407,7 @@ def test_componenttools_all_are_components_in_same_thread_17():
 
     t = Container([Container(notetools.make_repeated_notes(4)), Voice(notetools.make_repeated_notes(4))])
     t[1].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -437,7 +437,7 @@ def test_componenttools_all_are_components_in_same_thread_18():
 
     t = Container([Voice(notetools.make_repeated_notes(4)), Container(notetools.make_repeated_notes(4))])
     t[0].name = 'foo'
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -466,7 +466,7 @@ def test_componenttools_all_are_components_in_same_thread_19():
     '''
 
     t = Container([Container(notetools.make_repeated_notes(4)), Staff(notetools.make_repeated_notes(4))])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -495,7 +495,7 @@ def test_componenttools_all_are_components_in_same_thread_20():
     '''
 
     t = Container([Staff(Note(0, (1, 8)) * 4), Container(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -524,7 +524,7 @@ def test_componenttools_all_are_components_in_same_thread_21():
     '''
 
     t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -551,7 +551,7 @@ def test_componenttools_all_are_components_in_same_thread_22():
     '''
 
     t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
 
     r'''
@@ -580,7 +580,7 @@ def test_componenttools_all_are_components_in_same_thread_23():
 
     t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
     t[4].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -610,7 +610,7 @@ def test_componenttools_all_are_components_in_same_thread_24():
     '''
 
     t = Container([Voice(Note(0, (1, 8)) * 4)] + Note(0, (1, 8)) * 4)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     t[0].name = 'foo'
 
     r'''
@@ -638,7 +638,7 @@ def test_componenttools_all_are_components_in_same_thread_25():
     '''
 
     t = Container(Note(0, (1, 8)) * 4 + [Voice(Note(0, (1, 8)) * 4)])
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -666,7 +666,7 @@ def test_componenttools_all_are_components_in_same_thread_26():
 
     t = Container(notetools.make_repeated_notes(4))
     t.insert(0, Staff(notetools.make_repeated_notes(4)))
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -859,7 +859,7 @@ def test_componenttools_all_are_components_in_same_thread_32():
 
     t = Container([Container(Voice(Note(0, (1, 8)) * 4) * 2)] + Note(0, (1, 8)) * 4)
     t[0].is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -897,7 +897,7 @@ def test_componenttools_all_are_components_in_same_thread_33():
     a, b = Voice(Note(0, (1, 8)) * 4) * 2
     a.insert(2, b)
     t.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
@@ -939,7 +939,7 @@ def test_componenttools_all_are_components_in_same_thread_34():
     a, b = t * 2
     a.insert(2, b)
     t.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     outer = (0, 1, 10, 11)
     middle = (2, 3, 8, 9)
@@ -979,7 +979,7 @@ def test_componenttools_all_are_components_in_same_thread_35():
     a, b, t = Container(Note(0, (1, 8)) * 4) * 3
     a.insert(2, b)
     t.insert(2, a)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -1014,7 +1014,7 @@ def test_componenttools_all_are_components_in_same_thread_36():
     t.insert(2, b)
     b.target_duration = Duration(6, 8)
     t.target_duration = Duration(9, 8)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \fraction \times 9/10 {
@@ -1047,7 +1047,7 @@ def test_componenttools_all_are_components_in_same_thread_37():
     t = Container(Note(0, (1, 8)) * 4)
     t.insert(2, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
     t[2][0][0].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -1083,7 +1083,7 @@ def test_componenttools_all_are_components_in_same_thread_38():
     t = Container(Note(0, (1, 8)) * 4)
     t.insert(0, Container([Container([Voice(Note(0, (1, 8)) * 4)])]))
     t[0][0][0].name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -1118,7 +1118,7 @@ def test_componenttools_all_are_components_in_same_thread_39():
     t = Container([t])
     t = Container([t])
     t = Voice([t])
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -1162,7 +1162,7 @@ def test_componenttools_all_are_components_in_same_thread_40():
     t = Voice(Note(0, (1, 8)) * 4)
     t.insert(2, qq)
     t.name = 'foo'
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \context Voice = "foo" {
@@ -1205,7 +1205,7 @@ def test_componenttools_all_are_components_in_same_thread_41():
 
     t = Container(notetools.make_repeated_notes(4))
     t[0:0] = Voice(notetools.make_repeated_notes(4)) * 2
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -1244,7 +1244,7 @@ def test_componenttools_all_are_components_in_same_thread_42():
     p.is_parallel = True
     t = Container(Note(0, (1, 8)) * 4)
     t.insert(2, p)
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {

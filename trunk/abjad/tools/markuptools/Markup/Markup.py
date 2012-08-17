@@ -52,7 +52,8 @@ class Markup(_DirectedMark):
         >>> f(note)
         c'4 - \markup { \bold { "This is markup text." } }
 
-    Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, ``'^'``, ``'_'``, ``'-'`` or None.
+    Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, 
+    ``'^'``, ``'_'``, ``'-'`` or None.
 
     Markup objects are immutable.
     '''
@@ -157,7 +158,8 @@ class Markup(_DirectedMark):
     def markup_name(self):
         r'''Read-only name of markup::
 
-            >>> markup = markuptools.Markup(r'\bold { allegro ma non troppo }', markup_name='non troppo')
+            >>> markup = markuptools.Markup(
+            ...     r'\bold { allegro ma non troppo }', markup_name='non troppo')
 
         ::
 

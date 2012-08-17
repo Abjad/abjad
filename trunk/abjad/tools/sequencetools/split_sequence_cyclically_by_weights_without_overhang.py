@@ -1,8 +1,7 @@
-from abjad.tools.sequencetools._split_sequence_by_weights import _split_sequence_by_weights
-
-
 def split_sequence_cyclically_by_weights_without_overhang(sequence, weights):
     '''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``split_sequence_by_weights()`` instead.
 
     Split `sequence` cyclically by `weights` without overhang::
 
@@ -16,5 +15,6 @@ def split_sequence_cyclically_by_weights_without_overhang(sequence, weights):
 
     Return list of `sequence` objects.
     '''
+    from abjad.tools import sequencetools
 
-    return _split_sequence_by_weights(sequence, weights, cyclic=True, overhang=False)
+    return sequencetools.split_sequence_by_weights(sequence, weights, cyclic=True, overhang=False)

@@ -9,7 +9,7 @@ def test_componenttools_get_most_distant_sequential_container_in_improper_parent
 
     t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
     t[0].is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t[0][0].name = 'voice 1'
     t[0][1].name = 'voice 2'
 

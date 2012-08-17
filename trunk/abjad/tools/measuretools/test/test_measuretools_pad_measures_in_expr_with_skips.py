@@ -62,7 +62,7 @@ def test_measuretools_pad_measures_in_expr_with_skips_02():
     measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
     measure.is_parallel = True
     t = Staff(measure * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''

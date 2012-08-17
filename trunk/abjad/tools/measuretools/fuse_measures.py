@@ -1,10 +1,8 @@
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import contexttools
-from abjad.tools import timesignaturetools
-from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
 from abjad.tools import durationtools
+from abjad.tools import timesignaturetools
 
 
 def fuse_measures(measures):
@@ -12,9 +10,10 @@ def fuse_measures(measures):
 
     Fuse `measures`::
 
-        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     [(1, 8), (2, 16)]))
         >>> measuretools.fill_measures_in_expr_with_repeated_notes(staff, Duration(1, 16))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'16, d'16, e'16, f'16)
 
@@ -76,10 +75,13 @@ def fuse_measures(measures):
         renamed ``fuse.measures_by_reference()`` to
         ``measuretools.fuse_measures()``.
     '''
-    from abjad.tools.measuretools.Measure import Measure
+    from abjad.tools import measuretools
+    from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
+    from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import \
+        _give_spanners_that_dominate_donor_components_to_recipient_components
 
     assert componenttools.all_are_contiguous_components_in_same_parent(measures,
-        klasses = (Measure, ))
+        klasses = (measuretools.Measure, ))
 
     if len(measures) == 0:
         return None
@@ -112,7 +114,7 @@ def fuse_measures(measures):
         #containertools.scale_contents_of_container(measure_music, multiplier)
         music += measure_music
 
-    new_measure = Measure(new_meter, music)
+    new_measure = measuretools.Measure(new_meter, music)
 
     if parent is not None:
         _give_spanners_that_dominate_donor_components_to_recipient_components(measures, [new_measure])

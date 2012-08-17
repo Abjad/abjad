@@ -10,7 +10,7 @@ def test_Container___delitem___01():
     '''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[:])
     spannertools.SlurSpanner(t[0][:])
     spannertools.SlurSpanner(t[1][:])

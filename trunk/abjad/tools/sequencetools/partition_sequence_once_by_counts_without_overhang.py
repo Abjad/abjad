@@ -1,14 +1,9 @@
-from abjad.tools.sequencetools._partition_sequence_by_counts import _partition_sequence_by_counts
-
-
 def partition_sequence_once_by_counts_without_overhang(sequence, counts):
     '''.. versionadded:: 1.1
 
+    .. note:: Deprecated. Use ``partition_sequence_by_counts()`` instead.
+
     Partition `sequence` once by `counts` without overhang::
-
-        >>> from abjad.tools import sequencetools
-
-    ::
 
         >>> sequencetools.partition_sequence_once_by_counts_without_overhang(range(16), [4, 6])
         [[0, 1, 2, 3], [4, 5, 6, 7, 8, 9]]
@@ -19,5 +14,6 @@ def partition_sequence_once_by_counts_without_overhang(sequence, counts):
         renamed ``listtools.partition_sequence_once_by_counts_without_overhang()`` to
         ``sequencetools.partition_sequence_once_by_counts_without_overhang()``.
     '''
+    from abjad.tools import sequencetools
 
-    return _partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False)
+    return sequencetools.partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False)

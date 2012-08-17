@@ -2,14 +2,14 @@ from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterv
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
+def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
     expr, key_signature = None):
     r'''.. versionadded:: 1.1
 
     Set ascending named diatonic pitches on nontied pitched components in `expr`::
 
         >>> staff = Staff(notetools.make_notes(0, [(5, 32)] * 4))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 
@@ -34,7 +34,7 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
 
     .. versionchanged:: 2.0
         renamed ``pitchtools.diatonicize()`` to
-        ``pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr()``.
+        ``pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr()``.
     '''
     from abjad.tools import tietools
     from abjad.tools import tonalitytools

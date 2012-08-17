@@ -1,14 +1,14 @@
-def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(expr):
+def set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(expr):
     r'''.. versionadded:: 1.1
 
     Set ascending named chromatic pitches on nontied pitched components in `expr`::
 
-        >>> staff = Voice(notetools.make_notes(0, [(5, 32)] * 4))
-        >>> pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> voice = Voice(notetools.make_notes(0, [(5, 32)] * 4))
+        >>> pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(voice)
 
     ::
 
-        >>> f(staff)
+        >>> f(voice)
         \new Voice {
             c'8 ~
             c'32
@@ -26,7 +26,7 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
 
     .. versionchanged:: 2.0
         renamed ``pitchtools.chromaticize()`` to
-        ``pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr()``.
+        ``pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True):
@@ -21,7 +21,8 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
     Sum `sequence` elements cyclically at indices according to `pairs` and `period`
     and do not return incomplete final sum::
 
-        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period=4, overhang=False)
+        >>> sequencetools.sum_sequence_elements_at_indices(
+        ...     range(10), [(0, 3)], period=4, overhang=False)
         [3, 3, 15, 7]
 
     Replace ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``
@@ -37,7 +38,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True
     '''
 
     assert isinstance(sequence, list)
-    assert all([isinstance(x, (int, float, Fraction)) for x in sequence])
+    assert all([isinstance(x, (int, float, fractions.Fraction)) for x in sequence])
     assert isinstance(period, (int, type(None)))
     assert isinstance(overhang, bool)
 

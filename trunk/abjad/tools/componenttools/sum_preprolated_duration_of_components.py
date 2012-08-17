@@ -15,7 +15,7 @@ def sum_preprolated_duration_of_components(components):
     Raise contiguity error on nonparent-contiguous `components`::
 
         >>> t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
         >>> f(t)
         \new Voice {
             \times 2/3 {

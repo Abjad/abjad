@@ -1,17 +1,10 @@
-from abjad.tools.sequencetools.partition_sequence_by_restricted_growth_function import partition_sequence_by_restricted_growth_function
-from abjad.tools.sequencetools.yield_all_restricted_growth_functions_of_length import yield_all_restricted_growth_functions_of_length
-
-
 def yield_all_set_partitions_of_sequence(sequence):
     '''.. versionadded:: 2.0
 
     Yield all set partitions of `sequence` in restricted growth function order::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
-        >>> for set_partition in sequencetools.yield_all_set_partitions_of_sequence([21, 22, 23, 24]):
+        >>> for set_partition in sequencetools.yield_all_set_partitions_of_sequence(
+        ...     [21, 22, 23, 24]):
         ...     set_partition
         ...
         [[21, 22, 23, 24]]
@@ -32,7 +25,8 @@ def yield_all_set_partitions_of_sequence(sequence):
 
     Return generator of list of lists.
     '''
+    from abjad.tools import sequencetools
 
-    for rgf in yield_all_restricted_growth_functions_of_length(len(sequence)):
-        partition = partition_sequence_by_restricted_growth_function(sequence, rgf)
+    for rgf in sequencetools.yield_all_restricted_growth_functions_of_length(len(sequence)):
+        partition = sequencetools.partition_sequence_by_restricted_growth_function(sequence, rgf)
         yield partition

@@ -6,7 +6,8 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
 
     Make measures with full-measure spacer skips from `time_signatures`::
 
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     [(1, 8), (5, 16), (5, 16)])
 
     ::
 

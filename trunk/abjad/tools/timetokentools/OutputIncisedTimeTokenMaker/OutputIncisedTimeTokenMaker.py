@@ -4,7 +4,8 @@ from abjad.tools.timetokentools.IncisedTimeTokenMaker import IncisedTimeTokenMak
 class OutputIncisedTimeTokenMaker(IncisedTimeTokenMaker):
     '''.. versionadded:: 2.8
 
-    Abstract base class for time token makers that incise only the first and last time tokens they produce.
+    Abstract base class for time token makers that incise only the 
+    first and last time tokens they produce.
     '''
 
     ### PRIVATE METHODS ###

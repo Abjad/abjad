@@ -45,7 +45,7 @@ def test_componenttools_component_to_parentage_signature_04():
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
     t[2].is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t.override.note_head.color = 'red'
 
     r'''

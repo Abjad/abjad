@@ -1,8 +1,7 @@
+import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.contexttools.ContextMark import ContextMark
-from abjad.tools import durationtools
-import numbers
 
 
 class TimeSignatureMark(ContextMark):
@@ -40,9 +39,6 @@ class TimeSignatureMark(ContextMark):
     '''
 
     ### CLASS ATTRIBUTES ###
-
-    #__slots__ = ('_denominator', '_duration', '_format_slot', '_multiplier',
-    #    '_is_nonbinary', '_numerator', '_partial', )
 
     _default_mandatory_input_arguments = ((4, 8), )
 
@@ -308,7 +304,8 @@ class TimeSignatureMark(ContextMark):
         def fget(self):
             '''Get partial measure pick-up of time signature mark::
 
-                >>> time_signature = contexttools.TimeSignatureMark((3, 8), partial = Duration(1, 8))
+                >>> time_signature = contexttools.TimeSignatureMark(
+                ...     (3, 8), partial=Duration(1, 8))
                 >>> time_signature.partial
                 Duration(1, 8)
 

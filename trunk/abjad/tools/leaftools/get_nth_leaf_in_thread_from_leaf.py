@@ -4,7 +4,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
     Get `n` th leaf in thread from `leaf`::
 
         >>> staff = Staff(2 * Voice("c'8 d'8 e'8 f'8"))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

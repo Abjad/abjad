@@ -5,7 +5,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
     '''Excise leaf from tuplet and rigid measure.'''
 
     t = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -50,7 +50,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
     '''Excise leaf from tuplet and measure.'''
 
     t = Measure((4, 4), tuplettools.FixedDurationTuplet(Duration(2, 4), Note(0, (1, 8)) * 5) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -107,7 +107,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
         tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
         ])
 
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -171,7 +171,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
         tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 7),
         ])
 
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \time 5/6
@@ -247,7 +247,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_05():
     t = Measure((5, 6),
         [tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(7))] +
             notetools.make_repeated_notes(3, (1, 4)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \time 5/6
@@ -321,7 +321,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_06():
     t = Measure((5, 6),
         [tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(7))] +
             notetools.make_repeated_notes(3, (1, 4)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \time 5/6
@@ -667,7 +667,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
         tuplettools.FixedDurationTuplet(Duration(1, 4), [
             tuplettools.FixedDurationTuplet(Duration(1, 4), [Note("c'4")])])])
 
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \times 2/3 {
@@ -703,7 +703,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
         tuplettools.FixedDurationTuplet(Duration(1, 4), [
             tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 2)])])
 
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \times 2/3 {

@@ -4,7 +4,7 @@ from abjad import *
 def test_componenttools_get_lineage_of_component_that_start_with_component_01( ):
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {

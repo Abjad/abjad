@@ -12,10 +12,6 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(p
         [10, 24, 26, 30, 20, 19, 29, 27, 37, 33, 40, 23]
 
     Return list of zero or more chromatic pitch numbers.
-
-    .. versionchanged:: 2.0
-        renamed ``pitchtools.registrate()`` to
-        ``pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate()``.
     '''
 
     if isinstance(pitch_class_numbers, list):

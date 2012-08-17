@@ -5,7 +5,7 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_01
     '''Beam nonnested tuplets.'''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(t)
 
     r'''
@@ -34,7 +34,7 @@ def test_beamtools_apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr_02
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16), notetools.make_repeated_notes(3, Fraction(1, 16)))
     outer = tuplettools.FixedDurationTuplet(Duration(3, 16), inner * 2)
     t = Voice(outer * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {

@@ -22,7 +22,8 @@ class Annotation(Mark):
 
     ::
 
-        >>> marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('ds'))(staff[0])
+        >>> pitch = pitchtools.NamedChromaticPitch('ds')
+        >>> marktools.Annotation('special pitch', pitch)(staff[0])
         Annotation('special pitch', NamedChromaticPitch('ds'))(c'8)
 
     ::
@@ -87,7 +88,8 @@ class Annotation(Mark):
         def fget(self):
             '''Get name of annotation::
 
-                >>> annotation = marktools.Annotation('special_pitch', pitchtools.NamedChromaticPitch('ds'))
+                >>> pitch = pitchtools.NamedChromaticPitch('ds')
+                >>> annotation = marktools.Annotation('special_pitch', pitch)
                 >>> annotation.name
                 'special_pitch'
 
@@ -110,7 +112,6 @@ class Annotation(Mark):
         def fget(self):
             '''Get value of annotation::
 
-                >>> annotation = marktools.Annotation('special_pitch', pitchtools.NamedChromaticPitch('ds'))
                 >>> annotation.value
                 NamedChromaticPitch('ds')
 

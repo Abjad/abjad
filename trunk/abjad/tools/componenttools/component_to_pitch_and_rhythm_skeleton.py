@@ -10,7 +10,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
         >>> measure = Measure((6, 16), [tuplet])
         >>> staff = Staff([measure])
         >>> score = Score(staff * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
 
     ::
 

@@ -13,7 +13,7 @@ def iterate_thread_forward_from_component(component, klass=None):
         >>> container[0].name = 'voice 1'
         >>> container[1].name = 'voice 2'
         >>> staff = Staff(container * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

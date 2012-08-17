@@ -9,7 +9,7 @@ def make_covered_spanner_schema(components):
     Make schema of spanners covered by `components`::
 
         >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
         >>> slur = spannertools.SlurSpanner(voice[-2:])
 

@@ -1,12 +1,15 @@
-def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
-    chromatic_pitch_class_number):
+def chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(chromatic_pitch_class_number):
     '''.. versionadded:: 1.1
 
     Change chromatic pitch-class number to chromatic pitch-class name with flats::
 
+        >>> tmp = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
+
+    ::
+
         >>> for n in range(13):
         ...     pc = n / 2.0
-        ...     name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(pc)
+        ...     name = tmp(pc)
         ...     print '%s   %s' % (pc, name)
         ...
         0.0   c

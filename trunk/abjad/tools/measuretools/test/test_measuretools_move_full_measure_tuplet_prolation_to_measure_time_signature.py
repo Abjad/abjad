@@ -111,7 +111,7 @@ def test_measuretools_move_full_measure_tuplet_prolation_to_measure_time_signatu
     notes = notetools.make_repeated_notes(2)
     outer = tuplettools.FixedDurationTuplet(Duration(2, 8), [inner] + notes)
     t = Measure((2, 8), [outer])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {

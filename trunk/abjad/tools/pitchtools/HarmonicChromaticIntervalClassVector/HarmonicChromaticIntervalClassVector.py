@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools.ObjectVector import ObjectVector
-from abjad.tools.pitchtools.list_harmonic_chromatic_intervals_in_expr import list_harmonic_chromatic_intervals_in_expr
 
 
 class HarmonicChromaticIntervalClassVector(ObjectVector):
@@ -24,10 +23,11 @@ class HarmonicChromaticIntervalClassVector(ObjectVector):
     '''
 
     def __init__(self, expr):
+        from abjad.tools import pitchtools
         for interval_number in range(12):
             dict.__setitem__(self, interval_number, 0)
             dict.__setitem__(self, interval_number + 0.5, 0)
-        for chromatic_interval in list_harmonic_chromatic_intervals_in_expr(expr):
+        for chromatic_interval in pitchtools.list_harmonic_chromatic_intervals_in_expr(expr):
             interval_number = chromatic_interval.harmonic_chromatic_interval_class.number
             current_tally = self[interval_number]
             dict.__setitem__(self, interval_number, current_tally + 1)
@@ -78,7 +78,11 @@ class HarmonicChromaticIntervalClassVector(ObjectVector):
         '''True when harmonic chromatic interval-class vector contains none of
         `chromatic_interval_numbers`. Otherwise false::
 
-            >>> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff("c'8 d'8 e'8 f'8 g'8"))
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
+
+        ::
+
+            >>> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
             >>> hcicv.has_none_of([9, 10, 11])
             True
 

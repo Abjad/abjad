@@ -14,7 +14,7 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
     Split `component` at `prolated_duration` and do not fracture crossing spanners::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 
@@ -64,7 +64,7 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
     Example 2. Split component at prolated duration at fracture crossing spanners::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

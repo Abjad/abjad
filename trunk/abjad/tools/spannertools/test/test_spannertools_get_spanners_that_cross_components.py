@@ -7,7 +7,7 @@ def test_spannertools_get_spanners_that_cross_components_01():
         over the begin- or end-bounds of thread-contiguous components.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beam = beamtools.BeamSpanner(t[0][:])
     slur = spannertools.SlurSpanner(t[1][:])
     trill = spannertools.TrillSpanner(t.leaves)
@@ -45,7 +45,7 @@ def test_spannertools_get_spanners_that_cross_components_02():
     '''Helper gets spanners that cross in from above.'''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beam = beamtools.BeamSpanner(t[1:2] + t[2][0:1])
 
     r'''

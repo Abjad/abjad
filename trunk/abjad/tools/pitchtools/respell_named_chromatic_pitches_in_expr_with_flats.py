@@ -9,7 +9,7 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
     Respell named chromatic pitches in `expr` with flats::
 
         >>> staff = Staff(notetools.make_repeated_notes(6))
-        >>> pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

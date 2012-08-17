@@ -11,7 +11,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
     Fuse contiguous measures in `container` cyclically by `counts`::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

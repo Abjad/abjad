@@ -1051,7 +1051,6 @@ Composition packages
    tools/pitchtools/all_are_named_chromatic_pitch_tokens
    tools/pitchtools/alphabetic_accidental_abbreviation_to_symbolic_accidental_string
    tools/pitchtools/apply_accidental_to_named_chromatic_pitch
-   tools/pitchtools/apply_octavation_spanner_to_pitched_components
    tools/pitchtools/calculate_harmonic_chromatic_interval
    tools/pitchtools/calculate_harmonic_chromatic_interval_class
    tools/pitchtools/calculate_harmonic_counterpoint_interval
@@ -1082,7 +1081,7 @@ Composition packages
    tools/pitchtools/chromatic_pitch_number_and_accidental_semitones_to_octave_number
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_class_number
    tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_name
-   tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple
+   tools/pitchtools/chromatic_pitch_number_to_chromatic_pitch_triple
    tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_class_number
    tools/pitchtools/chromatic_pitch_number_to_diatonic_pitch_number
    tools/pitchtools/chromatic_pitch_number_to_octave_number
@@ -1155,8 +1154,8 @@ Composition packages
    tools/pitchtools/register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_flats
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_sharps
-   tools/pitchtools/set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr
-   tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
+   tools/pitchtools/set_ascending_named_chromatic_pitches_on_tie_chains_in_expr
+   tools/pitchtools/set_ascending_named_diatonic_pitches_on_tie_chains_in_expr
    tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
    tools/pitchtools/sort_named_chromatic_pitch_carriers_in_expr
@@ -1166,7 +1165,7 @@ Composition packages
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation
    tools/pitchtools/transpose_chromatic_pitch_by_melodic_chromatic_interval_segment
-   tools/pitchtools/transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number
+   tools/pitchtools/transpose_chromatic_pitch_class_number_to_chromatic_pitch_number_neighbor
    tools/pitchtools/transpose_chromatic_pitch_number_by_octave_transposition_mapping
    tools/pitchtools/transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell
    tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
@@ -1392,11 +1391,15 @@ Composition packages
    tools/sequencetools/overwrite_sequence_elements_at_indices
    tools/sequencetools/pair_duration_sequence_elements_with_input_pair_values
    tools/sequencetools/partition_sequence_by_backgrounded_weights
+   tools/sequencetools/partition_sequence_by_counts
    tools/sequencetools/partition_sequence_by_ratio_of_lengths
    tools/sequencetools/partition_sequence_by_ratio_of_weights
    tools/sequencetools/partition_sequence_by_restricted_growth_function
    tools/sequencetools/partition_sequence_by_sign_of_elements
    tools/sequencetools/partition_sequence_by_value_of_elements
+   tools/sequencetools/partition_sequence_by_weights_at_least
+   tools/sequencetools/partition_sequence_by_weights_at_most
+   tools/sequencetools/partition_sequence_by_weights_exactly
    tools/sequencetools/partition_sequence_cyclically_by_counts_with_overhang
    tools/sequencetools/partition_sequence_cyclically_by_counts_without_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_at_least_with_overhang
@@ -1405,6 +1408,7 @@ Composition packages
    tools/sequencetools/partition_sequence_cyclically_by_weights_at_most_without_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_exactly_with_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_exactly_without_overhang
+   tools/sequencetools/partition_sequence_extended_to_counts
    tools/sequencetools/partition_sequence_extended_to_counts_with_overhang
    tools/sequencetools/partition_sequence_extended_to_counts_without_overhang
    tools/sequencetools/partition_sequence_once_by_counts_with_overhang
@@ -1435,8 +1439,10 @@ Composition packages
    tools/sequencetools/reverse_sequence_elements
    tools/sequencetools/rotate_sequence
    tools/sequencetools/splice_new_elements_between_sequence_elements
+   tools/sequencetools/split_sequence_by_weights
    tools/sequencetools/split_sequence_cyclically_by_weights_with_overhang
    tools/sequencetools/split_sequence_cyclically_by_weights_without_overhang
+   tools/sequencetools/split_sequence_extended_to_weights
    tools/sequencetools/split_sequence_extended_to_weights_with_overhang
    tools/sequencetools/split_sequence_extended_to_weights_without_overhang
    tools/sequencetools/split_sequence_once_by_weights_with_overhang
@@ -1545,6 +1551,7 @@ Composition packages
    :maxdepth: 1
 
    tools/spannertools/all_are_spanners
+   tools/spannertools/apply_octavation_spanner_to_pitched_components
    tools/spannertools/destroy_spanners_attached_to_component
    tools/spannertools/destroy_spanners_attached_to_components_in_expr
    tools/spannertools/find_index_of_spanner_component_at_score_offset

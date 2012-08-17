@@ -12,7 +12,7 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
         >>> voice = Voice(notetools.make_repeated_notes(2))
         >>> voice.append(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> f(voice)
         \new Voice {
            c'8

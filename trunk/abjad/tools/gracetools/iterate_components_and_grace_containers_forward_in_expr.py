@@ -38,7 +38,8 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
 
     ::
 
-        >>> for note in gracetools.iterate_components_and_grace_containers_forward_in_expr(voice, Note):
+        >>> x = gracetools.iterate_components_and_grace_containers_forward_in_expr(voice, Note)
+        >>> for note in x:
         ...     note
         ...
         Note("c'8")
@@ -58,16 +59,6 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
         renamed ``iterate.grace()`` to
         ``componenttools.iterate_components_and_grace_containers_forward_in_expr()``.
     '''
-
-#   if hasattr(expr, 'grace'):
-#      for m in expr.grace.before:
-#         for x in iterate_components_and_grace_containers_forward_in_expr(m, klass):
-#            yield x
-#      if isinstance(expr, klass):
-#         yield expr
-#      for m in expr.grace.after:
-#         for x in iterate_components_and_grace_containers_forward_in_expr(m, klass):
-#            yield x
 
     if hasattr(expr, '_grace'):
         for m in expr.grace:

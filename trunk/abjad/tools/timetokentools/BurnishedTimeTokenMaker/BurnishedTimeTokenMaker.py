@@ -11,15 +11,17 @@ import types
 class BurnishedTimeTokenMaker(TimeTokenMaker):
     '''.. versionadded:: 2.8
 
-    Abstract base class for time token makers that burnish some of all of the time tokens they produce.
+    Abstract base class for time token makers that burnish some of 
+    all of the time tokens they produce.
 
-    'Burnishing' means to forcibly cast the first or last (or both first and last) elements of a time
-    token to be either a note or rest.
+    'Burnishing' means to forcibly cast the first or last 
+    (or both first and last) elements of a time token to be 
+    either a note or rest.
 
     'Token-burnishing' time token makers burnish every time token they produce.
 
-    'Output-burnishing' time token makers burnish only the first and last time tokens they produce
-    and leave interior time tokens unchanged.
+    'Output-burnishing' time token makers burnish only the first and last 
+    time tokens they produce and leave interior time tokens unchanged.
     '''
 
     ### CLASS ATTRIBUTES ###

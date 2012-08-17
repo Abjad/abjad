@@ -9,7 +9,7 @@ def get_nth_measure_in_expr(expr, n=0):
     Get nth measure in `expr`::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
 
     ::
 

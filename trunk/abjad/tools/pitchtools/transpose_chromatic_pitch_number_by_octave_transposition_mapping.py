@@ -35,7 +35,8 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     for example, all the f-sharps within the range of the piano now
     undergo a known transposition under `mapping` as defined here::
 
-        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-30, mapping)
+        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+        ...     -30, mapping)
         6
 
     We verify that pitch ``-30`` should map to pitch ``6`` by noticing
@@ -45,7 +46,8 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     rooted at pitch ``0``. The octave transposition of ``-30`` that
     falls within the octave rooted at ``0`` is ``6``::
 
-        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-18, mapping)
+        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+        ...     -18, mapping)
         6
 
     Likewise, `mapping` sends pitch ``-18`` to pitch ``6`` because
@@ -58,7 +60,9 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
 
         >>> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
         >>> for n in pitch_numbers:
-        ...   n, pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(n, mapping)
+        ...   n, pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(
+        ...         n, mapping)
+        ...
         (-30, 6)
         (-18, 6)
         (-6, 18)

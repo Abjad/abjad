@@ -29,7 +29,7 @@ def test_spannertools__withdraw_components_in_expr_from_attached_spanners_02():
     '''Docs.'''
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t.leaves[:3])
     beamtools.BeamSpanner(t.leaves[3:])
 

@@ -27,7 +27,7 @@ def test_Measure_number_03():
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     assert t[0].measure_number == 1
     assert t[1].measure_number == 2

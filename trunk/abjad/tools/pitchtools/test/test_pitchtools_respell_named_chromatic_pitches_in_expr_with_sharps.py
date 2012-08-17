@@ -33,7 +33,7 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_sharps_04():
     helper renotates all pitches in any arbirary expression.'''
 
     t = Staff(notetools.make_repeated_notes(12))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(t)
 
     r'''

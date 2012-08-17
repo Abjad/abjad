@@ -1,6 +1,8 @@
 def partition_sequence_cyclically_by_weights_at_most_without_overhang(sequence, weights):
     '''.. versionadded:: 1.1
 
+    .. note:: Deprecated. Use ``partition_sequence_by_weights_at_most()`` instead.
+
     Partition `sequence` elements cyclically by `weights` at most without overhang::
 
         >>> from abjad.tools import sequencetools
@@ -17,7 +19,6 @@ def partition_sequence_cyclically_by_weights_at_most_without_overhang(sequence, 
 
     Return list sequence element reference lists.
     '''
-    from abjad.tools.sequencetools._partition_sequence_elements_by_weights_at_most import \
-        _partition_sequence_elements_by_weights_at_most
+    from abjad.tools import sequencetools
 
-    return _partition_sequence_elements_by_weights_at_most(sequence, weights, cyclic=True, overhang=False)
+    return sequencetools.partition_sequence_by_weights_at_most(sequence, weights, cyclic=True, overhang=False)

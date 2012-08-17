@@ -21,7 +21,7 @@ def copy_components_and_covered_spanners(components, n=1):
     Return copied components with covered spanners. ::
 
         >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
         >>> f(voice)
         \new Voice {

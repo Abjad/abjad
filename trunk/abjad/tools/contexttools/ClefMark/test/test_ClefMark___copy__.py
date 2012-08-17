@@ -6,7 +6,7 @@ def test_ClefMark___copy___01():
     '''
 
     t = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     contexttools.ClefMark('treble')(t[0])
     contexttools.ClefMark('bass')(t[4])
     t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[:2]))
@@ -49,7 +49,7 @@ def test_ClefMark___copy___02():
     '''
 
     t = Staff(notetools.make_repeated_notes(8))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     contexttools.ClefMark('treble')(t[0])
     contexttools.ClefMark('bass')(t[4])
     t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[2:4]))

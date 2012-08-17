@@ -1,7 +1,7 @@
+import numbers
 from abjad.tools import durationtools
 from abjad.tools import schemetools
 from abjad.tools.contexttools.ContextMark import ContextMark
-import numbers
 
 
 class TempoMark(ContextMark):
@@ -167,7 +167,8 @@ class TempoMark(ContextMark):
 
     @property
     def _equation(self):
-        '''Dotted numeral and units per minute together around equal sign.'''
+        '''Dotted numeral and units per minute together around equal sign.
+        '''
         if isinstance(self.units_per_minute, tuple):
             return '%s=%s~%s' % (self._dotted, self.units_per_minute[0], self.units_per_minute[1])
         return '%s=%s' % (self._dotted, self.units_per_minute)
@@ -291,7 +292,8 @@ class TempoMark(ContextMark):
             >>> tempo.quarters_per_minute
             Duration(104, 1)
 
-        Return fraction, or tuple if units_per_minute is a range, or None if tempo mark is imprecise.
+        Return fraction, or tuple if units_per_minute is a range, 
+        or None if tempo mark is imprecise.
         '''
         if self.is_imprecise:
             return None

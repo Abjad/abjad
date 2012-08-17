@@ -8,14 +8,14 @@ import math
 
 
 # TODO: can't this just return a named chromatic pitch class instance?
-def chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple(
+def chromatic_pitch_number_to_chromatic_pitch_triple(
     chromatic_pitch_number, accidental_spelling='mixed'):
     '''.. versionadded: 1.1.1
 
     Change `chromatic_pitch_number` to diatonic pitch-class name / alphabetic
     accidental abbreviation / octave number triple::
 
-        >>> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple(
+        >>> pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple(
         ... 13, accidental_spelling='sharps')
         ('c', Accidental('s'), 5)
 
@@ -23,7 +23,7 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number
 
     .. versionchanged:: 2.0
         renamed ``pitchtools.number_to_letter_accidental_octave()`` to
-        ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple()``.
+        ``pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple()``.
     '''
     from abjad.tools import pitchtools
 

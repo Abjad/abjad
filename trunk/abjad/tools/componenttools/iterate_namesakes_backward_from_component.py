@@ -10,7 +10,7 @@ def iterate_namesakes_backward_from_component(component, start=0, stop=None):
         >>> score = Score([])
         >>> score.is_parallel = False
         >>> score.extend(container * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
 
     ::
 

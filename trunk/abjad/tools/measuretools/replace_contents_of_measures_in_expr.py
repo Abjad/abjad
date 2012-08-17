@@ -1,7 +1,4 @@
-from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import contexttools
-from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr import append_spacer_skips_to_underfull_measures_in_expr
-from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component
 
 
 # TODO: fix bug in function that causes tied notes to become untied
@@ -10,7 +7,8 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     Replace contents of measures in `expr` with `new_contents`::
 
-        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (3, 16)]))
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(
+        ...     [(1, 8), (3, 16)]))
 
     ::
 
@@ -63,12 +61,13 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         renamed ``measuretools.overwrite_contents()`` to
         ``measuretools.replace_contents_of_measures_in_expr()``.
     '''
+    from abjad.tools import measuretools
 
     # init return list
     result = []
 
     # get first measure and first meter
-    cur_measure = get_next_measure_from_component(expr)
+    cur_measure = measuretools.get_next_measure_from_component(expr)
     result.append(cur_measure)
     cur_meter = contexttools.get_effective_time_signature(cur_measure)
     # to avoide pychecker slice assignment error
@@ -95,8 +94,8 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
             cur_meter = contexttools.TimeSignatureMark(cur_meter)
             contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
             cur_meter.attach(cur_measure)
-            append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
-            cur_measure = get_next_measure_from_component(cur_measure)
+            measuretools.append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
+            cur_measure = measuretools.get_next_measure_from_component(cur_measure)
             if cur_measure is None:
                 raise StopIteration
             result.append(cur_measure)
@@ -109,7 +108,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     cur_meter = contexttools.TimeSignatureMark(cur_meter)
     contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
     cur_meter.attach(cur_measure)
-    append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
+    measuretools.append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
 
     # return iterated measures
     return result

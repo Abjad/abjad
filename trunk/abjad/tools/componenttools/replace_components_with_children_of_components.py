@@ -4,7 +4,7 @@ def replace_components_with_children_of_components(components):
     Remove arbitrary `components` from score but retain children of `components` in score::
 
         >>> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> spannertools.SlurSpanner(staff[:])
         SlurSpanner({c'8, d'8}, {e'8, f'8})
         >>> beamtools.BeamSpanner(staff.leaves)

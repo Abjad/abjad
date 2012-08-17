@@ -7,7 +7,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
     '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -48,7 +48,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_02():
     '''Copy consecutive notes across tuplet boundary, in voice and staff.'''
 
     t = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -93,7 +93,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_03():
     '''Copy leaves from sequential containers only.'''
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     t.is_parallel = True
 
     assert py.test.raises(ContiguityError,
@@ -105,7 +105,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_04():
 
     t = Staff(Voice(notetools.make_repeated_notes(4)) * 2)
     t.is_parallel = True
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff <<
@@ -263,7 +263,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
 
     t = Measure((4, 8),
         tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     {
@@ -310,7 +310,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     '''
 
     t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -356,7 +356,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_11():
         pass start and stop indices local to tuplet.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -395,7 +395,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     '''
 
     t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -438,7 +438,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
     pass start and stop indices local to measure.'''
 
     t = Staff(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''

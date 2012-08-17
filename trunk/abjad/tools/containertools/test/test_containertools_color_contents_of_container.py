@@ -4,7 +4,7 @@ from abjad import *
 def test_containertools_color_contents_of_container_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
     containertools.color_contents_of_container(staff[1], 'blue')
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 

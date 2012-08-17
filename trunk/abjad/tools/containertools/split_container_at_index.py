@@ -14,7 +14,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
     Example 1. Split container and do not fracture crossing spanners::
 
         >>> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> beam = beamtools.BeamSpanner(voice[:])
 
     ::
@@ -64,7 +64,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
         >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
         >>> tuplet = voice[1]
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
         >>> beam = beamtools.BeamSpanner(voice[:])
 
     ::

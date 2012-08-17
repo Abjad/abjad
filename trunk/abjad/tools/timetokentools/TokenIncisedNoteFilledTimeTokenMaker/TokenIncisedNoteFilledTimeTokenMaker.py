@@ -25,7 +25,8 @@ class TokenIncisedNoteFilledTimeTokenMaker(TokenIncisedTimeTokenMaker):
 
     ::
 
-        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens)
+        >>> staff = Staff(measures)
         >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::

@@ -8,10 +8,6 @@ class Matrix(AbjadObject):
 
     Initialize from rows::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
     ::
@@ -36,7 +32,8 @@ class Matrix(AbjadObject):
 
     Initialize from columns::
 
-        >>> matrix = sequencetools.Matrix(columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> matrix = sequencetools.Matrix(
+        ...     columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
 

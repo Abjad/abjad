@@ -11,7 +11,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
         >>> container[0].name = 'voice 1'
         >>> container[1].name = 'vocie 2'
         >>> staff = Staff(container * 2)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
         >>> f(staff)
         \new Staff {
             <<
@@ -52,7 +52,8 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start=0, stop=4):
+        >>> for x in componenttools.iterate_components_forward_in_expr(
+        ...     staff, Note, start=0, stop=4):
         ...     x
         ...
         Note("c'8")
@@ -62,7 +63,8 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start=4):
+        >>> for x in componenttools.iterate_components_forward_in_expr(
+        ...     staff, Note, start=4):
         ...     x
         ...
         Note("g'8")
@@ -72,7 +74,8 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start=4, stop=6):
+        >>> for x in componenttools.iterate_components_forward_in_expr(
+        ...     staff, Note, start=4, stop=6):
         ...     x
         ...
         Note("g'8")

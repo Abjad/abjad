@@ -9,7 +9,8 @@ def apply_octavation_spanner_to_pitched_components(expr,
     Apply octavation spanner to pitched components in `expr`::
 
         >>> t = Measure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
-        >>> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch=14)
+        >>> spannertools.apply_octavation_spanner_to_pitched_components(
+        ...     t, ottava_numbered_diatonic_pitch=14)
         OctavationSpanner(|4/8(4)|)
 
     ::

@@ -6,7 +6,7 @@ def test_containertools_split_container_at_index_01():
     '''Index split tuplet in score and do not fracture spanners.'''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     p = beamtools.BeamSpanner(t[:])
 
     r'''
@@ -51,7 +51,7 @@ def test_containertools_split_container_at_index_02():
     '''Index split binary measure in score and do not fracture spanners.'''
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     p = beamtools.BeamSpanner(t[:])
 
     r'''
@@ -102,7 +102,7 @@ def test_containertools_split_container_at_index_03():
     '''Index split nonbinary measure in score and do not frature spanners.'''
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     p = beamtools.BeamSpanner(t[:])
 
     r'''
@@ -308,7 +308,7 @@ def test_containertools_split_container_at_index_10():
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
@@ -360,7 +360,7 @@ def test_containertools_split_container_at_index_11():
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
@@ -412,7 +412,7 @@ def test_containertools_split_container_at_index_12():
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     tuplet = t[1]
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[:])
 
     r'''
@@ -462,7 +462,7 @@ def test_containertools_split_container_at_index_13():
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
     beamtools.BeamSpanner(t[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -516,7 +516,7 @@ def test_containertools_split_container_at_index_14():
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
     beamtools.BeamSpanner(t[:])
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Voice {
@@ -683,7 +683,7 @@ def test_containertools_split_container_at_index_18():
     '''Index split measure in score and fracture spanners.'''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
@@ -734,7 +734,7 @@ def test_containertools_split_container_at_index_19():
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
@@ -785,7 +785,7 @@ def test_containertools_split_container_at_index_20():
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)

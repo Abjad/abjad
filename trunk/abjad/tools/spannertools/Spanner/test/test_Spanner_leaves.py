@@ -11,7 +11,7 @@ def test_Spanner_leaves_01():
             spannertools.Spanner.__init__(self, components)
 
     t = Voice(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     p = MockSpanner(t)
 
     assert len(p.components) == 1
@@ -31,7 +31,7 @@ def test_Spanner_leaves_02():
             spannertools.Spanner.__init__(self, components)
 
     t = Voice(notetools.make_repeated_notes(4))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     p = MockSpanner(t[:])
 
     assert len(p.components) == 4
@@ -68,7 +68,7 @@ def test_Spanner_leaves_04():
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(1, Container(notetools.make_repeated_notes(2)))
     t.insert(3, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     p = MockSpanner(t)
 
     r'''
@@ -105,7 +105,7 @@ def test_Spanner_leaves_05():
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(1, Container(notetools.make_repeated_notes(2)))
     t.insert(3, Container(notetools.make_repeated_notes(2)))
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     p = MockSpanner(t[0:3])
 
     r'''
@@ -147,7 +147,7 @@ def test_Spanner_leaves_06():
     t = Staff(notetools.make_repeated_notes(4))
     t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
     t[2].is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {
@@ -191,7 +191,7 @@ def test_Spanner_leaves_07():
     t = Staff(notetools.make_repeated_notes(4))
     t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
     t[2].is_parallel = True
-    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
 
     r'''
     \new Staff {

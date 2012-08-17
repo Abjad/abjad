@@ -1,8 +1,6 @@
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import timesignaturetools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools import durationtools
-
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
@@ -10,9 +8,8 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
     Move measure prolation to full-measure tuplet.
 
-    Turn nonbinary measures into binary measures containing a single fixed-duration tuplet.
-
-    This is the inverse of measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature().
+    Turn nonbinary measures into binary measures containing 
+    a single fixed-duration tuplet.
 
     Note that not all nonbinary measures can be made binary.
 
@@ -23,11 +20,12 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
         ``measuretools.move_measure_prolation_to_full_measure_tuplet()``.
     '''
     from abjad.tools import componenttools
-    from abjad.tools import contexttools
     from abjad.tools import containertools
-    from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+    from abjad.tools import contexttools
+    from abjad.tools import measuretools
+    from abjad.tools import tuplettools
 
-    for measure in iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).is_nonbinary:
 
             # find meter and contents multipliers
@@ -42,7 +40,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
             # find target duration and create tuplet
             target_duration = meter_multiplier * measure.contents_duration
-            tuplet = FixedDurationTuplet(target_duration, measure[:])
+            tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
 
             # scale tuplet contents, if helpful
             if contents_multiplier is not None:

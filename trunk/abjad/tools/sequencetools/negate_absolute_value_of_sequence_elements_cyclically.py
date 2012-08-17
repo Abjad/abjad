@@ -4,15 +4,12 @@ def negate_absolute_value_of_sequence_elements_cyclically(sequence, indices, per
     Negate the absolute value of `sequence` elements at `indices` cyclically
     according to `period`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequence = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
 
     ::
 
-        >>> sequencetools.negate_absolute_value_of_sequence_elements_cyclically(sequence, [0, 1, 2], 5)
+        >>> sequencetools.negate_absolute_value_of_sequence_elements_cyclically(
+        ...     sequence, [0, 1, 2], 5)
         [-1, -2, -3, 4, 5, -6, -7, -8, -9, -10]
 
     Return newly constructed list.

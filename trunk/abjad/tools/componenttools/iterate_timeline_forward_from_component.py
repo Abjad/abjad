@@ -10,7 +10,7 @@ def iterate_timeline_forward_from_component(expr, klass=None):
         >>> score = Score([])
         >>> score.append(Staff(notetools.make_repeated_notes(4, Duration(1, 4))))
         >>> score.append(Staff(notetools.make_repeated_notes(4)))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(score)
         >>> f(score)
         \new Score <<
             \new Staff {

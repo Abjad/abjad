@@ -1,15 +1,11 @@
-from abjad.tools import mathtools
 import itertools
+from abjad.tools import mathtools
 
 
 def partition_sequence_by_sign_of_elements(sequence, sign=[-1, 0, 1]):
     '''.. versionadded:: 1.1
 
     Partition `sequence` elements by sign::
-
-        >>> from abjad.tools import sequencetools
-
-    ::
 
         >>> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
