@@ -4,6 +4,8 @@ from abjad.tools.containertools._replace_first_n_elements_in_container_with_rest
 def replace_n_edge_elements_in_container_with_rests(container, n):
     r'''.. versionadded:: 2.0
 
+    .. note:: Deprecated. Use ``containertools.replace_container_slice_with_rests()`` instead.
+
     Replace first `n` elements in `container` with big-endian rests::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
