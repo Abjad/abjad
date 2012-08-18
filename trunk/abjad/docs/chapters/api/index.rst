@@ -1611,6 +1611,7 @@ Composition packages
    tools/stringtools/arg_to_bidirectional_lilypond_symbol
    tools/stringtools/arg_to_tridirectional_direction_string
    tools/stringtools/arg_to_tridirectional_lilypond_symbol
+   tools/stringtools/arg_to_tridirectional_ordinal_constant
    tools/stringtools/capitalize_string_start
    tools/stringtools/format_input_lines_as_doc_string
    tools/stringtools/format_input_lines_as_regression_test

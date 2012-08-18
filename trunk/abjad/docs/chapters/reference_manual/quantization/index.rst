@@ -45,6 +45,15 @@ and even rhythmic complexity in the process.
 
 ::
 
+   >>> q_schema = quantizationtools.MeasurewiseQSchema(
+   ...     search_tree=quantizationtools.SimpleSearchTree({11: None}),
+   ...     use_full_measure=True)
+   >>> result = quantizer(q_event_sequence, q_schema)
+   >>> staves.append(stafftools.Staff([result]))
+
+
+::
+
    >>> staff_group = scoretools.StaffGroup(staves)
    >>> score = scoretools.Score([staff_group])
    >>> show(score)
