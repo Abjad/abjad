@@ -8,26 +8,26 @@ def arg_to_bidirectional_direction_string(arg):
     ::
 
         >>> stringtools.arg_to_bidirectional_direction_string('^')
-        Up
+        'up'
 
     ::
 
         >>> stringtools.arg_to_bidirectional_direction_string('_')
-        Down
+        'down'
 
     ::
 
         >>> stringtools.arg_to_bidirectional_direction_string(1)
-        Up
+        'up'
 
     ::
 
         >>> stringtools.arg_to_bidirectional_direction_string(-1)
-        Down
+        'down'
 
-    If `arg` is Up or Down, `arg` will be returned.
+    If `arg` is 'up' or 'down', `arg` will be returned.
 
-    Return str or None.
+    Return string or none.
     '''
 
     lookup = { 
