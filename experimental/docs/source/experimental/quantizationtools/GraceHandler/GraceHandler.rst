@@ -16,9 +16,7 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
+.. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__call__
 
 .. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__eq__
 
@@ -31,10 +29,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__le__
 
@@ -51,11 +45,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.GraceHandler.GraceHandler.GraceHandler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

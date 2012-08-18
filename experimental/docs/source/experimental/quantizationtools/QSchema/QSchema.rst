@@ -9,8 +9,6 @@ quantizationtools.QSchema
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.cyclic
-
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.item_klass
 
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.items
@@ -32,10 +30,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__call__
 
-.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -50,10 +44,6 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -67,11 +57,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__repr__
-
-.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -24,10 +24,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__eq__
 
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ge__
@@ -37,10 +33,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__le__
 
@@ -57,11 +49,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__repr__
 
     Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
-
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__str__
-
-    Inherited from :py:class:`__builtin__.object`

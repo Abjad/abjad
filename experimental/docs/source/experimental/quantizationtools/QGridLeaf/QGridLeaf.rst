@@ -75,10 +75,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__
 
-.. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__eq__
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__ge__
@@ -88,10 +84,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__le__
 
@@ -108,11 +100,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -49,10 +49,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__eq__
 
 .. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__ge__
@@ -62,10 +58,6 @@ Special Methods
 .. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__le__
 
@@ -82,11 +74,3 @@ Special Methods
 .. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.__str__
-
-    Inherited from :py:class:`__builtin__.object`

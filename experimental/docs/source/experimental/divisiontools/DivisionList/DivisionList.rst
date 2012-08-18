@@ -42,10 +42,6 @@ Special Methods
 
 .. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__add__
 
-.. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -59,10 +55,6 @@ Special Methods
 .. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__le__
 
@@ -79,11 +71,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__repr__
-
-.. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.__str__
-
-    Inherited from :py:class:`__builtin__.object`

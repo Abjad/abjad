@@ -61,10 +61,6 @@ Special Methods
 
     Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
-.. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -76,10 +72,6 @@ Special Methods
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__le__
 
@@ -96,11 +88,3 @@ Special Methods
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__str__
-
-    Inherited from :py:class:`__builtin__.object`

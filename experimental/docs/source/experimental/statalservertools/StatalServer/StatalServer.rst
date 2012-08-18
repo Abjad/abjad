@@ -20,10 +20,6 @@ Special Methods
 
 .. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__call__
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -35,10 +31,6 @@ Special Methods
 .. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__le__
 
@@ -55,11 +47,3 @@ Special Methods
 .. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__str__
-
-    Inherited from :py:class:`__builtin__.object`

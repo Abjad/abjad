@@ -47,10 +47,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -62,10 +58,6 @@ Special Methods
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__le__
 
@@ -82,11 +74,3 @@ Special Methods
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__str__
-
-    Inherited from :py:class:`__builtin__.object`

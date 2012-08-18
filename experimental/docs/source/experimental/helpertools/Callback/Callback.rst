@@ -18,10 +18,6 @@ Special Methods
 
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__call__
 
-.. automethod:: experimental.helpertools.Callback.Callback.Callback.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.helpertools.Callback.Callback.Callback.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__le__
 
@@ -51,11 +43,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__repr__
-
-.. automethod:: experimental.helpertools.Callback.Callback.Callback.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.helpertools.Callback.Callback.Callback.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -18,10 +18,6 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__call__
 
-.. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__eq__
 
     Inherited from :py:class:`Handler.Handler <experimental.handlertools.Handler.Handler.Handler>`
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__le__
 
@@ -53,11 +45,3 @@ Special Methods
 .. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

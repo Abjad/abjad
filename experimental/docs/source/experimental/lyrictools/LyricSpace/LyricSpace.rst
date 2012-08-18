@@ -99,10 +99,6 @@ Special Methods
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -114,10 +110,6 @@ Special Methods
 .. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__le__
 
@@ -146,10 +138,6 @@ Special Methods
 .. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyrictools.LyricSpace.LyricSpace.LyricSpace.__str__
 

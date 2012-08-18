@@ -70,10 +70,6 @@ Special Methods
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: experimental.helpertools.KlassInventory.KlassInventory.KlassInventory.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.helpertools.KlassInventory.KlassInventory.KlassInventory.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,10 +142,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.helpertools.KlassInventory.KlassInventory.KlassInventory.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.helpertools.KlassInventory.KlassInventory.KlassInventory.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -157,7 +149,3 @@ Special Methods
 .. automethod:: experimental.helpertools.KlassInventory.KlassInventory.KlassInventory.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: experimental.helpertools.KlassInventory.KlassInventory.KlassInventory.__str__
-
-    Inherited from :py:class:`__builtin__.object`

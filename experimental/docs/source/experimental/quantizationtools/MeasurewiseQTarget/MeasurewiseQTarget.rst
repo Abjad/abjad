@@ -32,10 +32,6 @@ Special Methods
 
     Inherited from :py:class:`QTarget.QTarget <experimental.quantizationtools.QTarget.QTarget.QTarget>`
 
-.. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -47,10 +43,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__le__
 
@@ -67,11 +59,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.MeasurewiseQTarget.MeasurewiseQTarget.MeasurewiseQTarget.__str__
-
-    Inherited from :py:class:`__builtin__.object`

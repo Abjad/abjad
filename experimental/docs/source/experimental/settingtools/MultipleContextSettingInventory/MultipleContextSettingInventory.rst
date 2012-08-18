@@ -70,10 +70,6 @@ Special Methods
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: experimental.settingtools.MultipleContextSettingInventory.MultipleContextSettingInventory.MultipleContextSettingInventory.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.settingtools.MultipleContextSettingInventory.MultipleContextSettingInventory.MultipleContextSettingInventory.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,10 +142,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.settingtools.MultipleContextSettingInventory.MultipleContextSettingInventory.MultipleContextSettingInventory.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.settingtools.MultipleContextSettingInventory.MultipleContextSettingInventory.MultipleContextSettingInventory.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -157,7 +149,3 @@ Special Methods
 .. automethod:: experimental.settingtools.MultipleContextSettingInventory.MultipleContextSettingInventory.MultipleContextSettingInventory.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: experimental.settingtools.MultipleContextSettingInventory.MultipleContextSettingInventory.MultipleContextSettingInventory.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -22,10 +22,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -37,10 +33,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__le__
 
@@ -55,11 +47,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__repr__
-
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__str__
-
-    Inherited from :py:class:`__builtin__.object`

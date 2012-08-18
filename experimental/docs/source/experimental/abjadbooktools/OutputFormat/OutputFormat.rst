@@ -28,10 +28,6 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__call__
 
-.. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -43,10 +39,6 @@ Special Methods
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__le__
 
@@ -63,11 +55,3 @@ Special Methods
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__str__
-
-    Inherited from :py:class:`__builtin__.object`

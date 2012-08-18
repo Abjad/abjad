@@ -43,10 +43,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__eq__
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
@@ -58,10 +54,6 @@ Special Methods
 .. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__le__
 
@@ -78,11 +70,3 @@ Special Methods
 .. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__str__
-
-    Inherited from :py:class:`__builtin__.object`

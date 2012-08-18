@@ -20,10 +20,6 @@ Special Methods
 
     Inherited from :py:class:`Heuristic.Heuristic <experimental.quantizationtools.Heuristic.Heuristic.Heuristic>`
 
-.. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -35,10 +31,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__le__
 
@@ -55,11 +47,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__str__
-
-    Inherited from :py:class:`__builtin__.object`

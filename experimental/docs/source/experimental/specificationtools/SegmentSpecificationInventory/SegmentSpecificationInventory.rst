@@ -63,10 +63,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -135,10 +131,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,7 +138,3 @@ Special Methods
 .. automethod:: experimental.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: experimental.specificationtools.SegmentSpecificationInventory.SegmentSpecificationInventory.SegmentSpecificationInventory.__str__
-
-    Inherited from :py:class:`__builtin__.object`

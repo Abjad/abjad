@@ -26,10 +26,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -41,10 +37,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__iter__
 
@@ -63,11 +55,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.BeatHierarchy.BeatHierarchy.BeatHierarchy.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -37,10 +37,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__eq__
 
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__ge__
@@ -50,10 +46,6 @@ Special Methods
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__le__
 
@@ -70,11 +62,3 @@ Special Methods
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__str__
-
-    Inherited from :py:class:`__builtin__.object`

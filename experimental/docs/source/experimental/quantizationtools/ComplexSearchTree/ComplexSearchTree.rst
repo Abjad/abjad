@@ -41,10 +41,6 @@ Special Methods
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
-.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__eq__
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
@@ -56,10 +52,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__le__
 
@@ -76,11 +68,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__str__
-
-    Inherited from :py:class:`__builtin__.object`

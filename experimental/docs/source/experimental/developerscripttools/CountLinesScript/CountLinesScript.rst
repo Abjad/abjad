@@ -61,10 +61,6 @@ Special Methods
 
     Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
-.. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -76,10 +72,6 @@ Special Methods
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__le__
 
@@ -96,11 +88,3 @@ Special Methods
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__str__
-
-    Inherited from :py:class:`__builtin__.object`

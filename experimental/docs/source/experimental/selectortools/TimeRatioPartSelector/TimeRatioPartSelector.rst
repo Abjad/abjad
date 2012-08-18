@@ -53,10 +53,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -68,10 +64,6 @@ Special Methods
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__le__
 
@@ -88,11 +80,3 @@ Special Methods
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.__str__
-
-    Inherited from :py:class:`__builtin__.object`

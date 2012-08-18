@@ -18,10 +18,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__eq__
 
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__ge__
@@ -31,10 +27,6 @@ Special Methods
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__le__
 
@@ -51,11 +43,3 @@ Special Methods
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__str__
-
-    Inherited from :py:class:`__builtin__.object`

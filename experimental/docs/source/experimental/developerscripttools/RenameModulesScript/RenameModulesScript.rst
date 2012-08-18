@@ -57,10 +57,6 @@ Special Methods
 
     Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
-.. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -72,10 +68,6 @@ Special Methods
 .. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__le__
 
@@ -92,11 +84,3 @@ Special Methods
 .. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.developerscripttools.RenameModulesScript.RenameModulesScript.RenameModulesScript.__str__
-
-    Inherited from :py:class:`__builtin__.object`

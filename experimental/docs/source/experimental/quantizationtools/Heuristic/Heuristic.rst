@@ -18,10 +18,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__call__
 
-.. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__le__
 
@@ -53,11 +45,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__str__
-
-    Inherited from :py:class:`__builtin__.object`

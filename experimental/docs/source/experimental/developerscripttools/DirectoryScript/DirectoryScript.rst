@@ -71,10 +71,6 @@ Special Methods
 
     Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
-.. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -86,10 +82,6 @@ Special Methods
 .. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__le__
 
@@ -106,11 +98,3 @@ Special Methods
 .. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.developerscripttools.DirectoryScript.DirectoryScript.DirectoryScript.__str__
-
-    Inherited from :py:class:`__builtin__.object`

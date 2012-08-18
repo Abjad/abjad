@@ -107,10 +107,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: experimental.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.__delitem__
 
     Inherited from :py:class:`collections.OrderedDict`
@@ -155,12 +151,4 @@ Special Methods
 
     Inherited from :py:class:`collections.OrderedDict`
 
-.. automethod:: experimental.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.__setitem__
-
-.. automethod:: experimental.specificationtools.ContextProxyDictionary.ContextProxyDictionary.ContextProxyDictionary.__str__
-
-    Inherited from :py:class:`__builtin__.object`

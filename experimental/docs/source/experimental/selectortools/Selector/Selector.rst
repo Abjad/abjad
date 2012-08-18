@@ -25,10 +25,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -40,10 +36,6 @@ Special Methods
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.__le__
 
@@ -60,11 +52,3 @@ Special Methods
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.__str__
-
-    Inherited from :py:class:`__builtin__.object`

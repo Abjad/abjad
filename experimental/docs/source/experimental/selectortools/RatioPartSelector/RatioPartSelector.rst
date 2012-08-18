@@ -37,10 +37,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -52,10 +48,6 @@ Special Methods
 .. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__le__
 
@@ -72,11 +64,3 @@ Special Methods
 .. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.__str__
-
-    Inherited from :py:class:`__builtin__.object`

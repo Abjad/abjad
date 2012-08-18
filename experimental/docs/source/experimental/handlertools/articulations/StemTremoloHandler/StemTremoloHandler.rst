@@ -18,10 +18,6 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__call__
 
-.. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__eq__
 
     Inherited from :py:class:`Handler.Handler <experimental.handlertools.Handler.Handler.Handler>`
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__le__
 
@@ -53,11 +45,3 @@ Special Methods
 .. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

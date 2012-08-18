@@ -41,10 +41,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.tuple`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__eq__
 
     Inherited from :py:class:`__builtin__.tuple`
@@ -100,11 +96,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__rmul__
 
     Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem.__str__
-
-    Inherited from :py:class:`__builtin__.object`

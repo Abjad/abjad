@@ -207,12 +207,9 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
-   experimental/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
-   experimental/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/Heuristic/Heuristic
    experimental/quantizationtools/JobHandler/JobHandler
-   experimental/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
@@ -228,9 +225,12 @@ Unstable packages (load manually)
    experimental/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
    experimental/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
    experimental/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
+   experimental/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
    experimental/quantizationtools/ComplexSearchTree/ComplexSearchTree
    experimental/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
+   experimental/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
    experimental/quantizationtools/DistanceHeuristic/DistanceHeuristic
+   experimental/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget

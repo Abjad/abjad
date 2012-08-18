@@ -57,10 +57,6 @@ Special Methods
 
     Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
-.. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -72,10 +68,6 @@ Special Methods
 .. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__le__
 
@@ -92,11 +84,3 @@ Special Methods
 .. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.developerscripttools.SvnAddAllScript.SvnAddAllScript.SvnAddAllScript.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -16,10 +16,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.handlertools.Handler.Handler.Handler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__eq__
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__ge__
@@ -29,10 +25,6 @@ Special Methods
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlertools.Handler.Handler.Handler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__le__
 
@@ -49,11 +41,3 @@ Special Methods
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlertools.Handler.Handler.Handler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.handlertools.Handler.Handler.Handler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

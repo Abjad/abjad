@@ -88,10 +88,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: experimental.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.__delitem__
 
     Inherited from :py:class:`collections.OrderedDict`
@@ -140,14 +136,6 @@ Special Methods
 
     Inherited from :py:class:`collections.OrderedDict`
 
-.. automethod:: experimental.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.__setitem__
 
     Inherited from :py:class:`collections.OrderedDict`
-
-.. automethod:: experimental.helpertools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.__str__
-
-    Inherited from :py:class:`__builtin__.object`

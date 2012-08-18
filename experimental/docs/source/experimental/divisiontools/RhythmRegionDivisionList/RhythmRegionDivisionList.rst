@@ -68,10 +68,6 @@ Special Methods
 
     Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
 
-.. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -87,10 +83,6 @@ Special Methods
 .. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__le__
 
@@ -111,11 +103,3 @@ Special Methods
 .. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__repr__
 
     Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
-
-.. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__str__
-
-    Inherited from :py:class:`__builtin__.object`

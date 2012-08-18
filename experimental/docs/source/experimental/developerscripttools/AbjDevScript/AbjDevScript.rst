@@ -65,10 +65,6 @@ Special Methods
 
 .. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__call__
 
-.. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -80,10 +76,6 @@ Special Methods
 .. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__le__
 
@@ -100,11 +92,3 @@ Special Methods
 .. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.__str__
-
-    Inherited from :py:class:`__builtin__.object`

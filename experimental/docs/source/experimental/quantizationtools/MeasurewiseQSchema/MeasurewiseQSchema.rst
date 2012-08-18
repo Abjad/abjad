@@ -9,10 +9,6 @@ quantizationtools.MeasurewiseQSchema
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.cyclic
-
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
-
 .. autoattribute:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.item_klass
 
 .. autoattribute:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.items
@@ -46,10 +42,6 @@ Special Methods
 
     Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
-.. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -66,10 +58,6 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -85,11 +73,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__repr__
 
     Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
-
-.. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema.__str__
-
-    Inherited from :py:class:`__builtin__.object`

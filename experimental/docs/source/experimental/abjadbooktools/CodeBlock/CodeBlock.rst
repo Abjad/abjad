@@ -35,10 +35,6 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__call__
 
-.. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__eq__
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__ge__
@@ -48,10 +44,6 @@ Special Methods
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__le__
 
@@ -68,11 +60,3 @@ Special Methods
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -16,10 +16,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.requesttools.Request.Request.Request.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.requesttools.Request.Request.Request.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -31,10 +27,6 @@ Special Methods
 .. automethod:: experimental.requesttools.Request.Request.Request.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.requesttools.Request.Request.Request.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.requesttools.Request.Request.Request.__le__
 
@@ -51,11 +43,3 @@ Special Methods
 .. automethod:: experimental.requesttools.Request.Request.Request.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.requesttools.Request.Request.Request.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.requesttools.Request.Request.Request.__str__
-
-    Inherited from :py:class:`__builtin__.object`

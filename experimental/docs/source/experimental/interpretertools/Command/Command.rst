@@ -59,10 +59,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.interpretertools.Command.Command.Command.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.interpretertools.Command.Command.Command.__eq__
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.__ge__
@@ -72,10 +68,6 @@ Special Methods
 .. automethod:: experimental.interpretertools.Command.Command.Command.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.interpretertools.Command.Command.Command.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.interpretertools.Command.Command.Command.__le__
 
@@ -90,11 +82,3 @@ Special Methods
 .. automethod:: experimental.interpretertools.Command.Command.Command.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.interpretertools.Command.Command.Command.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.interpretertools.Command.Command.Command.__str__
-
-    Inherited from :py:class:`__builtin__.object`

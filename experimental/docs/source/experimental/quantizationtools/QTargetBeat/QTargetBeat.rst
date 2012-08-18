@@ -36,10 +36,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__call__
 
-.. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -51,10 +47,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__le__
 
@@ -71,11 +63,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__str__
-
-    Inherited from :py:class:`__builtin__.object`

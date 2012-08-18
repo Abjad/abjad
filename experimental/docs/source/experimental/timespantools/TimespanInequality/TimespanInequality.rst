@@ -29,10 +29,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__eq__
 
 .. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__ge__
@@ -42,10 +38,6 @@ Special Methods
 .. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__le__
 
@@ -62,11 +54,3 @@ Special Methods
 .. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.__str__
-
-    Inherited from :py:class:`__builtin__.object`

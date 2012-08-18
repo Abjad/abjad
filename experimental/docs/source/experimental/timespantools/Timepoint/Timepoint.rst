@@ -26,19 +26,11 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__eq__
 
 .. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__ge__
 
 .. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__gt__
-
-.. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__le__
 
@@ -51,11 +43,3 @@ Special Methods
 .. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.timespantools.Timepoint.Timepoint.Timepoint.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -35,10 +35,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.tuple`
 
-.. automethod:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__eq__
 
     Inherited from :py:class:`__builtin__.tuple`
@@ -92,11 +88,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__rmul__
 
     Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.__str__
-
-    Inherited from :py:class:`__builtin__.object`

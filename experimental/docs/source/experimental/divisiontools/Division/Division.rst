@@ -108,10 +108,6 @@ Special Methods
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: experimental.divisiontools.Division.Division.Division.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.divisiontools.Division.Division.Division.__div__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
@@ -215,10 +211,6 @@ Special Methods
 .. automethod:: experimental.divisiontools.Division.Division.Division.__rtruediv__
 
     Inherited from :py:class:`fractions.Fraction`
-
-.. automethod:: experimental.divisiontools.Division.Division.Division.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.divisiontools.Division.Division.Division.__str__
 

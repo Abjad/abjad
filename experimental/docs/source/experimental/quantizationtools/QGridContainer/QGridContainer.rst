@@ -116,10 +116,6 @@ Special Methods
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
 
-.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__delitem__
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
@@ -139,10 +135,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__iter__
 
@@ -168,14 +160,6 @@ Special Methods
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
 
-.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setitem__
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
-
-.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__str__
-
-    Inherited from :py:class:`__builtin__.object`

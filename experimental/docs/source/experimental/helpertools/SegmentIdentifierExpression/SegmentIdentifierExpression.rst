@@ -18,10 +18,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__le__
 
@@ -53,11 +45,3 @@ Special Methods
 .. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__str__
-
-    Inherited from :py:class:`__builtin__.object`

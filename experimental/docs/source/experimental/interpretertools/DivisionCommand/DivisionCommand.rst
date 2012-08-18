@@ -99,10 +99,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__eq__
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -114,10 +110,6 @@ Special Methods
 .. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__le__
 
@@ -134,11 +126,3 @@ Special Methods
 .. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__str__
-
-    Inherited from :py:class:`__builtin__.object`

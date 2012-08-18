@@ -26,10 +26,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__call__
 
-.. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__eq__
 
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__ge__
@@ -39,10 +35,6 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__le__
 
@@ -59,11 +51,3 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__str__
-
-    Inherited from :py:class:`__builtin__.object`
