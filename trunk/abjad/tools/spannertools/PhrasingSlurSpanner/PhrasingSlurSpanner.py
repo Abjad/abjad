@@ -1,4 +1,5 @@
 from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
+from abjad.tools import stringtools
 
 
 class PhrasingSlurSpanner(DirectedSpanner):
@@ -35,7 +36,7 @@ class PhrasingSlurSpanner(DirectedSpanner):
         result = []
         if self._is_my_first_leaf(leaf):
             if self.direction is not None:
-                result.append(r'%s \(' % self.direction)
+                result.append(r'{} \('.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)))
             else:
                 result.append(r'\(')
         if self._is_my_last_leaf(leaf):

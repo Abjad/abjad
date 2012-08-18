@@ -1,6 +1,6 @@
 from abc import ABCMeta
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.stringtools import arg_to_tridirectional_lilypond_symbol
+from abjad.tools import stringtools
 
 
 class _DirectedSpanner(Spanner):
@@ -18,5 +18,5 @@ class _DirectedSpanner(Spanner):
         def fget(self):
             return self._direction
         def fset(self, arg):
-            self._direction = arg_to_tridirectional_lilypond_symbol(arg)
+            self._direction = stringtools.arg_to_tridirectional_ordinal_constant(arg)
         return property(**locals())

@@ -1,4 +1,5 @@
 from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
+from abjad.tools import stringtools
 
 
 class HairpinSpanner(DirectedSpanner):
@@ -95,7 +96,7 @@ class HairpinSpanner(DirectedSpanner):
         effective_dynamic = contexttools.get_effective_dynamic(leaf)
         direction_string = ''
         if self.direction is not None:
-            direction_string = '%s ' % self.direction
+            direction_string = '{} '.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction))
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
