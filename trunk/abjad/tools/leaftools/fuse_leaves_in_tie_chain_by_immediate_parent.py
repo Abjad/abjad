@@ -1,5 +1,5 @@
 # TODO: implement corresponding little-endian function
-def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
+def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
     r'''.. versionadded:: 1.1
 
     Fuse leaves in `tie_chain` by immediate parent::
@@ -23,7 +23,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff.leaves[0])
-        >>> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+        >>> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)
         [[Note("c'4")], [Note("c'4")]]
 
     ::
@@ -43,10 +43,10 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
     .. versionchanged:: 2.0
         renamed ``fuse.leaves_in_tie_chain()`` to
-        ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()``.
+        ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()``.
     '''
     from abjad.tools import tietools
-    from abjad.tools.leaftools.fuse_leaves_big_endian import fuse_leaves_big_endian
+    from abjad.tools.leaftools.fuse_leaves import fuse_leaves
 
     # check input
     if not isinstance(tie_chain, tietools.TieChain):
@@ -60,7 +60,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
     # fuse leaves in each part
     for part in parts:
-        result.append(fuse_leaves_big_endian(part))
+        result.append(fuse_leaves(part))
 
     # return result
     return result

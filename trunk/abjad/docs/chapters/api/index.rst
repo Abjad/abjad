@@ -344,7 +344,7 @@ Composition packages
    tools/durationtools/assignable_rational_to_dot_count
    tools/durationtools/assignable_rational_to_lilypond_duration_string
    tools/durationtools/duration_pair_to_prolation_string
-   tools/durationtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
+   tools/durationtools/duration_token_to_assignable_duration_pairs
    tools/durationtools/duration_token_to_duration_pair
    tools/durationtools/duration_token_to_rational
    tools/durationtools/duration_tokens_to_duration_pairs
@@ -546,12 +546,12 @@ Composition packages
    tools/leaftools/divide_leaf_meiotically
    tools/leaftools/divide_leaves_in_expr_meiotically
    tools/leaftools/expr_has_leaf_with_dotted_written_duration
-   tools/leaftools/fuse_leaves_big_endian
+   tools/leaftools/fuse_leaves
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_notes
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_rests
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_notes
    tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_rests
-   tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
+   tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
    tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
    tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
    tools/leaftools/get_composite_offset_series_from_leaves_in_expr

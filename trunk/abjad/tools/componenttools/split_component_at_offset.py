@@ -224,9 +224,9 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
     # NOTE: If tie chain here is convenience, then fusing is good.
     #       If tie chain here is user-given, then fusing is less good.
     #       Maybe later model difference between user tie chains and not.
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
         tietools.get_tie_chain(leaf_left_of_split))
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
         tietools.get_tie_chain(leaf_right_of_split))
 
     # crawl above will kill any tie applied to leaves;

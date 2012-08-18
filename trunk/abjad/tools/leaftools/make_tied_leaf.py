@@ -22,7 +22,7 @@ def make_tied_leaf(kind, duration, big_endian=True, pitches=None, tied=True):
     from abjad.tools import tietools
 
     result = []
-    for written_duration in durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs(
+    for written_duration in durationtools.duration_token_to_assignable_duration_pairs(
         duration):
         if not pitches is None:
             args = (pitches, written_duration)

@@ -57,4 +57,4 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
         tie_chains = tietools.get_nontrivial_tie_chains_masked_by_components(group)
 
         for tie_chain in tie_chains:
-            leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+            leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)
