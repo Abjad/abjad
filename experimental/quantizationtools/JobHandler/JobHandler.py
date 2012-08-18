@@ -3,6 +3,11 @@ from abjad.tools import abctools
 
 
 class JobHandler(abctools.AbjadObject):
+    '''Abstact job handler class from which concrete job handlers inherit.
+
+    JobHandlers control how QuantizationJob instances are processed by the Quantizer,
+    either serially or in parallel.
+    '''
 
     ### INITIALIZER ###
 

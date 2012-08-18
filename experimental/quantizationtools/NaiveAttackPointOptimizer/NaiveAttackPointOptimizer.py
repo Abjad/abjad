@@ -9,4 +9,4 @@ class NaiveAttackPointOptimizer(AttackPointOptimizer):
 
     def __call__(self, expr):
         for tie_chain in tietools.iterate_tie_chains_backward_in_expr(expr):
-            leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+            leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)

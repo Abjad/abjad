@@ -4,11 +4,12 @@ from abjad.tools import durationtools
 
 
 class QEvent(abctools.AbjadObject):
-    '''A utility class for quantization comprising an offset time in milliseconds,
-    and some pitch information: a Number representing a single pitch, None representing silence,
-    or an Iterable comprised of Numbers representing a chord.
+    '''Abstract base class from which concrete QEvent subclasses inherit.
 
-    `QEvents` are immutable.
+    Represents an attack point to be quantized.
+
+    All QEvents have a rational offset, in milliseconds, and an optional index, for
+    disambiguating events which fall on the same offset.
     '''
 
     ### CLASS ATTRIBUTES ###
