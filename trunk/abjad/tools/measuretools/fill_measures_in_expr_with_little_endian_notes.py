@@ -1,6 +1,8 @@
 def fill_measures_in_expr_with_little_endian_notes(expr, iterctrl=None):
     '''.. versionadded:: 1.1
 
+    .. note:: Deprecated. Use ``measuretools.fill_measures_in_expr_with_minimal_number_of_notes()`` instead.
+
     Fill measures in `expr` with little-endian notes.
     '''
     from abjad.tools import contexttools

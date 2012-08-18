@@ -836,6 +836,7 @@ Composition packages
    tools/measuretools/fill_measures_in_expr_with_big_endian_notes
    tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
    tools/measuretools/fill_measures_in_expr_with_little_endian_notes
+   tools/measuretools/fill_measures_in_expr_with_minimal_number_of_notes
    tools/measuretools/fill_measures_in_expr_with_repeated_notes
    tools/measuretools/fill_measures_in_expr_with_time_signature_denominator_notes
    tools/measuretools/fuse_contiguous_measures_in_container_cyclically_by_counts
