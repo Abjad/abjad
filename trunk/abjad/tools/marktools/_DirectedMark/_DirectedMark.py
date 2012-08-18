@@ -1,12 +1,16 @@
 from abc import ABCMeta
 from abjad.tools.marktools.Mark import Mark
-from abjad.tools.stringtools import arg_to_tridirectional_lilypond_symbol
+from abjad.tools import stringtools
 
 
 class _DirectedMark(Mark):
 
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
     __slots__ = ('_direction', '_format_slot')
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         Mark.__init__(self, *args)
@@ -22,5 +26,5 @@ class _DirectedMark(Mark):
         def fget(self):
             return self._direction
         def fset(self, arg):
-            self._direction = arg_to_tridirectional_lilypond_symbol(arg)
+            self._direction = stringtools.arg_to_tridirectional_ordinal_constant(arg)
         return property(**locals())

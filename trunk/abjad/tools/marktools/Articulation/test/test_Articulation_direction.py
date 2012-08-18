@@ -10,4 +10,4 @@ def test_Articulation_direction_01():
 
     a.direction = '^'
 
-    assert a.direction == '^'
+    assert a.direction is Up

@@ -1,5 +1,6 @@
 from abjad.tools.componenttools.Component import Component
 from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
+from abjad.tools import stringtools
 
 
 class Articulation(_DirectedMark):
@@ -77,7 +78,7 @@ class Articulation(_DirectedMark):
             if self.direction is None:
                 direction = '-'
             else:
-                direction = self.direction
+                direction = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
             return '%s\%s' % (direction, string)
         else:
             return ''
