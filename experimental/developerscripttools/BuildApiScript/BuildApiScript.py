@@ -9,7 +9,7 @@ class BuildApiScript(DeveloperScript):
 
     ::
 
-        $ ajv api -h
+        bash$ ajv api -h
         usage: build-api [-h] [--version] [-M] [-X] [-C] [--format FORMAT]
 
         Build the Abjad APIs.

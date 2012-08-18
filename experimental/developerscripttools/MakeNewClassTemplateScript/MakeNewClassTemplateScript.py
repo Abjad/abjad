@@ -4,6 +4,26 @@ import os
 
 
 class MakeNewClassTemplateScript(DeveloperScript):
+    '''Utility for creating class stubs, complete with test subdirectory:
+
+    ::
+
+        bash$ ajv new class -h
+        usage: make-new-class-template [-h] [--version] (-X | -M) name
+
+        Make a new class template file.
+
+        positional arguments:
+          name                tools package qualified class name
+
+        optional arguments:
+          -h, --help          show this help message and exit
+          --version           show program's version number and exit
+          -X, --experimental  use the Abjad experimental path
+          -M, --mainline      use the Abjad mainline tools path
+
+    Return `MakeNewClassTemplateScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###
 

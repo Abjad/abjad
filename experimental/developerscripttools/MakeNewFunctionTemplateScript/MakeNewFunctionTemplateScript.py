@@ -3,6 +3,26 @@ import os
 
 
 class MakeNewFunctionTemplateScript(DeveloperScript):
+    '''Utility for creating a function stub file:
+
+    ::
+
+        bash$ ajv new function -h
+        usage: make-new-function-template [-h] [--version] (-X | -M) name
+
+        Make a new function template file.
+
+        positional arguments:
+          name                tools package qualified function name
+
+        optional arguments:
+          -h, --help          show this help message and exit
+          --version           show program's version number and exit
+          -X, --experimental  use the Abjad experimental path
+          -M, --mainline      use the Abjad mainline tools path
+
+    Return `MakeNewFunctionTemplateScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###
 

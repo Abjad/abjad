@@ -6,6 +6,37 @@ import os
 
 
 class CountLinewidthsScript(DirectoryScript):
+    '''`CountLinewidthsScript` tabulates the linewidths of modules in a path:
+
+    ::
+
+        bash$ ajv count linewidths -h
+        usage: count-linewidths [-h] [--version] [-l N] [-o w|m] [-C | -D] [-a | -d]
+                                [-gt N | -lt N | -eq N]
+                                path
+
+        Count maximum line-width of all modules in PATH.
+
+        positional arguments:
+          path                  directory tree to be recursed over
+
+        optional arguments:
+          -h, --help            show this help message and exit
+          --version             show program's version number and exit
+          -l N, --limit N       limit output to last N items
+          -o w|m, --order-by w|m
+                                order by line width [w] or module name [m]
+          -C, --code            count linewidths of all code in module
+          -D, --docstrings      count linewidths of all docstrings in module
+          -a, --ascending       sort results ascending
+          -d, --descending      sort results descending
+          -gt N, --greater-than N
+                                line widths greater than N
+          -lt N, --less-than N  line widths less than N
+          -eq N, --equal-to N   line widths equal to N
+         
+    Return `CountLinewidthsScript` instance.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

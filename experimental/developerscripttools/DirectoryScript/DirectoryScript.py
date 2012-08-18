@@ -4,6 +4,10 @@ import os
 
 
 class DirectoryScript(DeveloperScript):
+    '''`DirectoryScript` provides utilities for validating file system paths.
+
+    `DirectoryScript` is abstract.
+    '''
 
     ### PRIVATE METHODS ###
 

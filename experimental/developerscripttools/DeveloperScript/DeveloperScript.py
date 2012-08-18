@@ -8,26 +8,11 @@ import os
 class DeveloperScript(abctools.AbjadObject):
     '''Abjad object-oriented model of a developer script.
 
-    It can be used from the command line:
+    `DeveloperScript` is the abstract parent from which concrete developer scripts inherit.
 
-    ::
+    Developer scripts can be called from the command line, generally via the `ajv` command.
 
-        $ ./DeveloperScript.py --help
-        usage: developer [-h] [--version]
-
-        A short description.
-
-        optional arguments:
-          -h, --help  show this help message and exit
-          --version   show program's version number and exit
-
-        A long description.
-
-    ::
-
-        $ ./DeveloperScript.py --version
-        developer 1.0
-
+    Developer scripts can be instantiated by other developer scripts in order to share functionality. 
     '''
 
     ### CLASS ATTRIBUTES ###

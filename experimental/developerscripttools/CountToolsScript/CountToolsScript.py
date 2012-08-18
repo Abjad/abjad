@@ -6,6 +6,24 @@ import os
 
 
 class CountToolsScript(DirectoryScript):
+    '''`CountToolsScript` counts public and private functions and classes in a path:
+
+    ::
+
+        bash$ ajv count tools -h
+        usage: count-tools [-h] [--version] path
+
+        Count tools in PATH.
+
+        positional arguments:
+          path        directory tree to be recursed over
+
+        optional arguments:
+          -h, --help  show this help message and exit
+          --version   show program's version number and exit
+
+    Return `CountToolsScript` instance.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
