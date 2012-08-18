@@ -59,11 +59,11 @@ def get_all_mark_format_contributions(component):
         ### markup to be dealt with later ###
 
         elif isinstance(mark, markuptools.Markup):
-            if mark.direction == '^':
+            if mark.direction is Up:
                 up_markup.append(mark)
-            elif mark.direction == '_':
+            elif mark.direction is Down:
                 down_markup.append(mark)
-            elif mark.direction in ('-', None):
+            elif mark.direction in (Center, None):
                 neutral_markup.append(mark)
             continue
 

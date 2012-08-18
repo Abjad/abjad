@@ -178,13 +178,17 @@ class Markup(_DirectedMark):
         if is_indented:
             indent = '\t'
 
+        direction = ''
+        if self.direction is not None:
+            direction = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
+
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
-            if self.direction is not None:
-                return [r'{} \markup {{ {} }}'.format(self.direction, self.contents[0])]
+            if direction:
+                return [r'{} \markup {{ {} }}'.format(direction, self.contents[0])]
             return [r'\markup {{ {} }}'.format(self.contents[0])]
 
-        if self.direction is not None:
-            pieces = [r'{} \markup {{'.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction))]
+        if direction:
+            pieces = [r'{} \markup {{'.format(direction)]
         else:
             pieces = [r'\markup {']
         for content in self.contents:
