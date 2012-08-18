@@ -55,7 +55,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/developerscripttools/CountLinesScript/CountLinesScript
    experimental/developerscripttools/DeveloperScript/DeveloperScript
    experimental/developerscripttools/DirectoryScript/DirectoryScript
 
