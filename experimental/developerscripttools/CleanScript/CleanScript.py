@@ -5,6 +5,28 @@ import shutil
 
 
 class CleanScript(DirectoryScript):
+    '''`CleanScript` removes *.pyc files and __pycache__ and tmp* directories
+    recursively in a path:
+
+    ::
+
+        bash$ ajv clean -h
+        usage: clean [-h] [--version] [--pyc] [--pycache] [--tmp] path
+
+        Clean .pyc, __pycache__ and tmp* files and folders from PATH.
+
+        positional arguments:
+          path        directory tree to be recursed over
+
+        optional arguments:
+          -h, --help  show this help message and exit
+          --version   show program's version number and exit
+          --pyc       delete .pyc files
+          --pycache   delete __pycache__ folders
+          --tmp       delete tmp* folders
+
+    Return `CleanScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

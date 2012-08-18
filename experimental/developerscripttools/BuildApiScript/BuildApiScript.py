@@ -5,6 +5,25 @@ import os
 
 
 class BuildApiScript(DeveloperScript):
+    '''`BuildApiScript` is responsible for building the Abjad API:
+
+    ::
+
+        $ ajv api -h
+        usage: build-api [-h] [--version] [-M] [-X] [-C] [--format FORMAT]
+
+        Build the Abjad APIs.
+
+        optional arguments:
+          -h, --help          show this help message and exit
+          --version           show program's version number and exit
+          -M, --mainline      build the mainline API
+          -X, --experimental  build the experimental API
+          -C, --clean         run "make clean" before building the api
+          --format FORMAT     Sphinx builder to use
+
+    Return `BuildApiScript` instance.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -6,6 +6,33 @@ import os
 
 
 class AbjGrepScript(DirectoryScript):
+    '''`AbjGrepScript` runs `grep` against a path, ignoring `svn` and docs-related files:
+
+    ::
+
+        bash$ ajv grep -h
+        usage: abj-grep [-h] [--version] [-W] [-P PATH | -X | -M | -T | -R] pattern
+
+        grep PATTERN in PATH
+
+        positional arguments:
+          pattern               pattern to search for
+
+        optional arguments:
+          -h, --help            show this help message and exit
+          --version             show program's version number and exit
+          -W, --whole-words-only
+                                match only whole words, similar to grep's "-w" flag
+          -P PATH, --path PATH  grep PATH
+          -X, --experimental    grep Abjad experimental directory
+          -M, --mainline        grep Abjad mainline directory
+          -T, --tools           grep Abjad mainline tools directory
+          -R, --root            grep Abjad root directory
+
+        If no PATH flag is specified, the current directory will be searched.
+            
+    Return `AbjGrepScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

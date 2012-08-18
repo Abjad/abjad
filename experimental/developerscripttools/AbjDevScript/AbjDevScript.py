@@ -6,6 +6,57 @@ import os
 
 
 class AbjDevScript(DeveloperScript):
+    '''`AbjDevScript` is the commandline entry-point to the Abjad developer scripts catalog.
+
+    It can be accessed on the commandline via `abj-dev` or `ajv`:
+
+    ::
+
+        bash$ abj-dev
+        usage: abj-dev [-h] [--version]
+                       
+                       {help,list,api,book,clean,count,doctest,grep,new,rename,replace,svn}
+                       ...
+
+        Entry-point to Abjad developer scripts catalog.
+
+        optional arguments:
+          -h, --help            show this help message and exit
+          --version             show program's version number and exit
+
+        subcommands:
+          {help,list,api,book,clean,count,doctest,grep,new,rename,replace,svn}
+            help                print subcommand help
+            list                list subcommands
+            api                 Build the Abjad APIs.
+            book                Preprocess HTML, LaTeX or ReST source with Abjad.
+            clean               Clean .pyc, __pycache__ and tmp* files and folders
+                                from PATH.
+            count               "count"-related subcommands
+            doctest             Run doctests on all modules in current path.
+            grep                grep PATTERN in PATH
+            new                 "new"-related subcommands
+            rename              Rename public modules.
+            replace             "replace"-related subcommands
+            svn                 "svn"-related subcommands
+
+    `ajv` supports subcommands similar to `svn`:
+
+    ::
+
+        bash$ ajv count -h
+        usage: abj-dev count [-h] {linewidths,tools} ...
+
+        optional arguments:
+          -h, --help          show this help message and exit
+
+        count subcommands:
+          {linewidths,tools}
+            linewidths        Count maximum line-width of all modules in PATH.
+            tools             Count tools in PATH.
+
+    Return `AbjDevScript` instance.
+    '''
 
     ### SPECIAL METHODS ###
 
