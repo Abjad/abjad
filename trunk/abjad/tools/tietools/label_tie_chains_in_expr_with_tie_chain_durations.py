@@ -1,4 +1,4 @@
-def label_tie_chains_in_expr_with_tie_chain_durations(expr, markup_direction='down'):
+def label_tie_chains_in_expr_with_tie_chain_durations(expr, markup_direction=Down):
     r'''Label tie chains in `expr` with both written tie chain duration
     and prolated tie chain duration::
 

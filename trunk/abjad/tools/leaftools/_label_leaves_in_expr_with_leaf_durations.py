@@ -1,7 +1,7 @@
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
-def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
+def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = Down,
     show = ['written', 'prolated'], ties = 'together'):
     r'''Label leaves in expr with written leaf duration, prolated leaf duration
     or both written and prolated leaf durations.

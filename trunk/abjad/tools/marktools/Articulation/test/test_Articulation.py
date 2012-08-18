@@ -12,7 +12,7 @@ def test_Articulation_01():
     a = marktools.Articulation('^\\marcato')
     assert a.name == 'marcato'
     assert a.direction == '^'
-    a = marktools.Articulation('legato', 'down')
+    a = marktools.Articulation('legato', Down)
     assert a.name == 'legato'
     assert a.direction == '_'
 
@@ -66,7 +66,7 @@ def test_Articulation_06():
     '''
 
     t = Note("c'4")
-    a = marktools.Articulation('staccato', 'down')(t)
+    a = marktools.Articulation('staccato', Down)(t)
     assert a.direction == '_'
     assert str(a) == r'_\staccato'
 

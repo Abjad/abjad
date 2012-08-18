@@ -7,6 +7,16 @@ def _format_lilypond_value(value):
         return '##t'
     elif value is False:
         return '##f'
+    elif value is Up:
+        return '#up'
+    elif value is Down:
+        return '#down'
+    elif value is Left:
+        return '#left'
+    elif value is Right:
+        return '#right'
+    elif value is Center:
+        return '#center'
     elif _is_lilypond_constant(value):
         return '#%s' % value
     elif _is_lilypond_function_name(value):

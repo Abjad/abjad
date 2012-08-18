@@ -202,7 +202,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_11():
 
     t = Chord([-11, 2, 5], (1, 4))
     markuptools.Markup('UP', 'up')(t)
-    markuptools.Markup('DOWN', 'down')(t)
+    markuptools.Markup('DOWN', Down)(t)
 
     "<cs d' f'>4 ^ \markup { UP } _ \markup { DOWN }"
 

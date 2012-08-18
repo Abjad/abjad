@@ -1,7 +1,7 @@
 from abjad.tools import markuptools
 
 
-def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(expr, markup_direction='down'):
+def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(expr, markup_direction=Down):
     r'''.. versionadded:: 2.0
 
     Label pitch-classes of every vertical moment in `expr`::

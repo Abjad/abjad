@@ -2,7 +2,7 @@ from abjad.tools import markuptools
 from abjad.tools import notetools
 
 
-def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_direction='down'):
+def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_direction=Down):
     r'''.. versionadded:: 2.0
 
     Label diatonic intervals of every vertical moment in `expr`::

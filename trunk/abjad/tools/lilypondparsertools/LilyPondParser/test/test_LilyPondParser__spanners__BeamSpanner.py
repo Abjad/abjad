@@ -88,7 +88,7 @@ def test_LilyPondParser__spanners__BeamSpanner_07():
     '''With direction.'''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     beamtools.BeamSpanner(target[0:3], direction='up')
-    beamtools.BeamSpanner(target[3:], direction='down')
+    beamtools.BeamSpanner(target[3:], direction=Down)
 
     r'''{
         c'4 ^ [

@@ -1,4 +1,4 @@
-def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direction='down'):
+def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direction=Down):
     r'''Label tie chains in `expr` with written tie chain duration.::
 
         >>> staff = Staff(r"\times 2/3 { c'8 ~ c'8 c'8 ~ } c'8")

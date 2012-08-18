@@ -10,7 +10,7 @@ def test_arg_to_tridirectional_lilypond_symbol_01():
     assert stringtools.arg_to_tridirectional_lilypond_symbol('up') == '^'
     assert stringtools.arg_to_tridirectional_lilypond_symbol('default') == '-'
     assert stringtools.arg_to_tridirectional_lilypond_symbol('neutral') == '-'
-    assert stringtools.arg_to_tridirectional_lilypond_symbol('down') == '_'
+    assert stringtools.arg_to_tridirectional_lilypond_symbol(Down) == '_'
     assert stringtools.arg_to_tridirectional_lilypond_symbol(1) == '^'
     assert stringtools.arg_to_tridirectional_lilypond_symbol(0) == '-'
     assert stringtools.arg_to_tridirectional_lilypond_symbol(-1) == '_'

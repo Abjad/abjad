@@ -481,7 +481,7 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'double-bass-tuning': 'double-bass-tuning',
-    'down': -1,
+    Down: -1,
     'downbow': {
         'articulation-type': 'downbow',
         'name': 'ArticulationEvent',

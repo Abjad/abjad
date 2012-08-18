@@ -103,7 +103,7 @@ beamtools.BeamSpanner(lower_staff.leaves[10:13])
 
 spannertools.SlurSpanner(lower_staff.leaves[1:6])
 slr = spannertools.SlurSpanner(lower_staff.leaves[6:13] + [v2a, v2b])
-slr.position = 'down'
+slr.position = Down
 
 lower_staff.barline.kind = '||'
 

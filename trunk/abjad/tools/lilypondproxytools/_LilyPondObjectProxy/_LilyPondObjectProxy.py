@@ -7,7 +7,12 @@ class _LilyPondObjectProxy(AbjadObject):
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
 
     def __init__(self, **kwargs):
         for key, value in kwargs.iteritems():

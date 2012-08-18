@@ -59,7 +59,7 @@ Extended markup handling is now available.
     >>> m1 = markuptools.Markup('foo')(staff[0])
     >>> m2 = markuptools.Markup('bar')(staff[0])
     >>> m3 = markuptools.Markup('baz', 'up')(staff[0])
-    >>> m4 = markuptools.Markup('quux', 'down')(staff[0])
+    >>> m4 = markuptools.Markup('quux', Down)(staff[0])
     >>> accent = marktools.Articulation('accent')(staff[0])
 
   ::
@@ -1474,7 +1474,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     }
 
   The direction options are exactly the same as for ``Articulation`` and ``Markup``: 
-  ``'up'``, ``'^'``, ``'down'``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
+  ``'up'``, ``'^'``, ``Down``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
 
 - Extended ``tonalitytools.Scale`` with ``create_named_chromatic_pitch_set_in_pitch_range()`` method.
 

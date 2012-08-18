@@ -33,7 +33,7 @@ def test_LilyPondParser__spanners__TieSpanner_04():
 def test_LilyPondParser__spanners__TieSpanner_05():
     '''With direction.'''
     target = Container([Note(0, 1), Note(0, 1)])
-    tietools.TieSpanner(target[:], direction='down')
+    tietools.TieSpanner(target[:], direction=Down)
     parser = LilyPondParser()
     result = parser(target.lilypond_format)
     assert target.lilypond_format == result.lilypond_format and target is not result

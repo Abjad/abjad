@@ -1142,7 +1142,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
-    t.override.tuplet_bracket.direction = 'down'
+    t.override.tuplet_bracket.direction = Down
 
     r'''
     \new Voice \with {
@@ -1165,7 +1165,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
-    t[1].override.tuplet_bracket.direction = 'down'
+    t[1].override.tuplet_bracket.direction = Down
 
     r'''
     \new Voice {

@@ -27,7 +27,7 @@ def test_MeasuredComplexBeamSpanner_direction_01():
     }
     '''
 
-    beam = beamtools.MeasuredComplexBeamSpanner(t[:], direction='down')
+    beam = beamtools.MeasuredComplexBeamSpanner(t[:], direction=Down)
 
     r'''
     \new Staff {

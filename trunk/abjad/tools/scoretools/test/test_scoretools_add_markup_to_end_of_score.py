@@ -5,7 +5,7 @@ def test_scoretools_add_markup_to_end_of_score_01():
 
     staff = Staff("c'4 d'4 e'4 f'4")
     markup = r'\italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }'
-    markup = markuptools.Markup(markup, 'down')
+    markup = markuptools.Markup(markup, Down)
     scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
 
     r'''

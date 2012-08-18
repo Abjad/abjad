@@ -274,7 +274,7 @@ class TonalFunction(AbjadObject):
     def markup(self):
         symbolic_string = self.symbolic_string
         symbolic_string = symbolic_string.replace('#', r'\sharp ')
-        return markuptools.Markup(symbolic_string, 'down')
+        return markuptools.Markup(symbolic_string, Down)
 
     @property
     def quality(self):

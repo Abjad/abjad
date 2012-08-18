@@ -10,7 +10,7 @@ def test_componenttools_report_component_format_contributions_01():
     t.override.stem.color = 'red'
     marktools.Articulation('staccato')(t)
     marktools.Articulation('tenuto')(t)
-    markuptools.Markup(r'\italic { ben. marcato }', 'down')(t)
+    markuptools.Markup(r'\italic { ben. marcato }', Down)(t)
     marktools.LilyPondComment('textual information before', 'before')(t)
     marktools.LilyPondComment('textual information after', 'after')(t)
 

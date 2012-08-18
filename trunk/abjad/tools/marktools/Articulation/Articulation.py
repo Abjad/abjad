@@ -20,16 +20,21 @@ class Articulation(_DirectedMark):
     Articulations implement ``__slots__``.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_string', '_direction', '_format_slot')
 
+    ### INITIALIZER ###
+
     def __init__(self, *args):
+        from abjad.tools import datastructuretools
         assert len(args) in range(3)
         if 2 <= len(args):
             assert isinstance(args[0], (str, type(None)))
-            assert isinstance(args[1], (str, type(None)))
+            assert isinstance(args[1], (str, type(None), datastructuretools.OrdinalConstant))
             string, direction = args
         elif len(args) == 1:
-            assert isinstance(args[0], (str, type(None)))
+            assert isinstance(args[0], (str, type(None), datastructuretools.OrdinalConstant))
             if args[0]:
                 splits = args[0].split('\\')
                 assert len(splits) in (1, 2)

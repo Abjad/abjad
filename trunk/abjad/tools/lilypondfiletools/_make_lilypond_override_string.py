@@ -3,8 +3,7 @@ from _format_lilypond_value import _format_lilypond_value
 from abjad.tools import stringtools
 
 
-def _make_lilypond_override_string(grob_name, grob_attribute, grob_value,
-    context_name = None, is_once = False):
+def _make_lilypond_override_string(grob_name, grob_attribute, grob_value, context_name=None, is_once=False):
     '''.. versionadded:: 2.0
 
     Does not include once indicator.

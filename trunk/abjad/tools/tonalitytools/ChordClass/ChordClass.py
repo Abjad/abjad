@@ -161,7 +161,7 @@ class ChordClass(NamedChromaticPitchClassSet):
             inv = r" \raise #1 \fontsize #-3 \override #'(baseline-skip . 1.5)"
             inv += r' \column { %s }' % ' '.join(inversion.split('/'))
             markup += inv
-        return markuptools.Markup(markup, 'down')
+        return markuptools.Markup(markup, Down)
 
     @property
     def quality_indicator(self):

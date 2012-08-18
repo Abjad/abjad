@@ -86,7 +86,7 @@ def test_LilyPondParser__spanners__HairpinSpanner_07():
     '''With direction.'''
     target = Staff(notetools.make_notes([0] * 5, [(1, 4)]))
     spannertools.HairpinSpanner(target[:3], '<', direction = 'up')
-    spannertools.HairpinSpanner(target[2:], '>', direction = 'down')
+    spannertools.HairpinSpanner(target[2:], '>', direction = Down)
     contexttools.DynamicMark('ppp')(target[-1])
 
     r'''\new Staff {

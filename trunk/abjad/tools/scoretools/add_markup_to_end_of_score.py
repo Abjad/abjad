@@ -8,7 +8,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> markup = r'\italic \right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }'
-        >>> markup = markuptools.Markup(markup, 'down')
+        >>> markup = markuptools.Markup(markup, Down)
         >>> markup = scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
 
     ::
@@ -37,7 +37,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
 
     last_leaf = leaftools.get_nth_leaf_in_expr(score, -1)
     # TODO: copy markup direction from markup input
-    markup = markuptools.Markup(markup, 'down')(last_leaf)
+    markup = markuptools.Markup(markup, Down)(last_leaf)
 
     if extra_offset is not None:
         last_leaf.override.text_script.extra_offset = extra_offset

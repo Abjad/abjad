@@ -2,7 +2,7 @@ from abjad.tools import pitchtools
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
-def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction='down'):
+def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
     r'''.. versionadded:: 1.1
 
     Label leaves in `expr` with pitch numbers::

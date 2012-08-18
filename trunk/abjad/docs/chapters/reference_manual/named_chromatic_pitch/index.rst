@@ -294,7 +294,7 @@ The code to generate this table is as follows::
             treble.append(rest)
             bass.append(note)
         diatonic_pitch_number = str(note.pitch.numbered_chromatic_pitch)
-        markuptools.Markup(diatonic_pitch_number, 'down')(bass[-1])
+        markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
 
     score.override.rest.transparent = True
     score.override.stem.stencil = False
@@ -338,7 +338,7 @@ The code to generate this table is as follows::
             treble.append(rest)
             bass.append(note)
         diatonic_pitch_number = abs(note.pitch.numbered_diatonic_pitch)
-        markuptools.Markup(diatonic_pitch_number, 'down')(bass[-1])
+        markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
 
     score.override.rest.transparent = True
     score.override.stem.stencil = False
