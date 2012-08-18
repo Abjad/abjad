@@ -46,6 +46,8 @@ class ClassDocumenter(Documenter):
 
         attrs = inspect.classify_class_attrs(self._object)
         for attr in attrs:
+            if attr.defining_class is object:
+                continue
             if self._attribute_is_inherited(attr):
                 inherited_attributes.append(attr)
             if attr.kind in ('class method', 'method'):
