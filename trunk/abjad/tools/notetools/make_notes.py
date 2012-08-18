@@ -6,7 +6,7 @@ import fractions
 import numbers
 
 
-def make_notes(pitches, durations, direction='big-endian'):
+def make_notes(pitches, durations, big_endian=True):
     '''Make notes according to `pitches` and `durations`.
 
     Cycle through `pitches` when the length of `pitches` is less than the 
@@ -26,16 +26,14 @@ def make_notes(pitches, durations, direction='big-endian'):
         >>> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
         [Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8")]
 
-    Set `direction` to ``'big-endian'`` to express tied values in 
-    decreasing duration::
+    Set ``big_endian=True`` to express tied values in decreasing duration::
 
-        >>> notetools.make_notes([0], [(13, 16)], direction = 'big-endian')
+        >>> notetools.make_notes([0], [(13, 16)], big_endian=True)
         [Note("c'2."), Note("c'16")]
 
-    Set `direction` to ``'little-endian'`` to express tied values in 
-    increasing duration::
+    Set ``big_endian=False`` to express tied values in increasing duration::
 
-        >>> notetools.make_notes([0], [(13, 16)], direction = 'little-endian')
+        >>> notetools.make_notes([0], [(13, 16)], big_endian=False)
         [Note("c'16"), Note("c'2.")]
 
     Set `pitches` to a single pitch or a sequence of pitches.
@@ -78,11 +76,11 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     durations = durationtools.group_duration_tokens_by_implied_prolation(durations)
 
-    def _make_unprolated_notes(pitches, durations, direction='big-endian'):
+    def _make_unprolated_notes(pitches, durations, big_endian=big_endian):
         assert len(pitches) == len(durations)
         result = []
-        for pitch, dur in zip(pitches, durations):
-            result.extend(notetools.make_tied_note(pitch, dur, direction))
+        for pitch, duration in zip(pitches, durations):
+            result.extend(notetools.make_tied_note(pitch, duration, big_endian=big_endian))
         return result
 
     result = []
@@ -94,7 +92,7 @@ def make_notes(pitches, durations, direction='big-endian'):
         ps = pitches[0:len(duration)]
         pitches = pitches[len(duration):]
         if len(factors) == 0:
-            result.extend(_make_unprolated_notes(ps, duration, direction))
+            result.extend(_make_unprolated_notes(ps, duration, big_endian=big_endian))
         else:
             # compute prolation
             denominator = duration[0][1]
@@ -102,7 +100,7 @@ def make_notes(pitches, durations, direction='big-endian'):
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
             duration = [ratio * durationtools.Duration(*d) for d in duration]
-            ns = _make_unprolated_notes(ps, duration, direction)
+            ns = _make_unprolated_notes(ps, duration, big_endian=big_endian)
             t = tuplettools.Tuplet(multiplier, ns)
             result.append(t)
 

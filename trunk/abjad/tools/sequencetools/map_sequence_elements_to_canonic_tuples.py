@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 
 
-def map_sequence_elements_to_canonic_tuples(sequence, direction='big-endian'):
+def map_sequence_elements_to_canonic_tuples(sequence, big_endian=True):
     '''.. versionadded:: 1.1
 
     Partition `sequence` elements into canonic big-endian parts::
@@ -13,7 +13,7 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction='big-endian'):
     Partition `sequence` elements into canonic little-endian parts::
 
         >>> sequencetools.map_sequence_elements_to_canonic_tuples(
-        ...     range(10), direction='little-endian')
+        ...     range(10), big_endian=False)
         [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 
     Raise type error when `sequence` is not a list.
@@ -36,6 +36,6 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction='big-endian'):
     result = []
 
     for x in sequence:
-        result.append(mathtools.partition_integer_into_canonic_parts(x, direction=direction))
+        result.append(mathtools.partition_integer_into_canonic_parts(x, big_endian=big_endian))
 
     return result

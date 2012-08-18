@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.tools import mathtools
 import py.test
 
 
@@ -47,29 +46,18 @@ def test_mathtools_partition_integer_into_canonic_parts_03():
 
 def test_mathtools_partition_integer_into_canonic_parts_04():
 
-    assert mathtools.partition_integer_into_canonic_parts(
-        11, direction = 'little-endian') == (3, 8)
-    assert mathtools.partition_integer_into_canonic_parts(
-        12, direction = 'little-endian') == (12, )
-    assert mathtools.partition_integer_into_canonic_parts(
-        13, direction = 'little-endian') == (1, 12)
-    assert mathtools.partition_integer_into_canonic_parts(
-        14, direction = 'little-endian') == (14, )
-    assert mathtools.partition_integer_into_canonic_parts(
-        15, direction = 'little-endian') == (15, )
-    assert mathtools.partition_integer_into_canonic_parts(
-        16, direction = 'little-endian') == (16, )
-    assert mathtools.partition_integer_into_canonic_parts(
-        17, direction = 'little-endian') == (1, 16)
-    assert mathtools.partition_integer_into_canonic_parts(
-        18, direction = 'little-endian') == (2, 16)
-    assert mathtools.partition_integer_into_canonic_parts(
-        19, direction = 'little-endian') == (3, 16)
-    assert mathtools.partition_integer_into_canonic_parts(
-        20, direction = 'little-endian') == (4, 16)
+    assert mathtools.partition_integer_into_canonic_parts(11, big_endian=False) == (3, 8)
+    assert mathtools.partition_integer_into_canonic_parts(12, big_endian=False) == (12, )
+    assert mathtools.partition_integer_into_canonic_parts(13, big_endian=False) == (1, 12)
+    assert mathtools.partition_integer_into_canonic_parts(14, big_endian=False) == (14, )
+    assert mathtools.partition_integer_into_canonic_parts(15, big_endian=False) == (15, )
+    assert mathtools.partition_integer_into_canonic_parts(16, big_endian=False) == (16, )
+    assert mathtools.partition_integer_into_canonic_parts(17, big_endian=False) == (1, 16)
+    assert mathtools.partition_integer_into_canonic_parts(18, big_endian=False) == (2, 16)
+    assert mathtools.partition_integer_into_canonic_parts(19, big_endian=False) == (3, 16)
+    assert mathtools.partition_integer_into_canonic_parts(20, big_endian=False) == (4, 16)
 
 
 def test_mathtools_partition_integer_into_canonic_parts_05():
 
-    assert py.test.raises(
-        TypeError, 'mathtools.partition_integer_into_canonic_parts(7.5)')
+    assert py.test.raises(TypeError, 'mathtools.partition_integer_into_canonic_parts(7.5)')

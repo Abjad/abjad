@@ -1,10 +1,9 @@
-from abjad.tools.leaftools.make_tied_leaf import make_tied_leaf
-
-
-def make_tied_chord(pitches, dur, direction='big-endian'):
+def make_tied_chord(pitches, duration, big_endian=True):
     '''Returns a list of chords to fill the given duration.
-        Chords returned are Tie spanned.
-    '''
 
-    from abjad.tools.chordtools.Chord import Chord
-    return make_tied_leaf(Chord, dur, direction, pitches)
+    Chords returned are tie spanned.
+    '''
+    from abjad.tools import chordtools
+    from abjad.tools import leaftools
+
+    return leaftools.make_tied_leaf(chordtools.Chord, duration, big_endian=big_endian, pitches=pitches)

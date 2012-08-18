@@ -70,14 +70,8 @@ def replace_container_slice_with_rests(container, start=None, stop=None, big_end
         # find preprolated duration of elements to replace
         duration = componenttools.sum_preprolated_duration_of_components(elements_to_replace)
 
-        # determine keyword
-        if big_endian:
-            direction = 'big-endian'
-        else:
-            direction = 'little-endian'
-
         # construct rests equal in preprolated duration to replace
-        rests = resttools.make_rests(duration, direction=direction)
+        rests = resttools.make_rests(duration, big_endian=big_endian)
 
         # replace container elements with rests
         container[start:stop] = rests

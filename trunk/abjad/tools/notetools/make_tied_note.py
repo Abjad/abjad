@@ -1,10 +1,9 @@
-from abjad.tools.leaftools.make_tied_leaf import make_tied_leaf
-
-
-def make_tied_note(pitch, dur, direction='big-endian'):
+def make_tied_note(pitch, duration, big_endian=True):
     '''Returns a list of notes to fill the given duration.
-        Notes returned are Tie spanned.
-    '''
-    from abjad.tools.notetools.Note import Note
 
-    return make_tied_leaf(Note, dur, direction, pitch)
+    Notes returned are tie-spanned.
+    '''
+    from abjad.tools import notetools
+    from abjad.tools import leaftools
+
+    return leaftools.make_tied_leaf(notetools.Note, duration, big_endian=big_endian, pitches=pitch, tied=True)

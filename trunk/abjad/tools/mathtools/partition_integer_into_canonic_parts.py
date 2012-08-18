@@ -2,14 +2,10 @@ from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_str
 from abjad.tools.mathtools.sign import sign
 
 
-def partition_integer_into_canonic_parts(n, direction='big-endian'):
+def partition_integer_into_canonic_parts(n, big_endian=True):
     '''Partition integer `n` into big-endian or small-endian parts.
 
     Return all parts positive on positive `n`::
-
-        >>> from abjad.tools import mathtools
-
-    ::
 
         >>> for n in range(1, 11):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n)
@@ -41,10 +37,10 @@ def partition_integer_into_canonic_parts(n, direction='big-endian'):
         -19 (-16, -3)
         -20 (-16, -4)
 
-    Return little-endian tuple When ``direction = 'little-endian'``::
+    Return little-endian tuple::
 
         >>> for n in range(11, 21):
-        ...     print n, mathtools.partition_integer_into_canonic_parts(n, direction='little-endian')
+        ...     print n, mathtools.partition_integer_into_canonic_parts(n, big_endian=False)
         ...
         11 (3, 8)
         12 (12,)
@@ -71,7 +67,7 @@ def partition_integer_into_canonic_parts(n, direction='big-endian'):
     if not isinstance(n, (int, long)):
         raise TypeError
 
-    if direction not in ('big-endian', 'little-endian'):
+    if not isinstance(big_endian, bool):
         raise ValueError
 
     if n == 0:
@@ -97,9 +93,7 @@ def partition_integer_into_canonic_parts(n, direction='big-endian'):
     if sign(n) == -1:
         result = [sign_n * x for x in result]
 
-    if direction == 'big-endian':
+    if big_endian:
         return tuple(result)
-    elif direction == 'little-endian':
-        return tuple(reversed(result))
     else:
-        raise ValueError
+        return tuple(reversed(result))
