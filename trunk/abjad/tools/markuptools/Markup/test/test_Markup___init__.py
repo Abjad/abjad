@@ -73,5 +73,5 @@ def test_Markup___init___07():
 
     assert markup_1 is not markup_2
     assert markup_2.contents == ('foo contents string',)
-    assert markup_2.direction == '_'
+    assert markup_2.direction is Down
     assert markup_2.markup_name == 'foo'

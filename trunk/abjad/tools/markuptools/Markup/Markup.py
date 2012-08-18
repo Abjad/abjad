@@ -1,5 +1,6 @@
 from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
 from abjad.tools.markuptools.MarkupCommand import MarkupCommand
+from abjad.tools import stringtools
 
 
 class Markup(_DirectedMark):
@@ -183,7 +184,7 @@ class Markup(_DirectedMark):
             return [r'\markup {{ {} }}'.format(self.contents[0])]
 
         if self.direction is not None:
-            pieces = [r'{} \markup {{'.format(self.direction)]
+            pieces = [r'{} \markup {{'.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction))]
         else:
             pieces = [r'\markup {']
         for content in self.contents:
