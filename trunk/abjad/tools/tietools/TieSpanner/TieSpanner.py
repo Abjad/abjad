@@ -29,7 +29,7 @@ class TieSpanner(DirectedSpanner):
         result = []
         if not self._is_my_last_leaf(leaf):
             if self.direction is not None:
-                result.append('%s ~' % self.direction)
+                result.append('{} ~'.format(stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)))
             else:
                 result.append('~')
         return result
