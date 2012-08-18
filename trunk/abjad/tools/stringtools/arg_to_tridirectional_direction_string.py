@@ -8,56 +8,58 @@ def arg_to_tridirectional_direction_string(arg):
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string('^')
-        Up
+        'up'
 
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string('-')
-        'neutral'
+        'center'
 
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string('_')
-        Down
+        'down'
 
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string(1)
-        Up
+        'up'
 
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string(0)
-        'neutral'
+        'center'
 
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string(-1)
-        Down
+        'down'
 
     ::
 
         >>> stringtools.arg_to_tridirectional_direction_string('default')
-        'neutral'
+        'center'
 
     If `arg` is None, None will be returned.
-
-    If `arg` is Up, 'neutral', or Down, `arg` will be returned.
 
     Return str or None.
     '''
 
     lookup = {
-        1: Up,
-        0: 'neutral',
-        -1: Down,
-        Up: Up,
-        'default': 'neutral',
-        'neutral': 'neutral',
-        Down: Down,
-        '^': Up,
-        '-': 'neutral',
-        '_': Down,
+        Up: 'up',
+        '^': 'up',
+        'up': 'up',
+        1: 'up',
+        Down: 'down',
+        '_': 'down',
+        'down': 'down',
+        -1: 'down',
+        Center: 'center',
+        '-': 'center',
+        0: 'center',
+        'center': 'center',
+        'default': 'center',
+        'neutral': 'center',
     }
 
     if arg is None:

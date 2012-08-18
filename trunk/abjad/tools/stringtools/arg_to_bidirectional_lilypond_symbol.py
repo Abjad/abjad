@@ -35,6 +35,8 @@ def arg_to_bidirectional_lilypond_symbol(arg):
         -1: '_',
         Up: '^',
         Down: '_',
+        'up': '^',
+        'down': '_',
         '^': '^',
         '_': '_',
     }

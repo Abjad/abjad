@@ -31,12 +31,14 @@ def arg_to_bidirectional_direction_string(arg):
     '''
 
     lookup = { 
-        1: Up,
-        -1: Down,
-        Up: Up,
-        Down: Down,
-        '^': Up,
-        '_': Down,
+        1: 'up',
+        -1: 'down',
+        Up: 'up',
+        Down: 'down',
+        '^': 'up',
+        '_': 'down',
+        'up': 'up',
+        'down': 'down'
     }
 
     if arg in lookup:

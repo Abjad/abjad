@@ -49,17 +49,19 @@ def arg_to_tridirectional_lilypond_symbol(arg):
 
     lookup = {
         Up: '^',
-        Down: '_',
-        1: '^',
-        0: '-',
-        -1: '_',
-        'up': '^',
-        'neutral': '-',
-        'default': '-',
-        'down': '_',
         '^': '^',
-        '-': '-',
+        'up': '^',
+        1: '^',
+        Down: '_',
         '_': '_',
+        'down': '_',
+        -1: '_',
+        Center: '-',
+        '-': '-',
+        0: '-',
+        'center': '-',
+        'default': '-',
+        'neutral': '-',
     }
 
     if arg is None:
