@@ -20,10 +20,6 @@ Special Methods
 
     Inherited from :py:class:`timetokentools.IncisedTimeTokenMaker <abjad.tools.timetokentools.IncisedTimeTokenMaker.IncisedTimeTokenMaker.IncisedTimeTokenMaker>`
 
-.. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__eq__
 
     Inherited from :py:class:`timetokentools.IncisedTimeTokenMaker <abjad.tools.timetokentools.IncisedTimeTokenMaker.IncisedTimeTokenMaker.IncisedTimeTokenMaker>`
@@ -35,10 +31,6 @@ Special Methods
 .. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__le__
 
@@ -55,11 +47,3 @@ Special Methods
 .. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__repr__
 
     Inherited from :py:class:`timetokentools.TimeTokenMaker <abjad.tools.timetokentools.TimeTokenMaker.TimeTokenMaker.TimeTokenMaker>`
-
-.. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.__str__
-
-    Inherited from :py:class:`__builtin__.object`

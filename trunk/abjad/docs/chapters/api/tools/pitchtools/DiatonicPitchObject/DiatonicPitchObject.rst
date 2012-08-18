@@ -18,10 +18,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__abs__
 
-.. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__eq__
 
     Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
@@ -57,11 +53,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__repr__
 
     Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
-
-.. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.__str__
-
-    Inherited from :py:class:`__builtin__.object`

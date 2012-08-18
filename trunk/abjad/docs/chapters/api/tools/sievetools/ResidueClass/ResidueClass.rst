@@ -31,19 +31,11 @@ Special Methods
 
     Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
-.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__eq__
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__ge__
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__gt__
-
-.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__le__
 
@@ -56,14 +48,6 @@ Special Methods
     Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__repr__
-
-.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__str__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__xor__
 

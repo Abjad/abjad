@@ -21,10 +21,6 @@ Special Methods
 
     Inherited from :py:class:`exceptions.BaseException`
 
-.. automethod:: abjad.tools.exceptiontools.TieChainError.TieChainError.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.exceptiontools.TieChainError.TieChainError.__repr__
 
     Inherited from :py:class:`exceptions.BaseException`

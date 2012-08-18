@@ -36,10 +36,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__ge__
@@ -49,10 +45,6 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__le__
 
@@ -65,11 +57,3 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__ne__
 
 .. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__repr__
-
-.. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.__str__
-
-    Inherited from :py:class:`__builtin__.object`

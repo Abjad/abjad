@@ -26,10 +26,6 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__call__
 
-.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -41,10 +37,6 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__le__
 
@@ -61,11 +53,3 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

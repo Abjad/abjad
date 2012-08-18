@@ -14,19 +14,11 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__eq__
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__ge__
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__gt__
-
-.. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__le__
 
@@ -35,11 +27,3 @@ Special Methods
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__ne__
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__repr__
-
-.. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__str__
-
-    Inherited from :py:class:`__builtin__.object`

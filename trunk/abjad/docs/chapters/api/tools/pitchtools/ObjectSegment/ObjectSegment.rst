@@ -33,10 +33,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__eq__
 
     Inherited from :py:class:`__builtin__.tuple`
@@ -86,11 +82,3 @@ Special Methods
     Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__rmul__
-
-.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__str__
-
-    Inherited from :py:class:`__builtin__.object`

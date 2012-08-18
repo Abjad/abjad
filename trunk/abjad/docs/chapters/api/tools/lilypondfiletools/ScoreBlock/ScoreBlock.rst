@@ -70,10 +70,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,10 +142,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -157,7 +149,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__str__
-
-    Inherited from :py:class:`__builtin__.object`

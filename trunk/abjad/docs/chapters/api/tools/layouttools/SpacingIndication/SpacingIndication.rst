@@ -22,10 +22,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__eq__
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ge__
@@ -35,10 +31,6 @@ Special Methods
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__le__
 
@@ -53,11 +45,3 @@ Special Methods
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -22,19 +22,11 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__eq__
 
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__ge__
 
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__gt__
-
-.. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__le__
 
@@ -43,10 +35,6 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__ne__
 
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__repr__
-
-.. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.__str__
 

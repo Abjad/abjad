@@ -153,11 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__repr__
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon.__str__
-
-    Inherited from :py:class:`__builtin__.object`

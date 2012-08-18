@@ -22,10 +22,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -37,10 +33,6 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__iter__
 
@@ -59,11 +51,3 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

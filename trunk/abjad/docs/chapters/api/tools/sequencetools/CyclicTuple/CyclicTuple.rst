@@ -28,10 +28,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.tuple`
 
-.. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__eq__
 
     Inherited from :py:class:`__builtin__.tuple`
@@ -81,9 +77,5 @@ Special Methods
 .. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__rmul__
 
     Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__str__

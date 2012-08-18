@@ -132,10 +132,6 @@ Special Methods
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: abjad.tools.contexttools.Context.Context.Context.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__delitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -155,10 +151,6 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.contexttools.Context.Context.Context.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__iadd__
 
@@ -198,14 +190,6 @@ Special Methods
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. automethod:: abjad.tools.contexttools.Context.Context.Context.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.contexttools.Context.Context.Context.__setitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.contexttools.Context.Context.Context.__str__
-
-    Inherited from :py:class:`__builtin__.object`

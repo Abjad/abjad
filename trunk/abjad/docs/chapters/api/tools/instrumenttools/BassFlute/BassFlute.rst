@@ -153,11 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__repr__
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute.__str__
-
-    Inherited from :py:class:`__builtin__.object`

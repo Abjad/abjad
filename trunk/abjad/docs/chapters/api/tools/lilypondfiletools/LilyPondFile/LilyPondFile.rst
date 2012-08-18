@@ -76,10 +76,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -150,10 +146,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -161,7 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__str__
-
-    Inherited from :py:class:`__builtin__.object`

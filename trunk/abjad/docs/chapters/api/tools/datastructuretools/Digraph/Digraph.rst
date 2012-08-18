@@ -39,10 +39,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__eq__
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ge__
@@ -52,10 +48,6 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__le__
 
@@ -70,11 +62,3 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__str__
-
-    Inherited from :py:class:`__builtin__.object`

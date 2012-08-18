@@ -20,10 +20,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__ge__
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__le__
 
@@ -51,9 +43,5 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__ne__
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__repr__
-
-.. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__str__

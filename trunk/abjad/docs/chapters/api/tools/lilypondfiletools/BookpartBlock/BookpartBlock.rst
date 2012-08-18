@@ -70,10 +70,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,10 +142,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -157,7 +149,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__str__
-
-    Inherited from :py:class:`__builtin__.object`

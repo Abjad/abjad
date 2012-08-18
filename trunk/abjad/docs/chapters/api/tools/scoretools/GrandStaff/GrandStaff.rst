@@ -146,10 +146,6 @@ Special Methods
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__delitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -169,10 +165,6 @@ Special Methods
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__iadd__
 
@@ -214,14 +206,6 @@ Special Methods
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__setitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__str__
-
-    Inherited from :py:class:`__builtin__.object`

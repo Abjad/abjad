@@ -70,10 +70,6 @@ Special Methods
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,10 +142,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -157,7 +149,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__str__
-
-    Inherited from :py:class:`__builtin__.object`

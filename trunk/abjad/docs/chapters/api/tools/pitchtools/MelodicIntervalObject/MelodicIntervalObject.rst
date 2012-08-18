@@ -38,10 +38,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__abs__
 
-.. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__eq__
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__float__
@@ -79,10 +75,6 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__repr__
 
     Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
-
-.. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__str__
 

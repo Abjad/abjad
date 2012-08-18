@@ -34,19 +34,11 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__contains__
 
-.. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__eq__
 
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__ge__
 
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__gt__
-
-.. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__le__
 
@@ -57,11 +49,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.__str__
-
-    Inherited from :py:class:`__builtin__.object`

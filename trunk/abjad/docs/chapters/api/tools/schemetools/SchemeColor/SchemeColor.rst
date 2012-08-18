@@ -20,10 +20,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__eq__
 
     Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
@@ -35,10 +31,6 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__le__
 
@@ -55,10 +47,6 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__repr__
 
     Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
-
-.. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeColor.SchemeColor.SchemeColor.__str__
 

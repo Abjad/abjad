@@ -26,10 +26,6 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__call__
 
-.. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -41,10 +37,6 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__le__
 
@@ -61,11 +53,3 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__str__
-
-    Inherited from :py:class:`__builtin__.object`

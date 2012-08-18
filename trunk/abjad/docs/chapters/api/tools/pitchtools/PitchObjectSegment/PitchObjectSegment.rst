@@ -35,10 +35,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__eq__
 
     Inherited from :py:class:`__builtin__.tuple`
@@ -94,11 +90,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__rmul__
 
     Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
-
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__str__
-
-    Inherited from :py:class:`__builtin__.object`

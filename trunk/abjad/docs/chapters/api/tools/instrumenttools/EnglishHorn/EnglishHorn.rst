@@ -153,11 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.__repr__
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn.__str__
-
-    Inherited from :py:class:`__builtin__.object`

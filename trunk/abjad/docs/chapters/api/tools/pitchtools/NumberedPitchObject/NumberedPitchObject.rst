@@ -20,10 +20,6 @@ Special Methods
 
     Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
 
-.. automethod:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.__eq__
 
     Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
@@ -63,11 +59,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.__repr__
 
     Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
-
-.. automethod:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.NumberedPitchObject.NumberedPitchObject.NumberedPitchObject.__str__
-
-    Inherited from :py:class:`__builtin__.object`

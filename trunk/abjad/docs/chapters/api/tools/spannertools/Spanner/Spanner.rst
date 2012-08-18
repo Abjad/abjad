@@ -63,10 +63,6 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__contains__
 
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -81,10 +77,6 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -98,11 +90,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__repr__
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__str__
-
-    Inherited from :py:class:`__builtin__.object`

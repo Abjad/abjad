@@ -95,10 +95,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.__delitem__
 
     Inherited from :py:class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
@@ -143,14 +139,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.__setitem__
 
     Inherited from :py:class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
-
-.. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.__str__
-
-    Inherited from :py:class:`__builtin__.object`

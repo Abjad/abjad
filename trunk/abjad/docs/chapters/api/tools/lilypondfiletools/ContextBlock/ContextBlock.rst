@@ -39,22 +39,6 @@ Read/write Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__repr__
 
     Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
-
-.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__str__
-
-    Inherited from :py:class:`__builtin__.object`

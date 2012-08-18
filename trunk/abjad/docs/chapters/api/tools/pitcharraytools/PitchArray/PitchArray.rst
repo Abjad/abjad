@@ -73,10 +73,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__contains__
 
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__eq__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__ge__
@@ -88,10 +84,6 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__iadd__
 
@@ -106,10 +98,6 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__ne__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__repr__
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__setitem__
 

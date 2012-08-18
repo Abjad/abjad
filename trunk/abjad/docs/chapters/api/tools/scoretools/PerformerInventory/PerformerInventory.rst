@@ -70,10 +70,6 @@ Special Methods
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -146,10 +142,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -157,7 +149,3 @@ Special Methods
 .. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__str__
-
-    Inherited from :py:class:`__builtin__.object`

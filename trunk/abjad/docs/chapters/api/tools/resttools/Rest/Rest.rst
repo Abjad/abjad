@@ -99,10 +99,6 @@ Special Methods
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -114,10 +110,6 @@ Special Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__le__
 
@@ -146,10 +138,6 @@ Special Methods
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__str__
 

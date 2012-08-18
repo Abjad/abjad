@@ -101,10 +101,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.frozenset`
 
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__ge__
@@ -158,10 +154,6 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__rxor__
 
     Inherited from :py:class:`__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__str__
 

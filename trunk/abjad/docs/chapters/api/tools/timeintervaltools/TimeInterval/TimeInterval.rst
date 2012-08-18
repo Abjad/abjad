@@ -117,10 +117,6 @@ Special Methods
 
     Inherited from :py:class:`_abcoll.Mapping`
 
-.. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__delitem__
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__eq__
@@ -157,12 +153,4 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__repr__
 
-.. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__setitem__
-
-.. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__str__
-
-    Inherited from :py:class:`__builtin__.object`

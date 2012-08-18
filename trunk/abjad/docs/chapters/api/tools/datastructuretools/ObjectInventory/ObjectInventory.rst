@@ -62,10 +62,6 @@ Special Methods
 
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__contains__
 
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -136,10 +132,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -147,7 +139,3 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__str__
-
-    Inherited from :py:class:`__builtin__.object`

@@ -23,22 +23,6 @@ Read/write Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__repr__
 
     Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
-
-.. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__str__
-
-    Inherited from :py:class:`__builtin__.object`

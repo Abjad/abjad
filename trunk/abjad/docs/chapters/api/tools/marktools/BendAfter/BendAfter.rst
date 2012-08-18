@@ -56,10 +56,6 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -75,9 +71,5 @@ Special Methods
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__repr__
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__str__

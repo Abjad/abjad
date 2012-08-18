@@ -30,19 +30,11 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__add__
 
-.. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__eq__
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__ge__
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__gt__
-
-.. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__le__
 
@@ -55,10 +47,6 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__nonzero__
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__repr__
-
-.. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__str__
 

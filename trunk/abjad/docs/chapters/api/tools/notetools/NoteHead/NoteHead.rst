@@ -27,10 +27,6 @@ Read/write Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__
 
     Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
@@ -42,10 +38,6 @@ Special Methods
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__gt__
 
     Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
-
-.. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__le__
 
@@ -60,9 +52,5 @@ Special Methods
     Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__repr__
-
-.. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__str__

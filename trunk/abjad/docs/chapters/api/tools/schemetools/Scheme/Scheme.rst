@@ -18,10 +18,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__eq__
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__ge__
@@ -31,10 +27,6 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__le__
 
@@ -49,9 +41,5 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__repr__
-
-.. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.Scheme.Scheme.Scheme.__str__

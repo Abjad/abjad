@@ -153,11 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__repr__
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone.__str__
-
-    Inherited from :py:class:`__builtin__.object`

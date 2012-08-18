@@ -21,10 +21,6 @@ Special Methods
 
     Inherited from :py:class:`exceptions.BaseException`
 
-.. automethod:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.exceptiontools.ExtraPitchError.ExtraPitchError.__repr__
 
     Inherited from :py:class:`exceptions.BaseException`

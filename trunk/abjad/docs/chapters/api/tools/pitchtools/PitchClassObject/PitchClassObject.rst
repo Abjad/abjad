@@ -16,10 +16,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject.__eq__
 
     Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
@@ -49,11 +45,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject.__repr__
 
     Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
-
-.. automethod:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject.__str__
-
-    Inherited from :py:class:`__builtin__.object`

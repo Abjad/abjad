@@ -166,10 +166,6 @@ Special Methods
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__delitem__
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
@@ -189,10 +185,6 @@ Special Methods
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__iadd__
 
@@ -233,10 +225,6 @@ Special Methods
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__setitem__
 

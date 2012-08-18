@@ -44,10 +44,6 @@ Special Methods
 
     Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
 
-.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__eq__
 
     Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
@@ -63,10 +59,6 @@ Special Methods
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__le__
 
@@ -87,11 +79,3 @@ Special Methods
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__str__
-
-    Inherited from :py:class:`__builtin__.object`

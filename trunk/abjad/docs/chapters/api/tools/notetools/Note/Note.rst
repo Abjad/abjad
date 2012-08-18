@@ -107,10 +107,6 @@ Special Methods
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: abjad.tools.notetools.Note.Note.Note.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -122,10 +118,6 @@ Special Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.notetools.Note.Note.Note.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__le__
 
@@ -154,10 +146,6 @@ Special Methods
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: abjad.tools.notetools.Note.Note.Note.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.Note.Note.Note.__str__
 

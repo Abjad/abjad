@@ -95,10 +95,6 @@ Special Methods
 
     Inherited from :py:class:`_abcoll.Mapping`
 
-.. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__delitem__
 
 .. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__eq__
@@ -135,12 +131,4 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__setitem__
-
-.. automethod:: abjad.tools.configurationtools.AbjadConfig.AbjadConfig.AbjadConfig.__str__
-
-    Inherited from :py:class:`__builtin__.object`

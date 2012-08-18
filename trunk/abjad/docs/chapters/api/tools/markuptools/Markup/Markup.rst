@@ -78,8 +78,4 @@ Special Methods
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
 
-.. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__str__

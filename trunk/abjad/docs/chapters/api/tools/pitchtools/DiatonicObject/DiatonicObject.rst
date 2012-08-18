@@ -16,10 +16,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -31,10 +27,6 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__le__
 
@@ -51,11 +43,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.DiatonicObject.DiatonicObject.DiatonicObject.__str__
-
-    Inherited from :py:class:`__builtin__.object`

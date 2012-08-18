@@ -27,10 +27,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__ge__
@@ -40,10 +36,6 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__le__
 
@@ -56,11 +48,3 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__ne__
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__repr__
-
-.. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__str__
-
-    Inherited from :py:class:`__builtin__.object`

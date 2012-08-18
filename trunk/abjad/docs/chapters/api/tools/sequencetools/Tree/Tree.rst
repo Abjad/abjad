@@ -63,10 +63,6 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__contains__
 
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__eq__
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__ge__
@@ -78,10 +74,6 @@ Special Methods
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__le__
 
@@ -96,9 +88,5 @@ Special Methods
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__ne__
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__repr__
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__str__

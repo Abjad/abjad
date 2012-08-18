@@ -63,10 +63,6 @@ Special Methods
 
     Inherited from :py:class:`subprocess.Popen`
 
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -78,10 +74,6 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__le__
 
@@ -98,11 +90,3 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__str__
-
-    Inherited from :py:class:`__builtin__.object`

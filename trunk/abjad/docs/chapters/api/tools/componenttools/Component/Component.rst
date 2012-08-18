@@ -38,10 +38,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.componenttools.Component.Component.Component.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -53,10 +49,6 @@ Special Methods
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.componenttools.Component.Component.Component.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.__le__
 
@@ -77,11 +69,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.componenttools.Component.Component.Component.__rmul__
-
-.. automethod:: abjad.tools.componenttools.Component.Component.Component.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.componenttools.Component.Component.Component.__str__
-
-    Inherited from :py:class:`__builtin__.object`

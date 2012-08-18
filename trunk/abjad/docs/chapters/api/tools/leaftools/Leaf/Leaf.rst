@@ -81,10 +81,6 @@ Special Methods
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__and__
 
-.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -96,10 +92,6 @@ Special Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__le__
 
@@ -124,10 +116,6 @@ Special Methods
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__str__
 

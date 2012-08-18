@@ -66,10 +66,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -140,10 +136,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.__setitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -151,7 +143,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.__setslice__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.__str__
-
-    Inherited from :py:class:`__builtin__.object`

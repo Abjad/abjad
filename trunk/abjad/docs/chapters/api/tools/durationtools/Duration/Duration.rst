@@ -61,10 +61,6 @@ Special Methods
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__div__
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__divmod__
@@ -128,10 +124,6 @@ Special Methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rsub__
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rtruediv__
-
-.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__str__
 

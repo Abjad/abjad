@@ -63,10 +63,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__eq__
 
     Inherited from :py:class:`__builtin__.frozenset`
@@ -126,14 +122,6 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__rxor__
 
     Inherited from :py:class:`__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__str__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__sub__
 

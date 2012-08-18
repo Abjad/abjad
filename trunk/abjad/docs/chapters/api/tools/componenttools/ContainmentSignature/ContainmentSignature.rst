@@ -16,10 +16,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__eq__
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__ge__
@@ -29,10 +25,6 @@ Special Methods
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__le__
 
@@ -45,9 +37,5 @@ Special Methods
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__ne__
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__repr__
-
-.. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__str__

@@ -138,10 +138,6 @@ Special Methods
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__delitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -161,10 +157,6 @@ Special Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__iadd__
 
@@ -203,10 +195,6 @@ Special Methods
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__setitem__
 

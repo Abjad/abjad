@@ -56,10 +56,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__delitem__
 
     Inherited from :py:class:`__builtin__.list`
@@ -125,10 +121,6 @@ Special Methods
 .. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__rmul__
 
     Inherited from :py:class:`__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__setitem__
 

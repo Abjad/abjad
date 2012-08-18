@@ -122,10 +122,6 @@ Special Methods
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__contains__
 
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__delitem__
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__eq__
@@ -141,10 +137,6 @@ Special Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__le__
 
@@ -175,10 +167,6 @@ Special Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__setitem__
 

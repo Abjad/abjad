@@ -18,10 +18,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__eq__
 
     Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
@@ -33,10 +29,6 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__le__
 
@@ -53,10 +45,6 @@ Special Methods
 .. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__repr__
 
     Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
-
-.. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.__str__
 

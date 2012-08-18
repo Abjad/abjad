@@ -35,10 +35,6 @@ Special Methods
 
     Inherited from :py:class:`__builtin__.tuple`
 
-.. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__eq__
 
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__ge__
@@ -92,11 +88,3 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__rmul__
 
     Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__str__
-
-    Inherited from :py:class:`__builtin__.object`

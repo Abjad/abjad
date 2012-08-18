@@ -67,10 +67,6 @@ Special Methods
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__div__
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
@@ -178,10 +174,6 @@ Special Methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__rtruediv__
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
-
-.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__str__
 

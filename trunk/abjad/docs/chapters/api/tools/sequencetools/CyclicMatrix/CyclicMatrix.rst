@@ -20,10 +20,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -38,10 +34,6 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -55,11 +47,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__repr__
-
-.. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
-.. automethod:: abjad.tools.sequencetools.CyclicMatrix.CyclicMatrix.CyclicMatrix.__str__
-
-    Inherited from :py:class:`__builtin__.object`

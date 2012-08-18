@@ -20,10 +20,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass.__abs__
 
-.. automethod:: abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -55,9 +51,5 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass.__repr__
-
-.. automethod:: abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass.__str__

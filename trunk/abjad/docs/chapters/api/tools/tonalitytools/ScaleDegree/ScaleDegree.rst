@@ -33,10 +33,6 @@ Methods
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__delattr__
-
-    Inherited from :py:class:`__builtin__.object`
-
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__ge__
@@ -46,10 +42,6 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__hash__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__le__
 
@@ -62,9 +54,5 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__ne__
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__repr__
-
-.. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__setattr__
-
-    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__str__
