@@ -197,11 +197,46 @@ def test_quantizationtools_milliseconds_to_q_events_01():
             )
     ]
 
+
 def test_quantizationtools_milliseconds_to_q_events_02():
+    '''Silences are not fused.'''
+
+    durations = [100, -100, 100, -100, -100, 100]
+    q_events = quantizationtools.milliseconds_to_q_events(durations, fuse_silences=False)
+
+    assert q_events == [
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(0),
+            (pitchtools.NamedChromaticPitch("c'"),)
+            ),
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(100)
+            ),
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(200),
+            (pitchtools.NamedChromaticPitch("c'"),)
+            ),
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(300)
+            ),
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(400)
+            ),
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(500),
+            (pitchtools.NamedChromaticPitch("c'"),)
+            ),
+        quantizationtools.TerminalQEvent(
+            durationtools.Offset(600)
+            )
+    ]
+
+
+def test_quantizationtools_milliseconds_to_q_events_03():
     '''Silences are fused.'''
 
     durations = [100, -100, 100, -100, -100, 100]
-    q_events = quantizationtools.milliseconds_to_q_events(durations)
+    q_events = quantizationtools.milliseconds_to_q_events(durations, fuse_silences=True)
 
     assert q_events == [
         quantizationtools.PitchedQEvent(

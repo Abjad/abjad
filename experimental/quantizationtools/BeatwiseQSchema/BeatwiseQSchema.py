@@ -32,6 +32,12 @@ class BeatwiseQSchema(QSchema):
 
         QSchema.__init__(self, *args, **kwargs)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _keyword_argument_names(self):
+        return ('beatspan', 'search_tree', 'tempo')
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

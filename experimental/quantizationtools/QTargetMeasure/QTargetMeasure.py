@@ -41,7 +41,7 @@ class QTargetMeasure(abctools.AbjadObject):
                 search_tree=search_tree,
                 tempo=tempo
                 )
-            beat.append(beat)
+            beats.append(beat)
         else:
             beatspan = durationtools.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms

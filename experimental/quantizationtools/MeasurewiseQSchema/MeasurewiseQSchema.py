@@ -34,6 +34,12 @@ class MeasurewiseQSchema(QSchema):
 
         QSchema.__init__(self, *args, **kwargs)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _keyword_argument_names(self):
+        return ('search_tree', 'tempo', 'time_signature', 'use_full_measure')
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

@@ -27,6 +27,8 @@ class QSchema(abctools.AbjadObject):
             items = args[0].items()
             if items:
                 assert 0 <= min(items)
+            if sequencetools.all_are_pairs_of_types(items, int, dict):
+                items = [(x, self.item_klass(**y)) for x, y in items]
             assert sequencetools.all_are_pairs_of_types(items, int, self.item_klass)
 
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
@@ -79,14 +81,35 @@ class QSchema(abctools.AbjadObject):
         return result
 
     def __repr__(self):
-        return '\n'.join(self._get_tools_package_qualified_repr_pieces())
+        if self.items:
+            result = ['{}({{'.format(self._tools_package_qualified_class_name)]
+            for i, pair in enumerate(sorted(self.items.items())):
+                key, value = pair
+                itemrepr = value._get_tools_package_qualified_repr_pieces()
+                result.append('\t{}: {}'.format(key, itemrepr[0]))
+                result.extend(['\t{}'.format(x) for x in itemrepr[1:-1]])
+                if i == len(self.items) - 1:
+                    result.append('\t{}'.format(itemrepr[-1]))
+                else:
+                    result.append('\t{},'.format(itemrepr[-1]))
+            result.append('\t},')
+        else:
+            result = ['{}('.format(self._tools_package_qualified_class_name)]
+        result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces())
+        result.append('\t)')
+        return '\n'.join(result)
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @abstractproperty
+    def _keyword_argument_names(self):
+        raise NotImplemented
 
     @property
-    def cyclic(self):
-        '''True if the schema should generate its QTarget cyclically.'''
-        return self._cyclic
+    def _mandatory_argument_names(self):
+        return ('items',)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abstractproperty
     def item_klass(self):
