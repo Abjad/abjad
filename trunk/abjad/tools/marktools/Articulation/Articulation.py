@@ -120,7 +120,7 @@ class Articulation(_DirectedMark):
     def lilypond_format(self):
         '''Read-only LilyPond format string of articulation::
 
-            >>> articulation = marktools.Articulation('marcato', 'up')
+            >>> articulation = marktools.Articulation('marcato', Up)
             >>> articulation.lilypond_format
             '^\\marcato'
 
@@ -133,7 +133,7 @@ class Articulation(_DirectedMark):
         def fget(self):
             '''Get name of articulation::
 
-                >>> articulation = marktools.Articulation('staccato', 'up')
+                >>> articulation = marktools.Articulation('staccato', Up)
                 >>> articulation.name
                 'staccato'
 

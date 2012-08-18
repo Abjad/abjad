@@ -52,7 +52,7 @@ def test_Articulation_05():
     '''
 
     t = Note("c'4")
-    a = marktools.Articulation('staccato', 'up')(t)
+    a = marktools.Articulation('staccato', Up)(t)
     assert a.direction == '^'
     assert str(a) == r'^\staccato'
 

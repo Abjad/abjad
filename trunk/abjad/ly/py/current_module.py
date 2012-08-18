@@ -2011,7 +2011,7 @@ current_module = {
         'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
-    'up': 1,
+    Up: 1,
     'upbow': {
         'articulation-type': 'upbow',
         'name': 'ArticulationEvent',

@@ -53,7 +53,7 @@ def test_Markup___init___06():
     '''
 
     markup_1 = markuptools.Markup(
-        'foo contents string', direction='up', markup_name='foo')
+        'foo contents string', direction=Up, markup_name='foo')
     markup_2 = markuptools.Markup(markup_1)
 
     assert markup_1 is not markup_2
@@ -68,7 +68,7 @@ def test_Markup___init___07():
     '''
 
     markup_1 = markuptools.Markup(
-        'foo contents string', direction='up', markup_name='foo')
+        'foo contents string', direction=Up, markup_name='foo')
     markup_2 = markuptools.Markup(markup_1, direction=Down)
 
     assert markup_1 is not markup_2

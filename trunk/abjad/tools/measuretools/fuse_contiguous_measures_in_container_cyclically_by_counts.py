@@ -103,7 +103,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
                 meter_sum_str = '"%s"' % meter_sum_str
                 new = fuse_measures(measures_to_fuse)
                 if mark:
-                    markuptools.Markup(meter_sum_str, 'up')(new.leaves[0])
+                    markuptools.Markup(meter_sum_str, Up)(new.leaves[0])
                 cur_measure = new
             cur_measure = get_next_measure_from_component(cur_measure)
             if cur_measure is None:

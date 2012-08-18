@@ -71,7 +71,7 @@ def test_LilyPondParser__spanners__SlurSpanner_07():
     '''With direction.'''
     target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
     spannertools.SlurSpanner(target[:3], direction=Down)
-    spannertools.SlurSpanner(target[2:], direction='up')
+    spannertools.SlurSpanner(target[2:], direction=Up)
 
     r'''{
         c'4 _ (

@@ -40,7 +40,7 @@ def test_leaftools_label_leaves_in_expr_with_leaf_numbers_02():
     '''Optional markup direction keyword.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    leaftools.label_leaves_in_expr_with_leaf_numbers(t, markup_direction='up')
+    leaftools.label_leaves_in_expr_with_leaf_numbers(t, markup_direction=Up)
 
     r'''
     \new Staff {

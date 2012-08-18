@@ -77,7 +77,7 @@ def test_Chord___copy___05():
 
     chord_1 = Chord("<ef' cs'' f''>4")
     articulation_1 = marktools.Articulation('staccato')(chord_1)
-    markup_1 = markuptools.Markup('foo', 'up')(chord_1)
+    markup_1 = markuptools.Markup('foo', Up)(chord_1)
 
     chord_2 = copy.copy(chord_1)
 

@@ -36,7 +36,7 @@ def test_LilyPondParser__misc__chord_repetition_02():
     ])
     contexttools.DynamicMark('p')(target[0])
     marktools.Articulation('staccatissimo')(target[2])
-    markuptools.Markup('text', 'up')(target[3])
+    markuptools.Markup('text', Up)(target[3])
     marktools.Articulation('staccatissimo')(target[-1])
 
     r'''\new Staff {

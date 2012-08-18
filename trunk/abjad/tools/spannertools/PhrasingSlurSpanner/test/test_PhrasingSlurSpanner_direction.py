@@ -4,7 +4,7 @@ from abjad import *
 def test_PhrasingSlurSpanner_direction_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spannertools.PhrasingSlurSpanner(staff.leaves, direction='up')
+    spannertools.PhrasingSlurSpanner(staff.leaves, direction=Up)
 
     r'''
     \new Staff {

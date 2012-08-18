@@ -4,7 +4,7 @@ from abjad import *
 def test_ComplexBeamSpanner_direction_01():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
-    beamtools.ComplexBeamSpanner(staff[:4], direction='up')
+    beamtools.ComplexBeamSpanner(staff[:4], direction=Up)
 
     r'''
     \new Staff {

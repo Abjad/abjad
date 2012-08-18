@@ -80,7 +80,7 @@ print repr(note_1.written_pitch > note_2.written_pitch) <hide
 Use markup to include indications of pitch deviation in your score:
 
 <abjad>
-markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
+markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
 iotools.write_expr_to_ly(staff, 'pitch-deviation-2') <hide
 </abjad>
 

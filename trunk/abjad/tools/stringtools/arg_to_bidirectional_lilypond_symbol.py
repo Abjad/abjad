@@ -7,7 +7,7 @@ def arg_to_bidirectional_lilypond_symbol(arg):
 
     ::
 
-        >>> stringtools.arg_to_tridirectional_lilypond_symbol('up')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
         '^'
 
     ::
@@ -33,7 +33,7 @@ def arg_to_bidirectional_lilypond_symbol(arg):
     lookup = {
         1: '^',
         -1: '_',
-        'up': '^',
+        Up: '^',
         Down: '_',
         '^': '^',
         '_': '_',

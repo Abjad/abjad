@@ -1,7 +1,7 @@
 from abjad.tools import componenttools
 
 
-def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction='up'):
+def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction=Up):
     r""".. versionadded:: 2.0
 
     Label leaves in `expr` with melodic chromatic intervals::

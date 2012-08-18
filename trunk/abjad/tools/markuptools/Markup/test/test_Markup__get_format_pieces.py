@@ -6,7 +6,7 @@ def test_Markup__get_format_pieces_01():
     circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
     square = markuptools.MarkupCommand('rounded-box', 'hello?')
     line = markuptools.MarkupCommand('line', [square, 'wow!'])
-    markup = markuptools.Markup(('X', circle, 'Y', line, 'Z'), direction='up')
+    markup = markuptools.Markup(('X', circle, 'Y', line, 'Z'), direction=Up)
 
     assert markup._get_format_pieces(is_indented=True) == [
         '^ \\markup {',

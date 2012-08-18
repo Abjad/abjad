@@ -34,7 +34,7 @@ Extended markup handling is now available.
     >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
     >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
     >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-    >>> markup = markuptools.Markup(('X', square, 'Y', line, 'Z'), direction='up')
+    >>> markup = markuptools.Markup(('X', square, 'Y', line, 'Z'), direction=Up)
 
   ::
 
@@ -58,7 +58,7 @@ Extended markup handling is now available.
     >>> staff = Staff("c")
     >>> m1 = markuptools.Markup('foo')(staff[0])
     >>> m2 = markuptools.Markup('bar')(staff[0])
-    >>> m3 = markuptools.Markup('baz', 'up')(staff[0])
+    >>> m3 = markuptools.Markup('baz', Up)(staff[0])
     >>> m4 = markuptools.Markup('quux', Down)(staff[0])
     >>> accent = marktools.Articulation('accent')(staff[0])
 
@@ -1464,7 +1464,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   ``tietools.TieSpanner` with an optional ``direction`` keyword::
 
     >>> c = Container("c'4 d'4 e'4 f'4")
-    >>> spanner = spannertools.SlurSpanner(c[:], 'up')
+    >>> spanner = spannertools.SlurSpanner(c[:], Up)
     >>> f(c)
     {
         c'4 ^ (
@@ -1474,7 +1474,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     }
 
   The direction options are exactly the same as for ``Articulation`` and ``Markup``: 
-  ``'up'``, ``'^'``, ``Down``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
+  ``Up``, ``'^'``, ``Down``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
 
 - Extended ``tonalitytools.Scale`` with ``create_named_chromatic_pitch_set_in_pitch_range()`` method.
 

@@ -43,6 +43,6 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components=None):
     text_spanner.override.text_spanner.bound_details__right__text = right_text
     text_spanner.override.text_spanner.bound_details__right_broken__text = False
     text_spanner.override.text_spanner.dash_fraction = 1
-    text_spanner.override.text_spanner.direction = 'up'
+    text_spanner.override.text_spanner.direction = Up
 
     return text_spanner

@@ -92,7 +92,7 @@ Use markup to include indications of pitch deviation in your score:
 
 ::
 
-	>>> markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
+	>>> markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
 	LilyPond file written to 'pitch-deviation-2.ly' ...
 
 .. image:: images/pitch-deviation-2.png

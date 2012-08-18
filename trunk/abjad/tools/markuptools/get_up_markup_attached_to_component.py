@@ -10,7 +10,7 @@ def get_up_markup_attached_to_component(component):
 
     ::
 
-        >>> markuptools.Markup('UP', 'up')(chord)
+        >>> markuptools.Markup('UP', Up)(chord)
         Markup(('UP',), direction='^')(<cs d' f'>4)
 
     ::

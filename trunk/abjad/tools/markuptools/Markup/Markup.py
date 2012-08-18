@@ -21,7 +21,7 @@ class Markup(_DirectedMark):
 
     Initialize any markup from existing markup::
 
-        >>> markup_1 = markuptools.Markup('foo', direction='up')
+        >>> markup_1 = markuptools.Markup('foo', direction=Up)
         >>> markup_2 = markuptools.Markup(markup_1, direction=Down)
 
     ::
@@ -52,7 +52,7 @@ class Markup(_DirectedMark):
         >>> f(note)
         c'4 - \markup { \bold { "This is markup text." } }
 
-    Set `direction` to ``'up'``, ``Down``, ``'neutral'``, 
+    Set `direction` to ``Up``, ``Down``, ``'neutral'``, 
     ``'^'``, ``'_'``, ``'-'`` or None.
 
     Markup objects are immutable.

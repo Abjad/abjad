@@ -20,7 +20,7 @@ LilyPond left-aligns markup relative to the left edge of note heads by default.
 
 ::
 
-	>>> markuptools.Markup('XX', 'up')(staff[0])
+	>>> markuptools.Markup('XX', Up)(staff[0])
 
 
 ::
@@ -47,11 +47,11 @@ that markup positioning is by default relative to the left edge of note heads.
 
 ::
 
-	>>> markuptools.Markup('XX', 'up')(staff[0])
+	>>> markuptools.Markup('XX', Up)(staff[0])
 	>>> staff[0].override.text_script.self_alignment_X = 'left'
-	>>> markuptools.Markup('XX', 'up')(staff[1])
+	>>> markuptools.Markup('XX', Up)(staff[1])
 	>>> staff[1].override.text_script.self_alignment_X = 'center'
-	>>> markuptools.Markup('XX', 'up')(staff[2])
+	>>> markuptools.Markup('XX', Up)(staff[2])
 	>>> staff[2].override.text_script.self_alignment_X = 'right'
 
 
@@ -81,13 +81,13 @@ that markup positioning is by default relative to the left edge of note heads.
 
 ::
 
-	>>> markuptools.Markup('XX', 'up')(staff[0])
+	>>> markuptools.Markup('XX', Up)(staff[0])
 	>>> staff[0].override.text_script.X_offset = 0
-	>>> markuptools.Markup('XX', 'up')(staff[1])
+	>>> markuptools.Markup('XX', Up)(staff[1])
 	>>> staff[1].override.text_script.X_offset = 2
-	>>> markuptools.Markup('XX', 'up')(staff[2])
+	>>> markuptools.Markup('XX', Up)(staff[2])
 	>>> staff[2].override.text_script.X_offset = 4
-	>>> markuptools.Markup('XX', 'up')(staff[3])
+	>>> markuptools.Markup('XX', Up)(staff[3])
 	>>> staff[3].override.text_script.X_offset = 6
 
 

@@ -24,7 +24,7 @@ def test_Markup___eq___02():
     '''
 
     markup_1 = markuptools.Markup('foo')
-    markup_2 = markuptools.Markup('foo', direction='up')
+    markup_2 = markuptools.Markup('foo', direction=Up)
 
     assert not markup_1 == markup_2
     assert not markup_2 == markup_1

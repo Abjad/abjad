@@ -3,7 +3,7 @@ from abjad import *
 
 def test_DuratedComplexBeamSpanner_direction_01():
     t = Voice("c'16 d'16 e'16 f'16")
-    beamtools.DuratedComplexBeamSpanner(t, durations=[(1, 8), (1, 8)], span=1, direction='up')
+    beamtools.DuratedComplexBeamSpanner(t, durations=[(1, 8), (1, 8)], span=1, direction=Up)
 
     r'''
     \new Voice {

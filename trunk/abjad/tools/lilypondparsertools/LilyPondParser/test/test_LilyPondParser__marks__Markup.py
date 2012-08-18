@@ -4,7 +4,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_LilyPondParser__marks__Markup_01():
     target = Staff([Note(0, 1)])
-    markuptools.Markup('hello!', 'up')(target[0])
+    markuptools.Markup('hello!', Up)(target[0])
 
     r'''\new Staff {
         c'1 ^ \markup { hello! }
@@ -49,7 +49,7 @@ def test_LilyPondParser__marks__Markup_03():
     '''
 
     target = Staff([Note(0, (1, 4)), Note(2, (1, 4))])
-    markuptools.Markup('hello', 'up')(target[0])
+    markuptools.Markup('hello', Up)(target[0])
     marktools.Articulation('.')(target[0])
 
     r'''\new Staff {

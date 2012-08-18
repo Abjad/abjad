@@ -5,7 +5,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 def test_LilyPondParser__marks__Articulation_01():
     target = Staff(notetools.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
-    marktools.Articulation('marcato', 'up')(target[0])
+    marktools.Articulation('marcato', Up)(target[0])
     marktools.Articulation('stopped', Down)(target[1])
     marktools.Articulation('tenuto')(target[2])
     marktools.Articulation('staccatissimo')(target[3])
@@ -35,7 +35,7 @@ def test_LilyPondParser__marks__Articulation_01():
 
 def test_LilyPondParser__marks__Articulation_02():
     target = Staff([Note("c'", (1, 4))])
-    marktools.Articulation('marcato', 'up')(target[0])
+    marktools.Articulation('marcato', Up)(target[0])
     marktools.Articulation('stopped', Down)(target[0])
     marktools.Articulation('tenuto')(target[0])
     marktools.Articulation('staccatissimo')(target[0])
