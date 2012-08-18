@@ -128,11 +128,11 @@ def split_container_at_index(component, i, fracture_spanners=False):
         #raise Exception # debug
         if i <= 0:
             if fracture_spanners:
-                spannertools.fracture_spanners_attached_to_component(component, direction='left')
+                spannertools.fracture_spanners_attached_to_component(component, direction=Left)
             return None, component
         else:
             if fracture_spanners:
-                spannertools.fracture_spanners_attached_to_component(component, direction='right')
+                spannertools.fracture_spanners_attached_to_component(component, direction=Right)
             return component, None
 
     # remember container multiplier, if any
@@ -194,7 +194,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
     # fracture spanners, if requested
     if fracture_spanners:
         if len(halves) == 2:
-            spannertools.fracture_spanners_attached_to_component(left, direction='right')
+            spannertools.fracture_spanners_attached_to_component(left, direction=Right)
 
     # return new left and right halves
     return left, right

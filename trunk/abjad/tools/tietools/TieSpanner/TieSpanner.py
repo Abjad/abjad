@@ -1,3 +1,4 @@
+from abjad.tools import stringtools
 from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
 
 
@@ -7,6 +8,9 @@ class TieSpanner(DirectedSpanner):
         >>> staff = Staff(notetools.make_repeated_notes(4))
         >>> tietools.TieSpanner(staff[:])
         TieSpanner(c'8, c'8, c'8, c'8)
+
+    ::
+
         >>> f(staff)
         \new Staff {
             c'8 ~

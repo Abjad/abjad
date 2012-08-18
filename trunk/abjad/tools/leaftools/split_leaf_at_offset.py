@@ -49,7 +49,7 @@ def split_leaf_at_offset(leaf, split_dur, fracture_spanners=False, tie_after=Fal
     leaf_right_of_split = right_leaf_list[0]
 
     if fracture_spanners:
-        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction='right')
+        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction=Right)
 
     if tie_after:
         tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)

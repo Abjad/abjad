@@ -209,7 +209,7 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
 
     # fracture leaf spanners if requested
     if fracture_spanners:
-        spannertools.fracture_spanners_attached_to_component(leaf_right_of_split, direction='left')
+        spannertools.fracture_spanners_attached_to_component(leaf_right_of_split, direction=Left)
 
     # crawl back up through duration-crossing containers and split each
     #prev = leaf_right_of_split

@@ -1,4 +1,4 @@
-def fracture_spanners_attached_to_component(component, direction='both', klass=None):
+def fracture_spanners_attached_to_component(component, direction=None, klass=None):
     r'''.. versionadded:: 1.1
 
     Fracture all spanners attached to `component` according to `direction`::
@@ -17,7 +17,7 @@ def fracture_spanners_attached_to_component(component, direction='both', klass=N
 
     ::
 
-        >>> parts = spannertools.fracture_spanners_attached_to_component(staff[1], 'right')
+        >>> parts = spannertools.fracture_spanners_attached_to_component(staff[1], Right)
 
     ::
 
@@ -29,12 +29,10 @@ def fracture_spanners_attached_to_component(component, direction='both', klass=N
             f'8 ] ) \stopTrillSpan
         }
 
-    Set `direction` to left, right or both.
+    Set `direction` to ``Left``, ``Right`` or ``None``.
     '''
 
     result = []
-    #for spanner in set(component.spanners.attached):
-    #for spanner in set(component.spanners._spanners):
     for spanner in component.spanners:
         if klass is None:
             result.append(spanner.fracture(spanner.index(component), direction))

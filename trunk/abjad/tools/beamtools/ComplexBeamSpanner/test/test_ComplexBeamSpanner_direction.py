@@ -28,7 +28,7 @@ def test_ComplexBeamSpanner_direction_01():
 def test_ComplexBeamSpanner_direction_02():
 
     staff = Staff("c'16 e'16 r16 f'16 g'2")
-    beamtools.ComplexBeamSpanner(staff[:4], direction='_')
+    beamtools.ComplexBeamSpanner(staff[:4], direction=Down)
 
     r'''
     \new Staff {

@@ -19,7 +19,7 @@ def test_spannertools_fracture_spanners_attached_to_component_01():
     }
     '''
 
-    spannertools.fracture_spanners_attached_to_component(staff[1], 'right')
+    spannertools.fracture_spanners_attached_to_component(staff[1], direction=Right)
 
     r'''
     \new Staff {
@@ -52,7 +52,7 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
     }
     '''
 
-    spannertools.fracture_spanners_attached_to_component(staff[1], 'right', beamtools.BeamSpanner)
+    spannertools.fracture_spanners_attached_to_component(staff[1], direction=Right, klass=beamtools.BeamSpanner)
 
     r'''
     \new Staff {

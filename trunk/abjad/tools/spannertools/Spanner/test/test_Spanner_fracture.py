@@ -2,12 +2,13 @@ from abjad import *
 
 
 def test_Spanner_fracture_01():
-    '''Fracture container spanner to the right of index 1.'''
+    '''Fracture container spanner to the right of index 1.
+    '''
 
     t = Staff(Container(notetools.make_repeated_notes(4)) * 3)
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
     p = beamtools.BeamSpanner(t[:])
-    original, left, right = p.fracture(1, 'right')
+    original, left, right = p.fracture(1, direction=Right)
 
     assert len(original.components) == 3
     assert original.components[0] is t[0]

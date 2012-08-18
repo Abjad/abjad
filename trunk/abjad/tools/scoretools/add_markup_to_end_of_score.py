@@ -16,7 +16,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
         >>> z(markup)
         markuptools.Markup(
             ('\\italic \\right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }',),
-            direction='_'
+            direction=Down
             )
 
     ::

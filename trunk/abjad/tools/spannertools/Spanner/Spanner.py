@@ -538,11 +538,10 @@ class Spanner(AbjadObject):
         for component in reversed(components):
             self.append_left(component)
 
-    # TODO: replace 'both' with none
-    def fracture(self, i, direction='both'):
+    def fracture(self, i, direction=None):
         r'''Fracture spanner at `direction` of component at index `i`.
 
-        Valid values for `direction` are ``'left'``, ``'right'`` and ``'both'``.
+        Valid values for `direction` are ``Left``, ``Right`` and ``None``.
 
         Return original, left and right spanners. ::
 
@@ -553,7 +552,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> beam.fracture(1, direction='left')
+            >>> beam.fracture(1, direction=Left)
             (BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8))
 
         ::
@@ -566,22 +565,24 @@ class Spanner(AbjadObject):
                 f'8 ]
             }
 
+        Set `direction=None` to fracture on both left and right sides.
+
         Return tuple.
         '''
         if i < 0:
             i = len(self) + i
-        if direction == 'left':
+        if direction == Left:
             return self._fracture_left(i)
-        elif direction == 'right':
+        elif direction == Right:
             return self._fracture_right(i)
-        elif direction == 'both':
+        elif direction is None:
             left = self._copy(self[:i])
             right = self._copy(self[i+1:])
             center = self._copy(self[i:i+1])
             self._block_all_components()
             return self, left, center, right
         else:
-            raise ValueError('direction {!r} must be left, right or both.'.format(direction))
+            raise ValueError('direction {!r} must be Left, Right or None.'.format(direction))
 
     def fuse(self, spanner):
         r'''Fuse contiguous spanners.

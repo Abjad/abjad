@@ -54,10 +54,10 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
 
     previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, -1)
     if previous_leaf:
-        result.extend(spannertools.fracture_spanners_attached_to_component(previous_leaf, direction='right'))
+        result.extend(spannertools.fracture_spanners_attached_to_component(previous_leaf, direction=Right))
 
     next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, 1)
     if next_leaf:
-        result.extend(spannertools.fracture_spanners_attached_to_component(next_leaf, direction='left'))
+        result.extend(spannertools.fracture_spanners_attached_to_component(next_leaf, direction=Left))
 
     return result

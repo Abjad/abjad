@@ -1,6 +1,3 @@
-from abjad.tools.spannertools.fracture_spanners_attached_to_component import fracture_spanners_attached_to_component
-
-
 def fracture_spanners_that_cross_components(components):
     r'''Fracture to the left of the leftmost component.
     Fracture to the right of the rightmost component.
@@ -14,12 +11,13 @@ def fracture_spanners_that_cross_components(components):
 
     Example::
 
-        t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
-        pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-        spannertools.CrescendoSpanner(t)
-        beamtools.BeamSpanner(t[:])
-        spannertools.TrillSpanner(t.leaves)
+        >>> t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
+        >>> crescendo = spannertools.CrescendoSpanner(t)
+        >>> beam = beamtools.BeamSpanner(t[:])
+        >>> trill = spannertools.TrillSpanner(t.leaves)
 
+        >>> f(t)
         \new Staff {
             {
                 c'8 [ \< \startTrillSpan
@@ -34,8 +32,10 @@ def fracture_spanners_that_cross_components(components):
                 a'8 ] \! \stopTrillSpan
             }   }
 
-        spannertools.fracture_spanners_that_cross_components(t[1:2])
-
+        >>> spannertools.fracture_spanners_that_cross_components(t[1:2])
+        [{e'8, f'8}]
+   
+        >>> f(t)
         \new Staff {
             {
                 c'8 [ \< \startTrillSpan
@@ -56,15 +56,16 @@ def fracture_spanners_that_cross_components(components):
         ``spannertools.fracture_spanners_that_cross_components()``.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
     if 0 < len(components):
 
         leftmost_component = components[0]
-        fracture_spanners_attached_to_component(leftmost_component, direction='left')
+        spannertools.fracture_spanners_attached_to_component(leftmost_component, direction=Left)
 
         rightmost_component = components[-1]
-        fracture_spanners_attached_to_component(rightmost_component, direction='right')
+        spannertools.fracture_spanners_attached_to_component(rightmost_component, direction=Right)
 
     return components

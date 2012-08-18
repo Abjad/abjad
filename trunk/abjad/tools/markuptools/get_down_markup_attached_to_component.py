@@ -11,17 +11,17 @@ def get_down_markup_attached_to_component(component):
     ::
 
         >>> markuptools.Markup('UP', Up)(chord)
-        Markup(('UP',), direction='^')(<cs d' f'>4)
+        Markup(('UP',), direction=Up)(<cs d' f'>4)
 
     ::
 
         >>> markuptools.Markup('DOWN', Down)(chord)
-        Markup(('DOWN',), direction='_')(<cs d' f'>4)
+        Markup(('DOWN',), direction=Down)(<cs d' f'>4)
 
     ::
 
         >>> markuptools.get_down_markup_attached_to_component(chord)
-        (Markup(('DOWN',), direction='_')(<cs d' f'>4),)
+        (Markup(('DOWN',), direction=Down)(<cs d' f'>4),)
 
     Return tuple of zero or more markup objects.
     '''
