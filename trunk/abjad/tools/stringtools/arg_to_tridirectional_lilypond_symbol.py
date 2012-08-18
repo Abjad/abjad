@@ -48,6 +48,8 @@ def arg_to_tridirectional_lilypond_symbol(arg):
     '''
 
     lookup = {
+        Up: '^',
+        Down: '_',
         1: '^',
         0: '-',
         -1: '_',

@@ -11,7 +11,8 @@ from abjad.tools.configurationtools import AbjadConfig
 ABJCFG = AbjadConfig()
 del AbjadConfig
 
-from abjad.tools.importtools._import_functions_in_package_to_namespace import _import_functions_in_package_to_namespace
+from abjad.tools.importtools._import_functions_in_package_to_namespace import \
+    _import_functions_in_package_to_namespace
 from abjad.tools import *
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
@@ -34,13 +35,6 @@ import os
 # import Abjad exceptions in __builtins__ namespace
 _exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
-
-# load constants into __builtins__ namespace
-__builtins__['Left'] = datastructuretools.OrdinalConstant('x', -1, 'Left')
-__builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
-__builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
-__builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
-__builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
 
 del abctools
 del configurationtools

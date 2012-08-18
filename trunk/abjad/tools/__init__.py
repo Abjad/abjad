@@ -1,3 +1,11 @@
+# load constants into __builtins__ namespace
+from abjad.tools import datastructuretools
+__builtins__['Left'] = datastructuretools.OrdinalConstant('x', -1, 'Left')
+__builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
+__builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
+__builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
+__builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
+
 from abjad.tools import abctools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
@@ -5,7 +13,6 @@ from abjad.tools import componenttools
 from abjad.tools import configurationtools
 from abjad.tools import containertools
 from abjad.tools import contexttools
-from abjad.tools import datastructuretools
 from abjad.tools import decoratortools
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
