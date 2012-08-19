@@ -17,7 +17,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to_01():
     assert new.lilypond_format == "{\n\tc'8\n\td'16\n}"
 
 
-def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to002():
+def test_componenttools_copy_governed_component_subtree_from_offset_to002():
     '''Container with rest.'''
 
     t = Container("c'8 d'8 e'8")

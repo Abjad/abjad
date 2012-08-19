@@ -548,10 +548,6 @@ Composition packages
    tools/leaftools/expr_has_leaf_with_dotted_written_duration
    tools/leaftools/fuse_leaves
    tools/leaftools/fuse_leaves_in_container_once_by_counts
-   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_notes
-   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_big_endian_rests
-   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_notes
-   tools/leaftools/fuse_leaves_in_container_once_by_counts_into_little_endian_rests
    tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
    tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
    tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
