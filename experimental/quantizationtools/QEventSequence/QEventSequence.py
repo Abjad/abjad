@@ -57,6 +57,6 @@ class QEventSequence(tuple, abctools.ImmutableAbjadObject):
         return klass(q_events)
 
     @classmethod
-    def from_millisecond_durations(klass, durations):
+    def from_millisecond_durations(klass, durations, fuse_silences=False):
         from experimental.quantizationtools import milliseconds_to_q_events
-        return klass(milliseconds_to_q_events(durations))
+        return klass(milliseconds_to_q_events(durations, fuse_silences))

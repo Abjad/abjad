@@ -41,7 +41,7 @@ class SearchTree(abctools.AbjadObject):
         return False
 
     def __getnewargs__(self):
-        return self.definition
+        return (self.definition,)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
