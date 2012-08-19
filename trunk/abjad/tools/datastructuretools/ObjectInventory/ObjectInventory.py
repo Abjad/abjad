@@ -7,11 +7,13 @@ class ObjectInventory(list, AbjadObject):
 
     Ordered collection of custom objects.
 
-    Object inventories extend ``append()``, ``extend()`` and ``__contains__()`` and allow token input.
+    Object inventories extend ``append()``, ``extend()`` and 
+    ``__contains__()`` and allow token input.
 
     Object inventories inherit from list and are mutable.
 
-    This class is an abstract base class that can not instantiate and should be subclassed.
+    This class is an abstract base class that can not instantiate 
+    and should be subclassed.
     '''
 
     ### INITIALIZER ###

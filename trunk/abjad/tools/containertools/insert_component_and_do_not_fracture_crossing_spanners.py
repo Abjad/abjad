@@ -19,7 +19,8 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
 
     ::
 
-        >>> containertools.insert_component_and_do_not_fracture_crossing_spanners(staff, 1, Note("cs'8"))
+        >>> containertools.insert_component_and_do_not_fracture_crossing_spanners(
+        ...     staff, 1, Note("cs'8"))
         Staff{5}
 
     ::

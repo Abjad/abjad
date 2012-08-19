@@ -10,7 +10,8 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, it
 
     ::
 
-        >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(measure, big_endian=True)
+        >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(
+        ...     measure, big_endian=True)
 
     ::
 
@@ -29,7 +30,8 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, it
 
     ::
 
-        >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(measure, big_endian=False)
+        >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(
+        ...     measure, big_endian=False)
 
     ::
 

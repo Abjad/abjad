@@ -1,5 +1,6 @@
 def get_spanner_format_contributions(leaf):
-    '''Get spanner format contributions for `leaf` as a dictionary of format_slot:contributions key:value pairs.
+    '''Get spanner format contributions for `leaf` as a dictionary 
+    of format_slot:contributions key:value pairs.
 
     Return dict.
     '''

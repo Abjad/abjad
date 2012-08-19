@@ -4,10 +4,8 @@ from abjad.tools.datastructuretools import ImmutableDictionary
 
 
 class InheritanceGraph(ImmutableDictionary):
-    '''Generates a graph of a class or collection of classes as a dictionary
-    of parent:children relationships:
-
-    ::
+    '''Generates a graph of a class or collection of 
+    classes as a dictionary of parent-children relationships::
 
         >>> from abjad.tools.documentationtools import InheritanceGraph
 
@@ -32,7 +30,8 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        >>> for parent, children in sorted(graph.items(), key=lambda x: x[0].__name__): # doctest: +SKIP
+        >>> result = sorted(graph.items(), key=lambda x: x[0].__name__)
+        >>> for parent, children in result: # doctest: +SKIP
         ...     parent, tuple(sorted(children, key=lambda x: x.__name__))
         (<class '__main__.A'>, (<class '__main__.B'>, <class '__main__.F'>))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))

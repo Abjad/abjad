@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_marks_attached_to_component import get_marks_attached_to_component
-
-
 def detach_marks_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -29,13 +26,21 @@ def detach_marks_attached_to_component(component):
 
     ::
 
-        >>> marktools.get_marks_attached_to_component(staff[0])
-        (Articulation('^')(c'8), LilyPondComment('comment 1')(c'8), LilyPondCommandMark('slurUp')(c'8))
+        >>> for mark in marktools.get_marks_attached_to_component(staff[0]):
+        ...     mark
+        ...
+        Articulation('^')(c'8)
+        LilyPondComment('comment 1')(c'8)
+        LilyPondCommandMark('slurUp')(c'8)
 
     ::
 
-        >>> marktools.detach_marks_attached_to_component(staff[0])
-        (Articulation('^'), LilyPondComment('comment 1'), LilyPondCommandMark('slurUp'))
+        >>> for mark in marktools.detach_marks_attached_to_component(staff[0]):
+        ...     mark
+        ...
+        Articulation('^')
+        LilyPondComment('comment 1')
+        LilyPondCommandMark('slurUp')
 
     ::
 
@@ -44,9 +49,10 @@ def detach_marks_attached_to_component(component):
 
     Return tuple or zero or more marks detached.
     '''
+    from abjad.tools import marktools
 
     marks = []
-    for mark in get_marks_attached_to_component(component):
+    for mark in marktools.get_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
 

@@ -1,7 +1,3 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools.Component import Component
-
-
 def insert_component_and_fracture_crossing_spanners(container, i, component):
     r'''Insert `component` into `container` at index `i` and fracture spanners::
 
@@ -21,7 +17,8 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
 
     ::
 
-        >>> parts = containertools.insert_component_and_fracture_crossing_spanners(staff, 1, Rest((1, 8)))
+        >>> parts = containertools.insert_component_and_fracture_crossing_spanners(
+        ...     staff, 1, Rest((1, 8)))
 
     ::
 
@@ -40,12 +37,14 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
         renamed ``containertools.insert_and_fracture()`` to
         ``containertools.insert_component_and_fracture_crossing_spanners()``.
     '''
+    from abjad.tools import componenttools
+    from abjad.tools import containertools
     from abjad.tools import leaftools
     from abjad.tools import spannertools
 
     # check input
-    assert isinstance(container, Container)
-    assert isinstance(component, Component)
+    assert isinstance(container, containertools.Container)
+    assert isinstance(component, componenttools.Component)
     assert isinstance(i, int)
 
     result = []

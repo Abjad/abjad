@@ -7,7 +7,8 @@ def split_container_at_index(component, i, fracture_spanners=False):
     General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.
-    Use containertools.split_container_at_index_and_fracture_crossing_spanners() to fracture spanners.
+    Use containertools.split_container_at_index_and_fracture_crossing_spanners() 
+    to fracture spanners.
     Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() 
     to leave spanners unchanged.
 
@@ -85,7 +86,8 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
     ::
 
-        >>> left, right = containertools.split_container_at_index(tuplet, 1, fracture_spanners=True)
+        >>> left, right = containertools.split_container_at_index(
+        ...         tuplet, 1, fracture_spanners=True)
 
     ::
 

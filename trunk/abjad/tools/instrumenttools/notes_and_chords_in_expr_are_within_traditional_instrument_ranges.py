@@ -1,6 +1,6 @@
+from abjad.tools import contexttools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
-from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
@@ -14,7 +14,8 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(staff)
+        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(
+        ...     staff)
         True
 
     False otherwise::
@@ -25,7 +26,8 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(staff)
+        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(
+        ...     staff)
         False
 
     Return boolean.
@@ -33,7 +35,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
     from abjad.tools import leaftools
 
     for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
-        instrument = get_effective_instrument(note_or_chord)
+        instrument = contexttools.get_effective_instrument(note_or_chord)
         if note_or_chord not in instrument.traditional_pitch_range:
             return False
     else:

@@ -4,15 +4,15 @@ def make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
 
     Make augmented tuplet from `duration` and `proportions` and encourage dots::
 
-        >>> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
+        >>> tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
         ... Fraction(3, 16), [1, 1, 1, -1, -1])
-        {@ 5:8 c'64., c'64., c'64., r64., r64. @}
+        FixedDurationTuplet(3/16, [c'64., c'64., c'64., r64., r64.])
 
     Interpret nonassignable `proportions` according to `direction`::
 
-        >>> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
+        >>> tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
         ... Fraction(3, 16), [5, -1, 5], big_endian=False)
-        {@ 11:16 c'32..., r128., c'32... @}
+        FixedDurationTuplet(3/16, [c'32..., r128., c'32...])
 
     Reduce `proportions` relative to each other.
 

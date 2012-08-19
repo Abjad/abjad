@@ -13,10 +13,14 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components=None):
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> spannertools.make_solid_text_spanner_above_with_nib_at_right('foo', t[:])
         TextSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
         >>> f(t)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }
-            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . -1) }
+            \override TextSpanner #'bound-details #'right #'text = \markup { 
+                \draw-line #'(0 . -1) }
             \override TextSpanner #'bound-details #'right-broken #'text = ##f
             \override TextSpanner #'dash-fraction = #1
             \override TextSpanner #'direction = #up

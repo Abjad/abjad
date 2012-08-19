@@ -25,7 +25,8 @@ def replace_container_slice_with_rests(container, start=None, stop=None, big_end
 
     ::
 
-        >>> container = containertools.replace_container_slice_with_rests(container, start=1)
+        >>> container = containertools.replace_container_slice_with_rests(
+        ...     container, start=1)
 
     :: 
     
@@ -40,7 +41,8 @@ def replace_container_slice_with_rests(container, start=None, stop=None, big_end
         >>> container = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b' c''8")
 
     ::
-        >>> container= containertools.replace_container_slice_with_rests(container, start=1, stop=2)
+        >>> container= containertools.replace_container_slice_with_rests(
+        ...         container, start=1, stop=2)
 
     ::
 
