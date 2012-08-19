@@ -16,6 +16,7 @@ from experimental.quantizationtools.NaiveAttackPointOptimizer import NaiveAttack
 from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
 from experimental.quantizationtools.QEventSequence import QEventSequence
 from experimental.quantizationtools.SerialJobHandler import SerialJobHandler
+from experimental.quantizationtools.SilentQEvent import SilentQEvent
 import bisect
 
 
@@ -55,10 +56,16 @@ class QTarget(abctools.AbjadObject):
             attack_point_optimizer = NaiveAttackPointOptimizer()
         assert isinstance(attack_point_optimizer, AttackPointOptimizer)
 
+        # if next-to-last QEvent is silent, pop the TerminalQEvent,
+        # in order to prevent rest-tuplets
+        q_events = q_event_sequence
+        if isinstance(q_event_sequence[-2], SilentQEvent):
+            q_events = q_event_sequence[:-1]
+
         # parcel QEvents out to each beat
         beats = self.beats
         offsets = sorted([beat.offset_in_ms for beat in beats])
-        for q_event in q_event_sequence:
+        for q_event in q_events:
             index = bisect.bisect(offsets, q_event.offset) - 1
             beat = beats[index]
             beat.q_events.append(q_event)
