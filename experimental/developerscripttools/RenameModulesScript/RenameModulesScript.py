@@ -7,6 +7,26 @@ import os
 
 
 class RenameModulesScript(DeveloperScript):
+    '''Utility for renaming classes and functions.
+
+    Handles renaming the module and package, as well as any tests, documentation or
+    mentions of the class throughout the Abjad codebase:
+
+    ::
+
+        $ ajv rename -h
+        usage: rename-modules [-h] [--version] (-C | -F)
+
+        Rename public modules.
+
+        optional arguments:
+          -h, --help       show this help message and exit
+          --version        show program's version number and exit
+          -C, --classes    rename classes
+          -F, --functions  rename functions
+
+    Return `RenameModulesScript` instance.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

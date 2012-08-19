@@ -7,6 +7,21 @@ import os
 
 
 class RunDoctestsScript(DirectoryScript):
+    '''Run doctests on all Python files in current directory recursively:
+
+    ::
+
+        bash$ ajv doctest -h
+        usage: run-doctests [-h] [--version]
+
+        Run doctests on all modules in current path.
+
+        optional arguments:
+          -h, --help  show this help message and exit
+          --version   show program's version number and exit
+
+    Return `RunDoctestsScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

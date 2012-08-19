@@ -4,6 +4,42 @@ import os
 
 
 class ReplacePromptsScript(DirectoryScript):
+    '''Replace prompts in code examples recursively:
+
+    ::
+
+        bash$ ajv replace prompts -h
+        usage: replace-prompts [-h] [--version] [-PA | -AP] path
+
+        Replace prompts.
+
+        positional arguments:
+          path                  directory tree to be recursed over
+
+        optional arguments:
+          -h, --help            show this help message and exit
+          --version             show program's version number and exit
+          -PA, --python-to-abjad
+                                replace Python (">>>") prompts with Abjad ("abjad>")
+                                prompts
+          -AP, --abjad-to-python
+                                replace Abjad ("abjad>") prompts with Python (">>>")
+                                prompts
+
+        examples:
+
+          Replace Python prompts with Abjad prompts in the current directory:
+
+          $ abj-dev replace prompts --python-to-abjad .
+
+          Replace Abjad prompts with Python prompts in the grandparent directory:
+
+          $ abj-dev replace prompts --abjad-to-python ../..
+            
+    `ReplacePromptsScript` uses `ReplaceInFilesScript` for its replacement functionality.
+
+    Return `ReplacePromptsScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###
 

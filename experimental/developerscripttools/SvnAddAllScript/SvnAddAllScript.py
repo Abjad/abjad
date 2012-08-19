@@ -6,6 +6,24 @@ import subprocess
 
 
 class SvnAddAllScript(DirectoryScript):
+    '''Run `svn add` on all unversioned files in path:
+
+    ::
+
+        bash$ ajv svn add -h
+        usage: svn-add-all [-h] [--version] path
+
+        "svn add" all unversioned files in PATH.
+
+        positional arguments:
+          path        directory tree to be recursed over
+
+        optional arguments:
+          -h, --help  show this help message and exit
+          --version   show program's version number and exit
+
+    Return `SvnAddAllScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

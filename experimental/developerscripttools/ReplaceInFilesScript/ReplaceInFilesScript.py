@@ -5,6 +5,44 @@ import re
 
 
 class ReplaceInFilesScript(DirectoryScript):
+    '''Replace text in files recursively:
+
+    ::
+
+        bash$ ajv replace text -h
+        usage: replace-in-files [-h] [--version] [--verbose] [-Y] [-R] [-W]
+                                [-F PATTERN] [-D PATTERN]
+                                path old new
+
+        Replace text.
+
+        positional arguments:
+          path                  directory tree to be recursed over
+          old                   old text
+          new                   new text
+
+        optional arguments:
+          -h, --help            show this help message and exit
+          --version             show program's version number and exit
+          --verbose             print replacement info even when --force flag is set.
+          -Y, --force           force "yes" to every replacement
+          -R, --regex           treat "old" as a regular expression
+          -W, --whole-words-only
+                                match only whole words, similar to grep's "-w" flag
+          -F PATTERN, --without-files PATTERN
+                                Exclude files matching pattern(s)
+          -D PATTERN, --without-dirs PATTERN
+                                Exclude folders matching pattern(s)
+
+    Multiple patterns for excluding files or folders can be specified by
+    restating the `--without-files` or `--without-dirs` commands:
+
+    ::
+
+        bash$ ajv replace text . foo bar -F *.txt -F *.rst -F *.htm
+
+    Return `ReplaceInFilesScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###
 

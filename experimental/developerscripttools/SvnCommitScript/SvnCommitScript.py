@@ -6,6 +6,27 @@ import os
 
 
 class SvnCommitScript(DirectoryScript):
+    '''Run `svn commit`, using the commit message stored in the `.abjad` directory.
+
+    The commit message will be printed to the terminal, and must be manually
+    accepted or rejected before proceeding:
+
+    ::
+
+        bash$ ajv svn ci -h
+        usage: svn-commit [-h] [--version] path
+
+        "svn commit", using previously written commit message.
+
+        positional arguments:
+          path        commit the path PATH
+
+        optional arguments:
+          -h, --help  show this help message and exit
+          --version   show program's version number and exit
+
+    Return `SvnCommitScript` instance.
+    '''
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 
