@@ -7,9 +7,9 @@ import os
 
 
 class RenameModulesScript(DeveloperScript):
-    '''Utility for renaming classes and functions.
+    '''Rename classes and functions.
 
-    Handles renaming the module and package, as well as any tests, documentation or
+    Handle renaming the module and package, as well as any tests, documentation or
     mentions of the class throughout the Abjad codebase:
 
     ::

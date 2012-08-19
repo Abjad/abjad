@@ -6,7 +6,7 @@ import os
 
 
 class AbjGrepScript(DirectoryScript):
-    '''`AbjGrepScript` runs `grep` against a path, ignoring `svn` and docs-related files:
+    '''Run `grep` against a path, ignoring `svn` and docs-related files:
 
     ::
 

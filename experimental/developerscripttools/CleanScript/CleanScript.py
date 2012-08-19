@@ -5,8 +5,7 @@ import shutil
 
 
 class CleanScript(DirectoryScript):
-    '''`CleanScript` removes *.pyc files and __pycache__ and tmp* directories
-    recursively in a path:
+    '''Remove *.pyc files and __pycache__ and tmp* directories recursively in a path:
 
     ::
 

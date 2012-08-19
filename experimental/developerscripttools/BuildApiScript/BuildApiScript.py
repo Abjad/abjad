@@ -5,7 +5,7 @@ import os
 
 
 class BuildApiScript(DeveloperScript):
-    '''`BuildApiScript` is responsible for building the Abjad API:
+    '''Build the Abjad APIs:
 
     ::
 

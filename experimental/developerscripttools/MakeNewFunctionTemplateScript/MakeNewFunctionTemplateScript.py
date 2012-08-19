@@ -3,7 +3,7 @@ import os
 
 
 class MakeNewFunctionTemplateScript(DeveloperScript):
-    '''Utility for creating a function stub file:
+    '''Create function stub files:
 
     ::
 

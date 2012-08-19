@@ -8,7 +8,7 @@ import os
 class AbjDevScript(DeveloperScript):
     '''`AbjDevScript` is the commandline entry-point to the Abjad developer scripts catalog.
 
-    It can be accessed on the commandline via `abj-dev` or `ajv`:
+    Can be accessed on the commandline via `abj-dev` or `ajv`:
 
     ::
 

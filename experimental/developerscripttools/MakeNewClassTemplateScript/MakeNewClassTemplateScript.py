@@ -4,7 +4,7 @@ import os
 
 
 class MakeNewClassTemplateScript(DeveloperScript):
-    '''Utility for creating class stubs, complete with test subdirectory:
+    '''Create class stubs, complete with test subdirectory:
 
     ::
 

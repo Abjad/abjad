@@ -6,7 +6,7 @@ import os
 
 
 class CountLinewidthsScript(DirectoryScript):
-    '''`CountLinewidthsScript` tabulates the linewidths of modules in a path:
+    '''Tabulate the linewidths of modules in a path:
 
     ::
 

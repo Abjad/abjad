@@ -6,7 +6,7 @@ import os
 
 
 class CountToolsScript(DirectoryScript):
-    '''`CountToolsScript` counts public and private functions and classes in a path:
+    '''Count public and private functions and classes in a path:
 
     ::
 
