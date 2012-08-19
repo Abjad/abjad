@@ -2,9 +2,9 @@ from abjad import *
 from abjad.tools import durationtools
 
 
-def test_durationtools_yield_all_positive_integer_pairs_in_cantor_diagonalized_order_01():
+def test_durationtools_yield_all_positive_integer_pairs_01():
 
-    generator = durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
+    generator = durationtools.yield_all_positive_integer_pairs()
 
     assert generator.next() == (1, 1)
     assert generator.next() == (2, 1)

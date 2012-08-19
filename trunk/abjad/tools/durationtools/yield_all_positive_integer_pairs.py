@@ -1,4 +1,4 @@
-def yield_all_positive_integer_pairs_in_cantor_diagonalized_order():
+def yield_all_positive_integer_pairs():
     '''.. versionadded:: 2.0
 
     Yield all positive integer pairs in Cantor diagonalized order::
@@ -7,7 +7,7 @@ def yield_all_positive_integer_pairs_in_cantor_diagonalized_order():
 
     ::
 
-        >>> generator = durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
+        >>> generator = durationtools.yield_all_positive_integer_pairs()
         >>> for n in range(16):
         ...     generator.next()
         ...

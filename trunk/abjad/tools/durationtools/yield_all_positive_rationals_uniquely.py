@@ -1,12 +1,12 @@
 import fractions
 
 
-def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely():
+def yield_all_positive_rationals_uniquely():
     r'''.. versionadded:: 2.0
 
     Yield all positive rationals in Cantor diagonalized order uniquely::
 
-        >>> generator = durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
+        >>> generator = durationtools.yield_all_positive_rationals_uniquely()
         >>> for n in range(16):
         ...     generator.next()
         ...
@@ -31,7 +31,7 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely():
     '''
     from abjad.tools import durationtools
 
-    generator = durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
+    generator = durationtools.yield_all_positive_integer_pairs()
     while True:
         integer_pair = generator.next()
         rational = fractions.Fraction(*integer_pair)

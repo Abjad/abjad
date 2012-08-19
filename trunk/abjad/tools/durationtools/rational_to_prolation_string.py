@@ -7,7 +7,7 @@ def rational_to_prolation_string(rational):
 
     ::
 
-        >>> generator = durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
+        >>> generator = durationtools.yield_all_positive_rationals_uniquely()
         >>> for n in range(16): # doctest: +SKIP
         ...     rational = generator.next()
         ...     prolation_string = durationtools.rational_to_prolation_string(rational)

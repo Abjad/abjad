@@ -1,7 +1,7 @@
 from fractions import Fraction
 
 
-def yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+def yield_prolation_rewrite_pairs(
     prolated_duration, minimum_written_duration=Fraction(1, 128)):
     r'''.. versionadded:: 2.0
 
@@ -15,7 +15,7 @@ def yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
 
     ::
 
-        >>> pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+        >>> pairs = durationtools.yield_prolation_rewrite_pairs(
         ... Fraction(1, 8))
 
     ::
@@ -33,7 +33,7 @@ def yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
 
     The different ways to notate a prolated duration of ``1/12``::
 
-        >>> pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+        >>> pairs = durationtools.yield_prolation_rewrite_pairs(
         ... Fraction(1, 12))
 
     ::
@@ -50,7 +50,7 @@ def yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
 
     The different ways to notate a prolated duration of ``5/48``::
 
-        >>> pairs = durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
+        >>> pairs = durationtools.yield_prolation_rewrite_pairs(
         ... Fraction(5, 48))
 
     ::
@@ -70,7 +70,7 @@ def yield_prolation_rewrite_pairs_in_cantor_diagonalized_order(
     from abjad.tools import durationtools
     from abjad.tools import tuplettools
 
-    generator = durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
+    generator = durationtools.yield_all_assignable_rationals()
     pairs = []
 
     while True:

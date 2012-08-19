@@ -1,8 +1,8 @@
-from abjad.tools.durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order import yield_all_positive_integer_pairs_in_cantor_diagonalized_order
+from abjad.tools.durationtools.yield_all_positive_integer_pairs import yield_all_positive_integer_pairs
 from fractions import Fraction
 
 
-def yield_all_positive_rationals_in_cantor_diagonalized_order():
+def yield_all_positive_rationals():
     r'''.. versionadded:: 2.0
 
     Yield all positive rationals in Cantor diagonalized order::
@@ -11,7 +11,7 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order():
 
     ::
 
-        >>> generator = durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order()
+        >>> generator = durationtools.yield_all_positive_rationals()
         >>> for n in range(16):
         ...     generator.next()
         ...
@@ -35,7 +35,7 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order():
     Return fraction generator.
     '''
 
-    generator = yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
+    generator = yield_all_positive_integer_pairs()
     while True:
         integer_pair = generator.next()
         rational = Fraction(*integer_pair)

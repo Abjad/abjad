@@ -2,9 +2,9 @@ from abjad import *
 from abjad.tools import durationtools
 
 
-def test_durationtools_yield_all_assignable_rationals_in_cantor_diagonalized_order_01():
+def test_durationtools_yield_all_assignable_rationals_01():
 
-    generator = durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
+    generator = durationtools.yield_all_assignable_rationals()
 
     assert generator.next() == Fraction(1, 1)
     assert generator.next() == Fraction(2, 1)

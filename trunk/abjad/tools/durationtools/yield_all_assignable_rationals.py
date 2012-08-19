@@ -1,8 +1,8 @@
 from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
-from abjad.tools.durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely import yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
+from abjad.tools.durationtools.yield_all_positive_rationals_uniquely import yield_all_positive_rationals_uniquely
 
 
-def yield_all_assignable_rationals_in_cantor_diagonalized_order():
+def yield_all_assignable_rationals():
     '''.. versionadded:: 2.0
 
     Yield all assignable rationals in Cantor diagonalized order::
@@ -11,7 +11,7 @@ def yield_all_assignable_rationals_in_cantor_diagonalized_order():
 
     ::
 
-        >>> generator = durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
+        >>> generator = durationtools.yield_all_assignable_rationals()
         >>> for n in range(16):
         ...     generator.next()
         ...
@@ -36,7 +36,7 @@ def yield_all_assignable_rationals_in_cantor_diagonalized_order():
     '''
 
 
-    generator = yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
+    generator = yield_all_positive_rationals_uniquely()
     while True:
         duration = generator.next()
         if is_assignable_rational(duration):

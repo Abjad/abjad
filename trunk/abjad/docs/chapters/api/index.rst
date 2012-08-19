@@ -377,11 +377,11 @@ Composition packages
    tools/durationtools/rational_to_prolation_string
    tools/durationtools/rational_to_proper_fraction
    tools/durationtools/rewrite_rational_under_new_tempo
-   tools/durationtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
-   tools/durationtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
-   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order
-   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
-   tools/durationtools/yield_prolation_rewrite_pairs_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_assignable_rationals
+   tools/durationtools/yield_all_positive_integer_pairs
+   tools/durationtools/yield_all_positive_rationals
+   tools/durationtools/yield_all_positive_rationals_uniquely
+   tools/durationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`gracetools <abjad.tools.gracetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
