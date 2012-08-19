@@ -1,4 +1,3 @@
-from abjad.tools.componenttools.Component import Component
 from abjad.tools import durationtools
 
 
@@ -8,11 +7,13 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
     Clone governed `component` subtree from `start` prolated duration
     to `stop` prolated duration.
 
-    Governed subtree refers to `component` together with the children of `component`::
+    Governed subtree refers to `component` together with the 
+    children of `component`::
 
-        >>> voice = Voice(notetools.make_repeated_notes(2))
-        >>> voice.append(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)))
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(voice)
+        >>> voice = Voice(r"c'8 d'8 \times 2/3 { e'8 f'8 g'8 }")
+
+    ::
+
         >>> f(voice)
         \new Voice {
            c'8
@@ -26,7 +27,11 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
     ::
 
-        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(voice, (0, 8), (3, 8))
+        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
+        ...     voice, (0, 8), (3, 8))
+
+    ::
+
         >>> f(new)
         \new Voice {
            c'8
@@ -57,7 +62,11 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
     But note that cases with ``0 = start`` work correctly::
 
-        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(voice, (0, 8), (1, 8))
+        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
+        ...     voice, (0, 8), (1, 8))
+
+    ::
+
         >>> f(new)
         \new Voice {
             c'8
@@ -65,7 +74,11 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
     Cases with ``0 < start`` do not work correctly::
 
-        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(voice, (1, 8), (2, 8))
+        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
+        ...     voice, (1, 8), (2, 8))
+
+    ::
+
         >>> f(new)
         \new Voice {
             c'8
@@ -75,7 +88,11 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
     Create ad hoc tuplets as required::
 
         >>> voice = Voice([Note("c'4")])
-        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(voice, 0, (1, 12))
+        >>> new = componenttools.copy_governed_component_subtree_from_offset_to(
+        ...     voice, 0, (1, 12))
+
+    ::
+
         >>> f(new)
         \new Voice {
             \times 2/3 {
@@ -86,21 +103,26 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
     Function does NOT clone parentage of `component` when `component` is a leaf::
 
         >>> voice = Voice([Note("c'4")])
-        >>> new_leaf = componenttools.copy_governed_component_subtree_from_offset_to(voice[0], 0, (1, 8))
+        >>> new_leaf = componenttools.copy_governed_component_subtree_from_offset_to(
+        ...     voice[0], 0, (1, 8))
+
+    ::
+
         >>> f(new_leaf)
         c'8
+
+    ::
+
         >>> new_leaf._parent is None
         True
 
-    Return (untrimmed_copy, first_dif, second_dif).
-
-    .. versionchanged:: 2.0
-        renamed ``componenttools.clone_governed_component_subtree_from_prolated_duration_to()`` to
-        ``componenttools.copy_governed_component_subtree_from_offset_to()``.
+    Return ``(untrimmed_copy, first_dif, second_dif)``.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
-    from abjad.tools.containertools.Container import Container
-    assert isinstance(component, Component)
+    from abjad.tools import componenttools
+    from abjad.tools import containertools
+    from abjad.tools import leaftools
+
+    assert isinstance(component, componenttools.Component)
     start = durationtools.Duration(*durationtools.duration_token_to_duration_pair(start))
     if start < 0:
         start = durationtools.Duration(0)
@@ -109,9 +131,9 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
     else:
         stop = durationtools.Duration(*durationtools.duration_token_to_duration_pair(stop))
     assert start <= stop
-    if isinstance(component, Leaf):
+    if isinstance(component, leaftools.Leaf):
         return _scopy_leaf(component, start, stop)
-    elif isinstance(component, Container):
+    elif isinstance(component, containertools.Container):
         return _scopy_container(component, start, stop)
     else:
         raise ValueError('must be leaf or container.')

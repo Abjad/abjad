@@ -4,12 +4,15 @@ from abjad.tools import durationtools
 def get_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
     '''.. versionadded:: 2.0
 
-    Get leftmost components in `component` with prolated duration at most `prolated_duration`.
+    Get leftmost components in `component` with prolated duration 
+    at most `prolated_duration`.
 
-    Return tuple of ``components[:i]`` together with the prolated duration of ``components[:i]``::
+    Return tuple of ``components[:i]`` together with the 
+    prolated duration of ``components[:i]``::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> componenttools.get_leftmost_components_with_prolated_duration_at_most(voice[:], Duration(1, 4))
+        >>> componenttools.get_leftmost_components_with_prolated_duration_at_most(
+        ...     voice[:], Duration(1, 4))
         ([Note("c'8"), Note("d'8")], Duration(1, 4))
 
     Maximize ``i`` such that the prolated duration of

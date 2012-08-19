@@ -39,16 +39,7 @@ def iterate_thread_backward_in_expr(expr, klass, containment_signature):
             >>
         }
 
-    ::
-
-        >>> signature = componenttools.component_to_containment_signature(staff[0])
-        >>> for x in componenttools.iterate_thread_backward_in_expr(staff, Note, signature): # doctest: +SKIP
-        ...     x
-        Note("c''8")
-        Note("b'8")
-        Note("f'8")
-        Note("e'8")
-
+    .. note:: Fix function and author example.
 
     Return generator.
 

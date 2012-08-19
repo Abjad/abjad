@@ -1,6 +1,3 @@
-from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duration import _leaf_to_tuplet_with_n_notes_of_equal_written_duration
-
-
 def leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
     '''.. versionadded:: 2.0
 
@@ -8,7 +5,8 @@ def leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
 
         >>> for n in range(1, 11):
         ...     note = Note(0, (3, 16))
-        ...     tuplet = leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(note, n)
+        ...     tuplet = leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(
+        ...         note, n)
         ...     print tuplet
         ...
         {@ 1:1 c'8. @}
@@ -24,5 +22,7 @@ def leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
 
     Return augmented fixed-duration tuplet.
     '''
+    from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duration import \
+        _leaf_to_tuplet_with_n_notes_of_equal_written_duration
 
     return _leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, 'augmentation')

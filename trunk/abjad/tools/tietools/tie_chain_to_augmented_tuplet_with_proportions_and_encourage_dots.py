@@ -1,10 +1,10 @@
-from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
 
 
 def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, proportions):
     r'''.. versionadded:: 2.0
 
-    Change `tie_chain` to augmented fixed-duration tuplet with `proportions` and encourage dots.
+    Change `tie_chain` to augmented fixed-duration tuplet 
+    with `proportions` and encourage dots.
 
     Return non-trivial tuplet as augmentation.
 
@@ -26,7 +26,8 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
-        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1])
+        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(
+        ...     tie_chain, [1])
         FixedDurationTuplet(3/16, [c'8.])
 
     ::
@@ -55,7 +56,8 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
-        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1, 2])
+        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(
+        ...     tie_chain, [1, 2])
         FixedDurationTuplet(3/16, [c'16, c'8])
 
     ::
@@ -85,7 +87,8 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
-        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1, 2, 2])
+        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(
+        ...     tie_chain, [1, 2, 2])
         FixedDurationTuplet(3/16, [c'64., c'32., c'32.])
 
     ::
@@ -106,5 +109,7 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
         renamed ``divide.tie_chain_into_arbitrary_augmentation_dotted()`` to
         ``tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots()``.
     '''
+    from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
+
     prolation, dotted = 'augmentation', True
     return _tie_chain_to_tuplet(tie_chain, proportions, prolation, dotted)

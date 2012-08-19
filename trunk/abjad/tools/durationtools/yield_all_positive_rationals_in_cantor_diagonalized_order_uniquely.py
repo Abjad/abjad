@@ -1,15 +1,10 @@
-from abjad.tools.durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order import yield_all_positive_integer_pairs_in_cantor_diagonalized_order
-from fractions import Fraction
+import fractions
 
 
 def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely():
     r'''.. versionadded:: 2.0
 
     Yield all positive rationals in Cantor diagonalized order uniquely::
-
-        >>> from abjad.tools import durationtools
-
-    ::
 
         >>> generator = durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
         >>> for n in range(16):
@@ -34,10 +29,11 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely():
 
     Return fraction generator.
     '''
+    from abjad.tools import durationtools
 
-    generator = yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
+    generator = durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
     while True:
         integer_pair = generator.next()
-        rational = Fraction(*integer_pair)
+        rational = fractions.Fraction(*integer_pair)
         if (rational.numerator, rational.denominator) == integer_pair:
             yield rational
