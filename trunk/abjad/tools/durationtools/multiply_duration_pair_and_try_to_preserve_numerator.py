@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
@@ -6,11 +6,8 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
 
     Multiply duration `pair` by rational `multiplier` and try to preserve numerator::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
-        >>> durationtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(2, 3))
+        >>> durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
+        ...     (9, 16), Fraction(2, 3))
         (9, 24)
 
     Intended for certain types of meter multiplication.
@@ -23,7 +20,7 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
     '''
 
     assert isinstance(pair, tuple)
-    assert isinstance(multiplier, Fraction)
+    assert isinstance(multiplier, fractions.Fraction)
 
     pair_denominator = pair[1]
     candidate_result_denominator = pair_denominator / multiplier

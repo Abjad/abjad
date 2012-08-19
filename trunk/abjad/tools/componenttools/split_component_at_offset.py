@@ -150,7 +150,7 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
         split_point_denominator = split_point_in_measure.denominator
         if measure.is_nonbinary:
             measure_multiplier = measure.multiplier
-            split_point_multiplier = durationtools.positive_integer_to_implied_prolation_multipler(
+            split_point_multiplier = durationtools.positive_integer_to_implied_prolation_multiplier(
                 split_point_denominator)
             if not measure_multiplier == split_point_multiplier:
                 raise NotImplementedError

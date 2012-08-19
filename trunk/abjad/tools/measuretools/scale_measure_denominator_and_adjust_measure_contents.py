@@ -64,7 +64,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
         old_meter_duration, factor = new_denominator_factor)
 
     # find new measure multiplier
-    new_measure_multiplier = durationtools.positive_integer_to_implied_prolation_multipler(
+    new_measure_multiplier = durationtools.positive_integer_to_implied_prolation_multiplier(
         new_denominator_factor)
 
     # inverse scale measure ... but throw away resultant meter

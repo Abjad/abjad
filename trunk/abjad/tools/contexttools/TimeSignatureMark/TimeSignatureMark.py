@@ -94,7 +94,7 @@ class TimeSignatureMark(ContextMark):
         self.suppress = suppress
 
         # initialize derived attributes
-        _multiplier = durationtools.positive_integer_to_implied_prolation_multipler(self.denominator)
+        _multiplier = durationtools.positive_integer_to_implied_prolation_multiplier(self.denominator)
         self._multiplier = _multiplier
         self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 

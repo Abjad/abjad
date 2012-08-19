@@ -18,7 +18,7 @@ def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_ma
     The first tempo indication specifies quarter = 60 MM.
     The second tempo indication specifies quarter = 90 MM.
 
-    The second tempo is 1 1/2 times as fast as the first. ::
+    The second tempo is 1 1/2 times as fast as the first::
 
         >>> tempo_mark_2 / tempo_mark_1
         Duration(3, 2)
@@ -26,13 +26,15 @@ def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_ma
     An triplet eighth note at tempo 1 equals a regular eighth note
     at tempo 2. ::
 
-        >>> durationtools.rewrite_rational_under_new_tempo(Duration(1, 12), tempo_mark_1, tempo_mark_2)
+        >>> durationtools.rewrite_rational_under_new_tempo(
+        ...     Duration(1, 12), tempo_mark_1, tempo_mark_2)
         Duration(1, 8)
 
     Conversely, a regular eighth not at tempo 1 equals a dotted
     sixteenth at tempo 2. ::
 
-        >>> durationtools.rewrite_rational_under_new_tempo(Duration(1, 8), tempo_mark_1, tempo_mark_2)
+        >>> durationtools.rewrite_rational_under_new_tempo(
+        ...     Duration(1, 8), tempo_mark_1, tempo_mark_2)
         Duration(3, 16)
 
     Return fraction.

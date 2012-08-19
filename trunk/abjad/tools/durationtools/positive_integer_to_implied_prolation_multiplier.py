@@ -1,20 +1,16 @@
+import fractions
 from abjad.tools import mathtools
-from fractions import Fraction
 
 
-# TODO: respell function name correctly
-def positive_integer_to_implied_prolation_multipler(n):
+def positive_integer_to_implied_prolation_multiplier(n):
     '''.. versionadded:: 1.1
 
     Change positive integer `n` to implied porlation multiplier::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
-        >>> for denominator in range(1, 17): # doctest: +SKIP
-        ...     multiplier = durationtools.positive_integer_to_implied_prolation_multipler(denominator)
-        ...     print '%s\\t%s' % (denominator, multiplier)
+        >>> for denominator in range(1, 17):
+        ...     multiplier = durationtools.positive_integer_to_implied_prolation_multiplier(
+        ...         denominator)
+        ...     print '%s %4s' % (denominator, multiplier)
         ...
         1         1
         2         1
@@ -37,7 +33,7 @@ def positive_integer_to_implied_prolation_multipler(n):
 
     .. versionchanged:: 2.0
         renamed ``durationtools.denominator_to_multiplier()`` to
-        ``durationtools.positive_integer_to_implied_prolation_multipler()``.
+        ``durationtools.positive_integer_to_implied_prolation_multiplier()``.
     '''
 
-    return Fraction(mathtools.greatest_power_of_two_less_equal(n), n)
+    return fractions.Fraction(mathtools.greatest_power_of_two_less_equal(n), n)

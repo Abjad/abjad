@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 import math
 
 
@@ -7,14 +7,11 @@ def rational_to_equal_or_greater_binary_rational(rational):
 
     Change `rational` to equal to greater binary rational::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
-        >>> for n in range(1, 17): # doctest: +SKIP
+        >>> for n in range(1, 17):
         ...     rational = Fraction(n, 16)
-        ...     written_duration = durationtools.rational_to_equal_or_greater_binary_rational(rational)
-        ...     print '%s/16\\t%s' % (n, written_duration)
+        ...     written_duration = durationtools.rational_to_equal_or_greater_binary_rational(
+        ...         rational)
+        ...     print '%s/16 %4s' % (n, written_duration)
         ...
         1/16    1/16
         2/16    1/8
@@ -56,7 +53,7 @@ def rational_to_equal_or_greater_binary_rational(rational):
     exponent = -int(math.ceil(math.log(rational, 2)))
 
     # find numerator, denominator and written duration
-    written_duration = Fraction(1, 2) ** exponent
+    written_duration = fractions.Fraction(1, 2) ** exponent
 
     # return written duration
     return written_duration

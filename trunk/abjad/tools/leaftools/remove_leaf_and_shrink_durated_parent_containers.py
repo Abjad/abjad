@@ -82,8 +82,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
             new_denominator = parent_time_signature.denominator
 
-            old_prolation = durationtools.positive_integer_to_implied_prolation_multipler(old_denominator)
-            new_prolation = durationtools.positive_integer_to_implied_prolation_multipler(new_denominator)
+            old_prolation = durationtools.positive_integer_to_implied_prolation_multiplier(old_denominator)
+            new_prolation = durationtools.positive_integer_to_implied_prolation_multiplier(new_denominator)
             adjusted_prolation = old_prolation / new_prolation
             for x in parent:
                 if isinstance(x, tuplettools.FixedDurationTuplet):
