@@ -32,19 +32,13 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(compo
 
     ::
 
-        >>> tmp = componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang
-        >>> groups = tmp(staff.leaves, [Duration(3, 16), Duration(1, 16)])
-
-    ::
-
-        >>> for group in groups:
-        ...     group
-        ...
-        [Note("c'8"), Note("d'8")]
-        [Note("e'8")]
-        [Note("f'8"), Note("g'8")]
-        [Note("a'8")]
-        [Note("b'8"), Note("c''8")]
+        >>> componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang(
+        ...     staff.leaves, [Duration(3, 16), Duration(1, 16)])
+        [[Note("c'8"), Note("d'8")], 
+         [Note("e'8")], 
+         [Note("f'8"), Note("g'8")], 
+         [Note("a'8")], 
+         [Note("b'8"), Note("c''8")]]
 
     Return list of lists.
 

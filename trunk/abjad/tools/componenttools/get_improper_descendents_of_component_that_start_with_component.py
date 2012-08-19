@@ -23,14 +23,11 @@ def get_improper_descendents_of_component_that_start_with_component(component):
 
     ::
 
-        >>> componenttools.get_improper_descendents_of_component_that_start_with_component(staff[1])
+        >>> componenttools.get_improper_descendents_of_component_that_start_with_component(
+        ...     staff[1])
         [<<Voice{1}, Voice{1}>>, Voice{1}, Note("d'4"), Voice{1}, Note("e'4")]
 
     Return list of `component` together with improper contents that start with component.
-
-    .. versionchanged:: 2.9
-        renamed ``componenttools.get_improper_contents_of_component_that_start_with_component()`` to
-        ``componenttools.get_improper_descendents_of_component_that_start_with_component()``.
     '''
     from abjad.tools import containertools
 

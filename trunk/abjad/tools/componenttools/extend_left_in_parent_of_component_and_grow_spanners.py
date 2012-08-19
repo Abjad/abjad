@@ -19,7 +19,8 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
     ::
 
         >>> new_components = 3 * Note(0, (1, 16))
-        >>> componenttools.extend_left_in_parent_of_component_and_grow_spanners(voice[0], new_components)
+        >>> componenttools.extend_left_in_parent_of_component_and_grow_spanners(
+        ...     voice[0], new_components)
         [Note("c'16"), Note("c'16"), Note("c'16"), Note("c'8")]
 
     ::

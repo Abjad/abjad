@@ -1,10 +1,8 @@
-from abjad.tools.componenttools.split_component_at_offset import split_component_at_offset
 from abjad.tools import durationtools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_by_offsets(components, durations,
-    fracture_spanners=False, cyclic=False, tie_after=False):
+def split_components_by_offsets(components, durations, fracture_spanners=False, cyclic=False, tie_after=False):
     r'''.. versionadded:: 2.0
     
     Example 1. Split components cyclically and do not fracture crossing spanners::
@@ -37,7 +35,8 @@ def split_components_by_offsets(components, durations,
 
     ::
 
-        >>> componenttools.split_components_by_offsets(staff.leaves, [Duration(3, 32)], cyclic=True)
+        >>> componenttools.split_components_by_offsets(
+        ...     staff.leaves, [Duration(3, 32)], cyclic=True)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
@@ -284,7 +283,7 @@ def split_components_by_offsets(components, durations,
             #print 'must split %s' % x
             local_split_duration = next_split_point - cum_duration
             #print cum_duration, next_split_point, x, part, local_split_duration
-            left_list, right_list = split_component_at_offset(x, local_split_duration,
+            left_list, right_list = componenttools.split_component_at_offset(x, local_split_duration,
                 fracture_spanners=fracture_spanners, tie_after=tie_after)
             #print 'left_list, right_list %s, %s' % (left_list, right_list)
             part.extend(left_list)

@@ -1,6 +1,3 @@
-from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
-from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
-from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import _reattach_blinded_marks_to_components_in_expr
 import copy
 
 
@@ -39,7 +36,8 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     ::
 
-        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4])
+        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(
+        ...     voice.leaves[2:4])
         >>> result
         (Note("e'8"), Note("f'8"))
 
@@ -59,7 +57,8 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     Clone `components` a total of `n` times. ::
 
-        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4], n=3)
+        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(
+        ...     voice.leaves[2:4], n=3)
         >>> result
         (Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
 
@@ -86,43 +85,17 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
     '''
     from abjad.tools import spannertools
     from abjad.tools import componenttools
+    from abjad.tools.componenttools._ignore_parentage_of_components import \
+        _ignore_parentage_of_components
+    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
+        _restore_parentage_to_components_by_receipt
+    from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
+        _reattach_blinded_marks_to_components_in_expr
 
     if n < 1:
         return []
 
     assert componenttools.all_are_thread_contiguous_components(components)
-
-#   selection_components = set(componenttools.iterate_components_forward_in_expr(components))
-#
-#   spanners = spannertools.get_spanners_that_cross_components(components)
-#
-#   spanner_map = set([])
-#   for spanner in spanners:
-#      spanner_map.add((spanner, tuple(spanner[:])))
-#      for component in spanner[:]:
-#         if component not in selection_components:
-#            spanner._remove_component(component)
-#
-#   receipt = _ignore_parentage_of_components(components)
-#
-#   result = copy.deepcopy(components)
-#
-#   for component in result:
-#      #component._update._mark_all_improper_parents_for_update()
-#      component._mark_entire_score_tree_for_later_update('prolated')
-#
-#   _restore_parentage_to_components_by_receipt(receipt)
-#
-#   for spanner, contents in spanner_map:
-#      spanner.clear()
-#      spanner.extend(list(contents))
-#
-#   for i in range(n - 1):
-#      result += copy_components_and_fracture_crossing_spanners(components)
-#
-#   _reattach_blinded_marks_to_components_in_expr(result)
-#
-#   result
 
     new_components = copy.deepcopy(components)
 

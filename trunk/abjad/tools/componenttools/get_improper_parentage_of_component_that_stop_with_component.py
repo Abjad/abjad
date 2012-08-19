@@ -23,7 +23,8 @@ def get_improper_parentage_of_component_that_stop_with_component(component):
 
     ::
 
-        >>> componenttools.get_improper_parentage_of_component_that_stop_with_component(staff.leaves[-1])
+        >>> componenttools.get_improper_parentage_of_component_that_stop_with_component(
+        ...     staff.leaves[-1])
         [Note("f'4"), Staff{3}]
 
     Return list of `component` with proper parentage that stop with `component`.

@@ -23,7 +23,8 @@ def get_improper_parentage_of_component_that_start_with_component(component):
 
     ::
 
-        >>> componenttools.get_improper_parentage_of_component_that_start_with_component(staff.leaves[1])
+        >>> componenttools.get_improper_parentage_of_component_that_start_with_component(
+        ...     staff.leaves[1])
         [Note("d'4"), Voice{1}, <<Voice{1}, Voice{1}>>]
 
     Return list of `component` together with proper parentage that start with `component`.
