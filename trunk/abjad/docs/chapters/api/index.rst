@@ -582,10 +582,6 @@ Composition packages
    tools/leaftools/label_leaves_in_expr_with_prolated_leaf_duration
    tools/leaftools/label_leaves_in_expr_with_tuplet_depth
    tools/leaftools/label_leaves_in_expr_with_written_leaf_duration
-   tools/leaftools/leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration
-   tools/leaftools/leaf_to_augmented_tuplet_with_proportions
-   tools/leaftools/leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration
-   tools/leaftools/leaf_to_diminished_tuplet_with_proportions
    tools/leaftools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
    tools/leaftools/leaf_to_tuplet_with_proportions
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
@@ -1677,10 +1673,6 @@ Composition packages
    tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
    tools/tietools/remove_nonfirst_leaves_in_tie_chain
    tools/tietools/remove_tie_spanners_from_components_in_expr
-   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
-   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
-   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
-   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
    tools/tietools/tie_chain_to_tuplet_with_proportions
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
