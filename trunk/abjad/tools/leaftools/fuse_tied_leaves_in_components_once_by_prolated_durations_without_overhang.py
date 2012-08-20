@@ -49,8 +49,8 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
     # get duration groups
     groups = \
-        componenttools.partition_components_once_by_prolated_durations_exactly_without_overhang(
-        components, prolated_durations)
+        componenttools.partition_components_by_durations_exactly(
+        components, prolated_durations, cyclic=False, in_seconds=False, overhang=False)
 
     for group in groups:
         # get tie chains intersecting this group
