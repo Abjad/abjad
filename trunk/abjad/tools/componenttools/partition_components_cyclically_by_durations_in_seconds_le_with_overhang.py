@@ -1,13 +1,13 @@
-from abjad.tools.componenttools._partition_components_by_durations import _partition_components_by_durations
-
-
 def partition_components_cyclically_by_durations_in_seconds_le_with_overhang(
     components, durations_in_seconds):
     '''.. versionadded:: 1.1
 
+    .. note:: Deprecated. Use ``componenttools.partition_components_by_durations_le()`` instead.
+
     Partition `components` cyclically by durations in seconds equal to
     or just less than `durations_in_seconds`, with overhang.
     '''
+    from abjad.tools.componenttools._partition_components_by_durations import _partition_components_by_durations
 
     parts = _partition_components_by_durations('seconds', components, durations_in_seconds,
         fill='less', cyclic=True, overhang=True)

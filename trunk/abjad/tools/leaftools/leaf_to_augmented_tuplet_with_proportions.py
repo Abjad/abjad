@@ -1,6 +1,3 @@
-from abjad.tools.leaftools._leaf_to_tuplet_with_proportions import _leaf_to_tuplet_with_proportions
-
-
 def leaf_to_augmented_tuplet_with_proportions(leaf, proportions):
     '''.. versionadded:: 2.0
 
@@ -22,5 +19,6 @@ def leaf_to_augmented_tuplet_with_proportions(leaf, proportions):
 
     Return augmented fixed-duration tuplet.
     '''
+    from abjad.tools import leaftools
 
-    return _leaf_to_tuplet_with_proportions(leaf, proportions, 'augmentation')
+    return leaftools.leaf_to_tuplet_with_proportions(leaf, proportions, diminution=False)

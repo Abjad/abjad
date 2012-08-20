@@ -1,8 +1,8 @@
-
-
 def tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(tie_chain, proportions):
     r'''.. versionadded:: 2.0
 
+    .. note:: Deprecated. Use ``tietools.tie_chain_to_tuplet_with_proportions()`` instead.
+ 
     Change `tie_chain` to diminished fixed-duration tuplet 
     with `proportions` and avoid dots.
 
@@ -107,7 +107,6 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots(tie_chain, pr
         renamed ``divide.tie_chain_into_arbitrary_diminution_undotted()`` to
         ``tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots()``.
     '''
-    from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
+    from abjad.tools.tietools.tie_chain_to_tuplet_with_proportions import tie_chain_to_tuplet_with_proportions
 
-    prolation, dotted = 'diminution', False
-    return _tie_chain_to_tuplet(tie_chain, proportions, prolation, dotted)
+    return tie_chain_to_tuplet_with_proportions(tie_chain, proportions, diminution=True, dotted=False)

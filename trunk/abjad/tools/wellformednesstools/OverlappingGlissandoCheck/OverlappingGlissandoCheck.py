@@ -1,20 +1,18 @@
 from abjad.tools.wellformednesstools.Check import Check
-from abjad.tools.spannertools import GlissandoSpanner
 
 
 class OverlappingGlissandoCheck(Check):
     '''Glissandi must not overlap.
-    Dove-tailed glissandi are OK.'''
+    Dove-tailed glissandi are OK.
+    '''
 
     def _run(self, expr):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
         violators = []
         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-            #glissandi = leaf.glissando.spanners
-            #glissandi = leaf.spanners.get_all_attached_spanners_of_type(GlissandoSpanner)
             glissandi = spannertools.get_spanners_attached_to_component(
-                leaf, GlissandoSpanner)
+                leaf, spannertools.GlissandoSpanner)
             if 1 < len(glissandi):
                 if len(glissandi) == 2:
                     common_leaves = set(glissandi[0].leaves) & \
@@ -30,7 +28,6 @@ class OverlappingGlissandoCheck(Check):
                 for glissando in glissandi:
                     if glissando not in violators:
                         violators.append(glissando)
-        #total = [p for p in expr.spanners.contained if isinstance(p, GlissandoSpanner)]
         total = spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            expr, GlissandoSpanner)
+            expr, spannertools.GlissandoSpanner)
         return violators, len(total)

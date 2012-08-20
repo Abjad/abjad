@@ -162,6 +162,9 @@ Composition packages
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
+   tools/componenttools/partition_components_by_durations_exactly
+   tools/componenttools/partition_components_by_durations_ge
+   tools/componenttools/partition_components_by_durations_le
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang
    tools/componenttools/partition_components_cyclically_by_durations_in_seconds_ge_with_overhang
@@ -583,6 +586,8 @@ Composition packages
    tools/leaftools/leaf_to_augmented_tuplet_with_proportions
    tools/leaftools/leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration
    tools/leaftools/leaf_to_diminished_tuplet_with_proportions
+   tools/leaftools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
+   tools/leaftools/leaf_to_tuplet_with_proportions
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
@@ -1676,6 +1681,7 @@ Composition packages
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
+   tools/tietools/tie_chain_to_tuplet_with_proportions
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

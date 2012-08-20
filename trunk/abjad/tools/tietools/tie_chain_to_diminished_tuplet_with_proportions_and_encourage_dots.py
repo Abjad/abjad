@@ -1,6 +1,8 @@
 def tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(tie_chain, proportions):
     r'''.. versionadded:: 2.0
 
+    .. note:: Deprecated. Use ``tietools.tie_chain_to_tuplet_with_proportions()`` instead.
+
     Change `tie_chain` to diminished tuplet with `proportions` and encourage dots.
 
     Allow tupletted notes to carry dots where ``proportions[i] == 1``.
@@ -104,7 +106,6 @@ def tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots(tie_chain
         renamed ``divide.tie_chain_into_arbitrary_diminution_dotted()`` to
         ``tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots()``.
     '''
-    from abjad.tools.tietools._tie_chain_to_tuplet import _tie_chain_to_tuplet
+    from abjad.tools.tietools.tie_chain_to_tuplet_with_proportions import tie_chain_to_tuplet_with_proportions
 
-    prolation, dotted = 'diminution', True
-    return _tie_chain_to_tuplet(tie_chain, proportions, prolation, dotted)
+    return tie_chain_to_tuplet_with_proportions(tie_chain, proportions, diminution=True, dotted=True)

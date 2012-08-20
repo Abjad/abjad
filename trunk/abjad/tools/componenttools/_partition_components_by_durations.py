@@ -1,6 +1,7 @@
 from abjad.tools import durationtools
 
 
+# TODO: change signature to _partition_components_by_durations(components, durations, ...)
 def _partition_components_by_durations(duration_type, components, durations,
     fill='exact', cyclic=False, overhang=False):
     '''Partition `components` according to `durations`.
@@ -18,9 +19,7 @@ def _partition_components_by_durations(duration_type, components, durations,
     Return remaining components at end in final part when `overhang` is true.
     '''
 
-    #assert isinstance(durations, list)
-    #assert all([isinstance(x, (int, float, durationtools.Duration)) for x in durations])
-    _durations = [  ]
+    _durations = []
     for duration in durations:
         if isinstance(duration, (int, float, durationtools.Duration)):
             _durations.append(duration)
@@ -50,8 +49,8 @@ def _partition_components_by_durations(duration_type, components, durations,
             component_duration = component.duration_in_seconds
         elif duration_type == 'prolated':
             component_duration = component.prolated_duration
-        elif duration_type == 'preprolated':
-            component_duration = component.preprolated_duration
+#        elif duration_type == 'preprolated':
+#            component_duration = component.preprolated_duration
         else:
             #print 'debug %s' % duration_type
             component_duration = getattr(component.duration, duration_type)
@@ -77,8 +76,8 @@ def _partition_components_by_durations(duration_type, components, durations,
                 # collapse to 4th line after duration migration
                 if duration_type == 'seconds':
                     cum_duration = sum([x.duration_in_seconds for x in part])
-                elif duration_type == 'preprolated':
-                    cum_duration = sum([x.preprolated_duration for x in part])
+#                elif duration_type == 'preprolated':
+#                    cum_duration = sum([x.preprolated_duration for x in part])
                 elif duration_type == 'prolated':
                     cum_duration = sum([x.prolated_duration for x in part])
                 else:

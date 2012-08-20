@@ -5,7 +5,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_01():
 
     t = Voice(notetools.make_repeated_notes(5, Duration(1, 16)))
     spannertools.SlurSpanner(t[:])
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], target_type=Note, big_endian=True)
+    leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], klass=Note, big_endian=True)
 
     r'''
     \new Voice {
@@ -22,7 +22,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
 
     t = Voice(notetools.make_repeated_notes(5))
     spannertools.SlurSpanner(t[:])
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [5], target_type=Note, big_endian=True)
+    leaftools.fuse_leaves_in_container_once_by_counts(t, [5], klass=Note, big_endian=True)
 
     r'''
     \new Voice {
@@ -37,7 +37,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
 def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_rests_03():
 
     t = Voice(notetools.make_repeated_notes(5))
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], target_type=Rest, big_endian=True)
+    leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], klass=Rest, big_endian=True)
 
     r'''
     \new Voice {
@@ -54,7 +54,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_little_endian_no
 
     t = Voice(notetools.make_repeated_notes(5))
     spannertools.SlurSpanner(t)
-    leaftools.fuse_leaves_in_container_once_by_counts(t, [5], target_type=Note, big_endian=False)
+    leaftools.fuse_leaves_in_container_once_by_counts(t, [5], klass=Note, big_endian=False)
 
     r'''
     \new Voice {

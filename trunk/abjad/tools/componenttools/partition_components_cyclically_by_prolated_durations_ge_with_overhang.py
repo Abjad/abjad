@@ -1,5 +1,8 @@
-def partition_components_cyclically_by_prolated_durations_ge_with_overhang(components, prolated_durations):
+def partition_components_cyclically_by_prolated_durations_ge_with_overhang(
+    components, prolated_durations):
     r'''.. versionadded:: 1.1
+
+    .. note:: Deprecated. Use ``componenttools.partition_components_by_durations_ge()`` instead.
 
     Partition `components` cyclically by `prolated_durations` greater than
     or equal, with overhang::

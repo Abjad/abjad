@@ -1,13 +1,13 @@
-def fuse_leaves_in_container_once_by_counts(container, counts, target_type=None, big_endian=True):
-    '''Fuse leaves in `container` once by `counts` into instances of `target_type`.
+def fuse_leaves_in_container_once_by_counts(container, counts, klass=None, big_endian=True):
+    '''Fuse leaves in `container` once by `counts` into instances of `klass`.
     '''
     from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import notetools
     from abjad.tools import resttools
 
-    if target_type is None:
-        target_type = notetools.Note
+    if klass is None:
+        klass = notetools.Note
 
     # assert input types
     assert isinstance(container, containertools.Container)
@@ -22,9 +22,9 @@ def fuse_leaves_in_container_once_by_counts(container, counts, target_type=None,
     durations = [sum([x.preprolated_duration for x in part]) for part in tokens]
 
     # construct new notes or rests
-    if target_type == notetools.Note:
+    if klass == notetools.Note:
         new_material = notetools.make_notes(0, durations, big_endian=big_endian)
-    elif target_type == resttools.Rest:
+    elif klass == resttools.Rest:
         new_material = resttools.make_rests(durations, big_endian=big_endian)
     else:
         raise ValueError('unknown type of material to construct.')

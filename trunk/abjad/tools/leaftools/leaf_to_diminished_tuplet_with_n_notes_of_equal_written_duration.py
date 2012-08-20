@@ -1,7 +1,7 @@
-
-
 def leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
     '''.. versionadded:: 2.0
+
+    .. note:: Deprecated:: Use ``leaftools.leaf_to_tuplet_with_n_notes_of_equal_duration()`` instead.
 
     Change `leaf` to diminished tuplet with `n` notes of equal written duration::
 
@@ -24,7 +24,6 @@ def leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
 
     Return diminished fixed-duration tuplet.
     '''
-    from abjad.tools.leaftools._leaf_to_tuplet_with_n_notes_of_equal_written_duration import \
-        _leaf_to_tuplet_with_n_notes_of_equal_written_duration
+    from abjad.tools import leaftools
 
-    return _leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, 'diminution')
+    return leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=True)
