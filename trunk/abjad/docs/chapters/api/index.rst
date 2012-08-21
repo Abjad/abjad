@@ -1363,8 +1363,6 @@ Composition packages
    tools/sequencetools/partition_sequence_by_weights_at_least
    tools/sequencetools/partition_sequence_by_weights_at_most
    tools/sequencetools/partition_sequence_by_weights_exactly
-   tools/sequencetools/partition_sequence_cyclically_by_counts_with_overhang
-   tools/sequencetools/partition_sequence_cyclically_by_counts_without_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_at_least_with_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_at_least_without_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_at_most_with_overhang
@@ -1372,8 +1370,6 @@ Composition packages
    tools/sequencetools/partition_sequence_cyclically_by_weights_exactly_with_overhang
    tools/sequencetools/partition_sequence_cyclically_by_weights_exactly_without_overhang
    tools/sequencetools/partition_sequence_extended_to_counts
-   tools/sequencetools/partition_sequence_once_by_counts_with_overhang
-   tools/sequencetools/partition_sequence_once_by_counts_without_overhang
    tools/sequencetools/partition_sequence_once_by_weights_at_least_with_overhang
    tools/sequencetools/partition_sequence_once_by_weights_at_least_without_overhang
    tools/sequencetools/partition_sequence_once_by_weights_at_most_with_overhang

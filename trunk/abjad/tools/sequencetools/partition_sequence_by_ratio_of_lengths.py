@@ -20,4 +20,4 @@ def partition_sequence_by_ratio_of_lengths(sequence, lengths):
     from abjad.tools import sequencetools
 
     lengths = mathtools.partition_integer_by_ratio(len(sequence), lengths)
-    return sequencetools.partition_sequence_once_by_counts_without_overhang(sequence, lengths)
+    return sequencetools.partition_sequence_by_counts(sequence, lengths, cyclic=False, overhang=False)

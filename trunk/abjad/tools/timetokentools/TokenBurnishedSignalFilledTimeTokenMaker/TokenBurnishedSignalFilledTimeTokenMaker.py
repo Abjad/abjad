@@ -95,8 +95,8 @@ class TokenBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
             middle = middle_length * [middles[token_index]]
             right = right[:right_length]
             left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_once_by_counts_without_overhang(
-                token, [left_length, middle_length, right_length])
+                sequencetools.partition_sequence_by_counts(
+                token, [left_length, middle_length, right_length], cyclic=False, overhang=False)
             left_part = self._force_token_part(left_part, left)
             middle_part = self._force_token_part(middle_part, middle)
             right_part = self._force_token_part(right_part, right)

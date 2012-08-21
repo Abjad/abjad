@@ -87,8 +87,8 @@ class OutputBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
             middle = middle_length * [middles[0]]
             right = right[:right_length]
             left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_once_by_counts_without_overhang(
-                tokens[0], [left_length, middle_length, right_length])
+                sequencetools.partition_sequence_by_counts(
+                tokens[0], [left_length, middle_length, right_length], cyclic=False, overhang=False)
             left_part = self._force_token_part(left_part, left)
             middle_part = self._force_token_part(middle_part, middle)
             right_part = self._force_token_part(right_part, right)
@@ -102,8 +102,8 @@ class OutputBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
             left = left[:left_length]
             middle = middle_length * [middles[0]]
             left_part, middle_part = \
-                sequencetools.partition_sequence_once_by_counts_without_overhang(
-                tokens[0], [left_length, middle_length])
+                sequencetools.partition_sequence_by_counts(
+                tokens[0], [left_length, middle_length], cyclic=False, overhang=False)
             left_part = self._force_token_part(left_part, left)
             middle_part = self._force_token_part(middle_part, middle)
             forced_token = left_part + middle_part
@@ -122,8 +122,8 @@ class OutputBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
             right = right[:right_length]
             middle = middle_length * [middles[0]]
             middle_part, right_part = \
-                sequencetools.partition_sequence_once_by_counts_without_overhang(
-                tokens[-1], [middle_length, right_length])
+                sequencetools.partition_sequence_by_counts(
+                tokens[-1], [middle_length, right_length], cyclic=False, overhang=False)
             middle_part = self._force_token_part(middle_part, middle)
             right_part = self._force_token_part(right_part, right)
             forced_token = middle_part + right_part
