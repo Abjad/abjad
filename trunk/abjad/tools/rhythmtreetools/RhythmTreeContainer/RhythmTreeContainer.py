@@ -94,7 +94,7 @@ class RhythmTreeContainer(RhythmTreeNode):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_children', '_duration', '_offsets', '_offsets_are_current', '_parent')
+    __slots__ = ('_children', '_duration', '_offset', '_offsets_are_current', '_parent')
 
     ### INITIALIZER ###
 
