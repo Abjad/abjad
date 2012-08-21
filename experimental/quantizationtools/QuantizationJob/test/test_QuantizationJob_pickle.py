@@ -1,9 +1,8 @@
 from experimental import quantizationtools
-import py.test
+import pickle
 
 
-#@py.test.skip()
-def test_QuantizationJob___call___01():
+def test_QuantizationJob_pickle_01():
 
     job_id = 1
     definition = {
@@ -30,23 +29,16 @@ def test_QuantizationJob___call___01():
         quantizationtools.QEventProxy(quantizationtools.SilentQEvent(1,      ['K'], index=11), 0, 1)
     ]
     job = quantizationtools.QuantizationJob(job_id, search_tree, q_event_proxies)
+
+    pickled = pickle.loads(pickle.dumps(job))
+
+    assert pickled == job
+    assert pickled is not job
+
     job()
 
-    assert len(job.q_grids) == 10
+    pickled = pickle.loads(pickle.dumps(job))
 
-    rtm_formats = [q_grid.root_node.rtm_format for q_grid in job.q_grids]
-    rtm_formats.sort(reverse=True)
-
-    assert rtm_formats == [
-        '1',
-        '(1 (1 1))',
-        '(1 (1 1 1 1 1))',
-        '(1 ((1 (1 1)) (1 (1 1))))',
-        '(1 ((1 (1 1)) (1 (1 1 1))))',
-        '(1 ((1 (1 1 1)) (1 (1 1))))',
-        '(1 ((1 (1 1 1)) (1 (1 1 1))))',
-        '(1 ((1 (1 1 1)) (1 ((1 (1 1)) (1 (1 1))))))',
-        '(1 ((1 (1 (1 (1 1)))) (1 (1 1 1))))',
-        '(1 ((1 (1 (1 (1 1)))) (1 ((1 (1 1)) (1 (1 1))))))',
-    ]
+    assert pickled == job
+    assert pickled is not job
 

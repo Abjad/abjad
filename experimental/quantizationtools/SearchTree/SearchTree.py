@@ -4,6 +4,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from experimental.quantizationtools.QGrid import QGrid
 import copy
+import inspect
 
 
 class SearchTree(abctools.AbjadObject):
@@ -42,6 +43,19 @@ class SearchTree(abctools.AbjadObject):
 
     def __getnewargs__(self):
         return (self.definition,)
+
+    def __getstate__(self):
+        state = {}
+        for klass in inspect.getmro(self.__class__):  
+            if hasattr(klass, '__slots__'):
+                for slot in klass.__slots__:
+                    if slot not in state:
+                        state[slot] = getattr(self, slot)
+        return state
+    
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 

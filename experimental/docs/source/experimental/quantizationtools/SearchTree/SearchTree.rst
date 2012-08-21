@@ -39,6 +39,8 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__getstate__
+
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -58,3 +60,5 @@ Special Methods
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__setstate__
