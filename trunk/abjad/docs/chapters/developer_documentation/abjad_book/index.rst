@@ -27,9 +27,8 @@ Add some Abjad code to your HTML between open and close
    <p>Here is some music notation generated automatically by Abjad:</p>
 
    <abjad>
-   v = Voice(construct.scale(8))
-   beamtools.BeamSpanner(v)
-   iotools.write_expr_to_ly(v, 'abjad-book-1') <hide
+   v = Voice("c'8 d' e' f' g' a' b' c''")
+   beam = beamtools.BeamSpanner(v)
    show(v)
    </abjad>
 

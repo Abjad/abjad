@@ -10,7 +10,7 @@ with :py:func:`~abjad.tools.iotools.show` you will usually
 close the resulting PDF and continue working, changing your
 output notation in an iterative and incremental way. ::
 
-   >>> staff = Staff(construct.scale(8))
+   >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
    >>> show(staff)
 
 But what if you need to go back and open the resulting PDF again?
