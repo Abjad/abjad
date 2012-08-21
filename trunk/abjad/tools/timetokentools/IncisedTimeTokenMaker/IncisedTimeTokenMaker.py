@@ -124,14 +124,14 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
         middle = numerator - prefix_weight - suffix_weight
         if numerator < prefix_weight:
             weights = [numerator]
-            prefix = sequencetools.split_sequence_once_by_weights_without_overhang(prefix, weights)[0]
+            prefix = sequencetools.split_sequence_by_weights(prefix, weights, cyclic=False, overhang=False)[0]
         middle = self._make_middle_of_numeric_map_part(middle)
         suffix_space = numerator - prefix_weight
         if suffix_space <= 0:
             suffix = ()
         elif suffix_space < suffix_weight:
             weights = [suffix_space]
-            suffix = sequencetools.split_sequence_once_by_weights_without_overhang(suffix, weights)[0]
+            suffix = sequencetools.split_sequence_by_weights(suffix, weights, cyclic=False, overhang=False)[0]
         numeric_map_part = prefix + middle + suffix
         return numeric_map_part
 

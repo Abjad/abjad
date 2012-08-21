@@ -169,8 +169,8 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
         prolated_duration_pairs = self._make_prolated_duration_pairs(
             duration_pairs, prolation_addenda)
         prolated_numerators = [pair[0] for pair in prolated_duration_pairs]
-        map_tokens = sequencetools.split_sequence_extended_to_weights_without_overhang(
-            pattern, prolated_numerators)
+        map_tokens = sequencetools.split_sequence_extended_to_weights(
+            pattern, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
         forced_map_tokens = self._force_token_parts(map_tokens, quintuplet)
         numeric_map = forced_map_tokens

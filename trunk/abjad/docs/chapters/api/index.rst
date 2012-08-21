@@ -1403,13 +1403,7 @@ Composition packages
    tools/sequencetools/rotate_sequence
    tools/sequencetools/splice_new_elements_between_sequence_elements
    tools/sequencetools/split_sequence_by_weights
-   tools/sequencetools/split_sequence_cyclically_by_weights_with_overhang
-   tools/sequencetools/split_sequence_cyclically_by_weights_without_overhang
    tools/sequencetools/split_sequence_extended_to_weights
-   tools/sequencetools/split_sequence_extended_to_weights_with_overhang
-   tools/sequencetools/split_sequence_extended_to_weights_without_overhang
-   tools/sequencetools/split_sequence_once_by_weights_with_overhang
-   tools/sequencetools/split_sequence_once_by_weights_without_overhang
    tools/sequencetools/sum_consecutive_sequence_elements_by_sign
    tools/sequencetools/sum_sequence_elements_at_indices
    tools/sequencetools/truncate_runs_in_sequence

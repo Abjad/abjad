@@ -40,8 +40,8 @@ class TimeTokenMaker(AbjadObject):
         if not secondary_divisions:
             return duration_pairs[:]
         numerators = [duration_pair[0] for duration_pair in duration_pairs]
-        secondary_numerators = sequencetools.split_sequence_cyclically_by_weights_with_overhang(
-            numerators, secondary_divisions)
+        secondary_numerators = sequencetools.split_sequence_by_weights(
+            numerators, secondary_divisions, cyclic=True, overhang=True)
         secondary_numerators = sequencetools.flatten_sequence(secondary_numerators)
         denominator = duration_pairs[0][1]
         secondary_duration_pairs = [(n, denominator) for n in secondary_numerators]
