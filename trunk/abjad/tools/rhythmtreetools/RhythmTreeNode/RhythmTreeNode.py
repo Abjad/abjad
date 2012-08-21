@@ -2,6 +2,7 @@ from abc import abstractmethod, abstractproperty
 from abjad.tools import abctools
 from abjad.tools import durationtools
 from fractions import Fraction
+import inspect
 
 
 class RhythmTreeNode(abctools.AbjadObject):
@@ -37,8 +38,21 @@ class RhythmTreeNode(abctools.AbjadObject):
     def __getnewargs__(self):
         raise NotImplemented
 
+    def __getstate__(self):
+        state = {}
+        for klass in inspect.getmro(self.__class__):
+            if hasattr(klass, '__slots__'):
+                for slot in klass.__slots__:
+                    if slot not in state:
+                        state[slot] = getattr(self, slot)
+        return state
+
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### PRIVATE METHODS ###
 

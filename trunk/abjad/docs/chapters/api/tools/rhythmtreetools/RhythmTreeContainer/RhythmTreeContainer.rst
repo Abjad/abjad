@@ -100,6 +100,10 @@ Special Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__getitem__
 
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__getstate__
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -123,3 +127,7 @@ Special Methods
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__repr__
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__setitem__
+
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.__setstate__
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
