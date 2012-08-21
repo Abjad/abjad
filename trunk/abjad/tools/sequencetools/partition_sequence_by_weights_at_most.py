@@ -1,18 +1,46 @@
 from abjad.tools import mathtools
 
 
-def partition_sequence_by_weights_at_most(sequence, weights, cyclic, overhang):
+def partition_sequence_by_weights_at_most(sequence, weights, cyclic=False, overhang=False):
     r'''.. versionadded:: 1.1
 
     Partition `sequence` by `weights` at most.
+
+        >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
+
+    Example 1. Partition sequence once by weights at most without overhang::
+
+        >>> sequencetools.partition_sequence_by_weights_at_most(
+        ...     sequence, [10, 4], cyclic=False, overhang=False)
+        [[3, 3, 3], [3]]
+
+    Example 2. Partition sequence once by weights at most with overhang::
+
+        >>> sequencetools.partition_sequence_by_weights_at_most(
+        ...     sequence, [10, 4], cyclic=False, overhang=True)
+        [[3, 3, 3], [3], [4, 4, 4, 4, 5, 5]]
+
+    Example 3. Partition sequence cyclically by weights at most without overhang::
+
+        >>> sequencetools.partition_sequence_by_weights_at_most(
+        ...     sequence, [10, 5], cyclic=True, overhang=False)
+        [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
+
+    Example 4. Partition sequence cyclically by weights at most with overhang::
+
+        >>> sequencetools.partition_sequence_by_weights_at_most(
+        ...     sequence, [10, 5], cyclic=True, overhang=True)
+        [[3, 3, 3], [3], [4, 4], [4], [4, 5], [5]]
+
+    Return list of sequence objects.
     '''
     if not cyclic:
-        return _partition_sequence_once_by_weights_at_most(sequence, weights, overhang)
+        return _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=overhang)
     else:
-        return _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang)
+        return _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang=overhang)
 
 
-def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang):
+def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=False):
 
     l_copy = sequence[:]
     result = []
@@ -52,7 +80,7 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang):
     return result
 
 
-def _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang):
+def _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang=False):
 
     result = []
     cur_part = []
