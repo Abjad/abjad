@@ -1,6 +1,7 @@
 from abjad.tools import abctools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QEvent import QEvent
+import inspect
 
 
 class QEventProxy(abctools.AbjadObject):
@@ -52,11 +53,31 @@ class QEventProxy(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.offset == other.offset:
+                if self.q_event == other.q_event:
+                    return True
+        return False
+
     def __getnewargs__(self):
         return (self.q_event, self.offset)
 
+    def __getstate__(self):
+        state = {}
+        for klass in inspect.getmro(self.__class__):
+            if hasattr(klass, '__slots__'):
+                for slot in klass.__slots__:
+                    if slot not in state:
+                        state[slot] = getattr(self, slot)
+        return state
+
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
+
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

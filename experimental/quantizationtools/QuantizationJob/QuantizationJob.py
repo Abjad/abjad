@@ -2,6 +2,7 @@ from abjad.tools import abctools
 from experimental.quantizationtools.QEventProxy import QEventProxy
 from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.QGrid import QGrid
+import inspect
 
 
 class QuantizationJob(abctools.AbjadObject):
@@ -53,6 +54,19 @@ class QuantizationJob(abctools.AbjadObject):
 
     def __getnewargs__(self):
         return (self.job_id, self.search_tree, self.q_event_proxies, self.q_grids)
+
+    def __getstate__(self):
+        state = {}
+        for klass in inspect.getmro(self.__class__):
+            if hasattr(klass, '__slots__'):
+                for slot in klass.__slots__:
+                    if slot not in state:
+                        state[slot] = getattr(self, slot)
+        return state
+
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

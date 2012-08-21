@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from abjad.tools import abctools
 from abjad.tools import durationtools
+import inspect
 
 
 class QEvent(abctools.AbjadObject):
@@ -30,11 +31,24 @@ class QEvent(abctools.AbjadObject):
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
 
+    def __getstate__(self):
+        state = {}
+        for klass in inspect.getmro(self.__class__):
+            if hasattr(klass, '__slots__'):
+                for slot in klass.__slots__:
+                    if slot not in state:
+                        state[slot] = getattr(self, slot)
+        return state
+
     def __lt__(self, other):
         if type(self) == type(self):
             if self.offset < other.offset:
                 return True
         return False
+
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### PRIVATE PROPERTIES ###
 

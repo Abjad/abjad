@@ -5,7 +5,7 @@ class TerminalQEvent(QEvent):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_offset')
+    __slots__ = ('_offset',)
 
     ### INITIALIZER ###
 

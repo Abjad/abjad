@@ -7,6 +7,7 @@ from experimental.quantizationtools.QGridLeaf import QGridLeaf
 from experimental.quantizationtools.QEventProxy import QEventProxy
 import bisect
 import copy
+import inspect
 
 
 class QGrid(abctools.AbjadObject):
@@ -64,6 +65,19 @@ class QGrid(abctools.AbjadObject):
 
     def __getnewargs__(self):
         return (self.root_node, self.next_downbeat)
+
+    def __getstate__(self):
+        state = {}
+        for klass in inspect.getmro(self.__class__):
+            if hasattr(klass, '__slots__'):
+                for slot in klass.__slots__:
+                    if slot not in state:
+                        state[slot] = getattr(self, slot)
+        return state
+
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -32,6 +32,8 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__getstate__
+
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -51,3 +53,5 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.QuantizationJob.QuantizationJob.QuantizationJob.__setstate__

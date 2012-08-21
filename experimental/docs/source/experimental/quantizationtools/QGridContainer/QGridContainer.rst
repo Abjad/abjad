@@ -132,6 +132,10 @@ Special Methods
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
 
+.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__getstate__
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -163,3 +167,7 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setitem__
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+
+.. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setstate__
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`

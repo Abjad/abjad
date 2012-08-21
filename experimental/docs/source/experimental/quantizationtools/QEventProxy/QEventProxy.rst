@@ -24,11 +24,11 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__getstate__
 
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__gt__
 
@@ -47,3 +47,5 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__repr__
+
+.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__setstate__

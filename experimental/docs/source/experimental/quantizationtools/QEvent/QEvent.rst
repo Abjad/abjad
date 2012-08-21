@@ -28,6 +28,8 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__getstate__
+
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -43,3 +45,5 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__repr__
+
+.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__setstate__

@@ -45,6 +45,8 @@ Special Methods
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__getstate__
+
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -64,3 +66,5 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__setstate__
