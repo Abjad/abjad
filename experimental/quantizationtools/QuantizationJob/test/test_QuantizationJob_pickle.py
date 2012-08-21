@@ -41,4 +41,3 @@ def test_QuantizationJob_pickle_01():
 
     assert pickled == job
     assert pickled is not job
-

@@ -56,13 +56,12 @@ class QuantizationJob(abctools.AbjadObject):
         return (self.job_id, self.search_tree, self.q_event_proxies, self.q_grids)
 
     def __getstate__(self):
-        state = {}
-        for klass in inspect.getmro(self.__class__):
-            if hasattr(klass, '__slots__'):
-                for slot in klass.__slots__:
-                    if slot not in state:
-                        state[slot] = getattr(self, slot)
-        return state
+        return {
+            '_job_id': self.job_id,
+            '_q_event_proxies': self.q_event_proxies,
+            '_q_grids': self.q_grids,
+            '_search_tree': self.search_tree,
+        }
 
     def __setstate__(self, state):
         for key, value in state.iteritems():

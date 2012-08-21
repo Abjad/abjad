@@ -67,17 +67,14 @@ class QGrid(abctools.AbjadObject):
         return (self.root_node, self.next_downbeat)
 
     def __getstate__(self):
-        state = {}
-        for klass in inspect.getmro(self.__class__):
-            if hasattr(klass, '__slots__'):
-                for slot in klass.__slots__:
-                    if slot not in state:
-                        state[slot] = getattr(self, slot)
-        return state
+        return {
+            '_next_downbeat': self.next_downbeat,
+            '_root_node': self.root_node,
+        }
 
     def __setstate__(self, state):
-        for key, value in state.iteritems():
-            setattr(self, key, value)
+        self._next_downbeat = state['_next_downbeat']
+        self._root_node = state['_root_node']
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

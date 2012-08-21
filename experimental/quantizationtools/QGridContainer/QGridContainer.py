@@ -4,6 +4,10 @@ from experimental.quantizationtools.QGridLeaf import QGridLeaf
 
 class QGridContainer(rhythmtreetools.RhythmTreeContainer):
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property

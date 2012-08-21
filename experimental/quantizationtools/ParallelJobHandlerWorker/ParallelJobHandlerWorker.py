@@ -1,5 +1,6 @@
 from abjad.tools import abctools
 import multiprocessing
+import pickle
 
 
 class ParallelJobHandlerWorker(multiprocessing.Process, abctools.AbjadObject):
@@ -19,11 +20,12 @@ class ParallelJobHandlerWorker(multiprocessing.Process, abctools.AbjadObject):
             job = self.job_queue.get( )
             if job is None:
                 # poison pill causes worker shutdown
-                print '{}: Exiting'.format(proc_name)
+                #print '{}: Exiting'.format(proc_name)
                 self.job_queue.task_done( )
                 break
-            print '{}: {!r}'.format(proc_name, job)
+            #print '{}: {!r}'.format(proc_name, job)
+            job = pickle.loads(job)
             job()
             self.job_queue.task_done( )
-            self.result_queue.put(job)
+            self.result_queue.put(pickle.dumps(job, protocol=0))
         return
