@@ -37,9 +37,11 @@ _exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
 del abctools
+#del abjadbooktools
 del configurationtools
 del datastructuretools
 del decoratortools
+#del developerscripttools
 del documentationtools
 del exceptiontools
 del importtools

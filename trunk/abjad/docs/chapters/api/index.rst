@@ -1897,6 +1897,28 @@ Internal packages
    tools/abctools/ScoreSelection/ScoreSelection
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
+:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/abjadbooktools/OutputFormat/OutputFormat
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/abjadbooktools/AbjadBookProcessor/AbjadBookProcessor
+   tools/abjadbooktools/AbjadBookScript/AbjadBookScript
+   tools/abjadbooktools/CodeBlock/CodeBlock
+   tools/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
+   tools/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
+   tools/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
+
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1945,6 +1967,46 @@ Internal packages
    :maxdepth: 1
 
    tools/decoratortools/requires
+
+:py:mod:`developerscripttools <abjad.tools.developerscripttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/developerscripttools/DeveloperScript/DeveloperScript
+   tools/developerscripttools/DirectoryScript/DirectoryScript
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/developerscripttools/AbjDevScript/AbjDevScript
+   tools/developerscripttools/AbjGrepScript/AbjGrepScript
+   tools/developerscripttools/BuildApiScript/BuildApiScript
+   tools/developerscripttools/CleanScript/CleanScript
+   tools/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
+   tools/developerscripttools/CountToolsScript/CountToolsScript
+   tools/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
+   tools/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
+   tools/developerscripttools/RenameModulesScript/RenameModulesScript
+   tools/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
+   tools/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
+   tools/developerscripttools/RunDoctestsScript/RunDoctestsScript
+   tools/developerscripttools/SvnAddAllScript/SvnAddAllScript
+   tools/developerscripttools/SvnCommitScript/SvnCommitScript
+   tools/developerscripttools/SvnMessageScript/SvnMessageScript
+   tools/developerscripttools/SvnUpdateScript/SvnUpdateScript
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/developerscripttools/get_developer_script_classes
 
 :py:mod:`documentationtools <abjad.tools.documentationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

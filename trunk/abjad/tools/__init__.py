@@ -7,6 +7,7 @@ __builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
 __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
 
 from abjad.tools import abctools
+from abjad.tools import abjadbooktools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
@@ -14,6 +15,7 @@ from abjad.tools import configurationtools
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import decoratortools
+from abjad.tools import developerscripttools
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import exceptiontools
