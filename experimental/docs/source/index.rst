@@ -7,28 +7,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`abjadbooktools <experimental.abjadbooktools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/abjadbooktools/OutputFormat/OutputFormat
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/abjadbooktools/AbjadBookProcessor/AbjadBookProcessor
-   experimental/abjadbooktools/AbjadBookScript/AbjadBookScript
-   experimental/abjadbooktools/CodeBlock/CodeBlock
-   experimental/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
-   experimental/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
-   experimental/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
-
 :py:mod:`constrainttools <experimental.constrainttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -46,46 +24,6 @@ Unstable packages (load manually)
    experimental/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
    experimental/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
    experimental/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
-
-:py:mod:`developerscripttools <experimental.developerscripttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/developerscripttools/DeveloperScript/DeveloperScript
-   experimental/developerscripttools/DirectoryScript/DirectoryScript
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/developerscripttools/AbjDevScript/AbjDevScript
-   experimental/developerscripttools/AbjGrepScript/AbjGrepScript
-   experimental/developerscripttools/BuildApiScript/BuildApiScript
-   experimental/developerscripttools/CleanScript/CleanScript
-   experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
-   experimental/developerscripttools/CountToolsScript/CountToolsScript
-   experimental/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
-   experimental/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
-   experimental/developerscripttools/RenameModulesScript/RenameModulesScript
-   experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
-   experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
-   experimental/developerscripttools/RunDoctestsScript/RunDoctestsScript
-   experimental/developerscripttools/SvnAddAllScript/SvnAddAllScript
-   experimental/developerscripttools/SvnCommitScript/SvnCommitScript
-   experimental/developerscripttools/SvnMessageScript/SvnMessageScript
-   experimental/developerscripttools/SvnUpdateScript/SvnUpdateScript
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/developerscripttools/get_developer_script_classes
 
 :py:mod:`divisiontools <experimental.divisiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
