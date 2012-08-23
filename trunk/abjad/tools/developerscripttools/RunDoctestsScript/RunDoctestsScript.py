@@ -1,8 +1,7 @@
-from abjad import *
-from abjad.tools import *
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 import doctest
+import importlib
 import os
 
 
@@ -48,6 +47,11 @@ class RunDoctestsScript(DirectoryScript):
     ### PUBLIC PROPERTIES ###
 
     def process_args(self, args):
+        globs = importlib.import_module('abjad').__dict__.copy()
+        try:
+            globs.update(importlib.import_module('experimental').__dict__)
+        except ImportError:
+            pass
         iotools.clear_terminal()
         total_modules = 0
         for dir_path, dir_names, file_names in os.walk('.'):
@@ -57,7 +61,7 @@ class RunDoctestsScript(DirectoryScript):
                     not file_name == '__init__.py':
                     total_modules += 1
                     full_file_name = os.path.abspath(os.path.join(dir_path, file_name))
-                    doctest.testfile(full_file_name, module_relative = False, globs = globals(),
+                    doctest.testfile(full_file_name, module_relative = False, globs = globs,
                        optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
         print 'Total modules: %s' % total_modules
 
