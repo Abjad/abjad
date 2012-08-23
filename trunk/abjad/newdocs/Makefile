@@ -37,9 +37,13 @@ help:
 	@echo "  changes    to make an overview of all changed/added/deprecated items"
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
+	@echo "  book       to run abjad-book on all ReST files in source"
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+
+book:
+	ajv book source
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html

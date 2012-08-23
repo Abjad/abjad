@@ -35,6 +35,7 @@ if "%1" == "help" (
 	echo.  changes    to make an overview over all changed/added/deprecated items
 	echo.  linkcheck  to check all external links for integrity
 	echo.  doctest    to run all doctests embedded in the documentation if enabled
+    echo.  book       to run abjad-book on all ReST files in source
 	goto end
 )
 
@@ -42,6 +43,10 @@ if "%1" == "clean" (
 	for /d %%i in (%BUILDDIR%\*) do rmdir /q /s %%i
 	del /q /s %BUILDDIR%\*
 	goto end
+)
+
+if "%1" == "book" (
+    ajv book source
 )
 
 if "%1" == "html" (
