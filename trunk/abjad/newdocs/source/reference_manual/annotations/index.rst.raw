@@ -1,0 +1,125 @@
+Annotations
+===========
+
+Annotate components with user-specific information for future use.
+
+Annotations do not impact formatting.
+
+
+Creating annotations
+--------------------
+
+Use mark tools to create annotations:
+
+<abjad>
+annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
+</abjad>
+
+<abjad>
+annotation
+print repr(annotation) <hide
+</abjad>
+
+
+Attaching annotations to a component
+------------------------------------
+
+Attach annotations to any component with ``attach()``:
+
+<abjad>
+note = Note("c'4")
+annotation.attach(note)
+</abjad>
+
+<abjad>
+annotation
+print repr(annotation) <hide
+</abjad>
+
+<abjad>
+another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
+another_annotation.attach(note)
+</abjad>
+
+<abjad>
+another_annotation
+print another_annotation <hide
+</abjad>
+
+
+Getting the annotations attached to a component
+-----------------------------------------------
+
+Use mark tools to get all the annotations attached to a component:
+
+<abjad>
+marktools.get_annotations_attached_to_component(note)
+print repr(marktools.get_annotations_attached_to_component(note)) <hide
+</abjad>
+
+
+Detaching annotations from a component one at a time
+----------------------------------------------------
+
+Use ``detach()`` to detach annotations from a component one at a time:
+
+<abjad>
+annotation.detach()
+</abjad>
+
+<abjad>
+annotation
+print repr(annotation) <hide
+</abjad>
+
+
+Detaching all annotations attached to a component at once
+---------------------------------------------------------
+
+Or use mark tools to detach all annotations attachd to a component at once:
+
+<abjad>
+print marktools.detach_annotations_attached_to_component(note)
+</abjad>
+
+<abjad>
+marktools.get_annotations_attached_to_component(note)
+print repr(marktools.get_annotations_attached_to_component(note)) <hide
+</abjad>
+
+
+Inspecting the component to which an annotation is attached
+-----------------------------------------------------------
+
+Use ``start_component`` to inspect the component to which an annotation is attached:
+
+<abjad>
+annotation.attach(note)
+</abjad>
+
+<abjad>
+annotation.start_component
+print repr(annotation.start_component) <hide
+</abjad>
+
+
+Inspecting annotation name
+--------------------------
+
+Use ``name`` to get the name of any annotation:
+
+<abjad>
+annotation.name
+print repr(annotation.name) <hide
+</abjad>
+
+
+Inspecting annotation value
+---------------------------
+
+And use ``value`` to get the value of any annotation:
+
+<abjad>
+annotation.value
+print repr(annotation.value) <hide
+</abjad>

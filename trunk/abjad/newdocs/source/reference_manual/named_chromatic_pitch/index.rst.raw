@@ -1,0 +1,376 @@
+Pitches
+=======
+
+Named chromatic pitches are the everyday pitches attached to notes and chords:
+
+<abjad>
+note = Note("cs''8")
+</abjad>
+
+<abjad>
+note.written_pitch
+print repr(note.written_pitch) <hide
+</abjad>
+
+
+Creating pitches
+----------------
+
+Use pitch tools to create named chromatic pitches:
+
+<abjad>
+named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+</abjad>
+
+<abjad>
+named_chromatic_pitch
+print repr(named_chromatic_pitch) <hide
+</abjad>
+
+
+Inspecting the name of a pitch
+------------------------------
+
+Use ``str()`` to get the name of named chromatic pitches:
+
+<abjad>
+str(named_chromatic_pitch)
+print str(named_chromatic_pitch) <hide
+</abjad>
+
+
+Inspecting the octave of a pitch
+--------------------------------
+
+Get the octave number of named chromatic pitches with ``octave_number``:
+
+<abjad>
+named_chromatic_pitch.octave_number
+print named_chromatic_pitch.octave_number <hide
+</abjad>
+
+
+Working with pitch deviation
+----------------------------
+
+Use deviation to model the fact that two pitches differ by a fraction of a semitone:
+
+<abjad>
+note_1 = Note(24, (1, 2))
+note_2 = Note(24, (1, 2))
+staff = Staff([note_1, note_2])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'pitch-deviation-1') <hide
+</abjad>
+
+<abjad>
+note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+</abjad>
+
+The pitch of the the first note is greater than the pitch of the second:
+
+<abjad>
+note_1.written_pitch > note_2.written_pitch
+print repr(note_1.written_pitch > note_2.written_pitch) <hide
+</abjad>
+
+Use markup to include indications of pitch deviation in your score:
+
+<abjad>
+markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
+iotools.write_expr_to_ly(staff, 'pitch-deviation-2') <hide
+</abjad>
+
+
+Sorting pitches
+---------------
+
+Named chromatic pitches sort by octave, diatonic pitch-class and accidental,
+in that order:
+
+<abjad>
+pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
+print repr(pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')) <hide
+</abjad>
+
+
+Comparing pitches
+-----------------
+
+Compare named chromatic pitches to each other:
+
+<abjad>
+named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("c''")
+named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 == named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 == named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 != named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 != named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 > named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 > named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 < named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 < named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 >= named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 >= named_chromatic_pitch_2) <hide
+</abjad>
+
+<abjad>
+named_chromatic_pitch_1 <= named_chromatic_pitch_2
+print repr(named_chromatic_pitch_1 <= named_chromatic_pitch_2) <hide
+</abjad>
+
+
+Converting one type of pitch to another
+---------------------------------------
+
+Convert any named chromatic pitch to a named diatonic pitch:
+
+<abjad>
+named_chromatic_pitch.named_diatonic_pitch
+print repr(named_chromatic_pitch.named_diatonic_pitch) <hide
+</abjad>
+
+To a numbered chromatic pitch:
+
+<abjad>
+named_chromatic_pitch.numbered_chromatic_pitch
+print repr(named_chromatic_pitch.numbered_chromatic_pitch) <hide
+</abjad>
+
+Or to a numbered diatonic pitch:
+
+<abjad>
+named_chromatic_pitch.numbered_diatonic_pitch
+print repr(named_chromatic_pitch.numbered_diatonic_pitch) <hide
+</abjad>
+
+
+Converting pitches to pitch-classes
+-----------------------------------
+
+Convert any named chromatic pitch to a named chromatic pitch-class:
+
+<abjad>
+named_chromatic_pitch.named_chromatic_pitch_class
+print repr(named_chromatic_pitch.named_chromatic_pitch_class) <hide
+</abjad>
+
+To a named diatonic pitch-class:
+
+<abjad>
+named_chromatic_pitch.named_diatonic_pitch_class
+print repr(named_chromatic_pitch.named_diatonic_pitch_class) <hide
+</abjad>
+
+To a numbered chromatic pitch-class:
+
+<abjad>
+named_chromatic_pitch.numbered_chromatic_pitch_class
+print repr(named_chromatic_pitch.numbered_chromatic_pitch_class) <hide
+</abjad>
+
+Or to a numbered diatonic pitch-class:
+
+<abjad>
+named_chromatic_pitch.numbered_diatonic_pitch_class
+print repr(named_chromatic_pitch.numbered_diatonic_pitch_class) <hide
+</abjad>
+
+
+Copying pitches
+---------------
+
+Use ``copy.copy()`` to copy named chromatic pitches:
+
+<abjad>
+import copy
+</abjad>
+
+<abjad>
+copy.copy(named_chromatic_pitch)
+print repr(copy.copy(named_chromatic_pitch)) <hide
+</abjad>
+
+Or use ``copy.deepcopy()`` to do the same thing.
+
+
+Accidental abbreviations
+------------------------
+
+Abjad abbreviates accidentals according to the LilyPond ``english.ly`` module:
+
+    ======================         ============================
+    accidental name                  abbreviation
+    ======================         ============================
+    quarter sharp                      'qs'
+    quarter flat                        'qf'
+    sharp                                 's'
+    flat                                  'f'
+    three-quarters sharp             'tqs'
+    three-quarters flat              'tqf'
+    double sharp                        'ss'
+    double flat                         'ff'
+    ======================         ============================
+
+
+Chromatic pitch numbers
+-----------------------
+
+Abjad numbers chromatic pitches by semitone with middle C set equal to 0:
+
+.. image:: images/chromatic-pitch-numbers.png
+
+The code to generate this table is as follows::
+
+    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
+    duration = Fraction(1, 32)
+
+    treble = measuretools.AnonymousMeasure([])
+    bass = measuretools.AnonymousMeasure([])
+
+    treble_staff.append(treble)
+    bass_staff.append(bass)
+
+    pitches = range(-12, 12 + 1)
+
+    pitchtools.set_default_accidental_spelling('sharps')
+
+    for i in pitches:
+        note = Note(i, duration)
+        rest = Rest(duration)
+        clef = pitchtools.suggest_clef_for_named_chromatic_pitches([note.pitch])
+        if clef == contexttools.ClefMark('treble'):
+            treble.append(note)
+            bass.append(rest)
+        else:
+            treble.append(rest)
+            bass.append(note)
+        diatonic_pitch_number = str(note.pitch.numbered_chromatic_pitch)
+        markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
+
+    score.override.rest.transparent = True
+    score.override.stem.stencil = False
+
+Diatonic pitch numbers
+----------------------
+
+Abjad numbers diatonic pitches by staff space with middle C set equal to 0:
+
+.. image:: images/diatonic-pitch-numbers.png
+
+The code to generate this table is as follows::
+
+    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
+    duration = Fraction(1, 32)
+
+    treble = measuretools.AnonymousMeasure([])
+    bass = measuretools.AnonymousMeasure([])
+
+    treble_staff.append(treble)
+    bass_staff.append(bass)
+
+    pitches = []
+    diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
+
+    pitches.extend([-24 + x for x in diatonic_pitches])
+    pitches.extend([-12 + x for x in diatonic_pitches])
+    pitches.extend([0 + x for x in diatonic_pitches])
+    pitches.extend([12 + x for x in diatonic_pitches])
+    pitches.append(24)
+    pitchtools.set_default_accidental_spelling('sharps')
+
+    for i in pitches:
+        note = Note(i, duration)
+        rest = Rest(duration)
+        clef = pitchtools.suggest_clef_for_named_chromatic_pitches([note.pitch])
+        if clef == contexttools.ClefMark('treble'):
+            treble.append(note)
+            bass.append(rest)
+        else:
+            treble.append(rest)
+            bass.append(note)
+        diatonic_pitch_number = abs(note.pitch.numbered_diatonic_pitch)
+        markuptools.Markup(diatonic_pitch_number, Down)(bass[-1])
+
+    score.override.rest.transparent = True
+    score.override.stem.stencil = False
+
+Octave designation
+------------------
+
+Abjad designates octaves with both numbers and ticks:
+
+    ===============        =============
+    Octave notation        Tick notation
+    ===============        =============
+            C7                         c''''
+            C6                         c'''
+            C5                         c''
+            C4                         c'
+            C3                         c
+            C2                         c,
+            C1                         c,,
+    ===============        =============
+
+Accidental spelling
+-------------------
+
+Abjad chooses between enharmonic spellings at pitch-initialization
+according to the following table:
+
+    ============================        ====================================
+    Chromatic pitch-class number        Chromatic pitch-class name (default)
+    ============================        ====================================
+        0                                        C
+        1                                        C#
+        2                                        D
+        3                                        Eb
+        4                                        E
+        5                                        F
+        6                                        F#
+        7                                        G
+        8                                        Gb
+        9                                        A
+        10                                     Bb
+        11                                     B
+    ============================        ====================================
+
+<abjad>
+staff = Staff([Note(n, (1, 8)) for n in range(12)])
+show(staff)
+iotools.write_expr_to_ly(staff, 'pitch-conventions-1') <hide
+</abjad>
+
+Use pitch tools to respell with sharps:
+
+<abjad>
+pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
+show(staff)
+iotools.write_expr_to_ly(staff, 'pitch-conventions-2') <hide
+</abjad>
+
+Or flats:
+
+<abjad>
+pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
+show(staff)
+iotools.write_expr_to_ly(staff, 'pitch-conventions-3') <hide
+</abjad>

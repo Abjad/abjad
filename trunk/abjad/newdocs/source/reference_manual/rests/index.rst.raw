@@ -1,0 +1,114 @@
+Rests
+=====
+
+Making rests from strings
+-------------------------
+
+You can make rests from a string:
+
+<abjad>
+rest = Rest('r8')
+</abjad>
+
+<abjad>
+show(rest, docs=True)
+measure = measuretools.AnonymousMeasure([rest]) <hide
+iotools.write_expr_to_ly(measure, 'rests-1', docs=True) <hide
+</abjad>
+
+Making rests from durations
+---------------------------
+
+You can also make rests from a duration:
+
+<abjad>
+rest = Rest(Duration(1, 4))
+</abjad>
+
+<abjad>
+show(rest, docs=True)
+measure = measuretools.AnonymousMeasure([rest]) <hide
+iotools.write_expr_to_ly(measure, 'rests-2', docs=True) <hide
+</abjad>
+
+(You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
+
+Getting the duration attributes of rests
+----------------------------------------
+
+Get the written duration of rests like this:
+
+<abjad>
+rest.written_duration
+print repr(rest.written_duration) <hide
+</abjad>
+
+Which is usually the same as preprolated duration:
+
+<abjad>
+rest.preprolated_duration
+print repr(rest.preprolated_duration) <hide
+</abjad>
+
+And prolated duration:
+
+<abjad>
+rest.prolated_duration
+print repr(rest.prolated_duration) <hide
+</abjad>
+
+Except for rests inside a tuplet:
+
+<abjad>
+tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
+</abjad>
+
+<abjad>
+show(tuplet, docs=True)
+measure = measuretools.AnonymousMeasure([tuplet]) <hide
+iotools.write_expr_to_ly(measure, 'rests-3', docs=True) <hide
+</abjad>
+
+<abjad>
+rest = tuplet[1]
+</abjad>
+
+Tupletted rests carry written duration:
+
+<abjad>
+rest.written_duration
+print repr(rest.written_duration) <hide
+</abjad>
+
+Prolation:
+
+<abjad>
+rest.prolation
+print repr(rest.prolation) <hide
+</abjad>
+
+And prolated duration that is the product of the two:
+
+<abjad>
+rest.prolated_duration
+print repr(rest.prolated_duration) <hide
+</abjad>
+
+Changing the written duration of rests
+--------------------------------------
+
+You can change the written duration of notes and rests:
+
+<abjad>
+tuplet[0].written_duration = Duration(1, 8)
+tuplet[1].written_duration = Duration(1, 8)
+tuplet[2].written_duration = Duration(1, 8)
+beamtools.BeamSpanner(tuplet) <hide
+</abjad>
+
+<abjad>
+show(tuplet, docs=True)
+iotools.write_expr_to_ly(measure, 'rests-4', docs=True) <hide
+</abjad>
+
+Other duration attributes are read-only.

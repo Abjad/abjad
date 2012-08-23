@@ -1,0 +1,66 @@
+Quantization
+============
+
+Quantization is the process of constraining one set of values to another set of discrete values. In 
+music, this typically means the transformation of performed rhythms into notated ones, and the 
+accompanying reduction of imprecision.  More generally, we can define rhythmic quantization as the 
+transformation of one sequence of rhythms into another, converting tempi, time signatures, grace notes 
+and even rhythmic complexity in the process.
+
+::
+
+   >>> from abjad import *
+   >>> from experimental import quantizationtools
+
+
+::
+
+   >>> quantizer = quantizationtools.Quantizer()
+
+
+::
+
+   >>> original_staff = Staff("abj: | 4/4 c'16 d' e' f' g' a' b' c'' ~ c'' b' a' g' f' e' d' c' |")
+   >>> tempo = contexttools.TempoMark((1, 4), 60)(original_staff[0])
+   >>> q_event_sequence = quantizationtools.QEventSequence.from_tempo_scaled_leaves(original_staff.leaves, tempo)
+
+
+::
+
+   >>> triplets =    quantizationtools.SimpleSearchTree({3: None})
+   >>> quintuplets = quantizationtools.SimpleSearchTree({5: None})
+   >>> septuplets =  quantizationtools.SimpleSearchTree({7: None})
+   >>> search_trees = [triplets, quintuplets, septuplets]
+
+
+::
+
+   >>> staves = [original_staff]
+   >>> for search_tree in search_trees:
+   ...     q_schema = quantizationtools.MeasurewiseQSchema(search_tree=search_tree)
+   ...     result = quantizer(q_event_sequence, q_schema)
+   ...     staves.append(stafftools.Staff([result]))
+   ... 
+
+
+::
+
+   >>> q_schema = quantizationtools.MeasurewiseQSchema(
+   ...     search_tree=quantizationtools.SimpleSearchTree({11: None}),
+   ...     use_full_measure=True)
+   >>> result = quantizer(q_event_sequence, q_schema)
+   >>> staves.append(stafftools.Staff([result]))
+
+
+::
+
+   >>> staff_group = scoretools.StaffGroup(staves)
+   >>> score = scoretools.Score([staff_group])
+   >>> show(score)
+
+.. image:: images/index-1.png
+
+
+Abjad's `quantizationtools` provides a powerful, generalized and customizable collection of tools for 
+musical quantization.  Its model is based in large part on Paul Nauert's **"A theory of complexity to 
+constrain the approximation of arbitrary sequences of timepoints"**.

@@ -1,0 +1,19 @@
+Making many notes
+=================
+
+Use the scale macro to create many notes at once:
+
+::
+
+	>>> "c'8 d'8 e'8 f'8"
+	[Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+
+
+Show these notes in a staff:
+
+::
+
+	>>> staff = Staff("c'8 d'8 e'8 f'8")
+	>>> show(staff)
+
+.. image:: images/test.png

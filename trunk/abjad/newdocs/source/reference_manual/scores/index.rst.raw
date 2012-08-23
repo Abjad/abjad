@@ -1,0 +1,150 @@
+Scores
+======
+
+Creating scores
+---------------
+
+Create a score like this:
+
+<abjad>
+treble_staff_1 = Staff("e'4 d'4 e'4 f'4 g'1")
+treble_staff_2 = Staff("c'2. b8 a8 b1")
+</abjad>
+
+<abjad>
+score = Score([treble_staff_1, treble_staff_2])
+</abjad>
+
+<abjad>
+show(score)
+iotools.write_expr_to_ly(score, 'scores-1') <hide
+</abjad>
+
+Inspecting score music
+----------------------
+
+Return score components with ``music``:
+
+<abjad>
+score.music
+print repr(score.music) <hide
+</abjad>
+
+Inspecting score length
+-----------------------
+
+Get score length with ``len()``:
+
+<abjad>
+len(score)
+print repr(len(score)) <hide
+</abjad>
+
+Inspecting score duration
+-------------------------
+
+Score contents duration is equal to the duration of the longest component in score:
+
+<abjad>
+score.contents_duration
+print repr(score.contents_duration) <hide
+</abjad>
+
+Adding one component to the bottom of a score
+---------------------------------------------
+
+Add one component to the bottom of a score with ``append``:
+
+<abjad>
+bass_staff = Staff("g4 f4 e4 d4 d1")
+contexttools.ClefMark('bass')(bass_staff)
+</abjad>
+
+<abjad>
+score.append(bass_staff)
+</abjad>
+
+<abjad>
+show(score)
+iotools.write_expr_to_ly(score, 'scores-2') <hide
+</abjad>
+
+Finding the index of a score component
+--------------------------------------
+
+Find the index of a score component with ``index``:
+
+<abjad>
+score.index(treble_staff_1)
+print repr(score.index(treble_staff_1)) <hide
+</abjad>
+
+Removing a score component by index
+-----------------------------------
+
+Use ``pop`` to remove a score component by index:
+
+<abjad>
+score.pop(1)
+</abjad>
+
+<abjad>
+show(score)
+iotools.write_expr_to_ly(score, 'scores-3') <hide
+</abjad>
+
+Removing a score component by reference
+---------------------------------------
+
+Remove a score component by reference with ``remove``:
+
+<abjad>
+score.remove(treble_staff_1)
+</abjad>
+
+<abjad>
+show(score)
+iotools.write_expr_to_ly(score, 'scores-4') <hide
+</abjad>
+
+Testing score containment
+-------------------------
+
+Use ``in`` to find out whether a score contains a given component:
+
+<abjad>
+treble_staff_1 in score
+print repr(treble_staff_1 in score) <hide
+</abjad>
+
+<abjad>
+treble_staff_2 in score
+print repr(treble_staff_2 in score) <hide
+</abjad>
+
+<abjad>
+bass_staff in score
+print repr(bass_staff in score) <hide
+</abjad>
+
+Naming scores
+-------------
+
+You can name Abjad scores:
+
+<abjad>
+score.name = 'Example Score'
+</abjad>
+
+Score names appear in LilyPond input:
+
+<abjad>
+f(score)
+</abjad>
+
+But do not appear in notational output:
+
+<abjad>
+show(score)
+iotools.write_expr_to_ly(score, 'scores-5') <hide
+</abjad>

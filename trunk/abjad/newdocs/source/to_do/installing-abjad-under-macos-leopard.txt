@@ -1,0 +1,151 @@
+# INSTALLING ABJAD UNDER MACOS LEOPARD 10.5.8 #
+
+1. DRAG TERMINAL TO THE DOCK
+
+   open Finder
+
+   open Applications folder
+
+   scroll down to the Utilities folder
+
+   open the Utilities folder
+
+   scroll down to Terminal
+
+   drag Terminal to the dock
+
+   close Finder
+
+2. VERIFY THAT PYTHON IS INSTALLED ON YOUR SYSTEM
+
+   open Terminal
+
+   python
+
+   ctrl-D
+
+   close Terminal
+
+3. INSTALL LILYPOND
+
+   browse to www.lilypond.org
+
+   click on Download
+
+   scroll to MacOS X (Intel) 10.4 and newer
+
+   download LilyPond 2.12.3-1 (includes 10.5 & 10.6 GUI fix) for MacOS X (Intel)
+
+   double click lilypond-2.12.3-1.darwin-x86.tar.bz2
+
+   drag LilyPond app to the applications folder
+
+4. TEST THE LILYPOND GUI
+
+   open Finder
+
+   open Applications
+
+   double click LilyPond
+
+   follow the instructions that appear
+
+   quit LilyPond
+
+   close Finder
+
+5. CALL LILYPOND FROM THE COMMAND LINE
+
+   open Terminal
+
+   which lilypond
+
+   ls /Applications/LilyPond.app/Contents/Resources/bin/lilypond
+
+   ls -a ~
+
+   vi ~/.profile
+
+   export PATH="/Applications/LilyPond.app/Contents/Resources/bin:"$PATH
+
+   close Terminal
+
+   restart Terminal
+
+   which lilypond
+
+   echo $PATH
+
+   vi foo.ly
+
+   \version "2.12.3"
+   \new Staff { c'4 }
+
+   lilypond foo.ly
+
+   open foo.pdf
+
+   close Terminal
+
+6. INSTALL ABJAD
+
+   open Terminal
+
+   open your browser
+
+   browse www.projectabjad.org
+
+   click Installation
+
+   leave your browser and return to Terminal
+
+   which easy_install
+
+   leave Terminal and return to your browser
+
+   click http://pypi.python.org/pypi/Abjad
+
+   click Abjad-1.1.1.tar.gz
+
+   double click Abjad-1.1.1.tar.gz and the Abjad-1.1.1 folder results
+
+   drag Abjad-1.1.1 to the desktop
+
+   leave your browser and return to Terminal
+
+   cd ~/Desktop/Abjad-1.1.1
+
+   sudo python setup.py install
+
+   enter your computer's password when prompted to do so by sudo
+
+   (abjad is now installed in site-packages directory)
+   (you don't have to know where your site-packages directory is)
+   (your Python 2.5 install knows where your site-packages directory is)
+
+   which abj
+
+   (should show /usr/local/bin/abj)
+
+   abj
+
+   Attention: "/Users/trevorbaca/.abjad/config.py" does not exist in your system.
+      Abjad will now create it to store all configuration settings.
+      You may want to edit this file to configure Abjad to your liking.
+      Press any key to continue.
+
+   [TODO: MAKE FRIENDLY WELCOME MESSAGE!]
+
+   ~/.abjad/config.py is created
+
+   no other files in ~/.abjad are created
+
+   abjad> note = Note("c'4")
+   abjad> show(note)
+   Attention: "/Users/trevorbaca/.abjad/output" does not exist in your system.
+      Abajd will now create it to store all generated output files.
+   key to continue.
+
+   [TODO: REMOVE SECOND NOTIFICATION!]
+
+   BEAUTIFUL PDF!

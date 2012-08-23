@@ -1,0 +1,373 @@
+Articulations
+=============
+
+Articulations model staccati, marcati, tenuti and other symbols.
+Articulations attach notes, rests or chords.
+
+
+Creating articulations
+----------------------
+
+Use ``marktools`` to create articulations:
+
+<abjad>
+articulation = marktools.Articulation('turn') 
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation) <hide
+</abjad>
+
+
+Attaching articulations to a leaf
+---------------------------------
+
+Use ``attach()`` to attach articulations to a leaf:
+
+<abjad>
+staff = Staff([])
+key_signature = contexttools.KeySignatureMark('g', 'major')
+key_signature.attach(staff)
+time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8)) 
+time_signature.attach(staff)
+</abjad>
+
+<abjad>
+staff.extend("d'8 f'8 a'8 d''8 f''8 gs'4 r8 e'8 gs'8 b'8 e''8 gs''8 a'4")
+</abjad>
+
+<abjad>
+articulation.attach(staff[5])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-1') <hide
+</abjad>
+
+(The example is based on Haydn's piano sonata number 42, Hob. XVI/27.)
+
+
+Attaching articulations to many notes and chords at once
+--------------------------------------------------------
+
+Use ``marktools`` to attach articulations to many notes and chords at one time:
+
+<abjad>
+marktools.attach_articulations_to_notes_and_chords_in_expr(staff[:6], ['.'])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-2') <hide
+</abjad>
+
+
+Getting the articulations attached to a leaf
+--------------------------------------------
+
+Use ``marktools`` to get the articulations attached to a leaf:
+
+<abjad>
+marktools.get_articulations_attached_to_component(staff[5])
+print marktools.get_articulations_attached_to_component(staff[5]) <hide
+</abjad>
+
+
+Detaching articulations from a leaf one at a time
+-------------------------------------------------
+
+Detach articulations by hand with ``detach()``:
+
+<abjad>
+articulation.detach()
+</abjad>
+
+<abjad>
+articulation
+print articulation <hide
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-3') <hide
+</abjad>
+
+
+Detaching all articulations attached to a leaf at once
+------------------------------------------------------
+
+Use ``marktools`` to detach all articulations attached to a leaf at once:
+
+<abjad>
+staff[0]
+print repr(staff[0]) <hide
+</abjad>
+
+<abjad>
+marktools.detach_articulations_attached_to_component(staff[0])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-4') <hide
+</abjad>
+
+
+Inspecting the leaf to which an articulation is attached
+--------------------------------------------------------
+
+Use ``start_component`` to inspect the component to which an articulation is attached:
+
+<abjad>
+articulation = marktools.Articulation('turn')
+articulation.attach(staff[-1])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-5') <hide
+</abjad>
+
+<abjad>
+articulation.start_component
+print repr(articulation.start_component) <hide
+</abjad>
+
+
+Understanding the interpreter display of an articulation that is not attached to a leaf
+---------------------------------------------------------------------------------------
+
+The interpreter display of an articulation that is not attached to a leaf
+contains three parts:
+
+<abjad>
+articulation = marktools.Articulation('staccato')
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation)
+</abjad>
+
+``Articulation`` tells you the articulation's class.
+
+``'staccato'`` tells you the articulation's name.
+
+If you set the direction string of the articulation then that will appear, too:
+
+<abjad>
+articulation.direction_string = '^'
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation)
+</abjad>
+
+
+Understanding the interpreter display of an articulation that is attached to a leaf
+-----------------------------------------------------------------------------------
+
+The interpreter display of an articulation that is attached to a leaf
+contains four parts:
+
+<abjad>
+articulation.attach(staff[-1])
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-6') <hide
+</abjad>
+
+``Articulation`` tells you the articulation's class.
+
+``'staccato'`` tells you the articulation's name.
+
+``'^'`` tells you the articulation's direction string.
+
+``(a''4)`` tells you the component to which the articulation is attached.
+
+If you set the direction string of the articulation to none then the direction
+will no longer appear:
+
+<abjad>
+articulation.direction_string = None
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation) <hide
+</abjad>
+
+
+Understanding the string representation of an articulation
+----------------------------------------------------------
+
+The string representation of an articulation comprises two parts:
+
+<abjad>
+str(articulation)
+print repr(str(articulation)) <hide
+</abjad>
+
+``-`` tells you the articulation's direction string.
+
+``staccato`` tells you the articulation's name.
+
+
+Inspecting the LilyPond format of an articulation
+-------------------------------------------------
+
+Get the LilyPond input format of an articulation with ``format``:
+
+<abjad>
+articulation.format
+print repr(articulation.format) <hide
+</abjad>
+
+Use ``f()`` as a short-cut to print the LilyPond format of an articulation:
+
+<abjad>
+f(articulation)
+</abjad>
+
+
+Controlling whether an articulation appears above or below the staff
+--------------------------------------------------------------------
+
+Set ``direction_string`` to ``'^'`` to force an articulation to appear
+above the staff:
+
+<abjad>
+articulation.direction_string = '^'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-7') <hide
+</abjad>
+
+Set ``direction_string`` to ``'_'`` to force an articulation to appear
+above the staff:
+
+<abjad>
+articulation.direction_string = '_'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-8') <hide
+</abjad>
+
+Set ``direction_string`` to none to allow LilyPond to position
+an articulation automatically:
+
+<abjad>
+articulation.direction_string = None
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-9') <hide
+</abjad>
+
+
+Getting and setting the name of an articulation
+-----------------------------------------------
+
+Set the ``name`` of an articulation to change the symbol an articulation prints:
+
+<abjad>
+articulation.name = 'staccatissimo'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-10') <hide
+</abjad>
+
+
+Copying articulations
+---------------------
+
+Use ``copy.copy()`` to copy an articulation:
+
+<abjad>
+import copy
+</abjad>
+
+<abjad>
+articulation_copy_1 = copy.copy(articulation)
+</abjad>
+
+<abjad>
+articulation_copy_1
+print repr(articulation_copy_1) <hide
+</abjad>
+
+<abjad>
+articulation_copy_1.attach(staff[1])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-11') <hide
+</abjad>
+
+Or use ``copy.deepcopy()`` to do the same thing.
+
+
+Comparing articulations
+-----------------------
+
+Articulations compare equal with equal direction names and direction strings:
+
+<abjad>
+articulation.name
+print repr(articulation.name) <hide
+articulation.direction_string
+print repr(articulation.direction_string) <hide
+</abjad>
+
+<abjad>
+articulation_copy_1.name
+print repr(articulation_copy_1.name) <hide
+articulation_copy_1.direction_string
+print repr(articulation_copy_1.direction_string) <hide
+</abjad>
+
+<abjad>
+articulation == articulation_copy_1
+print repr(articulation == articulation_copy_1) <hide
+</abjad>
+
+Otherwise articulations do not compare equal.
+
+
+Overriding attributes of the LilyPond script grob
+-------------------------------------------------
+
+Override attributes of the LilyPond script grob like this:
+
+<abjad>
+staff.override.script.color = 'red'
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-12') <hide
+</abjad>
+
+See the LilyPond documentation for a list of script grob attributes available.

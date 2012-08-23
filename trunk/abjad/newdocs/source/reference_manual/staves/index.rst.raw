@@ -1,0 +1,172 @@
+Staves
+======
+
+Creating staves
+---------------
+
+Create staves like this:
+
+<abjad>
+staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'staves-1') <hide
+</abjad>
+
+Inspecting staff music
+----------------------
+
+Return staff components with ``music``:
+
+<abjad>
+staff.music
+print repr(staff.music) <hide
+</abjad>
+
+Inspecting staff length
+-----------------------
+
+Get staff length with ``len()``:
+
+<abjad>
+len(staff)
+print repr(len(staff)) <hide
+</abjad>
+
+Inspecting staff duration
+-------------------------
+
+Staff contents durations equals the sum of staff components' duration:
+
+<abjad>
+staff.contents_duration
+print repr(staff.contents_duration) <hide
+</abjad>
+
+Adding one component to the end of a staff
+------------------------------------------
+
+Add one component to the end of a staff with ``append``:
+
+<abjad>
+staff.append(Note("d''2"))
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'staves-2') <hide
+</abjad>
+
+Adding many components to the end of a staff
+--------------------------------------------
+
+Add many components to the end of a staff with ``extend``:
+
+<abjad>
+notes = [Note("e''8"), Note("d''8"), Note("c''4")]
+staff.extend(notes)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'staves-3') <hide
+</abjad>
+
+Finding the index of a staff component
+--------------------------------------
+
+Find staff component index with ``index``:
+
+<abjad>
+notes[0]
+print repr(notes[0]) <hide
+</abjad>
+
+<abjad>
+staff.index(notes[0])
+print repr(staff.index(notes[0])) <hide
+</abjad>
+
+Removing a staff component by index
+-----------------------------------
+
+Use ``pop`` to remove a staff component by index:
+
+<abjad>
+staff[8]
+print repr(staff[8]) <hide
+</abjad>
+
+<abjad>
+staff.pop(8)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'staves-4') <hide
+</abjad>
+
+Removing a staff component by reference
+---------------------------------------
+
+Remove staff components by reference with ``remove``:
+
+<abjad>
+staff.remove(staff[-1])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'staves-5') <hide
+</abjad>
+
+Naming staves
+-------------
+
+You can name Abjad staves:
+
+<abjad>
+staff.name = 'Example Staff'
+</abjad>
+
+Staff names appear in LilyPond input:
+
+<abjad>
+f(staff)
+</abjad>
+
+But not in notational output:
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'staves-6') <hide
+</abjad>
+
+Forcing context
+---------------
+
+Staff context equals ``'Staff'`` by default:
+
+<abjad>
+staff.context
+print repr(staff.context) <hide
+</abjad>
+
+You can force staff context:
+
+<abjad>
+staff.context = 'CustomUserStaff'
+</abjad>
+
+<abjad>
+staff.context
+print repr(staff.context) <hide
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+Force context when you have defined a new LilyPond context.

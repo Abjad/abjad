@@ -1,0 +1,39 @@
+Introduction
+============
+
+
+Abjad publishes information about many durated score objects.
+
+Notes, rests, chords and skips carry some duration attributes:
+
+<abjad>
+note = Note(0, (3, 16))
+measure = Measure((3, 16), [note])
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff, docs=True)
+</abjad>
+
+<abjad>
+note.written_duration
+</abjad>
+
+Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
+
+<abjad>
+tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), "c'16 c' c' c' c'")
+measure = Measure((3, 16), [tuplet])
+staff = stafftools.RhythmicStaff([measure])
+</abjad>
+
+<abjad>
+show(staff, docs=True)
+</abjad>
+
+<abjad>
+tuplet.multiplier
+</abjad>
+
+The next chapters document core duration concepts in Abjad.

@@ -1,0 +1,78 @@
+Spanners
+========
+
+Overriding spanners
+-------------------
+
+The symbols below are black with fixed thickness and predetermined spacing:
+
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
+slur_1 = spannertools.SlurSpanner(staff[:2])
+slur_2 = spannertools.SlurSpanner(staff[2:4])
+slur_3 = spannertools.SlurSpanner(staff[4:6])
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'spanners-1') <hide
+</abjad>
+
+But you can override LilyPond grobs to change the look of spanners:
+
+<abjad>
+slur_1.override.slur.color = 'red'
+slur_3.override.slur.color = 'red'
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'spanners-2') <hide
+</abjad>
+
+Overriding the components to which spanners attach
+--------------------------------------------------
+
+You can override LilyPond grobs to change spanners' contents:
+
+<abjad>
+slur_2.override.slur.color = 'blue'
+slur_2.override.note_head.color = 'blue'
+slur_2.override.stem.color = 'blue'
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'spanners-3') <hide
+</abjad>
+
+Removing spanner overrides
+--------------------------
+
+Delete grob overrides you no longer want:
+
+<abjad>
+del(slur_1.override.slur)
+del(slur_3.override.slur)
+</abjad>
+
+<abjad>
+f(staff)
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'spanners-4') <hide
+</abjad>

@@ -1,0 +1,201 @@
+LilyPond command marks
+======================
+
+LilyPond command marks allow you to attach arbitrary LilyPond commands
+to Abjad score components.
+
+
+Creating LilyPond command marks
+-------------------------------
+
+Use ``marktools`` to create LilyPond command marks:
+
+<abjad>
+lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'after')
+</abjad>
+
+<abjad>
+lilypond_command_mark
+print repr(lilypond_command_mark) <hide
+</abjad>
+
+
+Attaching LilyPond command marks to Abjad components
+----------------------------------------------------
+
+Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
+
+<abjad>
+import copy
+staff = Staff([])
+key_signature = contexttools.KeySignatureMark('f', 'major')
+key_signature.attach(staff)
+staff.extend(iotools.parse_lilypond_input_string("d''16 ( c''16 fs''16 g''16 )"))
+staff.extend(iotools.parse_lilypond_input_string("f''16 ( e''16 d''16 c''16 )"))
+staff.extend(iotools.parse_lilypond_input_string("cs''16 ( d''16 f''16 d''16 )"))
+staff.extend(iotools.parse_lilypond_input_string("a'8 b'8"))
+staff.extend(iotools.parse_lilypond_input_string("d''16 ( c''16 fs''16 g''16 )"))
+staff.extend(iotools.parse_lilypond_input_string("f''16 ( e''16 d''16 c''16 )"))
+staff.extend(iotools.parse_lilypond_input_string("cs''16 ( d''16 f''16 d''16 )"))
+staff.extend(iotools.parse_lilypond_input_string("a'8 b'8 c''2"))
+</abjad>
+
+<abjad>
+lilypond_command_mark.attach(staff[-2])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilypond-command-marks-1') <hide
+</abjad>
+
+
+Getting the LilyPond command marks attached to an Abjad component
+-----------------------------------------------------------------
+
+Use ``marktools`` to get the lilypond_command_marks attached to a leaf:
+
+<abjad>
+marktools.get_lilypond_command_marks_attached_to_component(staff[-2])
+print marktools.get_lilypond_command_marks_attached_to_component(staff[-2]) <hide
+</abjad>
+
+
+Detaching LilyPond command marks from components one at a time
+--------------------------------------------------------------
+
+Use ``detach()`` to detach LilyPond command marks one at a time:
+
+<abjad>
+lilypond_command_mark.detach()
+</abjad>
+
+<abjad>
+lilypond_command_mark
+print lilypond_command_mark <hide
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilpond-command-marks-2') <hide
+</abjad>
+
+
+Detaching all LilyPond command marks attached to a component at once
+--------------------------------------------------------------------
+
+Use ``marktools`` to detach all LilyPond command marks attached to a component at once:
+
+<abjad>
+lilypond_command_mark_1 = marktools.LilyPondCommandMark('bar "||"', 'closing')
+lilypond_command_mark_1.attach(staff[-2])
+</abjad>
+
+<abjad>
+lilypond_command_mark_2 = marktools.LilyPondCommandMark('bar "||"', 'closing')
+lilypond_command_mark_2.attach(staff[-16])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilypond-command-marks-3') <hide
+</abjad>
+
+<abjad>
+marktools.detach_lilypond_command_marks_attached_to_component(staff[-16])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilypond-command-marks-4') <hide
+</abjad>
+
+
+Inspecting the component to which a LilyPond command mark is attached
+---------------------------------------------------------------------
+
+Use ``start_component`` to inspect the component to which a LilyPond command mark is attached:
+
+<abjad>
+lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'closing')
+lilypond_command_mark.attach(staff[-2])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilypond-command-marks-5') <hide
+</abjad>
+
+<abjad>
+lilypond_command_mark.start_component
+print repr(lilypond_command_mark.start_component) <hide
+</abjad>
+
+
+Getting and setting the command name of a LilyPond command mark
+---------------------------------------------------------------
+
+Set the ``command_name`` of a LilyPond command mark to change the 
+LilyPond command a LilyPond command mark prints:
+
+<abjad>
+lilypond_command_mark.command_name = 'bar "|."'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilypond-command-marks-9') <hide
+</abjad>
+
+
+Copying LilyPond commands
+-------------------------
+
+Use ``copy.copy()`` to copy a LilyPond command mark:
+
+<abjad>
+import copy
+</abjad>
+
+<abjad>
+lilypond_command_mark_copy_1 = copy.copy(lilypond_command_mark)
+</abjad>
+
+<abjad>
+lilypond_command_mark_copy_1
+print repr(lilypond_command_mark_copy_1) <hide
+</abjad>
+
+<abjad>
+lilypond_command_mark_copy_1.attach(staff[-1])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'lilypond-command-marks-10') <hide
+</abjad>
+
+Or use ``copy.deepcopy()`` to do the same thing.
+
+
+Comparing LilyPond command marks
+--------------------------------
+
+LilyPond command marks compare equal with equal command names:
+
+<abjad>
+lilypond_command_mark.command_name
+print repr(lilypond_command_mark.command_name) <hide
+</abjad>
+
+<abjad>
+lilypond_command_mark_copy_1.command_name
+print repr(lilypond_command_mark_copy_1.command_name) <hide
+</abjad>
+
+<abjad>
+lilypond_command_mark == lilypond_command_mark_copy_1
+print repr(lilypond_command_mark == lilypond_command_mark_copy_1) <hide
+</abjad>
+
+Otherwise LilyPond command marks do not compare equal.

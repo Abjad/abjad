@@ -1,0 +1,32 @@
+Comment-numbering measures
+==========================
+
+Abjad formats the contents of a measure with open and close
+curly braces as start and stop delimiters. This helps you see where
+measures begin and end in the LilyPond code that make with Abjad.
+
+<abjad>
+staff = Staff(Measure((2, 4), macros.scale(2, Fraction(1, 4))) * 3)
+pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+print staff.format
+show(staff)
+write_ly(staff, '1') <hide
+</abjad>
+
+You can use 
+:func:`measuretools.comment_measures_in_container_with_measure_numbers() <abjad.tools.measuretools.comment_measures_in_container_with_measure_numbers>` 
+to label measure numbers just before and just after each start and 
+stop brace. Abjad calls this 'comment numbering' because the labels 
+you create here are inserted as comments in your LilyPond code.
+
+<abjad>
+measuretools.comment_measures_in_container_with_measure_numbers(staff)
+print staff.format
+</abjad>
+
+Turn comment-numbering off with ``style = None``.
+
+<abjad>
+measuretools.comment_measures_in_container_with_measure_numbers(staff, style = None)
+print staff.format
+</abjad>
