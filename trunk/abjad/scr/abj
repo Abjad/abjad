@@ -1,7 +1,5 @@
-# scr/abj is exactly the same as scr/abjad
-# scr/abj is merely an (undocumented) shortcut for scr/abjad
+#! /usr/bin/env python
 
-python -i $1 -c "from abjad import *; \
-    from abjad.tools import configurationtools; \
-    print configurationtools.get_abjad_startup_string(); \
-    del configurationtools"
+from abjad.tools.iotools._run_abjad import _run_abjad
+
+_run_abjad()
