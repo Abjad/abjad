@@ -71,7 +71,7 @@ class BuildApiScript(DeveloperScript):
 
             @property
             def package_prefix(self):
-                return 'abjad.tools.'
+                return 'experimental.'
 
             @property
             def root_package(self):
