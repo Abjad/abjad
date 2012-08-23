@@ -38,7 +38,10 @@ class BendAfter(Mark):
     ## OVERRIDE ##
 
     def __copy__(self, *args):
-        return type(self)(self.bend_amount)
+        #return type(self)(self.bend_amount)
+        new = type(self)(self.bend_amount)
+        new.format_slot = self.format_slot
+        return new
 
     __deepcopy__ = __copy__
 

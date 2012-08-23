@@ -57,7 +57,10 @@ class LilyPondComment(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._contents_string)
+        #return type(self)(self._contents_string)
+        new = type(self)(self._contents_string)
+        new.format_slot = self.format_slot
+        return new
 
     __deepcopy__ = __copy__
 

@@ -59,7 +59,10 @@ class LilyPondCommandMark(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._command_name)
+        #return type(self)(self._command_name)
+        new = type(self)(self._command_name)
+        new.format_slot = self.format_slot
+        return new
 
     __deepcopy__ = __copy__
 

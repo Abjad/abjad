@@ -38,7 +38,10 @@ class StemTremolo(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self.tremolo_flags)
+        #return type(self)(self.tremolo_flags)
+        new = type(self)(self.tremolo_flags)
+        new.format_slot = self.format_slot
+        return new
 
     __deepcopy__ = __copy__
 

@@ -44,7 +44,10 @@ class Mark(AbjadObject):
             raise ValueError('must call mark with at most 1 argument.')
 
     def __copy__(self, *args):
-        return type(self)()
+        #return type(self)()
+        new = type(self)()
+        new.format_slot = self.format_slot
+        return new
 
     __deepcopy__ = __copy__
 
