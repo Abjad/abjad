@@ -578,6 +578,7 @@ Composition packages
    tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_offset
    tools/leaftools/split_leaf_at_offset_and_rest_right_half
+   tools/leaftools/split_leaf_by_offsets
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
 :py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
