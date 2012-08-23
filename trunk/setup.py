@@ -34,6 +34,8 @@ setup(name = 'Abjad',
     entry_points = {'console_scripts':[
         'abj = abjad.tools.iotools._run_abjad:_run_abjad',
         'abjad = abjad.tools.iotools._run_abjad:_run_abjad',
-        'abjad-book = abjad.book.abjad_book:_abjad_book',
+        'abjad-book = abjad.tools.abjadbooktools._run_abjad_book:_run_abjad_book',
+        'abj-dev = abjad.tools.developerscripttools._run_abjdev:_run_abjdev',
+        'ajv = abjad.tools.developerscripttools._run_abjdev:_run_abjdev',
         ]},
     )
