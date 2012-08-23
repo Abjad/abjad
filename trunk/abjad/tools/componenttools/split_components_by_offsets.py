@@ -237,10 +237,16 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
     Return list of newly split shards.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import sequencetools
 
     # check input
     assert componenttools.all_are_components(components)
     assert durationtools.all_are_duration_tokens(offsets)
+
+    if cyclic:
+        total_component_duration = componenttools.sum_prolated_duration_of_components(components)
+        offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, total_component_duration)
+        #print 'offsets {}'.format(offsets)
 
     # initialize loop variables
     result, shard = [], []
@@ -254,9 +260,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
         #print 'remaining_components are now %s' % remaining_components
 
         # grab next split point
-        if cyclic:
-            next_split_point = offsets[offset_index % offset_count]
-        elif offset_index < offset_count:
+        if offset_index < offset_count:
             next_split_point = offsets[offset_index]
         else:
             break
@@ -282,11 +286,14 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
         # if current component would exceed current shard
         elif next_split_point < candidate_shard_duration:
             #print 'must split %s' % current_component
+            # TODO: Test here to see if component-to-be-split is leaf or container.
+            #       Continue to treat containers the same way as before.
+            #       But write a new leaftools.split_leaf_by_offsets() helper function to handle the leaf case.
             local_split_duration = next_split_point - current_shard_duration
             #print current_shard_duration, next_split_point, current_component, shard, local_split_duration
             left_list, right_list = componenttools.split_component_at_offset(
                 current_component, local_split_duration, fracture_spanners=fracture_spanners, tie_after=tie_after)
-            #print 'left_list, right_list %s, %s' % (left_list, right_list)
+            #print 'left_list, right_list {}, {}'.format(left_list, right_list)
             shard.extend(left_list)
             result.append(shard)
             shard = []
