@@ -1,0 +1,15 @@
+{% extends "basic/layout.html" %}
+
+{% set script_files = script_files + ["_static/ga-1.js"] %}
+{% set script_files = script_files + ["_static/ga-2.js"] %}
+
+{% block rootrellink %}
+    <li><a href="http://www.projectabjad.org/">Project Abjad</a> &raquo;</li>
+    {{ super() }}
+{% endblock %}
+
+{# the sidebarrel block houses next and prev references in sidebar #}
+{# 'sidebarrel' stands for 'sidebar (site)-relative (navigation links)' #}
+{# the templating definition below defines an empty sidebarrel block #}
+{# the effect of this definition is to remove next and prev sidebar links #}
+{% block sidebarrel %}{% endblock %}
