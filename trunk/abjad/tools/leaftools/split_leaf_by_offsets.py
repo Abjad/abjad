@@ -1,6 +1,7 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
+from abjad.tools import pitchtools
 
 
 def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, tie_nonpitch_carrier=False):
@@ -8,7 +9,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
 
     Split `leaf` by `offsets`.
 
-    Example 1. Split `leaf` once by `offsets`::
+    Example 1. Split note once by `offsets` and tie split notes::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -22,7 +23,61 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)])
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_pitch_carrier=True)
+        [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            c'4. ( ~
+            c'2 ~
+            c'8
+            d'1 )
+        }
+
+    Example 2. Split note cyclically by `offsets` and tie split notes::
+
+        >>> staff = Staff("c'1 ( d'1 )")
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            c'1 (
+            d'1 )
+        }
+
+    ::
+
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_pitch_carrier=True)
+        [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            c'4. ( ~
+            c'4. ~
+            c'4
+            d'1 )
+        }
+
+    Example 3. Split note once by `offsets` and do no tie split notes::
+
+        >>> staff = Staff("c'1 ( d'1 )")
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            c'1 (
+            d'1 )
+        }
+
+    ::
+
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_pitch_carrier=False)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -35,7 +90,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
             d'1 )
         }
 
-    Example 2. Split `leaf` cyclically by `offsets`::
+    Example 4. Split note cyclically by `offsets` and do not tie split notes::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -49,7 +104,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True)
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_pitch_carrier=False)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
@@ -62,12 +117,11 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
             d'1 )
         }
 
-    .. note:: Implement tie keywords and add examples.
-
     Return list of shards.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
+    from abjad.tools import tietools
     
     assert isinstance(leaf, leaftools.Leaf) 
     offsets = [durationtools.Offset(offset) for offset in offsets]
@@ -91,6 +145,12 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)
+
+    if  (pitchtools.is_pitch_carrier(leaf) and tie_pitch_carrier) or \
+        (not pitchtools.is_pitch_carrier(leaf) and tie_nonpitch_carrier):
+        tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
+        tietools.TieSpanner(flattened_result)
+     
     componenttools.move_parentage_and_spanners_from_components_to_components([leaf], flattened_result)
 
     return result
