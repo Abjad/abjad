@@ -119,8 +119,8 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
         assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
         rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
-        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
-            voice_divisions, rhythm_region_lengths)
+        rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
+            voice_divisions, rhythm_region_lengths, cyclic=False, overhang=False)
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
         input_pairs = [(command.resolved_value, command.duration) for command in rhythm_commands]
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
@@ -214,7 +214,8 @@ class ConcreteInterpreter(Interpreter):
             start_segment_index, segment_count)
         total_amount = stop_offset - start_offset
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
-        divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
+        divisions = sequencetools.split_sequence_by_weights(
+            divisions, [0, total_amount], cyclic=False, overhang=True)
         divisions = divisions[1]
         if division_request.callback is not None:
             divisions = division_request.callback(divisions)
@@ -405,7 +406,8 @@ class ConcreteInterpreter(Interpreter):
         segment_durations = self.score_specification.segment_durations
         #self._debug(voice_divisions, 'vd')
         #self._debug(segment_durations, 'sd')
-        shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
+        shards = sequencetools.split_sequence_by_weights(
+            voice_divisions, segment_durations, cyclic=False, overhang=True)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
             raw_segment_division_list = divisiontools.SegmentDivisionList(shard)

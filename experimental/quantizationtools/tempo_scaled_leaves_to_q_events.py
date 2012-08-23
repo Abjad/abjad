@@ -21,6 +21,10 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
     ::
 
+        >>> from experimental import *
+
+    ::
+
         >>> from experimental.quantizationtools import tempo_scaled_leaves_to_q_events
         >>> source = Staff("c'4 r4. e'8 <g' b' d'' fs''>2")
         >>> source_tempo = contexttools.TempoMark((1, 4), 55)

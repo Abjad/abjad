@@ -8,6 +8,10 @@ def tempo_scaled_rational_to_milliseconds(rational, tempo):
 
     ::
 
+        >>> from experimental import *
+
+    ::
+
         >>> from experimental.quantizationtools import tempo_scaled_rational_to_milliseconds
         >>> tempo = contexttools.TempoMark((1, 4), 60)
         >>> tempo_scaled_rational_to_milliseconds(Fraction(1, 4), tempo)

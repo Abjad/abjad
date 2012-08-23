@@ -21,6 +21,10 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
 
     ::
 
+        >>> from experimental import *
+
+    ::
+
         >>> from experimental.quantizationtools import tempo_scaled_rationals_to_q_events
         >>> durations = [Duration(-1, 2), Duration(1, 4), Duration(1, 6)]
         >>> tempo = contexttools.TempoMark((1, 4), 55)
