@@ -237,11 +237,13 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
     Return list of newly split shards.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import leaftools
     from abjad.tools import sequencetools
 
     # check input
     assert componenttools.all_are_components(components)
-    assert durationtools.all_are_duration_tokens(offsets)
+    #assert durationtools.all_are_duration_tokens(offsets)
+    offsets = [durationtools.Offset(offset) for offset in offsets]
 
     if cyclic:
         total_component_duration = componenttools.sum_prolated_duration_of_components(components)
@@ -291,15 +293,32 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
             #       But write a new leaftools.split_leaf_by_offsets() helper function to handle the leaf case.
             local_split_duration = next_split_point - current_shard_duration
             #print current_shard_duration, next_split_point, current_component, shard, local_split_duration
-            left_list, right_list = componenttools.split_component_at_offset(
-                current_component, local_split_duration, fracture_spanners=fracture_spanners, tie_after=tie_after)
-            #print 'left_list, right_list {}, {}'.format(left_list, right_list)
-            shard.extend(left_list)
-            result.append(shard)
+
+#            if isinstance(current_component, leaftools.Leaf):
+#                leaf_split_durations = [local_split_duration]
+#                additional_required_duration = current_component.written_duration - local_split_duration
+#                split_offsets = sequencetools.split_sequence_by_weights(
+#                    offsets, [additional_required_duration], cyclic=False, overhang=True)
+#                additional_offsets = split_offsets[0]
+#                leaf_split_durations.extend(additional_offsets)
+#                offsets = split_offsets[-1]
+#                leaf_shards = leaftools.split_leaf_by_offsets(
+#                    current_component, leaf_split_durations, cyclic=False)
+#                result.extend(leaf_shards)
+#                offset_index += len(additional_offsets)
+#            else:
+            if True:
+                left_list, right_list = componenttools.split_component_at_offset(
+                    current_component, local_split_duration, 
+                    fracture_spanners=fracture_spanners, tie_after=tie_after)
+                #print 'left_list, right_list {}, {}'.format(left_list, right_list)
+                shard.extend(left_list)
+                result.append(shard)
+                # to avoid slice assignment pychecker errors
+                #remaining_components[0:0] = right_list
+                remaining_components.__setitem__(slice(0, 0), right_list)
+
             shard = []
-            # to avoid slice assignment pychecker errors
-            #remaining_components[0:0] = right_list
-            remaining_components.__setitem__(slice(0, 0), right_list)
             offset_index += 1
             current_shard_duration = durationtools.Duration(0)
         # if current component would not fill current shard
