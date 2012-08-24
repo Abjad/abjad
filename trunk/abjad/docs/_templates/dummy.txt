@@ -1,2 +1,0 @@
-# this text file exists to populate the docs/_templates directory #
-# and thereby cause setup.py to include docs/_templates in built packages. #

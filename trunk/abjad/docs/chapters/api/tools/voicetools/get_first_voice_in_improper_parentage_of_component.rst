@@ -1,4 +1,0 @@
-voicetools.get_first_voice_in_improper_parentage_of_component
-=============================================================
-
-.. autofunction:: abjad.tools.voicetools.get_first_voice_in_improper_parentage_of_component.get_first_voice_in_improper_parentage_of_component

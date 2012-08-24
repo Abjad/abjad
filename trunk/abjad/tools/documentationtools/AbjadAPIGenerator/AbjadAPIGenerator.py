@@ -25,35 +25,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _internals_packages_description = 'Internal packages'
 
-#    _internals_packages = (
-#        'formattools',
-#    )
-
     _manual_packages_description = 'Additional packages (load manually)'
-
-#    _manual_packages = (
-#        'abctools',
-#        'configurationtools',
-#        'datastructuretools',
-#        'decoratortools',
-#        'documentationtools',
-#        'durationtools',
-#        'iotools',
-#        'layouttools',
-#        'lilypondparsertools',
-#        'mathtools',
-#        'pitcharraytools',
-#        'rhythmtreetools',
-#        'sequencetools',
-#        'sievetools',
-#        'stringtools',
-#        'tempotools',
-#        'timeintervaltools',
-#        'timesignaturetools',
-#        'timetokentools',
-#        'verticalitytools',
-#        'wellformednesstools'
-#    )
 
     _undocumented_packages = (
         'lilypondproxytools',
@@ -61,13 +33,6 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _unstable_packages_description = 'Unstable packages (load manually)'
 
-#    _unstable_packages = (
-#        'constrainttools',
-#        'lyricstools',
-#        'quantizationtools',
-#        'tonalitytools',
-#    )
-    
     ### INITIALIZER ###
 
     def __init__(self):
@@ -241,13 +206,13 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     def docs_api_index_path(self):
         '''Path to index.rst for Abjad API.'''
         from abjad import ABJCFG
-        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api', 'index.rst')
+        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'index.rst')
 
     @property
     def docs_tools_path(self):
         '''Path to tools directory inside docs.'''
         from abjad import ABJCFG
-        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api', 'tools')
+        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools')
 
     @property
     def package_prefix(self):
