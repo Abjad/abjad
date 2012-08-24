@@ -96,7 +96,7 @@ musical notation.
 
 .. note::
    Please refer to the :doc:`Bartok example 
-   </chapters/examples/bartok/index>` for a step by step 
+   </examples/bartok/index>` for a step by step 
    construction of the musical fragment and its full Abjad code.
 
 There are many musical signs of different types on the pages: notes,

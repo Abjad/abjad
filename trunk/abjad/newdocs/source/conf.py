@@ -32,8 +32,8 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
-    'abjad.newdocs.source.ext.inheritance_diagram',
-    'abjad.newdocs.source.ext.autodoc',
+    'abjad.newdocs.source._ext.inheritance_diagram',
+    'abjad.newdocs.source._ext.autodoc',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
