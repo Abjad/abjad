@@ -235,6 +235,10 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
         }
 
     Return list of newly split shards.
+
+    .. note:: Add tests of tupletted notes and rests.
+
+    .. note:: Change `tie_after` keyword to `tie_pitch_carriers` and `tie_nonpitch_carriers` instead.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
@@ -242,7 +246,6 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
 
     # check input
     assert componenttools.all_are_components(components)
-    #assert durationtools.all_are_duration_tokens(offsets)
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
     if cyclic:
@@ -264,13 +267,17 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
         # grab next split point
         if offset_index < offset_count:
             next_split_point = offsets[offset_index]
+        #if offsets:
+        #    next_split_point = offsets.pop(0)
         else:
+            #print 'no more offsets'
             break
 
         # grab next component from input stack of components
         if remaining_components:
             current_component = remaining_components.pop(0)
         else:
+            #print 'no more components'
             break
 
         # find where current component endpoint will position us
@@ -288,17 +295,22 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
         # if current component would exceed current shard
         elif next_split_point < candidate_shard_duration:
             #print 'must split %s' % current_component
+
             # TODO: Test here to see if component-to-be-split is leaf or container.
             #       Continue to treat containers the same way as before.
             #       But write a new leaftools.split_leaf_by_offsets() helper function to handle the leaf case.
             local_split_duration = next_split_point - current_shard_duration
+            #print 'local_split_duration {}'.format(local_split_duration)
             #print current_shard_duration, next_split_point, current_component, shard, local_split_duration
 
 #            if isinstance(current_component, leaftools.Leaf):
 #                leaf_split_durations = [local_split_duration]
 #                additional_required_duration = current_component.written_duration - local_split_duration
+#                print 'additional_required_duration {}'.format(additional_required_duration)
+#                print 'offsets {}'.format(offsets)
 #                split_offsets = sequencetools.split_sequence_by_weights(
 #                    offsets, [additional_required_duration], cyclic=False, overhang=True)
+#                print 'split_offsets {}'.format(split_offsets)
 #                additional_offsets = split_offsets[0]
 #                leaf_split_durations.extend(additional_offsets)
 #                offsets = split_offsets[-1]

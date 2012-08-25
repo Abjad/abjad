@@ -240,6 +240,7 @@ def test_componenttools_split_components_by_offsets_04():
 
 def test_componenttools_split_components_by_offsets_05():
     '''Cyclically duration partition list of leaves outside of score.
+    TODO: tie pitch carriers (even though notes are outside of score).
     '''
     py.test.skip('FIXME')
 
@@ -248,7 +249,7 @@ def test_componenttools_split_components_by_offsets_05():
     parts = componenttools.split_components_by_offsets(
         leaves, durations, cyclic=True, fracture_spanners=False)
 
-    assert len(parts) == 7
+    assert len(parts) == 8
 
     t = Staff([])
     for part in parts:
