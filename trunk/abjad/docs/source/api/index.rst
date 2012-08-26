@@ -1691,7 +1691,6 @@ Composition packages
    tools/timeintervaltools/make_polyphonic_percussion_score_from_nonoverlapping_trees
    tools/timeintervaltools/mask_intervals_with_intervals
    tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
-   tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational
    tools/timeintervaltools/round_interval_bounds_to_nearest_multiple_of_rational
    tools/timeintervaltools/scale_aggregate_duration_by_rational
    tools/timeintervaltools/scale_aggregate_duration_to_rational
