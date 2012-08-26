@@ -273,7 +273,7 @@ class Component(AbjadObject):
     ### MANGLED METHODS ###
 
     def _update_leaf_indices_and_measure_numbers_in_score_tree(self):
-        '''Called only when updating prolated offset of score compoennts.
+        '''Called only when updating prolated offset of score components.
         No separate state flags for leaf indices or measure numbers.
         '''
         from abjad.tools import componenttools
