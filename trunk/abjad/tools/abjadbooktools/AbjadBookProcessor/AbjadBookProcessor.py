@@ -52,7 +52,11 @@ class AbjadBookProcessor(abctools.AbjadObject):
         self._cleanup_tmp_directory(tmp_directory)
 
         # Interleave newly reformatted code with the old, and return.
-        return self._interleave_source_with_code_blocks(self.lines, code_blocks, self.output_format)
+        if code_blocks:
+            result = self._interleave_source_with_code_blocks(self.lines, code_blocks, self.output_format)
+        else:
+            result = '\n'.join(self.lines)
+        return result
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

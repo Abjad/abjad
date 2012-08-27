@@ -5,6 +5,7 @@ from abjad.tools import developerscripttools
 import argparse
 import os
 import sys
+import traceback
 
 
 class AbjadBookScript(developerscripttools.DeveloperScript):
@@ -135,8 +136,9 @@ EXAMPLES
             with open(output_filename, 'w') as f:
                 f.write(processed_lines)
             print '\t...Done!'
-        except Exception as e:
-            print 'ERROR'
+        except:
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            traceback.print_exc()
 
     def _validate_path(self, path):
         error = argparse.ArgumentTypeError('{!r} is not a valid path.'.format(path))
