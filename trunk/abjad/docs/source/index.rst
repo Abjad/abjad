@@ -100,6 +100,7 @@ Appendices
     :maxdepth: 1
 
     appendices/history/index
+    appendices/glossary/index
     appendices/text_alignment/index
     appendices/bibliography/index
 
