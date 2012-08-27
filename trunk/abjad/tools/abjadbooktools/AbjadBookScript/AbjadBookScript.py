@@ -135,7 +135,7 @@ EXAMPLES
             with open(output_filename, 'w') as f:
                 f.write(processed_lines)
             print '\t...Done!'
-        except:
+        except Exception as e:
             print 'ERROR'
 
     def _validate_path(self, path):

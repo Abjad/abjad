@@ -46,7 +46,7 @@ class CodeBlock(abctools.AbjadObject):
         pipe.write('\n')
 
         for line in self.lines:
-            hide = False
+            hide = self.hide
 
             current = self.read(pipe)
 
