@@ -1,32 +1,75 @@
 def yield_components_grouped_by_preprolated_duration(components):
-    '''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
-    Yield components grouped by preprolated duration::
+    Example 1. Yield topmost components grouped by preprolated duration::
 
-        >>> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
-        >>> for x in componenttools.yield_components_grouped_by_preprolated_duration(notes):
+        >>> staff = Staff(r"\times 2/3 { c'4 c'4 c'8 c'16 c'16 } c'16 c'16 c'8 c'8")
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            \times 2/3 {
+                c'4
+                c'4
+                c'8
+                c'16
+                c'16
+            }
+            c'16
+            c'16
+            c'8
+            c'8
+        }
+
+    ::
+
+        >>> for x in componenttools.yield_components_grouped_by_preprolated_duration(staff):
         ...     x
         ...
+        (Tuplet(2/3, [c'4, c'4, c'8, c'16, c'16]),)
+        (Note("c'16"), Note("c'16"))
+        (Note("c'8"), Note("c'8"))
+
+
+    Example 2. Yield topmost components grouped by preprolated duration.
+
+    Note that function treats input as a flat sequence and 
+    attempts no navigation of the score tree.
+    But it's possible to group components lower in the score tree by passing
+    the output of a component iterator as input to this function::
+
+        >>> staff = Staff(r"\times 2/3 { c'4 c'4 c'8 c'16 c'16 } c'16 c'16 c'8 c'8")
+
+    ::
+
+        >>> leaves = leaftools.iterate_leaves_forward_in_expr(staff)
+        >>> for x in componenttools.yield_components_grouped_by_preprolated_duration(leaves):
+        ...     x
         (Note("c'4"), Note("c'4"))
         (Note("c'8"),)
-        (Note("c'16"), Note("c'16"), Note("c'16"))
+        (Note("c'16"), Note("c'16"), Note("c'16"), Note("c'16"))
+        (Note("c'8"), Note("c'8"))
 
     Return generator.
+    
+    .. note:: Might be best to add ``in_sequence`` or ``topmost`` to the name
+        of this function.
     '''
 
-    cur_group = []
+    current_group = []
     for component in components:
-        if cur_group:
-            prev_component = cur_group[-1]
-            prev_duration = prev_component.preprolated_duration
-            cur_duration = component.preprolated_duration
-            if cur_duration == prev_duration:
-                cur_group.append(component)
+        if current_group:
+            previous_component = current_group[-1]
+            prev_duration = previous_component.preprolated_duration
+            current_duration = component.preprolated_duration
+            if current_duration == prev_duration:
+                current_group.append(component)
             else:
-                yield tuple(cur_group)
-                cur_group = []
-                cur_group.append(component)
+                yield tuple(current_group)
+                current_group = []
+                current_group.append(component)
         else:
-            cur_group.append(component)
-    if cur_group:
-        yield tuple(cur_group)
+            current_group.append(component)
+    if current_group:
+        yield tuple(current_group)
