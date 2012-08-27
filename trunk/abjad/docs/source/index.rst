@@ -42,6 +42,7 @@ Tutorials
 .. toctree::
     :numbered:
 
+    tutorials/rest_delimited_slurs/index
     tutorials/lcs/index
     tutorials/parentage/index
     tutorials/threads/index
