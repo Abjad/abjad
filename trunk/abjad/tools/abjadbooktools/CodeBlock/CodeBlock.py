@@ -84,7 +84,11 @@ class CodeBlock(abctools.AbjadObject):
             pipe.write('\n')
 
         result.extend(self.read(pipe))
+        if result[-1] == '>>> ':
+            result.pop()
 
+        pipe.write('\n')
+        result.extend(self.read(pipe))
         if result[-1] == '>>> ':
             result.pop()
 
@@ -137,7 +141,14 @@ class CodeBlock(abctools.AbjadObject):
     def read(self, pipe):
         # Guarantee we make it to the next prompt.
         # Exceptions sometimes take longer than expected.
-        current = pipe.read_wait().replace('\t', '    ').split('\n')
-        while current[-1] not in ('>>> ', '... '):
-            current.extend(pipe.read().replace('\t', '    ').split('\n'))
-        return current
+        result = pipe.read_wait().replace('\t', '    ').split('\n')
+        if result[-1] == '':
+            result.pop()
+        print result
+        while result[-1] not in ('>>> ', '... '):
+            new = pipe.read_wait().replace('\t', '    ').split('\n')
+            if new[-1] == '':
+                new.pop()
+            print new
+            result.extend(new)
+        return result
