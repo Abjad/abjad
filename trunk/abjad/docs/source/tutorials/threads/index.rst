@@ -152,13 +152,774 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vB])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 30, in __init__
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 31, in __init__
        DirectedSpanner.__init__(self, components, direction)
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 10, in __init__
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 10, in __init__
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
        Spanner.__init__(self, components)
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 42, in __init__
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 42, in __init__
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
        self._initialize_components(components)
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 212, in _initialize_components
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 213, in _initialize_components
        assert componenttools.all_are_thread_contiguous_components(leaves)
    AssertionError
 
@@ -170,13 +931,13 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vC])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 30, in __init__
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 31, in __init__
        DirectedSpanner.__init__(self, components, direction)
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 10, in __init__
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 10, in __init__
        Spanner.__init__(self, components)
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 42, in __init__
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 42, in __init__
        self._initialize_components(components)
-     File "/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 212, in _initialize_components
+     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 213, in _initialize_components
        assert componenttools.all_are_thread_contiguous_components(leaves)
    AssertionError
 
@@ -223,21 +984,21 @@ by printing it:
 
    >>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
    >>> vA_thread_signature
-   ContainmentSignature(Voice-182040012, Voice-182040012, Staff-182040492)
+   ContainmentSignature(Voice-25493808, Voice-25493808, Staff-25494192)
 
 
 ::
 
    >>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
    >>> vB_thread_signature
-   ContainmentSignature(Voice-182040252, Voice-182040252, Staff-182040492)
+   ContainmentSignature(Voice-25493936, Voice-25493936, Staff-25494192)
 
 
 ::
 
    >>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
    >>> vC_thread_signature
-   ContainmentSignature(Voice-182040372, Voice-182040372, Staff-182040492)
+   ContainmentSignature(Voice-25494064, Voice-25494064, Staff-25494192)
 
 
 And by comparing them with the binary equality operator:
@@ -276,7 +1037,7 @@ Note how the thread signatures have changed:
 
    >>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
    >>> print vA_thread_signature
-        staff: Staff-182040492
+        staff: Staff-25494192
         voice: Voice-'piccolo'
          self: Voice-'piccolo'
 
@@ -285,7 +1046,7 @@ Note how the thread signatures have changed:
 
    >>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
    >>> print vB_thread_signature
-        staff: Staff-182040492
+        staff: Staff-25494192
         voice: Voice-'piccolo'
          self: Voice-'piccolo'
 
@@ -294,9 +1055,9 @@ Note how the thread signatures have changed:
 
    >>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
    >>> print vC_thread_signature
-        staff: Staff-182040492
-        voice: Voice-182040372
-         self: Voice-182040372
+        staff: Staff-25494192
+        voice: Voice-25494064
+         self: Voice-25494064
 
 
 And how the ``componenttools.iterate_thread_forward_in_expr()`` function returns

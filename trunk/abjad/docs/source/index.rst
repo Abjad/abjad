@@ -19,6 +19,7 @@ you can use Abjad to control the typographic details of the symbols on the page.
 
 
 Start here
+----------
 
 .. toctree::
     :maxdepth: 1
@@ -28,6 +29,7 @@ Start here
     start_here/versions/index
 
 Examples
+--------
 
 .. toctree::
     :numbered:
@@ -37,13 +39,23 @@ Examples
     examples/ligeti/index
     examples/mozart/index
 
+System Overview
+---------------
+
+.. toctree::
+    :numbered:
+
+    system_overview/lcs/index
+    system_overview/parsing/index
+    system_overview/quantization/index
+
 Tutorials
+---------
 
 .. toctree::
     :numbered:
 
     tutorials/rest_delimited_slurs/index
-    tutorials/lcs/index
     tutorials/parentage/index
     tutorials/threads/index
     tutorials/grobs/index
@@ -51,6 +63,7 @@ Tutorials
     tutorials/time_signature_marks/index
 
 Reference manual
+----------------
 
 .. toctree::
     :numbered:
@@ -69,7 +82,6 @@ Reference manual
     reference_manual/notes/index
     reference_manual/named_chromatic_pitch/index
     reference_manual/python_basics/index
-    reference_manual/quantization/index
     reference_manual/rests/index
     reference_manual/scores/index
     reference_manual/spanners/index
@@ -78,6 +90,7 @@ Reference manual
     reference_manual/voices/index
 
 Developer documentation
+-----------------------
 
 .. toctree::
     :numbered:
@@ -95,6 +108,7 @@ Developer documentation
     developer_documentation/coding_standards/index
 
 Appendices
+----------
 
 .. toctree::
     :numbered:
@@ -103,6 +117,7 @@ Appendices
     appendices/history/index
     appendices/glossary/index
     appendices/text_alignment/index
+    appendices/score_snippet_gallery/index
     appendices/bibliography/index
 
 Abjad API

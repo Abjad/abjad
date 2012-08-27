@@ -107,11 +107,11 @@ We can further confirm that this is the case by asking Abjad for the LilyPond fo
 
    >>> f(staff)
    \new Staff {
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -237,12 +237,12 @@ And let's confirm what we see in the PDF in the staff's format:
 
    >>> f(staff)
    \new Staff {
-   	\time 3/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 3/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -293,12 +293,12 @@ We can simply create and attach a new time signature mark:
 
    >>> f(staff)
    \new Staff {
-   	\time 2/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 2/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -333,11 +333,11 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
    >>> f(staff)
    \new Staff {
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -370,12 +370,12 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
    >>> f(staff)
    \new Staff {
-   	\time 2/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 2/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -399,12 +399,12 @@ To change to, for example, ``4/4`` we change just change the time signature mark
 
    >>> f(staff)
    \new Staff {
-   	\time 4/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -422,13 +422,13 @@ Abjad time signature marks implement this as a read / write attribute:
 
    >>> f(staff)
    \new Staff {
-   	\partial 2
-   	\time 4/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \partial 2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -451,13 +451,13 @@ We've already got a ``4/4`` time signature mark attached to our staff:
 
    >>> f(staff)
    \new Staff {
-   	\partial 2
-   	\time 4/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \partial 2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -472,12 +472,12 @@ Let's get rid of the pick-up:
 
    >>> f(staff)
    \new Staff {
-   	\time 4/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -514,13 +514,13 @@ We do that like this:
 
    >>> f(staff)
    \new Staff {
-   	\time 4/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	\time 2/4
-   	g'2
+       \time 4/4
+       c'4
+       d'4
+       e'4
+       f'4
+       \time 2/4
+       g'2
    }
 
 
@@ -567,12 +567,12 @@ We call the function a first time:
 
    >>> f(staff)
    \new Staff {
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	\time 2/4
-   	g'2
+       c'4
+       d'4
+       e'4
+       f'4
+       \time 2/4
+       g'2
    }
 
 
@@ -588,11 +588,11 @@ And then a second time:
 
    >>> f(staff)
    \new Staff {
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -611,11 +611,11 @@ Our staff currently has no time signature marks attached:
 
    >>> f(staff)
    \new Staff {
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -638,12 +638,12 @@ So to recreate our ``3/4`` time signature we can do this ...
 
    >>> f(staff)
    \new Staff {
-   	\time 3/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 3/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -670,11 +670,11 @@ for ``detach()``. Like this:
 
    >>> f(staff)
    \new Staff {
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
@@ -695,12 +695,12 @@ can be created and attached in a single line:
 
    >>> f(staff)
    \new Staff {
-   	\time 2/4
-   	c'4
-   	d'4
-   	e'4
-   	f'4
-   	g'2
+       \time 2/4
+       c'4
+       d'4
+       e'4
+       f'4
+       g'2
    }
 
 
