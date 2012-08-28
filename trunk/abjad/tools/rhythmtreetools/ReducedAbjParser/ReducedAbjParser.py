@@ -1,5 +1,6 @@
 import copy
 from abjad.tools import abctools
+from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import containertools
 from abjad.tools import durationtools
@@ -10,6 +11,7 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import resttools
 from abjad.tools import sequencetools
+from abjad.tools import spannertools
 from abjad.tools import tietools
 from abjad.tools import tuplettools
 
@@ -102,7 +104,7 @@ class ReducedAbjParser(abctools.Parser):
 
     ::
 
-        >>> string = '(1 4) (2 4) (3 4) (4 4)'
+        >>> string = '{1/4} {2/4} {3/4} {4/4}'
         >>> result = parser(string)
         >>> for x in result: x
         ... 
@@ -122,16 +124,18 @@ class ReducedAbjParser(abctools.Parser):
         Measure(4/4, [c'4, c'4, c'4, c'4])
         Measure(3/8, [c'8, c'8, c'8])
 
-    Finally, understands ties:
+    Finally, understands ties, slurs and beams:
 
     ::
 
-        >>> string = '4 ~ 4'
+        >>> string = 'c16 [ ( d ~ d ) f ]'
         >>> result = parser(string)
         >>> f(result)
         {
-            c'4 ~
-            c'4
+            c16 [ (
+            d16 ~
+            d16 )
+            f16 ]
         }
 
     Return `ReducedAbjParser` instance.
@@ -149,6 +153,8 @@ class ReducedAbjParser(abctools.Parser):
         'APOSTROPHE',
         'BRACE_L',
         'BRACE_R',
+        'BRACKET_L',
+        'BRACKET_R',
         'CARAT_L',
         'CARAT_R',
         'COMMA',
@@ -167,6 +173,8 @@ class ReducedAbjParser(abctools.Parser):
     t_APOSTROPHE = "'"
     t_BRACE_L = '{'
     t_BRACE_R = '}'
+    t_BRACKET_L = '\['
+    t_BRACKET_R = '\]'
     t_CARAT_L = '\<'
     t_CARAT_R = '\>'
     t_COMMA = ','
@@ -223,6 +231,14 @@ class ReducedAbjParser(abctools.Parser):
     def p_apostrophes__apostrophes__APOSTROPHE(self, p):
         '''apostrophes : apostrophes APOSTROPHE'''
         p[0] = p[1] + 1 
+
+    def p_beam__BRACKET_L(self, p):
+        '''beam : BRACKET_L'''
+        p[0] = (beamtools.BeamSpanner, Left)
+
+    def p_beam__BRACKET_R(self, p):
+        '''beam : BRACKET_R'''
+        p[0] = (beamtools.BeamSpanner, Right)
 
     def p_chord_body__chord_pitches(self, p):
         '''chord_body : chord_pitches'''
@@ -282,15 +298,15 @@ class ReducedAbjParser(abctools.Parser):
         '''dots : '''
         p[0] = 0
 
-    def p_fixed_duration_container__pair(self, p):
-        '''fixed_duration_container : pair'''
-        p[0] = containertools.FixedDurationContainer(p[1])
+    def p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R(self, p):
+        '''fixed_duration_container : BRACE_L FRACTION BRACE_R'''
+        p[0] = containertools.FixedDurationContainer(durationtools.Duration(p[2]))
 
     def p_leaf__leaf_body__post_events(self, p):
         '''leaf : leaf_body post_events'''
         p[0] = p[1]
         if p[2]:
-            marktools.Annotation('post events', tuple(p[2]))(p[0])
+            marktools.Annotation('post events', p[2])(p[0])
 
     def p_leaf_body__chord_body(self, p):
         '''leaf_body : chord_body'''
@@ -330,10 +346,6 @@ class ReducedAbjParser(abctools.Parser):
         '''note_body : positive_leaf_duration'''
         p[0] = notetools.Note(0, p[1])
 
-    def p_pair__PAREN_L__INTEGER_P__INTEGER_P__PAREN_R(self, p):
-        '''pair : PAREN_L INTEGER_P INTEGER_P PAREN_R'''
-        p[0] = durationtools.Duration(p[2], p[3])
-
     def p_pitch__PITCHNAME(self, p):
         '''pitch : PITCHNAME'''
         p[0] = pitchtools.NamedChromaticPitch(str(p[1]))
@@ -362,17 +374,30 @@ class ReducedAbjParser(abctools.Parser):
         self._default_duration = duration
         p[0] = duration       
 
+    def p_post_event__beam(self, p):
+        '''post_event : beam'''
+        p[0] = p[1]
+
+    def p_post_event__slur(self, p):
+        '''post_event : slur'''
+        p[0] = p[1]
+
     def p_post_event__tie(self, p):
         '''post_event : tie'''
         p[0] = p[1]
 
     def p_post_events__EMPTY(self, p):
         '''post_events : '''
-        p[0] = []
+        p[0] = {}
 
     def p_post_events__post_events__post_event(self, p):
         '''post_events : post_events post_event'''
-        p[0] = p[1] + [p[2]]
+        kind, direction = p[2]
+        if kind in p[1]:
+            p[1][kind].append(direction)
+        else:
+            p[1][kind] = [direction]
+        p[0] = p[1]
 
     def p_rest_body__negative_leaf_duration(self, p):
         '''rest_body : negative_leaf_duration'''
@@ -385,6 +410,14 @@ class ReducedAbjParser(abctools.Parser):
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         '''rest_body : RESTNAME positive_leaf_duration'''
         p[0] = resttools.Rest(p[2])
+
+    def p_slur__PAREN_L(self, p):
+        '''slur : PAREN_L'''
+        p[0] = (spannertools.SlurSpanner, Left)
+
+    def p_slur__PAREN_R(self, p):
+        '''slur : PAREN_R'''
+        p[0] = (spannertools.SlurSpanner, Right)
 
     def p_start__EMPTY(self, p):
         '''start : '''
@@ -400,7 +433,7 @@ class ReducedAbjParser(abctools.Parser):
 
     def p_tie__TILDE(self, p):
         '''tie : TILDE'''
-        p[0] = tietools.TieSpanner
+        p[0] = (tietools.TieSpanner, Left)
 
     def p_tuplet__FRACTION__container(self, p):
         '''tuplet : FRACTION container'''
@@ -424,39 +457,94 @@ class ReducedAbjParser(abctools.Parser):
 
     ### PRIVATE METHODS ###
 
+    def _apply_spanners(self, leaves):
+
+        spanner_references = {
+            beamtools.BeamSpanner: None,
+            spannertools.SlurSpanner: None,
+        }
+
+        first_leaf = leaves[0]
+        for leaf, next_leaf in sequencetools.iterate_sequence_pairwise_wrapped(leaves):
+
+            span_events = self._get_span_events(leaf)
+            for klass, directions in span_events.iteritems():
+
+                starting, stopping = [], []
+                for direction in directions:
+                    if direction is Left:
+                        starting.append(Left)
+                    else:
+                        stopping.append(Right)
+
+                # apply undirected events immediately, and do not maintain a reference to them
+                if klass is tietools.TieSpanner:
+                    if next_leaf is first_leaf:
+                        raise Exception('Unterminated %s at %s.' % (klass.__name__, leaf))
+                    previous_tie = [x for x in leaf.spanners if isinstance(x, tietools.TieSpanner)]
+                    if previous_tie:
+                        previous_tie[0].append(next_leaf)
+                    else:
+                        tietools.TieSpanner((leaf, next_leaf))
+
+                elif klass is beamtools.BeamSpanner:
+                    # A beam may begin and end on the same leaf
+                    # but only one beam spanner may cover any given leaf,
+                    # and starting events are processed before ending ones
+                    for _ in starting:
+                        if spanner_references[klass] is not None:
+                            raise Exception('Already have beam.')
+                        else:
+                            spanner_references[klass] = klass()
+                    for _ in stopping:
+                        if spanner_references[klass] is not None:
+                            spanner_references[klass].append(leaf)
+                            spanner_references[klass] = None
+
+                elif klass is spannertools.SlurSpanner:
+                    # Slurs process stop events before start events,
+                    # they must contain more than one leaf,
+                    # but they can stop on a leaf and start on the same leaf.
+                    for _ in stopping:
+                        if spanner_references[klass] is not None:
+                            spanner_references[klass].append(leaf)
+                            spanner_references[klass] = None
+                        else:
+                            raise Exception('Cannot end %s.' % klass.__name__)
+                    for _ in starting:
+                        if spanner_references[klass] is None:
+                            spanner_references[klass] = klass()
+                        else:
+                            raise Exception('Already have %s.' % klass.__name__)
+
+            # append leaf to all tracked spanners,
+            for klass, instance in spanner_references.iteritems():
+                if instance is not None:
+                    instance.append(leaf)
+                    
+        # check for unterminated spanners
+        for klass, instance in spanner_references.iteritems():
+            if instance is not None:
+                raise Exception('Unterminated %s.' % klass.__name__)
+
     def _cleanup(self, parsed):
-        '''Post-parsing cleanup.
-
-        Apply TieSpanners where necessary.
-
-        Detach all Annotations.
-
-        Return parsed expression.
-        '''
-
         container = containertools.Container()
         for x in parsed:
             container.append(x)
         parsed = container
         leaves = parsed.leaves
-
-        for first_leaf, second_leaf in sequencetools.iterate_sequence_pairwise_strict(leaves):
-            annotations = marktools.get_annotations_attached_to_component(first_leaf)
-            post_events = [x for x in annotations if x.name == 'post events']
-            if not post_events:
-                continue
-            
-            if tietools.TieSpanner in post_events[0].value:
-                previous_ties = [x for x in first_leaf.spanners if isinstance(x, tietools.TieSpanner)]
-                if previous_ties:
-                    previous_ties[0].append(second_leaf)
-                else:
-                    tietools.TieSpanner([first_leaf, second_leaf])
-
+        if leaves:
+            self._apply_spanners(leaves)
         for leaf in leaves:
             marktools.detach_annotations_attached_to_component(leaf)
-
         return parsed
+
+    def _get_span_events(self, leaf):
+        annotations = [x for x in marktools.detach_annotations_attached_to_component(leaf)
+            if x.name == 'post events']
+        if annotations:
+            return annotations[0].value
+        return {}
 
     def _setup(self):
         self._default_duration = durationtools.Duration((1, 4))
