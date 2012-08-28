@@ -257,7 +257,7 @@ class LilyPondParser(abctools.Parser):
 
                 # or apply undirected event immediately (i.e. ties, glisses)
                 elif next_leaf is not first_leaf: # so long as we are not wrapping yet
-                    previous_spanners = filter(lambda x: isinstance(x, klass), leaf.spanners)
+                    previous_spanners = [x for x in leaf.spanners if isinstance(x, klass)]
                     if previous_spanners:
                         previous_spanners[0].append(next_leaf)
                     else:
@@ -280,8 +280,12 @@ class LilyPondParser(abctools.Parser):
             # loop through directed events, handling each as necessary
             for klass, events in directed_events.iteritems():
 
-                starting_events = filter(lambda x: x.span_direction == 'start', events)
-                stopping_events = filter(lambda x: x.span_direction == 'stop', events)
+                starting_events, stopping_events = [], []
+                for x in events:
+                    if x.span_direction == 'start':
+                        starting_events.append(x)
+                    else:
+                        stopping_events.append(x)
 
                 if klass is beamtools.BeamSpanner:
                     # A beam may begin and end on the same leaf
@@ -526,7 +530,7 @@ class LilyPondParser(abctools.Parser):
     def _get_span_events(self, leaf):
         annotations = marktools.get_annotations_attached_to_component(leaf)
         if annotations:
-            spanners_annotations = filter(lambda x: x.name == 'spanners', annotations)
+            spanners_annotations = [x for x in annotations if x.name == 'spanners']
             if 1 == len(spanners_annotations):
                 return spanners_annotations[0].value
             elif 1 < len(spanners_annotations):
@@ -538,8 +542,8 @@ class LilyPondParser(abctools.Parser):
             if hasattr(post_event, '__call__'):
                 post_event(leaf)
             else:
-                annotation = filter(lambda x: x.name == 'spanners',
-                    marktools.get_annotations_attached_to_component(leaf))
+                annotation = [x for x in marktools.get_annotations_attached_to_component(leaf)
+                    if x.name == 'spanners']
                 if not annotation:
                     annotation = marktools.Annotation('spanners', [])(leaf)
                 else:
