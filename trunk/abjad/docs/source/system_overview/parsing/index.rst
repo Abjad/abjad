@@ -81,7 +81,12 @@ being converted into Abjad score object:
 
 ::
 
-   >>> show(tuplet)
+   >>> staff = stafftools.RhythmicStaff([tuplet])
+
+
+::
+
+   >>> show(staff, docs=True)
 
 .. image:: images/index-1.png
 

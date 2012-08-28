@@ -37,7 +37,11 @@ f(tuplet)
 </abjad>
 
 <abjad>
-show(tuplet)
+staff = stafftools.RhythmicStaff([tuplet])
+</abjad>
+
+<abjad>
+show(staff, docs=True)
 </abjad>
 
 "Reduced-Ly" Parsing
