@@ -4,7 +4,8 @@ from abjad.tools import sequencetools
 from abjad.tools import pitchtools
 
 
-def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, tie_nonpitch_carrier=False):
+def split_leaf_by_offsets(leaf, offsets, cyclic=False, 
+    fracture_spanners=False, tie_pitch_carrier=True, tie_nonpitch_carrier=False):
     r'''.. versionadded:: 2.10
 
     Split `leaf` by `offsets`.
@@ -121,6 +122,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
+    from abjad.tools import spannertools
     from abjad.tools import tietools
     
     assert isinstance(leaf, leaftools.Leaf) 
@@ -145,12 +147,20 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False, tie_pitch_carrier=True, t
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)
+    componenttools.move_parentage_and_spanners_from_components_to_components([leaf], flattened_result)
+
+    if fracture_spanners:
+        first_shard = result[0]
+        spannertools.fracture_spanners_attached_to_component(first_shard[-1], direction=Right) 
+        last_shard = result[-1]
+        spannertools.fracture_spanners_attached_to_component(last_shard[0], direction=Left) 
+        for middle_shard in result[1:-1]:
+            spannertools.fracture_spanners_attached_to_component(middle_shard[0], direction=Left) 
+            spannertools.fracture_spanners_attached_to_component(middle_shard[-1], direction=Right) 
 
     if  (pitchtools.is_pitch_carrier(leaf) and tie_pitch_carrier) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_nonpitch_carrier):
         tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
         tietools.TieSpanner(flattened_result)
      
-    componenttools.move_parentage_and_spanners_from_components_to_components([leaf], flattened_result)
-
     return result
