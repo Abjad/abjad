@@ -1,7 +1,4 @@
-from abjad.tools.gracetools.get_grace_containers_attached_to_leaf import get_grace_containers_attached_to_leaf
-
-
-def detach_grace_containers_attached_to_leaf(leaf):
+def detach_grace_containers_attached_to_leaf(leaf, kind=None):
     r'''.. versionadded:: 2.0
 
     Detach grace containers attached to `leaf`::
@@ -51,8 +48,9 @@ def detach_grace_containers_attached_to_leaf(leaf):
 
     Return tuple.
     '''
+    from abjad.tools import gracetools
 
-    grace_containers = get_grace_containers_attached_to_leaf(leaf)
+    grace_containers = gracetools.get_grace_containers_attached_to_leaf(leaf, kind=kind)
 
     for grace_container in grace_containers:
         grace_container.detach()

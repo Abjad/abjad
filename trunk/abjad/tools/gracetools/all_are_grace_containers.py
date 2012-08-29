@@ -1,4 +1,4 @@
-def all_are_grace_containers(expr):
+def all_are_grace_containers(expr, kind=None):
     r'''.. versionadded:: 2.6
 
     True when `expr` is a sequence of Abjad grace containers::
@@ -42,10 +42,12 @@ def all_are_grace_containers(expr):
         False
 
     Return boolean.
-
-    Function wraps ``componenttools.all_are_components()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import gracetools
 
-    return componenttools.all_are_components(expr, klasses=(gracetools.GraceContainer,))
+    for element in expr:
+        if not isinstance(element, gracetools.GraceContainer):
+            return False
+        if kind is not None and not element.kind == kind:
+            return False
+    return True
