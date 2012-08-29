@@ -52,45 +52,104 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False)
             }
         }
 
+    Example 2. Handle grace and after grace containers correctly.
+
+        >>> staff = Staff(r"abj: | 2/8 c'8 ( d'8 || 2/8 e'8 f'8 ) |")
+        >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+        [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
+        >>> gracetools.GraceContainer("cs'16")(staff.leaves[0])
+        Note("c'8")
+        >>> gracetools.GraceContainer("ds'16", kind='after')(staff.leaves[0])
+        Note("c'8")
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                \grace {
+                    cs'16
+                }
+                \afterGrace
+                c'8 [ (
+                {
+                    ds'16
+                }
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
+    ::
+
+        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32))
+        ([Note("c'32")], [Note("c'16.")])
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                \grace {
+                    cs'16
+                }
+                c'32 [ (
+                \afterGrace
+                c'16.
+                {
+                    ds'16
+                }
+                d'8 ]
+            }
+            {
+                e'8 [
+                f'8 ] )
+            }
+        }
+
     Return pair.
     '''
     from abjad.tools import contexttools
     from abjad.tools import componenttools
+    from abjad.tools import gracetools
     from abjad.tools import leaftools
     from abjad.tools import marktools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
+    # check input
     assert isinstance(leaf, leaftools.Leaf)
-    offset = durationtools.Duration(offset)
+    offset = durationtools.Offset(offset)
 
+    # calculate durations
     leaf_multiplied_duration = leaf.multiplied_duration
-    unprolated_offset = offset / leaf.prolation
+    preprolated_duration = offset / leaf.prolation
 
-    # handle split duration boundary cases
-    if unprolated_offset <= 0:
+    # handle boundary cases
+    if preprolated_duration <= 0:
         return ([], [leaf])
-    if leaf_multiplied_duration <= unprolated_offset:
+    if leaf_multiplied_duration <= preprolated_duration:
         return ([leaf], [])
 
+    # create new leaf
     new_leaf = componenttools.copy_components_and_remove_spanners([leaf])[0]
     componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, [new_leaf])
 
-    # TODO: implement an API method to do this
-    if hasattr(leaf, 'after_grace'):
-        delattr(leaf, '_after_grace')
-        delattr(leaf, 'after_grace')
+    # adjust leaf
+    gracetools.detach_grace_containers_attached_to_leaf(leaf, kind='after')
 
-    # TODO: implement an API method to do this
-    if hasattr(new_leaf, 'grace'):
-        delattr(new_leaf, '_grace')
-        delattr(new_leaf, 'grace')
-
+    # adjust new leaf
+    gracetools.detach_grace_containers_attached_to_leaf(new_leaf, kind='grace')
     marktools.detach_marks_attached_to_component(new_leaf) 
     contexttools.detach_context_marks_attached_to_component(new_leaf)
 
-    left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, unprolated_offset)
-    right_preprolated_duration = leaf_multiplied_duration - unprolated_offset
+    left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, preprolated_duration)
+    right_preprolated_duration = leaf_multiplied_duration - preprolated_duration
     right_leaf_list = leaftools.set_preprolated_leaf_duration(new_leaf, right_preprolated_duration)
 
     leaf_left_of_split = left_leaf_list[-1]
