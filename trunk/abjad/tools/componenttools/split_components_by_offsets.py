@@ -242,7 +242,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
 
     .. note:: Add tests of tupletted notes and rests.
 
-    .. note:: Change `tie_after` keyword to `tie_pitch_carriers` and `tie_nonpitch_carriers` instead.
+    .. note:: Change `tie_after` keyword to `tie_split_notes` and `tie_split_rests` instead.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools

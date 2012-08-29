@@ -5,7 +5,7 @@ from abjad.tools import pitchtools
 
 
 def split_leaf_by_offsets(leaf, offsets, cyclic=False, 
-    fracture_spanners=False, tie_pitch_carrier=True, tie_nonpitch_carrier=False):
+    fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 2.10
 
     Split `leaf` by `offsets`.
@@ -24,7 +24,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_pitch_carrier=True)
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_split_notes=True)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -51,7 +51,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_pitch_carrier=True)
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=True)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
@@ -78,7 +78,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_pitch_carrier=False)
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_split_notes=False)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -105,7 +105,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_pitch_carrier=False)
+        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=False)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
@@ -158,8 +158,8 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
             spannertools.fracture_spanners_attached_to_component(middle_shard[0], direction=Left) 
             spannertools.fracture_spanners_attached_to_component(middle_shard[-1], direction=Right) 
 
-    if  (pitchtools.is_pitch_carrier(leaf) and tie_pitch_carrier) or \
-        (not pitchtools.is_pitch_carrier(leaf) and tie_nonpitch_carrier):
+    if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
+        (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
         tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
         tietools.TieSpanner(flattened_result)
      
