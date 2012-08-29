@@ -1613,6 +1613,7 @@ Composition packages
    tools/tietools/are_components_in_same_tie_spanner
    tools/tietools/get_nontrivial_tie_chains_masked_by_components
    tools/tietools/get_tie_chain
+   tools/tietools/get_tie_spanner_attached_to_component
    tools/tietools/is_component_with_tie_spanner_attached
    tools/tietools/iterate_nontrivial_tie_chains_backward_in_expr
    tools/tietools/iterate_nontrivial_tie_chains_forward_in_expr

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_99():
+def test_leaftools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_01():
     '''Divide a leaf of 3/16 into 1, ..., 5 parts.'''
 
     t = leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(Note("c'8."), 1, diminution=False)
@@ -20,7 +20,7 @@ def test_leaftools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_99():
     assert t.lilypond_format == "\\fraction \\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
 
 
-def test_leaftools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_98():
+def test_leaftools_leaf_to_tuplet_with_n_notes_of_equal_written_duration_02():
     '''Divide a leaf of 3/16 into 1, ..., 5 parts.'''
 
     t = leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(Note("c'8."), 1, diminution=True)

@@ -180,7 +180,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
     marktools.detach_marks_attached_to_component(last_leaf)
     contexttools.detach_context_marks_attached_to_component(last_leaf)
 
-    # tie split notes, rests or chords as specified
+    # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
         tietools.remove_tie_spanners_from_components_in_expr(flattened_result)

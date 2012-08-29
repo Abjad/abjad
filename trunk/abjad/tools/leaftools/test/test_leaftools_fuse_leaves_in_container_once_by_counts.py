@@ -34,7 +34,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_02():
     assert t.lilypond_format == "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"
 
 
-def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_rests_03():
+def test_leaftools_fuse_leaves_in_container_once_by_counts_03():
 
     t = Voice(notetools.make_repeated_notes(5))
     leaftools.fuse_leaves_in_container_once_by_counts(t, [1, 2, 2], klass=Rest, big_endian=True)
@@ -50,7 +50,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_rests
     assert t.lilypond_format == '\\new Voice {\n\tr8\n\tr4\n\tr4\n}'
 
 
-def test_leaftools_fuse_leaves_in_container_once_by_counts_into_little_endian_notes_04():
+def test_leaftools_fuse_leaves_in_container_once_by_counts_04():
 
     t = Voice(notetools.make_repeated_notes(5))
     spannertools.SlurSpanner(t)

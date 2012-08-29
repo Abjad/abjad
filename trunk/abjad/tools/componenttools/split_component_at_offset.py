@@ -178,8 +178,12 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
         assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
+        #left_list, right_list = split_leaf_at_offset(bottom,
+        #    split_point_in_bottom, fracture_spanners=fracture_spanners, tie_after=tie_after)
+        # TODO: change this to no longer reference tie_after keyword
         left_list, right_list = split_leaf_at_offset(bottom,
-            split_point_in_bottom, fracture_spanners=fracture_spanners, tie_after=tie_after)
+            split_point_in_bottom, fracture_spanners=fracture_spanners, 
+            tie_split_notes=tie_after, tie_split_rests=tie_after)
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]

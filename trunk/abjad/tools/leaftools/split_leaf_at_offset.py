@@ -1,10 +1,9 @@
 from abjad.tools import durationtools
 
 
-def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False):
+#def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False):
+def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''Split `leaf` at `offset`.
-
-    .. note:: Replace `tie_after` with `tie_split_notes=True` and `tie_split_rests=False`.
 
     Example 1. Split note at assignable offset. Two notes result. Do not tie notes::
 
@@ -119,6 +118,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False)
     from abjad.tools import gracetools
     from abjad.tools import leaftools
     from abjad.tools import marktools
+    from abjad.tools import pitchtools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
@@ -158,7 +158,13 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False)
     if fracture_spanners:
         spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction=Right)
 
-    if tie_after:
+#    if tie_after:
+#        tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
+
+    # tie split notes, rests and chords as specified
+    if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
+        (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
+        #tietools.TieSpanner(flattened_result)
         tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     return left_leaf_list, right_leaf_list

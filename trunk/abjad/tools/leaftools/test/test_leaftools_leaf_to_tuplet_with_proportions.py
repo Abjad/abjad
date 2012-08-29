@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_leaf_to_tuplet_with_proportions_99():
+def test_leaftools_leaf_to_tuplet_with_proportions_01():
 
     note = Note(0, (3, 16))
 
@@ -25,7 +25,7 @@ def test_leaftools_leaf_to_tuplet_with_proportions_99():
     assert t.lilypond_format == "\\fraction \\times 8/5 {\n\tc'128\n\tc'64\n\tc'64\n\tc'64.\n\tc'64.\n\tc'32\n}"
 
 
-def test_leaftools_leaf_to_tuplet_with_proportions_98():
+def test_leaftools_leaf_to_tuplet_with_proportions_02():
 
     note = Note(0, (3, 16))
 
