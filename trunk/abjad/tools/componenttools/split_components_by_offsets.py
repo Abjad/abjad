@@ -242,6 +242,10 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
 
     .. note:: Add tests of tupletted notes and rests.
 
+    .. note:: Add examples that show mark and context mark handling.
+
+    .. note:: Add example showing grace and after grace handling.
+
     .. note:: Change `tie_after` keyword to `tie_split_notes` and `tie_split_rests` instead.
     '''
     from abjad.tools import componenttools

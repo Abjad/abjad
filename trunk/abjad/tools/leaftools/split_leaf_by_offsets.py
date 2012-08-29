@@ -118,10 +118,15 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
+    .. note:: Add examples showing mark and context mark handling.
+
     Return list of shards.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import contexttools
+    from abjad.tools import gracetools
     from abjad.tools import leaftools
+    from abjad.tools import marktools
     from abjad.tools import spannertools
     from abjad.tools import tietools
     
@@ -157,10 +162,29 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
         for middle_shard in result[1:-1]:
             spannertools.fracture_spanners_attached_to_component(middle_shard[0], direction=Left) 
             spannertools.fracture_spanners_attached_to_component(middle_shard[-1], direction=Right) 
+    
+    # adjust first leaf
+    first_leaf = flattened_result[0]
+    gracetools.detach_grace_containers_attached_to_leaf(leaf, kind='after')
 
+    # adjust any middle leaves
+    for middle_leaf in flattened_result[1:-1]:
+        gracetools.detach_grace_containers_attached_to_leaf(middle_leaf, kind='grace')
+        gracetools.detach_grace_containers_attached_to_leaf(leaf, kind='after')
+        marktools.detach_marks_attached_to_component(middle_leaf)
+        contexttools.detach_context_marks_attached_to_component(middle_leaf)
+
+    # adjust last leaf
+    last_leaf = flattened_result[-1]
+    gracetools.detach_grace_containers_attached_to_leaf(last_leaf, kind='grace')
+    marktools.detach_marks_attached_to_component(last_leaf)
+    contexttools.detach_context_marks_attached_to_component(last_leaf)
+
+    # tie split notes, rests or chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
         tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
         tietools.TieSpanner(flattened_result)
      
+    # return result
     return result
