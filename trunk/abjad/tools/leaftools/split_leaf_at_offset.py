@@ -75,23 +75,23 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False)
 
     new_leaf = componenttools.copy_components_and_remove_spanners([leaf])[0]
     componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, [new_leaf])
-    #new_leaf.grace[:] = []
-    if hasattr(new_leaf, 'grace'):
-        delattr(new_leaf, '_grace')
-        delattr(new_leaf, 'grace')
-    # TODO: maybe replace with logic to move marktools.Articulation
-    #new_leaf.articulations[:] = []
-    marktools.detach_marks_attached_to_component(new_leaf) 
-    contexttools.detach_context_marks_attached_to_component(new_leaf,
-        klasses=(contexttools.DynamicMark, ))
-    #leaf.after_grace[:] = []
+
+    # TODO: implement an API method to do this
     if hasattr(leaf, 'after_grace'):
         delattr(leaf, '_after_grace')
         delattr(leaf, 'after_grace')
 
+    # TODO: implement an API method to do this
+    if hasattr(new_leaf, 'grace'):
+        delattr(new_leaf, '_grace')
+        delattr(new_leaf, 'grace')
+
+    marktools.detach_marks_attached_to_component(new_leaf) 
+    contexttools.detach_context_marks_attached_to_component(new_leaf)
+
     left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, unprolated_offset)
-    right_leaf_list = leaftools.set_preprolated_leaf_duration(
-        new_leaf, leaf_multiplied_duration - unprolated_offset)
+    right_preprolated_duration = leaf_multiplied_duration - unprolated_offset
+    right_leaf_list = leaftools.set_preprolated_leaf_duration(new_leaf, right_preprolated_duration)
 
     leaf_left_of_split = left_leaf_list[-1]
     leaf_right_of_split = right_leaf_list[0]
