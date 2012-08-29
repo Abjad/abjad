@@ -52,6 +52,10 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_apostrophes__apostrophes__APOSTROPHE
 
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_beam__BRACKET_L
+
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_beam__BRACKET_R
+
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_chord_body__chord_pitches
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_chord_body__chord_pitches__positive_leaf_duration
@@ -82,7 +86,7 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_error
 
-.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_fixed_duration_container__pair
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_fixed_duration_container__BRACE_L__FRACTION__BRACE_R
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_leaf__leaf_body__post_events
 
@@ -102,8 +106,6 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_note_body__positive_leaf_duration
 
-.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_pair__PAREN_L__INTEGER_P__INTEGER_P__PAREN_R
-
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_pitch__PITCHNAME
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_pitch__PITCHNAME__apostrophes
@@ -116,6 +118,10 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_positive_leaf_duration__INTEGER_P__dots
 
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_post_event__beam
+
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_post_event__slur
+
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_post_event__tie
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_post_events__EMPTY
@@ -127,6 +133,10 @@ Methods
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_rest_body__RESTNAME__positive_leaf_duration
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_rest_body__negative_leaf_duration
+
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_slur__PAREN_L
+
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_slur__PAREN_R
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_start__EMPTY
 

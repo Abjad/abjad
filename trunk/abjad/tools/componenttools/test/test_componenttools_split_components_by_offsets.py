@@ -1,16 +1,13 @@
 from abjad import *
-import py
 
 
 def test_componenttools_split_components_by_offsets_01():
-    '''Cyclically duration partition one leaf in score.  Do not fracture spanners.
+    '''Cyclically split note in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -20,17 +17,14 @@ def test_componenttools_split_components_by_offsets_01():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 64)]
     parts = componenttools.split_components_by_offsets(
-        t[0][1:2], durations, cyclic=True, fracture_spanners=False)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[0][1:2], [(3, 64)], cyclic=True, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -42,28 +36,24 @@ def test_componenttools_split_components_by_offsets_01():
             d'32 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 3
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ~\n\t\td'32. ~\n\t\td'32 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ~\n\t\td'32. ~\n\t\td'32 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_by_offsets_02():
-    '''Cyclically duration partition multiple leaves in score.  Do not fracture spanners.
+    '''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -73,16 +63,14 @@ def test_componenttools_split_components_by_offsets_02():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t.leaves, durations, cyclic=True, fracture_spanners=False)
+        staff.leaves, [(3, 32)], cyclic=True, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -94,7 +82,6 @@ def test_componenttools_split_components_by_offsets_02():
             d'32 ]
         }
         {
-            \time 2/8
             e'16. [ ~
             e'32
             f'8 ] )
@@ -102,21 +89,18 @@ def test_componenttools_split_components_by_offsets_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 8
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ~\n\t\tc'32\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 [ ~\n\t\te'16.\n\t\tf'16. ~\n\t\tf'32 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. [ ( ~\n\t\tc'32\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\te'32 [ ~\n\t\te'16.\n\t\tf'16. ~\n\t\tf'32 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_by_offsets_03():
-    '''Cyclically duration partition one measure in score.  Do not fracture spanners.
+    '''Cyclically split measure in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -126,17 +110,14 @@ def test_componenttools_split_components_by_offsets_03():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:1], durations, cyclic=True, fracture_spanners=False)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:1], [(3, 32)], cyclic=True, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -145,7 +126,6 @@ def test_componenttools_split_components_by_offsets_03():
             c'16. [ (
         }
         {
-            \time 3/32
             c'32
             d'16
         }
@@ -161,21 +141,18 @@ def test_componenttools_split_components_by_offsets_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 3
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_by_offsets_04():
-    '''Cyclically duration partition multiple measures in score.  Do not fracture spanners.
+    '''Cyclically split consecutive measures in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -185,17 +162,14 @@ def test_componenttools_split_components_by_offsets_04():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:], durations, cyclic=True, fracture_spanners=False)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:], [(3, 32)], cyclic=True, fracture_spanners=False)
 
     r'''
     \new Staff {
@@ -204,7 +178,6 @@ def test_componenttools_split_components_by_offsets_04():
             c'16. [ (
         }
         {
-            \time 3/32
             c'32
             d'16
         }
@@ -221,7 +194,6 @@ def test_componenttools_split_components_by_offsets_04():
             e'16.
         }
         {
-            \time 3/32
             f'16.
         }
         {
@@ -231,115 +203,68 @@ def test_componenttools_split_components_by_offsets_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ (\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_by_offsets_05():
-    '''Cyclically duration partition list of leaves outside of score.
-    TODO: tie pitch carriers (even though notes are outside of score).
+    '''Cyclically split orphan measures. Don't fracture spanners.
     '''
 
-    leaves = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-    durations = [Duration(3, 32)]
+    measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
+    beamtools.apply_beam_spanners_to_measures_in_expr(measures)
+
     parts = componenttools.split_components_by_offsets(
-        leaves, durations, cyclic=True, fracture_spanners=False)
+        measures, [(3, 32)], cyclic=True, fracture_spanners=False)
 
-    assert len(parts) == 8
-
-    t = Staff([])
-    for part in parts:
-        t.extend(part)
-
-    r'''
-    \new Staff {
-        c'16.
-        c'32
-        d'16
-        d'16
-        e'32
-        e'16.
-        f'16.
-        f'32
-    }
-    '''
-
-    assert componenttools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
-
-
-# TODO: Fix cyclic duration partition bug with spanners on outside-of-score measures #
-
-def test_componenttools_split_components_by_offsets_06():
-    '''Cyclically duration partition list of measures outside of score.  Do not fracture spanners.
-    '''
-
-    measures = Measure((2, 8), notetools.make_repeated_notes(2)) * 2
-    beamtools.BeamSpanner(measures[0])
-    beamtools.BeamSpanner(measures[1])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measures)
-
-    durations = [Duration(3, 32)]
-    parts = componenttools.split_components_by_offsets(
-        measures, durations, cyclic=True, fracture_spanners=False)
-
-    assert len(parts) == 6
-
-    t = Staff([])
-    for part in parts:
-        t.extend(part)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    music = sequencetools.flatten_sequence(parts)
+    staff = Staff(music)
 
     r'''
     \new Staff {
         {
             \time 3/32
-            c'16.
+            c'16. [
         }
         {
-            \time 3/32
             c'32
             d'16
         }
         {
             \time 2/32
-            d'16 [ ]
+            d'16 ]
         }
         {
             \time 1/32
-            e'32
+            e'32 [
         }
         {
             \time 3/32
             e'16.
         }
         {
-            \time 3/32
             f'16.
         }
         {
             \time 1/32
-            f'32 [ ]
+            f'32 ]
         }
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
+    assert componenttools.is_well_formed_component(staff)
+    assert len(parts) == 6
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [\n\t}\n\t{\n\t\tc'32\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16.\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ]\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_07():
-    '''Duration partition one leaf in score.  Read durations cyclically in list.
-    Do not fracture spanners. Do add tie after each split.
+def test_componenttools_split_components_by_offsets_06():
+    '''Cyclically split note in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -349,17 +274,14 @@ def test_componenttools_split_components_by_offsets_07():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[0][1:], durations, cyclic=True, fracture_spanners=False, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[0][1:], [(1, 32)], cyclic=True, fracture_spanners=False, tie_after=True)
 
     r'''
     \new Staff {
@@ -372,30 +294,24 @@ def test_componenttools_split_components_by_offsets_07():
             d'32 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ~\n\t\td'32 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_08():
-    '''Duration partition multiple leaves in score.
-    Read durations cyclically in list.
-    Do not fracture spanners. Do add tie after each leaf split.
+def test_componenttools_split_components_by_offsets_07():
+    '''Cyclically split consecutive notes in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -405,17 +321,14 @@ def test_componenttools_split_components_by_offsets_08():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 16)]
     parts = componenttools.split_components_by_offsets(
-        t.leaves, durations, cyclic=True, fracture_spanners=False, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff.leaves, [(1, 16)], cyclic=True, fracture_spanners=False, tie_after=True)
 
     r'''
     \new Staff {
@@ -427,7 +340,6 @@ def test_componenttools_split_components_by_offsets_08():
             d'16 ]
         }
         {
-            \time 2/8
             e'16 [ ~
             e'16
             f'16 ~
@@ -436,23 +348,18 @@ def test_componenttools_split_components_by_offsets_08():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 8
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [ ( ~\n\t\tc'16\n\t\td'16 ~\n\t\td'16 ]\n\t}\n\t{\n\t\te'16 [ ~\n\t\te'16\n\t\tf'16 ~\n\t\tf'16 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_09():
-    '''Duration partition one measure in score.
-    Read durations cyclically in list.
-    Do not fracture spanners. Do add tie after each leaf split.
+def test_componenttools_split_components_by_offsets_08():
+    '''Cyclically split measure in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -462,17 +369,14 @@ def test_componenttools_split_components_by_offsets_09():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 16)]
     parts = componenttools.split_components_by_offsets(
-        t[:1], durations, cyclic=True, fracture_spanners=False, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:1], [(1, 16)], cyclic=True, fracture_spanners=False, tie_after=True)
 
     r'''
     \new Staff {
@@ -481,15 +385,12 @@ def test_componenttools_split_components_by_offsets_09():
             c'16 [ ( ~
         }
         {
-            \time 1/16
             c'16
         }
         {
-            \time 1/16
             d'16 ~
         }
         {
-            \time 1/16
             d'16 ]
         }
         {
@@ -500,23 +401,18 @@ def test_componenttools_split_components_by_offsets_09():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\tc'16\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ( ~\n\t}\n\t{\n\t\tc'16\n\t}\n\t{\n\t\td'16 ~\n\t}\n\t{\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_10():
-    '''Duration partition multiple measures in score.
-    Read durations cyclically in list.
-    Do not fracture spanners. Do add tie after each leaf split.
+def test_componenttools_split_components_by_offsets_09():
+    '''Cyclically split consecutive measures in score. Don't fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -526,17 +422,14 @@ def test_componenttools_split_components_by_offsets_10():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:], durations, cyclic=True, fracture_spanners=False, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:], [(3, 32)], cyclic=True, fracture_spanners=False, tie_after=True)
 
     r'''
     \new Staff {
@@ -545,7 +438,6 @@ def test_componenttools_split_components_by_offsets_10():
             c'16. [ ( ~
         }
         {
-            \time 3/32
             c'32
             d'16 ~
         }
@@ -562,7 +454,6 @@ def test_componenttools_split_components_by_offsets_10():
             e'16.
         }
         {
-            \time 3/32
             f'16. ~
         }
         {
@@ -572,21 +463,18 @@ def test_componenttools_split_components_by_offsets_10():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ( ~\n\t}\n\t{\n\t\tc'32\n\t\td'16 ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16.\n\t}\n\t{\n\t\tf'16. ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_11():
-    '''Cyclically duration partition one leaf in score.  Fracture spanners.
+def test_componenttools_split_components_by_offsets_10():
+    '''Cyclically split note in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -596,17 +484,14 @@ def test_componenttools_split_components_by_offsets_11():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 64)]
     parts = componenttools.split_components_by_offsets(
-        t[0][1:2], durations, cyclic=True, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[0][1:2], [(3, 64)], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -619,27 +504,24 @@ def test_componenttools_split_components_by_offsets_11():
             d'64 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ) ~\n\t\td'32. ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert componenttools.is_well_formed_component(staff)
+    assert len(parts) == 3
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. ) ~\n\t\td'32. ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_12():
-    '''Split leaves and fracture spanners.
+def test_componenttools_split_components_by_offsets_11():
+    '''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -649,17 +531,14 @@ def test_componenttools_split_components_by_offsets_12():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t.leaves, durations, cyclic=True, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff.leaves, [(3, 32)], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -671,7 +550,6 @@ def test_componenttools_split_components_by_offsets_12():
             d'16 ] (
         }
         {
-            \time 2/8
             e'32 ) [
             e'16. (
             f'16. )
@@ -680,21 +558,18 @@ def test_componenttools_split_components_by_offsets_12():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 8
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [ ~\n\t\tc'32 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 ) [ ~\n\t\te'16. (\n\t\tf'16. ) ~\n\t\tf'32 ] ( )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [ ~\n\t\tc'32 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'32 ) [ ~\n\t\te'16. (\n\t\tf'16. ) ~\n\t\tf'32 ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_13():
-    '''Cyclically duration partition one measure in score.  Fracture spanners.
+def test_componenttools_split_components_by_offsets_12():
+    '''Cyclically split measure in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -704,17 +579,14 @@ def test_componenttools_split_components_by_offsets_13():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:1], durations, cyclic=True, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:1], [(3, 32)], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -723,7 +595,6 @@ def test_componenttools_split_components_by_offsets_13():
             c'16. [ ] ( )
         }
         {
-            \time 3/32
             c'32 [ (
             d'16 ] )
         }
@@ -739,21 +610,18 @@ def test_componenttools_split_components_by_offsets_13():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 3
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_14():
-    '''Cyclically duration partition multiple measures in score.  Fracture spanners.
+def test_componenttools_split_components_by_offsets_13():
+    '''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -763,17 +631,14 @@ def test_componenttools_split_components_by_offsets_14():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:], durations, cyclic=True, fracture_spanners=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:], [(3, 32)], cyclic=True, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -782,7 +647,6 @@ def test_componenttools_split_components_by_offsets_14():
             c'16. [ ] ( )
         }
         {
-            \time 3/32
             c'32 [ (
             d'16 ] )
         }
@@ -799,7 +663,6 @@ def test_componenttools_split_components_by_offsets_14():
             e'16. [ ] ( )
         }
         {
-            \time 3/32
             f'16. [ ] ( )
         }
         {
@@ -809,62 +672,53 @@ def test_componenttools_split_components_by_offsets_14():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_15():
-    '''Cyclically duration partition list of leaves outside of score.
+def test_componenttools_split_components_by_offsets_14():
+    '''Cyclically split orphan notes.
     '''
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-    durations = [Duration(3, 32)]
+
     parts = componenttools.split_components_by_offsets(
-        notes, durations, cyclic=True, fracture_spanners=True)
+        notes, [(3, 32)], cyclic=True, fracture_spanners=True)
 
-    assert len(parts) == 8
-
-    t = Staff([])
-    for part in parts:
-        t.extend(part)
+    music = sequencetools.flatten_sequence(parts)
+    staff = Staff(music)
 
     r'''
     \new Staff {
-        c'16.
+        c'16. ~
         c'32
+        d'16 ~
         d'16
-        d'16
-        e'32
+        e'32 ~
         e'16.
-        f'16.
+        f'16. ~
         f'32
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
+    assert componenttools.is_well_formed_component(staff)
+    assert len(parts) == 8
+    assert staff.lilypond_format == "\\new Staff {\n\tc'16. ~\n\tc'32\n\td'16 ~\n\td'16\n\te'32 ~\n\te'16.\n\tf'16. ~\n\tf'32\n}"
 
 
-def test_componenttools_split_components_by_offsets_16():
-    '''Cyclically duration partition list of measures outside of score.  Fracture spanners.
+def test_componenttools_split_components_by_offsets_15():
+    '''Cyclically split orphan measures. Fracture spanners.
     '''
 
-    measures = Measure((2, 8), notetools.make_repeated_notes(2)) * 2
-    beamtools.BeamSpanner(measures[0])
-    beamtools.BeamSpanner(measures[1])
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(measures)
+    measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
+    beamtools.apply_beam_spanners_to_measures_in_expr(measures)
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        measures, durations, cyclic=True, fracture_spanners=True)
+        measures, [(3, 32)], cyclic=True, fracture_spanners=True)
 
-    assert len(parts) == 6
-
-    t = Staff([])
-    for part in parts:
-        t.extend(part)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    music = sequencetools.flatten_sequence(parts)
+    staff = Staff(music)
 
     r'''
     \new Staff {
@@ -873,7 +727,6 @@ def test_componenttools_split_components_by_offsets_16():
             c'16. [ ]
         }
         {
-            \time 3/32
             c'32 [
             d'16 ]
         }
@@ -890,7 +743,6 @@ def test_componenttools_split_components_by_offsets_16():
             e'16. [ ]
         }
         {
-            \time 3/32
             f'16. [ ]
         }
         {
@@ -900,22 +752,18 @@ def test_componenttools_split_components_by_offsets_16():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
+    assert componenttools.is_well_formed_component(staff)
+    assert len(parts) == 6
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_17():
-    '''Duration partition one leaf in score.
-    Read durations cyclically in list.
-    Fracture spanners but add tie after each split.
+def test_componenttools_split_components_by_offsets_16():
+    '''Cyclically split note in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -925,17 +773,14 @@ def test_componenttools_split_components_by_offsets_17():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[0][1:], durations, cyclic=True, fracture_spanners=True, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[0][1:], [(1, 32)], cyclic=True, fracture_spanners=True, tie_after=True)
 
     r'''
     \new Staff {
@@ -948,30 +793,24 @@ def test_componenttools_split_components_by_offsets_17():
             d'32 ] (
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_18():
-    '''Duration partition multiple leaves in score.
-    Read durations cyclically in list.
-    Fracture spanners but add tie after each split.
+def test_componenttools_split_components_by_offsets_17():
+    '''Cyclically split consecutive notes in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -981,17 +820,14 @@ def test_componenttools_split_components_by_offsets_18():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 16)]
     parts = componenttools.split_components_by_offsets(
-        t.leaves, durations, cyclic=True, fracture_spanners=True, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff.leaves, [(1, 16)], cyclic=True, fracture_spanners=True, tie_after=True)
 
     r'''
     \new Staff {
@@ -1003,7 +839,6 @@ def test_componenttools_split_components_by_offsets_18():
             d'16 ] (
         }
         {
-            \time 2/8
             e'16 ) [ ~
             e'16 (
             f'16 ) ~
@@ -1012,23 +847,18 @@ def test_componenttools_split_components_by_offsets_18():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 8
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_19():
-    '''Duration partition one measure in score.
-    Read durations cyclically in list.
-    Fracture spanners but add tie after each split.
+def test_componenttools_split_components_by_offsets_18():
+    '''Cyclically split measure in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -1038,17 +868,14 @@ def test_componenttools_split_components_by_offsets_19():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 16)]
     parts = componenttools.split_components_by_offsets(
-        t[:1], durations, cyclic=True, fracture_spanners=True, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:1], [(1, 16)], cyclic=True, fracture_spanners=True, tie_after=True)
 
     r'''
     \new Staff {
@@ -1057,15 +884,12 @@ def test_componenttools_split_components_by_offsets_19():
             c'16 [ ] ( ) ~
         }
         {
-            \time 1/16
             c'16 [ ] ( )
         }
         {
-            \time 1/16
             d'16 [ ] ( ) ~
         }
         {
-            \time 1/16
             d'16 [ ] (
         }
         {
@@ -1076,24 +900,18 @@ def test_componenttools_split_components_by_offsets_19():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( ) ~\n\t}\n\t{\n\t\tc'16 [ ] ( )\n\t}\n\t{\n\t\td'16 [ ] ( ) ~\n\t}\n\t{\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-
-def test_componenttools_split_components_by_offsets_20():
-    '''Duration partition multiple measures in score.
-    Read durations cyclically in list.
-    Fracture spanners but add tie after each split.
+def test_componenttools_split_components_by_offsets_19():
+    '''Cyclically split consecutive measures in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -1103,17 +921,14 @@ def test_componenttools_split_components_by_offsets_20():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(3, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:], durations, cyclic=True, fracture_spanners=True, tie_after=True)
-    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+        staff[:], [(3, 32)], cyclic=True, fracture_spanners=True, tie_after=True)
 
     r'''
     \new Staff {
@@ -1122,7 +937,6 @@ def test_componenttools_split_components_by_offsets_20():
             c'16. [ ] ( ) ~
         }
         {
-            \time 3/32
             c'32 [ (
             d'16 ] ) ~
         }
@@ -1139,7 +953,6 @@ def test_componenttools_split_components_by_offsets_20():
             e'16. [ ] ( )
         }
         {
-            \time 3/32
             f'16. [ ] ( ) ~
         }
         {
@@ -1149,20 +962,71 @@ def test_componenttools_split_components_by_offsets_20():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 6
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+
+
+def test_componenttools_split_components_by_offsets_20():
+    '''Force split measure in score. Do not fracture spanners.
+    '''
+
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
+
+    r'''
+    \new Staff {
+        {
+            \time 2/8
+            c'8 [ (
+            d'8 ]
+        }
+        {
+            e'8 [
+            f'8 ] )
+        }
+    }
+    '''
+
+    parts = componenttools.split_components_by_offsets(
+        staff[:1], [(1, 32), (3, 32), (5, 32)], 
+        cyclic=False, fracture_spanners=False)
+
+    r'''
+    \new Staff {
+        {
+            \time 1/32
+            c'32 [ (
+        }
+        {
+            \time 3/32
+            c'16.
+        }
+        {
+            \time 4/32
+            d'8 ]
+        }
+        {
+            \time 2/8
+            e'8 [
+            f'8 ] )
+        }
+    }
+    '''
+
+    assert componenttools.is_well_formed_component(staff)
+    assert len(parts) == 3
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_by_offsets_21():
-    '''Duration partition one container in score
-        Do no fracture spanners.'''
+    '''Force split consecutive measures in score. Do not fracture spanners.
+    '''
 
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -1177,96 +1041,47 @@ def test_componenttools_split_components_by_offsets_21():
     }
     '''
 
-    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:1], durations, cyclic=False, fracture_spanners=False)
+        staff[:], [(1, 32), (3, 32), (5, 32)], cyclic=False, fracture_spanners=False)
 
     r'''
     \new Staff {
         {
+            \time 1/32
             c'32 [ (
         }
         {
+            \time 3/32
             c'16.
         }
         {
+            \time 4/32
             d'8 ]
         }
         {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-
-    assert componenttools.is_well_formed_component(t)
-    assert len(parts) == 3
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
-
-
-def test_componenttools_split_components_by_offsets_22():
-    '''Split containers. Do not fracture spanners.
-    '''
-
-    t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
-
-    r'''
-    \new Staff {
-        {
-            c'8 [ (
-            d'8 ]
-        }
-        {
-            e'8 [
-            f'8 ] )
-        }
-    }
-    '''
-
-    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_offsets(
-        t[:], durations, cyclic=False, fracture_spanners=False)
-
-    r'''
-    \new Staff {
-        {
-            c'32 [ (
-        }
-        {
-            c'16.
-        }
-        {
-            d'8 ]
-        }
-        {
+            \time 1/32
             e'32 [
         }
         {
+            \time 7/32
             e'16.
             f'8 ] )
         }
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'32 [ (\n\t}\n\t{\n\t\tc'16.\n\t}\n\t{\n\t\td'8 ]\n\t}\n\t{\n\t\te'32 [\n\t}\n\t{\n\t\te'16.\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16.\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16.\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_23():
-    '''Split container and fracture spanners.
+def test_componenttools_split_components_by_offsets_22():
+    '''Force split measure in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -1276,16 +1091,14 @@ def test_componenttools_split_components_by_offsets_23():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:1], durations, cyclic=False, fracture_spanners=True)
+        staff[:1], [(1, 32), (3, 32), (5, 32)], cyclic=False, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1309,20 +1122,18 @@ def test_componenttools_split_components_by_offsets_23():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 3
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_24():
-    '''Split containers and fracture spanners.
+def test_componenttools_split_components_by_offsets_23():
+    '''Force split consecutive measures in score. Fracture spanners.
     '''
 
-    t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-    beamtools.BeamSpanner(t[0])
-    beamtools.BeamSpanner(t[1])
-    spannertools.SlurSpanner(t.leaves)
+    staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+    spannertools.SlurSpanner(staff.leaves)
 
     r'''
     \new Staff {
@@ -1332,16 +1143,14 @@ def test_componenttools_split_components_by_offsets_24():
             d'8 ]
         }
         {
-            \time 2/8
             e'8 [
             f'8 ] )
         }
     }
     '''
 
-    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
     parts = componenttools.split_components_by_offsets(
-        t[:], durations, cyclic=False, fracture_spanners=True)
+        staff[:], [(1, 32), (3, 32), (5, 32)], cyclic=False, fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1369,33 +1178,13 @@ def test_componenttools_split_components_by_offsets_24():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert componenttools.is_well_formed_component(staff)
     assert len(parts) == 4
-    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 4/32\n\t\td'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 7/32\n\t\te'16. [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
-def test_componenttools_split_components_by_offsets_25():
-    '''Duration partition container outside of score.
-    This example includes no spanners.
-    Spanners do not apply outside of score.
-    '''
-
-    t = Container(notetools.make_repeated_notes(2)) * 2
-    pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
-
-    "[{c'8, d'8}, {e'8, f'8}]"
-
-    durations = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-    parts = componenttools.split_components_by_offsets(
-        t, durations, cyclic=False, fracture_spanners=True)
-
-    "[[{c'32}], [{c'16.}], [{d'8}, {e'32}], [{e'16., f'8}]]"
-
-    assert len(parts) == 4
-
-
-def test_componenttools_split_components_by_offsets_26():
-    '''Split orphaned note with offsets summing to less than note duration.
+def test_componenttools_split_components_by_offsets_24():
+    '''Force split orphan note. Offsets sum to less than note duration.
     '''
 
     note = Note("c'4")
@@ -1403,7 +1192,6 @@ def test_componenttools_split_components_by_offsets_26():
     parts = componenttools.split_components_by_offsets(
         [note], [(1, 32), (5, 32)], cyclic=False, fracture_spanners=True)
 
-    assert len(parts) == 3
     notes = sequencetools.flatten_sequence(parts)
     staff = Staff(notes)
 
@@ -1416,11 +1204,13 @@ def test_componenttools_split_components_by_offsets_26():
     }
     '''
 
+    assert componenttools.is_well_formed_component(staff)
+    assert len(parts) == 3
     assert staff.lilypond_format == "\\new Staff {\n\tc'32 ~\n\tc'8 ~\n\tc'32 ~\n\tc'16\n}"
 
 
-def test_componenttools_split_components_by_offsets_27():
-    '''Duration partition leaf in score and fracture spanners.
+def test_componenttools_split_components_by_offsets_25():
+    '''Force split note in score. Fracture spanners.
     '''
 
     staff = Staff("c'8 [ ]")
