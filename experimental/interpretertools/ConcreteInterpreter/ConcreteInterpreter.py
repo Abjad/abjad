@@ -159,9 +159,11 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def attribute_request_to_resolved_single_context_setting(self, attribute_request):
+        #self._debug(attribute_request, 'ar')
         segment_specification = self.get_segment_specification(attribute_request.segment_identifier)
         context_proxy = segment_specification.resolved_single_context_settings[attribute_request.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=attribute_request.attribute)
+        #self._debug(resolved_single_context_setting, 'rscs')
         return resolved_single_context_setting
 
     def calculate_segment_offset_pairs(self):
@@ -172,6 +174,7 @@ class ConcreteInterpreter(Interpreter):
         Set ``'segment_offset_pairs'`` property on score specification.
         '''
         segment_durations = [x.duration for x in self.score_specification.segment_specifications]
+        #self._debug(segment_durations, 'sd')
         if sequencetools.all_are_numbers(segment_durations):
             self.score_specification.segment_durations = segment_durations
             self.score_specification.score_duration = sum(self.score_specification.segment_durations)
@@ -476,16 +479,19 @@ class ConcreteInterpreter(Interpreter):
         resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
             attribute_request)
         resolved_value = resolved_single_context_setting.resolved_value
+        #self._debug(resolved_value, 'rv')
         assert resolved_value is not None, repr(resolved_value)
         if attribute_request.callback is not None:
             resolved_value = attribute_request.callback(resolved_value)
-        result = requesttools.resolve_request_offset_and_count(attribute_request, resolved_value)
-        return result
+        resolved_value = requesttools.resolve_request_offset_and_count(attribute_request, resolved_value)
+        #self._debug(resolved_value, 'rv')
+        return resolved_value
 
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
         value = self.resolve_single_context_setting_source(single_context_setting.source)
+        #self._debug(value, 'value')
         args = (
             single_context_setting.attribute,
             single_context_setting.source,

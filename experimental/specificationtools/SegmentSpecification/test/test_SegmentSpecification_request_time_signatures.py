@@ -69,7 +69,7 @@ def test_SegmentSpecification_request_time_signatures_03():
 
 
 def test_SegmentSpecification_request_time_signatures_04():
-    '''Time signature request counted to a larger number.
+    '''Time signature request offset.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -82,7 +82,7 @@ def test_SegmentSpecification_request_time_signatures_04():
 
     source = segment.request_time_signatures()
     segment = score_specification.append_segment(name='blue')
-    segment.set_time_signatures(source, count=5)
+    segment.set_time_signatures(source, offset=-1)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
