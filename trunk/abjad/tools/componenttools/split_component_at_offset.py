@@ -2,16 +2,14 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def split_component_at_offset(component, duration, fracture_spanners=False, tie_after=False):
+def split_component_at_offset(component, offset, fracture_spanners=False, tie_after=False):
+#def split_component_at_offset(component, offset, 
+#    fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 1.1
-        
-    Split `component` at prolated `duration`.
 
-    General component duration split algorithm.
-    Works on leaves, tuplets, measures, contexts and unqualified containers.
-    Keywords control spanner behavior at split-time.
+    Split `component` at `offset`.
 
-    Split `component` at `prolated_duration` and do not fracture crossing spanners::
+    Example 1. Split `component` at `offset`. Don't fracture spanners::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -61,7 +59,7 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
             }
         }
 
-    Example 2. Split component at prolated duration at fracture crossing spanners::
+    Example 2. Split component at offset at fracture crossing spanners::
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -121,20 +119,20 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
     from abjad.tools import tietools
     from abjad.tools.leaftools.split_leaf_at_offset import split_leaf_at_offset
 
-    duration = durationtools.Duration(duration)
-    assert 0 <= duration
+    offset = durationtools.Offset(offset)
+    assert 0 <= offset
 
-    # if zero duration then return component
-    if duration == 0:
+    # if zero offset then return component
+    if offset == 0:
         # TODO: this one case should be ([], component)
         return (component, )
 
     # get global position of duration split in score
-    global_split_point = component.start_offset + duration
+    global_split_point = component.start_offset + offset
 
     # get duration crossers, if any
     contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
-        component, duration)
+        component, offset)
 
     #print component, global_split_point, contents
 
@@ -164,7 +162,7 @@ def split_component_at_offset(component, duration, fracture_spanners=False, tie_
                 measure, nonbinary_product)
             # rederive duration crosses with possibly new measure contents
             contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
-                component, duration)
+                component, offset)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')
 
