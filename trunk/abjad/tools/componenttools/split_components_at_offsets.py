@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_by_offsets(components, offsets, fracture_spanners=False, cyclic=False, tie_after=False):
+def split_components_at_offsets(components, offsets, fracture_spanners=False, cyclic=False, tie_after=False):
     r'''.. versionadded:: 2.0
     
     Example 1. Split components cyclically and do not fracture crossing spanners::
@@ -35,7 +35,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
 
     ::
 
-        >>> componenttools.split_components_by_offsets(
+        >>> componenttools.split_components_at_offsets(
         ...     staff.leaves, [Duration(3, 32)], cyclic=True)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
@@ -91,7 +91,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
 
     ::
 
-        >>> result = componenttools.split_components_by_offsets(
+        >>> result = componenttools.split_components_at_offsets(
         ... staff.leaves, [Duration(3, 32)], cyclic=True, fracture_spanners=True)
 
     ::
@@ -155,7 +155,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
 
     ::
 
-        >>> shards = componenttools.split_components_by_offsets(
+        >>> shards = componenttools.split_components_at_offsets(
         ... staff[:1], offsets, cyclic=False, fracture_spanners=False)
 
     ::
@@ -212,7 +212,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
     ::
 
         >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
-        >>> shards = componenttools.split_components_by_offsets(
+        >>> shards = componenttools.split_components_at_offsets(
         ... staff[:1], offsets, cyclic=False, fracture_spanners=True)
 
     ::
@@ -339,7 +339,7 @@ def split_components_by_offsets(components, offsets, fracture_spanners=False, cy
                 additional_offsets = split_offsets[0]
                 leaf_split_durations.extend(additional_offsets)
                 offsets = split_offsets[-1]
-                leaf_shards = leaftools.split_leaf_by_offsets(
+                leaf_shards = leaftools.split_leaf_at_offsets(
                     current_component, leaf_split_durations, 
                     cyclic=False, fracture_spanners=fracture_spanners)
                 result.extend(leaf_shards)

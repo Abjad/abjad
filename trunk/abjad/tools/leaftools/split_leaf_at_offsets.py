@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools import pitchtools
 
 
-def split_leaf_by_offsets(leaf, offsets, cyclic=False, 
+def split_leaf_at_offsets(leaf, offsets, cyclic=False, 
     fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 2.10
 
@@ -24,7 +24,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_split_notes=True)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], tie_split_notes=True)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -51,7 +51,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=True)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=True)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
@@ -78,7 +78,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], tie_split_notes=False)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], tie_split_notes=False)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -105,7 +105,7 @@ def split_leaf_by_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_by_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=False)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=False)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
