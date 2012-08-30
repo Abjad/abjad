@@ -1,7 +1,6 @@
 from abjad.tools import durationtools
 
 
-#def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_after=False):
 def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''Split `leaf` at `offset`.
 
@@ -32,7 +31,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
 
     ::
 
-        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32))
+        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32), tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
     ::
@@ -85,7 +84,7 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
 
     ::
 
-        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32))
+        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32), tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
     ::
