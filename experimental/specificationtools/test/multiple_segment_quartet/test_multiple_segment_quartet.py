@@ -1,5 +1,6 @@
-from abjad.tools import *
+from abjad import *
 from experimental import *
+import py
 
 
 def test_multiple_segment_quartet_01():
@@ -76,3 +77,16 @@ def test_multiple_segment_quartet_02():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_multiple_segment_quartet_03():
+    '''Render example [3]:
+    Quartet in 2 segments. T1 time signatures 4/8 3/8. 
+    F1 1:1 of measures then left part 3/16 and right part 5/16 divisions.
+    F2 1:1 of meaures then [5/16, 3/16]
+    F3 1:1 of total time then [3/16, 5/16] from F1.
+    F4 1:1 of total time then [5/16, 3/16] from F2.
+    Filled note tokens scorewide.
+    T2 equal to T1 flipped about the y axis in all respects.
+    ''' 
+    py.test.skip('working on this one now.')
