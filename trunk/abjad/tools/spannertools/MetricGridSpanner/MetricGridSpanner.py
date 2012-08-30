@@ -160,10 +160,8 @@ class MetricGridSpanner(Spanner):
         '''
         from abjad.tools import componenttools
         leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
-        #componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
-        #    leaves, [x[0].duration for x in self.meters], tie_after = True)
         componenttools.split_components_at_offsets(leaves, [x[0].duration for x in self.meters], 
-            cyclic=True, fracture_spanners=False, tie_after=True)
+            cyclic=True, fracture_spanners=False, tie_split_notes=True)
         #self._fuse_tied_leaves_within_measures()
 
     def splitting_condition(self, leaf):

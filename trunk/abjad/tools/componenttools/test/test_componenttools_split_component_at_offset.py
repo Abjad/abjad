@@ -26,7 +26,7 @@ def test_componenttools_split_component_at_offset_01():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t.leaves[0], Duration(1, 32), fracture_spanners=False)
+        t.leaves[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -76,7 +76,7 @@ def test_componenttools_split_component_at_offset_02():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], Duration(1, 32), fracture_spanners=False)
+        t[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -129,7 +129,7 @@ def test_componenttools_split_component_at_offset_03():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t, Duration(1, 32), fracture_spanners=False)
+        t, (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     "halves[0][0]"
 
@@ -191,9 +191,8 @@ def test_componenttools_split_component_at_offset_04():
     }
     '''
 
-    d = Duration(1, 32)
     halves = componenttools.split_component_at_offset(
-        t.leaves[0], d, fracture_spanners=False, tie_after=True)
+        t.leaves[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -245,9 +244,8 @@ def test_componenttools_split_component_at_offset_05():
     }
     '''
 
-    d = Duration(1, 32)
     halves = componenttools.split_component_at_offset(
-        t[0], d, fracture_spanners=False, tie_after=True)
+        t[0], (1, 32), fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -302,7 +300,7 @@ def test_componenttools_split_component_at_offset_06():
     }
     '''
 
-    d = Duration(1, 5)
+    d = (1, 5)
     halves = componenttools.split_component_at_offset(
         t[0], d, fracture_spanners=False)
 
@@ -363,9 +361,8 @@ def test_componenttools_split_component_at_offset_07():
     }
     '''
 
-    d = Duration(1, 5)
     halves = componenttools.split_component_at_offset(
-        t[0], d, fracture_spanners=False, tie_after=True)
+        t[0], (1, 5), fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -422,7 +419,7 @@ def test_componenttools_split_component_at_offset_08():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t.leaves[0], Duration(1, 32), fracture_spanners=True)
+        t.leaves[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -475,7 +472,7 @@ def test_componenttools_split_component_at_offset_09():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], Duration(1, 32), fracture_spanners=True)
+        t[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -530,7 +527,7 @@ def test_componenttools_split_component_at_offset_10():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t, Duration(1, 32), fracture_spanners=True)
+        t, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     "halves[0][0]"
 
@@ -594,7 +591,7 @@ def test_componenttools_split_component_at_offset_11():
     '''
 
     componenttools.split_component_at_offset(
-        t.leaves[1], Duration(1, 32), fracture_spanners=True)
+        t.leaves[1], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -645,7 +642,7 @@ def test_componenttools_split_component_at_offset_12():
     '''
 
     componenttools.split_component_at_offset(
-        t[0], Duration(7, 32), fracture_spanners=True)
+        t[0], (7, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -697,7 +694,7 @@ def test_componenttools_split_component_at_offset_13():
     '''
 
     parts = componenttools.split_component_at_offset(
-        t[0], Duration(1, 8), fracture_spanners=True)
+        t[0], (1, 8), fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -734,7 +731,7 @@ def test_componenttools_split_component_at_offset_14():
 
     "c'8 [ ]"
 
-    halves = componenttools.split_component_at_offset(t, Duration(1, 32), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(t, (1, 32), fracture_spanners=True)
 
     "c'32 [ ]"
     assert componenttools.is_well_formed_component(halves[0][0])
@@ -770,9 +767,8 @@ def test_componenttools_split_component_at_offset_15():
     }
     '''
 
-    d = Duration(1, 32)
     halves = componenttools.split_component_at_offset(
-        t.leaves[0], d, fracture_spanners=True, tie_after=True)
+        t.leaves[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -825,9 +821,8 @@ def test_componenttools_split_component_at_offset_16():
     }
     '''
 
-    d = Duration(1, 32)
     halves = componenttools.split_component_at_offset(
-        t[0], d, fracture_spanners=True, tie_after=True)
+        t[0], (1, 32), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -882,8 +877,8 @@ def test_componenttools_split_component_at_offset_17():
     }
     '''
 
-    d = Duration(1, 5)
-    halves = componenttools.split_component_at_offset(t[0], d, fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(
+        t[0], (1, 5), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -941,9 +936,8 @@ def test_componenttools_split_component_at_offset_18():
     }
     '''
 
-    d = Duration(1, 5)
     halves = componenttools.split_component_at_offset(
-        t[0], d, fracture_spanners=True, tie_after=True)
+        t[0], (1, 5), fracture_spanners=True, tie_split_notes=True)
 
     r'''
     \new Staff {
@@ -1005,7 +999,7 @@ def test_componenttools_split_component_at_offset_19():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], Duration(7, 20), fracture_spanners=True)
+        t[0], (7, 20), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1047,11 +1041,12 @@ def test_componenttools_split_component_at_offset_20():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.duration_multiplier = Fraction(1, 2)
 
     "c'8 * 1/2"
 
-    halves = componenttools.split_component_at_offset(t, Duration(1, 32), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(
+        t, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
     assert componenttools.is_well_formed_component(halves[0][0])
@@ -1069,11 +1064,12 @@ def test_componenttools_split_component_at_offset_21():
     '''
 
     t = Note(0, (1, 8))
-    t.duration_multiplier = Duration(1, 2)
+    t.duration_multiplier = Fraction(1, 2)
 
     "c'8 * 1/2"
 
-    halves = componenttools.split_component_at_offset(t, Duration(1, 48), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(
+        t, (1, 48), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
     assert componenttools.is_well_formed_component(halves[0][0])
@@ -1092,7 +1088,7 @@ def test_componenttools_split_component_at_offset_22():
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     for leaf in t.leaves:
-        leaf.duration_multiplier = Duration(1, 2)
+        leaf.duration_multiplier = Fraction(1, 2)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
@@ -1114,7 +1110,7 @@ def test_componenttools_split_component_at_offset_22():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], Duration(1, 16), fracture_spanners=True)
+        t[0], (1, 16), fracture_spanners=True)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
@@ -1149,7 +1145,7 @@ def test_componenttools_split_component_at_offset_23():
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     for leaf in t.leaves:
-        leaf.duration_multiplier = Duration(1, 2)
+        leaf.duration_multiplier = Fraction(1, 2)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
@@ -1171,7 +1167,7 @@ def test_componenttools_split_component_at_offset_23():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], Duration(3, 32), fracture_spanners=True)
+        t[0], (3, 32), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -1207,7 +1203,7 @@ def test_componenttools_split_component_at_offset_24():
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
     for leaf in t.leaves:
-        leaf.duration_multiplier = Duration(1, 2)
+        leaf.duration_multiplier = Fraction(1, 2)
     beamtools.BeamSpanner(t[0])
     beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
@@ -1229,7 +1225,7 @@ def test_componenttools_split_component_at_offset_24():
     '''
 
     halves = componenttools.split_component_at_offset(
-        t[0], Duration(2, 24), fracture_spanners=True)
+        t[0], (2, 24), fracture_spanners=True, tie_split_notes=False)
 
     r'''
     \new Staff {
@@ -1266,7 +1262,7 @@ def test_componenttools_split_component_at_offset_25():
     '''
 
     t = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
-    t.leaves[0].duration_multiplier = Duration(5, 16)
+    t.leaves[0].duration_multiplier = Fraction(5, 16)
 
     r'''
     \new Staff {
@@ -1277,7 +1273,7 @@ def test_componenttools_split_component_at_offset_25():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(t[0], Duration(16, 80), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(t[0], (16, 80), fracture_spanners=True)
 
     r'''
     \new Staff {
@@ -1331,7 +1327,7 @@ def test_componenttools_split_component_at_offset_26():
     }
     '''
 
-    halves = componenttools.split_component_at_offset(t[0], Duration(14, 80), fracture_spanners=True)
+    halves = componenttools.split_component_at_offset(t[0], (14, 80), fracture_spanners=True)
 
     r'''
     \new Staff {

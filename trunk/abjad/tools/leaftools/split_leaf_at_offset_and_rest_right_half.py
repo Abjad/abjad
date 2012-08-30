@@ -2,15 +2,16 @@ from abjad.tools import durationtools
 
 
 # TODO: implement corresponding function to rest left half
-def split_leaf_at_offset_and_rest_right_half(leaf, prolated_duration):
+def split_leaf_at_offset_and_rest_right_half(leaf, offset):
     r'''.. versionadded:: 1.1
 
-    Split `leaf` at `prolated_duration` and rest right half::
+    Split `leaf` at `offset` and rest right half::
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.SlurSpanner(t[:])
-        SlurSpanner(c'8, d'8, e'8, f'8)
-        >>> f(t)
+        >>> staff = Staff("c'8 ( d'8 e'8 f'8 )")
+
+    ::
+
+        >>> f(staff)
         \new Staff {
             c'8 (
             d'8
@@ -20,12 +21,12 @@ def split_leaf_at_offset_and_rest_right_half(leaf, prolated_duration):
 
     ::
 
-        >>> leaftools.split_leaf_at_offset_and_rest_right_half(t.leaves[1], (1, 32))
+        >>> leaftools.split_leaf_at_offset_and_rest_right_half(staff.leaves[1], (1, 32))
         ([Note("d'32")], [Note("d'16.")])
 
     ::
 
-        >>> f(t)
+        >>> f(staff)
         \new Staff {
             c'8 (
             d'32
@@ -34,8 +35,8 @@ def split_leaf_at_offset_and_rest_right_half(leaf, prolated_duration):
             f'8 )
         }
 
-    Return list of leaves to left of `prolated_duration`
-    together with list of leaves to right of `prolated_duration`.
+    Return list of leaves to left of `offset`
+    together with list of leaves to right of `offset`.
 
     .. versionchanged:: 2.0
         renamed ``leaftools.shorten()`` to
@@ -44,10 +45,11 @@ def split_leaf_at_offset_and_rest_right_half(leaf, prolated_duration):
     from abjad.tools import componenttools
     from abjad.tools import resttools
 
-    prolated_duration = durationtools.Duration(prolated_duration)
+    offset = durationtools.Offset(offset)
 
     left, right = componenttools.split_component_at_offset(
-        leaf, prolated_duration, fracture_spanners=False)
+        leaf, offset, fracture_spanners=False, tie_split_notes=False)
+
     for leaf in right:
         rest = resttools.Rest(leaf)
         componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [rest])

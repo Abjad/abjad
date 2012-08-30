@@ -2,9 +2,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def split_component_at_offset(component, offset, fracture_spanners=False, tie_after=False):
-#def split_component_at_offset(component, offset, 
-#    fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
+def split_component_at_offset(component, offset, 
+    fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 1.1
 
     Split `component` at `offset`.
@@ -41,7 +40,7 @@ def split_component_at_offset(component, offset, fracture_spanners=False, tie_af
     ::
 
         >>> halves = componenttools.split_component_at_offset(
-        ... staff.leaves[0], Duration(1, 32), fracture_spanners=False)
+        ... staff.leaves[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
     ::
 
@@ -91,7 +90,7 @@ def split_component_at_offset(component, offset, fracture_spanners=False, tie_af
     ::
 
         >>> halves = componenttools.split_component_at_offset(
-        ... staff.leaves[0], Duration(1, 32), fracture_spanners=True)
+        ... staff.leaves[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     ::
 
@@ -115,6 +114,8 @@ def split_component_at_offset(component, offset, fracture_spanners=False, tie_af
     from abjad.tools import containertools
     from abjad.tools import leaftools
     from abjad.tools import measuretools
+    from abjad.tools import notetools
+    from abjad.tools import resttools
     from abjad.tools import spannertools
     from abjad.tools import tietools
     from abjad.tools.leaftools.split_leaf_at_offset import split_leaf_at_offset
@@ -177,11 +178,11 @@ def split_component_at_offset(component, offset, fracture_spanners=False, tie_af
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
         #left_list, right_list = split_leaf_at_offset(bottom,
-        #    split_point_in_bottom, fracture_spanners=fracture_spanners, tie_after=tie_after)
-        # TODO: change this to no longer reference tie_after keyword
+        #    split_point_in_bottom, fracture_spanners=fracture_spanners, 
+        #    tie_split_notes=tie_after, tie_split_rests=tie_after)
         left_list, right_list = split_leaf_at_offset(bottom,
             split_point_in_bottom, fracture_spanners=fracture_spanners, 
-            tie_split_notes=tie_after, tie_split_rests=tie_after)
+            tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]
@@ -235,18 +236,23 @@ def split_component_at_offset(component, offset, fracture_spanners=False, tie_af
     # reapply tie here if necessary
     # TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair()?
     if did_split_leaf:
-        if tie_after:
+        #if tie_after:
+        if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
+            (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
             leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
             if not tietools.are_components_in_same_tie_spanner(leaves_at_split):
                 if all([tietools.is_component_with_tie_spanner_attached(x) for x in leaves_at_split]):
+                    # TODO: replace with new tietools function
                     leaf_left_of_split_tie_spanner = \
                         spannertools.get_the_only_spanner_attached_to_component(
                         leaf_left_of_split, tietools.TieSpanner)
+                    # TODO: replace with new tietools function
                     leaf_right_of_split_tie_spanner = \
                         spannertools.get_the_only_spanner_attached_to_component(
                         leaf_right_of_split, tietools.TieSpanner)
                     leaf_left_of_split_tie_spanner.fuse(leaf_right_of_split_tie_spanner)
                 else:
+                    # TODO: possibly replace with tietools.apply_tie_spanner_to_leaf_pair()?
                     tietools.TieSpanner(leaves_at_split)
 
     # return pair of left and right list-wrapped halves of container

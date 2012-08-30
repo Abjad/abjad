@@ -2,7 +2,8 @@ from abjad.tools import durationtools
 
 
 # TODO: fix bug that unintentionally fractures ties.
-def split_components_at_offsets(components, offsets, fracture_spanners=False, cyclic=False, tie_after=False):
+def split_components_at_offsets(components, offsets, 
+    fracture_spanners=False, cyclic=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 2.0
     
     Example 1. Split components cyclically and do not fracture crossing spanners::
@@ -156,7 +157,7 @@ def split_components_at_offsets(components, offsets, fracture_spanners=False, cy
     ::
 
         >>> shards = componenttools.split_components_at_offsets(
-        ... staff[:1], offsets, cyclic=False, fracture_spanners=False)
+        ... staff[:1], offsets, cyclic=False, fracture_spanners=False, tie_split_notes=False)
 
     ::
 
@@ -213,7 +214,7 @@ def split_components_at_offsets(components, offsets, fracture_spanners=False, cy
 
         >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
         >>> shards = componenttools.split_components_at_offsets(
-        ... staff[:1], offsets, cyclic=False, fracture_spanners=True)
+        ... staff[:1], offsets, cyclic=False, fracture_spanners=True, tie_split_notes=False)
 
     ::
 
@@ -245,8 +246,6 @@ def split_components_at_offsets(components, offsets, fracture_spanners=False, cy
     .. note:: Add examples that show mark and context mark handling.
 
     .. note:: Add example showing grace and after grace handling.
-
-    .. note:: Change `tie_after` keyword to `tie_split_notes` and `tie_split_rests` instead.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
@@ -347,9 +346,12 @@ def split_components_at_offsets(components, offsets, fracture_spanners=False, cy
             else:
             #if True:
                 #print 'splitting container ...'
+                #left_list, right_list = componenttools.split_component_at_offset(
+                #    current_component, local_split_duration, 
+                #    fracture_spanners=fracture_spanners, tie_after=tie_after)
                 left_list, right_list = componenttools.split_component_at_offset(
-                    current_component, local_split_duration, 
-                    fracture_spanners=fracture_spanners, tie_after=tie_after)
+                    current_component, local_split_duration, fracture_spanners=fracture_spanners, 
+                    tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
                 #print 'left_list, right_list {}, {}'.format(left_list, right_list)
                 shard.extend(left_list)
                 result.append(shard)
