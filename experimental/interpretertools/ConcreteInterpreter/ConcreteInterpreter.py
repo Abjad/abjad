@@ -483,7 +483,7 @@ class ConcreteInterpreter(Interpreter):
         assert resolved_value is not None, repr(resolved_value)
         if attribute_request.callback is not None:
             resolved_value = attribute_request.callback(resolved_value)
-        resolved_value = requesttools.resolve_request_offset_and_count(attribute_request, resolved_value)
+        resolved_value = requesttools.apply_request_transforms(attribute_request, resolved_value)
         #self._debug(resolved_value, 'rv')
         return resolved_value
 

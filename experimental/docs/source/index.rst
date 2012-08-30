@@ -225,7 +225,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/requesttools/resolve_request_offset_and_count
+   experimental/requesttools/apply_request_transforms
    experimental/requesttools/source_to_request
 
 :py:mod:`segmenttools <experimental.segmenttools>`

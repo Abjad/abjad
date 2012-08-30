@@ -1,7 +1,7 @@
 from abjad.tools import sequencetools
 
 
-def resolve_request_offset_and_count(request, resolved_value):
+def apply_request_transforms(request, resolved_value):
     r'''..versionadded:: 1.0 
     
     Find `request` offset and count.
