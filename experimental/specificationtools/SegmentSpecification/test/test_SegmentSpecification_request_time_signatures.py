@@ -1,6 +1,5 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_SegmentSpecification_request_time_signatures_01():
@@ -116,13 +115,12 @@ def test_SegmentSpecification_request_time_signatures_05():
 def test_SegmentSpecification_request_time_signatures_06():
     '''Time signature request reversed.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])  
+    segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
