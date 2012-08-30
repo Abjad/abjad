@@ -55,7 +55,7 @@ class RenameModulesScript(DeveloperScript):
     def _codebase_name_to_codebase_docs_path(self, codebase):
         from abjad import ABJCFG
         if codebase == 'mainline':
-            return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api', 'tools')
+            return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools')
         elif codebase == 'experimental':
             return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
