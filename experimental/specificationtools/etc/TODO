@@ -1,4 +1,7 @@
-1.  Author tests to make sure that persistent overlapping division selectors 
+1.  Integrate reverse=None keyword into all segment set methods,
+    if integration into SegmentSpecification.set_time_signatures() works out.
+
+2.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-2.  Make divisions (ie, nonreduced fractions) partitionable.
+3.  Make divisions (ie, nonreduced fractions) partitionable.

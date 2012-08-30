@@ -58,8 +58,9 @@ class SegmentSpecification(Specification):
 
     def _store_multiple_context_setting(self, attribute, source,
         callback=None, contexts=None, count=None, 
-        offset=None, persist=True, selector=None, truncate=False):
-        source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
+        offset=None, persist=True, reverse=None, selector=None, truncate=False):
+        source = requesttools.source_to_request(source, 
+            callback=callback, count=count, offset=offset, reverse=reverse)
         contexts = self._context_token_to_context_names(contexts)
         selector = selector or self.select_segment()
         multiple_context_setting = settingtools.MultipleContextSetting(
@@ -878,12 +879,12 @@ class SegmentSpecification(Specification):
             offset=offset, persist=persist, selector=selector, truncate=truncate)
 
     def set_time_signatures(self, source, callback=None, contexts=None, count=None, 
-        offset=None, persist=True, selector=None, truncate=False):
+        offset=None, persist=True, reverse=None, selector=None, truncate=False):
         r'''Set time signatures according to `source` for segment `contexts`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, 
-            offset=offset, persist=persist, selector=selector, truncate=truncate)
+            callback=callback, contexts=contexts, count=count, offset=offset,
+            persist=persist, reverse=reverse, selector=selector, truncate=truncate)

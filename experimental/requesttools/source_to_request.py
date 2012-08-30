@@ -2,15 +2,14 @@ import copy
 from experimental import helpertools
 
 
-def source_to_request(source, callback=None, count=None, offset=None):
+def source_to_request(source, callback=None, count=None, offset=None, reverse=None):
     r'''.. versionadded:: 1.0
 
     Change request `source` to request object.
 
     If `source` is one of ... ::
 
-        StatalServer
-        Handler
+        StatalServer Handler
 
     ... then return ... ::
 
@@ -21,8 +20,8 @@ def source_to_request(source, callback=None, count=None, offset=None):
 
     If `source` is a constant then return `source` unchanged.
 
-    If `source` is already a request then set `callback`, `count` or `offset`
-    against `source` (if any are not none) and return `source`.
+    If `source` is already a request then set `callback`, `count`, `offset`
+    or `reverse` against `source` (if any are not none) and return `source`.
     '''
     from experimental import handlertools
     from experimental import requesttools
@@ -40,15 +39,19 @@ def source_to_request(source, callback=None, count=None, offset=None):
             request.count = count
         if offset is not None:
             request.offset = offset
+        if reverse is not None:
+            request.reverse = reverse
     elif isinstance(source, statalservertools.StatalServer):
-        if count is not None or offset is not None:
-            request = requesttools.StatalServerRequest(source, count=count, offset=offset)
+        if count is not None or offset is not None or reverse is not None:
+            request = requesttools.StatalServerRequest(
+                source, count=count, offset=offset, reverse=reverse)
     elif isinstance(source, handlertools.Handler):
         if offset is not None:
             assert count is None
             request = requesttools.HandlerRequest(source, offset=offset)
-    elif any([x is not None for x in (callback, count, offset)]):
-        raise ValueError("'callback', 'count' or 'offset' set on stateless source: {!r}.".format(source))
+    elif any([x is not None for x in (callback, count, offset, reverse)]):
+        raise ValueError(
+            "'callback', 'count', 'offset' or 'reverse' set on stateless source: {!r}.".format(source))
     else:
         request = source
 

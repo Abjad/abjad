@@ -1,5 +1,6 @@
 from abjad import *
 from experimental import *
+import py
 
 
 def test_SegmentSpecification_request_time_signatures_01():
@@ -105,6 +106,29 @@ def test_SegmentSpecification_request_time_signatures_05():
     source = segment.request_time_signatures()
     segment = score_specification.append_segment(name='blue')
     segment.set_time_signatures(source, count=5, offset=-1)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification_request_time_signatures_06():
+    '''Time signature request reversed.
+    '''
+    py.test.skip('working on this one now.')
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    segment = score_specification.append_segment(name='red')
+    segment.set_time_signatures([(4, 8), (3, 8)])  
+    segment.set_divisions([(3, 16)])
+    segment.set_rhythm(library.sixteenths)
+
+    source = segment.request_time_signatures()
+    segment = score_specification.append_segment(name='blue')
+    segment.set_time_signatures(source, reverse=True)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
