@@ -47,6 +47,7 @@ def make_floating_time_signature_lilypond_file(music=None):
         'ly:spanner::set-spacing-rods')
     context_block.override.tuplet_bracket.minimum_length = 3
     context_block.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+    context_block.set.autoBeaming = False
     context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 32))
     context_block.set.tupletFullLength = True
 
