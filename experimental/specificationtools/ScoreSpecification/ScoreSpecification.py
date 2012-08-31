@@ -312,6 +312,7 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
+    # TODO: change 'start_segment' to 'start_segment_identifier'
     def request_divisions(self, voice, start_segment, segment_count=1):
         r'''Request `voice` divisions starting in `start_segment`
         for a total of `segment_count` segments.

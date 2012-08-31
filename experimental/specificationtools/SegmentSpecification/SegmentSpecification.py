@@ -303,7 +303,14 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def request_time_signatures(self, context_name=None, callback=None, count=None, offset=None):
+    def request_divisions(self,  
+        context_name=None, callback=None, count=None, offset=None, reverse=None):
+        selector = self.select_segment()
+        return requesttools.AttributeRequest('divisions', selector,
+            context_name=context_name, callback=callback, count=count, offset=offset, reverse=reverse)
+
+    def request_time_signatures(self, 
+        context_name=None, callback=None, count=None, offset=None, reverse=None):
         r'''Request segment time signatures in `context_name`::
 
             >>> request = segment.request_time_signatures()
@@ -322,7 +329,7 @@ class SegmentSpecification(Specification):
         '''
         selector = self.select_segment()
         return requesttools.AttributeRequest('time_signatures', selector,
-            context_name=context_name, callback=callback, count=count, offset=offset)
+            context_name=context_name, callback=callback, count=count, offset=offset, reverse=reverse)
 
     def select_background_measure(self, n):
         '''Select segment background measure ``0``::

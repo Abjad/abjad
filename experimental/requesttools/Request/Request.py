@@ -21,9 +21,10 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, callback=None, count=None, offset=None):
+    def __init__(self, callback=None, count=None, offset=None, reverse=None):
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(offset, (int, type(None))), repr(offset)
         self.callback = callback
         self.count = count
         self.offset = offset
+        self.reverse = reverse
