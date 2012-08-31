@@ -147,6 +147,7 @@ Composition packages
    tools/componenttools/iterate_components_backward_in_expr
    tools/componenttools/iterate_components_depth_first
    tools/componenttools/iterate_components_forward_in_expr
+   tools/componenttools/iterate_components_in_expr
    tools/componenttools/iterate_namesakes_backward_from_component
    tools/componenttools/iterate_namesakes_forward_from_component
    tools/componenttools/iterate_thread_backward_from_component
