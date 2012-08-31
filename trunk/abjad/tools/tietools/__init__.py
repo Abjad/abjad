@@ -1,12 +1,7 @@
 '''Package: abjad.tools.tietools
 
-   Dependencies:
-   
-      abjad.components
-      abjad.exceptions
-      abjad.tools.componenttools
-      abjad.tools.durationtools
-      abjad.tools.spannertools
+    TBD. 
+
 '''
 
 from abjad.tools import importtools

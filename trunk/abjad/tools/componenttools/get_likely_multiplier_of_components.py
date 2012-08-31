@@ -1,10 +1,9 @@
 from abjad.tools import durationtools
-from abjad.tools.mathtools import greatest_power_of_two_less_equal
-from abjad.tools.sequencetools.truncate_runs_in_sequence import truncate_runs_in_sequence
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 
 
 # TODO: Maybe move get_likely_multiplier_of_components() from durationtools to measuretools?
-
 def get_likely_multiplier_of_components(components):
     r'''.. versionadded:: 2.0
 
@@ -60,8 +59,8 @@ def get_likely_multiplier_of_components(components):
             chain_duration = expr.preprolated_duration
             chain_duration_numerators.append(chain_duration.numerator)
 
-    if len(truncate_runs_in_sequence(chain_duration_numerators)) == 1:
+    if len(sequencetools.truncate_runs_in_sequence(chain_duration_numerators)) == 1:
         numerator = chain_duration_numerators[0]
-        denominator = greatest_power_of_two_less_equal(numerator)
+        denominator = mathtools.greatest_power_of_two_less_equal(numerator)
         likely_multiplier = durationtools.Duration(numerator, denominator)
         return likely_multiplier

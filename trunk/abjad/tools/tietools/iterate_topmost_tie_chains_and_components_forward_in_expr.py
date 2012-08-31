@@ -1,3 +1,8 @@
+from abjad.tools import containertools
+from abjad.tools import leaftools
+from abjad.tools import spannertools
+
+
 def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
     r'''Iterate topemost tie chains and components forward in `expr`::
 
@@ -43,9 +48,6 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
         renamed ``iterate.chained_contents()`` to
         ``tietools.iterate_topmost_tie_chains_and_components_forward_in_expr()``.
     '''
-    from abjad.tools import containertools
-    from abjad.tools import leaftools
-    from abjad.tools import spannertools
     from abjad.tools import tietools
 
     if isinstance(expr, leaftools.Leaf):

@@ -1,4 +1,5 @@
-from abjad.tools.tietools.TieSpanner import TieSpanner
+from abjad.tools import componenttools
+from abjad.tools import spannertools
 
 
 def is_component_with_tie_spanner_attached(expr):
@@ -30,10 +31,9 @@ def is_component_with_tie_spanner_attached(expr):
 
     Return boolean.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import spannertools
+    from abjad.tools import tietools
 
     if not isinstance(expr, componenttools.Component):
         return False
 
-    return bool(spannertools.get_spanners_attached_to_component(expr, TieSpanner))
+    return bool(spannertools.get_spanners_attached_to_component(expr, tietools.TieSpanner))

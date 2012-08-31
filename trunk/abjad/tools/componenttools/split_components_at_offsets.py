@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import sequencetools
 
 
 # TODO: fix bug that unintentionally fractures ties.
@@ -249,7 +250,6 @@ def split_components_at_offsets(components, offsets,
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
-    from abjad.tools import sequencetools
 
     # check input
     assert componenttools.all_are_components(components)

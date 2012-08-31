@@ -1,5 +1,5 @@
-from abjad.tools.tietools.TieSpanner import TieSpanner
-from abjad.tools.tietools.get_tie_chain import get_tie_chain
+from abjad.tools import leaftools
+from abjad.tools import spannertools
 
 
 def iterate_pitched_tie_chains_forward_in_expr(expr):
@@ -40,10 +40,9 @@ def iterate_pitched_tie_chains_forward_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools import leaftools
-    from abjad.tools import spannertools
+    from abjad.tools import tietools
 
     for leaf in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
-        tie_spanners = spannertools.get_spanners_attached_to_component(leaf, TieSpanner)
+        tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
         if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
-            yield get_tie_chain(leaf)
+            yield tietools.get_tie_chain(leaf)

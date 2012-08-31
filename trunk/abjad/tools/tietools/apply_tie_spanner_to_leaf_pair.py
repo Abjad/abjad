@@ -1,7 +1,5 @@
 from abjad.tools import leaftools
 from abjad.tools import spannertools
-from abjad.tools.tietools.TieSpanner import TieSpanner
-from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
 
 
 def apply_tie_spanner_to_leaf_pair(left, right):
@@ -41,24 +39,27 @@ def apply_tie_spanner_to_leaf_pair(left, right):
         renamed ``tietools.span_leaf_pair()`` to
         ``tietools.apply_tie_spanner_to_leaf_pair()``.
     '''
+    from abjad.tools import tietools
 
     # check input
     assert isinstance(left, leaftools.Leaf)
     assert isinstance(right, leaftools.Leaf)
 
     # do nothing if leaves are already tied
-    if are_components_in_same_tie_spanner([left, right]):
+    if tietools.are_components_in_same_tie_spanner([left, right]):
         return
 
     # get any left tie spanner
     try:
-        left_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(left, TieSpanner)
+        left_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
+            left, tietools.TieSpanner)
     except MissingSpannerError:
         left_tie_spanner = None
     
     # get any right tie spanner
     try:
-        right_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(right, TieSpanner)
+        right_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
+            right, tietools.TieSpanner)
     except MissingSpannerError:
         right_tie_spanner = None
 
@@ -70,4 +71,4 @@ def apply_tie_spanner_to_leaf_pair(left, right):
     elif left_tie_spanner is None and right_tie_spanner is not None:
         right_tie_spanner.append_left(left)
     elif left_tie_spanner is None and right_tie_spanner is None:
-        TieSpanner([left, right])
+        tietools.TieSpanner([left, right])

@@ -1,18 +1,18 @@
-from abc import ABCMeta
-from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
-from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
-from abjad.tools.abctools import AbjadObject
-from abjad.tools import durationtools
-from abjad.tools import formattools
+import abc
 import copy
 import fractions
+from abjad.tools import durationtools
+from abjad.tools import formattools
+from abjad.tools import lilypondproxytools
+from abjad.tools import mathtools
+from abjad.tools.abctools import AbjadObject
 
 
 class Component(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
         '_marks_for_which_component_functions_as_effective_context',
@@ -95,7 +95,7 @@ class Component(AbjadObject):
         '''Read-only reference to LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = LilyPondGrobOverrideComponentPlugIn()
+            self._override = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
@@ -108,7 +108,6 @@ class Component(AbjadObject):
 
     @property
     def prolation(self):
-        from abjad.tools import mathtools
         products = mathtools.cumulative_products([fractions.Fraction(1)] + self._prolations)
         return products[-1]
 
@@ -117,7 +116,7 @@ class Component(AbjadObject):
         '''Read-only reference LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = LilyPondContextSettingComponentPlugIn()
+            self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
     @property

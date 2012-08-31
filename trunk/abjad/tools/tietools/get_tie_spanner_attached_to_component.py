@@ -1,3 +1,6 @@
+from abjad.tools import spannertools
+
+
 def get_tie_spanner_attached_to_component(component):
     r'''.. versionadded:: 2.10
 
@@ -25,7 +28,6 @@ def get_tie_spanner_attached_to_component(component):
 
     Raise extra spanner error when more than one tie spanner attached to `component`.
     '''
-    from abjad.tools import spannertools
     from abjad.tools import tietools
 
     return spannertools.get_the_only_spanner_attached_to_component(component, tietools.TieSpanner)

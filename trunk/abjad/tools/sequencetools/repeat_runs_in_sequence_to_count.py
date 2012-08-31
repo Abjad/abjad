@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-
-
 def repeat_runs_in_sequence_to_count(sequence, indicators):
     '''.. versionadded:: 1.1
 
@@ -74,9 +71,10 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
         renamed ``sequencetools.repeat_subruns_to_count()`` to
         ``sequencetools.repeat_runs_in_sequence_to_count()``.
     '''
+    from abjad.tools import componenttools
 
     assert isinstance(sequence, list)
-    assert all([not isinstance(x, Component) for x in sequence])
+    assert all([not isinstance(x, componenttools.Component) for x in sequence])
     assert isinstance(indicators, list)
     assert all([len(x) == 3 for x in indicators])
 

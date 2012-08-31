@@ -1,5 +1,6 @@
-from abjad.tools.tietools.TieChain import TieChain
-from abjad.tools.tietools.TieSpanner import TieSpanner
+from abjad.tools import componenttools
+from abjad.tools import leaftools
+from abjad.tools import spannertools
 
 
 def get_nontrivial_tie_chains_masked_by_components(components):
@@ -35,16 +36,14 @@ def get_nontrivial_tie_chains_masked_by_components(components):
         renamed ``tietools.get_tie_chains_in_expr()`` to
         ``tietools.get_nontrivial_tie_chains_masked_by_components()``.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import leaftools
-    from abjad.tools import spannertools
+    from abjad.tools import tietools
 
     assert componenttools.all_are_components(components)
 
     # collect tie spanners
     tie_spanners = []
     for component in components:
-        spanners = spannertools.get_spanners_attached_to_component(component, TieSpanner)
+        spanners = spannertools.get_spanners_attached_to_component(component, tietools.TieSpanner)
         if spanners:
             spanner = spanners.pop()
             if not spanner in tie_spanners:
@@ -58,7 +57,7 @@ def get_nontrivial_tie_chains_masked_by_components(components):
         for leaf in spanner.leaves:
             if leaf in leaves_in_components:
                 leaves_intersecting.append(leaf)
-        result.append(TieChain(tuple(leaves_intersecting)))
+        result.append(tietools.TieChain(tuple(leaves_intersecting)))
 
     # return result
     return result

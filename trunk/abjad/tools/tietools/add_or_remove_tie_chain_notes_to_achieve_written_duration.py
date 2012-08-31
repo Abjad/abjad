@@ -1,3 +1,10 @@
+from abjad.tools import componenttools
+from abjad.tools import durationtools
+from abjad.tools import notetools
+from abjad.tools import spannertools
+from abjad.tools import tuplettools
+
+
 # TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully.
 #       Determine whether behavior is correct with LilyPond multipliers.
 def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration):
@@ -33,14 +40,9 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
         renamed ``tietools.duration_change()`` to
         ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration()``.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import durationtools
-    from abjad.tools import notetools
-    from abjad.tools import spannertools
     from abjad.tools import tietools
-    from abjad.tools import tuplettools
     from abjad.tools.spannertools._withdraw_components_from_attached_spanners import \
-    _withdraw_components_from_attached_spanners
+        _withdraw_components_from_attached_spanners
 
     assert isinstance(tie_chain, tietools.TieChain)
     new_written_duration = durationtools.Duration(new_written_duration)

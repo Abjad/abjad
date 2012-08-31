@@ -1,6 +1,8 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import notetools
 from abjad.tools import spannertools
+from abjad.tools import tuplettools
 
 
 def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dotted=True):
@@ -106,9 +108,7 @@ def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dott
 
     .. todo:: move to tuplettools.
     '''
-    from abjad.tools import notetools
     from abjad.tools import tietools
-    from abjad.tools import tuplettools
 
     # find target duration of fixed-duration tuplet
     tie_chain = tietools.get_tie_chain(chain[0])
