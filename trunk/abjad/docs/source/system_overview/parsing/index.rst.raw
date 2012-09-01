@@ -13,6 +13,120 @@ from abjad.tools import lilypondparsertools
 parser = lilypondparsertools.LilyPondParser()
 </abjad>
 
+It understands notes, chords, skips and rests, including default durations and the ``q`` chord-repeat construct:
+
+<abjad>
+string = r"{ c'\longa r4. <d' fs' bff'> g q8 s1 c''\breve. }"
+result = parser(string)
+</abjad>
+
+<abjad>
+f(result)
+</abjad>
+
+<abjad>
+show(result)
+</abjad>
+
+It understands most spanners, articulations and dynamics too:
+
+<abjad>
+string = r'''\new Staff {
+    c'8 \f \> (
+    d' -_ [
+    e' ^>
+    f' \ppp \<
+    g' \startTrillSpan \(
+    a' \)
+    b' ] \stopTrillSpan
+    c'' ) \accent \sfz
+}
+'''
+result = parser(string)
+</abjad>
+
+<abjad>
+f(result)
+</abjad>
+
+<abjad>
+show(result)
+</abjad>
+
+It understands contexts and markup:
+
+<abjad>
+string = r'''\new Score <<
+    \new Staff = "Treble Staff" {
+        \new Voice = "Treble Voice" {
+            c' ^\markup { \bold Treble! }
+        }
+    }
+    \new Staff = "Bass Staff" {
+        \new Voice = "Bass Voice" {
+            \clef bass
+            c, _\markup { \italic Bass! } 
+        }
+    }
+>>
+'''
+result = parser(string)
+</abjad>
+
+<abjad>
+f(result)
+</abjad>
+
+<abjad>
+show(result)
+</abjad>
+
+It even understands certain aspects of LilyPond file layouts, like header blocks:
+
+<abjad>
+string = r'''
+\header {
+    name = "Foo von Bar"
+    composer = \markup { by \bold \name }
+    title = \markup { The ballad of \name }
+    tagline = \markup { "" }
+}
+\score {
+    \new Staff {
+        \time 3/4
+        g' ( b' d'' )
+        e''4. ( c''8 c'4 )
+    }
+}
+'''
+result = parser(string)
+</abjad>
+
+<abjad>
+f(result)
+</abjad>
+
+<abjad>
+show(result)
+</abjad>
+
+A small number of music functions are also supported, such as ``\relative``. Music functions which mutate 
+the score during compilation, result in a "normalized" Abjad score structure.  That is, the resulting Abjad 
+structure corresponds to the music as it appears on the page:
+
+<abjad>
+string = r'''\new Staff \relative c { c32 d e f g a b c d e f g a b c d e f g a b c }'''
+result = parser(string)
+</abjad>
+
+<abjad>
+f(result)
+</abjad> 
+
+<abjad>
+show(result)
+</abjad>
+
 RhythmTree Parsing
 ------------------
 
