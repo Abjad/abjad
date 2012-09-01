@@ -1445,6 +1445,7 @@ Composition packages
    tools/skiptools/all_are_skips
    tools/skiptools/iterate_skips_backward_in_expr
    tools/skiptools/iterate_skips_forward_in_expr
+   tools/skiptools/iterate_skips_in_expr
    tools/skiptools/make_repeated_skips_from_time_signature
    tools/skiptools/make_repeated_skips_from_time_signatures
    tools/skiptools/make_skips_with_multiplied_durations
