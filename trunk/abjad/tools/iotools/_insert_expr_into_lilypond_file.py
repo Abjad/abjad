@@ -23,6 +23,9 @@ def _insert_expr_into_lilypond_file(expr, tagline=False):
         lilypond_file._is_temporary = True
 
     if not tagline:
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        try:
+            lilypond_file.header_block.tagline = markuptools.Markup('""')
+        except:
+            pass
 
     return lilypond_file
