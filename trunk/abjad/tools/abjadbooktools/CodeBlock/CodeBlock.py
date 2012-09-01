@@ -144,11 +144,9 @@ class CodeBlock(abctools.AbjadObject):
         result = pipe.read_wait().replace('\t', '    ').split('\n')
         if result[-1] == '':
             result.pop()
-        print result
         while result[-1] not in ('>>> ', '... '):
             new = pipe.read_wait().replace('\t', '    ').split('\n')
             if new[-1] == '':
                 new.pop()
-            print new
             result.extend(new)
         return result
