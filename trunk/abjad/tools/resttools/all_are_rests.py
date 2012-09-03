@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.resttools.Rest import Rest
+from abjad.tools import componenttools
 
 
 def all_are_rests(expr):
@@ -28,5 +27,6 @@ def all_are_rests(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import resttools
 
-    return all_are_components(expr, klasses=(Rest,))
+    return componenttools.all_are_components(expr, klasses=(resttools.Rest,))

@@ -46,7 +46,6 @@ def make_notes(pitches, durations, big_endian=True):
         renamed ``construct.notes()`` to
         ``notetools.make_notes()``.
     '''
-    # TODO: any reason to keep this private?
     from abjad.tools import notetools
     from abjad.tools import tuplettools
 

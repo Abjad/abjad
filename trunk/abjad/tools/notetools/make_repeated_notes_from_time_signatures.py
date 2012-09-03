@@ -1,6 +1,3 @@
-from abjad.tools.notetools.make_repeated_notes_from_time_signature import make_repeated_notes_from_time_signature
-
-
 def make_repeated_notes_from_time_signatures(time_signatures, pitch="c'"):
     '''.. versionadded 1.1.2
 
@@ -18,13 +15,14 @@ def make_repeated_notes_from_time_signatures(time_signatures, pitch="c'"):
 
     Use ``sequencetools.flatten_sequence()`` to flatten output if required.
     '''
+    from abjad.tools import notetools
 
     # init result
     result = []
 
     # iterate time signatures and make notes
     for time_signature in time_signatures:
-        notes = make_repeated_notes_from_time_signature(time_signature, pitch=pitch)
+        notes = notetools.make_repeated_notes_from_time_signature(time_signature, pitch=pitch)
         result.append(notes)
 
     # return result

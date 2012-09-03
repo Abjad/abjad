@@ -1,7 +1,3 @@
-from abjad.tools.notetools.Note import Note
-from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
-
-
 def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
     '''.. versionadded:: 2.0
 
@@ -17,13 +13,15 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
 
     Return list of notes.
     '''
+    from abjad.tools import contexttools
+    from abjad.tools import notetools
 
     # afford basic input polymorphism
-    time_signature = TimeSignatureMark(time_signature)
+    time_signature = contexttools.TimeSignatureMark(time_signature)
 
     # check input
     if time_signature.is_nonbinary:
         raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
 
     # make and return repeated notes
-    return time_signature.numerator * Note(pitch, (1, time_signature.denominator))
+    return time_signature.numerator * notetools.Note(pitch, (1, time_signature.denominator))

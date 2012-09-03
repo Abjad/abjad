@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import leaftools
 
 
 def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
@@ -36,7 +37,6 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
         renamed ``construct.percussion_note()`` to
         ``notetools.make_percussion_note()``.
     '''
-    from abjad.tools import leaftools
     from abjad.tools import notetools
     from abjad.tools import resttools
 

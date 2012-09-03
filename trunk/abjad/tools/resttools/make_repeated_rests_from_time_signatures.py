@@ -1,6 +1,3 @@
-from abjad.tools.resttools.make_repeated_rests_from_time_signature import make_repeated_rests_from_time_signature
-
-
 def make_repeated_rests_from_time_signatures(time_signatures):
     '''.. versionadded 1.1.2
 
@@ -13,13 +10,14 @@ def make_repeated_rests_from_time_signatures(time_signatures):
 
     Use ``sequencetools.flatten_sequence()`` to flatten output if required.
     '''
+    from abjad.tools import resttools
 
     # init result
     result = []
 
     # iterate time signatures and make rests
     for time_signature in time_signatures:
-        rests = make_repeated_rests_from_time_signature(time_signature)
+        rests = resttools.make_repeated_rests_from_time_signature(time_signature)
         result.append(rests)
 
     # return result

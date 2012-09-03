@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.notetools.Note import Note
+from abjad.tools import componenttools
 
 
 def all_are_notes(expr):
@@ -28,5 +27,6 @@ def all_are_notes(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import notetools
 
-    return all_are_components(expr, klasses=(Note,))
+    return componenttools.all_are_components(expr, klasses=(notetools.Note,))

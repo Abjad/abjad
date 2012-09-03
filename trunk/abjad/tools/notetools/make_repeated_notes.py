@@ -1,4 +1,3 @@
-from abjad.tools.notetools.make_notes import make_notes
 from abjad.tools import durationtools
 
 
@@ -36,5 +35,6 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
         renamed ``construct.run()`` to
         ``notetools.make_repeated_notes()``.
     '''
+    from abjad.tools import notetools
 
-    return make_notes([0] * count, [duration])
+    return notetools.make_notes([0] * count, [duration])

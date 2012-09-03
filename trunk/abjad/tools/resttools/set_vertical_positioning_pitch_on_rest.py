@@ -1,6 +1,3 @@
-from abjad.tools.resttools.Rest import Rest
-
-
 def set_vertical_positioning_pitch_on_rest(rest, pitch):
     r'''.. versionadded:: 2.0
 
@@ -23,8 +20,9 @@ def set_vertical_positioning_pitch_on_rest(rest, pitch):
     Return `rest`.
     '''
     from abjad.tools import pitchtools
+    from abjad.tools import resttools
 
-    if not isinstance(rest, Rest):
+    if not isinstance(rest, resttools.Rest):
         raise TypeError('\n\tMust be rest: "%s".' % rest)
 
     if pitch is not None:

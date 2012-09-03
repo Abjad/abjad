@@ -1,6 +1,3 @@
-from abjad.tools.resttools.Rest import Rest
-
-
 def yield_groups_of_rests_in_sequence(sequence):
     r'''.. versionadded:: 2.0
 
@@ -37,5 +34,6 @@ def yield_groups_of_rests_in_sequence(sequence):
     Return generator.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import resttools
 
-    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, Rest)
+    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, resttools.Rest)
