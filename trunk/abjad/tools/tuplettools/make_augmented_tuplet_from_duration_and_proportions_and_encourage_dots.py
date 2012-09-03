@@ -2,6 +2,8 @@ def make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
     duration, proportions, big_endian=True):
     '''.. versionadded:: 2.0
 
+    .. note:: Deprecated. Use ``tuplettools.make_tuplet_from_duration_and_proportions()`` instead.
+
     Make augmented tuplet from `duration` and `proportions` and encourage dots::
 
         >>> tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(

@@ -2,6 +2,8 @@ def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
     duration, proportions, big_endian=True):
     r'''.. versionadded:: 2.0
 
+    .. note:: Deprecated. Use ``tuplettools.make_tuplet_from_duration_and_proportions()`` instead.
+
     Make diminished tuplet from `duration` and nonzero integer `proportions`.
 
     Return tupletted leaves strictly without dots when all `proportions` equal ``1``::

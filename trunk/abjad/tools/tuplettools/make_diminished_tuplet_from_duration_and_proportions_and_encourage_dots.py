@@ -2,6 +2,8 @@ def make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(
     duration, proportions, big_endian=True):
     r'''.. versionadded:: 2.0
 
+    .. note:: Deprecate. Use ``tuplettools.make_tuplet_from_duration_and_proportions()`` instead.
+
     Make diminished tuplet from `duration` and `proportions` and encourage dots::
 
         >>> tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(

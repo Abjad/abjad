@@ -1820,6 +1820,7 @@ Composition packages
    tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots
    tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots
    tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
+   tools/tuplettools/make_tuplet_from_duration_and_proportions
    tools/tuplettools/make_tuplet_from_proportions_and_pair
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
    tools/tuplettools/remove_trivial_tuplets_in_expr
