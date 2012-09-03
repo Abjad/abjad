@@ -1,9 +1,8 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.decoratortools import requires
+from abjad.tools import decoratortools
+from abjad.tools import leaftools
 
 
-@requires(Leaf)
+@decoratortools.requires(leaftools.Leaf)
 def change_defective_chord_to_note_or_rest(chord):
     '''.. versionadded:: 1.1
 
@@ -83,10 +82,11 @@ def change_defective_chord_to_note_or_rest(chord):
         renamed ``chordtools.cast_defective()`` to
         ``chordtools.change_defective_chord_to_note_or_rest()``.
     '''
-    from abjad.tools import resttools
+    from abjad.tools import chordtools
     from abjad.tools import notetools
+    from abjad.tools import resttools
 
-    if isinstance(chord, Chord):
+    if isinstance(chord, chordtools.Chord):
         if len(chord) == 0:
             return resttools.Rest(chord)
         elif len(chord) == 1:

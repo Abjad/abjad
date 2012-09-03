@@ -1,10 +1,9 @@
+from abjad.tools import decoratortools
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
-from abjad.tools.notetools.Note import Note
 
 
-@requires(object, pitchtools.NumberedChromaticPitchClassColorMap)
+@decoratortools.requires(object, pitchtools.NumberedChromaticPitchClassColorMap)
 # TODO: change name to color_chord_note_heads_in_expr_by_pitch_class_color_map()
 def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
     r'''.. versionadded:: 2.0
@@ -70,14 +69,16 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
         renamed ``chordtools.color_note_heads_by_pc()`` to
         ``chordtools.color_chord_note_heads_by_pitch_class_color_map()``.
     '''
+    from abjad.tools import chordtools
+    from abjad.tools import notetools
 
-    if isinstance(chord, Chord):
+    if isinstance(chord, chordtools.Chord):
         for note_head in chord:
             pc = note_head.written_pitch.numbered_chromatic_pitch_class
             color = color_map.get(pc, None)
             if color is not None:
                 note_head.tweak.color = color
-    elif isinstance(chord, Note):
+    elif isinstance(chord, notetools.Note):
         note = chord
         note_head = note.note_head
         pc = note_head.written_pitch.numbered_chromatic_pitch_class

@@ -1,8 +1,8 @@
+from abjad.tools import decoratortools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
 
 
-@requires(object)
+@decoratortools.requires(object)
 def iterate_chords_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 

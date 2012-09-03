@@ -1,8 +1,8 @@
+from abjad.tools import decoratortools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
 
 
-@requires(Chord)
+@decoratortools.requires(Chord)
 def arpeggiate_chord(chord):
     '''.. versionadded:: 1.1
 
@@ -25,11 +25,11 @@ def arpeggiate_chord(chord):
         renamed ``chordtools.arpeggiate()`` to
         ``chordtools.arpeggiate_chord()``.
     '''
-    from abjad.tools.notetools.Note import Note
+    from abjad.tools import notetools
 
     result = []
     chord_written_duration = chord.written_duration
     for pitch in chord.written_pitches:
-        result.append(Note(pitch, chord_written_duration))
+        result.append(notetools.Note(pitch, chord_written_duration))
 
     return result

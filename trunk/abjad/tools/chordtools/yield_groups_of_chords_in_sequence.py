@@ -1,8 +1,8 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
+from abjad.tools import decoratortools
 
 
-@requires(lambda x: hasattr(x, '__contains__'))
+@decoratortools.requires(lambda x: hasattr(x, '__contains__'))
 def yield_groups_of_chords_in_sequence(sequence):
     r'''.. versionadded:: 2.0
 

@@ -1,9 +1,8 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
+from abjad.tools import componenttools
+from abjad.tools import decoratortools
 
 
-@requires(object)
+@decoratortools.requires(object)
 def all_are_chords(expr):
     '''.. versionadded:: 2.6
 
@@ -30,5 +29,6 @@ def all_are_chords(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import chordtools
 
-    return all_are_components(expr, klasses=(Chord,))
+    return componenttools.all_are_components(expr, klasses=(chordtools.Chord,))

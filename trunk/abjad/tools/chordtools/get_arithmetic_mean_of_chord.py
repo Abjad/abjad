@@ -1,8 +1,8 @@
+from abjad.tools import decoratortools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
 
 
-@requires(Chord)
+@decoratortools.requires(Chord)
 def get_arithmetic_mean_of_chord(chord):
     '''.. versionadded:: 2.0
 

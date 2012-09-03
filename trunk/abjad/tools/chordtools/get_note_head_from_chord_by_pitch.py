@@ -1,11 +1,9 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.decoratortools import requires
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
+from abjad.tools import decoratortools
 from abjad.tools import pitchtools
-from numbers import Number
+from abjad.tools.chordtools.Chord import Chord
 
 
-@requires(Chord, pitchtools.is_named_chromatic_pitch_token)
+@decoratortools.requires(Chord, pitchtools.is_named_chromatic_pitch_token)
 def get_note_head_from_chord_by_pitch(chord, pitch):
     '''.. versionadded:: 2.0
 
@@ -31,7 +29,7 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
 
     result = []
 
-    if isinstance(pitch, NamedChromaticPitch):
+    if isinstance(pitch, pitchtools.NamedChromaticPitch):
         for note_head in chord.note_heads:
             if note_head.written_pitch == pitch:
                 result.append(note_head)
