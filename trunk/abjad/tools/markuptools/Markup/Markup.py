@@ -73,7 +73,10 @@ class Markup(_DirectedMark):
         if isinstance(argument, str):
             to_parse = r'\markup {{ {} }}'.format(argument)
             parsed = lilypondparsertools.LilyPondParser()(to_parse)
-            contents = parsed.contents          
+            if all([isinstance(x, str) for x in parsed.contents]):
+                contents = (' '.join(parsed.contents),)
+            else:
+                contents = parsed.contents          
         elif isinstance(argument, markuptools.MarkupCommand):
             contents = (argument,)
         elif isinstance(argument, type(self)):
@@ -206,7 +209,9 @@ class Markup(_DirectedMark):
 
         # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
-            content = schemetools.format_scheme_value(self.contents[0])
+            content = self.contents[0]
+            if '"' in content:
+                content = schemetools.format_scheme_value(content)
             if direction:
                 return [r'{} \markup {{ {} }}'.format(direction, content)]
             return [r'\markup {{ {} }}'.format(content)]

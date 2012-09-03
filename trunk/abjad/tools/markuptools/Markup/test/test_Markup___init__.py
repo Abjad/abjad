@@ -72,6 +72,6 @@ def test_Markup___init___07():
     markup_2 = markuptools.Markup(markup_1, direction=Down)
 
     assert markup_1 is not markup_2
-    assert markup_2.contents == ('foo', 'contents', 'string')
+    assert markup_2.contents == ('foo contents string',)
     assert markup_2.direction is Down
     assert markup_2.markup_name == 'foo'

@@ -33,12 +33,12 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     }
     '''
 
-    assert result[1].lilypond_format == '\\score {\n\t\\new Staff {\n\t\tc\'4 ^ \\markup { "This is a global variable." }\n\t}\n}'
+    assert result[1].lilypond_format == '\\score {\n\t\\new Staff {\n\t\tc\'4 ^ \\markup { This is a global variable. }\n\t}\n}'
 
     r'''
     \score {
         \new Staff {
-            c'4 ^ \markup { "This is a global variable." }
+            c'4 ^ \markup { This is a global variable. }
         }
     }
     '''

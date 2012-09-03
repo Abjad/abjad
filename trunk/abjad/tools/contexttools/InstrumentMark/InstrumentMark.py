@@ -187,7 +187,7 @@ class InstrumentMark(ContextMark):
 
                 >>> instrument.instrument_name_markup = 'Alto Flute'
                 >>> instrument.instrument_name_markup
-                Markup(('Alto', 'Flute'))
+                Markup(('Alto Flute',))
 
             Return markup.
             '''
@@ -244,7 +244,7 @@ class InstrumentMark(ContextMark):
 
                 >>> instrument.short_instrument_name_markup = 'Alto Fl.'
                 >>> instrument.short_instrument_name_markup
-                Markup(('Alto', 'Fl.'))
+                Markup(('Alto Fl.',))
 
             Return markup.
             '''
