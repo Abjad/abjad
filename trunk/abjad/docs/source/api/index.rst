@@ -571,11 +571,11 @@ Composition packages
    tools/leaftools/repeat_leaves_in_expr
    tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
    tools/leaftools/replace_leaves_in_expr_with_parallel_voices
+   tools/leaftools/rest_leaf_at_offset
    tools/leaftools/scale_preprolated_leaf_duration
    tools/leaftools/set_preprolated_leaf_duration
    tools/leaftools/show_leaves
    tools/leaftools/split_leaf_at_offset
-   tools/leaftools/split_leaf_at_offset_and_rest_right_half
    tools/leaftools/split_leaf_at_offsets
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 

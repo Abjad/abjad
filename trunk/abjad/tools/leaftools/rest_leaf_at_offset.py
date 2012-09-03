@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 # TODO: implement corresponding function to rest left half
-def split_leaf_at_offset_and_rest_right_half(leaf, offset):
+def rest_leaf_at_offset(leaf, offset):
     r'''.. versionadded:: 1.1
 
     Split `leaf` at `offset` and rest right half::
@@ -21,7 +21,7 @@ def split_leaf_at_offset_and_rest_right_half(leaf, offset):
 
     ::
 
-        >>> leaftools.split_leaf_at_offset_and_rest_right_half(staff.leaves[1], (1, 32))
+        >>> leaftools.rest_leaf_at_offset(staff.leaves[1], (1, 32))
         ([Note("d'32")], [Note("d'16.")])
 
     ::
@@ -40,7 +40,7 @@ def split_leaf_at_offset_and_rest_right_half(leaf, offset):
 
     .. versionchanged:: 2.0
         renamed ``leaftools.shorten()`` to
-        ``leaftools.split_leaf_at_offset_and_rest_right_half()``.
+        ``leaftools.rest_leaf_at_offset()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools import resttools
