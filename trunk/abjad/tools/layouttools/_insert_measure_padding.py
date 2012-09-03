@@ -27,7 +27,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
 
     # forbid updates because
     # componenttools.extend_in_parent_of_component() and
-    # componenttools.extend_left_in_parent_of_component_and_grow_spanners()
+    # componenttools.extend_left_in_parent_of_component()
     # call self.stop
     #root._update._forbid_component_update()
     root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
@@ -40,11 +40,11 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
             start_leaves = [x for x in start_components if isinstance(x, Leaf)]
             for start_leaf in start_leaves:
                 if splice:
-                    componenttools.extend_left_in_parent_of_component_and_grow_spanners(
-                        start_leaf, [klass.__class__(front)])
+                    componenttools.extend_left_in_parent_of_component(
+                        start_leaf, [klass.__class__(front)], grow_spanners=True)
                 else:
-                    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners(
-                        start_leaf, [klass.__class__(front)])
+                    componenttools.extend_left_in_parent_of_component(
+                        start_leaf, [klass.__class__(front)], grow_spanners=False)
         if back is not None:
             stop_components = componenttools.get_improper_descendents_of_component_that_stop_with_component(
                 measure)

@@ -20,8 +20,8 @@ def extend_left_in_parent_of_component(component, new_components, grow_spanners=
     ::
 
         >>> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
-        >>> componenttools.extend_left_in_parent_of_component_and_grow_spanners(
-        ...     voice[0], notes)
+        >>> componenttools.extend_left_in_parent_of_component(
+        ...     voice[0], notes, grow_spanners=True)
         [Note("c'8"), Note("d'8"), Note("e'8"), Note("c'8")]
 
     ::
@@ -44,7 +44,8 @@ def extend_left_in_parent_of_component(component, new_components, grow_spanners=
     ::
 
         >>> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
-        >>> componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners(voice[0], notes)
+        >>> componenttools.extend_left_in_parent_of_component(
+        ...     voice[0], notes, grow_spanners=False)
         [Note("c'8"), Note("d'8"), Note("e'8"), Note("c'8")]
 
     ::
