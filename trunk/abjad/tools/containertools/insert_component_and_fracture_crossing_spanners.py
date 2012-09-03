@@ -1,5 +1,9 @@
 def insert_component_and_fracture_crossing_spanners(container, i, component):
-    r'''Insert `component` into `container` at index `i` and fracture spanners::
+    r'''Insert component and fracture crossing spanners.
+
+    .. note:: Deprecated. Use ``containertools.insert_component()`` instead.
+
+    Insert `component` into `container` at index `i` and fracture spanners::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -42,21 +46,23 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     from abjad.tools import leaftools
     from abjad.tools import spannertools
 
-    # check input
-    assert isinstance(container, containertools.Container)
-    assert isinstance(component, componenttools.Component)
-    assert isinstance(i, int)
+#    # check input
+#    assert isinstance(container, containertools.Container)
+#    assert isinstance(component, componenttools.Component)
+#    assert isinstance(i, int)
+#
+#    result = []
+#    component._switch(container)
+#    container._music.insert(i, component)
+#
+#    previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, -1)
+#    if previous_leaf:
+#        result.extend(spannertools.fracture_spanners_attached_to_component(previous_leaf, direction=Right))
+#
+#    next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, 1)
+#    if next_leaf:
+#        result.extend(spannertools.fracture_spanners_attached_to_component(next_leaf, direction=Left))
+#
+#    return result
 
-    result = []
-    component._switch(container)
-    container._music.insert(i, component)
-
-    previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, -1)
-    if previous_leaf:
-        result.extend(spannertools.fracture_spanners_attached_to_component(previous_leaf, direction=Right))
-
-    next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, 1)
-    if next_leaf:
-        result.extend(spannertools.fracture_spanners_attached_to_component(next_leaf, direction=Left))
-
-    return result
+    return containertools.insert_component(container, i, component, fracture_spanners=True)

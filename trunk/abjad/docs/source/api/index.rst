@@ -212,6 +212,7 @@ Composition packages
    tools/containertools/get_first_element_starting_before_or_at_offset
    tools/containertools/get_first_element_starting_strictly_after_offset
    tools/containertools/get_first_element_starting_strictly_before_offset
+   tools/containertools/insert_component
    tools/containertools/insert_component_and_do_not_fracture_crossing_spanners
    tools/containertools/insert_component_and_fracture_crossing_spanners
    tools/containertools/iterate_containers_backward_in_expr

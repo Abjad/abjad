@@ -1,6 +1,8 @@
 def insert_component_and_do_not_fracture_crossing_spanners(container, i, component):
     r'''.. versionadded:: 2.0
 
+    .. note:: Deprecated. Use ``containertools.insert_component()`` instead.
+
     Insert `component` into `container` at index `i` and do not fracture crossing spanners::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -40,11 +42,14 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
         renamed ``containertools.insert_and_do_not_fracture()`` to
         ``containertools.insert_component_and_do_not_fracture_crossing_spanners()``.
     '''
+    from abjad.tools import containertools
 
-    # insert component into container at index i
-    # to avoid pychecker slice assignment error
-    #container[i:i] = [component]
-    container.__setitem__(slice(i, i), [component])
+#    # insert component into container at index i
+#    # to avoid pychecker slice assignment error
+#    #container[i:i] = [component]
+#    container.__setitem__(slice(i, i), [component])
+#
+#    # return container
+#    return container
 
-    # return container
-    return container
+    return containertools.insert_component(container, i, component, fracture_spanners=False)
