@@ -1,8 +1,8 @@
 from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
-from abjad.tools.leaftools.repeat_leaf_and_extend_spanners import repeat_leaf_and_extend_spanners
+from abjad.tools.leaftools.repeat_leaf import repeat_leaf
 
 
-def repeat_leaves_in_expr_and_extend_spanners(expr, total=1):
+def repeat_leaves_in_expr(expr, total=1):
     r'''.. versionadded:: 1.1
 
     Repeat leaves in `expr` and extend spanners::
@@ -20,7 +20,7 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total=1):
 
     ::
 
-        >>> result = leaftools.repeat_leaves_in_expr_and_extend_spanners(staff[2:], total=3)
+        >>> result = leaftools.repeat_leaves_in_expr(staff[2:], total=3)
 
     ::
 
@@ -44,8 +44,8 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total=1):
 
     .. versionchanged:: 2.0
         renamed ``leaftools.multiply()`` to
-        ``leaftools.repeat_leaves_in_expr_and_extend_spanners()``.
+        ``leaftools.repeat_leaves_in_expr()``.
     '''
 
     for leaf in iterate_leaves_backward_in_expr(expr):
-        repeat_leaf_and_extend_spanners(leaf, total)
+        repeat_leaf(leaf, total)

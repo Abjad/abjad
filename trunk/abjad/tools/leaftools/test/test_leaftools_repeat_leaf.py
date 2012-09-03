@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_repeat_leaf_and_extend_spanners_01():
+def test_leaftools_repeat_leaf_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(staff.leaves)
@@ -15,7 +15,7 @@ def test_leaftools_repeat_leaf_and_extend_spanners_01():
     }
     '''
 
-    leaftools.repeat_leaf_and_extend_spanners(staff[0], total=3)
+    leaftools.repeat_leaf(staff[0], total=3)
 
     r'''
     \new Staff {

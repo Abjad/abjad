@@ -567,8 +567,8 @@ Composition packages
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers
    tools/leaftools/remove_outer_rests_from_sequence
    tools/leaftools/remove_terminal_rests_from_sequence
-   tools/leaftools/repeat_leaf_and_extend_spanners
-   tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
+   tools/leaftools/repeat_leaf
+   tools/leaftools/repeat_leaves_in_expr
    tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
    tools/leaftools/replace_leaves_in_expr_with_parallel_voices
    tools/leaftools/scale_preprolated_leaf_duration
