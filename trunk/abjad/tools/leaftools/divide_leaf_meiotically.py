@@ -51,7 +51,7 @@ def divide_leaf_meiotically(leaf, n=2):
     '''
 
     # TODO: find a way to optimize this; either reimplement
-    # componenttools.extend_in_parent_of_component_and_grow_spanners()
+    # componenttools.extend_in_parent_of_component()
     # or come up with something else.
 
     assert isinstance(leaf, Leaf)
@@ -59,7 +59,7 @@ def divide_leaf_meiotically(leaf, n=2):
     assert 0 < n
 
     new_leaves = componenttools.copy_components_and_remove_spanners([leaf], n - 1)
-    componenttools.extend_in_parent_of_component_and_grow_spanners(leaf, new_leaves)
+    componenttools.extend_in_parent_of_component(leaf, new_leaves, grow_spanners=True)
     adjustment_multiplier = durationtools.Duration(1, n)
     leaf.written_duration *= adjustment_multiplier
     for new_leaf in new_leaves:

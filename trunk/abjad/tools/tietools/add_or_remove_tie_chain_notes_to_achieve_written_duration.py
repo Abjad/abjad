@@ -69,7 +69,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
                 leaf.written_duration = token.written_duration
             if not spannertools.is_component_with_spanner_attached(tie_chain[-1], tietools.TieSpanner):
                 tietools.TieSpanner(list(tie_chain))
-            componenttools.extend_in_parent_of_component_and_grow_spanners(tie_chain[-1], extra_leaves)
+            componenttools.extend_in_parent_of_component(tie_chain[-1], extra_leaves, grow_spanners=True)
     else:
         duration_tokens = notetools.make_notes(0, new_written_duration)
         assert isinstance(duration_tokens[0], tuplettools.Tuplet)

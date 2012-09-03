@@ -45,5 +45,7 @@ def repeat_leaf_and_extend_spanners(leaf, total=1):
         ``leaftools.repeat_leaf_and_extend_spanners()``.
     '''
 
-    componenttools.extend_in_parent_of_component_and_grow_spanners(
-        leaf, componenttools.copy_components_and_remove_spanners([leaf], total - 1))
+    componenttools.extend_in_parent_of_component(
+        leaf, 
+        componenttools.copy_components_and_remove_spanners([leaf], total - 1), 
+        grow_spanners=True)

@@ -55,7 +55,6 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
         ``leaftools.divide_leaves_in_expr_meiotically()``.
     '''
 
-    # can not wrap with update control because of          #
-    # extend_in_parent_of_component_and_grow_spanners() #
+    # can not wrap with update control because ofextend_in_parent_of_component()
     for leaf in iterate_leaves_backward_in_expr(expr):
         divide_leaf_meiotically(leaf, n)

@@ -26,7 +26,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
     root = componenttools.component_to_score_root(expr[0])
 
     # forbid updates because
-    # componenttools.extend_in_parent_of_component_and_grow_spanners() and
+    # componenttools.extend_in_parent_of_component() and
     # componenttools.extend_left_in_parent_of_component_and_grow_spanners()
     # call self.stop
     #root._update._forbid_component_update()
@@ -51,11 +51,11 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
             stop_leaves = [x for x in stop_components if isinstance(x, Leaf)]
             for stop_leaf in stop_leaves:
                 if splice:
-                    componenttools.extend_in_parent_of_component_and_grow_spanners(
-                        stop_leaf, [klass.__class__(back)])
+                    componenttools.extend_in_parent_of_component(
+                        stop_leaf, [klass.__class__(back)], grow_spanners=True)
                 else:
-                    componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(
-                        stop_leaf, [klass.__class__(back)])
+                    componenttools.extend_in_parent_of_component(
+                        stop_leaf, [klass.__class__(back)], grow_spanners=False)
 
     # allow updates after all calls to spanner-growing functions are done #
     #root._update._allow_component_update()
