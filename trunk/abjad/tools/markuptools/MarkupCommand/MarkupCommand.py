@@ -1,6 +1,5 @@
+from abjad.tools import schemetools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.schemetools import Scheme
-from abjad.tools.schemetools import format_scheme_value
 
 
 class MarkupCommand(AbjadObject):
@@ -109,14 +108,14 @@ class MarkupCommand(AbjadObject):
                     result.append('}')
                 elif isinstance(x, type(self)):
                     result.extend(x._get_format_pieces(is_indented=is_indented))
-                elif isinstance(x, Scheme):
+                elif isinstance(x, schemetools.Scheme):
                     result.append(x.lilypond_format)
                 else:
-                    formatted = format_scheme_value(x)
-                    if formatted == x and isinstance(x, str):
-                        result.append(x)
+                    formatted = schemetools.format_scheme_value(x)
+                    if isinstance(x, str):
+                        result.append(formatted)
                     else:
-                        result.append('#%s' % formatted)
+                        result.append('#{}'.format(formatted))
             return ['{}{}'.format(indent, x) for x in result]
         parts = [r'\%s' % self.command]
         parts.extend(recurse(self.args))

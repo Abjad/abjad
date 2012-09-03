@@ -8,15 +8,36 @@ def test_notetools_label_notes_in_expr_with_note_indices_01():
 
     r'''
     \new Staff {
-        c'8 _ \markup { \small 0 }
-        d'8 _ \markup { \small 1 }
+        c'8
+            _ \markup {
+                \small
+                    0
+                }
+        d'8
+            _ \markup {
+                \small
+                    1
+                }
         r8
         r8
-        g'8 _ \markup { \small 2 }
-        a'8 _ \markup { \small 3 }
+        g'8
+            _ \markup {
+                \small
+                    2
+                }
+        a'8
+            _ \markup {
+                \small
+                    3
+                }
         r8
-        c''8 _ \markup { \small 4 }
+        c''8
+            _ \markup {
+                \small
+                    4
+                }
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\tc'8 _ \\markup { \\small 0 }\n\td'8 _ \\markup { \\small 1 }\n\tr8\n\tr8\n\tg'8 _ \\markup { \\small 2 }\n\ta'8 _ \\markup { \\small 3 }\n\tr8\n\tc''8 _ \\markup { \\small 4 }\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t0\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1\n\t\t\t}\n\tr8\n\tr8\n\tg'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\ta'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t3\n\t\t\t}\n\tr8\n\tc''8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n}"
+

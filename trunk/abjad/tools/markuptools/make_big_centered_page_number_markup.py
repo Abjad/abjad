@@ -10,12 +10,24 @@ def make_big_centered_page_number_markup(text=None):
 
     ::
 
-        >>> f(markup)
+        >>> print markup.indented_lilypond_format
         \markup {
-            \fill-line {
-            \bold \fontsize #3 \concat {
-            \on-the-fly #print-page-number-check-first
-            \fromproperty #'page:page-number-string } } }
+            \fill-line
+                {
+                    \bold
+                        \fontsize
+                            #3
+                            \concat
+                                {
+                                    \on-the-fly
+                                        print
+                                        page-number-check-first
+                                    \fromproperty
+                                        page
+                                    :page-number-string
+                                }
+                }
+            }
 
     Return markup.
 

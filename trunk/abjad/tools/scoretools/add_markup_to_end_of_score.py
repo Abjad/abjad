@@ -15,7 +15,8 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
 
         >>> z(markup)
         markuptools.Markup(
-            ('\\italic \\right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." }',),
+            (MarkupCommand('italic', MarkupCommand('right-column',
+                ['Bremen - Boston - LA.', 'Jul 2010 - May 2011.'])),),
             direction=Down
             )
 
@@ -28,7 +29,13 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
             e'4
             \once \override TextScript #'extra-offset = #'(4 . -2)
             f'4 _ \markup { 
-                \italic \right-column { "Bremen - Boston - LA." "Jul 2010 - May 2011." } }
+                \italic
+                    \right-column
+                        {
+                            "Bremen - Boston - LA."
+                            "Jul 2010 - May 2011."
+                        }
+                }
         }
 
     Return `markup`.

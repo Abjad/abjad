@@ -17,25 +17,41 @@ def test_verticalitytools_label_vertical_moments_in_expr_with_interval_class_vec
     \new Score <<
         \new Staff {
             c'8
-            d'8 _ \markup { \tiny { 0010020 } }
+            d'8
+                _ \markup {
+                    \tiny
+                        0010020
+                    }
             e'8
-            f'8 _ \markup { \tiny { 1000020 } }
+            f'8
+                _ \markup {
+                    \tiny
+                        1000020
+                    }
         }
         \new Staff {
             \clef "alto"
             g4
-            f4 _ \markup { \tiny { 0100110 } }
+            f4
+                _ \markup {
+                    \tiny
+                        0100110
+                    }
         }
         \new Staff {
             \clef "bass"
-            c,2 _ \markup { \tiny { 1000020 } }
+            c,2
+                _ \markup {
+                    \tiny
+                        1000020
+                    }
         }
     >>
     '''
 
     assert componenttools.is_well_formed_component(score)
-    assert score.lilypond_format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8 _ \\markup { \\tiny { 0010020 } }\n\t\te\'8\n\t\tf\'8 _ \\markup { \\tiny { 1000020 } }\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4 _ \\markup { \\tiny { 0100110 } }\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2 _ \\markup { \\tiny { 1000020 } }\n\t}\n>>'
-
+    assert score.lilypond_format == '\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t0010020\n\t\t\t\t}\n\t\te\'8\n\t\tf\'8\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t1000020\n\t\t\t\t}\n\t}\n\t\\new Staff {\n\t\t\\clef "alto"\n\t\tg4\n\t\tf4\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t0100110\n\t\t\t\t}\n\t}\n\t\\new Staff {\n\t\t\\clef "bass"\n\t\tc,2\n\t\t\t_ \\markup {\n\t\t\t\t\\tiny\n\t\t\t\t\t1000020\n\t\t\t\t}\n\t}\n>>'
+ 
 
 def test_verticalitytools_label_vertical_moments_in_expr_with_interval_class_vectors_02():
     '''Vertical moments with quartertones format with a two-row
@@ -45,7 +61,17 @@ def test_verticalitytools_label_vertical_moments_in_expr_with_interval_class_vec
     verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors(chord)
 
     r'''
-    <bf bqf a'>4 _ \markup { \tiny { \column { "0100000" "110000" } } }
+    <bf bqf a'>4
+        _ \markup {
+            \tiny
+                \column
+                    {
+                        0100000
+                        110000
+                    }
+            }
     '''
 
-    assert chord.lilypond_format == '<bf bqf a\'>4 _ \\markup { \\tiny { \\column { "0100000" "110000" } } }'
+    assert chord.lilypond_format == "<bf bqf a'>4\n\t_ \\markup {\n\t\t\\tiny\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t0100000\n\t\t\t\t\t110000\n\t\t\t\t}\n\t\t}"
+
+ 

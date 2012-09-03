@@ -16,7 +16,7 @@ def numeric_seconds_to_escaped_clock_string(seconds):
     ::
 
         >>> markuptools.Markup('"%s"' % clock_string, Up)(note)
-        Markup(('"1\'57\\""',), direction=Up)(c'4)
+        Markup(('1\'57\\"',), direction=Up)(c'4)
 
     ::
 

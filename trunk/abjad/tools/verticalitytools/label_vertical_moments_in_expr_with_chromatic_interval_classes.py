@@ -30,18 +30,50 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
         \new Score <<
             \new Staff {
                 c'8
-                d'8 _ \markup { \small { \column { 2 7 } } }
+                d'8
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    2
+                                    7
+                                }
+                        }
                 e'8
-                f'8 _ \markup { \small { \column { 5 5 } } }
+                f'8
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    5
+                                    5
+                                }
+                        }
             }
             \new Staff {
                 \clef "alto"
                 g4
-                f4 _ \markup { \small { \column { 4 5 } } }
+                f4
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    4
+                                    5
+                                }
+                        }
             }
             \new Staff {
                 \clef "bass"
-                c,2 _ \markup { \small { \column { 12 7 } } }
+                c,2
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    12
+                                    7
+                                }
+                        }
             }
         >>
 
@@ -67,5 +99,5 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
                 bass_note, upper_note)
             hcics.append(hcic)
         hcics = ' '.join([str(hcic) for hcic in hcics])
-        hcics = r'\small { \column { %s } }' % hcics
+        hcics = r'\small \column { %s }' % hcics
         markuptools.Markup(hcics, markup_direction)(vertical_moment.start_leaves[-1])

@@ -29,18 +29,50 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
         \new Score <<
             \new Staff {
                 c'8
-                d'8 _ \markup { \small { \column { 16 12 } } }
+                d'8
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    16
+                                    12
+                                }
+                        }
                 e'8
-                f'8 _ \markup { \small { \column { 18 11 } } }
+                f'8
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    18
+                                    11
+                                }
+                        }
             }
             \new Staff {
                 \clef "alto"
                 g4
-                f4 _ \markup { \small { \column { 17 11 } } }
+                f4
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    17
+                                    11
+                                }
+                        }
             }
             \new Staff {
                 \clef "bass"
-                c,2 _ \markup { \small { \column { 15 12 } } }
+                c,2
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    15
+                                    12
+                                }
+                        }
             }
         >>
 
@@ -66,5 +98,5 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
             diatonic_intervals.append(diatonic_interval)
         intervals = [x.number for x in diatonic_intervals]
         intervals = ' '.join([str(x) for x in intervals])
-        intervals = r'\small { \column { %s } }' % intervals
+        intervals = r'\small \column { %s }' % intervals
         markuptools.Markup(intervals, markup_direction)(vertical_moment.start_leaves[-1])

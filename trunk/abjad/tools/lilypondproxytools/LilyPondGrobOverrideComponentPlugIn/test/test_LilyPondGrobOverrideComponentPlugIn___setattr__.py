@@ -1253,11 +1253,11 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
-    t.override.tuplet_number.text = markuptools.Markup('"6:4"')
+    t.override.tuplet_number.text = markuptools.Markup('6:4')
 
     r'''
     \new Voice \with {
-        \override TupletNumber #'text = \markup { "6:4" }
+        \override TupletNumber #'text = \markup { 6:4 }
     } {
         c'8 [
         d'8
@@ -1267,7 +1267,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.lilypond_format == '\\new Voice \\with {\n\t\\override TupletNumber #\'text = \\markup { "6:4" }\n} {\n\tc\'8 [\n\td\'8\n\te\'8\n\tf\'8 ]\n}'
+    assert t.lilypond_format == '\\new Voice \\with {\n\t\\override TupletNumber #\'text = \\markup { 6:4 }\n} {\n\tc\'8 [\n\td\'8\n\te\'8\n\tf\'8 ]\n}'
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___59():

@@ -14,25 +14,27 @@ def format_scheme_value(value):
     Return string.
     '''
     from abjad.tools.schemetools.Scheme import Scheme
+
     if isinstance(value, str):
-        if -1 == value.find(' '):
+        if -1 == value.find(' ') and -1 == value.find('"'):
             return value
-        if value.startswith('"') and value.endswith('"'):
+        elif value.startswith('"') and value.endswith('"'):
             return value
-        value = repr(value)
-        if value.startswith("'") and value.endswith("'"):
-            value = value.replace('"', '\"')
-            value = '"' + value[1:]
-            value = value[:-1] + '"'
-        return value
+        else:
+            return '"{}"'.format(value)
+
     elif isinstance(value, bool):
         if value:
             return '#t'
         return '#f'
+
     elif isinstance(value, (list, tuple)):
         return '(%s)' % ' '.join([format_scheme_value(x) for x in value])
+
     elif isinstance(value, Scheme):
         return str(value)
+
     elif isinstance(value, type(None)):
         return '#f'
+
     return str(value)

@@ -14,7 +14,7 @@ class TextScriptSpanner(Spanner):
         >>> spanner = spannertools.TextScriptSpanner(staff[:])
         >>> spanner.override.text_script.color = 'red'
         >>> markuptools.Markup(r'\italic { espressivo }', Up)(staff[1])
-        Markup(('\\italic { espressivo }',), direction=Up)(d'8)
+        Markup((MarkupCommand('italic', ['espressivo']),), direction=Up)(d'8)
 
     ::
 

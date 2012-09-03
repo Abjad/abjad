@@ -11,12 +11,22 @@ def make_vertically_adjusted_composer_markup(composer,
 
     ::
 
-        >>> f(markup)
-        \markup { 
-                \override #'(font-name . "Times")
-                \hspace #0 \raise #-20
-                \fontsize #3 "Josquin Desprez" \hspace #0
+        >>> print markup.indented_lilypond_format
+        \markup {
+            \override
+                #'(font - name Times)
+                {
+                    \hspace
+                        #0
+                    \raise
+                        #-20
+                        \fontsize
+                            #3
+                            "Josquin Desprez"
+                    \hspace
+                        #0
                 }
+            }
 
     Return markup.
     '''
@@ -28,9 +38,11 @@ def make_vertically_adjusted_composer_markup(composer,
     assert isinstance(space_right, (int, float))
 
     contents = r'''
-        \override #'(font-name . "%s")
-        \hspace #0 \raise #-%s
-        \fontsize #%s "%s" \hspace #%s
+        \override #'(font-name . "%s") {
+            \hspace #0
+            \raise #-%s \fontsize #%s "%s"
+            \hspace #%s
+        }
        ''' % (font_name, space_above, font_size, composer, space_right)
 
     return Markup(contents)

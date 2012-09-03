@@ -11,7 +11,7 @@ def make_blank_line_markup():
     ::
 
         >>> markup
-        Markup(('\\fill-line { " " }',))
+        Markup((MarkupCommand('fill-line', [' ']),))
 
     ::
 

@@ -28,18 +28,34 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
         \new Score <<
             \new Staff {
                 c'8
-                d'8 _ \markup { \tiny { 0010020 } }
+                d'8
+                    _ \markup {
+                        \tiny
+                            0010020
+                        }
                 e'8
-                f'8 _ \markup { \tiny { 1000020 } }
+                f'8
+                    _ \markup {
+                        \tiny
+                            1000020
+                        }
             }
             \new Staff {
                 \clef "alto"
                 g4
-                f4 _ \markup { \tiny { 0100110 } }
+                f4
+                    _ \markup {
+                        \tiny
+                            0100110
+                        }
             }
             \new Staff {
                 \clef "bass"
-                c,2 _ \markup { \tiny { 1000020 } }
+                c,2
+                    _ \markup {
+                        \tiny
+                            1000020
+                        }
             }
         >>
 
@@ -68,6 +84,6 @@ def _format_interval_class_vector(interval_class_vector):
         for i in range(6):
             quartertones.append(interval_class_vector[i+0.5])
         quartertones = ''.join([str(x) for x in quartertones])
-        return r'\tiny { \column { "%s" "%s" } }' % (counts, quartertones)
+        return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
     else:
-        return r'\tiny { %s }' % counts
+        return r'\tiny %s' % counts

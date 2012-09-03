@@ -1,6 +1,6 @@
-from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
-from abjad.tools.markuptools.MarkupCommand import MarkupCommand
+from abjad.tools import schemetools
 from abjad.tools import stringtools
+from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
 
 
 class Markup(_DirectedMark):
@@ -13,7 +13,7 @@ class Markup(_DirectedMark):
     ::
 
         >>> markup
-        Markup(('\\bold { "This is markup text." }',))
+        Markup((MarkupCommand('bold', ['This is markup text.']),))
 
     ::
 
@@ -46,7 +46,7 @@ class Markup(_DirectedMark):
     ::
 
         >>> markup(note)
-        Markup(('\\bold { "This is markup text." }',))(c'4)
+        Markup((MarkupCommand('bold', ['This is markup text.']),))(c'4)
 
     ::
 
@@ -68,16 +68,22 @@ class Markup(_DirectedMark):
     ### INITIALIZER ###
 
     def __init__(self, argument, direction=None, markup_name=None):
-        if isinstance(argument, (str, MarkupCommand)):
+        from abjad.tools import lilypondparsertools
+        from abjad.tools import markuptools
+        if isinstance(argument, str):
+            to_parse = r'\markup {{ {} }}'.format(argument)
+            parsed = lilypondparsertools.LilyPondParser()(to_parse)
+            contents = parsed.contents          
+        elif isinstance(argument, markuptools.MarkupCommand):
             contents = (argument,)
-        elif isinstance(argument, Markup):
+        elif isinstance(argument, type(self)):
             contents = argument._contents
             direction = direction or argument._direction
             markup_name = markup_name or argument._markup_name
         elif isinstance(argument, (list, tuple)) and 0 < len(argument):
             contents = []
             for arg in argument:
-                if isinstance(arg, (str, MarkupCommand)):
+                if isinstance(arg, (str, markuptools.MarkupCommand)):
                     contents.append(arg)
                 else:
                     contents.append(str(arg))
@@ -137,11 +143,27 @@ class Markup(_DirectedMark):
 
             >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
             >>> markup.contents
-            ('\\bold { "This is markup text." }',)
+            (MarkupCommand('bold', ['This is markup text.']),)
 
         Return string
         '''
         return self._contents
+
+    @property
+    def indented_lilypond_format(self):
+        r'''Read-only indented LilyPond format of markup::
+
+            >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            >>> print markup.indented_lilypond_format
+            \markup {
+                \bold {
+                    "This is markup text."
+                    }
+                }
+
+        Return string.
+        '''
+        return '\n'.join(self._get_format_pieces(is_indented=True))
 
     @property
     def lilypond_format(self):
@@ -182,17 +204,21 @@ class Markup(_DirectedMark):
         if self.direction is not None:
             direction = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
 
+        # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
+            content = schemetools.format_scheme_value(self.contents[0])
             if direction:
-                return [r'{} \markup {{ {} }}'.format(direction, self.contents[0])]
-            return [r'\markup {{ {} }}'.format(self.contents[0])]
+                return [r'{} \markup {{ {} }}'.format(direction, content)]
+            return [r'\markup {{ {} }}'.format(content)]
 
+        # multiple strings or markup commands
         if direction:
             pieces = [r'{} \markup {{'.format(direction)]
         else:
             pieces = [r'\markup {']
         for content in self.contents:
             if isinstance(content, str):
+                content = schemetools.format_scheme_value(content)
                 pieces.append('{}{}'.format(indent, content))
             else:
                 pieces.extend(['{}{}'.format(indent, x) for x in

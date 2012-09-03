@@ -492,6 +492,11 @@ class _LilyPondLexicalDefinition(object):
         self.string_accumulator += t.value
         pass
 
+    def t_quote_XXX(self, t):
+        r'\\"'
+        self.string_accumulator += t.value
+        pass
+
     # lexer.ll:443
     # <quote,lyric_quote>[^\\""]+
     def t_quote_443(self, t):
@@ -505,10 +510,7 @@ class _LilyPondLexicalDefinition(object):
         r'\"'
         t.lexer.pop_state()
         t.type = 'STRING'
-        if self.string_accumulator.find(' ') == -1:
-            t.value = self.string_accumulator
-        else:
-            t.value = '"{}"'.format(self.string_accumulator)
+        t.value = self.string_accumulator
         return t
 
     # lexer.ll:456

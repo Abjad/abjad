@@ -28,18 +28,54 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction=Dow
         \new Score <<
             \new Staff {
                 c'8
-                d'8 _ \markup { \small { \column { 2 -5 -24 } } }
+                d'8
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    2
+                                    -5
+                                    -24
+                                }
+                        }
                 e'8
-                f'8 _ \markup { \small { \column { 5 -7 -24 } } }
+                f'8
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    5
+                                    -7
+                                    -24
+                                }
+                        }
             }
             \new Staff {
                 \clef "alto"
                 g4
-                f4 _ \markup { \small { \column { 4 -7 -24 } } }
+                f4
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    4
+                                    -7
+                                    -24
+                                }
+                        }
             }
             \new Staff {
                 \clef "bass"
-                c,2 _ \markup { \small { \column { 0 -5 -24 } } }
+                c,2
+                    _ \markup {
+                        \small
+                            \column
+                                {
+                                    0
+                                    -5
+                                    -24
+                                }
+                        }
             }
         >>
 
@@ -55,5 +91,5 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction=Dow
             continue
         pitch_numbers = [abs(pitch.numbered_chromatic_pitch) for pitch in pitches]
         pitch_numbers = ' '.join([str(x) for x in pitch_numbers])
-        pitch_numbers = r'\small { \column { %s } }' % pitch_numbers
+        pitch_numbers = r'\small \column { %s }' % pitch_numbers
         markuptools.Markup(pitch_numbers, markup_direction)(vertical_moment.start_leaves[-1])

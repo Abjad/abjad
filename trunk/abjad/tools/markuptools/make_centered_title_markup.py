@@ -10,17 +10,33 @@ def make_centered_title_markup(title, font_name='Times', font_size=18):
 
     ::
 
-        >>> f(markup)
-        \markup { \column {
-                    \center-align {
-                        \override #'(font-name . "Times")
-                        \fontsize #18 {
-                            " "   " "   " "   " "   " "
-                            \line { "String Quartet" } 
-                            " "   " "   " "
+        >>> print markup.indented_lilypond_format
+        \markup {
+            \column
+                {
+                    \center-align
+                        {
+                            \override
+                                #'(font - name Times)
+                                \fontsize
+                                    #18
+                                    {
+                                        " "
+                                        " "
+                                        " "
+                                        " "
+                                        " "
+                                        \line
+                                            {
+                                                "String Quartet"
+                                            }
+                                        " "
+                                        " "
+                                        " "
+                                    }
                         }
-                    }
-                } }
+                }
+            }
 
     Return markup.
     '''

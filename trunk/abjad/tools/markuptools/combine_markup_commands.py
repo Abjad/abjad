@@ -30,7 +30,7 @@ def combine_markup_commands(*commands):
 
         >>> print result
         \combine \combine \draw-circle #4 #0.4 ##f 
-            \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 #"some text"
+            \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
 
     Returns a markup command instance, or a string if that was the only argument.
     '''
