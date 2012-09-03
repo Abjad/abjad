@@ -34,8 +34,13 @@ def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
         renamed ``divide.duration_into_arbitrary_diminution_undotted()`` to
         ``tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()``.
     '''
-    from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots import \
-        _make_tuplet_from_duration_with_proportions_and_avoid_dots
+#    from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots import \
+#        _make_tuplet_from_duration_with_proportions_and_avoid_dots
+#
+#    return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
+#        duration, proportions, 'diminution', big_endian=big_endian)
 
-    return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
-        duration, proportions, 'diminution', big_endian=big_endian)
+    from abjad.tools import tuplettools
+
+    return tuplettools.make_tuplet_from_duration_and_proportions(
+        duration, proportions, avoid_dots=True, big_endian=big_endian, is_diminution=True)

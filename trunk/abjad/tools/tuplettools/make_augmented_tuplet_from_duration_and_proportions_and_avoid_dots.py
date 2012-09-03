@@ -33,8 +33,13 @@ def make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots(duration,
         renamed ``divide.duration_into_arbitrary_augmentation_undotted()`` to
         ``tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()``.
     '''
-    from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots import \
-        _make_tuplet_from_duration_with_proportions_and_avoid_dots
+#    from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots import \
+#        _make_tuplet_from_duration_with_proportions_and_avoid_dots
+#
+#    return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
+#        duration, proportions, 'augmentation', big_endian=big_endian)
 
-    return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
-        duration, proportions, 'augmentation', big_endian=big_endian)
+    from abjad.tools import tuplettools
+
+    return tuplettools.make_tuplet_from_duration_and_proportions(
+        duration, proportions, avoid_dots=True, big_endian=big_endian, is_diminution=False) 

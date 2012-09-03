@@ -6,15 +6,19 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 
 
-def make_tuplet_from_duration_and_proportions(duration, divisions, prolation, avoid_dots=True, big_endian=True):
+def make_tuplet_from_duration_and_proportions(duration, proportions, 
+    avoid_dots=True, big_endian=True, is_diminution=True):
+    r'''.. versionadded:: 2.10
+
+    Make tuplet from `duration` and `proportions`.
+    '''
     from abjad.tools import tuplettools
 
-    # reduce divisions relative to each other
-    divisions = sequencetools.divide_sequence_elements_by_greatest_common_divisor(divisions)
+    # reduce proportions relative to each other
+    proportions = sequencetools.divide_sequence_elements_by_greatest_common_divisor(proportions)
 
     # find basic prolated duration of note in tuplet
-    #basic_prolated_duration = duration / sum(divisions)
-    basic_prolated_duration = duration / mathtools.weight(divisions)
+    basic_prolated_duration = duration / mathtools.weight(proportions)
 
     # find basic written duration of note in tuplet
     if avoid_dots:
@@ -25,14 +29,14 @@ def make_tuplet_from_duration_and_proportions(duration, divisions, prolation, av
             basic_prolated_duration)
 
     # find written duration of each note in tuplet
-    written_durations = [x * basic_written_duration for x in divisions]
+    written_durations = [x * basic_written_duration for x in proportions]
 
     # make tuplet leaves
     try:
         notes = [notetools.Note(0, x) if 0 < x else resttools.Rest(abs(x)) for x in written_durations]
     except AssignabilityError:
         denominator = duration._denominator
-        note_durations = [durationtools.Duration(x, denominator) for x in divisions]
+        note_durations = [durationtools.Duration(x, denominator) for x in proportions]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
         notes = leaftools.make_leaves(pitches, leaf_durations, big_endian=big_endian)
@@ -45,7 +49,8 @@ def make_tuplet_from_duration_and_proportions(duration, divisions, prolation, av
 
     # switch prolation if necessary
     if not tuplet.multiplier == 1:
-        if prolation == 'diminution':
+        #if prolation == 'diminution':
+        if is_diminution:
             if not tuplet.is_diminution:
                 tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)
         else:
