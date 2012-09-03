@@ -3,9 +3,7 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
 
     Extend `new_components` left in parent of `component` and grow spanners::
 
-        >>> voice = Voice("c'8 d'8 e'8")
-        >>> beamtools.BeamSpanner(voice[:])
-        BeamSpanner(c'8, d'8, e'8)
+        >>> voice = Voice("c'8 [ d'8 e'8 ]")
 
     ::
 
@@ -18,18 +16,18 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
 
     ::
 
-        >>> new_components = 3 * Note(0, (1, 16))
+        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
         >>> componenttools.extend_left_in_parent_of_component_and_grow_spanners(
-        ...     voice[0], new_components)
-        [Note("c'16"), Note("c'16"), Note("c'16"), Note("c'8")]
+        ...     voice[0], notes)
+        [Note("c'8"), Note("d'8"), Note("e'8"), Note("c'8")]
 
     ::
 
         >>> f(voice)
         \new Voice {
-            c'16 [
-            c'16
-            c'16
+            c'8 [
+            d'8
+            e'8
             c'8
             d'8
             e'8 ]
@@ -42,20 +40,25 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
         ``componenttools.extend_left_in_parent_of_component_and_grow_spanners()``.
     '''
     from abjad.tools import componenttools
-    from abjad.tools import componenttools
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_components(new_components)
-    offset = component.start_offset
-    receipt = spannertools.get_spanners_that_dominate_components([component])
-    for spanner, x in receipt:
-        index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)
-        for new_component in reversed(new_components):
-            spanner._insert(index, new_component)
-            new_component._spanners.add(spanner)
-    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
-    if parent is not None:
-        for new_component in reversed(new_components):
-            new_component._switch(parent)
-            parent._music.insert(start, new_component)
-    return new_components + [component]
+#    assert componenttools.all_are_components(new_components)
+#
+#    offset = component.start_offset
+#    receipt = spannertools.get_spanners_that_dominate_components([component])
+#    for spanner, x in receipt:
+#        index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)
+#        for new_component in reversed(new_components):
+#            spanner._insert(index, new_component)
+#            new_component._spanners.add(spanner)
+#
+#    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
+#
+#    if parent is not None:
+#        for new_component in reversed(new_components):
+#            new_component._switch(parent)
+#            parent._music.insert(start, new_component)
+#
+#    return new_components + [component]
+
+    return componenttools.extend_left_in_parent_of_component(component, new_components, grow_spanners=True)

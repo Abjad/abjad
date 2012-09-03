@@ -106,6 +106,7 @@ Composition packages
    tools/componenttools/copy_governed_component_subtree_from_offset_to
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/extend_in_parent_of_component
+   tools/componenttools/extend_left_in_parent_of_component
    tools/componenttools/extend_left_in_parent_of_component_and_do_not_grow_spanners
    tools/componenttools/extend_left_in_parent_of_component_and_grow_spanners
    tools/componenttools/get_component_start_offset
