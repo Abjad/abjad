@@ -65,8 +65,7 @@ class ConcreteInterpreter(Interpreter):
     def add_division_lists_to_voice(self, voice):
         #self._debug(voice)
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
-        #for drdl in division_region_division_lists:
-        #    self._debug(drdl, 'drdl')
+        #self._debug_values(division_region_division_lists, 'drdl')
         if division_region_division_lists:
             self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
                 division_region_division_lists
@@ -381,8 +380,6 @@ class ConcreteInterpreter(Interpreter):
             region_division_commands)
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
             division_region_division_lists[:]
-        self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
-            division_region_division_lists[:]
         return division_region_division_lists
 
     def make_rhythm_command(
@@ -410,8 +407,8 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice, 'voice')
         voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
-        segment_durations = self.score_specification.segment_durations
         #self._debug(voice_divisions, 'vd')
+        segment_durations = self.score_specification.segment_durations
         #self._debug(segment_durations, 'sd')
         shards = sequencetools.split_sequence_by_weights(
             voice_divisions, segment_durations, cyclic=False, overhang=True)
