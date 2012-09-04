@@ -2,9 +2,11 @@ import copy
 from abjad.tools import *
 from experimental import divisiontools
 from experimental import helpertools
+from experimental import library
 from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
+from experimental import specificationtools
 from experimental import timespantools
 from experimental.interpretertools.Interpreter import Interpreter
 
@@ -91,7 +93,6 @@ class ConcreteInterpreter(Interpreter):
             self.add_rhythms_to_voice(voice)
 
     def add_rhythms_to_voice(self, voice):
-        from experimental import specificationtools
         voice_division_list = self.get_voice_division_list(voice)
         if len(voice_division_list) == 0:
             return
@@ -328,7 +329,6 @@ class ConcreteInterpreter(Interpreter):
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
-        from experimental import specificationtools
         voice_division_list = self.score_specification.contexts[voice.name].get('voice_division_list')
         if voice_division_list is None:
             time_signatures = self.score_specification.time_signatures
@@ -343,7 +343,6 @@ class ConcreteInterpreter(Interpreter):
 
     def make_default_rhythm_command_for_segment(self, segment_specification):
         from experimental import interpretertools
-        from experimental import library
         return interpretertools.RhythmCommand(
             library.skip_filled_tokens, 
             segment_specification.segment_name,
@@ -474,7 +473,6 @@ class ConcreteInterpreter(Interpreter):
         return division_region_division_lists
 
     def resolve_attribute_request(self, attribute_request):
-        from experimental import requesttools
         assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
         resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
             attribute_request)

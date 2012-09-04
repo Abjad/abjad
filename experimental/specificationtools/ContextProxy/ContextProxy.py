@@ -1,6 +1,6 @@
+from collections import OrderedDict
 from experimental.exceptions import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from collections import OrderedDict
 
 
 class ContextProxy(AbjadObject, OrderedDict):

@@ -1,6 +1,6 @@
+import copy
 from experimental import helpertools
 from experimental.settingtools.Setting import Setting
-import copy
 
 
 class SingleContextSetting(Setting):

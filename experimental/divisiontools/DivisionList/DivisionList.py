@@ -1,5 +1,4 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.divisiontools.Division import Division
 
 
 class DivisionList(AbjadObject):
@@ -22,8 +21,9 @@ class DivisionList(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, divisions):
+        from experimental import divisiontools
         assert isinstance(divisions, list), divisions
-        self._divisions = [Division(x) for x in divisions]
+        self._divisions = [divisiontools.Division(x) for x in divisions]
         assert self.is_well_formed
 
     ### SPECIAL METHODS ###

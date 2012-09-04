@@ -1,3 +1,4 @@
+from experimental import helpertools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -82,7 +83,6 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
 
     def __init__(self, inequality=None, klass=None, predicate=None, selector=None,
         start_identifier=None, stop_identifier=None):
-        from experimental import helpertools
         from experimental import selectortools
         assert isinstance(selector, (selectortools.SliceSelector, type(None))), repr(selector)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)

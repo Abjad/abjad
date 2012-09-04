@@ -1,13 +1,10 @@
+import re
 from abjad.tools import *
 from experimental import helpertools
-from experimental import interpretertools
 from experimental import requesttools
 from experimental import selectortools
 from experimental import timespantools
-from experimental.specificationtools.SegmentSpecification import SegmentSpecification
-from experimental.specificationtools.SegmentSpecificationInventory import SegmentSpecificationInventory
 from experimental.specificationtools.Specification import Specification
-import re
 
 
 class ScoreSpecification(Specification):
@@ -34,9 +31,10 @@ class ScoreSpecification(Specification):
     ### INITIALIZER ###
 
     def __init__(self, score_template):
+        from experimental import specificationtools
         Specification.__init__(self, score_template)
-        self._segment_specifications = SegmentSpecificationInventory()
-        self._segment_specification_class = SegmentSpecification
+        self._segment_specifications = specificationtools.SegmentSpecificationInventory()
+        self._segment_specification_class = specificationtools.SegmentSpecification
 
     ### SPECIAL METHODS ###
 
@@ -309,6 +307,8 @@ class ScoreSpecification(Specification):
 
         Return Abjad score object.
         '''
+        from experimental import interpretertools
+
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 

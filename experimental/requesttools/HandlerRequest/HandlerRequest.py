@@ -1,3 +1,4 @@
+from experimental import handlertools
 from experimental.requesttools.Request import Request
 
 
@@ -17,7 +18,6 @@ class HandlerRequest(Request):
     ### INITIALIZER ###
 
     def __init__(self, handler, callback=None, count=None, offset=None):
-        from experimental import handlertools
         assert isinstance(handler, handlertools.Handler)
         Request.__init__(self, callback=callback, count=count, offset=offset)
         self.handler = handler

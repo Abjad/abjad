@@ -2,6 +2,7 @@ from abc import ABCMeta
 from abc import abstractmethod
 from abc import abstractproperty
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import timespantools
 
 
 class Selector(AbjadObject):
@@ -32,7 +33,6 @@ class Selector(AbjadObject):
 
         Return timespan object.
         '''
-        from experimental import timespantools
         return timespantools.SingleSourceTimespan(selector=self)
 
     ### PUBLIC METHODS ###

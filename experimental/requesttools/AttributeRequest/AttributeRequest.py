@@ -1,3 +1,4 @@
+from experimental import selectortools
 from experimental.requesttools.Request import Request
 
 
@@ -36,7 +37,6 @@ class AttributeRequest(Request):
 
     def __init__(self, attribute, selector, 
         context_name=None, callback=None, count=None, offset=None, reverse=None):
-        from experimental import selectortools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(selector, selectortools.Selector)
         assert isinstance(context_name, (str, type(None))), repr(context_name)

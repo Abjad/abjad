@@ -1,5 +1,6 @@
 from abc import abstractmethod
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import selectortools
 
 
 class Setting(AbjadObject):
@@ -12,7 +13,6 @@ class Setting(AbjadObject):
 
     @abstractmethod
     def __init__(self, attribute, source, selector, persist=True, truncate=False):
-        from experimental import selectortools
         assert isinstance(attribute, str)
         assert isinstance(selector, (selectortools.Selector, type(None)))
         assert isinstance(persist, bool)

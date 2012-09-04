@@ -1,3 +1,4 @@
+from experimental import statalservertools
 from experimental.requesttools.Request import Request
 
 
@@ -17,7 +18,6 @@ class StatalServerRequest(Request):
     ### INITIALIZER ###
     
     def __init__(self, statal_server, callback=None, count=None, offset=None):
-        from experimental import statalservertools
         assert isinstance(server, statalservertools.StatalServer)
         Request.__init__(self, callback=callback, count=count, offset=offset)
         self.statal_server = statal_server

@@ -1,5 +1,4 @@
 from abjad.tools import abctools
-from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
 
 
@@ -70,8 +69,9 @@ class MixedSourceTimespan(Timespan):
     ### INITIALIZER ###
 
     def __init__(self, start_timepoint=None, stop_timepoint=None):
-        assert isinstance(start_timepoint, (Timepoint, type(None))), repr(start_timepoint)
-        assert isinstance(stop_timepoint, (Timepoint, type(None))), repr(stop_timepoint)
+        from experimental import timespantools
+        assert isinstance(start_timepoint, (timespantools.Timepoint, type(None))), repr(start_timepoint)
+        assert isinstance(stop_timepoint, (timespantools.Timepoint, type(None))), repr(stop_timepoint)
         Timespan.__init__(self)
         self._start_timepoint = start_timepoint
         self._stop_timepoint = stop_timepoint

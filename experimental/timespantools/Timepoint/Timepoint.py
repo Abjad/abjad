@@ -1,6 +1,6 @@
+import fractions
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-import fractions
 
 
 class Timepoint(AbjadObject):

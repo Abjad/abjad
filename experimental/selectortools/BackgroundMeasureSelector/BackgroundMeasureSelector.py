@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import measuretools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -123,7 +124,6 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     ### INITIALIZER ###
 
     def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
-        from abjad.tools import measuretools
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         InequalitySelector.__init__(self, inequality=inequality)
         self._klass = measuretools.Measure

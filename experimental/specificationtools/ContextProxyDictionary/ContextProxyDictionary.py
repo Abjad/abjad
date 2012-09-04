@@ -1,9 +1,9 @@
+from collections import OrderedDict
 from abjad.tools import contexttools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import settingtools
 from experimental.specificationtools.ContextProxy import ContextProxy
-from collections import OrderedDict
 
 
 class ContextProxyDictionary(AbjadObject, OrderedDict):
