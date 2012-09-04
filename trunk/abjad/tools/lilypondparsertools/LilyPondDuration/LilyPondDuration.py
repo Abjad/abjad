@@ -1,4 +1,10 @@
-class _LilyPondDuration(object):
+class LilyPondDuration(object):
+    '''Model of a duration in LilyPond.
+
+    Not composer-safe.
+
+    Used internally by LilyPondParser.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

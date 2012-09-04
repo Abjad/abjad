@@ -1,6 +1,6 @@
 from abjad.tools.durationtools import Duration
-from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
-    import _LilyPondDuration
+from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration \
+    import LilyPondDuration
 
 
 lilypond_version = "2.15.24"
@@ -265,7 +265,7 @@ current_module = {
         'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
-    'breve': _LilyPondDuration(Duration(2, 1), None),
+    'breve': LilyPondDuration(Duration(2, 1), None),
     'cadenzaOff': {
         'name': 'SequentialMusic',
         'type': 'ly:prob?',
@@ -877,7 +877,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'locrian': 'locrian',
-    'longa': _LilyPondDuration(Duration(4, 1), None),
+    'longa': LilyPondDuration(Duration(4, 1), None),
     'longfermata': {
         'articulation-type': 'longfermata',
         'name': 'ArticulationEvent',
@@ -916,7 +916,7 @@ current_module = {
         'signature': ('ly:music?', 'optional?', 'scheme?',),
         'type': 'ly:music-function?',
     },
-    'maxima': _LilyPondDuration(Duration(8, 1), None),
+    'maxima': LilyPondDuration(Duration(8, 1), None),
     'melisma': {
         'context-type': 'Bottom',
         'name': 'ContextSpeccedMusic',

@@ -2,6 +2,12 @@ from collections import Iterable
 
 
 class _SyntaxNode(object):
+    '''A node in an abstract syntax tree (AST).
+
+    Not composer-safe.
+
+    Used internally by LilyPondParser.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

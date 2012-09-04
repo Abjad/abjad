@@ -10,8 +10,8 @@ from abjad.tools import pitchtools
 from abjad.tools import notetools
 from abjad.tools import resttools
 from abjad.tools import skiptools
-from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
-    import _LilyPondDuration
+from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration \
+    import LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
     import _LilyPondEvent as Event
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction \
@@ -2146,17 +2146,17 @@ class LilyPondSyntacticalDefinition(object):
     def p_multiplied_duration__multiplied_duration__Chr42__FRACTION(self, p):
         "multiplied_duration : multiplied_duration '*' FRACTION"
         if p[1].multiplier is not None:
-            p[0] = _LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
+            p[0] = LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
-            p[0] = _LilyPondDuration(p[1].duration, Fraction(p[3].numerator, p[3].denominator))
+            p[0] = LilyPondDuration(p[1].duration, Fraction(p[3].numerator, p[3].denominator))
 
 
     def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):
         "multiplied_duration : multiplied_duration '*' bare_unsigned"
         if p[1].multiplier is not None:
-            p[0] = _LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
+            p[0] = LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
-            p[0] = _LilyPondDuration(p[1].duration, p[3])
+            p[0] = LilyPondDuration(p[1].duration, p[3])
 
 
     def p_multiplied_duration__steno_duration(self, p):
@@ -3078,7 +3078,7 @@ class LilyPondSyntacticalDefinition(object):
             token = durationtools.assignable_rational_to_lilypond_duration_string(duration)
             token += '.' * dots
             duration = durationtools.Duration(durationtools.duration_token_to_rational(token))
-        p[0] = _LilyPondDuration(duration, multiplier)
+        p[0] = LilyPondDuration(duration, multiplier)
 
 
     def p_steno_duration__bare_unsigned__dots(self, p):
@@ -3087,7 +3087,7 @@ class LilyPondSyntacticalDefinition(object):
         dots = p[2].value
         token = str(p[1]) + '.' * dots
         duration = durationtools.Duration(durationtools.duration_token_to_rational(token))
-        p[0] = _LilyPondDuration(duration, None)
+        p[0] = LilyPondDuration(duration, None)
 
 
     ### steno_pitch ###

@@ -15,7 +15,7 @@ from abjad.tools import stafftools
 from abjad.tools import tietools
 from abjad.tools import voicetools
 from abjad.tools.lilypondparsertools.GuileProxy.GuileProxy import GuileProxy
-from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
+from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration import LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
 from abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition import \
@@ -595,7 +595,7 @@ class LilyPondParser(abctools.Parser):
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
-        self._default_duration = _LilyPondDuration(durationtools.Duration(1, 4), None)
+        self._default_duration = LilyPondDuration(durationtools.Duration(1, 4), None)
         self._last_chord = chordtools.Chord("<c g c'>4") # LilyPond's default!
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
@@ -649,7 +649,7 @@ class LilyPondParser(abctools.Parser):
             #'list-or-symbol?':    lambda x: True,
             'list?':              lambda x: isinstance(x, (list, tuple)),
             #'ly:dir?':            lambda x: True,
-            'ly:duration?':       lambda x: isinstance(x, _LilyPondDuration),
+            'ly:duration?':       lambda x: isinstance(x, LilyPondDuration),
             #'ly:moment?':         lambda x: True,
             'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),

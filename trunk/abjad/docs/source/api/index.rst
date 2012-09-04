@@ -2154,6 +2154,7 @@ Internal packages
    :maxdepth: 1
 
    tools/lilypondparsertools/GuileProxy/GuileProxy
+   tools/lilypondparsertools/LilyPondDuration/LilyPondDuration
    tools/lilypondparsertools/LilyPondLexicalDefinition/LilyPondLexicalDefinition
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
    tools/lilypondparsertools/LilyPondSyntacticalDefinition/LilyPondSyntacticalDefinition

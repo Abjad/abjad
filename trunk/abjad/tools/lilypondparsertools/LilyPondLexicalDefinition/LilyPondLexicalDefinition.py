@@ -1,5 +1,5 @@
 from abjad.tools.lilypondparsertools.SchemeParser import SchemeParser
-from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
+from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration import LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
 from ply.lex import TOKEN
 from ply.lex import LexToken
@@ -858,7 +858,7 @@ class LilyPondLexicalDefinition(object):
                 return 'EVENT_IDENTIFIER'
 
         # we also check for other types, to handle \longa, \breve etc.
-        elif isinstance(lookup, _LilyPondDuration):
+        elif isinstance(lookup, LilyPondDuration):
             t.value = copy.copy(lookup)
             return 'DURATION_IDENTIFIER'
 

@@ -1,4 +1,10 @@
 class _LilyPondEvent(object):
+    '''Model of an arbitrary event in LilyPond.
+
+    Not composer-safe.
+
+    Used internally by LilyPondParser.
+    '''
 
     def __init__(self, name, **kwargs):
         self.name = name
