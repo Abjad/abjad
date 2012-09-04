@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_single_segment_solo_context_cascade_01():
+def test_single_segment_solo_rhythm_context_cascade_01():
     '''Settings made against lower-level contexts override 
     settings made against higher-level contexts.
     '''
@@ -21,7 +21,7 @@ def test_single_segment_solo_context_cascade_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_context_cascade_02():
+def test_single_segment_solo_rhythm_context_cascade_02():
     '''Thirty-seconds override sixteenths.
     Then note-filled tokens override thirty-seconds.
     '''
@@ -41,7 +41,7 @@ def test_single_segment_solo_context_cascade_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_context_cascade_03():
+def test_single_segment_solo_rhythm_context_cascade_03():
     '''Thirty-seconds override sixteenths.
     Then note-filled tokens override thirty-seconds.
     Then rest-filled tokens override note-filled tokens.
@@ -63,7 +63,7 @@ def test_single_segment_solo_context_cascade_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_single_segment_solo_context_cascade_04():
+def test_single_segment_solo_rhythm_context_cascade_04():
     '''Lexically later settings don't matter if they 
     are made against a higher-level context.
     '''
