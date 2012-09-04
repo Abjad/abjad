@@ -1,3 +1,4 @@
+import copy
 from abjad.tools import *
 from experimental import divisiontools
 from experimental import helpertools
@@ -6,7 +7,6 @@ from experimental import selectortools
 from experimental import settingtools
 from experimental import timespantools
 from experimental.interpretertools.Interpreter import Interpreter
-import copy
 
 
 class ConcreteInterpreter(Interpreter):
