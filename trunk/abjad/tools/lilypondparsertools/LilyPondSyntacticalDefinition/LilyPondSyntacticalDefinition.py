@@ -21,7 +21,15 @@ from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \
 from fractions import Fraction
 
 
-class _LilyPondSyntacticalDefinition(object):
+class LilyPondSyntacticalDefinition(object):
+    '''The syntactical definition of LilyPond's syntax.
+
+    Effectively equivalent to LilyPond's ``parser.yy`` file.
+
+    Not composer-safe.
+
+    Used internally by ``LilyPondParser``.
+    '''
 
     ### INITIALIZER ###
 

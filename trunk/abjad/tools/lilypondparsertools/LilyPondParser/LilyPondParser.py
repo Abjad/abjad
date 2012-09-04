@@ -18,10 +18,10 @@ from abjad.tools.lilypondparsertools.GuileProxy.GuileProxy import GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
-from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import \
-    _LilyPondLexicalDefinition
-from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import \
-    _LilyPondSyntacticalDefinition
+from abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition import \
+    LilyPondLexicalDefinition
+from abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition import \
+    LilyPondSyntacticalDefinition
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
@@ -131,8 +131,8 @@ class LilyPondParser(abctools.Parser):
         self.default_language = default_language
 
         # attach parser and lexer rules
-        self._lexdef = _LilyPondLexicalDefinition(self)
-        self._syndef = _LilyPondSyntacticalDefinition(self)
+        self._lexdef = LilyPondLexicalDefinition(self)
+        self._syndef = LilyPondSyntacticalDefinition(self)
 
         # build PLY parser and lexer
         abctools.Parser.__init__(self, debug=debug)

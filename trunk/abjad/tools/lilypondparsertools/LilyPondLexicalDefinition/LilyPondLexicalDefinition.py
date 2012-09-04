@@ -6,7 +6,15 @@ from ply.lex import LexToken
 import copy
 
 
-class _LilyPondLexicalDefinition(object):
+class LilyPondLexicalDefinition(object):
+    '''The lexical definition of LilyPond's syntax.
+
+    Effectively equivalent to LilyPond's ``lexer.ll`` file.
+
+    Not composer-safe.
+
+    Used internally by ``LilyPondParser``.
+    '''
 
     def __init__(self, client):
         self.client = client
@@ -471,8 +479,15 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:428
     # <notes,figures>{UNSIGNED}/\/|{UNSIGNED}
-    @TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
+    #@TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
+    @TOKEN('%s/\/' % UNSIGNED)
     def t_notes_428(self, t):
+        t.type = 'UNSIGNED'
+        t.value = int(t.value)
+        return t
+
+    @TOKEN(UNSIGNED)
+    def t_notes_428b(self, t):
         t.type = 'UNSIGNED'
         t.value = int(t.value)
         return t

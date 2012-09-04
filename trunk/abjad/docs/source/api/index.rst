@@ -2154,7 +2154,9 @@ Internal packages
    :maxdepth: 1
 
    tools/lilypondparsertools/GuileProxy/GuileProxy
+   tools/lilypondparsertools/LilyPondLexicalDefinition/LilyPondLexicalDefinition
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
+   tools/lilypondparsertools/LilyPondSyntacticalDefinition/LilyPondSyntacticalDefinition
    tools/lilypondparsertools/SchemeParser/SchemeParser
 
 :py:mod:`offsettools <abjad.tools.offsettools>`
