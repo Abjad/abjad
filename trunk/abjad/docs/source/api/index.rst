@@ -2155,10 +2155,13 @@ Internal packages
 
    tools/lilypondparsertools/GuileProxy/GuileProxy
    tools/lilypondparsertools/LilyPondDuration/LilyPondDuration
+   tools/lilypondparsertools/LilyPondEvent/LilyPondEvent
+   tools/lilypondparsertools/LilyPondFraction/LilyPondFraction
    tools/lilypondparsertools/LilyPondLexicalDefinition/LilyPondLexicalDefinition
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
    tools/lilypondparsertools/LilyPondSyntacticalDefinition/LilyPondSyntacticalDefinition
    tools/lilypondparsertools/SchemeParser/SchemeParser
+   tools/lilypondparsertools/SyntaxNode/SyntaxNode
 
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

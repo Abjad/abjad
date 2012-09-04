@@ -16,13 +16,13 @@ from abjad.tools import tietools
 from abjad.tools import voicetools
 from abjad.tools.lilypondparsertools.GuileProxy.GuileProxy import GuileProxy
 from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration import LilyPondDuration
-from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
-from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
+from abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent import LilyPondEvent
+from abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction import LilyPondFraction
 from abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition import \
     LilyPondLexicalDefinition
 from abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition import \
     LilyPondSyntacticalDefinition
-from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
+from abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode import SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from ply import lex, yacc
@@ -502,7 +502,7 @@ class LilyPondParser(abctools.Parser):
 
     def _construct_simultaneous_music(self, music):
         def is_separator(x):
-            if isinstance(x, _LilyPondEvent):
+            if isinstance(x, LilyPondEvent):
                 if x.name == 'VoiceSeparator':
                     return True
             return False
@@ -613,7 +613,7 @@ class LilyPondParser(abctools.Parser):
             return marktools.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
             return contexttools.DynamicMark(lookup['text'])
-        event = _LilyPondEvent(name)
+        event = LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
                 event.span_direction = 'start'
@@ -643,7 +643,7 @@ class LilyPondParser(abctools.Parser):
             'boolean?':           lambda x: isinstance(x, bool),
             'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
             'cheap-markup?':      lambda x: isinstance(x, markuptools.MarkupCommand),
-            'fraction?':          lambda x: isinstance(x, _LilyPondFraction),
+            'fraction?':          lambda x: isinstance(x, LilyPondFraction),
             #'hash-table?':        lambda x: True,
             'integer?':           lambda x: isinstance(x, int),
             #'list-or-symbol?':    lambda x: True,

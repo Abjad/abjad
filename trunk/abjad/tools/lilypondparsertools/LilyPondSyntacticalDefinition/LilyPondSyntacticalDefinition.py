@@ -12,12 +12,12 @@ from abjad.tools import resttools
 from abjad.tools import skiptools
 from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration \
     import LilyPondDuration
-from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
-    import _LilyPondEvent as Event
-from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction \
-    import _LilyPondFraction
-from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \
-    import _SyntaxNode as Node
+from abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent \
+    import LilyPondEvent as Event
+from abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction \
+    import LilyPondFraction
+from abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode \
+    import SyntaxNode as Node
 from fractions import Fraction
 
 

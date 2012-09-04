@@ -1,4 +1,4 @@
-class _LilyPondFraction(object):
+class LilyPondFraction(object):
     '''Model of a fraction in LilyPond.
 
     Not composer-safe.

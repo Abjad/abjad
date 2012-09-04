@@ -1,4 +1,4 @@
-class _LilyPondEvent(object):
+class LilyPondEvent(object):
     '''Model of an arbitrary event in LilyPond.
 
     Not composer-safe.

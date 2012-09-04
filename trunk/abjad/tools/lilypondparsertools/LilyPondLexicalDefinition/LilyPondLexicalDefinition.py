@@ -1,6 +1,6 @@
 from abjad.tools.lilypondparsertools.SchemeParser import SchemeParser
 from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration import LilyPondDuration
-from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
+from abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction import LilyPondFraction
 from ply.lex import TOKEN
 from ply.lex import LexToken
 import copy
@@ -474,7 +474,7 @@ class LilyPondLexicalDefinition(object):
     def t_notes_424(self, t):
         t.type = 'FRACTION'
         parts = t.value.split('/')
-        t.value = _LilyPondFraction(int(parts[0]), int(parts[1]))
+        t.value = LilyPondFraction(int(parts[0]), int(parts[1]))
         return t
 
     # lexer.ll:428

@@ -1,7 +1,7 @@
 from collections import Iterable
 
 
-class _SyntaxNode(object):
+class SyntaxNode(object):
     '''A node in an abstract syntax tree (AST).
 
     Not composer-safe.
