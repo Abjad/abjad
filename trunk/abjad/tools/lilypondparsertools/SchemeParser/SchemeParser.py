@@ -1,6 +1,6 @@
+import ply
 from abjad.tools import abctools
 from abjad.tools import schemetools
-from ply import lex
 
 
 class SchemeParser(abctools.Parser):
@@ -101,7 +101,7 @@ class SchemeParser(abctools.Parser):
             t.value = False
         return t
 
-    @lex.TOKEN(REAL)
+    @ply.lex.TOKEN(REAL)
     def t_DECIMAL(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
@@ -114,7 +114,7 @@ class SchemeParser(abctools.Parser):
         t.cursor_end = self.cursor
         return t
 
-    @lex.TOKEN(INT)
+    @ply.lex.TOKEN(INT)
     def t_INTEGER(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
@@ -173,7 +173,7 @@ class SchemeParser(abctools.Parser):
         self.string_accumulator += t.value
         pass
 
-    @lex.TOKEN(IDENTIFIER)
+    @ply.lex.TOKEN(IDENTIFIER)
     def t_IDENTIFIER(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor

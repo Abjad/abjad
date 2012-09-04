@@ -4,7 +4,14 @@ from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_number_to_octave_tick_string
 
 
-def _lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
+def lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
+    '''Transpose `pitch_c` by the distance between `pitch_b` and `pitch_a`.
+
+    This function was reverse-engineered from LilyPond's source code.
+
+    Return NamedChromaticPitch.
+    '''
+
     if not isinstance(pitch_a, NamedChromaticPitch):
         pitch_a = NamedChromaticPitch(pitch_a)
     if not isinstance(pitch_b, NamedChromaticPitch):

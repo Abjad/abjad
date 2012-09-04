@@ -1,7 +1,8 @@
 from collections import Iterable
+from abjad.tools.abctools import AbjadObject
 
 
-class SyntaxNode(object):
+class SyntaxNode(AbjadObject):
     '''A node in an abstract syntax tree (AST).
 
     Not composer-safe.

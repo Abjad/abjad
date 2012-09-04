@@ -1,12 +1,9 @@
-from abjad.tools.lilypondparsertools.SchemeParser import SchemeParser
-from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration import LilyPondDuration
-from abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction import LilyPondFraction
-from ply.lex import TOKEN
-from ply.lex import LexToken
 import copy
+import ply
+from abjad.tools.abctools import AbjadObject
 
 
-class LilyPondLexicalDefinition(object):
+class LilyPondLexicalDefinition(AbjadObject):
     '''The lexical definition of LilyPond's syntax.
 
     Effectively equivalent to LilyPond's ``lexer.ll`` file.
@@ -304,7 +301,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:278
     # <version>{ANY_CHAR}
-    @TOKEN(ANY_CHAR)
+    @ply.lex.TOKEN(ANY_CHAR)
     def t_version_278(self, t):
         print("LilyPondParser: Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
@@ -354,7 +351,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
-#    @TOKEN(RESTNAME)
+#    @ply.lex.token.TOKEN(RESTNAME)
 #    def t_notes_345(self, t):
 #        t.type = 'RESTNAME'
 #        return t
@@ -375,7 +372,7 @@ class LilyPondLexicalDefinition(object):
             t.value = False
         return t
 
-    @TOKEN("\#'%s" % DASHED_WORD)
+    @ply.lex.TOKEN("\#'%s" % DASHED_WORD)
     def t_INITIAL_markup_notes_353_identifier(self, t):
         t.type = 'SCM_IDENTIFIER'
         t.value = t.value[2:]
@@ -385,9 +382,10 @@ class LilyPondLexicalDefinition(object):
     # <INITIAL,chords,figures,lyrics,markup,notes>#
     def t_INITIAL_markup_notes_353(self, t):
         '\#'
+        from abjad.tools import lilypondparsertools
         #t.type = 'SCHEME_START'
         #t.lexer.push_state('INITIAL')
-        scheme_parser = SchemeParser(debug=False)
+        scheme_parser = lilypondparsertools.SchemeParser(debug=False)
         input_string = t.lexer.lexdata[t.lexpos+1:]
         try:
             scheme_parser(input_string)
@@ -445,7 +443,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:417
     # <notes,figures>{ALPHAWORD}
-    @TOKEN(ALPHAWORD)
+    @ply.lex.TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
         pitch_names = self.client._pitch_names
         if t.value in pitch_names:
@@ -463,30 +461,31 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:421
     # <notes,figures>{NOTECOMMAND}
-    @TOKEN(NOTECOMMAND)
+    @ply.lex.TOKEN(NOTECOMMAND)
     def t_notes_421(self, t):
         t.type = self.scan_escaped_word(t)
         return t
 
     # lexer.ll:424
     # <notes,figures>{FRACTION}
-    @TOKEN(FRACTION)
+    @ply.lex.TOKEN(FRACTION)
     def t_notes_424(self, t):
+        from abjad.tools import lilypondparsertools
         t.type = 'FRACTION'
         parts = t.value.split('/')
-        t.value = LilyPondFraction(int(parts[0]), int(parts[1]))
+        t.value = lilypondparsertools.LilyPondFraction(int(parts[0]), int(parts[1]))
         return t
 
     # lexer.ll:428
     # <notes,figures>{UNSIGNED}/\/|{UNSIGNED}
-    #@TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
-    @TOKEN('%s/\/' % UNSIGNED)
+    #@ply.lex.TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
+    @ply.lex.TOKEN('%s/\/' % UNSIGNED)
     def t_notes_428(self, t):
         t.type = 'UNSIGNED'
         t.value = int(t.value)
         return t
 
-    @TOKEN(UNSIGNED)
+    @ply.lex.TOKEN(UNSIGNED)
     def t_notes_428b(self, t):
         t.type = 'UNSIGNED'
         t.value = int(t.value)
@@ -494,7 +493,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:433
     # <notes,figures>{E_UNSIGNED}
-    @TOKEN(E_UNSIGNED)
+    @ply.lex.TOKEN(E_UNSIGNED)
     def t_notes_433(self, t):
         t.type = 'E_UNSIGNED'
         t.value = int(t.value[1:])
@@ -502,7 +501,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:440
     # <quote,lyric_quote>\\{ESCAPED}
-    @TOKEN('\\%s' % ESCAPED)
+    @ply.lex.TOKEN('\\%s' % ESCAPED)
     def t_quote_440(self, t):
         self.string_accumulator += t.value
         pass
@@ -598,7 +597,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:548
     # <markup>{MARKUPCOMMAND}
-    @TOKEN(MARKUPCOMMAND)
+    @ply.lex.TOKEN(MARKUPCOMMAND)
     def t_markup_548(self, t):
         value = t.value[1:]
 
@@ -645,27 +644,27 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:643
     # <INITIAL>{DASHED_WORD}
-    @TOKEN(DASHED_WORD)
+    @ply.lex.TOKEN(DASHED_WORD)
     def t_INITIAL_643(self, t):
         t.type = self.scan_bare_word(t)
         return t        
 
     # lexer.ll:646
     # <INITIAL>{DASHED_KEY_WORD}
-    @TOKEN(DASHED_KEY_WORD)
+    @ply.lex.TOKEN(DASHED_KEY_WORD)
     def t_INITIAL_646(self, t):
         t.type = self.scan_escaped_word(t)
         return t
 
     # lexer.ll:651
     # -{UNSIGNED}|{REAL}
-    @TOKEN(REAL)
+    @ply.lex.TOKEN(REAL)
     def t_651_a(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
         return t
 
-    @TOKEN('-%s' % UNSIGNED)
+    @ply.lex.TOKEN('-%s' % UNSIGNED)
     def t_651_b(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
@@ -681,7 +680,7 @@ class LilyPondLexicalDefinition(object):
 
     # lexer.ll:666
     # {UNSIGNED}
-    @TOKEN(UNSIGNED)
+    @ply.lex.TOKEN(UNSIGNED)
     def t_666(self, t):
         t.type = 'UNSIGNED'
         t.value = float(t.value)
@@ -786,6 +785,7 @@ class LilyPondLexicalDefinition(object):
 
 
     def scan_escaped_word(self, t):
+        from abjad.tools import lilypondparsertools
 
         # first, check for it in the keyword list
         if t.value in self.keywords:
@@ -858,7 +858,7 @@ class LilyPondLexicalDefinition(object):
                 return 'EVENT_IDENTIFIER'
 
         # we also check for other types, to handle \longa, \breve etc.
-        elif isinstance(lookup, LilyPondDuration):
+        elif isinstance(lookup, lilypondparsertools.LilyPondDuration):
             t.value = copy.copy(lookup)
             return 'DURATION_IDENTIFIER'
 
@@ -869,7 +869,7 @@ class LilyPondLexicalDefinition(object):
 
     def push_signature(self, signature, t):
 
-        token = LexToken()
+        token = ply.lex.LexToken()
         token.type = 'EXPECT_NO_MORE_ARGS'
         token.value = None
         token.lineno = t.lineno
@@ -883,7 +883,7 @@ class LilyPondLexicalDefinition(object):
                 optional = True
                 continue
 
-            token = LexToken()
+            token = ply.lex.LexToken()
             token.value = predicate
             token.lineno = t.lineno
             token.lexpos = t.lexpos
@@ -904,7 +904,7 @@ class LilyPondLexicalDefinition(object):
             self.client._push_extra_token(token)
 
             if optional:
-                optional_token = LexToken()
+                optional_token = ply.lex.LexToken()
                 optional_token.value = 'optional?'
                 optional_token.lineno = t.lineno
                 optional_token.lexpos = t.lexpos

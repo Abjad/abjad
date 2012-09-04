@@ -2163,6 +2163,13 @@ Internal packages
    tools/lilypondparsertools/SchemeParser/SchemeParser
    tools/lilypondparsertools/SyntaxNode/SyntaxNode
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondparsertools/lilypond_enharmonic_transpose
+
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

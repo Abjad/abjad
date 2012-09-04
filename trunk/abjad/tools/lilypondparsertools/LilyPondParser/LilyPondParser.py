@@ -1,3 +1,5 @@
+import itertools
+import ply
 from abjad.tools import abctools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
@@ -14,25 +16,13 @@ from abjad.tools import spannertools
 from abjad.tools import stafftools
 from abjad.tools import tietools
 from abjad.tools import voicetools
-from abjad.tools.lilypondparsertools.GuileProxy.GuileProxy import GuileProxy
-from abjad.tools.lilypondparsertools.LilyPondDuration.LilyPondDuration import LilyPondDuration
-from abjad.tools.lilypondparsertools.LilyPondEvent.LilyPondEvent import LilyPondEvent
-from abjad.tools.lilypondparsertools.LilyPondFraction.LilyPondFraction import LilyPondFraction
-from abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition import \
-    LilyPondLexicalDefinition
-from abjad.tools.lilypondparsertools.LilyPondSyntacticalDefinition.LilyPondSyntacticalDefinition import \
-    LilyPondSyntacticalDefinition
-from abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode import SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
-from ply import lex, yacc
-from ply.lex import LexToken
-import itertools
 
 
 # apply monkey patch
-yacc.LRParser._monkey_patch_parse = _parse
-yacc.LRParser._monkey_patch_parse_debug = _parse_debug
+ply.yacc.LRParser._lilypond_patch_parse = _parse
+ply.yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
 
 
 class LilyPondParser(abctools.Parser):
@@ -117,13 +107,15 @@ class LilyPondParser(abctools.Parser):
 
     def __init__(self, default_language='english', debug=False):
 
+        from abjad.tools import lilypondparsertools
+
         from abjad.ly.py.current_module import current_module
         from abjad.ly.py.language_pitch_names import language_pitch_names
         from abjad.ly.py.markup_functions import markup_functions
         from abjad.ly.py.markup_functions import markup_list_functions
 
         # LilyPond emulation data
-        self._guile = GuileProxy(self)
+        self._guile = lilypondparsertools.GuileProxy(self)
         self._current_module = current_module
         self._language_pitch_names = language_pitch_names
         self._markup_functions = markup_functions
@@ -131,8 +123,8 @@ class LilyPondParser(abctools.Parser):
         self.default_language = default_language
 
         # attach parser and lexer rules
-        self._lexdef = LilyPondLexicalDefinition(self)
-        self._syndef = LilyPondSyntacticalDefinition(self)
+        self._lexdef = lilypondparsertools.LilyPondLexicalDefinition(self)
+        self._syndef = lilypondparsertools.LilyPondSyntacticalDefinition(self)
 
         # build PLY parser and lexer
         abctools.Parser.__init__(self, debug=debug)
@@ -146,12 +138,12 @@ class LilyPondParser(abctools.Parser):
         self._reset_parser_variables()
 
         if self._debug:
-            result = self._parser._monkey_patch_parse_debug(
+            result = self._parser._lilypond_patch_parse_debug(
                 input_string, 
                 lexer=self._lexer,
                 debug=self._logger)
         else:
-            result = self._parser._monkey_patch_parse(
+            result = self._parser._lilypond_patch_parse(
                 input_string,
                 lexer=self._lexer)
 
@@ -388,7 +380,7 @@ class LilyPondParser(abctools.Parser):
         self._push_extra_token(self._parser.lookahead)
 
         # create the backup token, set as new lookahead
-        backup = LexToken()
+        backup = ply.lex.LexToken()
         backup.type = 'BACKUP'
         backup.value = '(backed-up?)'
         backup.lexpos = 0
@@ -396,7 +388,7 @@ class LilyPondParser(abctools.Parser):
         self._parser.lookahead = backup
 
         if token_type:
-            token = LexToken()
+            token = ply.lex.LexToken()
             token.type = token_type
             token.value = token_value
             token.lexpos = 0
@@ -501,8 +493,9 @@ class LilyPondParser(abctools.Parser):
         return container
 
     def _construct_simultaneous_music(self, music):
+        from abjad.tools import lilypondparsertools
         def is_separator(x):
-            if isinstance(x, LilyPondEvent):
+            if isinstance(x, lilypondparsertools.LilyPondEvent):
                 if x.name == 'VoiceSeparator':
                     return True
             return False
@@ -573,14 +566,14 @@ class LilyPondParser(abctools.Parser):
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
 
-        token = LexToken()
+        token = ply.lex.LexToken()
         token.type = token_type
         token.value = token_value
         token.lexpos = 0
         token.lineno = 0
         self._push_extra_token(token)
 
-        reparse = LexToken()
+        reparse = ply.lex.LexToken()
         reparse.type = 'REPARSE'
         reparse.value = predicate
         reparse.lineno = 0
@@ -588,6 +581,7 @@ class LilyPondParser(abctools.Parser):
         self._parser.lookahead = reparse
 
     def _reset_parser_variables(self):
+        from abjad.tools import lilypondparsertools
         try:
             self._parser.restart()
         except:
@@ -595,7 +589,7 @@ class LilyPondParser(abctools.Parser):
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
-        self._default_duration = LilyPondDuration(durationtools.Duration(1, 4), None)
+        self._default_duration = lilypondparsertools.LilyPondDuration(durationtools.Duration(1, 4), None)
         self._last_chord = chordtools.Chord("<c g c'>4") # LilyPond's default!
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
@@ -607,13 +601,14 @@ class LilyPondParser(abctools.Parser):
         return None
 
     def _resolve_event_identifier(self, identifier):
+        from abjad.tools import lilypondparsertools
         lookup = self._current_module[identifier] # without any leading slash
         name = lookup['name']
         if name == 'ArticulationEvent':
             return marktools.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
             return contexttools.DynamicMark(lookup['text'])
-        event = LilyPondEvent(name)
+        event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
                 event.span_direction = 'start'
@@ -639,17 +634,18 @@ class LilyPondParser(abctools.Parser):
         raise Exception('Abjad cannot associate a spanner class with %s' % name)
 
     def _test_scheme_predicate(self, predicate, value):
+        from abjad.tools import lilypondparsertools
         predicates = {
             'boolean?':           lambda x: isinstance(x, bool),
             'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
             'cheap-markup?':      lambda x: isinstance(x, markuptools.MarkupCommand),
-            'fraction?':          lambda x: isinstance(x, LilyPondFraction),
+            'fraction?':          lambda x: isinstance(x, lilypondparsertools.LilyPondFraction),
             #'hash-table?':        lambda x: True,
             'integer?':           lambda x: isinstance(x, int),
             #'list-or-symbol?':    lambda x: True,
             'list?':              lambda x: isinstance(x, (list, tuple)),
             #'ly:dir?':            lambda x: True,
-            'ly:duration?':       lambda x: isinstance(x, LilyPondDuration),
+            'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
             #'ly:moment?':         lambda x: True,
             'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),

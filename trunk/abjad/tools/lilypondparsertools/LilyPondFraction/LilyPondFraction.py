@@ -1,4 +1,7 @@
-class LilyPondFraction(object):
+from abjad.tools.abctools import AbjadObject
+
+
+class LilyPondFraction(AbjadObject):
     '''Model of a fraction in LilyPond.
 
     Not composer-safe.

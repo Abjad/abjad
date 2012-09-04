@@ -1,4 +1,7 @@
-class LilyPondDuration(object):
+from abjad.tools.abctools import AbjadObject
+
+
+class LilyPondDuration(AbjadObject):
     '''Model of a duration in LilyPond.
 
     Not composer-safe.

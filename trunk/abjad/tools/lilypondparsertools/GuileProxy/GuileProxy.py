@@ -8,10 +8,10 @@ from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import stafftools
 from abjad.tools import tuplettools
-from abjad.tools.lilypondparsertools._lilypond_enharmonic_transpose import _lilypond_enharmonic_transpose
+from abjad.tools.abctools import AbjadObject
 
 
-class GuileProxy(object):
+class GuileProxy(AbjadObject):
     '''Emulates LilyPond music functions.
 
     Used internally by LilyPondParser.
@@ -167,20 +167,24 @@ class GuileProxy(object):
         return tuplettools.Tuplet((n, d), [music])
 
     def transpose(self, from_pitch, to_pitch, music):
+        from abjad.tools import lilypondparsertools
+
         self._make_unrelativable(music)
-        transpose = _lilypond_enharmonic_transpose
 
         def recurse(music):
             key_signatures = contexttools.get_key_signature_marks_attached_to_component(music)
             if key_signatures:
                 for x in key_signatures:
                     tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)
-                    x.tonic = transpose(from_pitch, to_pitch, tonic).named_chromatic_pitch_class
+                    x.tonic = lilypondparsertools.lilypond_enharmonic_transpose(
+                        from_pitch, to_pitch, tonic).named_chromatic_pitch_class
             if isinstance(music, notetools.Note):
-                music.written_pitch = transpose(from_pitch, to_pitch, music.written_pitch)
+                music.written_pitch = lilypondparsertools.lilypond_enharmonic_transpose(
+                    from_pitch, to_pitch, music.written_pitch)
             elif isinstance(music, chordtools.Chord):
                 for note_head in music.note_heads:
-                    note_head.written_pitch = transpose(from_pitch, to_pitch, note_head.written_pitch)
+                    note_head.written_pitch = lilypondparsertools.lilypond_enharmonic_transpose(
+                        from_pitch, to_pitch, note_head.written_pitch)
             elif isinstance(music, containertools.Container):
                 for x in music:
                     recurse(x)
