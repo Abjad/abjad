@@ -1,11 +1,10 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+import types
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.timetokentools.TimeTokenMaker import TimeTokenMaker
-import types
 
 
 class IncisedTimeTokenMaker(TimeTokenMaker):
@@ -22,7 +21,7 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     _default_mandatory_input_arguments = (
         [8],
@@ -101,8 +100,7 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
             return tuplets
 
     def __eq__(self, other):
-        return all([
-            isinstance(other, type(self)),
+        return isinstance(other, type(self)) and all([
             self.prefix_signal == other.prefix_signal,
             self.prefix_lengths == other.prefix_lengths,
             self.suffix_signal == other.suffix_signal,
@@ -114,7 +112,7 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
 
     ### PRIVATE METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def _make_middle_of_numeric_map_part(self, middle):
         pass
 
