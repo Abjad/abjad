@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_notes_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    ..note: Deprecated. Use ``notetools.iterate_notes_in_expr()`` instead.
 
     Yield right-to-left notes in `expr`::
 
@@ -77,4 +76,4 @@ def iterate_notes_backward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import notetools
 
-    return componenttools.iterate_components_backward_in_expr(expr, notetools.Note, start=start, stop=stop)
+    return notetools.iterate_notes_in_expr(expr, reverse=True, start=start, stop=stop)

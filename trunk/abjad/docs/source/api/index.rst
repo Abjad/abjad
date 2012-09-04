@@ -861,6 +861,7 @@ Composition packages
    tools/notetools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
+   tools/notetools/iterate_notes_in_expr
    tools/notetools/label_notes_in_expr_with_note_indices
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
    tools/notetools/make_notes
