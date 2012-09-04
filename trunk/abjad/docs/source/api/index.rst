@@ -2153,6 +2153,7 @@ Internal packages
 .. toctree::
    :maxdepth: 1
 
+   tools/lilypondparsertools/GuileProxy/GuileProxy
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
    tools/lilypondparsertools/SchemeParser/SchemeParser
 

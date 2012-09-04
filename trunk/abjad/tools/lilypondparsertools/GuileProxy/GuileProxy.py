@@ -11,7 +11,13 @@ from abjad.tools import tuplettools
 from abjad.tools.lilypondparsertools._lilypond_enharmonic_transpose import _lilypond_enharmonic_transpose
 
 
-class _GuileProxy(object):
+class GuileProxy(object):
+    '''Emulates LilyPond music functions.
+
+    Used internally by LilyPondParser.
+
+    Not composer-safe.
+    '''
 
     ### INITIALIZER ###
 

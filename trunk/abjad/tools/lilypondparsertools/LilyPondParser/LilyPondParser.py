@@ -14,7 +14,7 @@ from abjad.tools import spannertools
 from abjad.tools import stafftools
 from abjad.tools import tietools
 from abjad.tools import voicetools
-from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
+from abjad.tools.lilypondparsertools.GuileProxy.GuileProxy import GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
@@ -123,7 +123,7 @@ class LilyPondParser(abctools.Parser):
         from abjad.ly.py.markup_functions import markup_list_functions
 
         # LilyPond emulation data
-        self._guile = _GuileProxy(self)
+        self._guile = GuileProxy(self)
         self._current_module = current_module
         self._language_pitch_names = language_pitch_names
         self._markup_functions = markup_functions
