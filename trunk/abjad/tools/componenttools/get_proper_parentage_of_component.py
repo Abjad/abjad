@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.get_improper_parentage_of_component import get_improper_parentage_of_component
-
-
 def get_proper_parentage_of_component(component):
     '''.. versionadded:: 1.1
 
@@ -14,5 +11,6 @@ def get_proper_parentage_of_component(component):
 
     Return tuple of zero or more components.
     '''
+    from abjad.tools import componenttools
 
-    return get_improper_parentage_of_component(component)[1:]
+    return componenttools.get_improper_parentage_of_component(component)[1:]

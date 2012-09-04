@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.InstrumentMark import InstrumentMark
-from abjad.tools.contexttools.get_context_mark_attached_to_component import get_context_mark_attached_to_component
-
-
 def get_instrument_mark_attached_to_component(component):
     r'''.. versionadded:: 2.1
 
@@ -33,5 +29,6 @@ def get_instrument_mark_attached_to_component(component):
 
     Raise missing mark error when no instrument mark attaches to `component`.
     '''
+    from abjad.tools import contexttools
     
-    return get_context_mark_attached_to_component(component, klasses=(InstrumentMark,))
+    return contexttools.get_context_mark_attached_to_component(component, klasses=(contexttools.InstrumentMark,))

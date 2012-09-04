@@ -1,4 +1,6 @@
+from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import resttools
 
 
 def replace_container_slice_with_rests(container, start=None, stop=None, big_endian=True):
@@ -60,8 +62,6 @@ def replace_container_slice_with_rests(container, start=None, stop=None, big_end
 
     Return `container`.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import resttools
 
     # get container elements to replace
     elements_to_replace = container[start:stop]

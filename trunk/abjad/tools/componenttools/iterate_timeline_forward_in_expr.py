@@ -1,7 +1,3 @@
-from abjad.tools.componenttools.component_to_score_index import component_to_score_index
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
-
-
 def iterate_timeline_forward_in_expr(expr, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -42,20 +38,21 @@ def iterate_timeline_forward_in_expr(expr, klass=None):
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools import componenttools
+    from abjad.tools import leaftools
 
     if klass is None:
-        klass = Leaf
+        klass = leaftools.Leaf
 
-    component_generator = iterate_components_forward_in_expr(expr, klass=klass)
+    component_generator = componenttools.iterate_components_forward_in_expr(expr, klass=klass)
     components = list(component_generator)
 
     def _sort_helper(component_1, component_2):
         result = cmp(component_1.start_offset, component_2.start_offset)
         if result == 0:
             return cmp(
-                component_to_score_index(component_1),
-                component_to_score_index(component_2))
+                componenttools.component_to_score_index(component_1),
+                componenttools.component_to_score_index(component_2))
         else:
             return result
 

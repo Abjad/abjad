@@ -1,3 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import leaftools
+
+
 def insert_component(container, i, component, fracture_spanners=False):
     r'''.. versionadded:: 2.10
 
@@ -66,9 +70,7 @@ def insert_component(container, i, component, fracture_spanners=False):
 
     Return `container` or list of fractured spanners.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import containertools
-    from abjad.tools import leaftools
     from abjad.tools import spannertools
 
     # check input

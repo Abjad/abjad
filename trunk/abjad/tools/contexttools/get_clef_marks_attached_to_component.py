@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.ClefMark import ClefMark
-from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
-
-
 def get_clef_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -29,5 +25,6 @@ def get_clef_marks_attached_to_component(component):
 
     Return tuple of zero or more clef marks.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_marks_attached_to_component(component, klasses=(ClefMark,))
+    return contexttools.get_context_marks_attached_to_component(component, klasses=(contexttools.ClefMark,))

@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.TempoMark import TempoMark
-from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
-
-
 def get_effective_tempo(component):
     r'''.. versionadded:: 2.0
 
@@ -38,5 +34,6 @@ def get_effective_tempo(component):
 
     Return tempo mark or none.
     '''
+    from abjad.tools import contexttools
 
-    return get_effective_context_mark(component, TempoMark)
+    return contexttools.get_effective_context_mark(component, contexttools.TempoMark)

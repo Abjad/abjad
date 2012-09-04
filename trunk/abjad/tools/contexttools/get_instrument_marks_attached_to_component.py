@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.InstrumentMark import InstrumentMark
-from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
-
-
 def get_instrument_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -30,5 +26,6 @@ def get_instrument_marks_attached_to_component(component):
 
     Return tuple of zero or more instrument marks.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_marks_attached_to_component(component, klasses=(InstrumentMark,))
+    return contexttools.get_context_marks_attached_to_component(component, klasses=(contexttools.InstrumentMark,))

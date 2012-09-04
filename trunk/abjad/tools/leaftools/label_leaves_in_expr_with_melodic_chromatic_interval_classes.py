@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_direction=Up):
@@ -29,7 +30,6 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
     Return none.
     """
     from abjad.tools import leaftools
-    from abjad.tools import markuptools
     from abjad.tools import notetools
 
     for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):

@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.KeySignatureMark import KeySignatureMark
-from abjad.tools.contexttools.get_context_mark_attached_to_component import get_context_mark_attached_to_component
-
-
 def get_key_signature_mark_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -31,5 +27,6 @@ def get_key_signature_mark_attached_to_component(component):
 
     Raise missing mark error when no key signature mark attaches to component.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_mark_attached_to_component(component, klasses=(KeySignatureMark,))
+    return contexttools.get_context_mark_attached_to_component(component, klasses=(contexttools.KeySignatureMark,))

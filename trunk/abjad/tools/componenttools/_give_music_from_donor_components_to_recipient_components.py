@@ -1,6 +1,3 @@
-from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-
-
 def _give_music_from_donor_components_to_recipient_components(donors, recipient):
     '''Give any music belong to donor components 'donors'
     to recipient component 'recipient'.
@@ -15,16 +12,17 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
 
     Helper is not composer-safe and may cause discontiguous spanners.
     '''
-    from abjad.tools.containertools.Container import Container
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
     from abjad.tools import componenttools
+    from abjad.tools import containertools
+    from abjad.tools import leaftools
 
     assert componenttools.all_are_contiguous_components_in_same_parent(donors)
 
     # if recipient is leaf or nonempty container,
     # make sure there's no music in donor components to hand over
-    if isinstance(recipient, Leaf) or \
-        (isinstance(recipient, Container) and len(recipient)):
+    if isinstance(recipient, leaftools.Leaf) or \
+        (isinstance(recipient, containertools.Container) and len(recipient)):
         if all([len(x.music) == 0 for x in donors]):
             return donors
         else:

@@ -1,7 +1,3 @@
-from abjad.tools.componenttools.component_to_score_root import component_to_score_root
-from abjad.tools.componenttools.iterate_timeline_backward_in_expr import iterate_timeline_backward_in_expr
-
-
 def iterate_timeline_backward_from_component(expr, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -40,13 +36,14 @@ def iterate_timeline_backward_from_component(expr, klass=None):
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools import componenttools
+    from abjad.tools import leaftools
 
     if klass is None:
-        klass = Leaf
+        klass = leaftools.Leaf
 
-    root = component_to_score_root(expr)
-    component_generator = iterate_timeline_backward_in_expr(root, klass=klass)
+    root = componenttools.component_to_score_root(expr)
+    component_generator = componenttools.iterate_timeline_backward_in_expr(root, klass=klass)
 
     yielded_expr = False
     for component in component_generator:

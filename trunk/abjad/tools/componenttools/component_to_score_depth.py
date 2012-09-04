@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
-
-
 def component_to_score_depth(component):
     '''.. versionadded:: 1.1
 
@@ -13,5 +10,6 @@ def component_to_score_depth(component):
 
     Return nonnegative integer.
     '''
+    from abjad.tools import componenttools
 
-    return len(get_proper_parentage_of_component(component))
+    return len(componenttools.get_proper_parentage_of_component(component))

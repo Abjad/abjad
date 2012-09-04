@@ -1,7 +1,3 @@
-from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
-from abjad.tools.leaftools.repeat_leaf import repeat_leaf
-
-
 def repeat_leaves_in_expr(expr, total=1):
     r'''.. versionadded:: 1.1
 
@@ -46,6 +42,7 @@ def repeat_leaves_in_expr(expr, total=1):
         renamed ``leaftools.multiply()`` to
         ``leaftools.repeat_leaves_in_expr()``.
     '''
+    from abjad.tools import leaftools
 
-    for leaf in iterate_leaves_backward_in_expr(expr):
-        repeat_leaf(leaf, total)
+    for leaf in leaftools.iterate_leaves_backward_in_expr(expr):
+        leaftools.repeat_leaf(leaf, total)

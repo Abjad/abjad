@@ -1,4 +1,6 @@
+from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import pitchtools
 
 
 def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
@@ -113,11 +115,9 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
     Return pair.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import componenttools
     from abjad.tools import gracetools
     from abjad.tools import leaftools
     from abjad.tools import marktools
-    from abjad.tools import pitchtools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 

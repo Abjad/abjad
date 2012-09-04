@@ -45,8 +45,8 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
         renamed ``fuse.leaves_in_tie_chain()`` to
         ``leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()``.
     '''
+    from abjad.tools import leaftools
     from abjad.tools import tietools
-    from abjad.tools.leaftools.fuse_leaves import fuse_leaves
 
     # check input
     if not isinstance(tie_chain, tietools.TieChain):
@@ -60,7 +60,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain):
 
     # fuse leaves in each part
     for part in parts:
-        result.append(fuse_leaves(part))
+        result.append(leaftools.fuse_leaves(part))
 
     # return result
     return result

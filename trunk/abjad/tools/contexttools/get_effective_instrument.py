@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.InstrumentMark import InstrumentMark
-from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
-
-
 def get_effective_instrument(component):
     r'''.. versionadded:: 2.0
 
@@ -35,5 +31,6 @@ def get_effective_instrument(component):
 
     Return instrument mark or none.
     '''
+    from abjad.tools import contexttools
 
-    return get_effective_context_mark(component, InstrumentMark)
+    return contexttools.get_effective_context_mark(component, contexttools.InstrumentMark)

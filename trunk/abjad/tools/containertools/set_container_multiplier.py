@@ -33,8 +33,8 @@ def set_container_multiplier(container, multiplier):
         ``containertools.set_container_multiplier()``.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import tuplettools
     from abjad.tools import measuretools
+    from abjad.tools import tuplettools
 
     if isinstance(container, tuplettools.FixedDurationTuplet):
         container.target_duration = multiplier * container.contents_duration

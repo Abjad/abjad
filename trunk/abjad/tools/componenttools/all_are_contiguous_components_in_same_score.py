@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.component_to_score_root import component_to_score_root
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
 
@@ -29,7 +26,7 @@ def all_are_contiguous_components_in_same_score(expr, klasses=None, allow_orphan
         return False
 
     if klasses is None:
-        klasses = Component
+        klasses = componenttools.Component
 
     if len(expr) == 0:
         return True
@@ -39,20 +36,20 @@ def all_are_contiguous_components_in_same_score(expr, klasses=None, allow_orphan
         return False
 
     orphan_components = True
-    if not is_orphan_component(first):
+    if not componenttools.is_orphan_component(first):
         orphan_components = False
 
     same_score = True
     strictly_contiguous = True
 
-    first_score = component_to_score_root(first)
+    first_score = componenttools.component_to_score_root(first)
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
-        if not is_orphan_component(cur):
+        if not componenttools.is_orphan_component(cur):
             orphan_components = False
-        if not component_to_score_root(cur) is first_score:
+        if not componenttools.component_to_score_root(cur) is first_score:
             same_score = False
         if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             strictly_contiguous = False

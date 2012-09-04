@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.DynamicMark import DynamicMark
-from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
-
-
 def get_effective_dynamic(component):
     r'''.. versionadded:: 2.0
 
@@ -33,5 +29,6 @@ def get_effective_dynamic(component):
 
     Return dynamic mark or none.
     '''
+    from abjad.tools import contexttools
 
-    return get_effective_context_mark(component, DynamicMark)
+    return contexttools.get_effective_context_mark(component, contexttools.DynamicMark)

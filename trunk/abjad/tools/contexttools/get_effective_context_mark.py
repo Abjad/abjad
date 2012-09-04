@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def get_effective_context_mark(component, klass):
     r'''.. versionadded:: 2.0
 
@@ -26,8 +29,8 @@ def get_effective_context_mark(component, klass):
 
     Return context mark or none.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import contexttools
+    # TODO: make contexttools able to import measuretools at top level
     from abjad.tools import measuretools
 
     assert isinstance(component, componenttools.Component)

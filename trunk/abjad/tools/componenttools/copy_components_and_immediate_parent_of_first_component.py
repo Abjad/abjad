@@ -69,8 +69,8 @@ def copy_components_and_immediate_parent_of_first_component(components):
         renamed ``componenttools.clone_components_and_immediate_parent_of_first_component()`` to
         ``componenttools.copy_components_and_immediate_parent_of_first_component()``.
     '''
-    from abjad.tools import contexttools
     from abjad.tools import componenttools
+    from abjad.tools import contexttools
     from abjad.tools import measuretools
 
     # assert strictly contiguous components in same thread

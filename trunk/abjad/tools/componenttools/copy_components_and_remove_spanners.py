@@ -1,6 +1,3 @@
-from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
-from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import _restore_parentage_to_components_by_receipt
-from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import _reattach_blinded_marks_to_components_in_expr
 import copy
 
 
@@ -77,10 +74,6 @@ def copy_components_and_remove_spanners(components, n=1):
 
 
     .. versionchanged:: 2.0
-        renamed ``clone.unspan()`` to
-        ``componenttools.copy_components_and_remove_spanners()``.
-
-    .. versionchanged:: 2.0
         renamed ``componenttools.clone_components_and_remove_all_spanners()`` to
         ``componenttools.copy_components_and_remove_spanners()``.
 
@@ -89,6 +82,11 @@ def copy_components_and_remove_spanners(components, n=1):
         ``componenttools.copy_components_and_remove_spanners()``.
     '''
     from abjad.tools import componenttools
+    from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_parentage_of_components
+    from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
+        _restore_parentage_to_components_by_receipt
+    from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import \
+        _reattach_blinded_marks_to_components_in_expr
 
     if n < 1:
         return []

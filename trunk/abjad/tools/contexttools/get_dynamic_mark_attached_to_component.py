@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.DynamicMark import DynamicMark
-from abjad.tools.contexttools.get_context_mark_attached_to_component import get_context_mark_attached_to_component
-
-
 def get_dynamic_mark_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -32,5 +28,6 @@ def get_dynamic_mark_attached_to_component(component):
 
     Raise extra mark error when more than one dynamic mark attaches to `component`.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_mark_attached_to_component(component, klasses=(DynamicMark,))
+    return contextools.get_context_mark_attached_to_component(component, klasses=(contexttools.DynamicMark,))

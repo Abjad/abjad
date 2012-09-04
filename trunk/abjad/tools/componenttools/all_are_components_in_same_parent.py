@@ -1,4 +1,3 @@
-from abjad.tools.componenttools.Component import Component
 import types
 
 
@@ -19,13 +18,14 @@ def all_are_components_in_same_parent(expr, klasses=None, allow_orphans=True):
 
     Return boolean.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
         #raise TypeError('must be list of components: "%s".' % str(expr))
         return False
 
     if klasses is None:
-        klasses = (Component, )
+        klasses = (componenttools.Component, )
     else:
         klasses = tuple(klasses)
 

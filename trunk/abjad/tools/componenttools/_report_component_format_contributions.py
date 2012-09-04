@@ -1,6 +1,4 @@
-from abjad.tools.componenttools.Component import Component
-
-
+# TODO: limit output to string only
 def _report_component_format_contributions(component, verbose=False, output='screen'):
     r'''Read-only string report of all format-time contributions
     made to `component` by all the different parts of the Abjad
@@ -10,14 +8,15 @@ def _report_component_format_contributions(component, verbose=False, output='scr
 
     Set `output` to 'screen' or 'string'.
     '''
-    from abjad.tools.spannertools import Spanner
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools import componenttools
+    from abjad.tools import spannertools
+    from abjad.tools import leaftools
 
-    if isinstance(component, Leaf):
+    if isinstance(component, leaftools.Leaf):
         return component._report_format_contributors()
-    if isinstance(component, Component):
+    if isinstance(component, componenttools.Component):
         return component._formatter.report(verbose=verbose, output=output)
-    elif isinstance(component, Spanner):
+    elif isinstance(component, spanertools.Spanner):
         return component._format.report(output=output)
     else:
         raise TypeError('neither component nor spanner: "%s".' % component)

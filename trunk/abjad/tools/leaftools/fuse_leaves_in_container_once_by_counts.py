@@ -1,7 +1,9 @@
+from abjad.tools import componenttools
+
+
 def fuse_leaves_in_container_once_by_counts(container, counts, klass=None, big_endian=True):
     '''Fuse leaves in `container` once by `counts` into instances of `klass`.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import containertools
     from abjad.tools import notetools
     from abjad.tools import resttools

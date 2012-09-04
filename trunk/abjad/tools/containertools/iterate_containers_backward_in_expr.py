@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container import Container
 from abjad.tools import componenttools
 
 
@@ -42,5 +41,7 @@ def iterate_containers_backward_in_expr(expr, start=0, stop=None):
 
     Return generator.
     '''
+    from abjad.tools import containertools
 
-    return componenttools.iterate_components_backward_in_expr(expr, Container, start=start, stop=stop)
+    return componenttools.iterate_components_backward_in_expr(
+        expr, containertools.Container, start=start, stop=stop)

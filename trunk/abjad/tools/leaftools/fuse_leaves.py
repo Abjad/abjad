@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def fuse_leaves(leaves):
     r'''.. versionadded:: 1.1
 
@@ -22,7 +25,6 @@ def fuse_leaves(leaves):
         renamed ``fuse.leaves_by_reference()`` to
         ``leaftools.fuse_leaves()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import leaftools
 
     assert componenttools.all_are_thread_contiguous_components(leaves)

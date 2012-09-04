@@ -1,3 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import spannertools
+
+
 def is_component_with_beam_spanner_attached(expr):
     '''.. versionadded:: 2.0
 
@@ -27,8 +31,6 @@ def is_component_with_beam_spanner_attached(expr):
         ``beamtools.is_component_with_beam_spanner_attached()``.
     '''
     from abjad.tools import beamtools
-    from abjad.tools import componenttools
-    from abjad.tools import spannertools
 
     if not isinstance(expr, componenttools.Component):
         return False

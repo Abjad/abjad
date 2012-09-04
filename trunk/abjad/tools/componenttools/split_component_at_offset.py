@@ -118,7 +118,6 @@ def split_component_at_offset(component, offset,
     from abjad.tools import resttools
     from abjad.tools import spannertools
     from abjad.tools import tietools
-    from abjad.tools.leaftools.split_leaf_at_offset import split_leaf_at_offset
 
     offset = durationtools.Offset(offset)
     assert 0 <= offset
@@ -177,10 +176,10 @@ def split_component_at_offset(component, offset,
         assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
-        #left_list, right_list = split_leaf_at_offset(bottom,
+        #left_list, right_list = leaftools.split_leaf_at_offset(bottom,
         #    split_point_in_bottom, fracture_spanners=fracture_spanners, 
         #    tie_split_notes=tie_after, tie_split_rests=tie_after)
-        left_list, right_list = split_leaf_at_offset(bottom,
+        left_list, right_list = leaftools.split_leaf_at_offset(bottom,
             split_point_in_bottom, fracture_spanners=fracture_spanners, 
             tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
         right = right_list[0]

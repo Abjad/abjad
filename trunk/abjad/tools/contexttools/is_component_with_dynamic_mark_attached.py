@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.DynamicMark import DynamicMark
-from abjad.tools.contexttools.is_component_with_context_mark_attached import is_component_with_context_mark_attached
-
-
 def is_component_with_dynamic_mark_attached(expr):
     r'''.. versionadded:: 2.3
 
@@ -33,5 +29,6 @@ def is_component_with_dynamic_mark_attached(expr):
 
     Return boolean.
     '''
+    from abjad.tools import contexttools
 
-    return is_component_with_context_mark_attached(expr, (DynamicMark,))
+    return contexttools.is_component_with_context_mark_attached(expr, (contexttools.DynamicMark,))

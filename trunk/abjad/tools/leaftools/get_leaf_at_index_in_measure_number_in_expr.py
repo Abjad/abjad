@@ -1,6 +1,3 @@
-from abjad.tools.leaftools.get_nth_leaf_in_expr import get_nth_leaf_in_expr
-
-
 def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index):
     r'''.. versionadded:: 2.0
 
@@ -32,8 +29,9 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
 
     Return leaf or none.
     '''
-    from abjad.tools.measuretools.get_one_indexed_measure_number_in_expr import get_one_indexed_measure_number_in_expr
+    from abjad.tools import leaftools
+    from abjad.tools import measuretools
 
     # return leaf in measure
-    return get_nth_leaf_in_expr(
-        get_one_indexed_measure_number_in_expr(expr, measure_number), leaf_index)
+    return leaftools.get_nth_leaf_in_expr(
+        measuretools.get_one_indexed_measure_number_in_expr(expr, measure_number), leaf_index)

@@ -2,6 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
+# TODO: move to tuplettools
 def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=True):
     '''Change `leaf` to tuplet `n` notes of equal written duration.
 

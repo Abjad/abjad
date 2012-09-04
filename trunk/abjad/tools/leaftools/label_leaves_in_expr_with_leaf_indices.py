@@ -1,4 +1,4 @@
-from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
+from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_indices(expr, markup_direction=Down):
@@ -18,9 +18,8 @@ def label_leaves_in_expr_with_leaf_indices(expr, markup_direction=Down):
 
     Return none.
     '''
-    from abjad.tools import markuptools
+    from abjad.tools import leaftools
 
-    for i, leaf in enumerate(iterate_leaves_forward_in_expr(expr)):
-        #label = r'\small %s' % i
+    for i, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(expr)):
         label = markuptools.MarkupCommand('small', str(i))
         markuptools.Markup(label, markup_direction)(leaf)

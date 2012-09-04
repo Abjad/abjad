@@ -36,13 +36,13 @@ def remove_initial_rests_from_sequence(sequence):
 
     Return list.
     '''
-    from abjad.tools.resttools.Rest import Rest
+    from abjad.tools import resttools
 
     result = []
     found_nonrest = False
 
     for element in sequence:
-        if not isinstance(element, Rest):
+        if not isinstance(element, resttools.Rest):
             found_nonrest = True
         if found_nonrest:
             result.append(element)

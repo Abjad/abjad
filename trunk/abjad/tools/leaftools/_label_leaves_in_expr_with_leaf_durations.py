@@ -1,8 +1,8 @@
-from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
+from abjad.tools import markuptools
 
 
-def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = Down,
-    show = ['written', 'prolated'], ties = 'together'):
+def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction=Down,
+    show=['written', 'prolated'], ties='together'):
     r'''Label leaves in expr with written leaf duration, prolated leaf duration
     or both written and prolated leaf durations.
 
@@ -10,11 +10,11 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = Down,
         renamed ``label.leaf_durations()`` to
         ``leaftools.label_leaves_in_expr_with_leaf_duration()``.
     '''
-    from abjad.tools import markuptools
+    from abjad.tools import leaftools
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
-    for leaf in iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
         if ties == 'together':
             tie_spanners = spannertools.get_spanners_attached_to_component(
                 leaf, tietools.TieSpanner)

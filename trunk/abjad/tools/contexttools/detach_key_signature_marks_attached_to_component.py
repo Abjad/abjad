@@ -1,6 +1,3 @@
-from abjad.tools.contexttools.get_key_signature_marks_attached_to_component import get_key_signature_marks_attached_to_component
-
-
 def detach_key_signature_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -39,9 +36,11 @@ def detach_key_signature_marks_attached_to_component(component):
 
     Return tuple of zero or more key signature marks.
     '''
+    from abjad.tools import contexttools
 
     marks = []
-    for mark in get_key_signature_marks_attached_to_component(component):
+    for mark in contexttools.get_key_signature_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
+
     return tuple(marks)

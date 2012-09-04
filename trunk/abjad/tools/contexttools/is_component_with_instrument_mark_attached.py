@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.InstrumentMark import InstrumentMark
-from abjad.tools.contexttools.is_component_with_context_mark_attached import is_component_with_context_mark_attached
-
-
 def is_component_with_instrument_mark_attached(expr):
     r'''.. versionadded:: 2.3
 
@@ -36,5 +32,6 @@ def is_component_with_instrument_mark_attached(expr):
 
     Return boolean.
     '''
+    from abjad.tools import contexttools
     
-    return is_component_with_context_mark_attached(expr, klasses=(InstrumentMark,))
+    return contexttools.is_component_with_context_mark_attached(expr, klasses=(contexttools.InstrumentMark,))

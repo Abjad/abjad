@@ -1,4 +1,5 @@
-from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
+from abjad.tools import componenttools
+from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
@@ -27,9 +28,8 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
 
     Return none.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import markuptools
+    from abjad.tools import leaftools
 
-    for leaf in iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
         label = markuptools.MarkupCommand('small', str(componenttools.component_to_score_depth(leaf)))
         markuptools.Markup(label, markup_direction)(leaf)

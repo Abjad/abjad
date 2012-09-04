@@ -1,3 +1,4 @@
+from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 
@@ -54,7 +55,6 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
     Return none.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import contexttools
     from abjad.tools import measuretools
     from abjad.tools import tuplettools

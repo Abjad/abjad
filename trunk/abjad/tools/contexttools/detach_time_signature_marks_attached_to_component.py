@@ -1,6 +1,3 @@
-from abjad.tools.contexttools.get_time_signature_marks_attached_to_component import get_time_signature_marks_attached_to_component
-
-
 def detach_time_signature_marks_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -38,9 +35,11 @@ def detach_time_signature_marks_attached_to_component(component):
 
     Return tuple of zero or more time signature marks.
     '''
+    from abjad.tools import contexttools
 
     marks = []
-    for mark in get_time_signature_marks_attached_to_component(component):
+    for mark in contexttools.get_time_signature_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
+
     return tuple(marks)    

@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
+# TODO: move to tuplettools
 def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
     '''Change `leaf` to tuplet with `proportions`.
 

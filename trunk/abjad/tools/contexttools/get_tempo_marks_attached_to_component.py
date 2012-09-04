@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.TempoMark import TempoMark
-from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
-
-
 def get_tempo_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -36,5 +32,6 @@ def get_tempo_marks_attached_to_component(component):
 
     Return tuple of zero or more tempo marks.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_marks_attached_to_component(component, klasses=(TempoMark,))
+    return contexttools.get_context_marks_attached_to_component(component, klasses=(contexttools.TempoMark,))

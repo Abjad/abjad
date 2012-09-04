@@ -1,6 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools.leaftools.divide_leaf_meiotically import divide_leaf_meiotically
-from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
 
 
 def divide_leaves_in_expr_meiotically(expr, n=2):
@@ -54,7 +52,8 @@ def divide_leaves_in_expr_meiotically(expr, n=2):
         renamed ``leaftools.meiose()`` to
         ``leaftools.divide_leaves_in_expr_meiotically()``.
     '''
+    from abjad.tools import leaftools
 
     # can not wrap with update control because ofextend_in_parent_of_component()
-    for leaf in iterate_leaves_backward_in_expr(expr):
-        divide_leaf_meiotically(leaf, n)
+    for leaf in leaftools.iterate_leaves_backward_in_expr(expr):
+        leaftools.divide_leaf_meiotically(leaf, n)

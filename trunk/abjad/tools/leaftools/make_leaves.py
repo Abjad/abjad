@@ -1,9 +1,9 @@
 from __future__ import division
+import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-import numbers
 
 
 # TODO: Change leaftools.make_leaves() signature to allow ('c', 4) named pairs

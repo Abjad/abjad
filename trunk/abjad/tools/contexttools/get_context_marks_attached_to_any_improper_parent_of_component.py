@@ -1,4 +1,4 @@
-from abjad.tools.contexttools.ContextMark import ContextMark
+from abjad.tools import componenttools
 
 
 def get_context_marks_attached_to_any_improper_parent_of_component(component):
@@ -30,13 +30,13 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
 
     Return tuple.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import contexttools
 
     result = []
 
     for component in componenttools.get_improper_parentage_of_component(component):
         for mark in component._marks_for_which_component_functions_as_start_component:
-            if isinstance(mark, ContextMark):
+            if isinstance(mark, contexttools.ContextMark):
                 result.append(mark)
 
     return tuple(result)

@@ -1,5 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
 
@@ -27,7 +25,7 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
         return False
 
     if klasses is None:
-        klasses = Component
+        klasses = componenttools.Component
 
     if len(expr) == 0:
         return True
@@ -37,7 +35,7 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
         return False
 
     orphan_components = True
-    if not is_orphan_component(first):
+    if not componenttools.is_orphan_component(first):
         orphan_components = False
 
     strictly_contiguous = True
@@ -46,7 +44,7 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
-        if not is_orphan_component(cur):
+        if not componenttools.is_orphan_component(cur):
             orphan_components = False
         if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             strictly_contiguous = False

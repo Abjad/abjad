@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.ClefMark import ClefMark
-from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
-
-
 def get_effective_clef(component):
     r'''.. versionadded:: 2.0
 
@@ -34,5 +30,6 @@ def get_effective_clef(component):
 
     Return clef mark or none.
     '''
+    from abjad.tools import contexttools
 
-    return get_effective_context_mark(component, ClefMark)
+    return contexttools.get_effective_context_mark(component, contexttools.ClefMark)

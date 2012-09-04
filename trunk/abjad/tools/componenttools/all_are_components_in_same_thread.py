@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
 
@@ -21,13 +18,14 @@ def all_are_components_in_same_thread(expr, klasses=None, allow_orphans=True):
 
     Return boolean.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
         #raise TypeError('Must be list of Abjad components.')
         return False
 
     if klasses is None:
-        klasses = Component
+        klasses = componenttools.Component
 
     if len(expr) == 0:
         return True
@@ -37,16 +35,16 @@ def all_are_components_in_same_thread(expr, klasses=None, allow_orphans=True):
         return False
 
     orphan_components = True
-    if not is_orphan_component(first):
+    if not componenttools.is_orphan_component(first):
         orphan_components = False
 
     same_thread = True
 
-    first_signature = component_to_containment_signature(first)
+    first_signature = componenttools.component_to_containment_signature(first)
     for component in expr[1:]:
-        if not is_orphan_component(component):
+        if not componenttools.is_orphan_component(component):
             orphan_components = False
-        if component_to_containment_signature(component) != first_signature:
+        if componenttools.component_to_containment_signature(component) != first_signature:
             same_thread = False
         if not allow_orphans and not same_thread:
             return False

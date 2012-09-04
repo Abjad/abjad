@@ -1,7 +1,3 @@
-from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
-
-
 def get_nth_component_in_expr(expr, klasses, n=0):
     r'''.. versionadded:: 1.1
 
@@ -70,15 +66,16 @@ def get_nth_component_in_expr(expr, klasses, n=0):
         renamed ``iterate.get_nth()`` to
         ``componenttools.get_nth_component_in_expr()``.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(n, (int, long)):
         raise ValueError
 
     if 0 <= n:
-        for i, x in enumerate(iterate_components_forward_in_expr(expr, klasses)):
+        for i, x in enumerate(componenttools.iterate_components_forward_in_expr(expr, klasses)):
             if i == n:
                 return x
     else:
-        for i, x in enumerate(iterate_components_backward_in_expr(expr, klasses)):
+        for i, x in enumerate(componenttools.iterate_components_backward_in_expr(expr, klasses)):
             if i == abs(n) - 1:
                 return x

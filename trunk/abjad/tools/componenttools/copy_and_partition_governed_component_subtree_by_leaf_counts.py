@@ -1,5 +1,5 @@
-from abjad.tools.mathtools import cumulative_sums_zero
-from abjad.tools.sequencetools.iterate_sequence_pairwise_strict import iterate_sequence_pairwise_strict
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 
 
 # TODO: Implement in-place containertools.partition_components_by_counts()
@@ -78,15 +78,14 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
         renamed ``clonewp.by_leaf_counts_with_parentage()`` to
         ``componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts()``.
     '''
-    from abjad.tools.containertools.Container import Container
-    from abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range import \
-        copy_governed_component_subtree_by_leaf_range
+    from abjad.tools import componenttools
+    from abjad.tools import containertools
 
-    assert isinstance(container, Container)
+    assert isinstance(container, containertools.Container)
     assert all([isinstance(x, int) for x in leaf_counts])
 
     result = []
-    sums = cumulative_sums_zero(leaf_counts)
-    for start, stop in iterate_sequence_pairwise_strict(sums):
-        result.append(copy_governed_component_subtree_by_leaf_range(container, start, stop))
+    sums = mathtools.cumulative_sums_zero(leaf_counts)
+    for start, stop in sequencetools.iterate_sequence_pairwise_strict(sums):
+        result.append(componenttools.copy_governed_component_subtree_by_leaf_range(container, start, stop))
     return result

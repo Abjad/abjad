@@ -1,3 +1,4 @@
+from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
@@ -42,7 +43,6 @@ def rest_leaf_at_offset(leaf, offset):
         renamed ``leaftools.shorten()`` to
         ``leaftools.rest_leaf_at_offset()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import resttools
 
     offset = durationtools.Offset(offset)

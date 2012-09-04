@@ -1,4 +1,6 @@
+from abjad.tools import chordtools
 from abjad.tools import durationtools
+from abjad.tools import notetools
 
 
 def is_beamable_component(expr):
@@ -15,8 +17,6 @@ def is_beamable_component(expr):
         renamed ``componenttools.is_beamable_component()`` to
         ``beamtools.is_beamable_component()``.
     '''
-    from abjad.tools import chordtools
-    from abjad.tools import notetools
 
     if isinstance(expr, (notetools.Note, chordtools.Chord)):
         if 0 < durationtools.rational_to_flag_count(expr.written_duration):

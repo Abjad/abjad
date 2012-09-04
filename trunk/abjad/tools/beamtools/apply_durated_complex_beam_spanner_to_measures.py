@@ -1,3 +1,6 @@
+from abjad.tools import spannertools
+
+
 def apply_durated_complex_beam_spanner_to_measures(measures):
     r'''.. versionadded:: 1.1
 
@@ -62,7 +65,6 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
         ``beamtools.apply_durated_complex_beam_spanner_to_measures()``.
     '''
     from abjad.tools import beamtools
-    from abjad.tools import spannertools
 
     durations = []
     for measure in measures:

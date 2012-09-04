@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-
-
 def component_to_pitch_and_rhythm_skeleton(component):
     r'''.. versionadded:: 2.0
 
@@ -75,14 +72,17 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
     Return string.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
-    from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import _container_to_pitch_and_rhythm_skeleton
-    from abjad.tools.leaftools._leaf_to_pitch_and_rhythm_skeleton import _leaf_to_pitch_and_rhythm_skeleton
+    from abjad.tools import componenttools
+    from abjad.tools import leaftools
+    from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import \
+        _container_to_pitch_and_rhythm_skeleton
+    from abjad.tools.leaftools._leaf_to_pitch_and_rhythm_skeleton import \
+        _leaf_to_pitch_and_rhythm_skeleton
 
-    if not isinstance(component, Component):
+    if not isinstance(component, componenttools.Component):
         raise TypeError('must be Abjad component.')
 
-    if isinstance(component, Leaf):
+    if isinstance(component, leaftools.Leaf):
         return _leaf_to_pitch_and_rhythm_skeleton(component)
     else:
         return _container_to_pitch_and_rhythm_skeleton(component)

@@ -1,4 +1,4 @@
-from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
+from abjad.tools import durationtools
 
 
 def all_are_components_scalable_by_multiplier(components, multiplier):
@@ -22,12 +22,12 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
         renamed ``durationtools.are_scalable()`` to
         ``componenttools.all_are_components_scalable_by_multiplier()``.
     '''
+    from abjad.tools import leaftools
 
-    from abjad.tools.leaftools.Leaf import Leaf
     for component in components:
-        if isinstance(component, Leaf):
+        if isinstance(component, leaftools.Leaf):
             candidate_duration = multiplier * component.written_duration
-            if not is_assignable_rational(candidate_duration):
+            if not durationtools.is_assignable_rational(candidate_duration):
                 return False
 
     return True

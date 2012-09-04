@@ -1,6 +1,3 @@
-from abjad.tools.contexttools.get_staff_change_marks_attached_to_component import get_staff_change_marks_attached_to_component
-
-
 def detach_staff_change_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -38,9 +35,11 @@ def detach_staff_change_marks_attached_to_component(component):
 
     Return tuple of zero or more staff change marks.
     '''
+    from abjad.tools import contexttools
 
     marks = []
-    for mark in get_staff_change_marks_attached_to_component(component):
+    for mark in contexttools.get_staff_change_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
+
     return tuple(marks)

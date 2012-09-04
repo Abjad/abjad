@@ -1,4 +1,4 @@
-from abjad.tools.contexttools.Context import Context
+from abjad.tools import componenttools
 from abjad.tools import marktools
 
 
@@ -33,9 +33,9 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
     This means that it is not possible to set accidental style on
     a top-level context like score with a single override.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import contexttools
 
-    for context in componenttools.iterate_components_forward_in_expr(expr, Context):
+    for context in componenttools.iterate_components_forward_in_expr(expr, contexttools.Context):
         if context.is_semantic:
             if not context.is_parallel:
                 marktools.LilyPondCommandMark("#(set-accidental-style '%s)" % accidental_style)(context)

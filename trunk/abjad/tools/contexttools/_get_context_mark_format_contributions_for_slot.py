@@ -1,7 +1,9 @@
+from abjad.tools import componenttools
+from abjad.tools import measuretools
+
+
 def _get_context_mark_format_contributions_for_slot(component, slot):
-    from abjad.tools import componenttools
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
 
     result = []
     marks = set([])

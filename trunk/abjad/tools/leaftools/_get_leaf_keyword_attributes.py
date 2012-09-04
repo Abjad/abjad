@@ -1,11 +1,10 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
+from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
-_types_forbidden_to_write_as_keyword_values = (Component, )
-
 def _get_leaf_keyword_attributes(leaf):
+    from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
+    _types_forbidden_to_write_as_keyword_values = (componenttools.Component, )
     result = []
     attributes = _inspect_leaf_instance_attributes(leaf)
     vanilla_attributes, read_only_properties, read_write_properties = attributes
@@ -35,6 +34,7 @@ def _get_leaf_keyword_attributes(leaf):
 
 def _handle_vanilla_attribute(attribute_host_name, attribute_host, attribute_name):
     result = []
+    _types_forbidden_to_write_as_keyword_values = (componenttools.Component, )
     attribute = getattr(attribute_host, attribute_name)
     if isinstance(attribute, _types_forbidden_to_write_as_keyword_values):
         return result
@@ -59,6 +59,7 @@ def _handle_read_only_property(property_host_name, property_host, property_name)
 
 
 def _handle_interface(interface_name, interface):
+    from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
     result = []
     #print 'handling interface %s ...' % interface_name
     attributes = _inspect_leaf_instance_attributes(interface)

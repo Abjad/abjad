@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.ContainmentSignature import ContainmentSignature
-
-
 # TODO: where is this being used? same as containment signature?
 def component_to_parentage_signature(component):
     '''.. versionadded:: 1.1
@@ -16,22 +13,21 @@ def component_to_parentage_signature(component):
 
     Return parentage signature.
     '''
-    from abjad.tools.scoretools.Score import Score
-    from abjad.tools.stafftools.Staff import Staff
-    from abjad.tools.voicetools.Voice import Voice
     from abjad.tools import componenttools
-    from abjad.tools.scoretools import StaffGroup
+    from abjad.tools import scoretools
+    from abjad.tools import stafftools
+    from abjad.tools import voicetools
 
-    signature = ContainmentSignature()
+    signature = componenttools.ContainmentSignature()
     signature._self = component._id_string
     for component in componenttools.get_improper_parentage_of_component(component):
-        if isinstance(component, Voice) and not signature._voice:
+        if isinstance(component, voicetools.Voice) and not signature._voice:
             signature._voice = component._id_string
-        elif isinstance(component, Staff) and not signature._staff:
+        elif isinstance(component, stafftools.Staff) and not signature._staff:
             signature._staff = component._id_string
-        elif isinstance(component, StaffGroup) and not signature._staff_group:
+        elif isinstance(component, scoretools.StaffGroup) and not signature._staff_group:
             signature._staff_group = component._id_string
-        elif isinstance(component, Score) and not signature._score:
+        elif isinstance(component, scoretools.Score) and not signature._score:
             signature._score = component._id_string
     else:
         '''Root components must be manifestly equal to compare True.'''

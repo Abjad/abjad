@@ -1,6 +1,3 @@
-from abjad.tools.containertools.Container import Container
-
-
 def delete_contents_of_container(container):
     r'''Delete contents of `container`::
 
@@ -35,8 +32,9 @@ def delete_contents_of_container(container):
         renamed ``containertools.contents_delete()`` to
         ``containertools.delete_contents_of_container()``.
     '''
+    from abjad.tools import containertools
 
-    if not isinstance(container, Container):
+    if not isinstance(container, containertools.Container):
         raise TypeError('must be container.')
 
     contents = container[:]

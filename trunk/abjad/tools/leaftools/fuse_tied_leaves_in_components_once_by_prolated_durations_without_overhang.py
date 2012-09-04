@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
     components, prolated_durations):
     r'''.. versionadded:: 1.1
@@ -43,7 +46,6 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
         renamed ``fuse.tied_leaves_by_prolated_durations()`` to
         ``leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import leaftools
     from abjad.tools import tietools
 

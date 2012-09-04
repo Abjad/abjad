@@ -1,7 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
-from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 import types
 
 
@@ -46,7 +42,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
         return False
 
     if klasses is None:
-        klasses = Component
+        klasses = componenttools.Component
 
     if len(expr) == 0:
         return True
@@ -56,20 +52,20 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
         return False
 
     orphan_components = True
-    if not is_orphan_component(first):
+    if not componenttools.is_orphan_component(first):
         orphan_components = False
 
     same_thread = True
     thread_proper = True
 
-    first_thread = component_to_containment_signature(first)
+    first_thread = componenttools.component_to_containment_signature(first)
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
-        if not is_orphan_component(cur):
+        if not componenttools.is_orphan_component(cur):
             orphan_components = False
-        if not component_to_containment_signature(cur) == first_thread:
+        if not componenttools.component_to_containment_signature(cur) == first_thread:
             same_thread = False
         if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             if not _are_thread_proper(prev, cur):
@@ -82,18 +78,22 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     return True
 
 
-def _are_thread_proper(component_1, component_2, klasses=(Component)):
+def _are_thread_proper(component_1, component_2, klasses=None):
     '''True when
 
-            1. component_1 and component_2 are both Abjad components,
-            2. component_1 and component_2 share the same thread,
-            3. component_1 precedes component_2 in temporal order, and
-            4. there exists no intervening component x that both shares
-                the same thread as component_1 and component_2 and
-                that intervenes temporally between component_1 and _2.
+        1. component_1 and component_2 are both Abjad components,
+        2. component_1 and component_2 share the same thread,
+        3. component_1 precedes component_2 in temporal order, and
+        4. there exists no intervening component x that both shares
+            the same thread as component_1 and component_2 and
+            that intervenes temporally between component_1 and _2.
 
-        Otherwise False.
+    Otherwise False.
     '''
+    from abjad.tools import componenttools
+    
+    if klasses is None:
+        klasses = (componenttools.Component,)
 
     # if either input parameter are not Abjad tokens
     if not isinstance(component_1, klasses) or \
@@ -101,8 +101,8 @@ def _are_thread_proper(component_1, component_2, klasses=(Component)):
         return False
 
     # if component_1 and component_2 do not share a thread
-    first_thread = component_to_containment_signature(component_1)
-    if not first_thread == component_to_containment_signature(component_2):
+    first_thread = componenttools.component_to_containment_signature(component_1)
+    if not first_thread == componenttools.component_to_containment_signature(component_2):
         #print 'not same thread!'
         return False
 
@@ -116,11 +116,11 @@ def _are_thread_proper(component_1, component_2, klasses=(Component)):
         return False
 
     # if there exists an intervening component of the same thread
-    dfs = iterate_components_depth_first(component_1, capped=False)
+    dfs = componenttools.iterate_components_depth_first(component_1, capped=False)
     for node in dfs:
         if node is component_2:
             break
-        node_thread = component_to_containment_signature(node)
+        node_thread = componenttools.component_to_containment_signature(node)
         if node_thread == first_thread:
             node_begin = node.start_offset
             if first_end <= node_begin < second_begin:

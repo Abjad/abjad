@@ -1,6 +1,3 @@
-from abjad.tools.containertools.delete_contents_of_container import delete_contents_of_container
-
-
 def eject_contents_of_container(container):
     '''.. versionadded:: 2.0
 
@@ -36,8 +33,9 @@ def eject_contents_of_container(container):
 
     Return list of `container` contents.
     '''
+    from abjad.tools import containertools
 
     contents = container[:]
-    delete_contents_of_container(container)
+    containertools.delete_contents_of_container(container)
 
     return contents

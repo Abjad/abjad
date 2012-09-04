@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def remove_leafless_containers_in_expr(expr):
     r'''Remove empty containers in `expr`::
 
@@ -54,7 +57,6 @@ def remove_leafless_containers_in_expr(expr):
         renamed ``containertools.remove_empty()`` to
         ``containertools.remove_leafless_containers_in_expr()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import containertools
 
     for container in containertools.iterate_containers_forward_in_expr(expr):

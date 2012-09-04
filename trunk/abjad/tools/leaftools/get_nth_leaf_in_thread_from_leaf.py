@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
     r'''.. versionadded:: 2.0
 
@@ -40,7 +43,6 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
 
     Return leaf or none.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import leaftools
 
     if not isinstance(leaf, leaftools.Leaf):

@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
-
-
 def is_orphan_component(component):
     '''.. versionadded:: 1.1
 
@@ -16,5 +13,6 @@ def is_orphan_component(component):
         renamed ``componenttools.component_is_orphan()`` to
         ``componenttools.is_orphan_component()``.
     '''
+    from abjad.tools import componenttools
 
-    return not get_proper_parentage_of_component(component)
+    return not componenttools.get_proper_parentage_of_component(component)

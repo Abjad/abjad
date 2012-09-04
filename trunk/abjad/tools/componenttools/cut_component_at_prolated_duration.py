@@ -1,5 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.get_leftmost_components_with_prolated_duration_at_most import get_leftmost_components_with_prolated_duration_at_most
 from abjad.tools import durationtools
 
 
@@ -56,16 +54,16 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
     Return none.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools import componenttools
     from abjad.tools import leaftools
 
-    assert isinstance(component, Component)
+    assert isinstance(component, componenttools.Component)
     assert isinstance(prolated_duration, durationtools.Duration)
 
     if component.prolated_duration <= prolated_duration:
         raise NegativeDurationError('component durations must be positive.')
 
-    if isinstance(component, Leaf):
+    if isinstance(component, leaftools.Leaf):
         new_prolated_duration = component.prolated_duration - prolated_duration
         prolation = component.prolation
         new_written_duration = new_prolated_duration / prolation
@@ -73,8 +71,8 @@ def cut_component_at_prolated_duration(component, prolated_duration):
     else:
         container = component
         components, accumulated_duration = \
-            get_leftmost_components_with_prolated_duration_at_most(
+            componenttools.get_leftmost_components_with_prolated_duration_at_most(
             container[:], prolated_duration)
         del(container[:len(components)])
         remaining_subtrahend_duration = prolated_duration - accumulated_duration
-        cut_component_at_prolated_duration(container[0], remaining_subtrahend_duration)
+        componenttools.cut_component_at_prolated_duration(container[0], remaining_subtrahend_duration)

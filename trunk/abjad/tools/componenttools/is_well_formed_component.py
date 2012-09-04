@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-
-
 def is_well_formed_component(expr, allow_empty_containers=True):
     r'''.. versionadded:: 1.1
 
@@ -25,9 +22,10 @@ def is_well_formed_component(expr, allow_empty_containers=True):
 
     Return boolean.
     '''
+    from abjad.tools import componenttools
     from abjad.tools import wellformednesstools
 
-    if not isinstance(expr, Component):
+    if not isinstance(expr, componenttools.Component):
         return False
 
     results = []

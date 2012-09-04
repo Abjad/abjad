@@ -1,7 +1,5 @@
-from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 import copy
 import itertools
-
 
 
 def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_name):
@@ -112,9 +110,10 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
     Returns a list leaves in upper voice, and a list of leaves in lower voice.
     '''    
     from abjad.tools import containertools
+    from abjad.tools import leaftools
     from abjad.tools import voicetools
 
-    leaves = [leaf for leaf in iterate_leaves_forward_in_expr(expr)]
+    leaves = [leaf for leaf in leaftools.iterate_leaves_forward_in_expr(expr)]
 
     upper_leaves = []
     lower_leaves = []

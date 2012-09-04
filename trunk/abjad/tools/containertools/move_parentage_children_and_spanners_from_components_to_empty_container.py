@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def move_parentage_children_and_spanners_from_components_to_empty_container(components, container):
     r'''Move parentage, children and spanners from donor `components` 
     to recipient empty `container`::
@@ -47,14 +50,13 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(comp
 
     Return none.
     '''
+    from abjad.tools import containertools
     from abjad.tools.componenttools._give_donor_components_position_in_parent_to_recipient_components import \
         _give_donor_components_position_in_parent_to_recipient_components
     from abjad.tools.componenttools._give_music_from_donor_components_to_recipient_components import \
         _give_music_from_donor_components_to_recipient_components
     from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import \
         _give_spanners_that_dominate_donor_components_to_recipient_components
-    from abjad.tools import componenttools
-    from abjad.tools import containertools
 
     assert componenttools.all_are_contiguous_components_in_same_parent(components)
 

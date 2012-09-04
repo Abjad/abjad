@@ -1,5 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
 
@@ -28,7 +26,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
         return False
 
     if klasses is None:
-        klasses = Component
+        klasses = componenttools.Component
 
     if len(expr) == 0:
         return True
@@ -51,7 +49,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
-        if not is_orphan_component(cur):
+        if not componenttools.is_orphan_component(cur):
             orphan_components = False
         if not cur._parent is first_parent:
             same_parent = False

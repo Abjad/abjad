@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.StaffChangeMark import StaffChangeMark
-from abjad.tools.contexttools.get_context_mark_attached_to_component import get_context_mark_attached_to_component
-
-
 def get_staff_change_mark_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -41,5 +37,6 @@ def get_staff_change_mark_attached_to_component(component):
 
     Raise missing mark error when no staff change mark attaches to `component`.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_mark_attached_to_component(component, klasses=(StaffChangeMark,))
+    return contexttools.get_context_mark_attached_to_component(component, klasses=(contexttools.StaffChangeMark,))

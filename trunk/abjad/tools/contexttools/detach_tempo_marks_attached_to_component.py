@@ -1,6 +1,3 @@
-from abjad.tools.contexttools.get_tempo_marks_attached_to_component import get_tempo_marks_attached_to_component
-
-
 def detach_tempo_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -48,9 +45,11 @@ def detach_tempo_marks_attached_to_component(component):
 
     Return tuple of zero or more tempo marks.
     '''
+    from abjad.tools import contexttools
 
     marks = []
-    for mark in get_tempo_marks_attached_to_component(component):
+    for mark in contexttools.get_tempo_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
+
     return tuple(marks)

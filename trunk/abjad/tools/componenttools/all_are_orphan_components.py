@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
-
-
 def all_are_orphan_components(expr):
     '''.. versionadded:: 2.0
 
@@ -8,9 +5,10 @@ def all_are_orphan_components(expr):
 
     Othewise false.
     '''
+    from abjad.tools import componenttools
 
     for element in expr:
-        if not is_orphan_component(element):
+        if not componenttools.is_orphan_component(element):
             return False
     else:
         return True

@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.is_orphan_component import is_orphan_component
-
-
 def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     r'''.. versionadded:: 2.0
 
@@ -77,9 +74,10 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
         renamed ``componenttools.flip()`` to
         ``componenttools.move_component_subtree_to_right_in_immediate_parent_of_component()``.
     '''
+    from abjad.tools import componenttools
 
     # swap positions in parent
-    if not is_orphan_component(component):
+    if not componenttools.is_orphan_component(component):
         parent = component._parent
         parent_index = parent.index(component)
         try:

@@ -1,8 +1,3 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
-from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
-
-
 def iterate_thread_backward_from_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -71,16 +66,17 @@ def iterate_thread_backward_from_component(component, klass=None):
         renamed ``threadtools.iterate_thread_backward_from_component()`` to
         ``componenttools.iterate_thread_backward_from_component()``.
     '''
+    from abjad.tools import componenttools
 
     # set default class
     if klass is None:
-        klass = Component
+        klass = componenttools.Component
 
     # save thread signature of input component
-    component_thread_signature = component_to_containment_signature(component)
+    component_thread_signature = componenttools.component_to_containment_signature(component)
 
     # iterate component depth-first allowing to crawl UP into score
-    for x in iterate_components_depth_first(component, capped=False, direction='right'):
+    for x in componenttools.iterate_components_depth_first(component, capped=False, direction='right'):
         if isinstance(x, klass):
-            if component_to_containment_signature(x) == component_thread_signature:
+            if componenttools.component_to_containment_signature(x) == component_thread_signature:
                 yield x

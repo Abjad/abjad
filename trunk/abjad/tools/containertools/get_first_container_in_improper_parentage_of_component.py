@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container import Container
 from abjad.tools import componenttools
 
 
@@ -26,6 +25,7 @@ def get_first_container_in_improper_parentage_of_component(component):
 
     Return container or none.
     '''
+    from abjad.tools import containertools
 
     return componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
-        component, Container)
+        component, containertools.Container)

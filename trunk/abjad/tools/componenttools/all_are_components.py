@@ -1,4 +1,3 @@
-from abjad.tools.componenttools.Component import Component
 import types
 
 
@@ -27,12 +26,13 @@ def all_are_components(expr, klasses=None):
 
     Return boolean.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
         return False
 
     if klasses is None:
-        klasses = Component
+        klasses = componenttools.Component
 
     for element in expr:
         if not isinstance(element, klasses):

@@ -1,6 +1,3 @@
-from abjad.tools.contexttools.get_instrument_marks_attached_to_component import get_instrument_marks_attached_to_component
-
-
 def detach_instrument_marks_attached_to_component(component):
     r'''.. versionadded:: 2.1
 
@@ -40,9 +37,11 @@ def detach_instrument_marks_attached_to_component(component):
 
     Return tuple of zero or more instrument marks.
     '''
+    from abjad.tools import contexttools
 
     marks = []
-    for mark in get_instrument_marks_attached_to_component(component):
+    for mark in contexttools.get_instrument_marks_attached_to_component(component):
         mark.detach()
         marks.append(mark)
+
     return tuple(marks)

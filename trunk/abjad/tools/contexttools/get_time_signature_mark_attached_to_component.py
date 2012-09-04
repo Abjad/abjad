@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
-from abjad.tools.contexttools.get_context_mark_attached_to_component import get_context_mark_attached_to_component
-
-
 def get_time_signature_mark_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -29,5 +25,7 @@ def get_time_signature_mark_attached_to_component(component):
 
     Raise missing mark error when no time signature mark attaches to `component`.
     '''
+    from abjad.tools import contexttools
 
-    return get_context_mark_attached_to_component(component, klasses=(TimeSignatureMark,))
+    return contexttools.get_context_mark_attached_to_component(
+        component, klasses=(contexttools.TimeSignatureMark,))

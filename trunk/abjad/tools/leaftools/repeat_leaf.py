@@ -1,4 +1,3 @@
-from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 
 

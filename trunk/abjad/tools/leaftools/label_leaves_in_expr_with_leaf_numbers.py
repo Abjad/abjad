@@ -1,4 +1,4 @@
-from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
+from abjad.tools import markuptools
 
 
 def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
@@ -24,10 +24,9 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
 
     Return none.
     '''
-    from abjad.tools import markuptools
+    from abjad.tools import leaftools
 
-    for i, leaf in enumerate(iterate_leaves_forward_in_expr(expr)):
+    for i, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(expr)):
         leaf_number = i + 1
-        #label = r'\small %s' % leaf_number
         label = markuptools.MarkupCommand('small', str(leaf_number))
         markuptools.Markup(label, markup_direction)(leaf)

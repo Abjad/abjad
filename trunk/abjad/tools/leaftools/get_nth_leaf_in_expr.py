@@ -1,5 +1,4 @@
-from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_component_in_expr
+from abjad.tools import componenttools
 
 
 # TODO: implement ``iterate.yield_leaves(expr, i=0, j=None)``
@@ -53,5 +52,6 @@ def get_nth_leaf_in_expr(expr, n=0):
 
     Return leaf of none.
     '''
+    from abjad.tools import leaftools
 
-    return get_nth_component_in_expr(expr, Leaf, n)
+    return componenttools.get_nth_component_in_expr(expr, leaftools.Leaf, n)

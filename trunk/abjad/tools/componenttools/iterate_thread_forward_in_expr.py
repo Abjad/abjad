@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
-
-
 def iterate_thread_forward_in_expr(expr, klass, thread_signature):
     r'''.. versionadded:: 1.1
 
@@ -60,14 +57,15 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
         renamed ``threadtools.iterate_thread_forward_in_expr()`` to
         ``componenttools.iterate_thread_forward_in_expr()``.
     '''
+    from abjad.tools import componenttools
 
-    if isinstance(expr, klass) and component_to_containment_signature(expr) == thread_signature:
+    if isinstance(expr, klass) and componenttools.component_to_containment_signature(expr) == thread_signature:
         yield expr
     if isinstance(expr, (list, tuple)):
         for m in expr:
-            for x in iterate_thread_forward_in_expr(m, klass, thread_signature):
+            for x in componenttools.iterate_thread_forward_in_expr(m, klass, thread_signature):
                 yield x
     if hasattr(expr, '_music'):
         for m in expr._music:
-            for x in iterate_thread_forward_in_expr(m, klass, thread_signature):
+            for x in componenttools.iterate_thread_forward_in_expr(m, klass, thread_signature):
                 yield x

@@ -1,6 +1,3 @@
-from abjad.tools.componenttools.ContainmentSignature import ContainmentSignature
-
-
 def component_to_containment_signature(component):
     '''.. versionadded:: 1.1
 
@@ -41,7 +38,7 @@ def component_to_containment_signature(component):
     from abjad.tools import stafftools
     from abjad.tools import voicetools
 
-    signature = ContainmentSignature()
+    signature = componenttools.ContainmentSignature()
     signature._self = component._id_string
     for component in componenttools.get_improper_parentage_of_component(component):
         if isinstance(component, voicetools.Voice) and signature._voice is None:

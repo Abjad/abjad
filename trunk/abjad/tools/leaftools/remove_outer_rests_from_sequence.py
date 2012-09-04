@@ -1,6 +1,3 @@
-from abjad.tools.leaftools.remove_terminal_rests_from_sequence import remove_terminal_rests_from_sequence
-
-
 def remove_outer_rests_from_sequence(sequence):
     r'''.. versionadded:: 2.0
 
@@ -39,13 +36,14 @@ def remove_outer_rests_from_sequence(sequence):
 
     Return list.
     '''
-    from abjad.tools.resttools.Rest import Rest
+    from abjad.tools import leaftools
+    from abjad.tools import resttools
 
-    result = remove_terminal_rests_from_sequence(sequence)
+    result = leaftools.remove_terminal_rests_from_sequence(sequence)
     initial_rests_to_remove = 0
 
     for element in result:
-        if isinstance(element, Rest):
+        if isinstance(element, resttools.Rest):
             initial_rests_to_remove += 1
         else:
             break

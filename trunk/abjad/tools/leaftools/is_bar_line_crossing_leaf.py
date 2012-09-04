@@ -30,16 +30,15 @@ def is_bar_line_crossing_leaf(leaf):
     Return boolean.
     '''
     from abjad.tools import contexttools
-    from abjad.tools.durationtools import Duration
 
     meter = contexttools.get_effective_time_signature(leaf)
 
     if meter is None:
-        meter_duration = Duration(4, 4)
+        meter_duration = durationtools.Duration(4, 4)
     else:
         meter_duration = meter.duration
 
-    partial = getattr(meter, 'partial', Duration(0))
+    partial = getattr(meter, 'partial', durationtools.Duration(0))
     
     shifted_start = (leaf.start_offset - partial) % meter_duration
 

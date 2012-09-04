@@ -1,26 +1,23 @@
-from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
-
-
 def _give_donor_components_position_in_parent_to_recipient_components(donors, recipients):
     '''When 'donors' has a parent, find parent.
-        Then insert all components in 'recipients'
-        in parent immediately before 'donors'.
-        Then remove 'donors' from parent.
+    Then insert all components in 'recipients'
+    in parent immediately before 'donors'.
+    Then remove 'donors' from parent.
 
-        When 'donors' has no parent, do nothing.
+    When 'donors' has no parent, do nothing.
 
-        Return 'donors'.
+    Return 'donors'.
 
-        Helper implements no spanner-handling at all.
-        Helper is not composer-safe and may cause discontiguous spanners.
+    Helper implements no spanner-handling at all.
+    Helper is not composer-safe and may cause discontiguous spanners.
     '''
     from abjad.tools import componenttools
+    from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
     assert componenttools.all_are_contiguous_components_in_same_parent(donors)
     assert componenttools.all_are_components(recipients)
 
-    parent, start, stop = get_parent_and_start_stop_indices_of_components(donors)
+    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(donors)
 
     if parent is None:
         return donors

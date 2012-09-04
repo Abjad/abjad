@@ -1,7 +1,3 @@
-from abjad.tools.contexttools.KeySignatureMark import KeySignatureMark
-from abjad.tools.contexttools.get_effective_context_mark import get_effective_context_mark
-
-
 def get_effective_key_signature(component):
     r'''.. versionadded:: 2.0
 
@@ -34,5 +30,6 @@ def get_effective_key_signature(component):
 
     Return key signature mark or none.
     '''
+    from abjad.tools import contexttools
 
-    return get_effective_context_mark(component, KeySignatureMark)
+    return contexttools.get_effective_context_mark(component, contexttools.KeySignatureMark)

@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import pitchtools
@@ -122,7 +123,6 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     Return list of shards.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import contexttools
     from abjad.tools import gracetools
     from abjad.tools import leaftools
