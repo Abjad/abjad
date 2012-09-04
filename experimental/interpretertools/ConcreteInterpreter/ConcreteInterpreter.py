@@ -280,13 +280,16 @@ class ConcreteInterpreter(Interpreter):
             raw_commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
             #self._debug(raw_commands, 'raw')
+            default_command = self.make_default_rhythm_command_for_segment(segment_specification)
+            raw_commands.insert(0, default_command)
+            #self._debug(raw_commands, 'raw')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
             #self._debug(cooked_commands, 'cooked')
             if cooked_commands:
                 rhythm_commands.extend(cooked_commands)
-            else:
-                default_command = self.make_default_rhythm_command_for_segment(segment_specification)
-                rhythm_commands.append(default_command)
+            #else:
+            #    default_command = self.make_default_rhythm_command_for_segment(segment_specification)
+            #    rhythm_commands.append(default_command)
         return rhythm_commands
 
     def get_rhythm_commands_that_start_during_segment(self, segment_specification, context_name):
