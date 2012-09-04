@@ -16,12 +16,12 @@ from abjad.tools import tietools
 from abjad.tools import tuplettools
 
 
-class ReducedAbjParser(abctools.Parser):
+class ReducedLyParser(abctools.Parser):
     r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax:
 
     ::
 
-        >>> parser = rhythmtreetools.ReducedAbjParser()
+        >>> parser = lilypondparsertools.ReducedLyParser()
 
     Understands LilyPond-like representation of notes, chords and rests:
 
@@ -138,7 +138,7 @@ class ReducedAbjParser(abctools.Parser):
             f16 ]
         }
 
-    Return `ReducedAbjParser` instance.
+    Return `ReducedLyParser` instance.
     '''
 
     ### INITIALIZER ###

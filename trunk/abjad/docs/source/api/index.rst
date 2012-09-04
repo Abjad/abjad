@@ -1179,7 +1179,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser
+   tools/rhythmtreetools/ReducedLyParser/ReducedLyParser
    tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
    tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
    tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser

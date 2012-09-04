@@ -322,7 +322,7 @@ being converted into Abjad score object:
 "Reduced-Ly" Parsing
 --------------------
 
-``rhythmtreetools.ReducedAbjParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very 
+``lilypondparsertools.ReducedLyParser`` parses the "reduced-ly" microlanguage, whose syntax combines a very 
 small subset of LilyPond syntax, along with affordances for generating various types of Abjad containers, and 
 speedups for rapidly notating notes and rests without needing to specify pitches.  It used mainly for creating
 Abjad documentation:
@@ -330,7 +330,7 @@ Abjad documentation:
 ::
 
    >>> from abjad.tools import rhythmtreetools
-   >>> parser = rhythmtreetools.ReducedAbjParser()
+   >>> parser = lilypondparsertools.ReducedLyParser()
 
 
 ::

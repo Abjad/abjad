@@ -1,4 +1,4 @@
-from abjad.tools.rhythmtreetools.ReducedAbjParser import ReducedAbjParser
+from abjad.tools.lilypondparsertools.ReducedLyParser import ReducedLyParser
 
 
 def parse_reduced_ly_syntax(string):
@@ -21,4 +21,4 @@ def parse_reduced_ly_syntax(string):
     Return list.
     '''
 
-    return ReducedAbjParser()(string)
+    return ReducedLyParser()(string)
