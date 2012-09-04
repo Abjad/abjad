@@ -261,13 +261,17 @@ class ConcreteInterpreter(Interpreter):
         context = componenttools.get_first_component_in_expr_with_name(
             segment_specification.score_model, context_name)
         result = []
-        for component in componenttools.get_improper_parentage_of_component(context):
+        if include_improper_parentage:
+            parentage_to_search = componenttools.get_improper_parentage_of_component(context)
+        else:
+            parentage_to_search = [context]
+        # ensure lower-level contexts appear before high-level contexts
+        parentage_to_search = list(reversed(parentage_to_search))
+        for component in parentage_to_search:
             context_proxy = segment_specification.resolved_single_context_settings[component.name]
             resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
             if resolved_single_context_settings:
                 result.extend(resolved_single_context_settings)
-                if not include_improper_parentage:
-                    break
         return result
 
     def get_rhythm_commands_for_voice(self, voice):
@@ -275,7 +279,9 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             raw_commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
+            #self._debug(raw_commands, 'raw')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
+            #self._debug(cooked_commands, 'cooked')
             if cooked_commands:
                 rhythm_commands.extend(cooked_commands)
             else:
