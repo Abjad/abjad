@@ -1,9 +1,7 @@
-from abjad.tools import abctools
-from abjad.tools.rhythmtreetools.RhythmTreeContainer import RhythmTreeContainer
-from abjad.tools.rhythmtreetools.RhythmTreeLeaf import RhythmTreeLeaf
+from abjad.tools.abctools import Parser
 
 
-class RhythmTreeParser(abctools.Parser):
+class RhythmTreeParser(Parser):
     '''Parses RTM-style rhythm syntax:
 
     ::
@@ -99,11 +97,13 @@ class RhythmTreeParser(abctools.Parser):
 
     def p_container__LPAREN__INTEGER__node_list_closed__RPAREN(self, p):
         '''container : LPAREN INTEGER node_list_closed RPAREN'''
-        p[0] = RhythmTreeContainer(p[2], p[3])
+        from abjad.tools import rhythmtreetools
+        p[0] = rhythmtreetools.RhythmTreeContainer(p[2], p[3])
 
     def p_leaf__INTEGER(self, p):
         '''leaf : INTEGER'''
-        p[0] = RhythmTreeLeaf(abs(p[1]), 0 < p[1])
+        from abjad.tools import rhythmtreetools
+        p[0] = rhythmtreetools.RhythmTreeLeaf(abs(p[1]), 0 < p[1])
 
     def p_node__container(self, p):
         '''node : container'''

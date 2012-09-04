@@ -1179,7 +1179,6 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmtreetools/ReducedLyParser/ReducedLyParser
    tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
    tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
    tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser
@@ -2160,6 +2159,7 @@ Internal packages
    tools/lilypondparsertools/LilyPondLexicalDefinition/LilyPondLexicalDefinition
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
    tools/lilypondparsertools/LilyPondSyntacticalDefinition/LilyPondSyntacticalDefinition
+   tools/lilypondparsertools/ReducedLyParser/ReducedLyParser
    tools/lilypondparsertools/SchemeParser/SchemeParser
    tools/lilypondparsertools/SyntaxNode/SyntaxNode
 

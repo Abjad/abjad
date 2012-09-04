@@ -1,9 +1,9 @@
+import copy
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import tietools
 from abjad.tools import tuplettools
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
-import copy
 
 
 class RhythmTreeContainer(RhythmTreeNode):

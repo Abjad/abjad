@@ -1,11 +1,11 @@
-from abc import abstractmethod, abstractproperty
-from abjad.tools import abctools
-from abjad.tools import durationtools
-from fractions import Fraction
 import inspect
+from abc import abstractmethod, abstractproperty
+from fractions import Fraction
+from abjad.tools import durationtools
+from abjad.tools.abctools import AbjadObject
 
 
-class RhythmTreeNode(abctools.AbjadObject):
+class RhythmTreeNode(AbjadObject):
     '''Abstract base class of nodes in a rhythm tree structure.'''
 
     ### CLASS ATTRIBUTES ###

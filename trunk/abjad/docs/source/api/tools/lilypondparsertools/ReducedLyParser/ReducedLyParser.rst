@@ -1,5 +1,5 @@
 lilypondparsertools.ReducedLyParser
-================================
+===================================
 
 .. inheritance-diagram:: abjad.tools.lilypondparsertools.ReducedLyParser.ReducedLyParser.ReducedLyParser
    :private-bases:
