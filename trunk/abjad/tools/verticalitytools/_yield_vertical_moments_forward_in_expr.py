@@ -1,5 +1,5 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools.Component import Component
+from abjad.tools import containertools
+from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
@@ -10,7 +10,7 @@ def _yield_vertical_moments_forward_in_expr(expr):
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
-    if not isinstance(expr, Component):
+    if not isinstance(expr, componenttools.Component):
         raise TypeError('must be Abjad component.')
 
     governors = (expr, )
@@ -24,11 +24,11 @@ def _yield_vertical_moments_forward_in_expr(expr):
 
 
 def _buffer_components_starting_with(component, buffer, stop_offsets):
-    if not isinstance(component, Component):
+    if not isinstance(component, componenttools.Component):
         raise TypeError('must be Abjad component.')
     buffer.append(component)
     stop_offsets.append(component.stop_offset)
-    if isinstance(component, Container):
+    if isinstance(component, containertools.Container):
         if component.is_parallel:
             for x in component.music:
                 _buffer_components_starting_with(x, buffer, stop_offsets)
@@ -39,7 +39,7 @@ def _buffer_components_starting_with(component, buffer, stop_offsets):
 
 def _next_in_parent(component):
     from abjad.tools import componenttools
-    if not isinstance(component, Component):
+    if not isinstance(component, componenttools.Component):
         raise TypeError('must be component.')
     parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
     assert start == stop
