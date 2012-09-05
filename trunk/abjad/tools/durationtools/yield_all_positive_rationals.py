@@ -1,5 +1,4 @@
-from abjad.tools.durationtools.yield_all_positive_integer_pairs import yield_all_positive_integer_pairs
-from fractions import Fraction
+import fractions
 
 
 def yield_all_positive_rationals():
@@ -34,9 +33,10 @@ def yield_all_positive_rationals():
 
     Return fraction generator.
     '''
+    from abjad.tools import durationtools
 
-    generator = yield_all_positive_integer_pairs()
+    generator = durationtools.yield_all_positive_integer_pairs()
     while True:
         integer_pair = generator.next()
-        rational = Fraction(*integer_pair)
+        rational = fractions.Fraction(*integer_pair)
         yield rational

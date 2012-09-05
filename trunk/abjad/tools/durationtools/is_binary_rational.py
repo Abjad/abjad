@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 import math
 
 
@@ -35,7 +35,7 @@ def is_binary_rational(rational):
     Return boolean.
     '''
 
-    if not isinstance(rational, (int, Fraction)):
+    if not isinstance(rational, (int, fractions.Fraction)):
         return False
 
     exponent = math.log(rational.denominator, 2)

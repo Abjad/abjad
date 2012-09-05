@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def rational_to_proper_fraction(rational):
@@ -16,7 +16,7 @@ def rational_to_proper_fraction(rational):
     Return pair.
     '''
 
-    if not isinstance(rational, Fraction):
+    if not isinstance(rational, fractions.Fraction):
         raise TypeError
 
     quotient = int(rational)

@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def rational_to_fraction_string(rational):
@@ -16,7 +16,7 @@ def rational_to_fraction_string(rational):
     Return string.
     '''
 
-    if not isinstance(rational, Fraction):
+    if not isinstance(rational, fractions.Fraction):
         raise TypeError('must be rational.')
 
     return '%s/%s' % (rational.numerator, rational.denominator)

@@ -1,8 +1,7 @@
-from fractions import Fraction
+import fractions
 
 
-def yield_prolation_rewrite_pairs(
-    prolated_duration, minimum_written_duration=Fraction(1, 128)):
+def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=None):
     r'''.. versionadded:: 2.0
 
     Yield all prolation rewrite pairs of `prolated_duration` in Cantor diagonalized order.
@@ -65,10 +64,15 @@ def yield_prolation_rewrite_pairs(
         (Fraction(40, 21), Fraction(7, 128))
         (Fraction(8, 9), Fraction(15, 128))
 
+    When `minimum_written_duration` is none set to ``1/128``.
+
     Return generator of paired fractions.
     '''
     from abjad.tools import durationtools
     from abjad.tools import tuplettools
+
+    if minimum_written_duration is None:
+        minimum_written_duration = fractions.Fraction(1, 128)
 
     generator = durationtools.yield_all_assignable_rationals()
     pairs = []

@@ -1,5 +1,4 @@
-from abjad.tools.durationtools.duration_token_to_duration_pair import duration_token_to_duration_pair
-from fractions import Fraction
+import fractions
 
 
 def duration_token_to_rational(duration_token):
@@ -21,5 +20,6 @@ def duration_token_to_rational(duration_token):
 
     Return fraction.
     '''
+    from abjad.tools import durationtools
 
-    return Fraction(*duration_token_to_duration_pair(duration_token))
+    return fractions.Fraction(*durationtools.duration_token_to_duration_pair(duration_token))

@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def numeric_seconds_to_clock_string(seconds):
@@ -16,7 +16,7 @@ def numeric_seconds_to_clock_string(seconds):
     Return string.
     '''
 
-    assert isinstance(seconds, (int, float, Fraction))
+    assert isinstance(seconds, (int, float, fractions.Fraction))
     if seconds < 0:
         raise ValueError('total seconds must be positive.')
 

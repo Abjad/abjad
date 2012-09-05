@@ -1,6 +1,3 @@
-from abjad.tools.durationtools.duration_token_to_duration_pair import duration_token_to_duration_pair
-
-
 def is_duration_token(expr):
     '''.. versionadded:: 2.0
 
@@ -20,9 +17,10 @@ def is_duration_token(expr):
 
     Return boolean.
     '''
+    from abjad.tools import durationtools
 
     try:
-        duration_token_to_duration_pair(expr)
+        durationtools.duration_token_to_duration_pair(expr)
         return True
     except (TypeError, ValueError, DurationError):
         return False

@@ -1,7 +1,3 @@
-from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
-from abjad.tools.durationtools.yield_all_positive_rationals_uniquely import yield_all_positive_rationals_uniquely
-
-
 def yield_all_assignable_rationals():
     '''.. versionadded:: 2.0
 
@@ -34,10 +30,10 @@ def yield_all_assignable_rationals():
 
     Return fraction generator.
     '''
+    from abjad.tools import durationtools
 
-
-    generator = yield_all_positive_rationals_uniquely()
+    generator = durationtools.yield_all_positive_rationals_uniquely()
     while True:
         duration = generator.next()
-        if is_assignable_rational(duration):
+        if durationtools.is_assignable_rational(duration):
             yield duration

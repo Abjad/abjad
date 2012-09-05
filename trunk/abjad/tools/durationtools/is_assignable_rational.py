@@ -1,5 +1,5 @@
+import fractions
 from abjad.tools import mathtools
-from fractions import Fraction
 
 
 def is_assignable_rational(expr):
@@ -41,7 +41,7 @@ def is_assignable_rational(expr):
     '''
 
     try:
-        duration = Fraction(expr)
+        duration = fractions.Fraction(expr)
     except (TypeError, ValueError):
         return False
 

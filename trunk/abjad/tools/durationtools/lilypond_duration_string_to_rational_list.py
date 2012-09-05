@@ -1,6 +1,3 @@
-from abjad.tools.durationtools.lilypond_duration_string_to_rational import lilypond_duration_string_to_rational
-
-
 def lilypond_duration_string_to_rational_list(duration_string):
     '''.. versionadded:: 2.0
 
@@ -15,6 +12,7 @@ def lilypond_duration_string_to_rational_list(duration_string):
 
     Return list of fractions.
     '''
+    from abjad.tools import durationtools
 
     if not isinstance(duration_string, str):
         raise TypeError('duration string must be string.')
@@ -22,7 +20,7 @@ def lilypond_duration_string_to_rational_list(duration_string):
     rationals = []
     duration_strings = duration_string.split()
     for duration_string in duration_strings:
-        rational = lilypond_duration_string_to_rational(duration_string)
+        rational = durationtools.lilypond_duration_string_to_rational(duration_string)
         rationals.append(rational)
 
     return rationals

@@ -1,6 +1,3 @@
-from abjad.tools.durationtools.is_duration_token import is_duration_token
-
-
 def all_are_duration_tokens(expr):
     '''.. versionadded:: 2.6
 
@@ -29,5 +26,6 @@ def all_are_duration_tokens(expr):
 
     Return boolean.
     '''
+    from abjad.tools import durationtools
 
-    return all([is_duration_token(x) for x in expr])
+    return all([durationtools.is_duration_token(x) for x in expr])

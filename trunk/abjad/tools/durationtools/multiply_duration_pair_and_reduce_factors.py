@@ -1,5 +1,5 @@
+import fractions
 from abjad.tools import mathtools
-from fractions import Fraction
 
 
 def multiply_duration_pair_and_reduce_factors(pair, multiplier):
@@ -24,7 +24,7 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
     '''
 
     assert isinstance(pair, tuple)
-    assert isinstance(multiplier, Fraction)
+    assert isinstance(multiplier, fractions.Fraction)
 
     pair_numerator_factors = mathtools.factors(pair[0])
     multiplier_denominator_factors = mathtools.factors(multiplier.denominator)

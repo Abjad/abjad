@@ -1,5 +1,4 @@
-from abjad.tools.durationtools.lilypond_duration_string_to_rational import lilypond_duration_string_to_rational
-from fractions import Fraction
+import fractions
 
 
 def duration_token_to_duration_pair(duration_token):
@@ -28,6 +27,7 @@ def duration_token_to_duration_pair(duration_token):
         renamed ``durationtools.token_unpack()`` to
         ``durationtools.duration_token_to_duration_pair()``.
     '''
+    from abjad.tools import durationtools
 
     if isinstance(duration_token, (tuple, list)):
         if len(duration_token) == 1:
@@ -40,10 +40,10 @@ def duration_token_to_duration_pair(duration_token):
     elif isinstance(duration_token, int):
         numerator = duration_token
         denominator = 1
-    elif isinstance(duration_token, Fraction):
+    elif isinstance(duration_token, fractions.Fraction):
         numerator, denominator = duration_token.numerator, duration_token.denominator
     elif isinstance(duration_token, str):
-        rational = lilypond_duration_string_to_rational(duration_token)
+        rational = durationtools.lilypond_duration_string_to_rational(duration_token)
         numerator, denominator = rational.numerator, rational.denominator
     else:
         raise TypeError('token must be of tuple, list, int or Fraction.')

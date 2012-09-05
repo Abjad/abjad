@@ -1,5 +1,4 @@
 from abjad.tools import mathtools
-from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
 
 
 def assignable_rational_to_dot_count(rational):
@@ -31,8 +30,9 @@ def assignable_rational_to_dot_count(rational):
 
     Return nonnegative integer.
     '''
+    from abjad.tools import durationtools
 
-    if not is_assignable_rational(rational):
+    if not durationtools.is_assignable_rational(rational):
         raise AssignabilityError
 
     binary_string = mathtools.integer_to_binary_string(rational.numerator)

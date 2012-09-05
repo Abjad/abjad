@@ -16,6 +16,7 @@ def rational_to_flag_count(rational):
     Return nonnegative integer.
     '''
 
+    # TODO: rewrite with only one operation per line
     flag_count = max(-int(math.floor(math.log(float(rational.numerator) /
         rational.denominator, 2))) - 2, 0)
 

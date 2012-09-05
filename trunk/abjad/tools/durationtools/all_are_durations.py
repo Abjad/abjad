@@ -1,6 +1,3 @@
-from abjad.tools.durationtools.Duration import Duration
-
-
 def all_are_durations(expr):
     '''.. versionadded:: 2.6
 
@@ -29,5 +26,6 @@ def all_are_durations(expr):
 
     Return boolean.
     '''
+    from abjad.tools import durationtools
 
-    return all([isinstance(x, Duration) for x in expr])
+    return all([isinstance(x, durationtools.Duration) for x in expr])

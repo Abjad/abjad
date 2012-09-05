@@ -1,8 +1,6 @@
-from abjad.tools import mathtools
-from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
-from abjad.tools.durationtools.rational_to_equal_or_greater_binary_rational import rational_to_equal_or_greater_binary_rational
-from fractions import Fraction
+import fractions
 import math
+from abjad.tools import mathtools
 
 
 def rational_to_equal_or_greater_assignable_rational(rational):
@@ -48,16 +46,17 @@ def rational_to_equal_or_greater_assignable_rational(rational):
         renamed ``durationtools.prolated_to_written_not_less_than()`` to
         ``durationtools.rational_to_equal_or_greater_assignable_rational()``.
     '''
+    from abjad.tools import durationtools
 
     good_denominator = mathtools.greatest_power_of_two_less_equal(rational.denominator)
     #print good_denominator
 
     cur_numerator = rational.numerator
-    candidate = Fraction(cur_numerator, good_denominator)
+    candidate = fractions.Fraction(cur_numerator, good_denominator)
 
-    while not is_assignable_rational(candidate):
+    while not durationtools.is_assignable_rational(candidate):
         #print cur_numerator
         cur_numerator += 1
-        candidate = Fraction(cur_numerator, good_denominator)
+        candidate = fractions.Fraction(cur_numerator, good_denominator)
 
     return candidate

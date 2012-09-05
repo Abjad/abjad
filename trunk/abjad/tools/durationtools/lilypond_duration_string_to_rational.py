@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 import re
 
 
@@ -34,14 +34,14 @@ def lilypond_duration_string_to_rational(duration_string):
 
     try:
         body_denominator = int(body_string)
-        body_duration = Fraction(1, body_denominator)
+        body_duration = fractions.Fraction(1, body_denominator)
     except ValueError:
         if body_string == r'\breve':
-            body_duration = Fraction(2)
+            body_duration = fractions.Fraction(2)
         elif body_string == r'\longa':
-            body_duration = Fraction(4)
+            body_duration = fractions.Fraction(4)
         elif body_string == r'\maxima':
-            body_duration = Fraction(8)
+            body_duration = fractions.Fraction(8)
         else:
             raise ValueError('unknown body string %s.' % body_string)
 
@@ -49,7 +49,7 @@ def lilypond_duration_string_to_rational(duration_string):
     for n in range(len(dots_string)):
         exponent = n + 1
         denominator = 2 ** exponent
-        multiplier = Fraction(1, denominator)
+        multiplier = fractions.Fraction(1, denominator)
         addend = multiplier * body_duration
         rational += addend
 

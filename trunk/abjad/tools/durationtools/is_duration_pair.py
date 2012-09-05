@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def is_duration_pair(arg):
@@ -28,7 +28,7 @@ def is_duration_pair(arg):
         return False
 
     try:
-        arg = Fraction(*arg)
+        arg = fractions.Fraction(*arg)
     except:
         return False
 
