@@ -1,7 +1,5 @@
-from abjad.tools import configurationtools
-from abjad.tools.iotools._open_file import _open_file
-from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
+from abjad.tools import configurationtools
 
 
 def pdf(target=-1):
@@ -15,12 +13,13 @@ def pdf(target=-1):
 
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools import iotools
+    from abjad.tools.iotools._open_file import _open_file
 
     ABJADOUTPUT = ABJCFG['abjad_output']
     if isinstance(target, int) and target < 0:
-        last_lilypond = get_last_output_file_name()
+        last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
             target_number = int(last_number) + (target + 1)

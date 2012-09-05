@@ -1,6 +1,5 @@
-from abjad.tools import configurationtools
-from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
+from abjad.tools import configurationtools
 
 
 def save_last_pdf_as(file_name):
@@ -12,11 +11,11 @@ def save_last_pdf_as(file_name):
 
     Return none.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools import iotools
 
     ABJADOUTPUT = ABJCFG['abjad_output']
-    last_ly = get_last_output_file_name()
+    last_ly = iotools.get_last_output_file_name()
     last_pdf = last_ly[:-3] + '.pdf'
     last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
     old = open(last_pdf_full_name, 'r')

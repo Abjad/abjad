@@ -1,7 +1,5 @@
-from abjad.tools import configurationtools
-from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
-from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
+from abjad.tools import configurationtools
 
 
 def ly(target=-1):
@@ -30,13 +28,13 @@ def ly(target=-1):
 
     Return none.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools import iotools
 
     ABJADOUTPUT = ABJCFG['abjad_output']
     text_editor = configurationtools.get_text_editor()
     if isinstance(target, int) and target < 0:
-        last_lilypond = get_last_output_file_name()
+        last_lilypond = iotools.get_last_output_file_name()
         if last_lilypond:
             last_number = last_lilypond.replace('.ly', '')
             target_number = int(last_number) + (target + 1)

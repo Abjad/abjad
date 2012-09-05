@@ -1,6 +1,4 @@
 from abjad.tools import configurationtools
-from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
-from abjad.tools.iotools._open_file import _open_file
 import os
 
 
@@ -25,8 +23,9 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
 
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
+    from abjad.tools.iotools._open_file import _open_file
 
     name, actual_format_time, actual_lily_time = _log_render_lilypond_input(expr, docs=docs)
 

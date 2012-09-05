@@ -1,5 +1,5 @@
-from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 import os
+from abjad.tools import documentationtools
 
 
 def write_expr_to_ly(expr, file_name, print_status=False, tagline=False, docs=False):
@@ -14,7 +14,7 @@ def write_expr_to_ly(expr, file_name, print_status=False, tagline=False, docs=Fa
         renamed ``io.write_ly()`` to
         ``io.write_expr_to_ly()``.
     '''
-    from abjad.tools import documentationtools
+    from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 
     file_name = os.path.expanduser(file_name)
     if not file_name.endswith('.ly'):

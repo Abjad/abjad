@@ -1,8 +1,10 @@
 from abjad.tools import configurationtools
 
 
+# TODO: make public and possibly improve function name
 def _warn_almost_full(last_number):
     from abjad import ABJCFG
+
     ABJADOUTPUT = ABJCFG['abjad_output']
     max_number = 10000
     lines = [

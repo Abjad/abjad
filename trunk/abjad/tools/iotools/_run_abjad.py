@@ -2,6 +2,7 @@ import os
 import sys
 
 
+# TODO: make public and possibly improve function name
 def _run_abjad():
     from abjad.tools import iotools
 

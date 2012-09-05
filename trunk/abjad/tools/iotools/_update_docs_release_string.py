@@ -1,9 +1,11 @@
-from abjad.tools import configurationtools
 import os
+from abjad.tools import configurationtools
 
 
+# TODO: make public, possibly move to another package and possibly improve function name
 def _update_docs_release_string():
     from abjad import ABJCFG
+
     docs_conf_file_name = os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'conf.py')
     docs_conf_file = file(docs_conf_file_name, 'r')
     output_lines = []

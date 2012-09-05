@@ -1,6 +1,5 @@
-from abjad.tools import configurationtools
-from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
+from abjad.tools import configurationtools
 
 
 def log():
@@ -25,8 +24,8 @@ def log():
 
     Return none.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools import iotools
 
     ABJADOUTPUT = ABJCFG['abjad_output']
     text_editor = configurationtools.get_text_editor()

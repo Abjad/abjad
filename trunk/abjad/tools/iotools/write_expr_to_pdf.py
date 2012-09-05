@@ -1,7 +1,6 @@
-from abjad.tools import configurationtools
-from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
 import os
 import shutil
+from abjad.tools import configurationtools
 
 
 def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
@@ -12,8 +11,8 @@ def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
 
     Return none.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools.iotools._log_render_lilypond_input import _log_render_lilypond_input
 
     # massage file_name
     file_name = os.path.expanduser(file_name)

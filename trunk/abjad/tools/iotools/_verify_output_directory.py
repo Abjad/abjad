@@ -1,7 +1,9 @@
 import os
 
 
+# TODO: make public and possibly improve function name
 def _verify_output_directory(directory):
+
     if not os.path.isdir(directory):
         raw_input('Attention: "%s" does not exist in your system.\n\
         Abjad will now create it to store all generated output files. \n\

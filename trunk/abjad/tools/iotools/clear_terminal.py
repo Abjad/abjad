@@ -1,4 +1,3 @@
-from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
 
 
@@ -13,8 +12,9 @@ def clear_terminal():
 
     Return none.
     '''
+    from abjad.tools import iotools
 
     if os.name == 'posix':
-        spawn_subprocess('clear')
+        iotools.spawn_subprocess('clear')
     else:
-        spawn_subprocess('cls')
+        iotools.spawn_subprocess('cls')

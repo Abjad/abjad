@@ -1,6 +1,6 @@
-from abjad.tools import configurationtools
 import os
 import re
+from abjad.tools import configurationtools
 
 
 def get_last_output_file_name():
@@ -8,7 +8,6 @@ def get_last_output_file_name():
 
     Return string.
     '''
-
     from abjad import ABJCFG
 
     pattern = re.compile('\d{4,4}.ly')

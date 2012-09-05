@@ -2,6 +2,7 @@ from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 
 
+# TODO: move to lilypondfiletools and make public, possibly with a better name
 def _insert_expr_into_lilypond_file(expr, tagline=False):
     from abjad.tools.contexttools.Context import Context
 

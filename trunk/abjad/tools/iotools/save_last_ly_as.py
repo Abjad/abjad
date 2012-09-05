@@ -1,5 +1,4 @@
 from abjad.tools import configurationtools
-from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
 
 
@@ -12,11 +11,11 @@ def save_last_ly_as(file_name):
 
     Return none.
     '''
-
     from abjad import ABJCFG
+    from abjad.tools import iotools
 
     ABJADOUTPUT = ABJCFG['abjad_output']
-    last_ly = get_last_output_file_name()
+    last_ly = iotools.get_last_output_file_name()
     last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
     old = open(last_ly_full_name, 'r')
     new = open(file_name, 'w')

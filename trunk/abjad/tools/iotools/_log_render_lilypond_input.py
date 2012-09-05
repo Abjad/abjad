@@ -1,18 +1,18 @@
+import os
+import time
 from abjad.tools import configurationtools
-from abjad.tools import lilypondfiletools
+from abjad.tools import documentationtools
 from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
 from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
-import os
-import time
 
 
+# TODO: make public and possibly improve function name
 def _log_render_lilypond_input(expr, tagline=False, docs=False):
     '''Write both .ly and .pdf files to the ``abjad_output`` directory.
     '''
     from abjad import ABJCFG
-    from abjad.tools import documentationtools
 
     lily_time = 10
     format_time = 10

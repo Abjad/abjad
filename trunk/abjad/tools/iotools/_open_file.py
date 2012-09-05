@@ -1,4 +1,3 @@
-from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
 import sys
 
@@ -7,6 +6,7 @@ import sys
 def _open_file(file_name, application=None):
     '''Generic cross-platform file opener.
     '''
+    from abjad.tools import iotools
 
     if os.name == 'nt':
         os.startfile(file_name)
@@ -15,4 +15,4 @@ def _open_file(file_name, application=None):
             viewer = application or 'xdg-open'
         else:
             viewer = application or 'open'
-        spawn_subprocess('{} {} &'.format(viewer, file_name))
+        iotools.spawn_subprocess('{} {} &'.format(viewer, file_name))
