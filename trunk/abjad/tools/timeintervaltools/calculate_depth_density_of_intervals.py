@@ -1,7 +1,4 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad.tools.timeintervaltools.compute_depth_of_intervals import compute_depth_of_intervals
-from fractions import Fraction
+import fractions
 
 
 def calculate_depth_density_of_intervals(intervals):
@@ -31,17 +28,11 @@ def calculate_depth_density_of_intervals(intervals):
 
     Return fraction.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    tree = timeintervaltools.TimeIntervalTree(intervals)
 
     if not tree:
-        return Fraction(0)
-    return Fraction(sum([x.duration for x in tree])) / tree.duration
+        return fractions.Fraction(0)
 
-#   depth = compute_depth_of_intervals(tree)
-#   return Fraction(sum([x.duration * x['depth'] for x in depth])) \
-#      / depth.duration
+    return fractions.Fraction(sum([x.duration for x in tree])) / tree.duration

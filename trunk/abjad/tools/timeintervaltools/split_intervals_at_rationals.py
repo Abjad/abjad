@@ -1,11 +1,9 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from fractions import Fraction
+from abjad.tools import durationtools
 
 
-def split_intervals_at_rationals(intervals, rationals):
-    '''Split `intervals` at each rational in
-    `rationals` ::
+def split_intervals_at_rationals(intervals, offsets):
+    '''Split `intervals` at each offset in
+    `offsets` ::
 
         >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
@@ -27,29 +25,28 @@ def split_intervals_at_rationals(intervals, rationals):
             TimeInterval(Offset(19, 2), Offset(16, 1), {})
         ])
 
-    Return interval tree.
+    Return TimeIntervalTree.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert len(rationals)
-    assert all([isinstance(x, (int, Fraction)) for x in rationals])
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
-    if not tree or not rationals:
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
+    offsets = [durationtools.Offset(x) for x in offsets]
+
+    if not tree or not offsets:
         return tree
 
-    for rational in rationals:
-        intersecting_intervals = set(tree.find_intervals_intersecting_or_tangent_to_offset(rational))
+    for offset in offsets:
+        intersecting_intervals = set(tree.find_intervals_intersecting_or_tangent_to_offset(offset))
         if not intersecting_intervals:
             continue
-        tangent_intervals = tree.find_intervals_starting_or_stopping_at_offset(rational)
+        tangent_intervals = tree.find_intervals_starting_or_stopping_at_offset(offset)
         if tangent_intervals:
             intersecting_intervals = intersecting_intervals.difference(set(tangent_intervals))
         splits = []
         for interval in intersecting_intervals:
-            splits.extend(interval.split_at_rationals(rational))
-        tree = TimeIntervalTree(set(tree[:]).difference(intersecting_intervals).union(set(splits)))
+            splits.extend(interval.split_at_rationals(offset))
+        tree = timeintervaltools.TimeIntervalTree(
+            set(tree[:]).difference(intersecting_intervals).union(set(splits)))
 
     return tree

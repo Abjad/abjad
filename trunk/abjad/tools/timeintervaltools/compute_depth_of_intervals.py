@@ -1,10 +1,3 @@
-from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad.tools.timeintervaltools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
-from abjad.tools.timeintervaltools.split_intervals_at_rationals import split_intervals_at_rationals
-
-
 def compute_depth_of_intervals(intervals):
     '''Compute a tree whose intervals represent the depth (level of overlap)
     in each boundary pair of `intervals`::
@@ -25,20 +18,16 @@ def compute_depth_of_intervals(intervals):
 
     Return interval tree.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    tree = timeintervaltools.TimeIntervalTree(intervals)
 
-    bounds = list(get_all_unique_bounds_in_intervals(tree))
+    bounds = list(timeintervaltools.get_all_unique_bounds_in_intervals(tree))
     intervals = []
     for i in range(len(bounds) - 1):
-        target = TimeInterval(bounds[i], bounds[i+1], {})
+        target = timeintervaltools.TimeInterval(bounds[i], bounds[i+1], {})
         found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
         if found:
-            # depth = len(filter(lambda x: (not x.start == target.stop and not x.stop == target.start), found))
             depth = len([x for x in found \
                 if (not x.start == target.stop and not x.stop == target.start)])
         else:
@@ -46,4 +35,4 @@ def compute_depth_of_intervals(intervals):
         target['depth'] = depth
         intervals.append(target)
 
-    return TimeIntervalTree(intervals)
+    return timeintervaltools.TimeIntervalTree(intervals)

@@ -1,20 +1,21 @@
+from abjad.tools import contexttools
+from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools.contexttools import ClefMark
-from abjad.tools.schemetools import Scheme
-from abjad.tools.schemetools import SchemePair
-from abjad.tools.timeintervaltools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
 
 
 def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, colorkey=None):
     '''Create a monophonic percussion score from nonoverlapping interval collection `intervals`.
-    '''
 
-    voice = _make_voice_from_nonoverlapping_intervals(intervals, colorkey)
+    Return Score.
+    '''
+    from abjad.tools import timeintervaltools
+
+    voice = timeintervaltools.make_voice_from_nonoverlapping_intervals(intervals, colorkey)
 
     staff = stafftools.Staff(voice[:])
     staff.override.staff_symbol.line_count = 1
-    ClefMark('percussion')(staff)
+    contexttools.ClefMark('percussion')(staff)
 
     score = scoretools.Score([staff])
     score.override.glissando.thickness = 5
@@ -22,9 +23,16 @@ def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, co
     score.override.rest.transparent = True
     score.override.spacing_spanner.strict_note_spacing = True
     score.override.glissando.breakable = True
+
     padding = 0.5
-    bound_details = Scheme(('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
-        ('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)), quoting="'")
+    bound_details = schemetools.Scheme(
+        ('right', 
+            schemetools.SchemePair('attach-dir', 0),
+            schemetools.SchemePair('padding', padding)),
+        ('left',
+            schemetools.SchemePair('attach-dir', 0),
+            schemetools.SchemePair('padding', padding)),
+        quoting="'")
     score.override.glissando.bound_details = bound_details
 
     return score

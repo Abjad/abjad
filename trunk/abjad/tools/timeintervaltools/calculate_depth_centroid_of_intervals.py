@@ -1,26 +1,24 @@
-from abjad.tools.durationtools import Offset
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad.tools.timeintervaltools.compute_depth_of_intervals import compute_depth_of_intervals
+from abjad.tools import durationtools
 
 
 def calculate_depth_centroid_of_intervals(intervals):
-    '''Return a weighted mean, such that the centroids of each interval
-    in the depth tree of `intervals` are the values,
-    and the depth of each interval in the depth tree of `intervals`
-    are the weights.
-    '''
+    '''Calculate the weighted mean offset of `intervals`, such that the
+    centroids of each interval in the depth tree of `intervals` make up
+    the values of the mean, and the depth of each interval in the depth
+    tree of `intervals` make up the weights.
 
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    Return Offset.
+    '''
+    from abjad.tools import timeintervaltools
+
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
     if not tree:
         return None
-    depth = compute_depth_of_intervals(tree)
+
+    depth = timeintervaltools.compute_depth_of_intervals(tree)
     weighted_centroids = sum([x.center * x['depth'] for x in depth])
     sum_of_weights = sum([x['depth'] for x in depth])
     if not sum_of_weights:
         return None
-    return Offset(weighted_centroids) / sum_of_weights
+    return durationtools.Offset(weighted_centroids) / sum_of_weights

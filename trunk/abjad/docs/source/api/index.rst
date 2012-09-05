@@ -1690,6 +1690,7 @@ Composition packages
    tools/timeintervaltools/group_tangent_or_overlapping_intervals_and_yield_groups
    tools/timeintervaltools/make_monophonic_percussion_score_from_nonoverlapping_intervals
    tools/timeintervaltools/make_polyphonic_percussion_score_from_nonoverlapping_trees
+   tools/timeintervaltools/make_voice_from_nonoverlapping_intervals
    tools/timeintervaltools/mask_intervals_with_intervals
    tools/timeintervaltools/resolve_overlaps_between_nonoverlapping_trees
    tools/timeintervaltools/round_interval_bounds_to_nearest_multiple_of_rational

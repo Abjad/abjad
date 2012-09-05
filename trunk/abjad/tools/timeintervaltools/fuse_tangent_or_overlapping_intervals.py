@@ -1,8 +1,3 @@
-from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad.tools.timeintervaltools.group_tangent_or_overlapping_intervals_and_yield_groups import group_tangent_or_overlapping_intervals_and_yield_groups
-
 def fuse_tangent_or_overlapping_intervals(intervals):
     '''Fuse all tangent or overlapping intervals and return an `TimeIntervalTree` of the result ::
 
@@ -21,20 +16,18 @@ def fuse_tangent_or_overlapping_intervals(intervals):
             TimeInterval(Offset(0, 1), Offset(25, 1), {})
         ])
 
-    Return interval tree.
+    Return TimeIntervalTree.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
     if not tree:
         return tree
 
-    trees = [TimeIntervalTree(group) for group in \
-        group_tangent_or_overlapping_intervals_and_yield_groups(tree)]
+    trees = [timeintervaltools.TimeIntervalTree(group) for group in \
+        timeintervaltools.group_tangent_or_overlapping_intervals_and_yield_groups(tree)]
 
-    return TimeIntervalTree([
-        TimeInterval(tree.earliest_start, tree.latest_stop) for tree in trees
+    return timeintervaltools.TimeIntervalTree([
+        timeintervaltools.TimeInterval(tree.earliest_start, tree.latest_stop) for tree in trees
     ])

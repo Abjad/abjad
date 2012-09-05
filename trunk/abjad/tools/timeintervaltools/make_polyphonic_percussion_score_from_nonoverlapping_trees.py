@@ -1,43 +1,41 @@
-from fractions import Fraction
+import collections
+import fractions
+from abjad.tools import contexttools
+from abjad.tools import lilypondfiletools
+from abjad.tools import pitchtools
+from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
-from abjad.tools.contexttools import ClefMark
-from abjad.tools.lilypondfiletools import make_basic_lilypond_file
-from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
-from abjad.tools.schemetools import Scheme
-from abjad.tools.schemetools import SchemeMoment
-from abjad.tools.schemetools import SchemePair
-from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.TimeIntervalTreeDictionary import TimeIntervalTreeDictionary
-from abjad.tools.timeintervaltools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
-from collections import Iterable
 
 
 def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey=None):
-    '''Make a polyphonic percussion score from a collections of non-overlapping trees.'''
+    '''Make a polyphonic percussion score from a collections of non-overlapping trees.
 
-    if isinstance(trees, TimeIntervalTreeDictionary):
+    Return LilyPondFile.
+    '''
+
+    from abjad.tools import timeintervaltools
+
+    if isinstance(trees, timeintervaltools.TimeIntervalTreeDictionary):
         trees = trees.values()
     else:
-        assert isinstance(trees, Iterable) and len(trees) and \
-            all([isinstance(tree, TimeIntervalTree) for tree in trees])
+        assert isinstance(trees, collections.Iterable) and len(trees) and \
+            all([isinstance(tree, timeintervaltools.TimeIntervalTree) for tree in trees])
     
 
-    pitches = make_n_middle_c_centered_pitches(len(trees))
-    #bounds = TimeInterval(min([x.start for x in trees]), max([x.stop for x in trees]))
+    pitches = pitchtools.make_n_middle_c_centered_pitches(len(trees))
     voices = []
     for zipped in zip(trees, pitches):
         tree = zipped[0]
         pitch = zipped[1]
-        voice = _make_voice_from_nonoverlapping_intervals(tree, \
+        voice = timeintervaltools.make_voice_from_nonoverlapping_intervals(tree,
             colorkey = colorkey, pitch = pitch)
         voices.append(voice)
 
     staff = stafftools.Staff(voices)
     staff.is_parallel = True
     staff.override.staff_symbol.line_count = len(voices)
-    ClefMark('percussion')(staff)
+    contexttools.ClefMark('percussion')(staff)
 
     score = scoretools.Score([staff])
     score.override.glissando.thickness = 5
@@ -46,13 +44,19 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey=N
     score.override.spacing_spanner.strict_note_spacing = True
     score.override.spacing_spanner.uniform_stretching = True
     score.override.glissando.breakable = True
-    score.set.proportional_notation_duration = SchemeMoment(Fraction(1, 32))
+    score.set.proportional_notation_duration = schemetools.SchemeMoment(fractions.Fraction(1, 32))
     padding = 0.5
-    bound_details = Scheme(('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
-        ('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)), quoting="'")
+    bound_details = schemetools.Scheme(
+        ('right',
+            schemetools.SchemePair('attach-dir', 0),
+            schemetools.SchemePair('padding', padding)),
+        ('left',
+            schemetools.SchemePair('attach-dir', 0),
+            schemetools.SchemePair('padding', padding)),
+        quoting="'")
     score.override.glissando.bound_details = bound_details
 
-    lily = make_basic_lilypond_file(score)
+    lily = lilypondfiletools.make_basic_lilypond_file(score)
     lily.default_paper_size = ('11x17', 'landscape')
     lily.paper_block.ragged_right = True
 

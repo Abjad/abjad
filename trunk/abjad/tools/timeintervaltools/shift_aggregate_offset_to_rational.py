@@ -1,6 +1,4 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from fractions import Fraction
+from abjad.tools import durationtools
 
 
 def shift_aggregate_offset_to_rational(intervals, rational):
@@ -23,18 +21,17 @@ def shift_aggregate_offset_to_rational(intervals, rational):
             TimeInterval(Offset(80, 7), Offset(129, 7), {})
         ])
 
-    Return interval tree.
+    Return TimeIntervalTree.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert isinstance(rational, (int, Fraction))
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
+    rational = durationtools.Duration(rational)
+
     if not tree or rational == tree.start:
         return tree
 
-    return TimeIntervalTree([
+    return timeintervaltools.TimeIntervalTree([
         x.shift_by_rational(rational - tree.start) for x in tree
     ])

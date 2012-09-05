@@ -1,6 +1,4 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from fractions import Fraction
+from abjad.tools import durationtools
 
 
 def scale_interval_durations_by_rational(intervals, rational):
@@ -24,18 +22,18 @@ def scale_interval_durations_by_rational(intervals, rational):
             TimeInterval(Offset(9, 1), Offset(87, 5), {})
         ])
 
-    Return interval tree.
+    Return TimeIntervalTree.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert isinstance(rational, (int, Fraction)) and 0 < rational
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
+    rational = durationtools.Duration(rational)
+    assert 0 < rational
+
     if not tree or rational == 1:
         return tree
 
-    return TimeIntervalTree([
+    return timeintervaltools.TimeIntervalTree([
         x.scale_by_rational(rational) for x in tree
     ])

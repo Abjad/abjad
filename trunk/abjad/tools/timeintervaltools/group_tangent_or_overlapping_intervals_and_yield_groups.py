@@ -1,19 +1,14 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-
-
 def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
-    '''Group tangent or overlapping intervals in `intervals` and
-        return tuples.
-    '''
+    '''Group tangent or overlapping intervals in `intervals`.
 
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    Yield TimeIntervalTrees.
+    '''
+    from abjad.tools import timeintervaltools
+
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
     if not tree:
-        yield TimeIntervalTree([])
+        yield timeintervaltools.TimeIntervalTree([])
         return
 
     groups = []
@@ -37,4 +32,4 @@ def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
         groups.append(group)
 
     for x in groups:
-        yield tuple(x)
+        yield timeintervaltools.TimeIntervalTree(x)

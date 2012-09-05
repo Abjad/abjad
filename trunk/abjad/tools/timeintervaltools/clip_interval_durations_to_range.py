@@ -1,32 +1,37 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from fractions import Fraction
+from abjad.tools import durationtools
 
 
-def clip_interval_durations_to_range(intervals, min=None, max=None):
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    assert all([isinstance(x, (int, Fraction, type(None))) for x in [min, max]])
-    if isinstance(min, (int, Fraction)):
-        assert 0 < min
-    if isinstance(max, (int, Fraction)):
-        assert 0 < max
-    if isinstance(min, (int, Fraction)) and isinstance(max, (int, Fraction)):
-        assert min <= max
+def clip_interval_durations_to_range(intervals, minimum=None, maximum=None):
+    from abjad.tools import timeintervaltools
 
-    if isinstance(intervals, TimeIntervalTree):
+    assert timeintervaltools.all_are_intervals_or_trees_or_empty(intervals)
+
+    if minimum is not None:
+        minimum = durationtools.Duration(minimum)
+        assert 0 < minimum
+
+    if maximum is not None:
+        maximum = durationtools.Duration(maximum)
+        assert 0 < maximum
+
+    if minimum is not None and maximum is not None:
+        assert minimum < maximum
+
+    if isinstance(intervals, timeintervaltools.TimeIntervalTree):
         tree = intervals
     else:
-        tree = TimeIntervalTree(intervals)
+        tree = timeintervaltools.TimeIntervalTree(intervals)
+
     if not tree:
         return tree
 
     intervals = []
     for interval in tree:
-        if min is not None and interval.duration < min:
+        if minimum is not None and interval.duration < minimum:
             intervals.append(interval.scale_to_rational(min))
-        elif max is not None and max < interval.duration:
-            intervals.append(interval.scale_to_rational(max))
+        elif maximum is not None and maximum < interval.duration:
+            intervals.append(interval.scale_to_rational(maximum))
         else:
             intervals.append(interval)
 
-    return TimeIntervalTree(intervals)
+    return timeintervaltools.TimeIntervalTree(intervals)

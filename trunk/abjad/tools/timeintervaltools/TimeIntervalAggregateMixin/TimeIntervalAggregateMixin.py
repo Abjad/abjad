@@ -1,7 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
-from abc import abstractproperty
-from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
+import abc
 from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
@@ -9,28 +6,28 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     __slots__ = ()
 
     ### PUBLIC PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def earliest_start(self):
         raise NotImplementedError
 
-    @abstractproperty
+    @abc.abstractproperty
     def earliest_stop(self):
         raise NotImplementedError
 
-    @abstractproperty
+    @abc.abstractproperty
     def intervals(self):
         raise NotImplementedError
 
-    @abstractproperty
+    @abc.abstractproperty
     def latest_start(self):
         raise NotImplementedError
 
-    @abstractproperty
+    @abc.abstractproperty
     def latest_stop(self):
         raise NotImplementedError
 
@@ -53,50 +50,50 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
     ### PUBLIC METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_intersecting_or_tangent_to_interval(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_intersecting_or_tangent_to_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_starting_after_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_starting_and_stopping_within_interval(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_starting_at_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_starting_before_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_starting_or_stopping_at_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_starting_within_interval(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_stopping_after_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_stopping_at_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_stopping_before_offset(self):
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_intervals_stopping_within_interval(self):
         raise NotImplementedError

@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
@@ -8,7 +7,7 @@ class TimeIntervalMixin(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     __slots__ = ()
 
     ### SPECIAL METHODS ###
@@ -36,8 +35,8 @@ class TimeIntervalMixin(AbjadObject):
 
         Returns `TimeInterval` instance.
         '''
-        from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-        return TimeInterval(self.start, self.stop)
+        from abjad.tools import timeintervaltools
+        return timeintervaltools.TimeInterval(self.start, self.stop)
 
     @property
     def center(self):
@@ -53,7 +52,7 @@ class TimeIntervalMixin(AbjadObject):
         Returns `Offset` instance.
         '''
         if self.start is not None and self.stop is not None:
-            return Offset(self.stop + self.start) / 2
+            return durationtools.Offset(self.stop + self.start) / 2
         raise UnboundedTimeIntervalError
 
     @property
@@ -197,37 +196,37 @@ class TimeIntervalMixin(AbjadObject):
         else:
             return False
 
-    @abstractmethod
+    @abc.abstractmethod
     def quantize_to_rational(self, rational):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedErro
 
-    @abstractmethod
+    @abc.abstractmethod
     def scale_by_rational(self, rational):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def scale_to_rational(self, rational):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def shift_by_rational(self, rational):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def shift_to_rational(self, rational):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError
         raise NotImplementedError
 
-    @abstractmethod
+    @abc.abstractmethod
     def split_at_rationals(self, *rationals):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError

@@ -1,37 +1,31 @@
-from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad.tools.timeintervaltools.calculate_depth_density_of_intervals_in_interval import calculate_depth_density_of_intervals_in_interval
-from abjad.tools.timeintervaltools.compute_logical_or_of_intervals import compute_logical_or_of_intervals
-from fractions import Fraction
+from abjad.tools import durationtools
 
 
 def explode_intervals_into_n_trees_heuristically(intervals, n):
     '''Explode `intervals` into `n` trees, avoiding overlap when possible,
     and distributing intervals so as to equalize density across the trees.
-    '''
 
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    assert isinstance(n, int) and 0 < n
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    Return list of TimeIntervalTree instances.
+    '''
+    from abjad.tools import timeintervaltools
+
+    tree = timeintervaltools.TimeIntervalTree(intervals)
 
     if not tree:
-        return [TimeIntervalTree([])] * n
+        return [timeintervaltools.TimeIntervalTree([])] * n
     elif n == 1:
         return [tree]
 
     # cache
-    treebounds = TimeInterval(tree.start, tree.stop)
-    xtrees = [TimeIntervalTree(tree[0])]
-    densities = [calculate_depth_density_of_intervals_in_interval(xtrees[0], treebounds)]
-    logical_ors = [compute_logical_or_of_intervals(xtrees[0])]
+    treebounds = timeintervaltools.TimeInterval(tree.start, tree.stop)
+    xtrees = [timeintervaltools.TimeIntervalTree(tree[0])]
+    densities = [timeintervaltools.calculate_depth_density_of_intervals_in_interval(
+        xtrees[0], treebounds)]
+    logical_ors = [timeintervaltools.compute_logical_or_of_intervals(xtrees[0])]
     for i in range(1, n):
-        xtrees.append(TimeIntervalTree([]))
+        xtrees.append(timeintervaltools.TimeIntervalTree([]))
         densities.append(0)
-        logical_ors.append(TimeIntervalTree([]))
+        logical_ors.append(timeintervaltools.TimeIntervalTree([]))
 
     # loop through intervals
     for interval in tree[1:]:
@@ -60,15 +54,12 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
         else:
             overlapping_trees = sorted(overlapping_trees, \
                 key = lambda x: x[3][-1].get_overlap_with_interval(interval))
-#            overlapping_trees = filter( \
-#                lambda x: x[3][-1].duration == overlapping_trees[0][3][-1].duration,
-#                overlapping_trees)
             overlapping_trees = [x for x in overlapping_trees \
                 if x[3][-1].duration == overlapping_trees[0][3][-1].duration]
             i = overlapping_trees[0][0]
 
         xtrees[i]._insert(interval)
-        densities[i] = calculate_depth_density_of_intervals_in_interval(xtrees[i], treebounds)
-        logical_ors[i] = compute_logical_or_of_intervals(xtrees[i])
+        densities[i] = timeintervaltools.calculate_depth_density_of_intervals_in_interval(xtrees[i], treebounds)
+        logical_ors[i] = timeintervaltools.compute_logical_or_of_intervals(xtrees[i])
 
     return xtrees

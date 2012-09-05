@@ -1,8 +1,7 @@
+from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from abjad.tools.abctools import AbjadObject
 from abjad.tools.datastructuretools import ImmutableDictionary
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin import TimeIntervalAggregateMixin
 
 
@@ -65,6 +64,8 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
     #### INITIALIZER ###
 
     def __init__(self, *args):
+        from abjad.tools import timeintervaltools
+
         # should be the same
         if len(args) == 1 and isinstance(args[0], type(self)):
             result = args[0]
@@ -79,11 +80,11 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             for arg in args:
                 for key, tree in arg.iteritems():
                     if key in result:
-                        result[key] = TimeIntervalTree([result[key], tree])
+                        result[key] = timeintervaltools.TimeIntervalTree([result[key], tree])
                     else:
                         result[key] = tree
             dict.update(self, result)
-            object.__setattr__(self, '_composite_tree', TimeIntervalTree(self.values()))
+            object.__setattr__(self, '_composite_tree', timeintervaltools.TimeIntervalTree(self.values()))
             object.__setattr__(self, '_start', self.composite_tree.start)
             object.__setattr__(self, '_stop', self.composite_tree.stop)
 
@@ -95,17 +96,17 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
             if args:
                 assert sequencetools.all_are_pairs(args)
                 key, tree = args[0]
-                assert isinstance(tree, TimeIntervalTree)
+                assert isinstance(tree, timeintervaltools.TimeIntervalTree)
                 dict.__setitem__(self, key, tree)
                 for key, tree in args[1:]:
-                    assert isinstance(tree, TimeIntervalTree)
+                    assert isinstance(tree, timeintervaltools.TimeIntervalTree)
                     dict.__setitem__(self, key, tree)
 
             else:
                 object.__setattr__(self, '_start', None)
                 object.__setattr__(self, '_stop', None)
             
-            object.__setattr__(self, '_composite_tree', TimeIntervalTree(self.values()))
+            object.__setattr__(self, '_composite_tree', timeintervaltools.TimeIntervalTree(self.values()))
             object.__setattr__(self, '_start', self.composite_tree.start)
             object.__setattr__(self, '_stop', self.composite_tree.stop)
 
@@ -254,7 +255,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         pieces.append('{}({{'.format(self._tools_package_qualified_class_name))
 
         for key, tree in self.iteritems():
-            if isinstance(key, AbjadObject):
+            if isinstance(key, abctools.AbjadObject):
                 kpieces = key._get_tools_package_qualified_repr_pieces()
             else:
                 kpieces = [repr(key)]

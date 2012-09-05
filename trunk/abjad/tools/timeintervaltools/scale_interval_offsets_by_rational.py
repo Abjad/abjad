@@ -1,10 +1,8 @@
-from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from fractions import Fraction
+from abjad.tools import durationtools
 
 
 def scale_interval_offsets_by_rational(intervals, rational):
-    '''Scale the offset of each interval in `intervals` by
+    '''Scale the starting offset of each interval in `intervals` by
     `rational`, maintaining the startest offset in `intervals` ::
 
         >>> from abjad.tools import timeintervaltools
@@ -26,17 +24,16 @@ def scale_interval_offsets_by_rational(intervals, rational):
 
     Return interval tree.
     '''
+    from abjad.tools import timeintervaltools
 
-    assert isinstance(rational, (int, Fraction))
-    assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, TimeIntervalTree):
-        tree = intervals
-    else:
-        tree = TimeIntervalTree(intervals)
+    tree = timeintervaltools.TimeIntervalTree(intervals)
+
+    rational = durationtools.Duration(rational)
+
     if not tree or rational == 1:
         return tree
 
-    return TimeIntervalTree([
+    return timeintervaltools.TimeIntervalTree([
         x.shift_to_rational(((x.start - tree.start) * rational) + tree.start) \
             for x in tree
     ])
