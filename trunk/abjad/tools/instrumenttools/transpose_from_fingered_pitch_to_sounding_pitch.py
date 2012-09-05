@@ -1,5 +1,8 @@
+from abjad.tools import chordtools
+from abjad.tools import contexttools
+from abjad.tools import leaftools
+from abjad.tools import notetools
 from abjad.tools import pitchtools
-from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def transpose_from_fingered_pitch_to_sounding_pitch(expr):
@@ -44,22 +47,19 @@ def transpose_from_fingered_pitch_to_sounding_pitch(expr):
 
     Return none.
     '''
-    from abjad.tools.chordtools.Chord import Chord
-    from abjad.tools.notetools.Note import Note
-    from abjad.tools import leaftools
 
     for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
         if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
-        instrument = get_effective_instrument(note_or_chord)
+        instrument = contexttools.get_effective_instrument(note_or_chord)
         if not instrument:
             continue
         t_n = instrument.interval_of_transposition
-        if isinstance(note_or_chord, Note):
+        if isinstance(note_or_chord, notetools.Note):
             note_or_chord.written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
                 note_or_chord.written_pitch, t_n)
             note_or_chord.written_pitch_indication_is_at_sounding_pitch = True
-        elif isinstance(note_or_chord, Chord):
+        elif isinstance(note_or_chord, chordtools.Chord):
             pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
                 for pitch in note_or_chord.written_pitches]
             note_or_chord.written_pitches = pitches

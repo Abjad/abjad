@@ -1,6 +1,7 @@
+from abjad.tools import contexttools
+from abjad.tools import leaftools
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
-from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument
 
 
 def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr):
@@ -21,10 +22,9 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
 
     Return generator.
     '''
-    from abjad.tools import leaftools
 
     for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
-        instrument = get_effective_instrument(note_or_chord)
+        instrument = contexttools.get_effective_instrument(note_or_chord)
         if instrument is None:
             raise MissingInstrumentError
         if note_or_chord not in instrument.traditional_pitch_range:

@@ -1,6 +1,3 @@
-from abjad.tools.instrumenttools._Instrument import _Instrument
-
-
 def list_instruments(klasses=None):
     r'''.. versionadded:: 2.5
 
@@ -18,6 +15,7 @@ def list_instruments(klasses=None):
     Return list.
     '''
     from abjad.tools import instrumenttools
+    from abjad.tools.instrumenttools._Instrument import _Instrument
 
     if klasses is None:
         klasses = (_Instrument, )

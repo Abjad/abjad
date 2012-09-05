@@ -1,6 +1,3 @@
-from abjad.tools.instrumenttools.list_instruments import list_instruments
-
-
 def list_secondary_instruments():
     r'''.. versionadded:: 2.5
 
@@ -17,10 +14,11 @@ def list_secondary_instruments():
 
     Return list
     '''
+    from abjad.tools import instrumenttools
 
     secondary_instruments = []
 
-    for instrument_class in list_instruments():
+    for instrument_class in instrumenttools.list_instruments():
         instrument = instrument_class()
         if instrument.is_secondary_instrument:
             secondary_instruments.append(instrument_class)

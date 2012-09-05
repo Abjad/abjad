@@ -1,6 +1,3 @@
-from abjad.tools.instrumenttools.list_instruments import list_instruments
-
-
 def default_instrument_name_to_instrument_class(default_instrument_name):
     r'''.. versionadded:: 2.5
 
@@ -18,8 +15,9 @@ def default_instrument_name_to_instrument_class(default_instrument_name):
 
     Return none.
     '''
+    from abjad.tools import instrumenttools
 
-    for instrument_class in list_instruments():
+    for instrument_class in instrumenttools.list_instruments():
         instrument = instrument_class()
         if instrument.default_instrument_name == default_instrument_name:
             return instrument_class

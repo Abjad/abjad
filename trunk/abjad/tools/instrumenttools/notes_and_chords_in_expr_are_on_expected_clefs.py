@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import leaftools
 
 
 def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allowed=True):
@@ -65,7 +66,6 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
 
     Return boolean.
     '''
-    from abjad.tools import leaftools
 
     for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
         instrument = contexttools.get_effective_instrument(note_or_chord)
