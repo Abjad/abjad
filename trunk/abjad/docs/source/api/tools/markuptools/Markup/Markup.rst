@@ -30,7 +30,7 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.direction
 
-    Inherited from :py:class:`marktools._DirectedMark <abjad.tools.marktools._DirectedMark._DirectedMark._DirectedMark>`
+    Inherited from :py:class:`marktools.DirectedMark <abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark>`
 
 Methods
 -------

@@ -1,5 +1,5 @@
-from abjad.tools.abctools.ScoreSelection import ScoreSelection
 import itertools
+from abjad.tools.abctools.ScoreSelection import ScoreSelection
 
 
 class TieChain(ScoreSelection):

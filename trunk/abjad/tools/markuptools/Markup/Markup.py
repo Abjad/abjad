@@ -1,9 +1,9 @@
 from abjad.tools import schemetools
 from abjad.tools import stringtools
-from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
+from abjad.tools.marktools.DirectedMark.DirectedMark import DirectedMark
 
 
-class Markup(_DirectedMark):
+class Markup(DirectedMark):
     r'''Abjad model of LilyPond markup.
 
     Initialize from string::
@@ -93,7 +93,7 @@ class Markup(_DirectedMark):
             contents = tuple(contents)
         else:
             contents = (str(argument),)
-        _DirectedMark.__init__(self, direction=direction)
+        DirectedMark.__init__(self, direction=direction)
         self._contents = tuple(contents)
         self._format_slot = 'right'
         self._markup_name = markup_name

@@ -1,9 +1,8 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
 from abjad.tools import stringtools
+from abjad.tools.marktools.DirectedMark.DirectedMark import DirectedMark
 
 
-class Articulation(_DirectedMark):
+class Articulation(DirectedMark):
     '''Abjad model of musical articulation::
 
         >>> note = Note("c'4")
@@ -52,7 +51,7 @@ class Articulation(_DirectedMark):
         else:
             string, direction = None, None
 
-        _DirectedMark.__init__(self, direction=direction)
+        DirectedMark.__init__(self, direction=direction)
         self._string = string
         self._format_slot = 'right'
 

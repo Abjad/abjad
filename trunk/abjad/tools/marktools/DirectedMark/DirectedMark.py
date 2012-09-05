@@ -1,17 +1,20 @@
-from abc import ABCMeta
-from abjad.tools.marktools.Mark import Mark
+from abc import abstractmethod
 from abjad.tools import stringtools
+from abjad.tools.marktools.Mark import Mark
 
 
-class _DirectedMark(Mark):
+class DirectedMark(Mark):
+    '''Abstract base class of Marks which possess a vertical, typographic direction, 
+    i.e. above or below the staff.
+    '''    
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
     __slots__ = ('_direction', '_format_slot')
 
     ### INITIALIZER ###
 
+    @abstractmethod
     def __init__(self, *args, **kwargs):
         Mark.__init__(self, *args)
         if 'direction' in kwargs:

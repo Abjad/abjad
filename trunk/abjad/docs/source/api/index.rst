@@ -621,6 +621,13 @@ Composition packages
 :py:mod:`marktools <abjad.tools.marktools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/marktools/DirectedMark/DirectedMark
+
 .. rubric:: concrete classes
 
 .. toctree::

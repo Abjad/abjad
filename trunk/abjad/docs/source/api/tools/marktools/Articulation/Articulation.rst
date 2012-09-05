@@ -24,7 +24,7 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.direction
 
-    Inherited from :py:class:`marktools._DirectedMark <abjad.tools.marktools._DirectedMark._DirectedMark._DirectedMark>`
+    Inherited from :py:class:`marktools.DirectedMark <abjad.tools.marktools.DirectedMark.DirectedMark.DirectedMark>`
 
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.name
 
