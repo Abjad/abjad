@@ -1,6 +1,6 @@
-from abjad.tools.abctools import AbjadObject
-from abjad.tools.pitchtools import Accidental
 import re
+from abjad.tools import pitchtools
+from abjad.tools.abctools import AbjadObject
 
 
 class ScaleDegree(AbjadObject):
@@ -100,7 +100,7 @@ class ScaleDegree(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _init_by_accidental_and_number(self, accidental, number):
-        accidental = Accidental(accidental)
+        accidental = pitchtools.Accidental(accidental)
         #self._accidental = accidental
         #self._number = number
         return accidental, number
@@ -108,7 +108,7 @@ class ScaleDegree(AbjadObject):
     def _init_by_number(self, number):
         #self._number = number
         #self._accidental = Accidental(None)
-        accidental = Accidental(None)
+        accidental = pitchtools.Accidental(None)
         return accidental, number
 
     def _init_by_pair(self, pair):
@@ -123,7 +123,7 @@ class ScaleDegree(AbjadObject):
     def _init_by_symbolic_string(self, symbolic_string):
         groups = self._symbolic_string_regex.match(symbolic_string).groups()
         accidental, roman_numeral = groups
-        accidental = Accidental(accidental)
+        accidental = pitchtools.Accidental(accidental)
         #self._accidental = accidental
         roman_numeral = roman_numeral.upper()
         try:
@@ -176,6 +176,6 @@ class ScaleDegree(AbjadObject):
 
     def apply_accidental(self, accidental):
         '''Apply accidental to self and emit new instance.'''
-        accidental = Accidental(accidental)
+        accidental = pitchtools.Accidental(accidental)
         new_accidental = self.accidental + accidental
         return type(self)(new_accidental, self.number)
