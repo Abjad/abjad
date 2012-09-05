@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component import get_lilypond_command_marks_attached_to_component
-
-
 def get_lilypond_command_mark_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -32,8 +29,9 @@ def get_lilypond_command_mark_attached_to_component(component):
 
     Raise extra mark error when more than one LilyPond command mark is attached.
     '''
+    from abjad.tools import marktools
 
-    lilypond_command_marks = get_lilypond_command_marks_attached_to_component(component)
+    lilypond_command_marks = marktools.get_lilypond_command_marks_attached_to_component(component)
     if not lilypond_command_marks:
         raise MissingMarkError
     elif 1 < len(lilypond_command_marks):

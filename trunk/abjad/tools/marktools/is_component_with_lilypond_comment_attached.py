@@ -1,4 +1,4 @@
-from abjad.tools.marktools.get_lilypond_comments_attached_to_component import get_lilypond_comments_attached_to_component
+from abjad.tools import componenttools
 
 
 def is_component_with_lilypond_comment_attached(expr, comment_contents_string=None):
@@ -26,10 +26,10 @@ def is_component_with_lilypond_comment_attached(expr, comment_contents_string=No
 
     Return boolean.
     '''
-    from abjad.tools.componenttools.Component import Component
+    from abjad.tools import marktools
 
-    if isinstance(expr, Component):
-        for comment in get_lilypond_comments_attached_to_component(expr):
+    if isinstance(expr, componenttools.Component):
+        for comment in marktools.get_lilypond_comments_attached_to_component(expr):
             if comment.contents_string == comment_contents_string or \
                 comment_contents_string is None:
                 return True

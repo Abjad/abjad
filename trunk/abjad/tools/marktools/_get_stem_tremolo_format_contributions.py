@@ -1,3 +1,4 @@
+# TODO: can this be made public? Perhaps bound to a class?
 def _get_stem_tremolo_format_contributions(component):
     '''.. versionadded:: 2.0
     '''

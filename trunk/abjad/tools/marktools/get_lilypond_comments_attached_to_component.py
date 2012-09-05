@@ -1,6 +1,3 @@
-from abjad.tools.marktools.LilyPondComment import LilyPondComment
-
-
 def get_lilypond_comments_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -32,10 +29,11 @@ def get_lilypond_comments_attached_to_component(component):
 
     Return tuple of zero or more LilyPond comments.
     '''
+    from abjad.tools import marktools
 
     result = []
     for mark in component._marks_for_which_component_functions_as_start_component:
-        if isinstance(mark, LilyPondComment):
+        if isinstance(mark, marktools.LilyPondComment):
             result.append(mark)
 
     result = tuple(result)

@@ -1,5 +1,5 @@
-from abjad.tools.marktools.LilyPondCommandMark import LilyPondCommandMark
 import copy
+from abjad.tools import componenttools
 
 
 def attach_lilypond_command_marks_to_components_in_expr(expr, lilypond_command_marks):
@@ -28,8 +28,8 @@ def attach_lilypond_command_marks_to_components_in_expr(expr, lilypond_command_m
 
     Return none.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import marktools
 
     for component in componenttools.iterate_components_forward_in_expr(expr):
         for lilypond_command_mark in lilypond_command_marks:
-            LilyPondCommandMark(lilypond_command_mark)(component)
+            marktools.LilyPondCommandMark(lilypond_command_mark)(component)

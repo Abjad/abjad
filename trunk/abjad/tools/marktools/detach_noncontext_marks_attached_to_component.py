@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_noncontext_marks_attached_to_component import get_noncontext_marks_attached_to_component
-
-
 def detach_noncontext_marks_attached_to_component(component):
     r'''.. versionadded:: 2.3
 
@@ -42,9 +39,10 @@ def detach_noncontext_marks_attached_to_component(component):
 
     Return tuple of noncontext marks.
     '''
+    from abjad.tools import marktools
 
     noncontext_marks = []
-    for noncontext_mark in get_noncontext_marks_attached_to_component(component):
+    for noncontext_mark in marktools.get_noncontext_marks_attached_to_component(component):
         noncontext_mark.detach()
         noncontext_marks.append(noncontext_mark)
 

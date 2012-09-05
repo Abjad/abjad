@@ -1,4 +1,4 @@
-from abjad.tools.marktools.LilyPondComment import LilyPondComment
+from abjad.tools import componenttools
 
 
 def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
@@ -23,8 +23,8 @@ def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
 
     Return none.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import marktools
 
     for component in componenttools.iterate_components_forward_in_expr(expr):
         for lilypond_comment in lilypond_comments:
-            LilyPondComment(lilypond_comment)(component)
+            marktools.LilyPondComment(lilypond_comment)(component)

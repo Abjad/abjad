@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_lilypond_comments_attached_to_component import get_lilypond_comments_attached_to_component
-
-
 def detach_lilypond_comments_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -47,9 +44,10 @@ def detach_lilypond_comments_attached_to_component(component):
 
     Return tuple or zero or more LilyPond comments.
     '''
+    from abjad.tools import marktools
 
     comments = []
-    for comment in get_lilypond_comments_attached_to_component(component):
+    for comment in marktools.get_lilypond_comments_attached_to_component(component):
         comment.detach()
         comments.append(comment)
 

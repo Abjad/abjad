@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def detach_marks_attached_to_components_in_expr(expr):
     r'''.. versionadded:: 2.9
 
@@ -37,7 +40,6 @@ def detach_marks_attached_to_components_in_expr(expr):
 
     Return tuple of zero or more detached marks.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import marktools
 
     result = []

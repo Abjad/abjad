@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_marks_attached_to_component import get_marks_attached_to_component
-
-
 def get_mark_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -31,8 +28,9 @@ def get_mark_attached_to_component(component):
 
     Raise extra mark error when more than one mark is attached.
     '''
+    from abjad.tools import marktools
 
-    marks = get_marks_attached_to_component(component)
+    marks = marktools.get_marks_attached_to_component(component)
     if not marks:
         raise MissingMarkError
     elif 1 < len(marks):

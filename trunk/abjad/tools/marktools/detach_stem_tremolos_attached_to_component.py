@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_stem_tremolo_attached_to_component import get_stem_tremolo_attached_to_component
-
-
 def detach_stem_tremolos_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -37,13 +34,11 @@ def detach_stem_tremolos_attached_to_component(component):
 
     Return tuple or zero or more stem tremolos detached.
     '''
+    from abjad.tools import marktools
 
     stem_tremolos = []
-#    for stem_tremolo in get_stem_tremolo_attached_to_component(component):
-#        stem_tremolo.detach()
-#        stem_tremolos.append(stem_tremolo)
     try:
-        stem_tremolo = get_stem_tremolo_attached_to_component(component)
+        stem_tremolo = marktools.get_stem_tremolo_attached_to_component(component)
         stem_tremolo.detach()
         stem_tremolos.append(stem_tremolo)
     except (MissingMarkError):

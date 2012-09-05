@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_articulations_attached_to_component import get_articulations_attached_to_component
-
-
 def get_articulation_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -31,8 +28,9 @@ def get_articulation_attached_to_component(component):
 
     Raise extra mark error when more than one articulation is attached.
     '''
+    from abjad.tools import marktools
 
-    articulations = get_articulations_attached_to_component(component)
+    articulations = marktools.get_articulations_attached_to_component(component)
     if not articulations:
         raise MissingMarkError
     elif 1 < len(articulations):

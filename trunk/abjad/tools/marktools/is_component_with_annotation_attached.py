@@ -1,4 +1,4 @@
-from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
+from abjad.tools import componenttools
 
 
 def is_component_with_annotation_attached(expr, annotation_name=None, annotation_value=None):
@@ -26,10 +26,10 @@ def is_component_with_annotation_attached(expr, annotation_name=None, annotation
 
     Return boolean.
     '''
-    from abjad.tools.componenttools.Component import Component
+    from abjad.tools import marktools
 
-    if isinstance(expr, Component):
-        for annotation in get_annotations_attached_to_component(expr):
+    if isinstance(expr, componenttools.Component):
+        for annotation in marktools.get_annotations_attached_to_component(expr):
             if annotation.name == annotation_name or annotation_name is None:
                 if annotation.value == annotation_value or annotation_value is None:
                     return True

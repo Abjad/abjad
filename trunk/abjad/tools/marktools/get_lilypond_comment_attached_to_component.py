@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_lilypond_comments_attached_to_component import get_lilypond_comments_attached_to_component
-
-
 def get_lilypond_comment_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -32,8 +29,9 @@ def get_lilypond_comment_attached_to_component(component):
 
     Raise extra mark error when more than one LilyPond comment is attached.
     '''
+    from abjad.tools import marktools
 
-    lilypond_comments = get_lilypond_comments_attached_to_component(component)
+    lilypond_comments = marktools.get_lilypond_comments_attached_to_component(component)
     if not lilypond_comments:
         raise MissingMarkError
     elif 1 < len(lilypond_comments):

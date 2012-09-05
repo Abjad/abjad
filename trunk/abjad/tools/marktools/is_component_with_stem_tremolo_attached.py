@@ -1,4 +1,4 @@
-from abjad.tools.marktools.get_stem_tremolo_attached_to_component import get_stem_tremolo_attached_to_component
+from abjad.tools import componenttools
 
 
 def is_component_with_stem_tremolo_attached(expr):
@@ -26,11 +26,11 @@ def is_component_with_stem_tremolo_attached(expr):
 
     Return boolean.
     '''
-    from abjad.tools.componenttools.Component import Component
+    from abjad.tools import marktools
 
-    if isinstance(expr, Component):
+    if isinstance(expr, componenttools.Component):
         try:
-            get_stem_tremolo_attached_to_component(expr)
+            marktools.get_stem_tremolo_attached_to_component(expr)
             return True
         except (MissingMarkError, ExtraMarkError):
             pass

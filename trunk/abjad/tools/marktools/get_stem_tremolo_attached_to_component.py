@@ -1,6 +1,3 @@
-from abjad.tools.marktools.StemTremolo import StemTremolo
-
-
 def get_stem_tremolo_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -31,10 +28,11 @@ def get_stem_tremolo_attached_to_component(component):
 
     Return stem tremolo.
     '''
+    from abjad.tools import marktools
 
     result = []
     for mark in component._marks_for_which_component_functions_as_start_component:
-        if isinstance(mark, StemTremolo):
+        if isinstance(mark, marktools.StemTremolo):
             result.append(mark)
 
     if len(result) == 0:

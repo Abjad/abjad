@@ -1,4 +1,4 @@
-from abjad.tools.marktools.get_noncontext_marks_attached_to_component import get_noncontext_marks_attached_to_component
+from abjad.tools import componenttools
 
 
 def is_component_with_noncontext_mark_attached(expr):
@@ -26,10 +26,10 @@ def is_component_with_noncontext_mark_attached(expr):
      
     Return boolean.
     '''
-    from abjad.tools.componenttools.Component import Component
+    from abjad.tools import marktools
 
-    if isinstance(expr, Component):
-        if get_noncontext_marks_attached_to_component(expr):
+    if isinstance(expr, componenttools.Component):
+        if marktools.get_noncontext_marks_attached_to_component(expr):
             return True
 
     return False

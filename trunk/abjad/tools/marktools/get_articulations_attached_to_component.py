@@ -1,7 +1,3 @@
-from abjad.tools.marktools.Articulation import Articulation
-from abjad.tools.marktools.BendAfter import BendAfter
-
-
 def get_articulations_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -30,10 +26,11 @@ def get_articulations_attached_to_component(component):
 
     Return tuple of zero or more articulations.
     '''
+    from abjad.tools import marktools
 
     result = []
     for mark in component._marks_for_which_component_functions_as_start_component:
-        if isinstance(mark, (Articulation, BendAfter)):
+        if isinstance(mark, (marktools.Articulation, marktools.BendAfter)):
             result.append(mark)
 
     result = tuple(result)

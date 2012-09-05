@@ -1,3 +1,4 @@
+# TODO: can this be made public? Perhaps bound to a class?
 def _get_comment_format_contributions_for_slot(component, slot):
     '''.. versionadded:: 2.0
     '''

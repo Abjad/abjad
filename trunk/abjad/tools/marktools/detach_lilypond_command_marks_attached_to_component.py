@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component import get_lilypond_command_marks_attached_to_component
-
-
 def detach_lilypond_command_marks_attached_to_component(component, command_name=None):
     r'''.. versionadded:: 2.0
 
@@ -42,9 +39,10 @@ def detach_lilypond_command_marks_attached_to_component(component, command_name=
 
     Return tuple of zero or more marks detached.
     '''
+    from abjad.tools import marktools
 
     marks = []
-    for mark in get_lilypond_command_marks_attached_to_component(
+    for mark in marktools.get_lilypond_command_marks_attached_to_component(
         component, command_name = command_name):
         mark.detach()
         marks.append(mark)

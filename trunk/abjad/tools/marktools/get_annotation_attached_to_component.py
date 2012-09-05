@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
-
-
 def get_annotation_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -31,8 +28,9 @@ def get_annotation_attached_to_component(component):
 
     Raise extra mark error when more than one annotation is attached.
     '''
+    from abjad.tools import marktools
 
-    annotations = get_annotations_attached_to_component(component)
+    annotations = marktools.get_annotations_attached_to_component(component)
     if not annotations:
         raise MissingMarkError
     elif 1 < len(annotations):

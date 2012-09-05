@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_marks_attached_to_component import get_marks_attached_to_component
-
-
 def get_noncontext_marks_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -31,10 +28,11 @@ def get_noncontext_marks_attached_to_component(component):
     Return tuple of zero or more marks.
     '''
     from abjad.tools import contexttools
+    from abjad.tools import marktools
 
     result = []
 
-    for mark in get_marks_attached_to_component(component):
+    for mark in marktools.get_marks_attached_to_component(component):
         if not isinstance(mark, contexttools.ContextMark):
             result.append(mark)
 

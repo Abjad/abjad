@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_noncontext_marks_attached_to_component import get_noncontext_marks_attached_to_component
-
-
 def get_noncontext_mark_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -31,8 +28,9 @@ def get_noncontext_mark_attached_to_component(component):
 
     Raise extra mark error when more than one noncontext_mark is attached.
     '''
+    from abjad.tools import marktools
 
-    noncontext_marks = get_noncontext_marks_attached_to_component(component)
+    noncontext_marks = marktools.get_noncontext_marks_attached_to_component(component)
     if not noncontext_marks:
         raise MissingMarkError
     elif 1 < len(noncontext_marks):

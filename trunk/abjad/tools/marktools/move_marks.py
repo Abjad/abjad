@@ -1,4 +1,4 @@
-from abjad.tools.marktools.get_marks_attached_to_component import get_marks_attached_to_component
+from abjad.tools import componenttools
 
 
 def move_marks(donor, recipient):
@@ -37,13 +37,13 @@ def move_marks(donor, recipient):
 
     Return list of marks moved.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import marktools
 
     assert isinstance(donor, componenttools.Component)
     assert isinstance(recipient, componenttools.Component)
 
     result = []
-    for mark in get_marks_attached_to_component(donor):
+    for mark in marktools.get_marks_attached_to_component(donor):
         result.append(mark.attach(recipient))
 
     return result

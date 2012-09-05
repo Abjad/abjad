@@ -1,5 +1,5 @@
-from abjad.tools.abctools import AbjadObject
 import numbers
+from abjad.tools.abctools import AbjadObject
 
 
 class PitchRange(AbjadObject):

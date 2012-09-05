@@ -1,4 +1,4 @@
-from abjad.tools.marktools.get_marks_attached_to_component import get_marks_attached_to_component
+from abjad.tools import componenttools
 
 
 def get_marks_attached_to_components_in_expr(expr):
@@ -29,10 +29,10 @@ def get_marks_attached_to_components_in_expr(expr):
 
     Return tuple of zero or more marks.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import marktools
 
     result = []
     for component in componenttools.iterate_components_forward_in_expr(expr):
-        result.extend(get_marks_attached_to_component(component))
+        result.extend(marktools.get_marks_attached_to_component(component))
 
     return tuple(result)

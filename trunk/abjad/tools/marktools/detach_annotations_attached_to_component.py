@@ -1,6 +1,3 @@
-from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
-
-
 def detach_annotations_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -41,9 +38,10 @@ def detach_annotations_attached_to_component(component):
 
     Return tuple or zero or more annotations detached.
     '''
+    from abjad.tools import marktools
 
     annotations = []
-    for annotation in get_annotations_attached_to_component(component):
+    for annotation in marktools.get_annotations_attached_to_component(component):
         annotation.detach()
         annotations.append(annotation)
 
