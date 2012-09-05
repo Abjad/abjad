@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.voicetools.Voice import Voice
+from abjad.tools import componenttools
 
 
 def all_are_voices(expr):
@@ -29,4 +28,6 @@ def all_are_voices(expr):
     Function wraps ``componenttools.all_are_components()``.
     '''
 
-    return all_are_components(expr, klasses=(Voice,))
+    from abjad.tools import voicetools
+
+    return componenttools.all_are_components(expr, klasses=(voicetools.Voice,))

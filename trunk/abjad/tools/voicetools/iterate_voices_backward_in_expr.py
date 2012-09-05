@@ -1,4 +1,3 @@
-from abjad.tools.voicetools.Voice import Voice
 from abjad.tools import componenttools
 
 
@@ -37,5 +36,6 @@ def iterate_voices_backward_in_expr(expr):
 
     Return generator.
     '''
+    from abjad.tools import voicetools
 
-    return componenttools.iterate_components_backward_in_expr(expr, Voice)
+    return componenttools.iterate_components_backward_in_expr(expr, voicetools.Voice)
