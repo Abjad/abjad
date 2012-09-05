@@ -1,7 +1,7 @@
+import fractions
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-import fractions
 
 
 def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier=fractions.Fraction(1)):
