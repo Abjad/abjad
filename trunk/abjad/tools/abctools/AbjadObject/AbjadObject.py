@@ -196,10 +196,12 @@ class AbjadObject(object):
             print 'debug ({}): {!r}'.format(annotation, value)
 
     def _debug_values(self, values, annotation=None):
-        for value in values:
-            self._debug(value, annotation=annotation)
         if values:
+            for value in values:
+                self._debug(value, annotation=annotation)
             print ''
+        else:
+            self._debug(repr(values), annotation=annotation)
 
     @classmethod
     def _get_keyword_argument_names(cls):
