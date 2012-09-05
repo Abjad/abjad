@@ -1,14 +1,17 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import marktools
-from abjad.tools.measuretools.Measure import Measure
+from abjad.tools import measuretools
 
 
-def _line_break_every(expr, line_duration, klass = Measure,
-    kind = 'prolated', adjust_eol = False, add_empty_bars = False):
+# TODO: make public and possibly improve function name
+def _line_break_every(expr, line_duration, klass=None,
+    kind='prolated', adjust_eol=False, add_empty_bars=False):
     '''Iterate klasses in `expr` and accumulate `kind` duration.
 
     Add line break after every total less than or equal to duration.
+
+    When ``klass=None`` set `klass` to measure.
 
     .. versionchanged:: 1.1
         If `adjust_eol` is True, apply rightwards extra-offset to LilyPond
@@ -17,6 +20,9 @@ def _line_break_every(expr, line_duration, klass = Measure,
     .. versionadded:: 2.0
         New `add_empty_bars` keyword.
     '''
+
+    if klass is None:
+        klass = measuretools.Measure
 
     prev = None
     cum_duration = durationtools.Duration(0)

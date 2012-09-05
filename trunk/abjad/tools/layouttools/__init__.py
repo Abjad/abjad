@@ -3,8 +3,6 @@
    This package depends on the following:
 
       * rational numbers
-      * core Abjad classes
-      * tools/iterate
 '''
 
 from abjad.tools import importtools

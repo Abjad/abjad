@@ -1,17 +1,18 @@
 from abjad.tools import durationtools
-from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.resttools.Rest import Rest
-from abjad.tools.skiptools.Skip import Skip
+from abjad.tools import componenttools
+from abjad.tools import measuretools
+from abjad.tools import leaftools
+from abjad.tools import resttools
+from abjad.tools import skiptools
 
 
+# TODO: make public and possibly improve function name
 def _insert_measure_padding(expr, front, back, klass, splice=False):
     r'''.. versionadded:: 2.0
 
     Generalizes measuretools.pad_measures_in_expr_with_rests() and
     measuretools.pad_measures_in_expr_with_skips().
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import measuretools
 
     if not isinstance(front, (durationtools.Duration, type(None))):
         raise ValueError
@@ -19,7 +20,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
     if not isinstance(back, (durationtools.Duration, type(None))):
         raise ValueError
 
-    if not isinstance(klass, (Rest, Skip)):
+    if not isinstance(klass, (resttools.Rest, skiptools.Skip)):
         raise TypeError
 
     #root = expr[0]._parentage.root
@@ -37,7 +38,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
         if front is not None:
             start_components = componenttools.get_improper_descendents_of_component_that_start_with_component(
                 measure)
-            start_leaves = [x for x in start_components if isinstance(x, Leaf)]
+            start_leaves = [x for x in start_components if isinstance(x, leaftools.Leaf)]
             for start_leaf in start_leaves:
                 if splice:
                     componenttools.extend_left_in_parent_of_component(
@@ -48,7 +49,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
         if back is not None:
             stop_components = componenttools.get_improper_descendents_of_component_that_stop_with_component(
                 measure)
-            stop_leaves = [x for x in stop_components if isinstance(x, Leaf)]
+            stop_leaves = [x for x in stop_components if isinstance(x, leaftools.Leaf)]
             for stop_leaf in stop_leaves:
                 if splice:
                     componenttools.extend_in_parent_of_component(
