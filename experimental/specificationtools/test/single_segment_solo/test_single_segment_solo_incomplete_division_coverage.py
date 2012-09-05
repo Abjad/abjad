@@ -137,3 +137,21 @@ def test_single_segment_solo_incomplete_division_coverage_07():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_single_segment_solo_incomplete_division_coverage_08():
+    '''Division selector cuts fractional chunks out of time signatures.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    segment = score_specification.append_segment(name='red')
+    segment.set_time_signatures(3 * [(4, 8)])
+    selector = segment.select_segment_offsets(start=(10, 16), stop=(13, 16))
+    segment.set_divisions([(2, 32)], selector=selector)
+    segment.set_rhythm(library.thirty_seconds)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
