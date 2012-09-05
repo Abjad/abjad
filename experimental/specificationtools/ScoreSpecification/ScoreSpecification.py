@@ -342,6 +342,18 @@ class ScoreSpecification(Specification):
         request = requesttools.AttributeRequest('divisions', selector, context_name=voice_name)
         return request
 
+    def segment_name_and_segment_offset_to_score_offset(self, segment_name, segment_offset):
+        r'''Change `segment_name` and `segment_offset` to score offset.
+
+        If segment offset ``(7, 8)`` is in segment ``'blue'``, how far from the
+        beginning of the entire score is this point?
+
+        .. note:: Add example.
+        '''
+        segment_start_offset, segment_stop_offset = self.segment_name_to_segment_offsets(segment_name)
+        score_offset = segment_start_offset + segment_offset
+        return score_offset
+
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
 
@@ -418,3 +430,17 @@ class ScoreSpecification(Specification):
             start_offset_pair = self.segment_offset_pairs[start_segment_index]
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
+
+    def score_offset_to_segment_identifier(self, score_offset):
+        r'''Change `score_offset` to segment_identifier.
+
+        This is the same as finding the name of the segment
+        in which `score_offset` falls.
+        '''
+        segment_start_offset, segment_stop_offset = durationtools.Offset(0), None
+        for segment in self.segment_specifications:
+            segment_stop_offset = segment_start_offset + segment.duration
+            if segment_start_offset <= score_offset < segment_stop_offset:
+                return segment.segment_name
+            segment_start_offset = segment_stop_offset
+        raise Exception('score offset {!r} is beyond score duration.'.format(score_offset))

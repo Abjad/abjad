@@ -171,6 +171,10 @@ class ConcreteInterpreter(Interpreter):
 
         Set ``'score_duration'`` property on score specification.
 
+        Set ``'start_offset'`` to ``Offset(0)`` on score specification.
+
+        Set ``'stop_offset'`` on score specification.
+
         Set ``'segment_offset_pairs'`` property on score specification.
         '''
         segment_durations = [x.duration for x in self.score_specification.segment_specifications]
@@ -178,6 +182,9 @@ class ConcreteInterpreter(Interpreter):
         if sequencetools.all_are_numbers(segment_durations):
             self.score_specification.segment_durations = segment_durations
             self.score_specification.score_duration = sum(self.score_specification.segment_durations)
+            self.score_specification.start_offset = durationtools.Offset(0)
+            self.score_specification.stop_offset = durationtools.Offset(
+                self.score_specification.score_duration)
             segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(
                 self.score_specification.segment_durations)
             segment_offset_pairs = [
@@ -304,6 +311,18 @@ class ConcreteInterpreter(Interpreter):
     def get_segment_specification(self, expr):
         return self.score_specification.get_segment_specification(expr)
 
+    def get_time_signature_slice(self, start_offset, stop_offset):
+        assert self.score_specification.time_signatures
+        time_signatures = self.score_specification.time_signatures
+        time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
+        slice_duration = stop_offset - start_offset
+        weights = [start_offset, slice_duration]
+        shards = sequencetools.split_sequence_by_weights(
+            time_signatures, weights, cyclic=False, overhang=False)
+        result = shards[1]
+        result = [x.pair for x in result]
+        return result
+
     def get_uninterpreted_division_commands_for_voice(self, voice):
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
@@ -377,7 +396,8 @@ class ConcreteInterpreter(Interpreter):
             uninterpreted_division_commands)
         #self._debug_values(region_division_commands, 'rdc')
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
-            region_division_commands)
+            region_division_commands, voice)
+        #self._debug_values(division_region_division_lists, 'drdl')
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
             division_region_division_lists[:]
         return division_region_division_lists
@@ -421,6 +441,25 @@ class ConcreteInterpreter(Interpreter):
         segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
         return segment_division_lists
+
+    def make_time_signature_region_division_command(self, voice, start_offset, stop_offset):
+        from experimental import interpretertools
+        divisions = self.get_time_signature_slice(start_offset, stop_offset)
+        start_segment_name = self.score_specification.score_offset_to_segment_identifier(start_offset)
+        fresh, truncate = True, True
+        duration = stop_offset - start_offset
+        region_division_command = interpretertools.RegionDivisionCommand(
+            divisions,
+            start_segment_name,
+            voice.name, 
+            start_offset,
+            stop_offset,
+            duration, 
+            fresh,
+            truncate
+            )
+        #self._debug(region_division_command, 'rdc')
+        return region_division_command
 
     def make_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
@@ -466,7 +505,10 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list.truncate = region_division_command.truncate
         return division_region_division_list
 
-    def region_division_commands_to_division_region_division_lists(self, region_division_commands):
+    def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
+        if region_division_commands:
+            region_division_commands = self.supply_missing_region_division_commands(
+                region_division_commands, voice)
         division_region_division_lists = []
         for region_division_command in region_division_commands:
             division_region_division_list = self.region_division_command_to_division_region_division_list(
@@ -719,6 +761,50 @@ class ConcreteInterpreter(Interpreter):
             assert setting.selector.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting(setting, clear_persistent_first=True)
+
+    def supply_missing_region_division_commands(self, region_division_commands, voice):
+        from experimental import interpretertools
+        #self._debug_values(region_division_commands, 'rdc')
+        if not region_division_commands:
+            region_division_command = self.make_time_signature_region_division_command(
+                voice, self.score_specification.start_offset, self.score_specification.stop_offset)
+            return [region_division_command]
+        first_start_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+            region_division_commands[0].start_segment_name,
+            region_division_commands[0].start_offset)
+        if not first_start_offset_in_score == self.score_specification.start_offset:
+            region_division_command = self.make_time_signature_region_division_command(
+                voice, self.score_specification.start_offset, first_start_offset_in_score)
+            region_division_commands.insert(0, region_division_command)
+        last_stop_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+            region_division_commands[-1].start_segment_name,
+            region_division_commands[-1].stop_offset)
+        if not last_stop_offset_in_score == self.score_specification.stop_offset:
+            region_division_command = self.make_time_signature_region_division_command(
+                voice, last_stop_offset_in_score, self.score_specification.stop_offset)
+            region_division_commands.append(region_division_command)
+        if len(region_division_commands) == 1:
+            return region_division_commands
+        #self._debug_values(region_division_commands, 'midway rdc')
+        result = []
+        for left_region_division_command, right_region_division_command in \
+            sequencetools.iterate_sequence_pairwise_strict(region_division_commands):
+            left_stop_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+                left_region_division_command.start_segment_name,
+                left_region_division_command.stop_offset)
+            right_start_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+                right_region_division_command.start_segment_name,
+                right_region_division_command.start_offset)
+            #self._debug((left_stop_offset_in_score, right_start_offset_in_score), 'offsets')
+            assert left_stop_offset_in_score <= right_start_offset_in_score
+            result.append(left_region_division_command)
+            if left_stop_offset_in_score < right_start_offset_in_score:
+                region_division_command = self.make_time_signature_region_division_command(
+                    voice, left_stop_offset_in_score, right_start_offset_in_score)
+                result.append(region_division_command)
+        result.append(right_region_division_command)
+        #self._debug_values(result, 'result')
+        return result
 
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
         #self._debug(len(uninterpreted_division_commands), 'total')
