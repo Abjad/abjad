@@ -1,10 +1,6 @@
-from abjad.tools.leaftools.Leaf import Leaf
+import fractions
 from abjad.tools import durationtools
 from abjad.tools import leaftools
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents_of_tuplets_in_expr
-from abjad.tools.tuplettools.is_proper_tuplet_multiplier import is_proper_tuplet_multiplier
-import fractions
 
 
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
@@ -12,9 +8,10 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
         Preserve tuplet multiplier.
         Return tuplet.
     '''
+    from abjad.tools import tuplettools
 
     # check input
-    if not isinstance(tuplet, FixedDurationTuplet):
+    if not isinstance(tuplet, tuplettools.FixedDurationTuplet):
         raise TypeError('must be tuplet.')
     assert isinstance(multiplier, fractions.Fraction)
 
@@ -28,12 +25,12 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
     # if multiplier is note head assignable, scale contents graphically
     if durationtools.is_assignable_rational(multiplier):
         for component in tuplet[:]:
-            if isinstance(component, Leaf):
+            if isinstance(component, leaftools.Leaf):
                 leaftools.scale_preprolated_leaf_duration(component, multiplier)
 
     # otherwise doctor up tuplet multiplier, if necessary
-    elif not is_proper_tuplet_multiplier(tuplet.multiplier):
-            fix_contents_of_tuplets_in_expr(tuplet)
+    elif not tuplettools.is_proper_tuplet_multiplier(tuplet.multiplier):
+        tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
 
     # return tuplet
     return tuplet

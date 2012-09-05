@@ -1,6 +1,6 @@
+from fractions import Fraction
 from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
 from abjad.tools import durationtools
-from fractions import Fraction
 
 
 class FixedDurationTuplet(Tuplet):

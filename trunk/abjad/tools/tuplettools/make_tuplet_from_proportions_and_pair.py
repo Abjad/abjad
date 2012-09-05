@@ -1,10 +1,9 @@
-from abjad.tools.containertools.Container import Container
+import math
+from abjad.tools import containertools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import resttools
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
-import math
 
 
 def make_tuplet_from_proportions_and_pair(l, (n, d)):
@@ -48,7 +47,7 @@ def make_tuplet_from_proportions_and_pair(l, (n, d)):
         renamed ``divide.pair()`` to
         ``tuplettools.make_tuplet_from_proportions_and_pair()``.
     '''
-
+    from abjad.tools import tuplettools
 
     duration = (n, d)
 
@@ -58,14 +57,14 @@ def make_tuplet_from_proportions_and_pair(l, (n, d)):
     if len(l) == 1:
         if 0 < l[0]:
             try:
-                return Container([notetools.Note(0, duration)])
+                return containertools.Container([notetools.Note(0, duration)])
             except AssignabilityError:
-                return Container(notetools.make_notes(0, duration))
+                return containertools.Container(notetools.make_notes(0, duration))
         elif l[0] < 0:
             try:
-                return Container([resttools.Rest(duration)])
+                return containertools.Container([resttools.Rest(duration)])
             except AssignabilityError:
-                return Container(resttools.make_rests(duration))
+                return containertools.Container(resttools.make_rests(duration))
         else:
             raise ValueError('no divide zero values.')
 
@@ -83,4 +82,4 @@ def make_tuplet_from_proportions_and_pair(l, (n, d)):
                     music.extend(notetools.make_notes(0, (x, denominator)))
             else:
                 music.append(resttools.Rest((-x, denominator)))
-        return FixedDurationTuplet(duration, music)
+        return tuplettools.FixedDurationTuplet(duration, music)

@@ -1,5 +1,4 @@
-from abjad.tools.tuplettools.Tuplet import Tuplet
-from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
+from abjad.tools import componenttools
 
 
 def iterate_tuplets_backward_in_expr(expr, start=0, stop=None):
@@ -37,5 +36,6 @@ def iterate_tuplets_backward_in_expr(expr, start=0, stop=None):
 
     Return generator.
     '''
+    from abjad.tools import tuplettools
 
-    return iterate_components_backward_in_expr(expr, Tuplet, start=start, stop=stop)
+    return componenttools.iterate_components_backward_in_expr(expr, tuplettools.Tuplet, start=start, stop=stop)

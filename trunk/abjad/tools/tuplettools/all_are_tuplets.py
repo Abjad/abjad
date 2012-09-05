@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.tuplettools.Tuplet import Tuplet
+from abjad.tools import componenttools
 
 
 def all_are_tuplets(expr):
@@ -28,5 +27,6 @@ def all_are_tuplets(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import tuplettools
 
-    return all_are_components(expr, klasses=(Tuplet,))
+    return componenttools.all_are_components(expr, klasses=(tuplettools.Tuplet,))

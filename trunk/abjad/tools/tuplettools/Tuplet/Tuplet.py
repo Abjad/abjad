@@ -1,8 +1,8 @@
+import fractions
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import mathtools
 from abjad.tools.containertools.Container import Container
-import fractions
 
 
 class Tuplet(Container):

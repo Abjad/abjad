@@ -1,7 +1,5 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.tuplettools.Tuplet import Tuplet
-from abjad.tools.componenttools.component_to_score_root import component_to_score_root
-from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
+from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 
 
@@ -64,11 +62,9 @@ def fuse_tuplets(tuplets):
         renamed ``fuse.tuplets_by_reference()`` to
         ``tuplettools.fuse_tuplets()``.
     '''
+    from abjad.tools import tuplettools
 
-    from abjad.tools import componenttools
-    from abjad.tools import containertools
-
-    assert componenttools.all_are_contiguous_components_in_same_parent(tuplets, klasses=(Tuplet))
+    assert componenttools.all_are_contiguous_components_in_same_parent(tuplets, klasses=(tuplettools.Tuplet))
 
     if len(tuplets) == 0:
         return None
@@ -82,18 +78,19 @@ def fuse_tuplets(tuplets):
         if type(tuplet) != first_type:
             raise TupletFuseError('tuplets must be same type.')
 
-    if isinstance(first, FixedDurationTuplet):
+    if isinstance(first, tuplettools.FixedDurationTuplet):
         total_contents_duration = sum([x.contents_duration for x in tuplets])
         new_target_duration = first_multiplier * total_contents_duration
-        new_tuplet = FixedDurationTuplet(new_target_duration, [])
-    elif isinstance(first, Tuplet):
-        new_tuplet = Tuplet(first_multiplier, [])
+        new_tuplet = tuplettools.FixedDurationTuplet(new_target_duration, [])
+    elif isinstance(first, tuplettools.Tuplet):
+        new_tuplet = tuplettools.Tuplet(first_multiplier, [])
     else:
         raise TypeError('unknown tuplet type.')
 
     wrapped = False
-    if component_to_score_root(tuplets[0]) is not component_to_score_root(tuplets[-1]):
-        dummy_container = Container(tuplets)
+    if componenttools.component_to_score_root(tuplets[0]) is not \
+        componenttools.component_to_score_root(tuplets[-1]):
+        dummy_container = containertools.Container(tuplets)
         wrapped = True
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
         tuplets, new_tuplet)

@@ -1,6 +1,3 @@
-from abjad.tools.tuplettools.Tuplet import Tuplet
-
-
 def change_diminished_tuplets_in_expr_to_augmented(tuplet):
     '''.. versionadded:: 2.0
 
@@ -19,8 +16,9 @@ def change_diminished_tuplets_in_expr_to_augmented(tuplet):
         renamed ``tuplettools.diminution_to_augmentation()`` to
         ``tuplettools.change_diminished_tuplets_in_expr_to_augmented()``.
     '''
+    from abjad.tools import tuplettools
 
-    if not isinstance(tuplet, Tuplet):
+    if not isinstance(tuplet, tuplettools.Tuplet):
         raise TypeError('must be tuplet')
 
     while tuplet.is_diminution:
