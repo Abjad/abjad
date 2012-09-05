@@ -1,6 +1,5 @@
-from abjad.tools.notetools.Note import Note
 from abjad.tools import componenttools
-from abjad.tools.tonalitytools.are_scalar_notes import are_scalar_notes
+from abjad.tools import notetools
 
 
 def is_passing_tone(note):
@@ -24,8 +23,9 @@ def is_passing_tone(note):
 
     Return boolean.
     '''
+    from abjad.tools import tonalitytools
 
-    if not isinstance(note, Note):
+    if not isinstance(note, notetools.Note):
         raise TypeError('must be note: {!r}'.format(note))
 
     prev_note = componenttools.get_nth_namesake_from_component(note, -1)
@@ -34,4 +34,4 @@ def is_passing_tone(note):
     if prev_note is None or next_note is None:
         return False
 
-    return are_scalar_notes(prev_note, note, next_note)
+    return tonalitytools.are_scalar_notes(prev_note, note, next_note)

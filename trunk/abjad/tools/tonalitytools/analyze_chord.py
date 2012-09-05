@@ -1,7 +1,4 @@
 from abjad.tools import pitchtools
-from abjad.tools.tonalitytools.ChordClass import ChordClass
-from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import chord_class_cardinality_to_extent
-from abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_string import diatonic_interval_class_segment_to_chord_quality_string
 
 
 def analyze_chord(expr):
@@ -25,6 +22,7 @@ def analyze_chord(expr):
 
     Raise tonal harmony error when chord can not analyze.
     '''
+    from abjad.tools import tonalitytools
 
     pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
@@ -52,9 +50,9 @@ def analyze_chord(expr):
         inversion = ordered_npcs.index(bass)
         dic_seg =  ordered_npcs.inversion_equivalent_diatonic_interval_class_segment
         cardinality = len(ordered_npcs)
-        extent = chord_class_cardinality_to_extent(cardinality)
-        quality = diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
+        extent = tonalitytools.chord_class_cardinality_to_extent(cardinality)
+        quality = tonalitytools.diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
     except TonalHarmonyError:
         return None
 
-    return ChordClass(root, quality, extent, inversion)
+    return tonalitytools.ChordClass(root, quality, extent, inversion)

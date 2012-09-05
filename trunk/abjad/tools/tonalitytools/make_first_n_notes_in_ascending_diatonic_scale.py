@@ -1,7 +1,6 @@
-from abjad.tools.notetools.Note import Note
 from abjad.tools import durationtools
+from abjad.tools import notetools
 from abjad.tools import pitchtools
-from abjad.tools.notetools.make_notes import make_notes
 
 
 def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration=durationtools.Duration(1, 8), key_signature=None):
@@ -34,7 +33,7 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration=durat
         ``tonalitytools.make_first_n_notes_in_ascending_diatonic_scale()``.
     '''
 
-    result = make_notes([0] * count, [written_duration])
+    result = notetools.make_notes([0] * count, [written_duration])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(
         result, key_signature)
     return result

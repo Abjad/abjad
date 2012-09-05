@@ -1,9 +1,6 @@
 from abjad.tools import markuptools
-from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
-from abjad.tools.pitchtools.NamedChromaticPitchClassSet import NamedChromaticPitchClassSet
-from abjad.tools.tonalitytools.ChordQualityIndicator import ChordQualityIndicator
-from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
+from abjad.tools import pitchtools
+from abjad.tools.pitchtools import NamedChromaticPitchClassSet
 
 
 class ChordClass(NamedChromaticPitchClassSet):
@@ -18,15 +15,16 @@ class ChordClass(NamedChromaticPitchClassSet):
     __slots__ = ('_bass', '_quality_indicator', '_root', )
 
     def __new__(klass, root, *args):
-        root = NamedChromaticPitchClass(root)
-        quality_indicator = ChordQualityIndicator(*args)
+        from abjad.tools import tonalitytools
+        root = pitchtools.NamedChromaticPitchClass(root)
+        quality_indicator = tonalitytools.ChordQualityIndicator(*args)
         npcs = []
         for hdi in quality_indicator:
             mdi = hdi.melodic_diatonic_interval_ascending
             npc = root + mdi
             npcs.append(npc)
         bass = npcs[0]
-        self = NamedChromaticPitchClassSet.__new__(klass, npcs)
+        self = pitchtools.NamedChromaticPitchClassSet.__new__(klass, npcs)
         object.__setattr__(self, '_root', root)
         object.__setattr__(self, '_quality_indicator', quality_indicator)
         object.__setattr__(self, '_bass', bass)
@@ -103,10 +101,9 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     @property
     def extent(self):
-        from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import \
-            chord_class_cardinality_to_extent
-        extent = chord_class_cardinality_to_extent(self.cardinality)
-        return ExtentIndicator(extent)
+        from abjad.tools import tonalitytools
+        extent = tonalitytools.chord_class_cardinality_to_extent(self.cardinality)
+        return tonalitytools.ExtentIndicator(extent)
 
     @property
     def figured_bass(self):

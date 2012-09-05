@@ -1,7 +1,5 @@
-from abjad.tools.notetools.Note import Note
+from abjad.tools import notetools
 from abjad.tools import componenttools
-from abjad.tools.tonalitytools.are_scalar_notes import are_scalar_notes
-from abjad.tools.tonalitytools.are_stepwise_notes import are_stepwise_notes
 
 
 def is_neighbor_note(note):
@@ -26,8 +24,9 @@ def is_neighbor_note(note):
 
     Return boolean.
     '''
+    from abjad.tools import tonalitytools
 
-    if not isinstance(note, Note):
+    if not isinstance(note, notetools.Note):
         raise TypeError('must be note: %s' % note)
 
     try:
@@ -38,4 +37,4 @@ def is_neighbor_note(note):
 
     notes = [prev_note, note, next_note]
 
-    return are_stepwise_notes(notes) and not are_scalar_notes(notes)
+    return tonalitytools.are_stepwise_notes(notes) and not tonalitytools.are_scalar_notes(notes)

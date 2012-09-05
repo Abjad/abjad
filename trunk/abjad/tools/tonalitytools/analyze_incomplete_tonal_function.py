@@ -1,9 +1,3 @@
-from abjad.tools.tonalitytools.ChordClass import ChordClass
-from abjad.tools.tonalitytools.Scale import Scale
-from abjad.tools.tonalitytools.TonalFunction import TonalFunction
-from abjad.tools.tonalitytools.analyze_incomplete_chord import analyze_incomplete_chord
-
-
 # TODO: Write tests #
 def analyze_incomplete_tonal_function(expr, key_signature):
     '''.. versionadded:: 2.0
@@ -21,17 +15,18 @@ def analyze_incomplete_tonal_function(expr, key_signature):
 
     Return tonal function.
     '''
+    from abjad.tools import tonalitytools
 
-    if isinstance(expr, ChordClass):
+    if isinstance(expr, tonalitytools.ChordClass):
         chord_class = expr
     else:
-        chord_class = analyze_incomplete_chord(expr)
+        chord_class = tonalitytools.analyze_incomplete_chord(expr)
     root = chord_class.root
-    scale = Scale(key_signature)
+    scale = tonalitytools.Scale(key_signature)
     scale_degree = scale.named_chromatic_pitch_class_to_scale_degree(root)
     quality = chord_class.quality_indicator.quality_string
     extent = chord_class.extent
     inversion = chord_class.inversion
-    tonal_function = TonalFunction(scale_degree, quality, extent, inversion)
+    tonal_function = tonalitytools.TonalFunction(scale_degree, quality, extent, inversion)
 
     return tonal_function

@@ -1,11 +1,9 @@
-from abjad.tools.scoretools.Score import Score
-from abjad.tools.stafftools.Staff import Staff
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import schemetools
-from abjad.tools.tonalitytools.make_first_n_notes_in_ascending_diatonic_scale import \
-    make_first_n_notes_in_ascending_diatonic_scale
+from abjad.tools import scoretools
+from abjad.tools import stafftools
 
 
 
@@ -51,16 +49,17 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature=None
         renamed ``construct.scale_period()`` to
         ``tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale()``.
     '''
+    from abjad.tools import tonalitytools
 
-    ascending_notes = make_first_n_notes_in_ascending_diatonic_scale(
+    ascending_notes = tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(
         8, durationtools.Duration(1, 8), key_signature)
     descending_notes = componenttools.copy_components_and_remove_spanners(ascending_notes[:-1])
     descending_notes.reverse()
     notes = ascending_notes + descending_notes
     notes[-1].written_duration = durationtools.Duration(1, 4)
-    staff = Staff(notes)
+    staff = stafftools.Staff(notes)
     contexttools.KeySignatureMark(key_signature.tonic, key_signature.mode)(staff)
-    score = Score([staff])
+    score = scoretools.Score([staff])
     score.set.tempo_wholes_per_minute = schemetools.SchemeMoment(30)
 
     return score

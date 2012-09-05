@@ -1,4 +1,4 @@
-from abjad.tools.notetools.Note import Note
+from abjad.tools import notetools
 from abjad.tools import componenttools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
@@ -28,7 +28,7 @@ def are_stepwise_ascending_notes(*expr):
     '''
 
     for left, right in sequencetools.iterate_sequence_pairwise_strict(
-        componenttools.iterate_components_forward_in_expr(expr, Note)):
+        componenttools.iterate_components_forward_in_expr(expr, notetools.Note)):
         try:
             assert not (left.written_pitch == right.written_pitch)
             mdi = pitchtools.calculate_melodic_diatonic_interval(left, right)

@@ -1,7 +1,4 @@
 from abjad.tools import pitchtools
-from abjad.tools.tonalitytools.ChordClass import ChordClass
-from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import chord_class_cardinality_to_extent
-from abjad.tools.tonalitytools.diatonic_interval_class_segment_to_chord_quality_string import diatonic_interval_class_segment_to_chord_quality_string
 
 
 def analyze_incomplete_chord(expr):
@@ -23,6 +20,7 @@ def analyze_incomplete_chord(expr):
 
     Return chord class.
     '''
+    from abjad.tools import tonalitytools
 
     #print 'expr is %s ...' % str(expr)
 
@@ -74,7 +72,7 @@ def analyze_incomplete_chord(expr):
     inversion = npcseg.index(bass)
     root = npcseg[0]
 
-    return ChordClass(root, quality, extent, inversion)
+    return tonalitytools.ChordClass(root, quality, extent, inversion)
 
 
 def _make_dicv(*named_chromatic_pitch_classes):
