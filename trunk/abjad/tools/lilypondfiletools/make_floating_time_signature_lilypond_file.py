@@ -14,6 +14,7 @@ def make_floating_time_signature_lilypond_file(music=None):
 
     Returns LilyPond file object.
     '''
+    # TODO: lilypondfiletools should depend on layouttools and NOT the other way around
     from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
 

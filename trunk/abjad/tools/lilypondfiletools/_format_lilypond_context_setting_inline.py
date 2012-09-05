@@ -1,7 +1,7 @@
-from _format_lilypond_value import _format_lilypond_value
-
-
+# TODO: make public and move to bound method of some class
 def _format_lilypond_context_setting_inline(name, value, context=None):
+    from _format_lilypond_value import _format_lilypond_value
+
     name = name.split('_')
     first = name[0:1]
     rest = name[1:]

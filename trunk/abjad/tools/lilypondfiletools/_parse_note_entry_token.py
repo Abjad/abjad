@@ -1,13 +1,11 @@
-from abjad.tools.notetools.Note import Note
-from abjad.tools.resttools.Rest import Rest
-from abjad.tools import pitchtools
-from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
-from abjad.tools.lilypondfiletools._parse_chord_entry_token import _parse_chord_entry_token
-from abjad.tools.resttools.MultiMeasureRest import MultiMeasureRest
-from abjad.tools.skiptools.Skip import Skip
 import re
+from abjad.tools import pitchtools
+from abjad.tools import notetools
+from abjad.tools import resttools
+from abjad.tools import skiptools
 
 
+# TODO: remove altogether in favor of LilyPondParser
 def _parse_note_entry_token(note_entry_token):
     '''.. versionadded:: 2.0
 
@@ -15,6 +13,8 @@ def _parse_note_entry_token(note_entry_token):
 
     Return leaf.
     '''
+    from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
+    from abjad.tools.lilypondfiletools._parse_chord_entry_token import _parse_chord_entry_token
 
     if not isinstance(note_entry_token, str):
         raise TypeError('LilyPond input token must be string.')
@@ -33,12 +33,12 @@ def _parse_note_entry_token(note_entry_token):
     duration_string = duration_body + dots
 
     if name == 'r':
-        return Rest(duration_string)
+        return restools.Rest(duration_string)
     elif name == 'R':
-        return MultiMeasureRest(duration_string)
+        return resttools.MultiMeasureRest(duration_string)
     elif name == 's':
-        return Skip(duration_string)
+        return skiptools.Skip(duration_string)
     else:
         pitch_string = name + ticks
         pitch = pitchtools.NamedChromaticPitch(pitch_string)
-        return Note(pitch, duration_string)
+        return notetools.Note(pitch, duration_string)

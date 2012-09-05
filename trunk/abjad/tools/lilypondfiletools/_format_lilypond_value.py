@@ -1,6 +1,8 @@
+# TODO: make public and move to bound method of some class.
 def _format_lilypond_value(value):
     '''Format LilyPond value.
     '''
+
     if 'lilypond_format' in dir(value) and not isinstance(value, str):
         return value.lilypond_format
     elif value is True:

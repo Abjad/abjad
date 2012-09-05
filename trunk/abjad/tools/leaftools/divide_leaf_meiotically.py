@@ -1,6 +1,6 @@
 from abjad.tools import componenttools
-from abjad.tools import mathtools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 
 
 def divide_leaf_meiotically(leaf, n=2):

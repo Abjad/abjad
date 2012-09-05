@@ -1,8 +1,9 @@
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools import durationtools
 import re
+from abjad.tools import chordtools
+from abjad.tools import durationtools
 
 
+# TODO: remove altogether in favor of LilyPondParser
 def _parse_chord_entry_token(chord_entry_token):
     '''.. versionadded:: 2.0
 
@@ -19,6 +20,6 @@ def _parse_chord_entry_token(chord_entry_token):
     pitch_string, duration_string = match.groups()
     pitch_list = pitch_string.split()
     duration = durationtools.lilypond_duration_string_to_rational(duration_string)
-    chord = Chord(pitch_list, duration)
+    chord = chordtools.Chord(pitch_list, duration)
 
     return chord

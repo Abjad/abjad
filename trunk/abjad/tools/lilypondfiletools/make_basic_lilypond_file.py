@@ -1,10 +1,3 @@
-from abjad.tools.lilypondfiletools.HeaderBlock import HeaderBlock
-from abjad.tools.lilypondfiletools.LayoutBlock import LayoutBlock
-from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
-from abjad.tools.lilypondfiletools.PaperBlock import PaperBlock
-from abjad.tools.lilypondfiletools.ScoreBlock import ScoreBlock
-
-
 def make_basic_lilypond_file(music=None):
     r'''.. versionadded:: 2.0
 
@@ -46,13 +39,14 @@ def make_basic_lilypond_file(music=None):
 
     Return LilyPond file.
     '''
+    from abjad.tools import lilypondfiletools
 
-    lilypond_file = LilyPondFile()
+    lilypond_file = lilypondfiletools.LilyPondFile()
 
-    header_block = HeaderBlock()
-    layout_block = LayoutBlock()
-    paper_block = PaperBlock()
-    score_block = ScoreBlock()
+    header_block = lilypondfiletools.HeaderBlock()
+    layout_block = lilypondfiletools.LayoutBlock()
+    paper_block = lilypondfiletools.PaperBlock()
+    score_block = lilypondfiletools.ScoreBlock()
 
     lilypond_file.extend([header_block, layout_block, paper_block, score_block])
 

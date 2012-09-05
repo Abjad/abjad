@@ -1,5 +1,4 @@
 from abjad.tools import schemetools
-from abjad.tools.lilypondfiletools.ContextBlock import ContextBlock
 
 
 def make_time_signature_context_block(font_size=3, padding=4):
@@ -31,11 +30,12 @@ def make_time_signature_context_block(font_size=3, padding=4):
     Return context block.
     '''
     from abjad.tools import layouttools
+    from abjad.tools import lilypondfiletools
 
     assert isinstance(font_size, (int, float))
     assert isinstance(padding, (int, float))
 
-    context_block = ContextBlock()
+    context_block = lilypondfiletools.ContextBlock()
     context_block.type = 'Engraver_group'
     context_block.engraver_consists.append('Axis_group_engraver')
     context_block.engraver_consists.append('Time_signature_engraver')
