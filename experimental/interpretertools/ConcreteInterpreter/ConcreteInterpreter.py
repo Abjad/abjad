@@ -389,8 +389,9 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(region_division_commands, 'rdc')
         region_division_commands = self.supply_missing_region_division_commands(region_division_commands, voice)
         #self._debug_values(region_division_commands, 'srdc')
-        # think the assignment can be removed because method operates in place
         self.region_division_commands_to_division_region_division_lists(region_division_commands, voice)
+        #self._debug_values(
+        #    self.score_specification.contexts[voice.name]['division_region_division_lists'], 'drdl')
 
     def make_rhythm_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
