@@ -158,14 +158,6 @@ class ConcreteInterpreter(Interpreter):
     def apply_registration(self):
         pass
 
-    def attribute_request_to_resolved_single_context_setting(self, attribute_request):
-        #self._debug(attribute_request, 'ar')
-        segment_specification = self.get_segment_specification(attribute_request.segment_identifier)
-        context_proxy = segment_specification.resolved_single_context_settings[attribute_request.context_name]
-        resolved_single_context_setting = context_proxy.get_setting(attribute=attribute_request.attribute)
-        #self._debug(resolved_single_context_setting, 'rscs')
-        return resolved_single_context_setting
-
     def calculate_segment_offset_pairs(self):
         '''Set ``'segment_durations'`` property on score specification.
 
@@ -202,10 +194,11 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def division_request_to_divisions(self, division_request):
-        assert isinstance(division_request, requesttools.MaterialRequest)
-        assert division_request.attribute == 'divisions'
-        voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.context_name)
+    def division_material_request_to_divisions(self, division_material_request):
+        assert isinstance(division_material_request, requesttools.MaterialRequest)
+        assert division_material_request.attribute == 'divisions'
+        voice = componenttools.get_first_component_in_expr_with_name(
+            self.score, division_material_request.context_name)
         assert isinstance(voice, voicetools.Voice), voice
         division_region_division_lists = self.score_specification.contexts[voice.name][
             'division_region_division_lists']
@@ -213,8 +206,8 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
-        start_segment_identifier = division_request.selector.start_identifier
-        stop_segment_identifier = division_request.selector.stop_identifier
+        start_segment_identifier = division_material_request.selector.start_identifier
+        stop_segment_identifier = division_material_request.selector.stop_identifier
         start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
             start_segment_identifier)
         stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
@@ -227,8 +220,8 @@ class ConcreteInterpreter(Interpreter):
         divisions = sequencetools.split_sequence_by_weights(
             divisions, [0, total_amount], cyclic=False, overhang=True)
         divisions = divisions[1]
-        if division_request.callback is not None:
-            divisions = division_request.callback(divisions)
+        if division_material_request.callback is not None:
+            divisions = division_material_request.callback(divisions)
         return divisions
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
@@ -485,6 +478,14 @@ class ConcreteInterpreter(Interpreter):
         voice_division_list = divisiontools.VoiceDivisionList(voice_divisions)
         return voice_division_list
 
+    def material_request_to_resolved_single_context_setting(self, material_request):
+        #self._debug(material_request, 'mr')
+        segment_specification = self.get_segment_specification(material_request.segment_identifier)
+        context_proxy = segment_specification.resolved_single_context_settings[material_request.context_name]
+        resolved_single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
+        #self._debug(resolved_single_context_setting, 'rscs')
+        return resolved_single_context_setting
+
     def region_division_command_to_division_region_division_list(self, region_division_command):
         #self._debug(region_division_command, 'rdc')
         resolved_value = region_division_command.resolved_value
@@ -496,8 +497,8 @@ class ConcreteInterpreter(Interpreter):
             divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(resolved_value, requesttools.MaterialRequest):
             assert resolved_value.attribute == 'divisions'
-            division_request = resolved_value
-            divisions = self.division_request_to_divisions(division_request)
+            division_material_request = resolved_value
+            divisions = self.division_material_request_to_divisions(division_material_request)
         else:
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
@@ -516,16 +517,16 @@ class ConcreteInterpreter(Interpreter):
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
 
-    def resolve_attribute_request(self, attribute_request):
-        assert isinstance(attribute_request, requesttools.MaterialRequest), repr(attribute_request)
-        resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
-            attribute_request)
+    def resolve_material_request(self, material_request):
+        assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
+        resolved_single_context_setting = self.material_request_to_resolved_single_context_setting(
+            material_request)
         resolved_value = resolved_single_context_setting.resolved_value
         #self._debug(resolved_value, 'rv')
         assert resolved_value is not None, repr(resolved_value)
-        if attribute_request.callback is not None:
-            resolved_value = attribute_request.callback(resolved_value)
-        resolved_value = requesttools.apply_request_transforms(attribute_request, resolved_value)
+        if material_request.callback is not None:
+            resolved_value = material_request.callback(resolved_value)
+        resolved_value = requesttools.apply_request_transforms(material_request, resolved_value)
         #self._debug(resolved_value, 'rv')
         return resolved_value
 
@@ -551,7 +552,7 @@ class ConcreteInterpreter(Interpreter):
 
     def resolve_single_context_setting_source(self, source):
         if isinstance(source, requesttools.MaterialRequest) and source.attribute == 'time_signatures':
-            return self.resolve_attribute_request(source)
+            return self.resolve_material_request(source)
         # the following line should be resolvable
         elif isinstance(source, requesttools.MaterialRequest) and source.attribute == 'divisions':
             return source
