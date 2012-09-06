@@ -94,29 +94,3 @@ class Scheme(AbjadObject):
             return '#' + self._quoting + self._formatted_value
         return '#%s' % self._formatted_value
 
-    ### PRIVATE METHODS ###
-
-    #@staticmethod
-    #def _format_value(value):
-    #    if isinstance(value, str):
-    #        if -1 == value.find(' '):
-    #            return value
-    #        if value.startswith('"') and value.endswith('"'):
-    #            return value
-    #        value = repr(value)
-    #        if value.startswith("'") and value.endswith("'"):
-    #            value = value.replace('"', '\"')
-    #            value = '"' + value[1:]
-    #            value = value[:-1] + '"'
-    #        return value
-    #    elif isinstance(value, bool):
-    #        if value:
-    #            return '#t'
-    #        return '#f'
-    #    elif isinstance(value, (list, tuple)):
-    #        return '(%s)' % ' '.join([Scheme._format_value(x) for x in value])
-    #    elif isinstance(value, Scheme):
-    #        return str(value)
-    #    elif isinstance(value, type(None)):
-    #        return '#f'
-    #    return str(value)

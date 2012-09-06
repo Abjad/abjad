@@ -1194,7 +1194,6 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmtreetools/parse_reduced_ly_syntax
    tools/rhythmtreetools/parse_rtm_syntax
 
 :py:mod:`schemetools <abjad.tools.schemetools>`
@@ -2177,6 +2176,7 @@ Internal packages
    :maxdepth: 1
 
    tools/lilypondparsertools/lilypond_enharmonic_transpose
+   tools/lilypondparsertools/parse_reduced_ly_syntax
 
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

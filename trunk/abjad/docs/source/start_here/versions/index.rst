@@ -94,7 +94,7 @@ An entirely new tuplet microlanguage is now available.
 
   ::
 
-    >>> container = rhythmtreetools.parse_reduced_ly_syntax('4 -4 8 5/3 { 2/3 { 8 8 8 } { 8 8 } -8 } 4')
+    >>> container = lilypondparsertools.parse_reduced_ly_syntax('4 -4 8 5/3 { 2/3 { 8 8 8 } { 8 8 } -8 } 4')
 
   ::
 
@@ -120,7 +120,7 @@ An entirely new tuplet microlanguage is now available.
 
 - Measures and dotted values are also available::
 
-    >>> container = rhythmtreetools.parse_reduced_ly_syntax('|2/4 8. 16 8. 16| |4/4 2/3 { 2 2 2 }|')
+    >>> container = lilypondparsertools.parse_reduced_ly_syntax('|2/4 8. 16 8. 16| |4/4 2/3 { 2 2 2 }|')
 
   ::
 

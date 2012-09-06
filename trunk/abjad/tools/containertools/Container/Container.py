@@ -433,17 +433,17 @@ class Container(Component):
         return leaf in componenttools.get_improper_descendents_of_component_that_stop_with_component(self)
 
     def _parse_string(self, string):
-        from abjad.tools.lilypondparsertools import LilyPondParser
+        from abjad.tools import lilypondparsertools
         from abjad.tools import rhythmtreetools
         user_input = string.strip()
         if user_input.startswith('abj:'):
-            parsed = rhythmtreetools.parse_reduced_ly_syntax(user_input.partition('abj:')[-1])
+            parsed = lilypondparsertools.parse_reduced_ly_syntax(user_input.partition('abj:')[-1])
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input.partition('rtm:')[-1])
         else:
             if not user_input.startswith('<<') and not user_input.endswith('>>'):
                 user_input = '{ %s }' % user_input
-            parsed = LilyPondParser()(user_input)
+            parsed = lilypondparsertools.LilyPondParser()(user_input)
             assert isinstance(parsed, Container)
         return parsed
 

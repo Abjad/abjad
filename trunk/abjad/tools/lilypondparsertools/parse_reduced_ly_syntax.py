@@ -1,11 +1,11 @@
-from abjad.tools import lilypondparsertools
+from abjad.tools.lilypondparsertools.ReducedLyParser import ReducedLyParser
 
 
 def parse_reduced_ly_syntax(string):
     '''Parse the reduced LilyPond rhythmic syntax:
 
         >>> string = '4 -4. 8.. 5/3 { } 4'
-        >>> result = rhythmtreetools.parse_reduced_ly_syntax(string)
+        >>> result = lilypondparsertools.parse_reduced_ly_syntax(string)
 
     ::
 
@@ -21,4 +21,4 @@ def parse_reduced_ly_syntax(string):
     Return list.
     '''
 
-    return lilypondparsertools.ReducedLyParser()(string)
+    return ReducedLyParser()(string)
