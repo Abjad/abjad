@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
 
@@ -14,13 +13,13 @@ class Request(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     attributes = helpertools.AttributeNameEnumeration()
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, callback=None, count=None, offset=None, reverse=None):
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(offset, (int, type(None))), repr(offset)

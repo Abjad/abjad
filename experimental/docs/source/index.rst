@@ -217,6 +217,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/requesttools/HandlerRequest/HandlerRequest
+   experimental/requesttools/InstructionRequest/InstructionRequest
    experimental/requesttools/MaterialRequest/MaterialRequest
    experimental/requesttools/StatalServerRequest/StatalServerRequest
 

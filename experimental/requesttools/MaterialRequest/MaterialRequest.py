@@ -10,7 +10,7 @@ class MaterialRequest(Request):
         >>> from experimental import *
 
     Request `attribute` for `selector` in `context_name`.
-    Apply any of `callback`, `count`, `offset` that are not none::
+    Apply any of `callback`, `count`, `offset`, `reverse` that are not none::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
