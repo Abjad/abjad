@@ -1,5 +1,4 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools.NumberedChromaticPitchClassSet import NumberedChromaticPitchClassSet
 
 
 def inventory_aggregate_subsets():
@@ -39,6 +38,7 @@ def inventory_aggregate_subsets():
 
     Return list of numbered chromatic pitch-class sets.
     '''
+    from abjad.tools import pitchtools
 
     def _helper(binary_string):
         result = zip(binary_string, range(len(binary_string)))
@@ -50,7 +50,7 @@ def inventory_aggregate_subsets():
     for x in range(4096):
         subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))
         subset = _helper(subset)
-        subset = NumberedChromaticPitchClassSet(subset)
+        subset = pitchtools.NumberedChromaticPitchClassSet(subset)
         result.append(subset)
 
     return result

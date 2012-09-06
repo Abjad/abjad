@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.is_diatonic_pitch_name import is_diatonic_pitch_name
-
-
 def diatonic_pitch_name_to_chromatic_pitch_name(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 
@@ -11,8 +8,9 @@ def diatonic_pitch_name_to_chromatic_pitch_name(diatonic_pitch_name):
 
     Return string.
     '''
+    from abjad.tools import pitchtools
 
-    if not is_diatonic_pitch_name(diatonic_pitch_name):
+    if not pitchtools.is_diatonic_pitch_name(diatonic_pitch_name):
         raise TypeError
 
     return diatonic_pitch_name

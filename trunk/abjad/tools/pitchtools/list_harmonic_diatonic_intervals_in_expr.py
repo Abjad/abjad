@@ -1,5 +1,4 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 def list_harmonic_diatonic_intervals_in_expr(expr):
@@ -20,9 +19,10 @@ def list_harmonic_diatonic_intervals_in_expr(expr):
 
     Return unordered set.
     '''
+    from abjad.tools import pitchtools
 
     diatonic_intervals = []
-    pitches = list_named_chromatic_pitches_in_expr(expr)
+    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     unordered_pitch_pairs = sequencetools.yield_all_unordered_pairs_of_sequence(pitches)
     for first_pitch, second_pitch in unordered_pitch_pairs:
         diatonic_interval = first_pitch - second_pitch

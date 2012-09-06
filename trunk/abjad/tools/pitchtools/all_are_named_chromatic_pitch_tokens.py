@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.is_named_chromatic_pitch_token import is_named_chromatic_pitch_token
-
-
 def all_are_named_chromatic_pitch_tokens(expr):
     '''.. versionadded:: 2.6
 
@@ -25,5 +22,6 @@ def all_are_named_chromatic_pitch_tokens(expr):
 
     Return boolean.
     '''
+    from abjad.tools import pitchtools
 
-    return all([is_named_chromatic_pitch_token(x) for x in expr])
+    return all([pitchtools.is_named_chromatic_pitch_token(x) for x in expr])

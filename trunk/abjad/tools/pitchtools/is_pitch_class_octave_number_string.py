@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.is_symbolic_accidental_string import symbolic_accidental_string_regex_body
 import re
+from abjad.tools.pitchtools.is_symbolic_accidental_string import symbolic_accidental_string_regex_body
 
 
 pitch_class_octave_number_regex_body = """

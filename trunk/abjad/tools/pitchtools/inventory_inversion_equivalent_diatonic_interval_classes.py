@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass import InversionEquivalentDiatonicIntervalClass
-
-
 def inventory_inversion_equivalent_diatonic_interval_classes():
     '''.. versionadded:: 2.0
 
@@ -27,20 +24,21 @@ def inventory_inversion_equivalent_diatonic_interval_classes():
 
     Return list of inversion-equivalent diatonic interval-classes.
     '''
+    from abjad.tools import pitchtools
 
     return [
-        InversionEquivalentDiatonicIntervalClass('perfect', 1),
-        InversionEquivalentDiatonicIntervalClass('augmented', 1),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 1),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 1),
 
-        InversionEquivalentDiatonicIntervalClass('minor', 2),
-        InversionEquivalentDiatonicIntervalClass('major', 2),
-        InversionEquivalentDiatonicIntervalClass('augmented', 2),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 2),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 2),
 
-        InversionEquivalentDiatonicIntervalClass('diminished', 3),
-        InversionEquivalentDiatonicIntervalClass('minor', 3),
-        InversionEquivalentDiatonicIntervalClass('major', 3),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('diminished', 3),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
 
-        InversionEquivalentDiatonicIntervalClass('diminished', 4),
-        InversionEquivalentDiatonicIntervalClass('perfect', 4),
-        InversionEquivalentDiatonicIntervalClass('augmented', 4),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('diminished', 4),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 4),
+        pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 4),
         ]

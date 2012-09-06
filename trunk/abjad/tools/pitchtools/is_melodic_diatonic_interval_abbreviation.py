@@ -1,5 +1,5 @@
-from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import harmonic_diatonic_interval_abbreviation_regex_body
 import re
+from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import harmonic_diatonic_interval_abbreviation_regex_body
 
 
 melodic_diatonic_interval_abbreviation_regex_body = '''

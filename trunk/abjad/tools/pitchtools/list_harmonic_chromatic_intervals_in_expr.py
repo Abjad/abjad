@@ -1,6 +1,4 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
 def list_harmonic_chromatic_intervals_in_expr(expr):
@@ -21,14 +19,15 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
 
     Return unordered set.
     '''
+    from abjad.tools import pitchtools
 
     chromatic_intervals = []
-    pitches = list_named_chromatic_pitches_in_expr(expr)
+    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     unordered_pitch_pairs = sequencetools.yield_all_unordered_pairs_of_sequence(pitches)
     for first_pitch, second_pitch in unordered_pitch_pairs:
         chromatic_interval_number = abs(first_pitch.numbered_chromatic_pitch) - \
             abs(second_pitch.numbered_chromatic_pitch)
-        chromatic_interval = HarmonicChromaticInterval(chromatic_interval_number)
+        chromatic_interval = pitchtools.HarmonicChromaticInterval(chromatic_interval_number)
         chromatic_intervals.append(chromatic_interval)
 
     return chromatic_intervals

@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.is_chromatic_pitch_number import is_chromatic_pitch_number
-
-
 def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_number):
     '''.. versionadded:: 2.0
 
@@ -11,8 +8,9 @@ def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_numbe
 
     Return integer or float.
     '''
+    from abjad.tools import pitchtools
 
-    if not is_chromatic_pitch_number(chromatic_pitch_number):
+    if not pitchtools.is_chromatic_pitch_number(chromatic_pitch_number):
         raise TypeError
 
     return chromatic_pitch_number % 12

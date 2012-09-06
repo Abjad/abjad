@@ -1,8 +1,7 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
-    get_named_chromatic_pitch_from_pitch_carrier
 
 
+# TODO: remove from public API altogether
 def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators):
     '''.. versionadded:: 1.1
 
@@ -68,10 +67,11 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
         renamed ``pitchtools.insert_transposed_pc_subruns()`` to
         ``pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list()``.
     '''
-    from abjad.tools.notetools.Note import Note
+    from abjad.tools import notetools
+    from abjad.tools import pitchtools
 
     assert isinstance(notes, list)
-    assert all([isinstance(x, Note) for x in notes])
+    assert all([isinstance(x, notetools.Note) for x in notes])
     assert isinstance(subrun_indicators, list)
 
     len_notes = len(notes)
@@ -81,7 +81,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
         pairs = _make_index_length_pairs(subrun_indicator)
         for anchor_index, subrun_length in pairs:
             anchor_note = notes[anchor_index % len_notes]
-            anchor_pitch = get_named_chromatic_pitch_from_pitch_carrier(anchor_note)
+            anchor_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(anchor_note)
             anchor_written_duration = anchor_note.written_duration
             source_start_index = anchor_index + 1
             source_stop_index = source_start_index + subrun_length + 1
@@ -98,11 +98,13 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
 
 
 def _get_intervals_in_subrun(subrun_source):
+    from abjad.tools import pitchtools
+
     subrun_source = list(subrun_source)
     result = [0]
     for first, second in sequencetools.iterate_sequence_pairwise_strict(subrun_source):
-        first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first)
-        second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second)
+        first_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(first)
+        second_pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(second)
         interval = abs(second_pitch.numbered_chromatic_pitch) - \
             abs(first_pitch.numbered_chromatic_pitch)
         result.append(interval + result[-1])

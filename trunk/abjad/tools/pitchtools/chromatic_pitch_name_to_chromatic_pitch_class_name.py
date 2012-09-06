@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
-
-
 def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
     '''.. versionadded:: 2.0
 
@@ -11,6 +8,7 @@ def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
 
     Return string.
     '''
+    from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
     match = chromatic_pitch_name_regex.match(chromatic_pitch_name)
 

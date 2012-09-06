@@ -9,9 +9,9 @@ def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental=
 
     Return new named pitch.
     '''
+    from abjad.tools import pitchtools
 
-    from abjad.tools.pitchtools.Accidental import Accidental
-    accidental = Accidental(accidental)
+    accidental = pitchtools.Accidental(accidental)
     new_accidental = named_chromatic_pitch._accidental + accidental
     new_name = named_chromatic_pitch.named_diatonic_pitch_class._diatonic_pitch_class_name + \
         new_accidental.alphabetic_accidental_abbreviation

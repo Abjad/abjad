@@ -1,7 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair import is_chromatic_pitch_class_name_octave_number_pair
-
-
 # TODO: extend with strings like "c" and "A4"
 def is_named_chromatic_pitch_token(pitch_token):
     '''.. versionadded:: 1.1
@@ -18,10 +14,11 @@ def is_named_chromatic_pitch_token(pitch_token):
         renamed ``pitchtools.is_pitch_token()`` to
         ``pitchtools.is_named_chromatic_pitch_token()``.
     '''
+    from abjad.tools import pitchtools
 
-    if isinstance(pitch_token, NamedChromaticPitch):
+    if isinstance(pitch_token, pitchtools.NamedChromaticPitch):
         return True
-    elif is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
+    elif pitchtools.is_chromatic_pitch_class_name_octave_number_pair(pitch_token):
         return True
     elif isinstance(pitch_token, (int, long)):
         return True

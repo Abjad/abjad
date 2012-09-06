@@ -1,7 +1,3 @@
-from abjad.tools.pitchtools.diatonic_pitch_name_to_diatonic_pitch_number import diatonic_pitch_name_to_diatonic_pitch_number
-from abjad.tools.pitchtools.diatonic_pitch_number_to_chromatic_pitch_number import diatonic_pitch_number_to_chromatic_pitch_number
-
-
 def diatonic_pitch_name_to_chromatic_pitch_number(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 
@@ -12,7 +8,8 @@ def diatonic_pitch_name_to_chromatic_pitch_number(diatonic_pitch_name):
 
     Return integer.
     '''
+    from abjad.tools import pitchtools
 
-    diatonic_pitch_number = diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name)
+    diatonic_pitch_number = pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name)
 
-    return diatonic_pitch_number_to_chromatic_pitch_number(diatonic_pitch_number)
+    return pitchtools.diatonic_pitch_number_to_chromatic_pitch_number(diatonic_pitch_number)

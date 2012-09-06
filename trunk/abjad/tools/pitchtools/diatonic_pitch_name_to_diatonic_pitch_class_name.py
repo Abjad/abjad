@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.is_diatonic_pitch_name import diatonic_pitch_name_regex
-
-
 def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
     '''.. versionadded:: 2.0
 
@@ -11,6 +8,7 @@ def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
 
     Return string.
     '''
+    from abjad.tools.pitchtools.is_diatonic_pitch_name import diatonic_pitch_name_regex
 
     match = diatonic_pitch_name_regex.match(diatonic_pitch_name)
 

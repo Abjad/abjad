@@ -1,6 +1,6 @@
+import re
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex_body
 from abjad.tools.pitchtools.is_pitch_class_octave_number_string import pitch_class_octave_number_regex_body
-import re
 
 
 symbolic_pitch_range_string_regex_body = """

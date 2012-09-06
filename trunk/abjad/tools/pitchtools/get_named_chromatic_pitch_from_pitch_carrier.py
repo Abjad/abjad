@@ -1,4 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 import numbers
 
 
@@ -52,27 +51,27 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
         renamed ``pitchtools.get_pitch()`` to
         ``pitchtools.get_named_chromatic_pitch_from_pitch_carrier()``.
     '''
-    from abjad.tools.chordtools.Chord import Chord
-    from abjad.tools.notetools.Note import Note
-    from abjad.tools.notetools.NoteHead import NoteHead
+    from abjad.tools import chordtools
+    from abjad.tools import notetools
+    from abjad.tools import pitchtools
 
-    if isinstance(pitch_carrier, NamedChromaticPitch):
+    if isinstance(pitch_carrier, pitchtools.NamedChromaticPitch):
         return pitch_carrier
     elif isinstance(pitch_carrier, numbers.Number):
-        return NamedChromaticPitch(pitch_carrier)
-    elif isinstance(pitch_carrier, Note):
+        return pitchtools.NamedChromaticPitch(pitch_carrier)
+    elif isinstance(pitch_carrier, notetools.Note):
         pitch = pitch_carrier.written_pitch
         if pitch is not None:
             return get_named_chromatic_pitch_from_pitch_carrier(pitch)
         else:
             raise MissingPitchError
-    elif isinstance(pitch_carrier, NoteHead):
+    elif isinstance(pitch_carrier, notetools.NoteHead):
         pitch = pitch_carrier.written_pitch
         if pitch is not None:
             return get_named_chromatic_pitch_from_pitch_carrier(pitch)
         else:
             raise MissingPitchError
-    elif isinstance(pitch_carrier, Chord):
+    elif isinstance(pitch_carrier, chordtools.Chord):
         pitches = pitch_carrier.written_pitches
         if len(pitches) == 0:
             raise MissingPitchError
