@@ -1,3 +1,6 @@
+from abjad.tools import sievetools
+
+
 def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total):
     '''.. versionadded:: 2.0
 
@@ -22,8 +25,6 @@ def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total)
 
     Return list.
     '''
-    from abjad.tools import sievetools
-
     sieve = sievetools.cycle_tokens_to_sieve(cycle_token)
     list_sequence = list(sequence)
     indices = sieve.get_congruent_bases(len(list_sequence))

@@ -1,3 +1,6 @@
+from abjad.tools import mathtools
+
+
 def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, input_pairs):
     r'''.. versionadded:: 2.10
 
@@ -19,7 +22,6 @@ def pair_duration_sequence_elements_with_input_pair_values(duration_sequence, in
     The basic idea behind the function is model which input pair
     value is in effect at the start of each element in `duration_sequence`.
     '''
-    from abjad.tools import mathtools
     from abjad.tools import sequencetools
 
     assert sequencetools.all_are_numbers(duration_sequence)

@@ -1,6 +1,5 @@
 from abjad.tools import mathtools
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
-from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 import operator
 
 
@@ -119,6 +118,7 @@ class ResidueClassExpression(_BaseResidueClass):
 
         Return list.
         '''
+        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
         minimum, maximum = _process_min_max_attribute(*min_max)
         result = []
@@ -151,6 +151,7 @@ class ResidueClassExpression(_BaseResidueClass):
 
         Return list.
         '''
+        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
         minimum, maximum = _process_min_max_attribute(*min_max)
         if self.operator == 'or':

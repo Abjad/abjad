@@ -1,6 +1,3 @@
-from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
-
-
 def all_are_residue_class_expressions(expr):
     '''.. versionadded:: 2.6
 
@@ -34,5 +31,6 @@ def all_are_residue_class_expressions(expr):
 
     Return boolean.
     '''
+    from abjad.tools import sievetools
 
-    return all([isinstance(x, ResidueClassExpression) for x in expr])
+    return all([isinstance(x, sievetools.ResidueClassExpression) for x in expr])

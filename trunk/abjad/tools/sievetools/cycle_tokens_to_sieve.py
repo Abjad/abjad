@@ -1,7 +1,3 @@
-from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
-from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve
-
-
 def cycle_tokens_to_sieve(*cycle_tokens):
     '''.. versionadded:: 2.0
 
@@ -19,6 +15,8 @@ def cycle_tokens_to_sieve(*cycle_tokens):
 
     Cycle token comprises mandatory `modulo`, mandatory `residues` and optional `offset`.
     '''
+    from abjad.tools import sievetools
+    from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve
 
     sieves = []
     for cycle_token in cycle_tokens:
@@ -30,6 +28,6 @@ def cycle_tokens_to_sieve(*cycle_tokens):
         for sieve in sieves[1:]:
             cur_sieve = cur_sieve | sieve
     else:
-        cur_sieve = ResidueClassExpression([])
+        cur_sieve = sievetools.ResidueClassExpression([])
 
     return cur_sieve

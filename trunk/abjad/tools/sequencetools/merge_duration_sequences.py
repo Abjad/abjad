@@ -1,3 +1,6 @@
+from abjad.tools import mathtools
+
+
 def merge_duration_sequences(*sequences):
     r'''.. versionadded: 2.10
 
@@ -15,7 +18,6 @@ def merge_duration_sequences(*sequences):
 
     Return list.
     '''
-    from abjad.tools import mathtools
     from abjad.tools import sequencetools
 
     offset_lists = []

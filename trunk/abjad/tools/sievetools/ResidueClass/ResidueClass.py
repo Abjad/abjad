@@ -1,5 +1,4 @@
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
-from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
 
 class ResidueClass(_BaseResidueClass):
@@ -154,6 +153,7 @@ class ResidueClass(_BaseResidueClass):
 
         Return list.
         '''
+        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
         min, max = _process_min_max_attribute(*min_max)
         result = []
@@ -185,6 +185,7 @@ class ResidueClass(_BaseResidueClass):
 
         Return list.
         '''
+        from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
         min, max = _process_min_max_attribute(*min_max)
         result = []
