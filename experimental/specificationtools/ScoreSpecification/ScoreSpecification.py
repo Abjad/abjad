@@ -322,7 +322,7 @@ class ScoreSpecification(Specification):
         ::
 
             >>> z(request)
-            requesttools.AttributeRequest(
+            requesttools.MaterialRequest(
                 'divisions',
                 selectortools.SegmentSelector(
                     start_identifier='red',
@@ -339,7 +339,7 @@ class ScoreSpecification(Specification):
         held_expression = helpertools.SegmentIdentifierExpression(expression)
         start, stop = start_segment_name, held_expression
         selector = selectortools.SegmentSelector(start_identifier=start, stop_identifier=stop)
-        request = requesttools.AttributeRequest('divisions', selector, context_name=voice_name)
+        request = requesttools.MaterialRequest('divisions', selector, context_name=voice_name)
         return request
 
     def segment_name_and_segment_offset_to_score_offset(self, segment_name, segment_offset):

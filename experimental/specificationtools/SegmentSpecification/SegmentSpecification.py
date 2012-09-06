@@ -305,7 +305,7 @@ class SegmentSpecification(Specification):
     def request_divisions(self,  
         context_name=None, callback=None, count=None, offset=None, reverse=None):
         selector = self.select_segment()
-        return requesttools.AttributeRequest('divisions', selector,
+        return requesttools.MaterialRequest('divisions', selector,
             context_name=context_name, callback=callback, count=count, offset=offset, reverse=reverse)
 
     def request_time_signatures(self, 
@@ -317,7 +317,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(request)
-            requesttools.AttributeRequest(
+            requesttools.MaterialRequest(
                 'time_signatures',
                 selectortools.SingleSegmentSelector(
                     identifier='red'
@@ -327,7 +327,7 @@ class SegmentSpecification(Specification):
         Return attribute request.
         '''
         selector = self.select_segment()
-        return requesttools.AttributeRequest('time_signatures', selector,
+        return requesttools.MaterialRequest('time_signatures', selector,
             context_name=context_name, callback=callback, count=count, offset=offset, reverse=reverse)
 
     def select_background_measure(self, n):

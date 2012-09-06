@@ -203,7 +203,7 @@ class ConcreteInterpreter(Interpreter):
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
     def division_request_to_divisions(self, division_request):
-        assert isinstance(division_request, requesttools.AttributeRequest)
+        assert isinstance(division_request, requesttools.MaterialRequest)
         assert division_request.attribute == 'divisions'
         voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.context_name)
         assert isinstance(voice, voicetools.Voice), voice
@@ -494,7 +494,7 @@ class ConcreteInterpreter(Interpreter):
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
-        elif isinstance(resolved_value, requesttools.AttributeRequest):
+        elif isinstance(resolved_value, requesttools.MaterialRequest):
             assert resolved_value.attribute == 'divisions'
             division_request = resolved_value
             divisions = self.division_request_to_divisions(division_request)
@@ -517,7 +517,7 @@ class ConcreteInterpreter(Interpreter):
         return division_region_division_lists
 
     def resolve_attribute_request(self, attribute_request):
-        assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
+        assert isinstance(attribute_request, requesttools.MaterialRequest), repr(attribute_request)
         resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
             attribute_request)
         resolved_value = resolved_single_context_setting.resolved_value
@@ -550,10 +550,10 @@ class ConcreteInterpreter(Interpreter):
         return resolved_single_context_setting
 
     def resolve_single_context_setting_source(self, source):
-        if isinstance(source, requesttools.AttributeRequest) and source.attribute == 'time_signatures':
+        if isinstance(source, requesttools.MaterialRequest) and source.attribute == 'time_signatures':
             return self.resolve_attribute_request(source)
         # the following line should be resolvable
-        elif isinstance(source, requesttools.AttributeRequest) and source.attribute == 'divisions':
+        elif isinstance(source, requesttools.MaterialRequest) and source.attribute == 'divisions':
             return source
         elif isinstance(source, requesttools.StatalServerRequest):
             return source()

@@ -2,7 +2,7 @@ from experimental import selectortools
 from experimental.requesttools.Request import Request
 
 
-class AttributeRequest(Request):
+class MaterialRequest(Request):
     r'''.. versionadded:: 1.0
 
     ::
@@ -23,7 +23,7 @@ class AttributeRequest(Request):
     ::
 
         >>> z(request)
-        requesttools.AttributeRequest(
+        requesttools.MaterialRequest(
             'time_signatures',
             selectortools.SingleSegmentSelector(
                 identifier='red'
