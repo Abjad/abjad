@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+
 from abjad.tools.abctools.SortableAttributeEqualityAbjadObject import SortableAttributeEqualityAbjadObject
 
 
@@ -11,13 +11,13 @@ class PitchObject(SortableAttributeEqualityAbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     __slots__ = ('_format_string', )
 
     ### INITIALIZER ###
     
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass
 

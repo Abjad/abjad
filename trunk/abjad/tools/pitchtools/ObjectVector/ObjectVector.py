@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+
 from abjad.tools.datastructuretools import ImmutableDictionary
 
 
@@ -11,10 +11,10 @@ class ObjectVector(ImmutableDictionary):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass

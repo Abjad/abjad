@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+
 from abjad.tools.pitchtools.HarmonicObject import HarmonicObject
 from abjad.tools.pitchtools.IntervalObject import IntervalObject
 
@@ -12,10 +12,10 @@ class HarmonicIntervalObject(IntervalObject, HarmonicObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass

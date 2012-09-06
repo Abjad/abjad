@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+
 from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
 from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
 
@@ -12,13 +12,13 @@ class DiatonicPitchClassObject(PitchClassObject, DiatonicObject):
 
     ### CLASSS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     __slots__ = ()
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass
 
