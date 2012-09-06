@@ -36,16 +36,17 @@ class QEventProxy(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, *args):
+        from experimental import quantizationtools
 
         if len(args) == 2:
             q_event, offset = args[0], durationtools.Offset(args[1])
-            assert isinstance(q_event, QEvent)
+            assert isinstance(q_event, quantizationtools.QEvent)
             assert 0 <= offset <= 1
         elif len(args) == 3:
             q_event, minimum, maximum = args[0], \
                 durationtools.Offset(args[1]), \
                 durationtools.Offset(args[2])
-            assert isinstance(q_event, QEvent)
+            assert isinstance(q_event, quantizationtools.QEvent)
             assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
         else:
