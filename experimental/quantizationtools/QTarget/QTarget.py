@@ -1,5 +1,5 @@
 import abc
-from abjad.tools import abctools
+import bisect
 from abjad.tools import chordtools
 from abjad.tools import marktools
 from abjad.tools import notetools
@@ -7,20 +7,16 @@ from abjad.tools import resttools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import tietools
-from experimental.quantizationtools.ConcatenatingGraceHandler import ConcatenatingGraceHandler
-from experimental.quantizationtools.DistanceHeuristic import DistanceHeuristic
-from experimental.quantizationtools.GraceHandler import GraceHandler
-from experimental.quantizationtools.Heuristic import Heuristic
-from experimental.quantizationtools.JobHandler import JobHandler
-from experimental.quantizationtools.NaiveAttackPointOptimizer import NaiveAttackPointOptimizer
-from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
-from experimental.quantizationtools.QEventSequence import QEventSequence
-from experimental.quantizationtools.SerialJobHandler import SerialJobHandler
-from experimental.quantizationtools.SilentQEvent import SilentQEvent
-import bisect
+from abjad.tools.abctools import AbjadObject
 
 
-class QTarget(abctools.AbjadObject):
+class QTarget(AbjadObject):
+    '''Abstract base class from which concrete QTarget subclasses inherit.
+
+    Not composer-safe.
+
+    Used internally by quantizationtools.Quantizer.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -35,31 +31,36 @@ class QTarget(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_event_sequence, grace_handler=None, heuristic=None, job_handler=None,
+    def __call__(self, q_event_sequence,
+        grace_handler=None,
+        heuristic=None,
+        job_handler=None,
         attack_point_optimizer=None):
 
-        assert isinstance(q_event_sequence, QEventSequence)
+        from experimental import quantizationtools
+
+        assert isinstance(q_event_sequence, quantizationtools.QEventSequence)
 
         if grace_handler is None:
-            grace_handler = ConcatenatingGraceHandler()
-        assert isinstance(grace_handler, GraceHandler)
+            grace_handler = quantizationtools.ConcatenatingGraceHandler()
+        assert isinstance(grace_handler, quantizationtools.GraceHandler)
 
         if heuristic is None:
-            heuristic = DistanceHeuristic()
-        assert isinstance(heuristic, Heuristic)
+            heuristic = quantizationtools.DistanceHeuristic()
+        assert isinstance(heuristic, quantizationtools.Heuristic)
 
         if job_handler is None:
-            job_handler = SerialJobHandler()
-        assert isinstance(job_handler, JobHandler)
+            job_handler = quantizationtools.SerialJobHandler()
+        assert isinstance(job_handler, quantizationtools.JobHandler)
 
         if attack_point_optimizer is None:
-            attack_point_optimizer = NaiveAttackPointOptimizer()
-        assert isinstance(attack_point_optimizer, AttackPointOptimizer)
+            attack_point_optimizer = quantizationtools.NaiveAttackPointOptimizer()
+        assert isinstance(attack_point_optimizer, quantizationtools.AttackPointOptimizer)
 
         # if next-to-last QEvent is silent, pop the TerminalQEvent,
         # in order to prevent rest-tuplets
         q_events = q_event_sequence
-        if isinstance(q_event_sequence[-2], SilentQEvent):
+        if isinstance(q_event_sequence[-2], quantizationtools.SilentQEvent):
             q_events = q_event_sequence[:-1]
 
         # parcel QEvents out to each beat

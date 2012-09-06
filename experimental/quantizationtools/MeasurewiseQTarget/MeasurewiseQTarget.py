@@ -1,12 +1,17 @@
+import copy
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from abjad.tools import voicetools
 from experimental.quantizationtools.QTarget import QTarget
-from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
-import copy
 
 
 class MeasurewiseQTarget(QTarget):
+    '''A measure-wise quantization target.
+
+    Not composer-safe.
+
+    Used internally by ``Quantizer``.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -16,7 +21,8 @@ class MeasurewiseQTarget(QTarget):
 
     @property
     def item_klass(self):
-        return QTargetMeasure
+        from experimental import quantizationtools
+        return quantizationtools.QTargetMeasure
 
     ### PRIVATE METHODS ###
 

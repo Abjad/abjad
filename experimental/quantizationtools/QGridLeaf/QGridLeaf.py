@@ -1,10 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import notetools
-from abjad.tools import rhythmtreetools
-from experimental.quantizationtools.QEventProxy import QEventProxy
+from abjad.tools.rhythmtreetools import RhythmTreeNode
 
 
-class QGridLeaf(rhythmtreetools.RhythmTreeNode):
+class QGridLeaf(RhythmTreeNode):
 
     ### CLASS ATTRIBUTES ###
 
@@ -14,11 +13,12 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
     ### INITIALIZER ###
 
     def __init__(self, duration=1, q_event_proxies=None, is_divisible=True):
-        rhythmtreetools.RhythmTreeNode.__init__(self, duration)
+        from experimental import quantizationtools
+        RhythmTreeNode.__init__(self, duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
-            assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
+            assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
             self._q_event_proxies = list(q_event_proxies)            
         self._is_divisible = bool(is_divisible)
 

@@ -1,8 +1,8 @@
-from abjad.tools import abctools
 from abjad.tools import mathtools
+from abjad.tools.abctools import AbjadObject
 
 
-class _Job(abctools.AbjadObject):
+class _Job(AbjadObject):
 
     def __init__(self, number):
         self.number = number

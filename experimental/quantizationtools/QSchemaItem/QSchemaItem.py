@@ -1,9 +1,9 @@
 import abc
-from abjad.tools import abctools
-from collections import OrderedDict
+import collections
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
+class QSchemaItem(tuple, ImmutableAbjadObject):
     '''`QSchemaItem` represents a change of state in the timeline of a quantization process.
 
     `QSchemaItem` is abstract and immutable.
@@ -38,5 +38,5 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
 
     @property
     def __dict__(self):
-        return OrderedDict(zip(self._fields, self))
+        return collections.OrderedDict(zip(self._fields, self))
 

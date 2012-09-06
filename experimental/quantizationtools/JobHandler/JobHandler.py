@@ -1,8 +1,8 @@
 import abc
-from abjad.tools import abctools
+from abjad.tools.abctools import AbjadObject
 
 
-class JobHandler(abctools.AbjadObject):
+class JobHandler(AbjadObject):
     '''Abstact job handler class from which concrete job handlers inherit.
 
     JobHandlers control how QuantizationJob instances are processed by the Quantizer,

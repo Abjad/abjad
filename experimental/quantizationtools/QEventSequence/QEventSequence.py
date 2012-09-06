@@ -1,12 +1,9 @@
-from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
-from experimental.quantizationtools.SilentQEvent import SilentQEvent
-from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class QEventSequence(tuple, abctools.ImmutableAbjadObject):
+class QEventSequence(tuple, ImmutableAbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -15,9 +12,11 @@ class QEventSequence(tuple, abctools.ImmutableAbjadObject):
     ### INITIALIZER ###
 
     def __new__(klass, args):
+        from experimental import quantizationtools
+        klasses = (quantizationtools.PitchedQEvent, quantizationtools.SilentQEvent)
         assert 1 < len(args)
-        assert all([isinstance(x, (PitchedQEvent, SilentQEvent)) for x in args[:-1]])
-        assert isinstance(args[-1], TerminalQEvent)
+        assert all([isinstance(x, klasses) for x in args[:-1]])
+        assert isinstance(args[-1], quantizationtools.TerminalQEvent)
         assert sequencetools.is_monotonically_increasing_sequence([x.offset for x in args])
         assert 0 <= args[0].offset
         return tuple.__new__(klass, args)
@@ -52,8 +51,9 @@ class QEventSequence(tuple, abctools.ImmutableAbjadObject):
 
     @classmethod
     def from_millisecond_offsets(klass, offsets):
-        q_events = [PitchedQEvent(x, [0]) for x in offsets[:-1]]
-        q_events.append(TerminalQEvent(offsets[-1]))
+        from experimental import quantizationtools
+        q_events = [quantizationtools.PitchedQEvent(x, [0]) for x in offsets[:-1]]
+        q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
         return klass(q_events)
 
     @classmethod

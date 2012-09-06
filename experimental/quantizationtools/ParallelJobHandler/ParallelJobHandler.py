@@ -1,7 +1,6 @@
-from experimental.quantizationtools.JobHandler import JobHandler
-from experimental.quantizationtools.ParallelJobHandlerWorker import ParallelJobHandlerWorker
 import multiprocessing
 import pickle
+from experimental.quantizationtools.JobHandler import JobHandler
 
 
 class ParallelJobHandler(JobHandler):
@@ -9,11 +8,13 @@ class ParallelJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):
+        from experimental import quantizationtools
 
         finished_jobs = []
         job_queue = multiprocessing.JoinableQueue()
         result_queue = multiprocessing.Queue()
-        workers = [ParallelJobHandlerWorker(job_queue, result_queue)
+        workers = [quantizationtools.ParallelJobHandlerWorker(
+            job_queue, result_queue)
             for i in range(multiprocessing.cpu_count() * 2)]
 
         for worker in workers:

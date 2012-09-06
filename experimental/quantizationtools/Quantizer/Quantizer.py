@@ -1,10 +1,7 @@
-from abjad.tools import abctools
-from experimental.quantizationtools.MeasurewiseQSchema import MeasurewiseQSchema
-from experimental.quantizationtools.QEventSequence import QEventSequence
-from experimental.quantizationtools.QSchema import QSchema
+from abjad.tools.abctools import AbjadObject
 
 
-class Quantizer(abctools.AbjadObject):
+class Quantizer(AbjadObject):
 
     ### INITIALIZER ###
 
@@ -15,12 +12,13 @@ class Quantizer(abctools.AbjadObject):
 
     def __call__(self, q_event_sequence, q_schema=None, grace_handler=None,
         heuristic=None, job_handler=None, attack_point_optimizer=None):
+        from experimental import quantizationtools
 
-        q_event_sequence = QEventSequence(q_event_sequence)
+        q_event_sequence = quantizationtools.QEventSequence(q_event_sequence)
 
         if q_schema is None:
-            q_schema = MeasurewiseQSchema()
-        assert isinstance(q_schema, QSchema)
+            q_schema = quantizationtools.MeasurewiseQSchema()
+        assert isinstance(q_schema, quantizationtools.QSchema)
 
         q_target = q_schema(q_event_sequence.duration_in_ms)
 

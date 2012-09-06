@@ -4,14 +4,16 @@ from abjad.tools import gracetools
 from abjad.tools import notetools
 from abjad.tools import resttools
 from experimental.quantizationtools.GraceHandler import GraceHandler
-from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
 
 
 class ConcatenatingGraceHandler(GraceHandler):
-    '''Concatenates all but final QEvent attached to an offset into a GraceContainer,
-    using a fixed leaf duration `duration`.
+    '''Concatenates all but final QEvent attached to an offset into a
+    GraceContainer, using a fixed leaf duration `duration`.
 
-    Returns pitch information of final QEvent, and the generated GraceContainer, if any.
+    When called, returns pitch information of final QEvent, and the
+    generated GraceContainer, if any.
+
+    Return ``ConcatenatingGraceHandler`` instance.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -30,10 +32,11 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
+        from experimental import quantizationtools
 
         grace_events, final_event = q_events[:-1], q_events[-1]
 
-        if isinstance(final_event, PitchedQEvent):
+        if isinstance(final_event, quantizationtools.PitchedQEvent):
             pitches = final_event.pitches
         else:
             pitches = ()
@@ -41,7 +44,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         if grace_events:
             grace_container = gracetools.GraceContainer()
             for q_event in grace_events:
-                if isinstance(q_event, PitchedQEvent):
+                if isinstance(q_event, quantizationtools.PitchedQEvent):
                     if len(q_event.pitches) == 1:
                         leaf = notetools.Note(q_event.pitches[0], self.grace_duration)
                     else:

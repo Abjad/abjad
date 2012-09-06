@@ -1,18 +1,19 @@
 from experimental.quantizationtools.GraceHandler import GraceHandler
-from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
 
 
 class CollapsingGraceHandler(GraceHandler):
-    '''Collapses pitch information into chords.
+    '''A GraceHandler which collapses pitch information into a single Chord,
+    rather than creating a GraceContainer.
 
-    Does not create GraceContainers.
+    Return ``CollapsingGraceHandler`` instance.
     '''
 
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
+        from experimental import quantizationtools
         pitches = []
         for q_event in q_events:
-            if isinstance(q_event, PitchedQEvent):
+            if isinstance(q_event, quantizationtools.PitchedQEvent):
                 pitches.extend(q_event.pitches)
         return tuple(pitches), None

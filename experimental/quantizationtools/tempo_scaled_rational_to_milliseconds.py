@@ -1,6 +1,6 @@
-from fractions import Fraction
-from abjad.tools.contexttools import TempoMark
-from abjad.tools.durationtools import Duration
+import fractions
+from abjad.tools import contexttools
+from abjad.tools import durationtools
 
 
 def tempo_scaled_rational_to_milliseconds(rational, tempo):
@@ -20,11 +20,11 @@ def tempo_scaled_rational_to_milliseconds(rational, tempo):
     Return a :py:class:`~abjad.tools.durationtools.Duration`.
     '''
 
-    assert isinstance(rational, (int, Fraction))
-    assert isinstance(tempo, TempoMark)
+    assert isinstance(rational, (int, fractions.Fraction))
+    assert isinstance(tempo, contexttools.TempoMark)
 
     whole_note_duration = 1000 \
-        * Fraction(tempo.duration.denominator, tempo.duration.numerator) \
-        * Fraction(60, tempo.units_per_minute)
+        * fractions.Fraction(tempo.duration.denominator, tempo.duration.numerator) \
+        * fractions.Fraction(60, tempo.units_per_minute)
 
-    return Duration(rational * whole_note_duration)
+    return durationtools.Duration(rational * whole_note_duration)

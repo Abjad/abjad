@@ -1,16 +1,13 @@
-from abjad.tools import abctools
-from abjad.tools import containertools
-from abjad.tools import durationtools
-from abjad.tools import marktools
-from experimental.quantizationtools.QGridContainer import QGridContainer
-from experimental.quantizationtools.QGridLeaf import QGridLeaf
-from experimental.quantizationtools.QEventProxy import QEventProxy
 import bisect
 import copy
 import inspect
+from abjad.tools import containertools
+from abjad.tools import durationtools
+from abjad.tools import marktools
+from abjad.tools.abctools import AbjadObject
 
 
-class QGrid(abctools.AbjadObject):
+class QGrid(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -19,13 +16,16 @@ class QGrid(abctools.AbjadObject):
     ### INITIALIZATION ###
 
     def __init__(self, root_node=None, next_downbeat=None):
+        from experimental import quantizationtools
+
         if root_node is None:
-            root_node = QGridLeaf(1)
-        assert isinstance(root_node, (QGridLeaf, QGridContainer))
+            root_node = quantizationtools.QGridLeaf(1)
+        assert isinstance(root_node,
+            (quantizationtools.QGridLeaf, quantizationtools.QGridContainer))
 
         if next_downbeat is None:
-            next_downbeat = QGridLeaf(1)
-        assert isinstance(next_downbeat, QGridLeaf)
+            next_downbeat = quantizationtools.QGridLeaf(1)
+        assert isinstance(next_downbeat, quantizationtools.QGridLeaf)
 
         self._root_node = root_node
         self._next_downbeat = next_downbeat
@@ -81,7 +81,8 @@ class QGrid(abctools.AbjadObject):
     @property
     def leaves(self):
         '''All of the leaf nodes in the QGrid, includeing the next downbeat's node.'''
-        if isinstance(self._root_node, QGridLeaf):
+        from experimental import quantizationtools
+        if isinstance(self._root_node, quantizationtools.QGridLeaf):
             return (self._root_node, self._next_downbeat)
         return self._root_node.leaves + (self._next_downbeat,)
 
@@ -116,7 +117,8 @@ class QGrid(abctools.AbjadObject):
     ### PUBLIC METHODS ###
 
     def fit_q_events(self, q_event_proxies):
-        assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
+        from experimental import quantizationtools
+        assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
             idx = bisect.bisect_left(offsets, q_event_proxy.offset)
@@ -136,9 +138,10 @@ class QGrid(abctools.AbjadObject):
             leaf.q_event_proxies.sort(key=lambda x: x.index)
 
     def subdivide_leaf(self, leaf, subdivisions):
-        container = QGridContainer(
+        from experimental import quantizationtools
+        container = quantizationtools.QGridContainer(
             leaf.duration, [
-                QGridLeaf(subdivision) for subdivision in subdivisions
+                quantizationtools.QGridLeaf(subdivision) for subdivision in subdivisions
             ])
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)

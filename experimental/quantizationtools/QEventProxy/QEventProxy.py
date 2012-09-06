@@ -1,10 +1,9 @@
-from abjad.tools import abctools
-from abjad.tools import durationtools
-from experimental.quantizationtools.QEvent import QEvent
 import inspect
+from abjad.tools import durationtools
+from abjad.tools.abctools import AbjadObject
 
 
-class QEventProxy(abctools.AbjadObject):
+class QEventProxy(AbjadObject):
     '''Proxies a `QEvent`, mapping that QEvent's offset with the range of its
     beatspan to the range 0-1:
 
@@ -22,6 +21,10 @@ class QEventProxy(abctools.AbjadObject):
                 ),
             durationtools.Offset(1, 2)
             )
+
+    Not composer-safe.
+
+    Used internally by ``Quantizer``.
 
     Returns `QEventProxy` instance.
     '''

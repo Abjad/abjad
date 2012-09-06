@@ -1,13 +1,12 @@
 import abc
-from abjad.tools import abctools
-from abjad.tools import datastructuretools
-from abjad.tools import sequencetools
-from experimental.quantizationtools.QGrid import QGrid
 import copy
 import inspect
+from abjad.tools import datastructuretools
+from abjad.tools import sequencetools
+from abjad.tools.abctools import AbjadObject
 
 
-class SearchTree(abctools.AbjadObject):
+class SearchTree(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -25,7 +24,9 @@ class SearchTree(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
-        assert isinstance(q_grid, QGrid)
+        from experimental import quantizationtools
+
+        assert isinstance(q_grid, quantizationtools.QGrid)
         new_q_grids = []
         commands = self.generate_all_subdivision_commands(q_grid)
         for command in commands:

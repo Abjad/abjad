@@ -1,10 +1,10 @@
 import abc
 import inspect
-from abjad.tools import abctools
 from abjad.tools import durationtools
+from abjad.tools.abctools import AbjadObject
 
 
-class QEvent(abctools.AbjadObject):
+class QEvent(AbjadObject):
     '''Abstract base class from which concrete QEvent subclasses inherit.
 
     Represents an attack point to be quantized.

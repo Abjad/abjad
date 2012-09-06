@@ -1,11 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.BeatwiseQTarget import BeatwiseQTarget
-from experimental.quantizationtools.BeatwiseQSchemaItem import BeatwiseQSchemaItem
-from experimental.quantizationtools.SearchTree import SearchTree
-from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
 from experimental.quantizationtools.QSchema import QSchema
-from experimental.quantizationtools.QTargetBeat import QTargetBeat
 
 
 class BeatwiseQSchema(QSchema):
@@ -17,13 +12,14 @@ class BeatwiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
+        from experimental import quantizationtools
 
         self._beatspan = durationtools.Duration(
             kwargs.get('beatspan',
                 (1, 4)))
 
-        search_tree = kwargs.get('search_tree', SimpleSearchTree()) 
-        assert isinstance(search_tree, SearchTree)
+        search_tree = kwargs.get('search_tree', quantizationtools.SimpleSearchTree()) 
+        assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
         self._tempo = contexttools.TempoMark(
@@ -48,12 +44,15 @@ class BeatwiseQSchema(QSchema):
     @property
     def item_klass(self):
         '''The schema's item class.'''
-        return BeatwiseQSchemaItem
+        from experimental import quantizationtools
+        return quantizationtools.BeatwiseQSchemaItem
 
     @property
     def target_item_klass(self):
-        return QTargetBeat
+        from experimental import quantizationtools
+        return quantizationtools.QTargetBeat
 
     @property
     def target_klass(self):
-        return BeatwiseQTarget
+        from experimental import quantizationtools
+        return quantizationtools.BeatwiseQTarget

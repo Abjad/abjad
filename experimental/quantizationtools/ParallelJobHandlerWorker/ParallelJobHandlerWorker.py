@@ -1,9 +1,9 @@
-from abjad.tools import abctools
 import multiprocessing
 import pickle
+from abjad.tools.abctools import AbjadObject
 
 
-class ParallelJobHandlerWorker(multiprocessing.Process, abctools.AbjadObject):
+class ParallelJobHandlerWorker(multiprocessing.Process, AbjadObject):
 
     ### INITIALIZER ###
 

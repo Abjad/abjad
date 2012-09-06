@@ -1,10 +1,10 @@
-from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
+from abjad.tools.abctools import AbjadObject
 
 
-class BeatHierarchy(abctools.AbjadObject):
+class BeatHierarchy(AbjadObject):
     '''A RhythmTree-based model of the nested groupings within a given time
     signature.
 

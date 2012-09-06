@@ -1,11 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
-from experimental.quantizationtools.MeasurewiseQTarget import MeasurewiseQTarget
-from experimental.quantizationtools.SearchTree import SearchTree
-from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
 from experimental.quantizationtools.QSchema import QSchema
-from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
 
 
 class MeasurewiseQSchema(QSchema):
@@ -17,9 +12,10 @@ class MeasurewiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
+        from experimental import quantizationtools
 
-        search_tree = kwargs.get('search_tree', SimpleSearchTree())
-        assert isinstance(search_tree, SearchTree)
+        search_tree = kwargs.get('search_tree', quantizationtools.SimpleSearchTree())
+        assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 
         self._tempo = contexttools.TempoMark(
@@ -44,16 +40,19 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def item_klass(self):
-        '''The schema's item class.'''        
-        return MeasurewiseQSchemaItem
+        '''The schema's item class.'''
+        from experimental import quantizationtools
+        return quantizationtools.MeasurewiseQSchemaItem
 
     @property
     def target_item_klass(self):
-        return QTargetMeasure
+        from experimental import quantizationtools
+        return quantizationtools.QTargetMeasure
 
     @property
     def target_klass(self):
-        return MeasurewiseQTarget
+        from experimental import quantizationtools
+        return quantizationtools.MeasurewiseQTarget
 
     @property
     def time_signature(self):

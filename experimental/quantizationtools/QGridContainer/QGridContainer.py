@@ -1,8 +1,7 @@
-from abjad.tools import rhythmtreetools
-from experimental.quantizationtools.QGridLeaf import QGridLeaf
+from abjad.tools.rhythmtreetools import RhythmTreeContainer
 
 
-class QGridContainer(rhythmtreetools.RhythmTreeContainer):
+class QGridContainer(RhythmTreeContainer):
 
     ### CLASS ATTRIBUTES ###
 
@@ -12,16 +11,18 @@ class QGridContainer(rhythmtreetools.RhythmTreeContainer):
 
     @property
     def _node_klass(self):
-        return (type(self), QGridLeaf)
+        from experimental import quantizationtools
+        return (type(self), quantizationtools.QGridLeaf)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def leaves(self):
+        from experimental import quantizationtools
         def recurse(node):
             result = []
             for child in node.children:
-                if isinstance(child, QGridLeaf):
+                if isinstance(child, quantizationtools.QGridLeaf):
                     result.append(child)
                 else:
                     result.extend(recurse(child))

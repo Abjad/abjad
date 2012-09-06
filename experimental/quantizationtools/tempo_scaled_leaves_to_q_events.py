@@ -1,17 +1,11 @@
-from itertools import groupby
+import itertools
+from abjad.tools import componenttools
+from abjad.tools import contexttools
+from abjad.tools import durationtools
 from abjad.tools import notetools
 from abjad.tools import resttools
-from abjad.tools.componenttools import all_are_contiguous_components_in_same_thread
-from abjad.tools.contexttools import TempoMark
-from abjad.tools.contexttools import get_effective_tempo
-from abjad.tools.durationtools import Offset
-from experimental.quantizationtools.QEvent import QEvent
-from experimental.quantizationtools.millisecond_pitch_pairs_to_q_events \
-    import millisecond_pitch_pairs_to_q_events
-from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
-    import tempo_scaled_rational_to_milliseconds
 from abjad.tools import skiptools
-from abjad.tools.tietools import get_tie_chain
+from abjad.tools import tietools
 
 
 def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
@@ -55,20 +49,21 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''
+    from experimental import quantizationtools
 
-    assert all_are_contiguous_components_in_same_thread(leaves) and len(leaves)
+    assert componenttools.all_are_contiguous_components_in_same_thread(leaves) and len(leaves)
     if tempo is None:
-        assert get_effective_tempo(leaves[0]) is not None
+        assert contexttools.get_effective_tempo(leaves[0]) is not None
     else:
-        assert isinstance(tempo, TempoMark)
+        assert isinstance(tempo, contexttools.TempoMark)
 
     # sort by silence and tied leaves
     groups = []
-    for rvalue, rgroup in groupby(leaves, lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
+    for rvalue, rgroup in itertools.groupby(leaves, lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
         if rvalue:
             groups.append(list(rgroup))
         else:
-            for tvalue, tgroup in groupby(rgroup, lambda x: get_tie_chain(x)):
+            for tvalue, tgroup in itertools.groupby(rgroup, lambda x: tietools.get_tie_chain(x)):
                 groups.append(list(tgroup))
 
     # calculate lists of pitches and durations
@@ -78,11 +73,11 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
         # get millisecond cumulative duration
         if tempo is not None:
-            duration = sum([tempo_scaled_rational_to_milliseconds(x.prolated_duration, tempo)
+            duration = sum([quantizationtools.tempo_scaled_rational_to_milliseconds(x.prolated_duration, tempo)
                 for x in group])
         else:
-            duration = sum([tempo_scaled_rational_to_milliseconds(x.prolated_duration,
-                get_effective_tempo(x)) for x in group])
+            duration = sum([quantizationtools.tempo_scaled_rational_to_milliseconds(x.prolated_duration,
+                contexttools.get_effective_tempo(x)) for x in group])
         durations.append(duration)
 
         # get pitch of first leaf in group
@@ -95,4 +90,4 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
         pitches.append(pitch)
 
     # convert durations and pitches to QEvents and return
-    return millisecond_pitch_pairs_to_q_events(zip(durations, pitches))
+    return quantizationtools.millisecond_pitch_pairs_to_q_events(zip(durations, pitches))

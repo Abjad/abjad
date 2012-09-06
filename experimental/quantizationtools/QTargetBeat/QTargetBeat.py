@@ -1,15 +1,15 @@
-from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.QuantizationJob import QuantizationJob
-from experimental.quantizationtools.QEvent import QEvent
-from experimental.quantizationtools.QEventProxy import QEventProxy
-from experimental.quantizationtools.SearchTree import SearchTree
-from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
-from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
+from abjad.tools.abctools import AbjadObject
 
 
-class QTargetBeat(abctools.AbjadObject):
+class QTargetBeat(AbjadObject):
+    '''A single "beat" in a quantization target.
+
+    Not composer-safe.
+
+    Used internally by quantizationtools.Quantizer.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -19,15 +19,14 @@ class QTargetBeat(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
-
-        from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
+        from experimental import quantizationtools
 
         beatspan = durationtools.Duration(beatspan)
         offset_in_ms = durationtools.Offset(offset_in_ms)
 
         if search_tree is None:
-            search_tree = SimpleSearchTree()
-        assert isinstance(search_tree, SearchTree)
+            search_tree = quantizationtools.SimpleSearchTree()
+        assert isinstance(search_tree, quantizationtools.SearchTree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
 
@@ -46,14 +45,16 @@ class QTargetBeat(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, job_id):
+        from experimental import quantizationtools
         if not self.q_events:
             return None
-        assert all([isinstance(x, QEvent) for x in self.q_events])
+        assert all([isinstance(x, quantizationtools.QEvent) for x in self.q_events])
         q_event_proxies = []
         for q_event in self.q_events:
-            q_event_proxy = QEventProxy(q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms)
+            q_event_proxy = quantizationtools.QEventProxy(
+                q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms)
             q_event_proxies.append(q_event_proxy)
-        return QuantizationJob(job_id, self.search_tree, q_event_proxies)
+        return quantizationtools.QuantizationJob(job_id, self.search_tree, q_event_proxies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -67,7 +68,9 @@ class QTargetBeat(abctools.AbjadObject):
 
     @property
     def duration_in_ms(self):
-        return tempo_scaled_rational_to_milliseconds(self.beatspan, self.tempo)
+        from experimental import quantizationtools
+        return quantizationtools.tempo_scaled_rational_to_milliseconds(
+            self.beatspan, self.tempo)
 
     @property
     def offset_in_ms(self):

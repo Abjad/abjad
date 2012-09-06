@@ -1,12 +1,12 @@
 import abc
-from abjad.tools import abctools
-from abjad.tools import datastructuretools
-from abjad.tools import sequencetools
 import bisect
 import copy
+from abjad.tools import datastructuretools
+from abjad.tools import sequencetools
+from abjad.tools.abctools import AbjadObject
 
 
-class QSchema(abctools.AbjadObject):
+class QSchema(AbjadObject):
     '''The schema for a quantization run.
 
     `QSchema` is abstract.

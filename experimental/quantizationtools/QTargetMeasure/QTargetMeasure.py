@@ -1,13 +1,17 @@
-from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.SearchTree import SearchTree
-from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
-from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
-    import tempo_scaled_rational_to_milliseconds
+from abjad.tools.abctools import AbjadObject
 
 
-class QTargetMeasure(abctools.AbjadObject):
+class QTargetMeasure(AbjadObject):
+    '''Representation of a single "measure" in a measure-wise quantization target.
+
+    QTargetMeasures group QTargetBeats.
+
+    Not composer-safe.
+
+    Used internally by quantizationtools.Quantizer.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -19,13 +23,13 @@ class QTargetMeasure(abctools.AbjadObject):
     def __init__(self, offset_in_ms=None, search_tree=None, time_signature=None,
         tempo=None, use_full_measure=False):
 
-        from experimental.quantizationtools.QTargetBeat import QTargetBeat
+        from experimental import quantizationtools
 
         offset_in_ms = durationtools.Offset(offset_in_ms)
 
         if search_tree is None:
-            search_tree = SimpleSearchTree()
-        assert isinstance(search_tree, SearchTree)
+            search_tree = quantizationtools.SimpleSearchTree()
+        assert isinstance(search_tree, quantizationtools.SearchTree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
         time_signature = contexttools.TimeSignatureMark(time_signature)
@@ -45,9 +49,9 @@ class QTargetMeasure(abctools.AbjadObject):
         else:
             beatspan = durationtools.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
-            beatspan_duration_in_ms = tempo_scaled_rational_to_milliseconds(beatspan, tempo)
+            beatspan_duration_in_ms = quantizationtools.tempo_scaled_rational_to_milliseconds(beatspan, tempo)
             for i in range(time_signature.numerator):
-                beat = QTargetBeat(
+                beat = quantizationtools.QTargetBeat(
                     beatspan=beatspan,
                     offset_in_ms=current_offset_in_ms,
                     search_tree=search_tree,
@@ -71,7 +75,9 @@ class QTargetMeasure(abctools.AbjadObject):
 
     @property
     def duration_in_ms(self):
-        return tempo_scaled_rational_to_milliseconds(self.time_signature.duration, self.tempo)
+        from experimental import quantizationtools
+        return quantizationtools.tempo_scaled_rational_to_milliseconds(
+            self.time_signature.duration, self.tempo)
 
     @property
     def offset_in_ms(self):

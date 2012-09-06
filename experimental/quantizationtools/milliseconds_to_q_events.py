@@ -1,9 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
-from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
-from experimental.quantizationtools.SilentQEvent import SilentQEvent
 
 
 def milliseconds_to_q_events(milliseconds, fuse_silences=False):
@@ -40,6 +37,7 @@ def milliseconds_to_q_events(milliseconds, fuse_silences=False):
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''
+    from experimental import quantizationtools
 
     if fuse_silences:
         durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]) if x]
@@ -52,11 +50,11 @@ def milliseconds_to_q_events(milliseconds, fuse_silences=False):
         offset = durationtools.Offset(pair[0])
         duration = pair[1]
         if duration < 0: # negative duration indicates silence
-            q_event = SilentQEvent(offset)
+            q_event = quantizationtools.SilentQEvent(offset)
         else:
-            q_event = PitchedQEvent(offset, [0])
+            q_event = quantizationtools.PitchedQEvent(offset, [0])
         q_events.append(q_event)
 
-    q_events.append(TerminalQEvent(durationtools.Offset(offsets[-1])))
+    q_events.append(quantizationtools.TerminalQEvent(durationtools.Offset(offsets[-1])))
 
     return q_events

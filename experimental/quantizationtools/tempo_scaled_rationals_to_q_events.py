@@ -4,11 +4,6 @@ from abjad.tools import durationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
-from experimental.quantizationtools.SilentQEvent import SilentQEvent
-from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
-from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
-    import tempo_scaled_rational_to_milliseconds
 
 
 def tempo_scaled_rationals_to_q_events(durations, tempo):
@@ -50,12 +45,13 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''
+    from experimental import quantizationtools
 
-    assert all([isinstance(x, (int, Fraction)) for x in durations])
+    durations = [durationtools.Duration(x) for x in durations]
     assert isinstance(tempo, contexttools.TempoMark)
 
     durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(durations, sign=[-1]) if x]
-    durations = [tempo_scaled_rational_to_milliseconds(x, tempo) for x in durations]
+    durations = [quantizationtools.tempo_scaled_rational_to_milliseconds(x, tempo) for x in durations]
 
     offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
 
@@ -64,12 +60,12 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
         offset = durationtools.Offset(pair[0])
         duration = pair[1]
         if duration < 0: # negative duration indicates silence
-            q_event = SilentQEvent(offset)
+            q_event = quantizationtools.SilentQEvent(offset)
         else: # otherwise, use middle-C
-            q_event = PitchedQEvent(offset, [0])
+            q_event = quantizationtools.PitchedQEvent(offset, [0])
         q_events.append(q_event)
 
     # insert terminating silence QEvent
-    q_events.append(TerminalQEvent(offsets[-1]))
+    q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
 
     return q_events

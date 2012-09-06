@@ -1,11 +1,18 @@
+import copy
 from abjad.tools import sequencetools   
 from abjad.tools import voicetools
 from experimental.quantizationtools.QTarget import QTarget
-from experimental.quantizationtools.QTargetBeat import QTargetBeat
-import copy
 
 
 class BeatwiseQTarget(QTarget): 
+    '''A beat-wise quantization target.
+
+    Not composer-safe.
+
+    Used internally by ``Quantizer``.
+
+    Return ``BeatwiseQTarget`` instance.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -15,7 +22,8 @@ class BeatwiseQTarget(QTarget):
     
     @property
     def item_klass(self):
-        return QTargetBeat
+        from experimental import quantizationtools
+        return quantizationtools.QTargetBeat
 
     ### PRIVATE METHODS ###
 
