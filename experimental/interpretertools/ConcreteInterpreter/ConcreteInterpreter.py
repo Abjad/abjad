@@ -64,18 +64,17 @@ class ConcreteInterpreter(Interpreter):
 
     def add_division_lists_to_voice(self, voice):
         #self._debug(voice)
-        division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
-        #self._debug_values(division_region_division_lists, 'drdl')
-        if division_region_division_lists:
-            self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
-                division_region_division_lists
+        self.make_division_region_division_lists_for_voice(voice)
+        #self._debug_values(
+        #    self.score_specification.contexts[voice.name]['division_region_division_lists'], 'drdl')
+        if self.score_specification.contexts[voice.name]['division_region_division_lists']:
             voice_division_list = self.make_voice_division_list_for_voice(voice)
             self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
+            #self._debug(voice_division_list, 'vdl')
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
             self.score_specification.contexts[voice.name]['segment_division_lists'] = segment_division_lists
-            self.add_segment_division_lists_to_voice(voice, segment_division_lists)
-            #self._debug(voice_division_list, 'vdl')
             #self._debug(segment_division_lists, 'sdl')
+            self.add_segment_division_lists_to_voice(voice, segment_division_lists)
 
     def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
 #        self._debug(rhythm_maker)
@@ -390,12 +389,9 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(region_division_commands, 'rdc')
         region_division_commands = self.supply_missing_region_division_commands(region_division_commands, voice)
         #self._debug_values(region_division_commands, 'srdc')
+        # think the assignment can be removed because method operates in place
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands, voice)
-        #self._debug_values(division_region_division_lists, 'drdl')
-        self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
-            division_region_division_lists[:]
-        return division_region_division_lists
 
     def make_rhythm_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
@@ -518,16 +514,15 @@ class ConcreteInterpreter(Interpreter):
     # NEXT TODO: Extend the loop in this function to save intermediate values as they are produced.
     #            This will enable later division commands to refer to the materials produced by earlier commands.
     def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
-        division_region_division_lists = []
+        self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
         for region_division_command in region_division_commands:
             #self._debug(region_division_command, 'rdc')
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command)
+            self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
+                division_region_division_list)
             #self._debug(division_region_division_list, 'drdl')
             #print ''
-            # TODO: newly created division_region_division_list needs to be saved somewhere for future use
-            division_region_division_lists.append(division_region_division_list)
-        return division_region_division_lists
 
     def resolve_material_request(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
