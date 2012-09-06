@@ -52,7 +52,7 @@ Composition packages
    tools/chordtools/all_are_chords
    tools/chordtools/arpeggiate_chord
    tools/chordtools/change_defective_chord_to_note_or_rest
-   tools/chordtools/color_chord_note_heads_by_pitch_class_color_map
+   tools/chordtools/color_chord_note_heads_in_expr_by_pitch_class_color_map
    tools/chordtools/divide_chord_by_chromatic_pitch_number
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
@@ -556,8 +556,6 @@ Composition packages
    tools/leaftools/label_leaves_in_expr_with_prolated_leaf_duration
    tools/leaftools/label_leaves_in_expr_with_tuplet_depth
    tools/leaftools/label_leaves_in_expr_with_written_leaf_duration
-   tools/leaftools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
-   tools/leaftools/leaf_to_tuplet_with_proportions
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
@@ -1825,6 +1823,8 @@ Composition packages
    tools/tuplettools/is_proper_tuplet_multiplier
    tools/tuplettools/iterate_tuplets_backward_in_expr
    tools/tuplettools/iterate_tuplets_forward_in_expr
+   tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
+   tools/tuplettools/leaf_to_tuplet_with_proportions
    tools/tuplettools/make_tuplet_from_duration_and_proportions
    tools/tuplettools/make_tuplet_from_proportions_and_pair
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet

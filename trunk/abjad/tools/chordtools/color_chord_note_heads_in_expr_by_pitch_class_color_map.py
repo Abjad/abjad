@@ -1,11 +1,9 @@
 from abjad.tools import decoratortools
 from abjad.tools import pitchtools
-from abjad.tools.chordtools.Chord import Chord
 
 
 @decoratortools.requires(object, pitchtools.NumberedChromaticPitchClassColorMap)
-# TODO: change name to color_chord_note_heads_in_expr_by_pitch_class_color_map()
-def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
+def color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map):
     r'''.. versionadded:: 2.0
 
     Color `chord` note heads by pitch-class `color_map`::
@@ -20,7 +18,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
     ::
 
-        >>> chordtools.color_chord_note_heads_by_pitch_class_color_map(chord, color_map)
+        >>> chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map(chord, color_map)
         Chord("<c'' d'' fs'' a'' b''>4")
 
     ::
@@ -45,7 +43,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
     ::
 
-        >>> chordtools.color_chord_note_heads_by_pitch_class_color_map(note, color_map)
+        >>> chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map(note, color_map)
         Note("c'4")
 
     ::
@@ -60,14 +58,14 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
     ::
 
-        >>> chordtools.color_chord_note_heads_by_pitch_class_color_map(staff, color_map)
+        >>> chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map(staff, color_map)
         Staff{}
 
     Return `chord`.
 
     .. versionchanged:: 2.0
         renamed ``chordtools.color_note_heads_by_pc()`` to
-        ``chordtools.color_chord_note_heads_by_pitch_class_color_map()``.
+        ``chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()``.
     '''
     from abjad.tools import chordtools
     from abjad.tools import notetools

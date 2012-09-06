@@ -13,37 +13,37 @@ def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1], diminution=False)
         {@ 1:1 c'8. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2], diminution=False)
         {@ 1:1 c'16, c'8 @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2], diminution=False)
         {@ 5:8 c'64., c'32., c'32. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2, 3], diminution=False)
         {@ 2:3 c'64, c'32, c'32, c'32. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2, 3, 3], diminution=False)
         {@ 11:12 c'64, c'32, c'32, c'32., c'32. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2, 3, 3, 4], diminution=False)
         {@ 5:8 c'128, c'64, c'64, c'64., c'64., c'32 @}
 
@@ -53,37 +53,37 @@ def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1], diminution=True)
         {@ 1:1 c'8. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2], diminution=True)
         {@ 1:1 c'16, c'8 @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2], diminution=True)
         {@ 5:4 c'32., c'16., c'16. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2, 3], diminution=True)
         {@ 4:3 c'32, c'16, c'16, c'16. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2, 3, 3], diminution=True)
         {@ 11:6 c'32, c'16, c'16, c'16., c'16. @}
 
     ::
 
-        >>> print leaftools.leaf_to_tuplet_with_proportions(
+        >>> print tuplettools.leaf_to_tuplet_with_proportions(
         ...     note, [1, 2, 2, 3, 3, 4], diminution=True)
         {@ 5:4 c'64, c'32, c'32, c'32., c'32., c'16 @}
 

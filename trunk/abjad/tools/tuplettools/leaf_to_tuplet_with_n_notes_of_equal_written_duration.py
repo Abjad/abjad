@@ -10,7 +10,7 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=Tr
 
         >>> for n in range(1, 11):
         ...     note = Note(0, (3, 16))
-        ...     tuplet = leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(
+        ...     tuplet = tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(
         ...         note, n, diminution=False)
         ...     print tuplet
         ...
@@ -29,7 +29,7 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=Tr
 
         >>> for n in range(1, 11):
         ...     note = Note(0, (3, 16))
-        ...     tuplet = leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(
+        ...     tuplet = tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(
         ...         note, n, diminution=True)
         ...     print tuplet
         ...
