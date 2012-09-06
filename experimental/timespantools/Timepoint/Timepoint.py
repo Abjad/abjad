@@ -159,7 +159,8 @@ class Timepoint(AbjadObject):
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental import selectortools 
         from experimental import timespantools 
-        assert isinstance(anchor, (selectortools.Selector, timespantools.SingleSourceTimespan, type(None))), repr(anchor)
+        assert isinstance(
+            anchor, (selectortools.Selector, timespantools.SingleSourceTimespan, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:

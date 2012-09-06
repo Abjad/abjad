@@ -17,6 +17,8 @@ Read-only Properties
 
     Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
 
+.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.fresh
+
 .. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.is_closed
 
     Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
@@ -64,6 +66,8 @@ Read-only Properties
 .. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.truncate
 
 Special Methods
 ---------------

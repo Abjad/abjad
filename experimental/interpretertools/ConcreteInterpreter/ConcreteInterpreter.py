@@ -504,8 +504,8 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
-        division_region_division_list.fresh = region_division_command.fresh
-        division_region_division_list.truncate = region_division_command.truncate
+        division_region_division_list._fresh = region_division_command.fresh
+        division_region_division_list._truncate = region_division_command.truncate
         return division_region_division_list
 
     # NEXT TODO: Extend the loop in this function to save intermediate values as they are produced.
@@ -513,6 +513,7 @@ class ConcreteInterpreter(Interpreter):
     def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
         division_region_division_lists = []
         for region_division_command in region_division_commands:
+            #self._debug(region_division_command, 'rdc')
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command)
             #self._debug(division_region_division_list, 'drdl')
