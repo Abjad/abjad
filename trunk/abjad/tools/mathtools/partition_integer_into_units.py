@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.sign import sign
-
-
 def partition_integer_into_units(n):
     '''Partition positive integer into units::
 
@@ -23,5 +20,8 @@ def partition_integer_into_units(n):
 
     Return list of zero or more parts with absolute value equal to ``1``.
     '''
+    from abjad.tools import mathtools
 
-    return abs(n) * [sign(n) * 1]
+    result = abs(n) * [mathtools.sign(n) * 1]
+
+    return result

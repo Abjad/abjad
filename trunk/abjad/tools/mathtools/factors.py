@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.is_positive_integer import is_positive_integer
-
-
 def factors(n):
     '''Integer factors of positive integer `n` in increasing order::
 
@@ -33,8 +30,9 @@ def factors(n):
 
     Return list of one or more positive integers.
     '''
+    from abjad.tools import mathtools
 
-    if not is_positive_integer(n):
+    if not mathtools.is_positive_integer(n):
         raise TypeError('"%s" must be positive integer.' % str(n))
 
     d = 2

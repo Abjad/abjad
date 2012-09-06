@@ -19,7 +19,6 @@ def cumulative_sums(sequence):
         ``mathtools.cumulative_sums()``.
     '''
 
-
     if not isinstance(sequence, (list, tuple)):
         raise TypeError('sequence {!r} must be list or tuple.')
 

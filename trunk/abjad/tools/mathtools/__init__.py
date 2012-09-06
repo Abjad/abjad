@@ -1,8 +1,7 @@
 '''Abjad mathtools.
 
-   Package imports no other Abjad modules, save rational.
-   Add no modules to mathtools with intrapackage imports.
-   Higher level modules with intrapackage imports should go elsewhere.
+   Package imports no other Abjad modules.
+   Do not add modules to mathtools with intrapackage imports.
 '''
 
 from abjad.tools import importtools

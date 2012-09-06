@@ -1,5 +1,4 @@
-from abjad.tools.mathtools.is_integer_equivalent_number import is_integer_equivalent_number
-from numbers import Number
+import numbers
 
 
 def is_integer_equivalent_expr(expr):
@@ -27,9 +26,10 @@ def is_integer_equivalent_expr(expr):
 
     Return boolean.
     '''
+    from abjad.tools import mathtools
 
-    if isinstance(expr, Number):
-        return is_integer_equivalent_number(expr)
+    if isinstance(expr, numbers.Number):
+        return mathtools.is_integer_equivalent_number(expr)
 
     try:
         int(expr)

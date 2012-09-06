@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.divisors import divisors
-
-
 def greatest_common_divisor(*integers):
     '''.. versionadded:: 2.0
 
@@ -21,12 +18,13 @@ def greatest_common_divisor(*integers):
 
     Return positive integer.
     '''
+    from abjad.tools import mathtools
 
     common_divisors = None
     for positive_integer in integers:
         if not isinstance(positive_integer, int):
             raise TypeError('must be integer.')
-        all_divisors = set(divisors(positive_integer))
+        all_divisors = set(mathtools.divisors(positive_integer))
         if common_divisors is None:
             common_divisors = all_divisors
         else:

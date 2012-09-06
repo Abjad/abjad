@@ -1,5 +1,5 @@
-from numbers import Number
 import math
+import numbers
 
 
 def greatest_multiple_less_equal(m, n):
@@ -49,10 +49,10 @@ def greatest_multiple_less_equal(m, n):
     Return nonnegative integer.
     '''
 
-    if not isinstance(m, Number):
+    if not isinstance(m, numbers.Number):
         raise TypeError('"%s" must be number.' % str(m))
 
-    if not isinstance(n, Number):
+    if not isinstance(n, numbers.Number):
         raise TypeError('"%s" must be number.' % str(n))
 
     return m * int(math.floor(n / float(m)))

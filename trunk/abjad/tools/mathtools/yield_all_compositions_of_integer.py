@@ -1,4 +1,3 @@
-from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string
 import itertools
 
 
@@ -39,6 +38,7 @@ def yield_all_compositions_of_integer(n):
         renamed ``mathtools.integer_compositions()`` to
         ``mathtools.yield_all_compositions_of_integer()``.
     '''
+    from abjad.tools import mathtools
 
     # Finds small values of n easily.
     # Takes ca. 4 seconds for n = 17.
@@ -48,7 +48,7 @@ def yield_all_compositions_of_integer(n):
     x = 0
     string_length = n
     while x < 2 ** (n - 1):
-        binary_string = integer_to_binary_string(x)
+        binary_string = mathtools.integer_to_binary_string(x)
         binary_string = binary_string.zfill(string_length)
         l = [int(c) for c in list(binary_string)]
         partition = []

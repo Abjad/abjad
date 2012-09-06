@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.next_integer_partition import next_integer_partition
-
-
 def yield_all_partitions_of_integer(n):
     r'''.. versionadded:: 2.0
 
@@ -35,6 +32,7 @@ def yield_all_partitions_of_integer(n):
         renamed ``mathtools.integer_partitions()`` to
         ``mathtools.yield_all_partitions_of_integer()``.
     '''
+    from abjad.tools import mathtools
 
     if not isinstance(n, int):
         raise TypeError('must be integer.')
@@ -44,6 +42,4 @@ def yield_all_partitions_of_integer(n):
     partition = (n, )
     while partition is not None:
         yield partition
-        partition = next_integer_partition(partition)
-
-    #raise StopIteration
+        partition = mathtools.next_integer_partition(partition)

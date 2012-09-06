@@ -1,6 +1,7 @@
 import math
 
 
+# TODO: replace string-value bigger='left' and even='allowed' keywords with constant-valued keywords
 def partition_integer_into_halves(n, bigger='left', even='allowed'):
     '''Write positive integer `n` as the pair ``t = (left, right)``
     such that ``n == left + right``.

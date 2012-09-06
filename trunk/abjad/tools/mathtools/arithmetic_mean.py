@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def arithmetic_mean(sequence):
@@ -36,7 +36,7 @@ def arithmetic_mean(sequence):
     if isinstance(sum_l, float):
         return sum_l / len_l
 
-    result = Fraction(sum(sequence), len(sequence))
+    result = fractions.Fraction(sum(sequence), len(sequence))
 
     int_result = int(result)
     if int_result == result:

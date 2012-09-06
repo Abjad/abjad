@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.sign import sign
-
-
 def cumulative_signed_weights(sequence):
     '''Cumulative signed weights of `sequence`::
 
@@ -22,6 +19,7 @@ def cumulative_signed_weights(sequence):
         renamed ``sequencetools.cumulative_weights_signed()`` to
         ``mathtools.cumulative_signed_weights()``.
     '''
+    from abjad.tools import mathtools
 
     if not isinstance(sequence, list):
         raise TypeError
@@ -31,11 +29,11 @@ def cumulative_signed_weights(sequence):
     for x in sequence:
         try:
             next_element = abs(prev) + abs(x)
-            prev_sign = sign(prev)
+            prev_sign = mathtools.sign(prev)
         except NameError:
             next_element = abs(x)
             prev_sign = 0
-        sign_x = sign(x)
+        sign_x = mathtools.sign(x)
         if sign_x == -1:
             next_element *= sign_x
         elif sign_x == 0:

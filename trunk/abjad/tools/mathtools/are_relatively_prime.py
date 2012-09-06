@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.factors import factors
-
-
 def are_relatively_prime(expr):
     '''.. versionadded:: 2.5
 
@@ -31,16 +28,18 @@ def are_relatively_prime(expr):
 
     Return boolean.
     '''
+    from abjad.tools import mathtools
 
     try:
         all_factors = set([])
         for number in expr:
-            cur_factors = factors(number)
+            cur_factors = mathtools.factors(number)
             cur_factors.remove(1) 
             cur_factors = set(cur_factors)
             if all_factors & cur_factors:
                 return False
             all_factors.update(cur_factors)
         return True
+    # TODO: remove unqualified except
     except:
         return False

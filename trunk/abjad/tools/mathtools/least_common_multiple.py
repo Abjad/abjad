@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.factors import factors
-
-
 def least_common_multiple(*integers):
     '''Least common multiple of positive `integers`::
 
@@ -13,6 +10,7 @@ def least_common_multiple(*integers):
 
     Return positive integer.
     '''
+    from abjad.tools import mathtools
 
     if len(integers) == 1:
         if not isinstance(integers[0], int):
@@ -28,6 +26,8 @@ def least_common_multiple(*integers):
 
 
 def _least_common_multiple_helper(m, n):
+    from abjad.tools import mathtools
+
     # check input
     if not isinstance(m, int):
         raise TypeError
@@ -36,8 +36,8 @@ def _least_common_multiple_helper(m, n):
         raise TypeError
 
     # find factors of m and n
-    factors_m = factors(m)
-    factors_n = factors(n)
+    factors_m = mathtools.factors(m)
+    factors_n = mathtools.factors(n)
 
     # remove duplicated shared factors
     for x in factors_m:

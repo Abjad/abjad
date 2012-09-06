@@ -47,4 +47,6 @@ def least_multiple_greater_equal(m, n):
     Return integer.
     '''
 
-    return m * int(math.ceil(n / float(m)))
+    result = m * int(math.ceil(n / float(m)))
+
+    return result

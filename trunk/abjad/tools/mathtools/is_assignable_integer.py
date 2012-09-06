@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string
-
-
 def is_assignable_integer(expr):
     r'''.. versionadded:: 2.0
 
@@ -40,9 +37,10 @@ def is_assignable_integer(expr):
         renamed ``mathtools.is_assignable()`` to
         ``mathtools.is_assignable_integer()``.
     '''
+    from abjad.tools import mathtools
 
     if isinstance(expr, int):
         if 0 < expr:
-            if not '01' in integer_to_binary_string(expr):
+            if not '01' in mathtools.integer_to_binary_string(expr):
                 return True
     return False

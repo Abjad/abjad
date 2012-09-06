@@ -1,10 +1,7 @@
-from abjad.tools.mathtools.interpolate_cosine import interpolate_cosine
-from abjad.tools.mathtools.interpolate_exponential import interpolate_exponential
-
-
-def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
+# TODO: eliminate string-valued exp='cosine' keyword
+def interpolate_divide(total, start_fraction, stop_fraction, exp='cosine'):
     '''Divide `total` into segments of sizes computed from interpolating
-    between `start_frac` and `stop_frac`::
+    between `start_fraction` and `stop_fraction`::
 
         >>> from abjad.tools import mathtools
 
@@ -36,22 +33,23 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
         renamed ``interpolate.divide()`` to
         ``mathtools.interpolate_divide()``.
     '''
+    from abjad.tools import mathtools
 
     if total <=0 :
         raise ValueError("'total' must be positive.")
-    if start_frac <= 0 or stop_frac <= 0:
-        raise ValueError("Both 'start_frac' and 'stop_frac' must be positive.")
-    if total < (stop_frac + start_frac):
-        raise ValueError("'start_frac' + 'stop_frac' must be < 'total'.")
+    if start_fraction <= 0 or stop_fraction <= 0:
+        raise ValueError("Both 'start_fraction' and 'stop_fraction' must be positive.")
+    if total < (stop_fraction + start_fraction):
+        raise ValueError("'start_fraction' + 'stop_fraction' must be < 'total'.")
 
     result = []
     total = float(total)
     partial_sum = 0
     while partial_sum < total:
         if exp == 'cosine':
-            ip = interpolate_cosine(start_frac, stop_frac, partial_sum / total)
+            ip = mathtools.interpolate_cosine(start_fraction, stop_fraction, partial_sum / total)
         else:
-            ip = interpolate_exponential(start_frac, stop_frac, partial_sum / total, exp)
+            ip = mathtools.interpolate_exponential(start_fraction, stop_fraction, partial_sum / total, exp)
         result.append(ip)
         partial_sum += ip
 

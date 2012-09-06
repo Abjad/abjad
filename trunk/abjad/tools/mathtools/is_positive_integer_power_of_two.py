@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.is_nonnegative_integer_power_of_two import is_nonnegative_integer_power_of_two
-
-
 def is_positive_integer_power_of_two(expr):
     '''True when `expr` is a positive integer power of ``2``::
 
@@ -26,5 +23,6 @@ def is_positive_integer_power_of_two(expr):
 
     Return boolean.
     '''
+    from abjad.tools import mathtools
 
-    return 0 < expr and is_nonnegative_integer_power_of_two(expr)
+    return 0 < expr and mathtools.is_nonnegative_integer_power_of_two(expr)

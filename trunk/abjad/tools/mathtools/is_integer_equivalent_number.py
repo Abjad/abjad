@@ -1,4 +1,4 @@
-from numbers import Number
+import numbers
 
 
 def is_integer_equivalent_number(expr):
@@ -21,7 +21,7 @@ def is_integer_equivalent_number(expr):
     Return boolean.
     '''
 
-    if isinstance(expr, Number):
+    if isinstance(expr, numbers.Number):
         if int(expr) == expr:
             return True
 

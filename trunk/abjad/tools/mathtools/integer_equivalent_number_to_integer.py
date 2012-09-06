@@ -1,4 +1,3 @@
-from abjad.tools.mathtools.is_integer_equivalent_number import is_integer_equivalent_number
 import numbers
 
 
@@ -23,11 +22,12 @@ def integer_equivalent_number_to_integer(number):
 
     Return number.
     '''
+    from abjad.tools import mathtools
 
     if not isinstance(number, numbers.Number):
         raise TypeError('input "%s"% must be number.' % number)
 
-    if is_integer_equivalent_number(number):
+    if mathtools.is_integer_equivalent_number(number):
         return int(number)
     else:
         return number

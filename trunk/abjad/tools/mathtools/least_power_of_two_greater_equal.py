@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 import math
 
 
@@ -54,10 +54,12 @@ def least_power_of_two_greater_equal(n, i=0):
     Return integer.
     '''
 
-    if not isinstance(n, (int, long, float, Fraction)):
+    if not isinstance(n, (int, long, float, fractions.Fraction)):
         raise TypeError
 
     if n <= 0:
         raise ValueError
 
-    return 2 ** (int(math.ceil(math.log(n, 2))) + i)
+    result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
+
+    return result

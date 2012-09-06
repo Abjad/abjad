@@ -1,7 +1,3 @@
-from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_string
-from abjad.tools.mathtools.sign import sign
-
-
 def partition_integer_into_canonic_parts(n, big_endian=True):
     '''Partition integer `n` into big-endian or small-endian parts.
 
@@ -63,6 +59,7 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
 
     Return tuple of one or more integers.
     '''
+    from abjad.tools import mathtools
 
     if not isinstance(n, (int, long)):
         raise TypeError
@@ -75,7 +72,7 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
 
     result = []
     prev_empty = True
-    binary_n = integer_to_binary_string(abs(n))
+    binary_n = mathtools.integer_to_binary_string(abs(n))
     binary_length = len(binary_n)
 
     for i, x in enumerate(binary_n):
@@ -89,8 +86,8 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
         else:
             prev_empty = True
 
-    sign_n = sign(n)
-    if sign(n) == -1:
+    sign_n = mathtools.sign(n)
+    if mathtools.sign(n) == -1:
         result = [sign_n * x for x in result]
 
     if big_endian:

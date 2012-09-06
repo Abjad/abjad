@@ -1,4 +1,4 @@
-from fractions import Fraction
+import fractions
 
 
 def is_nonnegative_integer_power_of_two(expr):
@@ -33,7 +33,7 @@ def is_nonnegative_integer_power_of_two(expr):
 
     if isinstance(expr, (int, long)):
         return not bool(expr & (expr - 1))
-    elif isinstance(expr, Fraction):
+    elif isinstance(expr, fractions.Fraction):
         return is_nonnegative_integer_power_of_two(expr.numerator * expr.denominator)
     else:
         return False

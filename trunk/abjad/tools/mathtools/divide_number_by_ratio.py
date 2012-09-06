@@ -1,6 +1,6 @@
 from __future__ import division
-from fractions import Fraction
-from numbers import Number
+import fractions
+import numbers
 
 
 def divide_number_by_ratio(number, ratio):
@@ -34,14 +34,14 @@ def divide_number_by_ratio(number, ratio):
         ``mathtools.divide_number_by_ratio()``.
     '''
 
-    if not isinstance(number, Number):
+    if not isinstance(number, numbers.Number):
         raise TypeError('number "%s" be number.' % str(number))
 
     if not all([isinstance(part, int) for part in ratio]):
         raise TypeError('ratio "%s" must comprise only integers.' % str(ratio))
 
     try:
-        factor = Fraction(number, sum(ratio))
+        factor = fractions.Fraction(number, sum(ratio))
     except TypeError:
         factor = number / sum(ratio)
 

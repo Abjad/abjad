@@ -1,4 +1,4 @@
-from numbers import Number
+import numbers
 
 
 def is_negative_integer(expr):
@@ -26,7 +26,7 @@ def is_negative_integer(expr):
     Return boolean.
     '''
 
-    if isinstance(expr, Number):
+    if isinstance(expr, numbers.Number):
         if expr == int(expr):
             if expr < 0:
                 return True

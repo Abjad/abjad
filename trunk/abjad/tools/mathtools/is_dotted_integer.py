@@ -1,4 +1,3 @@
-from abjad.tools.mathtools.factors import factors
 import math
 
 
@@ -39,15 +38,18 @@ def is_dotted_integer(expr):
     Integer `n` qualifies as dotted when ``abs(n)`` is of the form
     ``2**j * (2**k - 1)`` with integers ``0 <= j``, ``2 < k``.
     '''
+    from abjad.tools import mathtools
 
     if expr == 0:
         return False
 
     non_two_product = 1
-    non_two_factors = [d for d in factors(expr) if not d == 2]
+    non_two_factors = [d for d in mathtools.factors(expr) if not d == 2]
     for non_two_factor in non_two_factors:
         non_two_product *= non_two_factor
 
     x = math.log(abs(non_two_product) + 1, 2)
 
-    return 1 < abs(non_two_product) and int(x) == x
+    result = 1 < abs(non_two_product) and int(x) == x
+
+    return result

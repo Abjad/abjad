@@ -1,5 +1,5 @@
-from numbers import Number
 import math
+import numbers
 
 
 def greatest_power_of_two_less_equal(n, i=0):
@@ -46,7 +46,7 @@ def greatest_power_of_two_less_equal(n, i=0):
     Return positive integer.
     '''
 
-    if not isinstance(n, Number):
+    if not isinstance(n, numbers.Number):
         raise TypeError('"%s" must be number.' % str(n))
 
     if n <= 0:

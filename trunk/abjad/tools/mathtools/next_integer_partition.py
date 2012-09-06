@@ -3,11 +3,6 @@ def next_integer_partition(integer_partition):
 
     Next integer partition following `integer_partition` in descending lex order::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
-
         >>> mathtools.next_integer_partition((8, 3))
         (8, 2, 1)
 

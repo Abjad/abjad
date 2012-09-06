@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.is_integer_equivalent_number import is_integer_equivalent_number
-
-
 def is_nonnegative_integer_equivalent_number(expr):
     '''.. versionadded:: 2.0
 
@@ -15,5 +12,6 @@ def is_nonnegative_integer_equivalent_number(expr):
 
     Return boolean.
     '''
+    from abjad.tools import mathtools
 
-    return is_integer_equivalent_number(expr) and 0 <= expr
+    return mathtools.is_integer_equivalent_number(expr) and 0 <= expr

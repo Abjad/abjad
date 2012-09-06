@@ -17,4 +17,5 @@ def interpolate_exponential(y1, y2, mu, exp=1):
         ``mathtools.interpolate_exponential()``.
     '''
 
-    return (y1 * (1 - mu ** exp) + y2 * mu ** exp)
+    result = (y1 * (1 - mu ** exp) + y2 * mu ** exp)
+    return result

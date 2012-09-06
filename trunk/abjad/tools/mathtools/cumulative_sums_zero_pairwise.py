@@ -1,6 +1,3 @@
-from abjad.tools.mathtools.cumulative_sums_zero import cumulative_sums_zero
-
-
 def cumulative_sums_zero_pairwise(sequence):
     '''List pairwise cumulative sums of `sequence` from ``0``::
 
@@ -17,6 +14,7 @@ def cumulative_sums_zero_pairwise(sequence):
         renamed ``sequencetools.pairwise_cumulative_sums_zero()`` to
         ``mathtools.cumulative_sums_zero_pairwise()``.
     '''
+    from abjad.tools import mathtools
     from abjad.tools import sequencetools
 
-    return list(sequencetools.iterate_sequence_pairwise_strict(cumulative_sums_zero(sequence)))
+    return list(sequencetools.iterate_sequence_pairwise_strict(mathtools.cumulative_sums_zero(sequence)))

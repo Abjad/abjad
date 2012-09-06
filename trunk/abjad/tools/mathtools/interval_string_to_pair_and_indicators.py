@@ -14,6 +14,7 @@ def interval_string_to_pair_and_indicators(interval_string):
 
     Return triple.
     '''
+
     assert isinstance(interval_string, str)
     spaceless_interval_string = interval_string.replace(' ', '')
     left, right = spaceless_interval_string.split(',')
@@ -24,6 +25,7 @@ def interval_string_to_pair_and_indicators(interval_string):
     else:
         raise ValueError(
             'can not initialize interval start from {!r}.'.format(interval_string))
+
     # probably attackable
     start = eval(left[1:])
     if right[-1] == ')':
@@ -33,6 +35,7 @@ def interval_string_to_pair_and_indicators(interval_string):
     else:
         raise ValueError(
             'can not initialize interval stop from {!r}.'.format(interval_string))
+
     # probably attackable
     stop = eval(right[:-1])
     pair = start, stop

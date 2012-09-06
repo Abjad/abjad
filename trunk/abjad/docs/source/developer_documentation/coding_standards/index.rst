@@ -12,17 +12,32 @@ Introduce comments with one pound sign and a single space::
     def foo(x, y):
         return x + y
 
-Favor early imports at the head of each module. Only one ``import`` per line::
+Favor early imports at the head of each module. Only one ``import`` per line.
 
-       from foo import x
-       from foo import y
-       from foo import z
+Avoid ``from``. Instead of ``from factions import Fraction`` use::
+
+    import fractions
+
+    fraction = fractions.Fraction(...)
+
+Arrange standard library imports alphabetically at the head of each module::
+
+       import fractions
+       import types
+
+Follow standard library imports with intrapackage Abjad imports arranged alphabetically::
+
+       import footools
+       import bartools
+       import blahtools
 
 Include two blank lines after ``import`` statements before the rest of the module::
 
-       from foo import x
-       from foo import y
-       from foo import z
+       import fractions
+       import types
+       import footools
+       import bartools
+       import blahtools
 
     
        class Foo(object):
@@ -149,12 +164,18 @@ Preceed private class attributes with a single underscore.
 
 Alphabetize method names.
 
+Alphabetize keyword arguments.
+
+Include keyword argument names explicitly in function calls.
+
 Use ``<`` less-than signs in preference to greater-than signs::
 
     if x < y < z:
         ...
 
-Limit lines to 110 characters and use ``\`` to break lines where necessary.
+Limit docstring lines to 99 characters.
+
+Limit source lines to 110 characters and use ``\`` to break lines where necessary.
 
 Eliminate trivial slice indices. Use ``s[:4]`` instead of ``s[0:4]``.
 
@@ -164,8 +185,21 @@ Use ``'string {} content'.format(expr)`` instead of ``'string %s content' % expr
 Prefer list comprehensions to ``filter()``, ``map()`` and ``apply()``.
 
 Do not abbreviate variable names.
+(But use ``expr`` for 'expression' and use ``i`` or ``j`` for loop counters.)
 
 Name variables that represent a list or other collection of objects in the plural.
+
+Name functions beginning with a verb.
+(But use ``noun_to_noun`` for conversion functions 
+and ``mathtools.noun`` for some ``mathtools`` functions.)
+
+Avoid underscore-prefixed 'private' functions.
+
+Avoid underscore-prefixed 'private' classes.
+
+Implement package-level functions in preference to ``staticmethod`` class methods.
+
+Implement only one statement per line of code.
 
 Implement only one class per module.
 
