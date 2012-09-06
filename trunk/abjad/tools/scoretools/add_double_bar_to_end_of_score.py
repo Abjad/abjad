@@ -1,4 +1,4 @@
-from abjad.tools import marktools
+from abjad.tools import leaftools
 
 
 def add_double_bar_to_end_of_score(score):
@@ -26,7 +26,7 @@ def add_double_bar_to_end_of_score(score):
 
     Return double bar.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import marktools
 
     last_leaf = leaftools.get_nth_leaf_in_expr(score, -1)
     double_bar = marktools.BarLine('|.')(last_leaf)

@@ -1,20 +1,16 @@
+import collections
 from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
-import collections
 
 
 class StringQuartetScoreTemplate(ScoreTemplate):
     '''.. versionadded:: 2.8
 
     String quartet score template::
-
-        >>> from abjad.tools import scoretemplatetools
-
-    ::
 
         >>> template = scoretemplatetools.StringQuartetScoreTemplate()
         >>> score = template()

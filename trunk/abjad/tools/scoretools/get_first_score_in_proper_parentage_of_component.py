@@ -1,4 +1,3 @@
-from abjad.tools.scoretools.Score import Score
 from abjad.tools import componenttools
 
 
@@ -30,6 +29,7 @@ def get_first_score_in_proper_parentage_of_component(component):
 
     Return score or none.
     '''
+    from abjad.tools import scoretools
 
     return componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
-        component, Score)
+        component, scoretools.Score)

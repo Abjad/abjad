@@ -1,9 +1,3 @@
-from abjad.tools.scoretools.Score import Score
-from abjad.tools.stafftools.Staff import Staff
-from abjad.tools import contexttools
-from abjad.tools.scoretools.PianoStaff import PianoStaff
-
-
 def make_empty_piano_score():
     r'''.. versionadded:: 1.1
 
@@ -25,27 +19,29 @@ def make_empty_piano_score():
             >>
         >>
 
-
     Return score, treble staff, bass staff.
 
     .. versionchanged:: 2.0
         renamed ``scoretools.make_piano_staff()`` to
         ``scoretools.make_empty_piano_score()``.
     '''
+    from abjad.tools import contexttools
+    from abjad.tools import stafftools
+    from abjad.tools import scoretools
 
     # make treble staff
-    treble_staff = Staff([])
+    treble_staff = stafftools.Staff([])
     treble_staff.name = 'treble'
     contexttools.ClefMark('treble')(treble_staff)
 
     # make bass staff
-    bass_staff = Staff([])
+    bass_staff = stafftools.Staff([])
     bass_staff.name = 'bass'
     contexttools.ClefMark('bass')(bass_staff)
 
     # make piano staff and score
-    piano_staff = PianoStaff([treble_staff, bass_staff])
-    score = Score([])
+    piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
+    score = scoretools.Score([])
     score.append(piano_staff)
 
     # return score, treble staff, bass staff

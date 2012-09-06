@@ -1,4 +1,4 @@
-from abjad.tools import markuptools
+from abjad.tools import leaftools
 
 
 def add_markup_to_end_of_score(score, markup, extra_offset=None):
@@ -40,7 +40,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
 
     Return `markup`.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import markuptools
 
     last_leaf = leaftools.get_nth_leaf_in_expr(score, -1)
     # TODO: copy markup direction from markup input

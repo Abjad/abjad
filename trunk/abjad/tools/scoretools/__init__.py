@@ -1,12 +1,17 @@
-'''Score manipulation tools.
+'''Abjad ``scoretools`` package.
 
-   This package depends on:
+    Dependencies:
 
-      * tools/componenttools
-      * tools/spannertools
+    The ``scoretools`` package may import the ``containertools``
+    and ``componenttool`` packages at top level.
+
+    The ``scoretools`` package should not import sibling
+    or cousing packages like ``stafftools`` at top level.
+
+    The ``scoretools`` package should not import ``instrumenttools`` 
+    at top level.
+    
 '''
-
-
 from abjad.tools import importtools
 
 importtools.import_structured_package(__path__[0], globals())

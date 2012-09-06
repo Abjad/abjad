@@ -1,20 +1,16 @@
+import collections
 from abjad.tools import contexttools
 from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
-import collections
 
 
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     r'''.. versionadded:: 2.9
 
     Grouped rhythmic staves score template::
-
-        >>> from abjad.tools import scoretemplatetools
-
-    ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score = template()

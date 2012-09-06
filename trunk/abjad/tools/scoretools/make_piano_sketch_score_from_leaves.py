@@ -1,11 +1,4 @@
-from abjad.tools import contexttools
-from abjad.tools import lilypondfiletools
-from abjad.tools import markuptools
-from abjad.tools.pitchtools import NamedChromaticPitch
-from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score_from_leaves
-
-
-def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=NamedChromaticPitch('b')):
+def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
     r'''.. versionadded:: 2.0
 
     Make piano sketch score from `leaves`::
@@ -54,6 +47,8 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=NamedChromat
             >>
         >>
 
+    When ``lowest_treble_pitch=None`` set to B3.
+
     Make time signatures and bar numbers transparent.
 
     Do not print bar lines or span bars.
@@ -62,9 +57,17 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=NamedChromat
 
     Return score, treble staff, bass staff.
     '''
+    from abjad.tools import contexttools
+    from abjad.tools import lilypondfiletools
+    from abjad.tools import markuptools
+    from abjad.tools import pitchtools
+    from abjad.tools import scoretools
+
+    if lowest_treble_pitch is None:
+        lowest_treble_pitch = pitchtools.NamedChromaticPitch('b')
 
     # make and configure score
-    score, treble_staff, bass_staff = make_piano_score_from_leaves(leaves, lowest_treble_pitch)
+    score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(leaves, lowest_treble_pitch)
     score.override.time_signature.stencil = False
     score.override.bar_number.transparent = True
     score.override.bar_line.stencil = False

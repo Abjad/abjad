@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.scoretools.Score import Score
+from abjad.tools import componenttools
 
 
 def all_are_scores(expr):
@@ -33,5 +32,6 @@ def all_are_scores(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import scoretools
 
-    return all_are_components(expr, klasses=(Score,))
+    return componenttools.all_are_components(expr, klasses=(scoretools.Score,))

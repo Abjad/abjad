@@ -1,9 +1,7 @@
-from abjad.tools.pitchtools import NamedChromaticPitch
-from abjad.tools.scoretools.Score import Score
-from abjad.tools.scoretools.make_empty_piano_score import make_empty_piano_score
+from abjad.tools import chordtools
 
 
-def make_piano_score_from_leaves(leaves, lowest_treble_pitch=NamedChromaticPitch('b')):
+def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
     r""".. versionadded:: 2.0
 
     Make piano score from `leaves`::
@@ -37,14 +35,20 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch=NamedChromaticPitch
             >>
         >>
 
+    When ``lowest_treble_pitch=None`` set to B3.
+
     Return score, treble staff, bass staff.
     """
-    from abjad.tools.chordtools.divide_chord_by_chromatic_pitch_number import divide_chord_by_chromatic_pitch_number
+    from abjad.tools import pitchtools
+    from abjad.tools import scoretools
 
-    score, treble_staff, bass_staff = make_empty_piano_score()
+    if lowest_treble_pitch is None:
+        lowest_treble_pitch = pitchtools.NamedChromaticPitch('b')
+
+    score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
     for leaf in leaves:
-        #treble_chord, bass_chord = divide_chord_by_chromatic_pitch_number(leaf, -1)
-        treble_chord, bass_chord = divide_chord_by_chromatic_pitch_number(leaf, lowest_treble_pitch)
+        treble_chord, bass_chord = chordtools.divide_chord_by_chromatic_pitch_number(
+            leaf, lowest_treble_pitch)
         treble_staff.append(treble_chord)
         bass_staff.append(bass_chord)
 
