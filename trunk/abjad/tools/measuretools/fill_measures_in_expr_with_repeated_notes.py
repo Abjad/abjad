@@ -1,5 +1,5 @@
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools import durationtools
+from abjad.tools import notetools
 
 
 def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=None):
@@ -8,12 +8,12 @@ def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=N
     Fill measures in `expr` with repeated notes.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import notetools
+    from abjad.tools import measuretools
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
     written_duration = durationtools.Duration(written_duration)
-    for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):
+    for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
         if iterctrl(measure, i):
             meter = contexttools.get_effective_time_signature(measure)
             total_duration = meter.duration

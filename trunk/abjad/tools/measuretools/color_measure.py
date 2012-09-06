@@ -1,6 +1,3 @@
-from abjad.tools.measuretools.Measure import Measure
-
-
 def color_measure(measure, color='red'):
     r'''.. versionadded:: 2.0
 
@@ -45,9 +42,10 @@ def color_measure(measure, color='red'):
 
     Color names appear in LilyPond Learning Manual appendix B.5.
     '''
+    from abjad.tools import measuretools
 
     # check measure type
-    if not isinstance(measure, Measure):
+    if not isinstance(measure, measuretools.Measure):
         raise TypeError('must be measure: %s' % measure)
 
     # color measure

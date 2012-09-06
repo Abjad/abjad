@@ -1,8 +1,6 @@
-from abjad.tools import contexttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import timesignaturetools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
 def scale_contents_of_measures_in_expr(expr, multiplier=1):
@@ -18,10 +16,11 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
 
     Return none.
     '''
+    from abjad.tools import contexttools
+    from abjad.tools import measuretools
+    from abjad.tools import timesignaturetools
 
-    from abjad.tools import containertools
-
-    for measure in iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
 
         if multiplier == durationtools.Duration(1):
             continue

@@ -1,5 +1,4 @@
-from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_component_in_expr
+from abjad.tools import componenttools
 
 
 # TODO: implement measuretools.iterate_measures_forward_in_expr(expr, i=0, j=None).
@@ -52,5 +51,6 @@ def get_nth_measure_in_expr(expr, n=0):
         renamed ``iterate.get_nth_measure()`` to
         ``measuretools.get_nth_measure_in_expr()``.
     '''
+    from abjad.tools import measuretools
 
-    return get_nth_component_in_expr(expr, Measure, n)
+    return componenttools.get_nth_component_in_expr(expr, measuretools.Measure, n)

@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools import notetools
 
 
 def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=None):
@@ -38,16 +38,16 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
 
     Return none.
     '''
-    from abjad.tools.notetools.Note import Note
     from abjad.tools import contexttools
+    from abjad.tools import measuretools
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
-    for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):
+    for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
         if iterctrl(measure, i):
             meter = contexttools.get_effective_time_signature(measure)
             denominator = mathtools.greatest_power_of_two_less_equal(
                 meter.denominator)
             numerator = meter.numerator
-            notes = Note(0, (1, denominator)) * numerator
+            notes = notetools.Note(0, (1, denominator)) * numerator
             measure[:] = notes

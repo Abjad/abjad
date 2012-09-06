@@ -2,10 +2,9 @@ import numbers
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools.notetools.Note import Note
-from abjad.tools.skiptools.Skip import Skip
 
 
+# TODO: remove function entirely
 def _fill_measures_in_expr(expr, mode, iterctrl=lambda measure, i: True):
     '''Populate each measure in 'expr' according to 'mode'.
 

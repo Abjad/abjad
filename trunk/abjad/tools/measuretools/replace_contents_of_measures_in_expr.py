@@ -1,6 +1,3 @@
-from abjad.tools import contexttools
-
-
 # TODO: fix bug in function that causes tied notes to become untied
 def replace_contents_of_measures_in_expr(expr, new_contents):
     r'''.. versionadded:: 1.1
@@ -61,6 +58,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         renamed ``measuretools.overwrite_contents()`` to
         ``measuretools.replace_contents_of_measures_in_expr()``.
     '''
+    from abjad.tools import contexttools
     from abjad.tools import measuretools
 
     # init return list

@@ -1,3 +1,6 @@
+from abjad.tools import skiptools
+
+
 def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     '''.. versionadded:: 1.1
 
@@ -5,7 +8,6 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     '''
     from abjad.tools import contexttools
     from abjad.tools import measuretools
-    from abjad.tools import skiptools
     from abjad.tools.spannertools._withdraw_component_from_attached_spanners import \
         _withdraw_component_from_attached_spanners
 

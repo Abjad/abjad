@@ -1,12 +1,10 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
-from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
-from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
+from abjad.tools import componenttools
+from abjad.tools import containertools
+from abjad.tools import leaftools
 
 
+# TODO: make public
+# TODO: replace string-value 'direction' variable with Left or Right constants
 def _get_measure_from_component(component, direction):
     '''.. versionadded:: 1.1
 
@@ -30,27 +28,30 @@ def _get_measure_from_component(component, direction):
     When `component` is a leaf and there is no measure in the parentage
     of `component`, raise :exc:`MissingMeasureError`.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import measuretools
+    from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
 
-    if isinstance(component, Leaf):
-        for parent in get_proper_parentage_of_component(component):
-            if isinstance(parent, Measure):
+    if isinstance(component, leaftools.Leaf):
+        for parent in componenttools.get_proper_parentage_of_component(component):
+            if isinstance(parent, measuretools.Measure):
                 return parent
         raise MissingMeasureError
-    elif isinstance(component, Measure):
+    elif isinstance(component, measuretools.Measure):
         if direction == '_next':
             return componenttools.get_nth_namesake_from_component(component, 1)
         elif direction == '_prev':
             return componenttools.get_nth_namesake_from_component(component, -1)
         else:
             raise ValueError('direction must be _next or _prev.')
-    elif isinstance(component, Container):
+    elif isinstance(component, containertools.Container):
         return _get_contemporaneous_measure(component, direction)
     elif isinstance(component, (list, tuple)):
         if direction == '_next':
-            measure_generator = iterate_components_forward_in_expr(component, Measure)
+            #measure_generator = iterate_components_forward_in_expr(component, measuretools.Measure)
+            measure_generator = measuretools.iterate_measures_forward_in_expr(component)
         elif direction == '_prev':
-            measure_generator = iterate_components_backward_in_expr(component, Measure)
+            #measure_generator = iterate_components_backward_in_expr(component, measuretools.Measure)
+            measure_generator = measuretools.iterate_measures_backward_in_expr(component)
         else:
             raise ValueError('direction must be _next or _prev.')
         try:

@@ -1,6 +1,3 @@
-from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
-
-
 def get_next_measure_from_component(component):
     '''.. versionadded:: 1.1
 
@@ -50,5 +47,6 @@ def get_next_measure_from_component(component):
         renamed ``iterate.measure_next()`` to
         ``measuretools.get_next_measure_from_component()``.
     '''
+    from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
 
     return _get_measure_from_component(component, '_next')

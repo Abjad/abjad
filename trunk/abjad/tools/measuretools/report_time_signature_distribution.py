@@ -1,6 +1,3 @@
-from abjad.tools.measuretools._report_meter_distribution import _report_meter_distribution
-
-
 def report_time_signature_distribution(expr):
     r'''.. versionadded:: 2.0
 
@@ -13,5 +10,6 @@ def report_time_signature_distribution(expr):
 
     Return string.
     '''
+    from abjad.tools.measuretools._report_meter_distribution import _report_meter_distribution
 
     return _report_meter_distribution(expr, delivery='string')

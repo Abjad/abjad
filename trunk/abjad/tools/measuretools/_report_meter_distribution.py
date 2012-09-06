@@ -1,8 +1,8 @@
-from abjad.tools import contexttools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 import itertools
 
 
+# TODO: make public
+# TODO: remove string-valued delivery='screen' keyword altogether
 def _report_meter_distribution(expr, delivery='screen'):
     r'''Inventory meters in `expr` with frequency count of each.
 
@@ -29,9 +29,11 @@ def _report_meter_distribution(expr, delivery='screen'):
 
     Return string or none.
     '''
+    from abjad.tools import contexttools
+    from abjad.tools import measuretools
 
     meters = []
-    for measure in iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
         meters.append(contexttools.get_effective_time_signature(measure))
 
     meters.sort()

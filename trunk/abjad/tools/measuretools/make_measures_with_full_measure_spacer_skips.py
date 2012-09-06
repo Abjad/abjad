@@ -1,6 +1,3 @@
-from abjad.tools import contexttools
-
-
 def make_measures_with_full_measure_spacer_skips(time_signatures):
     r'''.. versionadded:: 1.1
 
@@ -36,6 +33,7 @@ def make_measures_with_full_measure_spacer_skips(time_signatures):
         renamed ``measuretools.make()`` to
         ``measuretools.make_measures_with_full_measure_spacer_skips()``.
     '''
+    from abjad.tools import contexttools
     from abjad.tools import measuretools
 
     # check input

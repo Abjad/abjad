@@ -1,4 +1,4 @@
-from abjad.tools.measuretools.Measure import Measure
+from abjad.tools import skiptools
 
 
 def append_spacer_skip_to_underfull_measure(rigid_measure):
@@ -38,9 +38,9 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
     Return `measure`.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import skiptools
+    from abjad.tools import measuretools
 
-    assert isinstance(rigid_measure, Measure)
+    assert isinstance(rigid_measure, measuretools.Measure)
 
     if rigid_measure.is_underfull:
         target_duration = contexttools.get_effective_time_signature(rigid_measure).duration

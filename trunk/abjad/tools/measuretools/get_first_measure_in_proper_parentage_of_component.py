@@ -1,4 +1,3 @@
-from abjad.tools.measuretools.Measure import Measure
 from abjad.tools import componenttools
 
 
@@ -30,6 +29,7 @@ def get_first_measure_in_proper_parentage_of_component(component):
 
     Return measure or none.
     '''
+    from abjad.tools import measuretools
 
     return componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
-        component, Measure)
+        component, measuretools.Measure)

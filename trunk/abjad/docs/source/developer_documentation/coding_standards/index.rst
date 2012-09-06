@@ -12,13 +12,11 @@ Introduce comments with one pound sign and a single space::
     def foo(x, y):
         return x + y
 
-Favor early imports at the head of each module. Only one ``import`` per line.
-
-Avoid ``from``. Instead of ``from factions import Fraction`` use::
+Avoid ``from``. Instead of ``from fractions import Fraction`` use::
 
     import fractions
 
-    fraction = fractions.Fraction(...)
+Favor early imports at the head of each module. Only one ``import`` per line.
 
 Arrange standard library imports alphabetically at the head of each module::
 
@@ -160,6 +158,11 @@ Organize the definitions of core classes into the nine following major sections:
         def blah(self, expr):
             ...
 
+Use ``<`` less-than signs in preference to greater-than signs::
+
+    if x < y < z:
+        ...
+
 Preceed private class attributes with a single underscore.
 
 Alphabetize method names.
@@ -167,11 +170,6 @@ Alphabetize method names.
 Alphabetize keyword arguments.
 
 Include keyword argument names explicitly in function calls.
-
-Use ``<`` less-than signs in preference to greater-than signs::
-
-    if x < y < z:
-        ...
 
 Limit docstring lines to 99 characters.
 
@@ -193,9 +191,9 @@ Name functions beginning with a verb.
 (But use ``noun_to_noun`` for conversion functions 
 and ``mathtools.noun`` for some ``mathtools`` functions.)
 
-Avoid underscore-prefixed 'private' functions.
+Avoid private classes.
 
-Avoid underscore-prefixed 'private' classes.
+Avoid private functions. (But use private class methods as necessary.)
 
 Implement package-level functions in preference to ``staticmethod`` class methods.
 

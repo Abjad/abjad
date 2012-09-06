@@ -1,6 +1,5 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from abjad.tools.measuretools.Measure import Measure
 
 
 # TODO: implement measuretools.set_measure_denominator_and_adjust_contents().
@@ -46,8 +45,9 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         renamed ``measuretools.set_measure_denominator_and_multiply_numerator()`` to
         ``measuretools.set_measure_denominator_and_adjust_numerator()``.
     '''
+    from abjad.tools import measuretools
 
-    if isinstance(measure, Measure):
+    if isinstance(measure, measuretools.Measure):
         # to allow iteration inside zero-update loop
         old_meter = contexttools.get_effective_time_signature(measure)
         old_meter_pair = (old_meter.numerator, old_meter.denominator)

@@ -1,6 +1,3 @@
-from abjad.tools import contexttools
-
-
 def measure_to_one_line_input_string(measure):
     r'''.. versionadded:: 2.6
 
@@ -43,6 +40,7 @@ def measure_to_one_line_input_string(measure):
 
     Return string.
     '''
+    from abjad.tools import contexttools
 
     time_signature = contexttools.get_effective_time_signature(measure)
     pair = (time_signature.numerator, time_signature.denominator)

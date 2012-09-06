@@ -1,6 +1,5 @@
-from abjad.tools import contexttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
 def multiply_contents_of_measures_in_expr(expr, n):
@@ -46,12 +45,13 @@ def multiply_contents_of_measures_in_expr(expr, n):
         renamed ``measuretools.spin()`` to
         ``measuretools.multiply_contents_of_measures_in_expr()``.
     '''
+    from abjad.tools import contexttools
+    from abjad.tools import measuretools
 
-    from abjad.tools import containertools
     assert isinstance(n, int)
     assert 0 < n
 
-    for measure in iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
         old_meter = contexttools.get_effective_time_signature(measure)
         containertools.repeat_contents_of_container(measure, n)
         old_pair = (old_meter.numerator, old_meter.denominator)

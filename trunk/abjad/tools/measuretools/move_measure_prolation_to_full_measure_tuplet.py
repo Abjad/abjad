@@ -1,6 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import timesignaturetools
 
 
 def move_measure_prolation_to_full_measure_tuplet(expr):
@@ -19,10 +20,9 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
         renamed ``measuretools.project()`` to
         ``measuretools.move_measure_prolation_to_full_measure_tuplet()``.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import containertools
     from abjad.tools import contexttools
     from abjad.tools import measuretools
+    from abjad.tools import timesignaturetools
     from abjad.tools import tuplettools
 
     for measure in measuretools.iterate_measures_forward_in_expr(expr):

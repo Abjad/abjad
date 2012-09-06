@@ -1,6 +1,4 @@
-from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
-
-
+# TODO: rename 'prev' to 'previous'
 def get_prev_measure_from_component(component):
     '''.. versionadded:: 1.1
 
@@ -50,5 +48,6 @@ def get_prev_measure_from_component(component):
         renamed ``iterate.measure_prev()`` to
         ``measuretools.get_prev_measure_from_component()``.
     '''
+    from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
 
     return _get_measure_from_component(component, '_prev')

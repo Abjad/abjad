@@ -1,5 +1,5 @@
 from abjad.tools import componenttools
-from abjad.tools import contexttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 
@@ -27,8 +27,7 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
 
     Return `measure`.
     '''
-
-    from abjad.tools import containertools
+    from abjad.tools import contexttools
 
     if multiplier == 0:
         raise ZeroDivisionError

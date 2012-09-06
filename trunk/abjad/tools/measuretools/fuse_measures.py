@@ -1,8 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import containertools
-from abjad.tools import contexttools
 from abjad.tools import durationtools
-from abjad.tools import timesignaturetools
 
 
 def fuse_measures(measures):
@@ -75,13 +73,15 @@ def fuse_measures(measures):
         renamed ``fuse.measures_by_reference()`` to
         ``measuretools.fuse_measures()``.
     '''
+    from abjad.tools import contexttools
     from abjad.tools import measuretools
+    from abjad.tools import timesignaturetools
     from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-    from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import \
-        _give_spanners_that_dominate_donor_components_to_recipient_components
+    from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components \
+        import _give_spanners_that_dominate_donor_components_to_recipient_components
 
     assert componenttools.all_are_contiguous_components_in_same_parent(measures,
-        klasses = (measuretools.Measure, ))
+        klasses=(measuretools.Measure, ))
 
     if len(measures) == 0:
         return None

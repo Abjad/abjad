@@ -1,3 +1,6 @@
+from abjad.tools import resttools
+
+
 def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
     r'''.. versionadded:: 1.1
 
@@ -120,8 +123,8 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
         ``measuretools.pad_measures_in_expr_with_rests()``.
     '''
     from abjad.tools.layouttools._insert_measure_padding import _insert_measure_padding
-    from abjad.tools.resttools.Rest import Rest
 
-    klass_token = Rest((1, 4))
+    klass_token = resttools.Rest((1, 4))
     result = _insert_measure_padding(expr, front, back, klass_token, splice=splice)
+
     return result

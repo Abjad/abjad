@@ -1,6 +1,4 @@
-from abjad.tools.measuretools.pitch_array_row_to_measure import pitch_array_row_to_measure
-
-
+# TODO: move to pitcharraytools
 def pitch_array_to_measures(pitch_array, cell_duration_denominator=8):
     r'''.. versionadded:: 2.0
 
@@ -41,10 +39,11 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator=8):
 
     Return list of measures.
     '''
+    from abjad.tools import measuretools
 
     measures = []
     for row in pitch_array.rows:
-        measure = pitch_array_row_to_measure(row, cell_duration_denominator)
+        measure = measuretools.pitch_array_row_to_measure(row, cell_duration_denominator)
         measures.append(measure)
 
     return measures

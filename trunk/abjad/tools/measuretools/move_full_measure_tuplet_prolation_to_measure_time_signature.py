@@ -1,6 +1,6 @@
-from abjad.tools import mathtools
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 
 
 def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
@@ -31,14 +31,14 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
         renamed ``measuretools.subsume()`` to
         ``measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature()``.
     '''
-    from abjad.tools.tuplettools.Tuplet import Tuplet
     from abjad.tools import componenttools
     from abjad.tools import contexttools
-    from abjad.tools import containertools
+    from abjad.tools import measuretools
+    from abjad.tools import tuplettools
 
-    for measure in iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
         if len(measure) == 1:
-            if isinstance(measure[0], Tuplet):
+            if isinstance(measure[0], tuplettools.Tuplet):
                 tuplet = measure[0]
                 tuplet_multiplier = tuplet.multiplier
                 tuplet_denominator = tuplet_multiplier.denominator

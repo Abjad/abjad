@@ -1,6 +1,3 @@
-from abjad.tools.measuretools.get_nth_measure_in_expr import get_nth_measure_in_expr
-
-
 def get_one_indexed_measure_number_in_expr(expr, measure_number):
     r'''.. versionadded:: 2.0
 
@@ -30,9 +27,11 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
         >>> measuretools.get_one_indexed_measure_number_in_expr(t, 3)
         Measure(2/8, [g'8, a'8])
 
-    Note that measures number from 1.
+    Note that measures number from ``1``.
     '''
+    from abjad.tools import measuretools
 
+    # check input
     if measure_number < 1:
         raise ValueError('measure numbers allow only positive integers.')
 
@@ -40,4 +39,4 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
     measure_index = measure_number - 1
 
     # return measure
-    return get_nth_measure_in_expr(expr, measure_index)
+    return measuretools.get_nth_measure_in_expr(expr, measure_index)
