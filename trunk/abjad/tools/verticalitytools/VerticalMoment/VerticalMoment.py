@@ -162,7 +162,6 @@ class VerticalMoment(ScoreSelection):
     @property
     def next_vertical_moment(self):
         '''Read-only reference to next vertical moment forward in time.'''
-        from abjad.tools import componenttools
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -175,7 +174,6 @@ class VerticalMoment(ScoreSelection):
     @property
     def next_vertical_moment(self):
         '''Read-only reference to next vertical moment forward in time.'''
-        from abjad.tools import componenttools
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -235,7 +233,6 @@ class VerticalMoment(ScoreSelection):
     @property
     def prev_vertical_moment(self):
         '''Read-only reference to prev vertical moment backward in time.'''
-        from abjad.tools import componenttools
         from abjad.tools import verticalitytools
         if self.prolated_offset == 0:
             raise IndexError

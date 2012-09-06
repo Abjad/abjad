@@ -73,8 +73,7 @@ def iterate_vertical_moments_backward_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools.verticalitytools.get_vertical_moment_at_offset_in_expr import \
-        get_vertical_moment_at_offset_in_expr
+    from abjad.tools import verticalitytools
 
     moments_in_governor = []
     for component in componenttools.iterate_components_forward_in_expr(expr):
@@ -84,4 +83,4 @@ def iterate_vertical_moments_backward_in_expr(expr):
     moments_in_governor.sort()
 
     for moment_in_governor in reversed(moments_in_governor):
-        yield get_vertical_moment_at_offset_in_expr(expr, moment_in_governor)
+        yield verticalitytools.get_vertical_moment_at_offset_in_expr(expr, moment_in_governor)

@@ -65,7 +65,7 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
     
     Return vertical moment.
     '''
-    from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
+    from abjad.tools import verticalitytools
 
     governors = []
     message = 'must be Abjad component or list or tuple of Abjad components.'
@@ -95,6 +95,6 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
             componenttools.component_to_score_index(y)))
     components = tuple(components)
 
-    vertical_moment = VerticalMoment(prolated_offset, governors, components)
+    vertical_moment = verticalitytools.VerticalMoment(prolated_offset, governors, components)
 
     return vertical_moment

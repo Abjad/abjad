@@ -1,4 +1,5 @@
 from abjad.tools import markuptools
+from abjad.tools import pitchtools
 
 
 def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction=Down):
@@ -81,7 +82,6 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction=Dow
 
     Return none.
     '''
-    from abjad.tools import pitchtools
     from abjad.tools import verticalitytools
 
     for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(expr):

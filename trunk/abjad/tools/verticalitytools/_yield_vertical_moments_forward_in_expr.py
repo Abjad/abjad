@@ -1,5 +1,5 @@
-from abjad.tools import containertools
 from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
 
 
@@ -8,7 +8,7 @@ def _yield_vertical_moments_forward_in_expr(expr):
 
     Optimized to avoid full-score traversal.
     '''
-    from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
+    from abjad.tools import verticalitytools
 
     if not isinstance(expr, componenttools.Component):
         raise TypeError('must be Abjad component.')
@@ -18,7 +18,7 @@ def _yield_vertical_moments_forward_in_expr(expr):
     _buffer_components_starting_with(expr, buffer, stop_offsets)
 
     while buffer:
-        yield VerticalMoment(cur_offset, governors, tuple(buffer))
+        yield verticalitytools.VerticalMoment(cur_offset, governors, tuple(buffer))
         cur_offset, stop_offsets = min(stop_offsets), []
         _update_buffer(cur_offset, buffer, stop_offsets)
 
@@ -38,7 +38,6 @@ def _buffer_components_starting_with(component, buffer, stop_offsets):
 
 
 def _next_in_parent(component):
-    from abjad.tools import componenttools
     if not isinstance(component, componenttools.Component):
         raise TypeError('must be component.')
     parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
