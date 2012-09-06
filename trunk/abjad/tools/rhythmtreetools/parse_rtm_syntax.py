@@ -1,5 +1,4 @@
 from abjad.tools import containertools
-from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
 
 
 def parse_rtm_syntax(rtm):
@@ -18,8 +17,9 @@ def parse_rtm_syntax(rtm):
 
     Return `FixedDurationTuplet` or `Container` instance.
     '''
+    from abjad.tools import rhythmtreetools
 
-    result = RhythmTreeParser()(rtm)
+    result = rhythmtreetools.RhythmTreeParser()(rtm)
 
     con = containertools.Container()
 
