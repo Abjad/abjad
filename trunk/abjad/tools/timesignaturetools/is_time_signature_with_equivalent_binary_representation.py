@@ -1,3 +1,4 @@
+from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 
@@ -26,8 +27,6 @@ def is_time_signature_with_equivalent_binary_representation(expr):
 
     Return boolean.
     '''
-    from abjad.tools import contexttools
-
     # check input
     if not isinstance(expr, contexttools.TimeSignatureMark):
         return False

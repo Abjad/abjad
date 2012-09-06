@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.skiptools.Skip import Skip
+from abjad.tools import componenttools
 
 
 def all_are_skips(expr):
@@ -37,5 +36,6 @@ def all_are_skips(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import skiptools
 
-    return all_are_components(expr, klasses=(Skip,))
+    return componenttools.all_are_components(expr, klasses=(skiptools.Skip,))

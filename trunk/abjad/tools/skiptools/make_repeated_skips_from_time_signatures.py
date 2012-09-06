@@ -1,6 +1,3 @@
-from abjad.tools.skiptools.make_repeated_skips_from_time_signature import make_repeated_skips_from_time_signature
-
-
 def make_repeated_skips_from_time_signatures(time_signatures):
     '''.. versionadded 1.1.2
 
@@ -11,13 +8,14 @@ def make_repeated_skips_from_time_signatures(time_signatures):
 
     Return list of skip lists.
     '''
+    from abjad.tools import skiptools
 
     # init result
     result = []
 
     # iterate time signatures and make skips
     for time_signature in time_signatures:
-        skips = make_repeated_skips_from_time_signature(time_signature)
+        skips = skiptools.make_repeated_skips_from_time_signature(time_signature)
         result.append(skips)
 
     # return result

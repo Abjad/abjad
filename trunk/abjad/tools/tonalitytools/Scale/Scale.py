@@ -1,12 +1,7 @@
-from abjad.tools.contexttools.KeySignatureMark import KeySignatureMark
-from abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment import HarmonicDiatonicIntervalSegment
-from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
+from abjad.tools import contexttools
+from abjad.tools import pitchtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
-from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
-from abjad.tools.pitchtools.PitchRange import PitchRange
-from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 
 
 class Scale(NamedChromaticPitchClassSegment):
@@ -22,12 +17,12 @@ class Scale(NamedChromaticPitchClassSegment):
     ### INITIALIZER ###
 
     def __new__(klass, *args):
-        if len(args) == 1 and isinstance(args[0], KeySignatureMark):
+        if len(args) == 1 and isinstance(args[0], contexttools.KeySignatureMark):
             key_signature = args[0]
         elif len(args) == 1 and isinstance(args[0], Scale):
             key_signature = args[0].key_signature
         elif len(args) == 2:
-            key_signature = KeySignatureMark(*args)
+            key_signature = contexttools.KeySignatureMark(*args)
         else:
             raise TypeError
         npcs = [key_signature.tonic]
@@ -55,8 +50,6 @@ class Scale(NamedChromaticPitchClassSegment):
 
     @property
     def diatonic_interval_class_segment(self):
-        from abjad.tools import sequencetools
-        from abjad.tools import pitchtools
         dics = []
         for left, right in sequencetools.iterate_sequence_pairwise_wrapped(self):
             dic = left - right
@@ -99,24 +92,25 @@ class Scale(NamedChromaticPitchClassSegment):
     ### PUBLIC METHODS ###
 
     def create_named_chromatic_pitch_set_in_pitch_range(self, pitch_range):
-        if not isinstance(pitch_range, PitchRange):
-            pitch_range = PitchRange(float(NamedChromaticPitch(pitch_range[0])), \
-                float(NamedChromaticPitch(pitch_range[1])))
+        if not isinstance(pitch_range, pitchtools.PitchRange):
+            pitch_range = pitchtools.PitchRange(float(pitchtools.NamedChromaticPitch(pitch_range[0])), \
+                float(pitchtools.NamedChromaticPitch(pitch_range[1])))
         low = pitch_range.start_pitch.octave_number
         high = pitch_range.stop_pitch.octave_number
         pitches = []
         octave = low
         while octave <= high:
             for x in self:
-                pitch = NamedChromaticPitch(x, octave)
+                pitch = pitchtools.NamedChromaticPitch(x, octave)
                 if pitch_range.start_pitch <= pitch and \
                     pitch <= pitch_range.stop_pitch:
                     pitches.append(pitch)
             octave += 1
-        return NamedChromaticPitchSet(pitches)
+        return pitchtools.NamedChromaticPitchSet(pitches)
 
     def named_chromatic_pitch_class_to_scale_degree(self, *args):
-        foreign_pitch_class = NamedChromaticPitchClass(*args)
+        from abjad.tools import tonalitytools
+        foreign_pitch_class = pitchtools.NamedChromaticPitchClass(*args)
         letter = foreign_pitch_class._diatonic_pitch_class_name
         for i, pc in enumerate(self):
             if pc._diatonic_pitch_class_name == letter:
@@ -124,13 +118,14 @@ class Scale(NamedChromaticPitchClassSegment):
                 scale_degree_index = i
                 scale_degree_number = scale_degree_index + 1
                 break
-        native_pitch = NamedChromaticPitch(native_pitch_class, 4)
-        foreign_pitch = NamedChromaticPitch(foreign_pitch_class, 4)
+        native_pitch = pitchtools.NamedChromaticPitch(native_pitch_class, 4)
+        foreign_pitch = pitchtools.NamedChromaticPitch(foreign_pitch_class, 4)
         accidental = foreign_pitch._accidental - native_pitch._accidental
-        return ScaleDegree(accidental, scale_degree_number)
+        return tonalitytools.ScaleDegree(accidental, scale_degree_number)
 
     def scale_degree_to_named_chromatic_pitch_class(self, *args):
-        scale_degree = ScaleDegree(*args)
+        from abjad.tools import tonalitytools
+        scale_degree = tonalitytools.ScaleDegree(*args)
         scale_index = scale_degree.number - 1
         pitch_class = self[scale_index]
         pitch_class = pitch_class.apply_accidental(scale_degree._accidental)

@@ -29,7 +29,6 @@ def iterate_skips_forward_in_expr(expr, start=0, stop=None):
 
     Return generator.
     '''
-
     from abjad.tools import skiptools
 
     return skiptools.iterate_skips_in_expr(expr, start=start, stop=stop)

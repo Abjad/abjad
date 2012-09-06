@@ -1,4 +1,8 @@
 import itertools
+from abjad.tools import chordtools
+from abjad.tools import componenttools
+from abjad.tools import notetools
+from abjad.tools import spannertools
 from abjad.tools.abctools.ScoreSelection import ScoreSelection
 
 
@@ -28,7 +32,6 @@ class TieChain(ScoreSelection):
 
         Return boolean.
         '''
-        from abjad.tools import componenttools
         return componenttools.all_are_components_in_same_parent(self[:])
 
     @property
@@ -52,8 +55,6 @@ class TieChain(ScoreSelection):
 
         Return boolean.
         '''
-        from abjad.tools import chordtools
-        from abjad.tools import notetools
         return isinstance(self.head, (notetools.Note, chordtools.Chord))
 
     @property
@@ -68,7 +69,6 @@ class TieChain(ScoreSelection):
     def leaves(self):
         '''Read-only tuple of leaves in tie spanner.
         '''
-        from abjad.tools import spannertools
         from abjad.tools import tietools
         try:
             tie_spanner = spannertools.get_the_only_spanner_attached_to_component(self[0], tietools.TieSpanner)

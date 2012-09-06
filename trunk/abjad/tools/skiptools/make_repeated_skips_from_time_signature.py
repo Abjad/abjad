@@ -1,5 +1,4 @@
-from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
-from abjad.tools.skiptools.Skip import Skip
+from abjad.tools import contexttools
 
 
 def make_repeated_skips_from_time_signature(time_signature):
@@ -12,13 +11,14 @@ def make_repeated_skips_from_time_signature(time_signature):
 
     Return list of skips.
     '''
+    from abjad.tools import skiptools
 
     # afford basic input polymorphism
-    time_signature = TimeSignatureMark(time_signature)
+    time_signature = contexttools.TimeSignatureMark(time_signature)
 
     # check input
     if time_signature.is_nonbinary:
         raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
 
     # make and return repeated skips
-    return time_signature.numerator * Skip((1, time_signature.denominator))
+    return time_signature.numerator * skiptools.Skip((1, time_signature.denominator))

@@ -1,3 +1,4 @@
+from abjad.tools import contexttools
 from abjad.tools import mathtools
 
 
@@ -38,8 +39,6 @@ def get_nonbinary_factor_from_time_signature_denominator(time_signature):
 
     Return nonnegative integer.
     '''
-    from abjad.tools import contexttools
-
     # check input
     assert isinstance(time_signature, contexttools.TimeSignatureMark)
 

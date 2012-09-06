@@ -1,4 +1,4 @@
-from abjad.tools.skiptools.Skip import Skip
+from abjad.tools import componenttools
 
 
 def yield_groups_of_skips_in_sequence(sequence):
@@ -36,6 +36,6 @@ def yield_groups_of_skips_in_sequence(sequence):
 
     Return generator.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import skiptools
 
-    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, Skip)
+    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, skiptools.Skip)

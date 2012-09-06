@@ -40,7 +40,6 @@ def iterate_skips_in_expr(expr, reverse=False, start=0, stop=None):
 
     Return generator.
     '''
-
     from abjad.tools import skiptools
 
     return componenttools.iterate_components_in_expr(

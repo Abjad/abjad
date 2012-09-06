@@ -1,5 +1,5 @@
-from abjad.tools.leaftools.Leaf import Leaf
 import copy
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Skip(Leaf):

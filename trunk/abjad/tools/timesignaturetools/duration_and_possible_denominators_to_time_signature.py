@@ -1,3 +1,4 @@
+from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 
@@ -31,8 +32,6 @@ def duration_and_possible_denominators_to_time_signature(duration, denominators=
         renamed ``timesignaturetools.make_best()`` to
         ``timesignaturetools.duration_and_possible_denominators_to_time_signature()``.
     '''
-    from abjad.tools import contexttools
-
     if denominators is not None:
         if factor is not None:
             denominators = [d for d in denominators if factor in mathtools.factors(d)]
