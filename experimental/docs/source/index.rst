@@ -327,6 +327,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/timespantools/Timespan/Timespan
+   experimental/timespantools/TimespanInventory/TimespanInventory
 
 .. rubric:: concrete classes
 

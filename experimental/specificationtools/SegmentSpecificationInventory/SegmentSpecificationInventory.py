@@ -2,6 +2,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SegmentSpecificationInventory(AbjadObject, list):
+    r'''.. versionadded:: 1.0
+
+    Segment specification inventory.
+    '''
 
     ### INITIALIZER ###
 
