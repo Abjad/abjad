@@ -57,6 +57,10 @@ Read-only Properties
 
     Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
 
+.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.start_timepoint
+
+.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.stop_timepoint
+
 .. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -101,5 +105,3 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.__repr__
-
-    Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`

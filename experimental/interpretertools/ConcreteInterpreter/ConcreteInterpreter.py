@@ -515,6 +515,7 @@ class ConcreteInterpreter(Interpreter):
         for region_division_command in region_division_commands:
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command)
+            #self._debug(division_region_division_list, 'drdl')
             # TODO: newly created division_region_division_list needs to be saved somewhere for future use
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists

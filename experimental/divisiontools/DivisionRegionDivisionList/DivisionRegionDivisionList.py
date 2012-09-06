@@ -17,4 +17,25 @@ class DivisionRegionDivisionList(DivisionList):
     exactly one division-maker applied to exactly one division region.
     '''
 
-    pass
+    ### INITIALIZER ###
+
+    def __init__(self, divisions, start_timepoint=None, stop_timepoint=None):
+        DivisionList.__init__(self, divisions)
+        self._start_timepoint = start_timepoint
+        self._stop_timepoint = stop_timepoint    
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        return '{}({!r}, start_timepoint={!r}, stop_timepoint={!r})'.format(
+            self._class_name, self._contents_string, self.start_timepoint, self.stop_timepoint)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def start_timepoint(self):
+        return self._start_timepoint
+
+    @property
+    def stop_timepoint(self):
+        return self._stop_timepoint

@@ -45,11 +45,32 @@ class DivisionList(AbjadObject):
         return len(self.divisions)
 
     def __repr__(self):
+        return '{}({!r})'.format(self._class_name, self._contents_string)
+
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_string(self):
         contents_string = [str(x) for x in self.divisions]
         contents_string = ', '.join(contents_string)
-        return '{}({!r})'.format(self._class_name, contents_string)
+        return contents_string
 
-    ### READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def divisions(self):
+        return self._divisions
+
+    @property
+    def duration(self):
+        return sum([division.duration for division in self.divisions])
+
+    @property
+    def is_closed(self):
+        return self.is_left_closed and self.is_right_closed
+
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def divisions(self):

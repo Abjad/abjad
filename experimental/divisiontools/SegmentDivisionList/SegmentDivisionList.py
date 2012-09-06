@@ -48,7 +48,7 @@ class SegmentDivisionList(DivisionList):
 
         >>> for x in score_specification.contexts['Voice 1']['division_region_division_lists']: x
         ... 
-        DivisionRegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
+        DivisionRegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]', start_timepoint=None, stop_timepoint=None)
 
     But notice that ``'Voice 1'`` has three different segment division lists.
 
