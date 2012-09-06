@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.MarkupCommand import MarkupCommand
-
-
 def combine_markup_commands(*commands):
     r'''Combine MarkupCommand and/or string objects.
 
@@ -34,14 +31,15 @@ def combine_markup_commands(*commands):
 
     Returns a markup command instance, or a string if that was the only argument.
     '''
+    from abjad.tools import markuptools
 
     assert len(commands)
-    assert all([isinstance(command, (MarkupCommand, str)) for command in commands])
+    assert all([isinstance(command, (markuptools.MarkupCommand, str)) for command in commands])
 
     if 1 == len(commands):
         return commands[0]
 
-    combined = MarkupCommand('combine', commands[0], commands[1])
+    combined = markuptools.MarkupCommand('combine', commands[0], commands[1])
     for command in commands[2:]:
-        combined = MarkupCommand('combine', combined, command)
+        combined = markuptools.MarkupCommand('combine', combined, command)
     return combined

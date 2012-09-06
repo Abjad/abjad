@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.Markup import Markup
-
-
 def make_blank_line_markup():
     r'''.. versionadded:: 2.9
 
@@ -20,5 +17,6 @@ def make_blank_line_markup():
 
     Return markup.
     '''
+    from abjad.tools import markuptools
     
-    return Markup(r'\fill-line { " " }')
+    return markuptools.Markup(r'\fill-line { " " }')

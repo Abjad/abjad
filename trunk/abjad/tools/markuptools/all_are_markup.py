@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.Markup import Markup
-
-
 def all_are_markup(expr):
     '''.. versionadded:: 2.6
 
@@ -25,5 +22,6 @@ def all_are_markup(expr):
 
     Return boolean.
     '''
+    from abjad.tools import markuptools
 
-    return all([isinstance(x, Markup) for x in expr])
+    return all([isinstance(x, markuptools.Markup) for x in expr])

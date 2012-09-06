@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.Markup import Markup
-
-
 def make_vertically_adjusted_composer_markup(composer, 
     font_name='Times', font_size=3, space_above=20, space_right=0):
     r'''.. versionadded:: 2.9
@@ -30,6 +27,7 @@ def make_vertically_adjusted_composer_markup(composer,
 
     Return markup.
     '''
+    from abjad.tools import markuptools
 
     assert isinstance(composer, str)
     assert isinstance(font_name, str)
@@ -45,4 +43,4 @@ def make_vertically_adjusted_composer_markup(composer,
         }
        ''' % (font_name, space_above, font_size, composer, space_right)
 
-    return Markup(contents)
+    return markuptools.Markup(contents)

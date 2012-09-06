@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.Markup import Markup
-
-
 def make_centered_title_markup(title, font_name='Times', font_size=18):
     r'''.. versionadded:: 2.9
     
@@ -40,6 +37,7 @@ def make_centered_title_markup(title, font_name='Times', font_size=18):
 
     Return markup.
     '''
+    from abjad.tools import markuptools
 
     assert isinstance(title, str)
     assert isinstance(font_name, str)
@@ -56,4 +54,4 @@ def make_centered_title_markup(title, font_name='Times', font_size=18):
             }
         }''' % (font_name, font_size, title)
 
-    return Markup(contents)
+    return markuptools.Markup(contents)

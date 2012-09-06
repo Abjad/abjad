@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.Markup import Markup
-
-
 def make_big_centered_page_number_markup(text=None):
     r'''.. versionadded:: 1.1
 
@@ -35,6 +32,7 @@ def make_big_centered_page_number_markup(text=None):
         renamed ``markuptools.big_centered_page_number()`` to
         ``markuptools.make_big_centered_page_number_markup()``.
     '''
+    from abjad.tools import markuptools
 
     assert isinstance(text, (str, type(None)))
 
@@ -52,6 +50,6 @@ def make_big_centered_page_number_markup(text=None):
         \on-the-fly #print-page-number-check-first
         \fromproperty #'page:page-number-string } }''' % text
 
-    markup = Markup(contents)
+    markup = markuptools.Markup(contents)
 
     return markup

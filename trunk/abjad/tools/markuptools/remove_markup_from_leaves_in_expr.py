@@ -1,6 +1,3 @@
-#from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
-
-
 def remove_markup_from_leaves_in_expr(expr):
     r'''.. versionadded:: 1.1
 

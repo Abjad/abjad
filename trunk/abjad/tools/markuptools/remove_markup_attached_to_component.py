@@ -1,7 +1,3 @@
-from abjad.tools.markuptools.Markup import Markup
-from abjad.tools.markuptools.get_markup_attached_to_component import get_markup_attached_to_component
-
-
 def remove_markup_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
@@ -48,9 +44,10 @@ def remove_markup_attached_to_component(component):
 
     Return tuple of zero or more markup objects.
     '''
+    from abjad.tools import markuptools
 
     # get markup attached to component
-    result = get_markup_attached_to_component(component)
+    result = markuptools.get_markup_attached_to_component(component)
 
     # remove markup attached to component
     for mark in result:

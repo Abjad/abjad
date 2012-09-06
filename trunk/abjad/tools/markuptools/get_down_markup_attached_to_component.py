@@ -1,6 +1,3 @@
-from abjad.tools.markuptools.get_markup_attached_to_component import get_markup_attached_to_component
-
-
 def get_down_markup_attached_to_component(component):
     '''.. versionadded:: 2.0
 
@@ -25,10 +22,11 @@ def get_down_markup_attached_to_component(component):
 
     Return tuple of zero or more markup objects.
     '''
+    from abjad.tools import markuptools
 
     result = []
 
-    markups = get_markup_attached_to_component(component)
+    markups = markuptools.get_markup_attached_to_component(component)
     for markup in markups:
         if markup.direction is Down:
             result.append(markup)
