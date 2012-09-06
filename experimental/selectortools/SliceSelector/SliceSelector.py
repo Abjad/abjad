@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+import abc
 from experimental import helpertools
 from experimental.selectortools.Selector import Selector
 
@@ -12,7 +12,7 @@ class SliceSelector(Selector):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, start_identifier=None, stop_identifier=None):
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier

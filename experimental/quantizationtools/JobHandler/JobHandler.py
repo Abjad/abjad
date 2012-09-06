@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import abctools
 
 
@@ -16,6 +16,6 @@ class JobHandler(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __call__(self, jobs):
         raise NotImplemented

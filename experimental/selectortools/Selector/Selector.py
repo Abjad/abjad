@@ -1,6 +1,6 @@
-from abc import ABCMeta
-from abc import abstractmethod
-from abc import abstractproperty
+import abc
+import abc
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import timespantools
 
@@ -13,7 +13,7 @@ class Selector(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass
 

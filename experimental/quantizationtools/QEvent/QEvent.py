@@ -1,7 +1,7 @@
-from abc import ABCMeta, abstractmethod
+import abc
+import inspect
 from abjad.tools import abctools
 from abjad.tools import durationtools
-import inspect
 
 
 class QEvent(abctools.AbjadObject):
@@ -20,7 +20,7 @@ class QEvent(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, offset, index=None):
         offset = durationtools.Offset(offset)
         self._offset = offset

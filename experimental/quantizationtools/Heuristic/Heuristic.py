@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import abctools
 from experimental.quantizationtools.QTargetBeat import QTargetBeat
 
@@ -17,6 +17,6 @@ class Heuristic(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def _process(self, q_target_beats):
         raise NotImplemented

@@ -1,4 +1,4 @@
-from abc import abstractmethod, abstractproperty
+import abc
 from abjad.tools import abctools
 from abjad.tools import chordtools
 from abjad.tools import marktools
@@ -98,7 +98,7 @@ class QTarget(abctools.AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def beats(self):
         raise NotImplemented
 
@@ -107,7 +107,7 @@ class QTarget(abctools.AbjadObject):
         last_item = self._items[-1]
         return last_item.offset_in_ms + last_item.duration_in_ms
 
-    @abstractproperty
+    @abc.abstractproperty
     def item_klass(self):
         raise NotImplemented
 
@@ -129,7 +129,7 @@ class QTarget(abctools.AbjadObject):
         leaf_two.parent[index] = new_leaf
         return new_leaf
 
-    @abstractmethod
+    @abc.abstractmethod
     def _notate(self, grace_handler, attack_point_optimizer):
         raise NotImplemented
 

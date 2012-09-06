@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import abctools
 
 
@@ -21,6 +21,6 @@ class GraceHandler(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __call__(self, q_events):
         raise NotImplemented

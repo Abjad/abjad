@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import selectortools
 
@@ -11,7 +11,7 @@ class Setting(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, attribute, source, selector, persist=True, truncate=False):
         assert isinstance(attribute, str)
         assert isinstance(selector, (selectortools.Selector, type(None)))

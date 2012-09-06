@@ -1,4 +1,4 @@
-from abc import abstractmethod, abstractproperty
+import abc
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
@@ -18,7 +18,7 @@ class QSchema(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, *args, **kwargs):
         if 1 == len(args) and isinstance(args[0], type(self)):
             items = copy.copy(args[0].items)
@@ -101,7 +101,7 @@ class QSchema(abctools.AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def _keyword_argument_names(self):
         raise NotImplemented
 
@@ -111,7 +111,7 @@ class QSchema(abctools.AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def item_klass(self):
         '''The schema's item class.'''
         raise NotImplemented
@@ -126,12 +126,12 @@ class QSchema(abctools.AbjadObject):
         '''The default search tree.'''
         return self._search_tree
 
-    @abstractproperty
+    @abc.abstractproperty
     def target_item_klass(self):
         '''The schema's target class' item class.'''
         raise NotImplemented
 
-    @abstractproperty
+    @abc.abstractproperty
     def target_klass(self):
         '''The schema's target class.'''
         raise NotImplemented

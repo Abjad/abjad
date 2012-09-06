@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import abctools
 
 
@@ -18,6 +18,6 @@ class AttackPointOptimizer(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __call__(self, expr):
         raise NotImplemented

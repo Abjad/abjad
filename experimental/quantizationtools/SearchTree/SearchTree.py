@@ -1,4 +1,4 @@
-from abc import abstractmethod, abstractproperty
+import abc
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
@@ -59,7 +59,7 @@ class SearchTree(abctools.AbjadObject):
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def default_definition(self):
         raise NotImplemented
 
@@ -98,10 +98,10 @@ class SearchTree(abctools.AbjadObject):
             i += 1
         return indices, subdivisions
 
-    @abstractmethod
+    @abc.abstractmethod
     def find_leaf_subdivisions(self, leaf):
         raise NotImplemented
 
-    @abstractmethod
+    @abc.abstractmethod
     def is_valid_definition(self, definition):
         raise NotImplemented

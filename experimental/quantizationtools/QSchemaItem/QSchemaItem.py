@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import abctools
 from collections import OrderedDict
 
@@ -15,7 +15,7 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __new__(klass):
         raise Exception
 
