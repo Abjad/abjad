@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -14,11 +13,11 @@ class Timespan(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass
 

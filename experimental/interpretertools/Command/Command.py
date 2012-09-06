@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -14,11 +13,11 @@ class Command(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INTIAILIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, resolved_value, start_segment_name, context_name, start_offset, stop_offset, duration):
         duration = durationtools.Duration(duration)
         assert isinstance(start_segment_name, str)

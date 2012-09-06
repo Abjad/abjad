@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
@@ -23,13 +22,13 @@ class Specification(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     attributes = helpertools.AttributeNameEnumeration()
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, score_template):
         from experimental import specificationtools
         self._score_template = score_template

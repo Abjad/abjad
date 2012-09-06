@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import mathtools
 from experimental.selectortools.Selector import Selector
 
@@ -12,11 +11,11 @@ class RatioPartSelector(Selector):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, selector, ratio, part):
         assert isinstance(selector, Selector)
         assert isinstance(part, int)

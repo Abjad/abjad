@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import durationtools
 from fractions import Fraction
 from experimental.handlertools.Handler import Handler
@@ -9,11 +8,11 @@ class DynamicHandler(Handler):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, minimum_prolated_duration=None):
         self.minimum_prolated_duration = minimum_prolated_duration
 

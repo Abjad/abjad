@@ -1,6 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
-from abc import abstractproperty
+import abc
 from abjad.tools import abctools
 
 
@@ -8,11 +6,11 @@ class Handler(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self):
         pass
 
@@ -27,6 +25,6 @@ class Handler(abctools.AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def _tools_package_name(self):
         pass
