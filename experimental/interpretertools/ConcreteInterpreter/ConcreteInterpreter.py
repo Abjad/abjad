@@ -503,7 +503,14 @@ class ConcreteInterpreter(Interpreter):
             divisions = self.division_material_request_to_divisions(division_material_request)
         else:
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
+        segment_specification = self.get_segment_specification(region_division_command.start_segment_name)
+        segment_selector = segment_specification.selector
+        start_offset, stop_offset = region_division_command.start_offset, region_division_command.stop_offset
+        start_timepoint = timespantools.Timepoint(anchor=segment_selector, addendum=start_offset)
+        stop_timepoint = timespantools.Timepoint(anchor=segment_selector, addendum=stop_offset)
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
+        division_region_division_list._start_timepoint = start_timepoint    
+        division_region_division_list._stop_timepoint = stop_timepoint
         division_region_division_list._fresh = region_division_command.fresh
         division_region_division_list._truncate = region_division_command.truncate
         return division_region_division_list
@@ -517,6 +524,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command)
             #self._debug(division_region_division_list, 'drdl')
+            #print ''
             # TODO: newly created division_region_division_list needs to be saved somewhere for future use
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists

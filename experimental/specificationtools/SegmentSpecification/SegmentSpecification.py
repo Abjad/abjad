@@ -209,7 +209,7 @@ class SegmentSpecification(Specification):
 
     @property
     def segment_name(self):
-        '''Segment specification name.
+        '''Segment specification name::
 
             >>> segment.segment_name
             'red'
@@ -217,6 +217,17 @@ class SegmentSpecification(Specification):
         Return string.
         '''
         return self._segment_name
+
+    @property
+    def selector(self):
+        '''Segment specification selector::
+
+            >>> segment.selector
+            SingleSegmentSelector(identifier='red')
+
+        Return single-segment selector.
+        '''
+        return self.select_segment()
 
     @property
     def single_context_settings(self):
