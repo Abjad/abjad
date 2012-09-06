@@ -22,7 +22,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator=8):
 
     ::
 
-        >>> measure = measuretools.pitch_array_row_to_measure(array.rows[0])
+        >>> measure = pitcharraytools.pitch_array_row_to_measure(array.rows[0])
 
     ::
 

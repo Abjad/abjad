@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_measuretools_pitch_array_to_measures_01():
+def test_pitcharraytools_pitch_array_to_measures_01():
 
     array = pitcharraytools.PitchArray([
         [1, (2, 1), ([-2, -1.5], 2)],
@@ -14,7 +14,7 @@ def test_measuretools_pitch_array_to_measures_01():
     [g'      ] [fs'    ] []
     '''
 
-    measures = measuretools.pitch_array_to_measures(array)
+    measures = pitcharraytools.pitch_array_to_measures(array)
     score = Score(Staff([]) * 2)
     score[0].append(measures[0])
     score[1].append(measures[1])

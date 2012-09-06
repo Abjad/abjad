@@ -836,8 +836,6 @@ Composition packages
    tools/measuretools/multiply_contents_of_measures_in_expr
    tools/measuretools/pad_measures_in_expr_with_rests
    tools/measuretools/pad_measures_in_expr_with_skips
-   tools/measuretools/pitch_array_row_to_measure
-   tools/measuretools/pitch_array_to_measures
    tools/measuretools/replace_contents_of_measures_in_expr
    tools/measuretools/report_time_signature_distribution
    tools/measuretools/scale_contents_of_measures_in_expr
@@ -904,7 +902,10 @@ Composition packages
    tools/pitcharraytools/concatenate_pitch_arrays
    tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
+   tools/pitcharraytools/make_pitch_array_score_from_pitch_arrays
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
+   tools/pitcharraytools/pitch_array_row_to_measure
+   tools/pitcharraytools/pitch_array_to_measures
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1273,7 +1274,6 @@ Composition packages
    tools/scoretools/make_empty_piano_score
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
-   tools/scoretools/make_pitch_array_score_from_pitch_arrays
 
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

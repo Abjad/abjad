@@ -1,6 +1,6 @@
-from abjad.tools.scoretools.Score import Score
-from abjad.tools.stafftools.Staff import Staff
-from abjad.tools.scoretools.StaffGroup.StaffGroup import StaffGroup
+from abjad.tools import measuretools
+from abjad.tools import scoretools
+from abjad.tools import stafftools
 
 
 def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
@@ -22,7 +22,7 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
 
     ::
 
-        >>> score = scoretools.make_pitch_array_score_from_pitch_arrays([array_1, array_2])
+        >>> score = pitcharraytools.make_pitch_array_score_from_pitch_arrays([array_1, array_2])
 
     ::
 
@@ -64,18 +64,17 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
 
     Return score.
     '''
+    from abjad.tools import pitcharraytools
 
-    from abjad.tools import measuretools
-
-    score = Score([])
-    staff_group = StaffGroup([])
+    score = scoretools.Score([])
+    staff_group = scoretools.StaffGroup([])
     score.append(staff_group)
     number_staves = pitch_arrays[0].depth
-    staves = Staff([]) * number_staves
+    staves = stafftools.Staff([]) * number_staves
     staff_group.extend(staves)
 
     for pitch_array in pitch_arrays:
-        measures = measuretools.pitch_array_to_measures(pitch_array)
+        measures = pitcharraytools.pitch_array_to_measures(pitch_array)
         for staff, measure in zip(staves, measures):
             staff.append(measure)
 

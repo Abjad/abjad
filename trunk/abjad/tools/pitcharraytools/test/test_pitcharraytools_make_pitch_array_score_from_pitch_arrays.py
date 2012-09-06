@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import pitcharraytools
 
 
-def test_scoretools_make_pitch_array_score_from_pitch_arrays_01():
+def test_pitcharraytools_make_pitch_array_score_from_pitch_arrays_01():
 
     array_1 = pitcharraytools.PitchArray([
         [1, (2, 1), ([-2, -1.5], 2)],
@@ -13,7 +13,7 @@ def test_scoretools_make_pitch_array_score_from_pitch_arrays_01():
         [1, 1, 1],
         [1, 1, 1]])
 
-    score = scoretools.make_pitch_array_score_from_pitch_arrays([array_1, array_2])
+    score = pitcharraytools.make_pitch_array_score_from_pitch_arrays([array_1, array_2])
 
     r'''
     \new Score <<

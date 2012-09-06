@@ -1,4 +1,6 @@
-# TODO: move to pitcharraytools
+from abjad.tools import measuretools
+
+
 def pitch_array_to_measures(pitch_array, cell_duration_denominator=8):
     r'''.. versionadded:: 2.0
 
@@ -19,7 +21,7 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator=8):
 
     ::
 
-        >>> measuretools.pitch_array_to_measures(array)
+        >>> pitcharraytools.pitch_array_to_measures(array)
         [Measure(4/8, [r8, d'8, <bf bqf>4]), Measure(4/8, [g'4, fs'8, r8])]
         >>> for measure in _:
         ...     f(measure)
@@ -39,11 +41,11 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator=8):
 
     Return list of measures.
     '''
-    from abjad.tools import measuretools
+    from abjad.tools import pitcharraytools
 
     measures = []
     for row in pitch_array.rows:
-        measure = measuretools.pitch_array_row_to_measure(row, cell_duration_denominator)
+        measure = pitcharraytools.pitch_array_row_to_measure(row, cell_duration_denominator)
         measures.append(measure)
 
     return measures
