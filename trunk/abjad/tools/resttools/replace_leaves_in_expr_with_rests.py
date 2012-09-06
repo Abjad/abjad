@@ -1,3 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import leaftools
+
+
 def replace_leaves_in_expr_with_rests(expr):
     r'''.. versionadded:: 1.1
 
@@ -23,8 +27,6 @@ def replace_leaves_in_expr_with_rests(expr):
 
     Return none.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import leaftools
     from abjad.tools import resttools
 
     for leaf in leaftools.iterate_leaves_forward_in_expr(expr):

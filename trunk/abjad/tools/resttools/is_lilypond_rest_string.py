@@ -1,5 +1,5 @@
-from abjad.tools.durationtools.is_lilypond_duration_string import lilypond_duration_string_regex_body
 import re
+from abjad.tools.durationtools.is_lilypond_duration_string import lilypond_duration_string_regex_body
 
 
 lilypond_rest_string_regex_body = '''

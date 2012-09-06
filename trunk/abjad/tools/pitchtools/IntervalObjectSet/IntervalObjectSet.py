@@ -1,5 +1,4 @@
 import abc
-
 from abjad.tools.pitchtools.ObjectSet import ObjectSet
 
 

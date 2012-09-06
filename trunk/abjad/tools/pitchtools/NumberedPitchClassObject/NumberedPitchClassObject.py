@@ -1,5 +1,4 @@
 import abc
-
 from abjad.tools.pitchtools.NumberedObject import NumberedObject
 from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
 

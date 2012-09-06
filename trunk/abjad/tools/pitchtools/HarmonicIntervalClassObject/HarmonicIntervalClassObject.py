@@ -1,5 +1,4 @@
 import abc
-
 from abjad.tools.pitchtools.HarmonicObject import HarmonicObject
 from abjad.tools.pitchtools.IntervalObjectClass import IntervalObjectClass
 
