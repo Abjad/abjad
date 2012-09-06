@@ -13,7 +13,7 @@ def format_scheme_value(value):
 
     Return string.
     '''
-    from abjad.tools.schemetools.Scheme import Scheme
+    from abjad.tools import schemetools
 
     if isinstance(value, str):
         if -1 == value.find(' ') and -1 == value.find('"'):
@@ -31,7 +31,7 @@ def format_scheme_value(value):
     elif isinstance(value, (list, tuple)):
         return '(%s)' % ' '.join([format_scheme_value(x) for x in value])
 
-    elif isinstance(value, Scheme):
+    elif isinstance(value, schemetools.Scheme):
         return str(value)
 
     elif isinstance(value, type(None)):

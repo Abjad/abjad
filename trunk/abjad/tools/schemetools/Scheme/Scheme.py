@@ -1,5 +1,4 @@
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.schemetools.format_scheme_value import format_scheme_value
 
 
 class Scheme(AbjadObject):
@@ -76,8 +75,8 @@ class Scheme(AbjadObject):
 
     @property
     def _formatted_value(self):
-        return format_scheme_value(self._value)
-        #return Scheme._format_value(self._value)
+        from abjad.tools import schemetools
+        return schemetools.format_scheme_value(self._value)
 
     ### PUBLIC PROPERTIES ###
 

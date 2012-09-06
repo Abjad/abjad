@@ -1,5 +1,4 @@
 from abjad.tools.schemetools.Scheme import Scheme
-from abjad.tools.schemetools.SchemePair import SchemePair
 
 
 class SchemeAssociativeList(Scheme):
@@ -14,13 +13,18 @@ class SchemeAssociativeList(Scheme):
     Scheme associative lists are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
 
+    ### INITIALIZER ###
+
     def __init__(self, *args, **kwargs):
+        from abjad.tools import schemetools
         args_as_pairs = []
         for arg in args:
-            if not isinstance(arg, (tuple, SchemePair)):
+            if not isinstance(arg, (tuple, schemetools.SchemePair)):
                 raise TypeError('must be Python pair or Scheme pair: "%s".' % str(arg))
-            arg_as_pair = SchemePair(*arg)
+            arg_as_pair = schemetools.SchemePair(*arg)
             args_as_pairs.append(arg_as_pair)
         Scheme.__init__(self, *args_as_pairs, **{'quoting': "'"})

@@ -1,4 +1,3 @@
-from abjad.tools.schemetools.format_scheme_value import format_scheme_value
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -13,7 +12,11 @@ class SchemePair(Scheme):
     Scheme pairs are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ##
+
     __slots__ = ()
+
+    ### INITIALIZER ##
 
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], SchemePair):
@@ -30,7 +33,8 @@ class SchemePair(Scheme):
 
     @property
     def _formatted_value(self):
-        return '(%s . %s)' % tuple([format_scheme_value(x) for x in self._value])
+        from abjad.tools import schemetools
+        return '(%s . %s)' % tuple([schemetools.format_scheme_value(x) for x in self._value])
 
     ### PUBLIC PROPERTIES ###
 

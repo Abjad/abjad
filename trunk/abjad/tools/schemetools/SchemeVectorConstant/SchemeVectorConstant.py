@@ -14,7 +14,11 @@ class SchemeVectorConstant(Scheme):
     Scheme vector constants are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ##
+
     __slots__ = ()
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         Scheme.__init__(self, *args, **{'quoting': "'#"})
