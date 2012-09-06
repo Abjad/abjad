@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -6,7 +6,7 @@ class _BaseResidueClass(AbjadObject):
     '''Abstract base class for ResidueClass and ResidueClassExpression.
     '''
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     __slots__ = ()
 
     ### SPECIAL METHODS ###

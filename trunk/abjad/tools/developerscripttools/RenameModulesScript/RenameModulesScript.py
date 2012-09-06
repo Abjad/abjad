@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import documentationtools
 from abjad.tools import iotools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript

@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+import abc
 from abjad.tools.abctools import AbjadObject
 import re
 
@@ -8,7 +8,7 @@ class Check(AbjadObject):
     
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
@@ -26,7 +26,7 @@ class Check(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def _run(self, expr):
         raise NotImplemented
 

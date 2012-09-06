@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 
@@ -11,7 +11,7 @@ class _Instrument(contexttools.InstrumentMark):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 

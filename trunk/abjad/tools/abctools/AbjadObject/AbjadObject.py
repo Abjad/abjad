@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 import types
 
 
@@ -18,12 +17,12 @@ class AbjadObject(object):
     ### CLASS ATTRIBUTES ###
 
     _has_default_attribute_values = False
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     __slots__ = ()
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, *args, **kwargs):
         pass
 
@@ -104,7 +103,7 @@ class AbjadObject(object):
             value = getattr(self, name)
             if value is not None:
                 # if the value is a class like Note (which is unusual)
-                if type(value) == ABCMeta:
+                if type(value) == abc.ABCMeta:
                     value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
                     string = '{}={}'.format(name, value)
                     result.append(string)
@@ -235,7 +234,7 @@ class AbjadObject(object):
             if value is not None:
                 if not isinstance(value, types.MethodType):
                     # if value is noninstantiable class
-                    if type(value) == ABCMeta:
+                    if type(value) == abc.ABCMeta:
                         value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
                         result.append('{}{}={}{}'.format(prefix, name, value, suffix))
                     elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
@@ -264,7 +263,7 @@ class AbjadObject(object):
             prefix, suffix = '', ', '
         for value in self._mandatory_argument_values:
             # if value is a (noninstantiated) class
-            if type(value) == ABCMeta:
+            if type(value) == abc.ABCMeta:
                 value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
                 result.append('{}{}{}'.format(prefix, value, suffix))
             elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):

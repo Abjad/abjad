@@ -1,8 +1,8 @@
-from abjad.tools import abctools
-from abjad.tools import stringtools
-from abc import abstractmethod, abstractproperty
+import abc
 import argparse
 import os
+from abjad.tools import abctools
+from abjad.tools import stringtools
 
 
 class DeveloperScript(abctools.AbjadObject):
@@ -72,7 +72,7 @@ class DeveloperScript(abctools.AbjadObject):
     def formatted_version(self):
         return self._argument_parser.format_version()
 
-    @abstractproperty
+    @abc.abstractproperty
     def long_description(self):
         '''The long description, printed after arguments explanations.'''
         raise NotImplemented
@@ -89,7 +89,7 @@ class DeveloperScript(abctools.AbjadObject):
         '''The script's scripting subcommand group.'''
         return None
 
-    @abstractproperty
+    @abc.abstractproperty
     def short_description(self):
         '''The short description of the script, printed before arguments explanations.
 
@@ -97,18 +97,18 @@ class DeveloperScript(abctools.AbjadObject):
         '''
         raise NotImplemented
 
-    @abstractproperty
+    @abc.abstractproperty
     def version(self):
         '''The version number of the script.'''
         raise NotImplemented
 
     ### PUBLIC METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def process_args(self, args):
         pass
 
-    @abstractmethod
+    @abc.abstractmethod
     def setup_argument_parser(self):
         pass
 

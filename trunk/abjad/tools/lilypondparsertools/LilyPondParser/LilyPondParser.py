@@ -1,5 +1,6 @@
 import itertools
-import ply
+from ply import lex
+from ply import yacc
 from abjad.tools import abctools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
@@ -21,8 +22,8 @@ from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 
 
 # apply monkey patch
-ply.yacc.LRParser._lilypond_patch_parse = _parse
-ply.yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
+yacc.LRParser._lilypond_patch_parse = _parse
+yacc.LRParser._lilypond_patch_parse_debug = _parse_debug
 
 
 class LilyPondParser(abctools.Parser):
@@ -380,7 +381,7 @@ class LilyPondParser(abctools.Parser):
         self._push_extra_token(self._parser.lookahead)
 
         # create the backup token, set as new lookahead
-        backup = ply.lex.LexToken()
+        backup = lex.LexToken()
         backup.type = 'BACKUP'
         backup.value = '(backed-up?)'
         backup.lexpos = 0
@@ -388,7 +389,7 @@ class LilyPondParser(abctools.Parser):
         self._parser.lookahead = backup
 
         if token_type:
-            token = ply.lex.LexToken()
+            token = lex.LexToken()
             token.type = token_type
             token.value = token_value
             token.lexpos = 0
@@ -566,14 +567,14 @@ class LilyPondParser(abctools.Parser):
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
 
-        token = ply.lex.LexToken()
+        token = lex.LexToken()
         token.type = token_type
         token.value = token_value
         token.lexpos = 0
         token.lineno = 0
         self._push_extra_token(token)
 
-        reparse = ply.lex.LexToken()
+        reparse = lex.LexToken()
         reparse.type = 'REPARSE'
         reparse.value = predicate
         reparse.lineno = 0

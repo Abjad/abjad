@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -7,7 +7,7 @@ class _LilyPondComponentPlugIn(AbjadObject):
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     def __init__(self, **kwargs):
         # note_head__color = 'red' or staff__tuplet_full_length = True

@@ -1,11 +1,11 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class DirectedSpanner(Spanner):
     
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, components=[], direction=None):
         Spanner.__init__(self, components)
         self.direction = direction

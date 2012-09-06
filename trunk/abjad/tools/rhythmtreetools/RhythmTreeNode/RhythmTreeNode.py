@@ -1,5 +1,5 @@
 import inspect
-from abc import abstractmethod, abstractproperty
+import abc
 from fractions import Fraction
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
@@ -14,7 +14,7 @@ class RhythmTreeNode(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, duration):
         self._offset = durationtools.Offset(0)
         self._offsets_are_current = False
@@ -23,18 +23,18 @@ class RhythmTreeNode(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __call__(self, pulse_duration):
         raise NotImplemented
 
     def __copy__(self, *args):
         return self.__deepcopy__(None)
         
-    @abstractmethod
+    @abc.abstractmethod
     def __deepcopy__(self, memo):
         raise NotImplemented
 
-    @abstractmethod
+    @abc.abstractmethod
     def __getnewargs__(self):
         raise NotImplemented
 
@@ -104,7 +104,7 @@ class RhythmTreeNode(AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    @abstractproperty
+    @abc.abstractproperty
     def _pretty_rtm_format_pieces(self):
         raise NotImplemented
 
@@ -473,7 +473,7 @@ class RhythmTreeNode(AbjadObject):
             node = node.parent
         return node
 
-    @abstractproperty
+    @abc.abstractproperty
     def rtm_format(self):
         '''The node's RTM format:
 

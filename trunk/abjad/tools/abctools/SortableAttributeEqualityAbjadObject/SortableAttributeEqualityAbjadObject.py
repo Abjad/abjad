@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools.abctools.AttributeEqualityAbjadObject import AttributeEqualityAbjadObject
 
 
@@ -13,7 +13,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
     __slots__ = ('_comparison_attribute', '_format_string')
 
     ### SPECIAL METHODS ###

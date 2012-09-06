@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools import abctools
 
 
@@ -7,7 +7,7 @@ class Documenter(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     __slots__ = ('_object', '_prefix')
 

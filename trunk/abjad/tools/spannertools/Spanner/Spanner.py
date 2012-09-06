@@ -1,5 +1,5 @@
 import copy
-from abc import abstractmethod
+import abc
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
@@ -37,7 +37,7 @@ class Spanner(AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, components=None):
         self._components = []
         self._contiguity_constraint = 'thread'

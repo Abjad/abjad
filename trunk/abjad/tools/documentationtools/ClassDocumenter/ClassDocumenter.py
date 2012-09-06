@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools.documentationtools.Documenter import Documenter
 import inspect
 

@@ -1,5 +1,5 @@
 import copy
-import ply
+from ply import lex
 from abjad.tools.abctools import AbjadObject
 
 
@@ -301,7 +301,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:278
     # <version>{ANY_CHAR}
-    @ply.lex.TOKEN(ANY_CHAR)
+    @lex.TOKEN(ANY_CHAR)
     def t_version_278(self, t):
         print("LilyPondParser: Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
@@ -351,7 +351,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
-#    @ply.lex.token.TOKEN(RESTNAME)
+#    @lex.token.TOKEN(RESTNAME)
 #    def t_notes_345(self, t):
 #        t.type = 'RESTNAME'
 #        return t
@@ -372,7 +372,7 @@ class LilyPondLexicalDefinition(AbjadObject):
             t.value = False
         return t
 
-    @ply.lex.TOKEN("\#'%s" % DASHED_WORD)
+    @lex.TOKEN("\#'%s" % DASHED_WORD)
     def t_INITIAL_markup_notes_353_identifier(self, t):
         t.type = 'SCM_IDENTIFIER'
         t.value = t.value[2:]
@@ -443,7 +443,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:417
     # <notes,figures>{ALPHAWORD}
-    @ply.lex.TOKEN(ALPHAWORD)
+    @lex.TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
         pitch_names = self.client._pitch_names
         if t.value in pitch_names:
@@ -461,14 +461,14 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:421
     # <notes,figures>{NOTECOMMAND}
-    @ply.lex.TOKEN(NOTECOMMAND)
+    @lex.TOKEN(NOTECOMMAND)
     def t_notes_421(self, t):
         t.type = self.scan_escaped_word(t)
         return t
 
     # lexer.ll:424
     # <notes,figures>{FRACTION}
-    @ply.lex.TOKEN(FRACTION)
+    @lex.TOKEN(FRACTION)
     def t_notes_424(self, t):
         from abjad.tools import lilypondparsertools
         t.type = 'FRACTION'
@@ -478,14 +478,14 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:428
     # <notes,figures>{UNSIGNED}/\/|{UNSIGNED}
-    #@ply.lex.TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
-    @ply.lex.TOKEN('%s/\/' % UNSIGNED)
+    #@lex.TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
+    @lex.TOKEN('%s/\/' % UNSIGNED)
     def t_notes_428(self, t):
         t.type = 'UNSIGNED'
         t.value = int(t.value)
         return t
 
-    @ply.lex.TOKEN(UNSIGNED)
+    @lex.TOKEN(UNSIGNED)
     def t_notes_428b(self, t):
         t.type = 'UNSIGNED'
         t.value = int(t.value)
@@ -493,7 +493,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:433
     # <notes,figures>{E_UNSIGNED}
-    @ply.lex.TOKEN(E_UNSIGNED)
+    @lex.TOKEN(E_UNSIGNED)
     def t_notes_433(self, t):
         t.type = 'E_UNSIGNED'
         t.value = int(t.value[1:])
@@ -501,7 +501,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:440
     # <quote,lyric_quote>\\{ESCAPED}
-    @ply.lex.TOKEN('\\%s' % ESCAPED)
+    @lex.TOKEN('\\%s' % ESCAPED)
     def t_quote_440(self, t):
         self.string_accumulator += t.value
         pass
@@ -597,7 +597,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:548
     # <markup>{MARKUPCOMMAND}
-    @ply.lex.TOKEN(MARKUPCOMMAND)
+    @lex.TOKEN(MARKUPCOMMAND)
     def t_markup_548(self, t):
         value = t.value[1:]
 
@@ -644,27 +644,27 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:643
     # <INITIAL>{DASHED_WORD}
-    @ply.lex.TOKEN(DASHED_WORD)
+    @lex.TOKEN(DASHED_WORD)
     def t_INITIAL_643(self, t):
         t.type = self.scan_bare_word(t)
         return t        
 
     # lexer.ll:646
     # <INITIAL>{DASHED_KEY_WORD}
-    @ply.lex.TOKEN(DASHED_KEY_WORD)
+    @lex.TOKEN(DASHED_KEY_WORD)
     def t_INITIAL_646(self, t):
         t.type = self.scan_escaped_word(t)
         return t
 
     # lexer.ll:651
     # -{UNSIGNED}|{REAL}
-    @ply.lex.TOKEN(REAL)
+    @lex.TOKEN(REAL)
     def t_651_a(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
         return t
 
-    @ply.lex.TOKEN('-%s' % UNSIGNED)
+    @lex.TOKEN('-%s' % UNSIGNED)
     def t_651_b(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
@@ -680,7 +680,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     # lexer.ll:666
     # {UNSIGNED}
-    @ply.lex.TOKEN(UNSIGNED)
+    @lex.TOKEN(UNSIGNED)
     def t_666(self, t):
         t.type = 'UNSIGNED'
         t.value = float(t.value)
@@ -869,7 +869,7 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     def push_signature(self, signature, t):
 
-        token = ply.lex.LexToken()
+        token = lex.LexToken()
         token.type = 'EXPECT_NO_MORE_ARGS'
         token.value = None
         token.lineno = t.lineno
@@ -883,7 +883,7 @@ class LilyPondLexicalDefinition(AbjadObject):
                 optional = True
                 continue
 
-            token = ply.lex.LexToken()
+            token = lex.LexToken()
             token.value = predicate
             token.lineno = t.lineno
             token.lexpos = t.lexpos
@@ -904,7 +904,7 @@ class LilyPondLexicalDefinition(AbjadObject):
             self.client._push_extra_token(token)
 
             if optional:
-                optional_token = ply.lex.LexToken()
+                optional_token = lex.LexToken()
                 optional_token.value = 'optional?'
                 optional_token.lineno = t.lineno
                 optional_token.lexpos = t.lexpos

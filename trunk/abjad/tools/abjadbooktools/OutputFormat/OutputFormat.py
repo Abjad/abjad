@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import abctools
 
 
@@ -10,7 +10,7 @@ class OutputFormat(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, code_block_opening, code_block_closing, code_indent, image_block, image_format):
         self._code_block_opening = code_block_opening
         self._code_block_closing = code_block_closing

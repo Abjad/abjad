@@ -1,10 +1,10 @@
-from abc import abstractproperty
-from abjad.tools.abctools.AbjadObject import AbjadObject
-from ply import lex
-from ply import yacc
+import abc
 import inspect
 import logging
 import os
+from ply import lex
+from ply import yacc
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Parser(AbjadObject):
@@ -89,7 +89,7 @@ class Parser(AbjadObject):
         '''The parser's PLY Lexer instance.'''
         return self._lexer
 
-    @abstractproperty
+    @abc.abstractproperty
     def lexer_rules_object(self):
         '''The object containing the parser's lexical rule definitions.'''
         raise NotImplemented
@@ -115,7 +115,7 @@ class Parser(AbjadObject):
         '''The parser's PLY LRParser instance.'''
         return self._parser
 
-    @abstractproperty
+    @abc.abstractproperty
     def parser_rules_object(self):
         '''The object containing the parser's syntactical rule definitions.'''
         raise NotImplemented

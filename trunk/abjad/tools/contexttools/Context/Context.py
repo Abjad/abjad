@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools import formattools
 from abjad.tools.containertools.Container import Container
 import copy
@@ -28,7 +28,7 @@ class Context(Container):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta 
+    __metaclass__ = abc.ABCMeta 
     __slots__ = ('_context_name', '_engraver_consists', '_engraver_removals',
         '_is_nonsemantic', '_name', )
 

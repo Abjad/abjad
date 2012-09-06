@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -10,7 +10,7 @@ class _LilyPondObjectProxy(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 

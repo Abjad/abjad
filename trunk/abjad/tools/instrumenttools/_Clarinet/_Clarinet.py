@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools.instrumenttools._SingleReedInstrument import _SingleReedInstrument
 
 
@@ -7,7 +7,7 @@ class _Clarinet(_SingleReedInstrument):
 
     Abjad model of the family of clarinets.
     '''
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     def __init__(self, **kwargs):
         _SingleReedInstrument.__init__(self, **kwargs)

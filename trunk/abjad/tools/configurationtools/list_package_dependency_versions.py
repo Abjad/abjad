@@ -22,8 +22,8 @@ def list_package_dependency_versions():
 
     deps['ply'] = None
     try:
-        import ply
-        deps['ply'] = ply.lex.__version__
+        from ply import lex
+        deps['ply'] = lex.__version__
     except ImportError:
         pass
 

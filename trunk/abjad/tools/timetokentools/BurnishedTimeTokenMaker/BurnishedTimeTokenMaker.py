@@ -1,5 +1,5 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
+import abc
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
@@ -26,7 +26,7 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     _default_mandatory_input_arguments = ([-1, 4, -2, 3], 16, )
 
@@ -138,7 +138,7 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
 
     ### PRIVATE METHODS ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def _force_token_parts(self, tokens, quintuplet):
         pass
 

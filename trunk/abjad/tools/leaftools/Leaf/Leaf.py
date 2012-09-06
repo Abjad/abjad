@@ -1,4 +1,4 @@
-from abc import ABCMeta
+import abc
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import sequencetools
@@ -12,7 +12,7 @@ class Leaf(Component):
 
     ### CLASS ATTRIBUTES ##
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     # TODO: see if _grace and _after_grace can be removed #
     __slots__ = ('_after_grace', '_grace', '_leaf_index',

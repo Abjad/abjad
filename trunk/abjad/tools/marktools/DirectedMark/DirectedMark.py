@@ -1,4 +1,4 @@
-from abc import abstractmethod
+import abc
 from abjad.tools import stringtools
 from abjad.tools.marktools.Mark import Mark
 
@@ -14,7 +14,7 @@ class DirectedMark(Mark):
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, *args, **kwargs):
         Mark.__init__(self, *args)
         if 'direction' in kwargs:

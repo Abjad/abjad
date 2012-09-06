@@ -2130,7 +2130,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
         p[0] = p[1]
 
-        token = ply.lex.LexToken()
+        token = lex.LexToken()
         token.type = 'MARKUP_IDENTIFIER'
         token.value = p[1]
         token.lexpos = 0

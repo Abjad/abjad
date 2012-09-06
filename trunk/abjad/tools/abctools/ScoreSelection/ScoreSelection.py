@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -13,15 +12,14 @@ class ScoreSelection(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __metclass__ = ABCMeta
-
+    __metaclass__ = abc.ABCMeta
     __slots__ = ()
 
     _default_mandatory_input_arguments = ([], )
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, music):
         if music is None:
             music = ()
