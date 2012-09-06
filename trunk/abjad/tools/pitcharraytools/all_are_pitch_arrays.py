@@ -1,14 +1,7 @@
-from abjad.tools.pitcharraytools.PitchArray import PitchArray
-
-
 def all_are_pitch_arrays(expr):
     '''.. versionadded:: 2.6
 
     True when `expr` is a sequence of Abjad pitch arrays::
-
-        >>> from abjad.tools import pitcharraytools
-
-    ::
 
         >>> pitch_array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
@@ -29,5 +22,6 @@ def all_are_pitch_arrays(expr):
 
     Return boolean.
     '''
+    from abjad.tools import pitcharraytools
 
-    return all([isinstance(x, PitchArray) for x in expr])
+    return all([isinstance(x, pitcharraytools.PitchArray) for x in expr])

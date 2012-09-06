@@ -1,4 +1,3 @@
-from abjad.tools.pitcharraytools.PitchArray import PitchArray
 import copy
 
 
@@ -6,10 +5,6 @@ def concatenate_pitch_arrays(pitch_arrays):
     '''.. versionadded:: 2.0
 
     Concatenate `pitch_arrays`::
-
-        >>> from abjad.tools import pitcharraytools
-
-    ::
 
         >>> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
         >>> print array_1
@@ -39,12 +34,13 @@ def concatenate_pitch_arrays(pitch_arrays):
 
     Return pitch array.
     '''
+    from abjad.tools import pitcharraytools
 
-    if not all([isinstance(x, PitchArray) for x in pitch_arrays]):
+    if not all([isinstance(x, pitcharraytools.PitchArray) for x in pitch_arrays]):
         raise TypeError('must be pitch arrays.')
 
     if not pitch_arrays:
-        return PitchArray()
+        return pitcharraytools.PitchArray()
 
     merged_array = copy.copy(pitch_arrays[0])
     for pitch_array in pitch_arrays[1:]:

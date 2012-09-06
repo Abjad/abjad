@@ -1,8 +1,9 @@
+from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
+from abjad.tools import measuretools
 
 
-# TODO: move to pitcharraytools
 def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator=8):
     r'''.. versionadded:: 2.0
 
@@ -36,8 +37,6 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator=8):
 
     Return measure.
     '''
-    from abjad.tools import contexttools
-    from abjad.tools import measuretools
     from abjad.tools import pitcharraytools
 
     if not isinstance(pitch_array_row, pitcharraytools.PitchArrayRow):

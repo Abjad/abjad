@@ -1,15 +1,10 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitcharraytools.PitchArray import PitchArray
 
 
 def list_nonspanning_subarrays_of_pitch_array(pitch_array):
     r'''.. versionadded:: 2.0
 
     List nonspanning subarrays of `pitch_array`::
-
-        >>> from abjad.tools import pitcharraytools
-
-    ::
 
         >>> array = pitcharraytools.PitchArray([
         ...     [2, 2, 3, 1],
@@ -49,8 +44,9 @@ def list_nonspanning_subarrays_of_pitch_array(pitch_array):
 
     Return list.
     '''
+    from abjad.tools import pitcharraytools
 
-    if not isinstance(pitch_array, PitchArray):
+    if not isinstance(pitch_array, pitcharraytools.PitchArray):
         raise TypeError('must be pitch array.')
 
     unspanned_indices = []
