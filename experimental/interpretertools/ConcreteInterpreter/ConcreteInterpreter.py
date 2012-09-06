@@ -388,6 +388,8 @@ class ConcreteInterpreter(Interpreter):
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         #self._debug_values(region_division_commands, 'rdc')
+        region_division_commands = self.supply_missing_region_division_commands(region_division_commands, voice)
+        #self._debug_values(region_division_commands, 'srdc')
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands, voice)
         #self._debug_values(division_region_division_lists, 'drdl')
@@ -506,14 +508,14 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list.truncate = region_division_command.truncate
         return division_region_division_list
 
+    # NEXT TODO: Extend the loop in this function to save intermediate values as they are produced.
+    #            This will enable later division commands to refer to the materials produced by earlier commands.
     def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
-        if region_division_commands:
-            region_division_commands = self.supply_missing_region_division_commands(
-                region_division_commands, voice)
         division_region_division_lists = []
         for region_division_command in region_division_commands:
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command)
+            # TODO: newly created division_region_division_list needs to be saved somewhere for future use
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
 
@@ -767,9 +769,7 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         #self._debug_values(region_division_commands, 'rdc')
         if not region_division_commands:
-            region_division_command = self.make_time_signature_region_division_command(
-                voice, self.score_specification.start_offset, self.score_specification.stop_offset)
-            return [region_division_command]
+            return region_division_commands
         first_start_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
             region_division_commands[0].start_segment_name,
             region_division_commands[0].start_offset)
