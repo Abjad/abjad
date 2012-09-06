@@ -1,3 +1,5 @@
+from abjad.tools import componenttools
+from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -9,8 +11,6 @@ class DiscontiguousSpannerCheck(Check):
     '''
 
     def _run(self, expr):
-        from abjad.tools import componenttools
-        from abjad.tools import spannertools
         violators = []
         total, bad = 0, 0
         #for spanner in expr.spanners.contained:

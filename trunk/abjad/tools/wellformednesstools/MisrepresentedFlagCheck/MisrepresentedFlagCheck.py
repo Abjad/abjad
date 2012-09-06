@@ -1,11 +1,11 @@
-from abjad.tools.wellformednesstools.Check import Check
 from abjad.tools import durationtools
+from abjad.tools import leaftools
+from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisrepresentedFlagCheck(Check):
 
     def _run(self, expr):
-        from abjad.tools import leaftools
         violators = []
         total = 0
         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):

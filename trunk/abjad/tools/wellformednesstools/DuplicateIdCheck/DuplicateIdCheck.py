@@ -1,14 +1,13 @@
-from abjad.tools.wellformednesstools.Check import Check
-from abjad.tools.componenttools.Component import Component
+from abjad.tools import componenttools
 from abjad.tools import sequencetools
+from abjad.tools.wellformednesstools.Check import Check
 
 
 class DuplicateIdCheck(Check):
 
     def _run(self, expr):
-        from abjad.tools import componenttools
         violators = []
-        components = componenttools.iterate_components_forward_in_expr(expr, Component)
+        components = componenttools.iterate_components_forward_in_expr(expr)
         total_ids = [id(x) for x in components]
         unique_ids = sequencetools.truncate_runs_in_sequence(total_ids)
         if len(unique_ids) < len(total_ids):

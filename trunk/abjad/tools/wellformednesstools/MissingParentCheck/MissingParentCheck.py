@@ -1,3 +1,4 @@
+from abjad.tools import componenttools
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -6,7 +7,6 @@ class MissingParentCheck(Check):
     '''
 
     def _run(self, expr):
-        from abjad.tools import componenttools
         violators = []
         total = 0
         for component in componenttools.iterate_components_forward_in_expr(expr):

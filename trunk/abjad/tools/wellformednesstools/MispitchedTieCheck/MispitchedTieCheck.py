@@ -1,3 +1,8 @@
+from abjad.tools import componenttools
+from abjad.tools import leaftools
+from abjad.tools import notetools
+from abjad.tools import spannertools
+from abjad.tools import tietools
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -8,11 +13,6 @@ class MispitchedTieCheck(Check):
         Do not check tied rests or skips.
         Implement chord-checking later.
         '''
-        from abjad.tools import componenttools
-        from abjad.tools import leaftools
-        from abjad.tools import notetools
-        from abjad.tools import spannertools
-        from abjad.tools import tietools
         violators = []
         total = 0
         for leaf in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):

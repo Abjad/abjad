@@ -1,5 +1,7 @@
+from abjad.tools import contexttools
+from abjad.tools import spannertools
+from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
-from abjad.tools.spannertools import HairpinSpanner
 
 
 class IntermarkedHairpinCheck(Check):
@@ -7,12 +9,10 @@ class IntermarkedHairpinCheck(Check):
     '''
 
     def _run(self, expr):
-        from abjad.tools import contexttools
-        from abjad.tools import spannertools
         violators = []
         total, bad = 0, 0
         hairpins = spannertools.get_spanners_attached_to_any_improper_child_of_component(
-            expr, HairpinSpanner)
+            expr, spannertools.HairpinSpanner)
         for hairpin in hairpins:
             if 2 < len(hairpin.leaves):
                 for leaf in hairpin.leaves[1:-1]:

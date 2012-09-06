@@ -1,3 +1,5 @@
+from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -6,11 +8,9 @@ class EmptyContainerCheck(Check):
     runtime = 'composition'
 
     def _run(self, expr):
-        from abjad.tools import componenttools
-        from abjad.tools.containertools.Container import Container
         violators = []
         bad, total = 0, 0
-        for t in componenttools.iterate_components_forward_in_expr(expr, Container):
+        for t in componenttools.iterate_components_forward_in_expr(expr, containertools.Container):
             if len(t) == 0:
                 violators.append(t)
                 bad += 1

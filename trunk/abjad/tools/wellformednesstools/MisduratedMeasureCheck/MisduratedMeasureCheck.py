@@ -1,3 +1,5 @@
+from abjad.tools import contexttools
+from abjad.tools import measuretools
 from abjad.tools.wellformednesstools.Check import Check
 
 
@@ -5,8 +7,6 @@ class MisduratedMeasureCheck(Check):
     '''Does the (pre)prolated duration of the measure match its meter?'''
 
     def _run(self, expr):
-        from abjad.tools import contexttools
-        from abjad.tools import measuretools
         violators = []
         total, bad = 0, 0
         for measure in measuretools.iterate_measures_forward_in_expr(expr):
