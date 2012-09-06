@@ -6,11 +6,9 @@ class TimespanInequalityTemplate(AbjadObject):
 
     Relate expression ``expr`` to timespan ``t``.
 
-    Expression starts during timespan::
-
         >>> from experimental import *
 
-    ::
+    Expression starts during timespan::
 
         >>> timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
         TimespanInequalityTemplate('t.start <= expr.start < t.stop')
@@ -25,9 +23,9 @@ class TimespanInequalityTemplate(AbjadObject):
         >>> timespantools.TimespanInequalityTemplate('t.start <= expr.start < expr.stop <= t.stop')
         TimespanInequalityTemplate('t.start <= expr.start < expr.stop <= t.stop')
         
-    Timepsan objects perform no input checking.
+    Timepsan inequality template objects perform no input checking.
 
-    SingleSourceTimespan objects share qualities with lamba expressions.
+    Timespan inequality template objects are frozen inequalities.
     '''
 
     ### INITIALIZER ###

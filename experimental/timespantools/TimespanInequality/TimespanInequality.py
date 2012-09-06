@@ -4,16 +4,16 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class TimespanInequality(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    SingleSourceTimespan inequality.
-
-    Test for all objects that start during segment ``'red'``::
-
-        >>> from experimental import *
+    Timespan inequality.
 
     ::
 
-        >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> timespan_inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> from experimental import *
+
+    Test for all objects that start during segment ``'red'``::
+
+        >>> selector = selectortools.SingleSegmentSelector(identifier='red')
+        >>> timespan_inequality = timespantools.expr_starts_during_timespan(timespan=selector)
 
     ::
 
@@ -27,7 +27,7 @@ class TimespanInequality(AbjadObject):
                 )
             )
 
-    SingleSourceTimespan inequalities are immutable.
+    Timespan inequalities are immutable.
     '''
 
     ### INITIALIZER ###

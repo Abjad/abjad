@@ -1,6 +1,5 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental import helpertools
-from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
 class SingleContextSettingInventory(ObjectInventory):
