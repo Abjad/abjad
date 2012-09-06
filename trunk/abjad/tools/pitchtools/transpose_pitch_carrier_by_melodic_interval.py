@@ -1,9 +1,3 @@
-from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
-from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
-from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_chromatic_interval import _transpose_pitch_carrier_by_melodic_chromatic_interval
-from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_diatonic_interval import _transpose_pitch_carrier_by_melodic_diatonic_interval
-
-
 def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval):
     '''.. versionadded:: 2.0
 
@@ -36,12 +30,15 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
 
     Return `pitch_carrier`.
     '''
+    from abjad.tools import pitchtools
+    from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_chromatic_interval import \
+        _transpose_pitch_carrier_by_melodic_chromatic_interval
+    from abjad.tools.pitchtools._transpose_pitch_carrier_by_melodic_diatonic_interval import \
+        _transpose_pitch_carrier_by_melodic_diatonic_interval
 
-    if isinstance(melodic_interval, (MelodicDiatonicInterval, str)):
-        melodic_interval = MelodicDiatonicInterval(melodic_interval)
+    if isinstance(melodic_interval, (pitchtools.MelodicDiatonicInterval, str)):
+        melodic_interval = pitchtools.MelodicDiatonicInterval(melodic_interval)
         return _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic_interval)
-#   elif isinstance(melodic_interval, MelodicChromaticInterval):
-#      return _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_interval)
     else:
-        melodic_interval = MelodicChromaticInterval(melodic_interval)
+        melodic_interval = pitchtools.MelodicChromaticInterval(melodic_interval)
         return _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_interval)

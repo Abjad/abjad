@@ -46,7 +46,6 @@ def set_default_accidental_spelling(spelling='mixed'):
         renamed ``configurationtools.set_default_accidental_spelling()`` to
         ``pitchtools.set_default_accidental_spelling()``.
     '''
-
     from abjad import ABJCFG
 
     if spelling not in ('mixed', 'sharps', 'flats'):

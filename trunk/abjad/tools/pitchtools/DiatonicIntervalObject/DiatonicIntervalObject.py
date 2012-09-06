@@ -1,5 +1,4 @@
-from abc import ABCMeta
-from abc import abstractmethod
+import abc
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
 from abjad.tools.pitchtools.IntervalObject import IntervalObject
@@ -13,13 +12,13 @@ class DiatonicIntervalObject(IntervalObject, DiatonicObject):
 
     ### INITIALIZER ##
 
-    __metaclass__ = ABCMeta
+    __metaclass__ = abc.ABCMeta
 
     __slots__ = ('_number', '_quality_string')
 
     ### INITIALIZER ###
 
-    @abstractmethod
+    @abc.abstractmethod
     def __init__(self, quality_string, number):
         if quality_string == 'diminished':
             if abs(number) == 1:

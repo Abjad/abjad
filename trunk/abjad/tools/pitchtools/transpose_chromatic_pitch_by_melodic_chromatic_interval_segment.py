@@ -1,7 +1,3 @@
-from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
-from abjad.tools.pitchtools.ChromaticPitchObject import ChromaticPitchObject
-
-
 def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segment):
     '''.. versionadded:: 2.0
 
@@ -17,16 +13,22 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
 
     Return list of numbered chromatic pitches.
     '''
+    from abjad.tools import pitchtools
 
-    if not isinstance(pitch, ChromaticPitchObject):
+    # check input
+    if not isinstance(pitch, pitchtools.ChromaticPitchObject):
         raise TypeError
 
-    if not isinstance(segment, MelodicChromaticIntervalSegment):
+    # check input
+    if not isinstance(segment, pitchtools.MelodicChromaticIntervalSegment):
         raise TypeError
 
     if not hasattr(pitch, 'transpose'):
         pitch = pitch.numbered_chromatic_pitch
+
     pitches = [pitch.transpose(segment[0].number)]
+
     for interval in segment[1:]:
         pitches.append(pitches[-1].transpose(interval.number))
+
     return pitches

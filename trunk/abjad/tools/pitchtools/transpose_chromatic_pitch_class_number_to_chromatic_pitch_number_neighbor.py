@@ -15,8 +15,10 @@ def transpose_chromatic_pitch_class_number_to_chromatic_pitch_number_neighbor(
     '''
 
     target_pc = chromatic_pitch_number % 12
+
     down = (target_pc - chromatic_pitch_class_number) % 12
     up = (chromatic_pitch_class_number - target_pc) % 12
+
     if up < down:
         return chromatic_pitch_number + up
     else:

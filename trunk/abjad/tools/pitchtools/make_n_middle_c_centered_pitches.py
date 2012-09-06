@@ -1,7 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_number_to_octave_tick_string
-
-
 def make_n_middle_c_centered_pitches(n):
     '''.. versionadded:: 2.0
 
@@ -24,6 +20,7 @@ def make_n_middle_c_centered_pitches(n):
 
     Return list of zero or more named chromatic pitches.
     '''
+    from abjad.tools import pitchtools
 
     if n == 0:
         return []
@@ -34,5 +31,5 @@ def make_n_middle_c_centered_pitches(n):
     centered = [x - average for x in indices]
     letters = ['c', 'd', 'e', 'f', 'g', 'a', 'b']
     tups = [divmod(x, 7) for x in centered]
-    pitch_names = [letters[x[1]] + octave_number_to_octave_tick_string(x[0] + 4) for x in tups]
-    return [NamedChromaticPitch(x) for x in pitch_names]
+    pitch_names = [letters[x[1]] + pitchtools.octave_number_to_octave_tick_string(x[0] + 4) for x in tups]
+    return [pitchtools.NamedChromaticPitch(x) for x in pitch_names]

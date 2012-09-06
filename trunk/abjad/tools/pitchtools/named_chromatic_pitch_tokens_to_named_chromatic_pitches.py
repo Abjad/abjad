@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-
-
 def named_chromatic_pitch_tokens_to_named_chromatic_pitches(pitch_tokens):
     '''.. versionadded:: 2.0
 
@@ -11,5 +8,6 @@ def named_chromatic_pitch_tokens_to_named_chromatic_pitches(pitch_tokens):
 
     Return list of zero or more named chromatic pitches.
     '''
+    from abjad.tools import pitchtools
 
-    return [NamedChromaticPitch(pitch_token) for pitch_token in pitch_tokens]
+    return [pitchtools.NamedChromaticPitch(pitch_token) for pitch_token in pitch_tokens]

@@ -7,6 +7,9 @@
     The ``pitchtools`` package should not import any component packages 
     at top level.
 
+    The ``pitchtools`` package should not import ``contexttools`` at
+    top level, and vice versa.
+
 '''
 from abjad.tools import importtools
 

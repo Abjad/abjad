@@ -1,8 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
-from abjad.tools.pitchtools.chromatic_pitch_number_to_octave_number import chromatic_pitch_number_to_octave_number
-
-
 def respell_named_chromatic_pitches_in_expr_with_flats(expr):
     r'''.. versionadded:: 1.1
 
@@ -45,24 +40,29 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
         renamed ``pitchtools.make_flat()`` to
         ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats()``.
     '''
-    from abjad.tools.chordtools.Chord import Chord
+    from abjad.tools import chordtools
     from abjad.tools import leaftools
+    from abjad.tools import pitchtools
 
 
-    if isinstance(expr, NamedChromaticPitch):
+    if isinstance(expr, pitchtools.NamedChromaticPitch):
         return _new_pitch_with_flats(expr)
     else:
         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-            if isinstance(leaf, Chord):
+            if isinstance(leaf, chordtools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = _new_pitch_with_flats(note_head.written_pitch)
             elif hasattr(leaf, 'written_pitch'):
                 leaf.written_pitch = _new_pitch_with_flats(leaf.written_pitch)
 
 
+# TODO: make public
 def _new_pitch_with_flats(pitch):
-    octave = chromatic_pitch_number_to_octave_number(abs(pitch.numbered_chromatic_pitch))
-    name = chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
+    from abjad.tools import pitchtools
+
+    octave = pitchtools.chromatic_pitch_number_to_octave_number(abs(pitch.numbered_chromatic_pitch))
+    name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats(
         pitch.numbered_chromatic_pitch_class)
     pitch = type(pitch)(name, octave)
+
     return pitch
