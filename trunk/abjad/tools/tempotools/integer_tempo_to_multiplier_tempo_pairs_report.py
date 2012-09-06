@@ -1,5 +1,4 @@
 from abjad.tools import durationtools
-from abjad.tools.tempotools.integer_tempo_to_multiplier_tempo_pairs import integer_tempo_to_multiplier_tempo_pairs
 
 
 def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
@@ -46,8 +45,9 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
 
     Return none.
     '''
+    from abjad.tools import tempotools
 
-    pairs = integer_tempo_to_multiplier_tempo_pairs(
+    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(
       integer_tempo, maximum_numerator, maximum_denominator)
 
     for multiplier, tempo in pairs:

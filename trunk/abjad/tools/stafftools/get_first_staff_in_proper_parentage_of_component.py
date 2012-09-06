@@ -1,4 +1,3 @@
-from abjad.tools.stafftools.Staff import Staff
 from abjad.tools import componenttools
 
 
@@ -26,6 +25,7 @@ def get_first_staff_in_proper_parentage_of_component(component):
 
     Return staff or none.
     '''
+    from abjad.tools import stafftools
 
     return componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
-        component, Staff)
+        component, stafftools.Staff)

@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.stafftools.Staff import Staff
+from abjad.tools import componenttools
 
 
 def all_are_staves(expr):
@@ -28,5 +27,6 @@ def all_are_staves(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import stafftools
 
-    return all_are_components(expr, klasses=(Staff,))
+    return componenttools.all_are_components(expr, klasses=(stafftools.Staff,))

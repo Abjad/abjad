@@ -1,6 +1,6 @@
-from abjad.tools import mathtools
-from fractions import Fraction
+import fractions
 import math
+from abjad.tools import mathtools
 
 
 def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
@@ -39,7 +39,7 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
       if maximum_numerator is not None:
             numerators = [x for x in numerators if x <= maximum_numerator]
       for numerator in numerators:
-            multiplier = Fraction(numerator, divisor)
+            multiplier = fractions.Fraction(numerator, divisor)
             new_tempo = multiplier * integer_tempo
             pair = (multiplier, new_tempo)
             if pair not in pairs:
