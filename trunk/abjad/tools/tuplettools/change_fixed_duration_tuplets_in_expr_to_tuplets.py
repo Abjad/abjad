@@ -1,3 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import containertools
+
+
 def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
     r'''.. versionadded:: 2.9
 
@@ -22,8 +26,6 @@ def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
 
     Return tuplets.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools import containertools
     from abjad.tools import tuplettools
 
     result = []
