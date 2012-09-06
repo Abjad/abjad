@@ -60,6 +60,7 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
     return pitch_carrier
 
 
+# TODO: externalize somewhere and make public
 def _pc_number_to_color(pc):
 
     pc_number_to_color = {

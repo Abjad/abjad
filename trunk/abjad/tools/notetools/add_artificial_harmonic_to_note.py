@@ -1,9 +1,8 @@
+from abjad.tools import componenttools
 from abjad.tools import pitchtools
 
 
-perfect_fourth = pitchtools.MelodicDiatonicInterval('perfect', 4)
-
-def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=perfect_fourth):
+def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=None):
     r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -41,6 +40,8 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=perfect_four
         }
 
 
+    When ``melodic_diatonic_interval=None`` set to a perfect fourth.
+
     Create new artificial harmonic chord from `note`.
 
     Move parentage and spanners from `note` to artificial harmonic chord.
@@ -51,10 +52,12 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=perfect_four
         renamed ``harmonictools.add_artificial()`` to
         ``notetools.add_artificial_harmonic_to_note()``.
     '''
-    from abjad.tools import componenttools
-    from abjad.tools.chordtools.Chord import Chord
+    from abjad.tools import chordtools
 
-    chord = Chord(note)
+    if melodic_diatonic_interval is None:
+        melodic_diatonic_interval = pitchtools.MelodicDiatonicInterval('perfect', 4)
+
+    chord = chordtools.Chord(note)
     chord.append(chord[0].written_pitch.numbered_chromatic_pitch._chromatic_pitch_number)
     chord[1].written_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(
         chord[1].written_pitch, melodic_diatonic_interval)

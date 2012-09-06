@@ -1,6 +1,6 @@
+import fractions
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-import fractions
 
 
 def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):

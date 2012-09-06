@@ -1,6 +1,6 @@
+import fractions
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-import fractions
 
 
 def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', written='8'):

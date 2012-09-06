@@ -1,3 +1,4 @@
+# TODO: make public and bind to some class somewhere
 def _format_note_head(note_head):
     from abjad.tools.lilypondfiletools._format_lilypond_attribute import _format_lilypond_attribute
     from abjad.tools.lilypondfiletools._format_lilypond_value import _format_lilypond_value

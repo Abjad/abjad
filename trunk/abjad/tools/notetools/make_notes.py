@@ -1,9 +1,9 @@
+import fractions
+import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-import fractions
-import numbers
 
 
 def make_notes(pitches, durations, big_endian=True):

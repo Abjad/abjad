@@ -8,4 +8,5 @@ def make_tied_note(pitch, duration, big_endian=True):
     '''
     from abjad.tools import notetools
 
-    return leaftools.make_tied_leaf(notetools.Note, duration, big_endian=big_endian, pitches=pitch, tied=True)
+    return leaftools.make_tied_leaf(
+        notetools.Note, duration, big_endian=big_endian, pitches=pitch, tied=True)

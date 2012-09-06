@@ -1,5 +1,5 @@
-from abjad.tools import durationtools
 import fractions
+from abjad.tools import durationtools
 
 
 def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation=1):
