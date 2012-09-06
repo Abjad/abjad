@@ -1,3 +1,4 @@
+from abjad.tools import pitchtools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -78,7 +79,6 @@ class TrillSpanner(Spanner):
             '''
             return self._pitch
         def fset(self, expr):
-            from abjad.tools import pitchtools
             if expr is None:
                 self._pitch = expr
             else:

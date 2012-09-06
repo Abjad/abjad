@@ -1,7 +1,3 @@
-from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_component import \
-    get_spanners_attached_to_any_improper_parent_of_component
-
-
 def report_format_contributions_of_improper_spanners(
     component, klass=None):
     r'''.. versionadded:: 1.1
@@ -34,10 +30,11 @@ def report_format_contributions_of_improper_spanners(
 
     Return string.
     '''
+    from abjad.tools import spannertools
 
     result = ''
     locations = ('_format_before_leaf', '_format_right_of_leaf', '_format_after_leaf')
-    spanners = list(get_spanners_attached_to_any_improper_parent_of_component(component, klass))
+    spanners = list(spannertools.get_spanners_attached_to_any_improper_parent_of_component(component, klass))
     spanners.sort(lambda x, y: cmp(x._class_name, y._class_name))
     for spanner in spanners:
         result += '%s\n' % spanner._class_name

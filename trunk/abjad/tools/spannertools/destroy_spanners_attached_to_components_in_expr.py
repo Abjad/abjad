@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.destroy_spanners_attached_to_component import destroy_spanners_attached_to_component
+from abjad.tools import componenttools
 
 
 def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
@@ -36,10 +36,10 @@ def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
 
     Order of spanners in return value can not be predicted.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     result = []
     for component in componenttools.iterate_components_forward_in_expr(expr):
-        result.extend(destroy_spanners_attached_to_component(component, klass=klass))
+        result.extend(spannertools.destroy_spanners_attached_to_component(component, klass=klass))
 
     return tuple(result)

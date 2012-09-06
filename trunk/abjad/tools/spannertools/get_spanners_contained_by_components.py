@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.get_spanners_attached_to_any_improper_child_of_component import get_spanners_attached_to_any_improper_child_of_component
+from abjad.tools import componenttools
 
 
 def get_spanners_contained_by_components(components):
@@ -10,11 +10,11 @@ def get_spanners_contained_by_components(components):
         renamed ``spannertools.get_contained()`` to
         ``spannertools.get_spanners_contained_by_components()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
     result = set([])
     for component in components:
-        result.update(get_spanners_attached_to_any_improper_child_of_component(component))
+        result.update(spannertools.get_spanners_attached_to_any_improper_child_of_component(component))
     return result

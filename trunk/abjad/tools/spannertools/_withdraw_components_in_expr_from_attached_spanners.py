@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.spannertools._withdraw_component_from_attached_spanners import _withdraw_component_from_attached_spanners
+from abjad.tools import componenttools
 
 
 def _withdraw_components_in_expr_from_attached_spanners(components):
@@ -8,13 +7,15 @@ def _withdraw_components_in_expr_from_attached_spanners(components):
     Return 'components'.
     The operation may leave discontiguous spanners.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools.spannertools._withdraw_component_from_attached_spanners \
+        import _withdraw_component_from_attached_spanners
 
     # check components
     assert componenttools.all_are_thread_contiguous_components(components)
 
     # withdraw from contained spanners
-    for component in componenttools.iterate_components_forward_in_expr(components, Component):
+    for component in componenttools.iterate_components_forward_in_expr(
+        components, componenttools.Component):
         _withdraw_component_from_attached_spanners(component)
 
     # return components

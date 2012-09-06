@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def is_component_with_spanner_attached(expr, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -28,9 +31,7 @@ def is_component_with_spanner_attached(expr, klass=None):
 
     Return true or false.
     '''
-    from abjad.tools.componenttools.Component import Component
-
-    if isinstance(expr, Component):
+    if isinstance(expr, componenttools.Component):
         if klass is None:
             #return 0 < len(expr.spanners.attached)
             #return 0 < len(expr.spanners._spanners)

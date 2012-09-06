@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def fracture_spanners_that_cross_components(components):
     r'''Fracture to the left of the leftmost component.
     Fracture to the right of the rightmost component.
@@ -55,7 +58,6 @@ def fracture_spanners_that_cross_components(components):
         renamed ``spannertools.fracture_crossing()`` to
         ``spannertools.fracture_spanners_that_cross_components()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components)

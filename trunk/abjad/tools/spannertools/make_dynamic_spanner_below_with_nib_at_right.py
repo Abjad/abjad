@@ -1,6 +1,5 @@
-from abjad.tools.markuptools import Markup, MarkupCommand
-from abjad.tools.schemetools import SchemePair
-from abjad.tools.spannertools.TextSpanner import TextSpanner
+from abjad.tools import markuptools
+from abjad.tools import schemetools
 
 
 def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
@@ -35,12 +34,13 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
         renamed ``spanners.dynamic_spanner_below_with_nib_at_right()`` to
         ``spannertools.make_dynamic_spanner_below_with_nib_at_right()``.
     '''
+    from abjad.tools import spannertools
 
-    text_spanner = TextSpanner(components)
+    text_spanner = spannertools.TextSpanner(components)
     text_spanner._dynamic_text = dynamic_text
-    dynamic_text = Markup(r'\dynamic { %s }' % dynamic_text)
+    dynamic_text = markuptools.Markup(r'\dynamic { %s }' % dynamic_text)
     text_spanner.override.text_spanner.bound_details__left__text = dynamic_text
-    right_text = Markup(MarkupCommand('draw-line', SchemePair(0, 1)))
+    right_text = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, 1)))
     text_spanner.override.text_spanner.bound_details__right__text = right_text
     text_spanner.override.text_spanner.bound_details__right_broken__text = False
     text_spanner.override.text_spanner.dash_fraction = 1

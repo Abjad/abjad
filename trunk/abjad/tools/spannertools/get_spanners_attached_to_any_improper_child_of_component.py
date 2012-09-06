@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def get_spanners_attached_to_any_improper_child_of_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -48,7 +51,6 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
 
     Return unordered set of zero or more spanners.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import spannertools
 
     # note: externalization of (old) component spanner aggregator 'contained' property

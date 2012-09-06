@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.spannertools.get_spanners_attached_to_any_improper_child_of_component import get_spanners_attached_to_any_improper_child_of_component
+from abjad.tools import componenttools
 
 
 def get_spanners_that_dominate_component_pair(left, right):
@@ -18,7 +17,7 @@ def get_spanners_that_dominate_component_pair(left, right):
         renamed ``spannertools.get_dominant_between()`` to
         ``spannertools.get_spanners_that_dominate_component_pair()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     if left is None or right is None:
         return set([])
@@ -26,8 +25,8 @@ def get_spanners_that_dominate_component_pair(left, right):
     assert componenttools.all_are_thread_contiguous_components([left, right])
 
     #dominant_spanners = left.spanners.contained & right.spanners.contained
-    left_contained = get_spanners_attached_to_any_improper_child_of_component(left)
-    right_contained = get_spanners_attached_to_any_improper_child_of_component(right)
+    left_contained = spannertools.get_spanners_attached_to_any_improper_child_of_component(left)
+    right_contained = spannertools.get_spanners_attached_to_any_improper_child_of_component(right)
     dominant_spanners = left_contained & right_contained
     components_after_gap = componenttools.get_lineage_of_component_that_start_with_component(right)
 

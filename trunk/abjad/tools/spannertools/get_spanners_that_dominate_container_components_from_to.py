@@ -1,5 +1,4 @@
-from abjad.tools.spannertools.get_spanners_that_dominate_component_pair import get_spanners_that_dominate_component_pair
-from abjad.tools.spannertools.get_spanners_that_dominate_components import get_spanners_that_dominate_components
+from abjad.tools import containertools
 
 
 def get_spanners_that_dominate_container_components_from_to(container, start, stop):
@@ -13,9 +12,9 @@ def get_spanners_that_dominate_container_components_from_to(container, start, st
         renamed ``spannertools.get_dominant_slice()`` to
         ``spannertools.get_spanners_that_dominate_container_components_from_to()``.
     '''
+    from abjad.tools import spannertools
 
-    from abjad.tools.containertools.Container import Container
-    if not isinstance(container, Container):
+    if not isinstance(container, containertools.Container):
         raise TypeError('Must be Abjad container.')
 
     if start == stop:
@@ -27,8 +26,8 @@ def get_spanners_that_dominate_container_components_from_to(container, start, st
             right = None
         else:
             right = container[stop]
-        spanners_receipt = get_spanners_that_dominate_component_pair(left, right)
+        spanners_receipt = spannertools.get_spanners_that_dominate_component_pair(left, right)
     else:
-        spanners_receipt = get_spanners_that_dominate_components(container[start:stop])
+        spanners_receipt = spannertools.get_spanners_that_dominate_components(container[start:stop])
 
     return spanners_receipt

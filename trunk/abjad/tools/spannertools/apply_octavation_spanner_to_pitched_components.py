@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
+from abjad.tools import pitchtools
 
 
 # TODO: rename to apply_octavation_spanner_to_pitched_components_in_expr
@@ -31,15 +31,15 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
     Return octavation spanner.
     """
-    from abjad.tools.spannertools import OctavationSpanner
+    from abjad.tools import spannertools
 
-    pitches = list_named_chromatic_pitches_in_expr(expr)
+    pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     max_pitch = max(pitches)
     max_numbered_diatonic_pitch = max_pitch.numbered_diatonic_pitch
 
     if ottava_numbered_diatonic_pitch is not None:
         if ottava_numbered_diatonic_pitch <= max_numbered_diatonic_pitch:
-            octavation = OctavationSpanner(expr)
+            octavation = spannertools.OctavationSpanner(expr)
             octavation.start = 1
             if quindecisima_numbered_diatonic_pitch is not None:
                 if quindecisima_numbered_diatonic_pitch <= max_numbered_diatonic_pitch:

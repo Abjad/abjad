@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def get_spanners_on_components_or_component_children(components):
     '''Return unordered set of all spanners attaching to any
     component in `components` or attaching to any of the children
@@ -7,7 +10,6 @@ def get_spanners_on_components_or_component_children(components):
         renamed ``spannertools.get_attached()`` to
         ``spannertools.get_spanners_on_components_or_component_children()``.
     '''
-    from abjad.tools import componenttools
 
     # check input
     assert componenttools.all_are_contiguous_components_in_same_thread(components)

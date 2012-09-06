@@ -1,5 +1,8 @@
-from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
+from abjad.tools import chordtools
+from abjad.tools import notetools
+from abjad.tools import contexttools
 from abjad.tools import stringtools
+from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
 
 
 class HairpinSpanner(DirectedSpanner):
@@ -89,9 +92,6 @@ class HairpinSpanner(DirectedSpanner):
     ### PRIVATE METHODS ###
 
     def _format_right_of_leaf(self, leaf):
-        from abjad.tools.chordtools.Chord import Chord
-        from abjad.tools.notetools.Note import Note
-        from abjad.tools import contexttools
         result = []
         effective_dynamic = contexttools.get_effective_dynamic(leaf)
         direction_string = ''
@@ -110,11 +110,11 @@ class HairpinSpanner(DirectedSpanner):
                     leaf._marks_for_which_component_functions_as_start_component:
                     result.append('\\!')
         else:
-            if self._is_my_first(leaf, (Chord, Note)):
+            if self._is_my_first(leaf, (chordtools.Chord, notetools.Note)):
                 result.append('%s\\%s' % (direction_string, self.shape_string))
                 if self.start_dynamic_string:
                     result.append('%s\\%s' % (direction_string, self.start_dynamic_string))
-            if self._is_my_last(leaf, (Chord, Note)):
+            if self._is_my_last(leaf, (chordtools.Chord, notetools.Note)):
                 if self.stop_dynamic_string:
                     result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
                 elif effective_dynamic is None:

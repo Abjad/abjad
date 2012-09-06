@@ -1,6 +1,3 @@
-from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
-
-
 def destroy_spanners_attached_to_component(component, klass=None):
     r'''.. versionadded:: 1.1
 
@@ -41,9 +38,10 @@ def destroy_spanners_attached_to_component(component, klass=None):
 
     Order of spanners in return value can not be predicted.
     '''
+    from abjad.tools import spannertools
 
     result = []
-    for spanner in get_spanners_attached_to_component(component):
+    for spanner in spannertools.get_spanners_attached_to_component(component):
         if klass is None or isinstance(spanner, klass):
             spanner.clear()
             result.append(spanner)

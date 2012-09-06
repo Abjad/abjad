@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
+from abjad.tools import componenttools
 
 
 def get_spanners_that_dominate_components(components):
@@ -19,7 +18,7 @@ def get_spanners_that_dominate_components(components):
         renamed ``spannertools.get_dominant()`` to
         ``spannertools.get_spanners_that_dominate_components()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components,
         allow_orphans = False)
@@ -35,7 +34,7 @@ def get_spanners_that_dominate_components(components):
     stop_components = componenttools.get_improper_descendents_of_component_that_stop_with_component(last)
     stop_components = set(stop_components)
     for component in start_components:
-        for spanner in get_spanners_attached_to_component(component):
+        for spanner in spannertools.get_spanners_attached_to_component(component):
             if set(spanner[:]) & stop_components != set([]):
                 index = spanner.index(component)
                 receipt.add((spanner, index))

@@ -1,6 +1,10 @@
+from abjad.tools import componenttools
+from abjad.tools import containertools
+from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import gracetools
 from abjad.tools import mathtools
+from abjad.tools import skiptools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -59,9 +63,6 @@ class MetricGridSpanner(Spanner):
     # flag now to improve performance time. Better but still not perfect.
 
     def _format_before_leaf(self, leaf):
-        from abjad.tools.containertools.Container import Container
-        from abjad.tools.skiptools.Skip import Skip
-        from abjad.tools import contexttools
         result = []
         if not self.hide:
             #meter = self._matching_meter(leaf)
@@ -83,12 +84,12 @@ class MetricGridSpanner(Spanner):
                 self._slicing_metersFound = True
                 result.append('<<')
                 for meter, moffset, temp_hide in m:
-                    s = Skip(durationtools.Duration(1))
+                    s = skiptools.Skip(durationtools.Duration(1))
                     s.duration_multiplier = moffset - leaf.start_offset
                     numerator, denominator = meter.numerator, meter.denominator
                     mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
                     mark._is_cosmetic_mark = True
-                    container = Container([s])
+                    container = containertools.Container([s])
                     result.append(container.lilypond_format)
         return result
 
@@ -127,7 +128,6 @@ class MetricGridSpanner(Spanner):
 
             Set iterable.
             '''
-            from abjad.tools import contexttools
             i = 0
             moffset = 0
             prev_meter = None
@@ -158,7 +158,6 @@ class MetricGridSpanner(Spanner):
     def split_on_bar(self):
         '''Temporarily unavailable.
         '''
-        from abjad.tools import componenttools
         leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
         componenttools.split_components_at_offsets(leaves, [x[0].duration for x in self.meters], 
             cyclic=True, fracture_spanners=False, tie_split_notes=True)

@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def get_spanners_attached_to_any_proper_child_of_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
@@ -52,7 +55,6 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass=None
         renamed ``spannertools.get_all_spanners_attached_to_any_proper_children_of_component()`` to
         ``spannertools.get_spanners_attached_to_any_proper_child_of_component()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import spannertools
 
     # note: externalization of (old) component spanner aggregator 'children' property

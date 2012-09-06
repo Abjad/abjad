@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.get_spanners_covered_by_components import get_spanners_covered_by_components
+from abjad.tools import componenttools
 
 
 def withdraw_components_from_spanners_covered_by_components(components):
@@ -11,13 +11,13 @@ def withdraw_components_from_spanners_covered_by_components(components):
         renamed ``spannertools.withdraw_from_covered()`` to
         ``spannertools.withdraw_components_from_spanners_covered_by_components()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     # check components
     assert componenttools.all_are_thread_contiguous_components(components)
 
     # withdraw from covered spanners
-    for spanner in get_spanners_covered_by_components(components):
+    for spanner in spannertools.get_spanners_covered_by_components(components):
         spanner.clear()
 
     # return components

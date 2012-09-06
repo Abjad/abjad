@@ -1,8 +1,10 @@
+import copy
 from abc import abstractmethod
+from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import leaftools
 from abjad.tools import lilypondproxytools
 from abjad.tools.abctools import AbjadObject
-import copy
 
 
 class Spanner(AbjadObject):
@@ -200,8 +202,6 @@ class Spanner(AbjadObject):
         return [(self, spanner, result)]
 
     def _initialize_components(self, components):
-        from abjad.tools import componenttools
-        from abjad.tools import leaftools
         if isinstance(components, componenttools.Component):
             components = [components]
         elif not components:
@@ -226,7 +226,6 @@ class Spanner(AbjadObject):
         True if next leaf or prev leaf is none.
         False otherwise.
         '''
-        from abjad.tools import leaftools
         if self._is_my_first_leaf(leaf):
             return True
         elif self._is_my_last_leaf(leaf):
@@ -360,8 +359,6 @@ class Spanner(AbjadObject):
             copy with leaves = spanner.leaves first. Or use spanner-
             specific iteration tools.
         '''
-        from abjad.tools import leaftools
-        from abjad.tools import componenttools
         result = []
         for component in self._components:
             # EXPERIMENTAL: expand to allow staff-level spanner eventually #
@@ -444,7 +441,6 @@ class Spanner(AbjadObject):
         Return none.
         '''
         if self._contiguity_constraint == 'thread':
-            from abjad.tools import componenttools
             components = self[-1:] + [component]
             assert componenttools.all_are_thread_contiguous_components(components)
         component._spanners.add(self)
@@ -468,7 +464,6 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-        from abjad.tools import componenttools
         components = [component] + self[:1]
         assert componenttools.all_are_thread_contiguous_components(components)
         component._spanners.add(self)
@@ -508,7 +503,6 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-        from abjad.tools import componenttools
         component_input = self[-1:]
         component_input.extend(components)
         if self._contiguity_constraint == 'thread':
@@ -532,7 +526,6 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-        from abjad.tools import componenttools
         component_input = components + self[:1]
         assert componenttools.all_are_thread_contiguous_components(component_input)
         for component in reversed(components):

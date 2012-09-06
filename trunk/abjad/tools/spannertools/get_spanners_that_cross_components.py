@@ -1,6 +1,4 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.spannertools.get_spanners_contained_by_components import get_spanners_contained_by_components
-from abjad.tools.spannertools.get_spanners_covered_by_components import get_spanners_covered_by_components
+from abjad.tools import componenttools
 
 
 def get_spanners_that_cross_components(components):
@@ -22,12 +20,12 @@ def get_spanners_that_cross_components(components):
         renamed ``spannertools.get_crossing()`` to
         ``spannertools.get_spanners_that_cross_components()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    all_components = set(componenttools.iterate_components_forward_in_expr(components, Component))
-    contained_spanners = get_spanners_contained_by_components(components)
+    all_components = set(componenttools.iterate_components_in_expr(components))
+    contained_spanners = spannertools.get_spanners_contained_by_components(components)
     crossing_spanners = set([])
     for spanner in contained_spanners:
         spanner_components = set(spanner[:])

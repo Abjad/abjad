@@ -1,6 +1,3 @@
-from abjad.tools.spannertools.Spanner import Spanner
-
-
 def all_are_spanners(expr):
     '''.. versionadded:: 2.6
 
@@ -26,5 +23,6 @@ def all_are_spanners(expr):
 
     Return boolean.
     '''
+    from abjad.tools import spannertools
 
-    return all([isinstance(x, Spanner) for x in expr])
+    return all([isinstance(x, spannertools.Spanner) for x in expr])

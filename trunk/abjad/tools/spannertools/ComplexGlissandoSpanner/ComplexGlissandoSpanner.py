@@ -1,3 +1,5 @@
+from abjad.tools import chordtools
+from abjad.tools import notetools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -52,19 +54,15 @@ class ComplexGlissandoSpanner(Spanner):
     ### PRIVATE METHODS ###
 
     def _format_before_leaf(self, leaf):
-        from abjad.tools.chordtools.Chord import Chord
-        from abjad.tools.notetools.Note import Note
         result = []
-        if not isinstance(leaf, (Chord, Note)):
+        if not isinstance(leaf, (chordtools.Chord, notetools.Note)):
             result.append(r"\once \override NoteColumn #'glissando-skip = ##t")
             result.append(r"\once \override Rest #'transparent = ##t")
         return result
 
     def _format_right_of_leaf(self, leaf):
         '''Spanner contribution to right of leaf.'''
-        from abjad.tools.chordtools.Chord import Chord
-        from abjad.tools.notetools.Note import Note
         result = []
-        if not self._is_my_last_leaf(leaf) and isinstance(leaf, (Chord, Note)):
+        if not self._is_my_last_leaf(leaf) and isinstance(leaf, (chordtools.Chord, notetools.Note)):
             result.append(r'\glissando')
         return result

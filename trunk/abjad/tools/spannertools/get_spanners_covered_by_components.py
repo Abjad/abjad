@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.get_spanners_contained_by_components import get_spanners_contained_by_components
+from abjad.tools import componenttools
 
 
 def get_spanners_covered_by_components(components):
@@ -12,7 +12,7 @@ def get_spanners_covered_by_components(components):
         renamed ``spannertools.get_covered()`` to
         ``spannertools.get_spanners_covered_by_components()``.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
@@ -23,7 +23,7 @@ def get_spanners_covered_by_components(components):
     components_begin = first.start_offset
     components_end = last.stop_offset
 
-    result = get_spanners_contained_by_components(components)
+    result = spannertools.get_spanners_contained_by_components(components)
     for spanner in list(result):
         if spanner.start_offset < components_begin or components_end < spanner.stop_offset:
             result.discard(spanner)

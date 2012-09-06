@@ -1,6 +1,3 @@
-from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
-
-
 def get_the_only_spanner_attached_to_component(component, klass=None):
     r'''.. versionadded:: 1.1
 
@@ -31,9 +28,10 @@ def get_the_only_spanner_attached_to_component(component, klass=None):
 
     .. note:: function will usually be called with `klass` specifier set.
     '''
+    from abjad.tools import spannertools
 
     # get spanners and count spanners
-    spanners_attached_to_component = get_spanners_attached_to_component(
+    spanners_attached_to_component = spannertools.get_spanners_attached_to_component(
         component, klass)
     count = len(spanners_attached_to_component)
 
