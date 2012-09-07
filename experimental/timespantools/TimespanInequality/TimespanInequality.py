@@ -24,7 +24,7 @@ class TimespanInequality(AbjadObject):
                 selector=selectortools.SingleSegmentSelector(
                     identifier='red'
                     )
-                )
+                )        
             )
 
     Timespan inequalities are immutable.
@@ -32,13 +32,14 @@ class TimespanInequality(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, timespan_inequality_template, timespan):
+    def __init__(self, timespan_inequality_template, timespan, expr=None):
         from experimental import timespantools
         timespan = timespantools.expr_to_timespan(timespan)
         assert isinstance(timespan_inequality_template, timespantools.TimespanInequalityTemplate), repr(
             timespan_inequality_template)
-        self._timespan = timespan
         self._timespan_inequality_template = timespan_inequality_template
+        self._timespan = timespan
+        self._expr = expr
 
     ### SPECIAL METHODS ###
 
@@ -46,11 +47,20 @@ class TimespanInequality(AbjadObject):
         if isinstance(expr, type(self)):
             if self.timespan_inequality_template == expr.timespan_inequality_template:
                 if self.timespan == expr.timespan:
-                    return True
+                    if self.expr == expr.expr:
+                        return True
         return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @property
+    def expr(self):
+        '''Expression of timespan inequality.
+
+        Return arbitrary object.
+        '''
+        return self._expr
+        
     @property
     def segment_identifier(self):
         '''Delegate to ``self.timespan.segment_identifier``.
@@ -59,7 +69,7 @@ class TimespanInequality(AbjadObject):
 
     @property
     def timespan(self):
-        '''SingleSourceTimespan of inequality.
+        '''Timespan of timespan inequality.
 
         Return timespan object.
         '''
@@ -67,7 +77,7 @@ class TimespanInequality(AbjadObject):
 
     @property
     def timespan_inequality_template(self):
-        '''Class of inequality.
+        '''Class of timespan inequality.
 
         Return timespan inequality or timespan inequality template object.
         '''

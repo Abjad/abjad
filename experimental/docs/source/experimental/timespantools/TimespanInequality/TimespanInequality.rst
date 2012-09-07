@@ -9,6 +9,8 @@ timespantools.TimespanInequality
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.expr
+
 .. autoattribute:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.segment_identifier
 
 .. autoattribute:: experimental.timespantools.TimespanInequality.TimespanInequality.TimespanInequality.storage_format
