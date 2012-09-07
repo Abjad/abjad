@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_co01ainertools_insert_compone01e01():
+def test_containertools_insert_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(staff.leaves)
