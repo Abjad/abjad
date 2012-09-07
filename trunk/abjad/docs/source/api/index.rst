@@ -843,7 +843,7 @@ Composition packages
    tools/measuretools/get_next_measure_from_component
    tools/measuretools/get_nth_measure_in_expr
    tools/measuretools/get_one_indexed_measure_number_in_expr
-   tools/measuretools/get_prev_measure_from_component
+   tools/measuretools/get_previous_measure_from_component
    tools/measuretools/iterate_measures_backward_in_expr
    tools/measuretools/iterate_measures_forward_in_expr
    tools/measuretools/list_time_signatures_of_measures_in_expr

@@ -1,5 +1,5 @@
 # TODO: rename 'prev' to 'previous'
-def get_prev_measure_from_component(component):
+def get_previous_measure_from_component(component):
     '''.. versionadded:: 1.1
 
     Get previous measure from `component`.
@@ -10,7 +10,7 @@ def get_prev_measure_from_component(component):
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-        >>> measuretools.get_prev_measure_from_component(staff)
+        >>> measuretools.get_previous_measure_from_component(staff)
         Measure(2/8, [e'8, f'8])
 
     When `component` is voice, staff or other sequential context,
@@ -22,7 +22,7 @@ def get_prev_measure_from_component(component):
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-        >>> measuretools.get_prev_measure_from_component(staff[-1])
+        >>> measuretools.get_previous_measure_from_component(staff[-1])
         Measure(2/8, [c'8, d'8])
 
     When `component` is a measure and there is no measure immediately
@@ -30,7 +30,7 @@ def get_prev_measure_from_component(component):
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-        >>> measuretools.get_prev_measure_from_component(staff[0]) is None
+        >>> measuretools.get_previous_measure_from_component(staff[0]) is None
         True
 
     When `component` is a leaf and there is a measure in the parentage
@@ -38,7 +38,7 @@ def get_prev_measure_from_component(component):
 
         >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
-        >>> measuretools.get_prev_measure_from_component(staff.leaves[0])
+        >>> measuretools.get_previous_measure_from_component(staff.leaves[0])
         Measure(2/8, [c'8, d'8])
 
     When `component` is a leaf and there is no measure in the parentage
@@ -46,7 +46,7 @@ def get_prev_measure_from_component(component):
 
     .. versionchanged:: 2.0
         renamed ``iterate.measure_prev()`` to
-        ``measuretools.get_prev_measure_from_component()``.
+        ``measuretools.get_previous_measure_from_component()``.
     '''
     from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
 

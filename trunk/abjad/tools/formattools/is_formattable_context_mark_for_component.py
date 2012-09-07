@@ -15,7 +15,7 @@ def is_formattable_context_mark_for_component(mark, component):
             elif component.always_format_time_signature:
                 return True
             else:
-                prev_measure = measuretools.get_prev_measure_from_component(
+                prev_measure = measuretools.get_previous_measure_from_component(
                     mark.start_component)
                 if prev_measure is not None:
                     prev_effective_time_signature = \

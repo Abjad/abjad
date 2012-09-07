@@ -20,7 +20,7 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
                         elif component.always_format_time_signature:
                             marks.add(candidate)
                         else:
-                            prev_measure = measuretools.get_prev_measure_from_component(candidate.start_component)
+                            prev_measure = measuretools.get_previous_measure_from_component(candidate.start_component)
                             if prev_measure is not None:
                                 prev_effective_time_signature = contexttools.get_effective_time_signature(
                                     prev_measure)
