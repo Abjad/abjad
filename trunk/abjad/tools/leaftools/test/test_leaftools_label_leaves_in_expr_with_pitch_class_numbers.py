@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_leaftools_label_leaves_in_expr_with_pitch_class_numbers_01():
+def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_01():
     '''With number = True.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, number=True)
+    labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, number=True)
 
     r'''
     \new Staff {
@@ -36,11 +36,11 @@ def test_leaftools_label_leaves_in_expr_with_pitch_class_numbers_01():
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t0\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n\tf'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t5\n\t\t\t}\n}"
 
 
-def test_leaftools_label_leaves_in_expr_with_pitch_class_numbers_02():
+def test_labeltools_label_leaves_in_expr_with_pitch_class_numbers_02():
     '''With color = True.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, number=False, color=True)
+    labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, number=False, color=True)
 
     r'''
     \new Staff {

@@ -481,6 +481,31 @@ Composition packages
    tools/iotools/write_expr_to_pdf
    tools/iotools/z
 
+:py:mod:`labeltools <abjad.tools.labeltools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
+   tools/labeltools/label_leaves_in_expr_with_leaf_depth
+   tools/labeltools/label_leaves_in_expr_with_leaf_durations
+   tools/labeltools/label_leaves_in_expr_with_leaf_indices
+   tools/labeltools/label_leaves_in_expr_with_leaf_numbers
+   tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
+   tools/labeltools/label_leaves_in_expr_with_melodic_chromatic_intervals
+   tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
+   tools/labeltools/label_leaves_in_expr_with_melodic_counterpoint_intervals
+   tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
+   tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_intervals
+   tools/labeltools/label_leaves_in_expr_with_pitch_class_numbers
+   tools/labeltools/label_leaves_in_expr_with_pitch_numbers
+   tools/labeltools/label_leaves_in_expr_with_prolated_leaf_duration
+   tools/labeltools/label_leaves_in_expr_with_tuplet_depth
+   tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
+
 :py:mod:`layouttools <abjad.tools.layouttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -540,22 +565,6 @@ Composition packages
    tools/leaftools/iterate_leaves_forward_in_expr
    tools/leaftools/iterate_notes_and_chords_backward_in_expr
    tools/leaftools/iterate_notes_and_chords_forward_in_expr
-   tools/leaftools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
-   tools/leaftools/label_leaves_in_expr_with_leaf_depth
-   tools/leaftools/label_leaves_in_expr_with_leaf_durations
-   tools/leaftools/label_leaves_in_expr_with_leaf_indices
-   tools/leaftools/label_leaves_in_expr_with_leaf_numbers
-   tools/leaftools/label_leaves_in_expr_with_melodic_chromatic_interval_classes
-   tools/leaftools/label_leaves_in_expr_with_melodic_chromatic_intervals
-   tools/leaftools/label_leaves_in_expr_with_melodic_counterpoint_interval_classes
-   tools/leaftools/label_leaves_in_expr_with_melodic_counterpoint_intervals
-   tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_interval_classes
-   tools/leaftools/label_leaves_in_expr_with_melodic_diatonic_intervals
-   tools/leaftools/label_leaves_in_expr_with_pitch_class_numbers
-   tools/leaftools/label_leaves_in_expr_with_pitch_numbers
-   tools/leaftools/label_leaves_in_expr_with_prolated_leaf_duration
-   tools/leaftools/label_leaves_in_expr_with_tuplet_depth
-   tools/leaftools/label_leaves_in_expr_with_written_leaf_duration
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves

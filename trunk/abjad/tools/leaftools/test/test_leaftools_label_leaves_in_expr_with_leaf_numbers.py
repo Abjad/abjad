@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_leaftools_label_leaves_in_expr_with_leaf_numbers_01():
+def test_labeltools_label_leaves_in_expr_with_leaf_numbers_01():
     '''Leaf numbers start at 1.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    leaftools.label_leaves_in_expr_with_leaf_numbers(t)
+    labeltools.label_leaves_in_expr_with_leaf_numbers(t)
 
     r'''
     \new Staff {
@@ -36,11 +36,11 @@ def test_leaftools_label_leaves_in_expr_with_leaf_numbers_01():
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t3\n\t\t\t}\n\tf'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n}"
 
 
-def test_leaftools_label_leaves_in_expr_with_leaf_numbers_02():
+def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
     '''Optional markup direction keyword.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    leaftools.label_leaves_in_expr_with_leaf_numbers(t, markup_direction=Up)
+    labeltools.label_leaves_in_expr_with_leaf_numbers(t, markup_direction=Up)
 
     r'''
     \new Staff {
