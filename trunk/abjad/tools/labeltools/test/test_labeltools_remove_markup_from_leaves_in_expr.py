@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_markuptools_remove_markup_from_leaves_in_expr_01():
+def test_labeltools_remove_markup_from_leaves_in_expr_01():
     '''Clear multiple pieces of down-markup.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -15,7 +15,7 @@ def test_markuptools_remove_markup_from_leaves_in_expr_01():
     }
     '''
 
-    markuptools.remove_markup_from_leaves_in_expr(t)
+    labeltools.remove_markup_from_leaves_in_expr(t)
 
     r'''
     \times 2/3 {

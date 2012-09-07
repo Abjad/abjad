@@ -517,6 +517,7 @@ Composition packages
    tools/labeltools/label_vertical_moments_in_expr_with_interval_class_vectors
    tools/labeltools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
+   tools/labeltools/remove_markup_from_leaves_in_expr
 
 :py:mod:`layouttools <abjad.tools.layouttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -731,7 +732,6 @@ Composition packages
    tools/markuptools/make_centered_title_markup
    tools/markuptools/make_vertically_adjusted_composer_markup
    tools/markuptools/remove_markup_attached_to_component
-   tools/markuptools/remove_markup_from_leaves_in_expr
 
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
