@@ -1254,6 +1254,7 @@ Composition packages
    :maxdepth: 1
 
    tools/scoretemplatetools/GroupedRhythmicStavesScoreTemplate/GroupedRhythmicStavesScoreTemplate
+   tools/scoretemplatetools/GroupedStavesScoreTemplate/GroupedStavesScoreTemplate
    tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
    tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
 
