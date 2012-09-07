@@ -505,6 +505,17 @@ Composition packages
    tools/labeltools/label_leaves_in_expr_with_prolated_leaf_duration
    tools/labeltools/label_leaves_in_expr_with_tuplet_depth
    tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
+   tools/labeltools/label_notes_in_expr_with_note_indices
+   tools/labeltools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
+   tools/labeltools/label_tie_chains_in_expr_with_tie_chain_durations
+   tools/labeltools/label_tie_chains_in_expr_with_written_tie_chain_duration
+   tools/labeltools/label_vertical_moments_in_expr_with_chromatic_interval_classes
+   tools/labeltools/label_vertical_moments_in_expr_with_chromatic_intervals
+   tools/labeltools/label_vertical_moments_in_expr_with_counterpoint_intervals
+   tools/labeltools/label_vertical_moments_in_expr_with_diatonic_intervals
+   tools/labeltools/label_vertical_moments_in_expr_with_interval_class_vectors
+   tools/labeltools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
+   tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
 
 :py:mod:`layouttools <abjad.tools.layouttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -874,7 +885,6 @@ Composition packages
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
    tools/notetools/iterate_notes_in_expr
-   tools/notetools/label_notes_in_expr_with_note_indices
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
    tools/notetools/make_notes
    tools/notetools/make_notes_with_multiplied_durations
@@ -1635,9 +1645,6 @@ Composition packages
    tools/tietools/iterate_tie_chains_backward_in_expr
    tools/tietools/iterate_tie_chains_forward_in_expr
    tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
-   tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
-   tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
-   tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
    tools/tietools/remove_nonfirst_leaves_in_tie_chain
    tools/tietools/remove_tie_spanners_from_components_in_expr
    tools/tietools/tie_chain_to_tuplet_with_proportions
@@ -1859,13 +1866,6 @@ Composition packages
    tools/verticalitytools/get_vertical_moment_starting_with_component
    tools/verticalitytools/iterate_vertical_moments_backward_in_expr
    tools/verticalitytools/iterate_vertical_moments_forward_in_expr
-   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_interval_classes
-   tools/verticalitytools/label_vertical_moments_in_expr_with_chromatic_intervals
-   tools/verticalitytools/label_vertical_moments_in_expr_with_counterpoint_intervals
-   tools/verticalitytools/label_vertical_moments_in_expr_with_diatonic_intervals
-   tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
-   tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
-   tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
