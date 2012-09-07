@@ -8,7 +8,7 @@ def is_proper_tuplet_multiplier(multiplier):
 
         >>> for n in range(17):
         ...     rational = Fraction(n, 8)
-        ...     multiplier = tuplettools.is_proper_tuplet_multiplier(rational)
+        ...     multiplier = durationtools.is_proper_tuplet_multiplier(rational)
         ...     print '%s   %s' % (rational, multiplier)
         ...
         0         False
@@ -35,7 +35,7 @@ def is_proper_tuplet_multiplier(multiplier):
 
     .. versionchanged:: 2.0
         renamed ``durationtools.is_tuplet_multiplier()`` to
-        ``tuplettools.is_proper_tuplet_multiplier()``.
+        ``durationtools.is_proper_tuplet_multiplier()``.
     '''
 
     if fractions.Fraction(1, 2) < multiplier < fractions.Fraction(2):

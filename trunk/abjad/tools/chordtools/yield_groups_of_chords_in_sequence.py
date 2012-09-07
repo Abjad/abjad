@@ -1,4 +1,4 @@
-from abjad.tools.chordtools.Chord import Chord
+from abjad.tools import componenttools
 from abjad.tools import decoratortools
 
 
@@ -38,6 +38,6 @@ def yield_groups_of_chords_in_sequence(sequence):
 
     Return generator.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import chordtools
 
-    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, Chord)
+    return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, chordtools.Chord)

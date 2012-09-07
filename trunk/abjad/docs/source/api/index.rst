@@ -335,6 +335,7 @@ Composition packages
    tools/durationtools/is_duration_token
    tools/durationtools/is_lilypond_duration_name
    tools/durationtools/is_lilypond_duration_string
+   tools/durationtools/is_proper_tuplet_multiplier
    tools/durationtools/lilypond_duration_string_to_rational
    tools/durationtools/lilypond_duration_string_to_rational_list
    tools/durationtools/multiply_duration_pair
@@ -1835,7 +1836,6 @@ Composition packages
    tools/tuplettools/fuse_tuplets
    tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
    tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
-   tools/tuplettools/is_proper_tuplet_multiplier
    tools/tuplettools/iterate_tuplets_backward_in_expr
    tools/tuplettools/iterate_tuplets_forward_in_expr
    tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration

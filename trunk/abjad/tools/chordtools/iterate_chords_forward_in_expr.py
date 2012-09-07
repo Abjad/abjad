@@ -1,5 +1,5 @@
+from abjad.tools import componenttools
 from abjad.tools import decoratortools
-from abjad.tools.chordtools.Chord import Chord
 
 
 @decoratortools.requires(object)
@@ -32,7 +32,7 @@ def iterate_chords_forward_in_expr(expr, start=0, stop=None):
 
     Return generator.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import chordtools
 
     return componenttools.iterate_components_forward_in_expr(
-        expr, Chord, start = start, stop = stop)
+        expr, chordtools.Chord, start=start, stop=stop)

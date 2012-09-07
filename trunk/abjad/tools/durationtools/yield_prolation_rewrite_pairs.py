@@ -69,7 +69,6 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
     Return generator of paired fractions.
     '''
     from abjad.tools import durationtools
-    from abjad.tools import tuplettools
 
     if minimum_written_duration is None:
         minimum_written_duration = fractions.Fraction(1, 128)
@@ -83,6 +82,6 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
             pairs = tuple(pairs)
             return pairs
         prolation = prolated_duration / written_duration
-        if tuplettools.is_proper_tuplet_multiplier(prolation):
+        if durationtools.is_proper_tuplet_multiplier(prolation):
             pair = (prolation, written_duration)
             pairs.append(pair)
