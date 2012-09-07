@@ -1,3 +1,6 @@
+from abjad.tools import leaftools
+
+
 def color_leaves_in_expr(expr, color):
     r""".. versionadded:: 2.0
 
@@ -17,7 +20,7 @@ def color_leaves_in_expr(expr, color):
 
     ::
 
-        >>> leaftools.color_leaves_in_expr(staff, 'red')
+        >>> labeltools.color_leaves_in_expr(staff, 'red')
 
     ::
 
@@ -39,7 +42,7 @@ def color_leaves_in_expr(expr, color):
 
     Return none.
     """
-    from abjad.tools import leaftools
+    from abjad.tools import labeltools
 
     for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
-        leaftools.color_leaf(leaf, color)
+        labeltools.color_leaf(leaf, color)

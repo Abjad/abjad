@@ -1,3 +1,7 @@
+from abjad.tools import contexttools
+from abjad.tools import measuretools
+
+
 def color_nonbinary_measures_in_expr(expr, color='red'):
     r'''.. versionadded:: 2.0
 
@@ -27,7 +31,7 @@ def color_nonbinary_measures_in_expr(expr, color='red'):
 
     ::
 
-        >>> measuretools.color_nonbinary_measures_in_expr(staff, 'red')
+        >>> labeltools.color_nonbinary_measures_in_expr(staff, 'red')
         [Measure(3/12, [c'8., d'8.])]
 
     ::
@@ -62,8 +66,7 @@ def color_nonbinary_measures_in_expr(expr, color='red'):
 
     Color names appear in LilyPond Learning Manual appendix B.5.
     '''
-    from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import labeltools
 
     # init measures colored
     measures_colored = []
@@ -71,7 +74,7 @@ def color_nonbinary_measures_in_expr(expr, color='red'):
     # color nonbinary measures in expr
     for measure in measuretools.iterate_measures_forward_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).is_nonbinary:
-            measuretools.color_measure(measure, color)
+            labeltools.color_measure(measure, color)
             measures_colored.append(measure)
 
     # return measures colored

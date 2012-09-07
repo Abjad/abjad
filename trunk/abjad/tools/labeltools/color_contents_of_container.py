@@ -7,7 +7,7 @@ def color_contents_of_container(container, color):
 
     ::
 
-        >>> containertools.color_contents_of_container(measure, 'red')
+        >>> labeltools.color_contents_of_container(measure, 'red')
         Measure(2/8, [c'8, d'8])
 
     ::
@@ -39,7 +39,7 @@ def color_contents_of_container(container, color):
 
     .. versionchanged:: 2.0
         renamed ``containertools.contents_color()`` to
-        ``containertools.color_contents_of_container()``.
+        ``labeltools.color_contents_of_container()``.
     '''
 
     container.override.accidental.color = color

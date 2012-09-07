@@ -20,7 +20,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
         }
 
     When ``color=True`` call 
-    :func:`~abjad.tools.notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map`::
+    :func:`~abjad.tools.labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map`::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, color=True, number=False)
@@ -44,6 +44,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
 
     Return none.
     '''
+    from abjad.tools import labeltools
 
     for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
         if number:
@@ -51,4 +52,4 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
                 'small', str(abs(note.written_pitch.numbered_chromatic_pitch_class)))
             markuptools.Markup(label, markup_direction)(note)
         if color:
-            notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
+            labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)

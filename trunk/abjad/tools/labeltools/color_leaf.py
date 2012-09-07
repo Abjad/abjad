@@ -1,3 +1,8 @@
+from abjad.tools import chordtools
+from abjad.tools import notetools
+from abjad.tools import resttools
+
+
 def color_leaf(leaf, color):
     r'''.. versionadded:: 2.0
 
@@ -7,7 +12,7 @@ def color_leaf(leaf, color):
 
     ::
 
-        >>> leaftools.color_leaf(note, 'red')
+        >>> labeltools.color_leaf(note, 'red')
         Note("c'4")
 
     ::
@@ -24,7 +29,7 @@ def color_leaf(leaf, color):
 
     ::
 
-        >>> leaftools.color_leaf(rest, 'red')
+        >>> labeltools.color_leaf(rest, 'red')
         Rest('r4')
 
     ::
@@ -40,7 +45,7 @@ def color_leaf(leaf, color):
 
     ::
 
-        >>> leaftools.color_leaf(chord, 'red')
+        >>> labeltools.color_leaf(chord, 'red')
         Chord("<c' e' bf'>4")
 
     ::
@@ -53,16 +58,13 @@ def color_leaf(leaf, color):
 
     Return `leaf`.
     '''
-    from abjad.tools.chordtools.Chord import Chord
-    from abjad.tools.notetools.Note import Note
-    from abjad.tools.resttools.Rest import Rest
 
     # color leaf
-    if isinstance(leaf, (Note, Chord)):
+    if isinstance(leaf, (notetools.Note, chordtools.Chord)):
         leaf.override.accidental.color = color
         leaf.override.dots.color = color
         leaf.override.note_head.color = color
-    elif isinstance(leaf, Rest):
+    elif isinstance(leaf, resttools.Rest):
         leaf.override.dots.color = color
         leaf.override.rest.color = color
 

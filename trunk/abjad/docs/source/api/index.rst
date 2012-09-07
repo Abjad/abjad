@@ -52,7 +52,6 @@ Composition packages
    tools/chordtools/all_are_chords
    tools/chordtools/arpeggiate_chord
    tools/chordtools/change_defective_chord_to_note_or_rest
-   tools/chordtools/color_chord_note_heads_in_expr_by_pitch_class_color_map
    tools/chordtools/divide_chord_by_chromatic_pitch_number
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
@@ -197,7 +196,6 @@ Composition packages
    :maxdepth: 1
 
    tools/containertools/all_are_containers
-   tools/containertools/color_contents_of_container
    tools/containertools/delete_contents_of_container
    tools/containertools/delete_contents_of_container_starting_at_or_after_offset
    tools/containertools/delete_contents_of_container_starting_before_or_at_offset
@@ -490,6 +488,13 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/labeltools/color_chord_note_heads_in_expr_by_pitch_class_color_map
+   tools/labeltools/color_contents_of_container
+   tools/labeltools/color_leaf
+   tools/labeltools/color_leaves_in_expr
+   tools/labeltools/color_measure
+   tools/labeltools/color_nonbinary_measures_in_expr
+   tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
    tools/labeltools/label_leaves_in_expr_with_leaf_depth
    tools/labeltools/label_leaves_in_expr_with_leaf_durations
@@ -555,8 +560,6 @@ Composition packages
 
    tools/leaftools/all_are_leaves
    tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
-   tools/leaftools/color_leaf
-   tools/leaftools/color_leaves_in_expr
    tools/leaftools/copy_written_duration_and_multiplier_from_leaf_to_leaf
    tools/leaftools/divide_leaf_meiotically
    tools/leaftools/divide_leaves_in_expr_meiotically
@@ -828,8 +831,6 @@ Composition packages
    tools/measuretools/append_spacer_skip_to_underfull_measure
    tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
    tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
-   tools/measuretools/color_measure
-   tools/measuretools/color_nonbinary_measures_in_expr
    tools/measuretools/comment_measures_in_container_with_measure_numbers
    tools/measuretools/extend_measures_in_expr_and_apply_full_measure_tuplets
    tools/measuretools/fill_measures_in_expr_with_full_measure_spacer_skips
@@ -882,7 +883,6 @@ Composition packages
 
    tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/all_are_notes
-   tools/notetools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
    tools/notetools/iterate_notes_in_expr

@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_leaftools_color_leaf_01():
+def test_labeltools_color_leaf_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(staff.leaves)
@@ -15,7 +15,7 @@ def test_leaftools_color_leaf_01():
     }
     '''
 
-    leaftools.color_leaf(staff[0], 'red')
+    labeltools.color_leaf(staff[0], 'red')
 
     r'''
     \new Staff {
