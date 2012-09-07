@@ -76,8 +76,10 @@ class Container(Component):
         Withdraw component(s) from crossing spanners.
         Preserve spanners that component(s) cover(s).
         '''
-        from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
+        from abjad.tools.componenttools._switch_components_to_parent import \
+            _switch_components_to_parent
+        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
+            _withdraw_components_in_expr_from_crossing_spanners
         components = self[i]
         if not isinstance(components, list):
             components = [components]

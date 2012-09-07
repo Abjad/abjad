@@ -131,17 +131,54 @@ def analyze_phrase(phrase):
         word_analyses.append(WordAnalysis(phrase_word))
     return word_analyses
 
-def make_score(input_text, base_duration=Duration(1, 16)):
+def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     first_phrase = find_first_phrase(input_text)
     word_analyses = analyze_phrase(first_phrase)
     upper_music, lower_music = make_music_for_word_analyses(word_analyses, base_duration)
     score_template = scoretemplatetools.GroupedStavesScoreTemplate(staff_count=2)
     score = score_template()
-    #score['Staff 1'].extend(upper_music)
-    #score['Staff 2'].extend(upper_music)
-    componenttools.get_first_component_in_expr_with_name(score, 'Staff 1').extend(upper_music)
-    componenttools.get_first_component_in_expr_with_name(score, 'Staff 2').extend(lower_music)
+    staff_1 = componenttools.get_first_component_in_expr_with_name(score, 'Staff 1')
+    staff_2 = componenttools.get_first_component_in_expr_with_name(score, 'Staff 2')
+    contexttools.ClefMark('percussion')(staff_1)
+    contexttools.ClefMark('percussion')(staff_2)
+    staff_1.extend(upper_music)
+    staff_2.extend(lower_music)
+
+    staff_1.override.staff_symbol.line_count = 4
+    staff_2.override.staff_symbol.line_count = 4
+
+    lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+    format_score(score)
+    format_lilypond_file(lilypond_file)
+    return lilypond_file
+
+def format_score(score):
+    score.override.bar_line.transparent = True
+    score.override.beam.positions = (-6, -6)
+    score.override.spacing_spanner.strict_grace_spacing = True
+    score.override.spacing_spanner.strict_note_spacing = True
+    score.override.spacing_spanner.uniform_stretching = True
+    score.override.span_bar.transparent = True
+    score.override.stem.direction = 'down'
+    score.override.time_signature.transparent = True
+    score.set.autoBeaming = False
+    score.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
+    score.set.tupletFullLength = True
+
+    vector = layouttools.make_spacing_vector(0, 0, 6, 0)
+    score[0].override.staff_grouper.staff_staff_spacing = vector
+
     return score
+
+def format_lilypond_file(lilypond_file):
+    lilypond_file.global_staff_size = 14
+    lilypond_file.header_block.title = markuptools.Markup('Turkish text')
+    lilypond_file.layout_block.indent = 0
+    lilypond_file.layout_block.ragged_right = True
+    vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+    lilypond_file.paper_block.markup_system_spacing = vector
+    lilypond_file.paper_block.top_margin = 10
+    return lilypond_file
     
 def make_music_for_word_analyses(word_analyses, base_duration):
     vowel_counts = [x.vowel_count for x in word_analyses]
@@ -160,10 +197,14 @@ def make_tuplets(durations, proportions, pitch_lists):
     for duration, proportion, pitch_list in zip(
         durations, proportions, pitch_lists):
         tuplet = tuplettools.make_tuplet_from_duration_and_proportions(duration, proportion)
+        beamtools.BeamSpanner(tuplet)
+        for leaf, pitch in zip(tuplet.leaves, pitch_list):
+            leaf.written_pitch = pitch
         tuplets.append(tuplet)
     return tuplets
 
     
 if __name__ == '__main__':
     os.system('clear')
-    score = make_score(input_text)
+    lilypond_file = make_lilypond_file(input_text)
+    show(lilypond_file)
