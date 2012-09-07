@@ -1,6 +1,8 @@
 def partition_integer_into_thirds(n, smallest='middle', biggest='middle'):
     '''Partition positive integer `n` into ``left, middle, right`` parts.
 
+    .. note:: Deprecated.
+
     When ``n % 3 == 0``, ``left == middle == right``::
 
         >>> from abjad.tools import mathtools
