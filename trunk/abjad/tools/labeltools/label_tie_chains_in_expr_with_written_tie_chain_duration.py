@@ -26,7 +26,7 @@ def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direct
 
     Return none.
     '''
-    from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
+    from abjad.tools.labeltools._label_leaves_in_expr_with_leaf_durations import \
         _label_leaves_in_expr_with_leaf_durations
 
     show = ['written']

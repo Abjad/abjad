@@ -1,9 +1,10 @@
 '''Abjad ``labeltools`` package.
 
-    Dependencies:
+Dependencies:
 
-    TBD
-
+The ``labeltools`` package is a high-level labeling package.
+The package may import essentially all of the core packages
+at top level.
 '''
 from abjad.tools import importtools
 

@@ -1,5 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import markuptools
+from abjad.tools import notetools
 
 
 def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False,
@@ -43,11 +44,11 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
 
     Return none.
     '''
-    from abjad.tools import notetools
 
     for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
         if number:
-            label = markuptools.MarkupCommand('small', str(abs(note.written_pitch.numbered_chromatic_pitch_class)))
+            label = markuptools.MarkupCommand(
+                'small', str(abs(note.written_pitch.numbered_chromatic_pitch_class)))
             markuptools.Markup(label, markup_direction)(note)
         if color:
             notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)

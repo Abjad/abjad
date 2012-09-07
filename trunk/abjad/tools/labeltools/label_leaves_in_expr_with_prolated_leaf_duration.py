@@ -14,7 +14,7 @@ def label_leaves_in_expr_with_prolated_leaf_duration(expr, markup_direction=Down
 
     Return none.
     '''
-    from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import \
+    from abjad.tools.labeltools._label_leaves_in_expr_with_leaf_durations import \
         _label_leaves_in_expr_with_leaf_durations
 
     show = ['prolated']

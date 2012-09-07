@@ -1,5 +1,7 @@
 from abjad.tools import componenttools
+from abjad.tools import leaftools
 from abjad.tools import markuptools
+from abjad.tools import notetools
 from abjad.tools import pitchtools
 
 
@@ -30,8 +32,6 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction=
 
     Return none.
     """
-    from abjad.tools import leaftools
-    from abjad.tools import notetools
 
     for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
         thread_iterator = componenttools.iterate_thread_forward_from_component(note, leaftools.Leaf)
