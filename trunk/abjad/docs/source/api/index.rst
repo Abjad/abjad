@@ -802,7 +802,6 @@ Composition packages
    tools/mathtools/partition_integer_by_ratio
    tools/mathtools/partition_integer_into_canonic_parts
    tools/mathtools/partition_integer_into_halves
-   tools/mathtools/partition_integer_into_thirds
    tools/mathtools/partition_integer_into_units
    tools/mathtools/remove_powers_of_two
    tools/mathtools/sign
