@@ -2,7 +2,7 @@ import abc
 import abc
 import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental import timespantools
+from experimental import timespaninequalitytools
 
 
 class Selector(AbjadObject):
@@ -33,7 +33,7 @@ class Selector(AbjadObject):
 
         Return timespan object.
         '''
-        return timespantools.SingleSourceTimespan(selector=self)
+        return timespaninequalitytools.SingleSourceTimespan(selector=self)
 
     ### PUBLIC METHODS ###
 

@@ -72,8 +72,8 @@ class SegmentSelector(SliceSelector, InequalitySelector):
 
     Select all segments starting during the first third of the score:
 
-        >>> timespan = timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
-        >>> inequality = timespantools.expr_2_starts_during_expr_1(expr_1=timespan)
+        >>> timespan = timespaninequalitytools.SingleSourceTimespan(multiplier=Fraction(1, 3))
+        >>> inequality = timespaninequalitytools.expr_2_starts_during_expr_1(expr_1=timespan)
 
     ::
 
@@ -83,9 +83,9 @@ class SegmentSelector(SliceSelector, InequalitySelector):
 
         >>> z(selector)
         selectortools.SegmentSelector(
-            inequality=timespantools.TimespanInequality(
+            inequality=timespaninequalitytools.TimespanInequality(
                 'expr_1.start <= expr_2.start < expr_1.stop',
-                expr_1=timespantools.SingleSourceTimespan(
+                expr_1=timespaninequalitytools.SingleSourceTimespan(
                     multiplier=Fraction(1, 3)
                     )
                 )
@@ -99,9 +99,9 @@ class SegmentSelector(SliceSelector, InequalitySelector):
 
         >>> z(selector)
         selectortools.SegmentSelector(
-            inequality=timespantools.TimespanInequality(
+            inequality=timespaninequalitytools.TimespanInequality(
                 'expr_1.start <= expr_2.start < expr_1.stop',
-                expr_1=timespantools.SingleSourceTimespan(
+                expr_1=timespaninequalitytools.SingleSourceTimespan(
                     multiplier=Fraction(1, 3)
                     )
                 ),

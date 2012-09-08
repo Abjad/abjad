@@ -318,53 +318,53 @@ Unstable packages (load manually)
 
    experimental/statalservertools/StatalServer/StatalServer
 
-:py:mod:`timespantools <experimental.timespantools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timespaninequalitytools <experimental.timespaninequalitytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespantools/Timespan/Timespan
+   experimental/timespaninequalitytools/Timespan/Timespan
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespantools/MixedSourceTimespan/MixedSourceTimespan
-   experimental/timespantools/SingleSourceTimespan/SingleSourceTimespan
-   experimental/timespantools/Timepoint/Timepoint
-   experimental/timespantools/TimespanConstant/TimespanConstant
-   experimental/timespantools/TimespanInequality/TimespanInequality
-   experimental/timespantools/TimespanInventory/TimespanInventory
+   experimental/timespaninequalitytools/MixedSourceTimespan/MixedSourceTimespan
+   experimental/timespaninequalitytools/SingleSourceTimespan/SingleSourceTimespan
+   experimental/timespaninequalitytools/Timepoint/Timepoint
+   experimental/timespaninequalitytools/TimespanConstant/TimespanConstant
+   experimental/timespaninequalitytools/TimespanInequality/TimespanInequality
+   experimental/timespaninequalitytools/TimespanInventory/TimespanInventory
 
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespantools/expr_2_happens_during_expr_1
-   experimental/timespantools/expr_2_intersects_expr_1
-   experimental/timespantools/expr_2_is_congruent_to_expr_1
-   experimental/timespantools/expr_2_overlaps_all_of_expr_1
-   experimental/timespantools/expr_2_overlaps_start_of_expr_1
-   experimental/timespantools/expr_2_overlaps_start_of_expr_1_only
-   experimental/timespantools/expr_2_overlaps_stop_of_expr_1
-   experimental/timespantools/expr_2_overlaps_stop_of_expr_1_only
-   experimental/timespantools/expr_2_starts_after_expr_1_starts
-   experimental/timespantools/expr_2_starts_after_expr_1_stops
-   experimental/timespantools/expr_2_starts_before_expr_1_starts
-   experimental/timespantools/expr_2_starts_before_expr_1_stops
-   experimental/timespantools/expr_2_starts_during_expr_1
-   experimental/timespantools/expr_2_starts_when_expr_1_starts
-   experimental/timespantools/expr_2_starts_when_expr_1_stops
-   experimental/timespantools/expr_2_stops_after_expr_1_starts
-   experimental/timespantools/expr_2_stops_after_expr_1_stops
-   experimental/timespantools/expr_2_stops_before_expr_1_starts
-   experimental/timespantools/expr_2_stops_before_expr_1_stops
-   experimental/timespantools/expr_2_stops_during_expr_1
-   experimental/timespantools/expr_2_stops_when_expr_1_starts
-   experimental/timespantools/expr_2_stops_when_expr_1_stops
-   experimental/timespantools/expr_to_timespan
+   experimental/timespaninequalitytools/expr_2_happens_during_expr_1
+   experimental/timespaninequalitytools/expr_2_intersects_expr_1
+   experimental/timespaninequalitytools/expr_2_is_congruent_to_expr_1
+   experimental/timespaninequalitytools/expr_2_overlaps_all_of_expr_1
+   experimental/timespaninequalitytools/expr_2_overlaps_start_of_expr_1
+   experimental/timespaninequalitytools/expr_2_overlaps_start_of_expr_1_only
+   experimental/timespaninequalitytools/expr_2_overlaps_stop_of_expr_1
+   experimental/timespaninequalitytools/expr_2_overlaps_stop_of_expr_1_only
+   experimental/timespaninequalitytools/expr_2_starts_after_expr_1_starts
+   experimental/timespaninequalitytools/expr_2_starts_after_expr_1_stops
+   experimental/timespaninequalitytools/expr_2_starts_before_expr_1_starts
+   experimental/timespaninequalitytools/expr_2_starts_before_expr_1_stops
+   experimental/timespaninequalitytools/expr_2_starts_during_expr_1
+   experimental/timespaninequalitytools/expr_2_starts_when_expr_1_starts
+   experimental/timespaninequalitytools/expr_2_starts_when_expr_1_stops
+   experimental/timespaninequalitytools/expr_2_stops_after_expr_1_starts
+   experimental/timespaninequalitytools/expr_2_stops_after_expr_1_stops
+   experimental/timespaninequalitytools/expr_2_stops_before_expr_1_starts
+   experimental/timespaninequalitytools/expr_2_stops_before_expr_1_stops
+   experimental/timespaninequalitytools/expr_2_stops_during_expr_1
+   experimental/timespaninequalitytools/expr_2_stops_when_expr_1_starts
+   experimental/timespaninequalitytools/expr_2_stops_when_expr_1_stops
+   experimental/timespaninequalitytools/expr_to_timespan

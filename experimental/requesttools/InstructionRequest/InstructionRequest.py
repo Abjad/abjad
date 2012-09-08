@@ -1,4 +1,4 @@
-from experimental import timespantools
+from experimental import timespaninequalitytools
 from experimental.requesttools.Request import Request
 
 

@@ -15,7 +15,7 @@ class CountRatioPartSelector(RatioPartSelector):
     Then select part ``0`` of this partition::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timespantools.expr_2_starts_during_expr_1(expr_1=segment_selector.timespan)
+        >>> inequality = timespaninequalitytools.expr_2_starts_during_expr_1(expr_1=segment_selector.timespan)
         >>> background_measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
 
     ::
@@ -28,9 +28,9 @@ class CountRatioPartSelector(RatioPartSelector):
         >>> z(count_ratio_part_selector)
         selectortools.CountRatioPartSelector(
             selectortools.BackgroundMeasureSelector(
-                inequality=timespantools.TimespanInequality(
+                inequality=timespaninequalitytools.TimespanInequality(
                     'expr_1.start <= expr_2.start < expr_1.stop',
-                    expr_1=timespantools.SingleSourceTimespan(
+                    expr_1=timespaninequalitytools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
