@@ -33,9 +33,9 @@ def expr_to_timespan(expr):
     if hasattr(expr, 'timespan'):
         return expr.timespan
     elif isinstance(expr, numbers.Number):
-        return timespaninequalitytools.TimespanConstant(start_offset=expr, stop_offset=expr)
+        return timespantools.TimespanConstant(start_offset=expr, stop_offset=expr)
     elif sequencetools.is_pair(expr):
         start_offset, stop_offset = expr
-        return timespaninequalitytools.TimespanConstant(start_offset=start_offset, stop_offset=stop_offset)
+        return timespantools.TimespanConstant(start_offset=start_offset, stop_offset=stop_offset)
     else:
         raise TypeError('can not change {!r} to timespan.'.format(expr))

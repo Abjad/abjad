@@ -14,7 +14,7 @@ class TimespanConstant(Timespan):
 
     Timespan contant ``[1/2, 3/2)``::
 
-        >>> timespan_constant = timespaninequalitytools.TimespanConstant((1, 2), (3, 2)) 
+        >>> timespan_constant = timespantools.TimespanConstant((1, 2), (3, 2)) 
 
     ::
 
@@ -24,7 +24,7 @@ class TimespanConstant(Timespan):
     ::
     
         >>> z(timespan_constant)
-        timespaninequalitytools.TimespanConstant(
+        timespantools.TimespanConstant(
             start_offset=durationtools.Offset(1, 2),
             stop_offset=durationtools.Offset(3, 2)
             )
