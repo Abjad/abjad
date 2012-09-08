@@ -1,22 +1,25 @@
-def expr_starts_during_timespan(timespan=None):
+def expr_starts_during_timespan(expr_1=None, expr_2=None, hold=False):
     r'''.. versionadded:: 1.0
-
-    Make timespan inequality template indicating that expression starts during timespan::
-
-        >>> from experimental import *
 
     ::
 
-        >>> timespantools.expr_starts_during_timespan()
-        TimespanInequalityTemplate('t.start <= expr.start < t.stop')
+        >>> from experimental import *
 
-    Return timespan inequality or timespan inequality template.
+    Make timespan inequality indicating that expression 2 starts during expression 1::
+
+        >>> timespantools.expr_starts_during_timespan()
+        TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop')
+
+    Return timespan inequality or boolean.
     '''
     from experimental import timespantools
 
-    template = timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
+    timespan_inequality = timespantools.TimespanInequality(
+        'expr_1.start <= expr_2.start < expr_1.stop',
+        expr_1=expr_1,
+        expr_2=expr_2)
 
-    if timespan is None:
-        return template
+    if timespan_inequality.is_fully_loaded and not hold:
+        return timespan_inequality()
     else:
-        return timespantools.TimespanInequality(template, timespan)
+        return timespan_inequality

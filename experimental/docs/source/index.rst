@@ -336,6 +336,7 @@ Unstable packages (load manually)
    experimental/timespantools/MixedSourceTimespan/MixedSourceTimespan
    experimental/timespantools/SingleSourceTimespan/SingleSourceTimespan
    experimental/timespantools/Timepoint/Timepoint
+   experimental/timespantools/TimespanConstant/TimespanConstant
    experimental/timespantools/TimespanInequality/TimespanInequality
    experimental/timespantools/TimespanInequalityTemplate/TimespanInequalityTemplate
    experimental/timespantools/TimespanInventory/TimespanInventory
