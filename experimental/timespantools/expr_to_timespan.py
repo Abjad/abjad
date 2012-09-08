@@ -11,22 +11,22 @@ def expr_to_timespan(expr):
 
     Return timespan constant when `expr` is a number::
 
-        >>> timespaninequalitytools.expr_to_timespan(Fraction(7, 8))
+        >>> timespantools.expr_to_timespan(Fraction(7, 8))
         TimespanConstant(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
 
     Return timespan constant when `expr` is an offset::
 
-        >>> timespaninequalitytools.expr_to_timespan(durationtools.Offset(7, 8))
+        >>> timespantools.expr_to_timespan(durationtools.Offset(7, 8))
         TimespanConstant(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
 
     Return timespan constant when `expr` is a pair::
 
-        >>> timespaninequalitytools.expr_to_timespan(((1, 2), (3, 2)))
+        >>> timespantools.expr_to_timespan(((1, 2), (3, 2)))
         TimespanConstant(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
 
     Otherwise raise type error.
     '''
-    from experimental import timespaninequalitytools
+    from experimental import timespantools
 
     if isinstance(expr, timespantools.Timespan):
         return expr

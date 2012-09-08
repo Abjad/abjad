@@ -355,7 +355,6 @@ Unstable packages (load manually)
    experimental/timespaninequalitytools/expr_2_stops_during_expr_1
    experimental/timespaninequalitytools/expr_2_stops_when_expr_1_starts
    experimental/timespaninequalitytools/expr_2_stops_when_expr_1_stops
-   experimental/timespaninequalitytools/expr_to_timespan
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -377,3 +376,10 @@ Unstable packages (load manually)
    experimental/timespantools/Timepoint/Timepoint
    experimental/timespantools/TimespanConstant/TimespanConstant
    experimental/timespantools/TimespanInventory/TimespanInventory
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timespantools/expr_to_timespan

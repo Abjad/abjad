@@ -2,7 +2,7 @@ import abc
 import abc
 import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental import timespaninequalitytools
+from experimental import timespantools
 
 
 class Selector(AbjadObject):

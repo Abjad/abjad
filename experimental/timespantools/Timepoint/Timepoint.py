@@ -158,7 +158,7 @@ class Timepoint(AbjadObject):
 
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental import selectortools 
-        from experimental import timespaninequalitytools 
+        from experimental import timespantools 
         assert isinstance(
             anchor, (selectortools.Selector, timespantools.SingleSourceTimespan, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)

@@ -4,6 +4,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespaninequalitytools
+from experimental import timespantools
 from experimental.exceptions import *
 from experimental.specificationtools.Specification import Specification
 

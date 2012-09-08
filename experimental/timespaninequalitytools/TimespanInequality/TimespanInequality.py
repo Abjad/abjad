@@ -33,11 +33,6 @@ class TimespanInequality(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, template, expr_1=None, expr_2=None):
-        #from experimental import timespaninequalitytools
-        #timespan = timespaninequalitytools.expr_to_timespan(timespan)
-        #assert isinstance(timespan_inequality_template, timespaninequalitytools.TimespanInequalityTemplate), repr(
-        #    timespan_inequality_template)
-        #self._timespan_inequality_template = timespan_inequality_template
         assert isinstance(template, str)
         self._template = template
         self._expr_1 = expr_1
@@ -46,10 +41,10 @@ class TimespanInequality(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        from experimental import timespaninequalitytools
+        from experimental import timespantools
         if self.is_fully_loaded:
-            expr_1 = timespaninequalitytools.expr_to_timespan(self.expr_1)
-            expr_2 = timespaninequalitytools.expr_to_timespan(self.expr_2)
+            expr_1 = timespantools.expr_to_timespan(self.expr_1)
+            expr_2 = timespantools.expr_to_timespan(self.expr_2)
             expr_1_start = self._get_expr_start(expr_1)
             expr_1_stop = self._get_expr_stop(expr_1)
             expr_2_start = self._get_expr_start(expr_2)

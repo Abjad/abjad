@@ -69,7 +69,7 @@ class MixedSourceTimespan(Timespan):
     ### INITIALIZER ###
 
     def __init__(self, start_timepoint=None, stop_timepoint=None):
-        from experimental import timespaninequalitytools
+        from experimental import timespantools
         assert isinstance(start_timepoint, (timespantools.Timepoint, type(None))), repr(start_timepoint)
         assert isinstance(stop_timepoint, (timespantools.Timepoint, type(None))), repr(stop_timepoint)
         Timespan.__init__(self)

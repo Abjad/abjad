@@ -1,11 +1,11 @@
-from experimental import timespaninequalitytools
-from fractions import Fraction
 import copy
+import fractions
+from experimental import *
 
 
 def test_Timepoint___copy___01():
 
-    timepoint_1 = timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
+    timepoint_1 = timespantools.Timepoint(edge=Right, multiplier=fractions.Fraction(1, 3))
     timepoint_2 = copy.deepcopy(timepoint_1)
 
     assert isinstance(timepoint_1, timespantools.Timepoint)

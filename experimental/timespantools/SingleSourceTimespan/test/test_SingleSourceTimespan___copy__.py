@@ -1,12 +1,11 @@
-from experimental import specificationtools
-from experimental import timespaninequalitytools
-from fractions import Fraction
 import copy
+import fractions
+from experimental import *
 
 
 def test_SingleSourceTimespan___copy___01():
 
-    timespan_1 = timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
+    timespan_1 = timespantools.SingleSourceTimespan(multiplier=fractions.Fraction(1, 3))
     timespan_2 = copy.deepcopy(timespan_1)
 
     assert isinstance(timespan_1, timespantools.SingleSourceTimespan)

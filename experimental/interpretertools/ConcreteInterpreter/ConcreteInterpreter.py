@@ -7,7 +7,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import specificationtools
-from experimental import timespaninequalitytools
+from experimental import timespantools
 from experimental.interpretertools.Interpreter import Interpreter
 
 
