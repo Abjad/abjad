@@ -73,7 +73,7 @@ class Timepoint(AbjadObject):
     during segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=segment_selector.timespan)
+        >>> inequality = timespantools.expr_2_starts_during_expr_1(expr_1=segment_selector.timespan)
         >>> counttime_component_selector = selectortools.CounttimeComponentSelector(
         ... inequality=inequality, klass=Note, start_identifier=10, stop_identifier=11)
 

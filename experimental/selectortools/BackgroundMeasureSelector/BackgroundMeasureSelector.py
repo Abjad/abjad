@@ -34,7 +34,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     Select all measures starting during segment ``'red'``::
 
         >>> timespan = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=timespan)
+        >>> inequality = timespantools.expr_2_starts_during_expr_1(expr_1=timespan)
 
     ::
 
@@ -73,7 +73,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
         >>> selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=expr)
-        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=selector)
+        >>> inequality = timespantools.expr_2_starts_during_expr_1(expr_1=selector)
 
     ::
     

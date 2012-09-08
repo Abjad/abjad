@@ -43,7 +43,7 @@ class SingleSourceTimespan(Timespan):
 
     Timespan of the first measure that starts during segment ``'red'``::
 
-        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=segment_selector.timespan)
+        >>> inequality = timespantools.expr_2_starts_during_expr_1(expr_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
 
     ::
