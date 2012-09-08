@@ -728,9 +728,7 @@ class ConcreteInterpreter(Interpreter):
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
         #self._debug(resolved_single_context_setting, 'rscs')
         selector = resolved_single_context_setting.selector
-        self._debug(selector, 'selector')
         segment_specification = self.get_segment_specification(selector)
-        self._debug(segment_specification, 'segment')
         self.store_resolved_single_context_setting(
             segment_specification, resolved_single_context_setting,
             clear_persistent_first=clear_persistent_first)
