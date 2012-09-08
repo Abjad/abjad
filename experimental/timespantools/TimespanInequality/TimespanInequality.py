@@ -21,10 +21,10 @@ class TimespanInequality(AbjadObject):
 
         >>> z(timespan_inequality)
         timespantools.TimespanInequality(
-            timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
+            'expr_1.start <= expr_2.start < expr_1.stop',
             expr_1=selectortools.SingleSegmentSelector(
-                    identifier='red'
-                )        
+                identifier='red'
+                )
             )
 
     Timespan inequalities are immutable.
@@ -46,11 +46,14 @@ class TimespanInequality(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        from experimental import timespantools
         if self.is_fully_loaded:
-            expr_1_start = self._get_expr_start(self.expr_1)
-            expr_1_stop = self._get_expr_stop(self.expr_1)
-            expr_2_start = self._get_expr_start(self.expr_2)
-            expr_2_stop = self._get_expr_stop(self.expr_2)
+            expr_1 = timespantools.expr_to_timespan(self.expr_1)
+            expr_2 = timespantools.expr_to_timespan(self.expr_2)
+            expr_1_start = self._get_expr_start(expr_1)
+            expr_1_stop = self._get_expr_stop(expr_1)
+            expr_2_start = self._get_expr_start(expr_2)
+            expr_2_stop = self._get_expr_stop(expr_2)
             command = self.template
             command = command.replace('expr_1.start', repr(expr_1_start))
             command = command.replace('expr_1.stop', repr(expr_1_stop))
@@ -74,13 +77,13 @@ class TimespanInequality(AbjadObject):
 
     def _get_expr_start(self, expr):
         if hasattr(expr, 'start_offset'):
-            return expr_2.start_offset
+            return expr.start_offset
         else:
             raise ValueError
 
     def _get_expr_stop(self, expr):
         if hasattr(expr, 'stop_offset'):
-            return expr_2.stop_offset
+            return expr.stop_offset
         else:
             raise ValueError
 

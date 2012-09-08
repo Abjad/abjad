@@ -15,6 +15,10 @@ class TimespanConstant(Timespan):
     Timespan contant ``[1/2, 3/2)``::
 
         >>> timespan_constant = timespantools.TimespanConstant((1, 2), (3, 2)) 
+
+    ::
+
+        >>> timespan_constant
         TimespanConstant(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
 
     ::

@@ -73,7 +73,7 @@ class Timepoint(AbjadObject):
     during segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=segment_selector.timespan)
         >>> counttime_component_selector = selectortools.CounttimeComponentSelector(
         ... inequality=inequality, klass=Note, start_identifier=10, stop_identifier=11)
 
@@ -87,8 +87,8 @@ class Timepoint(AbjadObject):
         timespantools.Timepoint(
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
-                    timespantools.SingleSourceTimespan(
+                    'expr_1.start <= expr_2.start < expr_1.stop',
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -137,8 +137,8 @@ class Timepoint(AbjadObject):
         timespantools.Timepoint(
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
-                    timespantools.SingleSourceTimespan(
+                    'expr_1.start <= expr_2.start < expr_1.stop',
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -244,8 +244,8 @@ class Timepoint(AbjadObject):
             >>> z(timepoint.anchor)
             selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
-                    timespantools.SingleSourceTimespan(
+                    'expr_1.start <= expr_2.start < expr_1.stop',
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )

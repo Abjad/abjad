@@ -43,7 +43,7 @@ class SingleSourceTimespan(Timespan):
 
     Timespan of the first measure that starts during segment ``'red'``::
 
-        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
 
     ::
@@ -56,8 +56,8 @@ class SingleSourceTimespan(Timespan):
         timespantools.SingleSourceTimespan(
             selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
-                    timespantools.SingleSourceTimespan(
+                    'expr_1.start <= expr_2.start < expr_1.stop',
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -81,8 +81,8 @@ class SingleSourceTimespan(Timespan):
         timespantools.SingleSourceTimespan(
             selector=selectortools.DivisionSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
-                    timespantools.SingleSourceTimespan(
+                    'expr_1.start <= expr_2.start < expr_1.stop',
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
