@@ -1,4 +1,4 @@
-def expr_overlaps_start_of_timespan_only(timespan=None):
+def expr_overlaps_start_of_timespan_only(expr_1=None, expr_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
     Make timespan inequality template indicating that expression happens during timespan::

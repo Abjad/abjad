@@ -1,4 +1,4 @@
-def expr_is_congruent_to_timespan(timespan=None):
+def expr_is_congruent_to_timespan(expr_1=None, expr_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
     Make timespan inequality template indicating that expression is congruent to timespan::

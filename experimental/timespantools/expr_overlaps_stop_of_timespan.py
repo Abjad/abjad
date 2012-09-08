@@ -1,4 +1,4 @@
-def expr_overlaps_stop_of_timespan(timespan=None):
+def expr_overlaps_stop_of_timespan(expr_1=None, expr_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
     Make timespan inequality template indicating that expression overlaps stop of timespan::

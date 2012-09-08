@@ -1,4 +1,4 @@
-def expr_stops_after_timespan_starts(timespan=None):
+def expr_stops_after_timespan_starts(expr_1=None, expr_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
     Make timespan inequality template indicating that expression stops after timespan starts::
