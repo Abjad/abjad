@@ -32,14 +32,14 @@ class TimespanInequality(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, timespan_inequality_template, timespan, expr=None):
+    def __init__(self, timespan_inequality_template, timespan, expr_2=None):
         from experimental import timespantools
         timespan = timespantools.expr_to_timespan(timespan)
         assert isinstance(timespan_inequality_template, timespantools.TimespanInequalityTemplate), repr(
             timespan_inequality_template)
         self._timespan_inequality_template = timespan_inequality_template
         self._timespan = timespan
-        self._expr = expr
+        self._expr_2 = expr_2
 
     ### SPECIAL METHODS ###
 
@@ -47,19 +47,19 @@ class TimespanInequality(AbjadObject):
         if isinstance(expr, type(self)):
             if self.timespan_inequality_template == expr.timespan_inequality_template:
                 if self.timespan == expr.timespan:
-                    if self.expr == expr.expr:
+                    if self.expr_2 == expr.expr_2:
                         return True
         return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def expr(self):
-        '''Expression of timespan inequality.
+    def expr_2(self):
+        '''Expression ``2`` of timespan inequality.
 
         Return arbitrary object.
         '''
-        return self._expr
+        return self._expr_2
         
     @property
     def segment_identifier(self):
