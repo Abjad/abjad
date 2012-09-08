@@ -1,5 +1,5 @@
 from abjad.tools import durationtools
-from experimental.timespaninequalitytools.Timespan import Timespan
+from experimental.timespantools.Timespan import Timespan
 
 
 

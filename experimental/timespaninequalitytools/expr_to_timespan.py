@@ -28,7 +28,7 @@ def expr_to_timespan(expr):
     '''
     from experimental import timespaninequalitytools
 
-    if isinstance(expr, timespaninequalitytools.Timespan):
+    if isinstance(expr, timespantools.Timespan):
         return expr
     if hasattr(expr, 'timespan'):
         return expr.timespan
