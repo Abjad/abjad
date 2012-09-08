@@ -14,22 +14,22 @@ class SingleSourceTimespan(Timespan):
 
     Timespan of the entire score::
 
-        >>> timespaninequalitytools.SingleSourceTimespan()
+        >>> timespantools.SingleSourceTimespan()
         SingleSourceTimespan()
 
     Timespan of the first third of the score::
 
-        >>> timespaninequalitytools.SingleSourceTimespan(multiplier=Fraction(1, 3))
+        >>> timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
         SingleSourceTimespan(multiplier=Fraction(1, 3))
 
     Timespan of the first ``1/8`` of a whole note in score::
 
-        >>> timespaninequalitytools.SingleSourceTimespan(multiplier=Fraction(0, 1), right_addendum=durationtools.Offset(1, 8))
+        >>> timespantools.SingleSourceTimespan(multiplier=Fraction(0, 1), right_addendum=durationtools.Offset(1, 8))
         SingleSourceTimespan(multiplier=Fraction(0, 1), right_addendum=Offset(1, 8))
 
     Timespan of the last ``1/8`` of a whole note in score::
 
-        >>> timespaninequalitytools.SingleSourceTimespan(multiplier=Fraction(0, 1), left_addendum=durationtools.Offset(-1, 8))
+        >>> timespantools.SingleSourceTimespan(multiplier=Fraction(0, 1), left_addendum=durationtools.Offset(-1, 8))
         SingleSourceTimespan(multiplier=Fraction(0, 1), left_addendum=Offset(-1, 8))
 
     Timespan of the segment with name ``'red'``::
@@ -38,7 +38,7 @@ class SingleSourceTimespan(Timespan):
 
     ::
 
-        >>> timespaninequalitytools.SingleSourceTimespan(selector=segment_selector)
+        >>> timespantools.SingleSourceTimespan(selector=segment_selector)
         SingleSourceTimespan(selector=SingleSegmentSelector(identifier='red'))
 
     Timespan of the first measure that starts during segment ``'red'``::
@@ -48,16 +48,16 @@ class SingleSourceTimespan(Timespan):
 
     ::
 
-        >>> timespan = timespaninequalitytools.SingleSourceTimespan(selector=measure_selector)
+        >>> timespan = timespantools.SingleSourceTimespan(selector=measure_selector)
 
     ::
 
         >>> z(timespan)
-        timespaninequalitytools.SingleSourceTimespan(
+        timespantools.SingleSourceTimespan(
             selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'expr_1.start <= expr_2.start < expr_1.stop',
-                    expr_1=timespaninequalitytools.SingleSourceTimespan(
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -73,16 +73,16 @@ class SingleSourceTimespan(Timespan):
 
     ::
 
-        >>> timespan = timespaninequalitytools.SingleSourceTimespan(selector=division_selector)
+        >>> timespan = timespantools.SingleSourceTimespan(selector=division_selector)
 
     ::
 
        >>> z(timespan)
-        timespaninequalitytools.SingleSourceTimespan(
+        timespantools.SingleSourceTimespan(
             selector=selectortools.DivisionSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'expr_1.start <= expr_2.start < expr_1.stop',
-                    expr_1=timespaninequalitytools.SingleSourceTimespan(
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -100,7 +100,7 @@ class SingleSourceTimespan(Timespan):
 
     ::
 
-        >>> timespaninequalitytools.SingleSourceTimespan(selector=segment_slice_selector)
+        >>> timespantools.SingleSourceTimespan(selector=segment_slice_selector)
         SingleSourceTimespan(selector=SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.

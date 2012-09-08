@@ -88,7 +88,7 @@ class Timepoint(AbjadObject):
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'expr_1.start <= expr_2.start < expr_1.stop',
-                    expr_1=timespaninequalitytools.SingleSourceTimespan(
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -106,7 +106,7 @@ class Timepoint(AbjadObject):
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=stop)
-        >>> timespan = timespaninequalitytools.SingleSourceTimespan(selector=segment_slice_selector)
+        >>> timespan = timespantools.SingleSourceTimespan(selector=segment_slice_selector)
 
     ::
     
@@ -116,7 +116,7 @@ class Timepoint(AbjadObject):
     
         >>> z(timepoint)
         timespaninequalitytools.Timepoint(
-            anchor=timespaninequalitytools.SingleSourceTimespan(
+            anchor=timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentSelector(
                     start_identifier='red',
                     stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
@@ -138,7 +138,7 @@ class Timepoint(AbjadObject):
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'expr_1.start <= expr_2.start < expr_1.stop',
-                    expr_1=timespaninequalitytools.SingleSourceTimespan(
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -160,7 +160,7 @@ class Timepoint(AbjadObject):
         from experimental import selectortools 
         from experimental import timespaninequalitytools 
         assert isinstance(
-            anchor, (selectortools.Selector, timespaninequalitytools.SingleSourceTimespan, type(None))), repr(anchor)
+            anchor, (selectortools.Selector, timespantools.SingleSourceTimespan, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
@@ -245,7 +245,7 @@ class Timepoint(AbjadObject):
             selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'expr_1.start <= expr_2.start < expr_1.stop',
-                    expr_1=timespaninequalitytools.SingleSourceTimespan(
+                    expr_1=timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )

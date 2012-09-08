@@ -5,7 +5,7 @@ from experimental.settingtools.MultipleContextSetting import MultipleContextSett
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.timespaninequalitytools.Timepoint import Timepoint
-from experimental.timespaninequalitytools.SingleSourceTimespan import SingleSourceTimespan
+from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
 def test_MultipleContextSettingInventory___repr___01():

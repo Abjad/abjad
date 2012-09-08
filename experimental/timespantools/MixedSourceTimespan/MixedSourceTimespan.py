@@ -27,18 +27,18 @@ class MixedSourceTimespan(Timespan):
         
     ::
 
-        >>> timespan = timespaninequalitytools.MixedSourceTimespan(
+        >>> timespan = timespantools.MixedSourceTimespan(
         ... start_timepoint=start_timepoint, stop_timepoint=stop_timepoint)
 
     ::
 
         >>> z(timespan)
-        timespaninequalitytools.MixedSourceTimespan(
+        timespantools.MixedSourceTimespan(
             start_timepoint=timespaninequalitytools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'expr_1.start <= expr_2.start < expr_1.stop',
-                        expr_1=timespaninequalitytools.SingleSourceTimespan(
+                        expr_1=timespantools.SingleSourceTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -51,7 +51,7 @@ class MixedSourceTimespan(Timespan):
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'expr_1.start <= expr_2.start < expr_1.stop',
-                        expr_1=timespaninequalitytools.SingleSourceTimespan(
+                        expr_1=timespantools.SingleSourceTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='blue'
                                 )

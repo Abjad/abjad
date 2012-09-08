@@ -33,7 +33,7 @@ class Selector(AbjadObject):
 
         Return timespan object.
         '''
-        return timespaninequalitytools.SingleSourceTimespan(selector=self)
+        return timespantools.SingleSourceTimespan(selector=self)
 
     ### PUBLIC METHODS ###
 
