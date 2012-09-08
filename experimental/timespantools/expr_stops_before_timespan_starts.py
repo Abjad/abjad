@@ -8,15 +8,18 @@ def expr_stops_before_timespan_starts(expr_1=None, expr_2=None, hold=False):
     ::
 
         >>> timespantools.expr_stops_before_timespan_starts()
-        TimespanInequalityTemplate('expr_2.stop <= expr_1.start')
+        TimespanInequality('expr_2.stop <= expr_1.start')
 
     Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    template = timespantools.TimespanInequalityTemplate('expr_2.stop <= expr_1.start')
+    timespan_inequality = timespantools.TimespanInequality(
+        'expr_2.stop <= expr_1.start',
+        expr_1=expr_1,
+        expr_2=expr_2)
 
-    if timespan is None:
-        return template
+    if timespan_inequality.is_fully_loaded and not hold:
+        return timespan_inequality()
     else:
-        return timespantools.TimespanInequality(template, timespan)
+        return timespan_inequality

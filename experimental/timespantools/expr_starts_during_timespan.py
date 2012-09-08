@@ -8,7 +8,7 @@ def expr_starts_during_timespan(expr_1=None, expr_2=None, hold=False):
     Make timespan inequality indicating that expression 2 starts during expression 1::
 
         >>> timespantools.expr_starts_during_timespan()
-        TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop')
+        TimespanInequality('expr_1.start <= expr_2.start < expr_1.stop')
 
     Return timespan inequality or boolean.
     '''

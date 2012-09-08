@@ -8,18 +8,20 @@ def expr_intersects_timespan(expr_1=None, expr_2=None, hold=False):
     ::
 
         >>> timespantools.expr_intersects_timespan()
-        TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_2.stop or expr_1.start < expr_2.stop <= expr_2.stop or expr_1.start < expr_2.start < expr_1.stop < expr_2.stop')
+        TimespanInequality('expr_1.start <= expr_2.start < expr_2.stop or expr_1.start < expr_2.stop <= expr_2.stop or expr_1.start < expr_2.start < expr_1.stop < expr_2.stop')
 
     Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    template = timespantools.TimespanInequalityTemplate(
+    timespan_inequality = timespantools.TimespanInequality(
         'expr_1.start <= expr_2.start < expr_2.stop or '
         'expr_1.start < expr_2.stop <= expr_2.stop or '
-        'expr_1.start < expr_2.start < expr_1.stop < expr_2.stop')
-
-    if timespan is None:
-        return template
+        'expr_1.start < expr_2.start < expr_1.stop < expr_2.stop',
+        expr_1=expr_1, 
+        expr_2=expr_2)
+    
+    if timespan_inequality.is_fully_loaded and not hold: 
+        return timespan_inequality()
     else:
-        return timespantools.TimespanInequality(template, timespan)
+        return timespan_inequality

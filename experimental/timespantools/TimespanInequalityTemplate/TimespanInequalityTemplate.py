@@ -11,17 +11,17 @@ class TimespanInequalityTemplate(AbjadObject):
     Expression starts during timespan::
 
         >>> timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop')
-        TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop')
+        TimespanInequality('expr_1.start <= expr_2.start < expr_1.stop')
 
     Expression stops during timespan::
 
         >>> timespantools.TimespanInequalityTemplate('expr_1.start < expr_2.stop <= expr_1.stop')
-        TimespanInequalityTemplate('expr_1.start < expr_2.stop <= expr_1.stop')
+        TimespanInequality('expr_1.start < expr_2.stop <= expr_1.stop')
 
     Expression both starts and stops during timespan::
 
         >>> timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_2.stop <= expr_1.stop')
-        TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_2.stop <= expr_1.stop')
+        TimespanInequality('expr_1.start <= expr_2.start < expr_2.stop <= expr_1.stop')
         
     Timepsan inequality template objects perform no input checking.
 
