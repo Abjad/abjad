@@ -34,7 +34,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     Select all measures starting during segment ``'red'``::
 
         >>> timespan = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
+        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=timespan)
 
     ::
 
@@ -45,11 +45,9 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
             inequality=timespantools.TimespanInequality(
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SingleSegmentSelector(
-                        identifier='red'
-                        )
+                'expr_1.start <= expr_2.start < expr_1.stop',
+                expr_1=selectortools.SingleSegmentSelector(
+                    identifier='red'
                     )
                 )
             )
@@ -63,11 +61,9 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
             inequality=timespantools.TimespanInequality(
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SingleSegmentSelector(
-                        identifier='red'
-                        )
+                'expr_1.start <= expr_2.start < expr_1.stop',
+                expr_1=selectortools.SingleSegmentSelector(
+                    identifier='red'
                     )
                 ),
             start_identifier=-2
@@ -77,7 +73,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
         >>> selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=expr)
-        >>> inequality = timespantools.expr_starts_during_timespan(timespan=selector)
+        >>> inequality = timespantools.expr_starts_during_timespan(expr_1=selector)
 
     ::
     
@@ -88,12 +84,10 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
             inequality=timespantools.TimespanInequality(
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        start_identifier='red',
-                        stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                        )
+                'expr_1.start <= expr_2.start < expr_1.stop',
+                expr_1=selectortools.SegmentSelector(
+                    start_identifier='red',
+                    stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                     )
                 )
             )
@@ -107,12 +101,10 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
             inequality=timespantools.TimespanInequality(
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        start_identifier='red',
-                        stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                        )
+                'expr_1.start <= expr_2.start < expr_1.stop',
+                expr_1=selectortools.SegmentSelector(
+                    start_identifier='red',
+                    stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                     )
                 ),
             start_identifier=-2
