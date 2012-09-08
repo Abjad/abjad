@@ -337,7 +337,6 @@ Unstable packages (load manually)
    experimental/timespaninequalitytools/SingleSourceTimespan/SingleSourceTimespan
    experimental/timespaninequalitytools/Timepoint/Timepoint
    experimental/timespaninequalitytools/TimespanInequality/TimespanInequality
-   experimental/timespaninequalitytools/TimespanInventory/TimespanInventory
 
 .. rubric:: functions
 
@@ -377,3 +376,4 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/timespantools/TimespanConstant/TimespanConstant
+   experimental/timespantools/TimespanInventory/TimespanInventory
