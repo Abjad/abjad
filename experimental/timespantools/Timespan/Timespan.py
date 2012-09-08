@@ -2,7 +2,7 @@ import abc
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.timespaninequalitytools.Timepoint import Timepoint
+from experimental.timespantools.Timepoint import Timepoint
 
 
 class Timespan(AbjadObject):

@@ -250,7 +250,7 @@ class SegmentSpecification(Specification):
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timespaninequalitytools.Timepoint(anchor=selector, edge=Left)
+        return timespantools.Timepoint(anchor=selector, edge=Left)
 
     @property
     def stop_timepoint(self):
@@ -262,7 +262,7 @@ class SegmentSpecification(Specification):
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timespaninequalitytools.Timepoint(anchor=selector, edge=Right)
+        return timespantools.Timepoint(anchor=selector, edge=Right)
 
     @property
     def storage_format(self):

@@ -4,7 +4,7 @@ from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelect
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.timespaninequalitytools.Timepoint import Timepoint
+from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 

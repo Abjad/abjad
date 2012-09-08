@@ -16,14 +16,14 @@ class MixedSourceTimespan(Timespan):
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timespaninequalitytools.expr_2_starts_during_expr_1(expr_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
-        >>> start_timepoint = timespaninequalitytools.Timepoint(anchor=measure_selector)
+        >>> start_timepoint = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='blue')
         >>> inequality = timespaninequalitytools.expr_2_starts_during_expr_1(expr_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
-        >>> stop_timepoint = timespaninequalitytools.Timepoint(anchor=measure_selector, edge=Right)
+        >>> stop_timepoint = timespantools.Timepoint(anchor=measure_selector, edge=Right)
         
     ::
 
@@ -34,7 +34,7 @@ class MixedSourceTimespan(Timespan):
 
         >>> z(timespan)
         timespantools.MixedSourceTimespan(
-            start_timepoint=timespaninequalitytools.Timepoint(
+            start_timepoint=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'expr_1.start <= expr_2.start < expr_1.stop',
@@ -47,7 +47,7 @@ class MixedSourceTimespan(Timespan):
                     start_identifier=-1
                     )
                 ),
-            stop_timepoint=timespaninequalitytools.Timepoint(
+            stop_timepoint=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'expr_1.start <= expr_2.start < expr_1.stop',
@@ -70,8 +70,8 @@ class MixedSourceTimespan(Timespan):
 
     def __init__(self, start_timepoint=None, stop_timepoint=None):
         from experimental import timespaninequalitytools
-        assert isinstance(start_timepoint, (timespaninequalitytools.Timepoint, type(None))), repr(start_timepoint)
-        assert isinstance(stop_timepoint, (timespaninequalitytools.Timepoint, type(None))), repr(stop_timepoint)
+        assert isinstance(start_timepoint, (timespantools.Timepoint, type(None))), repr(start_timepoint)
+        assert isinstance(stop_timepoint, (timespantools.Timepoint, type(None))), repr(stop_timepoint)
         Timespan.__init__(self)
         self._start_timepoint = start_timepoint
         self._stop_timepoint = stop_timepoint

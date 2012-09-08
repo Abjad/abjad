@@ -1,6 +1,6 @@
 from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
-from experimental.timespaninequalitytools.Timepoint import Timepoint
+from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
