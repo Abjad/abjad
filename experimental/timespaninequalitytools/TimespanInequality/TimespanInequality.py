@@ -27,6 +27,79 @@ class TimespanInequality(AbjadObject):
                 )
             )
 
+    Score for further examples::
+
+        >>> staff_1 = Staff(r"\times 2/3 { c'4 d'4 e'4 } \times 2/3 { f'4 g'4 a'4 }")
+        >>> staff_2 = Staff("c'2. d'4")
+        >>> score = Score([staff_1, staff_2])
+
+    ::
+
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                \times 2/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
+                \times 2/3 {
+                    f'4
+                    g'4
+                    a'4
+                }
+            }
+            \new Staff {
+                c'2.
+                d'4
+            }
+        >>
+
+    ::
+
+        >>> last_tuplet = staff_1[-1]
+        >>> long_note = staff_2[0]
+
+    Example functions calls using the score above::
+
+        >>> timespaninequalitytools.expr_2_happens_during_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        False
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_intersects_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        True
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_is_congruent_to_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        False
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_overlaps_all_of_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        False
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_overlaps_start_of_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        True
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_overlaps_stop_of_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        False
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_starts_after_expr_1_starts(expr_1=last_tuplet, expr_2=long_note)
+        False
+
+    ::
+
+        >>> timespaninequalitytools.expr_2_starts_after_expr_1_stops(expr_1=last_tuplet, expr_2=long_note)
+        False
+
     Timespan inequalities are immutable.
     '''
 
