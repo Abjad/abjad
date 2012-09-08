@@ -8,13 +8,13 @@ def expr_overlaps_start_of_timespan_only(timespan=None):
     ::
 
         >>> timespantools.expr_overlaps_start_of_timespan_only()
-        TimespanInequalityTemplate('expr.start < t.start < expr.start <= t.stop')
+        TimespanInequalityTemplate('expr_2.start < expr_1.start < expr_2.start <= expr_1.stop')
 
     Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    template = timespantools.TimespanInequalityTemplate('expr.start < t.start < expr.start <= t.stop')
+    template = timespantools.TimespanInequalityTemplate('expr_2.start < expr_1.start < expr_2.start <= expr_1.stop')
 
     if timespan is None:
         return template

@@ -37,7 +37,7 @@ class MixedSourceTimespan(Timespan):
             start_timepoint=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
-                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
@@ -50,7 +50,7 @@ class MixedSourceTimespan(Timespan):
             stop_timepoint=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
-                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                         timespantools.SingleSourceTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='blue'
@@ -80,8 +80,8 @@ class MixedSourceTimespan(Timespan):
 
     def __eq__(self, expr):
         if isintance(expr, type(self)):
-            if self.start_timepoint == expr.start_timepoint:
-                if self.stop_timepoint == expr.stop_timepoint:
+            if self.start_timepoint == expr_2.start_timepoint:
+                if self.stop_timepoint == expr_2.stop_timepoint:
                     return True
         return False
 

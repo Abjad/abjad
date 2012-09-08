@@ -87,7 +87,7 @@ class Timepoint(AbjadObject):
         timespantools.Timepoint(
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
@@ -137,7 +137,7 @@ class Timepoint(AbjadObject):
         timespantools.Timepoint(
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
@@ -244,7 +244,7 @@ class Timepoint(AbjadObject):
             >>> z(timepoint.anchor)
             selectortools.CounttimeComponentSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'

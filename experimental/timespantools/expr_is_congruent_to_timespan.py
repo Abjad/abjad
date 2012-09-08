@@ -8,13 +8,13 @@ def expr_is_congruent_to_timespan(timespan=None):
     ::
 
         >>> timespantools.expr_is_congruent_to_timespan()
-        TimespanInequalityTemplate('t.start == expr.start and t.stop == expr.stop')
+        TimespanInequalityTemplate('expr_1.start == expr_2.start and expr_1.stop == expr_2.stop')
 
     Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    template = timespantools.TimespanInequalityTemplate('t.start == expr.start and t.stop == expr.stop')
+    template = timespantools.TimespanInequalityTemplate('expr_1.start == expr_2.start and expr_1.stop == expr_2.stop')
 
     if timespan is None:
         return template

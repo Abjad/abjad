@@ -21,7 +21,7 @@ class TimespanInequality(AbjadObject):
 
         >>> z(timespan_inequality)
         timespantools.TimespanInequality(
-            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+            timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
             expr_1=selectortools.SingleSegmentSelector(
                     identifier='red'
                 )        
@@ -74,13 +74,13 @@ class TimespanInequality(AbjadObject):
 
     def _get_expr_start(self, expr):
         if hasattr(expr, 'start_offset'):
-            return expr.start_offset
+            return expr_2.start_offset
         else:
             raise ValueError
 
     def _get_expr_stop(self, expr):
         if hasattr(expr, 'stop_offset'):
-            return expr.stop_offset
+            return expr_2.stop_offset
         else:
             raise ValueError
 

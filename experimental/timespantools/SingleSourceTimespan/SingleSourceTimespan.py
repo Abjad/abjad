@@ -56,7 +56,7 @@ class SingleSourceTimespan(Timespan):
         timespantools.SingleSourceTimespan(
             selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
@@ -81,7 +81,7 @@ class SingleSourceTimespan(Timespan):
         timespantools.SingleSourceTimespan(
             selector=selectortools.DivisionSelector(
                 inequality=timespantools.TimespanInequality(
-                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.TimespanInequalityTemplate('expr_1.start <= expr_2.start < expr_1.stop'),
                     timespantools.SingleSourceTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'

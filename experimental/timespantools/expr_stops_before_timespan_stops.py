@@ -8,13 +8,13 @@ def expr_stops_before_timespan_stops(timespan=None):
     ::
 
         >>> timespantools.expr_stops_before_timespan_stops()
-        TimespanInequalityTemplate('expr.stop < t.stop')
+        TimespanInequalityTemplate('expr_2.stop < expr_1.stop')
 
     Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    template = timespantools.TimespanInequalityTemplate('expr.stop < t.stop')
+    template = timespantools.TimespanInequalityTemplate('expr_2.stop < expr_1.stop')
 
     if timespan is None:
         return template
