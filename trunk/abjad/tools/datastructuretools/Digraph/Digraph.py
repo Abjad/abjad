@@ -1,7 +1,6 @@
-from copy import copy
+import copy
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.datastructuretools.ImmutableDictionary import ImmutableDictionary
-from abjad.tools.sequencetools import all_are_pairs
 
 
 class Digraph(AbjadObject):
@@ -39,8 +38,10 @@ class Digraph(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, edges=None):
+        from abjad.tools import datastructuretools
+
         if edges is not None:
-            assert all_are_pairs(edges)
+            assert sequencetools.all_are_pairs(edges)
 
         parent_graph = { }
         child_graph = { }
@@ -64,7 +65,7 @@ class Digraph(AbjadObject):
             if parent not in child_graph:
                 child_graph[parent] = set([])
 
-        self._parent_graph = ImmutableDictionary(parent_graph)
+        self._parent_graph = datastructuretools.ImmutableDictionary(parent_graph)
         self._child_graph = ImmutableDictionary(child_graph)
         self._cyclic_nodes = self._find_cyclic_nodes()
         self._root_nodes = tuple(sorted([child for child in child_graph if not child_graph[child]]))
@@ -137,11 +138,11 @@ class Digraph(AbjadObject):
 
         parent_graph = { }
         for k, v in self.parent_graph.iteritems():
-            parent_graph[k] = copy(v)
+            parent_graph[k] = copy.copy(v)
 
         child_graph = { }
         for k, v in self.child_graph.iteritems():
-            child_graph[k] = copy(v)
+            child_graph[k] = copy.copy(v)
 
         roots = [child for child in child_graph if not child_graph[child]]
         terminals = [parent for parent in parent_graph if not parent_graph[parent]]
