@@ -39,7 +39,7 @@ Methods
 
 .. automethod:: experimental.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespans_that_satisfy_inequality
 
-.. automethod:: experimental.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.has_timespan_that_satisifies_inequality
+.. automethod:: experimental.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.has_timespan_that_satisfies_inequality
 
 .. automethod:: experimental.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.index
 
