@@ -106,6 +106,7 @@ Composition packages
    tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/extend_in_parent_of_component
    tools/componenttools/extend_left_in_parent_of_component
+   tools/componenttools/get_component_in_expr_with_name
    tools/componenttools/get_component_start_offset
    tools/componenttools/get_component_start_offset_in_seconds
    tools/componenttools/get_component_stop_offset
@@ -2066,6 +2067,7 @@ Internal packages
    tools/exceptiontools/CyclicNodeError
    tools/exceptiontools/DurationError
    tools/exceptiontools/ExtraMarkError
+   tools/exceptiontools/ExtraNamedComponentError
    tools/exceptiontools/ExtraNoteHeadError
    tools/exceptiontools/ExtraPitchError
    tools/exceptiontools/ExtraSpannerError
@@ -2083,6 +2085,7 @@ Internal packages
    tools/exceptiontools/MissingInstrumentError
    tools/exceptiontools/MissingMarkError
    tools/exceptiontools/MissingMeasureError
+   tools/exceptiontools/MissingNamedComponentError
    tools/exceptiontools/MissingNoteHeadError
    tools/exceptiontools/MissingPitchError
    tools/exceptiontools/MissingSpannerError
