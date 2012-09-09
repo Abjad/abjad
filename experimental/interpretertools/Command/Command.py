@@ -82,53 +82,40 @@ class Command(AbjadObject):
     ### PUBLIC METHODS ###
 
     def curtails(self, timespan_1):
-        return timespan_1.start_offset < self.start_offset <= timespan_1.stop_offset <= self.stop_offset
-        #return timespaninequalitytools.timespan_2_curtails_timespan_1(timespan_1, self)
+        return timespaninequalitytools.timespan_2_curtails_timespan_1(timespan_1, self)
 
     def delays(self, timespan_1):
-        return self.start_offset <= timespan_1.start_offset < self.stop_offset
-        #return timespaninequalitytools.timespan_2_delays_timespan_1(timespan_1, self)
+        return timespaninequalitytools.timespan_2_delays_timespan_1(timespan_1, self)
 
     def equals(self, timespan_1):
-        return self.starts_with(timespan_1) and self.stops_with(timespan_1)
-        #return timespaninequalitytools.timespan_2_is_congruent_to_timespan_1(timespan_1, self)
+        return timespaninequalitytools.timespan_2_is_congruent_to_timespan_1(timespan_1, self)
 
     def improperly_contains(self, timespan_1):
-        return self.starts_before_or_with(timespan_1) and timespan_1.stops_before_or_with(self)        
-        #return timespaninequalitytools.timespan_2_contains_timespan_1_improperly(timespan_1, self)
+        return timespaninequalitytools.timespan_2_contains_timespan_1_improperly(timespan_1, self)
 
     def overlaps_start_of(self, timespan_1):
-        return self.start_offset < timespan_1.start_offset < self.stop_offset
-        #return timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(timespan_1, self)
+        return timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(timespan_1, self)
 
     def overlaps_stop_of(self, timespan_1):
-        return self.start_offset < timespan_1.stop_offset < self.stop_offset 
-        #return timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(timespan_1, self)
+        return timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(timespan_1, self)
 
     def properly_contains(self, timespan_1):
-        return self.starts_before(timespan_1) and timespan_1.stops_before(self)
-        #return timespaninequalitytools.timespan_2_trisects_timespan_1(self, timespan_1)
+        return timespaninequalitytools.timespan_2_trisects_timespan_1(self, timespan_1)
 
     def starts_before(self, timespan_1):
-        return self.start_offset < timespan_1.start_offset
-        #return timespaninequalitytools.timespan_2_starts_before_timespan_1_starts(timespan_1, self)
+        return timespaninequalitytools.timespan_2_starts_before_timespan_1_starts(timespan_1, self)
 
     def starts_before_or_with(self, timespan_1):
-        return self.start_offset <= timespan_1.start_offset
-        #return self.starts_before(timespan_1) or self.starts_with(timespan_1)
+        return self.starts_before(timespan_1) or self.starts_with(timespan_1)
 
     def starts_with(self, timespan_1):
-        return self.start_offset == timespan_1.start_offset
-        #return timespaninequalitytools.timespan_2_starts_when_timespan_1_starts(timespan_1, self)
+        return timespaninequalitytools.timespan_2_starts_when_timespan_1_starts(timespan_1, self)
 
     def stops_before(self, timespan_1):
-        return self.stop_offset < timespan_1.stop_offset
-        #return timespaninequalitytools.timespan_2_stops_before_timespan_1_stops(timespan_1, self)
+        return timespaninequalitytools.timespan_2_stops_before_timespan_1_stops(timespan_1, self)
 
     def stops_before_or_with(self, timespan_1):
-        return self.stop_offset <= timespan_1.stop_offset
-        #return self.stops_before(timespan_1) or self.stops_with(timespan_1)
+        return self.stops_before(timespan_1) or self.stops_with(timespan_1)
 
     def stops_with(self, timespan_1):
-        return self.stop_offset == timespan_1.stop_offset
-        #return timespaninequalitytools.timespan_2_stops_when_timespan_1_stops(timespan_1, self)
+        return timespaninequalitytools.timespan_2_stops_when_timespan_1_stops(timespan_1, self)
