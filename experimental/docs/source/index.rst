@@ -321,11 +321,19 @@ Unstable packages (load manually)
 :py:mod:`timespaninequalitytools <experimental.timespaninequalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timespaninequalitytools/TimeObjectInequality/TimeObjectInequality
+
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
+   experimental/timespaninequalitytools/TimepointInequality/TimepointInequality
    experimental/timespaninequalitytools/TimespanInequality/TimespanInequality
 
 .. rubric:: functions
@@ -333,6 +341,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/timespaninequalitytools/timepoint_happens_before_timespan_starts
    experimental/timespaninequalitytools/timespan_2_contains_timespan_1_improperly
    experimental/timespaninequalitytools/timespan_2_curtails_timespan_1
    experimental/timespaninequalitytools/timespan_2_delays_timespan_1

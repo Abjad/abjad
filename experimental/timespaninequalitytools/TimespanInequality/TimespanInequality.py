@@ -184,8 +184,10 @@ class TimespanInequality(AbjadObject):
         Otherwise return boolean.
         '''
         from experimental import timespantools
-        timespan_1 = timespan_1 or self.timespan_1
-        timespan_2 = timespan_2 or self.timespan_2
+        if timespan_1 is None:
+            timespan_1 = self.timespan_1
+        if timespan_2 is None:
+            timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             raise ValueError('timespan inequality is not fully loaded.')
         timespan_1 = timespantools.expr_to_timespan(timespan_1)
