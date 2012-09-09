@@ -9,10 +9,6 @@ timespaninequalitytools.TimespanInequality
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.expr_1
-
-.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.expr_2
-
 .. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.is_fully_loaded
 
 .. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.segment_identifier
@@ -24,6 +20,10 @@ Read-only Properties
 .. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.template
 
 .. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.timespan
+
+.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.timespan_1
+
+.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.timespan_2
 
 Methods
 -------

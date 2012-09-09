@@ -1,6 +1,7 @@
 import abc
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import timespaninequalitytools 
 
 
 class Command(AbjadObject):
@@ -80,41 +81,54 @@ class Command(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def curtails(self, expr):
-        return expr.start_offset < self.start_offset <= expr.stop_offset <= self.stop_offset
+    def curtails(self, timespan_1):
+        return timespan_1.start_offset < self.start_offset <= timespan_1.stop_offset <= self.stop_offset
+        #return timespaninequalitytools.timespan_2_curtails_timespan_1(timespan_1, self)
 
-    def delays(self, expr):
-        return self.start_offset <= expr.start_offset < self.stop_offset
+    def delays(self, timespan_1):
+        return self.start_offset <= timespan_1.start_offset < self.stop_offset
+        #return timespaninequalitytools.timespan_2_delays_timespan_1(timespan_1, self)
 
-    def equals(self, expr):
-        return self.starts_with(expr) and self.stops_with(expr)
+    def equals(self, timespan_1):
+        return self.starts_with(timespan_1) and self.stops_with(timespan_1)
+        #return timespaninequalitytools.timespan_2_is_congruent_to_timespan_1(timespan_1, self)
 
-    def improperly_contains(self, expr):
-        return self.starts_before_or_with(expr) and expr.stops_before_or_with(self)        
+    def improperly_contains(self, timespan_1):
+        return self.starts_before_or_with(timespan_1) and timespan_1.stops_before_or_with(self)        
+        #return timespaninequalitytools.timespan_2_contains_timespan_1_improperly(timespan_1, self)
 
-    def overlaps_start_of(self, expr):
-        return self.start_offset < expr.start_offset < self.stop_offset
+    def overlaps_start_of(self, timespan_1):
+        return self.start_offset < timespan_1.start_offset < self.stop_offset
+        #return timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(timespan_1, self)
 
-    def overlaps_stop_of(self, expr):
-        return self.start_offset < expr.stop_offset < self.stop_offset 
+    def overlaps_stop_of(self, timespan_1):
+        return self.start_offset < timespan_1.stop_offset < self.stop_offset 
+        #return timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(timespan_1, self)
 
-    def properly_contains(self, expr):
-        return self.starts_before(expr) and expr.stops_before(self)
+    def properly_contains(self, timespan_1):
+        return self.starts_before(timespan_1) and timespan_1.stops_before(self)
+        #return timespaninequalitytools.timespan_2_trisects_timespan_1(self, timespan_1)
 
-    def starts_before(self, expr):
-        return self.start_offset < expr.start_offset
+    def starts_before(self, timespan_1):
+        return self.start_offset < timespan_1.start_offset
+        #return timespaninequalitytools.timespan_2_starts_before_timespan_1_starts(timespan_1, self)
 
-    def starts_before_or_with(self, expr):
-        return self.start_offset <= expr.start_offset
+    def starts_before_or_with(self, timespan_1):
+        return self.start_offset <= timespan_1.start_offset
+        #return self.starts_before(timespan_1) or self.starts_with(timespan_1)
 
-    def starts_with(self, expr):
-        return self.start_offset == expr.start_offset
+    def starts_with(self, timespan_1):
+        return self.start_offset == timespan_1.start_offset
+        #return timespaninequalitytools.timespan_2_starts_when_timespan_1_starts(timespan_1, self)
 
-    def stops_before(self, expr):
-        return self.stop_offset < expr.stop_offset
+    def stops_before(self, timespan_1):
+        return self.stop_offset < timespan_1.stop_offset
+        #return timespaninequalitytools.timespan_2_stops_before_timespan_1_stops(timespan_1, self)
 
-    def stops_before_or_with(self, expr):
-        return self.stop_offset <= expr.stop_offset
+    def stops_before_or_with(self, timespan_1):
+        return self.stop_offset <= timespan_1.stop_offset
+        #return self.stops_before(timespan_1) or self.stops_with(timespan_1)
 
-    def stops_with(self, expr):
-        return self.stop_offset == expr.stop_offset
+    def stops_with(self, timespan_1):
+        return self.stop_offset == timespan_1.stop_offset
+        #return timespaninequalitytools.timespan_2_stops_when_timespan_1_stops(timespan_1, self)

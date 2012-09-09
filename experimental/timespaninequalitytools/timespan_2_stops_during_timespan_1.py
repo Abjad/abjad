@@ -1,4 +1,4 @@
-def timespan_2_stops_during_timespan_1(expr_1=None, expr_2=None, hold=False):
+def timespan_2_stops_during_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
     Make timespan inequality template indicating that expression stops during timespan::
@@ -8,16 +8,16 @@ def timespan_2_stops_during_timespan_1(expr_1=None, expr_2=None, hold=False):
     ::
 
         >>> timespaninequalitytools.timespan_2_stops_during_timespan_1()
-        TimespanInequality('expr_1.start < expr_2.stop <= expr_1.stop')
+        TimespanInequality('timespan_1.start < timespan_2.stop <= timespan_1.stop')
 
-    Return timespan inequality or timespan inequality template.
+    Return boolean or timespan inequality.
     '''
     from experimental import timespaninequalitytools
 
     timespan_inequality = timespaninequalitytools.TimespanInequality(
-        'expr_1.start < expr_2.stop <= expr_1.stop',
-        expr_1=expr_1,
-        expr_2=expr_2)
+        'timespan_1.start < timespan_2.stop <= timespan_1.stop',
+        timespan_1=timespan_1,
+        timespan_2=timespan_2)
 
     if timespan_inequality.is_fully_loaded and not hold:
         return timespan_inequality()

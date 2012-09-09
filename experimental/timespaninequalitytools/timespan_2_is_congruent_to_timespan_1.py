@@ -1,21 +1,21 @@
-def timespan_2_starts_before_timespan_1_starts(timespan_1=None, timespan_2=None, hold=False):
+def timespan_2_is_congruent_to_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
-    Make timespan inequality template indicating that expression starts before timespan starts::
+    Make timespan inequality template indicating that expression is congruent to timespan::
 
         >>> from experimental import *
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_starts_before_timespan_1_starts()
-        TimespanInequality('timespan_2.start < timespan_1.start')
+        >>> timespaninequalitytools.timespan_2_is_congruent_to_timespan_1()
+        TimespanInequality('timespan_1.start == timespan_2.start and timespan_1.stop == timespan_2.stop')
 
     Return boolean or timespan inequality.
     '''
     from experimental import timespaninequalitytools
 
     timespan_inequality = timespaninequalitytools.TimespanInequality(
-        'timespan_2.start < timespan_1.start',
+        'timespan_1.start == timespan_2.start and timespan_1.stop == timespan_2.stop',
         timespan_1=timespan_1, 
         timespan_2=timespan_2)
     

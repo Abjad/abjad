@@ -333,9 +333,12 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespaninequalitytools/timepan_2_is_congruent_to_timespan_1
+   experimental/timespaninequalitytools/timespan_2_contains_timespan_1_improperly
+   experimental/timespaninequalitytools/timespan_2_curtails_timespan_1
+   experimental/timespaninequalitytools/timespan_2_delays_timespan_1
    experimental/timespaninequalitytools/timespan_2_happens_during_timespan_1
    experimental/timespaninequalitytools/timespan_2_intersects_timespan_1
+   experimental/timespaninequalitytools/timespan_2_is_congruent_to_timespan_1
    experimental/timespaninequalitytools/timespan_2_overlaps_all_of_timespan_1
    experimental/timespaninequalitytools/timespan_2_overlaps_start_of_timespan_1
    experimental/timespaninequalitytools/timespan_2_overlaps_start_of_timespan_1_only
@@ -355,6 +358,7 @@ Unstable packages (load manually)
    experimental/timespaninequalitytools/timespan_2_stops_during_timespan_1
    experimental/timespaninequalitytools/timespan_2_stops_when_timespan_1_starts
    experimental/timespaninequalitytools/timespan_2_stops_when_timespan_1_stops
+   experimental/timespaninequalitytools/timespan_2_trisects_timespan_1
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

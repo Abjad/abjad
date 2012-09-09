@@ -15,14 +15,14 @@ class TimespanInequality(AbjadObject):
     Test for all objects that start during segment ``'red'``::
 
         >>> selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(expr_1=selector)
+        >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=selector)
 
     ::
 
         >>> z(timespan_inequality)
         timespaninequalitytools.TimespanInequality(
-            'expr_1.start <= expr_2.start < expr_1.stop',
-            expr_1=selectortools.SingleSegmentSelector(
+            'timespan_1.start <= timespan_2.start < timespan_1.stop',
+            timespan_1=selectortools.SingleSegmentSelector(
                 identifier='red'
                 )
             )
@@ -62,42 +62,42 @@ class TimespanInequality(AbjadObject):
 
     Example functions calls using the score above::
 
-        >>> timespaninequalitytools.timespan_2_happens_during_timespan_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_happens_during_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_intersects_timespan_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_intersects_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
         True
 
     ::
 
-        >>> timespaninequalitytools.timepan_2_is_congruent_to_timespan_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_is_congruent_to_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_overlaps_all_of_timespan_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_overlaps_all_of_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
         True
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_starts(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_starts(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_stops(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_stops(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     Timespan inequalities are immutable.
@@ -105,28 +105,28 @@ class TimespanInequality(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, template, expr_1=None, expr_2=None):
+    def __init__(self, template, timespan_1=None, timespan_2=None):
         assert isinstance(template, str)
         self._template = template
-        self._expr_1 = expr_1
-        self._expr_2 = expr_2
+        self._timespan_1 = timespan_1
+        self._timespan_2 = timespan_2
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
         from experimental import timespantools
         if self.is_fully_loaded:
-            expr_1 = timespantools.expr_to_timespan(self.expr_1)
-            expr_2 = timespantools.expr_to_timespan(self.expr_2)
-            expr_1_start = self._get_expr_start(expr_1)
-            expr_1_stop = self._get_expr_stop(expr_1)
-            expr_2_start = self._get_expr_start(expr_2)
-            expr_2_stop = self._get_expr_stop(expr_2)
+            timespan_1 = timespantools.expr_to_timespan(self.timespan_1)
+            timespan_2 = timespantools.expr_to_timespan(self.timespan_2)
+            timespan_1_start = self._get_expr_start(timespan_1)
+            timespan_1_stop = self._get_expr_stop(timespan_1)
+            timespan_2_start = self._get_expr_start(timespan_2)
+            timespan_2_stop = self._get_expr_stop(timespan_2)
             command = self.template
-            command = command.replace('expr_1.start', repr(expr_1_start))
-            command = command.replace('expr_1.stop', repr(expr_1_stop))
-            command = command.replace('expr_2.start', repr(expr_2_start))
-            command = command.replace('expr_2.stop', repr(expr_2_stop))
+            command = command.replace('timespan_1.start', repr(timespan_1_start))
+            command = command.replace('timespan_1.stop', repr(timespan_1_stop))
+            command = command.replace('timespan_2.start', repr(timespan_2_start))
+            command = command.replace('timespan_2.stop', repr(timespan_2_stop))
             result = eval(command, {'Offset': durationtools.Offset})
             return result
         else:
@@ -136,8 +136,8 @@ class TimespanInequality(AbjadObject):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.template == expr.template:
-                if self.expr_1 == expr.expr_1:
-                    if self.expr_2 == expr.expr_2:
+                if self.timespan_1 == expr.timespan_1:
+                    if self.timespan_2 == expr.timespan_2:
                         return True
         return False
 
@@ -158,29 +158,29 @@ class TimespanInequality(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def expr_1(self):
+    def timespan_1(self):
         '''Expression ``1`` of timespan inequality.
 
         Return arbitrary object.
         '''
-        return self._expr_1
+        return self._timespan_1
         
     @property
-    def expr_2(self):
+    def timespan_2(self):
         '''Expression ``2`` of timespan inequality.
 
         Return arbitrary object.
         '''
-        return self._expr_2
+        return self._timespan_2
         
     @property
     def is_fully_loaded(self):
-        '''True when `expr_1` and `expr_2` are both not none.
+        '''True when `timespan_1` and `timespan_2` are both not none.
         Otherwise false.
 
         Return boolean.
         '''
-        return self.expr_1 is not None and self.expr_2 is not None
+        return self.timespan_1 is not None and self.timespan_2 is not None
 
     @property
     def segment_identifier(self):
@@ -188,7 +188,7 @@ class TimespanInequality(AbjadObject):
         '''
         return self.timespan.segment_identifier
 
-    # TODO: eventually remove in favor of expr_1
+    # TODO: eventually remove in favor of timespan_1
     @property
     def timespan(self):
         '''Timespan of timespan inequality.
@@ -196,7 +196,7 @@ class TimespanInequality(AbjadObject):
         Return timespan object.
         '''
         #return self._timespan
-        return self._expr_1
+        return self._timespan_1
 
     @property
     def template(self):
@@ -209,11 +209,11 @@ class TimespanInequality(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):
-        '''Delegate to ``self.expr_1.get_duration()``.
+        '''Delegate to ``self.timespan_1.get_duration()``.
         '''
-        return self.expr_1.get_duration(score_specification, context_name)
+        return self.timespan_1.get_duration(score_specification, context_name)
 
     def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.expr_1.set_segment_identifier()``.
+        '''Delegate to ``self.timespan_1.set_segment_identifier()``.
         '''
-        self.expr_1.set_segment_identifier(segment_identifier)
+        self.timespan_1.set_segment_identifier(segment_identifier)
