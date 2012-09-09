@@ -604,17 +604,13 @@ class ConcreteInterpreter(Interpreter):
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
             for cooked_command in cooked_commands:
-                if raw_command.improperly_contains(cooked_command):
-                #if timespaninequalitytools.timespan_2_contains_timespan_1_improperly(cooked_command, raw_command):
+                if timespaninequalitytools.timespan_2_contains_timespan_1_improperly(cooked_command, raw_command):
                     commands_to_remove.append(cooked_command)
-                elif raw_command.delays(cooked_command):
-                #elif timespaninequalitytools.timespan_2_delays_timespan_1(cooked_command, raw_command):
+                elif timespaninequalitytools.timespan_2_delays_timespan_1(cooked_command, raw_command):
                     commands_to_delay.append(cooked_command)
-                elif raw_command.curtails(cooked_command):
-                #elif timespaninequalitytools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
+                elif timespaninequalitytools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
                     commands_to_curtail.append(cooked_command)
-                elif cooked_command.properly_contains(raw_command):
-                #elif timespaninequalitytools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
+                elif timespaninequalitytools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
                     commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:

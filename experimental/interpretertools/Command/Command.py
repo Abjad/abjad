@@ -45,7 +45,8 @@ class Command(AbjadObject):
         return False
 
     def __lt__(self, expr):
-        return self.starts_before(expr)
+        #return self.starts_before(expr)
+        return timespaninequalitytools.timespan_2_starts_before_timespan_1_starts(expr, self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -79,43 +80,43 @@ class Command(AbjadObject):
     def vector(self):
         return self._mandatory_argument_values
 
-    ### PUBLIC METHODS ###
-
-    def curtails(self, timespan_1):
-        return timespaninequalitytools.timespan_2_curtails_timespan_1(timespan_1, self)
-
-    def delays(self, timespan_1):
-        return timespaninequalitytools.timespan_2_delays_timespan_1(timespan_1, self)
-
-    def equals(self, timespan_1):
-        return timespaninequalitytools.timespan_2_is_congruent_to_timespan_1(timespan_1, self)
-
-    def improperly_contains(self, timespan_1):
-        return timespaninequalitytools.timespan_2_contains_timespan_1_improperly(timespan_1, self)
-
-    def overlaps_start_of(self, timespan_1):
-        return timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(timespan_1, self)
-
-    def overlaps_stop_of(self, timespan_1):
-        return timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(timespan_1, self)
-
-    def properly_contains(self, timespan_1):
-        return timespaninequalitytools.timespan_2_trisects_timespan_1(self, timespan_1)
-
-    def starts_before(self, timespan_1):
-        return timespaninequalitytools.timespan_2_starts_before_timespan_1_starts(timespan_1, self)
-
-    def starts_before_or_with(self, timespan_1):
-        return self.starts_before(timespan_1) or self.starts_with(timespan_1)
-
-    def starts_with(self, timespan_1):
-        return timespaninequalitytools.timespan_2_starts_when_timespan_1_starts(timespan_1, self)
-
-    def stops_before(self, timespan_1):
-        return timespaninequalitytools.timespan_2_stops_before_timespan_1_stops(timespan_1, self)
-
-    def stops_before_or_with(self, timespan_1):
-        return self.stops_before(timespan_1) or self.stops_with(timespan_1)
-
-    def stops_with(self, timespan_1):
-        return timespaninequalitytools.timespan_2_stops_when_timespan_1_stops(timespan_1, self)
+#    ### PUBLIC METHODS ###
+#
+#    def curtails(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_curtails_timespan_1(timespan_1, self)
+#
+#    def delays(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_delays_timespan_1(timespan_1, self)
+#
+#    def equals(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_is_congruent_to_timespan_1(timespan_1, self)
+#
+#    def improperly_contains(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_contains_timespan_1_improperly(timespan_1, self)
+#
+#    def overlaps_start_of(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(timespan_1, self)
+#
+#    def overlaps_stop_of(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(timespan_1, self)
+#
+#    def properly_contains(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_trisects_timespan_1(self, timespan_1)
+#
+#    def starts_before(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_starts_before_timespan_1_starts(timespan_1, self)
+#
+#    def starts_before_or_with(self, timespan_1):
+#        return self.starts_before(timespan_1) or self.starts_with(timespan_1)
+#
+#    def starts_with(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_starts_when_timespan_1_starts(timespan_1, self)
+#
+#    def stops_before(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_stops_before_timespan_1_stops(timespan_1, self)
+#
+#    def stops_before_or_with(self, timespan_1):
+#        return self.stops_before(timespan_1) or self.stops_with(timespan_1)
+#
+#    def stops_with(self, timespan_1):
+#        return timespaninequalitytools.timespan_2_stops_when_timespan_1_stops(timespan_1, self)
