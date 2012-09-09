@@ -220,8 +220,12 @@ class ConcreteInterpreter(Interpreter):
         divisions = sequencetools.split_sequence_by_weights(
             divisions, [0, total_amount], cyclic=False, overhang=True)
         divisions = divisions[1]
+        if division_material_request.reverse:
+            divisions.reverse()
+        #self._debug(division_material_request.callback, 'callback')
         if division_material_request.callback is not None:
             divisions = division_material_request.callback(divisions)
+        #self._debug(divisions, 'divisions')
         return divisions
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
