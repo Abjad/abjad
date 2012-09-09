@@ -1,9 +1,9 @@
 import fractions
 from abjad.tools import durationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.timespaninequalitytools.TimeObjectInequality import TimeObjectInequality
 
 
-class TimepointInequality(AbjadObject):
+class TimepointInequality(TimeObjectInequality):
     r'''.. versionadded:: 1.0
 
     Timepoint inequality.
@@ -12,8 +12,7 @@ class TimepointInequality(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, template, timespan=None, timepoint=None):
-        assert isinstance(template, str)
-        self._template = template
+        TimeObjectInequality.__init__(self, template)
         self._timespan = timespan
         self._timepoint = timepoint
 

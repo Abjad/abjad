@@ -13,6 +13,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.timespaninequalitytools.TimeObjectInequality.TimeObjectInequality.TimeObjectInequality.template
+
 Special Methods
 ---------------
 

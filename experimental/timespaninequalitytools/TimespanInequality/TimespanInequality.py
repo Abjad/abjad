@@ -1,9 +1,9 @@
 import fractions
 from abjad.tools import durationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.timespaninequalitytools.TimeObjectInequality import TimeObjectInequality
 
 
-class TimespanInequality(AbjadObject):
+class TimespanInequality(TimeObjectInequality):
     r'''.. versionadded:: 1.0
 
     Timespan inequality.
@@ -106,8 +106,7 @@ class TimespanInequality(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, template, timespan_1=None, timespan_2=None):
-        assert isinstance(template, str)
-        self._template = template
+        TimeObjectInequality.__init__(self, template)
         self._timespan_1 = timespan_1
         self._timespan_2 = timespan_2
 
@@ -214,20 +213,6 @@ class TimespanInequality(AbjadObject):
                         return True
         return False
 
-    ### PRIVATE METHODS ###
-
-    def _get_expr_start(self, expr):
-        if hasattr(expr, 'start_offset'):
-            return expr.start_offset
-        else:
-            raise ValueError
-
-    def _get_expr_stop(self, expr):
-        if hasattr(expr, 'stop_offset'):
-            return expr.stop_offset
-        else:
-            raise ValueError
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -270,14 +255,6 @@ class TimespanInequality(AbjadObject):
         '''
         #return self._timespan
         return self._timespan_1
-
-    @property
-    def template(self):
-        '''Template of timespan inequality.
-
-        Return string.
-        '''
-        return self._template
 
     ### PUBLIC METHODS ###
 
