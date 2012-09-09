@@ -27,7 +27,7 @@ class TimespanInventory(ObjectInventory):
         from experimental import timespaninequalitytools
         result = []
         for timespan in self:
-            if timespaninequalitytools.expr_2_happens_during_expr_1(timespan, offset):
+            if timespaninequalitytools.timespan_2_happens_during_timespan_1(timespan, offset):
                 result.append(timespan)
         return result
 

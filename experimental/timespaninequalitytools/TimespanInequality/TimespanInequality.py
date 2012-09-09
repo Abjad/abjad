@@ -15,7 +15,7 @@ class TimespanInequality(AbjadObject):
     Test for all objects that start during segment ``'red'``::
 
         >>> selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> timespan_inequality = timespaninequalitytools.expr_2_starts_during_expr_1(expr_1=selector)
+        >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(expr_1=selector)
 
     ::
 
@@ -62,42 +62,42 @@ class TimespanInequality(AbjadObject):
 
     Example functions calls using the score above::
 
-        >>> timespaninequalitytools.expr_2_happens_during_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_happens_during_timespan_1(expr_1=last_tuplet, expr_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.expr_2_intersects_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_intersects_timespan_1(expr_1=last_tuplet, expr_2=long_note)
         True
 
     ::
 
-        >>> timespaninequalitytools.expr_2_is_congruent_to_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timepan_2_is_congruent_to_timespan_1(expr_1=last_tuplet, expr_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.expr_2_overlaps_all_of_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_overlaps_all_of_timespan_1(expr_1=last_tuplet, expr_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.expr_2_overlaps_start_of_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1(expr_1=last_tuplet, expr_2=long_note)
         True
 
     ::
 
-        >>> timespaninequalitytools.expr_2_overlaps_stop_of_expr_1(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_overlaps_stop_of_timespan_1(expr_1=last_tuplet, expr_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.expr_2_starts_after_expr_1_starts(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_starts(expr_1=last_tuplet, expr_2=long_note)
         False
 
     ::
 
-        >>> timespaninequalitytools.expr_2_starts_after_expr_1_stops(expr_1=last_tuplet, expr_2=long_note)
+        >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_stops(expr_1=last_tuplet, expr_2=long_note)
         False
 
     Timespan inequalities are immutable.

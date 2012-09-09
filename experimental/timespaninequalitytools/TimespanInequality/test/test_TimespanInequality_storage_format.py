@@ -4,7 +4,7 @@ from experimental import *
 def test_TimespanInequality_storage_format_01():
 
     selector = selectortools.SingleSegmentSelector(identifier='red')
-    timespan_inequality = timespaninequalitytools.expr_2_happens_during_expr_1(expr_1=selector)
+    timespan_inequality = timespaninequalitytools.timespan_2_happens_during_timespan_1(expr_1=selector)
 
     r'''
     timespaninequalitytools.TimespanInequality(

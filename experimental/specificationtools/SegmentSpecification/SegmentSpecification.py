@@ -365,7 +365,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.expr_2_starts_during_expr_1(self.timespan)
+        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
@@ -393,7 +393,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.expr_2_starts_during_expr_1(self.timespan)
+        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
@@ -473,7 +473,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.expr_2_starts_during_expr_1(self.timespan)
+        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
@@ -501,7 +501,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.expr_2_starts_during_expr_1(self.timespan)
+        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
@@ -557,7 +557,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.expr_2_starts_during_expr_1(self.timespan)
+        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop)
@@ -618,7 +618,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.expr_2_starts_during_expr_1(self.timespan)
+        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop)
