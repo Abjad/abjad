@@ -35,6 +35,10 @@ class TimeObjectInequality(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @abc.abstractproperty
+    def is_fully_loaded(self):
+        pass
+
     @property
     def template(self):
         '''Template of time-object inequality.

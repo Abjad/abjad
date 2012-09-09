@@ -341,7 +341,13 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/timespaninequalitytools/timepoint_happens_after_timespan_starts
+   experimental/timespaninequalitytools/timepoint_happens_after_timespan_stops
    experimental/timespaninequalitytools/timepoint_happens_before_timespan_starts
+   experimental/timespaninequalitytools/timepoint_happens_before_timespan_stops
+   experimental/timespaninequalitytools/timepoint_happens_during_timespan
+   experimental/timespaninequalitytools/timepoint_happens_when_timespan_starts
+   experimental/timespaninequalitytools/timepoint_happens_when_timespan_stops
    experimental/timespaninequalitytools/timespan_2_contains_timespan_1_improperly
    experimental/timespaninequalitytools/timespan_2_curtails_timespan_1
    experimental/timespaninequalitytools/timespan_2_delays_timespan_1

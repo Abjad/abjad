@@ -9,6 +9,8 @@ timespaninequalitytools.TimeObjectInequality
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.timespaninequalitytools.TimeObjectInequality.TimeObjectInequality.TimeObjectInequality.is_fully_loaded
+
 .. autoattribute:: experimental.timespaninequalitytools.TimeObjectInequality.TimeObjectInequality.TimeObjectInequality.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

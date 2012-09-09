@@ -9,6 +9,8 @@ timespaninequalitytools.TimepointInequality
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.is_fully_loaded
+
 .. autoattribute:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -17,14 +19,16 @@ Read-only Properties
 
     Inherited from :py:class:`TimeObjectInequality.TimeObjectInequality <experimental.timespaninequalitytools.TimeObjectInequality.TimeObjectInequality.TimeObjectInequality>`
 
+.. autoattribute:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.timepoint
+
+.. autoattribute:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.timespan
+
 Special Methods
 ---------------
 
 .. automethod:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.__call__
 
 .. automethod:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.timespaninequalitytools.TimepointInequality.TimepointInequality.TimepointInequality.__ge__
 

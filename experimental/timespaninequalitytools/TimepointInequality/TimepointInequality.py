@@ -38,3 +38,26 @@ class TimepointInequality(TimeObjectInequality):
         command = command.replace('timepoint', repr(timepoint))
         result = eval(command, {'Offset': durationtools.Offset})
         return result
+
+    # TODO: remove this and rely on AbjadObject __eq__ testing
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.template == expr.template:
+                if self.timespan == expr.timespan:
+                    if self.timepoint == expr.timepoint:
+                        return True
+        return False
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def is_fully_loaded(self):
+        return self.timespan is not None and self.timepoint is not None
+
+    @property
+    def timepoint(self):
+        return self._timepoint
+
+    @property
+    def timespan(self):
+        return self._timespan
