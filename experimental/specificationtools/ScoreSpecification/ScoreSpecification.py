@@ -312,9 +312,8 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    # TODO: change 'start_segment' to 'start_segment_identifier'
-    def request_divisions(self, voice, start_segment, segment_count=1):
-        r'''Request `voice` divisions starting in `start_segment`
+    def request_divisions(self, voice, start_segment_identifier, segment_count=1):
+        r'''Request `voice` divisions starting in `start_segment_identifier`
         for a total of `segment_count` segments.
 
             >>> request = score_specification.request_divisions('Voice 1', 'red', segment_count=3)
@@ -333,7 +332,7 @@ class ScoreSpecification(Specification):
 
         Return attribute request.
         '''
-        start_segment_name = helpertools.expr_to_segment_name(start_segment)
+        start_segment_name = helpertools.expr_to_segment_name(start_segment_identifier)
         voice_name = helpertools.expr_to_component_name(voice)
         expression = '{!r} + {}'.format(start_segment_name, segment_count)
         held_expression = helpertools.SegmentIdentifierExpression(expression)
