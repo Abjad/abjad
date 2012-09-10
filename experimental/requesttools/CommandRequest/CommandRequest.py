@@ -1,4 +1,4 @@
-from experimental import timespaninequalitytools
+from experimental import timespantools
 from experimental.requesttools.Request import Request
 
 
@@ -27,7 +27,7 @@ class CommandRequest(Request):
     def __init__(self, attribute, timepoint,
         context_name=None, callback=None, count=None, offset=None, reverse=None):
         assert attribute in self.attributes, repr(attribute)
-        assert isinstance(timepoint, timepointtools.Timepoint)
+        assert isinstance(timepoint, timespantools.Timepoint)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(self, callback=callback, count=count, offset=offset, reverse=reverse)
         self._attribute = attribute

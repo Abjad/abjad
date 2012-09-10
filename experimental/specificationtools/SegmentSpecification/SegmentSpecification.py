@@ -316,9 +316,168 @@ class SegmentSpecification(Specification):
 
     def request_divisions(self,  
         context_name=None, callback=None, count=None, offset=None, reverse=None):
+        r'''Request segment divisions in `context_name`::
+
+            >>> request = segment.request_divisions()
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'divisions',
+                selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    )
+                )
+
+        Return material request.        
+        '''
         selector = self.select_segment()
-        return requesttools.MaterialRequest('divisions', selector,
-            context_name=context_name, callback=callback, count=count, offset=offset, reverse=reverse)
+        return requesttools.MaterialRequest(
+            'divisions', selector, context_name=context_name, 
+            callback=callback, count=count, offset=offset, reverse=reverse)
+
+    def request_division_command(self,  context_name=None, 
+        anchor=None, edge=None, multiplier=None, addendum=None, 
+        callback=None, count=None, offset=None, reverse=None):
+        r'''Request segment division command active at timepoint
+        in `context_name`.
+
+        Example 1. Request division command active at start of segment::
+
+            >>> request = segment.request_division_command()
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                timespantools.Timepoint(
+                    anchor=selectortools.SingleSegmentSelector(
+                        identifier='red'
+                        )
+                    )
+                )
+
+        Example 2. Request division command active halfway through segment::
+
+            >>> request = segment.request_division_command(multiplier=Fraction(1, 2))
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                timespantools.Timepoint(
+                    anchor=selectortools.SingleSegmentSelector(
+                        identifier='red'
+                        ),
+                    multiplier=Fraction(1, 2)
+                    )
+                )
+
+        Example 3. Request division command active at ``1/4`` 
+        after start of measure ``8``::
+
+            >>> anchor = segment.select_background_measure(8)
+            >>> addendum = durationtools.Offset(1, 4)
+
+        ::
+
+            >>> request = segment.request_division_command(anchor=anchor, addendum=addendum)
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                timespantools.Timepoint(
+                    anchor=selectortools.BackgroundMeasureSelector(
+                        inequality=timespaninequalitytools.TimespanInequality(
+                            'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                            timespan_1=timespantools.SingleSourceTimespan(
+                                selector=selectortools.SingleSegmentSelector(
+                                    identifier='red'
+                                    )
+                                )
+                            ),
+                        start_identifier=8,
+                        stop_identifier=9
+                        ),
+                    addendum=durationtools.Offset(1, 4)
+                    )
+                )
+
+        Specify timepoint with `anchor`, `edge`, `multiplier`, `addendum`.
+
+        Postprocess command with any of `offset`, `count`, `reverse`, `callback`.
+
+        Return command request.        
+        '''
+        anchor = anchor or self.select_segment()
+        timepoint = timespantools.Timepoint(
+            anchor=anchor, edge=edge, multiplier=multiplier, addendum=addendum)
+        return requesttools.CommandRequest(
+            'divisions', context_name=context_name, timepoint=timepoint,
+            callback=callback, count=count, offset=offset, reverse=reverse)
+
+    def request_rhythm(self,  
+        context_name=None, callback=None, count=None, offset=None, reverse=None):
+        r'''Request segment rhythm in `context_name`::
+
+            >>> request = segment.request_rhythm()
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'rhythm',
+                selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    )
+                )
+
+        Return material request.        
+        '''
+        selector = self.select_segment()
+        return requesttools.MaterialRequest(
+            'rhythm', selector, context_name=context_name, 
+            callback=callback, count=count, offset=offset, reverse=reverse)
+
+    def request_rhythm_command(self,  context_name=None, 
+        anchor=None, edge=None, multiplier=None, addendum=None, 
+        callback=None, count=None, offset=None, reverse=None):
+        r'''Request segment rhythm command active at timepoint
+        in `context_name`.
+
+        Example. Request rhythm command active at start of segment::
+
+            >>> request = segment.request_rhythm_command()
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'rhythm',
+                timespantools.Timepoint(
+                    anchor=selectortools.SingleSegmentSelector(
+                        identifier='red'
+                        )
+                    )
+                )
+
+        Specify timepoint with `anchor`, `edge`, `multiplier`, `addendum`.
+
+        Postprocess command with any of `offset`, `count`, `reverse`, `callback`.
+
+        Return command request.        
+        '''
+        anchor = anchor or self.select_segment()
+        timepoint = timespantools.Timepoint(
+            anchor=anchor, edge=edge, multiplier=multiplier, addendum=addendum)
+        return requesttools.CommandRequest(
+            'rhythm', context_name=context_name, timepoint=timepoint,
+            callback=callback, count=count, offset=offset, reverse=reverse)
 
     def request_time_signatures(self, 
         context_name=None, callback=None, count=None, offset=None, reverse=None):
@@ -336,11 +495,47 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Return attribute request.
+        Return material request.
         '''
         selector = self.select_segment()
-        return requesttools.MaterialRequest('time_signatures', selector,
-            context_name=context_name, callback=callback, count=count, offset=offset, reverse=reverse)
+        return requesttools.MaterialRequest(
+            'time_signatures', selector, context_name=context_name, 
+            callback=callback, count=count, offset=offset, reverse=reverse)
+
+    def request_time_signature_command(self,  context_name=None, 
+        anchor=None, edge=None, multiplier=None, addendum=None, 
+        callback=None, count=None, offset=None, reverse=None):
+        r'''Request segment time signature command active at timepoint
+        in `context_name`.
+
+        Example. Request time signature command active at start of segment::
+
+            >>> request = segment.request_time_signature_command()
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'time_signatures',
+                timespantools.Timepoint(
+                    anchor=selectortools.SingleSegmentSelector(
+                        identifier='red'
+                        )
+                    )
+                )
+
+        Specify timepoint with `anchor`, `edge`, `multiplier`, `addendum`.
+
+        Postprocess command with any of `offset`, `count`, `reverse`, `callback`.
+
+        Return command request.        
+        '''
+        anchor = anchor or self.select_segment()
+        timepoint = timespantools.Timepoint(
+            anchor=anchor, edge=edge, multiplier=multiplier, addendum=addendum)
+        return requesttools.CommandRequest(
+            'time_signatures', context_name=context_name, timepoint=timepoint,
+            callback=callback, count=count, offset=offset, reverse=reverse)
 
     def select_background_measure(self, n):
         '''Select segment background measure ``0``::
