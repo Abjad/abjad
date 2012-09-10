@@ -3,73 +3,73 @@ from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Timepoint(AbjadObject):
+class SymbolicTimepoint(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
 
-    Timepoint equal to the left edge of score::
+    SymbolicTimepoint equal to the left edge of score::
 
         >>> from experimental import *
 
     ::
 
-        >>> timespantools.Timepoint()
-        Timepoint()
+        >>> timespantools.SymbolicTimepoint()
+        SymbolicTimepoint()
 
-    Timepoint equal to the right edge of score::
+    SymbolicTimepoint equal to the right edge of score::
 
-        >>> timespantools.Timepoint(edge=Right)
-        Timepoint(edge=Right)
+        >>> timespantools.SymbolicTimepoint(edge=Right)
+        SymbolicTimepoint(edge=Right)
 
-    Timepoint ``1/8`` of a whole note into score::
+    SymbolicTimepoint ``1/8`` of a whole note into score::
 
-        >>> timespantools.Timepoint(addendum=durationtools.Offset(1, 8))
-        Timepoint(addendum=Offset(1, 8))
+        >>> timespantools.SymbolicTimepoint(addendum=durationtools.Offset(1, 8))
+        SymbolicTimepoint(addendum=Offset(1, 8))
 
-    Timepoint one third of the way into score::
+    SymbolicTimepoint one third of the way into score::
 
-        >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
-        Timepoint(edge=Right, multiplier=Fraction(1, 3))
+        >>> timespantools.SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3))
+        SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3))
 
-    Timepoint ``1/8`` of a whole note after the first third of score::
+    SymbolicTimepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
-        Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> timespantools.SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
+        SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
-    Timepoint equal to the left edge of segment ``'red'``::
+    SymbolicTimepoint equal to the left edge of segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
 
     ::
 
-        >>> timespantools.Timepoint(anchor=segment_selector)
-        Timepoint(anchor=SingleSegmentSelector(identifier='red'))
+        >>> timespantools.SymbolicTimepoint(anchor=segment_selector)
+        SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'))
 
-    Timepoint equal to the right edge of segment ``'red'``::
+    SymbolicTimepoint equal to the right edge of segment ``'red'``::
 
-        >>> timespantools.Timepoint(anchor=segment_selector, edge=Right)
-        Timepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right)
+        >>> timespantools.SymbolicTimepoint(anchor=segment_selector, edge=Right)
+        SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right)
 
-    Timepoint equal to ``1/8`` of a whole note after the left edge of
+    SymbolicTimepoint equal to ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
-        >>> timespantools.Timepoint(anchor=segment_selector, addendum=durationtools.Offset(1, 8))
-        Timepoint(anchor=SingleSegmentSelector(identifier='red'), addendum=Offset(1, 8))
+        >>> timespantools.SymbolicTimepoint(anchor=segment_selector, addendum=durationtools.Offset(1, 8))
+        SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'), addendum=Offset(1, 8))
 
-    Timepoint equal to one third of the way into segment ``'red'``::
+    SymbolicTimepoint equal to one third of the way into segment ``'red'``::
 
-        >>> timespantools.Timepoint(anchor=segment_selector, edge=Right, multiplier=Fraction(1, 3))
-        Timepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3))
+        >>> timespantools.SymbolicTimepoint(anchor=segment_selector, edge=Right, multiplier=Fraction(1, 3))
+        SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3))
 
-    Timepoint equal to ``1/8`` of a whole note after the right edge of the 
+    SymbolicTimepoint equal to ``1/8`` of a whole note after the right edge of the 
     first third of segment ``'red'``::
     
-        >>> timespantools.Timepoint(anchor=segment_selector, edge=Right, 
+        >>> timespantools.SymbolicTimepoint(anchor=segment_selector, edge=Right, 
         ... multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
-        Timepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
-    Timepoint equal to the left edge of note ``10`` that starts
+    SymbolicTimepoint equal to the left edge of note ``10`` that starts
     during segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
@@ -79,16 +79,16 @@ class Timepoint(AbjadObject):
 
     ::
 
-        >>> timepoint = timespantools.Timepoint(anchor=counttime_component_selector)
+        >>> timepoint = timespantools.SymbolicTimepoint(anchor=counttime_component_selector)
 
     ::
 
         >>> z(timepoint)
-        timespantools.Timepoint(
+        timespantools.SymbolicTimepoint(
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceTimespan(
+                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -102,21 +102,21 @@ class Timepoint(AbjadObject):
 
     Timepoints can anchor to arbitrary timespans. This allows recursion into the model.
 
-    Timepoint one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
+    SymbolicTimepoint one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=stop)
-        >>> timespan = timespantools.SingleSourceTimespan(selector=segment_slice_selector)
+        >>> timespan = timespantools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
 
     ::
     
-        >>> timepoint = timespantools.Timepoint(anchor=timespan, edge=Right, multiplier=Fraction(1, 3))
+        >>> timepoint = timespantools.SymbolicTimepoint(anchor=timespan, edge=Right, multiplier=Fraction(1, 3))
 
     ::
     
         >>> z(timepoint)
-        timespantools.Timepoint(
-            anchor=timespantools.SingleSourceTimespan(
+        timespantools.SymbolicTimepoint(
+            anchor=timespantools.SingleSourceSymbolicTimespan(
                 selector=selectortools.SegmentSelector(
                     start_identifier='red',
                     stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
@@ -126,19 +126,19 @@ class Timepoint(AbjadObject):
             multiplier=Fraction(1, 3)
             )
 
-    Timepoint equal to the right edge of note ``10`` that starts
+    SymbolicTimepoint equal to the right edge of note ``10`` that starts
     during segment ``'red'``::
 
-        >>> timepoint = timespantools.Timepoint(anchor=counttime_component_selector, edge=Right)
+        >>> timepoint = timespantools.SymbolicTimepoint(anchor=counttime_component_selector, edge=Right)
 
     ::
 
         >>> z(timepoint)
-        timespantools.Timepoint(
+        timespantools.SymbolicTimepoint(
             anchor=selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceTimespan(
+                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -160,7 +160,7 @@ class Timepoint(AbjadObject):
         from experimental import selectortools 
         from experimental import timespantools 
         assert isinstance(
-            anchor, (selectortools.Selector, timespantools.SingleSourceTimespan, type(None))), repr(anchor)
+            anchor, (selectortools.Selector, timespantools.SingleSourceSymbolicTimespan, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
@@ -226,7 +226,7 @@ class Timepoint(AbjadObject):
 
     @property
     def addendum(self):
-        '''Timepoint addendum specified by user.
+        '''SymbolicTimepoint addendum specified by user.
 
             >>> timepoint.addendum is None
             True
@@ -239,13 +239,13 @@ class Timepoint(AbjadObject):
 
     @property
     def anchor(self):
-        '''Timepoint anchor specified by user.
+        '''SymbolicTimepoint anchor specified by user.
         
             >>> z(timepoint.anchor)
             selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceTimespan(
+                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -264,7 +264,7 @@ class Timepoint(AbjadObject):
 
     @property
     def edge(self):
-        '''Timepoint edge indicator specified by user.
+        '''SymbolicTimepoint edge indicator specified by user.
         
             >>> timepoint.edge
             Right
@@ -277,7 +277,7 @@ class Timepoint(AbjadObject):
 
     @property
     def multiplier(self):
-        '''Timepoint multiplier specified by user.
+        '''SymbolicTimepoint multiplier specified by user.
 
             >>> timepoint.multiplier is None
             True

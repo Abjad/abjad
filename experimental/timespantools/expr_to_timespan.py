@@ -47,7 +47,7 @@ def expr_to_timespan(expr):
     '''
     from experimental import timespantools
 
-    if isinstance(expr, timespantools.Timespan):
+    if isinstance(expr, timespantools.SymbolicTimespan):
         return expr
     if hasattr(expr, 'timespan'):
         return expr.timespan

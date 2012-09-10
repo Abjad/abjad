@@ -32,7 +32,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         selectortools.DivisionSelector(
             inequality=timespaninequalitytools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=timespantools.SingleSourceTimespan(
+                timespan_1=timespantools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -50,7 +50,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         selectortools.DivisionSelector(
             inequality=timespaninequalitytools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=timespantools.SingleSourceTimespan(
+                timespan_1=timespantools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )

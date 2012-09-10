@@ -4,8 +4,8 @@ from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelect
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.timespantools.Timepoint import Timepoint
-from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
+from experimental.timespantools.SymbolicTimepoint import SymbolicTimepoint
+from experimental.timespantools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_MultipleContextSettingInventory___repr___01():

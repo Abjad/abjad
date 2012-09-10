@@ -2,10 +2,10 @@ import abc
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.timespantools.Timepoint import Timepoint
+from experimental.timespantools.SymbolicTimepoint import SymbolicTimepoint
 
 
-class Timespan(AbjadObject):
+class SymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Base timespan from which concrete timespans inherit.

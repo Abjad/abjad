@@ -29,11 +29,11 @@ class Selector(AbjadObject):
 
     @property
     def timespan(self):
-        '''SingleSourceTimespan of selector.
+        '''SingleSourceSymbolicTimespan of selector.
 
         Return timespan object.
         '''
-        return timespantools.SingleSourceTimespan(selector=self)
+        return timespantools.SingleSourceSymbolicTimespan(selector=self)
 
     ### PUBLIC METHODS ###
 

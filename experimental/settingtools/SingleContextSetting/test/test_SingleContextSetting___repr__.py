@@ -1,7 +1,7 @@
 from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
-from experimental.timespantools.Timepoint import Timepoint
-from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
+from experimental.timespantools.SymbolicTimepoint import SymbolicTimepoint
+from experimental.timespantools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_SingleContextSetting___repr___01():

@@ -5,13 +5,13 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class TimespanConstant(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Timespan constant.
+    SymbolicTimespan constant.
 
     ::
 
         >>> from experimental import *
 
-    Timespan contant ``[1/2, 3/2)``::
+    SymbolicTimespan contant ``[1/2, 3/2)``::
 
         >>> timespan_constant = timespantools.TimespanConstant((1, 2), (3, 2)) 
 
@@ -28,9 +28,9 @@ class TimespanConstant(AbjadObject):
             stop_offset=durationtools.Offset(3, 2)
             )
 
-    Timespan constants are object-modeled offset pairs.
+    SymbolicTimespan constants are object-modeled offset pairs.
 
-    Timespan constants are immutable.
+    SymbolicTimespan constants are immutable.
     '''
 
     ### INITIALIZER ###

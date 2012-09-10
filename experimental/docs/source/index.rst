@@ -383,16 +383,16 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespantools/Timespan/Timespan
+   experimental/timespantools/SymbolicTimespan/SymbolicTimespan
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespantools/MixedSourceTimespan/MixedSourceTimespan
-   experimental/timespantools/SingleSourceTimespan/SingleSourceTimespan
-   experimental/timespantools/Timepoint/Timepoint
+   experimental/timespantools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   experimental/timespantools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
+   experimental/timespantools/SymbolicTimepoint/SymbolicTimepoint
    experimental/timespantools/TimespanConstant/TimespanConstant
    experimental/timespantools/TimespanInventory/TimespanInventory
 

@@ -6,7 +6,7 @@ from experimental.timespaninequalitytools.TimeObjectInequality import TimeObject
 class TimespanInequality(TimeObjectInequality):
     r'''.. versionadded:: 1.0
 
-    Timespan inequality.
+    SymbolicTimespan inequality.
 
     ::
 
@@ -100,7 +100,7 @@ class TimespanInequality(TimeObjectInequality):
         >>> timespaninequalitytools.timespan_2_starts_after_timespan_1_stops(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
-    Timespan inequalities are immutable.
+    SymbolicTimespan inequalities are immutable.
     '''
 
     ### INITIALIZER ###
@@ -249,7 +249,7 @@ class TimespanInequality(TimeObjectInequality):
     # TODO: eventually remove in favor of timespan_1
     @property
     def timespan(self):
-        '''Timespan of timespan inequality.
+        '''SymbolicTimespan of timespan inequality.
 
         Return timespan object.
         '''

@@ -1,63 +1,63 @@
-from experimental.timespantools.Timespan import Timespan
+from experimental.timespantools.SymbolicTimespan import SymbolicTimespan
 
 
-class SingleSourceTimespan(Timespan):
+class SingleSourceSymbolicTimespan(SymbolicTimespan):
     r'''.. versionadded 1.0
 
     Finite timespan defined in terms of a single source.
 
-    Timespan objects highlight a contiguous blocks of time
+    SymbolicTimespan objects highlight a contiguous blocks of time
     somewhere and say "everything within my bounds is selected
     for some upcoming operation." ::
 
         >>> from experimental import *
 
-    Timespan of the entire score::
+    SymbolicTimespan of the entire score::
 
-        >>> timespantools.SingleSourceTimespan()
-        SingleSourceTimespan()
+        >>> timespantools.SingleSourceSymbolicTimespan()
+        SingleSourceSymbolicTimespan()
 
-    Timespan of the first third of the score::
+    SymbolicTimespan of the first third of the score::
 
-        >>> timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
-        SingleSourceTimespan(multiplier=Fraction(1, 3))
+        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
+        SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
 
-    Timespan of the first ``1/8`` of a whole note in score::
+    SymbolicTimespan of the first ``1/8`` of a whole note in score::
 
-        >>> timespantools.SingleSourceTimespan(multiplier=Fraction(0, 1), right_addendum=durationtools.Offset(1, 8))
-        SingleSourceTimespan(multiplier=Fraction(0, 1), right_addendum=Offset(1, 8))
+        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_addendum=durationtools.Offset(1, 8))
+        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_addendum=Offset(1, 8))
 
-    Timespan of the last ``1/8`` of a whole note in score::
+    SymbolicTimespan of the last ``1/8`` of a whole note in score::
 
-        >>> timespantools.SingleSourceTimespan(multiplier=Fraction(0, 1), left_addendum=durationtools.Offset(-1, 8))
-        SingleSourceTimespan(multiplier=Fraction(0, 1), left_addendum=Offset(-1, 8))
+        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_addendum=durationtools.Offset(-1, 8))
+        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_addendum=Offset(-1, 8))
 
-    Timespan of the segment with name ``'red'``::
+    SymbolicTimespan of the segment with name ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
 
     ::
 
-        >>> timespantools.SingleSourceTimespan(selector=segment_selector)
-        SingleSourceTimespan(selector=SingleSegmentSelector(identifier='red'))
+        >>> timespantools.SingleSourceSymbolicTimespan(selector=segment_selector)
+        SingleSourceSymbolicTimespan(selector=SingleSegmentSelector(identifier='red'))
 
-    Timespan of the first measure that starts during segment ``'red'``::
+    SymbolicTimespan of the first measure that starts during segment ``'red'``::
 
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
 
     ::
 
-        >>> timespan = timespantools.SingleSourceTimespan(selector=measure_selector)
+        >>> timespan = timespantools.SingleSourceSymbolicTimespan(selector=measure_selector)
 
     ::
 
         >>> z(timespan)
-        timespantools.SingleSourceTimespan(
+        timespantools.SingleSourceSymbolicTimespan(
             selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceTimespan(
+                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -67,22 +67,22 @@ class SingleSourceTimespan(Timespan):
                 )
             )
 
-    Timespan of division ``0`` starting during segment ``'red'``::
+    SymbolicTimespan of division ``0`` starting during segment ``'red'``::
 
         >>> division_selector = selectortools.DivisionSelector(inequality=inequality, stop_identifier=1)
 
     ::
 
-        >>> timespan = timespantools.SingleSourceTimespan(selector=division_selector)
+        >>> timespan = timespantools.SingleSourceSymbolicTimespan(selector=division_selector)
 
     ::
 
        >>> z(timespan)
-        timespantools.SingleSourceTimespan(
+        timespantools.SingleSourceSymbolicTimespan(
             selector=selectortools.DivisionSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceTimespan(
+                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -92,7 +92,7 @@ class SingleSourceTimespan(Timespan):
                 )
             )
 
-    Timespan starting at the left edge of the segment with the name ``'red'``
+    SymbolicTimespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
@@ -100,8 +100,8 @@ class SingleSourceTimespan(Timespan):
 
     ::
 
-        >>> timespantools.SingleSourceTimespan(selector=segment_slice_selector)
-        SingleSourceTimespan(selector=SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
+        >>> timespantools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
+        SingleSourceSymbolicTimespan(selector=SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.
     '''
@@ -111,7 +111,7 @@ class SingleSourceTimespan(Timespan):
     def __init__(self, selector=None, multiplier=None, left_addendum=None, right_addendum=None):
         from experimental import selectortools
         assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
-        Timespan.__init__(self)
+        SymbolicTimespan.__init__(self)
         self._selector = selector
         self._multiplier = multiplier
         self._left_addendum = left_addendum

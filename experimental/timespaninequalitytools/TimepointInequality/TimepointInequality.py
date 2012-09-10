@@ -6,7 +6,7 @@ from experimental.timespaninequalitytools.TimeObjectInequality import TimeObject
 class TimepointInequality(TimeObjectInequality):
     r'''.. versionadded:: 1.0
 
-    Timepoint inequality.
+    SymbolicTimepoint inequality.
     '''
 
     ### INITIALIZER ###

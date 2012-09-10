@@ -11,10 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.TimespanConstant.TimespanConstant.TimespanConstant.duration
 
-.. autoattribute:: experimental.timespantools.TimespanConstant.TimespanConstant.TimespanConstant.is_segment_slice
-
-    Inherited from :py:class:`Timespan.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
-
 .. autoattribute:: experimental.timespantools.TimespanConstant.TimespanConstant.TimespanConstant.start_offset
 
 .. autoattribute:: experimental.timespantools.TimespanConstant.TimespanConstant.TimespanConstant.stop_offset

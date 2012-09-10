@@ -1,8 +1,8 @@
 from abjad.tools import abctools
-from experimental.timespantools.Timespan import Timespan
+from experimental.timespantools.SymbolicTimespan import SymbolicTimespan
 
 
-class MixedSourceTimespan(Timespan):
+class MixedSourceSymbolicTimespan(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Mixed-source timespan.
@@ -16,29 +16,29 @@ class MixedSourceTimespan(Timespan):
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
-        >>> start_timepoint = timespantools.Timepoint(anchor=measure_selector)
+        >>> start_timepoint = timespantools.SymbolicTimepoint(anchor=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='blue')
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
-        >>> stop_timepoint = timespantools.Timepoint(anchor=measure_selector, edge=Right)
+        >>> stop_timepoint = timespantools.SymbolicTimepoint(anchor=measure_selector, edge=Right)
         
     ::
 
-        >>> timespan = timespantools.MixedSourceTimespan(
+        >>> timespan = timespantools.MixedSourceSymbolicTimespan(
         ... start_timepoint=start_timepoint, stop_timepoint=stop_timepoint)
 
     ::
 
         >>> z(timespan)
-        timespantools.MixedSourceTimespan(
-            start_timepoint=timespantools.Timepoint(
+        timespantools.MixedSourceSymbolicTimespan(
+            start_timepoint=timespantools.SymbolicTimepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceTimespan(
+                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -47,11 +47,11 @@ class MixedSourceTimespan(Timespan):
                     start_identifier=-1
                     )
                 ),
-            stop_timepoint=timespantools.Timepoint(
+            stop_timepoint=timespantools.SymbolicTimepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceTimespan(
+                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='blue'
                                 )
@@ -70,9 +70,9 @@ class MixedSourceTimespan(Timespan):
 
     def __init__(self, start_timepoint=None, stop_timepoint=None):
         from experimental import timespantools
-        assert isinstance(start_timepoint, (timespantools.Timepoint, type(None))), repr(start_timepoint)
-        assert isinstance(stop_timepoint, (timespantools.Timepoint, type(None))), repr(stop_timepoint)
-        Timespan.__init__(self)
+        assert isinstance(start_timepoint, (timespantools.SymbolicTimepoint, type(None))), repr(start_timepoint)
+        assert isinstance(stop_timepoint, (timespantools.SymbolicTimepoint, type(None))), repr(stop_timepoint)
+        SymbolicTimespan.__init__(self)
         self._start_timepoint = start_timepoint
         self._stop_timepoint = stop_timepoint
 

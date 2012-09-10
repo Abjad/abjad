@@ -8,7 +8,7 @@ class TimespanInventory(ObjectInventory):
 
         >>> from experimental import *
 
-    Timespan inventory::
+    SymbolicTimespan inventory::
 
         >>> timespan_inventory = timespantools.TimespanInventory()
 
@@ -36,7 +36,7 @@ class TimespanInventory(ObjectInventory):
                 )
             ])
 
-    Timespan inventory.
+    SymbolicTimespan inventory.
     '''
 
     ### INITIALIZER ###
