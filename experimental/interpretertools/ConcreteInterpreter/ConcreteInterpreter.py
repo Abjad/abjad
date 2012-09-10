@@ -194,6 +194,20 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
+    # NEXT TODO: Finish implementing this method.
+    #            Doing that involves three main steps:
+    #            1. evaluate division_command_request.timepoint into some type of offset
+    #            2. use offset to select region division command from region_division_commands
+    #            3. create (and store and return) new region division command
+    def division_command_request_to_region_division_command(
+        self, division_command_request, region_division_commands):
+        assert isinstance(division_command_request, requesttools.CommandRequest)
+        assert division_command_request.attribute == 'divisions'
+        print division_command_request.storage_format
+        self._debug_values(region_division_commands, 'rdcs')
+        raise NotImplementedError
+    
+
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
@@ -489,7 +503,9 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(resolved_single_context_setting, 'rscs')
         return resolved_single_context_setting
 
-    def region_division_command_to_division_region_division_list(self, region_division_command):
+    # complete list of region division commands is passed in for back-inspection
+    def region_division_command_to_division_region_division_list(
+        self, region_division_command, region_division_commands):
         #self._debug(region_division_command, 'rdc')
         resolved_value = region_division_command.resolved_value
         if isinstance(resolved_value, list):
@@ -502,6 +518,15 @@ class ConcreteInterpreter(Interpreter):
             assert resolved_value.attribute == 'divisions'
             division_material_request = resolved_value
             divisions = self.division_material_request_to_divisions(division_material_request)
+        # NEXT TODO: implement this branch
+        elif isinstance(resolved_value, requesttools.CommandRequest):
+            assert resolved_value.attribute == 'divisions'
+            division_command_request = resolved_value
+            region_division_command = self.division_command_request_to_region_division_command(
+                division_command_request, region_division_commands)
+            division_region_division_list = self.region_division_command_to_division_region_division_list(
+                region_division_command)
+            return division_region_division_list
         else:
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
         segment_specification = self.get_segment_specification(region_division_command.start_segment_name)
@@ -516,14 +541,13 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list._truncate = region_division_command.truncate
         return division_region_division_list
 
-    # NEXT TODO: Extend the loop in this function to save intermediate values as they are produced.
-    #            This will enable later division commands to refer to the materials produced by earlier commands.
     def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
         for region_division_command in region_division_commands:
             #self._debug(region_division_command, 'rdc')
+            # TODO: pass in entire list of region division commands for back-inspection
             division_region_division_list = self.region_division_command_to_division_region_division_list(
-                region_division_command)
+                region_division_command, region_division_commands)
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
             #self._debug(division_region_division_list, 'drdl')
