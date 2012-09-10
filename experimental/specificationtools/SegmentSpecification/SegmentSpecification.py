@@ -1,11 +1,11 @@
 from abjad.tools import *
+from experimental.exceptions import *
 from experimental import helpertools
 from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespaninequalitytools
 from experimental import timespantools
-from experimental.exceptions import *
 from experimental.specificationtools.Specification import Specification
 
 
@@ -246,24 +246,24 @@ class SegmentSpecification(Specification):
         '''Segment specification start timepoint.
 
             >>> segment.start_timepoint
-            SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Left)
+            SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Left)
 
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timespantools.SymbolicTimepoint(anchor=selector, edge=Left)
+        return timespantools.SymbolicTimepoint(selector=selector, edge=Left)
 
     @property
     def stop_timepoint(self):
         '''Segment specification stop timepoint.
 
             >>> segment.stop_timepoint
-            SymbolicTimepoint(anchor=SingleSegmentSelector(identifier='red'), edge=Right)
+            SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right)
 
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timespantools.SymbolicTimepoint(anchor=selector, edge=Right)
+        return timespantools.SymbolicTimepoint(selector=selector, edge=Right)
 
     @property
     def storage_format(self):
@@ -338,7 +338,7 @@ class SegmentSpecification(Specification):
             callback=callback, count=count, offset=offset, reverse=reverse)
 
     def request_division_command(self,  context_name=None, 
-        anchor=None, edge=None, multiplier=None, addendum=None, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
         callback=None, count=None, offset=None, reverse=None):
         r'''Request segment division command active at timepoint
         in `context_name`.
@@ -353,7 +353,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 timespantools.SymbolicTimepoint(
-                    anchor=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )
@@ -369,7 +369,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 timespantools.SymbolicTimepoint(
-                    anchor=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         ),
                     multiplier=Fraction(1, 2)
@@ -379,12 +379,12 @@ class SegmentSpecification(Specification):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> anchor = segment.select_background_measure(8)
+            >>> selector = segment.select_background_measure(8)
             >>> addendum = durationtools.Offset(1, 4)
 
         ::
 
-            >>> request = segment.request_division_command(anchor=anchor, addendum=addendum)
+            >>> request = segment.request_division_command(selector=selector, addendum=addendum)
 
         ::
 
@@ -392,7 +392,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 timespantools.SymbolicTimepoint(
-                    anchor=selectortools.BackgroundMeasureSelector(
+                    selector=selectortools.BackgroundMeasureSelector(
                         inequality=timespaninequalitytools.TimespanInequality(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
                             timespan_1=timespantools.SingleSourceSymbolicTimespan(
@@ -408,15 +408,15 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Specify timepoint with `anchor`, `edge`, `multiplier`, `addendum`.
+        Specify timepoint with `selector`, `edge`, `multiplier`, `addendum`.
 
         Postprocess command with any of `offset`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
-        anchor = anchor or self.select_segment()
+        selector = selector or self.select_segment()
         timepoint = timespantools.SymbolicTimepoint(
-            anchor=anchor, edge=edge, multiplier=multiplier, addendum=addendum)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'divisions', context_name=context_name, timepoint=timepoint,
             callback=callback, count=count, offset=offset, reverse=reverse)
@@ -445,7 +445,7 @@ class SegmentSpecification(Specification):
             callback=callback, count=count, offset=offset, reverse=reverse)
 
     def request_rhythm_command(self,  context_name=None, 
-        anchor=None, edge=None, multiplier=None, addendum=None, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
         callback=None, count=None, offset=None, reverse=None):
         r'''Request segment rhythm command active at timepoint
         in `context_name`.
@@ -460,21 +460,21 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'rhythm',
                 timespantools.SymbolicTimepoint(
-                    anchor=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )
                 )
 
-        Specify timepoint with `anchor`, `edge`, `multiplier`, `addendum`.
+        Specify timepoint with `selector`, `edge`, `multiplier`, `addendum`.
 
         Postprocess command with any of `offset`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
-        anchor = anchor or self.select_segment()
+        selector = selector or self.select_segment()
         timepoint = timespantools.SymbolicTimepoint(
-            anchor=anchor, edge=edge, multiplier=multiplier, addendum=addendum)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythm', context_name=context_name, timepoint=timepoint,
             callback=callback, count=count, offset=offset, reverse=reverse)
@@ -503,7 +503,7 @@ class SegmentSpecification(Specification):
             callback=callback, count=count, offset=offset, reverse=reverse)
 
     def request_time_signature_command(self,  context_name=None, 
-        anchor=None, edge=None, multiplier=None, addendum=None, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
         callback=None, count=None, offset=None, reverse=None):
         r'''Request segment time signature command active at timepoint
         in `context_name`.
@@ -518,21 +518,21 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'time_signatures',
                 timespantools.SymbolicTimepoint(
-                    anchor=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
                     )
                 )
 
-        Specify timepoint with `anchor`, `edge`, `multiplier`, `addendum`.
+        Specify timepoint with `selector`, `edge`, `multiplier`, `addendum`.
 
         Postprocess command with any of `offset`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
-        anchor = anchor or self.select_segment()
+        selector = selector or self.select_segment()
         timepoint = timespantools.SymbolicTimepoint(
-            anchor=anchor, edge=edge, multiplier=multiplier, addendum=addendum)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', context_name=context_name, timepoint=timepoint,
             callback=callback, count=count, offset=offset, reverse=reverse)

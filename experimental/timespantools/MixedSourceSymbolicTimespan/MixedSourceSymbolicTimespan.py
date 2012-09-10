@@ -16,14 +16,14 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
-        >>> start_timepoint = timespantools.SymbolicTimepoint(anchor=measure_selector)
+        >>> start_timepoint = timespantools.SymbolicTimepoint(selector=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='blue')
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
-        >>> stop_timepoint = timespantools.SymbolicTimepoint(anchor=measure_selector, edge=Right)
+        >>> stop_timepoint = timespantools.SymbolicTimepoint(selector=measure_selector, edge=Right)
         
     ::
 
@@ -35,7 +35,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> z(timespan)
         timespantools.MixedSourceSymbolicTimespan(
             start_timepoint=timespantools.SymbolicTimepoint(
-                anchor=selectortools.BackgroundMeasureSelector(
+                selector=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timespantools.SingleSourceSymbolicTimespan(
@@ -48,7 +48,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     )
                 ),
             stop_timepoint=timespantools.SymbolicTimepoint(
-                anchor=selectortools.BackgroundMeasureSelector(
+                selector=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timespantools.SingleSourceSymbolicTimespan(
