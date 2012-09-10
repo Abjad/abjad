@@ -120,6 +120,10 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        '''True when `expr` equals self. Otherwise false.
+
+        Return boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.selector == expr.selector:
                 if self.multiplier == expr.multiplier:
@@ -132,25 +136,41 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     @property
     def left_addendum(self):
+        '''Left addendum of symbolic timespan specified by user.
+
+        Return offset or none.
+        '''
         return self._left_addendum
 
     @property
     def multiplier(self):
+        '''Multiplier of symbolic timespan specified by user.
+
+        Return fraction or none.
+        '''
         return self._multiplier
     
     @property
     def right_addendum(self):
+        '''Right addendum of symbolic timespan specified by user.
+
+        Return offset or none.
+        '''
         return self._right_addendum
 
     @property
     def segment_identifier(self):
-        '''Delegate to ``self.selector.segment_identifier``.
+        '''Segment identifier of symbolic timespan specified by user.
+
+        Delegate to ``self.selector.segment_identifier``.
+
+        Return string or integer.
         '''
         return self.selector.segment_identifier
 
     @property
     def selector(self):
-        '''Selector specified by user.
+        '''Selector of symbolic timespan specified by user.
 
         Return selector or none.
         '''

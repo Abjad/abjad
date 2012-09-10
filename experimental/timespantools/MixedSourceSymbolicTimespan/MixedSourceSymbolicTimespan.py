@@ -79,6 +79,10 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
+        '''True when `expr` equals self. Otherwise false.
+
+        Return boolean.
+        '''
         if isintance(expr, type(self)):
             if self.start_timepoint == timespan_2.start_timepoint:
                 if self.stop_timepoint == timespan_2.stop_timepoint:

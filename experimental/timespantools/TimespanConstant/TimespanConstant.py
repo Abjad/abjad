@@ -51,12 +51,22 @@ class TimespanConstant(AbjadObject):
 
     @property
     def duration(self):
+        '''Duration of timespan constant.
+        '''
         return self.stop_offset - self.start_offset
 
     @property
     def start_offset(self):
+        '''Start offset of timespan constant specified by user.
+
+        Return offset.
+        '''
         return self._start_offset
 
     @property
     def stop_offset(self):
+        '''Stop offset of timespan constant specified by user.
+
+        Return stop offset.
+        '''
         return self._stop_offset

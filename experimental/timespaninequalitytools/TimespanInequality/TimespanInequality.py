@@ -204,8 +204,11 @@ class TimespanInequality(TimeObjectInequality):
         result = eval(command, {'Offset': durationtools.Offset})
         return result
     
-    # TODO: remove this and rely on AbjadObject __eq__ testing
     def __eq__(self, expr):
+        '''True when `expr` equals timespan inequality. Otherwise false.
+
+        Return boolean.
+        '''
         if isinstance(expr, type(self)):
             if self.template == expr.template:
                 if self.timespan_1 == expr.timespan_1:
