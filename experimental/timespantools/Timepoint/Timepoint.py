@@ -297,5 +297,7 @@ class Timepoint(AbjadObject):
         Return offset.
 
         .. note:: not yet implemented.
+
+        .. note:: will probably have to be implemented as method intead of property.
         '''
         raise NotImplementedError

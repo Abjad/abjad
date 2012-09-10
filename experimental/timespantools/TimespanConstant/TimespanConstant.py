@@ -1,9 +1,8 @@
 from abjad.tools import durationtools
-from experimental.timespantools.Timespan import Timespan
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-
-class TimespanConstant(Timespan):
+class TimespanConstant(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Timespan constant.

@@ -32,6 +32,8 @@ class Timespan(AbjadObject):
         Return rational.
         
         .. note:: not yet implemented.
+
+        .. note:: will probably have to be implemented as method instead of property.
         '''
         raise NotImplementedError
 
@@ -41,3 +43,21 @@ class Timespan(AbjadObject):
             if isinstance(self.selector, selectortools.SegmentSelector):
                 return True
         return False
+
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractmethod
+    def get_duration(self, score_specification):
+        pass
+
+    @abc.abstractmethod
+    def get_segment_start_offset(self, score_specification):
+        pass
+
+    @abc.abstractmethod
+    def get_segment_stop_offset(self, score_specification):
+        pass
+
+    @abc.abstractmethod
+    def set_segment_identifier(self, segment_identifier):
+        pass

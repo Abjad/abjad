@@ -205,8 +205,8 @@ class ConcreteInterpreter(Interpreter):
         assert division_command_request.attribute == 'divisions'
         print division_command_request.storage_format
         self._debug_values(region_division_commands, 'rdcs')
+        timepoint = division_command_request.timepoint
         raise NotImplementedError
-    
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)

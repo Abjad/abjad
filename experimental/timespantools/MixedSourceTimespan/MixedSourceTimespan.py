@@ -141,3 +141,25 @@ class MixedSourceTimespan(Timespan):
         Return timepoint or none.
         '''
         return self._stop_timepoint
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification):
+        '''.. note:: not yet implemented.
+        '''
+        raise NotImplementedError
+
+    def get_segment_start_offset(self, score_specification):
+        '''.. note:: not yet implemented.
+        '''
+        raise NotImplementedError
+
+    def get_segment_stop_offset(self, score_specification):
+        '''.. note:: not yet implemented.
+        '''
+        raise NotImplementedError
+
+    def set_segment_identifier(self, segment_identifier):
+        '''.. note:: not yet implemented.
+        '''
+        raise NotImplementedError
