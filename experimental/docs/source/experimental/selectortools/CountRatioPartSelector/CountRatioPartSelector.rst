@@ -38,6 +38,14 @@ Methods
 
 .. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_duration
 
+.. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_score_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_score_start_offset
+
+.. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_score_stop_offset
+
 .. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_segment_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

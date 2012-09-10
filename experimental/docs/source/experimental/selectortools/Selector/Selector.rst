@@ -20,7 +20,19 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_duration
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_offsets
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_start_offset
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_stop_offset
+
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.get_segment_offsets
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_segment_start_offset
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_segment_stop_offset
 
 Special Methods
 ---------------

@@ -56,13 +56,48 @@ class SingleSegmentSelector(InequalitySelector):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):
+        r'''Evaluate duration of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return duration.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         return segment_specification.duration
 
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
     def get_segment_start_offset(self, score_specification, context_name):
+        r'''Evaluate segment start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset ``0``.
+        '''
         return durationtools.Offset(0)
 
     def get_segment_stop_offset(self, score_specification, context_name):
+        r'''Evaluate segment stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         return durationtools.Offset(segment_specification.duration)
 

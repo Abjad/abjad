@@ -135,7 +135,10 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):
-        '''Calculcate making assumptions about segment to which selector refers.
+        '''Evaluate duration of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return duration.
         '''
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
@@ -146,8 +149,32 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         duration = durationtools.Duration(sum(durations))
         return duration
 
-    # TODO: change name to self.get_start_offset_in_segment
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
     def get_segment_start_offset(self, score_specification, context_name):
+        r'''Evaluate segment start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
@@ -158,8 +185,12 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         start_offset = durationtools.Offset(duration_before)
         return start_offset
 
-    # TODO: change name to self.get_stop_offset_in_segment
     def get_segment_stop_offset(self, score_specification, context_name):
+        r'''Evaluate segment stop offset when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0

@@ -26,7 +26,31 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_duration
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_score_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_score_start_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_score_stop_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_segment_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_segment_start_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_segment_stop_offset
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 

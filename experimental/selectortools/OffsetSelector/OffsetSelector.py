@@ -79,10 +79,40 @@ class OffsetSelector(Selector):
     ### PUBLIC METHODS ##
 
     def get_duration(self, score_specification, context_name):
+        r'''Evaluate duration of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return duration.
+        '''
         return self.get_segment_stop_offset(score_specification, context_name) - \
             self.get_segment_start_offset(score_specification, context_name)
 
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
     def get_segment_start_offset(self, score_specification, context_name):
+        r'''Evaluate segment start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         if self.start_offset is None:
             return durationtools.Offset(0)
         elif self.start_offset < 0:
@@ -91,6 +121,11 @@ class OffsetSelector(Selector):
             return self.start_offset
 
     def get_segment_stop_offset(self, score_specification, context_name):
+        r'''Evaluate segment stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         if self.stop_offset is None:
             return durationtools.Offset(self.selector.get_duration(score_specification, context_name))
         elif self.stop_offset < 0:

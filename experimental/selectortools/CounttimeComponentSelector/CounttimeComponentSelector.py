@@ -122,3 +122,55 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
         Return slice selector.
         '''
         return self._selector
+
+    ### PUBLIC METHODS ###
+
+    def get_duration(self, score_specification, context_name):
+        r'''Evaluate duration of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return duration.
+        '''
+        raise NotImplementedError
+
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_segment_start_offset(self, segment_specification, context_name):
+        r'''Evaluate segment start offset of selector when applied
+        to `context_name` in `segment_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_segment_stop_offset(self, segment_specification, context_name):
+        r'''Evaluate segment stop offset of selector when applied
+        to `context_name` in `segment_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError

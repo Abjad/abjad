@@ -40,9 +40,23 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_duration
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_offsets
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_start_offset
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_stop_offset
+
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_segment_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_segment_start_offset
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_segment_stop_offset
 
 Special Methods
 ---------------

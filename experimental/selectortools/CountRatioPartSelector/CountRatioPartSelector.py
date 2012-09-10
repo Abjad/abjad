@@ -54,6 +54,11 @@ class CountRatioPartSelector(RatioPartSelector):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):
+        '''Evaluate duration of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return duration.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
@@ -62,7 +67,32 @@ class CountRatioPartSelector(RatioPartSelector):
         duration = durationtools.Duration(sum(durations))
         return duration
 
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
     def get_segment_start_offset(self, score_specification, context_name):
+        r'''Evaluate segment start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
@@ -73,6 +103,11 @@ class CountRatioPartSelector(RatioPartSelector):
         return durationtools.Offset(duration_before)
 
     def get_segment_stop_offset(self, score_specification, context_name):
+        r'''Evlauate segment stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return offset.
+        '''
         segment_specification = score_specification.get_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
