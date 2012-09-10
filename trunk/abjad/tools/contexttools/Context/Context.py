@@ -1,4 +1,5 @@
 import abc
+from abjad.tools import componenttools
 from abjad.tools import formattools
 from abjad.tools.containertools.Container import Container
 import copy
@@ -39,6 +40,7 @@ class Context(Container):
         self.context_name = context_name
         self._engraver_consists = []
         self._engraver_removals = []
+        self._name = None
         self.name = name
         self.is_nonsemantic = False
 
@@ -285,5 +287,18 @@ class Context(Container):
             return self._name
         def fset(self, arg):
             assert isinstance(arg, (str, type(None)))
+            parentage = componenttools.get_proper_parentage_of_component(self)
+            old_name = self._name
+            for parent in parentage:
+                named_children = parent._named_children
+                if old_name is not None:
+                    named_children[old_name].remove(self)
+                    if not named_children[old_name]:
+                        del named_children[old_name]
+                if arg is not None:
+                    if arg not in named_children:
+                        named_children[arg] = [self]
+                    else:
+                        named_children[arg].append(self)
             self._name = arg
         return property(**locals())

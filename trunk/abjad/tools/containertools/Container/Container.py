@@ -23,7 +23,7 @@ class Container(Component):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_formatter', '_music', '_parallel', )
+    __slots__ = ('_formatter', '_music', '_named_children', '_parallel', )
 
     _default_mandatory_input_arguments = ([], )
 
@@ -31,6 +31,7 @@ class Container(Component):
 
     def __init__(self, music=None, **kwargs):
         Component.__init__(self)
+        self._named_children = {}
         self._parallel = False
         self._initialize_music(music)
         self._initialize_keyword_values(**kwargs)
@@ -90,7 +91,15 @@ class Container(Component):
         '''Return component at index i in container.
         Shallow traversal of container for numeric indices only.
         '''
-        return self._music[i]
+        if isinstance(i, (int, slice)):
+            return self._music[i]
+        elif isinstance(i, str):
+            if i not in self._named_children:
+                raise MissingNamedComponentError
+            elif 1 < len(self._named_children[i]):
+                raise ExtraNamedComponentError
+            return self._named_children[i][0]
+        raise ValueError
 
     def __iadd__(self, expr):
         '''__iadd__ avoids unnecessary copying of structures.

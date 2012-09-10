@@ -175,8 +175,40 @@ class Component(AbjadObject):
         '''Component loses pointer to parent and parent loses pointer to component.
         Then assign component to new parent.
         '''
+        from abjad.tools import componenttools
+
+        name_dictionary = {}
+        if hasattr(self, '_named_children'):
+            for name, children in self._named_children.iteritems():
+                name_dictionary[name] = copy.copy(children)
+        if hasattr(self, 'name') and self.name is not None:
+            if self.name not in name_dictionary:
+                name_dictionary[self.name] = []
+            name_dictionary[self.name].append(self)
+
+        if self._parent is not None and name_dictionary:
+            parentage = componenttools.get_proper_parentage_of_component(self)
+            for parent in parentage:
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    for component in name_dictionary[name]:
+                        named_children[name].remove(component)
+                    if not named_children[name]:
+                        del named_children[name]
+
         self._cut()
         self._parent = new_parent
+
+        if new_parent is not None and name_dictionary:
+            parentage = componenttools.get_proper_parentage_of_component(self)
+            for parent in parentage:
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    if name in named_children:
+                        named_children[name].extend(name_dictionary[name])
+                    else:
+                        named_children[name] = copy.copy(name_dictionary[name])
+
         self._mark_entire_score_tree_for_later_update('prolated')
 
     def _format_component(self, pieces=False):
