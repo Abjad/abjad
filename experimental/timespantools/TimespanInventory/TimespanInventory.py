@@ -95,10 +95,17 @@ class TimespanInventory(ObjectInventory):
 
         Return list of ``0`` or more timespans.
         '''
+        from experimental import timespaninequalitytools
         result = []
         for timespan in self:
-            if timespan_inequality(timespan_2=timespan):
-                result.append(timespan)
+            if isinstance(timespan_inequality, timespaninequalitytools.TimespanInequality):
+                if timespan_inequality(timespan_2=timespan):
+                    result.append(timespan)
+            elif isinstance(timespan_inequality, timespaninequalitytools.TimepointInequality):
+                if timespan_inequality(timespan=timespan):
+                    result.append(timespan)
+            else:
+                raise ValueError
         return result
 
     def has_timespan_that_satisfies_inequality(self, timespan_inequality):

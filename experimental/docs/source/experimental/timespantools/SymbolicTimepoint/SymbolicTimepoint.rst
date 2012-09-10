@@ -26,6 +26,8 @@ Methods
 
 .. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.get_score_offset
 
+.. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.get_segment_offset
+
 Special Methods
 ---------------
 

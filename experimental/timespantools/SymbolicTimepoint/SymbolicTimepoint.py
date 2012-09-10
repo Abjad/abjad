@@ -300,12 +300,19 @@ class SymbolicTimepoint(AbjadObject):
         '''
         raise NotImplementedError
 
-    def get_score_offset(self, score_specification):
+    def get_segment_offset(self, score_specification, context_name):
         '''Evaluate segment offset of symbolic timepoint when applied
         to `score_specification`.
 
-        .. note:: not yet implemented.
-
         Return offset.
         '''
-        raise NotImplementedError
+        edge = self.edge or Left
+        if edge == Left:
+            segment_offset = self.selector.get_segment_start_offset(score_specification, context_name)
+        else:
+            segment_offset = self.selector.get_segment_stop_offset(score_specification, context_name)
+        multiplier = self.multiplier or fractions.Fraction(1)     
+        segment_offset = multiplier * segment_offset
+        addendum = self.addendum or durationtools.Offset(0)
+        segment_offset = segment_offset + addendum
+        return segment_offset
