@@ -216,8 +216,8 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/requesttools/CommandRequest/CommandRequest
    experimental/requesttools/HandlerRequest/HandlerRequest
-   experimental/requesttools/InstructionRequest/InstructionRequest
    experimental/requesttools/MaterialRequest/MaterialRequest
    experimental/requesttools/StatalServerRequest/StatalServerRequest
 

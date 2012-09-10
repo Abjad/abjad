@@ -2,7 +2,7 @@ from experimental import timespaninequalitytools
 from experimental.requesttools.Request import Request
 
 
-class InstructionRequest(Request):
+class CommandRequest(Request):
     r'''.. versionadded:: 1.0
 
     ::
