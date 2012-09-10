@@ -21,6 +21,11 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.get_score_offset
+
 Special Methods
 ---------------
 

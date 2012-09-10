@@ -287,3 +287,25 @@ class SymbolicTimepoint(AbjadObject):
         Return selector or none.
         '''
         return self._selector
+
+    ### PUBLIC METHODS ###
+
+    def get_score_offset(self, score_specification):
+        '''Evaluate score offset of symbolic timepoint when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_offset(self, score_specification):
+        '''Evaluate segment offset of symbolic timepoint when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
