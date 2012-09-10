@@ -88,45 +88,6 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def is_anchored_to_one_object(self):
-        '''True when start anchor equals stop anchor. Otherwise false.
-
-        Return boolean.
-        '''
-        return self.start_timepoint.anchor == self.stop_timepoint.anchor
-
-
-    def encompasses_one_object_exactly(self):
-        '''True when the following five conditions hold:
-
-        1. start anchor equals stop anchor.
-
-        2. start edge is left.
-
-        3. stop edge is right.
-
-        4. start and stop multipliers are both none.
-    
-        5. start and stop addenda are both none.
-
-        Return boolean.
-        '''
-        if self.start_timepoint.anchor == self.stop_timepoint.anchor:
-            if self.start_timepoint.edge in (None, Left):
-                if self.stop_timepoint.edge == Right:
-                    if self.start_timepoint.multiplier is self.stop_timepoint.multiplier is None:
-                        if self.start_timepoint.addendum is self.stop_timepoint.addendum is None:
-                            return True
-        return False
-
-    @property
-    def encompasses_one_segment_exactly(self):
-        '''False.
-        '''
-        return False
-
-
-    @property
     def start_timepoint(self):
         '''Mixed-source timespan start timepoint specified by user.
 

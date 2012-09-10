@@ -13,10 +13,6 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.encompasses_one_object_exactly
-
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.encompasses_one_segment_exactly
-
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.is_segment_slice
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -39,6 +35,10 @@ Methods
 -------
 
 .. automethod:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_duration
+
+.. automethod:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_score_start_offset
+
+.. automethod:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_score_stop_offset
 
 .. automethod:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_segment_start_offset
 

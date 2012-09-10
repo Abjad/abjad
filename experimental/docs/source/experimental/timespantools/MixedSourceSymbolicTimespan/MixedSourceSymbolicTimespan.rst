@@ -13,10 +13,6 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.encompasses_one_segment_exactly
-
-.. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.is_anchored_to_one_object
-
 .. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.is_segment_slice
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -31,8 +27,6 @@ Read-only Properties
 
 Methods
 -------
-
-.. automethod:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.encompasses_one_object_exactly
 
 .. automethod:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_duration
 

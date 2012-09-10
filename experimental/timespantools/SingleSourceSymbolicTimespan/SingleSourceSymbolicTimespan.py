@@ -131,29 +131,6 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def encompasses_one_object_exactly(self):
-        '''.. note:: possible to remove this?
-        '''
-        if self.multiplier is None:
-            if self.left_addendum is None:
-                if self.right_addendum is None:
-                    return True
-        return False
-
-    @property
-    def encompasses_one_segment_exactly(self):
-        '''True when timespan encompasses one object exactly and when that
-        object is a segment. Otherwise false.
-
-        Return boolean.
-        '''
-        from experimental import selectortools
-        if self.encompasses_one_object_exactly:
-            if isinstance(self.selector, selectortools.SingleSegmentSelector):
-                return True
-        return False
-
-    @property
     def left_addendum(self):
         return self._left_addendum
 
@@ -182,17 +159,52 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification):
-        '''Delegate to ``self.selector.get_timespan()``.
+        '''Evaluate duration of symbolic timespan when applied
+        to `score_specification`.
+
+        Delegate to ``self.selector.get_timespan()``.
+
+        Return duration.
         '''
         return self.selector.get_duration(score_specification)
 
+    def get_score_start_offset(self, score_specification):
+        '''Evaluate score start offset of symbolic timespan when applied
+        to `score_specification`.
+
+        Delegate to ``self.selector.get_score_start_offset()``.
+
+        Return offset.
+        '''
+        return self.selector.get_score_start_offset(score_specification)
+
+    def get_score_stop_offset(self, score_specification):
+        '''Evaluate score stop offset of symbolic timespan when applied
+        to `score_specification`.
+        
+        Delegate to ``self.selector.get_score_stop_offset()``.
+
+        Return offset.
+        '''
+        return self.selector.get_score_stop_offset(score_specification)
+
     def get_segment_start_offset(self, score_specification):
-        '''Delegate to ``self.selector.get_segment_start_offset()``.
+        '''Evaluate segment start offset of symbolic timespan when applied
+        to `score_specification`.
+
+        Delegate to ``self.selector.get_segment_start_offset()``.
+
+        Return offset.
         '''
         return self.selector.get_segment_start_offset(score_specification)
 
     def get_segment_stop_offset(self, score_specification):
-        '''Delegate to ``self.selector.get_segment_stop_offset()``.
+        '''Evaluate segment stop offset of symbolic timespan when applied
+        to `score_specification`.
+        
+        Delegate to ``self.selector.get_segment_stop_offset()``.
+
+        Return offset.
         '''
         return self.selector.get_segment_stop_offset(score_specification)
 
