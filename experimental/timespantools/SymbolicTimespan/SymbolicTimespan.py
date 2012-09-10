@@ -1,14 +1,12 @@
 import abc
-from abjad.tools import componenttools
-from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.timespantools.SymbolicTimepoint import SymbolicTimepoint
 
 
 class SymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Base timespan from which concrete timespans inherit.
+    Base symbolic timespan class from which concrete 
+    symbolic timespan classes inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -21,43 +19,49 @@ class SymbolicTimespan(AbjadObject):
     def __init__(self):
         pass
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def duration(self):
-        '''Rational-valued duration of timespan.
-        
-        Derived from input values.
-
-        Return rational.
-        
-        .. note:: not yet implemented.
-
-        .. note:: will probably have to be implemented as method instead of property.
-        '''
-        raise NotImplementedError
-
-    @property
-    def is_segment_slice(self):
-        if hasattr(self, 'selector'):
-            if isinstance(self.selector, selectortools.SegmentSelector):
-                return True
-        return False
-
-    ### PUBLIC PROPERTIES ###
+    ### PUBLIC METHODS ###
 
     @abc.abstractmethod
     def get_duration(self, score_specification):
+        '''Evaluate duration of symbolic timespan when applied
+        to `score_specification`.
+
+        Return duration.
+        '''
+        pass
+
+    @abc.abstractmethod
+    def get_score_start_offset(self, score_specification):
+        '''Evaluate score start offset of symbolic timespan when applied
+        to `score_specification`.
+
+        Return offset.
+        '''
+        pass
+
+    @abc.abstractmethod
+    def get_score_stop_offset(self, score_specification):
+        '''Evaluate score stop offset of symbolic timespan when applied
+        to `score_specification`.
+
+        Return offset.
+        '''
         pass
 
     @abc.abstractmethod
     def get_segment_start_offset(self, score_specification):
+        '''Evaluate segment start offset of symbolic timespan when applied
+        to `score_specification`.
+
+        Return offset.
+        '''
         pass
 
     @abc.abstractmethod
     def get_segment_stop_offset(self, score_specification):
-        pass
+        '''Evaluate segment stop offset of symbolic timespan when applied
+        to `score_specification`.
 
-    @abc.abstractmethod
-    def set_segment_identifier(self, segment_identifier):
+        Return offset.
+        '''
         pass

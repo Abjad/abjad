@@ -9,14 +9,6 @@ timespantools.SingleSourceSymbolicTimespan
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.duration
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.is_segment_slice
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.left_addendum
 
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.multiplier

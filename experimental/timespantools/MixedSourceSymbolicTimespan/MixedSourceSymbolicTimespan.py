@@ -106,17 +106,52 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification):
-        '''.. note:: not yet implemented.
+        '''Evaluate duration of symbolic timespan when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return duration.
+        '''
+        raise NotImplementedError
+
+    def get_score_start_offset(self, score_specification):
+        '''Evaluate score start offset of symbolic timespan when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_score_stop_offset(self, score_specification):
+        '''Evaluate score stop offset of symbolic timespan when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
         '''
         raise NotImplementedError
 
     def get_segment_start_offset(self, score_specification):
-        '''.. note:: not yet implemented.
+        '''Evaluate segment start offset of symbolic timespan when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
         '''
         raise NotImplementedError
 
     def get_segment_stop_offset(self, score_specification):
-        '''.. note:: not yet implemented.
+        '''Evaluate segment stop offset of symbolic timespan when applied
+        to `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
         '''
         raise NotImplementedError
 

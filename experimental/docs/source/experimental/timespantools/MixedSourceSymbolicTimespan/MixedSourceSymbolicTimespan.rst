@@ -9,14 +9,6 @@ timespantools.MixedSourceSymbolicTimespan
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.duration
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
-.. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.is_segment_slice
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timespantools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_timepoint
 
 .. autoattribute:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.stop_timepoint
@@ -29,6 +21,10 @@ Methods
 -------
 
 .. automethod:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_duration
+
+.. automethod:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_score_start_offset
+
+.. automethod:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_score_stop_offset
 
 .. automethod:: experimental.timespantools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_segment_start_offset
 
