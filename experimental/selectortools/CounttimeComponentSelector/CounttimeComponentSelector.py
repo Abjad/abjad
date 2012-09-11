@@ -114,6 +114,14 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
         return self._predicate
 
     @property
+    def segment_identifier(self):
+        '''Delegate to ``self.inequality.segment_identifier``.
+
+        Return string or none.
+        '''
+        return self.inequality.segment_identifier
+
+    @property
     def selector(self):
         '''Counttime component slice selector selector.
 

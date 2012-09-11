@@ -205,7 +205,7 @@ class ConcreteInterpreter(Interpreter):
         assert division_command_request.attribute == 'divisions'
         self._debug_values(region_division_commands, 'rdcs')
         requested_segment_identifier = division_command_request.timepoint.segment_identifier
-        self._debug(request_segment_identifier, 'segment_identifier')
+        self._debug(requested_segment_identifier, 'segment_identifier')
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
         

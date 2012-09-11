@@ -86,7 +86,7 @@ class CommandRequest(Request):
     def segment_identifier(self):
         '''Delegate to ``self.timepoint.segment_identifier``.
 
-        Return timepoint.
+        Return string or none.
         '''
         return self.timepoint.segment_identifier
 

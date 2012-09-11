@@ -194,34 +194,6 @@ class SymbolicTimepoint(AbjadObject):
         else:
             return True
 
-#    def __ge__(self, other):
-#        '''.. note:: not yet implemented.
-#        '''
-#        if isinstance(other, type(self)):
-#            return self >= other
-#        return False
-#
-#    def __gt__(self, other):
-#        '''.. note:: not yet implemented.
-#        '''
-#        if isinstance(other, type(self)):
-#            return self > other
-#        return False
-#
-#    def __le__(self, other):
-#        '''.. note:: not yet implemented.
-#        '''
-#        if isinstance(other, type(self)):
-#            return self <= other
-#        return False
-#
-#    def __lt__(self, other):
-#        '''.. note:: not yet implemented.
-#        '''
-#        if isinstance(other, type(self)):
-#            return self < other
-#        return False
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -262,6 +234,17 @@ class SymbolicTimepoint(AbjadObject):
         Return fraction or none.
         '''
         return self._multiplier
+
+    @property
+    def segment_identifier(self):
+        '''Delegate to ``self.selector.segment_identifier``.
+
+            >>> timepoint.segment_identifier
+            'red'
+
+        Return string or none.
+        '''
+        return self.selector.segment_identifier
 
     @property
     def selector(self):

@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.multiplier
 
+.. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.segment_identifier
+
 .. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.selector
 
 .. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.storage_format
