@@ -5,27 +5,57 @@ from experimental.requesttools.Request import Request
 class CommandRequest(Request):
     r'''.. versionadded:: 1.0
 
-    ::
+    Request `attribute` command active at `timepoint` in `context_name`::
 
         >>> from experimental import *
 
-    Request `attribute` active at `timepoint` in `context_name`.
+    Example. Request division command active at start of measure 4 in ``'Voice 1'``::
 
-    The instruction pointed to by this request is canonically assumed
-    to be a list or other iterable that can or will be read as a statal server.
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+        ...     staff_count=1)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> segment = score_specification.append_segment(name='red')
 
-    Because of this the request also affords several list-manipulation attributes.
-    These are `callback`, `count`, `offset`, `reverse`.
+    ::
 
-    The purpose of an instruction request is to function as the source of a setting.
+        >>> selector = segment.select_background_measure(4)
+        >>> command_request = segment.request_division_command(
+        ...     context_name='Voice 1', selector=selector)
 
-    This implementation is currently a stub.
+    ::
+
+        >>> z(command_request)
+        requesttools.CommandRequest(
+            'divisions',
+            timespantools.SymbolicTimepoint(
+                selector=selectortools.BackgroundMeasureSelector(
+                    inequality=timespaninequalitytools.TimespanInequality(
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                            selector=selectortools.SingleSegmentSelector(
+                                identifier='red'
+                                )
+                            )
+                        ),
+                    start_identifier=4,
+                    stop_identifier=5
+                    )
+                ),
+                context_name='Voice 1'
+            )
+
+    Command requested is canonically assumed to be a list or other iterable.
+
+    Because of this the request affords list-manipulation attributes.
+    These are `offset`, `count`, `reverse`, `callback`.
+
+    Purpose of a command request is to function as a setting source.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, attribute, timepoint,
-        context_name=None, callback=None, count=None, offset=None, reverse=None):
+        context_name=None, offset=None, count=None, reverse=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(timepoint, timespantools.SymbolicTimepoint)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
@@ -38,18 +68,32 @@ class CommandRequest(Request):
 
     @property
     def attribute(self):
+        '''Command request attribute specified by user.
+
+        Return string.
+        '''
         return self._attribute
 
     @property
     def context_name(self):
+        '''Command request context name specified by user.
+
+        Return string.
+        '''
         return self._context_name
 
     @property
     def segment_identifier(self):
         '''Delegate to ``self.timepoint.segment_identifier``.
+
+        Return timepoint.
         '''
         return self.timepoint.segment_identifier
 
     @property
     def timepoint(self):
+        '''Command request timepoint specified by user.
+
+        Return timepoint.
+        '''
         return self._timepoint

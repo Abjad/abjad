@@ -203,17 +203,16 @@ class ConcreteInterpreter(Interpreter):
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
-        print division_command_request.storage_format
         self._debug_values(region_division_commands, 'rdcs')
-        timepoint = division_command_request.timepoint
-        segment_offset = division_command_request.timepoint.get_segment_offset(
+        requested_segment_identifier = division_command_request.timepoint.segment_identifier
+        self._debug(request_segment_identifier, 'segment_identifier')
+        requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
-        self._debug(segment_offset, 'segment_offset')
-        print ''
+        
         timespan_inventory = timespantools.TimespanInventory()
         timespan_inventory.extend(region_division_commands)
-        timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(timepoint=segment_offset)
-        print ''
+        timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
+            timepoint=requested_segment_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
         self._debug_values(candidate_commands, 'candidates')
         raise NotImplementedError
