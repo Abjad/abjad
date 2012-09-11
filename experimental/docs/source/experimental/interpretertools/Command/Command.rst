@@ -15,11 +15,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.resolved_value
 
-.. autoattribute:: experimental.interpretertools.Command.Command.Command.segment_identifier
-
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.segment_start_offset
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.segment_stop_offset
+
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.start_segment_identifier
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.storage_format
 

@@ -206,7 +206,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(region_division_commands, 'rdcs')
         timespan_inventory = timespantools.TimespanInventory()
         for region_division_command in region_division_commands:
-            if region_division_command.segment_identifier == requested_segment_identifier:
+            if region_division_command.start_segment_identifier == requested_segment_identifier:
                 timespan_inventory.append(region_division_command)
         timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
             timepoint=requested_segment_offset)
@@ -253,7 +253,8 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def divisions_to_division_region_division_list(self, divisions, region_division_command):
-        segment_specification = self.get_start_segment_specification(region_division_command.segment_identifier)
+        segment_specification = self.get_start_segment_specification(
+            region_division_command.start_segment_identifier)
         segment_selector = segment_specification.selector
         segment_start_offset = region_division_command.segment_start_offset
         segment_stop_offset = region_division_command.segment_stop_offset
@@ -646,7 +647,7 @@ class ConcreteInterpreter(Interpreter):
 
     def sort_and_split_raw_commands(self, raw_commands):
         cooked_commands = []
-        segment_identifiers = [x.segment_identifier for x in raw_commands]
+        segment_identifiers = [x.start_segment_identifier for x in raw_commands]
         assert sequencetools.all_are_equal(segment_identifiers)
         #self._debug_values(raw_commands, 'raw')
         for raw_command in raw_commands:
@@ -828,7 +829,7 @@ class ConcreteInterpreter(Interpreter):
             return region_division_commands
         first_start_offset_in_score = \
             self.score_specification.segment_name_and_segment_offset_to_score_offset(
-            region_division_commands[0].segment_identifier,
+            region_division_commands[0].start_segment_identifier,
             region_division_commands[0].segment_start_offset)
         if not first_start_offset_in_score == self.score_specification.start_offset:
             region_division_command = self.make_time_signature_region_division_command(
@@ -836,7 +837,7 @@ class ConcreteInterpreter(Interpreter):
             region_division_commands.insert(0, region_division_command)
         last_stop_offset_in_score = \
             self.score_specification.segment_name_and_segment_offset_to_score_offset(
-            region_division_commands[-1].segment_identifier,
+            region_division_commands[-1].start_segment_identifier,
             region_division_commands[-1].segment_stop_offset)
         if not last_stop_offset_in_score == self.score_specification.stop_offset:
             region_division_command = self.make_time_signature_region_division_command(
@@ -850,11 +851,11 @@ class ConcreteInterpreter(Interpreter):
             sequencetools.iterate_sequence_pairwise_strict(region_division_commands):
             left_stop_offset_in_score = \
                 self.score_specification.segment_name_and_segment_offset_to_score_offset(
-                left_region_division_command.segment_identifier,
+                left_region_division_command.start_segment_identifier,
                 left_region_division_command.segment_stop_offset)
             right_start_offset_in_score = \
                 self.score_specification.segment_name_and_segment_offset_to_score_offset(
-                right_region_division_command.segment_identifier,
+                right_region_division_command.start_segment_identifier,
                 right_region_division_command.segment_start_offset)
             #self._debug((left_stop_offset_in_score, right_start_offset_in_score), 'offsets')
             assert left_stop_offset_in_score <= right_start_offset_in_score
@@ -900,7 +901,7 @@ class ConcreteInterpreter(Interpreter):
                         uninterpreted_division_command.duration
                     region_division_command = interpretertools.RegionDivisionCommand(
                         last_region_division_command.resolved_value,
-                        last_region_division_command.segment_identifier,
+                        last_region_division_command.start_segment_identifier,
                         uninterpreted_division_command.context_name,
                         segment_start_offset,
                         segment_stop_offset,
