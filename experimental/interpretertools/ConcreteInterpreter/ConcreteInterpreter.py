@@ -200,7 +200,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'dcr')
-        requested_segment_identifier = division_command_request.timepoint.segment_identifier
+        requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
         #self._debug_values(region_division_commands, 'rdcs')

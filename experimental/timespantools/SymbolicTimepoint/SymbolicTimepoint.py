@@ -235,18 +235,6 @@ class SymbolicTimepoint(AbjadObject):
         '''
         return self._multiplier
 
-    # TODO: should segment_identifier be eliminated in favor or start_ and stop_segment_identifier?
-    @property
-    def segment_identifier(self):
-        '''Symbolic timepoint segment identifier.
-
-            >>> timepoint.segment_identifier
-            'red'
-
-        Return string or none.
-        '''
-        return self.selector.start_segment_identifier
-
     @property
     def selector(self):
         '''Symbolic timepoint selector specified by user.
@@ -271,6 +259,32 @@ class SymbolicTimepoint(AbjadObject):
         Return selector or none.
         '''
         return self._selector
+
+    @property
+    def start_segment_identifier(self):
+        '''Symbolic timepoint start segment identifier.
+
+            >>> timepoint.start_segment_identifier
+            'red'
+
+        Delegate to ``self.selector.start_segment_identifier``.
+
+        Return string or none.
+        '''
+        return self.selector.start_segment_identifier
+
+    @property
+    def stop_segment_identifier(self):
+        '''Symbolic timepoint stop segment identifier.
+
+            >>> timepoint.stop_segment_identifier
+            SegmentIdentifierExpression("'red' + 1")
+
+        Delegate to ``self.selector.stop_segment_identifier``.
+
+        Return string or none.
+        '''
+        return self.selector.stop_segment_identifier
 
     ### PUBLIC METHODS ###
 

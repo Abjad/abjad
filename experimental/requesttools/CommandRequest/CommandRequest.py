@@ -98,7 +98,7 @@ class CommandRequest(Request):
 
         Return string or none.
         '''
-        return self.timepoint.segment_identifier
+        return self.timepoint.start_segment_identifier
 
     @property
     def timepoint(self):
