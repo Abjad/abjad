@@ -220,7 +220,7 @@ class ConcreteInterpreter(Interpreter):
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
-        self._debug(division_material_request, 'dmr')
+        #self._debug(division_material_request, 'dmr')
         voice = componenttools.get_first_component_in_expr_with_name(
             self.score, division_material_request.context_name)
         assert isinstance(voice, voicetools.Voice), voice
@@ -230,8 +230,10 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
-        start_segment_identifier = division_material_request.selector.start_identifier
-        stop_segment_identifier = division_material_request.selector.stop_identifier
+        #start_segment_identifier = division_material_request.selector.start_identifier
+        #stop_segment_identifier = division_material_request.selector.stop_identifier
+        start_segment_identifier = division_material_request.start_segment_identifier
+        stop_segment_identifier = division_material_request.stop_segment_identifier
         start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
             start_segment_identifier)
         stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
@@ -249,7 +251,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(division_material_request.callback, 'callback')
         if division_material_request.callback is not None:
             divisions = division_material_request.callback(divisions)
-        #self._debug(divisions, 'divisions')
+        self._debug(divisions, 'divisions')
         return divisions
 
     def divisions_to_division_region_division_list(self, divisions, region_division_command):
