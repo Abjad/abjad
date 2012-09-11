@@ -70,6 +70,9 @@ class CommandRequest(Request):
     def attribute(self):
         '''Command request attribute specified by user.
 
+            >>> command_request.attribute
+            'divisions'
+
         Return string.
         '''
         return self._attribute
@@ -77,6 +80,9 @@ class CommandRequest(Request):
     @property
     def context_name(self):
         '''Command request context name specified by user.
+
+            >>> command_request.context_name
+            'Voice 1'
 
         Return string.
         '''
@@ -86,6 +92,9 @@ class CommandRequest(Request):
     def segment_identifier(self):
         '''Delegate to ``self.timepoint.segment_identifier``.
 
+            >>> command_request.segment_identifier
+            'red'
+
         Return string or none.
         '''
         return self.timepoint.segment_identifier
@@ -93,6 +102,22 @@ class CommandRequest(Request):
     @property
     def timepoint(self):
         '''Command request timepoint specified by user.
+
+            >>> z(command_request.timepoint)
+            timespantools.SymbolicTimepoint(
+                selector=selectortools.BackgroundMeasureSelector(
+                    inequality=timespaninequalitytools.TimespanInequality(
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                            selector=selectortools.SingleSegmentSelector(
+                                identifier='red'
+                                )
+                            )
+                        ),
+                    start_identifier=4,
+                    stop_identifier=5
+                    )
+                )
 
         Return timepoint.
         '''
