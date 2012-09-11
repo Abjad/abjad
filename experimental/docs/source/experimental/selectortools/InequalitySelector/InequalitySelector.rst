@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.segment_identifier
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

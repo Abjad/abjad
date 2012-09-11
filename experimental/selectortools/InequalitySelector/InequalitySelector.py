@@ -31,3 +31,11 @@ class InequalitySelector(Selector):
         Return timespan inequality or none.
         '''
         return self._inequality
+
+    @property
+    def segment_identifier(self):
+        '''Delegate to ``self.inequality.segment_identifier``.
+
+        Return string or none.
+        '''
+        return self.inequality.segment_identifier

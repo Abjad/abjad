@@ -75,12 +75,6 @@ class DivisionSelector(SliceSelector, InequalitySelector):
     def klass(self):
         return self._klass
 
-    @property
-    def segment_identifier(self):
-        '''Return ``self.inequality.segment_identifier``.
-        '''
-        return self.inequality.segment_identifier
-
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):
