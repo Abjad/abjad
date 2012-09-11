@@ -204,20 +204,26 @@ class ConcreteInterpreter(Interpreter):
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
+        self._debug(division_command_request, 'dcr')
+        print ''
         self._debug_values(region_division_commands, 'rdcs')
         requested_segment_identifier = division_command_request.timepoint.segment_identifier
-        self._debug(requested_segment_identifier, 'segment_identifier')
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
         timespan_inventory = timespantools.TimespanInventory()
         for region_division_command in region_division_commands:
             if region_division_command.segment_identifier == requested_segment_identifier:
                 timespan_inventory.append(region_division_command)
-        #timespan_inventory.extend(region_division_commands)
         timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
             timepoint=requested_segment_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
-        self._debug_values(candidate_commands, 'candidates')
+        # this will eventually have to be extended to handle multiple candidate selection
+        assert len(candidate_commands) == 1
+        source_command = candidate_commands[0]
+        self._debug(source_command, 'source_command')
+        source_value  = source_command.resolved_value
+        self._debug(source_value, 'source_value')
+        print ''
         raise NotImplementedError
 
     def division_material_request_to_divisions(self, division_material_request):
