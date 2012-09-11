@@ -244,10 +244,16 @@ class TimespanInequality(TimeObjectInequality):
         return self.timespan_1 is not None and self.timespan_2 is not None
 
     @property
-    def segment_identifier(self):
-        '''Delegate to ``self.timespan.segment_identifier``.
+    def start_segment_identifier(self):
+        '''Delegate to ``self.timespan.start_segment_identifier``.
         '''
-        return self.timespan.segment_identifier
+        return self.timespan.start_segment_identifier
+
+    @property
+    def stop_segment_identifier(self):
+        '''Delegate to ``self.timespan.stop_segment_identifier``.
+        '''
+        return self.timespan.stop_segment_identifier
 
     # TODO: eventually remove in favor of timespan_1
     @property

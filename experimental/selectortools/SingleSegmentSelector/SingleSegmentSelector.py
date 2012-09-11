@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from experimental import helpertools
 from experimental import segmenttools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 
@@ -50,8 +51,12 @@ class SingleSegmentSelector(InequalitySelector):
         return self._klass
 
     @property
-    def segment_identifier(self):
+    def start_segment_identifier(self):
         return self._identifier
+
+    @property
+    def stop_segment_identifier(self):
+        return helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.start_segment_identifier))
 
     ### PUBLIC METHODS ###
 
@@ -61,7 +66,7 @@ class SingleSegmentSelector(InequalitySelector):
 
         Return duration.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         return segment_specification.duration
 
     def get_score_start_offset(self, score_specification, context_name):
@@ -98,7 +103,7 @@ class SingleSegmentSelector(InequalitySelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         return durationtools.Offset(segment_specification.duration)
 
     def set_segment_identifier(self, segment_identifier):

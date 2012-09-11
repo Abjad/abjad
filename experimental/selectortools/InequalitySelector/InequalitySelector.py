@@ -33,9 +33,17 @@ class InequalitySelector(Selector):
         return self._inequality
 
     @property
-    def segment_identifier(self):
-        '''Delegate to ``self.inequality.segment_identifier``.
+    def start_segment_identifier(self):
+        '''Delegate to ``self.inequality.start_segment_identifier``.
 
         Return string or none.
         '''
-        return self.inequality.segment_identifier
+        return self.inequality.start_segment_identifier
+
+    @property
+    def stop_segment_identifier(self):
+        '''Delegate to ``self.inequality.stop_segment_identifier``.
+
+        Return string or none.
+        '''
+        return self.inequality.stop_segment_identifier

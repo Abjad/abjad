@@ -9,17 +9,19 @@ selectortools.OffsetSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.segment_identifier
-
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.selector
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.start_offset
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.start_offset_value
 
+.. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.start_segment_identifier
+
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_offset
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_offset_value
+
+.. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_segment_identifier
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.storage_format
 

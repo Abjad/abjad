@@ -11,7 +11,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.is_fully_loaded
 
-.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.segment_identifier
+.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.start_segment_identifier
+
+.. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.stop_segment_identifier
 
 .. autoattribute:: experimental.timespaninequalitytools.TimespanInequality.TimespanInequality.TimespanInequality.storage_format
 

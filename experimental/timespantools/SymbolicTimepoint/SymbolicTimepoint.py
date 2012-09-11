@@ -235,16 +235,17 @@ class SymbolicTimepoint(AbjadObject):
         '''
         return self._multiplier
 
+    # TODO: should segment_identifier be eliminated in favor or start_ and stop_segment_identifier?
     @property
     def segment_identifier(self):
-        '''Delegate to ``self.selector.segment_identifier``.
+        '''Symbolic timepoint segment identifier.
 
             >>> timepoint.segment_identifier
             'red'
 
         Return string or none.
         '''
-        return self.selector.segment_identifier
+        return self.selector.start_segment_identifier
 
     @property
     def selector(self):

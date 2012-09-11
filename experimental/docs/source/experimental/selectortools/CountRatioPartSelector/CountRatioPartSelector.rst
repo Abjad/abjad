@@ -17,11 +17,15 @@ Read-only Properties
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.segment_identifier
+.. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.selector
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.selector
+.. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.start_segment_identifier
+
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
+
+.. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.stop_segment_identifier
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 

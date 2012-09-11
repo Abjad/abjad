@@ -345,8 +345,9 @@ class ConcreteInterpreter(Interpreter):
         #print ''
         return rhythm_commands
 
+    # TODO: change this to get_start_segment_specification
     def get_segment_specification(self, expr):
-        return self.score_specification.get_segment_specification(expr)
+        return self.score_specification.get_start_segment_specification(expr)
 
     def get_time_signature_slice(self, start_offset, stop_offset):
         assert self.score_specification.time_signatures
@@ -620,7 +621,7 @@ class ConcreteInterpreter(Interpreter):
     def resolved_single_context_setting_to_rhythm_command(
         self, resolved_single_context_setting, segment_specification):
         selector = resolved_single_context_setting.selector
-        assert selector.segment_identifier == segment_specification.segment_name
+        assert selector.start_segment_identifier == segment_specification.segment_name
         context_name = resolved_single_context_setting.context_name
         duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
@@ -633,7 +634,7 @@ class ConcreteInterpreter(Interpreter):
     def resolved_single_context_setting_to_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_specification):
         selector = resolved_single_context_setting.selector
-        assert selector.segment_identifier == segment_specification.segment_name
+        assert selector.start_segment_identifier == segment_specification.segment_name
         context_name = resolved_single_context_setting.context_name
         duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)

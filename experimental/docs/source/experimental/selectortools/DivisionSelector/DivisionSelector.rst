@@ -19,17 +19,21 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.klass
 
-.. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.segment_identifier
-
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
-
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.start_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
+.. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.start_segment_identifier
+
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.stop_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
+.. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.stop_segment_identifier
+
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.storage_format
 

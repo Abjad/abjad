@@ -17,7 +17,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.klass
 
-.. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.segment_identifier
+.. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.start_segment_identifier
+
+.. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.stop_segment_identifier
 
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.storage_format
 

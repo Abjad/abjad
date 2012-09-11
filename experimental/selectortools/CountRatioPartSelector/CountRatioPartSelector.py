@@ -59,7 +59,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
         Return duration.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
         part = parts[self.part]
@@ -93,7 +93,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
         parts_before = parts[:self.part]
@@ -108,7 +108,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
         part = parts[self.part]

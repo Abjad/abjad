@@ -27,18 +27,18 @@ class OffsetSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def segment_identifier(self):
-        '''Delegate to ``self.selector.segment_identifier``.
-        '''
-        return self.selector.segment_identifier
-
-    @property
     def selector(self):
         '''Offset selector selector.
 
         Return selector.
         '''
         return self._selector
+
+    @property
+    def start_segment_identifier(self):
+        '''Delegate to ``self.selector.start_segment_identifier``.
+        '''
+        return self.selector.start_segment_identifier
 
     @property
     def start_offset(self):
@@ -75,6 +75,12 @@ class OffsetSelector(Selector):
         if self.stop_offset is None:
             return durationtools.Offset(self.selector.duration)
         return self.stop_offset
+
+    @property
+    def stop_segment_identifier(self):
+        '''Delegate to ``self.selector.stop_segment_identifier``.
+        '''
+        return self.selector.stop_segment_identifier
 
     ### PUBLIC METHODS ##
 

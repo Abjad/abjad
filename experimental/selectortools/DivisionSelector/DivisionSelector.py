@@ -83,7 +83,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         Return duration.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
         segment_index = score_specification.segment_name_to_segment_index(segment_name)
         start, stop = self.identifiers
@@ -124,7 +124,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
         segment_index = score_specification.segment_name_to_segment_index(segment_name)
         start, stop = self.identifiers
@@ -146,7 +146,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
         segment_index = score_specification.segment_name_to_segment_index(segment_name)
         start, stop = self.identifiers

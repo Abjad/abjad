@@ -159,22 +159,32 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         return self._right_addendum
 
     @property
-    def segment_identifier(self):
-        '''Segment identifier of symbolic timespan specified by user.
-
-        Delegate to ``self.selector.segment_identifier``.
-
-        Return string or integer.
-        '''
-        return self.selector.segment_identifier
-
-    @property
     def selector(self):
         '''Selector of symbolic timespan specified by user.
 
         Return selector or none.
         '''
         return self._selector
+
+    @property
+    def start_segment_identifier(self):
+        '''Start segment identifier of symbolic timespan specified by user.
+
+        Delegate to ``self.selector.start_segment_identifier``.
+
+        Return string or integer.
+        '''
+        return self.selector.start_segment_identifier
+
+    @property
+    def stop_segment_identifier(self):
+        '''Start segment identifier of symbolic timespan specified by user.
+
+        Delegate to ``self.selector.stop_segment_identifier``.
+
+        Return string or integer.
+        '''
+        return self.selector.stop_segment_identifier
     
     ### PUBLIC METHODS ###
 

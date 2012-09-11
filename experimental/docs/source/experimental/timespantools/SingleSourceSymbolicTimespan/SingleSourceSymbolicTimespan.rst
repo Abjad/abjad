@@ -15,9 +15,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.right_addendum
 
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.segment_identifier
-
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.selector
+
+.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.start_segment_identifier
+
+.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.stop_segment_identifier
 
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.storage_format
 

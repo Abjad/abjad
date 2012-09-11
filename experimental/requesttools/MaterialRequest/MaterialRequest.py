@@ -55,11 +55,12 @@ class MaterialRequest(Request):
     def context_name(self):
         return self._context_name
 
+    # TODO: replace this with start_segment_identifier and stop_segment_identifier
     @property
     def segment_identifier(self):
         '''Delegate to ``self.selector.segment_identifier``.
         '''
-        return self.selector.segment_identifier
+        return self.selector.start_segment_identifier
 
     @property
     def selector(self):

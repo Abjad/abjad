@@ -18,10 +18,18 @@ class Selector(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def segment_identifier(self):
-        '''Selector segment identifier.
+    def start_segment_identifier(self):
+        '''Selector start segment identifier.
 
-        Raise exception when no segment identifier can be found.
+        Raise exception when no start segment identifier can be found.
+        '''
+        pass
+
+    @abc.abstractproperty
+    def stop_segment_identifier(self):
+        '''Selector stop segment identifier.
+
+        Raise exception when no start segment identifier can be found.
         '''
         pass
 

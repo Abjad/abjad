@@ -1,3 +1,4 @@
+from experimental import helpertools
 from experimental import segmenttools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
@@ -125,10 +126,18 @@ class SegmentSelector(SliceSelector, InequalitySelector):
         return self._klass
 
     @property
-    def segment_identifier(self):
+    def start_segment_identifier(self):
         '''Temporary hack. Generalize later.
         '''
         return self.start_identifier
+
+    @property
+    def stop_segment_identifier(self):
+        '''Temporary hack. Generalize later.
+
+        Return string or none.
+        '''
+        return self.stop_identifier
 
     ### PUBLIC PROPERTIES ###
 

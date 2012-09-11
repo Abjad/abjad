@@ -134,7 +134,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         Return duration.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
@@ -169,7 +169,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
@@ -185,7 +185,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         Return offset.
         '''
-        segment_specification = score_specification.get_segment_specification(self)
+        segment_specification = score_specification.get_start_segment_specification(self)
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None

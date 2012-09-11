@@ -11,7 +11,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.inequality
 
-.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.segment_identifier
+.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.start_segment_identifier
+
+.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.stop_segment_identifier
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.storage_format
 

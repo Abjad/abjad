@@ -19,15 +19,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.klass
 
-.. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.segment_identifier
-
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.start_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
+.. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.start_segment_identifier
+
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.stop_identifier
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
+.. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.stop_segment_identifier
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
 

@@ -9,7 +9,9 @@ selectortools.Selector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.Selector.Selector.Selector.segment_identifier
+.. autoattribute:: experimental.selectortools.Selector.Selector.Selector.start_segment_identifier
+
+.. autoattribute:: experimental.selectortools.Selector.Selector.Selector.stop_segment_identifier
 
 .. autoattribute:: experimental.selectortools.Selector.Selector.Selector.storage_format
 
