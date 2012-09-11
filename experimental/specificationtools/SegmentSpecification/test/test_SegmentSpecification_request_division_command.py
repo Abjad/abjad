@@ -17,8 +17,8 @@ def test_SegmentSpecification_request_division_command_01():
     segment.set_rhythm(library.sixteenths)
 
     selector = segment.select_background_measure(2)
-    addendum = durationtools.Offset(1, 8)
-    source = segment.request_division_command(selector=selector, addendum=addendum, count=1)
+    offset = durationtools.Offset(1, 8)
+    source = segment.request_division_command(selector=selector, offset=offset, count=1)
 
     segment = score_specification.append_segment(name='blue')
     segment.set_divisions(source)

@@ -24,13 +24,13 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of the first ``1/8`` of a whole note in score::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_addendum=durationtools.Offset(1, 8))
-        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_addendum=Offset(1, 8))
+        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=durationtools.Offset(1, 8))
+        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=Offset(1, 8))
 
     SymbolicTimespan of the last ``1/8`` of a whole note in score::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_addendum=durationtools.Offset(-1, 8))
-        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_addendum=Offset(-1, 8))
+        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=durationtools.Offset(-1, 8))
+        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=Offset(-1, 8))
 
     SymbolicTimespan of the segment with name ``'red'``::
 
@@ -108,14 +108,14 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, selector=None, multiplier=None, left_addendum=None, right_addendum=None):
+    def __init__(self, selector=None, multiplier=None, left_offset=None, right_offset=None):
         from experimental import selectortools
         assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
         SymbolicTimespan.__init__(self)
         self._selector = selector
         self._multiplier = multiplier
-        self._left_addendum = left_addendum
-        self._right_addendum = right_addendum
+        self._left_offset = left_offset
+        self._right_offset = right_offset
 
     ### SPECIAL METHODS ###
 
@@ -127,20 +127,20 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         if isinstance(expr, type(self)):
             if self.selector == expr.selector:
                 if self.multiplier == expr.multiplier:
-                    if self.left_addendum == expr.left_addendum:
-                        if self.right_addendum == expr.right_addendum:
+                    if self.left_offset == expr.left_offset:
+                        if self.right_offset == expr.right_offset:
                             return True
         return False
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def left_addendum(self):
-        '''Left addendum of symbolic timespan specified by user.
+    def left_offset(self):
+        '''Left offset of symbolic timespan specified by user.
 
         Return offset or none.
         '''
-        return self._left_addendum
+        return self._left_offset
 
     @property
     def multiplier(self):
@@ -151,12 +151,12 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         return self._multiplier
     
     @property
-    def right_addendum(self):
-        '''Right addendum of symbolic timespan specified by user.
+    def right_offset(self):
+        '''Right offset of symbolic timespan specified by user.
 
         Return offset or none.
         '''
-        return self._right_addendum
+        return self._right_offset
 
     @property
     def selector(self):

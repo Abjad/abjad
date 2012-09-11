@@ -9,11 +9,11 @@ timespantools.SymbolicTimepoint
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.addendum
-
 .. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.edge
 
 .. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.multiplier
+
+.. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.offset
 
 .. autoattribute:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.selector
 

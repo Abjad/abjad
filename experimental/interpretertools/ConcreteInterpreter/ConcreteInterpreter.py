@@ -261,9 +261,9 @@ class ConcreteInterpreter(Interpreter):
         segment_start_offset = region_division_command.segment_start_offset
         segment_stop_offset = region_division_command.segment_stop_offset
         start_timepoint = timespantools.SymbolicTimepoint(
-            selector=segment_selector, addendum=segment_start_offset)
+            selector=segment_selector, offset=segment_start_offset)
         stop_timepoint = timespantools.SymbolicTimepoint(
-            selector=segment_selector, addendum=segment_stop_offset)
+            selector=segment_selector, offset=segment_stop_offset)
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list._start_timepoint = start_timepoint    
         division_region_division_list._stop_timepoint = stop_timepoint

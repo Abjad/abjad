@@ -9,11 +9,11 @@ timespantools.SingleSourceSymbolicTimespan
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.left_addendum
+.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.left_offset
 
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.multiplier
 
-.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.right_addendum
+.. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.right_offset
 
 .. autoattribute:: experimental.timespantools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.selector
 

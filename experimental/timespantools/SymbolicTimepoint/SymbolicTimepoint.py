@@ -24,8 +24,8 @@ class SymbolicTimepoint(AbjadObject):
 
     Symbolic timepoint ``1/8`` of a whole note into score::
 
-        >>> timespantools.SymbolicTimepoint(addendum=durationtools.Offset(1, 8))
-        SymbolicTimepoint(addendum=Offset(1, 8))
+        >>> timespantools.SymbolicTimepoint(offset=durationtools.Offset(1, 8))
+        SymbolicTimepoint(offset=Offset(1, 8))
 
     Symbolic timepoint one third of the way into score::
 
@@ -34,8 +34,8 @@ class SymbolicTimepoint(AbjadObject):
 
     Symbolic timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> timespantools.SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
-        SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> timespantools.SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
+        SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
 
     Symbolic timepoint indicating the left edge of segment ``'red'``::
 
@@ -54,8 +54,8 @@ class SymbolicTimepoint(AbjadObject):
     Symbolic timepoint indicating ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
-        >>> timespantools.SymbolicTimepoint(selector=segment_selector, addendum=durationtools.Offset(1, 8))
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), addendum=Offset(1, 8))
+        >>> timespantools.SymbolicTimepoint(selector=segment_selector, offset=durationtools.Offset(1, 8))
+        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), offset=Offset(1, 8))
 
     Symbolic timepoint indicating one third of the way into segment ``'red'``::
 
@@ -66,8 +66,8 @@ class SymbolicTimepoint(AbjadObject):
     first third of segment ``'red'``::
     
         >>> timespantools.SymbolicTimepoint(selector=segment_selector, edge=Right, 
-        ... multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        ... multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
+        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
 
     Symbolic timepoint indicating the left edge of note ``10`` that starts
     during segment ``'red'``::
@@ -156,20 +156,20 @@ class SymbolicTimepoint(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, selector=None, edge=None, multiplier=None, addendum=None): 
+    def __init__(self, selector=None, edge=None, multiplier=None, offset=None): 
         from experimental import selectortools 
         from experimental import timespantools 
         assert isinstance(selector, 
             (selectortools.Selector, timespantools.SingleSourceSymbolicTimespan, type(None))), repr(selector)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
-        if addendum is not None:
-            addendum = durationtools.Offset(addendum)
-        assert isinstance(addendum, (durationtools.Offset, type(None))), repr(addendum)
+        if offset is not None:
+            offset = durationtools.Offset(offset)
+        assert isinstance(offset, (durationtools.Offset, type(None))), repr(offset)
         self._selector = selector
         self._multiplier = multiplier
         self._edge = edge
-        self._addendum = addendum
+        self._offset = offset
 
     ### SPECIAL METHODS ###
 
@@ -189,7 +189,7 @@ class SymbolicTimepoint(AbjadObject):
             return False
         elif not self.multiplier == other.multiplier:
             return False
-        elif not self.addendum == other.addendum:
+        elif not self.offset == other.offset:
             return False
         else:
             return True
@@ -197,17 +197,17 @@ class SymbolicTimepoint(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def addendum(self):
-        '''Symbolic timepoint addendum specified by user.
+    def offset(self):
+        '''Symbolic timepoint offset specified by user.
 
-            >>> timepoint.addendum is None
+            >>> timepoint.offset is None
             True
 
         Value of none is interpreted as ``Offset(0)``.
             
         Return offset or none.
         '''
-        return self._addendum
+        return self._offset
 
     @property
     def edge(self):
@@ -311,6 +311,6 @@ class SymbolicTimepoint(AbjadObject):
             segment_offset = self.selector.get_segment_stop_offset(score_specification, context_name)
         multiplier = self.multiplier or fractions.Fraction(1)     
         segment_offset = multiplier * segment_offset
-        addendum = self.addendum or durationtools.Offset(0)
-        segment_offset = segment_offset + addendum
+        offset = self.offset or durationtools.Offset(0)
+        segment_offset = segment_offset + offset
         return segment_offset
