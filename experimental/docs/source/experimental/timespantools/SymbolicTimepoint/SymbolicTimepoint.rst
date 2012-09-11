@@ -35,11 +35,19 @@ Special Methods
 
 .. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.__ge__
 
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.__le__
 
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.timespantools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.__ne__
 

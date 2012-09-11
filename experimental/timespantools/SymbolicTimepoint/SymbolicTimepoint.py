@@ -194,33 +194,33 @@ class SymbolicTimepoint(AbjadObject):
         else:
             return True
 
-    def __ge__(self, other):
-        '''.. note:: not yet implemented.
-        '''
-        if isinstance(other, type(self)):
-            return self >= other
-        return False
-
-    def __gt__(self, other):
-        '''.. note:: not yet implemented.
-        '''
-        if isinstance(other, type(self)):
-            return self > other
-        return False
-
-    def __le__(self, other):
-        '''.. note:: not yet implemented.
-        '''
-        if isinstance(other, type(self)):
-            return self <= other
-        return False
-
-    def __lt__(self, other):
-        '''.. note:: not yet implemented.
-        '''
-        if isinstance(other, type(self)):
-            return self < other
-        return False
+#    def __ge__(self, other):
+#        '''.. note:: not yet implemented.
+#        '''
+#        if isinstance(other, type(self)):
+#            return self >= other
+#        return False
+#
+#    def __gt__(self, other):
+#        '''.. note:: not yet implemented.
+#        '''
+#        if isinstance(other, type(self)):
+#            return self > other
+#        return False
+#
+#    def __le__(self, other):
+#        '''.. note:: not yet implemented.
+#        '''
+#        if isinstance(other, type(self)):
+#            return self <= other
+#        return False
+#
+#    def __lt__(self, other):
+#        '''.. note:: not yet implemented.
+#        '''
+#        if isinstance(other, type(self)):
+#            return self < other
+#        return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
