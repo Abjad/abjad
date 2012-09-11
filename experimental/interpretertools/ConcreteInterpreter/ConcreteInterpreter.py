@@ -525,7 +525,7 @@ class ConcreteInterpreter(Interpreter):
 
     def material_request_to_resolved_single_context_setting(self, material_request):
         #self._debug(material_request, 'mr')
-        segment_specification = self.get_start_segment_specification(material_request.segment_identifier)
+        segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
         context_proxy = segment_specification.resolved_single_context_settings[material_request.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         #self._debug(resolved_single_context_setting, 'rscs')

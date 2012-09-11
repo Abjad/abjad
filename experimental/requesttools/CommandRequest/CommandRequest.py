@@ -88,6 +88,7 @@ class CommandRequest(Request):
         '''
         return self._context_name
 
+    # TODO: change to start_segment_identifier
     @property
     def segment_identifier(self):
         '''Delegate to ``self.timepoint.segment_identifier``.

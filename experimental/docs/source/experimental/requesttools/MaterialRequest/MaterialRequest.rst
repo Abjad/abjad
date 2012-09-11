@@ -13,9 +13,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.context_name
 
-.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.segment_identifier
-
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.selector
+
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.start_segment_identifier
+
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.stop_segment_identifier
 
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.storage_format
 
