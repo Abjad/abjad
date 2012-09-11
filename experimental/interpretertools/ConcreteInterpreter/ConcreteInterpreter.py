@@ -116,7 +116,8 @@ class ConcreteInterpreter(Interpreter):
             division_region_durations, rhythm_command_durations)
         #self._debug(rhythm_region_durations, 'rrd')
         args = (voice_division_durations, rhythm_region_durations)
-        rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
+        rhythm_region_division_duration_lists = \
+            sequencetools.partition_sequence_by_backgrounded_weights(*args)
         assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
         rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
@@ -208,9 +209,11 @@ class ConcreteInterpreter(Interpreter):
         self._debug(requested_segment_identifier, 'segment_identifier')
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
-        
         timespan_inventory = timespantools.TimespanInventory()
-        timespan_inventory.extend(region_division_commands)
+        for region_division_command in region_division_commands:
+            if region_division_command.segment_identifier == requested_segment_identifier:
+                timespan_inventory.append(region_division_command)
+        #timespan_inventory.extend(region_division_commands)
         timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
             timepoint=requested_segment_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
@@ -415,7 +418,8 @@ class ConcreteInterpreter(Interpreter):
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         #self._debug_values(region_division_commands, 'rdc')
-        region_division_commands = self.supply_missing_region_division_commands(region_division_commands, voice)
+        region_division_commands = self.supply_missing_region_division_commands(
+            region_division_commands, voice)
         #self._debug_values(region_division_commands, 'srdc')
         self.region_division_commands_to_division_region_division_lists(region_division_commands, voice)
         #self._debug_values(
@@ -540,9 +544,12 @@ class ConcreteInterpreter(Interpreter):
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
         segment_specification = self.get_segment_specification(region_division_command.start_segment_name)
         segment_selector = segment_specification.selector
-        start_offset, stop_offset = region_division_command.start_offset, region_division_command.stop_offset
-        start_timepoint = timespantools.SymbolicTimepoint(selector=segment_selector, addendum=start_offset)
-        stop_timepoint = timespantools.SymbolicTimepoint(selector=segment_selector, addendum=stop_offset)
+        segment_start_offset = region_division_command.segment_start_offset
+        segment_stop_offset = region_division_command.segment_stop_offset
+        start_timepoint = timespantools.SymbolicTimepoint(
+            selector=segment_selector, addendum=segment_start_offset)
+        stop_timepoint = timespantools.SymbolicTimepoint(
+            selector=segment_selector, addendum=segment_stop_offset)
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list._start_timepoint = start_timepoint    
         division_region_division_list._stop_timepoint = stop_timepoint
@@ -641,7 +648,8 @@ class ConcreteInterpreter(Interpreter):
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
             for cooked_command in cooked_commands:
-                if timespaninequalitytools.timespan_2_contains_timespan_1_improperly(cooked_command, raw_command):
+                if timespaninequalitytools.timespan_2_contains_timespan_1_improperly(
+                    cooked_command, raw_command):
                     commands_to_remove.append(cooked_command)
                 elif timespaninequalitytools.timespan_2_delays_timespan_1(cooked_command, raw_command):
                     commands_to_delay.append(cooked_command)
@@ -653,23 +661,23 @@ class ConcreteInterpreter(Interpreter):
             for command_to_remove in commands_to_remove:
                 cooked_commands.remove(command_to_remove)
             for command_to_curtail in commands_to_curtail:
-                command_to_curtail._stop_offset = raw_command.start_offset
-                duration = command_to_curtail.stop_offset - command_to_curtail.start_offset
+                command_to_curtail._segment_stop_offset = raw_command.segment_start_offset
+                duration = command_to_curtail.segment_stop_offset - command_to_curtail.segment_start_offset
                 command_to_curtail._duration = duration
             for command_to_delay in commands_to_delay:
-                command_to_delay._start_offset = raw_command.stop_offset
-                duration = command_to_delay.stop_offset - command_to_delay.start_offset
+                command_to_delay._segment_start_offset = raw_command.segment_stop_offset
+                duration = command_to_delay.segment_stop_offset - command_to_delay.segment_start_offset
                 command_to_delay._duration = duration
                 command_was_delayed = True
             for command_to_split in commands_to_split:
                 left_command = command_to_split
                 middle_command = raw_command
                 right_command = copy.deepcopy(left_command)
-                left_command._stop_offset = middle_command.start_offset
-                left_duration = left_command.stop_offset - left_command.start_offset
+                left_command._segment_stop_offset = middle_command.segment_start_offset
+                left_duration = left_command.segment_stop_offset - left_command.segment_start_offset
                 left_command._duration = left_duration
-                right_command._start_offset = middle_command.stop_offset
-                right_duration = right_command.stop_offset - right_command.start_offset
+                right_command._segment_start_offset = middle_command.segment_stop_offset
+                right_duration = right_command.segment_stop_offset - right_command.segment_start_offset
                 right_command._duration = right_duration
                 command_was_split = True
             if command_was_delayed:
@@ -813,16 +821,18 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(region_division_commands, 'rdc')
         if not region_division_commands:
             return region_division_commands
-        first_start_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+        first_start_offset_in_score = \
+            self.score_specification.segment_name_and_segment_offset_to_score_offset(
             region_division_commands[0].start_segment_name,
-            region_division_commands[0].start_offset)
+            region_division_commands[0].segment_start_offset)
         if not first_start_offset_in_score == self.score_specification.start_offset:
             region_division_command = self.make_time_signature_region_division_command(
                 voice, self.score_specification.start_offset, first_start_offset_in_score)
             region_division_commands.insert(0, region_division_command)
-        last_stop_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+        last_stop_offset_in_score = \
+            self.score_specification.segment_name_and_segment_offset_to_score_offset(
             region_division_commands[-1].start_segment_name,
-            region_division_commands[-1].stop_offset)
+            region_division_commands[-1].segment_stop_offset)
         if not last_stop_offset_in_score == self.score_specification.stop_offset:
             region_division_command = self.make_time_signature_region_division_command(
                 voice, last_stop_offset_in_score, self.score_specification.stop_offset)
@@ -833,12 +843,14 @@ class ConcreteInterpreter(Interpreter):
         result = []
         for left_region_division_command, right_region_division_command in \
             sequencetools.iterate_sequence_pairwise_strict(region_division_commands):
-            left_stop_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+            left_stop_offset_in_score = \
+                self.score_specification.segment_name_and_segment_offset_to_score_offset(
                 left_region_division_command.start_segment_name,
-                left_region_division_command.stop_offset)
-            right_start_offset_in_score = self.score_specification.segment_name_and_segment_offset_to_score_offset(
+                left_region_division_command.segment_stop_offset)
+            right_start_offset_in_score = \
+                self.score_specification.segment_name_and_segment_offset_to_score_offset(
                 right_region_division_command.start_segment_name,
-                right_region_division_command.start_offset)
+                right_region_division_command.segment_start_offset)
             #self._debug((left_stop_offset_in_score, right_start_offset_in_score), 'offsets')
             assert left_stop_offset_in_score <= right_start_offset_in_score
             result.append(left_region_division_command)
@@ -867,7 +879,8 @@ class ConcreteInterpreter(Interpreter):
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
-                if uninterpreted_division_command.resolved_value != last_region_division_command.resolved_value:
+                if uninterpreted_division_command.resolved_value != \
+                    last_region_division_command.resolved_value:
                     region_division_command = interpretertools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
@@ -877,15 +890,15 @@ class ConcreteInterpreter(Interpreter):
                     region_division_commands.append(region_division_command)
                 else:
                     duration = last_region_division_command.duration + uninterpreted_division_command.duration
-                    start_offset = last_region_division_command.start_offset
-                    stop_offset = last_region_division_command.stop_offset + \
+                    segment_start_offset = last_region_division_command.segment_start_offset
+                    segment_stop_offset = last_region_division_command.segment_stop_offset + \
                         uninterpreted_division_command.duration
                     region_division_command = interpretertools.RegionDivisionCommand(
                         last_region_division_command.resolved_value,
                         last_region_division_command.start_segment_name,
                         uninterpreted_division_command.context_name,
-                        start_offset,
-                        stop_offset,
+                        segment_start_offset,
+                        segment_stop_offset,
                         duration,
                         last_region_division_command.fresh,
                         uninterpreted_division_command.truncate

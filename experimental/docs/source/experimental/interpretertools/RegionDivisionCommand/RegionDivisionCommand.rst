@@ -25,15 +25,15 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.start_offset
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.segment_start_offset
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.segment_stop_offset
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.start_segment_name
-
-    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
-
-.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.stop_offset
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
