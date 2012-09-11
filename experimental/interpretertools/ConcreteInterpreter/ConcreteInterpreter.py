@@ -251,7 +251,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(division_material_request.callback, 'callback')
         if division_material_request.callback is not None:
             divisions = division_material_request.callback(divisions)
-        self._debug(divisions, 'divisions')
+        #self._debug(divisions, 'divisions')
         return divisions
 
     def divisions_to_division_region_division_list(self, divisions, region_division_command):
@@ -549,6 +549,10 @@ class ConcreteInterpreter(Interpreter):
             assert resolved_value.attribute == 'divisions'
             division_material_request = resolved_value
             divisions = self.division_material_request_to_divisions(division_material_request)
+            region_division_command._resolved_value = divisions
+            division_region_division_list = self.region_division_command_to_division_region_division_list(
+                region_division_command, region_division_commands, voice_name)
+            return division_region_division_list
         elif isinstance(resolved_value, requesttools.CommandRequest):
             assert resolved_value.attribute == 'divisions'
             division_command_request = resolved_value
@@ -559,7 +563,7 @@ class ConcreteInterpreter(Interpreter):
             #self._debug(command_resolved_value, 'crv')
             region_division_command._resolved_value = command_resolved_value
             division_region_division_list = self.region_division_command_to_division_region_division_list(
-                region_division_command, region_division_command, voice_name)
+                region_division_command, region_division_commands, voice_name)
             return division_region_division_list
         else:
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
