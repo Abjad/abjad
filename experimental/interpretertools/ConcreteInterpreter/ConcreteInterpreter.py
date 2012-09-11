@@ -195,21 +195,15 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    # NEXT TODO: Finish implementing this method.
-    #            Doing that involves three main steps:
-    #            1. evaluate division_command_request.timepoint into some type of offset
-    #            2. use offset to select region division command from region_division_commands
-    #            3. create (and store and return) new region division command
-    def division_command_request_to_region_division_command(
+    def division_command_request_to_command_resolved_value(
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
-        self._debug(division_command_request, 'dcr')
-        print ''
-        self._debug_values(region_division_commands, 'rdcs')
+        #self._debug(division_command_request, 'dcr')
         requested_segment_identifier = division_command_request.timepoint.segment_identifier
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
+        #self._debug_values(region_division_commands, 'rdcs')
         timespan_inventory = timespantools.TimespanInventory()
         for region_division_command in region_division_commands:
             if region_division_command.segment_identifier == requested_segment_identifier:
@@ -220,11 +214,8 @@ class ConcreteInterpreter(Interpreter):
         # this will eventually have to be extended to handle multiple candidate selection
         assert len(candidate_commands) == 1
         source_command = candidate_commands[0]
-        self._debug(source_command, 'source_command')
-        source_value  = source_command.resolved_value
-        self._debug(source_value, 'source_value')
-        print ''
-        raise NotImplementedError
+        #self._debug(source_command, 'source_command')
+        return source_command.resolved_value
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
@@ -259,6 +250,22 @@ class ConcreteInterpreter(Interpreter):
             divisions = division_material_request.callback(divisions)
         #self._debug(divisions, 'divisions')
         return divisions
+
+    def divisions_to_division_region_division_list(self, divisions, region_division_command):
+        segment_specification = self.get_segment_specification(region_division_command.segment_identifier)
+        segment_selector = segment_specification.selector
+        segment_start_offset = region_division_command.segment_start_offset
+        segment_stop_offset = region_division_command.segment_stop_offset
+        start_timepoint = timespantools.SymbolicTimepoint(
+            selector=segment_selector, addendum=segment_start_offset)
+        stop_timepoint = timespantools.SymbolicTimepoint(
+            selector=segment_selector, addendum=segment_stop_offset)
+        division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
+        division_region_division_list._start_timepoint = start_timepoint    
+        division_region_division_list._stop_timepoint = stop_timepoint
+        division_region_division_list._fresh = region_division_command.fresh
+        division_region_division_list._truncate = region_division_command.truncate
+        return division_region_division_list
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
         voice_division_list, raw_segment_division_lists):
@@ -522,7 +529,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(resolved_single_context_setting, 'rscs')
         return resolved_single_context_setting
 
-    # complete list of region division commands is passed in for back-inspection
+    # region division command list passed in for back-inspection
     def region_division_command_to_division_region_division_list(
         self, region_division_command, region_division_commands, voice_name):
         #self._debug(region_division_command, 'rdc')
@@ -537,43 +544,33 @@ class ConcreteInterpreter(Interpreter):
             assert resolved_value.attribute == 'divisions'
             division_material_request = resolved_value
             divisions = self.division_material_request_to_divisions(division_material_request)
-        # NEXT TODO: implement this branch
         elif isinstance(resolved_value, requesttools.CommandRequest):
             assert resolved_value.attribute == 'divisions'
             division_command_request = resolved_value
-            region_division_command = self.division_command_request_to_region_division_command(
+            command_resolved_value = self.division_command_request_to_command_resolved_value(
                 division_command_request, region_division_commands, voice_name)
+            command_resolved_value = requesttools.apply_request_transforms(
+                division_command_request, command_resolved_value)
+            #self._debug(command_resolved_value, 'crv')
+            region_division_command._resolved_value = command_resolved_value
             division_region_division_list = self.region_division_command_to_division_region_division_list(
-                region_division_command)
+                region_division_command, region_division_command, voice_name)
             return division_region_division_list
         else:
             raise NotImplementedError('implement for {!r}.'.format(resolved_value))
-        segment_specification = self.get_segment_specification(region_division_command.segment_identifier)
-        segment_selector = segment_specification.selector
-        segment_start_offset = region_division_command.segment_start_offset
-        segment_stop_offset = region_division_command.segment_stop_offset
-        start_timepoint = timespantools.SymbolicTimepoint(
-            selector=segment_selector, addendum=segment_start_offset)
-        stop_timepoint = timespantools.SymbolicTimepoint(
-            selector=segment_selector, addendum=segment_stop_offset)
-        division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
-        division_region_division_list._start_timepoint = start_timepoint    
-        division_region_division_list._stop_timepoint = stop_timepoint
-        division_region_division_list._fresh = region_division_command.fresh
-        division_region_division_list._truncate = region_division_command.truncate
+        division_region_division_list = self.divisions_to_division_region_division_list(
+            divisions, region_division_command)
         return division_region_division_list
 
     def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
         for region_division_command in region_division_commands:
             #self._debug(region_division_command, 'rdc')
-            # TODO: pass in entire list of region division commands for back-inspection
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice.name)
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
             #self._debug(division_region_division_list, 'drdl')
-            #print ''
 
     def resolve_material_request(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
