@@ -253,7 +253,7 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def divisions_to_division_region_division_list(self, divisions, region_division_command):
-        segment_specification = self.get_segment_specification(region_division_command.segment_identifier)
+        segment_specification = self.get_start_segment_specification(region_division_command.segment_identifier)
         segment_selector = segment_specification.selector
         segment_start_offset = region_division_command.segment_start_offset
         segment_stop_offset = region_division_command.segment_stop_offset
@@ -346,7 +346,7 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_commands
 
     # TODO: change this to get_start_segment_specification
-    def get_segment_specification(self, expr):
+    def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
 
     def get_time_signature_slice(self, start_offset, stop_offset):
@@ -525,7 +525,7 @@ class ConcreteInterpreter(Interpreter):
 
     def material_request_to_resolved_single_context_setting(self, material_request):
         #self._debug(material_request, 'mr')
-        segment_specification = self.get_segment_specification(material_request.segment_identifier)
+        segment_specification = self.get_start_segment_specification(material_request.segment_identifier)
         context_proxy = segment_specification.resolved_single_context_settings[material_request.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         #self._debug(resolved_single_context_setting, 'rscs')
@@ -779,7 +779,7 @@ class ConcreteInterpreter(Interpreter):
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
         #self._debug(resolved_single_context_setting, 'rscs')
         selector = resolved_single_context_setting.selector
-        segment_specification = self.get_segment_specification(selector)
+        segment_specification = self.get_start_segment_specification(selector)
         self.store_resolved_single_context_setting(
             segment_specification, resolved_single_context_setting,
             clear_persistent_first=clear_persistent_first)
