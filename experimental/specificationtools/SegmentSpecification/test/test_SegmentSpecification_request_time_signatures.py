@@ -69,7 +69,7 @@ def test_SegmentSpecification_request_time_signatures_03():
 
 
 def test_SegmentSpecification_request_time_signatures_04():
-    '''Time signature request offset without count.
+    '''Time signature request indexed without count.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -82,7 +82,7 @@ def test_SegmentSpecification_request_time_signatures_04():
 
     source = segment.request_time_signatures()
     segment = score_specification.append_segment(name='blue')
-    segment.set_time_signatures(source, offset=-1)
+    segment.set_time_signatures(source, index=-1)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -91,7 +91,7 @@ def test_SegmentSpecification_request_time_signatures_04():
 
 
 def test_SegmentSpecification_request_time_signatures_05():
-    '''Time signature request offset and counted.
+    '''Time signature request indexed and counted.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -104,7 +104,7 @@ def test_SegmentSpecification_request_time_signatures_05():
 
     source = segment.request_time_signatures()
     segment = score_specification.append_segment(name='blue')
-    segment.set_time_signatures(source, count=5, offset=-1)
+    segment.set_time_signatures(source, count=5, index=-1)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

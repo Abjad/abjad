@@ -47,7 +47,7 @@ class CommandRequest(Request):
     Command requested is canonically assumed to be a list or other iterable.
 
     Because of this the request affords list-manipulation attributes.
-    These are `offset`, `count`, `reverse`, `callback`.
+    These are `index`, `count`, `reverse`, `callback`.
 
     Purpose of a command request is to function as a setting source.
     '''
@@ -55,11 +55,11 @@ class CommandRequest(Request):
     ### INITIALIZER ###
 
     def __init__(self, attribute, timepoint,
-        context_name=None, offset=None, count=None, reverse=None, callback=None):
+        context_name=None, index=None, count=None, reverse=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(timepoint, timespantools.SymbolicTimepoint)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        Request.__init__(self, callback=callback, count=count, offset=offset, reverse=reverse)
+        Request.__init__(self, callback=callback, count=count, index=index, reverse=reverse)
         self._attribute = attribute
         self._timepoint = timepoint
         self._context_name = context_name

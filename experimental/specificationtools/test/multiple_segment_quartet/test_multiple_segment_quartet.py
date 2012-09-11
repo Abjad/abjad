@@ -33,7 +33,7 @@ def test_multiple_segment_quartet_01():
 
     segment = score_specification.append_segment(name='T2')
     source = score_specification['T1'].request_time_signatures()
-    segment.set_time_signatures(source, offset=-2, count=2)
+    segment.set_time_signatures(source, index=-2, count=2)
 
     score = score_specification.interpret()
 
@@ -67,7 +67,7 @@ def test_multiple_segment_quartet_02():
 
     segment = score_specification.append_segment(name='T2')
     source = score_specification['T1'].request_time_signatures()
-    segment.set_time_signatures(source, offset=-2, count=2)
+    segment.set_time_signatures(source, index=-2, count=2)
 
     score = score_specification.interpret()
 
