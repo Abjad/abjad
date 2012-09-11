@@ -220,6 +220,7 @@ class ConcreteInterpreter(Interpreter):
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
+        self._debug(division_material_request, 'dmr')
         voice = componenttools.get_first_component_in_expr_with_name(
             self.score, division_material_request.context_name)
         assert isinstance(voice, voicetools.Voice), voice

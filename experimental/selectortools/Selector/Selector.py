@@ -1,6 +1,4 @@
 import abc
-import abc
-import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import timespantools
 
@@ -19,13 +17,13 @@ class Selector(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
+    @abc.abstractproperty
     def segment_identifier(self):
         '''Selector segment identifier.
 
         Raise exception when no segment identifier can be found.
         '''
-        raise NotImplementedError("Implement '{}.segment_identifier' soon.".format(self._class_name))
+        pass
 
     @property
     def timespan(self):
