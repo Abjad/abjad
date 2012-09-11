@@ -13,7 +13,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.context_name
 
-.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.segment_identifier
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.start_segment_identifier
+
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.stop_segment_identifier
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.storage_format
 

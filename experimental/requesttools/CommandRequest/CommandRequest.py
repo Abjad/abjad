@@ -88,17 +88,27 @@ class CommandRequest(Request):
         '''
         return self._context_name
 
-    # TODO: change to start_segment_identifier
     @property
-    def segment_identifier(self):
-        '''Delegate to ``self.timepoint.segment_identifier``.
+    def start_segment_identifier(self):
+        '''Delegate to ``self.timepoint.start_segment_identifier``.
 
-            >>> command_request.segment_identifier
+            >>> command_request.start_segment_identifier
             'red'
 
         Return string or none.
         '''
         return self.timepoint.start_segment_identifier
+
+    @property
+    def stop_segment_identifier(self):
+        '''Delegate to ``self.timepoint.stop_segment_identifier``.
+
+            >>> command_request.stop_segment_identifier
+            SegmentIdentifierExpression("'red' + 1")
+
+        Return string or none.
+        '''
+        return self.timepoint.stop_segment_identifier
 
     @property
     def timepoint(self):
