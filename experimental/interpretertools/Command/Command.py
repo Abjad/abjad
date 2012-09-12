@@ -1,6 +1,7 @@
 import abc
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import requesttools 
 from experimental import timespaninequalitytools 
 
 
@@ -19,6 +20,7 @@ class Command(AbjadObject):
 
     def __init__(self, payload, start_segment_identifier, context_name, 
         segment_start_offset, segment_stop_offset, duration, fresh):
+        assert isinstance(payload, requesttools.Request), repr(payload)
         assert isinstance(start_segment_identifier, str)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         segment_start_offset = durationtools.Offset(segment_start_offset)

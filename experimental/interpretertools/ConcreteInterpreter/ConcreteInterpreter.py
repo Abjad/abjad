@@ -457,7 +457,6 @@ class ConcreteInterpreter(Interpreter):
     def make_default_rhythm_command_for_segment(self, segment_specification):
         from experimental import interpretertools
         return interpretertools.RhythmCommand(
-            #library.skip_filled_tokens, 
             requesttools.AbsoluteRequest(library.skip_filled_tokens), 
             segment_specification.segment_name,
             self.score_specification.score_name,
@@ -470,7 +469,7 @@ class ConcreteInterpreter(Interpreter):
     def make_default_uninterpreted_division_command_for_segment(self, segment_specification):
         from experimental import interpretertools
         return interpretertools.DivisionCommand(
-            segment_specification.time_signatures,
+            requesttools.AbsoluteRequest(segment_specification.time_signatures),
             segment_specification.segment_name,
             self.score_specification.score_name,
             0,
@@ -548,7 +547,7 @@ class ConcreteInterpreter(Interpreter):
         fresh, truncate = True, True
         duration = stop_offset - start_offset
         region_division_command = interpretertools.DivisionCommand(
-            divisions,
+            requesttools.AbsoluteRequest(divisions),
             segment_identifier,
             voice.name, 
             start_offset,
