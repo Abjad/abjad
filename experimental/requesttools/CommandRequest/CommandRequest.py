@@ -54,12 +54,12 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, timepoint,
-        context_name=None, index=None, count=None, reverse=None, callback=None):
+    def __init__(self, attribute, timepoint, context_name=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(timepoint, timespantools.SymbolicTimepoint)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        Request.__init__(self, callback=callback, count=count, index=index, reverse=reverse)
+        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._timepoint = timepoint
         self._context_name = context_name

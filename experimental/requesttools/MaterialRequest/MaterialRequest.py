@@ -11,7 +11,8 @@ class MaterialRequest(Request):
         >>> from experimental import *
 
     Request `attribute` for `selector` in `context_name`.
-    Apply any of `callback`, `count`, `index`, `reverse` that are not none::
+
+    Apply any of `index`, `count`, `reverse`, `rotation`, `callback` that are not none::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
@@ -38,13 +39,13 @@ class MaterialRequest(Request):
 
     def __init__(self, attribute, selector, context_name=None, 
         start_offset=None, stop_offset=None,
-        callback=None, count=None, index=None, reverse=None):
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(selector, selectortools.Selector)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
-        Request.__init__(self, callback=callback, count=count, index=index, reverse=reverse)
+        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._selector = selector
         self._context_name = context_name

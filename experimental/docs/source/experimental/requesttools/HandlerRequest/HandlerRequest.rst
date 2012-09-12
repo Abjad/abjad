@@ -17,6 +17,8 @@ Read-only Properties
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
 
+.. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.handler
+
 .. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.index
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
