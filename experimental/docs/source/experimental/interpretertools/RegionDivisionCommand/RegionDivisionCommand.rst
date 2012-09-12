@@ -47,7 +47,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.truncate
 
-    Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
+    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.vector
 
