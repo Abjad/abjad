@@ -7,9 +7,7 @@ from experimental import timespaninequalitytools
 class Command(AbjadObject):
     '''.. versionadded:: 1.0
 
-    Abstract command class from which concrete command classes inherit.
-
-    Basically a fancy tuple.
+    Abstract command indicating durated period of time over which a payload will apply.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -18,21 +16,22 @@ class Command(AbjadObject):
 
     ### INTIAILIZER ###
 
-    @abc.abstractmethod
     def __init__(self, payload, start_segment_identifier, context_name, 
-        segment_start_offset, segment_stop_offset, duration):
-        duration = durationtools.Duration(duration)
+        segment_start_offset, segment_stop_offset, duration, fresh):
         assert isinstance(start_segment_identifier, str)
+        assert isinstance(context_name, (str, type(None))), repr(context_name)
         segment_start_offset = durationtools.Offset(segment_start_offset)
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
+        duration = durationtools.Duration(duration)
         assert segment_stop_offset - segment_start_offset == duration
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
+        assert isinstance(fresh, bool), repr(fresh)
         self._payload = payload
-        self._duration = duration
         self._start_segment_identifier = start_segment_identifier
+        self._context_name = context_name
         self._segment_start_offset = segment_start_offset
         self._segment_stop_offset = segment_stop_offset
-        self._context_name = context_name
+        self._duration = duration
+        self._fresh = fresh
 
     ### SPECIAL METHODS ###
 
@@ -51,6 +50,14 @@ class Command(AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @abc.abstractproperty
+    def attribute(self):
+        '''Command attribute.
+
+        Return string.
+        '''
+        pass
+
     @property
     def context_name(self):
         '''Command context name.
@@ -66,6 +73,15 @@ class Command(AbjadObject):
         Return duration.
         ''' 
         return self._duration
+
+    @property
+    def fresh(self):
+        '''True when command was generated in response 
+        to an explicit user command. Otherwise false.
+
+        Return boolean.
+        '''
+        return self._fresh
 
     @property
     def payload(self):

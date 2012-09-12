@@ -106,7 +106,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/Command/Command
-   experimental/interpretertools/DivisionCommand/DivisionCommand
    experimental/interpretertools/Interpreter/Interpreter
 
 .. rubric:: concrete classes
@@ -115,6 +114,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
+   experimental/interpretertools/DivisionCommand/DivisionCommand
    experimental/interpretertools/RegionDivisionCommand/RegionDivisionCommand
    experimental/interpretertools/ResolvedValue/ResolvedValue
    experimental/interpretertools/RhythmCommand/RhythmCommand

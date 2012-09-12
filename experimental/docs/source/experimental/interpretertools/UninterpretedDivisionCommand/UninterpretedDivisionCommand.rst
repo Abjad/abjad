@@ -9,6 +9,10 @@ interpretertools.UninterpretedDivisionCommand
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.attribute
+
+    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.context_name
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
@@ -18,6 +22,8 @@ Read-only Properties
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.fresh
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.payload
 

@@ -4,7 +4,7 @@ from experimental.interpretertools.UninterpretedDivisionCommand import Uninterpr
 class RegionDivisionCommand(UninterpretedDivisionCommand):
     r'''.. versionadded:: 1.0
 
-    Durated period of time over which a division-maker will apply.
+    Command indicating durated period of time over which a division payload will apply.
 
     How do region division commands and (unqualified) division commands differ?
 
