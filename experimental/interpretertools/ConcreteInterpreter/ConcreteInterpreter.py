@@ -1,4 +1,5 @@
 import copy
+import fractions
 from abjad.tools import *
 from experimental import divisiontools
 from experimental import helpertools
@@ -230,8 +231,8 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
-        #start_segment_identifier = division_material_request.selector.start_identifier
-        #stop_segment_identifier = division_material_request.selector.stop_identifier
+
+        # TODO: encapsulate in separate method
         start_segment_identifier = division_material_request.start_segment_identifier
         stop_segment_identifier = division_material_request.stop_segment_identifier
         start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
@@ -239,18 +240,47 @@ class ConcreteInterpreter(Interpreter):
         stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
             stop_segment_identifier)
         segment_count =  stop_segment_index - start_segment_index
-        start_offset, stop_offset = self.score_specification.segment_name_to_segment_offsets(
+        score_start_offset, score_stop_offset = self.score_specification.segment_name_to_segment_offsets(
             start_segment_index, segment_count)
-        total_amount = stop_offset - start_offset
+        total_amount = score_stop_offset - score_start_offset
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
         divisions = sequencetools.split_sequence_by_weights(
             divisions, [0, total_amount], cyclic=False, overhang=True)
         divisions = divisions[1]
+        #self._debug(divisions, 'divisions')
+
+        # TODO: encapsulate in separate method
+        total_divisions = sum(divisions)
+        if division_material_request.start_offset is None:
+            selection_start_offset = durationtools.Offset(0)
+        else:
+            selection_start_offset = division_material_request.start_offset
+        if division_material_request.stop_offset is None:
+            selection_stop_offset = total_divisions
+        else:
+            selection_stop_offset = division_material_request.stop_offset
+        #self._debug((selection_start_offset, selection_stop_offset), 'offsets')
+        first_weight = fractions.Fraction(selection_start_offset)
+        second_weight = selection_stop_offset - selection_start_offset
+        second_weight = fractions.Fraction(second_weight)
+        weights = [first_weight, second_weight]
+        third_weight = total_divisions - selection_stop_offset
+        third_weight = fractions.Fraction(third_weight)
+        if third_weight:
+            weights.append(third_weight)
+        #self._debug(weights, 'weights')
+        divisions = sequencetools.split_sequence_by_weights(
+            divisions, weights, cyclic=False, overhang=True)
+        divisions = divisions[1]
+        #self._debug(divisions, 'divisions')
+
+        # TODO: use requesttools.apply_request_transforms() below instead
         if division_material_request.reverse:
             divisions.reverse()
         #self._debug(division_material_request.callback, 'callback')
         if division_material_request.callback is not None:
             divisions = division_material_request.callback(divisions)
+
         #self._debug(divisions, 'divisions')
         return divisions
 

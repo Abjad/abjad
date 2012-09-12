@@ -421,7 +421,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.segment_name_to_segment_offsets('red')
             (Offset(0, 1), Offset(0, 1))
 
-        Return offset pair.
+        Return pair of score start- and stop-offsets.
         '''
         if hasattr(self, 'segment_offset_pairs'):
             start_segment_index = self.segment_name_to_segment_index(segment_name)        

@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from experimental import selectortools
 from experimental.requesttools.Request import Request
 
@@ -35,15 +36,26 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, selector, 
-        context_name=None, callback=None, count=None, index=None, reverse=None):
+    def __init__(self, attribute, selector, context_name=None, 
+        start_offset=None, stop_offset=None,
+        callback=None, count=None, index=None, reverse=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(selector, selectortools.Selector)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
+        start_offset = self._initialize_offset(start_offset)
+        stop_offset = self._initialize_offset(stop_offset)
         Request.__init__(self, callback=callback, count=count, index=index, reverse=reverse)
         self._attribute = attribute
         self._selector = selector
         self._context_name = context_name
+        self._start_offset = start_offset
+        self._stop_offset = stop_offset
+
+    ### PRIVATE METHODS ###
+
+    def _initialize_offset(self, offset):
+        if offset is not None:
+            return durationtools.Offset(offset)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -60,10 +72,18 @@ class MaterialRequest(Request):
         return self._selector
 
     @property
+    def start_offset(self):
+        return self._start_offset
+
+    @property
     def start_segment_identifier(self):
         '''Delegate to ``self.selector.start_segment_identifier``.
         '''
         return self.selector.start_segment_identifier
+
+    @property
+    def stop_offset(self):
+        return self._stop_offset
 
     @property
     def stop_segment_identifier(self):

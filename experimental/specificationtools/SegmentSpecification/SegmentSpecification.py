@@ -336,6 +336,7 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return requesttools.MaterialRequest(
             'divisions', selector, context_name=context_name, 
+            start_offset=start_offset, stop_offset=stop_offset,
             callback=callback, count=count, index=index, reverse=reverse)
 
     def request_division_command(self,  context_name=None, 
