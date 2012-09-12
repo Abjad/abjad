@@ -12,6 +12,8 @@ def apply_request_transforms(request, payload):
 
     Then apply nonnone ``request.reverse`` to `payload`.
 
+    Then apply nonnone ``request.rotation`` to `payload`.
+
     Return `payload`.
     '''
 
@@ -31,6 +33,12 @@ def apply_request_transforms(request, payload):
     if getattr(request, 'reverse', False):
         original_payload_type = type(payload)
         payload = list(reversed(payload))
+        payload = original_payload_type(payload)
+
+    if getattr(request, 'rotation', None):
+        assert isinstance(request.rotation, int)
+        original_payload_type = type(payload)
+        payload = sequencetools.rotate_sequence(payload, request.rotation)
         payload = original_payload_type(payload)
 
     return payload 
