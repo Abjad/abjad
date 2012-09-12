@@ -201,14 +201,15 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'dcr')
+        #self._debug_values(region_division_commands, 'rdcs')
         requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
-        #self._debug_values(region_division_commands, 'rdcs')
         timespan_inventory = timespantools.TimespanInventory()
         for region_division_command in region_division_commands:
             if region_division_command.start_segment_identifier == requested_segment_identifier:
-                timespan_inventory.append(region_division_command)
+                if region_division_command.payload is not division_command_request:
+                    timespan_inventory.append(region_division_command)
         timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
             timepoint=requested_segment_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
@@ -569,24 +570,24 @@ class ConcreteInterpreter(Interpreter):
     def region_division_command_to_division_region_division_list(
         self, region_division_command, region_division_commands, voice_name):
         #self._debug(region_division_command, 'rdc')
-        payload = region_division_command.payload
-        if isinstance(payload, list):
-            divisions = [mathtools.NonreducedFraction(x) for x in payload]
+        #self._debug_values(region_division_commands, 'rdcs')
+        if isinstance(region_division_command.payload, list):
+            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.payload]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
-        elif isinstance(payload, requesttools.MaterialRequest):
-            assert payload.attribute == 'divisions'
-            division_material_request = payload
+        elif isinstance(region_division_command.payload, requesttools.MaterialRequest):
+            assert region_division_command.payload.attribute == 'divisions'
+            division_material_request = region_division_command.payload
             divisions = self.division_material_request_to_divisions(division_material_request)
             region_division_command._payload = divisions
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
-        elif isinstance(payload, requesttools.CommandRequest):
-            assert payload.attribute == 'divisions'
-            division_command_request = payload
+        elif isinstance(region_division_command.payload, requesttools.CommandRequest):
+            assert region_division_command.payload.attribute == 'divisions'
+            division_command_request = region_division_command.payload
             payload = self.division_command_request_to_payload(
                 division_command_request, region_division_commands, voice_name)
             #self._debug(payload, 'payload')
@@ -598,7 +599,8 @@ class ConcreteInterpreter(Interpreter):
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
         else:
-            raise NotImplementedError('implement for {!r}.'.format(payload))
+            raise NotImplementedError(
+                'implement for {!r}.'.format(region_division_command.payload))
         division_region_division_list = self.divisions_to_division_region_division_list(
             divisions, region_division_command)
         return division_region_division_list
