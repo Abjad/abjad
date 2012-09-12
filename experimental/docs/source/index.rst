@@ -201,13 +201,6 @@ Unstable packages (load manually)
 :py:mod:`requesttools <experimental.requesttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/requesttools/Request/Request
-
 .. rubric:: concrete classes
 
 .. toctree::
@@ -216,6 +209,7 @@ Unstable packages (load manually)
    experimental/requesttools/CommandRequest/CommandRequest
    experimental/requesttools/HandlerRequest/HandlerRequest
    experimental/requesttools/MaterialRequest/MaterialRequest
+   experimental/requesttools/Request/Request
    experimental/requesttools/StatalServerRequest/StatalServerRequest
 
 .. rubric:: functions
