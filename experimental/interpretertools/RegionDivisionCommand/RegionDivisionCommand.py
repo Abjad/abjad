@@ -1,7 +1,7 @@
-from experimental.interpretertools.UninterpretedDivisionCommand import UninterpretedDivisionCommand
+from experimental.interpretertools.DivisionCommand import DivisionCommand
 
 
-class RegionDivisionCommand(UninterpretedDivisionCommand):
+class RegionDivisionCommand(DivisionCommand):
     r'''.. versionadded:: 1.0
 
     Command indicating durated period of time over which a division payload will apply.

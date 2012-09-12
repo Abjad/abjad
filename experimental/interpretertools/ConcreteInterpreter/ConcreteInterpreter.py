@@ -450,8 +450,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_default_uninterpreted_division_command_for_segment(self, segment_specification):
         from experimental import interpretertools
-        return interpretertools.UninterpretedDivisionCommand(
-        #return interpretertools.RegionDivisionCommand(
+        return interpretertools.RegionDivisionCommand(
             segment_specification.time_signatures,
             segment_specification.segment_name,
             self.score_specification.score_name,
@@ -537,8 +536,7 @@ class ConcreteInterpreter(Interpreter):
     def make_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
-        uninterpreted_division_command = interpretertools.UninterpretedDivisionCommand(
-        #uninterpreted_division_command = interpretertools.RegionDivisionCommand(
+        uninterpreted_division_command = interpretertools.RegionDivisionCommand(
             resolved_single_context_setting.payload,
             segment_name,
             resolved_single_context_setting.context_name,
