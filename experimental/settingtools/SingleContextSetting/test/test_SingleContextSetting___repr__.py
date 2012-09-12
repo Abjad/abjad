@@ -1,3 +1,4 @@
+from experimental.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.timespantools.SymbolicTimepoint import SymbolicTimepoint
@@ -9,7 +10,7 @@ def test_SingleContextSetting___repr___01():
     '''
 
     selector = SingleSegmentSelector(identifier='red')
-    setting_1 = SingleContextSetting('time_signatures', [(4, 8), (3, 8)], selector, fresh=False)
+    setting_1 = SingleContextSetting('time_signatures', AbsoluteRequest([(4, 8), (3, 8)]), selector, fresh=False)
     setting_2 = eval(repr(setting_1))
 
     assert isinstance(setting_1, SingleContextSetting)

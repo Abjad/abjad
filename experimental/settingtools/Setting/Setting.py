@@ -1,5 +1,6 @@
 import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import requesttools
 from experimental import selectortools
 
 
@@ -16,6 +17,7 @@ class Setting(AbjadObject):
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
+        assert isinstance(source, requesttools.Request), repr(source)
         assert isinstance(selector, (selectortools.Selector, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
