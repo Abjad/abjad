@@ -9,7 +9,8 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
 
     If `source` is one of ... ::
 
-        StatalServer Handler
+        StatalServer
+        Handler
 
     ... then return ... ::
 
@@ -18,11 +19,17 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
 
     ... as output.
 
-    If `source` is a constant then return `source` unchanged.
+    Set any of `index`, `count`, `reverse`, `rotation` or 
+    `callback` that are not none against request
+    and return request.
 
-    If `source` is already a request then set `index`, `count`, 
-    `reverse`, `rotation` or `callback` against `source` 
-    (if any are not none) and return `source`.
+    If `source` is a list or tuple then apply any 
+    of `index`, `count`, `reverse`, `rotation` or 
+    `callback` that are not none against `source`
+    and return `source`.
+
+    If `source` tests as none of the above then
+    return `source` unchanged.
     '''
     from experimental import handlertools
     from experimental import requesttools
@@ -46,6 +53,7 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
             request._rotation = rotation
         if callback is not None:
             request._callback = callback
+        return request
     elif isinstance(source, statalservertools.StatalServer):
         request = requesttool.StatalServerRequest(source)
         return source_to_request(
@@ -54,11 +62,10 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
         request = requesttool.HandlerRequest(source)
         return source_to_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-    elif any([x is not None for x in (index, count, reverse, rotation, callback)]):
-        raise ValueError(
-            "'index', 'count', 'reverse', 'rotation' or 'callback' set on stateless source: {!r}.".format(
-            source))
+    elif isinstance(source, (list, tuple)):
+        request = requesttools.Request(
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+        source = requesttools.apply_request_transforms(request, source)
+        return source
     else:
-        request = source
-
-    return request
+        return source
