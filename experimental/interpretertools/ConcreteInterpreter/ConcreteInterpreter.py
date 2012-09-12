@@ -81,13 +81,12 @@ class ConcreteInterpreter(Interpreter):
     def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
 #        self._debug(rhythm_maker)
 #        self._debug(rhythm_region_division_list)
-        assert isinstance(rhythm_maker, requesttools.AbsoluteRequest), repr(rhythm_maker)
-        assert isinstance(rhythm_maker.payload, timetokentools.TimeTokenMaker), repr(rhythm_maker.payload)
+        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
         assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
-        leaf_lists = rhythm_maker.payload(rhythm_region_division_list.pairs)
+        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
         rhythm_containers = [containertools.Container(x) for x in leaf_lists]
         voice.extend(rhythm_containers)
-        self.conditionally_beam_rhythm_containers(rhythm_maker.payload, rhythm_containers)
+        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
 
     def add_rhythms_to_score(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
@@ -125,7 +124,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_divisions, rhythm_region_lengths, cyclic=False, overhang=False)
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
-        input_pairs = [(command.request, command.duration) for command in rhythm_commands]
+        input_pairs = [(command.request.payload, command.duration) for command in rhythm_commands]
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             rhythm_region_durations, input_pairs)
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
