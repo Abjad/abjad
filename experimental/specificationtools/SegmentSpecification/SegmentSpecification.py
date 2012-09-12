@@ -68,13 +68,16 @@ class SegmentSpecification(Specification):
         #            is to create and store a multiple-context setting.
         #            So the transform keywords specified here must not apply to the incoming source.
         #            Rather, the transform keywords specified here must apply to the setting created here.
-        source = requesttools.expr_to_request(source, 
-            index=index, count=count, reverse=reverse, callback=callback)
+
+        request = requesttools.expr_to_request(source)
+        requesttools.set_transforms_on_request(
+            request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
         context_names = self._context_token_to_context_names(contexts)
         selector = selector or self.select_segment()
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
-            source, 
+            request, 
             selector,
             context_names=context_names, 
             index=index,
