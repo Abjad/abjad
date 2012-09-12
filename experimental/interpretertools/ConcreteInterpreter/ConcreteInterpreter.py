@@ -333,6 +333,23 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(rhythm_command))
         return result
 
+    def get_all_region_division_commands(self):
+        all_division_commands = []
+        if not self.score_specification.segment_specifications:
+            return all_division_commands
+        first_segment = self.get_start_segment_specification(0)
+        for voice in voicetools.iterate_voices_forward_in_expr(first_segment.score_model):
+            #self._debug(voice, 'voice')
+            division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
+            division_commands = self.uninterpreted_division_commands_to_region_division_commands(
+                division_commands)
+            division_commands = self.supply_missing_region_division_commands(
+                division_commands, voice)
+            all_division_commands.extend(division_commands)
+        #self._debug(all_division_commands, 'all #0')
+        #print ''
+        return all_division_commands
+
     def get_resolved_single_context_settings(self, segment_specification, attribute, context_name,
         include_improper_parentage=False):
         context = componenttools.get_first_component_in_expr_with_name(
@@ -379,7 +396,6 @@ class ConcreteInterpreter(Interpreter):
         #print ''
         return rhythm_commands
 
-    # TODO: change this to get_start_segment_specification
     def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
 
@@ -461,6 +477,7 @@ class ConcreteInterpreter(Interpreter):
             False
             )
 
+    # TODO: pass *all* region division commands around for purposes of back-inspection
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         #self._debug_values(uninterpreted_division_commands, 'udc')
@@ -470,7 +487,14 @@ class ConcreteInterpreter(Interpreter):
         region_division_commands = self.supply_missing_region_division_commands(
             region_division_commands, voice)
         #self._debug_values(region_division_commands, 'srdc')
-        self.region_division_commands_to_division_region_division_lists(region_division_commands, voice)
+
+        all_region_division_commands = self.get_all_region_division_commands()
+        #self._debug(all_region_division_commands, 'all #1')
+
+        #self.region_division_commands_to_division_region_division_lists(region_division_commands, voice)
+        self.region_division_commands_to_division_region_division_lists(
+            region_division_commands, voice, all_region_division_commands)
+
         #self._debug_values(
         #    self.score_specification.contexts[voice.name]['division_region_division_lists'], 'drdl')
 
@@ -605,12 +629,19 @@ class ConcreteInterpreter(Interpreter):
             divisions, region_division_command)
         return division_region_division_list
 
-    def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
+    #def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
+    def region_division_commands_to_division_region_division_lists(self, 
+        region_division_commands, voice, all_region_division_commands):
+        #self._debug(all_region_division_commands, 'all #2')
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
         for region_division_command in region_division_commands:
             #self._debug(region_division_command, 'rdc')
+
+            #division_region_division_list = self.region_division_command_to_division_region_division_list(
+            #    region_division_command, region_division_commands, voice.name)
             division_region_division_list = self.region_division_command_to_division_region_division_list(
-                region_division_command, region_division_commands, voice.name)
+                region_division_command, all_region_division_commands, voice.name)
+
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
             #self._debug(division_region_division_list, 'drdl')
