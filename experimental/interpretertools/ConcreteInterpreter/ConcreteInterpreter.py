@@ -196,7 +196,7 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def division_command_request_to_command_payload(
+    def division_command_request_to_payload(
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
@@ -558,7 +558,8 @@ class ConcreteInterpreter(Interpreter):
 
     def material_request_to_resolved_single_context_setting(self, material_request):
         #self._debug(material_request, 'mr')
-        segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
+        segment_specification = self.get_start_segment_specification(
+            material_request.start_segment_identifier)
         context_proxy = segment_specification.resolved_single_context_settings[material_request.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         #self._debug(resolved_single_context_setting, 'rscs')
@@ -586,12 +587,13 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(payload, requesttools.CommandRequest):
             assert payload.attribute == 'divisions'
             division_command_request = payload
-            command_payload = self.division_command_request_to_command_payload(
+            payload = self.division_command_request_to_payload(
                 division_command_request, region_division_commands, voice_name)
-            command_payload = requesttools.apply_request_transforms(
-                division_command_request, command_payload)
-            #self._debug(command_payload, 'crv')
-            region_division_command._payload = command_payload
+            #self._debug(payload, 'payload')
+            payload = requesttools.apply_request_transforms(
+                division_command_request, payload)
+            #self._debug(payload, 'payload')
+            region_division_command._payload = payload
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
