@@ -19,9 +19,8 @@ def test_SingleContextSetting_storage_format_01():
             ),
         context_name='Voice 1',
         persist=True,
-        truncate=False,
         fresh=False
         )
     '''
 
-    assert setting.storage_format == "settingtools.SingleContextSetting(\n\t'time_signatures',\n\t[(4, 8), (3, 8)],\n\tselectortools.SingleSegmentSelector(\n\t\tidentifier='red'\n\t\t),\n\tcontext_name='Voice 1',\n\tpersist=True,\n\ttruncate=False,\n\tfresh=False\n\t)"
+    assert setting.storage_format == "settingtools.SingleContextSetting(\n\t'time_signatures',\n\t[(4, 8), (3, 8)],\n\tselectortools.SingleSegmentSelector(\n\t\tidentifier='red'\n\t\t),\n\tcontext_name='Voice 1',\n\tpersist=True,\n\tfresh=False\n\t)"

@@ -4,11 +4,13 @@ from abjad.tools import sequencetools
 def apply_request_transforms(request, payload):
     r'''.. versionadded:: 1.0 
     
+    In this order:
+
     Apply nonnone ``request.index`` to `payload`.
 
-    Apply nonnone ``request.count`` to `payload`.
+    Then apply nonnone ``request.count`` to `payload`.
 
-    Apply nonnone ``request.reverse`` to `payload`.
+    Then apply nonnone ``request.reverse`` to `payload`.
 
     Return `payload`.
     '''

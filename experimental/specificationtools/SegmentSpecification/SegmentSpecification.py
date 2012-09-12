@@ -57,17 +57,18 @@ class SegmentSpecification(Specification):
     ### PRIVATE METHODS ###
 
     def _store_multiple_context_setting(self, attribute, source,
-        callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+        contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True, truncate=None):
         source = requesttools.source_to_request(source, 
-            callback=callback, count=count, index=index, reverse=reverse)
-        contexts = self._context_token_to_context_names(contexts)
+            index=index, count=count, reverse=reverse, callback=callback)
+        context_names = self._context_token_to_context_names(contexts)
         selector = selector or self.select_segment()
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             source, 
             selector,
-            context_names=contexts, 
+            context_names=context_names, 
             persist=persist, 
             truncate=truncate
             )
@@ -911,41 +912,48 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return selectortools.TimeRatioPartSelector(selector, ratio, part)
 
-    def set_aggregate(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_aggregate(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set aggregate of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'aggregate'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_articulations(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_articulations(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set articulations of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'articulations'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_chord_treatment(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_chord_treatment(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set chord treatment of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'chord_treatment'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_divisions(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_divisions(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True, truncate=False):
         r'''Set divisions of segment `contexts` to `source`::
 
             >>> setting = segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
@@ -971,93 +979,109 @@ class SegmentSpecification(Specification):
             callback=callback, contexts=contexts, count=count, index=index, 
             persist=persist, reverse=reverse, selector=selector, truncate=truncate)
 
-    def set_dynamics(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_dynamics(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set dynamics of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'dynamics'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_marks(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_marks(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set marks of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'marks'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_markup(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_markup(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set markup of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'markup'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_pitch_classes(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_pitch_classes(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set pitch-classes of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_classes'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_pitch_class_application(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_pitch_class_application(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set pitch-class application of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_application'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_pitch_class_transform(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_pitch_class_transform(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set pitch-class transform of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_transform'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_registration(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_registration(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set registration of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'registration'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_rhythm(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_rhythm(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set rhythm of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'rhythm'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
     def set_retrograde_divisions(self, source, callback=None, contexts=None, count=None, 
         index=None, persist=True, reverse=None, selector=None, truncate=True):
@@ -1084,24 +1108,28 @@ class SegmentSpecification(Specification):
             callback=callback, count=count, index=index, 
             persist=persist, reverse=reverse, selector=selector, truncate=truncate)
 
-    def set_tempo(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_tempo(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set tempo of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'tempo'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
 
-    def set_time_signatures(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=False):
+    def set_time_signatures(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
         r'''Set time signatures according to `source` for segment `contexts`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'time_signatures'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index,
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)

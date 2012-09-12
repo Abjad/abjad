@@ -12,11 +12,11 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, source, selector, persist=True, truncate=False):
+    def __init__(self, attribute, source, selector, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(selector, (selectortools.Selector, type(None)))
         assert isinstance(persist, bool)
-        assert isinstance(truncate, bool)
+        assert isinstance(truncate, (bool, type(None)))
         self._attribute = attribute
         self._source = source
         self._selector = selector

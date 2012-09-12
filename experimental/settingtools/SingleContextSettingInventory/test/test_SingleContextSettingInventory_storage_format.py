@@ -4,7 +4,7 @@ from experimental.settingtools import SingleContextSettingInventory
 
 
 def test_SingleContextSettingInventory_storage_format_01():
-    '''Disk format exists and is evaluable.
+    '''Storage format exists and is evaluable.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -2,7 +2,7 @@ import copy
 from experimental import helpertools
 
 
-def source_to_request(source, callback=None, count=None, index=None, reverse=None):
+def source_to_request(source, index=None, count=None, reverse=None, callback=None):
     r'''.. versionadded:: 1.0
 
     Change request `source` to request object.
