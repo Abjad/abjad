@@ -60,16 +60,16 @@ class ResolvedSingleContextSetting(SingleContextSetting):
     Resolved single-context settings are create from single-context settings.
 
     The `payload` of a resolved single-context setting derives from
-    the `source` of a single-context setting.
+    the `request` of a single-context setting.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, payload, selector, context_name=None, 
+    def __init__(self, attribute, request, payload, selector, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True, truncate=False, fresh=True):
         SingleContextSetting.__init__(self, 
-            attribute, source, selector, context_name=context_name, 
+            attribute, request, selector, context_name=context_name, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist, truncate=truncate)
         assert payload is not None, repr(payload)

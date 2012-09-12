@@ -684,11 +684,11 @@ class ConcreteInterpreter(Interpreter):
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
-        value = self.resolve_single_context_setting_source(single_context_setting.source)
+        value = self.resolve_single_context_setting_source(single_context_setting.request)
         #self._debug(value, 'value')
         args = (
             single_context_setting.attribute,
-            single_context_setting.source,
+            single_context_setting.request,
             value,
             single_context_setting.selector,
             )

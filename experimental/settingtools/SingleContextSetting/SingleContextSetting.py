@@ -11,7 +11,7 @@ class SingleContextSetting(Setting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `source` for single-context `selector`::
+    Set `attribute` to `request` for single-context `selector`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -61,10 +61,10 @@ class SingleContextSetting(Setting):
     ### INITIALIZER ###
 
     def __init__(self, 
-        attribute, source, selector, context_name=None, 
+        attribute, request, selector, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=True, persist=True, truncate=None):
-        Setting.__init__(self, attribute, source, selector, 
+        Setting.__init__(self, attribute, request, selector, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))

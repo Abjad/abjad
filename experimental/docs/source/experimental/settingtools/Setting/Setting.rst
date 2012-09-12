@@ -21,13 +21,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.persist
 
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.request
+
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.reverse
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.rotation
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.selector
-
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.source
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.storage_format
 

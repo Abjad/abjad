@@ -13,17 +13,17 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, source, selector, 
+    def __init__(self, attribute, request, selector, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
-        assert isinstance(source, requesttools.Request), repr(source)
+        assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(selector, (selectortools.Selector, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
         self._attribute = attribute
-        self._source = source
+        self._request = request
         self._selector = selector
         self._index = index
         self._count = count
@@ -100,6 +100,14 @@ class Setting(AbjadObject):
         return self._persist
 
     @property
+    def request(self):
+        '''Setting request.
+
+        Return request object.
+        '''
+        return self._request
+
+    @property
     def reverse(self):
         '''Setting reverse flag.
 
@@ -122,14 +130,6 @@ class Setting(AbjadObject):
         Return selector or none.
         '''
         return self._selector
-
-    @property
-    def source(self):
-        '''Setting source.
-
-        Many different return types are possible.
-        '''
-        return self._source
 
     @property
     def truncate(self):
