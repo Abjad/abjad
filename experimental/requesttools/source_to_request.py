@@ -47,13 +47,13 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
         if callback is not None:
             request._callback = callback
     elif isinstance(source, statalservertools.StatalServer):
-        if count is not None or index is not None or reverse is not None or rotation is not None:
-            request = requesttools.StatalServerRequest(
-                source, count=count, index=index, reverse=reverse, rotation=rotation)
+        request = requesttool.StatalServerRequest(source)
+        return source_to_request(
+            request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
     elif isinstance(source, handlertools.Handler):
-        if index is not None:
-            assert count is None
-            request = requesttools.HandlerRequest(source, index=index)
+        request = requesttool.HandlerRequest(source)
+        return source_to_request(
+            request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
     elif any([x is not None for x in (index, count, reverse, rotation, callback)]):
         raise ValueError(
             "'index', 'count', 'reverse', 'rotation' or 'callback' set on stateless source: {!r}.".format(
