@@ -69,7 +69,6 @@ class DivisionList(AbjadObject):
     def is_closed(self):
         return self.is_left_closed and self.is_right_closed
 
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
