@@ -2,7 +2,7 @@ import copy
 from experimental import helpertools
 
 
-# NEXT TODO: rmeove transform keywords
+# NEXT TODO: remove transform keywords
 def expr_to_request(source, index=None, count=None, reverse=None, rotation=None, callback=None):
     r'''.. versionadded:: 1.0
 
@@ -63,13 +63,6 @@ def expr_to_request(source, index=None, count=None, reverse=None, rotation=None,
         request = requesttool.HandlerRequest(source)
         return expr_to_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-#    elif isinstance(source, (list, tuple)):
-#        request = requesttools.Request(
-#            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-#        source = requesttools.apply_request_transforms(request, source)
-#        return source
-#    else:
-#        return source
     else:
         request = requesttools.AbsoluteRequest(source)
         return expr_to_request(

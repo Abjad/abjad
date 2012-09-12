@@ -220,6 +220,7 @@ Unstable packages (load manually)
 
    experimental/requesttools/apply_request_transforms
    experimental/requesttools/expr_to_request
+   experimental/requesttools/set_transforms_on_request
 
 :py:mod:`segmenttools <experimental.segmenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
