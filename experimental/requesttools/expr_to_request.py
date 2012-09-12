@@ -3,7 +3,7 @@ from experimental import helpertools
 
 
 # NEXT TODO: rmeove transform keywords
-def source_to_request(source, index=None, count=None, reverse=None, rotation=None, callback=None):
+def expr_to_request(source, index=None, count=None, reverse=None, rotation=None, callback=None):
     r'''.. versionadded:: 1.0
 
     Change request `source` to request object.
@@ -57,11 +57,11 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
         return request
     elif isinstance(source, statalservertools.StatalServer):
         request = requesttool.StatalServerRequest(source)
-        return source_to_request(
+        return expr_to_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
     elif isinstance(source, handlertools.Handler):
         request = requesttool.HandlerRequest(source)
-        return source_to_request(
+        return expr_to_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 #    elif isinstance(source, (list, tuple)):
 #        request = requesttools.Request(
@@ -72,5 +72,5 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
 #        return source
     else:
         request = requesttools.AbsoluteRequest(source)
-        return source_to_request(
+        return expr_to_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

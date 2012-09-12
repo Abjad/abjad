@@ -68,7 +68,7 @@ class SegmentSpecification(Specification):
         #            is to create and store a multiple-context setting.
         #            So the transform keywords specified here must not apply to the incoming source.
         #            Rather, the transform keywords specified here must apply to the setting created here.
-        source = requesttools.source_to_request(source, 
+        source = requesttools.expr_to_request(source, 
             index=index, count=count, reverse=reverse, callback=callback)
         context_names = self._context_token_to_context_names(contexts)
         selector = selector or self.select_segment()

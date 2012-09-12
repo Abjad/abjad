@@ -219,7 +219,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/requesttools/apply_request_transforms
-   experimental/requesttools/source_to_request
+   experimental/requesttools/expr_to_request
 
 :py:mod:`segmenttools <experimental.segmenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
