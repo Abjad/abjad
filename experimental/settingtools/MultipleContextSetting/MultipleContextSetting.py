@@ -73,6 +73,11 @@ class MultipleContextSetting(Setting):
                 self.source, 
                 selector,
                 context_name=context_name,
+                index=self.index,
+                count=self.count,
+                reverse=self.reverse,
+                rotation=self.rotation,
+                callback=self.callback,
                 persist=self.persist, 
                 truncate=self.truncate)
             single_context_settings.append(single_context_setting)

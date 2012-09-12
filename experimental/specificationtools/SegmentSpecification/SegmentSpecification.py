@@ -69,6 +69,11 @@ class SegmentSpecification(Specification):
             source, 
             selector,
             context_names=context_names, 
+            index=index,
+            count=count,
+            reverse=reverse,
+            rotation=rotation,
+            callback=callback,
             persist=persist, 
             truncate=truncate
             )
