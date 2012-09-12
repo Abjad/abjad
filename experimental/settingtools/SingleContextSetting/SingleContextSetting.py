@@ -58,12 +58,13 @@ class SingleContextSetting(Setting):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, selector, context_name=None, persist=True, truncate=False, fresh=True):
+    def __init__(self, 
+        attribute, source, selector, context_name=None, persist=True, truncate=False, fresh=True):
         Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         assert isinstance(fresh, bool)
-        self._fresh = fresh
         self._context_name = context_name
+        self._fresh = fresh
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
