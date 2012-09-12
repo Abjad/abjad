@@ -13,13 +13,33 @@ Read-only Properties
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
+.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.callback
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.context_names
+
+.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.count
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.fresh
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
+.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.index
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.persist
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.reverse
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.rotation
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 

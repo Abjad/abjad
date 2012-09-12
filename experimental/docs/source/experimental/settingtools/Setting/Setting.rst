@@ -11,9 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.attribute
 
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.callback
+
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.count
+
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.fresh
 
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.index
+
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.persist
+
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.reverse
+
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.rotation
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.selector
 

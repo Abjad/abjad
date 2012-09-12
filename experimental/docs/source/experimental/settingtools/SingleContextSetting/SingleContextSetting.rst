@@ -13,13 +13,33 @@ Read-only Properties
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.callback
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.context_name
+
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.count
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.fresh
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.index
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persist
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.reverse
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.rotation
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 

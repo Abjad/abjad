@@ -30,7 +30,8 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     ::
 
-        >>> resolved_single_context_setting = score_specification.resolved_single_context_settings['Voice 1']['divisions'][0]
+        >>> resolved_single_context_setting = \
+        ...     score_specification.resolved_single_context_settings['Voice 1']['divisions'][0]
 
     ::
 
@@ -60,19 +61,20 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, source, payload, selector, 
-        context_name=None, persist=True, truncate=False, fresh=True):
+    def __init__(self, attribute, source, payload, selector, context_name=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True, truncate=False, fresh=True):
         SingleContextSetting.__init__(self, 
-            attribute, source, selector, context_name=context_name, persist=persist, truncate=truncate)
+            attribute, source, selector, context_name=context_name, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist, truncate=truncate)
         assert payload is not None, repr(payload)
-        assert isinstance(fresh, bool), repr(fresh)
         self._payload = payload
-        self._fresh = fresh
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def payload(self):
-        '''Value of resolved source.
+        '''Setting payload.
         '''
         return self._payload
