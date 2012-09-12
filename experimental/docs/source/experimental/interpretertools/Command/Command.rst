@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.duration
 
-.. autoattribute:: experimental.interpretertools.Command.Command.Command.resolved_value
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.payload
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.segment_start_offset
 

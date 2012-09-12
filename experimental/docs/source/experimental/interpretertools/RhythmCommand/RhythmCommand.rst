@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.fresh
 
-.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.resolved_value
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.payload
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

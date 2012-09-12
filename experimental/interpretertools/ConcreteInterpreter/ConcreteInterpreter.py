@@ -124,7 +124,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_divisions, rhythm_region_lengths, cyclic=False, overhang=False)
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
-        input_pairs = [(command.resolved_value, command.duration) for command in rhythm_commands]
+        input_pairs = [(command.payload, command.duration) for command in rhythm_commands]
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             rhythm_region_durations, input_pairs)
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
@@ -196,7 +196,7 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def division_command_request_to_command_resolved_value(
+    def division_command_request_to_command_payload(
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
@@ -216,7 +216,7 @@ class ConcreteInterpreter(Interpreter):
         assert len(candidate_commands) == 1
         source_command = candidate_commands[0]
         #self._debug(source_command, 'source_command')
-        return source_command.resolved_value
+        return source_command.payload
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
@@ -326,7 +326,7 @@ class ConcreteInterpreter(Interpreter):
             return []
         result = [copy.deepcopy(rhythm_commands[0])]
         for rhythm_command in rhythm_commands[1:]:
-            if rhythm_command.resolved_value == result[-1].resolved_value and not rhythm_command.fresh:
+            if rhythm_command.payload == result[-1].payload and not rhythm_command.fresh:
                 result[-1]._duration += rhythm_command.duration
             else:
                 result.append(copy.deepcopy(rhythm_command))
@@ -477,7 +477,7 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         rhythm_command = interpretertools.RhythmCommand(
-            resolved_single_context_setting.resolved_value, 
+            resolved_single_context_setting.payload, 
             segment_name,
             resolved_single_context_setting.context_name,
             start_offset,
@@ -536,7 +536,7 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         uninterpreted_division_command = interpretertools.UninterpretedDivisionCommand(
-            resolved_single_context_setting.resolved_value,
+            resolved_single_context_setting.payload,
             segment_name,
             resolved_single_context_setting.context_name,
             start_offset,
@@ -568,35 +568,35 @@ class ConcreteInterpreter(Interpreter):
     def region_division_command_to_division_region_division_list(
         self, region_division_command, region_division_commands, voice_name):
         #self._debug(region_division_command, 'rdc')
-        resolved_value = region_division_command.resolved_value
-        if isinstance(resolved_value, list):
-            divisions = [mathtools.NonreducedFraction(x) for x in resolved_value]
+        payload = region_division_command.payload
+        if isinstance(payload, list):
+            divisions = [mathtools.NonreducedFraction(x) for x in payload]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
-        elif isinstance(resolved_value, requesttools.MaterialRequest):
-            assert resolved_value.attribute == 'divisions'
-            division_material_request = resolved_value
+        elif isinstance(payload, requesttools.MaterialRequest):
+            assert payload.attribute == 'divisions'
+            division_material_request = payload
             divisions = self.division_material_request_to_divisions(division_material_request)
-            region_division_command._resolved_value = divisions
+            region_division_command._payload = divisions
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
-        elif isinstance(resolved_value, requesttools.CommandRequest):
-            assert resolved_value.attribute == 'divisions'
-            division_command_request = resolved_value
-            command_resolved_value = self.division_command_request_to_command_resolved_value(
+        elif isinstance(payload, requesttools.CommandRequest):
+            assert payload.attribute == 'divisions'
+            division_command_request = payload
+            command_payload = self.division_command_request_to_command_payload(
                 division_command_request, region_division_commands, voice_name)
-            command_resolved_value = requesttools.apply_request_transforms(
-                division_command_request, command_resolved_value)
-            #self._debug(command_resolved_value, 'crv')
-            region_division_command._resolved_value = command_resolved_value
+            command_payload = requesttools.apply_request_transforms(
+                division_command_request, command_payload)
+            #self._debug(command_payload, 'crv')
+            region_division_command._payload = command_payload
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
         else:
-            raise NotImplementedError('implement for {!r}.'.format(resolved_value))
+            raise NotImplementedError('implement for {!r}.'.format(payload))
         division_region_division_list = self.divisions_to_division_region_division_list(
             divisions, region_division_command)
         return division_region_division_list
@@ -615,14 +615,14 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         resolved_single_context_setting = self.material_request_to_resolved_single_context_setting(
             material_request)
-        resolved_value = resolved_single_context_setting.resolved_value
-        #self._debug(resolved_value, 'rv')
-        assert resolved_value is not None, repr(resolved_value)
+        payload = resolved_single_context_setting.payload
+        #self._debug(payload, 'rv')
+        assert payload is not None, repr(payload)
         if material_request.callback is not None:
-            resolved_value = material_request.callback(resolved_value)
-        resolved_value = requesttools.apply_request_transforms(material_request, resolved_value)
-        #self._debug(resolved_value, 'rv')
-        return resolved_value
+            payload = material_request.callback(payload)
+        payload = requesttools.apply_request_transforms(material_request, payload)
+        #self._debug(payload, 'rv')
+        return payload
 
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
@@ -910,7 +910,7 @@ class ConcreteInterpreter(Interpreter):
         region_division_commands = []
         if not uninterpreted_division_commands:
             return []
-        if any([x.resolved_value is None for x in uninterpreted_division_commands]):
+        if any([x.payload is None for x in uninterpreted_division_commands]):
             return []
         assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
         for uninterpreted_division_command in uninterpreted_division_commands:
@@ -921,8 +921,8 @@ class ConcreteInterpreter(Interpreter):
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
-                if uninterpreted_division_command.resolved_value != \
-                    last_region_division_command.resolved_value:
+                if uninterpreted_division_command.payload != \
+                    last_region_division_command.payload:
                     region_division_command = interpretertools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
@@ -936,7 +936,7 @@ class ConcreteInterpreter(Interpreter):
                     segment_stop_offset = last_region_division_command.segment_stop_offset + \
                         uninterpreted_division_command.duration
                     region_division_command = interpretertools.RegionDivisionCommand(
-                        last_region_division_command.resolved_value,
+                        last_region_division_command.payload,
                         last_region_division_command.start_segment_identifier,
                         uninterpreted_division_command.context_name,
                         segment_start_offset,

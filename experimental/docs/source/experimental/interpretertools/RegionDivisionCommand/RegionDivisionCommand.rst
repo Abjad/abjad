@@ -21,7 +21,7 @@ Read-only Properties
 
     Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
 
-.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.resolved_value
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.payload
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

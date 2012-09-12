@@ -19,7 +19,7 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     @abc.abstractmethod
-    def __init__(self, resolved_value, start_segment_identifier, context_name, 
+    def __init__(self, payload, start_segment_identifier, context_name, 
         segment_start_offset, segment_stop_offset, duration):
         duration = durationtools.Duration(duration)
         assert isinstance(start_segment_identifier, str)
@@ -27,7 +27,7 @@ class Command(AbjadObject):
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
         assert segment_stop_offset - segment_start_offset == duration
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        self._resolved_value = resolved_value
+        self._payload = payload
         self._duration = duration
         self._start_segment_identifier = start_segment_identifier
         self._segment_start_offset = segment_start_offset
@@ -68,12 +68,12 @@ class Command(AbjadObject):
         return self._duration
 
     @property
-    def resolved_value(self):
+    def payload(self):
         '''Command resolved value.
         
         Return object.
         ''' 
-        return self._resolved_value
+        return self._payload
 
     @property
     def segment_start_offset(self):

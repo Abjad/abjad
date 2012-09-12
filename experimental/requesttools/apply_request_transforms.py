@@ -1,34 +1,34 @@
 from abjad.tools import sequencetools
 
 
-def apply_request_transforms(request, resolved_value):
+def apply_request_transforms(request, payload):
     r'''.. versionadded:: 1.0 
     
-    Apply nonnone ``request.index`` to `resolved_value`.
+    Apply nonnone ``request.index`` to `payload`.
 
-    Apply nonnone ``request.count`` to `resolved_value`.
+    Apply nonnone ``request.count`` to `payload`.
 
-    Apply nonnone ``request.reverse`` to `resolved_value`.
+    Apply nonnone ``request.reverse`` to `payload`.
 
-    Return `resolved_value`.
+    Return `payload`.
     '''
 
     if request.index is not None or request.count is not None:
-        original_resolved_value_type = type(resolved_value)
+        original_payload_type = type(payload)
         index = request.index or 0
         if index < 0:
-            index = len(resolved_value) - -index
+            index = len(payload) - -index
         if request.count is None:
-            count = len(resolved_value) - index    
+            count = len(payload) - index    
         else:
             count = request.count
-        resolved_value = sequencetools.CyclicTuple(resolved_value)
-        resolved_value = resolved_value[index:index+count]
-        resolved_value = original_resolved_value_type(resolved_value)
+        payload = sequencetools.CyclicTuple(payload)
+        payload = payload[index:index+count]
+        payload = original_payload_type(payload)
 
     if getattr(request, 'reverse', False):
-        original_resolved_value_type = type(resolved_value)
-        resolved_value = list(reversed(resolved_value))
-        resolved_value = original_resolved_value_type(resolved_value)
+        original_payload_type = type(payload)
+        payload = list(reversed(payload))
+        payload = original_payload_type(payload)
 
-    return resolved_value 
+    return payload 

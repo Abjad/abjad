@@ -17,7 +17,7 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.resolved_value
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.payload
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

@@ -21,11 +21,11 @@ Read-only Properties
 
     Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
+.. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.payload
+
 .. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.persist
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
-
-.. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.resolved_value
 
 .. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.selector
 

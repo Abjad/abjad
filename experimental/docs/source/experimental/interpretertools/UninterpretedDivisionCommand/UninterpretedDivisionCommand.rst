@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.fresh
 
-.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.resolved_value
+.. autoattribute:: experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand.payload
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
