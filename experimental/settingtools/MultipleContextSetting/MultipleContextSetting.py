@@ -42,7 +42,6 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    #def __init__(self, attribute, source, selector, context_names=None, persist=True, truncate=False):
     def __init__(self, attribute, source, selector, context_names=None, persist=True, truncate=None):
         Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)

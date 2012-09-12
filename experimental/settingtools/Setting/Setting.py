@@ -12,14 +12,16 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, source, selector, persist=True, truncate=None):
+    def __init__(self, attribute, source, selector, fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(selector, (selectortools.Selector, type(None)))
+        assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
         self._attribute = attribute
         self._source = source
         self._selector = selector
+        self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
 
@@ -41,6 +43,15 @@ class Setting(AbjadObject):
         Return string.
         '''
         return self._attribute
+
+    @property
+    def fresh(self):
+        '''True when setting results from explicit composer command.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return self._fresh
 
     @property
     def persist(self):

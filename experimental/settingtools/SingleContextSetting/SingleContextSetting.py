@@ -59,12 +59,10 @@ class SingleContextSetting(Setting):
     ### INITIALIZER ###
 
     def __init__(self, 
-        attribute, source, selector, context_name=None, persist=True, truncate=None, fresh=True):
-        Setting.__init__(self, attribute, source, selector, persist=persist, truncate=truncate)
+        attribute, source, selector, context_name=None, fresh=True, persist=True, truncate=None):
+        Setting.__init__(self, attribute, source, selector, fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
-        assert isinstance(fresh, bool)
         self._context_name = context_name
-        self._fresh = fresh
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -75,19 +73,6 @@ class SingleContextSetting(Setting):
         Return string or none.
         '''
         return self._context_name
-
-    @property
-    def fresh(self):
-        '''True when single-context setting has been newly specified::
-
-            >>> single_context_setting.fresh
-            True
-
-        Need to clarify relationship between `persist` and `fresh` keywords.
-
-        Return boolean.
-        '''
-        return self._fresh
 
     @property
     def storage_format(self):
