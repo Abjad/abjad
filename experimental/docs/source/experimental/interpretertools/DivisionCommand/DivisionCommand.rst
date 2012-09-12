@@ -23,7 +23,7 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.payload
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.request
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

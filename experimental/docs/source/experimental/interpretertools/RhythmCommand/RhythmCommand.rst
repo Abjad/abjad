@@ -23,7 +23,7 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
-.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.payload
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.request
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

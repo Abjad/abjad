@@ -5,11 +5,11 @@ from experimental import requesttools
 from experimental import timespaninequalitytools 
 
 
-# TODO: change 'payload' to 'request'
 class Command(AbjadObject):
     '''.. versionadded:: 1.0
 
-    Abstract command indicating durated period of time over which a payload will apply.
+    Abstract command indicating durated period of time 
+    to which an evaluated request will apply.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -18,9 +18,9 @@ class Command(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, start_segment_identifier, context_name, 
+    def __init__(self, request, start_segment_identifier, context_name, 
         segment_start_offset, segment_stop_offset, duration, fresh):
-        assert isinstance(payload, requesttools.Request), repr(payload)
+        assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(start_segment_identifier, str)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         segment_start_offset = durationtools.Offset(segment_start_offset)
@@ -28,7 +28,7 @@ class Command(AbjadObject):
         duration = durationtools.Duration(duration)
         assert segment_stop_offset - segment_start_offset == duration
         assert isinstance(fresh, bool), repr(fresh)
-        self._payload = payload
+        self._request = request
         self._start_segment_identifier = start_segment_identifier
         self._context_name = context_name
         self._segment_start_offset = segment_start_offset
@@ -87,12 +87,12 @@ class Command(AbjadObject):
         return self._fresh
 
     @property
-    def payload(self):
+    def request(self):
         '''Command resolved value.
         
         Return object.
         ''' 
-        return self._payload
+        return self._request
 
     @property
     def segment_start_offset(self):

@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.fresh
 
-.. autoattribute:: experimental.interpretertools.Command.Command.Command.payload
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.request
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.segment_start_offset
 
