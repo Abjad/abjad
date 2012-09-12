@@ -39,7 +39,9 @@ class SingleContextSetting(Setting):
         >>> z(single_context_setting)
         settingtools.SingleContextSetting(
             'divisions',
-            [(3, 16)],
+            requesttools.AbsoluteRequest(
+                [(3, 16)]
+                ),
             selectortools.SingleSegmentSelector(
                 identifier='red'
                 ),
@@ -85,7 +87,9 @@ class SingleContextSetting(Setting):
             >>> z(single_context_setting)
             settingtools.SingleContextSetting(
                 'divisions',
-                [(3, 16)],
+                requesttools.AbsoluteRequest(
+                    [(3, 16)]
+                    ),
                 selectortools.SingleSegmentSelector(
                     identifier='red'
                     ),

@@ -18,6 +18,8 @@ def apply_request_transforms(request, payload):
     Return `payload`.
     '''
 
+    assert isinstance(payload, (list, tuple)), repr(payload)
+
     if request.index is not None or request.count is not None:
         original_payload_type = type(payload)
         index = request.index or 0

@@ -41,4 +41,6 @@ class AbsoluteRequest(Request):
 
     @property
     def payload(self):
+        '''Payload of absolute request.
+        '''
         return self._payload

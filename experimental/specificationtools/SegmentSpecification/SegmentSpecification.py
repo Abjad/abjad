@@ -60,6 +60,14 @@ class SegmentSpecification(Specification):
         contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True, truncate=None):
+        # NEXT TODO: remove transform keywords here and read from settings only
+        #            That is, transform keywords are being doubly stored right now.
+        #            It's possible that 'source' may already have transform settings.
+        #            In which case, that's great.
+        #            But the purpose of this setting-creation and -storage method 
+        #            is to create and store a multiple-context setting.
+        #            So the transform keywords specified here must not apply to the incoming source.
+        #            Rather, the transform keywords specified here must apply to the setting created here.
         source = requesttools.source_to_request(source, 
             index=index, count=count, reverse=reverse, callback=callback)
         context_names = self._context_token_to_context_names(contexts)
@@ -302,9 +310,15 @@ class SegmentSpecification(Specification):
                 attribute='time_signatures')
         except MissingContextSettingError:
             return []
-        assert isinstance(resolved_single_context_setting.payload, list), repr(
-            resolved_single_context_setting.payload)
-        return resolved_single_context_setting.payload
+        #assert isinstance(resolved_single_context_setting.payload, list), repr(
+        #    resolved_single_context_setting.payload)
+        #return resolved_single_context_setting.payload
+        if isinstance(resolved_single_context_setting.payload, list):
+            return resolved_single_context_setting.payload
+        elif isinstance(resolved_single_context_setting.payload, requesttools.AbsoluteRequest):
+            return resolved_single_context_setting.payload.payload
+        else:
+            raise TypeError
 
     @property
     def timespan(self):
@@ -968,7 +982,9 @@ class SegmentSpecification(Specification):
             >>> z(setting)
             settingtools.MultipleContextSetting(
                 'divisions',
-                [(3, 16)],
+                requesttools.AbsoluteRequest(
+                    [(3, 16)]
+                    ),
                 selectortools.SingleSegmentSelector(
                     identifier='red'
                     ),

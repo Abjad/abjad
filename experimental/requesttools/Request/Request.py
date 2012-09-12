@@ -2,6 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
 
 
+# TODO: make abstract (again)
 class Request(AbjadObject):
     r'''.. versionadded:: 1.0
 
@@ -27,6 +28,20 @@ class Request(AbjadObject):
         self._reverse = reverse
         self._rotation = rotation
         self._callback = callback
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when mandatory and keyword arguments compare equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if not self._mandatory_argument_values == expr._mandatory_argument_values:
+            return False
+        return self._keyword_argument_values == expr._keyword_argument_values
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

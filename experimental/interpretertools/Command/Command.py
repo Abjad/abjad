@@ -4,6 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import timespaninequalitytools 
 
 
+# TODO: change 'payload' to 'request'
 class Command(AbjadObject):
     '''.. versionadded:: 1.0
 

@@ -25,7 +25,9 @@ class MultipleContextSetting(Setting):
         >>> z(multiple_context_setting)
         settingtools.MultipleContextSetting(
             'time_signatures',
-            [(4, 8), (3, 8)],
+            requesttools.AbsoluteRequest(
+                [(4, 8), (3, 8)]
+                ),
             selectortools.SingleSegmentSelector(
                 identifier='red'
                 ),

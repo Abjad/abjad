@@ -48,7 +48,7 @@ Special Methods
 
 .. automethod:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.__ge__
 

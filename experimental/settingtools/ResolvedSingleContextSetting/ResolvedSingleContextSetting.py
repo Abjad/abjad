@@ -38,8 +38,12 @@ class ResolvedSingleContextSetting(SingleContextSetting):
         >>> z(resolved_single_context_setting)
         settingtools.ResolvedSingleContextSetting(
             'divisions',
-            [(3, 16)],
-            [(3, 16)],
+            requesttools.AbsoluteRequest(
+                [(3, 16)]
+                ),
+            requesttools.AbsoluteRequest(
+                [(3, 16)]
+                ),
             selectortools.SingleSegmentSelector(
                 identifier='red'
                 ),

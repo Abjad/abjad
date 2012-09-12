@@ -2,6 +2,7 @@ import copy
 from experimental import helpertools
 
 
+# NEXT TODO: rmeove transform keywords
 def source_to_request(source, index=None, count=None, reverse=None, rotation=None, callback=None):
     r'''.. versionadded:: 1.0
 
@@ -62,10 +63,14 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
         request = requesttool.HandlerRequest(source)
         return source_to_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-    elif isinstance(source, (list, tuple)):
-        request = requesttools.Request(
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-        source = requesttools.apply_request_transforms(request, source)
-        return source
+#    elif isinstance(source, (list, tuple)):
+#        request = requesttools.Request(
+#            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+#        source = requesttools.apply_request_transforms(request, source)
+#        return source
+#    else:
+#        return source
     else:
-        return source
+        request = requesttools.AbsoluteRequest(source)
+        return source_to_request(
+            request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
