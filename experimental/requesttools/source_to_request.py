@@ -2,7 +2,7 @@ import copy
 from experimental import helpertools
 
 
-def source_to_request(source, index=None, count=None, reverse=None, callback=None):
+def source_to_request(source, index=None, count=None, reverse=None, rotation=None, callback=None):
     r'''.. versionadded:: 1.0
 
     Change request `source` to request object.
@@ -20,16 +20,19 @@ def source_to_request(source, index=None, count=None, reverse=None, callback=Non
 
     If `source` is a constant then return `source` unchanged.
 
-    If `source` is already a request then set `callback`, `count`, `index`
-    or `reverse` against `source` (if any are not none) and return `source`.
+    If `source` is already a request then set `index`, `count`, 
+    `reverse`, `rotation` or `callback` against `source` 
+    (if any are not none) and return `source`.
     '''
     from experimental import handlertools
     from experimental import requesttools
     from experimental import statalservertools
 
-    assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
-    assert isinstance(count, (int, type(None))), repr(count)
     assert isinstance(index, (int, type(None))), repr(index)
+    assert isinstance(count, (int, type(None))), repr(count)
+    assert isinstance(reverse, (bool, type(None))), repr(count)
+    assert isinstance(rotation, (int, type(None))), repr(count)
+    assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
 
     if isinstance(source, requesttools.Request):
         request = copy.copy(source)
@@ -41,17 +44,20 @@ def source_to_request(source, index=None, count=None, reverse=None, callback=Non
             request.index = index
         if reverse is not None:
             request.reverse = reverse
+        if rotation is not None:
+            request.rotation = rotation
     elif isinstance(source, statalservertools.StatalServer):
-        if count is not None or index is not None or reverse is not None:
+        if count is not None or index is not None or reverse is not None or rotation is not None:
             request = requesttools.StatalServerRequest(
-                source, count=count, index=index, reverse=reverse)
+                source, count=count, index=index, reverse=reverse, rotation=rotation)
     elif isinstance(source, handlertools.Handler):
         if index is not None:
             assert count is None
             request = requesttools.HandlerRequest(source, index=index)
-    elif any([x is not None for x in (callback, count, index, reverse)]):
+    elif any([x is not None for x in (index, count, reverse, rotation, callback)]):
         raise ValueError(
-            "'callback', 'count', 'index' or 'reverse' set on stateless source: {!r}.".format(source))
+            "'index', 'count', 'reverse', 'rotation' or 'callback' set on stateless source: {!r}.".format(
+            source))
     else:
         request = source
 
