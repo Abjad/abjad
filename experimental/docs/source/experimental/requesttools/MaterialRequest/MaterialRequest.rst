@@ -11,7 +11,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.attribute
 
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.callback
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.context_name
+
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.count
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.index
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.reverse
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.rotation
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.selector
 

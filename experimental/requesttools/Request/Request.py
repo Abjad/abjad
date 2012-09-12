@@ -20,10 +20,35 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, callback=None, count=None, index=None, reverse=None):
-        assert isinstance(count, (int, type(None))), repr(count)
+    def __init__(self, index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(index, (int, type(None))), repr(index)
-        self.callback = callback
-        self.count = count
-        self.index = index
-        self.reverse = reverse
+        assert isinstance(count, (int, type(None))), repr(count)
+        assert isinstance(reverse, (bool, type(None))), repr(reverse)
+        assert isinstance(rotation, (int, type(None))), repr(rotation)
+        self._index = index
+        self._count = count
+        self._callback = callback
+        self._reverse = reverse
+        self._rotation = rotation
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def callback(self):
+        return self._callback
+
+    @property
+    def count(self):
+        return self._count
+
+    @property
+    def index(self):
+        return self._index
+
+    @property
+    def reverse(self):
+        return self._reverse
+
+    @property
+    def rotation(self):
+        return self._rotation

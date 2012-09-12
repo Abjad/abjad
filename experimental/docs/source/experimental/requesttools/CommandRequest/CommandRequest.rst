@@ -11,7 +11,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.attribute
 
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.callback
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.context_name
+
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.count
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.index
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.reverse
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.rotation
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.start_segment_identifier
 

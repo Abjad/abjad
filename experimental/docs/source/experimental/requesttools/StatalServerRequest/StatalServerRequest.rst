@@ -9,6 +9,28 @@ requesttools.StatalServerRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.callback
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.count
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.index
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.reverse
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.rotation
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.statal_server
+
 .. autoattribute:: experimental.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

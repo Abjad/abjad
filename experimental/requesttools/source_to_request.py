@@ -36,16 +36,16 @@ def source_to_request(source, index=None, count=None, reverse=None, rotation=Non
 
     if isinstance(source, requesttools.Request):
         request = copy.copy(source)
-        if callback is not None:
-            request.callback = callback
-        if count is not None:
-            request.count = count
         if index is not None:
-            request.index = index
+            request._index = index
+        if count is not None:
+            request._count = count
         if reverse is not None:
-            request.reverse = reverse
+            request._reverse = reverse
         if rotation is not None:
-            request.rotation = rotation
+            request._rotation = rotation
+        if callback is not None:
+            request._callback = callback
     elif isinstance(source, statalservertools.StatalServer):
         if count is not None or index is not None or reverse is not None or rotation is not None:
             request = requesttools.StatalServerRequest(

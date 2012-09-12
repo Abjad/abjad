@@ -9,6 +9,26 @@ requesttools.HandlerRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.callback
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.count
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.index
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.reverse
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
+.. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.rotation
+
+    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
+
 .. autoattribute:: experimental.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

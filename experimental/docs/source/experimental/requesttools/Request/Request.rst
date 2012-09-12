@@ -9,6 +9,16 @@ requesttools.Request
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.requesttools.Request.Request.Request.callback
+
+.. autoattribute:: experimental.requesttools.Request.Request.Request.count
+
+.. autoattribute:: experimental.requesttools.Request.Request.Request.index
+
+.. autoattribute:: experimental.requesttools.Request.Request.Request.reverse
+
+.. autoattribute:: experimental.requesttools.Request.Request.Request.rotation
+
 .. autoattribute:: experimental.requesttools.Request.Request.Request.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
