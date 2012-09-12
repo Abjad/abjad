@@ -450,7 +450,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_default_uninterpreted_division_command_for_segment(self, segment_specification):
         from experimental import interpretertools
-        return interpretertools.RegionDivisionCommand(
+        return interpretertools.DivisionCommand(
             segment_specification.time_signatures,
             segment_specification.segment_name,
             self.score_specification.score_name,
@@ -520,7 +520,7 @@ class ConcreteInterpreter(Interpreter):
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
         fresh, truncate = True, True
         duration = stop_offset - start_offset
-        region_division_command = interpretertools.RegionDivisionCommand(
+        region_division_command = interpretertools.DivisionCommand(
             divisions,
             segment_identifier,
             voice.name, 
@@ -536,7 +536,7 @@ class ConcreteInterpreter(Interpreter):
     def make_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
-        uninterpreted_division_command = interpretertools.RegionDivisionCommand(
+        uninterpreted_division_command = interpretertools.DivisionCommand(
             resolved_single_context_setting.payload,
             segment_name,
             resolved_single_context_setting.context_name,
@@ -920,18 +920,18 @@ class ConcreteInterpreter(Interpreter):
         for uninterpreted_division_command in uninterpreted_division_commands:
             #self._debug(uninterpreted_division_command, 'udc')
             if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
-                region_division_command = interpretertools.RegionDivisionCommand(
+                region_division_command = interpretertools.DivisionCommand(
                     *uninterpreted_division_command.vector)
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
                 if uninterpreted_division_command.payload != \
                     last_region_division_command.payload:
-                    region_division_command = interpretertools.RegionDivisionCommand(
+                    region_division_command = interpretertools.DivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
                 elif last_region_division_command.truncate:
-                    region_division_command = interpretertools.RegionDivisionCommand(
+                    region_division_command = interpretertools.DivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
                 else:
@@ -939,7 +939,7 @@ class ConcreteInterpreter(Interpreter):
                     segment_start_offset = last_region_division_command.segment_start_offset
                     segment_stop_offset = last_region_division_command.segment_stop_offset + \
                         uninterpreted_division_command.duration
-                    region_division_command = interpretertools.RegionDivisionCommand(
+                    region_division_command = interpretertools.DivisionCommand(
                         last_region_division_command.payload,
                         last_region_division_command.start_segment_identifier,
                         uninterpreted_division_command.context_name,
