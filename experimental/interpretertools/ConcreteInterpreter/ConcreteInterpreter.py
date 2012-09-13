@@ -661,23 +661,20 @@ class ConcreteInterpreter(Interpreter):
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
-#        if isinstance(single_context_setting.request, requesttools.MaterialRequest) and \
-#            single_context_setting.request.attribute == 'time_signatures':
-#            value = self.time_signature_material_request_to_time_signatures(single_context_setting.request)
-#            processed_request = requesttools.AbsoluteRequest(value)
-#        else:
-#            processed_request = single_context_setting.request
-#        assert isinstance(processed_request, requesttools.Request), repr(processed_request)
         resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
             single_context_setting.attribute,
             single_context_setting.request,
-            #processed_request,
             single_context_setting.request,
             single_context_setting.selector,
             context_name=single_context_setting.context_name,
+            index=single_context_setting.index,
+            count=single_context_setting.count,
+            reverse=single_context_setting.reverse,
+            rotation=single_context_setting.rotation,
+            callback=single_context_setting.callback,
+            fresh=single_context_setting.fresh,
             persist=single_context_setting.persist,
-            truncate=single_context_setting.truncate,
-            fresh=single_context_setting.fresh
+            truncate=single_context_setting.truncate
             )
         return resolved_single_context_setting
 
