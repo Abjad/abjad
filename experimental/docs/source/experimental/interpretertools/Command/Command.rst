@@ -11,13 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.attribute
 
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.callback
+
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.context_name
+
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.count
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.duration
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.fresh
 
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.index
+
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.request
+
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.reverse
+
+.. autoattribute:: experimental.interpretertools.Command.Command.Command.rotation
 
 .. autoattribute:: experimental.interpretertools.Command.Command.Command.segment_start_offset
 

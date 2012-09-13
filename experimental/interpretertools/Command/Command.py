@@ -1,6 +1,7 @@
 import abc
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import helpertools 
 from experimental import requesttools 
 from experimental import timespaninequalitytools 
 
@@ -19,7 +20,9 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     def __init__(self, request, start_segment_identifier, context_name, 
-        segment_start_offset, segment_stop_offset, duration, fresh=None):
+        segment_start_offset, segment_stop_offset, duration, 
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(start_segment_identifier, str)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
@@ -27,6 +30,11 @@ class Command(AbjadObject):
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
         duration = durationtools.Duration(duration)
         assert segment_stop_offset - segment_start_offset == duration
+        assert isinstance(index, (int, type(None))), repr(index)
+        assert isinstance(count, (int, type(None))), repr(count)
+        assert isinstance(reverse, (bool, type(None))), repr(reverse)
+        assert isinstance(rotation, (int, type(None))), repr(rotation)
+        assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request
         self._start_segment_identifier = start_segment_identifier
@@ -34,6 +42,11 @@ class Command(AbjadObject):
         self._segment_start_offset = segment_start_offset
         self._segment_stop_offset = segment_stop_offset
         self._duration = duration
+        self._index = index
+        self._count = count
+        self._reverse = reverse
+        self._rotation = rotation
+        self._callback = callback
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -62,12 +75,28 @@ class Command(AbjadObject):
         pass
 
     @property
+    def callback(self):
+        '''Setting callback.
+
+        Return callback or none
+        '''
+        return self._callback
+
+    @property
     def context_name(self):
         '''Command context name.
     
         Return string.
         '''
         return self._context_name
+
+    @property
+    def count(self):
+        '''Setting count.
+
+        Return integer or none.
+        '''
+        return self._count
 
     @property
     def duration(self):
@@ -87,12 +116,36 @@ class Command(AbjadObject):
         return self._fresh
 
     @property
+    def index(self):
+        '''Setting index.
+
+        Return integer or none.
+        '''
+        return self._index
+
+    @property
     def request(self):
         '''Command request.
         
         Return request object.
         ''' 
         return self._request
+
+    @property
+    def reverse(self):
+        '''Setting reverse flag.
+
+        Return boolean or none.
+        '''
+        return self._reverse
+
+    @property
+    def rotation(self):
+        '''Setting rotation indicator.
+
+        Return integer or none.
+        '''
+        return self._rotation
 
     @property
     def segment_start_offset(self):

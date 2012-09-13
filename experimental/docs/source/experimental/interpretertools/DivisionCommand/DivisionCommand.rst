@@ -11,7 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.attribute
 
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.callback
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.context_name
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.count
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
@@ -23,7 +31,19 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.index
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.request
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.reverse
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.rotation
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 

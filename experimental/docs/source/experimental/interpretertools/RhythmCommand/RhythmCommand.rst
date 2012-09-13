@@ -11,7 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.attribute
 
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.callback
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.context_name
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.count
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
@@ -23,7 +31,19 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.index
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.request
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.reverse
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
+.. autoattribute:: experimental.interpretertools.RhythmCommand.RhythmCommand.RhythmCommand.rotation
 
     Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
