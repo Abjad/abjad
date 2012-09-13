@@ -886,7 +886,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(result, 'result')
         return result
 
-    # NEXT TODO: test repeatedly and see if this method can be eliminated somehow or streamlined
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         assert material_request.attribute == 'time_signatures'
