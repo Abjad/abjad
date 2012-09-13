@@ -88,9 +88,9 @@ class Command(AbjadObject):
 
     @property
     def request(self):
-        '''Command resolved value.
+        '''Command request.
         
-        Return object.
+        Return request object.
         ''' 
         return self._request
 

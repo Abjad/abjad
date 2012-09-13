@@ -39,17 +39,17 @@ class ConcreteInterpreter(Interpreter):
         '''
         Interpreter.__call__(self, score_specification)
         self.store_single_context_time_signature_settings_by_context()
+        self.store_single_context_division_settings_by_context()
+        self.store_single_context_rhythm_settings_by_context()
+        self.store_single_context_pitch_class_settings_by_context()
+        self.store_single_context_registration_settings_by_context()
+        self.store_additional_single_context_settings_by_context()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_durations()
-        self.store_single_context_division_settings_by_context()
         self.add_division_lists_to_voices()
-        self.store_single_context_rhythm_settings_by_context()
         self.add_rhythms_to_voices()
-        self.store_single_context_pitch_class_settings_by_context()
         self.apply_pitch_classes()
-        self.store_single_context_registration_settings_by_context()
         self.apply_registration()
-        self.store_additional_single_context_settings_by_context()
         self.apply_additional_parameters()
         return self.score
 
@@ -172,8 +172,6 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.segment_offset_pairs = segment_offset_pairs
 
     def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
-        r'''Clear persistent resolved single-context settings.
-        '''
         if attribute in self.score_specification.single_context_settings_by_context[context_name]:
             del(self.score_specification.single_context_settings_by_context[context_name][attribute])
 
@@ -718,7 +716,7 @@ class ConcreteInterpreter(Interpreter):
         Get new single-context division settings for segment.
 
         If no new single-context division settings exist, then copy existing
-        resolved single-context division settings from global score context.
+        single-context division settings from global score context.
 
         Then store single-context division settings in global score context.
         '''
@@ -801,7 +799,7 @@ class ConcreteInterpreter(Interpreter):
 
         Check segment for an explicit time signature setting.
 
-        If none, check score resolved settings context dictionary for current time signature setting.
+        If none, check score settings for current time signature setting.
 
         Halt interpretation if no time signature setting is found.
 

@@ -202,7 +202,7 @@ class ScoreSpecification(Specification):
 
     @property
     def single_context_settings_by_context(self):
-        r'''Score specification resolved single-context settings::
+        r'''Score specification single-context settings by context::
 
             >>> for key in score_specification.single_context_settings_by_context:
             ...     key

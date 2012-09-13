@@ -239,7 +239,7 @@ class SegmentSpecification(Specification):
 
     @property
     def single_context_settings_by_context(self):
-        r'''Segment specification resolved single-context settings::
+        r'''Segment specification single-context settings by context::
 
             >>> for key in segment.single_context_settings_by_context:
             ...     key
