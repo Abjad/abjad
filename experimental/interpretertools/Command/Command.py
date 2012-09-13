@@ -76,7 +76,7 @@ class Command(AbjadObject):
 
     @property
     def callback(self):
-        '''Setting callback.
+        '''Command callback.
 
         Return callback or none
         '''
@@ -92,7 +92,7 @@ class Command(AbjadObject):
 
     @property
     def count(self):
-        '''Setting count.
+        '''Command count.
 
         Return integer or none.
         '''
@@ -117,7 +117,7 @@ class Command(AbjadObject):
 
     @property
     def index(self):
-        '''Setting index.
+        '''Command index.
 
         Return integer or none.
         '''
@@ -133,7 +133,7 @@ class Command(AbjadObject):
 
     @property
     def reverse(self):
-        '''Setting reverse flag.
+        '''Command reverse flag.
 
         Return boolean or none.
         '''
@@ -141,7 +141,7 @@ class Command(AbjadObject):
 
     @property
     def rotation(self):
-        '''Setting rotation indicator.
+        '''Command rotation indicator.
 
         Return integer or none.
         '''

@@ -423,7 +423,7 @@ class ConcreteInterpreter(Interpreter):
             0,
             segment_specification.duration,
             segment_specification.duration,
-            True
+            fresh=True
             )
 
     def make_default_uninterpreted_division_command_for_segment_specification(self, segment_specification):
@@ -435,8 +435,8 @@ class ConcreteInterpreter(Interpreter):
             0,
             segment_specification.duration,
             segment_specification.duration,
-            True, 
-            False
+            fresh=True, 
+            truncate=False
             )
 
     def make_division_region_division_lists_for_voice(self, voice):
