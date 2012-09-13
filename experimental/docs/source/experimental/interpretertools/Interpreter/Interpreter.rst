@@ -18,6 +18,10 @@ Methods
 
 .. automethod:: experimental.interpretertools.Interpreter.Interpreter.Interpreter.instantiate_score
 
+.. automethod:: experimental.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_setting_by_context
+
+.. automethod:: experimental.interpretertools.Interpreter.Interpreter.Interpreter.store_single_context_settings_by_context
+
 .. automethod:: experimental.interpretertools.Interpreter.Interpreter.Interpreter.unpack_multiple_context_settings_for_score
 
 .. automethod:: experimental.interpretertools.Interpreter.Interpreter.Interpreter.unpack_multiple_context_settings_for_segment

@@ -755,45 +755,6 @@ class ConcreteInterpreter(Interpreter):
                     settings.append(setting)
             self.store_single_context_settings_by_context(settings, clear_persistent_first=True)
 
-    def store_single_context_setting_by_context(self, single_context_setting, clear_persistent_first=False):
-        '''Copy single-context setting.
-
-        Find single-context setting start segment.
-
-        Store copied single-context setting by context in start segment.
-
-        If setting persists then store setting by context in score, too.
-        '''
-        single_context_setting = copy.deepcopy(single_context_setting)
-        selector = single_context_setting.selector
-        segment_specification = self.get_start_segment_specification(selector)
-        context_name = single_context_setting.context_name
-        if context_name is None:
-            context_name = segment_specification.single_context_settings_by_context.score_name
-        attribute = single_context_setting.attribute
-        if clear_persistent_first:
-            self.clear_persistent_single_context_settings_by_context(context_name, attribute)
-        if attribute in segment_specification.single_context_settings_by_context[context_name]:
-            segment_specification.single_context_settings_by_context[context_name][attribute].append(
-                single_context_setting)
-        else:
-            segment_specification.single_context_settings_by_context[context_name][attribute] = [
-                single_context_setting]
-        if single_context_setting.persist:
-            if attribute in self.score_specification.single_context_settings_by_context[context_name]:
-                self.score_specification.single_context_settings_by_context[context_name][attribute].append(
-                    single_context_setting)
-            else:
-                self.score_specification.single_context_settings_by_context[context_name][attribute] = [
-                    single_context_setting]
-
-    def store_single_context_settings_by_context(self, single_context_settings, clear_persistent_first=False):
-        if single_context_settings:
-            self.store_single_context_setting_by_context(
-                single_context_settings[0], clear_persistent_first=clear_persistent_first)
-            for single_context_setting in single_context_settings[1:]:
-                self.store_single_context_setting_by_context(single_context_setting, clear_persistent_first=False)
-
     def store_single_context_time_signature_settings_by_context(self):
         '''For each segment:
 
