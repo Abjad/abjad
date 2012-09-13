@@ -61,20 +61,7 @@ class SegmentSpecification(Specification):
         contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True, truncate=None):
-
-        # NEXT TODO: remove transform keywords here and read from settings only
-        #            That is, transform keywords are being doubly stored right now.
-        #            It's possible that 'source' may already have transform settings.
-        #            In which case, that's great.
-        #            But the purpose of this setting-creation and -storage method 
-        #            is to create and store a multiple-context setting.
-        #            So the transform keywords specified here must not apply to the incoming source.
         request = requesttools.expr_to_request(source)
-
-        if attribute == 'divisions':
-            requesttools.set_transforms_on_request(
-                request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
         context_names = self._context_token_to_context_names(contexts)
         selector = selector or self.select_segment()
         multiple_context_setting = settingtools.MultipleContextSetting(
