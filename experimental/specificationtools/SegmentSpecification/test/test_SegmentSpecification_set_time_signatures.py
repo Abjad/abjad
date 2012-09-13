@@ -1,6 +1,5 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_SegmentSpecification_set_time_signatures_01():
@@ -39,7 +38,6 @@ def test_SegmentSpecification_set_time_signatures_02():
 def test_SegmentSpecification_set_time_signatures_03():
     '''Request- and set-time 'reverse' keywords undo each other.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -51,5 +49,5 @@ def test_SegmentSpecification_set_time_signatures_03():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
