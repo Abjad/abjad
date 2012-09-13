@@ -61,6 +61,7 @@ class SegmentSpecification(Specification):
         contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True, truncate=None):
+
         # NEXT TODO: remove transform keywords here and read from settings only
         #            That is, transform keywords are being doubly stored right now.
         #            It's possible that 'source' may already have transform settings.
@@ -68,8 +69,6 @@ class SegmentSpecification(Specification):
         #            But the purpose of this setting-creation and -storage method 
         #            is to create and store a multiple-context setting.
         #            So the transform keywords specified here must not apply to the incoming source.
-        #            Rather, the transform keywords specified here must apply to the setting created here.
-
         request = requesttools.expr_to_request(source)
         requesttools.set_transforms_on_request(
             request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -326,7 +325,7 @@ class SegmentSpecification(Specification):
 
     def request_divisions(self,  context_name=None, 
         start_offset=None, stop_offset=None,
-        index=None, count=None, reverse=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `context_name`::
 
             >>> request = segment.request_divisions()
@@ -347,11 +346,11 @@ class SegmentSpecification(Specification):
         return requesttools.MaterialRequest(
             'divisions', selector, context_name=context_name, 
             start_offset=start_offset, stop_offset=stop_offset,
-            callback=callback, count=count, index=index, reverse=reverse)
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_division_command(self,  context_name=None, 
         selector=None, edge=None, multiplier=None, offset=None, 
-        callback=None, count=None, index=None, reverse=None):
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment division command active at timepoint
         in `context_name`.
 
@@ -431,10 +430,10 @@ class SegmentSpecification(Specification):
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'divisions', context_name=context_name, timepoint=timepoint,
-            callback=callback, count=count, index=index, reverse=reverse)
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_rhythm(self,  
-        context_name=None, callback=None, count=None, index=None, reverse=None):
+    def request_rhythm(self,  context_name=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `context_name`::
 
             >>> request = segment.request_rhythm()
@@ -454,11 +453,11 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return requesttools.MaterialRequest(
             'rhythm', selector, context_name=context_name, 
-            callback=callback, count=count, index=index, reverse=reverse)
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_rhythm_command(self,  context_name=None, 
         selector=None, edge=None, multiplier=None, offset=None, 
-        callback=None, count=None, index=None, reverse=None):
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm command active at timepoint
         in `context_name`.
 
@@ -489,10 +488,10 @@ class SegmentSpecification(Specification):
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'rhythm', context_name=context_name, timepoint=timepoint,
-            callback=callback, count=count, index=index, reverse=reverse)
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, 
-        context_name=None, callback=None, count=None, index=None, reverse=None):
+    def request_time_signatures(self, context_name=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signatures in `context_name`::
 
             >>> request = segment.request_time_signatures()
@@ -512,11 +511,11 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return requesttools.MaterialRequest(
             'time_signatures', selector, context_name=context_name, 
-            callback=callback, count=count, index=index, reverse=reverse)
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_time_signature_command(self,  context_name=None, 
         selector=None, edge=None, multiplier=None, offset=None, 
-        callback=None, count=None, index=None, reverse=None):
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at timepoint
         in `context_name`.
 
@@ -547,7 +546,7 @@ class SegmentSpecification(Specification):
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'time_signatures', context_name=context_name, timepoint=timepoint,
-            callback=callback, count=count, index=index, reverse=reverse)
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measure(self, n):
         '''Select segment background measure ``0``::
