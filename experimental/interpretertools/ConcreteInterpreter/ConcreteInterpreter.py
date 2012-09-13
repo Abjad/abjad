@@ -757,7 +757,7 @@ class ConcreteInterpreter(Interpreter):
                     new_setting = existing_setting.copy_setting_to_segment(segment_specification)
                     new_settings.append(new_setting)
             #self._debug_values(new_settings, 'NS')
-            self.store_single_context_setting_by_contexts_by_context(new_settings, clear_persistent_first=True)
+            self.store_single_context_settings_by_context(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -777,7 +777,7 @@ class ConcreteInterpreter(Interpreter):
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_setting_to_segment(segment_specification)
                     settings.append(setting)
-            self.store_single_context_setting_by_contexts_by_context(settings, clear_persistent_first=True)
+            self.store_single_context_settings_by_context(settings, clear_persistent_first=True)
 
     def store_single_context_setting_by_context(self, single_context_setting, clear_persistent_first=False):
         '''Resolve single-context setting and find segment in which single-context setting starts.
@@ -793,7 +793,7 @@ class ConcreteInterpreter(Interpreter):
             segment_specification, single_context_setting,
             clear_persistent_first=clear_persistent_first)
 
-    def store_single_context_setting_by_contexts_by_context(self, single_context_settings, clear_persistent_first=False):
+    def store_single_context_settings_by_context(self, single_context_settings, clear_persistent_first=False):
         if single_context_settings:
             self.store_single_context_setting_by_context(
                 single_context_settings[0], clear_persistent_first=clear_persistent_first)
