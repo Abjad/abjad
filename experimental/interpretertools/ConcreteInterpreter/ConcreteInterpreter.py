@@ -890,18 +890,12 @@ class ConcreteInterpreter(Interpreter):
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         assert material_request.attribute == 'time_signatures'
-        #print material_request.storage_format
         resolved_single_context_setting = self.material_request_to_resolved_single_context_setting(
             material_request)
-        #print resolved_single_context_setting.storage_format
-        processed_request = resolved_single_context_setting.processed_request
-        #print processed_request.storage_format
-        #raise Exception
-        assert isinstance(processed_request, requesttools.AbsoluteRequest)
-        payload = processed_request.payload
-        assert isinstance(payload, list)
-        payload = requesttools.apply_request_transforms(material_request, payload)
-        return payload
+        absolute_request = resolved_single_context_setting.processed_request
+        assert isinstance(absolute_request, requesttools.AbsoluteRequest)
+        time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
+        return time_signatures
 
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
         #self._debug(len(uninterpreted_division_commands), 'total')
