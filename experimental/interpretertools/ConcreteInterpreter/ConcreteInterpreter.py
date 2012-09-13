@@ -287,7 +287,6 @@ class ConcreteInterpreter(Interpreter):
                 division_commands, voice)
             all_division_commands.extend(division_commands)
         #self._debug(all_division_commands, 'all #0')
-        #print ''
         return all_division_commands
 
     def get_single_context_settings_by_context(self, segment_specification, attribute, context_name,
@@ -722,7 +721,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             pass
 
-    def store_single_context_setting_by_context(self,
+    def store_single_context_setting_by_context_by_context(self,
         segment_specification, single_context_setting, clear_persistent_first=False):
         context_name = single_context_setting.context_name
         if context_name is None:
@@ -767,7 +766,7 @@ class ConcreteInterpreter(Interpreter):
                     new_setting = existing_setting.copy_setting_to_segment(segment_specification)
                     new_settings.append(new_setting)
             #self._debug_values(new_settings, 'NS')
-            self.store_single_context_settings(new_settings, clear_persistent_first=True)
+            self.store_single_context_setting_by_contexts_by_context(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -787,9 +786,9 @@ class ConcreteInterpreter(Interpreter):
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_setting_to_segment(segment_specification)
                     settings.append(setting)
-            self.store_single_context_settings(settings, clear_persistent_first=True)
+            self.store_single_context_setting_by_contexts_by_context(settings, clear_persistent_first=True)
 
-    def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
+    def store_single_context_setting_by_context(self, single_context_setting, clear_persistent_first=False):
         '''Resolve single-context setting and find segment in which single-context setting starts.
 
         Store resolved single-context setting in segment resolved single-context settings.
@@ -799,16 +798,16 @@ class ConcreteInterpreter(Interpreter):
         single_context_setting = copy.deepcopy(single_context_setting)
         selector = single_context_setting.selector
         segment_specification = self.get_start_segment_specification(selector)
-        self.store_single_context_setting_by_context(
+        self.store_single_context_setting_by_context_by_context(
             segment_specification, single_context_setting,
             clear_persistent_first=clear_persistent_first)
 
-    def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
+    def store_single_context_setting_by_contexts_by_context(self, single_context_settings, clear_persistent_first=False):
         if single_context_settings:
-            self.store_single_context_setting(
+            self.store_single_context_setting_by_context(
                 single_context_settings[0], clear_persistent_first=clear_persistent_first)
             for single_context_setting in single_context_settings[1:]:
-                self.store_single_context_setting(single_context_setting, clear_persistent_first=False)
+                self.store_single_context_setting_by_context(single_context_setting, clear_persistent_first=False)
 
     def store_single_context_time_signature_settings(self):
         '''For each segment:
@@ -836,7 +835,7 @@ class ConcreteInterpreter(Interpreter):
                 setting = setting.copy_setting_to_segment(segment_specification.segment_name)
             assert setting.selector.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
-            self.store_single_context_setting(setting, clear_persistent_first=True)
+            self.store_single_context_setting_by_context(setting, clear_persistent_first=True)
 
     def supply_missing_region_division_commands(self, region_division_commands, voice):
         from experimental import interpretertools
