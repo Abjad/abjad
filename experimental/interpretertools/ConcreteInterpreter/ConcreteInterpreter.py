@@ -186,7 +186,7 @@ class ConcreteInterpreter(Interpreter):
         timespan_inventory = timespantools.TimespanInventory()
         for region_division_command in region_division_commands:
             if region_division_command.start_segment_identifier == requested_segment_identifier:
-                if region_division_command.request is not division_command_request:
+                if not region_division_command.request == division_command_request:
                     timespan_inventory.append(region_division_command)
         timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
             timepoint=requested_segment_offset)
@@ -877,12 +877,6 @@ class ConcreteInterpreter(Interpreter):
                 foo._fresh = None
                 foo._truncate = None
 
-#                print region_division_command.storage_format
-#                print ''
-#                print foo.storage_format
-#                print ''
-#                print region_division_command == foo
-#                print ''
                 assert region_division_command == foo
 
                 region_division_commands.append(region_division_command)
