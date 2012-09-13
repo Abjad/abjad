@@ -100,7 +100,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
             print context_name
             for setting_name in self[context_name]:
                 item = self[context_name][setting_name]
-                if isinstance(item, settingtools.ResolvedSingleContextSetting):
+                if isinstance(item, settingtools.Setting):
                     print '\t{}'.format(self[context_name][setting_name])
                 else:
                     print '\t{}: {}'.format(setting_name, self[context_name][setting_name])
