@@ -313,15 +313,8 @@ class SegmentSpecification(Specification):
                 attribute='time_signatures')
         except MissingContextSettingError:
             return []
-        #assert isinstance(resolved_single_context_setting.payload, list), repr(
-        #    resolved_single_context_setting.payload)
-        #return resolved_single_context_setting.payload
-        if isinstance(resolved_single_context_setting.payload, list):
-            return resolved_single_context_setting.payload
-        elif isinstance(resolved_single_context_setting.payload, requesttools.AbsoluteRequest):
-            return resolved_single_context_setting.payload.payload
-        else:
-            raise TypeError
+        assert isinstance(resolved_single_context_setting.payload, requesttools.AbsoluteRequest)
+        return resolved_single_context_setting.payload.payload
 
     @property
     def timespan(self):
