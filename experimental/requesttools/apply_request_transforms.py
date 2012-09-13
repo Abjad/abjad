@@ -1,7 +1,6 @@
 from abjad.tools import sequencetools
 
 
-# TODO: maybe add callback application here?
 def apply_request_transforms(request, payload):
     r'''.. versionadded:: 1.0 
     
@@ -19,7 +18,10 @@ def apply_request_transforms(request, payload):
 
     Return `payload`.
     '''
+    from experimental import requesttools
+    from experimental import settingtools
 
+    assert isinstance(request, (requesttools.Request, settingtools.Setting)), repr(request)
     assert isinstance(payload, (list, tuple)), repr(payload)
 
     if request.index is not None or request.count is not None:
@@ -28,7 +30,7 @@ def apply_request_transforms(request, payload):
         if index < 0:
             index = len(payload) - -index
         if request.count is None:
-            count = len(payload) - index    
+            count = len(payload) - index 
         else:
             count = request.count
         payload = sequencetools.CyclicTuple(payload)

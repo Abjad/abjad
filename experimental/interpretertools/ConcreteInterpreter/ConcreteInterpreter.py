@@ -528,6 +528,7 @@ class ConcreteInterpreter(Interpreter):
         if not len(time_signature_settings) == 1:
             return
         time_signature_setting = time_signature_settings[0]
+        #self._debug(time_signature_setting, 'tss')
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
             time_signatures = requesttools.apply_request_transforms(
@@ -538,6 +539,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError('implement time signature creation for {!r}'.format(
                 time_signature_setting.request))
+        time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
         segment_specification._time_signatures = time_signatures[:]
         return time_signatures
 
@@ -842,7 +844,6 @@ class ConcreteInterpreter(Interpreter):
         return time_signatures
 
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
-        #self._debug(len(uninterpreted_division_commands), 'total')
         from experimental import interpretertools
         region_division_commands = []
         if not uninterpreted_division_commands:

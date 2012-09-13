@@ -70,8 +70,10 @@ class SegmentSpecification(Specification):
         #            is to create and store a multiple-context setting.
         #            So the transform keywords specified here must not apply to the incoming source.
         request = requesttools.expr_to_request(source)
-        requesttools.set_transforms_on_request(
-            request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+        if not attribute == 'time_signatures':
+            requesttools.set_transforms_on_request(
+                request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
         context_names = self._context_token_to_context_names(contexts)
         selector = selector or self.select_segment()
