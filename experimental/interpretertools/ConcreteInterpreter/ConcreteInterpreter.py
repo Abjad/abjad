@@ -473,6 +473,11 @@ class ConcreteInterpreter(Interpreter):
             start_offset,
             stop_offset,
             duration,
+            index=single_context_setting.index,
+            count=single_context_setting.count,
+            reverse=single_context_setting.reverse,
+            rotation=single_context_setting.rotation,
+            callback=single_context_setting.callback,
             fresh=single_context_setting.fresh
             )
         return rhythm_command
@@ -553,6 +558,11 @@ class ConcreteInterpreter(Interpreter):
             start_offset,
             stop_offset,
             duration,
+            index=single_context_setting.index,
+            count=single_context_setting.count,
+            reverse=single_context_setting.reverse,
+            rotation=single_context_setting.rotation,
+            callback=single_context_setting.callback,
             fresh=single_context_setting.fresh,
             truncate=single_context_setting.truncate
             )
@@ -580,8 +590,8 @@ class ConcreteInterpreter(Interpreter):
             divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.request, requesttools.AbsoluteRequest):
             request = region_division_command.request
-            transformed_payload = requesttools.apply_request_transforms(request, request.payload)
-            divisions = [mathtools.NonreducedFraction(x) for x in transformed_payload]
+            divisions = requesttools.apply_request_transforms(request, request.payload)
+            divisions = [mathtools.NonreducedFraction(x) for x in divisions]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]

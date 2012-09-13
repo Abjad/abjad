@@ -71,7 +71,7 @@ class SegmentSpecification(Specification):
         #            So the transform keywords specified here must not apply to the incoming source.
         request = requesttools.expr_to_request(source)
 
-        if not attribute == 'time_signatures':
+        if attribute == 'divisions':
             requesttools.set_transforms_on_request(
                 request, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
