@@ -38,18 +38,18 @@ class ConcreteInterpreter(Interpreter):
         Return Abjad score object.
         '''
         Interpreter.__call__(self, score_specification)
-        self.store_single_context_time_signature_settings()
+        self.store_single_context_time_signature_settings_by_context()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_durations()
-        self.store_single_context_division_settings()
+        self.store_single_context_division_settings_by_context()
         self.add_division_lists_to_voices()
-        self.store_single_context_rhythm_settings()
+        self.store_single_context_rhythm_settings_by_context()
         self.add_rhythms_to_voices()
-        self.store_single_context_pitch_class_settings()
+        self.store_single_context_pitch_class_settings_by_context()
         self.apply_pitch_classes()
-        self.store_single_context_registration_settings()
+        self.store_single_context_registration_settings_by_context()
         self.apply_registration()
-        self.store_additional_single_context_settings()
+        self.store_additional_single_context_settings_by_context()
         self.apply_additional_parameters()
         return self.score
 
@@ -708,7 +708,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(cooked_commands, 'cooked')
         return cooked_commands
 
-    def store_additional_single_context_settings(self):
+    def store_additional_single_context_settings_by_context(self):
         for segment_specification in self.score_specification.segment_specifications:
             pass
 
@@ -734,7 +734,7 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.single_context_settings_by_context[context_name][attribute] = [
                     single_context_setting]
 
-    def store_single_context_division_settings(self):
+    def store_single_context_division_settings_by_context(self):
         '''For every segment specification:
 
         Get new single-context division settings for segment.
@@ -759,15 +759,15 @@ class ConcreteInterpreter(Interpreter):
             #self._debug_values(new_settings, 'NS')
             self.store_single_context_settings_by_context(new_settings, clear_persistent_first=True)
 
-    def store_single_context_pitch_class_settings(self):
+    def store_single_context_pitch_class_settings_by_context(self):
         for segment_specification in self.score_specification.segment_specifications:
             pass
 
-    def store_single_context_registration_settings(self):
+    def store_single_context_registration_settings_by_context(self):
         for segment_specification in self.score_specification.segment_specifications:
             pass
 
-    def store_single_context_rhythm_settings(self):
+    def store_single_context_rhythm_settings_by_context(self):
         for segment_specification in self.score_specification.segment_specifications:
             settings = segment_specification.single_context_settings.get_settings(attribute='rhythm')
             if not settings:
@@ -800,7 +800,7 @@ class ConcreteInterpreter(Interpreter):
             for single_context_setting in single_context_settings[1:]:
                 self.store_single_context_setting_by_context(single_context_setting, clear_persistent_first=False)
 
-    def store_single_context_time_signature_settings(self):
+    def store_single_context_time_signature_settings_by_context(self):
         '''For each segment:
 
         Check segment for an explicit time signature setting.
