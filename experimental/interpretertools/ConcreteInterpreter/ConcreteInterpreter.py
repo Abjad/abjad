@@ -212,60 +212,17 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
         #self._debug(division_material_request, 'dmr')
-        voice = componenttools.get_first_component_in_expr_with_name(
-            self.score, division_material_request.context_name)
-        assert isinstance(voice, voicetools.Voice), voice
-        division_region_division_lists = self.score_specification.contexts[voice.name][
-            'division_region_division_lists']
-        divisions = []
-        for division_region_division_list in division_region_division_lists:
-            divisions.extend(division_region_division_list)
-        assert isinstance(divisions, list), divisions
-
-        # TODO: encapsulate in separate method
+        voice_name = division_material_request.context_name
         start_segment_identifier = division_material_request.start_segment_identifier
         stop_segment_identifier = division_material_request.stop_segment_identifier
-        start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
-            start_segment_identifier)
-        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
-            stop_segment_identifier)
-        segment_count =  stop_segment_index - start_segment_index
-        score_start_offset, score_stop_offset = self.score_specification.segment_name_to_segment_offsets(
-            start_segment_index, segment_count)
-        total_amount = score_stop_offset - score_start_offset
-        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
-        divisions = sequencetools.split_sequence_by_weights(
-            divisions, [0, total_amount], cyclic=False, overhang=True)
-        divisions = divisions[1]
-        #self._debug(divisions, 'divisions')
-
-        # TODO: encapsulate in separate method
-        total_divisions = sum(divisions)
-        if division_material_request.start_offset is None:
-            selection_start_offset = durationtools.Offset(0)
-        else:
-            selection_start_offset = division_material_request.start_offset
-        if division_material_request.stop_offset is None:
-            selection_stop_offset = total_divisions
-        else:
-            selection_stop_offset = division_material_request.stop_offset
-        #self._debug((selection_start_offset, selection_stop_offset), 'offsets')
-        first_weight = fractions.Fraction(selection_start_offset)
-        second_weight = selection_stop_offset - selection_start_offset
-        second_weight = fractions.Fraction(second_weight)
-        weights = [first_weight, second_weight]
-        third_weight = total_divisions - selection_stop_offset
-        third_weight = fractions.Fraction(third_weight)
-        if third_weight:
-            weights.append(third_weight)
-        #self._debug(weights, 'weights')
-        divisions = sequencetools.split_sequence_by_weights(
-            divisions, weights, cyclic=False, overhang=True)
-        divisions = divisions[1]
-        #self._debug(divisions, 'divisions')
-
+        selection_start_offset = division_material_request.start_offset
+        selection_stop_offset = division_material_request.stop_offset
+        divisions = self.voice_name_to_divisions(voice_name)
+        divisions = self.keep_divisions_between_segments(
+            divisions, start_segment_identifier, stop_segment_identifier)
+        divisions = self.keep_divisions_between_selection_offsets(
+            divisions, selection_start_offset, selection_stop_offset)
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
-        #self._debug(divisions, 'divisions')
         return divisions
 
     def divisions_to_division_region_division_list(self, divisions, region_division_command):
@@ -428,6 +385,42 @@ class ConcreteInterpreter(Interpreter):
             time_signatures = self.score_specification.time_signatures
             voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
         return voice_division_list
+
+    def keep_divisions_between_segments(self, divisions, start_segment_identifier, stop_segment_identifier):
+        start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
+            start_segment_identifier)
+        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
+            stop_segment_identifier)
+        segment_count =  stop_segment_index - start_segment_index
+        score_start_offset, score_stop_offset = self.score_specification.segment_name_to_segment_offsets(
+            start_segment_index, segment_count)
+        total_amount = score_stop_offset - score_start_offset
+        divisions = sequencetools.split_sequence_by_weights(
+            divisions, [0, total_amount], cyclic=False, overhang=True)
+        divisions = divisions[1]
+        #self._debug(divisions, 'divisions')
+        return divisions
+
+    def keep_divisions_between_selection_offsets(
+        self, divisions, selection_start_offset, selection_stop_offset):
+        total_divisions = sum(divisions)
+        if selection_start_offset is None:
+            selection_start_offset = durationtools.Offset(0)
+        if selection_stop_offset is None:
+            selection_stop_offset = total_divisions
+        first_weight = fractions.Fraction(selection_start_offset)
+        second_weight = selection_stop_offset - selection_start_offset
+        second_weight = fractions.Fraction(second_weight)
+        weights = [first_weight, second_weight]
+        third_weight = total_divisions - selection_stop_offset
+        third_weight = fractions.Fraction(third_weight)
+        if third_weight:
+            weights.append(third_weight)
+        #self._debug(weights, 'weights')
+        divisions = sequencetools.split_sequence_by_weights(
+            divisions, weights, cyclic=False, overhang=True)
+        divisions = divisions[1]
+        return divisions
 
     def make_default_rhythm_command_for_segment(self, segment_specification):
         from experimental import interpretertools
@@ -954,3 +947,15 @@ class ConcreteInterpreter(Interpreter):
                     region_division_commands[-1] = region_division_command
         #self._debug(region_division_commands)
         return region_division_commands
+
+    def voice_name_to_divisions(self, voice_name):
+        voice = componenttools.get_first_component_in_expr_with_name(self.score, voice_name)
+        assert isinstance(voice, voicetools.Voice), voice
+        division_region_division_lists = self.score_specification.contexts[voice.name][
+            'division_region_division_lists']
+        divisions = []
+        for division_region_division_list in division_region_division_lists:
+            divisions.extend(division_region_division_list)
+        assert isinstance(divisions, list), divisions
+        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
+        return divisions
