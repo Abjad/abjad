@@ -887,6 +887,11 @@ class ConcreteInterpreter(Interpreter):
                         segment_start_offset,
                         segment_stop_offset,
                         duration,
+                        index=last_region_division_command.index,
+                        count=last_region_division_command.count,
+                        reverse=last_region_division_command.reverse,
+                        rotation=last_region_division_command.rotation,
+                        callback=last_region_division_command.callback,
                         fresh=last_region_division_command.fresh,
                         truncate=uninterpreted_division_command.truncate
                         )
