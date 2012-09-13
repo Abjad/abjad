@@ -127,7 +127,7 @@ class ConcreteInterpreter(Interpreter):
                 x.pair for x in segment_division_list]
 
     def add_time_signatures_to_segment(self, segment_specification):
-        time_signatures = segment_specification.time_signatures
+        time_signatures = self.make_time_signatures_for_segment(segment_specification)
         if time_signatures is not None:
             measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
             context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -530,6 +530,26 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(division_command, 'rdc')
         return division_command
 
+    def make_time_signatures_for_segment(self, segment_specification):
+        time_signature_settings = \
+            segment_specification.resolved_single_context_settings.score_context_proxy.get_settings(
+            attribute='time_signatures')
+        if not len(time_signature_settings) == 1:
+            return
+        time_signature_setting = time_signature_settings[0]
+        if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
+            time_signatures = time_signature_setting.request.payload
+            time_signatures = requesttools.apply_request_transforms(
+                time_signature_setting.request, time_signatures)
+        elif isinstance(time_signature_setting.request, requesttools.MaterialRequest):
+            time_signatures = self.time_signature_material_request_to_time_signatures(
+                time_signature_setting.request)
+        else:
+            raise NotImplementedError('implement time signature creation for {!r}'.format(
+                time_signature_setting.request))
+        segment_specification._time_signatures = time_signatures[:]
+        return time_signatures
+
     def make_uninterpreted_division_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
@@ -641,17 +661,18 @@ class ConcreteInterpreter(Interpreter):
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
-        if isinstance(single_context_setting.request, requesttools.MaterialRequest) and \
-            single_context_setting.request.attribute == 'time_signatures':
-            value = self.time_signature_material_request_to_time_signatures(single_context_setting.request)
-            processed_request = requesttools.AbsoluteRequest(value)
-        else:
-            processed_request = single_context_setting.request
-        assert isinstance(processed_request, requesttools.Request), repr(processed_request)
+#        if isinstance(single_context_setting.request, requesttools.MaterialRequest) and \
+#            single_context_setting.request.attribute == 'time_signatures':
+#            value = self.time_signature_material_request_to_time_signatures(single_context_setting.request)
+#            processed_request = requesttools.AbsoluteRequest(value)
+#        else:
+#            processed_request = single_context_setting.request
+#        assert isinstance(processed_request, requesttools.Request), repr(processed_request)
         resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
             single_context_setting.attribute,
             single_context_setting.request,
-            processed_request,
+            #processed_request,
+            single_context_setting.request,
             single_context_setting.selector,
             context_name=single_context_setting.context_name,
             persist=single_context_setting.persist,

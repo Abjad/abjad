@@ -42,6 +42,7 @@ class SegmentSpecification(Specification):
         self._score_model = self.score_template()
         self._segment_name = segment_name
         self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
+        self._time_signatures = []
 
     ### SPECIAL METHODS ###
 
@@ -300,21 +301,14 @@ class SegmentSpecification(Specification):
 
     @property
     def time_signatures(self):
-        '''Segment specification time signatures::
+        '''Time signatures set on segment during time signature interpretation.
 
-            >>> segment.time_signatures
-            []
+                >>> segment.time_signatures
+                []
 
-        Return list of zero or more time signatures.
+        Return list.
         '''
-        try:
-            resolved_single_context_setting = \
-                self.resolved_single_context_settings.score_context_proxy.get_setting(
-                attribute='time_signatures')
-        except MissingContextSettingError:
-            return []
-        assert isinstance(resolved_single_context_setting.processed_request, requesttools.AbsoluteRequest)
-        return resolved_single_context_setting.processed_request.payload
+        return self._time_signatures
 
     @property
     def timespan(self):
