@@ -1,3 +1,4 @@
+import abc
 import copy
 from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -9,8 +10,13 @@ class Interpreter(AbjadObject):
     Abstract interpreter class from which conrete interpreters inherit.
     ''' 
 
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = abc.ABCMeta
+
     ### SPECIAL METHODS ###
 
+    @abc.abstractmethod
     def __call__(self, score_specification):
         '''Top-level interpretation entry point.
         
@@ -19,6 +25,7 @@ class Interpreter(AbjadObject):
         self.score_specification = score_specification
         self.score = self.instantiate_score()
         self.unpack_multiple_context_settings_for_score()
+        self.store_interpreter_specific_single_context_settings_by_context()
         
     ### PUBLIC METHODS ###
 
@@ -27,6 +34,10 @@ class Interpreter(AbjadObject):
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
         score.insert(0, context)
         return score
+
+    @abc.abstractmethod
+    def store_interpreter_specific_single_context_settings_by_context(self):
+        pass
 
     def store_single_context_setting_by_context(self, single_context_setting, clear_persistent_first=False):
         '''Copy single-context setting.

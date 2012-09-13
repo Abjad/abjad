@@ -38,12 +38,6 @@ class ConcreteInterpreter(Interpreter):
         Return Abjad score object.
         '''
         Interpreter.__call__(self, score_specification)
-        self.store_single_context_time_signature_settings_by_context()
-        self.store_single_context_division_settings_by_context()
-        self.store_single_context_rhythm_settings_by_context()
-        self.store_single_context_pitch_class_settings_by_context()
-        self.store_single_context_registration_settings_by_context()
-        self.store_additional_single_context_settings_by_context()
         self.add_time_signatures_to_score()
         self.calculate_score_and_segment_durations()
         self.add_division_lists_to_voices()
@@ -709,6 +703,14 @@ class ConcreteInterpreter(Interpreter):
     def store_additional_single_context_settings_by_context(self):
         for segment_specification in self.score_specification.segment_specifications:
             pass
+
+    def store_interpreter_specific_single_context_settings_by_context(self):
+        self.store_single_context_time_signature_settings_by_context()
+        self.store_single_context_division_settings_by_context()
+        self.store_single_context_rhythm_settings_by_context()
+        self.store_single_context_pitch_class_settings_by_context()
+        self.store_single_context_registration_settings_by_context()
+        self.store_additional_single_context_settings_by_context()
 
     def store_single_context_division_settings_by_context(self):
         '''For every segment specification:
