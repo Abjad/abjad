@@ -19,7 +19,7 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     def __init__(self, request, start_segment_identifier, context_name, 
-        segment_start_offset, segment_stop_offset, duration, fresh):
+        segment_start_offset, segment_stop_offset, duration, fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(start_segment_identifier, str)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
@@ -27,7 +27,7 @@ class Command(AbjadObject):
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
         duration = durationtools.Duration(duration)
         assert segment_stop_offset - segment_start_offset == duration
-        assert isinstance(fresh, bool), repr(fresh)
+        assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request
         self._start_segment_identifier = start_segment_identifier
         self._context_name = context_name

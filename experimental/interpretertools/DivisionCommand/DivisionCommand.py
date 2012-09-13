@@ -11,10 +11,10 @@ class DivisionCommand(Command):
     ### INITIALIZER ###
 
     def __init__(self, request, start_segment_identifier, context_name,
-        segment_start_offset, segment_stop_offset, duration, fresh, truncate):
+        segment_start_offset, segment_stop_offset, duration, fresh=None, truncate=None):
         Command.__init__(self, request, start_segment_identifier, context_name,
-            segment_start_offset, segment_stop_offset, duration, fresh)
-        assert isinstance(truncate, bool), repr(truncate)
+            segment_start_offset, segment_stop_offset, duration, fresh=fresh)
+        assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
 
     ## READ-ONLY PUBLIC PROPERTIES ###

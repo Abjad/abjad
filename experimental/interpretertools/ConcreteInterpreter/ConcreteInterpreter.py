@@ -473,7 +473,7 @@ class ConcreteInterpreter(Interpreter):
             start_offset,
             stop_offset,
             duration,
-            single_context_setting.fresh
+            fresh=single_context_setting.fresh
             )
         return rhythm_command
 
@@ -507,7 +507,6 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
-        fresh, truncate = True, True
         duration = stop_offset - start_offset
         division_command = interpretertools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
@@ -516,8 +515,8 @@ class ConcreteInterpreter(Interpreter):
             start_offset,
             stop_offset,
             duration, 
-            fresh,
-            truncate
+            fresh=True,
+            truncate=True
             )
         #self._debug(division_command, 'rdc')
         return division_command
@@ -552,8 +551,8 @@ class ConcreteInterpreter(Interpreter):
             start_offset,
             stop_offset,
             duration,
-            single_context_setting.fresh,
-            single_context_setting.truncate
+            fresh=single_context_setting.fresh,
+            truncate=single_context_setting.truncate
             )
         return uninterpreted_division_command
 
@@ -880,8 +879,8 @@ class ConcreteInterpreter(Interpreter):
                         segment_start_offset,
                         segment_stop_offset,
                         duration,
-                        last_region_division_command.fresh,
-                        uninterpreted_division_command.truncate
+                        fresh=last_region_division_command.fresh,
+                        truncate=uninterpreted_division_command.truncate
                         )
                     region_division_commands[-1] = region_division_command
         #self._debug(region_division_commands)

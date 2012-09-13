@@ -432,7 +432,7 @@ class SegmentSpecification(Specification):
             'divisions', context_name=context_name, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_rhythm(self,  context_name=None, 
+    def request_rhythm(self, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `context_name`::
 
