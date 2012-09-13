@@ -579,7 +579,8 @@ class ConcreteInterpreter(Interpreter):
         self, region_division_command, region_division_commands, voice_name):
         #self._debug(region_division_command, 'rdc')
         if isinstance(region_division_command.request, list):
-            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.request]
+            divisions = region_division_command.request
+            divisions = [mathtools.NonreducedFraction(x) for x in divisions]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
@@ -608,6 +609,7 @@ class ConcreteInterpreter(Interpreter):
             divisions = self.division_command_request_to_divisions(
                 division_command_request, region_division_commands, voice_name)
             divisions = requesttools.apply_request_transforms(division_command_request, divisions)
+            divisions = requesttools.apply_request_transforms(region_division_command, divisions) 
             region_division_command._request = divisions
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
