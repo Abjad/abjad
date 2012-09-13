@@ -37,9 +37,7 @@ class ConcreteInterpreter(Interpreter):
 
         Return Abjad score object.
         '''
-        self.score_specification = score_specification
-        self.score = self.instantiate_score()
-        self.unpack_multiple_context_settings_for_score()
+        Interpreter.__call__(self, score_specification)
         self.store_single_context_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_segment_offset_pairs()
@@ -440,12 +438,6 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
-    def instantiate_score(self):
-        score = self.score_specification.score_template()
-        context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
-        score.insert(0, context)
-        return score
-
     def make_default_rhythm_command_for_segment(self, segment_specification):
         from experimental import interpretertools
         return interpretertools.RhythmCommand(
@@ -582,7 +574,6 @@ class ConcreteInterpreter(Interpreter):
         self, region_division_command, region_division_commands, voice_name):
         #self._debug(region_division_command, 'rdc')
         #self._debug_values(region_division_commands, 'rdcs')
-
         if isinstance(region_division_command.request, list):
             divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.request]
             region_duration = region_division_command.duration
@@ -611,42 +602,32 @@ class ConcreteInterpreter(Interpreter):
             payload = self.division_command_request_to_payload(
                 division_command_request, region_division_commands, voice_name)
             self._debug(payload, 'payload')
-
             if isinstance(payload, requesttools.AbsoluteRequest):
                 payload = requesttools.apply_request_transforms(payload, payload.payload)
                 self._debug(payload, 'transformed payload')
-
             payload = requesttools.apply_request_transforms(
                 division_command_request, payload)
             self._debug(payload, 'doubly transformed payload')
-            #region_division_command._payload = payload
             region_division_command._request = payload
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
         else:
-            raise NotImplementedError(
-                'implement for {!r}.'.format(region_division_command.request))
+            raise NotImplementedError('implement for {!r}.'.format(region_division_command.request))
         division_region_division_list = self.divisions_to_division_region_division_list(
             divisions, region_division_command)
         return division_region_division_list
 
-    #def region_division_commands_to_division_region_division_lists(self, region_division_commands, voice):
     def region_division_commands_to_division_region_division_lists(self, 
         region_division_commands, voice, all_region_division_commands):
         #self._debug(all_region_division_commands, 'all #2')
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
         for region_division_command in region_division_commands:
             #self._debug(region_division_command, 'rdc')
-
-            #division_region_division_list = self.region_division_command_to_division_region_division_list(
-            #    region_division_command, region_division_commands, voice.name)
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, all_region_division_commands, voice.name)
-
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
-            #self._debug(division_region_division_list, 'drdl')
 
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
@@ -841,8 +822,6 @@ class ConcreteInterpreter(Interpreter):
             self.store_single_context_setting(
                 single_context_settings[0], clear_persistent_first=clear_persistent_first)
             for single_context_setting in single_context_settings[1:]:
-                #self.store_single_context_setting(
-                #    single_context_setting, clear_persistent_first=clear_persistent_first)
                 self.store_single_context_setting(single_context_setting, clear_persistent_first=False)
 
     def store_single_context_time_signature_settings(self):
@@ -980,13 +959,3 @@ class ConcreteInterpreter(Interpreter):
                     region_division_commands[-1] = region_division_command
         #self._debug(region_division_commands)
         return region_division_commands
-
-    def unpack_multiple_context_settings_for_score(self):
-        for segment_specification in self.score_specification.segment_specifications:
-            settings = self.unpack_multiple_context_settings_for_segment(segment_specification)
-            self.score_specification.single_context_settings.extend(settings)
-
-    def unpack_multiple_context_settings_for_segment(self, segment_specification):
-        for multiple_context_setting in segment_specification.multiple_context_settings:
-            segment_specification.single_context_settings.extend(multiple_context_setting.unpack())
-        return segment_specification.single_context_settings
