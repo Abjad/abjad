@@ -275,13 +275,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = divisions[1]
         #self._debug(divisions, 'divisions')
 
-        # TODO: use requesttools.apply_request_transforms() below instead
-        if division_material_request.reverse:
-            divisions.reverse()
-        #self._debug(division_material_request.callback, 'callback')
-        if division_material_request.callback is not None:
-            divisions = division_material_request.callback(divisions)
-
+        divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         #self._debug(divisions, 'divisions')
         return divisions
 
