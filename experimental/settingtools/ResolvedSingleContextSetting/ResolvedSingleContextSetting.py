@@ -37,7 +37,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
     ::
 
         >>> z(resolved_single_context_setting)
-        settingtools.ResolvedSingleContextSetting(
+        settingtools.SingleContextSetting(
             'divisions',
             requesttools.AbsoluteRequest(
                 [(3, 16)]

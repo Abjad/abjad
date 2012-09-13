@@ -639,46 +639,6 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
 
-    def resolve_and_store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
-        '''Resolve single-context setting and find segment in which single-context setting starts.
-
-        Store resolved single-context setting in segment resolved single-context settings.
-
-        If setting persists then store setting in score resolved single-context settings, too.
-        '''
-        resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
-        selector = resolved_single_context_setting.selector
-        segment_specification = self.get_start_segment_specification(selector)
-        self.store_resolved_single_context_setting(
-            segment_specification, resolved_single_context_setting,
-            clear_persistent_first=clear_persistent_first)
-
-    def resolve_and_store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
-        if single_context_settings:
-            self.resolve_and_store_single_context_setting(
-                single_context_settings[0], clear_persistent_first=clear_persistent_first)
-            for single_context_setting in single_context_settings[1:]:
-                self.resolve_and_store_single_context_setting(single_context_setting, clear_persistent_first=False)
-
-    def resolve_single_context_setting(self, single_context_setting):
-        if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
-            return single_context_setting
-        resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
-            single_context_setting.attribute,
-            single_context_setting.request,
-            single_context_setting.selector,
-            context_name=single_context_setting.context_name,
-            index=single_context_setting.index,
-            count=single_context_setting.count,
-            reverse=single_context_setting.reverse,
-            rotation=single_context_setting.rotation,
-            callback=single_context_setting.callback,
-            fresh=single_context_setting.fresh,
-            persist=single_context_setting.persist,
-            truncate=single_context_setting.truncate
-            )
-        return resolved_single_context_setting
-
     def resolved_single_context_setting_to_rhythm_command(
         self, resolved_single_context_setting, segment_specification):
         selector = resolved_single_context_setting.selector
@@ -808,7 +768,7 @@ class ConcreteInterpreter(Interpreter):
                     new_setting = existing_setting.copy_setting_to_segment(segment_specification)
                     new_settings.append(new_setting)
             #self._debug_values(new_settings, 'NS')
-            self.resolve_and_store_single_context_settings(new_settings, clear_persistent_first=True)
+            self.store_single_context_settings(new_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -828,7 +788,28 @@ class ConcreteInterpreter(Interpreter):
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_setting_to_segment(segment_specification)
                     settings.append(setting)
-            self.resolve_and_store_single_context_settings(settings, clear_persistent_first=True)
+            self.store_single_context_settings(settings, clear_persistent_first=True)
+
+    def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
+        '''Resolve single-context setting and find segment in which single-context setting starts.
+
+        Store resolved single-context setting in segment resolved single-context settings.
+
+        If setting persists then store setting in score resolved single-context settings, too.
+        '''
+        resolved_single_context_setting = copy.deepcopy(single_context_setting)
+        selector = resolved_single_context_setting.selector
+        segment_specification = self.get_start_segment_specification(selector)
+        self.store_resolved_single_context_setting(
+            segment_specification, resolved_single_context_setting,
+            clear_persistent_first=clear_persistent_first)
+
+    def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
+        if single_context_settings:
+            self.store_single_context_setting(
+                single_context_settings[0], clear_persistent_first=clear_persistent_first)
+            for single_context_setting in single_context_settings[1:]:
+                self.store_single_context_setting(single_context_setting, clear_persistent_first=False)
 
     def store_single_context_time_signature_settings(self):
         '''For each segment:
@@ -856,7 +837,7 @@ class ConcreteInterpreter(Interpreter):
                 setting = setting.copy_setting_to_segment(segment_specification.segment_name)
             assert setting.selector.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
-            self.resolve_and_store_single_context_setting(setting, clear_persistent_first=True)
+            self.store_single_context_setting(setting, clear_persistent_first=True)
 
     def supply_missing_region_division_commands(self, region_division_commands, voice):
         from experimental import interpretertools
