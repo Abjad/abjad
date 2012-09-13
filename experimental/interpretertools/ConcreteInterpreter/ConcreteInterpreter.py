@@ -680,33 +680,24 @@ class ConcreteInterpreter(Interpreter):
     def resolve_single_context_setting(self, single_context_setting):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
-        value = self.resolve_single_context_setting_source(single_context_setting.request)
-        #self._debug(value, 'value')
-        args = (
+        if isinstance(single_context_setting.request, requesttools.MaterialRequest) and \
+            single_context_setting.request.attribute == 'time_signatures':
+            value = self.resolve_material_request(single_context_setting.request)
+            value = requesttools.AbsoluteRequest(value)
+        else:
+            value = single_context_setting.request
+        assert isinstance(value, requesttools.Request), repr(value)
+        resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
             single_context_setting.attribute,
             single_context_setting.request,
             value,
             single_context_setting.selector,
-            )
-        resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
-            *args,
             context_name=single_context_setting.context_name,
             persist=single_context_setting.persist,
             truncate=single_context_setting.truncate,
             fresh=single_context_setting.fresh
             )
         return resolved_single_context_setting
-
-    def resolve_single_context_setting_source(self, source):
-        if isinstance(source, requesttools.MaterialRequest) and source.attribute == 'time_signatures':
-            return self.resolve_material_request(source)
-        # the following line should be resolvable
-        elif isinstance(source, requesttools.MaterialRequest) and source.attribute == 'divisions':
-            return source
-        elif isinstance(source, requesttools.StatalServerRequest):
-            return source()
-        else:
-            return source
 
     def resolved_single_context_setting_to_rhythm_command(
         self, resolved_single_context_setting, segment_specification):

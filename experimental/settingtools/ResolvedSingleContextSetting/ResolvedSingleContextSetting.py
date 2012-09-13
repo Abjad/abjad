@@ -1,3 +1,4 @@
+from experimental import requesttools
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
@@ -72,6 +73,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
             attribute, request, selector, context_name=context_name, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist, truncate=truncate)
+        assert isinstance(payload, requesttools.Request), repr(payload)
         assert payload is not None, repr(payload)
         self._payload = payload
 
