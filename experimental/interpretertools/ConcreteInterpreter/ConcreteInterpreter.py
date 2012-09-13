@@ -583,17 +583,11 @@ class ConcreteInterpreter(Interpreter):
         if isinstance(region_division_command.request, list):
             divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.request]
             region_duration = region_division_command.duration
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [x.pair for x in divisions]
-            divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.request, requesttools.AbsoluteRequest):
             request = region_division_command.request
             divisions = requesttools.apply_request_transforms(request, request.payload)
             divisions = [mathtools.NonreducedFraction(x) for x in divisions]
             region_duration = region_division_command.duration
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [x.pair for x in divisions]
-            divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.request, requesttools.MaterialRequest):
             assert region_division_command.request.attribute == 'divisions'
             division_material_request = region_division_command.request
@@ -614,6 +608,10 @@ class ConcreteInterpreter(Interpreter):
             return division_region_division_list
         else:
             raise NotImplementedError('implement for {!r}.'.format(region_division_command.request))
+        divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+        #divisions = requesttools.apply_request_transforms(region_division_command, divisions)
+        divisions = [x.pair for x in divisions]
+        divisions = [divisiontools.Division(x) for x in divisions]
         division_region_division_list = self.divisions_to_division_region_division_list(
             divisions, region_division_command)
         return division_region_division_list

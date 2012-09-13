@@ -18,10 +18,12 @@ def apply_request_transforms(request, payload):
 
     Return `payload`.
     '''
+    from experimental import interpretertools
     from experimental import requesttools
     from experimental import settingtools
 
-    assert isinstance(request, (requesttools.Request, settingtools.Setting)), repr(request)
+    assert isinstance(request, (
+        requesttools.Request, settingtools.Setting, interpretertools.Command)), repr(request)
     assert isinstance(payload, (list, tuple)), repr(payload)
 
     if request.index is not None or request.count is not None:
