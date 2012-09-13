@@ -42,9 +42,6 @@ class ResolvedSingleContextSetting(SingleContextSetting):
             requesttools.AbsoluteRequest(
                 [(3, 16)]
                 ),
-            requesttools.AbsoluteRequest(
-                [(3, 16)]
-                ),
             selectortools.SingleSegmentSelector(
                 identifier='red'
                 ),
@@ -64,22 +61,4 @@ class ResolvedSingleContextSetting(SingleContextSetting):
     the `request` of a single-context setting.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, attribute, request, processed_request, selector, context_name=None, 
-        index=None, count=None, reverse=None, rotation=None, callback=None,
-        fresh=True, persist=True, truncate=False):
-        SingleContextSetting.__init__(self, 
-            attribute, request, selector, context_name=context_name, 
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
-            fresh=fresh, persist=persist, truncate=truncate)
-        assert isinstance(processed_request, requesttools.Request), repr(processed_request)
-        self._processed_request = processed_request
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def processed_request(self):
-        '''Setting processed request.
-        '''
-        return self._processed_request
+    pass

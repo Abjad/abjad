@@ -475,7 +475,8 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         rhythm_command = interpretertools.RhythmCommand(
-            resolved_single_context_setting.processed_request, 
+            #resolved_single_context_setting.processed_request, 
+            resolved_single_context_setting.request, 
             segment_name,
             resolved_single_context_setting.context_name,
             start_offset,
@@ -554,7 +555,8 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         uninterpreted_division_command = interpretertools.DivisionCommand(
-            resolved_single_context_setting.processed_request,
+            #resolved_single_context_setting.processed_request,
+            resolved_single_context_setting.request,
             segment_name,
             resolved_single_context_setting.context_name,
             start_offset,
@@ -663,7 +665,6 @@ class ConcreteInterpreter(Interpreter):
             return single_context_setting
         resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(
             single_context_setting.attribute,
-            single_context_setting.request,
             single_context_setting.request,
             single_context_setting.selector,
             context_name=single_context_setting.context_name,
@@ -908,7 +909,8 @@ class ConcreteInterpreter(Interpreter):
         assert material_request.attribute == 'time_signatures'
         resolved_single_context_setting = self.material_request_to_resolved_single_context_setting(
             material_request)
-        absolute_request = resolved_single_context_setting.processed_request
+        #absolute_request = resolved_single_context_setting.processed_request
+        absolute_request = resolved_single_context_setting.request
         assert isinstance(absolute_request, requesttools.AbsoluteRequest)
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
         return time_signatures
