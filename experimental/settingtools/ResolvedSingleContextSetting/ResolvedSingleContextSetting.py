@@ -49,9 +49,9 @@ class ResolvedSingleContextSetting(SingleContextSetting):
                 identifier='red'
                 ),
             context_name='Voice 1',
+            fresh=True,
             persist=True,
-            truncate=False,
-            fresh=True
+            truncate=False
             )
 
     Composers do not create resolved single-context settings.
@@ -68,13 +68,12 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     def __init__(self, attribute, request, processed_request, selector, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
-        persist=True, truncate=False, fresh=True):
+        fresh=True, persist=True, truncate=False):
         SingleContextSetting.__init__(self, 
             attribute, request, selector, context_name=context_name, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(processed_request, requesttools.Request), repr(processed_request)
-        assert processed_request is not None, repr(processed_request)
         self._processed_request = processed_request
 
     ### READ-ONLY PUBLIC PROPERTIES ###
