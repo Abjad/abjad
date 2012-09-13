@@ -230,8 +230,6 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list._start_timepoint = start_timepoint    
         division_region_division_list._stop_timepoint = stop_timepoint
-        division_region_division_list._fresh = region_division_command.fresh
-        division_region_division_list._truncate = region_division_command.truncate
         return division_region_division_list
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
