@@ -65,7 +65,7 @@ def test_SegmentSpecification_set_divisions_03():
     '''
     py.test.skip('working on this one now.')
 
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment(name='red')

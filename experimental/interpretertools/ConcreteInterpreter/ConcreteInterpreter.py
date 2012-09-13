@@ -40,11 +40,11 @@ class ConcreteInterpreter(Interpreter):
         Interpreter.__call__(self, score_specification)
         self.store_single_context_time_signature_settings()
         self.add_time_signatures_to_score()
-        self.calculate_segment_offset_pairs()
+        self.calculate_score_and_segment_durations()
         self.store_single_context_division_settings()
-        self.add_division_lists_to_score()
+        self.add_division_lists_to_voices()
         self.store_single_context_rhythm_settings()
-        self.add_rhythms_to_score()
+        self.add_rhythms_to_voices()
         self.store_single_context_pitch_class_settings()
         self.apply_pitch_classes()
         self.store_single_context_registration_settings()
@@ -57,10 +57,6 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     ### PUBLIC METHODS ###
-
-    def add_division_lists_to_score(self):
-        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
-            self.add_division_lists_to_voice(voice)
 
     def add_division_lists_to_voice(self, voice):
         #self._debug(voice)
@@ -76,19 +72,9 @@ class ConcreteInterpreter(Interpreter):
             #self._debug(segment_division_lists, 'sdl')
             self.add_segment_division_lists_to_voice(voice, segment_division_lists)
 
-    def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
-#        self._debug(rhythm_maker)
-#        self._debug(rhythm_region_division_list)
-        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
-        assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
-        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
-        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-        voice.extend(rhythm_containers)
-        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
-
-    def add_rhythms_to_score(self):
+    def add_division_lists_to_voices(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
-            self.add_rhythms_to_voice(voice)
+            self.add_division_lists_to_voice(voice)
 
     def add_rhythms_to_voice(self, voice):
         voice_division_list = self.get_voice_division_list(voice)
@@ -98,14 +84,12 @@ class ConcreteInterpreter(Interpreter):
         voice_divisions = voice_division_list.divisions
         voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
         #self._debug(voice_division_durations, 'vdd')
-
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rc')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
         #self._debug_values(rhythm_commands, 'rc')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcd')
-
         key = 'division_region_division_lists'
         division_region_division_lists = self.score_specification.contexts[voice.name][key]
         #self._debug_values(division_region_division_lists, 'drdl')
@@ -127,7 +111,11 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_durations, input_pairs)
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
-        self.make_rhythms_and_add_to_voice(voice, rhythm_makers, rhythm_region_division_lists)
+        self.make_rhythms(voice, rhythm_makers, rhythm_region_division_lists)
+
+    def add_rhythms_to_voices(self):
+        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
+            self.add_rhythms_to_voice(voice)
 
     def add_segment_division_lists_to_voice(
         self, voice, segment_division_lists):
@@ -138,7 +126,7 @@ class ConcreteInterpreter(Interpreter):
             segment_specification.contexts[voice.name]['segment_pairs'] = [
                 x.pair for x in segment_division_list]
 
-    def add_time_signatures_for_segment(self, segment_specification):
+    def add_time_signatures_to_segment(self, segment_specification):
         time_signatures = segment_specification.time_signatures
         if time_signatures is not None:
             measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
@@ -147,7 +135,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_time_signatures_to_score(self):
         for segment_specification in self.score_specification.segment_specifications:
-            self.add_time_signatures_for_segment(segment_specification)
+            self.add_time_signatures_to_segment(segment_specification)
 
     def apply_additional_parameters(self):
         pass
@@ -158,7 +146,7 @@ class ConcreteInterpreter(Interpreter):
     def apply_registration(self):
         pass
 
-    def calculate_segment_offset_pairs(self):
+    def calculate_score_and_segment_durations(self):
         '''Set ``'segment_durations'`` property on score specification.
 
         Set ``'score_duration'`` property on score specification.
@@ -194,7 +182,7 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def division_command_request_to_payload(
+    def division_command_request_to_divisions(
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
@@ -215,7 +203,10 @@ class ConcreteInterpreter(Interpreter):
         assert len(candidate_commands) == 1
         source_command = candidate_commands[0]
         #self._debug(source_command, 'source_command')
-        return source_command.request
+        absolute_request = source_command.request
+        assert isinstance(absolute_request, requesttools.AbsoluteRequest), repr(absolute_request)
+        divisions = requesttools.apply_request_transforms(absolute_request, absolute_request.payload)
+        return divisions
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
@@ -477,6 +468,16 @@ class ConcreteInterpreter(Interpreter):
         self.region_division_commands_to_division_region_division_lists(
             region_division_commands, voice, all_region_division_commands)
 
+    def make_rhythm(self, voice, rhythm_maker, rhythm_region_division_list):
+#        self._debug(rhythm_maker)
+#        self._debug(rhythm_region_division_list)
+        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
+        assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
+        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
+        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+        voice.extend(rhythm_containers)
+        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
+
     def make_rhythm_command(
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
@@ -491,12 +492,12 @@ class ConcreteInterpreter(Interpreter):
             )
         return rhythm_command
 
-    def make_rhythms_and_add_to_voice(self, voice, rhythm_makers, rhythm_region_division_lists):
+    def make_rhythms(self, voice, rhythm_makers, rhythm_region_division_lists):
         for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
             if rhythm_region_division_list:
                 rhythm_region_division_list = divisiontools.RhythmRegionDivisionList(
                     rhythm_region_division_list)
-                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
+                self.make_rhythm(voice, rhythm_maker, rhythm_region_division_list)
 
     def make_segment_division_lists_for_voice(self, voice):
         #self._debug(voice, 'voice')
@@ -599,16 +600,10 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(region_division_command.request, requesttools.CommandRequest):
             assert region_division_command.request.attribute == 'divisions'
             division_command_request = region_division_command.request
-            payload = self.division_command_request_to_payload(
+            divisions = self.division_command_request_to_divisions(
                 division_command_request, region_division_commands, voice_name)
-            self._debug(payload, 'payload')
-            if isinstance(payload, requesttools.AbsoluteRequest):
-                payload = requesttools.apply_request_transforms(payload, payload.payload)
-                self._debug(payload, 'transformed payload')
-            payload = requesttools.apply_request_transforms(
-                division_command_request, payload)
-            self._debug(payload, 'doubly transformed payload')
-            region_division_command._request = payload
+            divisions = requesttools.apply_request_transforms(division_command_request, divisions)
+            region_division_command._request = divisions
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, region_division_commands, voice_name)
             return division_region_division_list
