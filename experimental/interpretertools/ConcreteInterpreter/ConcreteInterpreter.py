@@ -127,7 +127,7 @@ class ConcreteInterpreter(Interpreter):
                 x.pair for x in segment_division_list]
 
     def add_time_signatures_to_segment(self, segment_specification):
-        time_signatures = self.make_time_signatures_for_segment(segment_specification)
+        time_signatures = self.make_time_signatures_for_segment_specification(segment_specification)
         if time_signatures is not None:
             measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
             context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
@@ -314,7 +314,7 @@ class ConcreteInterpreter(Interpreter):
             raw_commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
             #self._debug(raw_commands, 'raw')
-            default_command = self.make_default_rhythm_command_for_segment(segment_specification)
+            default_command = self.make_default_rhythm_command_for_segment_specification(segment_specification)
             raw_commands.insert(0, default_command)
             #self._debug(raw_commands, 'raw')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
@@ -360,7 +360,7 @@ class ConcreteInterpreter(Interpreter):
             if cooked_commands:
                 uninterpreted_division_commands.extend(cooked_commands)
             elif segment_specification.time_signatures:
-                command = self.make_default_uninterpreted_division_command_for_segment(segment_specification)
+                command = self.make_default_uninterpreted_division_command_for_segment_specification(segment_specification)
                 uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
@@ -422,7 +422,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = divisions[1]
         return divisions
 
-    def make_default_rhythm_command_for_segment(self, segment_specification):
+    def make_default_rhythm_command_for_segment_specification(self, segment_specification):
         from experimental import interpretertools
         return interpretertools.RhythmCommand(
             requesttools.AbsoluteRequest(library.skip_filled_tokens), 
@@ -434,7 +434,7 @@ class ConcreteInterpreter(Interpreter):
             True
             )
 
-    def make_default_uninterpreted_division_command_for_segment(self, segment_specification):
+    def make_default_uninterpreted_division_command_for_segment_specification(self, segment_specification):
         from experimental import interpretertools
         return interpretertools.DivisionCommand(
             requesttools.AbsoluteRequest(segment_specification.time_signatures),
@@ -530,7 +530,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(division_command, 'rdc')
         return division_command
 
-    def make_time_signatures_for_segment(self, segment_specification):
+    def make_time_signatures_for_segment_specification(self, segment_specification):
         time_signature_settings = \
             segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
             attribute='time_signatures')
@@ -573,15 +573,6 @@ class ConcreteInterpreter(Interpreter):
             voice_divisions.extend(division_region_division_list.divisions)
         voice_division_list = divisiontools.VoiceDivisionList(voice_divisions)
         return voice_division_list
-
-    def material_request_to_single_context_setting(self, material_request):
-        #self._debug(material_request, 'mr')
-        segment_specification = self.get_start_segment_specification(
-            material_request.start_segment_identifier)
-        context_proxy = segment_specification.single_context_settings_by_context[material_request.context_name]
-        single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
-        #self._debug(single_context_setting, 'rscs')
-        return single_context_setting
 
     # region division command list passed in for back-inspection
     def region_division_command_to_division_region_division_list(
@@ -886,7 +877,9 @@ class ConcreteInterpreter(Interpreter):
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         assert material_request.attribute == 'time_signatures'
-        single_context_setting = self.material_request_to_single_context_setting(material_request)
+        segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
+        context_proxy = segment_specification.single_context_settings_by_context[material_request.context_name]
+        single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         absolute_request = single_context_setting.request
         assert isinstance(absolute_request, requesttools.AbsoluteRequest)
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
