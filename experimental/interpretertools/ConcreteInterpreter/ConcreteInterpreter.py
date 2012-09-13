@@ -496,7 +496,7 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         rhythm_command = interpretertools.RhythmCommand(
-            resolved_single_context_setting.payload, 
+            resolved_single_context_setting.processed_request, 
             segment_name,
             resolved_single_context_setting.context_name,
             start_offset,
@@ -555,7 +555,7 @@ class ConcreteInterpreter(Interpreter):
         self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         uninterpreted_division_command = interpretertools.DivisionCommand(
-            resolved_single_context_setting.payload,
+            resolved_single_context_setting.processed_request,
             segment_name,
             resolved_single_context_setting.context_name,
             start_offset,
@@ -656,14 +656,16 @@ class ConcreteInterpreter(Interpreter):
                 division_region_division_list)
             #self._debug(division_region_division_list, 'drdl')
 
+    # NEXT TODO: test repeatedly and see if this method can be eliminated somehow
     def resolve_material_request(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         resolved_single_context_setting = self.material_request_to_resolved_single_context_setting(
             material_request)
-        payload = resolved_single_context_setting.payload
-        #self._debug(payload, 'payload')
-        if isinstance(payload, requesttools.AbsoluteRequest):
-            payload = payload.payload
+        processed_request = resolved_single_context_setting.processed_request
+        #self._debug(processed_request, 'pr')
+        assert isinstance(processed_request, requesttools.Request)
+        if isinstance(processed_request, requesttools.AbsoluteRequest):
+            payload = processed_request.payload
         assert payload is not None, repr(payload)
         if material_request.callback is not None:
             payload = material_request.callback(payload)

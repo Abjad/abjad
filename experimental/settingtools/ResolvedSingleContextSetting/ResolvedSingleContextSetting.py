@@ -10,7 +10,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `payload` for single-context `selector`::
+    Set `attribute` to `processed_request` for single-context `selector`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -60,27 +60,27 @@ class ResolvedSingleContextSetting(SingleContextSetting):
 
     Resolved single-context settings are create from single-context settings.
 
-    The `payload` of a resolved single-context setting derives from
+    The `processed_request` of a resolved single-context setting derives from
     the `request` of a single-context setting.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, request, payload, selector, context_name=None, 
+    def __init__(self, attribute, request, processed_request, selector, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True, truncate=False, fresh=True):
         SingleContextSetting.__init__(self, 
             attribute, request, selector, context_name=context_name, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist, truncate=truncate)
-        assert isinstance(payload, requesttools.Request), repr(payload)
-        assert payload is not None, repr(payload)
-        self._payload = payload
+        assert isinstance(processed_request, requesttools.Request), repr(processed_request)
+        assert processed_request is not None, repr(processed_request)
+        self._processed_request = processed_request
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def payload(self):
-        '''Setting payload.
+    def processed_request(self):
+        '''Setting processed request.
         '''
-        return self._payload
+        return self._processed_request
