@@ -276,7 +276,6 @@ Unstable packages (load manually)
 
    experimental/settingtools/MultipleContextSetting/MultipleContextSetting
    experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
-   experimental/settingtools/ResolvedSingleContextSetting/ResolvedSingleContextSetting
    experimental/settingtools/SingleContextSetting/SingleContextSetting
    experimental/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 
