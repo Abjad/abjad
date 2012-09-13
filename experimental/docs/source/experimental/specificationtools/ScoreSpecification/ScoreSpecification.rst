@@ -17,8 +17,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.duration
 
-.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.resolved_single_context_settings
-
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_template
@@ -30,6 +28,8 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_specifications
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.single_context_settings
+
+.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.single_context_settings_by_context
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.storage_format
 

@@ -172,28 +172,6 @@ class SegmentSpecification(Specification):
         return self._multiple_context_settings
 
     @property
-    def resolved_single_context_settings(self):
-        r'''Segment specification resolved single-context settings::
-
-            >>> for key in segment.resolved_single_context_settings:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Staff 3'
-            'Staff 4'
-            'Voice 1'
-            'Voice 2'
-            'Voice 3'
-            'Voice 4'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.resolved_single_context_settings.fget(self)
-
-    @property
     def score_model(self):
         '''Segment specification score model::
 
@@ -258,6 +236,28 @@ class SegmentSpecification(Specification):
         Return single-context setting inventory.
         '''
         return Specification.single_context_settings.fget(self)
+
+    @property
+    def single_context_settings_by_context(self):
+        r'''Segment specification resolved single-context settings::
+
+            >>> for key in segment.single_context_settings_by_context:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Staff 3'
+            'Staff 4'
+            'Voice 1'
+            'Voice 2'
+            'Voice 3'
+            'Voice 4'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.single_context_settings_by_context.fget(self)
 
     @property
     def start_timepoint(self):

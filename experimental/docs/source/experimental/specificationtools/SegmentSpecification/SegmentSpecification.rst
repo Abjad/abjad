@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_settings
 
-.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.resolved_single_context_settings
-
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_model
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_name
@@ -32,6 +30,8 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.selector
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.single_context_settings
+
+.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.single_context_settings_by_context
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.start_timepoint
 

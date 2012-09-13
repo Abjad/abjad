@@ -131,28 +131,6 @@ class ScoreSpecification(Specification):
         return durationtools.Duration(sum(result))
 
     @property
-    def resolved_single_context_settings(self):
-        r'''Score specification resolved single-context settings::
-
-            >>> for key in score_specification.resolved_single_context_settings:
-            ...     key
-            ... 
-            'Grouped Rhythmic Staves Score'
-            'Grouped Rhythmic Staves Staff Group'
-            'Staff 1'
-            'Staff 2'
-            'Staff 3'
-            'Staff 4'
-            'Voice 1'
-            'Voice 2'
-            'Voice 3'
-            'Voice 4'
-
-        Return context proxy dictionary.
-        '''
-        return Specification.resolved_single_context_settings.fget(self)
-
-    @property
     def segment_names(self):
         r'''Score segment names::
 
@@ -221,6 +199,28 @@ class ScoreSpecification(Specification):
         Return single-context setting inventory.
         '''
         return Specification.single_context_settings.fget(self)
+
+    @property
+    def single_context_settings_by_context(self):
+        r'''Score specification resolved single-context settings::
+
+            >>> for key in score_specification.single_context_settings_by_context:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Staff 3'
+            'Staff 4'
+            'Voice 1'
+            'Voice 2'
+            'Voice 3'
+            'Voice 4'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.single_context_settings_by_context.fget(self)
 
     @property
     def storage_format(self):

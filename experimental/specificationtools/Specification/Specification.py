@@ -34,7 +34,8 @@ class Specification(AbjadObject):
         self._score_template = score_template
         self._abbreviated_context_names = []
         self._context_names = []
-        self._resolved_single_context_settings = specificationtools.ContextProxyDictionary(self.score_template())
+        self._single_context_settings_by_context = \
+            specificationtools.ContextProxyDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
         self._contexts = specificationtools.ContextProxyDictionary(self.score_template())
         self._single_context_settings = settingtools.SingleContextSettingInventory()
@@ -93,10 +94,6 @@ class Specification(AbjadObject):
         return self._contexts
 
     @property
-    def resolved_single_context_settings(self):
-        return self._resolved_single_context_settings
-
-    @property
     def score_name(self):
         return self._score_name
 
@@ -107,3 +104,7 @@ class Specification(AbjadObject):
     @property
     def single_context_settings(self):
         return self._single_context_settings
+
+    @property
+    def single_context_settings_by_context(self):
+        return self._single_context_settings_by_context

@@ -171,11 +171,11 @@ class ConcreteInterpreter(Interpreter):
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
             self.score_specification.segment_offset_pairs = segment_offset_pairs
 
-    def clear_persistent_resolved_single_context_settings(self, context_name, attribute):
+    def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
         r'''Clear persistent resolved single-context settings.
         '''
-        if attribute in self.score_specification.resolved_single_context_settings[context_name]:
-            del(self.score_specification.resolved_single_context_settings[context_name][attribute])
+        if attribute in self.score_specification.single_context_settings_by_context[context_name]:
+            del(self.score_specification.single_context_settings_by_context[context_name][attribute])
 
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
         if getattr(rhythm_maker, 'beam', False):
@@ -290,7 +290,7 @@ class ConcreteInterpreter(Interpreter):
         #print ''
         return all_division_commands
 
-    def get_resolved_single_context_settings(self, segment_specification, attribute, context_name,
+    def get_single_context_settings_by_context(self, segment_specification, attribute, context_name,
         include_improper_parentage=False):
         context = componenttools.get_first_component_in_expr_with_name(
             segment_specification.score_model, context_name)
@@ -302,10 +302,11 @@ class ConcreteInterpreter(Interpreter):
         # ensure lower-level contexts appear before high-level contexts
         parentage_to_search = list(reversed(parentage_to_search))
         for component in parentage_to_search:
-            context_proxy = segment_specification.resolved_single_context_settings[component.name]
-            resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
-            if resolved_single_context_settings:
-                result.extend(resolved_single_context_settings)
+            single_context_settings = \
+                segment_specification.single_context_settings_by_context[component.name].get_settings(
+                    attribute=attribute)
+            if single_context_settings:
+                result.extend(single_context_settings)
         return result
 
     def get_rhythm_commands_for_voice(self, voice):
@@ -324,14 +325,14 @@ class ConcreteInterpreter(Interpreter):
 
     def get_rhythm_commands_that_start_during_segment(self, segment_specification, context_name):
         #self._debug(segment_specification, 'segment')
-        resolved_single_context_settings = self.get_resolved_single_context_settings(
+        single_context_settings = self.get_single_context_settings_by_context(
             segment_specification, 'rhythm', context_name, include_improper_parentage=True)
         rhythm_commands = []
-        for resolved_single_context_setting in resolved_single_context_settings:
-            #self._debug(resolved_single_context_setting)
+        for single_context_setting in single_context_settings:
+            #self._debug(single_context_setting)
             rhythm_command = \
-                self.resolved_single_context_setting_to_rhythm_command(
-                resolved_single_context_setting, segment_specification)
+                self.single_context_setting_to_rhythm_command(
+                single_context_setting, segment_specification)
             rhythm_commands.append(rhythm_command)
         #print ''
         return rhythm_commands
@@ -367,14 +368,14 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_that_start_during_segment(self, 
         segment_specification, context_name):
         #self._debug(segment_specification, 'segment')
-        resolved_single_context_settings = self.get_resolved_single_context_settings(
+        single_context_settings = self.get_single_context_settings_by_context(
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
         uninterpreted_division_commands = []
-        for resolved_single_context_setting in resolved_single_context_settings:
-            #self._debug(resolved_single_context_setting, 'rscs')
+        for single_context_setting in single_context_settings:
+            #self._debug(single_context_setting, 'rscs')
             uninterpreted_division_command = \
-                self.resolved_single_context_setting_to_uninterpreted_division_command(
-                resolved_single_context_setting, segment_specification)
+                self.single_context_setting_to_uninterpreted_division_command(
+                single_context_setting, segment_specification)
             uninterpreted_division_commands.append(uninterpreted_division_command)
         #print ''
         return uninterpreted_division_commands
@@ -472,17 +473,16 @@ class ConcreteInterpreter(Interpreter):
         self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
 
     def make_rhythm_command(
-        self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
+        self, single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         rhythm_command = interpretertools.RhythmCommand(
-            #resolved_single_context_setting.processed_request, 
-            resolved_single_context_setting.request, 
+            single_context_setting.request, 
             segment_name,
-            resolved_single_context_setting.context_name,
+            single_context_setting.context_name,
             start_offset,
             stop_offset,
             duration,
-            resolved_single_context_setting.fresh
+            single_context_setting.fresh
             )
         return rhythm_command
 
@@ -533,7 +533,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_time_signatures_for_segment(self, segment_specification):
         time_signature_settings = \
-            segment_specification.resolved_single_context_settings.score_context_proxy.get_settings(
+            segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
             attribute='time_signatures')
         if not len(time_signature_settings) == 1:
             return
@@ -552,18 +552,17 @@ class ConcreteInterpreter(Interpreter):
         return time_signatures
 
     def make_uninterpreted_division_command(
-        self, resolved_single_context_setting, segment_name, duration, start_offset, stop_offset):
+        self, single_context_setting, segment_name, duration, start_offset, stop_offset):
         from experimental import interpretertools
         uninterpreted_division_command = interpretertools.DivisionCommand(
-            #resolved_single_context_setting.processed_request,
-            resolved_single_context_setting.request,
+            single_context_setting.request,
             segment_name,
-            resolved_single_context_setting.context_name,
+            single_context_setting.context_name,
             start_offset,
             stop_offset,
             duration,
-            resolved_single_context_setting.fresh,
-            resolved_single_context_setting.truncate
+            single_context_setting.fresh,
+            single_context_setting.truncate
             )
         return uninterpreted_division_command
 
@@ -576,14 +575,14 @@ class ConcreteInterpreter(Interpreter):
         voice_division_list = divisiontools.VoiceDivisionList(voice_divisions)
         return voice_division_list
 
-    def material_request_to_resolved_single_context_setting(self, material_request):
+    def material_request_to_single_context_setting(self, material_request):
         #self._debug(material_request, 'mr')
         segment_specification = self.get_start_segment_specification(
             material_request.start_segment_identifier)
-        context_proxy = segment_specification.resolved_single_context_settings[material_request.context_name]
-        resolved_single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
-        #self._debug(resolved_single_context_setting, 'rscs')
-        return resolved_single_context_setting
+        context_proxy = segment_specification.single_context_settings_by_context[material_request.context_name]
+        single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
+        #self._debug(single_context_setting, 'rscs')
+        return single_context_setting
 
     # region division command list passed in for back-inspection
     def region_division_command_to_division_region_division_list(
@@ -639,29 +638,29 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
 
-    def resolved_single_context_setting_to_rhythm_command(
-        self, resolved_single_context_setting, segment_specification):
-        selector = resolved_single_context_setting.selector
+    def single_context_setting_to_rhythm_command(
+        self, single_context_setting, segment_specification):
+        selector = single_context_setting.selector
         assert selector.start_segment_identifier == segment_specification.segment_name
-        context_name = resolved_single_context_setting.context_name
+        context_name = single_context_setting.context_name
         duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
         rhythm_command = self.make_rhythm_command(
-            resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
+            single_context_setting, segment_name, duration, start_offset, stop_offset)
         #self._debug(rhythm_command, 'rc')
         return rhythm_command
 
-    def resolved_single_context_setting_to_uninterpreted_division_command(
-        self, resolved_single_context_setting, segment_specification):
-        selector = resolved_single_context_setting.selector
+    def single_context_setting_to_uninterpreted_division_command(
+        self, single_context_setting, segment_specification):
+        selector = single_context_setting.selector
         assert selector.start_segment_identifier == segment_specification.segment_name
-        context_name = resolved_single_context_setting.context_name
+        context_name = single_context_setting.context_name
         duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
         uninterpreted_division_command = self.make_uninterpreted_division_command(
-            resolved_single_context_setting, segment_name, duration, start_offset, stop_offset)
+            single_context_setting, segment_name, duration, start_offset, stop_offset)
         #self._debug(uninterpreted_division_command, 'udc')
         return uninterpreted_division_command
 
@@ -723,27 +722,27 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             pass
 
-    def store_resolved_single_context_setting(self,
-        segment_specification, resolved_single_context_setting, clear_persistent_first=False):
-        context_name = resolved_single_context_setting.context_name
+    def store_single_context_setting_by_context(self,
+        segment_specification, single_context_setting, clear_persistent_first=False):
+        context_name = single_context_setting.context_name
         if context_name is None:
-            context_name = segment_specification.resolved_single_context_settings.score_name
-        attribute = resolved_single_context_setting.attribute
+            context_name = segment_specification.single_context_settings_by_context.score_name
+        attribute = single_context_setting.attribute
         if clear_persistent_first:
-            self.clear_persistent_resolved_single_context_settings(context_name, attribute)
-        if attribute in segment_specification.resolved_single_context_settings[context_name]:
-            segment_specification.resolved_single_context_settings[context_name][attribute].append(
-                resolved_single_context_setting)
+            self.clear_persistent_single_context_settings_by_context(context_name, attribute)
+        if attribute in segment_specification.single_context_settings_by_context[context_name]:
+            segment_specification.single_context_settings_by_context[context_name][attribute].append(
+                single_context_setting)
         else:
-            segment_specification.resolved_single_context_settings[context_name][attribute] = [
-                resolved_single_context_setting]
-        if resolved_single_context_setting.persist:
-            if attribute in self.score_specification.resolved_single_context_settings[context_name]:
-                self.score_specification.resolved_single_context_settings[context_name][attribute].append(
-                    resolved_single_context_setting)
+            segment_specification.single_context_settings_by_context[context_name][attribute] = [
+                single_context_setting]
+        if single_context_setting.persist:
+            if attribute in self.score_specification.single_context_settings_by_context[context_name]:
+                self.score_specification.single_context_settings_by_context[context_name][attribute].append(
+                    single_context_setting)
             else:
-                self.score_specification.resolved_single_context_settings[context_name][attribute] = [
-                    resolved_single_context_setting]
+                self.score_specification.single_context_settings_by_context[context_name][attribute] = [
+                    single_context_setting]
 
     def store_single_context_division_settings(self):
         '''For every segment specification:
@@ -761,7 +760,7 @@ class ConcreteInterpreter(Interpreter):
             #self._debug_values(new_settings, 'ns')
             if not new_settings:
                 new_settings = []
-                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
+                existing_settings = self.score_specification.single_context_settings_by_context.get_settings(
                     attribute='divisions')
                 for existing_setting in existing_settings:
                     #self._debug(existing_setting, 'es')
@@ -783,7 +782,7 @@ class ConcreteInterpreter(Interpreter):
             settings = segment_specification.single_context_settings.get_settings(attribute='rhythm')
             if not settings:
                 settings = []
-                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
+                existing_settings = self.score_specification.single_context_settings_by_context.get_settings(
                     attribute='rhythm')
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_setting_to_segment(segment_specification)
@@ -797,11 +796,11 @@ class ConcreteInterpreter(Interpreter):
 
         If setting persists then store setting in score resolved single-context settings, too.
         '''
-        resolved_single_context_setting = copy.deepcopy(single_context_setting)
-        selector = resolved_single_context_setting.selector
+        single_context_setting = copy.deepcopy(single_context_setting)
+        selector = single_context_setting.selector
         segment_specification = self.get_start_segment_specification(selector)
-        self.store_resolved_single_context_setting(
-            segment_specification, resolved_single_context_setting,
+        self.store_single_context_setting_by_context(
+            segment_specification, single_context_setting,
             clear_persistent_first=clear_persistent_first)
 
     def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
@@ -828,7 +827,7 @@ class ConcreteInterpreter(Interpreter):
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
-                settings = self.score_specification.resolved_single_context_settings.get_settings(
+                settings = self.score_specification.single_context_settings_by_context.get_settings(
                     attribute='time_signatures')
                 if not settings:
                     return
@@ -888,10 +887,8 @@ class ConcreteInterpreter(Interpreter):
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         assert material_request.attribute == 'time_signatures'
-        resolved_single_context_setting = self.material_request_to_resolved_single_context_setting(
-            material_request)
-        #absolute_request = resolved_single_context_setting.processed_request
-        absolute_request = resolved_single_context_setting.request
+        single_context_setting = self.material_request_to_single_context_setting(material_request)
+        absolute_request = single_context_setting.request
         assert isinstance(absolute_request, requesttools.AbsoluteRequest)
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
         return time_signatures
