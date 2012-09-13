@@ -20,8 +20,6 @@ Special Methods
 
 .. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.helpertools.SegmentIdentifierExpression.SegmentIdentifierExpression.SegmentIdentifierExpression.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

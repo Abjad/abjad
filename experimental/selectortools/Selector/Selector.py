@@ -15,6 +15,20 @@ class Selector(AbjadObject):
     def __init__(self):
         pass
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when mandatory and keyword arguments compare equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if not self._mandatory_argument_values == expr._mandatory_argument_values:
+            return False
+        return self._keyword_argument_values == expr._keyword_argument_values
+        
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty

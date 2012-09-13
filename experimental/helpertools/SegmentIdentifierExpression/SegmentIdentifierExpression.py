@@ -26,6 +26,20 @@ class SegmentIdentifierExpression(AbjadObject):
         assert isinstance(string, str), repr(string)
         self._string = string
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when mandatory and keyword arguments compare equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if not self._mandatory_argument_values == expr._mandatory_argument_values:
+            return False
+        return self._keyword_argument_values == expr._keyword_argument_values
+
     ### PRIVATE METHODS ###
 
     # do not indent storage format

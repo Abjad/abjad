@@ -864,9 +864,29 @@ class ConcreteInterpreter(Interpreter):
         for uninterpreted_division_command in uninterpreted_division_commands:
             #self._debug(uninterpreted_division_command, 'udc')
             if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
+
                 region_division_command = interpretertools.DivisionCommand(
                     *uninterpreted_division_command.vector)
+
+                foo = copy.deepcopy(uninterpreted_division_command)
+                foo._index = None
+                foo._count = None
+                foo._reverse = None
+                foo._rotation = None
+                foo._callback = None
+                foo._fresh = None
+                foo._truncate = None
+
+#                print region_division_command.storage_format
+#                print ''
+#                print foo.storage_format
+#                print ''
+#                print region_division_command == foo
+#                print ''
+                assert region_division_command == foo
+
                 region_division_commands.append(region_division_command)
+                #region_division_commands.append(foo)
             else:
                 last_region_division_command = region_division_commands[-1]
                 if uninterpreted_division_command.request != \

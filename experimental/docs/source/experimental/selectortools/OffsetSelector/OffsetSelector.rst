@@ -59,7 +59,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.__ge__
 

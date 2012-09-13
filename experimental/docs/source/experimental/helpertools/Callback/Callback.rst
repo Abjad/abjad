@@ -20,8 +20,6 @@ Special Methods
 
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.helpertools.Callback.Callback.Callback.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
