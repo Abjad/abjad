@@ -1083,19 +1083,6 @@ class SegmentSpecification(Specification):
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist)
 
-    def set_rotated_divisions(self, source, n, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=True):
-        r'''Set divisions of segment `contexts` to `source` rotated by integer `n`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        assert isinstance(n, int), repr(n)
-        string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
-        callback = helpertools.Callback(eval(string), string)
-        return self.set_divisions(source, contexts=contexts,
-            callback=callback, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
-
     def set_tempo(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True):

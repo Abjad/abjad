@@ -105,8 +105,7 @@ def test_SegmentSpecification_set_divisions_04():
 
 
 def test_SegmentSpecification_set_divisions_05():
-    '''Score with 4 one-voice staves.
-    F1 divisions truncated in F1. F2, F3, F4 divisions rotated.
+    '''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
