@@ -950,7 +950,7 @@ class SegmentSpecification(Specification):
 
     def set_divisions(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
-        persist=True, truncate=False):
+        persist=True, truncate=None):
         r'''Set divisions of segment `contexts` to `source`::
 
             >>> setting = segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
@@ -967,8 +967,7 @@ class SegmentSpecification(Specification):
                     identifier='red'
                     ),
                 context_names=['Voice 1', 'Voice 3'],
-                persist=True,
-                truncate=False
+                persist=True
                 )
 
         Create, store and return ``MultipleContextSetting``.

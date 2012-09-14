@@ -47,8 +47,7 @@ class SingleContextSetting(Setting):
                 ),
             context_name='Voice 1',
             fresh=True,
-            persist=True,
-            truncate=False
+            persist=True
             )
 
     Composers do not create single-context settings.
@@ -95,8 +94,7 @@ class SingleContextSetting(Setting):
                     ),
                 context_name='Voice 1',
                 fresh=True,
-                persist=True,
-                truncate=False
+                persist=True
                 )
 
         Return string.
