@@ -1,27 +1,42 @@
-def format_scheme_value(value):
+def format_scheme_value(value, force_quotes=False):
     '''Format `value` as Scheme would:
 
     ::
         
-        abjad> from abjad.tools.schemetools import format_scheme_value
-        abjad> format_scheme_value(1)
+        >>> schemetools.format_scheme_value(1)
         '1'
-        abjad> format_scheme_value('foo bar')
-        '"foo bar"'
-        abjad> format_scheme_value([1.5, True, False])
+    
+    ::
+
+        >>> schemetools.format_scheme_value('foo')
+        'foo'
+
+    ::
+
+        >>> schemetools.format_scheme_value('bar baz')
+        '"bar baz"'
+
+    ::
+
+        >>> schemetools.format_scheme_value([1.5, True, False])
         '(1.5 #t #f)'
+
+    Strings without whitespace can be forcibly quoted via the `force_quotes` keyword:
+
+    ::
+
+        >>> schemetools.format_scheme_value('foo', force_quotes=True)
+        '"foo"'
 
     Return string.
     '''
     from abjad.tools import schemetools
 
     if isinstance(value, str):
-        if -1 == value.find(' ') and -1 == value.find('"'):
+        value = value.replace('"', r'\"')
+        if -1 == value.find(' ') and not force_quotes:
             return value
-        elif value.startswith('"') and value.endswith('"'):
-            return value
-        else:
-            return '"{}"'.format(value)
+        return '"{}"'.format(value)
 
     elif isinstance(value, bool):
         if value:

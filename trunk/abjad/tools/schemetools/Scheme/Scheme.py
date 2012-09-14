@@ -2,40 +2,59 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Scheme(AbjadObject):
-    '''Abjad model of Scheme code::
+    r'''Abjad model of Scheme code:
 
-        >>> from abjad.tools.schemetools import Scheme
-        >>> s = Scheme(True)
+    ::
+
+        >>> from abjad.tools import schemetools
+        >>> s = schemetools.Scheme(True)
         >>> s.lilypond_format
         '##t'
 
-    schemetools.Scheme can represent nested structures ::
+    schemetools.Scheme can represent nested structures:
 
-        >>> s = Scheme(('left', (1, 2, False)), ('right', (1, 2, 3.3)))
+    ::
+
+        >>> s = schemetools.Scheme(('left', (1, 2, False)), ('right', (1, 2, 3.3)))
         >>> s.lilypond_format
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
-    schemetools.Scheme wraps variable-length arguments into a tuple ::
+    schemetools.Scheme wraps variable-length arguments into a tuple:
 
-        >>> s = Scheme(1, 2, 3)
-        >>> q = Scheme((1, 2, 3))
+    ::
+
+        >>> s = schemetools.Scheme(1, 2, 3)
+        >>> q = schemetools.Scheme((1, 2, 3))
         >>> s.lilypond_format == q.lilypond_format
         True
 
     schemetools.Scheme also takes an optional `quoting` keyword, by which Scheme's
     various quote, unquote, unquote-splicing characters can be prepended to the
-    formatted result ::
+    formatted result:
 
-        >>> s = Scheme((1, 2, 3), quoting="'#")
+    ::
+
+        >>> s = schemetools.Scheme((1, 2, 3), quoting="'#")
         >>> s.lilypond_format
         "#'#(1 2 3)"
+
+    schemetools.Scheme can also force quotes around strings which contain no whitespace:
+
+    ::
+
+        >>> s = schemetools.Scheme('nospaces', force_quotes=True)
+        >>> f(s)
+        #"nospaces"
+
+    The above is useful in certain \override situations, as LilyPond's Scheme interpreter
+    will treat unquoted strings as symbols rather than strings.
 
     Scheme is immutable.
     '''
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_quoting', '_value',)
+    __slots__ = ('_force_quotes', '_quoting', '_value',)
 
     ### INITIALIZER ###
 
@@ -46,11 +65,13 @@ class Scheme(AbjadObject):
             else:
                 args = args[0]
         quoting = kwargs.get('quoting')
+        force_quotes = bool(kwargs.get('force_quotes'))
         assert isinstance(quoting, (str, type(None)))
         if quoting is not None:
             assert all([x in ("'", ',', '@', '`', '#') for x in quoting])
-        object.__setattr__(self, '_quoting', quoting)
-        object.__setattr__(self, '_value', args)
+        self._force_quotes = force_quotes
+        self._quoting = quoting
+        self._value = args
 
     ### SPECIAL METHODS ###
 
@@ -76,7 +97,7 @@ class Scheme(AbjadObject):
     @property
     def _formatted_value(self):
         from abjad.tools import schemetools
-        return schemetools.format_scheme_value(self._value)
+        return schemetools.format_scheme_value(self._value, force_quotes=self.force_quotes)
 
     ### PUBLIC PROPERTIES ###
 

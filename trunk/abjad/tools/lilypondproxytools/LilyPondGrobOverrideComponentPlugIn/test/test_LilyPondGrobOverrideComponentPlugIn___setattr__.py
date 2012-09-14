@@ -907,7 +907,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___42():
     '''
 
     t = Note(0, (1, 16))
-    t.override.stem.stroke_style = schemetools.Scheme('"grace"')
+    t.override.stem.stroke_style = schemetools.Scheme('grace', force_quotes=True)
 
     r'''
     \once \override Stem #'stroke-style = #"grace"

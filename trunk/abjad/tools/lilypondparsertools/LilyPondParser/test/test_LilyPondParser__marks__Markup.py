@@ -22,7 +22,7 @@ def test_LilyPondParser__marks__Markup_01():
 def test_LilyPondParser__marks__Markup_02():
 
     target = Staff([Note(0, (1, 4))])
-    markuptools.Markup(['X', 'Y', 'Z', '"a b c"'], Down)(target[0])
+    markuptools.Markup(['X', 'Y', 'Z', 'a b c'], Down)(target[0])
 
     r'''\new Staff {
         c'4
