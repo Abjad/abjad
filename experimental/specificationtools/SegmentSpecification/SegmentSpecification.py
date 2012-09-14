@@ -1082,18 +1082,6 @@ class SegmentSpecification(Specification):
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist)
 
-    def set_retrograde_divisions(self, source, callback=None, contexts=None, count=None, 
-        index=None, persist=True, reverse=None, selector=None, truncate=True):
-        r'''Set divisions of segment `contexts` to retrograde `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        string = 'sequencetools.reverse_sequence'
-        callback = helpertools.Callback(eval(string), string)
-        return self.set_divisions(source, contexts=contexts,
-            callback=callback, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
-
     def set_rotated_divisions(self, source, n, callback=None, contexts=None, count=None, 
         index=None, persist=True, reverse=None, selector=None, truncate=True):
         r'''Set divisions of segment `contexts` to `source` rotated by integer `n`.
