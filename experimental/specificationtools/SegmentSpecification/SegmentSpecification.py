@@ -974,9 +974,10 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'divisions'
-        return self._store_multiple_context_setting(attribute, source,
-            callback=callback, contexts=contexts, count=count, index=index, 
-            persist=persist, reverse=reverse, selector=selector, truncate=truncate)
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            truncate=truncate, persist=persist)
 
     def set_dynamics(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,

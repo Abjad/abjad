@@ -102,3 +102,52 @@ def test_SegmentSpecification_set_divisions_04():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification_set_divisions_05():
+    '''Score with 4 one-voice staves.
+    F1 divisions truncated in F1. F2, F3, F4 divisions rotated.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    segment = score_specification.append_segment('T1')
+    segment.set_time_signatures([(4, 8), (3, 8)])
+    segment.set_divisions([(3, 16)], contexts=segment.v1)
+    source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
+    segment.set_divisions(source, contexts=segment.v2, rotation=-1, truncate=True)
+    segment.set_divisions(source, contexts=segment.v3, rotation=-2, truncate=True)
+    segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
+    segment.set_rhythm(library.thirty_seconds)
+
+    segment = score_specification.append_segment('T2')
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification_set_divisions_06():
+    '''As above with T2 equal to T1 and a hard break between.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    segment = score_specification.append_segment('T1')
+    segment.set_time_signatures([(4, 8), (3, 8)])
+    segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
+    source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
+    segment.set_divisions(source, contexts=segment.v2, rotation=-1, truncate=True)
+    segment.set_divisions(source, contexts=segment.v3, rotation=-2, truncate=True)
+    segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
+    segment.set_rhythm(library.thirty_seconds)
+
+    segment = score_specification.append_segment('T2')
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

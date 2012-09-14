@@ -22,8 +22,13 @@ def apply_request_transforms(request, payload):
     from experimental import requesttools
     from experimental import settingtools
 
-    assert isinstance(request, (
-        requesttools.Request, settingtools.Setting, interpretertools.Command)), repr(request)
+    request_klasses = (
+        requesttools.Request, 
+        settingtools.Setting, 
+        interpretertools.Command,
+        )
+
+    assert isinstance(request, request_klasses), repr(request)
     assert isinstance(payload, (list, tuple)), repr(payload)
 
     if request.index is not None or request.count is not None:

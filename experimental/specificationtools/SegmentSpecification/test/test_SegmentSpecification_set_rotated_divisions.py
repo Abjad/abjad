@@ -12,18 +12,14 @@ def test_SegmentSpecification_set_rotated_divisions_01():
 
     segment = score_specification.append_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
-
     segment.set_divisions([(3, 16)], contexts=segment.v1)
-
     source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
-    segment.set_rotated_divisions(source, -1, contexts=segment.v2)
-    segment.set_rotated_divisions(source, -2, contexts=segment.v3)
-    segment.set_rotated_divisions(source, -3, contexts=segment.v4)
-
+    segment.set_divisions(source, contexts=segment.v2, rotation=-1, truncate=True)
+    segment.set_divisions(source, contexts=segment.v3, rotation=-2, truncate=True)
+    segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.append_segment('T2')
-
     score = score_specification.interpret()
 
     assert score_specification['T1'].time_signatures == [(4, 8), (3, 8)]
@@ -39,7 +35,6 @@ def test_SegmentSpecification_set_rotated_divisions_01():
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
-
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
@@ -52,18 +47,14 @@ def test_SegmentSpecification_set_rotated_divisions_02():
     
     segment = score_specification.append_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
-    
     segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
-    
     source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
-    segment.set_rotated_divisions(source, -1, contexts=segment.v2)
-    segment.set_rotated_divisions(source, -2, contexts=segment.v3)
-    segment.set_rotated_divisions(source, -3, contexts=segment.v4)
-    
+    segment.set_divisions(source, contexts=segment.v2, rotation=-1, truncate=True)
+    segment.set_divisions(source, contexts=segment.v3, rotation=-2, truncate=True)
+    segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.append_segment('T2')
-
     score = score_specification.interpret()
 
     assert score_specification['T1'].time_signatures == [(4, 8), (3, 8)]
@@ -88,5 +79,4 @@ def test_SegmentSpecification_set_rotated_divisions_02():
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
-
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
