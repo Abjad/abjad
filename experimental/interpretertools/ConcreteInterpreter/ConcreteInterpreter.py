@@ -174,11 +174,22 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
+    def context_name_to_parentage_names(self, segment_specification, context_name, proper=True):
+        context = componenttools.get_first_component_in_expr_with_name(
+            segment_specification.score_model, context_name)
+        if proper:
+            parentage = componenttools.get_proper_parentage_of_component(context)
+        else:
+            parentage = componenttools.get_improper_parentage_of_component(context)
+        context_names = [context.name for context in parentage]
+        context_names.reverse()
+        return context_names
+
     def division_command_request_to_divisions(
         self, division_command_request, region_division_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
-        #self._debug(division_command_request, 'dcr')
+        self._debug(division_command_request, 'dcr')
         #self._debug_values(region_division_commands, 'rdcs')
         requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
@@ -191,7 +202,11 @@ class ConcreteInterpreter(Interpreter):
         timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
             timepoint=requested_segment_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
+        self._debug_values(candidate_commands, 'candidates')
         # this will eventually have to be extended to handle multiple candidate selection
+        #source_command = self.select_first_with_context_name(
+        #    candidate_commands, 
+        #    context_name=division_command_request.context_name, include_improper_parentage=True)
         assert len(candidate_commands) == 1
         source_command = candidate_commands[0]
         #self._debug(source_command, 'source_command')
@@ -281,21 +296,15 @@ class ConcreteInterpreter(Interpreter):
 
     def get_single_context_settings_by_context(self, segment_specification, attribute, context_name,
         include_improper_parentage=False):
-        context = componenttools.get_first_component_in_expr_with_name(
-            segment_specification.score_model, context_name)
         result = []
+        context_names = [context_name]
         if include_improper_parentage:
-            parentage_to_search = componenttools.get_improper_parentage_of_component(context)
-        else:
-            parentage_to_search = [context]
-        # ensure lower-level contexts appear before high-level contexts
-        parentage_to_search = list(reversed(parentage_to_search))
-        for component in parentage_to_search:
-            single_context_settings = \
-                segment_specification.single_context_settings_by_context[component.name].get_settings(
-                    attribute=attribute)
-            if single_context_settings:
-                result.extend(single_context_settings)
+            context_names = self.context_name_to_parentage_names(
+                segment_specification, context_name, proper=False)
+        for context_name in context_names:
+            single_context_settings = segment_specification.single_context_settings_by_context[context_name]
+            single_context_settings = single_context_settings.get_settings(attribute=attribute)
+            result.extend(single_context_settings)
         return result
 
     def get_rhythm_commands_for_voice(self, voice):
@@ -630,6 +639,9 @@ class ConcreteInterpreter(Interpreter):
                 region_division_command, all_region_division_commands, voice.name)
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
+
+    def select_first_with_context_name(self, expr, context_name=None, include_improper_parentage=None):
+        pass
 
     def single_context_setting_to_rhythm_command(
         self, single_context_setting, segment_specification):
