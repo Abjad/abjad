@@ -1,6 +1,5 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_multiple_segment_quartet_01():
@@ -89,7 +88,6 @@ def test_multiple_segment_quartet_03():
     Filled note tokens scorewide.
     T2 equal to T1 flipped about the y axis in all respects.
     ''' 
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -102,25 +100,29 @@ def test_multiple_segment_quartet_03():
     segment.set_divisions([(5, 16)], contexts=['Voice 1'], selector=right_measure)
     segment.set_divisions([(5, 16)], contexts=['Voice 2'], selector=left_measure)
     segment.set_divisions([(3, 16)], contexts=['Voice 2'], selector=right_measure)
+
+    left_half = segment.select_segment_ratio_part((1, 1), 0)
+    right_half = segment.select_segment_ratio_part((1, 1), -1)
+
     voice_1_left_division_command = segment.request_division_command(
         context_name='Voice 1', selector=left_measure)
     voice_1_right_division_command = segment.request_division_command(
         context_name='Voice 1', selector=right_measure)
-    left_half = segment.select_segment_ratio_part((1, 1), 0)
-    right_half = segment.select_segment_ratio_part((1, 1), -1)
 
-    # TODO: make these two lines work
-    #segment.set_divisions(voice_1_left_division_command, contexts=['Voice 3'], selector=left_half)
-    #segment.set_divisions(voice_1_right_division_command, contexts=['Voice 3'], selector=right_half)
+    segment.set_divisions(voice_1_left_division_command, contexts=['Voice 3'], selector=left_half)
+    segment.set_divisions(voice_1_right_division_command, contexts=['Voice 3'], selector=right_half)
 
-    #segment.set_divisions([(3, 16)], contexts=['Voice 3'], selector=left_half)
-    #segment.set_divisions([(5, 16)], contexts=['Voice 3'], selector=right_half)
-    #segment.set_divisions([(5, 16)], contexts=['Voice 4'], selector=left_half)
-    #segment.set_divisions([(3, 16)], contexts=['Voice 4'], selector=right_half)
-    
+    voice_2_left_division_command = segment.request_division_command(
+        context_name='Voice 2', selector=left_measure)
+    voice_2_right_division_command = segment.request_division_command(
+        context_name='Voice 2', selector=right_measure)
+
+    segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], selector=left_half)
+    segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], selector=right_half)
+
     segment.set_rhythm(library.sixteenths)
     score = score_specification.interpret() 
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
