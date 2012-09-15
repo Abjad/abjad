@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.duration
 
+.. autoattribute:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.force_quotes
+
+    Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
 .. autoattribute:: abjad.tools.schemetools.SchemeMoment.SchemeMoment.SchemeMoment.lilypond_format
 
     Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`

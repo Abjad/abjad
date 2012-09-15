@@ -102,6 +102,10 @@ class Scheme(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def force_quotes(self):
+        return self._force_quotes
+
+    @property
     def lilypond_format(self):
         '''Hash-mark-prepended format of Scheme::
 
@@ -114,4 +118,3 @@ class Scheme(AbjadObject):
         if self._quoting is not None:
             return '#' + self._quoting + self._formatted_value
         return '#%s' % self._formatted_value
-

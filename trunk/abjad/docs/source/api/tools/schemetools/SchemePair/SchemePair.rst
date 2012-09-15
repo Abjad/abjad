@@ -9,6 +9,10 @@ schemetools.SchemePair
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.force_quotes
+
+    Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
 .. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.lilypond_format
 
 .. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.storage_format
