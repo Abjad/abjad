@@ -312,10 +312,10 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def request_divisions(self,  context_name=None, 
+    def request_divisions(self,  context=None, 
         start_offset=None, stop_offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment divisions in `context_name`::
+        r'''Request segment divisions in `context`::
 
             >>> request = segment.request_divisions()
 
@@ -333,15 +333,15 @@ class SegmentSpecification(Specification):
         '''
         selector = self.select_segment()
         return requesttools.MaterialRequest(
-            'divisions', selector, context_name=context_name, 
+            'divisions', selector, context_name=context, 
             start_offset=start_offset, stop_offset=stop_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_division_command(self,  context_name=None, 
+    def request_division_command(self, context=None, 
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment division command active at timepoint
-        in `context_name`.
+        in `context`.
 
         Example 1. Request division command active at start of segment::
 
@@ -418,12 +418,12 @@ class SegmentSpecification(Specification):
         timepoint = timespantools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'divisions', context_name=context_name, timepoint=timepoint,
+            'divisions', context_name=context, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_rhythm(self, context_name=None, 
+    def request_rhythm(self, context=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment rhythm in `context_name`::
+        r'''Request segment rhythm in `context`::
 
             >>> request = segment.request_rhythm()
 
@@ -441,14 +441,13 @@ class SegmentSpecification(Specification):
         '''
         selector = self.select_segment()
         return requesttools.MaterialRequest(
-            'rhythm', selector, context_name=context_name, 
+            'rhythm', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_rhythm_command(self,  context_name=None, 
+    def request_rhythm_command(self, context=None, 
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment rhythm command active at timepoint
-        in `context_name`.
+        r'''Request segment rhythm command active at timepoint in `context`.
 
         Example. Request rhythm command active at start of segment::
 
@@ -476,12 +475,12 @@ class SegmentSpecification(Specification):
         timepoint = timespantools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'rhythm', context_name=context_name, timepoint=timepoint,
+            'rhythm', context_name=context, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, context_name=None, 
+    def request_time_signatures(self, context=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment time signatures in `context_name`::
+        r'''Request segment time signatures in `context`::
 
             >>> request = segment.request_time_signatures()
 
@@ -499,14 +498,14 @@ class SegmentSpecification(Specification):
         '''
         selector = self.select_segment()
         return requesttools.MaterialRequest(
-            'time_signatures', selector, context_name=context_name, 
+            'time_signatures', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signature_command(self,  context_name=None, 
+    def request_time_signature_command(self, context=None, 
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at timepoint
-        in `context_name`.
+        in `context`.
 
         Example. Request time signature command active at start of segment::
 
@@ -534,7 +533,7 @@ class SegmentSpecification(Specification):
         timepoint = timespantools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'time_signatures', context_name=context_name, timepoint=timepoint,
+            'time_signatures', context_name=context, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measure(self, n):

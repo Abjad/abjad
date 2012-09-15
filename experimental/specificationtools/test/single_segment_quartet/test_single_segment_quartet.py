@@ -28,19 +28,14 @@ def test_single_segment_quartet_01():
     left_half = segment.select_segment_ratio_part((1, 1), 0)
     right_half = segment.select_segment_ratio_part((1, 1), -1)
 
-
-    voice_1_left_division_command = segment.request_division_command(
-        context_name='Voice 1', selector=left_measure)
-    voice_1_right_division_command = segment.request_division_command(
-        context_name='Voice 1', selector=right_measure)
+    voice_1_left_division_command = segment.request_division_command(context='Voice 1', selector=left_measure)
+    voice_1_right_division_command = segment.request_division_command(context='Voice 1', selector=right_measure)
 
     segment.set_divisions(voice_1_left_division_command, contexts=['Voice 3'], selector=left_half)
     segment.set_divisions(voice_1_right_division_command, contexts=['Voice 3'], selector=right_half)
 
-    voice_2_left_division_command = segment.request_division_command(
-        context_name='Voice 2', selector=left_measure)
-    voice_2_right_division_command = segment.request_division_command(
-        context_name='Voice 2', selector=right_measure)
+    voice_2_left_division_command = segment.request_division_command(context='Voice 2', selector=left_measure)
+    voice_2_right_division_command = segment.request_division_command(context='Voice 2', selector=right_measure)
 
     segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], selector=left_half)
     segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], selector=right_half)
