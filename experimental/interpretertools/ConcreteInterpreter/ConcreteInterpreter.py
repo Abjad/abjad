@@ -70,12 +70,6 @@ class ConcreteInterpreter(Interpreter):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_division_lists_to_voice(voice)
 
-    # TODO: Might make more sense to iterate all rhythm command scorewide
-    #       (Rather than voicewide).
-    # TODO: Extend this method to handle rhythm commands one after the other.
-    #       This will parallel the way that division commands are interpreted.
-    #       This will also enable look-back behavior.
-    #       Look-back behavior will enable rhythm request interpretation.
     def add_rhythm_to_voice(self, voice):
         voice_division_list = self.get_voice_division_list(voice)
         if len(voice_division_list) == 0:
@@ -124,7 +118,9 @@ class ConcreteInterpreter(Interpreter):
 
         Storage: self.score_specification.contexts['Voice 1'] could
         implement a RhythmExpressionInventory. So ...
+
             self.score_specification.contexts['Voice 1']['rhythm_expression_inventory']
+
         ... would be the relevant storage locus.
         This will mean that the relevant artity relation is one rhythm expression inventory
         per voice.
@@ -530,25 +526,6 @@ class ConcreteInterpreter(Interpreter):
         voice.extend(rhythm_containers)
         self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
 
-    def make_rhythm_command(
-        self, single_context_setting, segment_name, duration, start_offset, stop_offset):
-        from experimental import interpretertools
-        rhythm_command = interpretertools.RhythmCommand(
-            single_context_setting.request, 
-            segment_name,
-            single_context_setting.context_name,
-            start_offset,
-            stop_offset,
-            duration,
-            index=single_context_setting.index,
-            count=single_context_setting.count,
-            reverse=single_context_setting.reverse,
-            rotation=single_context_setting.rotation,
-            callback=single_context_setting.callback,
-            fresh=single_context_setting.fresh
-            )
-        return rhythm_command
-
     def make_rhythms(self, voice, rhythm_makers, rhythm_region_division_lists):
         for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
             if rhythm_region_division_list:
@@ -728,14 +705,27 @@ class ConcreteInterpreter(Interpreter):
 
     def single_context_setting_to_rhythm_command(
         self, single_context_setting, segment_specification):
+        from experimental import interpretertools
         selector = single_context_setting.selector
         assert selector.start_segment_identifier == segment_specification.segment_name
         context_name = single_context_setting.context_name
         duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
-        rhythm_command = self.make_rhythm_command(
-            single_context_setting, segment_name, duration, start_offset, stop_offset)
+        rhythm_command = interpretertools.RhythmCommand(
+            single_context_setting.request, 
+            segment_name,
+            single_context_setting.context_name,
+            start_offset,
+            stop_offset,
+            duration,
+            index=single_context_setting.index,
+            count=single_context_setting.count,
+            reverse=single_context_setting.reverse,
+            rotation=single_context_setting.rotation,
+            callback=single_context_setting.callback,
+            fresh=single_context_setting.fresh
+            )
         #self._debug(rhythm_command, 'rc')
         return rhythm_command
 
