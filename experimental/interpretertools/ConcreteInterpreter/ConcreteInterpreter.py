@@ -87,12 +87,16 @@ class ConcreteInterpreter(Interpreter):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rc')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
+        # uncomment to keep working
         #self._debug_values(rhythm_commands, 'lrc')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcd')
         key = 'division_region_division_lists'
         division_region_division_lists = self.score_specification.contexts[voice.name][key]
+        # uncomment to keep working
         #self._debug_values(division_region_division_lists, 'drdls')
+
+        # it is possible that everywhere from here down should be implemented differently
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations, 'drd')
         rhythm_region_durations = sequencetools.merge_duration_sequences(

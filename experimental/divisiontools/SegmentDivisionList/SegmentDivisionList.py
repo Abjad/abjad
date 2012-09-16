@@ -4,20 +4,15 @@ from experimental.divisiontools.DivisionList import DivisionList
 class SegmentDivisionList(DivisionList):
     r'''.. versionadded:: 1.0
 
-    A segment division list is a type of division list.
+    Segment division lists model the **parts of** all
+    divisions that intersect some segment.
 
-    Right now segment division lists model all divisions that **intersect**
-    some segment.
-
-    Because of this segment division lists break divisions that cross segment boundaries.
-
-    (Segment division lists will probably migrate later to model
-    all divisions that **start during** some segment instead.)
+    Segment division lists break divisions that cross segment boundaries.
 
     Segment division lists contrast with division region division lists.
     The best way to show this is with an example::
 
-        >>> from abjad.tools import *
+        >>> from abjad import *
         >>> from experimental import *
 
     ::
@@ -41,18 +36,38 @@ class SegmentDivisionList(DivisionList):
 
         >>> score = score_specification.interpret()
 
-    Notice that ``'Voice 1'`` has only one division region division list.
 
-    The reason for this is that the composer specified only one division-maker
-    for the entire score::
+    ``'Voice 1'`` has only one division region division list::
 
-        >>> for x in score_specification.contexts['Voice 1']['division_region_division_lists']: x
-        ... 
-        DivisionRegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]', start_timepoint=SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), offset=Offset(0, 1)), stop_timepoint=SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), offset=Offset(21, 8)))
+        >>> len(score_specification.contexts['Voice 1']['division_region_division_lists'])
+        1
 
-    But notice that ``'Voice 1'`` has three different segment division lists.
+    ::
 
-    The reason for this is that the composer specified three different segments::
+        >>> z(score_specification.contexts['Voice 1']['division_region_division_lists'][0])
+        divisiontools.DivisionRegionDivisionList(
+            [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
+            Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
+            Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
+            Division('[3, 16]'), Division('[3, 16]')],
+            start_timepoint=timespantools.SymbolicTimepoint(
+                selector=selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    ),
+                offset=durationtools.Offset(0, 1)
+                ),
+            stop_timepoint=timespantools.SymbolicTimepoint(
+                selector=selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    ),
+                offset=durationtools.Offset(21, 8)
+                )
+            )
+
+    The reason that ``'Voice 1'`` has only one division region division list is that the 
+    composer specified only one division-maker for the entire score.
+
+    But ``'Voice 1'`` has three different segment division lists::
 
         >>> for x in score_specification.contexts['Voice 1']['segment_division_lists']: x
         ... 
@@ -60,15 +75,21 @@ class SegmentDivisionList(DivisionList):
         SegmentDivisionList('(1, 16], [3, 16], [3, 16], [3, 16], [3, 16], [1, 16)')
         SegmentDivisionList('(2, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
 
-    Composers may specify an arbitrary number of division-makers for any given voice.
+    The reason that ``'Voice 1'`` has three different segment division lists
+    is that the composer specified three different segments.
+
+    Note that composers may specify an arbitrary number of division-makers for any given voice.
     This results in an arbitrary number of division regions per voice.
 
-    Composers may specify an arbitrary number of segments per score.
+    Note also that composers may specify an arbitrary number of segments per score.
     This results in an arbtirary number of segments per voice.
 
     Taken together these two facts mean that the division region division lists attaching 
     to a voice and the segment division lists attaching to that same voice do not 
     relate to each other in any systematic way.
+
+    Composers do not create segment division lists because all division lists
+    arise as byproducts of interpretation.
     '''
 
     pass
