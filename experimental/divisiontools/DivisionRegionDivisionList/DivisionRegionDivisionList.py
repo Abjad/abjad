@@ -25,8 +25,9 @@ class DivisionRegionDivisionList(VoiceDivisionList):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r}, start_timepoint={!r}, stop_timepoint={!r})'.format(
-            self._class_name, self._contents_string, self.start_timepoint, self.stop_timepoint)
+        return '{}({!r}, {!r}, start_timepoint={!r}, stop_timepoint={!r})'.format(
+            self._class_name, self._contents_string, self.voice_name, 
+            self.start_timepoint, self.stop_timepoint)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
