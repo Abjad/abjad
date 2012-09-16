@@ -70,6 +70,46 @@ class ConcreteInterpreter(Interpreter):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_division_lists_to_voice(voice)
 
+    '''
+    RhythmRequest integration:
+
+    Maybe a good strategy here would be to handle all AbsoluteRequest-bearing 
+    rhythm commands first and then to handle all RhythmRequest-bearing
+    rhythm commands afterwards.
+
+    It will be necessary to track the rhythm expressions that result 
+    from the interpretation of AbsoluteRequest-bearing rhythm commands 
+    as such rhythms are produced. 
+    Why? Because MaterialRequest-bearing rhythm commands will need to be able
+    to back-inspect the pool of already-created rhythm expressions.
+    So some data structure of already-created rhythm expressions
+    will need to be added to the system. A RhythmExpressionInventory, perhaps.
+    This will necessitate a new RhythmExpression object be added to the system.
+    And, importantly, RhythmExpression objects will need to impelment
+    the timespan interface.     
+    (Recall that the timespan interface comprises just start- and stop-offsets.)
+    When RhythmExpression objects implement the timespan interface 
+    it will be possible to back-inspect a RhythmExpressionInventory 
+    for all RhythmExpression objects that meet the criteria of a RhythmRequest
+    currently undergoing interpretation.
+
+    A self.rhythm_request_to_rhythm_expression() method will
+    implement the required back-inspect-and-copy logic.
+
+    Storage: self.score_specification.contexts['Voice 1'] could
+    implement a RhythmExpressionInventory. So ...
+
+        self.score_specification.contexts['Voice 1']['rhythm_expression_inventory']
+
+    ... would be the relevant storage locus.
+    This will mean that the relevant artity relation is one rhythm expression inventory
+    per voice.
+
+    Scoping: scoping restrictions will be minimal because the collection of all
+    rhythm expression inventories scorewide will be available to all interpreter
+    methods globally through the self.score_specification.contexts context 
+    proxy dictionary.
+    '''
     def add_rhythm_to_voice(self, voice):
         voice_division_list = self.get_voice_division_list(voice)
         if len(voice_division_list) == 0:
@@ -90,96 +130,89 @@ class ConcreteInterpreter(Interpreter):
         # uncomment to keep working
         #self._debug_values(division_region_division_lists, 'drdls')
 
-        '''
-        It is possible that everything from here down should be implemented differently.
-
-        Maybe a good strategy here would be to handle all AbsoluteRequest-bearing 
-        rhythm commands first and then to handle all RhythmRequest-bearing
-        rhythm commands afterwards.
-
-        It will be necessary to track the rhythm expressions that result 
-        from the interpretation of AbsoluteRequest-bearing rhythm commands 
-        as such rhythms are produced. 
-        Why? Because MaterialRequest-bearing rhythm commands will need to be able
-        to back-inspect the pool of already-created rhythm expressions.
-        So some data structure of already-created rhythm expressions
-        will need to be added to the system. A RhythmExpressionInventory, perhaps.
-        This will necessitate a new RhythmExpression object be added to the system.
-        And, importantly, RhythmExpression objects will need to impelment
-        the timespan interface.     
-        (Recall that the timespan interface comprises just start- and stop-offsets.)
-        When RhythmExpression objects implement the timespan interface 
-        it will be possible to back-inspect a RhythmExpressionInventory 
-        for all RhythmExpression objects that meet the criteria of a RhythmRequest
-        currently undergoing interpretation.
-
-        A self.rhythm_request_to_rhythm_expression() method will
-        implement the required back-inspect-and-copy logic.
-
-        Storage: self.score_specification.contexts['Voice 1'] could
-        implement a RhythmExpressionInventory. So ...
-
-            self.score_specification.contexts['Voice 1']['rhythm_expression_inventory']
-
-        ... would be the relevant storage locus.
-        This will mean that the relevant artity relation is one rhythm expression inventory
-        per voice.
-
-        Scoping: scoping restrictions will be minimal because the collection of all
-        rhythm expression inventories scorewide will be available to all interpreter
-        methods globally through the self.score_specification.contexts context 
-        proxy dictionary.
-        '''
-
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations, 'drds')
-        rhythm_region_durations = sequencetools.merge_duration_sequences(
+        rhythm_command_merged_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
-        #self._debug(rhythm_region_durations, 'rrds')
+        #self._debug(rhythm_command_merged_durations, 'rrds')
 
-        # assert that rhythm commands cover rhythm regions exactly
+        # assert that rhythm commands cover rhythm regions exactly; can be removed after integration
         assert sequencetools.partition_sequence_by_weights_exactly(
-            rhythm_region_durations, rhythm_command_durations)
+            rhythm_command_merged_durations, rhythm_command_durations)
 
         #self._debug(voice_division_durations, 'vdds')
         rhythm_region_start_division_duration_lists = \
                 sequencetools.partition_sequence_by_backgrounded_weights(
-                voice_division_durations, rhythm_region_durations)
+                voice_division_durations, rhythm_command_merged_durations)
         #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
-        assert len(rhythm_region_start_division_duration_lists) == len(rhythm_region_durations)
+        assert len(rhythm_region_start_division_duration_lists) == len(rhythm_command_merged_durations)
         rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             divisiontools.RhythmRegionDivisionList(x, voice.name) for x in rhythm_region_division_lists]
-        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
+        assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
+        rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
+        #self._debug(rhythm_region_durations, 'rrds')
+        cumulative_sums = mathtools.cumulative_sums_zero(rhythm_region_durations)
+        rhythm_region_start_offsets = cumulative_sums[:-1]
+        rhythm_region_stop_offsets = cumulative_sums[1:]
 
         input_pairs = []
-        # might make more sense for this to be the main loop of this method
         for command in rhythm_commands:
             if isinstance(command.request, requesttools.AbsoluteRequest):
                 input_pairs.append((command.request.payload, command.duration))
             elif isinstance(command.request, requesttools.RhythmRequest):
-                #print command.storage_format
                 input_pairs.append((command.request, command.duration))
             else:
                 raise TypeError('unknown request {!r}?'.format(command.request))
+        #self._debug_values(input_pairs, 'input pairs')
+        # the first column in output pairs is not used for anything further at all is discarded
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-            rhythm_region_durations, input_pairs)
+            rhythm_command_merged_durations, input_pairs)
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
         #self._debug_values(rhythm_makers, 'makers')
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
-        rhythm_region_expressions = self.make_rhythm_region_expressions(
-            rhythm_makers, rhythm_region_division_lists)
+
+        input_quadruples = zip(rhythm_makers, rhythm_region_division_lists, 
+            rhythm_region_start_offsets, rhythm_region_stop_offsets)
+        #self._debug_values(input_quadruples, 'quadruples')
+
+        rhythm_maker_input_tuples = []
+        rhythm_request_input_tuples = []
+
+        for input_quadruple in input_quadruples:
+            if isinstance(input_quadruple[0], timetokentools.TimeTokenMaker):
+                rhythm_maker_input_tuple = input_quadruple[:3]
+                rhythm_maker_input_tuples.append(rhythm_maker_input_tuple)
+            elif isinstance(input_quadruple[0], requesttools.RhythmRequest):
+                rhythm_request, division_list, start_offset, stop_offset = input_quadruple
+                if not rhythm_request_input_tuples:
+                    rhythm_request_input_tuples.append((rhythm_request, start_offset, stop_offset))
+                elif rhythm_request_input_tuples[-1][0] != rhythm_request:
+                    rhythm_request_input_tuples.append((rhythm_request, start_offset, stop_offset))
+                else:
+                    last_rhythm_request_input_tuple = rhythm_request_input_tuples.pop()
+                    last_start_offset = last_rhythm_request_input_tuple[1]
+                    rhythm_request_input_tuples.append((rhythm_request, last_start_offset, stop_offset))
+            else:
+                raise TypeError('what is {!r}?'.format(input_quadruple[0]))
+
+        # uncomment these two lines to continue implementing
+        #self._debug_values(rhythm_maker_input_tuples, 'maker tuples')
+        #self._debug_values(rhythm_request_input_tuples, 'request tuples')
+
+        #rhythm_region_expressions = self.make_rhythm_region_expressions(input_quadruples)
+        rhythm_region_expressions = self.make_rhythm_region_expressions(rhythm_maker_input_tuples)
         self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = \
             rhythm_region_expressions[:]
         for rhythm_region_expression in \
             self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
             #self._debug(rhythm_region_expression, 'rrx')
-            #self._debug(rhythm_region_expression.start_offset, 'start offset')
-            #self._debug(rhythm_region_expression.stop_offset, 'stop offset')
+            #self._debug((
+            #    rhythm_region_expression.start_offset, rhythm_region_expression.stop_offset), 'offsets')
             voice.extend(rhythm_region_expression)
 
     def add_rhythm_to_voices(self):
@@ -532,17 +565,15 @@ class ConcreteInterpreter(Interpreter):
         self.region_division_commands_to_division_region_division_lists(
             region_division_commands, voice, all_region_division_commands)
 
-    def make_rhythm_region_expressions(self, rhythm_makers, rhythm_region_division_lists):
+    def make_rhythm_region_expressions(self, input_triples):
         from experimental import interpretertools
         rhythm_region_expressions = []
-        current_start_offset = durationtools.Offset(0)
-        for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
+        for rhythm_maker, rhythm_region_division_list, start_offset in input_triples:
             if rhythm_region_division_list:
                 leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
                 rhythm_containers = [containertools.Container(x) for x in leaf_lists]
                 rhythm_region_expression = interpretertools.RhythmExpression(
-                    rhythm_containers, start_offset=current_start_offset)
-                current_start_offset += rhythm_region_expression.prolated_duration
+                    rhythm_containers, start_offset=start_offset)
                 self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
                 rhythm_region_expressions.append(rhythm_region_expression)
         return rhythm_region_expressions
