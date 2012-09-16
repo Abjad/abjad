@@ -125,7 +125,7 @@ class ConcreteInterpreter(Interpreter):
         This will mean that the relevant artity relation is one rhythm expression inventory
         per voice.
 
-        Scopring: scoping restrictions will be minimal because the collection of all
+        Scoping: scoping restrictions will be minimal because the collection of all
         rhythm expression inventories scorewide will be available to all interpreter
         methods globally through the self.score_specification.contexts context 
         proxy dictionary.
@@ -164,7 +164,12 @@ class ConcreteInterpreter(Interpreter):
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
         #self._debug_values(rhythm_makers, 'makers')
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
-        self.make_rhythms(voice, rhythm_makers, rhythm_region_division_lists)
+        rhythm_region_expressions = self.make_rhythm_region_expressions(
+            rhythm_makers, rhythm_region_division_lists)
+        for rhythm_region_expression in rhythm_region_expressions:
+            #self._debug(rhythm_region_expression, 'rrx')
+            #self._debug(rhythm_region_expression.start_offset, 'start offset')
+            voice.extend(rhythm_region_expression)
 
     def add_rhythm_to_voices(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
@@ -516,20 +521,20 @@ class ConcreteInterpreter(Interpreter):
         self.region_division_commands_to_division_region_division_lists(
             region_division_commands, voice, all_region_division_commands)
 
-    def make_rhythm(self, voice, rhythm_maker, rhythm_region_division_list):
-#        self._debug(rhythm_maker)
-#        self._debug(rhythm_region_division_list)
-        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
-        assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
-        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
-        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-        voice.extend(rhythm_containers)
-        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
-
-    def make_rhythms(self, voice, rhythm_makers, rhythm_region_division_lists):
+    def make_rhythm_region_expressions(self, rhythm_makers, rhythm_region_division_lists):
+        from experimental import interpretertools
+        rhythm_region_expressions = []
+        current_start_offset = durationtools.Offset(0)
         for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
             if rhythm_region_division_list:
-                self.make_rhythm(voice, rhythm_maker, rhythm_region_division_list)
+                leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
+                rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+                rhythm_region_expression = interpretertools.RhythmExpression(
+                    rhythm_containers, start_offset=current_start_offset)
+                current_start_offset += rhythm_region_expression.prolated_duration
+                self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
+                rhythm_region_expressions.append(rhythm_region_expression)
+        return rhythm_region_expressions
 
     def make_segment_division_lists_for_voice(self, voice):
         #self._debug(voice, 'voice')
