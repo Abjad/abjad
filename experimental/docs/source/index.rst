@@ -211,6 +211,7 @@ Unstable packages (load manually)
    experimental/requesttools/HandlerRequest/HandlerRequest
    experimental/requesttools/MaterialRequest/MaterialRequest
    experimental/requesttools/Request/Request
+   experimental/requesttools/RhythmRequest/RhythmRequest
    experimental/requesttools/StatalServerRequest/StatalServerRequest
 
 .. rubric:: functions

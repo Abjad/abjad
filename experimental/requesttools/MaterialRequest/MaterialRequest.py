@@ -32,7 +32,7 @@ class MaterialRequest(Request):
                 )
             )
 
-    The purpose of an attribute request is to function as the source of a setting.
+    The purpose of a material request is to function as the source of a setting.
     '''
     
     ### INITIALIZER ###
@@ -45,7 +45,8 @@ class MaterialRequest(Request):
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
-        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+        Request.__init__(
+            self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._selector = selector
         self._context_name = context_name
