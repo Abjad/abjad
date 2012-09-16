@@ -1,3 +1,4 @@
+from experimental import helpertools
 from experimental.divisiontools.DivisionList import DivisionList
 
 
@@ -15,4 +16,19 @@ class RhythmRegionDivisionList(DivisionList):
     division lists arise as byproducts of interpretation.
     '''
 
-    pass
+    ### INITIALIZER ###
+
+    def __init__(self, divisions, voice_name):
+        voice_name = helpertools.expr_to_component_name(voice_name)
+        DivisionList.__init__(self, divisions)
+        self._voice_name = voice_name
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def voice_name(self):
+        '''Division list voice name.
+
+        Return string.
+        '''
+        return self._voice_name

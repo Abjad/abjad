@@ -111,7 +111,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_divisions, rhythm_region_lengths, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
-            divisiontools.RhythmRegionDivisionList(x) for x in rhythm_region_division_lists]
+            divisiontools.RhythmRegionDivisionList(x, voice.name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         input_pairs = []
@@ -256,7 +256,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 
-    def divisions_to_division_region_division_list(self, divisions, region_division_command):
+    def divisions_to_division_region_division_list(self, divisions, region_division_command, voice_name):
         segment_specification = self.get_start_segment_specification(
             region_division_command.start_segment_identifier)
         segment_selector = segment_specification.selector
@@ -266,7 +266,7 @@ class ConcreteInterpreter(Interpreter):
             selector=segment_selector, offset=segment_start_offset)
         stop_timepoint = timespantools.SymbolicTimepoint(
             selector=segment_selector, offset=segment_stop_offset)
-        division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
+        division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions, voice_name)
         division_region_division_list._start_timepoint = start_timepoint    
         division_region_division_list._stop_timepoint = stop_timepoint
         return division_region_division_list
@@ -528,7 +528,7 @@ class ConcreteInterpreter(Interpreter):
             voice_divisions, segment_durations, cyclic=False, overhang=True)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
-            raw_segment_division_list = divisiontools.SegmentDivisionList(shard)
+            raw_segment_division_list = divisiontools.SegmentDivisionList(shard, voice.name)
             raw_segment_division_lists.append(raw_segment_division_list)
         #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
@@ -647,7 +647,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError('implement for {!r}.'.format(region_division_command.request))
         division_region_division_list = self.divisions_to_division_region_division_list(
-            divisions, region_division_command)
+            divisions, region_division_command, voice_name)
         return division_region_division_list
 
     def region_division_commands_to_division_region_division_lists(self, 
