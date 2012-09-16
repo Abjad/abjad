@@ -79,12 +79,12 @@ class ConcreteInterpreter(Interpreter):
         voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
         #self._debug(voice_division_durations, 'vdd')
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        #self._debug_values(rhythm_commands, 'rc')
+        #self._debug_values(rhythm_commands, 'rcs')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
         # uncomment to keep working
-        #self._debug_values(rhythm_commands, 'lrc')
+        #self._debug_values(rhythm_commands, 'lrcs')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
-        #self._debug(rhythm_command_durations, 'rcd')
+        #self._debug(rhythm_command_durations, 'rcds')
         key = 'division_region_division_lists'
         division_region_division_lists = self.score_specification.contexts[voice.name][key]
         # uncomment to keep working
@@ -132,22 +132,29 @@ class ConcreteInterpreter(Interpreter):
         '''
 
         division_region_durations = [x.duration for x in division_region_division_lists]
-        #self._debug(division_region_durations, 'drd')
+        #self._debug(division_region_durations, 'drds')
         rhythm_region_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
-        #self._debug(rhythm_region_durations, 'rrd')
-        args = (voice_division_durations, rhythm_region_durations)
-        rhythm_region_division_duration_lists = \
-            sequencetools.partition_sequence_by_backgrounded_weights(*args)
-        #self._debug_values(rhythm_region_division_duration_lists, 'rrddls')
-        assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
-        rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
+        #self._debug(rhythm_region_durations, 'rrds')
+
+        # assert that rhythm commands cover rhythm regions exactly
+        assert sequencetools.partition_sequence_by_weights_exactly(
+            rhythm_region_durations, rhythm_command_durations)
+
+        #self._debug(voice_division_durations, 'vdds')
+        rhythm_region_start_division_duration_lists = \
+                sequencetools.partition_sequence_by_backgrounded_weights(
+                voice_division_durations, rhythm_region_durations)
+        #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
+        assert len(rhythm_region_start_division_duration_lists) == len(rhythm_region_durations)
+        rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
-            voice_divisions, rhythm_region_lengths, cyclic=False, overhang=False)
+            voice_divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             divisiontools.RhythmRegionDivisionList(x, voice.name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
+
         input_pairs = []
         # might make more sense for this to be the main loop of this method
         for command in rhythm_commands:
@@ -166,9 +173,13 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_expressions = self.make_rhythm_region_expressions(
             rhythm_makers, rhythm_region_division_lists)
-        for rhythm_region_expression in rhythm_region_expressions:
+        self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = \
+            rhythm_region_expressions[:]
+        for rhythm_region_expression in \
+            self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
             #self._debug(rhythm_region_expression, 'rrx')
             #self._debug(rhythm_region_expression.start_offset, 'start offset')
+            #self._debug(rhythm_region_expression.stop_offset, 'stop offset')
             voice.extend(rhythm_region_expression)
 
     def add_rhythm_to_voices(self):
