@@ -1,8 +1,7 @@
-from experimental import helpertools
-from experimental.divisiontools.DivisionList import DivisionList
+from experimental.divisiontools.VoiceDivisionList import VoiceDivisionList
 
 
-class SegmentDivisionList(DivisionList):
+class SegmentDivisionList(VoiceDivisionList):
     r'''.. versionadded:: 1.0
 
     Segment division lists model the **parts of** all
@@ -94,19 +93,4 @@ class SegmentDivisionList(DivisionList):
     arise as byproducts of interpretation.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, divisions, voice_name):
-        voice_name = helpertools.expr_to_component_name(voice_name)
-        DivisionList.__init__(self, divisions)
-        self._voice_name = voice_name
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def voice_name(self):
-        '''Division list voice name.
-
-        Return string.
-        '''
-        return self._voice_name
+    pass

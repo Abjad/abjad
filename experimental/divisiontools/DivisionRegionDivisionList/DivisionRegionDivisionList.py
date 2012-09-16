@@ -1,7 +1,7 @@
-from experimental.divisiontools.DivisionList import DivisionList
+from experimental.divisiontools.VoiceDivisionList import VoiceDivisionList
 
 
-class DivisionRegionDivisionList(DivisionList):
+class DivisionRegionDivisionList(VoiceDivisionList):
     r'''.. versionadded:: 1.0
 
     A region is an uninterrupted block of time to which a command applies.
@@ -18,9 +18,7 @@ class DivisionRegionDivisionList(DivisionList):
     ### INITIALIZER ###
 
     def __init__(self, divisions, voice_name, start_timepoint=None, stop_timepoint=None):
-        DivisionList.__init__(self, divisions)
-        assert isinstance(voice_name, str)
-        self._voice_name = voice_name
+        VoiceDivisionList.__init__(self, divisions, voice_name)
         self._start_timepoint = start_timepoint
         self._stop_timepoint = stop_timepoint    
 
@@ -39,7 +37,3 @@ class DivisionRegionDivisionList(DivisionList):
     @property
     def stop_timepoint(self):
         return self._stop_timepoint
-
-    @property
-    def voice_name(self):
-        return self._voice_name
