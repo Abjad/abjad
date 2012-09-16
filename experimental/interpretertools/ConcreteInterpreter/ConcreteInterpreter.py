@@ -405,7 +405,7 @@ class ConcreteInterpreter(Interpreter):
         voice_division_list = self.score_specification.contexts[voice.name].get('voice_division_list')
         if voice_division_list is None:
             time_signatures = self.score_specification.time_signatures
-            voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
+            voice_division_list = divisiontools.VoiceDivisionList(time_signatures, voice.name)
         return voice_division_list
 
     def keep_divisions_between_segments(self, divisions, start_segment_identifier, stop_segment_identifier):
@@ -602,7 +602,7 @@ class ConcreteInterpreter(Interpreter):
         voice_divisions = []
         for division_region_division_list in division_region_division_lists:
             voice_divisions.extend(division_region_division_list.divisions)
-        voice_division_list = divisiontools.VoiceDivisionList(voice_divisions)
+        voice_division_list = divisiontools.VoiceDivisionList(voice_divisions, voice.name)
         return voice_division_list
 
     def region_division_command_to_division_region_division_list(

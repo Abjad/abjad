@@ -61,6 +61,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.divisiontools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.voice_name
+
 Special Methods
 ---------------
 
