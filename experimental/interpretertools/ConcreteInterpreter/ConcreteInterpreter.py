@@ -96,7 +96,45 @@ class ConcreteInterpreter(Interpreter):
         # uncomment to keep working
         #self._debug_values(division_region_division_lists, 'drdls')
 
-        # it is possible that everywhere from here down should be implemented differently
+        '''
+        It is possible that everything from here down should be implemented differently.
+
+        Maybe a good strategy here would be to handle all AbsoluteRequest-bearing 
+        rhythm commands first and then to handle all RhythmRequest-bearing
+        rhythm commands afterwards.
+
+        It will be necessary to track the rhythm expressions that result 
+        from the interpretation of AbsoluteRequest-bearing rhythm commands 
+        as such rhythms are produced. 
+        Why? Because MaterialRequest-bearing rhythm commands will need to be able
+        to back-inspect the pool of already-created rhythm expressions.
+        So some data structure of already-created rhythm expressions
+        will need to be added to the system. A RhythmExpressionInventory, perhaps.
+        This will necessitate a new RhythmExpression object be added to the system.
+        And, importantly, RhythmExpression objects will need to impelment
+        the timespan interface.     
+        (Recall that the timespan interface comprises just start- and stop-offsets.)
+        When RhythmExpression objects implement the timespan interface 
+        it will be possible to back-inspect a RhythmExpressionInventory 
+        for all RhythmExpression objects that meet the criteria of a RhythmRequest
+        currently undergoing interpretation.
+
+        A self.rhythm_request_to_rhythm_expression() method will
+        implement the required back-inspect-and-copy logic.
+
+        Storage: self.score_specification.contexts['Voice 1'] could
+        implement a RhythmExpressionInventory. So ...
+            self.score_specification.contexts['Voice 1']['rhythm_expression_inventory']
+        ... would be the relevant storage locus.
+        This will mean that the relevant artity relation is one rhythm expression inventory
+        per voice.
+
+        Scopring: scoping restrictions will be minimal because the collection of all
+        rhythm expression inventories scorewide will be available to all interpreter
+        methods globally through the self.score_specification.contexts context 
+        proxy dictionary.
+        '''
+
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations, 'drd')
         rhythm_region_durations = sequencetools.merge_duration_sequences(
@@ -119,8 +157,7 @@ class ConcreteInterpreter(Interpreter):
         for command in rhythm_commands:
             if isinstance(command.request, requesttools.AbsoluteRequest):
                 input_pairs.append((command.request.payload, command.duration))
-            elif isinstance(command.request, requesttools.MaterialRequest):
-                assert command.attribute == 'rhythm'
+            elif isinstance(command.request, requesttools.RhythmRequest):
                 #print command.storage_format
                 input_pairs.append((command.request, command.duration))
             else:
@@ -660,6 +697,10 @@ class ConcreteInterpreter(Interpreter):
                 region_division_command, all_region_division_commands, voice.name)
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
+
+    def rhythm_request_to_rhythm_expression(self, rhythm_request):
+        assert isinstance(rhythm_request, requesttools.rhythm_request)
+        raise NotImplementedError('working on this now.')
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
         include_improper_parentage=False):
