@@ -70,6 +70,8 @@ class ConcreteInterpreter(Interpreter):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_division_lists_to_voice(voice)
 
+    # TODO: Might make more sense to iterate all rhythm command scorewide
+    #       (Rather than voicewide).
     # TODO: Extend this method to handle rhythm commands one after the other.
     #       This will parallel the way that division commands are interpreted.
     #       This will also enable look-back behavior.
@@ -90,7 +92,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(rhythm_command_durations, 'rcd')
         key = 'division_region_division_lists'
         division_region_division_lists = self.score_specification.contexts[voice.name][key]
-        #self._debug_values(division_region_division_lists, 'drdl')
+        #self._debug_values(division_region_division_lists, 'drdls')
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations, 'drd')
         rhythm_region_durations = sequencetools.merge_duration_sequences(
@@ -99,13 +101,17 @@ class ConcreteInterpreter(Interpreter):
         args = (voice_division_durations, rhythm_region_durations)
         rhythm_region_division_duration_lists = \
             sequencetools.partition_sequence_by_backgrounded_weights(*args)
+        #self._debug_values(rhythm_region_division_duration_lists, 'rrddls')
         assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
         rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_divisions, rhythm_region_lengths, cyclic=False, overhang=False)
+        rhythm_region_division_lists = [
+            divisiontools.RhythmRegionDivisionList(x) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         input_pairs = []
+        # might make more sense for this to be the main loop of this method
         for command in rhythm_commands:
             if isinstance(command.request, requesttools.AbsoluteRequest):
                 input_pairs.append((command.request.payload, command.duration))
@@ -117,10 +123,10 @@ class ConcreteInterpreter(Interpreter):
                 raise TypeError('unknown request {!r}?'.format(command.request))
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             rhythm_region_durations, input_pairs)
-        # TODO: uncomment this line to begin next implementation
-        #self._debug_values(output_pairs, 'output pairs')
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
+        #self._debug_values(rhythm_makers, 'makers')
+        #self._debug_values(rhythm_region_division_lists, 'rrdls')
         self.make_rhythms(voice, rhythm_makers, rhythm_region_division_lists)
 
     def add_rhythm_to_voices(self):
@@ -505,8 +511,6 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythms(self, voice, rhythm_makers, rhythm_region_division_lists):
         for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
             if rhythm_region_division_list:
-                rhythm_region_division_list = divisiontools.RhythmRegionDivisionList(
-                    rhythm_region_division_list)
                 self.make_rhythm(voice, rhythm_maker, rhythm_region_division_list)
 
     def make_segment_division_lists_for_voice(self, voice):
