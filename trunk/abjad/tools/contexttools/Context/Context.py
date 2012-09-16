@@ -36,7 +36,7 @@ class Context(Container):
     ### INITIALIZER ###
 
     def __init__(self, music=None, context_name='Context', name=None):
-        Container.__init__(self, music)
+        Container.__init__(self, music=music)
         self.context_name = context_name
         self._engraver_consists = []
         self._engraver_removals = []

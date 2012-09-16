@@ -38,8 +38,7 @@ class StaffGroup(Context):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, **kwargs):
-        Context.__init__(self, music)
+    def __init__(self, music=None, context_name='StaffGroup', name=None):
+        Context.__init__(self, music=music)
         self.is_parallel = True
-        self.context_name = 'StaffGroup'
-        self._initialize_keyword_values(**kwargs)
+        self._initialize_keyword_values(context_name=context_name, name=name)
