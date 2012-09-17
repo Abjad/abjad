@@ -73,27 +73,23 @@ class ConcreteInterpreter(Interpreter):
     '''
     RhythmRequest integration:
 
-    Maybe a good strategy here would be to handle all AbsoluteRequest-bearing 
-    rhythm commands first and then to handle all RhythmRequest-bearing
-    rhythm commands afterwards.
-
     It will be necessary to track the rhythm expressions that result 
-    from the interpretation of AbsoluteRequest-bearing rhythm commands 
-    as such rhythms are produced. 
-    Why? Because MaterialRequest-bearing rhythm commands will need to be able
+    from the interpretation of all rhythm commands as rhythms are produced. 
+    Why? Because RhythmRequest-bearing rhythm commands will need to be able
     to back-inspect the pool of already-created rhythm expressions.
     So some data structure of already-created rhythm expressions
     will need to be added to the system. A RhythmExpressionInventory, perhaps.
     This will necessitate a new RhythmExpression object be added to the system.
-    And, importantly, RhythmExpression objects will need to impelment
+    And, importantly, RhythmExpression objects will need to implement
     the timespan interface.     
     (Recall that the timespan interface comprises just start- and stop-offsets.)
+
     When RhythmExpression objects implement the timespan interface 
     it will be possible to back-inspect a RhythmExpressionInventory 
     for all RhythmExpression objects that meet the criteria of a RhythmRequest
     currently undergoing interpretation.
 
-    A self.rhythm_request_to_rhythm_expression() method will
+    A self.rhythm_request_to_rhythm_region_expression() method will
     implement the required back-inspect-and-copy logic.
 
     Storage: self.score_specification.contexts['Voice 1'] could
@@ -102,13 +98,12 @@ class ConcreteInterpreter(Interpreter):
         self.score_specification.contexts['Voice 1']['rhythm_expression_inventory']
 
     ... would be the relevant storage locus.
-    This will mean that the relevant artity relation is one rhythm expression inventory
-    per voice.
+
+    This defines one rhythm expression inventory per voice.
 
     Scoping: scoping restrictions will be minimal because the collection of all
     rhythm expression inventories scorewide will be available to all interpreter
-    methods globally through the self.score_specification.contexts context 
-    proxy dictionary.
+    methods globally.
     '''
     def add_rhythm_to_voice(self, voice):
         voice_division_list = self.get_voice_division_list(voice)
@@ -175,13 +170,10 @@ class ConcreteInterpreter(Interpreter):
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
         #self._debug_values(rhythm_makers, 'makers')
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
-
         input_quadruples = zip(rhythm_makers, rhythm_region_division_lists, 
             rhythm_region_start_offsets, rhythm_region_stop_offsets)
         #self._debug_values(input_quadruples, 'quadruples')
-
         input_triples = []
-
         for input_quadruple in input_quadruples:
             flamingo, division_list, start_offset, stop_offset = input_quadruple
             if isinstance(flamingo, timetokentools.TimeTokenMaker):
@@ -198,24 +190,22 @@ class ConcreteInterpreter(Interpreter):
                     input_triples.append((flamingo, last_start_offset, stop_offset))
             else:
                 raise TypeError('what is {!r}?'.format(flamingo))
-
-        # uncomment these two lines to continue implementing
-        #self._debug_values(rhythm_maker_input_triples, 'maker tuples')
-        #self._debug_values(rhythm_request_input_triples, 'request tuples')
         #self._debug_values(input_triples, 'input triples')
-
         self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = []
         for input_triple in input_triples:
-            if isinstance(input_triple[0], requesttools.RhythmRequest):
+            if isinstance(input_triple[0], timetokentools.TimeTokenMaker):
+                rhythm_region_expression = self.make_rhythm_region_expression(*input_triple)
+            elif isinstance(input_triple[0], requesttools.RhythmRequest):
+                self._debug('currently ignoring rhythm request ...')
                 continue
-            rhythm_region_expression = self.make_rhythm_region_expression(*input_triple)
+                rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*input_triple)
+            else:
+                raise TypeError('what is {!r}?'.format(input_request[0]))
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
                 rhythm_region_expression)
         for rhythm_region_expression in \
             self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
             #self._debug(rhythm_region_expression, 'rrx')
-            #self._debug((
-            #    rhythm_region_expression.start_offset, rhythm_region_expression.stop_offset), 'offsets')
             voice.extend(rhythm_region_expression)
 
     def add_rhythm_to_voices(self):
@@ -722,8 +712,8 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
 
-    def rhythm_request_to_rhythm_expression(self, rhythm_request):
-        assert isinstance(rhythm_request, requesttools.rhythm_request)
+    def rhythm_request_to_rhythm_region_expression(self, rhythm_request, start_offset, stop_offset):
+        assert isinstance(rhythm_request, requesttools.RhythmRequest)
         raise NotImplementedError('working on this now.')
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
