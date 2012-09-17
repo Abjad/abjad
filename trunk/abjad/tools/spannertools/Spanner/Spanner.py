@@ -89,6 +89,7 @@ class Spanner(AbjadObject):
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
             new._set = copy.copy(self.set)
+        self._copy_keyword_args(new)
         return new
 
     __deepcopy__ = __copy__
@@ -162,6 +163,9 @@ class Spanner(AbjadObject):
             result._components.append(component)
         result._unblock_all_components()
         return result
+
+    def _copy_keyword_args(self, new):
+        pass
 
     def _duration_offset_in_me(self, leaf):
         return leaf.start_offset - self.start_offset

@@ -42,8 +42,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     def __init__(self, components=None, durations=None, span=1, lone=False, direction=None):
         ComplexBeamSpanner.__init__(self, components=components, direction=direction)
         self.durations = durations
-        self.lone = lone
         self.span = span
+        self.lone = lone
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -58,6 +58,12 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        new.durations = self.durations[:]
+        new.span = self.span
+        new.lone = self.lone
+        new.direction = self.direction
+            
     def _format_before_leaf(self, leaf):
         from abjad.tools import beamtools
         result = []
