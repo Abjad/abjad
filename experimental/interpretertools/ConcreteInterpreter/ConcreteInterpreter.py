@@ -720,9 +720,21 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
         self._debug((rhythm_request, start_offset, stop_offset), 'rhythm request')
         voice_name = rhythm_request.context_name
+        source_score_offsets = rhythm_request.selector.get_score_offsets(
+            self.score_specification, rhythm_request.context_name)
+        source_timespan = timespantools.TimespanConstant(*source_score_offsets)
+        self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        self._debug_values(rhythm_region_expressions, 'rrxs')
+        #self._debug_values(rhythm_region_expressions, 'rrxs')
+        self._debug(rhythm_region_expressions, 'rrxs')
+        print ''
+        # TODO: Find rhythm region expressions that intersect source timespan.
+        #       Then copy rhythm region expressions.
+        #       Then sort rhythm region expressions by start offset.
+        #       Then trim first and last rhythm region expressions.
+        #       Then fuse trimmed rhythm region expressions.
+        #       Then return resulting rhyhtm region expression.
         raise NotImplementedError('working on this now.')
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 

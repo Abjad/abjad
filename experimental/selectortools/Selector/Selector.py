@@ -84,7 +84,7 @@ class Selector(AbjadObject):
         '''
         segment_start_offset = self.get_segment_start_offset(score_specification, context_name)
         return score_specification.segment_name_and_segment_offset_to_score_offset(
-            self.segment_identifier, segment_start_offset)
+            self.start_segment_identifier, segment_start_offset)
 
     def get_score_stop_offset(self, score_specification, context_name):
         r'''Evaluate score stop offset of selector when applied
@@ -94,7 +94,7 @@ class Selector(AbjadObject):
         '''
         segment_stop_offset = self.get_segment_stop_offset(score_specification, context_name)
         return score_specification.segment_name_and_segment_offset_to_score_offset(
-            self.segment_identifier, segment_stop_offset)
+            self.start_segment_identifier, segment_stop_offset)
 
     def get_segment_offsets(self, score_specification, context_name):
         r'''Get segment start offset and segment stop offset of selector when applied
