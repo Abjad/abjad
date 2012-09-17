@@ -715,8 +715,8 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
 
-    # TODO: Finish implementing this method.
     def rhythm_request_to_rhythm_region_expression(self, rhythm_request, start_offset, stop_offset):
+        from experimental import interpretertools
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
         self._debug(rhythm_request, 'rhythm request')
         self._debug((start_offset, stop_offset), 'offsets')
@@ -725,13 +725,6 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification, rhythm_request.context_name)
         source_timespan = timespantools.TimespanConstant(*source_score_offsets)
         self._debug(source_timespan, 'source timespan')
-        print ''
-        # TODO: Find rhythm region expressions that intersect source timespan.
-        #       Then copy rhythm region expressions.
-        #       Then sort rhythm region expressions by start offset.
-        #       Then trim first and last rhythm region expressions.
-        #       Then fuse trimmed rhythm region expressions.
-        #       Then return resulting rhyhtm region expression.
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rrxs')
@@ -739,11 +732,36 @@ class ConcreteInterpreter(Interpreter):
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
-        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
+        tmp = []
+        for rhythm_region_expression in rhythm_region_expressions:
+            assert rhythm_region_expression.parent is None
+            # TODO: figure out why second rhythm region expression fails to copy beam spanner
+            new = componenttools.copy_components_and_covered_spanners([rhythm_region_expression])
+            assert len(new) == 1
+            assert new[0].parent is None
+            # TODO: remove this after initial development for reasons of performance
+            #assert rhythm_region_expression.lilypond_format == new[0].lilypond_format
+            tmp.append(new[0])
+        rhythm_region_expressions = tmp
         #self._debug_values(rhythm_region_expressions, 'rrxs')
         rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)
-        self._debug_values(rhythm_region_expressions, 'rrxs')
-        raise NotImplementedError('working on this now.')
+        #self._debug_values(rhythm_region_expressions, 'rrxs')
+        # TODO: make these two stub method calls work eventually for trim cases
+        if timespaninequalitytools.timespan_2_overlaps_only_start_of_timespan_1(
+            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[0]):
+            rhythm_region_expressions[0].trim_to_start_offset(source_timespan.start_offset)
+        if timespaninequalitytools.timespan_2_overlaps_only_stop_of_timespan_1(
+            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
+            rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)
+        result = interpretertools.RhythmExpression()
+        #result = rhythm_region_expressions[0]
+        for rhythm_region_expression in rhythm_region_expressions:
+            result.extend(rhythm_region_expression)
+        result._forced_start_offset = start_offset
+        #print result.lilypond_format
+        # may or may not be possible to treat request rhythms as cyclic source
+        assert result.stop_offset == stop_offset
+        return result
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
         include_improper_parentage=False):

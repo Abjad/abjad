@@ -24,19 +24,19 @@ class RhythmExpression(Container):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ()
+    __slots__ = ('_forced_start_offset', )
 
     ### INITIALIZER ###
 
     def __init__(self, music=None, start_offset=None):
         Container.__init__(self, music=music)
-        self._start_offset = start_offset
+        self._forced_start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         new = Container.__copy__(self, *args)
-        new._start_offset = self.start_offset
+        new._forced_start_offset = self.start_offset
         return new
 
     def __repr__(self):
@@ -54,7 +54,7 @@ class RhythmExpression(Container):
 
         Return offset.
         '''
-        return self._start_offset
+        return self._forced_start_offset
 
     @property
     def stop_offset(self):
