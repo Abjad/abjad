@@ -91,6 +91,13 @@ class HairpinSpanner(DirectedSpanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        DirectedSpanner._copy_keyword_args(self, new)
+        new.include_rests = self.include_rests
+        new.shape_string = self.shape_string
+        new.start_dynamic_string = self.start_dynamic_string
+        new.stop_dynamic_string = self.stop_dynamic_string
+
     def _format_right_of_leaf(self, leaf):
         result = []
         effective_dynamic = contexttools.get_effective_dynamic(leaf)

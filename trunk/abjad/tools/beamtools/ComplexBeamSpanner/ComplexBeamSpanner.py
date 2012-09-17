@@ -51,6 +51,10 @@ class ComplexBeamSpanner(BeamSpanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        BeamSpanner._copy_keyword_args(self, new)
+        new.lone = self.lone
+
     def _format_before_leaf(self, leaf):
         '''Spanner format contribution to output before leaf.'''
         from abjad.tools import beamtools

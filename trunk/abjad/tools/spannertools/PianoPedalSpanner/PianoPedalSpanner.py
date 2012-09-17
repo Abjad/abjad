@@ -42,6 +42,10 @@ class PianoPedalSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        new.kind = self.kind
+        new.style = self.style
+
     def _format_before_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):

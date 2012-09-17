@@ -9,6 +9,8 @@ def test_Spanner_leaves_01():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
@@ -29,6 +31,8 @@ def test_Spanner_leaves_02():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
@@ -48,6 +52,8 @@ def test_Spanner_leaves_03():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice([])
     p = MockSpanner(t)
@@ -64,6 +70,8 @@ def test_Spanner_leaves_04():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(1, Container(notetools.make_repeated_notes(2)))
@@ -101,6 +109,8 @@ def test_Spanner_leaves_05():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(1, Container(notetools.make_repeated_notes(2)))
@@ -143,6 +153,8 @@ def test_Spanner_leaves_06():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Staff(notetools.make_repeated_notes(4))
     t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
@@ -187,6 +199,8 @@ def test_Spanner_leaves_07():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Staff(notetools.make_repeated_notes(4))
     t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))

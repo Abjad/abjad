@@ -52,6 +52,10 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        ComplexBeamSpanner._copy_keyword_args(self, new)
+        new.span = self.span
+
     def _format_before_leaf(self, leaf):
         from abjad.tools import beamtools
         from abjad.tools import componenttools

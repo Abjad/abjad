@@ -37,3 +37,8 @@ class TextScriptSpanner(Spanner):
 
     def __init__(self, components=None):
         Spanner.__init__(self, components)
+
+    ### PRIVATE METHODS ###
+
+    def _copy_keyword_args(self, new):
+        pass

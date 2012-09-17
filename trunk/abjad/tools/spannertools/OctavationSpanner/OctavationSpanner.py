@@ -35,6 +35,10 @@ class OctavationSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        new.start = self.start
+        new.stop = self.stop
+
     def _format_after_leaf(self, leaf):
         result = []
         result.extend(Spanner._format_after_leaf(self, leaf))

@@ -50,6 +50,10 @@ class MetricGridSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        new._meters = self._meters
+        new.hide = self.hide
+
     def _format_after_leaf(self, leaf):
         result = []
         if hasattr(self, '_slicing_metersFound'):

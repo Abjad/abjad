@@ -19,3 +19,10 @@ class DirectedSpanner(Spanner):
         def fset(self, arg):
             self._direction = stringtools.arg_to_tridirectional_lilypond_symbol(arg)
         return property(**locals())
+
+    ### PRIVATE METHODS ###
+
+    @abc.abstractmethod
+    def _copy_keyword_args(self, new):
+        new.direction = self.direction
+

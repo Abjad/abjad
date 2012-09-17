@@ -38,11 +38,14 @@ class StaffLinesSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components=None, arg=5):
+    def __init__(self, components=None, lines=5):
         Spanner.__init__(self, components)
-        self.lines = arg
+        self.lines = lines
 
     ### PRIVATE METHODS ###
+
+    def _copy_keyword_args(self, new):
+        new.lines = self.lines
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -96,7 +99,7 @@ class StaffLinesSpanner(Spanner):
                 self._lines = arg
             elif isinstance(arg, (tuple, list)) \
                 and all([isinstance(x, (int, float)) for x in arg]):
-                self._lines = arg
+                self._lines = tuple(arg)
             else:
                 raise ValueError('StaffLinesSpanner requires either an int, '
                     'or a list/tuple of ints and/or floats.')

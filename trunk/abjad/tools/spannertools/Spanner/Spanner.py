@@ -164,8 +164,9 @@ class Spanner(AbjadObject):
         result._unblock_all_components()
         return result
 
+    @abc.abstractmethod
     def _copy_keyword_args(self, new):
-        pass
+        raise NotImplemented
 
     def _duration_offset_in_me(self, leaf):
         return leaf.start_offset - self.start_offset

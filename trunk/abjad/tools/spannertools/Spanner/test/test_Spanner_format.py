@@ -9,6 +9,8 @@ def test_Spanner_format_01():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Staff("c'8 d'8 e'8 f'8")
     p = MockSpanner(t[:])

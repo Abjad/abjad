@@ -35,6 +35,9 @@ class TrillSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        new.written_pitch = self.written_pitch
+
     def _format_before_leaf(self, leaf):
         result = []
         if self.pitch is not None:

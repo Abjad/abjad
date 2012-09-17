@@ -8,6 +8,8 @@ def test_Spanner__is_my_first_leaf_01():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(t)
@@ -38,6 +40,8 @@ def test_Spanner__is_my_first_leaf_02():
     class MockSpanner(spannertools.Spanner):
         def __init__(self, components=None):
             spannertools.Spanner.__init__(self, components)
+        def _copy_keyword_args(self, new):
+            pass
 
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(2, Container(notetools.make_repeated_notes(2)))
