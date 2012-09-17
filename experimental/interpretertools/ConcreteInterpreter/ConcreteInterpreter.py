@@ -180,33 +180,33 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_start_offsets, rhythm_region_stop_offsets)
         #self._debug_values(input_quadruples, 'quadruples')
 
-        rhythm_maker_input_tuples = []
-        rhythm_request_input_tuples = []
+        rhythm_maker_input_triples = []
+        rhythm_request_input_triples = []
 
         for input_quadruple in input_quadruples:
             if isinstance(input_quadruple[0], timetokentools.TimeTokenMaker):
-                rhythm_maker_input_tuple = input_quadruple[:3]
-                rhythm_maker_input_tuples.append(rhythm_maker_input_tuple)
+                rhythm_maker_input_triple = input_quadruple[:3]
+                rhythm_maker_input_triples.append(rhythm_maker_input_triple)
             elif isinstance(input_quadruple[0], requesttools.RhythmRequest):
                 rhythm_request, division_list, start_offset, stop_offset = input_quadruple
-                if not rhythm_request_input_tuples:
-                    rhythm_request_input_tuples.append((rhythm_request, start_offset, stop_offset))
-                elif rhythm_request_input_tuples[-1][0] != rhythm_request:
-                    rhythm_request_input_tuples.append((rhythm_request, start_offset, stop_offset))
+                if not rhythm_request_input_triples:
+                    rhythm_request_input_triples.append((rhythm_request, start_offset, stop_offset))
+                elif rhythm_request_input_triples[-1][0] != rhythm_request:
+                    rhythm_request_input_triples.append((rhythm_request, start_offset, stop_offset))
                 else:
-                    last_rhythm_request_input_tuple = rhythm_request_input_tuples.pop()
-                    last_start_offset = last_rhythm_request_input_tuple[1]
-                    rhythm_request_input_tuples.append((rhythm_request, last_start_offset, stop_offset))
+                    last_rhythm_request_input_triple = rhythm_request_input_triples.pop()
+                    last_start_offset = last_rhythm_request_input_triple[1]
+                    rhythm_request_input_triples.append((rhythm_request, last_start_offset, stop_offset))
             else:
                 raise TypeError('what is {!r}?'.format(input_quadruple[0]))
 
         # uncomment these two lines to continue implementing
-        #self._debug_values(rhythm_maker_input_tuples, 'maker tuples')
-        #self._debug_values(rhythm_request_input_tuples, 'request tuples')
+        #self._debug_values(rhythm_maker_input_triples, 'maker tuples')
+        #self._debug_values(rhythm_request_input_triples, 'request tuples')
 
         self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = []
-        for rhythm_maker_input_tuple in rhythm_maker_input_tuples:
-            rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_maker_input_tuple)
+        for rhythm_maker_input_triple in rhythm_maker_input_triples:
+            rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_maker_input_triple)
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
                 rhythm_region_expression)
         for rhythm_region_expression in \
