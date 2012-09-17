@@ -201,6 +201,7 @@ class AbjadObject(object):
             print ''
         else:
             self._debug(repr(values), annotation=annotation)
+            print ''
 
     @classmethod
     def _get_keyword_argument_names(cls):

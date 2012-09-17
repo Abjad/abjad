@@ -21,7 +21,7 @@ def numeric_seconds_to_escaped_clock_string(seconds):
     ::
 
         >>> f(note)
-        c'4 ^ \markup { "1'57\"" }
+        c'4 ^ \markup { 1'57\\" }
 
     Escape seconds indicator for output as LilyPond markup.
 
