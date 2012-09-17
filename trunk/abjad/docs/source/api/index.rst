@@ -214,6 +214,7 @@ Composition packages
    tools/containertools/insert_component
    tools/containertools/iterate_containers_backward_in_expr
    tools/containertools/iterate_containers_forward_in_expr
+   tools/containertools/iterate_containers_in_expr
    tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
    tools/containertools/remove_leafless_containers_in_expr
    tools/containertools/repeat_contents_of_container

@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_containers_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``containertools.iterate_containers_in_expr()`` instead.
 
     Iterate containers backward in `expr`::
 
@@ -43,5 +42,5 @@ def iterate_containers_backward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import containertools
 
-    return componenttools.iterate_components_backward_in_expr(
-        expr, containertools.Container, start=start, stop=stop)
+    return containertools.iterate_containers_in_expr(
+        expr, reverse=True, start=start, stop=stop)

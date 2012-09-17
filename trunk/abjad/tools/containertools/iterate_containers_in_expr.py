@@ -1,12 +1,12 @@
 from abjad.tools import componenttools
 
 
-def iterate_containers_forward_in_expr(expr, start=0, stop=None):
-    r'''.. versionadded:: 2.0
+def iterate_containers_in_expr(expr, reverse=False, start=0, stop=None):
+    r'''.. versionadded:: 2.10
 
-    .. note:: Deprecated. Use ``containertools.iterate_containers_in_expr()`` instead.
+    Iterate containers forward in `expr`:
 
-    Iterate containers forward in `expr`::
+    ::
 
         >>> staff = Staff([Voice("c'8 d'8"), Voice("e'8 f'8 g'8")])
         >>> Tuplet(Fraction(2, 3), staff[1][:])
@@ -32,12 +32,23 @@ def iterate_containers_forward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for x in containertools.iterate_containers_forward_in_expr(staff):
+        >>> for x in containertools.iterate_containers_in_expr(staff):
         ...   x
         Staff<<2>>
         Voice{2}
         Voice{1}
         Tuplet(2/3, [e'8, f'8, g'8])
+
+    Iterate containers backward in `expr`:
+
+    ::
+
+        >>> for x in containertools.iterate_containers_in_expr(staff, reverse=True):
+        ...   x
+        Staff<<2>>
+        Voice{1}
+        Tuplet(2/3, [e'8, f'8, g'8])
+        Voice{2}
 
     Ignore threads.
 
@@ -45,5 +56,5 @@ def iterate_containers_forward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import containertools
 
-    return containertools.iterate_containers_in_expr(
-        expr, reverse=False, start=start, stop=stop)
+    return componenttools.iterate_components_in_expr(
+        expr, klass=containertools.Container, reverse=reverse, start=start, stop=stop)
