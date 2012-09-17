@@ -1,7 +1,7 @@
 def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
-    Clone governed `component` subtree by leaf range.
+    Copy governed `component` subtree by leaf range.
 
     Governed subtree means `component` together with children of `component`.
 
@@ -46,10 +46,10 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
             }
         }
 
-    Clone sequential containers in leaves' parentage up to
+    Copy sequential containers in leaves' parentage up to
     the first parallel container in leaves' parentage.
 
-    Trim and shrink cloned containers as necessary.
+    Trim and shrink copied containers as necessary.
 
     When `stop` is none copy all leaves from `start` forward.
 

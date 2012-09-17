@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
-    Clone governed `component` subtree from `start` prolated duration
+    Copy governed `component` subtree from `start` prolated duration
     to `stop` prolated duration.
 
     Governed subtree refers to `component` together with the 
@@ -100,7 +100,7 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
             }
         }
 
-    Function does NOT clone parentage of `component` when `component` is a leaf::
+    Function does NOT copy parentage of `component` when `component` is a leaf::
 
         >>> voice = Voice([Note("c'4")])
         >>> new_leaf = componenttools.copy_governed_component_subtree_from_offset_to(

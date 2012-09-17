@@ -4,7 +4,7 @@ import copy
 def copy_components_and_covered_spanners(components, n=1):
     r'''.. versionadded:: 1.1
 
-    Clone `components` and covered spanners.
+    Copy `components` and covered spanners.
 
     The `components` must be thread-contiguous.
 
@@ -61,7 +61,7 @@ def copy_components_and_covered_spanners(components, n=1):
         >>> voice.leaves[0] is new_voice.leaves[0]
         False
 
-    Clone `components` a total of `n` times. ::
+    Copy `components` a total of `n` times. ::
 
         >>> result = componenttools.copy_components_and_covered_spanners(voice.leaves[:2], n=3)
         >>> result

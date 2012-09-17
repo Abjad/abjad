@@ -36,7 +36,7 @@ def test_componenttools_copy_governed_component_subtree_from_offset_to002():
 
 
 def test_componenttools_copy_governed_component_subtree_from_offset_to_03():
-    '''Clone measure.
+    '''Copy measure.
     '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")

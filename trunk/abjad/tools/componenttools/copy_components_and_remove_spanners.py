@@ -4,7 +4,7 @@ import copy
 def copy_components_and_remove_spanners(components, n=1):
     r'''.. versionadded:: 1.1
 
-    Clone `components` and remove all spanners.
+    Copy `components` and remove all spanners.
 
     The `components` must be thread-contiguous.
 
@@ -53,7 +53,7 @@ def copy_components_and_remove_spanners(components, n=1):
         >>> voice.leaves[2] is new_voice.leaves[0]
         False
 
-    Clone `components` a total of `n` times. ::
+    Copy `components` a total of `n` times. ::
 
         >>> result = componenttools.copy_components_and_remove_spanners(voice.leaves[2:4], n=3)
         >>> result

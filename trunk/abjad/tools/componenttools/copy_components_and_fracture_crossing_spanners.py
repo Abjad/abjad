@@ -4,7 +4,7 @@ import copy
 def copy_components_and_fracture_crossing_spanners(components, n=1):
     r'''.. versionadded:: 1.1
 
-    Clone `components` and fracture crossing spanners.
+    Copy `components` and fracture crossing spanners.
 
     The `components` must be thread-contiguous.
 
@@ -55,7 +55,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
         >>> voice.leaves[2] is new_voice.leaves[0]
         False
 
-    Clone `components` a total of `n` times. ::
+    Copy `components` a total of `n` times. ::
 
         >>> result = componenttools.copy_components_and_fracture_crossing_spanners(
         ...     voice.leaves[2:4], n=3)

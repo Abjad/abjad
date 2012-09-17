@@ -8,7 +8,7 @@ def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
         >>> pitchtools.permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(notes, row)
         [Note('bf4'), Note('d4'), Note("f''4"), Note("b'4")]
 
-    Function works by reference only. No objects are cloned.
+    Function works by reference only. No objects are copied.
 
     Return list.
     '''
