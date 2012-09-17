@@ -34,6 +34,11 @@ class RhythmExpression(Container):
 
     ### SPECIAL METHODS ###
 
+    def __copy__(self, *args):
+        new = Container.__copy__(self, *args)
+        new._start_offset = self.start_offset
+        return new
+
     def __repr__(self):
         return '{}({}, start_offset={!r}, stop_offset={!r}'.format(
             self._class_name, Container.__repr__(self),

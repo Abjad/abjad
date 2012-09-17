@@ -718,16 +718,13 @@ class ConcreteInterpreter(Interpreter):
     # TODO: Finish implementing this method.
     def rhythm_request_to_rhythm_region_expression(self, rhythm_request, start_offset, stop_offset):
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
-        self._debug((rhythm_request, start_offset, stop_offset), 'rhythm request')
+        self._debug(rhythm_request, 'rhythm request')
+        self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_score_offsets(
             self.score_specification, rhythm_request.context_name)
         source_timespan = timespantools.TimespanConstant(*source_score_offsets)
         self._debug(source_timespan, 'source timespan')
-        rhythm_region_expressions = \
-            self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        #self._debug_values(rhythm_region_expressions, 'rrxs')
-        self._debug(rhythm_region_expressions, 'rrxs')
         print ''
         # TODO: Find rhythm region expressions that intersect source timespan.
         #       Then copy rhythm region expressions.
@@ -735,6 +732,15 @@ class ConcreteInterpreter(Interpreter):
         #       Then trim first and last rhythm region expressions.
         #       Then fuse trimmed rhythm region expressions.
         #       Then return resulting rhyhtm region expression.
+        rhythm_region_expressions = \
+            self.score_specification.contexts[voice_name]['rhythm_region_expressions']
+        self._debug_values(rhythm_region_expressions, 'rrxs')
+        timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
+            timespan_1=source_timespan)
+        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
+            timespan_inequality)
+        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
+        self._debug_values(rhythm_region_expressions, 'rrxs')
         raise NotImplementedError('working on this now.')
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
