@@ -1,10 +1,8 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_SegmentSpecification_request_rhythm_01():
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -24,5 +22,10 @@ def test_SegmentSpecification_request_rhythm_01():
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+# TODO: Add rhythm request tests for requests between voices.
+# TODO: Add rhythm request tests for requests for material from an earlier segment.
+# TODO: Add rhythm request tests for requests for material from a later segment.
+# TODO: Add rhythm request tests for requests for reversed material.

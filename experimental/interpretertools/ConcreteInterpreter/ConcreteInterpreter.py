@@ -275,7 +275,7 @@ class ConcreteInterpreter(Interpreter):
 
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
         if getattr(rhythm_maker, 'beam', False):
-            durations = [x.preprolated_duration for x in rhythm_containers]
+            durations = [x.prolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
     def context_name_to_parentage_names(self, segment_specification, context_name, proper=True):
@@ -718,13 +718,13 @@ class ConcreteInterpreter(Interpreter):
     def rhythm_request_to_rhythm_region_expression(self, rhythm_request, start_offset, stop_offset):
         from experimental import interpretertools
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
-        self._debug(rhythm_request, 'rhythm request')
-        self._debug((start_offset, stop_offset), 'offsets')
+        #self._debug(rhythm_request, 'rhythm request')
+        #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_score_offsets(
             self.score_specification, rhythm_request.context_name)
         source_timespan = timespantools.TimespanConstant(*source_score_offsets)
-        self._debug(source_timespan, 'source timespan')
+        #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rrxs')
@@ -734,14 +734,16 @@ class ConcreteInterpreter(Interpreter):
             timespan_inequality)
         tmp = []
         for rhythm_region_expression in rhythm_region_expressions:
+        #for rhythm_region_expression in reversed(rhythm_region_expressions):
             assert rhythm_region_expression.parent is None
-            # TODO: figure out why second rhythm region expression fails to copy beam spanner
-            new = componenttools.copy_components_and_covered_spanners([rhythm_region_expression])
-            assert len(new) == 1
-            assert new[0].parent is None
+            # TODO: figure out why first version fails to copy beam spanner
+            #new = componenttools.copy_components_and_covered_spanners([rhythm_region_expression])[0]
+            new = componenttools.copy_components_and_fracture_crossing_spanners([
+                rhythm_region_expression])[0]
+            assert new.parent is None
             # TODO: remove this after initial development for reasons of performance
-            #assert rhythm_region_expression.lilypond_format == new[0].lilypond_format
-            tmp.append(new[0])
+            assert rhythm_region_expression.lilypond_format == new.lilypond_format
+            tmp.append(new)
         rhythm_region_expressions = tmp
         #self._debug_values(rhythm_region_expressions, 'rrxs')
         rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)

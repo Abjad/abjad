@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from abjad.tools.containertools.Container import Container
 
 
@@ -18,6 +19,9 @@ class RhythmExpression(Container):
     rhythm of a voice may not necessarily be constructed in
     chronological order during interpretation.
 
+    Initializing ``start_offset=None`` will set `start_offset` to
+    ``Offset(0)``.
+    
     Composers do not create rhythm expression objects because 
     rhythm expressions arise as a byproduct of interpretation.
     '''
@@ -30,7 +34,7 @@ class RhythmExpression(Container):
 
     def __init__(self, music=None, start_offset=None):
         Container.__init__(self, music=music)
-        self._forced_start_offset = start_offset
+        self._forced_start_offset = start_offset or durationtools.Offset(0)
 
     ### SPECIAL METHODS ###
 
