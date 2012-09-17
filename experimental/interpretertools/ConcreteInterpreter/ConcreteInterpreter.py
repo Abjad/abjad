@@ -204,10 +204,11 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_maker_input_tuples, 'maker tuples')
         #self._debug_values(rhythm_request_input_tuples, 'request tuples')
 
-        #rhythm_region_expressions = self.make_rhythm_region_expressions(input_quadruples)
-        rhythm_region_expressions = self.make_rhythm_region_expressions(rhythm_maker_input_tuples)
-        self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = \
-            rhythm_region_expressions[:]
+        self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = []
+        for rhythm_maker_input_tuple in rhythm_maker_input_tuples:
+            rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_maker_input_tuple)
+            self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
+                rhythm_region_expression)
         for rhythm_region_expression in \
             self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
             #self._debug(rhythm_region_expression, 'rrx')
@@ -565,18 +566,15 @@ class ConcreteInterpreter(Interpreter):
         self.region_division_commands_to_division_region_division_lists(
             region_division_commands, voice, all_region_division_commands)
 
-    def make_rhythm_region_expressions(self, input_triples):
+    def make_rhythm_region_expression(self, rhythm_maker, rhythm_region_division_list, start_offset):
         from experimental import interpretertools
-        rhythm_region_expressions = []
-        for rhythm_maker, rhythm_region_division_list, start_offset in input_triples:
-            if rhythm_region_division_list:
-                leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
-                rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-                rhythm_region_expression = interpretertools.RhythmExpression(
-                    rhythm_containers, start_offset=start_offset)
-                self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
-                rhythm_region_expressions.append(rhythm_region_expression)
-        return rhythm_region_expressions
+        if rhythm_region_division_list:
+            leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
+            rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+            rhythm_region_expression = interpretertools.RhythmExpression(
+                rhythm_containers, start_offset=start_offset)
+            self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
+            return rhythm_region_expression
 
     def make_segment_division_lists_for_voice(self, voice):
         #self._debug(voice, 'voice')
