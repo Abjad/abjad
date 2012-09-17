@@ -2,11 +2,15 @@ from abjad.tools import componenttools
 
 
 def get_spanners_covered_by_components(components):
-    '''Return unordered set of  spanners completely contained
-        within the time bounds of thread-contiguous components.
+    '''.. versionadded:: 1.1
 
-        Compare 'covered' spanners with 'contained' spanners.
-        Compare 'covered' spanners with 'dominant' spanners.
+    Get spanners covered by `components`.
+
+    Return unordered set of  spanners completely contained
+    within the time bounds of thread-contiguous components.
+
+    A spanner `p` is covered by timespan `t` when and only when
+    ``t.start_ofset <= p.start_offset and p.stop_offset <= t.stop_offset``.
 
     .. versionchanged:: 2.0
         renamed ``spannertools.get_covered()`` to
