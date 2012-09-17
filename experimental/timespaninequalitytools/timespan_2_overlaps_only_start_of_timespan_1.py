@@ -1,4 +1,4 @@
-def timespan_2_overlaps_start_of_timespan_1_only(timespan_1=None, timespan_2=None, hold=False):
+def timespan_2_overlaps_only_start_of_timespan_1(timespan_1=None, timespan_2=None, hold=False):
     r'''.. versionadded:: 1.0
 
     Make timespan inequality template indicating that expression happens during timespan::
@@ -7,7 +7,7 @@ def timespan_2_overlaps_start_of_timespan_1_only(timespan_1=None, timespan_2=Non
 
     ::
 
-        >>> timespaninequalitytools.timespan_2_overlaps_start_of_timespan_1_only()
+        >>> timespaninequalitytools.timespan_2_overlaps_only_start_of_timespan_1()
         TimespanInequality('timespan_2.start < timespan_1.start < timespan_2.start <= timespan_1.stop')
 
     Return boolean or timespan inequality.

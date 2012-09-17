@@ -734,12 +734,14 @@ class ConcreteInterpreter(Interpreter):
         #       Then return resulting rhyhtm region expression.
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        self._debug_values(rhythm_region_expressions, 'rrxs')
+        #self._debug_values(rhythm_region_expressions, 'rrxs')
         timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
+        #self._debug_values(rhythm_region_expressions, 'rrxs')
+        rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)
         self._debug_values(rhythm_region_expressions, 'rrxs')
         raise NotImplementedError('working on this now.')
 
