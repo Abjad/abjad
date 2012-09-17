@@ -67,26 +67,6 @@ class CountRatioPartSelector(RatioPartSelector):
         duration = durationtools.Duration(sum(durations))
         return duration
 
-    def get_score_start_offset(self, score_specification, context_name):
-        r'''Evaluate score start offset of selector when applied
-        to `context_name` in `score_specification`.
-
-        .. note:: not yet implemented.
-
-        Return offset.
-        '''
-        raise NotImplementedError
-
-    def get_score_stop_offset(self, score_specification, context_name):
-        r'''Evaluate score stop offset of selector when applied
-        to `context_name` in `score_specification`.
-
-        .. note:: not yet implemented.
-
-        Return offset.
-        '''
-        raise NotImplementedError
-
     def get_segment_start_offset(self, score_specification, context_name):
         r'''Evaluate segment start offset of selector when applied
         to `context_name` in `score_specification`.

@@ -54,7 +54,11 @@ Methods
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_score_start_offset
 
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_score_stop_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_segment_offsets
 
