@@ -176,6 +176,8 @@ class ConcreteInterpreter(Interpreter):
         input_triples = []
         for input_quadruple in input_quadruples:
             flamingo, division_list, start_offset, stop_offset = input_quadruple
+            start_offset = durationtools.Offset(start_offset)
+            stop_offset = durationtools.Offset(stop_offset)
             if isinstance(flamingo, timetokentools.TimeTokenMaker):
                 input_triples.append((flamingo, division_list, start_offset))
             elif isinstance(flamingo, requesttools.RhythmRequest):
@@ -191,13 +193,14 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise TypeError('what is {!r}?'.format(flamingo))
         #self._debug_values(input_triples, 'input triples')
-        self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = []
+        self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = \
+            timespantools.TimespanInventory()
         for input_triple in input_triples:
             if isinstance(input_triple[0], timetokentools.TimeTokenMaker):
                 rhythm_region_expression = self.make_rhythm_region_expression(*input_triple)
             elif isinstance(input_triple[0], requesttools.RhythmRequest):
-                self._debug('currently ignoring rhythm request ...')
-                continue
+                #self._debug('currently ignoring rhythm request ...')
+                #continue
                 rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*input_triple)
             else:
                 raise TypeError('what is {!r}?'.format(input_request[0]))
@@ -714,6 +717,11 @@ class ConcreteInterpreter(Interpreter):
 
     def rhythm_request_to_rhythm_region_expression(self, rhythm_request, start_offset, stop_offset):
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
+        self._debug((rhythm_request, start_offset, stop_offset), 'rhythm request')
+        voice_name = rhythm_request.context_name
+        rhythm_region_expressions = \
+            self.score_specification.contexts[voice_name]['rhythm_region_expressions']
+        self._debug_values(rhythm_region_expressions, 'rrxs')
         raise NotImplementedError('working on this now.')
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 

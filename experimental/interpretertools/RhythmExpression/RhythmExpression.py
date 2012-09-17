@@ -32,6 +32,13 @@ class RhythmExpression(Container):
         Container.__init__(self, music=music)
         self._start_offset = start_offset
 
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        return '{}({}, start_offset={!r}, stop_offset={!r}'.format(
+            self._class_name, Container.__repr__(self),
+            self.start_offset, self.stop_offset)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
