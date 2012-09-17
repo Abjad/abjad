@@ -76,7 +76,8 @@ class Interpreter(AbjadObject):
             self.store_single_context_setting_by_context(
                 single_context_settings[0], clear_persistent_first=clear_persistent_first)
             for single_context_setting in single_context_settings[1:]:
-                self.store_single_context_setting_by_context(single_context_setting, clear_persistent_first=False)
+                self.store_single_context_setting_by_context(
+                    single_context_setting, clear_persistent_first=False)
 
     def unpack_multiple_context_settings_for_score(self):
         for segment_specification in self.score_specification.segment_specifications:

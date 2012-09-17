@@ -172,8 +172,6 @@ Special Methods
 
 .. automethod:: experimental.interpretertools.RhythmExpression.RhythmExpression.RhythmExpression.__repr__
 
-    Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
 .. automethod:: experimental.interpretertools.RhythmExpression.RhythmExpression.RhythmExpression.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`

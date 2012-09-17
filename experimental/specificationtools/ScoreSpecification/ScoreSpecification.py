@@ -271,6 +271,17 @@ class ScoreSpecification(Specification):
         return segment_specification
 
     def get_start_segment_specification(self, expr):
+        r'''Get start segment specification from `expr`.
+
+        Use ``expr.start_segment_identifier`` to return segment specification.
+
+        Otherwise use `expr` directly to return segment specification::
+
+            >>> score_specification.get_start_segment_specification(1)
+            SegmentSpecification('orange')
+
+        Return segment specification or raise key error when none is found.
+        '''
         start_segment_identifier = getattr(expr, 'start_segment_identifier', expr)
         return self.segment_specifications[start_segment_identifier]
 
