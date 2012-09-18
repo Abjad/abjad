@@ -323,6 +323,9 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
+    # TODO: Refactor as self.request_divisions(voice, selector=None).
+    #       Also add index, count, reverse, rotation, callback keywords.
+    #       Use this interface for all score specification material request methods.
     def request_divisions(self, voice, start_segment_identifier, segment_count=1):
         r'''Request `voice` divisions starting in `start_segment_identifier`
         for a total of `segment_count` segments.
@@ -351,6 +354,89 @@ class ScoreSpecification(Specification):
         selector = selectortools.SegmentSelector(start_identifier=start, stop_identifier=stop)
         request = requesttools.MaterialRequest('divisions', selector, context_name=voice_name)
         return request
+
+    def request_division_command(self, voice,
+        selector=None, edge=None, multiplier=None, offset=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request division command active at timepoint in `voice`.
+
+        .. note:: not yet tested.
+
+        Return command request.
+        '''
+        context_name = helpertools.expr_to_component_name(voice)
+        selector = selector or self.select_score()
+        timepoint = timespantools.SymbolicTimepoint(
+            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+        return requesttools.CommandRequest(
+            'divisions', context_name=context_name, timepoint=timepoint,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def request_rhythm(self, voice, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request `voice` rhythm during `selector`.
+
+        Apply any of `index`, `count`, `reverse`, `rotation`, `callback`
+        that are not none.
+
+        .. note:: not yet tested.
+
+        Return rhythm request.
+        '''
+        selector = self.select_score()
+        return requesttools.RhythmRequest(
+            'rhythm', selector, context_name=context,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def request_rhythm_command(self, voice,
+        selector=None, edge=None, multiplier=None, offset=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request rhythm command active at timepoint in `voice`.
+
+        .. note:: not yet tested.
+
+        Return command request.
+        '''
+        context_name = helpertools.expr_to_component_name(voice)
+        selector = selector or self.select_score()
+        timepoint = timespantools.SymbolicTimepoint(
+            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+        return requesttools.CommandRequest(
+            'rhythms', context_name=context_name, timepoint=timepoint,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def request_time_signatures(self, context, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request `context` time signatures that **start during** `selector`.
+
+        Apply any of `index`, `count`, `reverse`, `rotation`, `callback`
+        that are not none.
+
+        .. note:: not yet tested.
+
+        Return material request.
+        '''
+        selector = self.select_score()
+        return requesttools.MaterialRequest(
+            'time_signatures', selector, context_name=context,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def request_time_signature_command(self, voice,
+        selector=None, edge=None, multiplier=None, offset=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request time signature command active at timepoint in `voice`.
+
+        .. note:: not yet tested.
+
+        Return command request.
+        '''
+        context_name = helpertools.expr_to_component_name(voice)
+        selector = selector or self.select_score()
+        timepoint = timespantools.SymbolicTimepoint(
+            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+        return requesttools.CommandRequest(
+            'time_signatures', context_name=context_name, timepoint=timepoint,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def segment_name_and_segment_offset_to_score_offset(self, segment_name, segment_offset):
         r'''Change `segment_name` and `segment_offset` to score offset.
