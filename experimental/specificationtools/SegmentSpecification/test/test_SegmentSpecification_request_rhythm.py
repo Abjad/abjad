@@ -1,6 +1,10 @@
 from abjad import *
 from experimental import *
 
+# TODO: Add rhythm request tests for requests between voices.
+# TODO: Add rhythm request tests for requests for material from an earlier segment.
+# TODO: Add rhythm request tests for requests for material from a later segment.
+# TODO: Add rhythm request tests for requests for reversed material.
 
 def test_SegmentSpecification_request_rhythm_01():
 
@@ -24,8 +28,3 @@ def test_SegmentSpecification_request_rhythm_01():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
-
-# TODO: Add rhythm request tests for requests between voices.
-# TODO: Add rhythm request tests for requests for material from an earlier segment.
-# TODO: Add rhythm request tests for requests for material from a later segment.
-# TODO: Add rhythm request tests for requests for reversed material.
