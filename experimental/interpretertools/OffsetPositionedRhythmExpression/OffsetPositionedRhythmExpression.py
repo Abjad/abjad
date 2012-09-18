@@ -1,8 +1,10 @@
+from abjad.tools import componenttools
+from abjad.tools import containertools
 from abjad.tools import durationtools
-from abjad.tools.containertools.Container import Container
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class OffsetPositionedRhythmExpression(Container):
+class OffsetPositionedRhythmExpression(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Rhythm expression.
@@ -26,29 +28,31 @@ class OffsetPositionedRhythmExpression(Container):
     rhythm expressions arise as a byproduct of interpretation.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ('_forced_start_offset', )
-
     ### INITIALIZER ###
 
-    def __init__(self, music=None, start_offset=None):
-        Container.__init__(self, music=music)
-        self._forced_start_offset = start_offset or durationtools.Offset(0)
+    def __init__(self, music=None, start_offset=None, stop_offset=None):
+        music = containertools.Container(music=music)
+        self._music = music
+        self._start_offset = start_offset or durationtools.Offset(0)
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        new = Container.__copy__(self, *args)
-        new._forced_start_offset = self.start_offset
+        new = type(self)(start_offset=self.start_offset)
+        new._music = componenttools.copy_components_and_covered_spanners([self.music])[0]
         return new
 
-    def __repr__(self):
-        return '{}({}, start_offset={!r}, stop_offset={!r}'.format(
-            self._class_name, Container.__repr__(self),
-            self.start_offset, self.stop_offset)
+    __deepcopy__ = __copy__
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def music(self):
+        '''Offset-positioned rhythm expression music.
+
+        Return container.
+        '''
+        return self._music
 
     @property
     def start_offset(self):
@@ -58,14 +62,15 @@ class OffsetPositionedRhythmExpression(Container):
 
         Return offset.
         '''
-        return self._forced_start_offset
+        return self._start_offset
 
     @property
     def stop_offset(self):
         '''Rhythm expression stop offset.
         
-        Defined equal to start offset plus prolated duration.
+        Defined equal to start offset plus 
+        prolated duration of rhythm expression
 
         Return offset.
         '''
-        return self.start_offset + self.prolated_duration
+        return self.start_offset + self.music.prolated_duration

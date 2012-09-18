@@ -209,7 +209,7 @@ class ConcreteInterpreter(Interpreter):
         for rhythm_region_expression in \
             self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
             #self._debug(rhythm_region_expression, 'rrx')
-            voice.extend(rhythm_region_expression)
+            voice.extend(rhythm_region_expression.music)
 
     def add_rhythm_to_voices(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
@@ -724,44 +724,19 @@ class ConcreteInterpreter(Interpreter):
         source_score_offsets = rhythm_request.selector.get_score_offsets(
             self.score_specification, rhythm_request.context_name)
         source_timespan = timespantools.TimespanConstant(*source_score_offsets)
-        #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        #self._debug_values(rhythm_region_expressions, 'rrxs')
         timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
-        tmp = []
-        for rhythm_region_expression in rhythm_region_expressions:
-        #for rhythm_region_expression in reversed(rhythm_region_expressions):
-            assert rhythm_region_expression.parent is None
-            # TODO: figure out why first version fails to copy beam spanner
-            #new = componenttools.copy_components_and_covered_spanners([rhythm_region_expression])[0]
-            new = componenttools.copy_components_and_fracture_crossing_spanners([
-                rhythm_region_expression])[0]
-            #print new.lilypond_format
-            assert new.parent is None
-            # TODO: remove this after initial development for reasons of performance
-            #assert rhythm_region_expression.lilypond_format == new.lilypond_format
-            tmp.append(new)
-        rhythm_region_expressions = tmp
-        #self._debug_values(rhythm_region_expressions, 'rrxs')
+        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)
-        #self._debug_values(rhythm_region_expressions, 'rrxs')
-        # TODO: make these two stub method calls work eventually for trim cases
-        if timespaninequalitytools.timespan_2_overlaps_only_start_of_timespan_1(
-            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[0]):
-            rhythm_region_expressions[0].trim_to_start_offset(source_timespan.start_offset)
-        if timespaninequalitytools.timespan_2_overlaps_only_stop_of_timespan_1(
-            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
-            rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)
-        result = interpretertools.OffsetPositionedRhythmExpression()
-        #result = rhythm_region_expressions[0]
+        self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
+        result = interpretertools.OffsetPositionedRhythmExpression(start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:
-            result.extend(rhythm_region_expression)
-        result._forced_start_offset = start_offset
-        #print result.lilypond_format
+            result.music.extend(rhythm_region_expression.music)
+        #print result.music.lilypond_format
         # may or may not be possible to treat request rhythms as cyclic source
         assert result.stop_offset == stop_offset
         return result
@@ -1017,13 +992,24 @@ class ConcreteInterpreter(Interpreter):
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         assert material_request.attribute == 'time_signatures'
-        segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
-        context_proxy = segment_specification.single_context_settings_by_context[material_request.context_name]
+        segment_specification = self.get_start_segment_specification(
+            material_request.start_segment_identifier)
+        context_proxy = segment_specification.single_context_settings_by_context[
+            material_request.context_name]
         single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         absolute_request = single_context_setting.request
         assert isinstance(absolute_request, requesttools.AbsoluteRequest)
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
         return time_signatures
+
+    # TODO: implement this method
+    def trim_rhythm_region_expressions(self, rhythm_region_expressions, source_timespan):
+        if timespaninequalitytools.timespan_2_overlaps_only_start_of_timespan_1(
+            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[0]):
+            rhythm_region_expressions[0].trim_to_start_offset(source_timespan.start_offset)
+        if timespaninequalitytools.timespan_2_overlaps_only_stop_of_timespan_1(
+            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
+            rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)
 
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
         from experimental import interpretertools
