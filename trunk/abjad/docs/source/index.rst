@@ -55,12 +55,12 @@ Tutorials
 .. toctree::
     :numbered:
 
-    tutorials/rest_delimited_slurs/index
-    tutorials/parentage/index
-    tutorials/threads/index
-    tutorials/grobs/index
-    tutorials/understanding_overrides/index
-    tutorials/time_signature_marks/index
+    tutorials/creating_rest_delimited_slurs/index
+    tutorials/making_grob_overrides/index
+    tutorials/understanding_lilypond_grobs/index
+    tutorials/understanding_time_signature_marks/index
+    tutorials/working_with_component_parentage/index
+    tutorials/working_with_threads/index
 
 Reference manual
 ----------------

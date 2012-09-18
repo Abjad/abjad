@@ -1,5 +1,5 @@
-Understanding Abjad overrides
-=============================
+Making grob overrides
+=====================
 
 Grob-override component plug-ins
 --------------------------------

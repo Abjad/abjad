@@ -1,5 +1,5 @@
-Time signature marks by example
-===============================
+Understanding time signature marks
+==================================
 
 In this tutorial is to take a deeper look at what happens
 when we attach time signature marks to staves and other score components.
