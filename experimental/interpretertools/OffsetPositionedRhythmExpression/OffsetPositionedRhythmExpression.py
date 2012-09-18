@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools.containertools.Container import Container
 
 
-class RhythmExpression(Container):
+class OffsetPositionedRhythmExpression(Container):
     r'''.. versionadded:: 1.0
 
     Rhythm expression.

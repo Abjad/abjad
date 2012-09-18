@@ -79,14 +79,14 @@ class ConcreteInterpreter(Interpreter):
     to back-inspect the pool of already-created rhythm expressions.
     So some data structure of already-created rhythm expressions
     will need to be added to the system. A RhythmExpressionInventory, perhaps.
-    This will necessitate a new RhythmExpression object be added to the system.
-    And, importantly, RhythmExpression objects will need to implement
+    This will necessitate a new OffsetPositionedRhythmExpression object be added to the system.
+    And, importantly, OffsetPositionedRhythmExpression objects will need to implement
     the timespan interface.     
     (Recall that the timespan interface comprises just start- and stop-offsets.)
 
-    When RhythmExpression objects implement the timespan interface 
+    When OffsetPositionedRhythmExpression objects implement the timespan interface 
     it will be possible to back-inspect a RhythmExpressionInventory 
-    for all RhythmExpression objects that meet the criteria of a RhythmRequest
+    for all OffsetPositionedRhythmExpression objects that meet the criteria of a RhythmRequest
     currently undergoing interpretation.
 
     A self.rhythm_request_to_rhythm_region_expression() method will
@@ -566,7 +566,7 @@ class ConcreteInterpreter(Interpreter):
         if rhythm_region_division_list:
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-            rhythm_region_expression = interpretertools.RhythmExpression(
+            rhythm_region_expression = interpretertools.OffsetPositionedRhythmExpression(
                 rhythm_containers, start_offset=start_offset)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
@@ -740,9 +740,10 @@ class ConcreteInterpreter(Interpreter):
             #new = componenttools.copy_components_and_covered_spanners([rhythm_region_expression])[0]
             new = componenttools.copy_components_and_fracture_crossing_spanners([
                 rhythm_region_expression])[0]
+            #print new.lilypond_format
             assert new.parent is None
             # TODO: remove this after initial development for reasons of performance
-            assert rhythm_region_expression.lilypond_format == new.lilypond_format
+            #assert rhythm_region_expression.lilypond_format == new.lilypond_format
             tmp.append(new)
         rhythm_region_expressions = tmp
         #self._debug_values(rhythm_region_expressions, 'rrxs')
@@ -755,7 +756,7 @@ class ConcreteInterpreter(Interpreter):
         if timespaninequalitytools.timespan_2_overlaps_only_stop_of_timespan_1(
             timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
             rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)
-        result = interpretertools.RhythmExpression()
+        result = interpretertools.OffsetPositionedRhythmExpression()
         #result = rhythm_region_expressions[0]
         for rhythm_region_expression in rhythm_region_expressions:
             result.extend(rhythm_region_expression)

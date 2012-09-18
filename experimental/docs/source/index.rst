@@ -115,8 +115,8 @@ Unstable packages (load manually)
 
    experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
    experimental/interpretertools/DivisionCommand/DivisionCommand
+   experimental/interpretertools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    experimental/interpretertools/RhythmCommand/RhythmCommand
-   experimental/interpretertools/RhythmExpression/RhythmExpression
 
 :py:mod:`lyrictools <experimental.lyrictools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
