@@ -58,6 +58,7 @@ Composition packages
    tools/chordtools/get_note_head_from_chord_by_pitch
    tools/chordtools/iterate_chords_backward_in_expr
    tools/chordtools/iterate_chords_forward_in_expr
+   tools/chordtools/iterate_chords_in_expr
    tools/chordtools/make_tied_chord
    tools/chordtools/yield_all_subchords_of_chord
    tools/chordtools/yield_groups_of_chords_in_sequence

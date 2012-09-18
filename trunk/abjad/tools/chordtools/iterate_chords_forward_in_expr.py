@@ -1,10 +1,7 @@
-from abjad.tools import componenttools
-from abjad.tools import decoratortools
-
-
-@decoratortools.requires(object)
 def iterate_chords_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``chordtools.iterate_chords_in_expr()`` instead.
 
     Iterate chords forward in `expr`::
 
@@ -34,5 +31,5 @@ def iterate_chords_forward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import chordtools
 
-    return componenttools.iterate_components_forward_in_expr(
-        expr, chordtools.Chord, start=start, stop=stop)
+    return chordtools.iterate_chords_in_expr(
+        expr, start=start, stop=stop)
