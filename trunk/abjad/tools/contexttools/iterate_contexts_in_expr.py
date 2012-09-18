@@ -1,7 +1,8 @@
-def iterate_contexts_forward_in_expr(expr, start=0, stop=None):
-    r'''.. versionadded:: 2.0
+from abjad.tools import componenttools
 
-    .. note:: Deprecated. Use ``contexttools.iterate_contexts_in_expr()`` instead.
+
+def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
+    r'''.. versionadded:: 2.10
 
     Iterate contexts forward in `expr`::
 
@@ -29,11 +30,21 @@ def iterate_contexts_forward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for x in contexttools.iterate_contexts_forward_in_expr(staff):
+        >>> for x in contexttools.iterate_contexts_in_expr(staff):
         ...   x
         Staff<<2>>
         Voice{2}
         Voice{1}
+
+    Iterate contexts backward in `expr`:
+
+    ::
+
+        >>> for x in contexttools.iterate_contexts_in_expr(staff, reverse=True):
+        ...   x
+        Staff<<2>>
+        Voice{1}
+        Voice{2}
 
     Ignore threads.
 
@@ -41,4 +52,5 @@ def iterate_contexts_forward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import contexttools
 
-    return contexttools.iterate_contexts_in_expr(expr, start=start, stop=stop) 
+    return componenttools.iterate_components_in_expr(
+        expr, klass=contexttools.Context, reverse=reverse, start=start, stop=stop)

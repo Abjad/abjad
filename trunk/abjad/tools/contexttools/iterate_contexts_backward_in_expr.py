@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_contexts_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``contexttools.iterate_contexts_in_expr()`` instead.
 
     Iterate contexts backward in `expr`::
 
@@ -42,4 +41,4 @@ def iterate_contexts_backward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import contexttools
 
-    return componenttools.iterate_components_backward_in_expr(expr, contexttools.Context, start=start, stop=stop)
+    return contexttools.iterate_contexts_in_expr(expr, reverse=True, start=start, stop=stop) 
