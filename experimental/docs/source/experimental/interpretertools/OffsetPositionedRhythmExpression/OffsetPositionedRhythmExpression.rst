@@ -19,6 +19,13 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trim_to_start_offset
+
+.. automethod:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trim_to_stop_offset
+
 Special Methods
 ---------------
 

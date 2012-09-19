@@ -78,3 +78,41 @@ class OffsetPositionedRhythmExpression(AbjadObject):
         Return offset.
         '''
         return self.start_offset + self.music.prolated_duration
+
+    ### PUBLIC METHODS ###
+
+    def trim_to_start_offset(self, start_offset):
+        '''Trim to start offset.
+
+        .. note:: add example.
+        
+        Adjust start offset.
+        
+        Operate in place and return none.
+        '''
+        start_offset = durationtools.Offset(start_offset)
+        assert self.start_offset <= start_offset
+        duration_to_trim = start_offset - self.start_offset
+        result = componenttools.split_components_at_offsets(
+            [self.music], [duration_to_trim], cyclic=False, fracture_spanners=True)
+        trimmed_music = result[-1][0]
+        assert componenttools.is_well_formed_component(trimmed_music)
+        self._music = trimmed_music
+        self._start_offset = start_offset
+
+    def trim_to_stop_offset(self, stop_offset):
+        '''Trim to stop offset.
+
+        .. note:: add example.
+
+        Operate in place and return none.
+        '''
+        stop_offset = durationtools.Offset(stop_offset)
+        assert stop_offset <= self.stop_offset
+        duration_to_trim = self.stop_offset - stop_offset
+        duration_to_keep = self.music.prolated_duration - duration_to_trim
+        result = componenttools.split_components_at_offsets(
+            [self.music], [duration_to_keep], cyclic=False, fracture_spanners=True)
+        trimmed_music = result[0][0]
+        assert componenttools.is_well_formed_component(trimmed_music)
+        self._music = trimmed_music
