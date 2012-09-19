@@ -88,7 +88,6 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
         Note("f'8")
         Note("e'8")
 
-
     Return generator.
     '''
     from abjad.tools import componenttools

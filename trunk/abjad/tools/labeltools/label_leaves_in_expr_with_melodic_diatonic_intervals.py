@@ -34,7 +34,7 @@ def label_leaves_in_expr_with_melodic_diatonic_intervals(expr, markup_direction=
     """
 
     for note in componenttools.iterate_components_in_expr(expr, notetools.Note):
-        thread_iterator = componenttools.iterate_thread_forward_from_component(note, leaftools.Leaf)
+        thread_iterator = componenttools.iterate_thread_from_component(note, leaftools.Leaf)
         try:
             thread_iterator.next()
             next_leaf = thread_iterator.next()
