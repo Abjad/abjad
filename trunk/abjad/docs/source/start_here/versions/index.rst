@@ -823,7 +823,7 @@ Changes to end-user functionality:
     threadtools.iterate_thread_backward_from_component()
     threadtools.iterate_thread_backward_in_expr()
     threadtools.iterate_thread_forward_from_component()
-    threadtools.iterate_thread_forward_in_expr()
+    threadtools.iterate_thread_in_expr()
     threadtools.component_to_thread_signature()
 
   Use these::
@@ -831,7 +831,7 @@ Changes to end-user functionality:
     componenttools.iterate_thread_backward_from_component()
     componenttools.iterate_thread_backward_in_expr()
     componenttools.iterate_thread_forward_from_component()
-    componenttools.iterate_thread_forward_in_expr()
+    componenttools.iterate_thread_in_expr()
     componenttools.component_to_containment_signature()
 
 - Removed the read-only ``Component.marks`` property entirely.
