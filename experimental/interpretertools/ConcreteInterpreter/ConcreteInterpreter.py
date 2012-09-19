@@ -67,7 +67,7 @@ class ConcreteInterpreter(Interpreter):
             self.add_segment_division_lists_to_voice(voice, segment_division_lists)
 
     def add_division_lists_to_voices(self):
-        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
+        for voice in voicetools.iterate_voices_in_expr(self.score):
             self.add_division_lists_to_voice(voice)
 
     '''
@@ -212,7 +212,7 @@ class ConcreteInterpreter(Interpreter):
             voice.extend(rhythm_region_expression.music)
 
     def add_rhythm_to_voices(self):
-        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
+        for voice in voicetools.iterate_voices_in_expr(self.score):
             self.add_rhythm_to_voice(voice)
 
     def add_segment_division_lists_to_voice(
@@ -385,7 +385,7 @@ class ConcreteInterpreter(Interpreter):
         if not self.score_specification.segment_specifications:
             return all_division_commands
         first_segment = self.get_start_segment_specification(0)
-        for voice in voicetools.iterate_voices_forward_in_expr(first_segment.score_model):
+        for voice in voicetools.iterate_voices_in_expr(first_segment.score_model):
             #self._debug(voice, 'voice')
             division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
             division_commands = self.uninterpreted_division_commands_to_region_division_commands(

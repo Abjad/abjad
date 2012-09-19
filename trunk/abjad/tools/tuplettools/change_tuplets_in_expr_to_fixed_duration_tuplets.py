@@ -29,7 +29,7 @@ def change_tuplets_in_expr_to_fixed_duration_tuplets(expr):
     from abjad.tools import tuplettools
 
     result = []
-    for tuplet in tuplettools.iterate_tuplets_forward_in_expr(expr):    
+    for tuplet in tuplettools.iterate_tuplets_in_expr(expr):    
         if tuplet._class_name == 'Tuplet':
             target_duration = tuplet.preprolated_duration
             new_tuplet = tuplettools.FixedDurationTuplet(target_duration, [])

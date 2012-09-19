@@ -47,9 +47,9 @@ Then run ``py.test``. ::
 
     ... (many lines omitted) ...
 
-    tools/voicetools/test/test_voicetools_iterate_semantic_voices_forward_in_expr.py .
+    tools/voicetools/test/test_voicetools_iterate_semantic_voices_in_expr.py .
     tools/voicetools/test/test_voicetools_iterate_voices_backward_in_expr.py .
-    tools/voicetools/test/test_voicetools_iterate_voices_forward_in_expr.py .
+    tools/voicetools/test/test_voicetools_iterate_voices_in_expr.py .
 
     ============================ 4235 passed in 127.06 seconds ============================
 

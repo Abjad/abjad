@@ -1273,8 +1273,6 @@ Composition packages
    tools/scoretools/all_are_scores
    tools/scoretools/get_first_score_in_improper_parentage_of_component
    tools/scoretools/get_first_score_in_proper_parentage_of_component
-   tools/scoretools/iterate_scores_backward_in_expr
-   tools/scoretools/iterate_scores_forward_in_expr
    tools/scoretools/iterate_scores_in_expr
    tools/scoretools/list_performer_names
    tools/scoretools/list_primary_performer_names
@@ -1557,8 +1555,6 @@ Composition packages
    tools/stafftools/all_are_staves
    tools/stafftools/get_first_staff_in_improper_parentage_of_component
    tools/stafftools/get_first_staff_in_proper_parentage_of_component
-   tools/stafftools/iterate_staves_backward_in_expr
-   tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/iterate_staves_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
 
@@ -1825,8 +1821,6 @@ Composition packages
    tools/tuplettools/fuse_tuplets
    tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
    tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
-   tools/tuplettools/iterate_tuplets_backward_in_expr
-   tools/tuplettools/iterate_tuplets_forward_in_expr
    tools/tuplettools/iterate_tuplets_in_expr
    tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
    tools/tuplettools/leaf_to_tuplet_with_proportions
@@ -1875,11 +1869,7 @@ Composition packages
    tools/voicetools/all_are_voices
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
-   tools/voicetools/iterate_semantic_voices_backward_in_expr
-   tools/voicetools/iterate_semantic_voices_forward_in_expr
    tools/voicetools/iterate_semantic_voices_in_expr
-   tools/voicetools/iterate_voices_backward_in_expr
-   tools/voicetools/iterate_voices_forward_in_expr
    tools/voicetools/iterate_voices_in_expr
 
 Internal packages
