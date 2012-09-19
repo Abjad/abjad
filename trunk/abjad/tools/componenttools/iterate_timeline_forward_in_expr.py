@@ -1,6 +1,8 @@
 def iterate_timeline_forward_in_expr(expr, klass=None):
     r'''.. versionadded:: 2.0
 
+    .. note: Deprecated. Use `componenttools.iterate_timeline_in_expr` instead.
+
     Iterate timeline forward in `expr`::
 
         >>> score = Score([])
@@ -39,24 +41,5 @@ def iterate_timeline_forward_in_expr(expr, klass=None):
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
     from abjad.tools import componenttools
-    from abjad.tools import leaftools
 
-    if klass is None:
-        klass = leaftools.Leaf
-
-    component_generator = componenttools.iterate_components_in_expr(expr, klass=klass)
-    components = list(component_generator)
-
-    def _sort_helper(component_1, component_2):
-        result = cmp(component_1.start_offset, component_2.start_offset)
-        if result == 0:
-            return cmp(
-                componenttools.component_to_score_index(component_1),
-                componenttools.component_to_score_index(component_2))
-        else:
-            return result
-
-    components.sort(_sort_helper)
-
-    for component in components:
-        yield component
+    return componenttools.iterate_timeline_in_expr(expr, klass=klass)

@@ -150,6 +150,8 @@ Composition packages
    tools/componenttools/iterate_timeline_backward_in_expr
    tools/componenttools/iterate_timeline_forward_from_component
    tools/componenttools/iterate_timeline_forward_in_expr
+   tools/componenttools/iterate_timeline_from_component
+   tools/componenttools/iterate_timeline_in_expr
    tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components

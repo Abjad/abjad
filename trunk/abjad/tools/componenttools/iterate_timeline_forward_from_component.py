@@ -1,6 +1,8 @@
 def iterate_timeline_forward_from_component(expr, klass=None):
     r'''.. versionadded:: 2.0
 
+    .. note: Deprecated. Use `componenttools.iterate_timeline_from_component` instead.
+
     Iterate timeline forward from `component`::
 
         >>> score = Score([])
@@ -35,18 +37,6 @@ def iterate_timeline_forward_from_component(expr, klass=None):
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
     from abjad.tools import componenttools
-    from abjad.tools import leaftools
 
-    if klass is None:
-        klass = leaftools.Leaf
-
-    root = componenttools.component_to_score_root(expr)
-    component_generator = componenttools.iterate_timeline_forward_in_expr(root, klass=klass)
-
-    yielded_expr = False
-    for component in component_generator:
-        if yielded_expr:
-            yield component
-        elif component is expr:
-            yield component
-            yielded_expr = True
+    return componenttools.iterate_timeline_from_component(
+        expr, klass=klass)
