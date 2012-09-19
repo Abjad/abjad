@@ -59,6 +59,6 @@ def remove_leafless_containers_in_expr(expr):
     '''
     from abjad.tools import containertools
 
-    for container in containertools.iterate_containers_forward_in_expr(expr):
+    for container in containertools.iterate_containers_in_expr(expr):
         if not container.leaves:
             componenttools.remove_component_subtree_from_score_and_spanners([container])
