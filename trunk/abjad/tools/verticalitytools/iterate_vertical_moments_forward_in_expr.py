@@ -2,6 +2,8 @@
 def iterate_vertical_moments_forward_in_expr(expr):
     r'''.. versionadded:: 2.0
 
+    .. note: Deprecated. Use `verticalitytools.iterate_vertical_moments_in_expr` instead.
+
     Iterate vertical moments forward in `expr`::
 
         >>> from abjad.tools import verticalitytools
@@ -69,9 +71,6 @@ def iterate_vertical_moments_forward_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import \
-        _yield_vertical_moments_forward_in_expr
+    from abjad.tools import verticalitytools
 
-    # OPTIMIZED DROP-IN REPLACEMENT
-    for x in _yield_vertical_moments_forward_in_expr(expr):
-        yield x
+    return verticalitytools.iterate_vertical_moments_in_expr(expr)

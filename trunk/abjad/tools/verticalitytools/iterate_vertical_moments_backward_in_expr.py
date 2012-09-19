@@ -1,9 +1,8 @@
-from abjad.tools import componenttools
-
-
 # TODO: optimize without multiple full-component traversal.
 def iterate_vertical_moments_backward_in_expr(expr):
     r'''.. versionadded:: 2.0
+
+    .. note: Deprecated. Use `verticalitytools.iterate_vertical_moments_in_expr` instead.
 
     Iterate vertical moments backward in `expr`::
 
@@ -49,7 +48,6 @@ def iterate_vertical_moments_backward_in_expr(expr):
         >>
 
     ::
-
         
         >>> for x in verticalitytools.iterate_vertical_moments_backward_in_expr(score):
         ...     x.leaves
@@ -75,12 +73,4 @@ def iterate_vertical_moments_backward_in_expr(expr):
     '''
     from abjad.tools import verticalitytools
 
-    moments_in_governor = []
-    for component in componenttools.iterate_components_in_expr(expr):
-        prolated_offset = component.start_offset
-        if prolated_offset not in moments_in_governor:
-            moments_in_governor.append(prolated_offset)
-    moments_in_governor.sort()
-
-    for moment_in_governor in reversed(moments_in_governor):
-        yield verticalitytools.get_vertical_moment_at_offset_in_expr(expr, moment_in_governor)
+    return verticalitytools.iterate_vertical_moments_in_expr(expr, reverse=True)

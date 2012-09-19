@@ -1847,6 +1847,7 @@ Composition packages
    tools/verticalitytools/get_vertical_moment_starting_with_component
    tools/verticalitytools/iterate_vertical_moments_backward_in_expr
    tools/verticalitytools/iterate_vertical_moments_forward_in_expr
+   tools/verticalitytools/iterate_vertical_moments_in_expr
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
