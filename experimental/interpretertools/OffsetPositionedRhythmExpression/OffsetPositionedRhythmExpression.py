@@ -104,9 +104,7 @@ class OffsetPositionedRhythmExpression(AbjadObject):
         for container in containertools.iterate_containers_in_expr(self.music):
             container._music.reverse()
         for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
-            spanner._components.reverse()
-            if hasattr(spanner, 'durations'):
-                spanner.durations.reverse()
+            spanner._reverse_components()
 
     def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
