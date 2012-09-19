@@ -120,7 +120,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_03():
     }
     '''
 
-    g = componenttools.iterate_namesakes_forward_from_component(t.leaves[1], 0, 3)
+    g = componenttools.iterate_namesakes_forward_from_component(t.leaves[1], start=0, stop=3)
 
     assert g.next() is t.leaves[1]
     assert g.next() is t.leaves[2]
@@ -149,7 +149,7 @@ def test_componenttools_iterate_namesakes_forward_from_component_04():
     }
     '''
 
-    g = componenttools.iterate_namesakes_forward_from_component(t.leaves[1], 2)
+    g = componenttools.iterate_namesakes_forward_from_component(t.leaves[1], start=2)
 
     assert g.next() is t.leaves[3]
     assert g.next() is t.leaves[4]
