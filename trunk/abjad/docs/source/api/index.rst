@@ -1526,6 +1526,7 @@ Composition packages
    tools/spannertools/is_component_with_spanner_attached
    tools/spannertools/iterate_components_backward_in_spanner
    tools/spannertools/iterate_components_forward_in_spanner
+   tools/spannertools/iterate_components_in_spanner
    tools/spannertools/make_covered_spanner_schema
    tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
