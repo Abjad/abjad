@@ -22,7 +22,7 @@ def iterate_skips_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for skip in skiptools.iterate_skips_in_expr(staff):
+        >>> for skip in iterationtools.iterate_skips_in_expr(staff):
         ...   skip
         Skip('s8')
         Skip('s2')
@@ -31,7 +31,7 @@ def iterate_skips_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for skip in skiptools.iterate_skips_in_expr(staff, reverse=True):
+        >>> for skip in iterationtools.iterate_skips_in_expr(staff, reverse=True):
         ...   skip
         Skip('s2')
         Skip('s8')

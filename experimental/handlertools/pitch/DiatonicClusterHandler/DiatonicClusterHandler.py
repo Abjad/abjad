@@ -1,6 +1,6 @@
 from abjad.tools import chordtools
 from abjad.tools import componenttools
-from abjad.tools import notetools
+from abjad.tools import iterationtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 from experimental.handlertools.pitch.PitchHandler import PitchHandler
@@ -16,7 +16,7 @@ class DiatonicClusterHandler(PitchHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for i, note in enumerate(notetools.iterate_notes_in_expr(expr)):
+        for i, note in enumerate(iterationtools.iterate_notes_in_expr(expr)):
             cluster_width = self.cluster_widths[i]
             start = note.written_pitch.diatonic_pitch_number
             diatonic_pitch_numbers = range(start, start + cluster_width)

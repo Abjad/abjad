@@ -1,5 +1,5 @@
 from abjad.tools import markuptools
-from abjad.tools import notetools
+from abjad.tools import iterationtools
 
 
 def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
@@ -30,6 +30,6 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
     Return none.
     '''
 
-    for i, note in enumerate(notetools.iterate_notes_in_expr(expr)):
+    for i, note in enumerate(iterationtools.iterate_notes_in_expr(expr)):
         label = r'\small %s' % i
         markuptools.Markup(label, markup_direction)(note)

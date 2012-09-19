@@ -25,6 +25,7 @@ from abjad.tools import importtools
 from abjad.tools import instrumenttools
 from abjad.tools import introspectiontools
 from abjad.tools import iotools
+from abjad.tools import iterationtools
 from abjad.tools import labeltools
 from abjad.tools import layouttools
 from abjad.tools import leaftools

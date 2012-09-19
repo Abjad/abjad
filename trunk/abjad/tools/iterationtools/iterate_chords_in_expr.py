@@ -21,7 +21,7 @@ def iterate_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for chord in chordtools.iterate_chords_in_expr(staff):
+        >>> for chord in iterationtools.iterate_chords_in_expr(staff):
         ...   chord
         Chord("<e' g' c''>8")
         Chord("<d' f' b'>8")
@@ -30,7 +30,7 @@ def iterate_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for chord in chordtools.iterate_chords_in_expr(staff, reverse=True):
+        >>> for chord in iterationtools.iterate_chords_in_expr(staff, reverse=True):
         ...   chord
         Chord("<d' f' b'>8")
         Chord("<e' g' c''>8")

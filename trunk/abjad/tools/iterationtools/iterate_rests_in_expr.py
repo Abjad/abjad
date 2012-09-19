@@ -21,14 +21,14 @@ def iterate_rests_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for rest in resttools.iterate_rests_in_expr(staff):
+        >>> for rest in iterationtools.iterate_rests_in_expr(staff):
         ...   rest
         Rest('r8')
         Rest('r2')
 
     Iterate rests backward in `expr`::
 
-        >>> for rest in resttools.iterate_rests_in_expr(staff, reverse=True):
+        >>> for rest in iterationtools.iterate_rests_in_expr(staff, reverse=True):
         ...   rest
         Rest('r2')
         Rest('r8')

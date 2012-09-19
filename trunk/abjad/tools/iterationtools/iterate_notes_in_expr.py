@@ -32,7 +32,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff):
         ...     note
         ...
         Note("c'8")
@@ -45,7 +45,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
     Use optional `start` and `stop` keyword parameters to control
     start and stop indices of iteration::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, start=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, start=3):
         ...     note
         ...
         Note("f'8")
@@ -54,7 +54,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, start=0, stop=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, start=0, stop=3):
         ...     note
         ...
         Note("c'8")
@@ -63,7 +63,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, start=2, stop=4):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, start=2, stop=4):
         ...     note
         ...
         Note("e'8")
@@ -97,7 +97,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, reverse=True):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True):
         ...     note
         ...
         Note("a'8")
@@ -110,7 +110,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
     Use optional `start` and `stop` keyword parameters to control
     indices of iteration::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, reverse=True, start=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=3):
         ...     note
         ...
         Note("e'8")
@@ -119,7 +119,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, reverse=True, start=0, stop=3):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=0, stop=3):
         ...     note
         ...
         Note("a'8")
@@ -128,7 +128,7 @@ def iterate_notes_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for note in notetools.iterate_notes_in_expr(staff, reverse=True, start=2, stop=4):
+        >>> for note in iterationtools.iterate_notes_in_expr(staff, reverse=True, start=2, stop=4):
         ...     note
         ...
         Note("f'8")
