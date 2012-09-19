@@ -13,7 +13,7 @@ def test_multiple_segment_solo_requested_divisions_01():
     segment.set_time_signatures([(3, 8), (2, 8)])
     segment.set_divisions([(4, 16)])
     segment.set_rhythm(library.sixteenths)
-    red_divisions = segment.request_divisions(context='Voice 1')
+    red_divisions = segment.request_divisions('Voice 1')
 
     segment = score_specification.append_segment(name='blue')
     segment.set_time_signatures([(5, 8), (2, 8)])

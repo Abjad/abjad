@@ -22,7 +22,7 @@ def test_SegmentSpecification_request_rhythm_01():
     red_segment.set_rhythm(library.sixteenths)
 
     blue_segment = score_specification.append_segment(name='blue')
-    red_voice_1_rhythm = red_segment.request_rhythm(context='Voice 1')
+    red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
 
     score = score_specification.interpret()
@@ -49,7 +49,7 @@ def test_SegmentSpecification_request_rhythm_02():
 
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(8, 8)])
-    red_voice_1_rhythm = red_segment.request_rhythm(context='Voice 1')
+    red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'])
 
     score = score_specification.interpret()
@@ -77,7 +77,7 @@ def test_SegmentSpecification_request_rhythm_03():
     blue_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
     red_selector = red_segment.select_segment_offsets(stop=(3, 8))
     # TODO: use score_specification.request_rhythm('Voice 1', selector=red_selector) instead
-    red_rhythm = red_segment.request_rhythm(context='Voice 1', selector=red_selector)
+    red_rhythm = red_segment.request_rhythm('Voice 1', selector=red_selector)
     blue_measure = blue_segment.select_background_measure(1)
     blue_segment.set_rhythm(red_rhythm, contexts=['Voice 1'], selector=blue_measure)
 

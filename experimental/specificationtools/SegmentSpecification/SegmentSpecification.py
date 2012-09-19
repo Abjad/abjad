@@ -314,13 +314,12 @@ class SegmentSpecification(Specification):
 
     # TODO: Remove start_offset, stop_offset.
     #       Implement ScoreSpecification.request_divisions(..., selector=None) instead.
-    # TODO: Change 'context' to 'voice'.
-    def request_divisions(self,  context=None, 
+    def request_divisions(self, voice,
         start_offset=None, stop_offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment divisions in `context`::
+        r'''Request segment divisions in `voice`::
 
-            >>> request = segment.request_divisions()
+            >>> request = segment.request_divisions('Voice 1')
 
         ::
 
@@ -329,21 +328,20 @@ class SegmentSpecification(Specification):
                 'divisions',
                 selectortools.SingleSegmentSelector(
                     identifier='red'
-                    )
+                    ),
+                context_name='Voice 1'
                 )
 
         Return material request.        
         '''
         selector = self.select_segment()
         return requesttools.MaterialRequest(
-            'divisions', selector, context_name=context, 
+            'divisions', selector, context_name=voice, 
             start_offset=start_offset, stop_offset=stop_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: remove 'selector' and always work relative to timespan of segment
-    # TODO: change 'context' to 'voice'
-    # TODO: possibly make 'voice' mandatory?
-    def request_division_command(self, context=None, 
+    def request_division_command(self, context=None,
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment division command active at timepoint
@@ -427,13 +425,11 @@ class SegmentSpecification(Specification):
             'divisions', context_name=context, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: change 'context' to 'voice'
-    # TODO: possibly make 'voice' mandatory?
-    def request_rhythm(self, context=None, 
+    def request_rhythm(self, voice,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment rhythm in `context`::
+        r'''Request segment rhythm in `voice`::
 
-            >>> request = segment.request_rhythm()
+            >>> request = segment.request_rhythm('Voice 1')
 
         ::
 
@@ -442,20 +438,19 @@ class SegmentSpecification(Specification):
                 'rhythm',
                 selectortools.SingleSegmentSelector(
                     identifier='red'
-                    )
+                    ),
+                context_name='Voice 1'
                 )
 
         Return rhythm request.        
         '''
         selector = self.select_segment()
         return requesttools.RhythmRequest(
-            'rhythm', selector, context_name=context, 
+            'rhythm', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: Change 'context' to 'voice'.
     # TODO: Removed 'selector' and always operate on timepsan of segment instead.
-    # TODO: possibly make 'voice' mandatory?
-    def request_rhythm_command(self, context=None, 
+    def request_rhythm_command(self, context=None,
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm command active at timepoint in `context`.
@@ -512,10 +507,8 @@ class SegmentSpecification(Specification):
             'time_signatures', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: change 'context' to 'voice'.
-    # TODO: possibly make 'voice' mandatory?
     # TODO: remove 'selector' and always operate on timespan of segment instead.
-    def request_time_signature_command(self, context=None, 
+    def request_time_signature_command(self, context=None,
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at timepoint
