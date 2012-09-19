@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_leaves_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``leaftools.iterate_leafs_in_expr()`` instead.
 
     Iterate leaves forward in `expr`::
 
@@ -70,4 +69,4 @@ def iterate_leaves_forward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import leaftools
 
-    return componenttools.iterate_components_forward_in_expr(expr, leaftools.Leaf, start=start, stop=stop)
+    return leaftools.iterate_leaves_in_expr(expr, start=start, stop=stop)
