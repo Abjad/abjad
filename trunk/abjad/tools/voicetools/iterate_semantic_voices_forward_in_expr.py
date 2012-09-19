@@ -1,6 +1,8 @@
 def iterate_semantic_voices_forward_in_expr(expr):
     r'''.. versionadded:: 2.0
 
+    .. note: Deprecated. Use `voicetools.iterate_semantic_voices_in_expr` instead.
+
     Iterate semantic voices forward in `expr`::
 
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
@@ -47,6 +49,5 @@ def iterate_semantic_voices_forward_in_expr(expr):
     '''
     from abjad.tools import voicetools
 
-    for voice in voicetools.iterate_voices_forward_in_expr(expr):
-        if not voice.is_nonsemantic:
-            yield voice
+    for voice in voicetools.iterate_semantic_voices_in_expr(expr):
+        yield voice
