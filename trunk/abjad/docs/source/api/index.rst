@@ -1293,6 +1293,7 @@ Composition packages
    tools/scoretools/get_first_score_in_proper_parentage_of_component
    tools/scoretools/iterate_scores_backward_in_expr
    tools/scoretools/iterate_scores_forward_in_expr
+   tools/scoretools/iterate_scores_in_expr
    tools/scoretools/list_performer_names
    tools/scoretools/list_primary_performer_names
    tools/scoretools/make_empty_piano_score

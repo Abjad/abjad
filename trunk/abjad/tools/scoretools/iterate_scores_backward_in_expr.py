@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_scores_backward_in_expr(expr, start=0, stop=None):
     '''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``scoretools.iterate_scores_in_expr()`` instead.
 
     Iterate scores backward in `expr`::
 
@@ -23,5 +22,5 @@ def iterate_scores_backward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import scoretools
 
-    return componenttools.iterate_components_backward_in_expr(
-        expr, scoretools.Score, start=start, stop=stop)
+    return scoretools.iterate_scores_in_expr(
+        expr, reverse=True, start=start, stop=stop)
