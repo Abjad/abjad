@@ -56,8 +56,6 @@ Composition packages
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
    tools/chordtools/get_note_head_from_chord_by_pitch
-   tools/chordtools/iterate_chords_backward_in_expr
-   tools/chordtools/iterate_chords_forward_in_expr
    tools/chordtools/iterate_chords_in_expr
    tools/chordtools/make_tied_chord
    tools/chordtools/yield_all_subchords_of_chord
