@@ -48,7 +48,7 @@ def test_measuretools_iterate_measures_in_expr_02():
     assert len(measures) == 2
 
 
-def test_measuretools_iterate_measures_in_expr_01():
+def test_measuretools_iterate_measures_in_expr_03():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
@@ -79,7 +79,7 @@ def test_measuretools_iterate_measures_in_expr_01():
     assert measures[2] is staff[2]
 
 
-def test_measuretools_iterate_measures_in_expr_02():
+def test_measuretools_iterate_measures_in_expr_04():
     '''Optional start and stop keyword paramters.'''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
