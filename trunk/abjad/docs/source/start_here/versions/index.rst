@@ -364,9 +364,9 @@ New functionality is available for working with ties.
 
   Added new ``tietools`` functions:: 
 
-    tietools.iterate_pitched_tie_chains_forward_in_expr()
+    tietools.iterate_pitched_tie_chains_in_expr()
     tietools.iterate_pitched_tie_chains_backward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_in_expr()
     tietools.iterate_nontrivial_tie_chains_backward_in_expr()
 
   Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, tietools.TieChain)`` instead.

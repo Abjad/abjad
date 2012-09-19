@@ -1624,14 +1624,8 @@ Composition packages
    tools/tietools/get_tie_chain
    tools/tietools/get_tie_spanner_attached_to_component
    tools/tietools/is_component_with_tie_spanner_attached
-   tools/tietools/iterate_nontrivial_tie_chains_backward_in_expr
-   tools/tietools/iterate_nontrivial_tie_chains_forward_in_expr
    tools/tietools/iterate_nontrivial_tie_chains_in_expr
-   tools/tietools/iterate_pitched_tie_chains_backward_in_expr
-   tools/tietools/iterate_pitched_tie_chains_forward_in_expr
    tools/tietools/iterate_pitched_tie_chains_in_expr
-   tools/tietools/iterate_tie_chains_backward_in_expr
-   tools/tietools/iterate_tie_chains_forward_in_expr
    tools/tietools/iterate_tie_chains_in_expr
    tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
    tools/tietools/remove_nonfirst_leaves_in_tie_chain
