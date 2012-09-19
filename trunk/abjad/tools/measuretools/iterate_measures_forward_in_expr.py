@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_measures_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``measuretools.iterate_measures_in_expr()`` instead.
 
     Iterate measures forward in `expr`::
 
@@ -60,5 +59,5 @@ def iterate_measures_forward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import measuretools
 
-    return componenttools.iterate_components_forward_in_expr(
-        expr, measuretools.Measure, start=start, stop=stop)
+    return measuretools.iterate_measures_in_expr(
+        expr, start=start, stop=stop)

@@ -852,6 +852,7 @@ Composition packages
    tools/measuretools/get_previous_measure_from_component
    tools/measuretools/iterate_measures_backward_in_expr
    tools/measuretools/iterate_measures_forward_in_expr
+   tools/measuretools/iterate_measures_in_expr
    tools/measuretools/list_time_signatures_of_measures_in_expr
    tools/measuretools/make_measures_with_full_measure_spacer_skips
    tools/measuretools/measure_to_one_line_input_string
