@@ -1579,6 +1579,7 @@ Composition packages
    tools/stafftools/get_first_staff_in_proper_parentage_of_component
    tools/stafftools/iterate_staves_backward_in_expr
    tools/stafftools/iterate_staves_forward_in_expr
+   tools/stafftools/iterate_staves_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
 
 :py:mod:`stringtools <abjad.tools.stringtools>`

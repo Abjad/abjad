@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_staves_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``stafftools.iterate_staves_in_expr()`` instead.
 
     Iterate staves backward in `expr`::
 
@@ -36,5 +35,5 @@ def iterate_staves_backward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import stafftools
 
-    return componenttools.iterate_components_backward_in_expr(
-        expr, stafftools.Staff, start=start, stop=stop)
+    return stafftools.iterate_staves_in_expr(
+        expr, reverse=True, start=start, stop=stop)
