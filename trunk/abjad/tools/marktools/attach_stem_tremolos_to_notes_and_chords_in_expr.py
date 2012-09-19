@@ -23,6 +23,6 @@ def attach_stem_tremolos_to_notes_and_chords_in_expr(expr, stem_tremolos):
     from abjad.tools import leaftools
     from abjad.tools import marktools
 
-    for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
+    for note_or_chord in leaftools.iterate_notes_and_chords_in_expr(expr):
         for stem_tremolo in stem_tremolos:
             marktools.StemTremolo(stem_tremolo)(note_or_chord)

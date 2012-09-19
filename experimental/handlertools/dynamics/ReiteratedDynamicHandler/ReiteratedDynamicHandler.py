@@ -38,6 +38,6 @@ class ReiteratedDynamicHandler(DynamicHandler):
     ### PUBLIC METHODS ###
 
     def apply(self, expr):
-        for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
+        for note_or_chord in leaftools.iterate_notes_and_chords_in_expr(expr):
             marktools.LilyPondCommandMark(self.dynamic_name, 'right')(note_or_chord)
         return expr

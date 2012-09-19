@@ -46,7 +46,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
 
     def apply(self, expr, offset = 0, skip_first = 0, skip_last = 0):
         articulation_lists = sequencetools.CyclicList(self.articulation_lists)
-        notes_and_chords = list(leaftools.iterate_notes_and_chords_forward_in_expr(expr))
+        notes_and_chords = list(leaftools.iterate_notes_and_chords_in_expr(expr))
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]

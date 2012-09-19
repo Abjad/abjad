@@ -42,7 +42,7 @@ def iterate_pitched_tie_chains_backward_in_expr(expr):
     '''
     from abjad.tools import tietools
 
-    for leaf in leaftools.iterate_notes_and_chords_backward_in_expr(expr):
+    for leaf in leaftools.iterate_notes_and_chords_in_expr(expr, reverse=True):
         tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
         if not tie_spanners or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
             yield tietools.get_tie_chain(leaf)

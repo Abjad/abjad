@@ -42,7 +42,7 @@ class TerracedDynamicsHandler(DynamicHandler):
 
     def apply(self, expr, offset=0):
         dynamics = sequencetools.CyclicList(self.dynamics)
-        for i, note_or_chord in enumerate(leaftools.iterate_notes_and_chords_forward_in_expr(expr)):
+        for i, note_or_chord in enumerate(leaftools.iterate_notes_and_chords_in_expr(expr)):
             dynamic_name = dynamics[offset+i]
             if self.minimum_prolated_duration <= note_or_chord.prolated_duration:
                 marktools.LilyPondCommandMark(dynamic_name, 'right')(note_or_chord)
