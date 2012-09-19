@@ -1,6 +1,8 @@
 def iterate_thread_backward_from_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
+    .. note: Deprecated. Use `componenttools.iterate_thread_from_component` instead.
+
     Iterate thread backward from `component` and yield instances of `klass`::
 
         >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -68,15 +70,5 @@ def iterate_thread_backward_from_component(component, klass=None):
     '''
     from abjad.tools import componenttools
 
-    # set default class
-    if klass is None:
-        klass = componenttools.Component
-
-    # save thread signature of input component
-    component_thread_signature = componenttools.component_to_containment_signature(component)
-
-    # iterate component depth-first allowing to crawl UP into score
-    for x in componenttools.iterate_components_depth_first(component, capped=False, direction='right'):
-        if isinstance(x, klass):
-            if componenttools.component_to_containment_signature(x) == component_thread_signature:
-                yield x
+    return componenttools.iterate_thread_from_component(
+        component, klass=klass, reverse=True)
