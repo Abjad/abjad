@@ -143,8 +143,6 @@ Composition packages
    tools/componenttools/is_well_formed_component
    tools/componenttools/iterate_components_depth_first
    tools/componenttools/iterate_components_in_expr
-   tools/componenttools/iterate_namesakes_backward_from_component
-   tools/componenttools/iterate_namesakes_forward_from_component
    tools/componenttools/iterate_namesakes_from_component
    tools/componenttools/iterate_thread_backward_from_component
    tools/componenttools/iterate_thread_backward_in_expr

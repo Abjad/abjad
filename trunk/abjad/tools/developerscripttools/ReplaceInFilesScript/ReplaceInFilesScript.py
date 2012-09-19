@@ -76,6 +76,7 @@ class ReplaceInFilesScript(DirectoryScript):
     def skipped_directories(self):
         return [
             '.svn',
+            'build'
         ]
 
     @property
