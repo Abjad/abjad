@@ -314,7 +314,7 @@ class Component(AbjadObject):
         from abjad.tools.contexttools.Context import Context
         score_root = componenttools.component_to_score_root(self)
         if isinstance(score_root, Context):
-            for context in contexttools.iterate_contexts_forward_in_expr(score_root):
+            for context in contexttools.iterate_contexts_in_expr(score_root):
                 for leaf_index, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(context)):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(

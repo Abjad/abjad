@@ -40,7 +40,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
     def _initialize_context_proxies(self):
         context_names = []
         if self.score is not None:
-            for context in contexttools.iterate_contexts_forward_in_expr(self.score):
+            for context in contexttools.iterate_contexts_in_expr(self.score):
                 assert context.context_name is not None, context.name_name
                 context_names.append(context.name)
         for context_name in sorted(context_names):
@@ -58,7 +58,7 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
 
     @property
     def score_name(self):
-        for context in contexttools.iterate_contexts_forward_in_expr(self.score):
+        for context in contexttools.iterate_contexts_in_expr(self.score):
             if isinstance(context, scoretools.Score):
                 return context.name
 

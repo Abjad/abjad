@@ -69,7 +69,7 @@ class Specification(AbjadObject):
             self._abbreviated_context_names.append(context_name)
         score = self.score_template()
         self._score_name = score.name
-        for context in contexttools.iterate_contexts_forward_in_expr(score):
+        for context in contexttools.iterate_contexts_in_expr(score):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
 

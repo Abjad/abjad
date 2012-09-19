@@ -290,8 +290,6 @@ Composition packages
    tools/contexttools/is_component_with_staff_change_mark_attached
    tools/contexttools/is_component_with_tempo_mark_attached
    tools/contexttools/is_component_with_time_signature_mark_attached
-   tools/contexttools/iterate_contexts_backward_in_expr
-   tools/contexttools/iterate_contexts_forward_in_expr
    tools/contexttools/iterate_contexts_in_expr
    tools/contexttools/list_clef_names
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
