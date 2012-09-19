@@ -1,6 +1,4 @@
-1.  Leave OffsetPositionedRhythmExpression.start_offset and OffsetPositionedRhythmExpression.stop_offset alone.
-    Implement something like OffsetPositionedRhythmExpression.forced_start_offset for inequality
-    selection.
+1.  Make split() work with durated complex beam spanners.
 
 2.  Integrate reverse=None keyword into all segment set methods,
     if integration into SegmentSpecification.set_time_signatures() works out.

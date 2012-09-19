@@ -26,6 +26,8 @@ Methods
 
 .. automethod:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.reverse
 
+.. automethod:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.rotate
+
 .. automethod:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trim_to_start_offset
 
 .. automethod:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trim_to_stop_offset

@@ -713,8 +713,12 @@ class ConcreteInterpreter(Interpreter):
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         if rhythm_request.reverse:
             result.reverse()
+        if rhythm_request.rotation:
+            result.rotate(rhythm_request.rotation)    
         if rhythm_command.reverse:
             result.reverse()
+        if rhythm_command.rotation:
+            result.rotate(rhythm_command.rotation)
         return result
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 

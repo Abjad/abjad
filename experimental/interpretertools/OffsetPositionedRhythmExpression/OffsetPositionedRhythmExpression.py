@@ -106,6 +106,26 @@ class OffsetPositionedRhythmExpression(AbjadObject):
         for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
             spanner._reverse_components()
 
+    def rotate(self, n):
+        '''Rotate rhythm.
+
+        .. note:: add example.
+
+        Operate in place and return none.
+        '''
+        if 0 <= n:
+            split_offset = self.music.leaves[-n].start_offset
+        else:
+            split_offset = self.music.leaves[-(n+1)].stop_offset
+        result = componenttools.split_components_at_offsets(
+            [self.music], [split_offset], cyclic=False, fracture_spanners=True)
+        left_half, right_half = result[0][0], result[-1][0]
+        music = containertools.Container()
+        music.extend(right_half)
+        music.extend(left_half)
+        assert componenttools.is_well_formed_component(music)
+        self._music = music
+
     def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
 
