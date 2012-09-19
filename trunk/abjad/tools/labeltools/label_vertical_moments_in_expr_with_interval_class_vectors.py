@@ -64,7 +64,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
     Return none.
     '''
 
-    for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(expr):
+    for vertical_moment in verticalitytools.iterate_vertical_moments_in_expr(expr):
         leaves = vertical_moment.leaves
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(leaves)
         if not pitches:

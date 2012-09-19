@@ -81,7 +81,7 @@ def label_vertical_moments_in_expr_with_counterpoint_intervals(expr, markup_dire
     Return none.
     '''
 
-    for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(expr):
+    for vertical_moment in verticalitytools.iterate_vertical_moments_in_expr(expr):
         leaves = vertical_moment.leaves
         notes = [leaf for leaf in leaves if isinstance(leaf, notetools.Note)]
         if not notes:

@@ -59,7 +59,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
     '''
     from abjad.tools import verticalitytools
 
-    vertical_moments = verticalitytools.iterate_vertical_moments_forward_in_expr(expr)
+    vertical_moments = verticalitytools.iterate_vertical_moments_in_expr(expr)
     for moment_1, moment_2 in sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
         for pair in sequencetools.yield_all_unordered_pairs_of_sequence(moment_1.start_leaves):
             yield pair
