@@ -16,7 +16,7 @@ class DiatonicClusterHandler(PitchHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for i, note in enumerate(notetools.iterate_notes_forward_in_expr(expr)):
+        for i, note in enumerate(notetools.iterate_notes_in_expr(expr)):
             cluster_width = self.cluster_widths[i]
             start = note.written_pitch.diatonic_pitch_number
             diatonic_pitch_numbers = range(start, start + cluster_width)

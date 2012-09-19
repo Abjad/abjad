@@ -30,6 +30,6 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
     Return none.
     '''
 
-    for i, note in enumerate(notetools.iterate_notes_forward_in_expr(expr)):
+    for i, note in enumerate(notetools.iterate_notes_in_expr(expr)):
         label = r'\small %s' % i
         markuptools.Markup(label, markup_direction)(note)

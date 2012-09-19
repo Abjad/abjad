@@ -875,8 +875,6 @@ Composition packages
 
    tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/all_are_notes
-   tools/notetools/iterate_notes_backward_in_expr
-   tools/notetools/iterate_notes_forward_in_expr
    tools/notetools/iterate_notes_in_expr
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
    tools/notetools/make_notes
@@ -1170,8 +1168,6 @@ Composition packages
 
    tools/resttools/all_are_rests
    tools/resttools/is_lilypond_rest_string
-   tools/resttools/iterate_rests_backward_in_expr
-   tools/resttools/iterate_rests_forward_in_expr
    tools/resttools/iterate_rests_in_expr
    tools/resttools/make_multi_measure_rests
    tools/resttools/make_repeated_rests_from_time_signature
@@ -1459,8 +1455,6 @@ Composition packages
    :maxdepth: 1
 
    tools/skiptools/all_are_skips
-   tools/skiptools/iterate_skips_backward_in_expr
-   tools/skiptools/iterate_skips_forward_in_expr
    tools/skiptools/iterate_skips_in_expr
    tools/skiptools/make_repeated_skips_from_time_signature
    tools/skiptools/make_repeated_skips_from_time_signatures
