@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_notes_and_chords_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note:: Deprecated. Use ``leaftools.iterate_notes_and_chords_in_expr()`` instead.
 
     Iterate notes and chords backward in `expr`::
 
@@ -35,8 +34,7 @@ def iterate_notes_and_chords_backward_in_expr(expr, start=0, stop=None):
         renamed ``pitchtools.iterate_notes_and_chords_backward_in_expr()`` to
         ``leaftools.iterate_notes_and_chords_backward_in_expr()``.
     '''
-    from abjad.tools import chordtools
-    from abjad.tools import notetools
+    from abjad.tools import leaftools
 
-    return componenttools.iterate_components_backward_in_expr(
-        expr, (notetools.Note, chordtools.Chord), start=start, stop=stop)
+    return leaftools.iterate_notes_and_chords_in_expr(
+        expr, reverse=True, start=start, stop=stop)

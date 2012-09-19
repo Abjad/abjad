@@ -586,6 +586,7 @@ Composition packages
    tools/leaftools/iterate_leaves_in_expr
    tools/leaftools/iterate_notes_and_chords_backward_in_expr
    tools/leaftools/iterate_notes_and_chords_forward_in_expr
+   tools/leaftools/iterate_notes_and_chords_in_expr
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
