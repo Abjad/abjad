@@ -1626,6 +1626,7 @@ Composition packages
    tools/tietools/is_component_with_tie_spanner_attached
    tools/tietools/iterate_nontrivial_tie_chains_backward_in_expr
    tools/tietools/iterate_nontrivial_tie_chains_forward_in_expr
+   tools/tietools/iterate_nontrivial_tie_chains_in_expr
    tools/tietools/iterate_pitched_tie_chains_backward_in_expr
    tools/tietools/iterate_pitched_tie_chains_forward_in_expr
    tools/tietools/iterate_pitched_tie_chains_in_expr

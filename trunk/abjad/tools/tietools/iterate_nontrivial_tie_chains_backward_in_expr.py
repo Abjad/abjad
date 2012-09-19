@@ -1,9 +1,7 @@
-from abjad.tools import leaftools
-from abjad.tools import spannertools
-
-
 def iterate_nontrivial_tie_chains_backward_in_expr(expr):
-    r'''Iterate nontrivial tie chains backward in `expr`::
+    r'''Deprecated. Use `tietools.iterate_nontrivial_tie_chains_in_expr` instead.
+
+    Iterate nontrivial tie chains backward in `expr`::
 
         >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
@@ -33,9 +31,4 @@ def iterate_nontrivial_tie_chains_backward_in_expr(expr):
     '''
     from abjad.tools import tietools
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr, reverse=True):
-        tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
-        if not(tie_spanners) or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
-            tie_chain = tietools.get_tie_chain(leaf)
-            if not tie_chain.is_trivial:
-                yield tie_chain
+    return tietools.iterate_nontrivial_tie_chains_in_expr(expr, reverse=True)
