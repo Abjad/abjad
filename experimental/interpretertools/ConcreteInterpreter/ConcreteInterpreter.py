@@ -737,8 +737,7 @@ class ConcreteInterpreter(Interpreter):
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         #print result.music.lilypond_format
-        # may or may not be possible to treat request rhythms as cyclic source
-        assert result.stop_offset == stop_offset
+        result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         return result
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
