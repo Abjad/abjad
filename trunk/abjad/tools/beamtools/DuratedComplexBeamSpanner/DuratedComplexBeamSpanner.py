@@ -94,6 +94,10 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 result.append(r'\set stemRightBeamCount = #%s' % right)
         return result
 
+    def _reverse_components(self):
+        ComplexBeamSpanner._reverse_components(self)
+        self._durations.reverse()
+
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply

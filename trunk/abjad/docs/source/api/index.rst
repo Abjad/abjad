@@ -1524,8 +1524,6 @@ Composition packages
    tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
    tools/spannertools/get_the_only_spanner_attached_to_component
    tools/spannertools/is_component_with_spanner_attached
-   tools/spannertools/iterate_components_backward_in_spanner
-   tools/spannertools/iterate_components_in_spanner
    tools/spannertools/iterate_components_in_spanner
    tools/spannertools/make_covered_spanner_schema
    tools/spannertools/make_dynamic_spanner_below_with_nib_at_right

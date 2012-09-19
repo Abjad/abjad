@@ -132,7 +132,8 @@ def copy_components_and_covered_spanners(components, n=1):
 
     # copy spanners covered by components
     for covered_spanner, component_indices in schema.items():
-        new_covered_spanner = copy.copy(covered_spanner)
+        #new_covered_spanner = copy.copy(covered_spanner)
+        new_covered_spanner = copy.deepcopy(covered_spanner)
         del(schema[covered_spanner])
         schema[new_covered_spanner] = component_indices
 

@@ -302,6 +302,20 @@ class Spanner(AbjadObject):
         else:
             raise ValueError('component "{}" not in spanner components list.'.format(component))
 
+    def _reverse_components(self):
+        r'''Reverse order of spanner components.
+
+        Not composer-safe because reversing the order of spanner components
+        could scramble components of some other spanner.
+
+        Call method only as part of a full component- and spanner-reversal routine.
+
+        Spanner subclasses with mapping variables (like the 'durations' list
+        attaching to durated complex beam spanners) should override this method
+        to reverse mapping elements.
+        '''
+        self._components.reverse()
+
     def _sever_all_components(self):
         '''Not composer-safe.
         '''
