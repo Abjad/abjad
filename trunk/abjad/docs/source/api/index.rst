@@ -146,10 +146,6 @@ Composition packages
    tools/componenttools/iterate_namesakes_from_component
    tools/componenttools/iterate_thread_from_component
    tools/componenttools/iterate_thread_in_expr
-   tools/componenttools/iterate_timeline_backward_from_component
-   tools/componenttools/iterate_timeline_backward_in_expr
-   tools/componenttools/iterate_timeline_forward_from_component
-   tools/componenttools/iterate_timeline_forward_in_expr
    tools/componenttools/iterate_timeline_from_component
    tools/componenttools/iterate_timeline_in_expr
    tools/componenttools/list_badly_formed_components_in_expr
