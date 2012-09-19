@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
-def iterate_voices_forward_in_expr(expr):
+def iterate_voices_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note: Deprecated. Use `voicetools.iterate_voices_in_expr` instead.
 
     Iterate voices forward in `expr`::
 
@@ -38,4 +37,5 @@ def iterate_voices_forward_in_expr(expr):
     '''
     from abjad.tools import voicetools
 
-    return componenttools.iterate_components_forward_in_expr(expr, voicetools.Voice)
+    return voicetools.iterate_voices_in_expr(
+        expr, start=start, stop=stop)

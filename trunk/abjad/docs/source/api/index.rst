@@ -1899,6 +1899,7 @@ Composition packages
    tools/voicetools/iterate_semantic_voices_forward_in_expr
    tools/voicetools/iterate_voices_backward_in_expr
    tools/voicetools/iterate_voices_forward_in_expr
+   tools/voicetools/iterate_voices_in_expr
 
 Internal packages
 -----------------

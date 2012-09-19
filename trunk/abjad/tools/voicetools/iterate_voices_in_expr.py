@@ -1,9 +1,10 @@
-def iterate_voices_backward_in_expr(expr, start=0, stop=None):
+from abjad.tools import componenttools
+
+
+def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
-    .. note: Deprecated. Use `voicetools.iterate_voices_in_expr` instead.
-
-    Iterate voices backward in `expr`::
+    Iterate voices forward in `expr`::
 
         >>> voice_1 = Voice("c'8 d'8 e'8 f'8")
         >>> voice_2 = Voice("c'4 b4")
@@ -28,7 +29,16 @@ def iterate_voices_backward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for voice in voicetools.iterate_voices_backward_in_expr(staff):
+        >>> for voice in voicetools.iterate_voices_in_expr(staff):
+        ...   voice
+        Voice{4}
+        Voice{2}
+
+    Iterate voices backward in `expr`::
+
+    ::
+
+        >>> for voice in voicetools.iterate_voices_in_expr(staff, reverse=True):
         ...   voice
         Voice{2}
         Voice{4}
@@ -37,5 +47,5 @@ def iterate_voices_backward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import voicetools
 
-    return voicetools.iterate_voices_in_expr(
-        expr, reverse=True, start=start, stop=stop)
+    return componenttools.iterate_components_in_expr(
+        expr, klass=voicetools.Voice, reverse=reverse, start=start, stop=stop)
