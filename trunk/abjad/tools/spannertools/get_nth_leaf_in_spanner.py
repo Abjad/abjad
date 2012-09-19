@@ -16,12 +16,12 @@ def get_nth_leaf_in_spanner(spanner, idx):
         raise TypeError
 
     if 0 <= idx:
-        leaves = spannertools.iterate_components_forward_in_spanner(spanner, klass=leaftools.Leaf)
+        leaves = spannertools.iterate_components_in_spanner(spanner, klass=leaftools.Leaf)
         for leaf_index, leaf in enumerate(leaves):
             if leaf_index == idx:
                 return leaf
     else:
-        leaves = spannertools.iterate_components_backward_in_spanner(spanner, klass=leaftools.Leaf)
+        leaves = spannertools.iterate_components_in_spanner(spanner, klass=leaftools.Leaf, reverse=True)
         for leaf_index, leaf in enumerate(leaves):
             leaf_number = -leaf_index - 1
             if leaf_number == idx:
