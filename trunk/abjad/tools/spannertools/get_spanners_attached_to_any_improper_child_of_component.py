@@ -60,7 +60,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass=No
     result.update(spannertools.get_spanners_attached_to_component(component, klass))
 
     # iterate proper children of component
-    children = componenttools.iterate_components_forward_in_expr(component, componenttools.Component)
+    children = componenttools.iterate_components_in_expr(component, componenttools.Component)
     for child in children:
         result.update(spannertools.get_spanners_attached_to_component(child, klass))
 

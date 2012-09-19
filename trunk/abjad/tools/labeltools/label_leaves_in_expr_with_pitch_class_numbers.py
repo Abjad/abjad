@@ -46,7 +46,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
     '''
     from abjad.tools import labeltools
 
-    for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
+    for note in componenttools.iterate_components_in_expr(expr, notetools.Note):
         if number:
             label = markuptools.MarkupCommand(
                 'small', str(abs(note.written_pitch.numbered_chromatic_pitch_class)))

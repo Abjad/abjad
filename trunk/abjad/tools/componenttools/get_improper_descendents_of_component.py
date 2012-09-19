@@ -30,11 +30,11 @@ def get_improper_descendents_of_component(component):
         Note("f'8")
 
     Function returns exactly the same components as 
-    ``componenttools.iterate_components_forward_in_expr()``.
+    ``componenttools.iterate_components_in_expr()``.
 
     Return list of `component` together with proper descendents of `component`.
     '''
     from abjad.tools import componenttools
 
     # return list of component and all descendents of component
-    return list(componenttools.iterate_components_forward_in_expr(component))
+    return list(componenttools.iterate_components_in_expr(component))

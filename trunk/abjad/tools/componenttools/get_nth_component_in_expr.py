@@ -72,10 +72,10 @@ def get_nth_component_in_expr(expr, klasses, n=0):
         raise ValueError
 
     if 0 <= n:
-        for i, x in enumerate(componenttools.iterate_components_forward_in_expr(expr, klasses)):
+        for i, x in enumerate(componenttools.iterate_components_in_expr(expr, klasses)):
             if i == n:
                 return x
     else:
-        for i, x in enumerate(componenttools.iterate_components_backward_in_expr(expr, klasses)):
+        for i, x in enumerate(componenttools.iterate_components_in_expr(expr, klasses, reverse=True)):
             if i == abs(n) - 1:
                 return x

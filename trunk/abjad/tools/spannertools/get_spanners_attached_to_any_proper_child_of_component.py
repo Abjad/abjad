@@ -59,7 +59,7 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass=None
 
     # note: externalization of (old) component spanner aggregator 'children' property
     result = set([])
-    components = componenttools.iterate_components_forward_in_expr(component)
+    components = componenttools.iterate_components_in_expr(component)
 
     # remove component itself from iteration
     components.next()

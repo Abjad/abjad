@@ -30,6 +30,6 @@ def attach_lilypond_command_marks_to_components_in_expr(expr, lilypond_command_m
     '''
     from abjad.tools import marktools
 
-    for component in componenttools.iterate_components_forward_in_expr(expr):
+    for component in componenttools.iterate_components_in_expr(expr):
         for lilypond_command_mark in lilypond_command_marks:
             marktools.LilyPondCommandMark(lilypond_command_mark)(component)

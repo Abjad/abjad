@@ -66,7 +66,7 @@ If we want, we can iterate both the staff and its leaves at one and the same tim
 
 ::
 
-   >>> for component in componenttools.iterate_components_forward_in_expr(staff):
+   >>> for component in componenttools.iterate_components_in_expr(staff):
    ...     component, contexttools.get_effective_time_signature(component)
    ... 
    (Staff{5}, None)

@@ -44,7 +44,7 @@ def iterate_timeline_forward_in_expr(expr, klass=None):
     if klass is None:
         klass = leaftools.Leaf
 
-    component_generator = componenttools.iterate_components_forward_in_expr(expr, klass=klass)
+    component_generator = componenttools.iterate_components_in_expr(expr, klass=klass)
     components = list(component_generator)
 
     def _sort_helper(component_1, component_2):

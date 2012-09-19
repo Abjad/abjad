@@ -48,7 +48,7 @@ def make_covered_spanner_schema(components):
     for spanner in spanners_covered_by_components:
         schema[spanner] = []
 
-    for i, component in enumerate(componenttools.iterate_components_forward_in_expr(components)):
+    for i, component in enumerate(componenttools.iterate_components_in_expr(components)):
         attached_spanners = spannertools.get_spanners_attached_to_component(component)
         for attached_spanner in attached_spanners:
             try:

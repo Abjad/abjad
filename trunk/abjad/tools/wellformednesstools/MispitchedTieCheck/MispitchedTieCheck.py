@@ -15,7 +15,7 @@ class MispitchedTieCheck(Check):
         '''
         violators = []
         total = 0
-        for leaf in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
+        for leaf in componenttools.iterate_components_in_expr(expr, notetools.Note):
             total += 1
             spanners = spannertools.get_spanners_attached_to_component(
                 leaf, tietools.TieSpanner)

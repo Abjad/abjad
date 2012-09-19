@@ -9,7 +9,7 @@ def test_componenttools_component_to_containment_signature_01():
     t = Staff("c'8 d'8 e'8 f'8")
 
     containment = componenttools.component_to_containment_signature(t)
-    for component in componenttools.iterate_components_forward_in_expr(t):
+    for component in componenttools.iterate_components_in_expr(t):
         assert componenttools.component_to_containment_signature(component) == containment
 
 
@@ -21,7 +21,7 @@ def test_componenttools_component_to_containment_signature_02():
     t.name = 'foo'
 
     containment = componenttools.component_to_containment_signature(t)
-    for component in componenttools.iterate_components_forward_in_expr(t):
+    for component in componenttools.iterate_components_in_expr(t):
         assert componenttools.component_to_containment_signature(component) == containment
 
 def test_componenttools_component_to_containment_signature_03():

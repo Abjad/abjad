@@ -65,7 +65,7 @@ def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
     '''
     from abjad.tools import beamtools
 
-    for tuplet in componenttools.iterate_components_forward_in_expr(expr, tuplettools.Tuplet):
+    for tuplet in componenttools.iterate_components_in_expr(expr, tuplettools.Tuplet):
         for component in tuplet:
             if isinstance(component, tuplettools.Tuplet):
                 break

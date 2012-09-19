@@ -86,7 +86,7 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
 
     components = []
     for governor in governors:
-        for component in componenttools.iterate_components_forward_in_expr(governor):
+        for component in componenttools.iterate_components_in_expr(governor):
             if component.start_offset <= prolated_offset:
                 if prolated_offset < component.stop_offset:
                     components.append(component)

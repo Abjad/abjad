@@ -25,6 +25,6 @@ def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
     '''
     from abjad.tools import marktools
 
-    for component in componenttools.iterate_components_forward_in_expr(expr):
+    for component in componenttools.iterate_components_in_expr(expr):
         for lilypond_comment in lilypond_comments:
             marktools.LilyPondComment(lilypond_comment)(component)

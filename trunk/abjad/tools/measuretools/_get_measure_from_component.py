@@ -47,7 +47,7 @@ def _get_measure_from_component(component, direction):
         return _get_contemporaneous_measure(component, direction)
     elif isinstance(component, (list, tuple)):
         if direction == '_next':
-            #measure_generator = iterate_components_forward_in_expr(component, measuretools.Measure)
+            #measure_generator = iterate_components_in_expr(component, measuretools.Measure)
             measure_generator = measuretools.iterate_measures_forward_in_expr(component)
         elif direction == '_prev':
             #measure_generator = iterate_components_backward_in_expr(component, measuretools.Measure)

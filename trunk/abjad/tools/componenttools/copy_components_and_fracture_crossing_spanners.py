@@ -119,7 +119,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     # iterate components and add new components to new spanners
     for component_index, new_component in enumerate(
-        componenttools.iterate_components_forward_in_expr(new_components)):
+        componenttools.iterate_components_in_expr(new_components)):
         try:
             new_covered_spanners = reversed_schema[component_index]
             for new_covered_spanner in new_covered_spanners:

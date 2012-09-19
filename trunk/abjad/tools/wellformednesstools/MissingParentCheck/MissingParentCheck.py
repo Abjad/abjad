@@ -9,7 +9,7 @@ class MissingParentCheck(Check):
     def _run(self, expr):
         violators = []
         total = 0
-        for component in componenttools.iterate_components_forward_in_expr(expr):
+        for component in componenttools.iterate_components_in_expr(expr):
             total += 1
             if component is not expr:
                 if component.parent is None:

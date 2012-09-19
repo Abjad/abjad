@@ -27,7 +27,7 @@ def get_proper_descendents_of_component(component):
     from abjad.tools import componenttools
 
     # create list of component and all descendents of component
-    result = list(componenttools.iterate_components_forward_in_expr(component))
+    result = list(componenttools.iterate_components_in_expr(component))
 
     # remove component from list
     result.remove(component)

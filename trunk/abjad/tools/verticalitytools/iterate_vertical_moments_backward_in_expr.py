@@ -76,7 +76,7 @@ def iterate_vertical_moments_backward_in_expr(expr):
     from abjad.tools import verticalitytools
 
     moments_in_governor = []
-    for component in componenttools.iterate_components_forward_in_expr(expr):
+    for component in componenttools.iterate_components_in_expr(expr):
         prolated_offset = component.start_offset
         if prolated_offset not in moments_in_governor:
             moments_in_governor.append(prolated_offset)

@@ -33,7 +33,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
     Return none.
     """
 
-    for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
+    for note in componenttools.iterate_components_in_expr(expr, notetools.Note):
         thread_iterator = componenttools.iterate_thread_forward_from_component(note, leaftools.Leaf)
         try:
             thread_iterator.next()
