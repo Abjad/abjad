@@ -1847,6 +1847,7 @@ Composition packages
    tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
    tools/tuplettools/iterate_tuplets_backward_in_expr
    tools/tuplettools/iterate_tuplets_forward_in_expr
+   tools/tuplettools/iterate_tuplets_in_expr
    tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
    tools/tuplettools/leaf_to_tuplet_with_proportions
    tools/tuplettools/make_tuplet_from_duration_and_proportions

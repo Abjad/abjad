@@ -1,8 +1,7 @@
-from abjad.tools import componenttools
-
-
 def iterate_tuplets_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
+
+    .. note: Deprecated. Use `tuplettools.iterate_tuplets_in_expr` instead.
 
     Iterate tuplets forward in `expr`::
 
@@ -38,4 +37,5 @@ def iterate_tuplets_forward_in_expr(expr, start=0, stop=None):
     '''
     from abjad.tools import tuplettools
 
-    return componenttools.iterate_components_forward_in_expr(expr, tuplettools.Tuplet, start=start, stop=stop)
+    return tuplettools.iterate_tuplets_in_expr(
+        expr, start=start, stop=stop) 
