@@ -33,7 +33,11 @@ class OffsetPositionedRhythmExpression(AbjadObject):
     def __init__(self, music=None, start_offset=None, stop_offset=None):
         music = containertools.Container(music=music)
         self._music = music
-        self._start_offset = start_offset or durationtools.Offset(0)
+        if start_offset is None:
+            start_offset = durationtools.Offset(0)
+        else:
+            start_offset = durationtools.Offset(start_offset)
+        self._start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
