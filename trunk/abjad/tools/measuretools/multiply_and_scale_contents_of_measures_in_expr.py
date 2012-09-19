@@ -47,7 +47,7 @@ def multiply_and_scale_contents_of_measures_in_expr(expr, multiplier_pairs):
 
     result = []
     num_pairs = len(multiplier_pairs)
-    for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
+    for i, measure in enumerate(measuretools.iterate_measures_in_expr(expr)):
         concentration_pair = multiplier_pairs[i % num_pairs]
         assert isinstance(concentration_pair, tuple)
         spin_count, scalar_denominator = concentration_pair

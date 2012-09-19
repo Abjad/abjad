@@ -48,10 +48,10 @@ def _get_measure_from_component(component, direction):
     elif isinstance(component, (list, tuple)):
         if direction == '_next':
             #measure_generator = iterate_components_in_expr(component, measuretools.Measure)
-            measure_generator = measuretools.iterate_measures_forward_in_expr(component)
+            measure_generator = measuretools.iterate_measures_in_expr(component)
         elif direction == '_prev':
             #measure_generator = iterate_components_backward_in_expr(component, measuretools.Measure)
-            measure_generator = measuretools.iterate_measures_backward_in_expr(component)
+            measure_generator = measuretools.iterate_measures_in_expr(component, reverse=True)
         else:
             raise ValueError('direction must be _next or _prev.')
         try:

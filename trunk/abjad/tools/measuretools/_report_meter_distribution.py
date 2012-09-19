@@ -33,7 +33,7 @@ def _report_meter_distribution(expr, delivery='screen'):
     from abjad.tools import measuretools
 
     meters = []
-    for measure in measuretools.iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_in_expr(expr):
         meters.append(contexttools.get_effective_time_signature(measure))
 
     meters.sort()

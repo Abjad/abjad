@@ -25,7 +25,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     from abjad.tools import timesignaturetools
     from abjad.tools import tuplettools
 
-    for measure in measuretools.iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).is_nonbinary:
 
             # find meter and contents multipliers

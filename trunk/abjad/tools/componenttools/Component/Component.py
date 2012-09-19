@@ -318,14 +318,14 @@ class Component(AbjadObject):
                 for leaf_index, leaf in enumerate(leaftools.iterate_leaves_in_expr(context)):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(
-                    measuretools.iterate_measures_forward_in_expr(context)):
+                    measuretools.iterate_measures_in_expr(context)):
                     measure_number = measure_index + 1
                     measure._measure_number = measure_number
         else:
             for leaf_index, leaf in enumerate(leaftools.iterate_leaves_in_expr(score_root)):
                 leaf._leaf_index = leaf_index
             for measure_index, measure in enumerate(
-                measuretools.iterate_measures_forward_in_expr(score_root)):
+                measuretools.iterate_measures_in_expr(score_root)):
                 measure_number = measure_index + 1
                 measure._measure_number = measure_number
 

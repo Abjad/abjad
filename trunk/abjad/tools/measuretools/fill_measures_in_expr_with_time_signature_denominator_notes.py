@@ -43,7 +43,7 @@ def fill_measures_in_expr_with_time_signature_denominator_notes(expr, iterctrl=N
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
-    for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
+    for i, measure in enumerate(measuretools.iterate_measures_in_expr(expr)):
         if iterctrl(measure, i):
             meter = contexttools.get_effective_time_signature(measure)
             denominator = mathtools.greatest_power_of_two_less_equal(

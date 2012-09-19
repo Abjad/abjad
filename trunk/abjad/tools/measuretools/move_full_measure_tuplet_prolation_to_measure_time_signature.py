@@ -36,7 +36,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     from abjad.tools import measuretools
     from abjad.tools import tuplettools
 
-    for measure in measuretools.iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_in_expr(expr):
         if len(measure) == 1:
             if isinstance(measure[0], tuplettools.Tuplet):
                 tuplet = measure[0]

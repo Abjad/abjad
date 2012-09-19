@@ -50,7 +50,7 @@ def list_time_signatures_of_measures_in_expr(components):
     result = []
 
     # iterate measures and store meter pairs
-    for measure in measuretools.iterate_measures_forward_in_expr(components):
+    for measure in measuretools.iterate_measures_in_expr(components):
         meter = contexttools.get_effective_time_signature(measure)
         result.append(meter)
 

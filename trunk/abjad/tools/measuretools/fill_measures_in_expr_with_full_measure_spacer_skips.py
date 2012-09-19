@@ -14,7 +14,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     if iterctrl is None:
         iterctrl = lambda measure, i: True
 
-    for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
+    for i, measure in enumerate(measuretools.iterate_measures_in_expr(expr)):
         if iterctrl(measure, i):
             skip = skiptools.Skip(1)
             # allow zero-update iteration

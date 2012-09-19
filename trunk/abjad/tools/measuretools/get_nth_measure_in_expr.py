@@ -1,7 +1,7 @@
 from abjad.tools import componenttools
 
 
-# TODO: implement measuretools.iterate_measures_forward_in_expr(expr, i=0, j=None).
+# TODO: implement measuretools.iterate_measures_in_expr(expr, i=0, j=None).
 def get_nth_measure_in_expr(expr, n=0):
     r'''.. versionadded:: 2.0
 

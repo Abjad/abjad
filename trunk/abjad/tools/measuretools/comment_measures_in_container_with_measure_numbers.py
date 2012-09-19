@@ -42,6 +42,6 @@ def comment_measures_in_container_with_measure_numbers(container):
     from abjad.tools import marktools
     from abjad.tools import measuretools
 
-    for measure in measuretools.iterate_measures_forward_in_expr(container):
+    for measure in measuretools.iterate_measures_in_expr(container):
         marktools.LilyPondComment('start measure %s' % measure.measure_number, 'before')(measure)
         marktools.LilyPondComment('stop measure %s' % measure.measure_number, 'after')(measure)

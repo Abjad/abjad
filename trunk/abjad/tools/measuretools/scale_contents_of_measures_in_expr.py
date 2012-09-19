@@ -20,7 +20,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
 
-    for measure in measuretools.iterate_measures_forward_in_expr(expr):
+    for measure in measuretools.iterate_measures_in_expr(expr):
 
         if multiplier == durationtools.Duration(1):
             continue
