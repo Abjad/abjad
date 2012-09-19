@@ -28,12 +28,12 @@ class ConcreteInterpreter(Interpreter):
     def __call__(self, score_specification):
         '''Top-level interpretation entry point::
 
-            * interpret time signatures
-            * interpret divisions
-            * interpret rhythms
-            * interpret pitch-classes
-            * interpret registration
-            * interpret additional parameters
+            * interpret all time signatures scorewide
+            * interpret all divisions scorewide
+            * interpret all rhythms scorewide
+            * interpret all pitch-classes scorewide
+            * interpret all registration scorewide
+            * interpret all additional parameters scorewide
 
         Return Abjad score object.
         '''
@@ -70,41 +70,6 @@ class ConcreteInterpreter(Interpreter):
         for voice in voicetools.iterate_voices_in_expr(self.score):
             self.add_division_lists_to_voice(voice)
 
-    '''
-    RhythmRequest integration:
-
-    It will be necessary to track the rhythm expressions that result 
-    from the interpretation of all rhythm commands as rhythms are produced. 
-    Why? Because RhythmRequest-bearing rhythm commands will need to be able
-    to back-inspect the pool of already-created rhythm expressions.
-    So some data structure of already-created rhythm expressions
-    will need to be added to the system. A RhythmExpressionInventory, perhaps.
-    This will necessitate a new OffsetPositionedRhythmExpression object be added to the system.
-    And, importantly, OffsetPositionedRhythmExpression objects will need to implement
-    the timespan interface.     
-    (Recall that the timespan interface comprises just start- and stop-offsets.)
-
-    When OffsetPositionedRhythmExpression objects implement the timespan interface 
-    it will be possible to back-inspect a RhythmExpressionInventory 
-    for all OffsetPositionedRhythmExpression objects that meet the criteria of a RhythmRequest
-    currently undergoing interpretation.
-
-    A self.rhythm_request_to_rhythm_region_expression() method will
-    implement the required back-inspect-and-copy logic.
-
-    Storage: self.score_specification.contexts['Voice 1'] could
-    implement a RhythmExpressionInventory. So ...
-
-        self.score_specification.contexts['Voice 1']['rhythm_expression_inventory']
-
-    ... would be the relevant storage locus.
-
-    This defines one rhythm expression inventory per voice.
-
-    Scoping: scoping restrictions will be minimal because the collection of all
-    rhythm expression inventories scorewide will be available to all interpreter
-    methods globally.
-    '''
     def add_rhythm_to_voice(self, voice):
         voice_division_list = self.get_voice_division_list(voice)
         if len(voice_division_list) == 0:
@@ -116,13 +81,11 @@ class ConcreteInterpreter(Interpreter):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rcs')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
-        # uncomment to keep working
         #self._debug_values(rhythm_commands, 'lrcs')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcds')
         key = 'division_region_division_lists'
         division_region_division_lists = self.score_specification.contexts[voice.name][key]
-        # uncomment to keep working
         #self._debug_values(division_region_division_lists, 'drdls')
 
         division_region_durations = [x.duration for x in division_region_division_lists]
@@ -131,7 +94,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_durations, rhythm_command_durations)
         #self._debug(rhythm_command_merged_durations, 'rrds')
 
-        # assert that rhythm commands cover rhythm regions exactly; can be removed after integration
+        # assert that rhythm commands cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
             rhythm_command_merged_durations, rhythm_command_durations)
 
@@ -163,9 +126,9 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise TypeError('unknown request {!r}?'.format(command.request))
         #self._debug_values(input_pairs, 'input pairs')
-        # the first column in output pairs is not used for anything further at all is discarded
         output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
             rhythm_command_merged_durations, input_pairs)
+        # the first column in output pairs is not used for anything further at all is discarded
         rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
         #self._debug_values(rhythm_makers, 'makers')
@@ -173,25 +136,8 @@ class ConcreteInterpreter(Interpreter):
         input_quadruples = zip(rhythm_makers, rhythm_region_division_lists, 
             rhythm_region_start_offsets, rhythm_region_stop_offsets)
         #self._debug_values(input_quadruples, 'quadruples')
-        input_triples = []
-        for input_quadruple in input_quadruples:
-            flamingo, division_list, start_offset, stop_offset = input_quadruple
-            start_offset = durationtools.Offset(start_offset)
-            stop_offset = durationtools.Offset(stop_offset)
-            if isinstance(flamingo, timetokentools.TimeTokenMaker):
-                input_triples.append((flamingo, division_list, start_offset))
-            elif isinstance(flamingo, requesttools.RhythmRequest):
-                if not input_triples:
-                    input_triples.append((flamingo, start_offset, stop_offset))
-                elif not isinstance(input_triples[-1][0], requesttools.RhythmRequest):
-                    input_triples.append((flamingo, start_offset, stop_offset))
-                elif flamingo != input_triples[-1][0]:
-                    input_triples.append((flamingo, start_offset, stop_offset))
-                else:
-                    last_start_offset = input_triples.pop()[1]
-                    input_triples.append((flamingo, last_start_offset, stop_offset))
-            else:
-                raise TypeError('what is {!r}?'.format(flamingo))
+        # TODO: each input triple must carry index, count, rotation, reverse, callback
+        input_triples = self.filter_rhythm_input_quadruples(input_quadruples)
         #self._debug_values(input_triples, 'input triples')
         self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = \
             timespantools.TimespanInventory()
@@ -199,8 +145,6 @@ class ConcreteInterpreter(Interpreter):
             if isinstance(input_triple[0], timetokentools.TimeTokenMaker):
                 rhythm_region_expression = self.make_rhythm_region_expression(*input_triple)
             elif isinstance(input_triple[0], requesttools.RhythmRequest):
-                #self._debug('currently ignoring rhythm request ...')
-                #continue
                 rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*input_triple)
             else:
                 raise TypeError('what is {!r}?'.format(input_request[0]))
@@ -208,7 +152,6 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_region_expression)
         for rhythm_region_expression in \
             self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
-            #self._debug(rhythm_region_expression, 'rrx')
             voice.extend(rhythm_region_expression.music)
 
     def add_rhythm_to_voices(self):
@@ -348,6 +291,30 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list._start_timepoint = start_timepoint    
         division_region_division_list._stop_timepoint = stop_timepoint
         return division_region_division_list
+
+    # TODO: each bit of output must carry index, count, reverse, rotation, callback
+    #       Maybe change to input_quintuples with 'postprocesing' object as fifth tuple element
+    def filter_rhythm_input_quadruples(self, input_quadruples):
+        input_triples = []
+        for input_quadruple in input_quadruples:
+            flamingo, division_list, start_offset, stop_offset = input_quadruple
+            start_offset = durationtools.Offset(start_offset)
+            stop_offset = durationtools.Offset(stop_offset)
+            if isinstance(flamingo, timetokentools.TimeTokenMaker):
+                input_triples.append((flamingo, division_list, start_offset))
+            elif isinstance(flamingo, requesttools.RhythmRequest):
+                if not input_triples:
+                    input_triples.append((flamingo, start_offset, stop_offset))
+                elif not isinstance(input_triples[-1][0], requesttools.RhythmRequest):
+                    input_triples.append((flamingo, start_offset, stop_offset))
+                elif flamingo != input_triples[-1][0]:
+                    input_triples.append((flamingo, start_offset, stop_offset))
+                else:
+                    last_start_offset = input_triples.pop()[1]
+                    input_triples.append((flamingo, last_start_offset, stop_offset))
+            else:
+                raise TypeError('what is {!r}?'.format(flamingo))
+        return input_triples
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
         voice_division_list, raw_segment_division_lists):
@@ -1002,7 +969,6 @@ class ConcreteInterpreter(Interpreter):
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
         return time_signatures
 
-    # TODO: implement this method
     def trim_rhythm_region_expressions(self, rhythm_region_expressions, source_timespan):
         if timespaninequalitytools.timespan_2_overlaps_only_start_of_timespan_1(
             timespan_1=source_timespan, timespan_2=rhythm_region_expressions[0]):
