@@ -49,7 +49,7 @@ def list_named_chromatic_pitches_in_expr(expr):
             for x in expr:
                 result.extend(list_named_chromatic_pitches_in_expr(x))
         else:
-            for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+            for leaf in leaftools.iterate_leaves_in_expr(expr):
                 if hasattr(leaf, 'written_pitch') and not isinstance(leaf, resttools.Rest):
                     result.append(leaf.written_pitch)
                 elif hasattr(leaf, 'written_pitches'):

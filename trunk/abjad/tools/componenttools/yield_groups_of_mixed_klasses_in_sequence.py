@@ -38,7 +38,7 @@ def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
 
     Example 2. Yield groups of notes and chords at all levels of score::
 
-        >>> leaves = leaftools.iterate_leaves_forward_in_expr(staff)
+        >>> leaves = leaftools.iterate_leaves_in_expr(staff)
 
     ::
 

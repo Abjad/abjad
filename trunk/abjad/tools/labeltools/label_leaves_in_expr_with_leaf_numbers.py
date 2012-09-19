@@ -26,7 +26,7 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
     Return none.
     '''
 
-    for i, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(expr)):
+    for i, leaf in enumerate(leaftools.iterate_leaves_in_expr(expr)):
         leaf_number = i + 1
         label = markuptools.MarkupCommand('small', str(leaf_number))
         markuptools.Markup(label, markup_direction)(leaf)

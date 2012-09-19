@@ -47,7 +47,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
 
     offsets = []
 
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         start_offset = leaf.start_offset
         if start_offset not in offsets:
             offsets.append(start_offset)

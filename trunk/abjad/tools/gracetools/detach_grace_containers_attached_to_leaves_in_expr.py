@@ -42,7 +42,7 @@ def detach_grace_containers_attached_to_leaves_in_expr(expr, kind=None):
     from abjad.tools import leaftools
 
     result = []
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         result.extend(gracetools.detach_grace_containers_attached_to_leaf(leaf, kind=kind))
 
     return tuple(result)

@@ -193,7 +193,7 @@ def split_component_at_offset(component, offset,
     # in order to start upward crawl through duration-crossing containers
     else:
         duration_crossing_containers = contents[:]
-        for leaf in leaftools.iterate_leaves_forward_in_expr(bottom):
+        for leaf in leaftools.iterate_leaves_in_expr(bottom):
             if leaf.start_offset == global_split_point:
                 leaf_right_of_split = leaf
                 leaf_left_of_split = leaftools.get_nth_leaf_in_thread_from_leaf(leaf_right_of_split, -1)

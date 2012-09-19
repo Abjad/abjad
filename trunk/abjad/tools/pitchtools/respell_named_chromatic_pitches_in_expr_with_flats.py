@@ -48,7 +48,7 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
     if isinstance(expr, pitchtools.NamedChromaticPitch):
         return _new_pitch_with_flats(expr)
     else:
-        for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+        for leaf in leaftools.iterate_leaves_in_expr(expr):
             if isinstance(leaf, chordtools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = _new_pitch_with_flats(note_head.written_pitch)

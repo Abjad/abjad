@@ -44,5 +44,5 @@ def color_leaves_in_expr(expr, color):
     """
     from abjad.tools import labeltools
 
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         labeltools.color_leaf(leaf, color)

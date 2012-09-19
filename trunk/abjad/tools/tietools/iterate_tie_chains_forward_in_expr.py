@@ -35,7 +35,7 @@ def iterate_tie_chains_forward_in_expr(expr):
     '''
     from abjad.tools import tietools
 
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
         if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
             yield tietools.get_tie_chain(leaf)

@@ -37,7 +37,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
     from abjad.tools import leaftools
     from abjad.tools import notetools
 
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         if isinstance(leaf, notetools.Note):
             leaf.written_pitch = written_pitch
         elif isinstance(leaf, chordtools.Chord):

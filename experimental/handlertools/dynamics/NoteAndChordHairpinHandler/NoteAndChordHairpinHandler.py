@@ -36,7 +36,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     ### PUBLIC METHODS ###
 
     def apply(self, expr, offset=0):
-        leaves = list(leaftools.iterate_leaves_forward_in_expr(expr))
+        leaves = list(leaftools.iterate_leaves_in_expr(expr))
         leaves = leaftools.remove_outer_rests_from_sequence(leaves)
         group = leaves
         is_short_group = False

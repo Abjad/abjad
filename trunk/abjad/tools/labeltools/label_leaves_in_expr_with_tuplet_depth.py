@@ -30,6 +30,6 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction=Down):
         ``labeltools.label_leaves_in_expr_with_tuplet_depth()``.
     '''
 
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         label = markuptools.MarkupCommand('small', str(componenttools.component_to_tuplet_depth(leaf)))
         markuptools.Markup(label, markup_direction)(leaf)

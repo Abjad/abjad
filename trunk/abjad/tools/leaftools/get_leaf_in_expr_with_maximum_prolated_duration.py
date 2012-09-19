@@ -23,7 +23,7 @@ def get_leaf_in_expr_with_maximum_prolated_duration(expr):
     from abjad.tools import leaftools
 
     leaf_with_maximum_prolated_duration = None
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         if leaf_with_maximum_prolated_duration is None:
             leaf_with_maximum_prolated_duration = leaf
         elif leaf.prolated_duration > leaf_with_maximum_prolated_duration.prolated_duration:

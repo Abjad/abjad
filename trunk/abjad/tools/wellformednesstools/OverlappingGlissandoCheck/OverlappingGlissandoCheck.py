@@ -10,7 +10,7 @@ class OverlappingGlissandoCheck(Check):
 
     def _run(self, expr):
         violators = []
-        for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+        for leaf in leaftools.iterate_leaves_in_expr(expr):
             glissandi = spannertools.get_spanners_attached_to_component(
                 leaf, spannertools.GlissandoSpanner)
             if 1 < len(glissandi):

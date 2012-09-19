@@ -183,7 +183,7 @@ def _get_lcopy(container, start, stop):
     total_dur = durationtools.Duration(0)
     start_leaf, stop_leaf = None, None
     first_dif = second_dif = 0
-    for i, leaf in enumerate(leaftools.iterate_leaves_forward_in_expr(container)):
+    for i, leaf in enumerate(leaftools.iterate_leaves_in_expr(container)):
         total_dur += leaf.prolated_duration
         if total_dur == start and start_leaf is None:
             start_leaf = i

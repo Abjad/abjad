@@ -44,5 +44,5 @@ def repeat_leaves_in_expr(expr, total=1):
     '''
     from abjad.tools import leaftools
 
-    for leaf in leaftools.iterate_leaves_backward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr, reverse=True):
         leaftools.repeat_leaf(leaf, total)

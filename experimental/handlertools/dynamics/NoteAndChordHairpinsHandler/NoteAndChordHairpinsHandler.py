@@ -27,7 +27,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
     ### PUBLIC METHODS ###
 
     def apply(self, expr, offset = 0):
-        leaves = list(leaftools.iterate_leaves_forward_in_expr(expr))
+        leaves = list(leaftools.iterate_leaves_in_expr(expr))
         groups = list(componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, (Note, Chord)))
         hairpin_tokens = sequencetools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):

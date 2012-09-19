@@ -29,6 +29,6 @@ def replace_leaves_in_expr_with_rests(expr):
     '''
     from abjad.tools import resttools
 
-    for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
+    for leaf in leaftools.iterate_leaves_in_expr(expr):
         rest = resttools.Rest(leaf)
         componenttools.move_parentage_and_spanners_from_components_to_components([leaf], [rest])

@@ -214,7 +214,7 @@ class Spanner(AbjadObject):
         # TODO: Author staff-level contiguity check in tools/check.
         #       Include optional staff-level contiguity check here.
         if self._contiguity_constraint == 'thread':
-            leaves = list(leaftools.iterate_leaves_forward_in_expr(components))
+            leaves = list(leaftools.iterate_leaves_in_expr(components))
             assert componenttools.all_are_thread_contiguous_components(leaves)
         self.extend(components)
 

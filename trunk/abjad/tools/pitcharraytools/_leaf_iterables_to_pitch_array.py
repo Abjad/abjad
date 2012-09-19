@@ -28,7 +28,7 @@ def _leaf_iterables_to_pitch_array(leaf_iterables, populate=True):
             cells, part_lengths, cyclic=False, overhang=False)
         for group in grouped_cells:
             pitch_array_row.merge(group)
-        leaves = leaftools.iterate_leaves_forward_in_expr(leaf_iterable)
+        leaves = leaftools.iterate_leaves_in_expr(leaf_iterable)
         if populate:
             for cell, leaf in zip(pitch_array_row.cells, leaves):
                 cell.pitches.extend(pitchtools.list_named_chromatic_pitches_in_expr(leaf))

@@ -7,7 +7,7 @@ there is a pattern to how they arranged.
 <abjad>[hide=true]
 string = r"\times 2/3 { c'4 d' r } r8 e'4 <fs' a' c''>8 ~ q4 \times 4/5 { r16 g' r b' d'' } df'4 c' ~ c'1"
 staff = Staff(string)
-leaves = leaftools.iterate_leaves_forward_in_expr(staff)
+leaves = leaftools.iterate_leaves_in_expr(staff)
 for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, (Note, Chord)):
     if 1 < len(group):
         slur = spannertools.SlurSpanner(group)
@@ -32,7 +32,7 @@ available in the ``componenttools`` package, and add slur spanners inside
 our loop:
 
 <abjad>
-leaves = leaftools.iterate_leaves_forward_in_expr(staff)
+leaves = leaftools.iterate_leaves_in_expr(staff)
 for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, (Note, Chord)):
     spannertools.SlurSpanner(group)
 
@@ -54,7 +54,7 @@ Let's rewrite our example to prevent that from happening:
 
 <abjad>
 staff = Staff(string)
-leaves = leaftools.iterate_leaves_forward_in_expr(staff)
+leaves = leaftools.iterate_leaves_in_expr(staff)
 klasses = (Note, Chord)
 for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, klasses):
     if 1 < len(group):

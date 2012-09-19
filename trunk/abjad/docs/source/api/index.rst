@@ -573,8 +573,6 @@ Composition packages
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/iterate_leaf_pairs_forward_in_expr
-   tools/leaftools/iterate_leaves_backward_in_expr
-   tools/leaftools/iterate_leaves_forward_in_expr
    tools/leaftools/iterate_leaves_in_expr
    tools/leaftools/iterate_notes_and_chords_backward_in_expr
    tools/leaftools/iterate_notes_and_chords_forward_in_expr
