@@ -1,6 +1,7 @@
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -92,6 +93,20 @@ class OffsetPositionedRhythmExpression(AbjadObject):
             self.trim_to_stop_offset(stop_offset)
         if self.start_offset < start_offset:
             self.trim_to_start_offset(start_offset)
+
+    def reverse(self):
+        '''Reverse rhythm.
+
+        .. note:: add example.
+
+        Operate in place and return none.
+        '''
+        for container in containertools.iterate_containers_in_expr(self.music):
+            container._music.reverse()
+        for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
+            spanner._components.reverse()
+            if hasattr(spanner, 'durations'):
+                spanner.durations.reverse()
 
     def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.

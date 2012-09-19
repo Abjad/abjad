@@ -736,8 +736,9 @@ class ConcreteInterpreter(Interpreter):
         result = interpretertools.OffsetPositionedRhythmExpression(start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
-        #print result.music.lilypond_format
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        if rhythm_request.reverse:
+            result.reverse()
         return result
 
     def sort_elements_in_expr_by_parentage(self, expr, segment_specification, context_name, 
