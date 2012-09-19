@@ -1,7 +1,7 @@
-def iterate_thread_forward_in_expr(expr, klass, thread_signature):
+def iterate_thread_forward_in_expr(expr, klass, containment_signature):
     r'''.. versionadded:: 1.1
 
-    Yield left-to-right instances of `klass` in `expr` with `thread_signature`::
+    Yield left-to-right instances of `klass` in `expr` with `containment_signature`::
 
         >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
         >>> container.is_parallel = True
@@ -59,13 +59,16 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
     '''
     from abjad.tools import componenttools
 
-    if isinstance(expr, klass) and componenttools.component_to_containment_signature(expr) == thread_signature:
+    if isinstance(expr, klass) and \
+        componenttools.component_to_containment_signature(expr) == containment_signature:
         yield expr
+
     if isinstance(expr, (list, tuple)):
         for m in expr:
-            for x in componenttools.iterate_thread_forward_in_expr(m, klass, thread_signature):
+            for x in componenttools.iterate_thread_forward_in_expr(m, klass, containment_signature):
                 yield x
+
     if hasattr(expr, '_music'):
         for m in expr._music:
-            for x in componenttools.iterate_thread_forward_in_expr(m, klass, thread_signature):
+            for x in componenttools.iterate_thread_forward_in_expr(m, klass, containment_signature):
                 yield x
