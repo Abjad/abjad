@@ -56,7 +56,6 @@ Composition packages
    tools/chordtools/divide_chord_by_diatonic_pitch_number
    tools/chordtools/get_arithmetic_mean_of_chord
    tools/chordtools/get_note_head_from_chord_by_pitch
-   tools/chordtools/iterate_chords_in_expr
    tools/chordtools/make_tied_chord
    tools/chordtools/yield_all_subchords_of_chord
    tools/chordtools/yield_groups_of_chords_in_sequence
@@ -471,6 +470,19 @@ Composition packages
    tools/iotools/write_expr_to_pdf
    tools/iotools/z
 
+:py:mod:`iterationtools <abjad.tools.iterationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/iterationtools/iterate_chords_in_expr
+   tools/iterationtools/iterate_notes_in_expr
+   tools/iterationtools/iterate_rests_in_expr
+   tools/iterationtools/iterate_skips_in_expr
+
 :py:mod:`labeltools <abjad.tools.labeltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -870,7 +882,6 @@ Composition packages
 
    tools/notetools/add_artificial_harmonic_to_note
    tools/notetools/all_are_notes
-   tools/notetools/iterate_notes_in_expr
    tools/notetools/make_accelerating_notes_with_lilypond_multipliers
    tools/notetools/make_notes
    tools/notetools/make_notes_with_multiplied_durations
@@ -1163,7 +1174,6 @@ Composition packages
 
    tools/resttools/all_are_rests
    tools/resttools/is_lilypond_rest_string
-   tools/resttools/iterate_rests_in_expr
    tools/resttools/make_multi_measure_rests
    tools/resttools/make_repeated_rests_from_time_signature
    tools/resttools/make_repeated_rests_from_time_signatures
@@ -1448,7 +1458,6 @@ Composition packages
    :maxdepth: 1
 
    tools/skiptools/all_are_skips
-   tools/skiptools/iterate_skips_in_expr
    tools/skiptools/make_repeated_skips_from_time_signature
    tools/skiptools/make_repeated_skips_from_time_signatures
    tools/skiptools/make_skips_with_multiplied_durations
