@@ -324,7 +324,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
         voice_divisions = voice_division_list.divisions
-        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
         parts = sequencetools.partition_sequence_by_backgrounded_weights(
             voice_divisions, self.score_specification.segment_durations)
         overage_from_previous_segment = 0
@@ -546,7 +545,7 @@ class ConcreteInterpreter(Interpreter):
     def make_segment_division_lists_for_voice(self, voice):
         #self._debug(voice, 'voice')
         voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
-        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
+        voice_divisions = voice_division_list.divisions
         #self._debug(voice_divisions, 'vd')
         segment_durations = self.score_specification.segment_durations
         #self._debug(segment_durations, 'sd')
@@ -636,20 +635,16 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(region_division_command, 'rdc')
         if isinstance(region_division_command.request, list):
             divisions = region_division_command.request
-            divisions = [mathtools.NonreducedFraction(x) for x in divisions]
+            divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [x.pair for x in divisions]
-            divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.request, requesttools.AbsoluteRequest):
             request = region_division_command.request
             divisions = requesttools.apply_request_transforms(request, request.payload)
             divisions = requesttools.apply_request_transforms(region_division_command, divisions) 
-            divisions = [mathtools.NonreducedFraction(x) for x in divisions]
+            divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [x.pair for x in divisions]
-            divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.request, requesttools.MaterialRequest):
             assert region_division_command.request.attribute == 'divisions'
             division_material_request = region_division_command.request
@@ -1045,5 +1040,6 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
+        # TODO: remove this unnecessary line
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
         return divisions
