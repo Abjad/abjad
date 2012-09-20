@@ -290,7 +290,6 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list._stop_timepoint = stop_timepoint
         return division_region_division_list
 
-    # TODO: each bit of output must carry index, count, reverse, rotation, callback
     def filter_rhythm_quadruples(self, quadruples):
         result = []
         for quadruple in quadruples:
@@ -385,7 +384,8 @@ class ConcreteInterpreter(Interpreter):
             raw_commands = self.get_rhythm_commands_that_start_during_segment(
                 segment_specification, voice.name)
             #self._debug(raw_commands, 'raw')
-            default_command = self.make_default_rhythm_command_for_segment_specification(segment_specification)
+            default_command = self.make_default_rhythm_command_for_segment_specification(
+                segment_specification)
             raw_commands.insert(0, default_command)
             #self._debug(raw_commands, 'raw')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)

@@ -6,4 +6,13 @@
 3.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-4.  Make divisions (ie, nonreduced fractions) partitionable.
+4.  Make divisions (ie, nonreduced fractions) splitable.
+    This works:
+
+    n = [mathtools.NonreducedFraction(x) for x in (1, 2), (2, 4), (3, 6), (4, 8), (5, 10)]
+    sequencetools.split_sequence_by_weights(n, [Fraction(3, 2)], cyclic=False, overhang=False)
+
+    But this doesn't:
+
+    n = [divisiontools.Division(x) for x in (1, 2), (2, 4), (3, 6), (4, 8), (5, 10)]
+    sequencetools.split_sequence_by_weights(n, [Fraction(3, 2)], cyclic=False, overhang=False)
