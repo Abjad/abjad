@@ -118,6 +118,8 @@ Special Methods
 
 .. automethod:: experimental.divisiontools.Division.Division.Division.__eq__
 
+    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
 .. automethod:: experimental.divisiontools.Division.Division.Division.__float__
 
     Inherited from :py:class:`numbers.Rational`

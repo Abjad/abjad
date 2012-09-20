@@ -1,4 +1,6 @@
 from experimental.divisiontools.Division import Division
+import py
+py.test.skip('deprecated')
 
 
 def test_Division___eq___01():
