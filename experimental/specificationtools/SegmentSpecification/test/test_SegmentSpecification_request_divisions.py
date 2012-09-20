@@ -9,12 +9,12 @@ def test_SegmentSpecification_request_divisions_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(4, 16), (3, 16), (2, 16)])
     segment.set_rhythm(library.sixteenths)
     
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     source = score_specification.request_divisions('Voice 1', 'red', segment_count=1)
     segment.set_divisions(source, reverse=True)
 

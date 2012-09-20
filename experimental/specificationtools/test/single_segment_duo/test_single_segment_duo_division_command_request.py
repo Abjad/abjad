@@ -9,7 +9,7 @@ def test_single_segment_duo_division_command_request_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(5, 16), (3, 16)], contexts=['Voice 1'], truncate=True)
     segment.set_rhythm(library.sixteenths)
@@ -30,7 +30,7 @@ def test_single_segment_duo_division_command_request_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(5, 16), (3, 16)], contexts=['Voice 1'], truncate=True)
     segment.set_rhythm(library.sixteenths)

@@ -24,7 +24,7 @@ class SegmentSpecification(Specification):
         
     ::
     
-        >>> segment = score_specification.append_segment('red')
+        >>> segment = score_specification.make_segment('red')
 
     ::
             

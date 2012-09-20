@@ -9,7 +9,7 @@ def test_SegmentSpecification_request_division_command_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8), (4, 8)])
     segment.set_divisions([(4, 16)])
     selector = segment.select_background_measures(1, 3)
@@ -20,7 +20,7 @@ def test_SegmentSpecification_request_division_command_01():
     offset = durationtools.Offset(1, 8)
     source = segment.request_division_command(selector=selector, offset=offset, count=1)
 
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_divisions(source)
 
     score = score_specification.interpret()

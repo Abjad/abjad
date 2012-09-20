@@ -9,13 +9,13 @@ def test_SegmentSpecification_request_time_signatures_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
     source = segment.request_time_signatures()
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(source)
     score = score_specification.interpret()
 
@@ -31,13 +31,13 @@ def test_SegmentSpecification_request_time_signatures_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
     source = segment.request_time_signatures()
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(source, count=1)
     score = score_specification.interpret()
 
@@ -53,13 +53,13 @@ def test_SegmentSpecification_request_time_signatures_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
     source = segment.request_time_signatures()
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(source, count=5)
     score = score_specification.interpret()
 
@@ -75,13 +75,13 @@ def test_SegmentSpecification_request_time_signatures_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
     source = segment.request_time_signatures()
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(source, index=-1)
     score = score_specification.interpret()
 
@@ -97,13 +97,13 @@ def test_SegmentSpecification_request_time_signatures_05():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
     source = segment.request_time_signatures()
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(source, count=5, index=-1)
     score = score_specification.interpret()
 
@@ -119,13 +119,13 @@ def test_SegmentSpecification_request_time_signatures_06():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
 
     source = segment.request_time_signatures()
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(source, reverse=True)
     score = score_specification.interpret()
 

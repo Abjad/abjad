@@ -8,7 +8,7 @@ def test_single_segment_solo_nonoverlapping_division_selectors_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     first_measure = segment.select_background_measure(0)
     segment.set_divisions([(2, 32)], selector=first_measure)

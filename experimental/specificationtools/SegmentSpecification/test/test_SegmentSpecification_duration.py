@@ -7,7 +7,7 @@ def test_SegmentSpecification_duration_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     assert segment.duration == durationtools.Duration(0)
 
     segment.set_time_signatures([(4, 8), (3, 8)])

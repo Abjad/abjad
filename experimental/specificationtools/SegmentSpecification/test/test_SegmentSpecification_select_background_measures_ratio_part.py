@@ -9,7 +9,7 @@ def test_SegmentSpecification_select_background_measures_ratio_part_01():
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(template)
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     selector = segment.select_background_measures_ratio_part((1, 1), 0)
@@ -34,7 +34,7 @@ def test_SegmentSpecification_select_background_measures_ratio_part_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     last_two_measures = segment.select_background_measures_ratio_part((1, 1), -1)
     segment.set_divisions([(2, 32)])
@@ -53,7 +53,7 @@ def test_SegmentSpecification_select_background_measures_ratio_part_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     last_measure = segment.select_background_measures_ratio_part((1, 1), -1, is_count=False)
     segment.set_divisions([(2, 32)])

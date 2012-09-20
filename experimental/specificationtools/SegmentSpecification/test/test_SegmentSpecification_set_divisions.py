@@ -10,7 +10,7 @@ def test_SegmentSpecification_set_divisions_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     first_measure = segment.select_background_measures(stop=1)
@@ -31,7 +31,7 @@ def test_SegmentSpecification_set_divisions_01():
     segment.set_divisions([(3, 16)], selector=second_half, contexts=['Voice 4'], persist=False)
 
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.make_segment('blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -46,7 +46,7 @@ def test_SegmentSpecification_set_divisions_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(5, 16), (3, 16)], reverse=True)
     segment.set_rhythm(library.sixteenths)
@@ -65,7 +65,7 @@ def test_SegmentSpecification_set_divisions_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(5, 16), (3, 16)], contexts=['Voice 1'])
     voice_1_division_command = segment.request_division_command('Voice 1', reverse=True)
@@ -86,7 +86,7 @@ def test_SegmentSpecification_set_divisions_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts='Voice 1', truncate=True)
     segment.set_divisions([(4, 16)], contexts='Voice 2', truncate=True)
@@ -96,7 +96,7 @@ def test_SegmentSpecification_set_divisions_04():
     segment.set_divisions(source_1, contexts=['Voice 3'], reverse=True, truncate=True)
     segment.set_divisions(source_2, contexts=['Voice 4'], reverse=True, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.make_segment('blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -111,7 +111,7 @@ def test_SegmentSpecification_set_divisions_05():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('T1')
+    segment = score_specification.make_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1)
     source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
@@ -120,7 +120,7 @@ def test_SegmentSpecification_set_divisions_05():
     segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = score_specification.append_segment('T2')
+    segment = score_specification.make_segment('T2')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -135,7 +135,7 @@ def test_SegmentSpecification_set_divisions_06():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('T1')
+    segment = score_specification.make_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
     source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
@@ -144,7 +144,7 @@ def test_SegmentSpecification_set_divisions_06():
     segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = score_specification.append_segment('T2')
+    segment = score_specification.make_segment('T2')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

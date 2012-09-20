@@ -16,7 +16,7 @@ def test_single_segment_quartet_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = segment.select_background_measures_ratio_part((1, 1), 0, is_count=True)
     right_measure = segment.select_background_measures_ratio_part((1, 1), -1, is_count=True)

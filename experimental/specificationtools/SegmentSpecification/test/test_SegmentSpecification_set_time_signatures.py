@@ -8,7 +8,7 @@ def test_SegmentSpecification_set_time_signatures_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)], reverse=True)
     score = score_specification.interpret()
 
@@ -23,10 +23,10 @@ def test_SegmentSpecification_set_time_signatures_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     reversed_red_time_signatures = segment.request_time_signatures(reverse=True)
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(reversed_red_time_signatures)
     score = score_specification.interpret()
 
@@ -41,10 +41,10 @@ def test_SegmentSpecification_set_time_signatures_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     reversed_red_time_signatures = segment.request_time_signatures(reverse=True)
-    segment = score_specification.append_segment(name='blue')
+    segment = score_specification.make_segment(name='blue')
     segment.set_time_signatures(reversed_red_time_signatures, reverse=True)
     score = score_specification.interpret()
 

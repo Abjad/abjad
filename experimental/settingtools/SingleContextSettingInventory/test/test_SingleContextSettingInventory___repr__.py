@@ -12,7 +12,7 @@ def test_SingleContextSettingInventory___repr___01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     setting_inventory_1 = segment.single_context_settings

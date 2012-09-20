@@ -6,7 +6,7 @@ def test_SegmentSpecification_select_segment_ratio_part_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     second_half_of_segment = segment.select_segment_ratio_part((1, 1), -1)
     segment.set_divisions([(2, 16)])
@@ -23,7 +23,7 @@ def test_SegmentSpecification_select_segment_ratio_part_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.make_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_third_of_segment = segment.select_segment_ratio_part((1, 1, 1), 1)
     segment.set_divisions([(2, 16)])
