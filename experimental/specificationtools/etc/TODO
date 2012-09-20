@@ -1,9 +1,7 @@
-1.  Make copy.deepcopy(division) work correctly.
+1.  Make split() work with durated complex beam spanners.
 
-2.  Make split() work with durated complex beam spanners.
-
-3.  Integrate reverse=None keyword into all segment set methods,
+2.  Integrate reverse=None keyword into all segment set methods,
     if integration into SegmentSpecification.set_time_signatures() works out.
 
-4.  Author tests to make sure that persistent overlapping division selectors 
+3.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.

@@ -1041,5 +1041,5 @@ class ConcreteInterpreter(Interpreter):
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
         # TODO: remove this unnecessary line
-        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
+        #divisions = [mathtools.NonreducedFraction(x) for x in divisions]
         return divisions

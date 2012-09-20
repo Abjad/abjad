@@ -61,16 +61,11 @@ class Division(NonreducedFraction, BoundedObject):
 
     ### SPECIAL METHODS ###
 
-#    def __eq__(self, expr):
-#        if not isinstance(expr, type(self)):
-#            return False
-#        if not self.pair == expr.pair:
-#            return False
-#        if not self.is_left_closed == expr.is_left_closed:
-#            return False
-#        if not self.is_right_closed == expr.is_right_closed:
-#            return False
-#        return True
+    def __copy__(self, *args):
+        return self.__class__(
+            self.pair, is_left_open=self.is_left_open, is_right_open=self.is_right_open)
+
+    __deepcopy__ = __copy__
 
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, str(self))
