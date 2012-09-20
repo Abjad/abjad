@@ -35,34 +35,36 @@ def split_sequence_by_weights(sequence, weights, cyclic=False, overhang=False):
     from abjad.tools import sequencetools
 
     result = []
-    cur_index = 0
-    cur_piece = []
+    current_index = 0
+    current_piece = []
+
     if cyclic:
         weights = sequencetools.repeat_sequence_to_weight_at_most(weights, mathtools.weight(sequence))
+
     for weight in weights:
-        cur_piece_weight = mathtools.weight(cur_piece)
-        while cur_piece_weight < weight:
-            cur_piece.append(sequence[cur_index])
-            cur_index += 1
-            cur_piece_weight = mathtools.weight(cur_piece)
-        if cur_piece_weight == weight:
-            cur_piece = type(sequence)(cur_piece)
-            result.append(cur_piece)
-            cur_piece = []
-        elif weight < cur_piece_weight:
-            overage = cur_piece_weight - weight
-            cur_last_element = cur_piece.pop(-1)
-            needed = abs(cur_last_element) - overage
-            needed *= mathtools.sign(cur_last_element)
-            cur_piece.append(needed)
-            cur_piece = type(sequence)(cur_piece)
-            result.append(cur_piece)
-            overage *= mathtools.sign(cur_last_element)
-            cur_piece = [overage]
+        current_piece_weight = mathtools.weight(current_piece)
+        while current_piece_weight < weight:
+            current_piece.append(sequence[current_index])
+            current_index += 1
+            current_piece_weight = mathtools.weight(current_piece)
+        if current_piece_weight == weight:
+            current_piece = type(sequence)(current_piece)
+            result.append(current_piece)
+            current_piece = []
+        elif weight < current_piece_weight:
+            overage = current_piece_weight - weight
+            current_last_element = current_piece.pop(-1)
+            needed = abs(current_last_element) - overage
+            needed *= mathtools.sign(current_last_element)
+            current_piece.append(needed)
+            current_piece = type(sequence)(current_piece)
+            result.append(current_piece)
+            overage *= mathtools.sign(current_last_element)
+            current_piece = [overage]
 
     if overhang:
-        last_piece = cur_piece
-        last_piece.extend(sequence[cur_index:])
+        last_piece = current_piece
+        last_piece.extend(sequence[current_index:])
         if last_piece:
             last_piece = type(sequence)(last_piece)
             result.append(last_piece)
