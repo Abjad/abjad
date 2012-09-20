@@ -115,6 +115,8 @@ class RenameModulesScript(DeveloperScript):
 
         while True:
             message = 'Select codebase ([m]ainline, e[x]perimental):     '
+            if kind == 'function':
+                message += '   '
             codebase = raw_input(message).lower()
             if codebase in ('mainline', 'experimental'):
                 break
@@ -157,6 +159,8 @@ class RenameModulesScript(DeveloperScript):
 
         while True:
             message = 'Select codebase ([m]ainline, e[x]perimental):     '
+            if kind == 'function':
+                message += '   '
             codebase = raw_input(message).lower()
             if codebase in ('mainline', 'experimental'):
                 break
@@ -330,7 +334,7 @@ class RenameModulesScript(DeveloperScript):
     def process_args(self, args):
         iotools.clear_terminal()
 
-        print args
+        # print args
 
         kind = args.kind
         old_codebase, old_package_name, old_object_name = self._prompt_for_old_name(kind)
