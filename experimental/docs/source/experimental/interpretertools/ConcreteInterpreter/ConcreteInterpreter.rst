@@ -60,6 +60,8 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_all_region_division_commands
 
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_rhythm_commands_for_score
+
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_rhythm_commands_for_voice
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_rhythm_commands_that_start_during_segment
@@ -94,6 +96,8 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_region_expression
 
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_segment_division_lists
+
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_segment_division_lists_for_voice
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_time_signature_division_command
@@ -104,9 +108,13 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_voice_division_list_for_voice
 
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_voice_division_lists
+
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.region_division_command_to_division_region_division_list
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.region_division_commands_to_division_region_division_lists
+
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.rhythm_commands_to_rhythm_region_exressions
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.rhythm_quadruples_to_rhythm_region_expressions
 
