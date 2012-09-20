@@ -27,7 +27,7 @@ def test_SegmentSpecification_request_divisions_01():
 
 
 def test_SegmentSpecification_request_divisions_02():
-    '''Request divisions from later segment. Reverse divisions at set-time.
+    '''Request divisions from later segment.
     '''
     py.test.skip('working on this one now.')
 
@@ -35,18 +35,18 @@ def test_SegmentSpecification_request_divisions_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     
     red_segment = score_specification.make_segment(name='red')
-    red_segment.set_time_signatures([((2, 8), (2, 8)])
+    red_segment.set_time_signatures([(2, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
     
     blue_segment = score_specification.make_segment(name='blue')
-    blue_segment.set_time_signatures([(4, 8), (4, 8)]
+    blue_segment.set_time_signatures([(4, 8), (4, 8)])
     blue_segment.set_divisions([(5, 16)])
 
     green_segment = score_specification.make_segment(name='green', index=1)
     green_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_divisions = blue_segment.request_divisions('Voice 1')
-    green_segment.set_divisions(blue_divisions, reverse=True)
+    green_segment.set_divisions(blue_divisions)
 
     score = score_specification.interpret()
     

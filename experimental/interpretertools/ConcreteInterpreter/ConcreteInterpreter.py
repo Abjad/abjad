@@ -71,42 +71,34 @@ class ConcreteInterpreter(Interpreter):
             self.add_division_lists_to_voice(voice)
 
     def add_rhythm_to_voice(self, voice):
+        #self._debug(voice, 'voice')
         voice_division_list = self.get_voice_division_list(voice)
-        if len(voice_division_list) == 0:
-            return
         #self._debug(voice_division_list, 'vdl')
-        voice_divisions = voice_division_list.divisions
-        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
-        #self._debug(voice_division_durations, 'vdd')
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rcs')
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
-        #self._debug_values(rhythm_commands, 'lrcs')
+        #self._debug_values(rhythm_commands, 'rcs')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcds')
-        key = 'division_region_division_lists'
-        division_region_division_lists = self.score_specification.contexts[voice.name][key]
+        division_region_division_lists = \
+            self.score_specification.contexts[voice.name]['division_region_division_lists']
         #self._debug_values(division_region_division_lists, 'drdls')
-
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations, 'drds')
         rhythm_command_merged_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
-        #self._debug(rhythm_command_merged_durations, 'rrds')
-
+        #self._debug(rhythm_command_merged_durations, 'rcmds')
         # assert that rhythm commands cover rhythm regions exactly
         assert sequencetools.partition_sequence_by_weights_exactly(
             rhythm_command_merged_durations, rhythm_command_durations)
-
-        #self._debug(voice_division_durations, 'vdds')
         rhythm_region_start_division_duration_lists = \
                 sequencetools.partition_sequence_by_backgrounded_weights(
-                voice_division_durations, rhythm_command_merged_durations)
+                voice_division_list.divisions, rhythm_command_merged_durations)
         #self._debug_values(rhythm_region_start_division_duration_lists, 'rrsddls')
         assert len(rhythm_region_start_division_duration_lists) == len(rhythm_command_merged_durations)
         rhythm_region_start_division_counts = [len(l) for l in rhythm_region_start_division_duration_lists]
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
-            voice_divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
+            voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
             divisiontools.RhythmRegionDivisionList(x, voice.name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)
@@ -116,45 +108,37 @@ class ConcreteInterpreter(Interpreter):
         cumulative_sums = mathtools.cumulative_sums_zero(rhythm_region_durations)
         rhythm_region_start_offsets = cumulative_sums[:-1]
         rhythm_region_stop_offsets = cumulative_sums[1:]
-        input_pairs = []
-        for command in rhythm_commands:
-            if isinstance(command.request, requesttools.AbsoluteRequest):
-                input_pairs.append((command, command.duration))
-            elif isinstance(command.request, requesttools.RhythmRequest):
-                input_pairs.append((command, command.duration))
-            else:
-                raise TypeError('unknown request {!r}?'.format(command.request))
-        #self._debug_values(input_pairs, 'input pairs')
-        output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-            rhythm_command_merged_durations, input_pairs)
-        # the first column in output pairs is not used for anything further at all is discarded
-        rhythm_commands = [output_pair[-1] for output_pair in output_pairs]
+        rhythm_command_duration_pairs = [(x, x.duration) for x in rhythm_commands]
+        #self._debug_values(rhythm_command_duration_pairs, 'rhythm command / duration pairs')
+        merged_duration_rhythm_command_pairs = \
+            sequencetools.pair_duration_sequence_elements_with_input_pair_values(
+            rhythm_command_merged_durations, rhythm_command_duration_pairs)
+        # the first column in pairs is not used for anything further at all is discarded
+        rhythm_commands = [x[-1] for x in merged_duration_rhythm_command_pairs]
+        #self._debug_values(rhythm_commands, 'rhythm commands')
         assert len(rhythm_commands) == len(rhythm_region_division_lists)
-        #self._debug_values(rhythm_commands, 'makers')
-        #self._debug_values(rhythm_region_division_lists, 'rrdls')
-        quadruples = zip(rhythm_commands, rhythm_region_division_lists, 
+        rhythm_quadruples = zip(rhythm_commands, rhythm_region_division_lists, 
             rhythm_region_start_offsets, rhythm_region_stop_offsets)
-        #self._debug_values(quadruples, 'quadruples')
-        quadruples = self.filter_rhythm_quadruples(quadruples)
-        #self._debug_values(quadruples, 'input triples')
-        self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = \
-            timespantools.TimespanInventory()
-        for quadruple in quadruples:
-            if isinstance(quadruple[0], timetokentools.TimeTokenMaker):
-                rhythm_region_expression = self.make_rhythm_region_expression(*quadruple)
-            elif isinstance(quadruple[0], requesttools.RhythmRequest):
-                rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*quadruple)
-            else:
-                raise TypeError('what is {!r}?'.format(input_request[0]))
-            self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
-                rhythm_region_expression)
-        for rhythm_region_expression in \
-            self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
-            voice.extend(rhythm_region_expression.music)
+        #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
+        rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
+        #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
+        self.rhythm_quadruples_to_rhythm_region_expressions(voice, rhythm_quadruples)
 
+    # TODO: This will probably need to restructure like the commented-out implementation below.
     def add_rhythm_to_voices(self):
+        self.initialize_rhythm_region_expression_inventories()
         for voice in voicetools.iterate_voices_in_expr(self.score):
-            self.add_rhythm_to_voice(voice)
+            voice_division_list = self.get_voice_division_list(voice)
+            if voice_division_list:
+                self.add_rhythm_to_voice(voice)
+        self.dump_rhythm_region_expressions_into_voices()
+
+    # TODO: The newer implementation here will probably replace the older one above.
+#    def add_rhythm_to_voices(self):
+#        self.initialize_rhythm_region_expression_inventories()
+#        rhythm_commands = self.get_rhythm_commands_for_score()
+#        self.rhythm_commands_to_rhythm_region_expressions(rhythm_commands)
+#        self.dump_rhythm_region_expressions_into_voices()
 
     def add_segment_division_lists_to_voice(
         self, voice, segment_division_lists):
@@ -268,6 +252,7 @@ class ConcreteInterpreter(Interpreter):
         selection_start_offset = division_material_request.start_offset
         selection_stop_offset = division_material_request.stop_offset
         divisions = self.voice_name_to_divisions(voice_name)
+        #self._debug(divisions, 'divisions')
         divisions = self.keep_divisions_between_segments(
             divisions, start_segment_identifier, stop_segment_identifier)
         divisions = self.keep_divisions_between_selection_offsets(
@@ -290,10 +275,16 @@ class ConcreteInterpreter(Interpreter):
         division_region_division_list._stop_timepoint = stop_timepoint
         return division_region_division_list
 
-    def filter_rhythm_quadruples(self, quadruples):
+    def dump_rhythm_region_expressions_into_voices(self):
+        for voice in voicetools.iterate_voices_in_expr(self.score):
+            for rhythm_region_expression in \
+                self.score_specification.contexts[voice.name]['rhythm_region_expressions']:
+                voice.extend(rhythm_region_expression.music)
+
+    def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
-        for quadruple in quadruples:
-            rhythm_command, division_list, start_offset, stop_offset = quadruple
+        for rhythm_quadruple in rhythm_quadruples:
+            rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 flamingo = rhythm_command.request.payload
             elif isinstance(rhythm_command.request, requesttools.RhythmRequest):
@@ -455,6 +446,11 @@ class ConcreteInterpreter(Interpreter):
             time_signatures = self.score_specification.time_signatures
             voice_division_list = divisiontools.VoiceDivisionList(time_signatures, voice.name)
         return voice_division_list
+
+    def initialize_rhythm_region_expression_inventories(self):
+        for voice in voicetools.iterate_voices_in_expr(self.score):
+            timespan_inventory = timespantools.TimespanInventory()
+            self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = timespan_inventory
 
     def keep_divisions_between_segments(self, divisions, start_segment_identifier, stop_segment_identifier):
         start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
@@ -681,6 +677,17 @@ class ConcreteInterpreter(Interpreter):
                 region_division_command, all_region_division_commands, voice.name)
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
+
+    def rhythm_quadruples_to_rhythm_region_expressions(self, voice, rhythm_quadruples):
+        for rhythm_quadruple in rhythm_quadruples:
+            if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
+                rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
+            elif isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
+                rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*rhythm_quadruple)
+            else:
+                raise TypeError('what is {!r}?'.format(input_request[0]))
+            self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
+                rhythm_region_expression)
 
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):
