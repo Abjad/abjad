@@ -179,11 +179,11 @@ def _scopy_container(container, start, stop):
 
 def _get_lcopy(container, start, stop):
     from abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range import copy_governed_component_subtree_by_leaf_range
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
     total_dur = durationtools.Duration(0)
     start_leaf, stop_leaf = None, None
     first_dif = second_dif = 0
-    for i, leaf in enumerate(leaftools.iterate_leaves_in_expr(container)):
+    for i, leaf in enumerate(iterationtools.iterate_leaves_in_expr(container)):
         total_dur += leaf.prolated_duration
         if total_dur == start and start_leaf is None:
             start_leaf = i

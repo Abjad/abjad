@@ -41,14 +41,14 @@ def respell_named_chromatic_pitches_in_expr_with_flats(expr):
         ``pitchtools.respell_named_chromatic_pitches_in_expr_with_flats()``.
     '''
     from abjad.tools import chordtools
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
     from abjad.tools import pitchtools
 
 
     if isinstance(expr, pitchtools.NamedChromaticPitch):
         return _new_pitch_with_flats(expr)
     else:
-        for leaf in leaftools.iterate_leaves_in_expr(expr):
+        for leaf in iterationtools.iterate_leaves_in_expr(expr):
             if isinstance(leaf, chordtools.Chord):
                 for note_head in leaf.note_heads:
                     note_head.written_pitch = _new_pitch_with_flats(note_head.written_pitch)

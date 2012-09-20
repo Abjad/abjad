@@ -42,7 +42,8 @@ def repeat_leaves_in_expr(expr, total=1):
         renamed ``leaftools.multiply()`` to
         ``leaftools.repeat_leaves_in_expr()``.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr, reverse=True):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr, reverse=True):
         leaftools.repeat_leaf(leaf, total)

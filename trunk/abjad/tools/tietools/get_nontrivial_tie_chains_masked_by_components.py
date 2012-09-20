@@ -1,5 +1,5 @@
 from abjad.tools import componenttools
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import spannertools
 
 
@@ -51,7 +51,7 @@ def get_nontrivial_tie_chains_masked_by_components(components):
 
     # initialize tie chains
     result = []
-    leaves_in_components = set(leaftools.iterate_leaves_in_expr(components))
+    leaves_in_components = set(iterationtools.iterate_leaves_in_expr(components))
     for spanner in tie_spanners:
         leaves_intersecting = []
         for leaf in spanner.leaves:

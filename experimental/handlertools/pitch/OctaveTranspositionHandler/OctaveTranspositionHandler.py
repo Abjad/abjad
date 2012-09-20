@@ -1,4 +1,4 @@
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import pitchtools
 from experimental.handlertools.pitch.PitchHandler import PitchHandler
 
@@ -14,7 +14,7 @@ class OctaveTranspositionHandler(PitchHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        for leaf in leaftools.iterate_leaves_in_expr(expr):
+        for leaf in iterationtools.iterate_leaves_in_expr(expr):
             if isinstance(leaf, Note):
                 n = leaf.pitch.chromatic_pitch_number
                 n = pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(

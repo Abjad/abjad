@@ -2,6 +2,7 @@ import copy
 import abc
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import lilypondproxytools
 from abjad.tools.abctools import AbjadObject
@@ -214,7 +215,7 @@ class Spanner(AbjadObject):
         # TODO: Author staff-level contiguity check in tools/check.
         #       Include optional staff-level contiguity check here.
         if self._contiguity_constraint == 'thread':
-            leaves = list(leaftools.iterate_leaves_in_expr(components))
+            leaves = list(iterationtools.iterate_leaves_in_expr(components))
             assert componenttools.all_are_thread_contiguous_components(leaves)
         self.extend(components)
 

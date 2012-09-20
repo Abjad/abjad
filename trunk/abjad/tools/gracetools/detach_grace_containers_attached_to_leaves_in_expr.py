@@ -39,10 +39,10 @@ def detach_grace_containers_attached_to_leaves_in_expr(expr, kind=None):
     Return tuple of zero or more grace containers.
     '''
     from abjad.tools import gracetools
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
 
     result = []
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         result.extend(gracetools.detach_grace_containers_attached_to_leaf(leaf, kind=kind))
 
     return tuple(result)

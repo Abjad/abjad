@@ -42,7 +42,7 @@ def yield_topmost_components_grouped_by_type(expr):
 
     Example 2. Yield leaves at all score levels in `expr` grouped by type::
 
-        >>> leaves = leaftools.iterate_leaves_in_expr(staff)
+        >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
 
     ::
 

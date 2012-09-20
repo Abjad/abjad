@@ -43,7 +43,7 @@ def yield_components_grouped_by_preprolated_duration(components):
 
     ::
 
-        >>> leaves = leaftools.iterate_leaves_in_expr(staff)
+        >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
         >>> for x in componenttools.yield_components_grouped_by_preprolated_duration(leaves):
         ...     x
         (Note("c'4"), Note("c'4"))

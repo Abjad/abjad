@@ -1,4 +1,4 @@
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import spannertools
 from abjad.tools import tietools
@@ -14,7 +14,7 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction=Down,
         ``leaftools.label_leaves_in_expr_with_leaf_duration()``.
     '''
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         if ties == 'together':
             tie_spanners = spannertools.get_spanners_attached_to_component(
                 leaf, tietools.TieSpanner)

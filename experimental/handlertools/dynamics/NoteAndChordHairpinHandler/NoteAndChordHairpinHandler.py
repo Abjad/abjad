@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import marktools
 from abjad.tools import sequencetools
@@ -36,7 +37,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     ### PUBLIC METHODS ###
 
     def apply(self, expr, offset=0):
-        leaves = list(leaftools.iterate_leaves_in_expr(expr))
+        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         leaves = leaftools.remove_outer_rests_from_sequence(leaves)
         group = leaves
         is_short_group = False

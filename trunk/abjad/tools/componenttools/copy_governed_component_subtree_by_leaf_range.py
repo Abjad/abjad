@@ -62,6 +62,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
         ``componenttools.copy_governed_component_subtree_by_leaf_range()``.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
     # trivial leaf lcopy
@@ -110,7 +111,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
     _found_start_leaf = False
 
     while not _found_start_leaf:
-        leaf = leaftools.iterate_leaves_in_expr(governor_copy).next()
+        leaf = iterationtools.iterate_leaves_in_expr(governor_copy).next()
         #if leaf == start_leaf:
         if leaf is start_leaf:
             _found_start_leaf = True
@@ -123,7 +124,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
     _found_stop_leaf = False
 
     while not _found_stop_leaf:
-        leaf = leaftools.iterate_leaves_in_expr(governor_copy, reverse=True).next()
+        leaf = iterationtools.iterate_leaves_in_expr(governor_copy, reverse=True).next()
         #if leaf == stop_leaf:
         if leaf is stop_leaf:
             _found_stop_leaf = True

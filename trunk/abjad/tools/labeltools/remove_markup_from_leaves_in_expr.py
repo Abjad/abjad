@@ -1,4 +1,4 @@
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import markuptools
 
 
@@ -35,6 +35,6 @@ def remove_markup_from_leaves_in_expr(expr):
         ``labeltools.remove_markup_from_leaves_in_expr()``.
     '''
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         for markup in markuptools.get_markup_attached_to_component(leaf):
             markup()

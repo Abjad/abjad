@@ -19,11 +19,11 @@ def list_written_durations_of_leaves_in_expr(expr):
 
     Return list of durations.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
 
     durations = []
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         durations.append(leaf.written_duration)
 
     return durations

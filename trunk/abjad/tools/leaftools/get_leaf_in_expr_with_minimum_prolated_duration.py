@@ -20,10 +20,11 @@ def get_leaf_in_expr_with_minimum_prolated_duration(expr):
 
     Return leaf.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
     leaf_with_minimum_prolated_duration = None
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         if leaf_with_minimum_prolated_duration is None:
             leaf_with_minimum_prolated_duration = leaf
         elif leaf.prolated_duration < leaf_with_minimum_prolated_duration.prolated_duration:

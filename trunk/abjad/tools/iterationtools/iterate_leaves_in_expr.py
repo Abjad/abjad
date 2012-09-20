@@ -26,7 +26,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff):
         ...     leaf
         ...
         Note("c'8")
@@ -39,7 +39,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
     Use the optional `start` and `stop` keyword parameters to control
     the start and stop indices of iteration. ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, start=3):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=3):
         ...     leaf
         ...
         Note("f'8")
@@ -48,7 +48,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, start=0, stop=3):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=0, stop=3):
         ...     leaf
         ...
         Note("c'8")
@@ -57,7 +57,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, start=2, stop=4):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=2, stop=4):
         ...     leaf
         ...
         Note("e'8")
@@ -67,7 +67,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, reverse=True):
         ...     leaf
         ...
         Note("a'8")
@@ -79,7 +79,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, start=3, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=3, reverse=True):
         ...     leaf
         ...
         Note("e'8")
@@ -88,7 +88,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, start=0, stop=3, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=0, stop=3, reverse=True):
         ...     leaf
         ...
         Note("a'8")
@@ -97,7 +97,7 @@ def iterate_leaves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_in_expr(staff, start=2, stop=4, reverse=True):
+        >>> for leaf in iterationtools.iterate_leaves_in_expr(staff, start=2, stop=4, reverse=True):
         ...     leaf
         ...
         Note("f'8")

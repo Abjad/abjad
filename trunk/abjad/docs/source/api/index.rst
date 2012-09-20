@@ -479,6 +479,7 @@ Composition packages
    :maxdepth: 1
 
    tools/iterationtools/iterate_chords_in_expr
+   tools/iterationtools/iterate_leaves_in_expr
    tools/iterationtools/iterate_notes_in_expr
    tools/iterationtools/iterate_rests_in_expr
    tools/iterationtools/iterate_skips_in_expr
@@ -580,7 +581,6 @@ Composition packages
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/iterate_leaf_pairs_forward_in_expr
-   tools/leaftools/iterate_leaves_in_expr
    tools/leaftools/iterate_notes_and_chords_in_expr
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr

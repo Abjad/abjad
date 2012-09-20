@@ -386,8 +386,8 @@ class Container(Component):
 
         Return tuple of zero or more leaves.
         '''
-        from abjad.tools import leaftools
-        return tuple(leaftools.iterate_leaves_in_expr(self))
+        from abjad.tools import iterationtools
+        return tuple(iterationtools.iterate_leaves_in_expr(self))
 
     @property
     def music(self):

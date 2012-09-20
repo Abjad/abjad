@@ -15,9 +15,9 @@ def expr_has_leaf_with_dotted_written_duration(expr):
 
     Return boolean.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         if not leaf.written_duration._numerator == 1:
             return True
 

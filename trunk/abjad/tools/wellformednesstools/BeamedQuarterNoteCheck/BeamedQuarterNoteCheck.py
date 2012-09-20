@@ -1,6 +1,6 @@
 from abjad.tools import beamtools
 from abjad.tools import durationtools
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
 
@@ -10,7 +10,7 @@ class BeamedQuarterNoteCheck(Check):
     def _run(self, expr):
         violators = []
         total = 0
-        for leaf in leaftools.iterate_leaves_in_expr(expr):
+        for leaf in iterationtools.iterate_leaves_in_expr(expr):
             total += 1
             #if leaf.beam.spanned:
             if beamtools.is_component_with_beam_spanner_attached(leaf):

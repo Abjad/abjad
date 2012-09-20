@@ -1,7 +1,7 @@
 from abjad.tools.chordtools import Chord
 from abjad.tools.notetools.Note import Note
 from abjad.tools import componenttools
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import marktools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -27,7 +27,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
     ### PUBLIC METHODS ###
 
     def apply(self, expr, offset = 0):
-        leaves = list(leaftools.iterate_leaves_in_expr(expr))
+        leaves = list(iterationtools.iterate_leaves_in_expr(expr))
         groups = list(componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, (Note, Chord)))
         hairpin_tokens = sequencetools.CyclicList(self.hairpin_tokens)
         for i, group in enumerate(groups):

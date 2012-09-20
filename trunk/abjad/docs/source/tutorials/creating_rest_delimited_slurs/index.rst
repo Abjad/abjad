@@ -28,7 +28,7 @@ our loop:
 
 ::
 
-   >>> leaves = leaftools.iterate_leaves_in_expr(staff)
+   >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
    >>> for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, (Note, Chord)):
    ...     spannertools.SlurSpanner(group)
    ... 
@@ -58,7 +58,7 @@ Let's rewrite our example to prevent that from happening:
 ::
 
    >>> staff = Staff(string)
-   >>> leaves = leaftools.iterate_leaves_in_expr(staff)
+   >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
    >>> klasses = (Note, Chord)
    >>> for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, klasses):
    ...     if 1 < len(group):

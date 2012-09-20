@@ -43,11 +43,11 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
 
     Return list of fractions.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
 
     offsets = []
 
-    for leaf in leaftools.iterate_leaves_in_expr(expr):
+    for leaf in iterationtools.iterate_leaves_in_expr(expr):
         start_offset = leaf.start_offset
         if start_offset not in offsets:
             offsets.append(start_offset)

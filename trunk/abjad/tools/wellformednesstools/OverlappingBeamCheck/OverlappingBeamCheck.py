@@ -1,5 +1,5 @@
 from abjad.tools import beamtools
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import spannertools
 from abjad.tools.wellformednesstools.Check import Check
 
@@ -10,7 +10,7 @@ class OverlappingBeamCheck(Check):
 
     def _run(self, expr):
         violators = []
-        for leaf in leaftools.iterate_leaves_in_expr(expr):
+        for leaf in iterationtools.iterate_leaves_in_expr(expr):
             #beams = [p for p in leaf.spanners.attached
             #   if isinstance(p, BeamSpanner)]
             beams = spannertools.get_spanners_attached_to_component(leaf, beamtools.BeamSpanner)

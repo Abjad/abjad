@@ -309,20 +309,21 @@ class Component(AbjadObject):
         '''
         from abjad.tools import componenttools
         from abjad.tools import contexttools
+        from abjad.tools import iterationtools
         from abjad.tools import leaftools
         from abjad.tools import measuretools
         from abjad.tools.contexttools.Context import Context
         score_root = componenttools.component_to_score_root(self)
         if isinstance(score_root, Context):
             for context in contexttools.iterate_contexts_in_expr(score_root):
-                for leaf_index, leaf in enumerate(leaftools.iterate_leaves_in_expr(context)):
+                for leaf_index, leaf in enumerate(iterationtools.iterate_leaves_in_expr(context)):
                     leaf._leaf_index = leaf_index
                 for measure_index, measure in enumerate(
                     measuretools.iterate_measures_in_expr(context)):
                     measure_number = measure_index + 1
                     measure._measure_number = measure_number
         else:
-            for leaf_index, leaf in enumerate(leaftools.iterate_leaves_in_expr(score_root)):
+            for leaf_index, leaf in enumerate(iterationtools.iterate_leaves_in_expr(score_root)):
                 leaf._leaf_index = leaf_index
             for measure_index, measure in enumerate(
                 measuretools.iterate_measures_in_expr(score_root)):

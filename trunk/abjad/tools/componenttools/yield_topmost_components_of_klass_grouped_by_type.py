@@ -37,7 +37,7 @@ def yield_topmost_components_of_klass_grouped_by_type(expr, klass):
 
     Example 2. Yield runs of notes at all levels in `expr`::
 
-        >>> leaves = leaftools.iterate_leaves_in_expr(staff)
+        >>> leaves = iterationtools.iterate_leaves_in_expr(staff)
 
     ::
 
