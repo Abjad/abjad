@@ -687,7 +687,6 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
                 division_region_division_list)
 
-    # NEXT: Make this method inspect rhythm_command for index, count, reverse, rotation, callback
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):
         from experimental import interpretertools
@@ -711,6 +710,7 @@ class ConcreteInterpreter(Interpreter):
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        result.repeat_to_stop_offset(stop_offset)
         if rhythm_request.reverse:
             result.reverse()
         if rhythm_request.rotation:
