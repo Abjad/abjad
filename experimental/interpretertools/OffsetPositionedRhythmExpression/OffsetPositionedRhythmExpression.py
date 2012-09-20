@@ -1,3 +1,4 @@
+import math
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
@@ -93,6 +94,25 @@ class OffsetPositionedRhythmExpression(AbjadObject):
             self.trim_to_stop_offset(stop_offset)
         if self.start_offset < start_offset:
             self.trim_to_start_offset(start_offset)
+
+    def repeat_to_stop_offset(self, stop_offset):
+        '''Repeat rhythm to `stop_offset`.
+
+        .. note:: add example.
+
+        Operate in place and return none.
+        '''
+        stop_offset = durationtools.Offset(stop_offset)
+        assert self.stop_offset <= stop_offset
+        additional_duration = stop_offset - self.stop_offset
+        needed_copies = int(math.ceil(additional_duration / self.music.prolated_duration))
+        copies = []
+        for i in range(needed_copies):
+            copies.append(componenttools.copy_components_and_covered_spanners([self.music])[0])
+        for element in copies:
+            self.music.extend(element)
+        assert stop_offset <= self.stop_offset
+        self.trim_to_stop_offset(stop_offset)
 
     def reverse(self):
         '''Reverse rhythm.
