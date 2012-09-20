@@ -1,7 +1,4 @@
-1.  Make split() work with durated complex beam spanners.
-
-2.  Integrate reverse=None keyword into all segment set methods,
-    if integration into SegmentSpecification.set_time_signatures() works out.
-
-3.  Author tests to make sure that persistent overlapping division selectors 
+1.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
+
+2.  Make split() work with durated complex beam spanners.
