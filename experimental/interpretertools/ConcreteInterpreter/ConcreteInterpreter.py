@@ -157,6 +157,15 @@ class ConcreteInterpreter(Interpreter):
     def apply_registration(self):
         pass
 
+    def attribute_to_command_klass(self, attribute):
+        from experimental import interpretertools
+        if attribute == 'divisions':
+            return interpretertools.DivisionCommand
+        elif attribute == 'rhythm':
+            return interpretertools.RhythmCommand
+        else:
+            raise NotImplementedError(attribute)
+
     def calculate_score_and_segment_durations(self):
         '''Set ``'segment_durations'`` property on score specification.
 
@@ -732,49 +741,15 @@ class ConcreteInterpreter(Interpreter):
                 if element.context_name == context_name:
                     return element
 
-    # see if this can be one method that doesn't branch
     def single_context_setting_to_command(self, single_context_setting, segment_specification):
-        if single_context_setting.attribute == 'divisions':
-            return self.single_context_setting_to_division_command(single_context_setting, segment_specification)
-        elif single_context_setting.attribute == 'rhythm':
-            return self.single_context_setting_to_rhythm_command(single_context_setting, segment_specification)
-        else:
-            raise NotImplementedError(single_context_setting.attribute)
-
-    def single_context_setting_to_division_command(self, single_context_setting, segment_specification):
-        from experimental import interpretertools
         selector = single_context_setting.selector
         assert selector.start_segment_identifier == segment_specification.segment_name
         context_name = single_context_setting.context_name
         duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
-        division_command = interpretertools.DivisionCommand(
-            single_context_setting.request,
-            segment_name,
-            single_context_setting.context_name,
-            start_offset,
-            stop_offset,
-            duration,
-            index=single_context_setting.index,
-            count=single_context_setting.count,
-            reverse=single_context_setting.reverse,
-            rotation=single_context_setting.rotation,
-            callback=single_context_setting.callback,
-            fresh=single_context_setting.fresh,
-            truncate=single_context_setting.truncate
-            )
-        return division_command
-
-    def single_context_setting_to_rhythm_command(self, single_context_setting, segment_specification):
-        from experimental import interpretertools
-        selector = single_context_setting.selector
-        assert selector.start_segment_identifier == segment_specification.segment_name
-        context_name = single_context_setting.context_name
-        duration = selector.get_duration(self.score_specification, context_name)
-        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
-        segment_name = segment_specification.segment_name
-        rhythm_command = interpretertools.RhythmCommand(
+        command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
+        command = command_klass(
             single_context_setting.request, 
             segment_name,
             single_context_setting.context_name,
@@ -788,7 +763,9 @@ class ConcreteInterpreter(Interpreter):
             callback=single_context_setting.callback,
             fresh=single_context_setting.fresh
             )
-        return rhythm_command
+        if single_context_setting.attribute == 'divisions':
+            command._truncate = single_context_setting.truncate
+        return command
 
     def sort_and_split_raw_commands(self, raw_commands):
         cooked_commands = []
