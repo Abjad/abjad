@@ -51,23 +51,13 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
-    def add_division_lists_to_voice(self, voice):
-        #self._debug(voice)
-        self.make_division_region_division_lists_for_voice(voice)
-        self.make_voice_division_list_for_voice(voice)
-        self.make_segment_division_lists_for_voice(voice)
-
-    # TODO: The older implementation here will probably be replaced by the newer one below.
     def add_division_lists_to_voices(self):
-        for voice in voicetools.iterate_voices_in_expr(self.score):
-            self.add_division_lists_to_voice(voice)
-
-    # TODO: The newer implementation here will probably replace the older one above.
-#    def add_division_lists_to_voices(self):
-#        self.initialize_division_region_expression_inventories()
-#        self.make_offset_positioned_division_expressions()
-#        self.make_voice_division_lists()
-#        self.make_segment_division_lists()
+        self.initialize_division_region_expression_inventories()
+        # TODO: replace division region division lists with offset-positioned division expressions
+        #self.make_offset_positioned_division_expressions()
+        self.make_division_region_division_lists()
+        self.make_voice_division_lists()
+        self.make_segment_division_lists()
 
     def add_rhythm_to_voice(self, voice):
         #self._debug(voice, 'voice')
@@ -453,10 +443,10 @@ class ConcreteInterpreter(Interpreter):
             voice_division_list = divisiontools.VoiceDivisionList(time_signatures, voice.name)
         return voice_division_list
 
-    #def initialize_division_region_expression_inventories(self):
-    #    for voice in voicetools.iterate_voices_in_expr(self.score):
-    #        timespan_inventory = timespantools.TimespanInventory()
-    #        self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
+    def initialize_division_region_expression_inventories(self):
+        for voice in voicetools.iterate_voices_in_expr(self.score):
+            timespan_inventory = timespantools.TimespanInventory()
+            self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
 
     def initialize_rhythm_region_expression_inventories(self):
         for voice in voicetools.iterate_voices_in_expr(self.score):
@@ -524,6 +514,10 @@ class ConcreteInterpreter(Interpreter):
             truncate=False
             )
 
+    def make_division_region_division_lists(self):
+        for voice in voicetools.iterate_voices_in_expr(self.score):
+            self.make_division_region_division_lists_for_voice(voice)
+
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         #self._debug_values(uninterpreted_division_commands, 'udc')
@@ -550,8 +544,8 @@ class ConcreteInterpreter(Interpreter):
             return rhythm_region_expression
 
     def make_segment_division_lists(self):
-        for segment in segmenttools.iterate_segments_in_expr(self.score):
-            self.make_division_list_for_segment(segment)
+        for voice in voicetools.iterate_voices_in_expr(self.score):
+            self.make_segment_division_lists_for_voice(voice)
 
     def make_segment_division_lists_for_voice(self, voice):
         if not self.score_specification.contexts[voice.name]['division_region_division_lists']:
@@ -639,7 +633,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_voice_division_lists(self):
         for voice in voicetools.iterate_voices_in_expr(self.score):
-            self.make_division_list_for_voice(voice)
+            self.make_voice_division_list_for_voice(voice)
 
     def make_voice_division_list_for_voice(self, voice):
         if not self.score_specification.contexts[voice.name]['division_region_division_lists']:
@@ -650,9 +644,7 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             voice_divisions.extend(division_region_division_list.divisions)
         voice_division_list = divisiontools.VoiceDivisionList(voice_divisions, voice.name)
-        #return voice_division_list
         self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
-        #self._debug(voice_division_list, 'vdl')
 
     def region_division_command_to_division_region_division_list(
         self, region_division_command, region_division_commands, voice_name):
