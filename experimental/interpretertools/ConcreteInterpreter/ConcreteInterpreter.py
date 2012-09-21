@@ -410,14 +410,11 @@ class ConcreteInterpreter(Interpreter):
         all_region_division_commands = []
         if not self.score_specification.segment_specifications:
             return all_region_division_commands
-        first_segment = self.get_start_segment_specification(0)
-        for voice in voicetools.iterate_voices_in_expr(first_segment.score_model):
-            #self._debug(voice, 'voice')
+        for voice in voicetools.iterate_voices_in_expr(self.score):
             division_commands = self.get_division_commands_for_voice(voice)
             division_commands = self.fuse_like_division_commands(division_commands)
             division_commands = self.supply_missing_division_commands(division_commands, voice)
             all_region_division_commands.extend(division_commands)
-        #self._debug(all_region_division_commands, 'all region division commands')
         return all_region_division_commands
 
     def get_rhythm_commands_for_score(self):
@@ -541,21 +538,16 @@ class ConcreteInterpreter(Interpreter):
         return command
 
     def make_division_region_division_lists(self):
-        for voice in voicetools.iterate_voices_in_expr(self.score):
-            self.make_division_region_division_lists_for_voice(voice)
-
-    # NEXT: continue streamlining this method and flatten the O(n**2) part
-    def make_division_region_division_lists_for_voice(self, voice):
-        division_commands = self.get_division_commands_for_voice(voice)
-        #self._debug_values(division_commands, 'division commands')
-        division_commands = self.fuse_like_division_commands(division_commands)
-        #self._debug_values(division_commands, 'division commands')
-        division_commands = self.supply_missing_division_commands(division_commands, voice)
-        #self._debug_values(region_division_commands, 'region division commands')
         all_region_division_commands = self.get_region_division_commands_for_all_voices()
-        #self._debug(all_region_division_commands, 'all region division commands')
-        self.region_division_commands_to_division_region_division_lists(
-            division_commands, voice, all_region_division_commands)
+        for voice in voicetools.iterate_voices_in_expr(self.score):
+            division_commands = self.get_division_commands_for_voice(voice)
+            #self._debug_values(division_commands, 'division commands')
+            division_commands = self.fuse_like_division_commands(division_commands)
+            #self._debug_values(division_commands, 'division commands')
+            division_commands = self.supply_missing_division_commands(division_commands, voice)
+            #self._debug_values(division_commands, 'division commands')
+            self.region_division_commands_to_division_region_division_lists(
+                division_commands, voice, all_region_division_commands)
 
     def make_rhythm_region_expression(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
