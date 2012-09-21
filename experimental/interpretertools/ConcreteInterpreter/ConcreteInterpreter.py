@@ -1,5 +1,4 @@
 import copy
-import fractions
 from abjad.tools import *
 from experimental import divisiontools
 from experimental import helpertools
@@ -475,12 +474,12 @@ class ConcreteInterpreter(Interpreter):
             selection_start_offset = durationtools.Offset(0)
         if selection_stop_offset is None:
             selection_stop_offset = total_divisions
-        first_weight = fractions.Fraction(selection_start_offset)
+        first_weight = selection_start_offset
         second_weight = selection_stop_offset - selection_start_offset
-        second_weight = fractions.Fraction(second_weight)
+        second_weight = second_weight
         weights = [first_weight, second_weight]
         third_weight = total_divisions - selection_stop_offset
-        third_weight = fractions.Fraction(third_weight)
+        third_weight = third_weight
         if third_weight:
             weights.append(third_weight)
         #self._debug(weights, 'weights')
