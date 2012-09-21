@@ -116,6 +116,7 @@ Unstable packages (load manually)
 
    experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
    experimental/interpretertools/DivisionCommand/DivisionCommand
+   experimental/interpretertools/OffsetPositionedDivisionExpression/OffsetPositionedDivisionExpression
    experimental/interpretertools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    experimental/interpretertools/RhythmCommand/RhythmCommand
 

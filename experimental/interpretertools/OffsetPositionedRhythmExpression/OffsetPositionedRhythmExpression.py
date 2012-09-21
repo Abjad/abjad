@@ -34,13 +34,9 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
     ### INITIALIZER ###
 
     def __init__(self, music=None, start_offset=None, stop_offset=None):
+        OffsetPositionedExpression.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
         music = containertools.Container(music=music)
         self._music = music
-        if start_offset is None:
-            start_offset = durationtools.Offset(0)
-        else:
-            start_offset = durationtools.Offset(start_offset)
-        self._start_offset = start_offset
 
     ### SPECIAL METHODS ###
 
