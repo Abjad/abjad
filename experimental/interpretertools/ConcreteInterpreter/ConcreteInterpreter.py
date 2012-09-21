@@ -166,6 +166,15 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError(attribute)
 
+    def attribute_to_default_request(self, segment_specification, attribute):
+        from experimental import requesttools
+        if attribute == 'divisions':
+            return requesttools.AbsoluteRequest(segment_specification.time_signatures)
+        elif attribute == 'rhythm':
+            return requesttools.AbsoluteRequest(library.skip_filled_tokens) 
+        else:
+            raise NotImplementedError(attribute)
+
     def calculate_score_and_segment_durations(self):
         '''Set ``'segment_durations'`` property on score specification.
 
@@ -344,7 +353,7 @@ class ConcreteInterpreter(Interpreter):
         first_segment = self.get_start_segment_specification(0)
         for voice in voicetools.iterate_voices_in_expr(first_segment.score_model):
             #self._debug(voice, 'voice')
-            division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
+            division_commands = self.get_division_commands_for_voice(voice)
             division_commands = self.uninterpreted_division_commands_to_region_division_commands(
                 division_commands)
             division_commands = self.supply_missing_region_division_commands(
@@ -361,6 +370,20 @@ class ConcreteInterpreter(Interpreter):
             command = self.single_context_setting_to_command(single_context_setting, segment_specification)
             commands.append(command)
         return commands
+
+    def get_division_commands_for_voice(self, voice):
+        division_commands = []
+        for segment_specification in self.score_specification.segment_specifications:
+            raw_commands = self.get_commands_that_start_during_segment(
+                segment_specification, voice.name, 'divisions')
+            cooked_commands = self.sort_and_split_raw_commands(raw_commands)
+            if cooked_commands:
+                division_commands.extend(cooked_commands)
+            elif segment_specification.time_signatures:
+                command = self.make_default_command_for_segment_specification(
+                    segment_specification, 'divisions')
+                division_commands.append(command)
+        return division_commands
 
     def get_single_context_settings_that_start_during_segment(
         self, segment_specification, context_name, attribute, 
@@ -388,8 +411,8 @@ class ConcreteInterpreter(Interpreter):
             raw_commands = self.get_commands_that_start_during_segment(
                 segment_specification, voice.name, 'rhythm')
             #self._debug(raw_commands, 'raw')
-            default_command = self.make_default_rhythm_command_for_segment_specification(
-                segment_specification)
+            default_command = self.make_default_command_for_segment_specification(
+                segment_specification, 'rhythm')
             raw_commands.insert(0, default_command)
             #self._debug(raw_commands, 'raw')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
@@ -411,20 +434,6 @@ class ConcreteInterpreter(Interpreter):
         result = shards[1]
         result = [x.pair for x in result]
         return result
-
-    def get_uninterpreted_division_commands_for_voice(self, voice):
-        uninterpreted_division_commands = []
-        for segment_specification in self.score_specification.segment_specifications:
-            raw_commands = self.get_commands_that_start_during_segment(
-                segment_specification, voice.name, 'divisions')
-            cooked_commands = self.sort_and_split_raw_commands(raw_commands)
-            if cooked_commands:
-                uninterpreted_division_commands.extend(cooked_commands)
-            elif segment_specification.time_signatures:
-                command = self.make_default_uninterpreted_division_command_for_segment_specification(
-                    segment_specification)
-                uninterpreted_division_commands.append(command)
-        return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
         voice_division_list = self.score_specification.contexts[voice.name].get('voice_division_list')
@@ -479,37 +488,29 @@ class ConcreteInterpreter(Interpreter):
         divisions = divisions[1]
         return divisions
 
-    def make_default_rhythm_command_for_segment_specification(self, segment_specification):
+    def make_default_command_for_segment_specification(self, segment_specification, attribute):
         from experimental import interpretertools
-        return interpretertools.RhythmCommand(
-            requesttools.AbsoluteRequest(library.skip_filled_tokens), 
+        command_klass = self.attribute_to_command_klass(attribute)
+        request = self.attribute_to_default_request(segment_specification, attribute)
+        command = command_klass(
+            request, 
             segment_specification.segment_name,
             self.score_specification.score_name,
-            0,
-            segment_specification.duration,
+            durationtools.Offset(0),
+            durationtools.Offset(segment_specification.duration),
             segment_specification.duration,
             fresh=True
             )
-
-    def make_default_uninterpreted_division_command_for_segment_specification(self, segment_specification):
-        from experimental import interpretertools
-        return interpretertools.DivisionCommand(
-            requesttools.AbsoluteRequest(segment_specification.time_signatures),
-            segment_specification.segment_name,
-            self.score_specification.score_name,
-            0,
-            segment_specification.duration,
-            segment_specification.duration,
-            fresh=True, 
-            truncate=False
-            )
+        if attribute == 'divisions':
+            command._truncate = False
+        return command
 
     def make_division_region_division_lists(self):
         for voice in voicetools.iterate_voices_in_expr(self.score):
             self.make_division_region_division_lists_for_voice(voice)
 
     def make_division_region_division_lists_for_voice(self, voice):
-        uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
+        uninterpreted_division_commands = self.get_division_commands_for_voice(voice)
         #self._debug_values(uninterpreted_division_commands, 'udc')
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
