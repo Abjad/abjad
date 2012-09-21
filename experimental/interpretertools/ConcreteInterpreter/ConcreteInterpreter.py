@@ -344,7 +344,17 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(all_division_commands, 'all #0')
         return all_division_commands
 
-    def get_single_context_settings_by_context(self, segment_specification, attribute, context_name,
+    def get_commands_that_start_during_segment(self, segment_specification, context_name, attribute):
+        single_context_settings = self.get_single_context_settings_that_start_during_segment(
+            segment_specification, context_name, attribute, include_improper_parentage=True)
+        commands = []
+        for single_context_setting in single_context_settings:
+            command = self.single_context_setting_to_command(single_context_setting, segment_specification)
+            commands.append(command)
+        return commands
+
+    def get_single_context_settings_that_start_during_segment(
+        self, segment_specification, context_name, attribute, 
         include_improper_parentage=False):
         result = []
         context_names = [context_name]
@@ -366,8 +376,8 @@ class ConcreteInterpreter(Interpreter):
     def get_rhythm_commands_for_voice(self, voice):
         rhythm_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            raw_commands = self.get_rhythm_commands_that_start_during_segment(
-                segment_specification, voice.name)
+            raw_commands = self.get_commands_that_start_during_segment(
+                segment_specification, voice.name, 'rhythm')
             #self._debug(raw_commands, 'raw')
             default_command = self.make_default_rhythm_command_for_segment_specification(
                 segment_specification)
@@ -376,20 +386,6 @@ class ConcreteInterpreter(Interpreter):
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
             #self._debug(cooked_commands, 'cooked')
             rhythm_commands.extend(cooked_commands)
-        return rhythm_commands
-
-    def get_rhythm_commands_that_start_during_segment(self, segment_specification, context_name):
-        #self._debug(segment_specification, 'segment')
-        single_context_settings = self.get_single_context_settings_by_context(
-            segment_specification, 'rhythm', context_name, include_improper_parentage=True)
-        rhythm_commands = []
-        for single_context_setting in single_context_settings:
-            #self._debug(single_context_setting)
-            rhythm_command = \
-                self.single_context_setting_to_rhythm_command(
-                single_context_setting, segment_specification)
-            rhythm_commands.append(rhythm_command)
-        #print ''
         return rhythm_commands
 
     def get_start_segment_specification(self, expr):
@@ -410,29 +406,15 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_for_voice(self, voice):
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            raw_commands = self.get_uninterpreted_division_commands_that_start_during_segment(
-                segment_specification, voice.name)
+            raw_commands = self.get_commands_that_start_during_segment(
+                segment_specification, voice.name, 'divisions')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
             if cooked_commands:
                 uninterpreted_division_commands.extend(cooked_commands)
             elif segment_specification.time_signatures:
-                command = self.make_default_uninterpreted_division_command_for_segment_specification(segment_specification)
+                command = self.make_default_uninterpreted_division_command_for_segment_specification(
+                    segment_specification)
                 uninterpreted_division_commands.append(command)
-        return uninterpreted_division_commands
-
-    def get_uninterpreted_division_commands_that_start_during_segment(self, 
-        segment_specification, context_name):
-        #self._debug(segment_specification, 'segment')
-        single_context_settings = self.get_single_context_settings_by_context(
-            segment_specification, 'divisions', context_name, include_improper_parentage=True)
-        uninterpreted_division_commands = []
-        for single_context_setting in single_context_settings:
-            #self._debug(single_context_setting, 'rscs')
-            uninterpreted_division_command = \
-                self.single_context_setting_to_uninterpreted_division_command(
-                single_context_setting, segment_specification)
-            uninterpreted_division_commands.append(uninterpreted_division_command)
-        #print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -610,26 +592,6 @@ class ConcreteInterpreter(Interpreter):
         segment_specification._time_signatures = time_signatures[:]
         return time_signatures
 
-    def make_uninterpreted_division_command(
-        self, single_context_setting, segment_name, duration, start_offset, stop_offset):
-        from experimental import interpretertools
-        uninterpreted_division_command = interpretertools.DivisionCommand(
-            single_context_setting.request,
-            segment_name,
-            single_context_setting.context_name,
-            start_offset,
-            stop_offset,
-            duration,
-            index=single_context_setting.index,
-            count=single_context_setting.count,
-            reverse=single_context_setting.reverse,
-            rotation=single_context_setting.rotation,
-            callback=single_context_setting.callback,
-            fresh=single_context_setting.fresh,
-            truncate=single_context_setting.truncate
-            )
-        return uninterpreted_division_command
-
     def make_voice_division_lists(self):
         for voice in voicetools.iterate_voices_in_expr(self.score):
             self.make_voice_division_list_for_voice(voice)
@@ -770,8 +732,41 @@ class ConcreteInterpreter(Interpreter):
                 if element.context_name == context_name:
                     return element
 
-    def single_context_setting_to_rhythm_command(
-        self, single_context_setting, segment_specification):
+    # see if this can be one method that doesn't branch
+    def single_context_setting_to_command(self, single_context_setting, segment_specification):
+        if single_context_setting.attribute == 'divisions':
+            return self.single_context_setting_to_division_command(single_context_setting, segment_specification)
+        elif single_context_setting.attribute == 'rhythm':
+            return self.single_context_setting_to_rhythm_command(single_context_setting, segment_specification)
+        else:
+            raise NotImplementedError(single_context_setting.attribute)
+
+    def single_context_setting_to_division_command(self, single_context_setting, segment_specification):
+        from experimental import interpretertools
+        selector = single_context_setting.selector
+        assert selector.start_segment_identifier == segment_specification.segment_name
+        context_name = single_context_setting.context_name
+        duration = selector.get_duration(self.score_specification, context_name)
+        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
+        segment_name = segment_specification.segment_name
+        division_command = interpretertools.DivisionCommand(
+            single_context_setting.request,
+            segment_name,
+            single_context_setting.context_name,
+            start_offset,
+            stop_offset,
+            duration,
+            index=single_context_setting.index,
+            count=single_context_setting.count,
+            reverse=single_context_setting.reverse,
+            rotation=single_context_setting.rotation,
+            callback=single_context_setting.callback,
+            fresh=single_context_setting.fresh,
+            truncate=single_context_setting.truncate
+            )
+        return division_command
+
+    def single_context_setting_to_rhythm_command(self, single_context_setting, segment_specification):
         from experimental import interpretertools
         selector = single_context_setting.selector
         assert selector.start_segment_identifier == segment_specification.segment_name
@@ -793,21 +788,7 @@ class ConcreteInterpreter(Interpreter):
             callback=single_context_setting.callback,
             fresh=single_context_setting.fresh
             )
-        #self._debug(rhythm_command, 'rc')
         return rhythm_command
-
-    def single_context_setting_to_uninterpreted_division_command(
-        self, single_context_setting, segment_specification):
-        selector = single_context_setting.selector
-        assert selector.start_segment_identifier == segment_specification.segment_name
-        context_name = single_context_setting.context_name
-        duration = selector.get_duration(self.score_specification, context_name)
-        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
-        segment_name = segment_specification.segment_name
-        uninterpreted_division_command = self.make_uninterpreted_division_command(
-            single_context_setting, segment_name, duration, start_offset, stop_offset)
-        #self._debug(uninterpreted_division_command, 'udc')
-        return uninterpreted_division_command
 
     def sort_and_split_raw_commands(self, raw_commands):
         cooked_commands = []
