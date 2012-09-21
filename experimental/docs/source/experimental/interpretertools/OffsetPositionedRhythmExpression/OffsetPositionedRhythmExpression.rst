@@ -9,11 +9,17 @@ interpretertools.OffsetPositionedRhythmExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.duration
+
 .. autoattribute:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.music
 
 .. autoattribute:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.start_offset
 
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.interpretertools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
+
 .. autoattribute:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.stop_offset
+
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.interpretertools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
 .. autoattribute:: experimental.interpretertools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.storage_format
 

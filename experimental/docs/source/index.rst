@@ -107,6 +107,7 @@ Unstable packages (load manually)
 
    experimental/interpretertools/Command/Command
    experimental/interpretertools/Interpreter/Interpreter
+   experimental/interpretertools/OffsetPositionedExpression/OffsetPositionedExpression
 
 .. rubric:: concrete classes
 

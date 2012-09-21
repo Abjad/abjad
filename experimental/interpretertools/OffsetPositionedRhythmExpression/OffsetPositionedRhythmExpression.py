@@ -3,15 +3,16 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import spannertools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.interpretertools.OffsetPositionedExpression import OffsetPositionedExpression
 
 
-class OffsetPositionedRhythmExpression(AbjadObject):
+class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
     r'''.. versionadded:: 1.0
 
-    Rhythm expression.
+    Offset-positioned rhythm expression.
 
-    One voice of counttime components: tuplets, notes, rests and chords.
+    One voice of counttime components. 
+    Counttime components are tuplets, notes, rests and chords.
 
     The interpretive process of building up the rhythm for a complete
     voice of music involves the generation of many different rhythm expressions.
@@ -53,33 +54,20 @@ class OffsetPositionedRhythmExpression(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def duration(self):
+        '''Duration of rhythm expression.
+
+        Return duration.
+        '''
+        return self.music.prolated_duration
+
+    @property
     def music(self):
         '''Offset-positioned rhythm expression music.
 
         Return container.
         '''
         return self._music
-
-    @property
-    def start_offset(self):
-        '''Rhythm expression start offset.
-
-        Assigned at initialization during rhythm interpretation.
-
-        Return offset.
-        '''
-        return self._start_offset
-
-    @property
-    def stop_offset(self):
-        '''Rhythm expression stop offset.
-        
-        Defined equal to start offset plus 
-        prolated duration of rhythm expression
-
-        Return offset.
-        '''
-        return self.start_offset + self.music.prolated_duration
 
     ### PUBLIC METHODS ###
 

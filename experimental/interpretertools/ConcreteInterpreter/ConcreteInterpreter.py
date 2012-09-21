@@ -65,7 +65,7 @@ class ConcreteInterpreter(Interpreter):
     # TODO: The newer implementation here will probably replace the older one above.
 #    def add_division_lists_to_voices(self):
 #        self.initialize_division_region_expression_inventories()
-#        self.division_commands_to_division_region_expressions()
+#        self.make_offset_positioned_division_expressions()
 #        self.make_voice_division_lists()
 #        self.make_segment_division_lists()
 
