@@ -248,45 +248,6 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(absolute_request, absolute_request.payload)
         return divisions
 
-    def division_commands_to_region_division_commands(self, division_commands):
-        from experimental import interpretertools
-        if any([x.request is None for x in division_commands]) or not division_commands:
-            return []
-        region_division_commands = []
-        assert division_commands[0].fresh, repr(division_commands[0])
-        for division_command in division_commands:
-            if division_command.fresh or division_command.truncate:
-                region_division_command = copy.deepcopy(division_command)
-                region_division_commands.append(region_division_command)
-            else:
-                last_region_division_command = region_division_commands[-1]
-                if division_command.request != last_region_division_command.request or \
-                    last_region_division_command.truncate:
-                    region_division_command = copy.deepcopy(division_command)
-                    region_division_commands.append(region_division_command)
-                else:
-                    duration = last_region_division_command.duration + division_command.duration
-                    segment_start_offset = last_region_division_command.segment_start_offset
-                    segment_stop_offset = last_region_division_command.segment_stop_offset + \
-                        division_command.duration
-                    region_division_command = interpretertools.DivisionCommand(
-                        last_region_division_command.request,
-                        last_region_division_command.start_segment_identifier,
-                        division_command.context_name,
-                        segment_start_offset,
-                        segment_stop_offset,
-                        duration,
-                        index=last_region_division_command.index,
-                        count=last_region_division_command.count,
-                        reverse=last_region_division_command.reverse,
-                        rotation=last_region_division_command.rotation,
-                        callback=last_region_division_command.callback,
-                        fresh=last_region_division_command.fresh,
-                        truncate=division_command.truncate
-                        )
-                    region_division_commands[-1] = region_division_command
-        return region_division_commands
-
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
@@ -374,6 +335,43 @@ class ConcreteInterpreter(Interpreter):
             segment_division_lists.append(segment_division_list)
         return segment_division_lists
 
+    def fuse_like_division_commands(self, division_commands):
+        from experimental import interpretertools
+        if any([x.request is None for x in division_commands]) or not division_commands:
+            return []
+        result = []
+        assert division_commands[0].fresh, repr(division_commands[0])
+        for division_command in division_commands:
+            if division_command.fresh or division_command.truncate:
+                result.append(copy.deepcopy(division_command))
+            else:
+                last_division_command = result[-1]
+                if division_command.request != last_division_command.request or \
+                    last_division_command.truncate:
+                    result.append(copy.deepcopy(division_command))
+                else:
+                    duration = last_division_command.duration + division_command.duration
+                    segment_start_offset = last_division_command.segment_start_offset
+                    segment_stop_offset = last_division_command.segment_stop_offset + \
+                        division_command.duration
+                    division_command = interpretertools.DivisionCommand(
+                        last_division_command.request,
+                        last_division_command.start_segment_identifier,
+                        division_command.context_name,
+                        segment_start_offset,
+                        segment_stop_offset,
+                        duration,
+                        index=last_division_command.index,
+                        count=last_division_command.count,
+                        reverse=last_division_command.reverse,
+                        rotation=last_division_command.rotation,
+                        callback=last_division_command.callback,
+                        fresh=last_division_command.fresh,
+                        truncate=division_command.truncate
+                        )
+                    result[-1] = division_command
+        return result
+
     def fuse_like_rhythm_commands(self, rhythm_commands):
         if not rhythm_commands:
             return []
@@ -409,19 +407,18 @@ class ConcreteInterpreter(Interpreter):
         return division_commands
 
     def get_region_division_commands_for_all_voices(self):
-        all_division_commands = []
+        all_region_division_commands = []
         if not self.score_specification.segment_specifications:
-            return all_division_commands
+            return all_region_division_commands
         first_segment = self.get_start_segment_specification(0)
         for voice in voicetools.iterate_voices_in_expr(first_segment.score_model):
             #self._debug(voice, 'voice')
             division_commands = self.get_division_commands_for_voice(voice)
-            division_commands = self.division_commands_to_region_division_commands(division_commands)
-            division_commands = self.supply_missing_region_division_commands(
-                division_commands, voice)
-            all_division_commands.extend(division_commands)
-        #self._debug(all_division_commands, 'all #0')
-        return all_division_commands
+            division_commands = self.fuse_like_division_commands(division_commands)
+            division_commands = self.supply_missing_division_commands(division_commands, voice)
+            all_region_division_commands.extend(division_commands)
+        #self._debug(all_region_division_commands, 'all region division commands')
+        return all_region_division_commands
 
     def get_rhythm_commands_for_score(self):
         score_rhythm_commands = []
@@ -547,17 +544,18 @@ class ConcreteInterpreter(Interpreter):
         for voice in voicetools.iterate_voices_in_expr(self.score):
             self.make_division_region_division_lists_for_voice(voice)
 
+    # NEXT: continue streamlining this method and flatten the O(n**2) part
     def make_division_region_division_lists_for_voice(self, voice):
         division_commands = self.get_division_commands_for_voice(voice)
         #self._debug_values(division_commands, 'division commands')
-        region_division_commands = self.division_commands_to_region_division_commands(division_commands)
-        #self._debug_values(region_division_commands, 'region division commands')
-        region_division_commands = self.supply_missing_region_division_commands(region_division_commands, voice)
+        division_commands = self.fuse_like_division_commands(division_commands)
+        #self._debug_values(division_commands, 'division commands')
+        division_commands = self.supply_missing_division_commands(division_commands, voice)
         #self._debug_values(region_division_commands, 'region division commands')
         all_region_division_commands = self.get_region_division_commands_for_all_voices()
         #self._debug(all_region_division_commands, 'all region division commands')
         self.region_division_commands_to_division_region_division_lists(
-            region_division_commands, voice, all_region_division_commands)
+            division_commands, voice, all_region_division_commands)
 
     def make_rhythm_region_expression(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
@@ -696,7 +694,7 @@ class ConcreteInterpreter(Interpreter):
 
     def region_division_commands_to_division_region_division_lists(self, 
         region_division_commands, voice, all_region_division_commands):
-        #self._debug(all_region_division_commands, 'all #2')
+        #self._debug(all_region_division_commands, 'all region division commands)
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
         for region_division_command in region_division_commands:
             #self._debug(region_division_command, 'rdc')
@@ -943,7 +941,7 @@ class ConcreteInterpreter(Interpreter):
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting_by_context(setting, clear_persistent_first=True)
 
-    def supply_missing_region_division_commands(self, region_division_commands, voice):
+    def supply_missing_division_commands(self, region_division_commands, voice):
         from experimental import interpretertools
         #self._debug_values(region_division_commands, 'rdc')
         if not region_division_commands:
