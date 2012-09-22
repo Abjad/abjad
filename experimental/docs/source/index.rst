@@ -106,7 +106,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/Interpreter/Interpreter
-   experimental/interpretertools/OffsetPositionedExpression/OffsetPositionedExpression
 
 .. rubric:: concrete classes
 
@@ -114,8 +113,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
-   experimental/interpretertools/OffsetPositionedDivisionExpression/OffsetPositionedDivisionExpression
-   experimental/interpretertools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
 
 :py:mod:`lyrictools <experimental.lyrictools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -269,6 +266,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/settingtools/Command/Command
+   experimental/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    experimental/settingtools/Setting/Setting
 
 .. rubric:: concrete classes
@@ -279,6 +277,8 @@ Unstable packages (load manually)
    experimental/settingtools/DivisionCommand/DivisionCommand
    experimental/settingtools/MultipleContextSetting/MultipleContextSetting
    experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
+   experimental/settingtools/OffsetPositionedDivisionExpression/OffsetPositionedDivisionExpression
+   experimental/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    experimental/settingtools/RhythmCommand/RhythmCommand
    experimental/settingtools/SingleContextSetting/SingleContextSetting
    experimental/settingtools/SingleContextSettingInventory/SingleContextSettingInventory

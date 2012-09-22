@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import spannertools
-from experimental.interpretertools.OffsetPositionedExpression import OffsetPositionedExpression
+from experimental.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
 
 class OffsetPositionedRhythmExpression(OffsetPositionedExpression):

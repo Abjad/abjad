@@ -158,7 +158,6 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def attribute_to_command_klass(self, attribute):
-        from experimental import interpretertools
         if attribute == 'divisions':
             return settingtools.DivisionCommand
         elif attribute == 'rhythm':
@@ -336,7 +335,6 @@ class ConcreteInterpreter(Interpreter):
         return segment_division_lists
 
     def fuse_like_division_commands(self, division_commands):
-        from experimental import interpretertools
         if any([x.request is None for x in division_commands]) or not division_commands:
             return []
         result = []
@@ -523,7 +521,6 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
-        from experimental import interpretertools
         command_klass = self.attribute_to_command_klass(attribute)
         request = self.attribute_to_default_request(segment_specification, attribute)
         command = command_klass(
@@ -543,17 +540,17 @@ class ConcreteInterpreter(Interpreter):
         all_region_division_commands = self.get_region_division_commands_for_all_voices()
         #self._debug_values(all_region_division_commands, 'all region division commands')
         for voice in voicetools.iterate_voices_in_expr(self.score):
-            region_division_commands = self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS']
+            region_division_commands = \
+                self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS']
             self.region_division_commands_to_division_region_division_lists(
                 region_division_commands, voice, all_region_division_commands)
 
     def make_rhythm_region_expression(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
-        from experimental import interpretertools
         if rhythm_region_division_list:
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-            rhythm_region_expression = interpretertools.OffsetPositionedRhythmExpression(
+            rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
                 rhythm_containers, start_offset=start_offset)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
@@ -587,7 +584,6 @@ class ConcreteInterpreter(Interpreter):
         self.add_segment_division_lists_to_voice(voice, segment_division_lists)
 
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
-        from experimental import interpretertools
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
         duration = stop_offset - start_offset
@@ -708,7 +704,6 @@ class ConcreteInterpreter(Interpreter):
 
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):
-        from experimental import interpretertools
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
         #self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
@@ -725,7 +720,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)
         self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
-        result = interpretertools.OffsetPositionedRhythmExpression(start_offset=start_offset)
+        result = settingtools.OffsetPositionedRhythmExpression(start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
@@ -930,7 +925,6 @@ class ConcreteInterpreter(Interpreter):
             self.store_single_context_setting_by_context(setting, clear_persistent_first=True)
 
     def supply_missing_division_commands(self, region_division_commands, voice):
-        from experimental import interpretertools
         #self._debug_values(region_division_commands, 'rdc')
         if not region_division_commands:
             return region_division_commands
