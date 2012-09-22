@@ -9,8 +9,10 @@ from experimental import timespaninequalitytools
 class Command(AbjadObject):
     '''.. versionadded:: 1.0
 
-    Abstract command indicating durated period of time 
-    to which an evaluated request will apply.
+    Command indicating period of time to which request will apply.
+
+    Composers do not create commands because command arise
+    as a byproduct of interpretation.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -20,7 +22,8 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     def __init__(self, request, context_name, start_segment_identifier, 
-        segment_start_offset, segment_stop_offset, duration, 
+        segment_start_offset, segment_stop_offset, 
+        duration, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
@@ -104,6 +107,9 @@ class Command(AbjadObject):
             
         Return duration.
         ''' 
+        #assert self._duration == (self.segment_stop_offset - self.segment_start_offset), (
+        #    self._duration, self.segment_stop_offset, self.segment_start_offset)
+        #return self.segment_stop_offset - self.segment_start_offset
         return self._duration
 
     @property
@@ -170,6 +176,16 @@ class Command(AbjadObject):
         Return offset.
         '''
         return self._segment_stop_offset
+
+    @property
+    def start_offset(self):
+        raise NotImplementedError('working on this one now.')
+        return self._start_offset
+
+    @property
+    def stop_offset(self):
+        raise NotImplementedError('working on this one now.')
+        return self._stop_offset
 
     @property
     def vector(self):

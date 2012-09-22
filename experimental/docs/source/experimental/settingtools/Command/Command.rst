@@ -33,7 +33,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.segment_stop_offset
 
+.. autoattribute:: experimental.settingtools.Command.Command.Command.start_offset
+
 .. autoattribute:: experimental.settingtools.Command.Command.Command.start_segment_identifier
+
+.. autoattribute:: experimental.settingtools.Command.Command.Command.stop_offset
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.storage_format
 

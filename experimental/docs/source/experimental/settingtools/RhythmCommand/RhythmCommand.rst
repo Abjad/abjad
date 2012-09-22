@@ -55,7 +55,15 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
+.. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.start_offset
+
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 .. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.start_segment_identifier
+
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
+.. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.stop_offset
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
