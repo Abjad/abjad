@@ -929,7 +929,7 @@ class ConcreteInterpreter(Interpreter):
         if not region_division_commands:
             return region_division_commands
         first_start_offset_in_score = \
-            self.score_specification.segment_name_and_segment_offset_to_score_offset(
+            self.score_specification.segment_offset_to_score_offset(
             region_division_commands[0].start_segment_identifier,
             region_division_commands[0].segment_start_offset)
         if not first_start_offset_in_score == self.score_specification.start_offset:
@@ -937,7 +937,7 @@ class ConcreteInterpreter(Interpreter):
                 voice, self.score_specification.start_offset, first_start_offset_in_score)
             region_division_commands.insert(0, region_division_command)
         last_stop_offset_in_score = \
-            self.score_specification.segment_name_and_segment_offset_to_score_offset(
+            self.score_specification.segment_offset_to_score_offset(
             region_division_commands[-1].start_segment_identifier,
             region_division_commands[-1].segment_stop_offset)
         if not last_stop_offset_in_score == self.score_specification.stop_offset:
@@ -951,11 +951,11 @@ class ConcreteInterpreter(Interpreter):
         for left_region_division_command, right_region_division_command in \
             sequencetools.iterate_sequence_pairwise_strict(region_division_commands):
             left_stop_offset_in_score = \
-                self.score_specification.segment_name_and_segment_offset_to_score_offset(
+                self.score_specification.segment_offset_to_score_offset(
                 left_region_division_command.start_segment_identifier,
                 left_region_division_command.segment_stop_offset)
             right_start_offset_in_score = \
-                self.score_specification.segment_name_and_segment_offset_to_score_offset(
+                self.score_specification.segment_offset_to_score_offset(
                 right_region_division_command.start_segment_identifier,
                 right_region_division_command.segment_start_offset)
             #self._debug((left_stop_offset_in_score, right_start_offset_in_score), 'offsets')

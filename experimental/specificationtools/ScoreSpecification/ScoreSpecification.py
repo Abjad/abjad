@@ -444,7 +444,7 @@ class ScoreSpecification(Specification):
             'time_signatures', context_name=context_name, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def segment_name_and_segment_offset_to_score_offset(self, segment_name, segment_offset):
+    def segment_offset_to_score_offset(self, segment_name, segment_offset):
         r'''Change `segment_name` and `segment_offset` to score offset.
 
         If segment offset ``(7, 8)`` is in segment ``'blue'``, how far from the
@@ -455,6 +455,30 @@ class ScoreSpecification(Specification):
         segment_start_offset, segment_stop_offset = self.segment_name_to_segment_offsets(segment_name)
         score_offset = segment_start_offset + segment_offset
         return score_offset
+
+    def segment_offsets_to_score_offsets(self,
+        segment_identifier, segment_start_offset=None, segment_stop_offset=None):
+        '''Change `segment_start_offset` and `segment_stop_offset`
+        to score start offset and score stop offset.
+
+        .. note:: Add example.
+
+        Return pair.
+        '''
+        if segment_start_offset is not None:
+            start_offset = self.segment_offset_to_score_offset(
+                segment_identifier, segment_start_offset)
+        else:
+            start_offset = None
+        if segment_stop_offset is not None:
+            stop_offset = self.segment_offset_to_score_offset(
+                segment_identifier, segment_stop_offset)
+        else:
+            stop_offset = None
+        return start_offset, stop_offset
+
+    def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
+        raise NotImplementedError('implement this at some point.')
 
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
