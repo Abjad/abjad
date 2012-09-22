@@ -86,6 +86,8 @@ Methods
 
 .. automethod:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.fuse
 
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 Special Methods
 ---------------
 

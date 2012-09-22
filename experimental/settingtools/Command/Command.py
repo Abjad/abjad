@@ -1,4 +1,5 @@
 import abc
+import copy
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools 
@@ -225,6 +226,19 @@ class Command(AbjadObject):
     def can_fuse(self, expr):
         pass
 
-    @abc.abstractmethod
     def fuse(self, command):
-        pass
+        '''Fuse `command` to the end of self.
+
+        Return newly constructed division command.
+
+        Raise exception when self can not fuse with `division_command`.
+        '''
+        assert self.can_fuse(command)
+        stop_offset = self.stop_offset + command.duration
+        segment_stop_offset = self.segment_stop_offset + command.duration
+        duration = self.duration + command.duration
+        fused_command = copy.deepcopy(self)
+        fused_command._stop_offset = stop_offset
+        fused_command._segment_stop_offset = segment_stop_offset
+        fused_command._duration = duration 
+        return fused_command

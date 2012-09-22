@@ -52,21 +52,3 @@ class DivisionCommand(Command):
         if expr.request != self.request:
             return False
         return True
-
-    def fuse(self, command):
-        '''Fuse `command` to the end of self.
-
-        Return newly constructed division command.
-
-        Raise exception when self can not fuse with `division_command`.
-        '''
-        assert self.can_fuse(command)
-        stop_offset = self.stop_offset + command.duration
-        segment_stop_offset = self.segment_stop_offset + command.duration
-        duration = self.duration + command.duration
-        fused_division_command = copy.deepcopy(self)
-        fused_division_command._stop_offset = stop_offset
-        fused_division_command._segment_stop_offset = segment_stop_offset
-        fused_division_command._duration = duration
-        fused_division_command._truncate = command.truncate
-        return fused_division_command

@@ -88,6 +88,8 @@ Methods
 
 .. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fuse
 
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 Special Methods
 ---------------
 

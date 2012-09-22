@@ -28,9 +28,3 @@ class RhythmCommand(Command):
         if expr.request != self.request:
             return False
         return True
-
-    def fuse(self, command):
-        assert self.can_fuse(command)
-        fused_command = copy.deepcopy(self)
-        fused_command._duration += command.duration
-        return fused_command
