@@ -524,14 +524,19 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
-        command_klass = self.attribute_to_command_klass(attribute)
         request = self.attribute_to_default_request(segment_specification, attribute)
+        segment_start_offset = durationtools.Offset(0)
+        segment_stop_offset = durationtools.Offset(segment_specification.duration)
+        start_offset, stop_offset = self.score_specification.segment_offsets_to_score_offsets(
+            segment_specification.segment_name,
+            segment_start_offset, segment_stop_offset) 
+        command_klass = self.attribute_to_command_klass(attribute)
         command = command_klass(
             request, 
             self.score_specification.score_name,
             segment_specification.segment_name,
-            durationtools.Offset(0),
-            durationtools.Offset(segment_specification.duration),
+            segment_start_offset,
+            segment_stop_offset,
             segment_specification.duration,
             fresh=True
             )
@@ -767,16 +772,20 @@ class ConcreteInterpreter(Interpreter):
         selector = single_context_setting.selector
         assert selector.start_segment_identifier == segment_specification.segment_name
         context_name = single_context_setting.context_name
-        duration = selector.get_duration(self.score_specification, context_name)
-        start_offset, stop_offset = selector.get_segment_offsets(self.score_specification, context_name)
         segment_name = segment_specification.segment_name
+        segment_start_offset, segment_stop_offset = \
+            selector.get_segment_offsets(self.score_specification, context_name)
+        duration = selector.get_duration(self.score_specification, context_name)
+        start_offset, stop_offset = self.score_specification.segment_offsets_to_score_offsets(
+            segment_specification.segment_name,
+            segment_start_offset, segment_stop_offset) 
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
             single_context_setting.context_name,
             segment_name,
-            start_offset,
-            stop_offset,
+            segment_start_offset,
+            segment_stop_offset,
             duration,
             index=single_context_setting.index,
             count=single_context_setting.count,
