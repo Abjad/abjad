@@ -64,7 +64,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice_division_list, 'vdl')
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rcs')
-        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
+        rhythm_commands = self.fuse_like_commands(rhythm_commands)
         #self._debug_values(rhythm_commands, 'rcs')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcds')
@@ -334,28 +334,16 @@ class ConcreteInterpreter(Interpreter):
             segment_division_lists.append(segment_division_list)
         return segment_division_lists
 
-    def fuse_like_division_commands(self, division_commands):
-        if any([x.request is None for x in division_commands]) or not division_commands:
+    def fuse_like_commands(self, commands):
+        if any([x.request is None for x in commands]) or not commands:
             return []
-        assert division_commands[0].fresh, repr(division_commands[0])
-        result = [copy.deepcopy(division_commands[0])]
-        for division_command in division_commands[1:]:
-            if result[-1].can_fuse(division_command):
-                result[-1] = result[-1].fuse(division_command)
+        assert commands[0].fresh, repr(commands[0])
+        result = [copy.deepcopy(commands[0])]
+        for command in commands[1:]:
+            if result[-1].can_fuse(command):
+                result[-1] = result[-1].fuse(command)
             else:
-                result.append(copy.deepcopy(division_command))
-        return result
-
-    def fuse_like_rhythm_commands(self, rhythm_commands):
-        if any([x.request is None for x in rhythm_commands]) or not rhythm_commands:
-            return []
-        assert rhythm_commands[0].fresh, repr(rhythm_commands[0])
-        result = [copy.deepcopy(rhythm_commands[0])]
-        for rhythm_command in rhythm_commands[1:]:
-            if result[-1].can_fuse(rhythm_command):
-                result[-1] = result[-1].fuse(rhythm_command)
-            else:
-                result.append(copy.deepcopy(rhythm_command))
+                result.append(copy.deepcopy(command))
         return result
 
     def get_commands_that_start_during_segment(self, segment_specification, context_name, attribute):
@@ -387,7 +375,7 @@ class ConcreteInterpreter(Interpreter):
             return all_region_division_commands
         for voice in voicetools.iterate_voices_in_expr(self.score):
             division_commands = self.get_division_commands_for_voice(voice)
-            division_commands = self.fuse_like_division_commands(division_commands)
+            division_commands = self.fuse_like_commands(division_commands)
             division_commands = self.supply_missing_division_commands(division_commands, voice)
             self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS'] = division_commands[:]
             all_region_division_commands.extend(division_commands)
