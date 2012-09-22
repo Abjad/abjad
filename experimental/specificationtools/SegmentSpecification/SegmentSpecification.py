@@ -294,9 +294,9 @@ class SegmentSpecification(Specification):
                 >>> segment.time_signatures
                 []
 
-        Return list.
+        Return list of zero or more nonreduced fractions.
         '''
-        return self._time_signatures
+        return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
     @property
     def timespan(self):

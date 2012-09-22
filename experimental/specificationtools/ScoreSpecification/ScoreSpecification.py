@@ -244,11 +244,10 @@ class ScoreSpecification(Specification):
             >>> score_specification.time_signatures
             []
 
-        Return list of zero or more time signatures.
+        Return list of zero or more nonreduced fractions.
         '''
         result = []
         for segment_specification in self.segment_specifications:
-            time_signatures = segment_specification.time_signatures
             result.extend(segment_specification.time_signatures)
         return result
 

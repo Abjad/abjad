@@ -37,9 +37,6 @@ def test_multiple_segment_quartet_01():
 
     score = score_specification.interpret()
 
-    assert score_specification['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
-    assert score_specification['T2'].time_signatures == [(2, 8), (2, 8)]
-
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
@@ -70,9 +67,6 @@ def test_multiple_segment_quartet_02():
     segment.set_time_signatures(source, index=-2, count=2)
 
     score = score_specification.interpret()
-
-    assert score_specification['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
-    assert score_specification['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)

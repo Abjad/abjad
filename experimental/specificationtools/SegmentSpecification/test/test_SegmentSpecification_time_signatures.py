@@ -14,4 +14,4 @@ def test_SegmentSpecification_time_signatures_01():
     assert segment.time_signatures == []
 
     score = score_specification.interpret()
-    assert segment.time_signatures == [(4, 8), (3, 8)]
+    assert segment.time_signatures == [mathtools.NonreducedFraction(x) for x in [(4, 8), (3, 8)]]

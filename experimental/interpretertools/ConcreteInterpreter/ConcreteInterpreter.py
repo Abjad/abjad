@@ -352,6 +352,10 @@ class ConcreteInterpreter(Interpreter):
                     segment_start_offset = last_division_command.segment_start_offset
                     segment_stop_offset = last_division_command.segment_stop_offset + \
                         division_command.duration
+                    start_offset, stop_offset = \
+                        self.score_specification.segment_offsets_to_score_offsets(
+                        last_division_command.start_segment_identifier, 
+                        segment_start_offset, segment_stop_offset) 
                     division_command = settingtools.DivisionCommand(
                         last_division_command.request,
                         division_command.context_name,
@@ -455,9 +459,8 @@ class ConcreteInterpreter(Interpreter):
         return self.score_specification.get_start_segment_specification(expr)
 
     def get_time_signature_slice(self, start_offset, stop_offset):
-        assert self.score_specification.time_signatures
         time_signatures = self.score_specification.time_signatures
-        time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
+        assert time_signatures
         slice_duration = stop_offset - start_offset
         weights = [start_offset, slice_duration]
         shards = sequencetools.split_sequence_by_weights(
@@ -587,6 +590,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
         duration = stop_offset - start_offset
+        # NOTE: look slike start_offset and stop_offset are already score-relative
         division_command = settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice.name, 
