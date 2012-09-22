@@ -86,6 +86,8 @@ Methods
 
 .. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.can_fuse
 
+.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fuse
+
 Special Methods
 ---------------
 

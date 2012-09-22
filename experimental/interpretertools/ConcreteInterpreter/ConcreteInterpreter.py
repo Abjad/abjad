@@ -341,25 +341,11 @@ class ConcreteInterpreter(Interpreter):
         result = [copy.deepcopy(division_commands[0])]
         for division_command in division_commands[1:]:
             last_division_command = result[-1]
-            if not last_division_command.can_fuse(division_command):
-                result.append(copy.deepcopy(division_command))
+            if last_division_command.can_fuse(division_command):
+                fused_division_command = last_division_command.fuse(division_command)
+                result[-1] = fused_division_command
             else:
-                segment_start_offset = last_division_command.segment_start_offset
-                segment_stop_offset = last_division_command.segment_stop_offset + \
-                    division_command.duration
-                duration = last_division_command.duration + division_command.duration
-                start_offset, stop_offset = \
-                    self.score_specification.segment_offsets_to_score_offsets(
-                    last_division_command.start_segment_identifier, 
-                    segment_start_offset, segment_stop_offset) 
-                new_division_command = copy.deepcopy(last_division_command)
-                new_division_command._start_offset = start_offset
-                new_division_command._stop_offset = stop_offset
-                new_division_command._segment_start_offset = segment_start_offset
-                new_division_command._segment_stop_offset = segment_stop_offset
-                new_division_command._duration = duration
-                new_division_command._truncate = division_command.truncate
-                result[-1] = new_division_command
+                result.append(copy.deepcopy(division_command))
         return result
 
     def fuse_like_rhythm_commands(self, rhythm_commands):
