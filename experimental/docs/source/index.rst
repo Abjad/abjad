@@ -105,7 +105,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/Command/Command
    experimental/interpretertools/Interpreter/Interpreter
    experimental/interpretertools/OffsetPositionedExpression/OffsetPositionedExpression
 
@@ -115,10 +114,8 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
-   experimental/interpretertools/DivisionCommand/DivisionCommand
    experimental/interpretertools/OffsetPositionedDivisionExpression/OffsetPositionedDivisionExpression
    experimental/interpretertools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
-   experimental/interpretertools/RhythmCommand/RhythmCommand
 
 :py:mod:`lyrictools <experimental.lyrictools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -271,6 +268,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/settingtools/Command/Command
    experimental/settingtools/Setting/Setting
 
 .. rubric:: concrete classes
@@ -278,8 +276,10 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/settingtools/DivisionCommand/DivisionCommand
    experimental/settingtools/MultipleContextSetting/MultipleContextSetting
    experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
+   experimental/settingtools/RhythmCommand/RhythmCommand
    experimental/settingtools/SingleContextSetting/SingleContextSetting
    experimental/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 

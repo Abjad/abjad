@@ -25,7 +25,7 @@ def apply_request_transforms(request, payload):
     request_klasses = (
         requesttools.Request, 
         settingtools.Setting, 
-        interpretertools.Command,
+        settingtools.Command,
         )
 
     assert isinstance(request, request_klasses), repr(request)

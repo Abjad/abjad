@@ -160,9 +160,9 @@ class ConcreteInterpreter(Interpreter):
     def attribute_to_command_klass(self, attribute):
         from experimental import interpretertools
         if attribute == 'divisions':
-            return interpretertools.DivisionCommand
+            return settingtools.DivisionCommand
         elif attribute == 'rhythm':
-            return interpretertools.RhythmCommand
+            return settingtools.RhythmCommand
         else:
             raise NotImplementedError(attribute)
 
@@ -354,7 +354,7 @@ class ConcreteInterpreter(Interpreter):
                     segment_start_offset = last_division_command.segment_start_offset
                     segment_stop_offset = last_division_command.segment_stop_offset + \
                         division_command.duration
-                    division_command = interpretertools.DivisionCommand(
+                    division_command = settingtools.DivisionCommand(
                         last_division_command.request,
                         division_command.context_name,
                         last_division_command.start_segment_identifier,
@@ -591,7 +591,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
         duration = stop_offset - start_offset
-        division_command = interpretertools.DivisionCommand(
+        division_command = settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice.name, 
             segment_identifier,

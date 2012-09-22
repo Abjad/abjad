@@ -1,4 +1,4 @@
-from experimental.interpretertools.Command import Command
+from experimental.settingtools.Command import Command
 
 
 class DivisionCommand(Command):
