@@ -21,14 +21,14 @@ def get_nth_namesake_from_component(component, n):
 
     Return component or none.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import iterationtools
 
     if 0 <= n:
-        for i, namesake in enumerate(componenttools.iterate_namesakes_from_component(component)):
+        for i, namesake in enumerate(iterationtools.iterate_namesakes_from_component(component)):
             if i == n:
                 return namesake
     else:
         n = abs(n)
-        for i, namesake in enumerate(componenttools.iterate_namesakes_from_component(component, reverse=True)):
+        for i, namesake in enumerate(iterationtools.iterate_namesakes_from_component(component, reverse=True)):
             if i == n:
                 return namesake

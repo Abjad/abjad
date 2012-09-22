@@ -382,7 +382,7 @@ class Spanner(AbjadObject):
         result = []
         for component in self._components:
             # EXPERIMENTAL: expand to allow staff-level spanner eventually #
-            for node in componenttools.iterate_components_depth_first(component):
+            for node in iterationtools.iterate_components_depth_first(component):
                 if isinstance(node, leaftools.Leaf):
                     result.append(node)
         result = tuple(result)

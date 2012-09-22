@@ -28,7 +28,7 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in componenttools.iterate_timeline_in_expr(score):
+        >>> for leaf in iterationtools.iterate_timeline_in_expr(score):
         ...     leaf
         ...
         Note("c'4")
@@ -44,7 +44,7 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in componenttools.iterate_timeline_in_expr(score, reverse=True):
+        >>> for leaf in iterationtools.iterate_timeline_in_expr(score, reverse=True):
         ...     leaf
         ...
         Note("f'4")

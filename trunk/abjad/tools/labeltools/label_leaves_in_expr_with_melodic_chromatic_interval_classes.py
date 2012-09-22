@@ -34,7 +34,7 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
     """
 
     for note in iterationtools.iterate_notes_in_expr(expr):
-        thread_iterator = componenttools.iterate_thread_from_component(note, leaftools.Leaf)
+        thread_iterator = iterationtools.iterate_thread_from_component(note, leaftools.Leaf)
         try:
             thread_iterator.next()
             next_leaf = thread_iterator.next()

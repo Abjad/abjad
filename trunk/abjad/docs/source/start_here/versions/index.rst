@@ -831,7 +831,7 @@ Changes to end-user functionality:
     componenttools.iterate_thread_backward_from_component()
     componenttools.iterate_thread_backward_in_expr()
     componenttools.iterate_thread_forward_from_component()
-    componenttools.iterate_thread_in_expr()
+    iterationtools.iterate_thread_in_expr()
     componenttools.component_to_containment_signature()
 
 - Removed the read-only ``Component.marks`` property entirely.

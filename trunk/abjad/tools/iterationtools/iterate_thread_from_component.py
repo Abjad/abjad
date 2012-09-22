@@ -38,7 +38,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
 
     Starting from the first leaf in score. ::
 
-        >>> for x in componenttools.iterate_thread_from_component(staff.leaves[0], Note):
+        >>> for x in iterationtools.iterate_thread_from_component(staff.leaves[0], Note):
         ...     x
         ...
         Note("c'8")
@@ -48,7 +48,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
 
     Starting from the second leaf in score. ::
 
-        >>> for x in componenttools.iterate_thread_from_component(staff.leaves[1], Note):
+        >>> for x in iterationtools.iterate_thread_from_component(staff.leaves[1], Note):
         ...     x
         ...
         Note("d'8")
@@ -57,7 +57,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
 
     Yield all components in thread. ::
 
-        >>> for x in componenttools.iterate_thread_from_component(staff.leaves[0]):
+        >>> for x in iterationtools.iterate_thread_from_component(staff.leaves[0]):
         ...     x
         ...
         Note("c'8")
@@ -70,7 +70,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
     Iterate thread backward from `component` and yield instances of `klass`,
     starting from the last leaf in score. ::
 
-        >>> for x in componenttools.iterate_thread_from_component(staff.leaves[-1], Note, reverse=True):
+        >>> for x in iterationtools.iterate_thread_from_component(staff.leaves[-1], Note, reverse=True):
         ...     x
         Note("c''8")
         Note("b'8")
@@ -79,7 +79,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
 
     Yield all components in thread::
 
-        >>> for x in componenttools.iterate_thread_from_component(staff.leaves[-1], reverse=True):
+        >>> for x in iterationtools.iterate_thread_from_component(staff.leaves[-1], reverse=True):
         ...     x
         Note("c''8")
         Voice-"voice 2"{2}
@@ -91,6 +91,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
     Return generator.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
 
     # set default class
     if klass is None:
@@ -101,12 +102,12 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
 
     # iterate component depth-first allowing to crawl UP into score
     if not reverse:
-        for x in componenttools.iterate_components_depth_first(component, capped=False):
+        for x in iterationtools.iterate_components_depth_first(component, capped=False):
             if isinstance(x, klass):
                 if componenttools.component_to_containment_signature(x) == component_thread_signature:
                     yield x
     else:
-        for x in componenttools.iterate_components_depth_first(component, capped=False, direction='right'):
+        for x in iterationtools.iterate_components_depth_first(component, capped=False, direction='right'):
             if isinstance(x, klass):
                 if componenttools.component_to_containment_signature(x) == component_thread_signature:
                     yield x

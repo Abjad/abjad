@@ -140,12 +140,6 @@ Composition packages
    tools/componenttools/is_immediate_temporal_successor_of_component
    tools/componenttools/is_orphan_component
    tools/componenttools/is_well_formed_component
-   tools/componenttools/iterate_components_depth_first
-   tools/componenttools/iterate_namesakes_from_component
-   tools/componenttools/iterate_thread_from_component
-   tools/componenttools/iterate_thread_in_expr
-   tools/componenttools/iterate_timeline_from_component
-   tools/componenttools/iterate_timeline_in_expr
    tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
@@ -202,7 +196,6 @@ Composition packages
    tools/containertools/get_first_element_starting_strictly_after_offset
    tools/containertools/get_first_element_starting_strictly_before_offset
    tools/containertools/insert_component
-   tools/containertools/iterate_containers_in_expr
    tools/containertools/move_parentage_children_and_spanners_from_components_to_empty_container
    tools/containertools/remove_leafless_containers_in_expr
    tools/containertools/repeat_contents_of_container
@@ -283,7 +276,6 @@ Composition packages
    tools/contexttools/is_component_with_staff_change_mark_attached
    tools/contexttools/is_component_with_tempo_mark_attached
    tools/contexttools/is_component_with_time_signature_mark_attached
-   tools/contexttools/iterate_contexts_in_expr
    tools/contexttools/list_clef_names
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
@@ -478,11 +470,26 @@ Composition packages
    :maxdepth: 1
 
    tools/iterationtools/iterate_chords_in_expr
+   tools/iterationtools/iterate_components_depth_first
    tools/iterationtools/iterate_components_in_expr
+   tools/iterationtools/iterate_containers_in_expr
+   tools/iterationtools/iterate_contexts_in_expr
    tools/iterationtools/iterate_leaves_in_expr
+   tools/iterationtools/iterate_measures_in_expr
+   tools/iterationtools/iterate_namesakes_from_component
+   tools/iterationtools/iterate_notes_and_chords_in_expr
    tools/iterationtools/iterate_notes_in_expr
    tools/iterationtools/iterate_rests_in_expr
+   tools/iterationtools/iterate_scores_in_expr
+   tools/iterationtools/iterate_semantic_voices_in_expr
    tools/iterationtools/iterate_skips_in_expr
+   tools/iterationtools/iterate_staves_in_expr
+   tools/iterationtools/iterate_thread_from_component
+   tools/iterationtools/iterate_thread_in_expr
+   tools/iterationtools/iterate_timeline_from_component
+   tools/iterationtools/iterate_timeline_in_expr
+   tools/iterationtools/iterate_tuplets_in_expr
+   tools/iterationtools/iterate_voices_in_expr
 
 :py:mod:`labeltools <abjad.tools.labeltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -581,7 +588,6 @@ Composition packages
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
    tools/leaftools/iterate_leaf_pairs_forward_in_expr
-   tools/leaftools/iterate_notes_and_chords_in_expr
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
@@ -845,7 +851,6 @@ Composition packages
    tools/measuretools/get_nth_measure_in_expr
    tools/measuretools/get_one_indexed_measure_number_in_expr
    tools/measuretools/get_previous_measure_from_component
-   tools/measuretools/iterate_measures_in_expr
    tools/measuretools/list_time_signatures_of_measures_in_expr
    tools/measuretools/make_measures_with_full_measure_spacer_skips
    tools/measuretools/measure_to_one_line_input_string
@@ -1278,7 +1283,6 @@ Composition packages
    tools/scoretools/all_are_scores
    tools/scoretools/get_first_score_in_improper_parentage_of_component
    tools/scoretools/get_first_score_in_proper_parentage_of_component
-   tools/scoretools/iterate_scores_in_expr
    tools/scoretools/list_performer_names
    tools/scoretools/list_primary_performer_names
    tools/scoretools/make_empty_piano_score
@@ -1558,7 +1562,6 @@ Composition packages
    tools/stafftools/all_are_staves
    tools/stafftools/get_first_staff_in_improper_parentage_of_component
    tools/stafftools/get_first_staff_in_proper_parentage_of_component
-   tools/stafftools/iterate_staves_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
 
 :py:mod:`stringtools <abjad.tools.stringtools>`
@@ -1821,7 +1824,6 @@ Composition packages
    tools/tuplettools/fuse_tuplets
    tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
    tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
-   tools/tuplettools/iterate_tuplets_in_expr
    tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
    tools/tuplettools/leaf_to_tuplet_with_proportions
    tools/tuplettools/make_tuplet_from_duration_and_proportions
@@ -1868,8 +1870,6 @@ Composition packages
    tools/voicetools/all_are_voices
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
-   tools/voicetools/iterate_semantic_voices_in_expr
-   tools/voicetools/iterate_voices_in_expr
 
 Internal packages
 -----------------

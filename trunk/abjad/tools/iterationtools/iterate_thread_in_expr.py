@@ -39,7 +39,7 @@ def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
     ::
 
         >>> signature = componenttools.component_to_containment_signature(staff.leaves[0])
-        >>> for x in componenttools.iterate_thread_in_expr(staff, Note, signature):
+        >>> for x in iterationtools.iterate_thread_in_expr(staff, Note, signature):
         ...     x
         ...
         Note("c'8")
@@ -50,6 +50,7 @@ def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
     Return generator.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
 
     if isinstance(expr, klass) and \
         componenttools.component_to_containment_signature(expr) == containment_signature:
@@ -58,22 +59,22 @@ def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
     if not reverse:
         if isinstance(expr, (list, tuple)):
             for m in expr:
-                for x in componenttools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_thread_in_expr(
                     m, klass, containment_signature):
                     yield x
         if hasattr(expr, '_music'):
             for m in expr._music:
-                for x in componenttools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_thread_in_expr(
                     m, klass, containment_signature):
                     yield x
     else:
         if isinstance(expr, (list, tuple)):
             for m in reversed(expr):
-                for x in componenttools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_thread_in_expr(
                     m, klass, containment_signature, reverse=True):
                     yield x
         if hasattr(expr, '_music'):
             for m in reversed(expr._music):
-                for x in componenttools.iterate_thread_in_expr(
+                for x in iterationtools.iterate_thread_in_expr(
                     m, klass, containment_signature, reverse=True):
                     yield x

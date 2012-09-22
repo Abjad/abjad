@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_componenttools_iterate_namesakes_from_component_01():
+def test_iterationtools_iterate_namesakes_from_component_01():
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -39,7 +39,7 @@ def test_componenttools_iterate_namesakes_from_component_01():
     }
     '''
 
-    staves = componenttools.iterate_namesakes_from_component(score[1][0], reverse=True)
+    staves = iterationtools.iterate_namesakes_from_component(score[1][0], reverse=True)
     staves = list(staves)
 
     assert staves[0] is score[1][0]
@@ -49,7 +49,7 @@ def test_componenttools_iterate_namesakes_from_component_01():
     assert staves[1].name == 'staff 1'
 
 
-def test_componenttools_iterate_namesakes_from_component_02():
+def test_iterationtools_iterate_namesakes_from_component_02():
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -86,7 +86,7 @@ def test_componenttools_iterate_namesakes_from_component_02():
     }
     '''
 
-    notes = componenttools.iterate_namesakes_from_component(score.leaves[-1], reverse=True)
+    notes = iterationtools.iterate_namesakes_from_component(score.leaves[-1], reverse=True)
     notes = list(notes)
 
     r'''
@@ -106,7 +106,7 @@ def test_componenttools_iterate_namesakes_from_component_02():
         notes[3], Staff).name == 'staff 2'
 
 
-def test_componenttools_iterate_namesakes_from_component_03():
+def test_iterationtools_iterate_namesakes_from_component_03():
     '''Optional start and stop keywords.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -127,7 +127,7 @@ def test_componenttools_iterate_namesakes_from_component_03():
     }
     '''
 
-    g = componenttools.iterate_namesakes_from_component(
+    g = iterationtools.iterate_namesakes_from_component(
         t.leaves[-2], reverse=True, start=0, stop=3)
 
     assert g.next() is t.leaves[-2]
@@ -136,7 +136,7 @@ def test_componenttools_iterate_namesakes_from_component_03():
     assert py.test.raises(StopIteration, 'g.next()')
 
 
-def test_componenttools_iterate_namesakes_from_component_04():
+def test_iterationtools_iterate_namesakes_from_component_04():
     '''Optional start and stop keywords.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -157,7 +157,7 @@ def test_componenttools_iterate_namesakes_from_component_04():
     }
     '''
 
-    g = componenttools.iterate_namesakes_from_component(
+    g = iterationtools.iterate_namesakes_from_component(
         t.leaves[-2], reverse=True, start=2)
 
     assert g.next() is t.leaves[-4]
@@ -166,7 +166,7 @@ def test_componenttools_iterate_namesakes_from_component_04():
     assert py.test.raises(StopIteration, 'g.next()')
 
 
-def test_componenttools_iterate_namesakes_from_component_05():
+def test_iterationtools_iterate_namesakes_from_component_05():
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -203,7 +203,7 @@ def test_componenttools_iterate_namesakes_from_component_05():
     }
     '''
 
-    staves = componenttools.iterate_namesakes_from_component(score[0][0])
+    staves = iterationtools.iterate_namesakes_from_component(score[0][0])
     staves = list(staves)
 
     assert staves[0] is score[0][0]
@@ -213,7 +213,7 @@ def test_componenttools_iterate_namesakes_from_component_05():
     assert staves[1].name == 'staff 1'
 
 
-def test_componenttools_iterate_namesakes_from_component_06():
+def test_iterationtools_iterate_namesakes_from_component_06():
 
     container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -250,7 +250,7 @@ def test_componenttools_iterate_namesakes_from_component_06():
     }
     '''
 
-    notes = componenttools.iterate_namesakes_from_component(score.leaves[0])
+    notes = iterationtools.iterate_namesakes_from_component(score.leaves[0])
     notes = list(notes)
 
     assert componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
@@ -263,7 +263,7 @@ def test_componenttools_iterate_namesakes_from_component_06():
         notes[3], Staff).name == 'staff 1'
 
 
-def test_componenttools_iterate_namesakes_from_component_07():
+def test_iterationtools_iterate_namesakes_from_component_07():
     '''Optional start and stop keywords.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -284,7 +284,7 @@ def test_componenttools_iterate_namesakes_from_component_07():
     }
     '''
 
-    g = componenttools.iterate_namesakes_from_component(t.leaves[1], start=0, stop=3)
+    g = iterationtools.iterate_namesakes_from_component(t.leaves[1], start=0, stop=3)
 
     assert g.next() is t.leaves[1]
     assert g.next() is t.leaves[2]
@@ -292,7 +292,7 @@ def test_componenttools_iterate_namesakes_from_component_07():
     assert py.test.raises(StopIteration, 'g.next()')
 
 
-def test_componenttools_iterate_namesakes_from_component_08():
+def test_iterationtools_iterate_namesakes_from_component_08():
     '''Optional start and stop keywords.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
@@ -313,7 +313,7 @@ def test_componenttools_iterate_namesakes_from_component_08():
     }
     '''
 
-    g = componenttools.iterate_namesakes_from_component(t.leaves[1], start=2)
+    g = iterationtools.iterate_namesakes_from_component(t.leaves[1], start=2)
 
     assert g.next() is t.leaves[3]
     assert g.next() is t.leaves[4]

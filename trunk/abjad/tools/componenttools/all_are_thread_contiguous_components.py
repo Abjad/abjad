@@ -91,6 +91,7 @@ def _are_thread_proper(component_1, component_2, klasses=None):
     Otherwise False.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
     
     if klasses is None:
         klasses = (componenttools.Component,)
@@ -116,7 +117,7 @@ def _are_thread_proper(component_1, component_2, klasses=None):
         return False
 
     # if there exists an intervening component of the same thread
-    dfs = componenttools.iterate_components_depth_first(component_1, capped=False)
+    dfs = iterationtools.iterate_components_depth_first(component_1, capped=False)
     for node in dfs:
         if node is component_2:
             break

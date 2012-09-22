@@ -28,7 +28,7 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in componenttools.iterate_timeline_from_component(score[1][2]):
+        >>> for leaf in iterationtools.iterate_timeline_from_component(score[1][2]):
         ...     leaf
         ...
         Note("b'8")
@@ -40,7 +40,7 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
 
     ::
 
-        >>> for leaf in componenttools.iterate_timeline_from_component(score[1][2], reverse=True):
+        >>> for leaf in iterationtools.iterate_timeline_from_component(score[1][2], reverse=True):
         ...     leaf
         ...
         Note("b'8")
@@ -55,13 +55,14 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
     if klass is None:
         klass = leaftools.Leaf
 
     root = componenttools.component_to_score_root(expr)
-    component_generator = componenttools.iterate_timeline_in_expr(
+    component_generator = iterationtools.iterate_timeline_in_expr(
         root, klass=klass, reverse=reverse)
 
     yielded_expr = False

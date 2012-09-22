@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import iterationtools
 
 
 def iterate_components_in_spanner(spanner, klass=None, reverse=False):
@@ -44,13 +45,13 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     if not reverse:
         for component in spanner._components:
-            dfs = componenttools.iterate_components_depth_first(component)
+            dfs = iterationtools.iterate_components_depth_first(component)
             for node in dfs:
                 if isinstance(node, klass):
                     yield node
     else:
         for component in reversed(spanner._components):
-            dfs = componenttools.iterate_components_depth_first(component, direction=Right)
+            dfs = iterationtools.iterate_components_depth_first(component, direction=Right)
             for node in dfs:
                 if isinstance(node, klass):
                     yield node

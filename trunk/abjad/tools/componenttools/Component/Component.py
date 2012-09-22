@@ -387,9 +387,10 @@ class Component(AbjadObject):
 
     def _iterate_score_components_depth_first(self):
         from abjad.tools import componenttools
+        from abjad.tools import iterationtools
         score_root = componenttools.component_to_score_root(self)
         kwargs = {'capped': True, 'unique': True, 'forbid': None, 'direction': 'left'}
-        components = componenttools.iterate_components_depth_first(score_root, **kwargs)
+        components = iterationtools.iterate_components_depth_first(score_root, **kwargs)
         return components
 
     def _mark_entire_score_tree_for_later_update(self, value):

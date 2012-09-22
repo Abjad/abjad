@@ -40,7 +40,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
 
     ::
 
-        >>> for staff in componenttools.iterate_namesakes_from_component(score[0][0]):
+        >>> for staff in iterationtools.iterate_namesakes_from_component(score[0][0]):
         ...     print staff.lilypond_format
         ...
         \context Staff = "staff 1" {
@@ -56,7 +56,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
 
     ::
 
-        >>> for staff in componenttools.iterate_namesakes_from_component(score[-1][0], reverse=True):
+        >>> for staff in iterationtools.iterate_namesakes_from_component(score[-1][0], reverse=True):
         ...     print staff.lilypond_format
         ...
         \context Staff = "staff 1" {
@@ -71,12 +71,13 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
     Return generator.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
 
     def _forward_helper(component):
         next_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
         if next_component is None:
             return
-        dfs = componenttools.iterate_components_depth_first(next_component, capped=False)
+        dfs = iterationtools.iterate_components_depth_first(next_component, capped=False)
         for node in dfs:
             if type(node) == type(component) and \
                 componenttools.component_to_parentage_signature(node) == \
@@ -87,7 +88,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
         prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if prev is None:
             return
-        dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')
+        dfs = iterationtools.iterate_components_depth_first(prev, capped=False, direction='right')
         for node in dfs:
             if type(node) == type(component) and \
                 componenttools.component_to_parentage_signature(node) == \

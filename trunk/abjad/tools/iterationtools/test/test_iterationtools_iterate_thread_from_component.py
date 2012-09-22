@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_iterate_thread_from_component_01():
+def test_iterationtools_iterate_thread_from_component_01():
     '''Iterate only notes.'''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -36,7 +36,7 @@ def test_componenttools_iterate_thread_from_component_01():
     }
     '''
 
-    notes = componenttools.iterate_thread_from_component(staff.leaves[-1], Note, reverse=True)
+    notes = iterationtools.iterate_thread_from_component(staff.leaves[-1], Note, reverse=True)
     notes = list(notes)
 
     voice_2_first_half = staff[0][1]
@@ -48,7 +48,7 @@ def test_componenttools_iterate_thread_from_component_01():
     assert notes[3] is voice_2_first_half[0]
 
 
-def test_componenttools_iterate_thread_from_component_02():
+def test_iterationtools_iterate_thread_from_component_02():
     '''Iterate all components.'''
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
@@ -83,7 +83,7 @@ def test_componenttools_iterate_thread_from_component_02():
     }
     '''
 
-    components = componenttools.iterate_thread_from_component(staff.leaves[-1], reverse=True)
+    components = iterationtools.iterate_thread_from_component(staff.leaves[-1], reverse=True)
     components = list(components)
 
     r'''
@@ -103,7 +103,7 @@ def test_componenttools_iterate_thread_from_component_02():
     assert components[5] is staff[0][1][0]
 
 
-def test_componenttools_iterate_thread_from_component_03():
+def test_iterationtools_iterate_thread_from_component_03():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -137,7 +137,7 @@ def test_componenttools_iterate_thread_from_component_03():
     }
     '''
 
-    notes = componenttools.iterate_thread_from_component(staff.leaves[0], Note)
+    notes = iterationtools.iterate_thread_from_component(staff.leaves[0], Note)
     notes = list(notes)
 
     voice_1_first_half = staff[0][0]
@@ -149,7 +149,7 @@ def test_componenttools_iterate_thread_from_component_03():
     assert notes[3] is voice_1_second_half[1]
 
 
-def test_componenttools_iterate_thread_from_component_04():
+def test_iterationtools_iterate_thread_from_component_04():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -183,7 +183,7 @@ def test_componenttools_iterate_thread_from_component_04():
     }
     '''
 
-    components = componenttools.iterate_thread_from_component(staff.leaves[0])
+    components = iterationtools.iterate_thread_from_component(staff.leaves[0])
     components = list(components)
 
     r'''

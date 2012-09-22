@@ -106,29 +106,29 @@ But both raise a contiguity error.
 Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`.
 
 Observe the behavior of the
-:func:`~abjad.tools.componenttools.iterate_thread_in_expr`
+:func:`~abjad.tools.iterationtools.iterate_thread_in_expr`
 iterator on the `staff`:
 
 <abjad>
 vA_thread_signature = componenttools.component_to_containment_signature(vA)
-notes = componenttools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
+notes = iterationtools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
 vB_thread_signature = componenttools.component_to_containment_signature(vB)
-notes = componenttools.iterate_thread_in_expr(staff, Note, vB_thread_signature)
+notes = iterationtools.iterate_thread_in_expr(staff, Note, vB_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
 vC_thread_signature = componenttools.component_to_containment_signature(vC)
-notes = componenttools.iterate_thread_in_expr(staff, Note, vC_thread_signature)
+notes = iterationtools.iterate_thread_in_expr(staff, Note, vC_thread_signature)
 print list(notes)
 </abjad>
 
 In each case we are passing a different **thread signature** to the
-:func:`~abjad.tools.componenttools.iterate_thread_in_expr`
+:func:`~abjad.tools.iterationtools.iterate_thread_in_expr`
 iterator, so each case returns a different list of notes.
 
 We can see that the thread signature of each voice is indeed different
@@ -189,12 +189,12 @@ vC_thread_signature = componenttools.component_to_containment_signature(vC)
 print vC_thread_signature
 </abjad>
 
-And how the ``componenttools.iterate_thread_in_expr()`` function returns
+And how the ``iterationtools.iterate_thread_in_expr()`` function returns
 all the notes belonging to both `vA` and `vB` when passing it the full staff
 and the thread signature of `vA`:
 
 <abjad>
-notes = componenttools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
+notes = iterationtools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
@@ -205,11 +205,11 @@ spannertools.SlurSpanner([vA, vB])
 </abjad>
 
 or directly to the notes returned by the
-:func:`~abjad.tools.componenttools.iterate_thread_in_expr`
+:func:`~abjad.tools.iterationtools.iterate_thread_in_expr`
 iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 <abjad>
-notes = componenttools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
+notes = iterationtools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
 spannertools.SlurSpanner(list(notes))
 </abjad>
 
