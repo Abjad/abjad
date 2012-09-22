@@ -19,7 +19,7 @@ class Command(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request, start_segment_identifier, context_name, 
+    def __init__(self, request, context_name, start_segment_identifier, 
         segment_start_offset, segment_stop_offset, duration, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None):

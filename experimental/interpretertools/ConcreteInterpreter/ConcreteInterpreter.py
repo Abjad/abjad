@@ -356,8 +356,8 @@ class ConcreteInterpreter(Interpreter):
                         division_command.duration
                     division_command = interpretertools.DivisionCommand(
                         last_division_command.request,
-                        last_division_command.start_segment_identifier,
                         division_command.context_name,
+                        last_division_command.start_segment_identifier,
                         segment_start_offset,
                         segment_stop_offset,
                         duration,
@@ -528,8 +528,8 @@ class ConcreteInterpreter(Interpreter):
         request = self.attribute_to_default_request(segment_specification, attribute)
         command = command_klass(
             request, 
-            segment_specification.segment_name,
             self.score_specification.score_name,
+            segment_specification.segment_name,
             durationtools.Offset(0),
             durationtools.Offset(segment_specification.duration),
             segment_specification.duration,
@@ -593,8 +593,8 @@ class ConcreteInterpreter(Interpreter):
         duration = stop_offset - start_offset
         division_command = interpretertools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
-            segment_identifier,
             voice.name, 
+            segment_identifier,
             start_offset,
             stop_offset,
             duration, 
@@ -774,8 +774,8 @@ class ConcreteInterpreter(Interpreter):
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
-            segment_name,
             single_context_setting.context_name,
+            segment_name,
             start_offset,
             stop_offset,
             duration,
