@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import measuretools
+from abjad.tools import iterationtools
 
 
 def color_nonbinary_measures_in_expr(expr, color='red'):
@@ -72,7 +72,7 @@ def color_nonbinary_measures_in_expr(expr, color='red'):
     measures_colored = []
 
     # color nonbinary measures in expr
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).is_nonbinary:
             labeltools.color_measure(measure, color)
             measures_colored.append(measure)

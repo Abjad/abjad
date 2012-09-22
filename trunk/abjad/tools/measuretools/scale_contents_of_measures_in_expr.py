@@ -17,10 +17,10 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
     Return none.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import iterationtools
     from abjad.tools import timesignaturetools
 
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
 
         if multiplier == durationtools.Duration(1):
             continue

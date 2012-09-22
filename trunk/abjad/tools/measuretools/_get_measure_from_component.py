@@ -28,6 +28,7 @@ def _get_measure_from_component(component, direction):
     When `component` is a leaf and there is no measure in the parentage
     of `component`, raise :exc:`MissingMeasureError`.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import measuretools
     from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
 
@@ -48,10 +49,10 @@ def _get_measure_from_component(component, direction):
     elif isinstance(component, (list, tuple)):
         if direction == '_next':
             #measure_generator = iterate_components_in_expr(component, measuretools.Measure)
-            measure_generator = measuretools.iterate_measures_in_expr(component)
+            measure_generator = iterationtools.iterate_measures_in_expr(component)
         elif direction == '_prev':
             #measure_generator = iterate_components_backward_in_expr(component, measuretools.Measure)
-            measure_generator = measuretools.iterate_measures_in_expr(component, reverse=True)
+            measure_generator = iterationtools.iterate_measures_in_expr(component, reverse=True)
         else:
             raise ValueError('direction must be _next or _prev.')
         try:

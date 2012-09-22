@@ -29,7 +29,7 @@ def iterate_containers_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for x in containertools.iterate_containers_in_expr(staff):
+        >>> for x in iterationtools.iterate_containers_in_expr(staff):
         ...   x
         Staff<<2>>
         Voice{2}
@@ -40,7 +40,7 @@ def iterate_containers_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for x in containertools.iterate_containers_in_expr(staff, reverse=True):
+        >>> for x in iterationtools.iterate_containers_in_expr(staff, reverse=True):
         ...   x
         Staff<<2>>
         Voice{1}

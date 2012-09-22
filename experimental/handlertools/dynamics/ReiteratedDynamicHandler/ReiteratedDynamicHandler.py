@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import marktools
 from experimental.handlertools.dynamics.DynamicHandler import DynamicHandler
 
@@ -38,6 +38,6 @@ class ReiteratedDynamicHandler(DynamicHandler):
     ### PUBLIC METHODS ###
 
     def apply(self, expr):
-        for note_or_chord in leaftools.iterate_notes_and_chords_in_expr(expr):
+        for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
             marktools.LilyPondCommandMark(self.dynamic_name, 'right')(note_or_chord)
         return expr

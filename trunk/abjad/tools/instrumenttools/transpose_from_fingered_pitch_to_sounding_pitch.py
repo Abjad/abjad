@@ -1,6 +1,6 @@
 from abjad.tools import chordtools
 from abjad.tools import contexttools
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
 
@@ -48,7 +48,7 @@ def transpose_from_fingered_pitch_to_sounding_pitch(expr):
     Return none.
     '''
 
-    for note_or_chord in leaftools.iterate_notes_and_chords_in_expr(expr):
+    for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         if note_or_chord.written_pitch_indication_is_at_sounding_pitch:
             continue
         instrument = contexttools.get_effective_instrument(note_or_chord)

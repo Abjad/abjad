@@ -26,10 +26,11 @@ def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
 
     Return tuplets.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import tuplettools
 
     result = []
-    for tuplet in tuplettools.iterate_tuplets_in_expr(expr):    
+    for tuplet in iterationtools.iterate_tuplets_in_expr(expr):    
         if isinstance(tuplet, tuplettools.FixedDurationTuplet):
             multiplier = tuplet.multiplier
             new_tuplet = tuplettools.Tuplet(multiplier, [])

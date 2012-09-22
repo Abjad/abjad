@@ -26,7 +26,7 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for voice in voicetools.iterate_voices_in_expr(staff):
+        >>> for voice in iterationtools.iterate_voices_in_expr(staff):
         ...   voice
         Voice{4}
         Voice{2}
@@ -35,7 +35,7 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for voice in voicetools.iterate_voices_in_expr(staff, reverse=True):
+        >>> for voice in iterationtools.iterate_voices_in_expr(staff, reverse=True):
         ...   voice
         Voice{2}
         Voice{4}

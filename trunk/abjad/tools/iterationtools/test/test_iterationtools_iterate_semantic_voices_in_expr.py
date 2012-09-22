@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_voicetools_iterate_semantic_voices_in_expr_01():
+def test_iterationtools_iterate_semantic_voices_in_expr_01():
 
     measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
     time_signature_voice = Voice(measures)
@@ -38,7 +38,7 @@ def test_voicetools_iterate_semantic_voices_in_expr_01():
     >>
     '''
 
-    voices = voicetools.iterate_semantic_voices_in_expr(staff, reverse=True)
+    voices = iterationtools.iterate_semantic_voices_in_expr(staff, reverse=True)
     voices = list(voices)
 
     assert len(voices) == 1
@@ -46,7 +46,7 @@ def test_voicetools_iterate_semantic_voices_in_expr_01():
 from abjad import *
 
 
-def test_voicetools_iterate_semantic_voices_in_expr_02():
+def test_iterationtools_iterate_semantic_voices_in_expr_02():
 
     measures = measuretools.make_measures_with_full_measure_spacer_skips([(3, 8), (5, 16), (5, 16)])
     time_signature_voice = Voice(measures)
@@ -83,7 +83,7 @@ def test_voicetools_iterate_semantic_voices_in_expr_02():
     >>
     '''
 
-    voices = voicetools.iterate_semantic_voices_in_expr(staff)
+    voices = iterationtools.iterate_semantic_voices_in_expr(staff)
     voices = list(voices)
 
     assert len(voices) == 1

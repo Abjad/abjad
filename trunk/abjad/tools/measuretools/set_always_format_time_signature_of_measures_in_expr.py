@@ -5,7 +5,7 @@ def set_always_format_time_signature_of_measures_in_expr(expr, value=True):
 
     Return none.
     '''
-    from abjad.tools import measuretools
+    from abjad.tools import iterationtools
 
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
         measure.always_format_time_signature = value

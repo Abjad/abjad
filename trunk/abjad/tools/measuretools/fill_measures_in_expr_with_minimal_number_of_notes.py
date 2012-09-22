@@ -47,11 +47,11 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, it
     Return none.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import iterationtools
 
     if iterctrl is None:
         iterctrl = lambda measure, i: True
-    for i, measure in enumerate(measuretools.iterate_measures_in_expr(expr)):
+    for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
         if iterctrl(measure, i):
             meter = contexttools.get_effective_time_signature(measure)
             written_duration = meter.duration / meter.multiplier

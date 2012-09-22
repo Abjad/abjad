@@ -16,10 +16,10 @@ def _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement
         renamed ``measuretools.tupletize()``
         to ``measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr()``.
     '''
-    from abjad.tools import measuretools
+    from abjad.tools import iterationtools
     from abjad.tools import tuplettools
 
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
         target_duration = measure.preprolated_duration
         tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
         if supplement:

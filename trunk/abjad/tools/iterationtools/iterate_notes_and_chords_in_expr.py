@@ -18,7 +18,7 @@ def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_notes_and_chords_in_expr(staff):
+        >>> for leaf in iterationtools.iterate_notes_and_chords_in_expr(staff):
         ...   leaf
         Chord("<e' g' c''>8")
         Note("a'8")
@@ -26,7 +26,7 @@ def iterate_notes_and_chords_in_expr(expr, reverse=False, start=0, stop=None):
 
     Iterate notes and chords backward in `expr`::
 
-        >>> for leaf in leaftools.iterate_notes_and_chords_in_expr(staff, reverse=True):
+        >>> for leaf in iterationtools.iterate_notes_and_chords_in_expr(staff, reverse=True):
         ...   leaf
         Chord("<d' f' b'>8")
         Note("a'8")

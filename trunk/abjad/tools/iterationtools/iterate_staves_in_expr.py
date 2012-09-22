@@ -21,7 +21,7 @@ def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for staff in stafftools.iterate_staves_in_expr(score):
+        >>> for staff in iterationtools.iterate_staves_in_expr(score):
         ...     staff
         ...
         Staff{}
@@ -33,7 +33,7 @@ def iterate_staves_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for staff in stafftools.iterate_staves_in_expr(score, reverse=True):
+        >>> for staff in iterationtools.iterate_staves_in_expr(score, reverse=True):
         ...     staff
         ...
         Staff{}

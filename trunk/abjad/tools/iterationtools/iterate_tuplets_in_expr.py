@@ -25,7 +25,7 @@ def iterate_tuplets_in_expr(expr, reverse=False, start=0, stop=None):
             }
         }
 
-        >>> for tuplet in tuplettools.iterate_tuplets_in_expr(staff):
+        >>> for tuplet in iterationtools.iterate_tuplets_in_expr(staff):
         ...     tuplet
         ...
         Tuplet(2/3, [c'8, d'8, e'8])
@@ -33,7 +33,7 @@ def iterate_tuplets_in_expr(expr, reverse=False, start=0, stop=None):
 
     Iterate tuplets backward in `expr`::
 
-        >>> for tuplet in tuplettools.iterate_tuplets_in_expr(staff, reverse=True):
+        >>> for tuplet in iterationtools.iterate_tuplets_in_expr(staff, reverse=True):
         ...     tuplet
         ...
         Tuplet(2/3, [a'8, b'8, c''8])

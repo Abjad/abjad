@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import componenttools
-from abjad.tools import measuretools
+from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import resttools
 from abjad.tools import skiptools
@@ -34,7 +34,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
     root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
     root._forbid_component_update()
 
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
         if front is not None:
             start_components = componenttools.get_improper_descendents_of_component_that_start_with_component(
                 measure)

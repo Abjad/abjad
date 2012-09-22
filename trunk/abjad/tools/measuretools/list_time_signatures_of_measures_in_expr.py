@@ -44,13 +44,13 @@ def list_time_signatures_of_measures_in_expr(components):
         ``measuretools.list_time_signatures_of_measures_in_expr()``.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import iterationtools
 
     # create empty list to hold result
     result = []
 
     # iterate measures and store meter pairs
-    for measure in measuretools.iterate_measures_in_expr(components):
+    for measure in iterationtools.iterate_measures_in_expr(components):
         meter = contexttools.get_effective_time_signature(measure)
         result.append(meter)
 

@@ -20,9 +20,9 @@ def attach_stem_tremolos_to_notes_and_chords_in_expr(expr, stem_tremolos):
     Return none.
     '''
     # TODO: marktools should be able to import leaftools at top level
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
     from abjad.tools import marktools
 
-    for note_or_chord in leaftools.iterate_notes_and_chords_in_expr(expr):
+    for note_or_chord in iterationtools.iterate_notes_and_chords_in_expr(expr):
         for stem_tremolo in stem_tremolos:
             marktools.StemTremolo(stem_tremolo)(note_or_chord)

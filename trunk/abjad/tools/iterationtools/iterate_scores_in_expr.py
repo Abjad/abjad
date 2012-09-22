@@ -9,7 +9,7 @@ def iterate_scores_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for score in scoretools.iterate_scores_in_expr(scores):
+        >>> for score in iterationtools.iterate_scores_in_expr(scores):
         ...   score
         Score<<1>>
         Score<<2>>
@@ -18,7 +18,7 @@ def iterate_scores_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for score in scoretools.iterate_scores_in_expr(scores, reverse=True):
+        >>> for score in iterationtools.iterate_scores_in_expr(scores, reverse=True):
         ...   score
         Score<<2>>
         Score<<1>>

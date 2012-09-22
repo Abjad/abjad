@@ -27,7 +27,7 @@ def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for x in contexttools.iterate_contexts_in_expr(staff):
+        >>> for x in iterationtools.iterate_contexts_in_expr(staff):
         ...   x
         Staff<<2>>
         Voice{2}
@@ -37,7 +37,7 @@ def iterate_contexts_in_expr(expr, reverse=False, start=0, stop=None):
 
     ::
 
-        >>> for x in contexttools.iterate_contexts_in_expr(staff, reverse=True):
+        >>> for x in iterationtools.iterate_contexts_in_expr(staff, reverse=True):
         ...   x
         Staff<<2>>
         Voice{1}

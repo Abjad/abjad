@@ -39,21 +39,21 @@ def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
             }
         >>
 
-        >>> for voice in voicetools.iterate_semantic_voices_in_expr(staff):
+        >>> for voice in iterationtools.iterate_semantic_voices_in_expr(staff):
         ...   voice
         Voice-"MusicVoice"{5}
 
     Iterate semantic voices backward in `expr`::
 
-        >>> for voice in voicetools.iterate_semantic_voices_in_expr(staff, reverse=True):
+        >>> for voice in iterationtools.iterate_semantic_voices_in_expr(staff, reverse=True):
         ...   voice
         Voice-"MusicVoice"{5}
 
     Return generator.
     '''
-    from abjad.tools import voicetools
+    from abjad.tools import iterationtools
 
-    for voice in voicetools.iterate_voices_in_expr(
+    for voice in iterationtools.iterate_voices_in_expr(
         expr, reverse=reverse, start=start, stop=stop):
         if not voice.is_nonsemantic:
             yield voice

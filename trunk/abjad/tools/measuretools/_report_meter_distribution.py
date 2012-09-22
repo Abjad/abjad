@@ -30,10 +30,10 @@ def _report_meter_distribution(expr, delivery='screen'):
     Return string or none.
     '''
     from abjad.tools import contexttools
-    from abjad.tools import measuretools
+    from abjad.tools import iterationtools
 
     meters = []
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
         meters.append(contexttools.get_effective_time_signature(measure))
 
     meters.sort()

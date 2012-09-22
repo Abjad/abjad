@@ -1,4 +1,4 @@
-from abjad.tools import measuretools
+from abjad.tools import iterationtools
 
 
 def apply_complex_beam_spanners_to_measures_in_expr(expr):
@@ -65,7 +65,7 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
     beams_created = []
 
     # apply complex beam spanners to measures in expr
-    for measure in measuretools.iterate_measures_in_expr(expr):
+    for measure in iterationtools.iterate_measures_in_expr(expr):
         beam = beamtools.ComplexBeamSpanner(measure)
         beams_created.append(beam)
 

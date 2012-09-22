@@ -40,6 +40,7 @@ def multiply_and_scale_contents_of_measures_in_expr(expr, multiplier_pairs):
 
     Return list of measures changed.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import measuretools
 
     assert isinstance(multiplier_pairs, list)
@@ -47,7 +48,7 @@ def multiply_and_scale_contents_of_measures_in_expr(expr, multiplier_pairs):
 
     result = []
     num_pairs = len(multiplier_pairs)
-    for i, measure in enumerate(measuretools.iterate_measures_in_expr(expr)):
+    for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
         concentration_pair = multiplier_pairs[i % num_pairs]
         assert isinstance(concentration_pair, tuple)
         spin_count, scalar_denominator = concentration_pair

@@ -2,6 +2,7 @@ import math
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import iterationtools
 from abjad.tools import spannertools
 from experimental.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
@@ -105,7 +106,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
         Operate in place and return none.
         '''
-        for container in containertools.iterate_containers_in_expr(self.music):
+        for container in iterationtools.iterate_containers_in_expr(self.music):
             container._music.reverse()
         for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
             spanner._reverse_components()

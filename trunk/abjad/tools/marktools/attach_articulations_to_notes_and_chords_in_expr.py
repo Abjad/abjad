@@ -19,9 +19,9 @@ def attach_articulations_to_notes_and_chords_in_expr(expr, articulations):
     Return none.
     '''
     # TODO: marktools should be able to import leaftools at top level
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
     from abjad.tools import marktools
 
-    for leaf in leaftools.iterate_notes_and_chords_in_expr(expr):
+    for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr):
         for articulation in articulations:
             marktools.Articulation(articulation)(leaf)

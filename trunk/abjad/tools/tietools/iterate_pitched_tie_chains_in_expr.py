@@ -1,4 +1,4 @@
-from abjad.tools import leaftools
+from abjad.tools import iterationtools
 from abjad.tools import spannertools
 
 
@@ -56,12 +56,12 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     from abjad.tools import tietools
 
     if not reverse:
-        for leaf in leaftools.iterate_notes_and_chords_in_expr(expr):
+        for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr):
             tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
             if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                 yield tietools.get_tie_chain(leaf)
     else:
-        for leaf in leaftools.iterate_notes_and_chords_in_expr(expr, reverse=True):
+        for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr, reverse=True):
             tie_spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
             if not tie_spanners or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                 yield tietools.get_tie_chain(leaf)
