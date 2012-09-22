@@ -218,3 +218,13 @@ class Command(AbjadObject):
         Return tuple.
         '''
         return self._mandatory_argument_values
+
+    ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def can_fuse(self, expr):
+        pass
+
+    @abc.abstractmethod
+    def fuse(self, command):
+        pass

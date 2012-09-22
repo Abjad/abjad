@@ -79,6 +79,13 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
+Methods
+-------
+
+.. automethod:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.can_fuse
+
+.. automethod:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.fuse
+
 Special Methods
 ---------------
 

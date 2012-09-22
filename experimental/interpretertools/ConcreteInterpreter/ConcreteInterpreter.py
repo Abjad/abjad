@@ -340,21 +340,20 @@ class ConcreteInterpreter(Interpreter):
         assert division_commands[0].fresh, repr(division_commands[0])
         result = [copy.deepcopy(division_commands[0])]
         for division_command in division_commands[1:]:
-            last_division_command = result[-1]
-            if last_division_command.can_fuse(division_command):
-                fused_division_command = last_division_command.fuse(division_command)
-                result[-1] = fused_division_command
+            if result[-1].can_fuse(division_command):
+                result[-1] = result[-1].fuse(division_command)
             else:
                 result.append(copy.deepcopy(division_command))
         return result
 
     def fuse_like_rhythm_commands(self, rhythm_commands):
-        if not rhythm_commands:
+        if any([x.request is None for x in rhythm_commands]) or not rhythm_commands:
             return []
+        assert rhythm_commands[0].fresh, repr(rhythm_commands[0])
         result = [copy.deepcopy(rhythm_commands[0])]
         for rhythm_command in rhythm_commands[1:]:
-            if rhythm_command.request == result[-1].request and not rhythm_command.fresh:
-                result[-1]._duration += rhythm_command.duration
+            if result[-1].can_fuse(rhythm_command):
+                result[-1] = result[-1].fuse(rhythm_command)
             else:
                 result.append(copy.deepcopy(rhythm_command))
         return result

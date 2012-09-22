@@ -47,6 +47,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.vector
 
+Methods
+-------
+
+.. automethod:: experimental.settingtools.Command.Command.Command.can_fuse
+
+.. automethod:: experimental.settingtools.Command.Command.Command.fuse
+
 Special Methods
 ---------------
 
