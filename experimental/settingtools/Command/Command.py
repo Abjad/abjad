@@ -4,6 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools 
 from experimental import requesttools 
 from experimental import timespaninequalitytools 
+from experimental import timespantools 
 
 
 class Command(AbjadObject):
@@ -21,14 +22,17 @@ class Command(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request, context_name, start_segment_identifier, 
-        segment_start_offset, segment_stop_offset, 
+    def __init__(self, request, context_name, 
+        start_offset, stop_offset,
+        start_segment_identifier, segment_start_offset, segment_stop_offset, 
         duration, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
-        assert isinstance(start_segment_identifier, str)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
+        start_offset = durationtools.Offset(start_offset)
+        stop_offset = durationtools.Offset(stop_offset)
+        assert isinstance(start_segment_identifier, str)
         segment_start_offset = durationtools.Offset(segment_start_offset)
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
         duration = durationtools.Duration(duration)
@@ -40,8 +44,10 @@ class Command(AbjadObject):
         assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request
-        self._start_segment_identifier = start_segment_identifier
         self._context_name = context_name
+        self._start_offset = start_offset
+        self._stop_offset = stop_offset
+        self._start_segment_identifier = start_segment_identifier
         self._segment_start_offset = segment_start_offset
         self._segment_stop_offset = segment_stop_offset
         self._duration = duration
@@ -179,13 +185,31 @@ class Command(AbjadObject):
 
     @property
     def start_offset(self):
-        raise NotImplementedError('working on this one now.')
+        '''Score start offset of command.
+
+        Return offset.
+        '''
         return self._start_offset
 
     @property
     def stop_offset(self):
-        raise NotImplementedError('working on this one now.')
+        '''Score stop offset of command.
+
+        Return offset.
+        '''
         return self._stop_offset
+
+    @property
+    def timespan(self):
+        '''Command timespan from segment start offset to segment stop offset.
+
+        .. note:: Maybe eliminate in favor of timespan from score start offset
+            to score stop offset.
+
+        Return timespan.
+        '''
+        return timespantools.TimespanConstant(
+            start_offset=self.segment_start_offset, stop_offset=self.segment_stop_offset)
 
     @property
     def vector(self):

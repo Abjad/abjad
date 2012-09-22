@@ -10,12 +10,16 @@ class DivisionCommand(Command):
 
     ### INITIALIZER ###
 
-    def __init__(self, request, context_name, start_segment_identifier, 
-        segment_start_offset, segment_stop_offset, duration, 
+    def __init__(self, request, context_name, 
+        start_offset, stop_offset,
+        start_segment_identifier, segment_start_offset, segment_stop_offset, 
+        duration, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None, truncate=None):
-        Command.__init__(self, request, context_name, start_segment_identifier, 
-            segment_start_offset, segment_stop_offset, duration, 
+        Command.__init__(self, request, context_name, 
+            start_offset, stop_offset,
+            start_segment_identifier, segment_start_offset, segment_stop_offset, 
+            duration, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)

@@ -53,9 +53,6 @@ def expr_to_timespan(expr):
         return expr.timespan
     elif hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
         return timespantools.TimespanConstant(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
-    elif hasattr(expr, 'segment_start_offset') and hasattr(expr, 'segment_stop_offset'):
-        return timespantools.TimespanConstant(
-            start_offset=expr.segment_start_offset, stop_offset=expr.segment_stop_offset)
     elif isinstance(expr, numbers.Number):
         return timespantools.TimespanConstant(start_offset=expr, stop_offset=expr)
     elif sequencetools.is_pair(expr):

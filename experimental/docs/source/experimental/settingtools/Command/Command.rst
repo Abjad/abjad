@@ -43,6 +43,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.settingtools.Command.Command.Command.timespan
+
 .. autoattribute:: experimental.settingtools.Command.Command.Command.vector
 
 Special Methods

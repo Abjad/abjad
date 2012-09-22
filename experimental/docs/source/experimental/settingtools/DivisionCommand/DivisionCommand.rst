@@ -71,6 +71,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.timespan
+
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 .. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.truncate
 
 .. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.vector
