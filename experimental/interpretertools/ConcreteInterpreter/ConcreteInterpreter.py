@@ -348,32 +348,22 @@ class ConcreteInterpreter(Interpreter):
                     last_division_command.truncate:
                     result.append(copy.deepcopy(division_command))
                 else:
-                    duration = last_division_command.duration + division_command.duration
                     segment_start_offset = last_division_command.segment_start_offset
                     segment_stop_offset = last_division_command.segment_stop_offset + \
                         division_command.duration
+                    duration = last_division_command.duration + division_command.duration
                     start_offset, stop_offset = \
                         self.score_specification.segment_offsets_to_score_offsets(
                         last_division_command.start_segment_identifier, 
                         segment_start_offset, segment_stop_offset) 
-                    division_command = settingtools.DivisionCommand(
-                        last_division_command.request,
-                        division_command.context_name,
-                        start_offset,
-                        stop_offset,
-                        last_division_command.start_segment_identifier,
-                        segment_start_offset,
-                        segment_stop_offset,
-                        duration,
-                        index=last_division_command.index,
-                        count=last_division_command.count,
-                        reverse=last_division_command.reverse,
-                        rotation=last_division_command.rotation,
-                        callback=last_division_command.callback,
-                        fresh=last_division_command.fresh,
-                        truncate=division_command.truncate
-                        )
-                    result[-1] = division_command
+                    new_division_command = copy.deepcopy(last_division_command)
+                    new_division_command._start_offset = start_offset
+                    new_division_command._stop_offset = stop_offset
+                    new_division_command._segment_start_offset = segment_start_offset
+                    new_division_command._segment_stop_offset = segment_stop_offset
+                    new_division_command._duration = duration
+                    new_division_command._truncate = division_command.truncate
+                    result[-1] = new_division_command
         return result
 
     def fuse_like_rhythm_commands(self, rhythm_commands):

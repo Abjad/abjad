@@ -113,8 +113,8 @@ class Command(AbjadObject):
             
         Return duration.
         ''' 
-        #assert self._duration == (self.segment_stop_offset - self.segment_start_offset), (
-        #    self._duration, self.segment_stop_offset, self.segment_start_offset)
+        #assert self._duration == (self.stop_offset - self.start_offset), (
+        #    self._duration, self.stop_offset, self.start_offset)
         #return self.segment_stop_offset - self.segment_start_offset
         return self._duration
 
