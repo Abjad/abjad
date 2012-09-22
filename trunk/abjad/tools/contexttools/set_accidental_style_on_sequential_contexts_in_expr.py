@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 from abjad.tools import marktools
 
 
@@ -35,7 +35,7 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
     '''
     from abjad.tools import contexttools
 
-    for context in componenttools.iterate_components_in_expr(expr, contexttools.Context):
+    for context in iterationtools.iterate_components_in_expr(expr, contexttools.Context):
         if context.is_semantic:
             if not context.is_parallel:
                 marktools.LilyPondCommandMark("#(set-accidental-style '%s)" % accidental_style)(context)

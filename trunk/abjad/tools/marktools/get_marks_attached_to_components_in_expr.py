@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 
 
 def get_marks_attached_to_components_in_expr(expr):
@@ -32,7 +32,7 @@ def get_marks_attached_to_components_in_expr(expr):
     from abjad.tools import marktools
 
     result = []
-    for component in componenttools.iterate_components_in_expr(expr):
+    for component in iterationtools.iterate_components_in_expr(expr):
         result.extend(marktools.get_marks_attached_to_component(component))
 
     return tuple(result)

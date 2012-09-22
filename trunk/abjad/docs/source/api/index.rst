@@ -141,7 +141,6 @@ Composition packages
    tools/componenttools/is_orphan_component
    tools/componenttools/is_well_formed_component
    tools/componenttools/iterate_components_depth_first
-   tools/componenttools/iterate_components_in_expr
    tools/componenttools/iterate_namesakes_from_component
    tools/componenttools/iterate_thread_from_component
    tools/componenttools/iterate_thread_in_expr
@@ -479,6 +478,7 @@ Composition packages
    :maxdepth: 1
 
    tools/iterationtools/iterate_chords_in_expr
+   tools/iterationtools/iterate_components_in_expr
    tools/iterationtools/iterate_leaves_in_expr
    tools/iterationtools/iterate_notes_in_expr
    tools/iterationtools/iterate_rests_in_expr

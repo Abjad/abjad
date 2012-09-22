@@ -33,11 +33,11 @@ def get_components_in_expr_with_name(expr, name):
 
     Return list of zero or more components found.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import iterationtools
 
     result = []
     
-    for component in componenttools.iterate_components_in_expr(expr):
+    for component in iterationtools.iterate_components_in_expr(expr):
         if name is None or getattr(component, 'name', None) == name:
             result.append(component)
 

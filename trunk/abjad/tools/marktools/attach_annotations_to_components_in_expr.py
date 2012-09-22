@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 
 
 def attach_annotations_to_components_in_expr(expr, annotations):
@@ -24,6 +24,6 @@ def attach_annotations_to_components_in_expr(expr, annotations):
     '''
     from abjad.tools import marktools
 
-    for component in componenttools.iterate_components_in_expr(expr):
+    for component in iterationtools.iterate_components_in_expr(expr):
         for annotation in annotations:
             marktools.Annotation(annotation)(component)

@@ -24,10 +24,10 @@ def get_proper_descendents_of_component(component):
 
     Return list of proper descendents of `component`.
     '''
-    from abjad.tools import componenttools
+    from abjad.tools import iterationtools
 
     # create list of component and all descendents of component
-    result = list(componenttools.iterate_components_in_expr(component))
+    result = list(iterationtools.iterate_components_in_expr(component))
 
     # remove component from list
     result.remove(component)

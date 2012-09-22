@@ -1,6 +1,3 @@
-from abjad.tools import componenttools
-
-
 def iterate_rests_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
@@ -37,7 +34,8 @@ def iterate_rests_in_expr(expr, reverse=False, start=0, stop=None):
 
     Return generator.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import resttools
 
-    return componenttools.iterate_components_in_expr(
+    return iterationtools.iterate_components_in_expr(
         expr, klass=resttools.Rest, reverse=reverse, start=start, stop=stop)

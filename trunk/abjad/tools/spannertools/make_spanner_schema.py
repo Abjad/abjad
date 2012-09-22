@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 
 
 def make_spanner_schema(components):
@@ -48,7 +48,7 @@ def make_spanner_schema(components):
     for spanner in spanners_contained_by_components:
         schema[spanner] = []
 
-    for i, component in enumerate(componenttools.iterate_components_in_expr(components)):
+    for i, component in enumerate(iterationtools.iterate_components_in_expr(components)):
         attached_spanners = spannertools.get_spanners_attached_to_component(component)
         for attached_spanner in attached_spanners:
             try:

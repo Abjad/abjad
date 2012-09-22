@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
@@ -28,7 +28,7 @@ def are_stepwise_notes(*expr):
     '''
 
     for left, right in sequencetools.iterate_sequence_pairwise_strict(
-        componenttools.iterate_components_in_expr(expr, notetools.Note)):
+        iterationtools.iterate_notes_in_expr(expr)):
         try:
             assert not (left.written_pitch == right.written_pitch)
             hdi = pitchtools.calculate_harmonic_diatonic_interval(left, right)

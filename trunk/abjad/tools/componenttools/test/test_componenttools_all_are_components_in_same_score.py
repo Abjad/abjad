@@ -27,7 +27,7 @@ def test_componenttools_all_are_components_in_same_score_01():
     assert componenttools.all_are_components_in_same_score(t.leaves[2:])
     assert componenttools.all_are_components_in_same_score(t.leaves)
     assert componenttools.all_are_components_in_same_score(
-        list(componenttools.iterate_components_in_expr(t, Component)))
+        list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_score_02():

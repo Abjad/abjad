@@ -61,12 +61,13 @@ def iterate_timeline_in_expr(expr, klass=None, reverse=False):
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
     from abjad.tools import leaftools
 
     if klass is None:
         klass = leaftools.Leaf
 
-    component_generator = componenttools.iterate_components_in_expr(expr, klass=klass)
+    component_generator = iterationtools.iterate_components_in_expr(expr, klass=klass)
     components = list(component_generator)
 
     def _forward_sort_helper(component_1, component_2):

@@ -11,6 +11,7 @@ def _withdraw_components_in_expr_from_crossing_spanners(components):
     Container setitem is probably primary consumer of this operation.
     Return None.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
     assert componenttools.all_are_thread_contiguous_components(components)
@@ -18,7 +19,7 @@ def _withdraw_components_in_expr_from_crossing_spanners(components):
     crossing_spanners = spannertools.get_spanners_that_cross_components(components)
 
     components_including_children = list(
-        componenttools.iterate_components_in_expr(components, componenttools.Component))
+        iterationtools.iterate_components_in_expr(components, componenttools.Component))
 
     for crossing_spanner in list(crossing_spanners):
         spanner_components = crossing_spanner._components[:]

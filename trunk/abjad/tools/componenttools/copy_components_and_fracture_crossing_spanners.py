@@ -85,6 +85,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
     '''
     from abjad.tools import spannertools
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
     from abjad.tools.componenttools._ignore_parentage_of_components import \
         _ignore_parentage_of_components
     from abjad.tools.componenttools._restore_parentage_to_components_by_receipt import \
@@ -119,7 +120,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     # iterate components and add new components to new spanners
     for component_index, new_component in enumerate(
-        componenttools.iterate_components_in_expr(new_components)):
+        iterationtools.iterate_components_in_expr(new_components)):
         try:
             new_covered_spanners = reversed_schema[component_index]
             for new_covered_spanner in new_covered_spanners:

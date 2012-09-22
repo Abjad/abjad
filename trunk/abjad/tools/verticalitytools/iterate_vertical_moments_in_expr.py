@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 
 
 # TODO: optimize without multiple full-component traversal.
@@ -106,7 +106,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
             yield x
     else:
         moments_in_governor = []
-        for component in componenttools.iterate_components_in_expr(expr):
+        for component in iterationtools.iterate_components_in_expr(expr):
             prolated_offset = component.start_offset
             if prolated_offset not in moments_in_governor:
                 moments_in_governor.append(prolated_offset)

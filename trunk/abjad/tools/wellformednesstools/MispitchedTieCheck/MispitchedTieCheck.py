@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import notetools
 from abjad.tools import spannertools
@@ -15,7 +15,7 @@ class MispitchedTieCheck(Check):
         '''
         violators = []
         total = 0
-        for leaf in componenttools.iterate_components_in_expr(expr, notetools.Note):
+        for leaf in iterationtools.iterate_components_in_expr(expr, notetools.Note):
             total += 1
             spanners = spannertools.get_spanners_attached_to_component(
                 leaf, tietools.TieSpanner)

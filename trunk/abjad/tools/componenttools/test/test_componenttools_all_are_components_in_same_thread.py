@@ -29,7 +29,7 @@ def test_componenttools_all_are_components_in_same_thread_02():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_03():
@@ -46,7 +46,7 @@ def test_componenttools_all_are_components_in_same_thread_03():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_04():
@@ -65,7 +65,7 @@ def test_componenttools_all_are_components_in_same_thread_04():
     '''
 
     assert componenttools.all_are_components_in_same_thread(
-        list(componenttools.iterate_components_in_expr(t, Component)))
+        list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_05():
@@ -83,7 +83,7 @@ def test_componenttools_all_are_components_in_same_thread_05():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_06():
@@ -111,7 +111,7 @@ def test_componenttools_all_are_components_in_same_thread_06():
     '''
 
     assert componenttools.all_are_components_in_same_thread(
-        list(componenttools.iterate_components_in_expr(t, Component)))
+        list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_07():
@@ -136,7 +136,7 @@ def test_componenttools_all_are_components_in_same_thread_07():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_08():
@@ -1002,7 +1002,7 @@ def test_componenttools_all_are_components_in_same_thread_35():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_36():
@@ -1037,7 +1037,7 @@ def test_componenttools_all_are_components_in_same_thread_36():
     }
     '''
 
-    assert componenttools.all_are_components_in_same_thread(list(componenttools.iterate_components_in_expr(t, Component)))
+    assert componenttools.all_are_components_in_same_thread(list(iterationtools.iterate_components_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_thread_37():

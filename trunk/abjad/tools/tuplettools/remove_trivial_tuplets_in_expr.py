@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import iterationtools
 
 
 def remove_trivial_tuplets_in_expr(expr):
@@ -53,7 +54,7 @@ def remove_trivial_tuplets_in_expr(expr):
 
     from abjad.tools import tuplettools
 
-    for tuplet in list(componenttools.iterate_components_in_expr(expr, tuplettools.Tuplet)):
+    for tuplet in list(iterationtools.iterate_components_in_expr(expr, tuplettools.Tuplet)):
         if tuplet.is_trivial:
             componenttools.move_parentage_and_spanners_from_components_to_components(
                 [tuplet], tuplet[:])

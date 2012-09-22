@@ -1,6 +1,3 @@
-from abjad.tools import componenttools
-
-
 def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
@@ -45,7 +42,8 @@ def iterate_voices_in_expr(expr, reverse=False, start=0, stop=None):
 
     Return generator.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import voicetools
 
-    return componenttools.iterate_components_in_expr(
+    return iterationtools.iterate_components_in_expr(
         expr, klass=voicetools.Voice, reverse=reverse, start=start, stop=stop)

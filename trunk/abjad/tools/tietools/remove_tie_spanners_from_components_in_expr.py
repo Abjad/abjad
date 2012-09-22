@@ -1,4 +1,4 @@
-from abjad.tools import componenttools
+from abjad.tools import iterationtools
 from abjad.tools import spannertools
 
 
@@ -40,7 +40,7 @@ def remove_tie_spanners_from_components_in_expr(expr):
     '''
     from abjad.tools import tietools
 
-    for component in componenttools.iterate_components_in_expr(expr):
+    for component in iterationtools.iterate_components_in_expr(expr):
         spannertools.destroy_spanners_attached_to_component(component, tietools.TieSpanner)
 
     return expr
