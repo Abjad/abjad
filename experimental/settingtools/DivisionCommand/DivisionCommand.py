@@ -35,19 +35,19 @@ class DivisionCommand(Command):
     def truncate(self):
         return self._truncate
 
-#    ### PUBLIC METHODS ###
-#
-#    def can_fuse(self, expr):
-#        '''True when self can fuse `expr` to the end of self. Otherwise false.
-#
-#        Return boolean.
-#        '''
-#        if not isinstance(expr, type(self)):
-#            return False
-#        if self.truncate:
-#            return False
-#        if expr.fresh or expr.truncate:
-#            return False
-#        if expr.request != self.request:
-#            return False
-#        return True
+    ### PUBLIC METHODS ###
+
+    def can_fuse(self, expr):
+        '''True when self can fuse `expr` to the end of self. Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if self.truncate:
+            return False
+        if expr.fresh or expr.truncate:
+            return False
+        if expr.request != self.request:
+            return False
+        return True

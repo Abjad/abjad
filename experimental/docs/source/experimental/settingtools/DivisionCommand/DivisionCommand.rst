@@ -81,6 +81,11 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
+Methods
+-------
+
+.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.can_fuse
+
 Special Methods
 ---------------
 
