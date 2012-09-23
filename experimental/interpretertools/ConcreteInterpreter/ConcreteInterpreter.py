@@ -784,14 +784,18 @@ class ConcreteInterpreter(Interpreter):
             for command_to_remove in commands_to_remove:
                 cooked_commands.remove(command_to_remove)
             for command_to_curtail in commands_to_curtail:
+                command_to_curtail._stop_offset = raw_command.start_offset
                 command_to_curtail._segment_stop_offset = raw_command.segment_start_offset
             for command_to_delay in commands_to_delay:
+                command_to_delay._start_offset = raw_command.stop_offset
                 command_to_delay._segment_start_offset = raw_command.segment_stop_offset
                 command_was_delayed = True
             for command_to_split in commands_to_split:
                 left_command = command_to_split
                 middle_command = raw_command
                 right_command = copy.deepcopy(left_command)
+                left_command._stop_offset = middle_command.start_offset
+                right_command._start_offset = middle_command.stop_offset
                 left_command._segment_stop_offset = middle_command.segment_start_offset
                 right_command._segment_start_offset = middle_command.segment_stop_offset
                 command_was_split = True

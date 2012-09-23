@@ -52,8 +52,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.settingtools.Command.Command.Command.assert_duration_equality
-
 .. automethod:: experimental.settingtools.Command.Command.Command.can_fuse
 
 .. automethod:: experimental.settingtools.Command.Command.Command.fuse
