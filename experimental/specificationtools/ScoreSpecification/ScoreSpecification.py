@@ -33,6 +33,7 @@ class ScoreSpecification(Specification):
     def __init__(self, score_template):
         from experimental import specificationtools
         Specification.__init__(self, score_template)
+        self._all_division_region_commands = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
 
@@ -68,6 +69,16 @@ class ScoreSpecification(Specification):
         Return list of strings.
         '''
         return Specification.abbreviated_context_names.fget(self)
+
+    @property
+    def all_division_region_commands(self):
+        '''Read-only list of all division region commands.
+
+        Populated at the beginning of division interpretation by interpreter.
+
+        Return list.
+        '''
+        return self._all_division_region_commands
 
     @property
     def context_names(self):
