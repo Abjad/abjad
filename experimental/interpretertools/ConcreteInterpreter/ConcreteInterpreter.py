@@ -52,6 +52,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_division_lists_to_voices(self):
         self.initialize_division_region_expression_inventories()
+        self.populate_all_division_region_commands()
         self.division_commands_to_division_region_expressions()
         self.make_voice_division_lists()
         self.make_segment_division_lists()
@@ -246,12 +247,14 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def division_commands_to_division_region_expressions(self):
-        self.populate_all_division_region_commands()
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             division_region_commands = \
                 self.score_specification.contexts[voice.name]['division_region_commands']
-            assert division_region_commands.all_are_contiguous
-            self.division_region_commands_to_division_region_expressions(division_region_commands, voice)
+            for division_region_command in division_region_commands:
+                division_region_expression = self.division_region_command_to_division_region_expression(
+                    division_region_command, voice.name)
+                self.score_specification.contexts[voice.name]['division_region_expressions'].append(
+                    division_region_expression)
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
@@ -317,13 +320,6 @@ class ConcreteInterpreter(Interpreter):
             start_offset=division_region_command.start_offset,
             stop_offset=division_region_command.stop_offset
             )
-
-    def division_region_commands_to_division_region_expressions(self, division_region_commands, voice):
-        for division_region_command in division_region_commands:
-            division_region_expression = self.division_region_command_to_division_region_expression(
-                division_region_command, voice.name)
-            self.score_specification.contexts[voice.name]['division_region_expressions'].append(
-                division_region_expression)
 
     def dump_rhythm_region_expressions_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
