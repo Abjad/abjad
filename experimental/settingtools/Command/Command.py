@@ -26,7 +26,6 @@ class Command(AbjadObject):
     def __init__(self, request, context_name, 
         start_offset, stop_offset,
         start_segment_identifier, segment_start_offset, segment_stop_offset, 
-        duration, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
@@ -38,8 +37,6 @@ class Command(AbjadObject):
         segment_start_offset = durationtools.Offset(segment_start_offset)
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
         assert segment_start_offset <= segment_stop_offset
-        duration = durationtools.Duration(duration)
-        assert segment_stop_offset - segment_start_offset == duration
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(reverse, (bool, type(None))), repr(reverse)
@@ -53,7 +50,6 @@ class Command(AbjadObject):
         self._start_segment_identifier = start_segment_identifier
         self._segment_start_offset = segment_start_offset
         self._segment_stop_offset = segment_stop_offset
-        self._duration = duration
         self._index = index
         self._count = count
         self._reverse = reverse

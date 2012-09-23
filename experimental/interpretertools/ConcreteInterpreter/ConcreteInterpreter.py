@@ -499,7 +499,6 @@ class ConcreteInterpreter(Interpreter):
             segment_specification.segment_name,
             segment_start_offset,
             segment_stop_offset,
-            segment_specification.duration,
             fresh=True
             )
         if attribute == 'divisions':
@@ -556,7 +555,6 @@ class ConcreteInterpreter(Interpreter):
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
-        duration = stop_offset - start_offset
         # NOTE: look slike start_offset and stop_offset are already score-relative
         division_command = settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
@@ -566,7 +564,6 @@ class ConcreteInterpreter(Interpreter):
             segment_identifier,
             start_offset,
             stop_offset,
-            duration, 
             fresh=True,
             truncate=True
             )
@@ -739,7 +736,6 @@ class ConcreteInterpreter(Interpreter):
         segment_name = segment_specification.segment_name
         segment_start_offset, segment_stop_offset = \
             selector.get_segment_offsets(self.score_specification, context_name)
-        duration = selector.get_duration(self.score_specification, context_name)
         start_offset, stop_offset = self.score_specification.segment_offsets_to_score_offsets(
             segment_specification.segment_name,
             segment_start_offset, segment_stop_offset) 
@@ -752,7 +748,6 @@ class ConcreteInterpreter(Interpreter):
             segment_name,
             segment_start_offset,
             segment_stop_offset,
-            duration,
             index=single_context_setting.index,
             count=single_context_setting.count,
             reverse=single_context_setting.reverse,
