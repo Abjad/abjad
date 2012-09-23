@@ -1,4 +1,8 @@
-1.  Author tests to make sure that persistent overlapping division selectors 
+1.  Reimplement all selector get_score_start_offset() and get_score_stop_offset()
+    methods to work independently of get_segment_start_offset() and get_segment_stop_offset().
+    Then remove all get_segment_start_offset() and get_segment_stop_offset() methods.
+
+2.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-2.  Make split() work with durated complex beam spanners.
+3.  Make split() work with durated complex beam spanners.

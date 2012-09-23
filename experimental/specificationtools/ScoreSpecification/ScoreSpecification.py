@@ -497,9 +497,7 @@ class ScoreSpecification(Specification):
         '''
         segment_index = self.segment_identifier_expression_to_segment_index(
             segment_identifier_expression)
-        segment_specification = self.segment_specifications[segment_index]
-        #return segment_specification.start_offset, segment_specification.stop_offset
-        return segment_specification.offsets
+        return self.segment_offset_pairs[segment_index]
 
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
