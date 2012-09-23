@@ -273,14 +273,10 @@ class ConcreteInterpreter(Interpreter):
         voice_name = division_material_request.voice_name
         start_segment_identifier = division_material_request.start_segment_identifier
         stop_segment_identifier = division_material_request.stop_segment_identifier
-        selection_start_offset = division_material_request.start_offset
-        selection_stop_offset = division_material_request.stop_offset
         divisions = self.voice_name_to_divisions(voice_name)
         #self._debug(divisions, 'divisions')
         divisions = self.keep_divisions_between_segments(
             divisions, start_segment_identifier, stop_segment_identifier)
-        divisions = self.keep_divisions_between_selection_offsets(
-            divisions, selection_start_offset, selection_stop_offset)
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 
@@ -517,18 +513,17 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(divisions, 'divisions')
         return divisions
 
-    def keep_divisions_between_selection_offsets(
-        self, divisions, selection_start_offset, selection_stop_offset):
+    def keep_divisions_between_offsets(self, divisions, start_offset, stop_offset):
         total_divisions = sum(divisions)
-        if selection_start_offset is None:
-            selection_start_offset = durationtools.Offset(0)
-        if selection_stop_offset is None:
-            selection_stop_offset = total_divisions
-        first_weight = selection_start_offset
-        second_weight = selection_stop_offset - selection_start_offset
+        if start_offset is None:
+            start_offset = durationtools.Offset(0)
+        if stop_offset is None:
+            stop_offset = total_divisions
+        first_weight = start_offset
+        second_weight = stop_offset - start_offset
         second_weight = second_weight
         weights = [first_weight, second_weight]
-        third_weight = total_divisions - selection_stop_offset
+        third_weight = total_divisions - stop_offset
         third_weight = third_weight
         if third_weight:
             weights.append(third_weight)

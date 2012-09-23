@@ -312,10 +312,7 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    # TODO: Remove start_offset, stop_offset.
-    #       Implement ScoreSpecification.request_divisions(..., selector=None) instead.
     def request_divisions(self, voice,
-        start_offset=None, stop_offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
 
@@ -337,7 +334,6 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return requesttools.MaterialRequest(
             'divisions', selector, context_name=voice, 
-            start_offset=start_offset, stop_offset=stop_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: remove 'selector' and always work relative to timespan of segment

@@ -38,20 +38,15 @@ class MaterialRequest(Request):
     ### INITIALIZER ###
 
     def __init__(self, attribute, selector, context_name=None, 
-        start_offset=None, stop_offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(selector, selectortools.Selector)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        start_offset = self._initialize_offset(start_offset)
-        stop_offset = self._initialize_offset(stop_offset)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._selector = selector
         self._context_name = context_name
-        self._start_offset = start_offset
-        self._stop_offset = stop_offset
 
     ### PRIVATE METHODS ###
 
@@ -74,18 +69,10 @@ class MaterialRequest(Request):
         return self._selector
 
     @property
-    def start_offset(self):
-        return self._start_offset
-
-    @property
     def start_segment_identifier(self):
         '''Delegate to ``self.selector.start_segment_identifier``.
         '''
         return self.selector.start_segment_identifier
-
-    @property
-    def stop_offset(self):
-        return self._stop_offset
 
     @property
     def stop_segment_identifier(self):

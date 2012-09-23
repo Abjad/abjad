@@ -41,15 +41,7 @@ Read-only Properties
 
     Inherited from :py:class:`MaterialRequest.MaterialRequest <experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest>`
 
-.. autoattribute:: experimental.requesttools.RhythmRequest.RhythmRequest.RhythmRequest.start_offset
-
-    Inherited from :py:class:`MaterialRequest.MaterialRequest <experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest>`
-
 .. autoattribute:: experimental.requesttools.RhythmRequest.RhythmRequest.RhythmRequest.start_segment_identifier
-
-    Inherited from :py:class:`MaterialRequest.MaterialRequest <experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest>`
-
-.. autoattribute:: experimental.requesttools.RhythmRequest.RhythmRequest.RhythmRequest.stop_offset
 
     Inherited from :py:class:`MaterialRequest.MaterialRequest <experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest>`
 
