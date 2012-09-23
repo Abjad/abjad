@@ -52,15 +52,9 @@ class SegmentDivisionList(VoiceDivisionList):
             Division('[3, 16]'), Division('[3, 16]')],
             'Voice 1',
             start_timepoint=timespantools.SymbolicTimepoint(
-                selector=selectortools.SingleSegmentSelector(
-                    identifier='red'
-                    ),
                 offset=durationtools.Offset(0, 1)
                 ),
             stop_timepoint=timespantools.SymbolicTimepoint(
-                selector=selectortools.SingleSegmentSelector(
-                    identifier='red'
-                    ),
                 offset=durationtools.Offset(21, 8)
                 )
             )

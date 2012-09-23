@@ -47,14 +47,6 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.segment_start_offset
-
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
-
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.segment_stop_offset
-
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.start_offset
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`

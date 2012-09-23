@@ -24,8 +24,7 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     def __init__(self, request, context_name, 
-        start_offset, stop_offset,
-        start_segment_identifier, segment_start_offset, segment_stop_offset, 
+        start_offset, stop_offset, start_segment_identifier, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
@@ -34,9 +33,6 @@ class Command(AbjadObject):
         stop_offset = durationtools.Offset(stop_offset)
         assert start_offset <= stop_offset
         assert isinstance(start_segment_identifier, str)
-        segment_start_offset = durationtools.Offset(segment_start_offset)
-        segment_stop_offset = durationtools.Offset(segment_stop_offset)
-        assert segment_start_offset <= segment_stop_offset
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(reverse, (bool, type(None))), repr(reverse)
@@ -48,8 +44,6 @@ class Command(AbjadObject):
         self._start_offset = start_offset
         self._stop_offset = stop_offset
         self._start_segment_identifier = start_segment_identifier
-        self._segment_start_offset = segment_start_offset
-        self._segment_stop_offset = segment_stop_offset
         self._index = index
         self._count = count
         self._reverse = reverse
@@ -156,12 +150,12 @@ class Command(AbjadObject):
         return self._rotation
 
     @property
-    def segment_start_offset(self):
-        '''Command segment start offset.
+    def start_offset(self):
+        '''Score start offset of command.
 
         Return offset.
         '''
-        return self._segment_start_offset
+        return self._start_offset
 
     @property
     def start_segment_identifier(self):
@@ -170,22 +164,6 @@ class Command(AbjadObject):
         Return string or integer.
         '''
         return self._start_segment_identifier
-
-    @property
-    def segment_stop_offset(self):
-        '''Command segment stop offset.
-
-        Return offset.
-        '''
-        return self._segment_stop_offset
-
-    @property
-    def start_offset(self):
-        '''Score start offset of command.
-
-        Return offset.
-        '''
-        return self._start_offset
 
     @property
     def stop_offset(self):
@@ -197,15 +175,12 @@ class Command(AbjadObject):
 
     @property
     def timespan(self):
-        '''Command timespan from segment start offset to segment stop offset.
-
-        .. note:: Maybe eliminate in favor of timespan from score start offset
-            to score stop offset.
+        '''Command timespan from (score) start offset to (score) stop offset.
 
         Return timespan.
         '''
         return timespantools.TimespanConstant(
-            start_offset=self.segment_start_offset, stop_offset=self.segment_stop_offset)
+            start_offset=self.start_offset, stop_offset=self.stop_offset)
 
     @property
     def vector(self):
@@ -230,10 +205,8 @@ class Command(AbjadObject):
         '''
         assert self.can_fuse(command)
         stop_offset = self.stop_offset + command.duration
-        segment_stop_offset = self.segment_stop_offset + command.duration
         duration = self.duration + command.duration
         fused_command = copy.deepcopy(self)
         fused_command._stop_offset = stop_offset
-        fused_command._segment_stop_offset = segment_stop_offset
         fused_command._duration = duration 
         return fused_command

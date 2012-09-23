@@ -29,10 +29,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.rotation
 
-.. autoattribute:: experimental.settingtools.Command.Command.Command.segment_start_offset
-
-.. autoattribute:: experimental.settingtools.Command.Command.Command.segment_stop_offset
-
 .. autoattribute:: experimental.settingtools.Command.Command.Command.start_offset
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.start_segment_identifier
