@@ -61,6 +61,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.requesttools.RhythmRequest.RhythmRequest.RhythmRequest.voice_name
+
+    Inherited from :py:class:`MaterialRequest.MaterialRequest <experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest>`
+
 Special Methods
 ---------------
 

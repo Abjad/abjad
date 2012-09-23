@@ -247,20 +247,30 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def division_commands_to_division_region_expressions(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            division_region_commands = \
-                self.score_specification.contexts[voice.name]['division_region_commands']
-            for division_region_command in division_region_commands:
-                division_region_expression = self.division_region_command_to_division_region_expression(
-                    division_region_command, voice.name)
-                self.score_specification.contexts[voice.name]['division_region_expressions'].append(
-                    division_region_expression)
+        redo = True
+        while redo:
+            redo = False
+            for voice in iterationtools.iterate_voices_in_expr(self.score):
+                division_region_commands = \
+                    self.score_specification.contexts[voice.name]['division_region_commands']
+                division_region_commands_to_reattempt = []
+                for division_region_command in division_region_commands:
+                    division_region_expression = self.division_region_command_to_division_region_expression(
+                        division_region_command, voice.name)
+                    if division_region_expression:
+                        self.score_specification.contexts[voice.name]['division_region_expressions'].append(
+                            division_region_expression)
+                    else:
+                        division_region_commands_to_reattempt.append(division_region_command)
+                        redo = True
+                self.score_specification.contexts[voice.name]['division_region_commands'] = \
+                    division_region_commands_to_reattempt[:]
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
         #self._debug(division_material_request, 'dmr')
-        voice_name = division_material_request.context_name
+        voice_name = division_material_request.voice_name
         start_segment_identifier = division_material_request.start_segment_identifier
         stop_segment_identifier = division_material_request.stop_segment_identifier
         selection_start_offset = division_material_request.start_offset

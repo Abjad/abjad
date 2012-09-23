@@ -47,6 +47,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.voice_name
+
 Special Methods
 ---------------
 
