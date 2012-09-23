@@ -217,18 +217,18 @@ class ConcreteInterpreter(Interpreter):
         return context_names
 
     def division_command_request_to_divisions(
-        self, division_command_request, division_region_commands, voice_name):
+        self, division_command_request, all_division_region_commands, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'dcr')
-        #self._debug_values(division_region_commands, 'drc')
+        #self._debug_values(all_division_region_commands, 'all drcs')
         requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
         requested_offset = self.score_specification.segment_offset_to_score_offset(
             requested_segment_identifier, requested_segment_offset)
         timespan_inventory = timespantools.TimespanInventory()
-        for division_region_command in division_region_commands:
+        for division_region_command in all_division_region_commands:
             if division_region_command.start_segment_identifier == requested_segment_identifier:
                 if not division_region_command.request == division_command_request:
                     timespan_inventory.append(division_region_command)
@@ -367,7 +367,7 @@ class ConcreteInterpreter(Interpreter):
     def get_division_region_commands_for_all_voices(self):
         all_division_region_commands = []
         if not self.score_specification.segment_specifications:
-            return all_division_region_commands
+            return []
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             division_commands = self.get_division_commands_for_voice(voice)
             division_commands = self.fuse_like_commands(division_commands)
@@ -590,8 +590,13 @@ class ConcreteInterpreter(Interpreter):
         self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
 
     def division_region_command_to_division_region_expression(
-        self, division_region_command, division_region_commands, voice_name):
-        #self._debug(division_region_command, 'rdc')
+        self, division_region_command, all_division_region_commands, voice_name):
+        #assert division_region_command in all_division_region_commands
+        #parentage_names = self.context_name_to_parentage_names(
+        #    self.score_specification.segment_specifications[0], 
+        #    voice_name, proper=False)
+        #assert division_region_command.voice_name in parentage_names, (
+        #    division_region_command.voice_name, parentage_names)
         if isinstance(division_region_command.request, list):
             divisions = division_region_command.request
             divisions = [divisiontools.Division(x) for x in divisions]
@@ -611,21 +616,21 @@ class ConcreteInterpreter(Interpreter):
             divisions = requesttools.apply_request_transforms(division_region_command, divisions)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
-                division_region_command, division_region_commands, voice_name)
+                division_region_command, all_division_region_commands, voice_name)
             return division_region_expression
         elif isinstance(division_region_command.request, requesttools.CommandRequest):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
             divisions = self.division_command_request_to_divisions(
-                division_command_request, division_region_commands, voice_name)
+                division_command_request, all_division_region_commands, voice_name)
             divisions = requesttools.apply_request_transforms(division_command_request, divisions)
             divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
-                division_region_command, division_region_commands, voice_name)
+                division_region_command, all_division_region_commands, voice_name)
             return division_region_expression
         else:
-            raise NotImplementedError('implement for {!r}.'.format(division_region_command.request))
+            raise NotImplementedError(division_region_command.request)
         return settingtools.OffsetPositionedDivisionExpression(
             divisions, 
             voice_name=voice_name, 
@@ -635,8 +640,6 @@ class ConcreteInterpreter(Interpreter):
 
     def division_region_commands_to_division_region_expressions(self, 
         division_region_commands, voice, all_division_region_commands):
-        timespan_inventory = timespantools.TimespanInventory()
-        self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
         for division_region_command in division_region_commands:
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, all_division_region_commands, voice.name)

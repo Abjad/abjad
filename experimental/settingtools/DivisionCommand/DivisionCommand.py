@@ -32,6 +32,12 @@ class DivisionCommand(Command):
     def truncate(self):
         return self._truncate
 
+    @property
+    def voice_name(self):
+        '''Aliased to ``self.context_name``.
+        '''
+        return self.context_name
+
     ### PUBLIC METHODS ###
 
     def can_fuse(self, expr):

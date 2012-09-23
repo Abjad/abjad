@@ -73,6 +73,8 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
+.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.voice_name
+
 Methods
 -------
 
