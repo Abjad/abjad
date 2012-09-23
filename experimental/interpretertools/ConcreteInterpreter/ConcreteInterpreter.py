@@ -271,15 +271,6 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 
-    # NEXT TODO: change division region division lists in division region expressions
-    def divisions_to_division_region_division_list(self, divisions, region_division_command, voice_name):
-        division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions, voice_name)
-        start_timepoint = timespantools.SymbolicTimepoint(offset=region_division_command.start_offset)
-        stop_timepoint = timespantools.SymbolicTimepoint(offset=region_division_command.stop_offset)
-        division_region_division_list._start_timepoint = start_timepoint    
-        division_region_division_list._stop_timepoint = stop_timepoint
-        return division_region_division_list
-
     def dump_rhythm_region_expressions_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             for rhythm_region_expression in \
@@ -639,9 +630,12 @@ class ConcreteInterpreter(Interpreter):
             return division_region_division_list
         else:
             raise NotImplementedError('implement for {!r}.'.format(region_division_command.request))
-        division_region_division_list = self.divisions_to_division_region_division_list(
-            divisions, region_division_command, voice_name)
-        return division_region_division_list
+        return settingtools.OffsetPositionedDivisionExpression(
+            divisions, 
+            voice_name=voice_name, 
+            start_offset=region_division_command.start_offset,
+            stop_offset=region_division_command.stop_offset
+            )
 
     def region_division_commands_to_division_region_division_lists(self, 
         region_division_commands, voice, all_region_division_commands):
@@ -941,6 +935,6 @@ class ConcreteInterpreter(Interpreter):
             'division_region_division_lists']
         divisions = []
         for division_region_division_list in division_region_division_lists:
-            divisions.extend(division_region_division_list)
+            divisions.extend(division_region_division_list.division_list)
         assert isinstance(divisions, list), divisions
         return divisions

@@ -17,24 +17,24 @@ class DivisionRegionDivisionList(VoiceDivisionList):
 
     ### INITIALIZER ###
 
-    def __init__(self, divisions, voice_name, start_timepoint=None, stop_timepoint=None):
+    def __init__(self, divisions, voice_name, start_offset=None, stop_offset=None):
         VoiceDivisionList.__init__(self, divisions, voice_name)
-        self._start_timepoint = start_timepoint
-        self._stop_timepoint = stop_timepoint    
+        self._start_offset = start_offset
+        self._stop_offset = stop_offset    
 
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r}, {!r}, start_timepoint={!r}, stop_timepoint={!r})'.format(
+        return '{}({!r}, {!r}, start_offset={!r}, stop_offset={!r})'.format(
             self._class_name, self._contents_string, self.voice_name, 
-            self.start_timepoint, self.stop_timepoint)
+            self.start_offset, self.stop_offset)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def start_timepoint(self):
-        return self._start_timepoint
+    def start_offset(self):
+        return self._start_offset
 
     @property
-    def stop_timepoint(self):
-        return self._stop_timepoint
+    def stop_offset(self):
+        return self._stop_offset

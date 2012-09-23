@@ -9,7 +9,9 @@ settingtools.OffsetPositionedDivisionExpression
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.divion_list
+.. autoattribute:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.division_list
+
+.. autoattribute:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.divisions
 
 .. autoattribute:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.duration
 

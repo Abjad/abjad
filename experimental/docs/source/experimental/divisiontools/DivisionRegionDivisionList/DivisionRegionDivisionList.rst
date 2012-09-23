@@ -57,9 +57,9 @@ Read-only Properties
 
     Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
 
-.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.start_timepoint
+.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.start_offset
 
-.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.stop_timepoint
+.. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.stop_offset
 
 .. autoattribute:: experimental.divisiontools.DivisionRegionDivisionList.DivisionRegionDivisionList.DivisionRegionDivisionList.storage_format
 
