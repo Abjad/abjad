@@ -88,7 +88,6 @@ class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
         divisions = copy.deepcopy(self.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_trim], cyclic=False, overhang=True)
-        assert len(shards) == 2
         trimmed_divisions = shards[-1]
         division_list = divisiontools.DivisionList(trimmed_divisions)
         self._division_list = division_list
@@ -131,7 +130,6 @@ class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
         divisions = copy.deepcopy(self.divisions)
         shards = sequencetools.split_sequence_by_weights(
             divisions, [duration_to_keep], cyclic=False, overhang=True)
-        assert len(shards) == 2
         trimmed_divisions = shards[0]
         division_list = divisiontools.DivisionList(trimmed_divisions)
         self._division_list = division_list

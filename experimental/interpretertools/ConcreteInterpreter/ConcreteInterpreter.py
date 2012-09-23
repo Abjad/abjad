@@ -270,20 +270,6 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
         #self._debug(division_material_request, 'dmr')
-        voice_name = division_material_request.voice_name
-        start_segment_identifier = division_material_request.start_segment_identifier
-        stop_segment_identifier = division_material_request.stop_segment_identifier
-        divisions = self.voice_name_to_divisions(voice_name)
-        #self._debug(divisions, 'divisions')
-        divisions = self.keep_divisions_between_segments(
-            divisions, start_segment_identifier, stop_segment_identifier)
-        divisions = requesttools.apply_request_transforms(division_material_request, divisions)
-        return divisions
-
-    def new_division_material_request_to_divisions(self, division_material_request):
-        assert isinstance(division_material_request, requesttools.MaterialRequest)
-        assert division_material_request.attribute == 'divisions'
-        #self._debug(division_material_request, 'dmr')
         selector = division_material_request.selector
         voice_name = division_material_request.voice_name
         start_offset = selector.get_score_start_offset(self.score_specification, voice_name)
@@ -303,12 +289,12 @@ class ConcreteInterpreter(Interpreter):
             return
         if not division_region_expressions.all_are_contiguous:
             return
-        # will eventually have to implement trimming logic
+        trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
+        trimmed_division_region_expressions[0].trim_to_start_offset(start_offset)
+        trimmed_division_region_expressions[-1].trim_to_stop_offset(stop_offset)
         divisions = []
-        for division_region_expression in division_region_expressions:
+        for division_region_expression in trimmed_division_region_expressions:
             divisions.extend(division_region_expression.divisions)
-        # not sure if the copy is necessary; should be unncessary bc division should be value objects
-        divisions = copy.deepcopy(divisions)
         self._debug(divisions, 'divisions')
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
@@ -516,40 +502,6 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timespantools.TimespanInventory()
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = timespan_inventory
-
-    def keep_divisions_between_segments(self, divisions, start_segment_identifier, stop_segment_identifier):
-        start_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
-            start_segment_identifier)
-        stop_segment_index = self.score_specification.segment_identifier_expression_to_segment_index(
-            stop_segment_identifier)
-        segment_count =  stop_segment_index - start_segment_index
-        score_start_offset, score_stop_offset = self.score_specification.segment_name_to_segment_offsets(
-            start_segment_index, segment_count)
-        total_amount = score_stop_offset - score_start_offset
-        divisions = sequencetools.split_sequence_by_weights(
-            divisions, [0, total_amount], cyclic=False, overhang=True)
-        divisions = divisions[1]
-        #self._debug(divisions, 'divisions')
-        return divisions
-
-    def keep_divisions_between_offsets(self, divisions, start_offset, stop_offset):
-        total_divisions = sum(divisions)
-        if start_offset is None:
-            start_offset = durationtools.Offset(0)
-        if stop_offset is None:
-            stop_offset = total_divisions
-        first_weight = start_offset
-        second_weight = stop_offset - start_offset
-        second_weight = second_weight
-        weights = [first_weight, second_weight]
-        third_weight = total_divisions - stop_offset
-        third_weight = third_weight
-        if third_weight:
-            weights.append(third_weight)
-        divisions = sequencetools.split_sequence_by_weights(
-            divisions, weights, cyclic=False, overhang=True)
-        divisions = divisions[1]
-        return divisions
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
         request = self.attribute_to_default_request(segment_specification, attribute)
