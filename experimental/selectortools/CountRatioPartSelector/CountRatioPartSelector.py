@@ -53,6 +53,7 @@ class CountRatioPartSelector(RatioPartSelector):
 
     ### PUBLIC METHODS ###
 
+    # TODO: replace with Selector.get_duration() instead.
     def get_duration(self, score_specification, context_name):
         '''Evaluate duration of selector when applied
         to `context_name` in `score_specification`.

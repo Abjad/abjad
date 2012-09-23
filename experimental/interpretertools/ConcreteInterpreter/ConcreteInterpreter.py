@@ -280,19 +280,37 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 
-    '''
-    def division_material_request_to_divisions(self, division_material_request):
+    def new_division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
-        self._debug(division_material_request, 'dmr')
+        #self._debug(division_material_request, 'dmr')
+        selector = division_material_request.selector
         voice_name = division_material_request.voice_name
-        start_segment_identifier = division_material_request.start_segment_identifier
-        stop_segment_identifier = division_material_request.stop_segment_identifier
-        selection_start_offset = division_material_request.start_offset
-        selection_stop_offset = division_material_request.stop_offset
-        self._debug((voice_name, selection_start_offset, selection_stop_offset), 'stuff')
-        raise Exception
-    '''
+        start_offset = selector.get_score_start_offset(self.score_specification, voice_name)
+        stop_offset = selector.get_score_stop_offset(self.score_specification, voice_name)
+        #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
+        division_region_expressions = \
+            self.score_specification.contexts[voice_name]['division_region_expressions']
+        #self._debug(division_region_expressions, 'drx')
+        source_timespan = timespantools.TimespanConstant(start_offset, stop_offset)
+        timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
+            timespan_1=source_timespan)
+        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_inequality(
+            timespan_inequality)
+        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
+        #self._debug(division_region_expressions, 'drx')
+        if not division_region_expressions:
+            return
+        if not division_region_expressions.all_are_contiguous:
+            return
+        # will eventually have to implement trimming logic
+        divisions = []
+        for division_region_expression in division_region_expressions:
+            divisions.extend(division_region_expression.divisions)
+        # not sure if the copy is necessary; should be unncessary bc division should be value objects
+        divisions = copy.deepcopy(divisions)
+        divisions = requesttools.apply_request_transforms(division_material_request, divisions)
+        return divisions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
         #parentage_names = self.context_name_to_parentage_names(

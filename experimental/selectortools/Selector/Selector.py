@@ -57,14 +57,14 @@ class Selector(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
     def get_duration(self, score_specification, context_name):
         r'''Evaluate duration of selector when applied
         to `context_name` in `score_specification`.
 
         Return duration.
         '''
-        raise NotImplementedError
+        start_offset, stop_offset = self.get_score_offsets(score_specification, context_name)
+        return stop_offset - start_offset
 
     def get_score_offsets(self, score_specification, context_name):
         r'''Get score start offset and score stop offset of selector when applied
