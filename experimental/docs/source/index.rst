@@ -35,7 +35,6 @@ Unstable packages (load manually)
 
    experimental/divisiontools/Division/Division
    experimental/divisiontools/DivisionList/DivisionList
-   experimental/divisiontools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/divisiontools/RhythmRegionDivisionList/RhythmRegionDivisionList
    experimental/divisiontools/SegmentDivisionList/SegmentDivisionList
    experimental/divisiontools/VoiceDivisionList/VoiceDivisionList
