@@ -112,16 +112,6 @@ class Command(AbjadObject):
             
         Return duration.
         ''' 
-        duration = self.segment_stop_offset - self.segment_start_offset
-        assert duration == self.score_based_duration, (
-            self._class_name, duration, self.score_based_duration)
-        return self.segment_stop_offset - self.segment_start_offset
-
-    @property
-    def score_based_duration(self):
-        '''Interim property for migration away from segment-based
-        offsets to score-based offsets.
-        '''
         return self.stop_offset - self.start_offset
 
     @property
