@@ -69,18 +69,6 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
     ### PUBLIC METHODS ###
 
-    def adjust_to_offsets(self, start_offset=None, stop_offset=None):
-        '''Adjust to offsets.
-
-        .. note:: add example.
-
-        Operate in place and return none.
-        '''
-        if stop_offset < self.stop_offset:
-            self.trim_to_stop_offset(stop_offset)
-        if self.start_offset < start_offset:
-            self.trim_to_start_offset(start_offset)
-
     def repeat_to_stop_offset(self, stop_offset):
         '''Repeat rhythm to `stop_offset`.
 

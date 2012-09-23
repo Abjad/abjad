@@ -309,6 +309,7 @@ class ConcreteInterpreter(Interpreter):
             divisions.extend(division_region_expression.divisions)
         # not sure if the copy is necessary; should be unncessary bc division should be value objects
         divisions = copy.deepcopy(divisions)
+        self._debug(divisions, 'divisions')
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 

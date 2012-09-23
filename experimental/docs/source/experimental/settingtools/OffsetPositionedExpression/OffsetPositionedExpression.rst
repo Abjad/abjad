@@ -21,6 +21,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.voice_name
 
+Methods
+-------
+
+.. automethod:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.adjust_to_offsets
+
+.. automethod:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.trim_to_start_offset
+
+.. automethod:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.trim_to_stop_offset
+
 Special Methods
 ---------------
 

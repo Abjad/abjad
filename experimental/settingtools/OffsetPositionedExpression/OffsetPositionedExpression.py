@@ -65,3 +65,35 @@ class OffsetPositionedExpression(AbjadObject):
         Return string.
         '''
         return self._voice_name
+
+    ### PUBLIC METHODS ###
+
+    def adjust_to_offsets(self, start_offset=None, stop_offset=None):
+        '''Adjust to offsets.
+
+        Operate in place and return none.
+        '''
+        if stop_offset < self.stop_offset:
+            self.trim_to_stop_offset(stop_offset)
+        if self.start_offset < start_offset:
+            self.trim_to_start_offset(start_offset)
+
+    @abc.abstractmethod
+    def trim_to_start_offset(self, start_offset):
+        '''Trim to start offset.
+
+        Adjust start offset.
+          
+        Operate in place and return none.
+        '''
+        pass
+
+    @abc.abstractmethod
+    def trim_to_stop_offset(self, stop_offset):
+        '''Trim to stop offset.
+
+        Adjust stop offset.
+          
+        Operate in place and return none.
+        '''
+        pass

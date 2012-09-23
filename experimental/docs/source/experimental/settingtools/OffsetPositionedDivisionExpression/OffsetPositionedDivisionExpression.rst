@@ -31,6 +31,17 @@ Read-only Properties
 
     Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
+Methods
+-------
+
+.. automethod:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.adjust_to_offsets
+
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
+
+.. automethod:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.trim_to_start_offset
+
+.. automethod:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.trim_to_stop_offset
+
 Special Methods
 ---------------
 
