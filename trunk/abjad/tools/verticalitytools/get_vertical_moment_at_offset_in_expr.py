@@ -1,4 +1,5 @@
 from abjad.tools import componenttools
+from abjad.tools import durationtools
 from abjad.tools import iterationtools
 
 
@@ -68,6 +69,36 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
     '''
     from abjad.tools import verticalitytools
 
+    def find_index(container, offset):
+        lo = 0
+        hi = len(container)
+        while lo < hi:
+            mid = (lo + hi) // 2
+            start_offset = container[mid].start_offset
+            stop_offset = container[mid].stop_offset
+            if start_offset <= offset < stop_offset:
+                lo = mid + 1
+            elif start_offset < stop_offset:
+                hi = mid
+            else:
+                lo = mid + 1
+        return lo - 1
+
+    def recurse(component, offset):
+        result = []
+        if component.start_offset <= offset < component.stop_offset:
+            result.append(component)
+            if hasattr(component, '_music'):
+                if component.is_parallel:
+                    for x in component:
+                        result.extend(recurse(x, offset))
+                else:
+                    child = component[find_index(component, offset)]
+                    result.extend(recurse(child, offset))
+        return result
+
+    prolated_offset = durationtools.Offset(prolated_offset)
+
     governors = []
     message = 'must be Abjad component or list or tuple of Abjad components.'
     if isinstance(expr, componenttools.Component):
@@ -87,10 +118,11 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
 
     components = []
     for governor in governors:
-        for component in iterationtools.iterate_components_in_expr(governor):
-            if component.start_offset <= prolated_offset:
-                if prolated_offset < component.stop_offset:
-                    components.append(component)
+        components.extend(recurse(governor, prolated_offset))
+#        for component in iterationtools.iterate_components_in_expr(governor):
+#            if component.start_offset <= prolated_offset:
+#                if prolated_offset < component.stop_offset:
+#                    components.append(component)
     components.sort(lambda x, y: cmp(
             componenttools.component_to_score_index(x),
             componenttools.component_to_score_index(y)))
