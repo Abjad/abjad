@@ -88,6 +88,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.assert_duration_equality
+
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 .. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.can_fuse
 
 .. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fuse

@@ -56,6 +56,7 @@ class Command(AbjadObject):
         self._rotation = rotation
         self._callback = callback
         self._fresh = fresh
+        self.assert_duration_equality()
 
     ### SPECIAL METHODS ###
 
@@ -112,9 +113,9 @@ class Command(AbjadObject):
             
         Return duration.
         ''' 
-        #duration = self.segment_stop_offset - self.segment_start_offset
-        #assert duration == self.score_based_duration, (
-        #    self._class_name, duration, self.score_based_duration)
+#        duration = self.segment_stop_offset - self.segment_start_offset
+#        assert duration == self.score_based_duration, (
+#            self._class_name, duration, self.score_based_duration)
         return self.segment_stop_offset - self.segment_start_offset
 
     @property
@@ -226,6 +227,12 @@ class Command(AbjadObject):
         return self._mandatory_argument_values
 
     ### PUBLIC METHODS ###
+
+    def assert_duration_equality(self):
+        '''Interim validation method.
+        '''
+        assert self.duration == self.score_based_duration, (
+            self._class_name, self.duration, self.score_based_duration)
 
     @abc.abstractmethod
     def can_fuse(self, expr):

@@ -86,6 +86,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.assert_duration_equality
+
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 .. automethod:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.can_fuse
 
 .. automethod:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.fuse

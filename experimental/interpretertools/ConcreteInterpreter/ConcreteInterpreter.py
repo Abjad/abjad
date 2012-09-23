@@ -64,6 +64,10 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice_division_list, 'vdl')
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rcs')
+
+        xxx = [x.duration for x in rhythm_commands]
+        #self._debug(xxx, 'xxx')
+
         rhythm_commands = self.fuse_like_commands(rhythm_commands)
         #self._debug_values(rhythm_commands, 'rcs')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
@@ -781,23 +785,15 @@ class ConcreteInterpreter(Interpreter):
                 cooked_commands.remove(command_to_remove)
             for command_to_curtail in commands_to_curtail:
                 command_to_curtail._segment_stop_offset = raw_command.segment_start_offset
-                duration = command_to_curtail.segment_stop_offset - command_to_curtail.segment_start_offset
-                command_to_curtail._duration = duration
             for command_to_delay in commands_to_delay:
                 command_to_delay._segment_start_offset = raw_command.segment_stop_offset
-                duration = command_to_delay.segment_stop_offset - command_to_delay.segment_start_offset
-                command_to_delay._duration = duration
                 command_was_delayed = True
             for command_to_split in commands_to_split:
                 left_command = command_to_split
                 middle_command = raw_command
                 right_command = copy.deepcopy(left_command)
                 left_command._segment_stop_offset = middle_command.segment_start_offset
-                left_duration = left_command.segment_stop_offset - left_command.segment_start_offset
-                left_command._duration = left_duration
                 right_command._segment_start_offset = middle_command.segment_stop_offset
-                right_duration = right_command.segment_stop_offset - right_command.segment_start_offset
-                right_command._duration = right_duration
                 command_was_split = True
             if command_was_delayed:
                 index = cooked_commands.index(cooked_command)
