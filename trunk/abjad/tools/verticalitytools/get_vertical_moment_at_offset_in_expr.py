@@ -1,6 +1,5 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
-from abjad.tools import iterationtools
 
 
 # TODO: optimize without full-component traversal.
@@ -67,9 +66,11 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
     
     Return vertical moment.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import verticalitytools
 
     def find_index(container, offset):
+        '''Based off of Python's bisect.bisect() function.'''
         lo = 0
         hi = len(container)
         while lo < hi:
@@ -78,9 +79,9 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
             stop_offset = container[mid].stop_offset
             if start_offset <= offset < stop_offset:
                 lo = mid + 1
-            elif start_offset < stop_offset:
+            elif start_offset < stop_offset: # if container[mid] is of non-zero duration
                 hi = mid
-            else:
+            else: # else, container[mid] _is_ of zero duration, so we skip it
                 lo = mid + 1
         return lo - 1
 
