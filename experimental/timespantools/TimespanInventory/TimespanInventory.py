@@ -44,6 +44,27 @@ class TimespanInventory(ObjectInventory):
     def __init__(self, *args, **kwargs):
         ObjectInventory.__init__(self, *args, **kwargs)
 
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def all_are_contiguous(self):
+        '''True when all elements in inventory are time-contiguous.
+        Also true when inventory is empty.
+        Otherwise false.
+
+        .. note:: add example.
+
+        Return boolean.
+        '''
+        if len(self) <= 1:
+            return True
+        last_stop_offset = self[0].stop_offset
+        for timespan in self[1:]:
+            if timespan.start_offset != last_stop_offset:
+                return False
+            last_stop_offset = timespan.stop_offset
+        return True
+
     ### PUBLIC METHODS ###
 
     def get_timespan_that_satisfies_inequality(self, timespan_inequality):

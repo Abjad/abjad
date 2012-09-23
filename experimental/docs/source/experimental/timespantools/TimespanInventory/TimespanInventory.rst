@@ -9,6 +9,8 @@ timespantools.TimespanInventory
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.all_are_contiguous
+
 .. autoattribute:: experimental.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

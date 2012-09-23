@@ -253,6 +253,7 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             division_region_commands = \
                 self.score_specification.contexts[voice.name]['division_region_commands']
+            assert division_region_commands.all_are_contiguous
             self.division_region_commands_to_division_region_expressions(
                 division_region_commands, voice, all_division_region_commands)
 
