@@ -63,7 +63,7 @@ Special Methods
 
 .. automethod:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.__lt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
 .. automethod:: experimental.settingtools.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.OffsetPositionedDivisionExpression.__ne__
 

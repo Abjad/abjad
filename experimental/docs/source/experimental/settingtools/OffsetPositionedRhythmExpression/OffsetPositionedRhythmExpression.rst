@@ -67,7 +67,7 @@ Special Methods
 
 .. automethod:: experimental.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.__lt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
 .. automethod:: experimental.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.__ne__
 

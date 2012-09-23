@@ -31,6 +31,11 @@ class OffsetPositionedExpression(AbjadObject):
             start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
 
+    ### SPECIAL METHODS ###
+
+    def __lt__(self, expr):
+        return self.start_offset < expr.start_offset
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty

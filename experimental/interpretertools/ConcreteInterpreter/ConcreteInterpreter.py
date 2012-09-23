@@ -257,7 +257,7 @@ class ConcreteInterpreter(Interpreter):
                 for division_region_command in division_region_commands:
                     division_region_expression = self.division_region_command_to_division_region_expression(
                         division_region_command, voice.name)
-                    if division_region_expression:
+                    if division_region_expression is not None:
                         self.score_specification.contexts[voice.name]['division_region_expressions'].append(
                             division_region_expression)
                     else:
@@ -265,6 +265,8 @@ class ConcreteInterpreter(Interpreter):
                         redo = True
                 self.score_specification.contexts[voice.name]['division_region_commands'] = \
                     division_region_commands_to_reattempt[:]
+                # sort may have to happen as each expression adds in, above
+                self.score_specification.contexts[voice.name]['division_region_expressions'].sort()
 
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
@@ -295,7 +297,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = []
         for division_region_expression in trimmed_division_region_expressions:
             divisions.extend(division_region_expression.divisions)
-        self._debug(divisions, 'divisions')
+        #self._debug(divisions, 'divisions')
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 
@@ -321,6 +323,8 @@ class ConcreteInterpreter(Interpreter):
             assert division_region_command.request.attribute == 'divisions'
             division_material_request = division_region_command.request
             divisions = self.division_material_request_to_divisions(division_material_request)
+            if divisions is None:
+                return
             divisions = requesttools.apply_request_transforms(division_region_command, divisions)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
@@ -654,7 +658,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
-        rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)
+        rhythm_region_expressions.sort()
         self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(
             voice_name=voice_name, start_offset=start_offset)
