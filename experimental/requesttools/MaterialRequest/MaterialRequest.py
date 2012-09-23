@@ -98,4 +98,3 @@ class MaterialRequest(Request):
         '''Aliased to ``self.context_name``.
         '''
         return self.context_name
-

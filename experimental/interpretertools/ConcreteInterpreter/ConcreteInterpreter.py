@@ -284,6 +284,20 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(division_material_request, divisions)
         return divisions
 
+    '''
+    def division_material_request_to_divisions(self, division_material_request):
+        assert isinstance(division_material_request, requesttools.MaterialRequest)
+        assert division_material_request.attribute == 'divisions'
+        self._debug(division_material_request, 'dmr')
+        voice_name = division_material_request.voice_name
+        start_segment_identifier = division_material_request.start_segment_identifier
+        stop_segment_identifier = division_material_request.stop_segment_identifier
+        selection_start_offset = division_material_request.start_offset
+        selection_stop_offset = division_material_request.stop_offset
+        self._debug((voice_name, selection_start_offset, selection_stop_offset), 'stuff')
+        raise Exception
+    '''
+
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
         #parentage_names = self.context_name_to_parentage_names(
         #    self.score_specification.segment_specifications[0], 
