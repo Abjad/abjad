@@ -359,7 +359,6 @@ Composition packages
    tools/gracetools/detach_grace_containers_attached_to_leaf
    tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
    tools/gracetools/get_grace_containers_attached_to_leaf
-   tools/gracetools/iterate_components_and_grace_containers_in_expr
 
 :py:mod:`instrumenttools <abjad.tools.instrumenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -424,7 +423,6 @@ Composition packages
    :maxdepth: 1
 
    tools/instrumenttools/default_instrument_name_to_instrument_class
-   tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
    tools/instrumenttools/list_instrument_names
    tools/instrumenttools/list_instruments
    tools/instrumenttools/list_primary_instruments
@@ -470,15 +468,22 @@ Composition packages
    :maxdepth: 1
 
    tools/iterationtools/iterate_chords_in_expr
+   tools/iterationtools/iterate_components_and_grace_containers_in_expr
    tools/iterationtools/iterate_components_depth_first
    tools/iterationtools/iterate_components_in_expr
+   tools/iterationtools/iterate_components_in_spanner
    tools/iterationtools/iterate_containers_in_expr
    tools/iterationtools/iterate_contexts_in_expr
+   tools/iterationtools/iterate_leaf_pairs_in_expr
    tools/iterationtools/iterate_leaves_in_expr
    tools/iterationtools/iterate_measures_in_expr
+   tools/iterationtools/iterate_named_chromatic_pitch_pairs_in_expr
    tools/iterationtools/iterate_namesakes_from_component
+   tools/iterationtools/iterate_nontrivial_tie_chains_in_expr
    tools/iterationtools/iterate_notes_and_chords_in_expr
+   tools/iterationtools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
    tools/iterationtools/iterate_notes_in_expr
+   tools/iterationtools/iterate_pitched_tie_chains_in_expr
    tools/iterationtools/iterate_rests_in_expr
    tools/iterationtools/iterate_scores_in_expr
    tools/iterationtools/iterate_semantic_voices_in_expr
@@ -486,9 +491,12 @@ Composition packages
    tools/iterationtools/iterate_staves_in_expr
    tools/iterationtools/iterate_thread_from_component
    tools/iterationtools/iterate_thread_in_expr
+   tools/iterationtools/iterate_tie_chains_in_expr
    tools/iterationtools/iterate_timeline_from_component
    tools/iterationtools/iterate_timeline_in_expr
+   tools/iterationtools/iterate_topmost_tie_chains_and_components_in_expr
    tools/iterationtools/iterate_tuplets_in_expr
+   tools/iterationtools/iterate_vertical_moments_in_expr
    tools/iterationtools/iterate_voices_in_expr
 
 :py:mod:`labeltools <abjad.tools.labeltools>`
@@ -587,7 +595,6 @@ Composition packages
    tools/leaftools/get_nth_leaf_in_expr
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
-   tools/leaftools/iterate_leaf_pairs_in_expr
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
@@ -1122,7 +1129,6 @@ Composition packages
    tools/pitchtools/is_pitch_class_octave_number_string
    tools/pitchtools/is_symbolic_accidental_string
    tools/pitchtools/is_symbolic_pitch_range_string
-   tools/pitchtools/iterate_named_chromatic_pitch_pairs_in_expr
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
@@ -1532,7 +1538,6 @@ Composition packages
    tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
    tools/spannertools/get_the_only_spanner_attached_to_component
    tools/spannertools/is_component_with_spanner_attached
-   tools/spannertools/iterate_components_in_spanner
    tools/spannertools/make_covered_spanner_schema
    tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
    tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
@@ -1630,10 +1635,6 @@ Composition packages
    tools/tietools/get_tie_chain
    tools/tietools/get_tie_spanner_attached_to_component
    tools/tietools/is_component_with_tie_spanner_attached
-   tools/tietools/iterate_nontrivial_tie_chains_in_expr
-   tools/tietools/iterate_pitched_tie_chains_in_expr
-   tools/tietools/iterate_tie_chains_in_expr
-   tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
    tools/tietools/remove_nonfirst_leaves_in_tie_chain
    tools/tietools/remove_tie_spanners_from_components_in_expr
    tools/tietools/tie_chain_to_tuplet_with_proportions
@@ -1850,7 +1851,6 @@ Composition packages
 
    tools/verticalitytools/get_vertical_moment_at_offset_in_expr
    tools/verticalitytools/get_vertical_moment_starting_with_component
-   tools/verticalitytools/iterate_vertical_moments_in_expr
 
 :py:mod:`voicetools <abjad.tools.voicetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
