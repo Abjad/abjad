@@ -39,12 +39,12 @@ class SegmentDivisionList(VoiceDivisionList):
 
     ``'Voice 1'`` has only one division region division list::
 
-        >>> len(score_specification.contexts['Voice 1']['division_region_division_lists'])
+        >>> len(score_specification.contexts['Voice 1']['division_region_expressions'])
         1
 
     ::
 
-        >>> z(score_specification.contexts['Voice 1']['division_region_division_lists'][0])
+        >>> z(score_specification.contexts['Voice 1']['division_region_expressions'][0])
         settingtools.OffsetPositionedDivisionExpression(
             divisiontools.DivisionList(
                 [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 

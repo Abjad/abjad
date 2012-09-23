@@ -52,9 +52,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_division_lists_to_voices(self):
         self.initialize_division_region_expression_inventories()
-        # TODO: replace division region division lists with offset-positioned division expressions
-        #self.make_offset_positioned_division_expressions()
-        self.make_division_region_division_lists()
+        self.division_commands_to_division_region_expressions()
         self.make_voice_division_lists()
         self.make_segment_division_lists()
 
@@ -64,16 +62,12 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice_division_list, 'vdl')
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         #self._debug_values(rhythm_commands, 'rcs')
-
-        xxx = [x.duration for x in rhythm_commands]
-        #self._debug(xxx, 'xxx')
-
         rhythm_commands = self.fuse_like_commands(rhythm_commands)
         #self._debug_values(rhythm_commands, 'rcs')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcds')
         division_region_division_lists = \
-            self.score_specification.contexts[voice.name]['division_region_division_lists']
+            self.score_specification.contexts[voice.name]['division_region_expressions']
         #self._debug_values(division_region_division_lists, 'drdls')
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations, 'drds')
@@ -253,6 +247,15 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(absolute_request, absolute_request.payload)
         return divisions
 
+    def division_commands_to_division_region_expressions(self):
+        all_region_division_commands = self.get_region_division_commands_for_all_voices()
+        #self._debug_values(all_region_division_commands, 'all region division commands')
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            region_division_commands = \
+                self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS']
+            self.region_division_commands_to_division_region_division_lists(
+                region_division_commands, voice, all_region_division_commands)
+
     def division_material_request_to_divisions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
@@ -368,7 +371,7 @@ class ConcreteInterpreter(Interpreter):
             division_commands = self.get_division_commands_for_voice(voice)
             division_commands = self.fuse_like_commands(division_commands)
             division_commands = self.supply_missing_division_commands(division_commands, voice)
-            self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS'] = division_commands[:]
+            self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS'][:] = division_commands[:]
             all_region_division_commands.extend(division_commands)
         return all_region_division_commands
 
@@ -431,8 +434,7 @@ class ConcreteInterpreter(Interpreter):
     def initialize_division_region_expression_inventories(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timespantools.TimespanInventory()
-            self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
-            self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS'] = []
+            self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS'] = timespan_inventory
 
     def initialize_rhythm_region_expression_inventories(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -494,15 +496,6 @@ class ConcreteInterpreter(Interpreter):
             command._truncate = False
         return command
 
-    def make_division_region_division_lists(self):
-        all_region_division_commands = self.get_region_division_commands_for_all_voices()
-        #self._debug_values(all_region_division_commands, 'all region division commands')
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            region_division_commands = \
-                self.score_specification.contexts[voice.name]['REGION_DIVISION_COMMANDS']
-            self.region_division_commands_to_division_region_division_lists(
-                region_division_commands, voice, all_region_division_commands)
-
     def make_rhythm_region_expression(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
         if rhythm_region_division_list:
@@ -519,7 +512,7 @@ class ConcreteInterpreter(Interpreter):
             self.make_segment_division_lists_for_voice(voice)
 
     def make_segment_division_lists_for_voice(self, voice):
-        if not self.score_specification.contexts[voice.name]['division_region_division_lists']:
+        if not self.score_specification.contexts[voice.name]['division_region_expressions']:
             return
         #self._debug(voice, 'voice')
         voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
@@ -583,10 +576,10 @@ class ConcreteInterpreter(Interpreter):
             self.make_voice_division_list_for_voice(voice)
 
     def make_voice_division_list_for_voice(self, voice):
-        if not self.score_specification.contexts[voice.name]['division_region_division_lists']:
+        if not self.score_specification.contexts[voice.name]['division_region_expressions']:
             return
         division_region_division_lists = self.score_specification.contexts[voice.name][
-            'division_region_division_lists']
+            'division_region_expressions']
         voice_divisions = []
         for division_region_division_list in division_region_division_lists:
             voice_divisions.extend(division_region_division_list.divisions)
@@ -639,11 +632,12 @@ class ConcreteInterpreter(Interpreter):
 
     def region_division_commands_to_division_region_division_lists(self, 
         region_division_commands, voice, all_region_division_commands):
-        self.score_specification.contexts[voice.name]['division_region_division_lists'] = []
+        timespan_inventory = timespantools.TimespanInventory()
+        self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
         for region_division_command in region_division_commands:
             division_region_division_list = self.region_division_command_to_division_region_division_list(
                 region_division_command, all_region_division_commands, voice.name)
-            self.score_specification.contexts[voice.name]['division_region_division_lists'].append(
+            self.score_specification.contexts[voice.name]['division_region_expressions'].append(
                 division_region_division_list)
 
     def rhythm_commands_to_rhythm_region_exressions(self):
@@ -932,7 +926,7 @@ class ConcreteInterpreter(Interpreter):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, voice_name)
         assert isinstance(voice, voicetools.Voice), voice
         division_region_division_lists = self.score_specification.contexts[voice.name][
-            'division_region_division_lists']
+            'division_region_expressions']
         divisions = []
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list.division_list)

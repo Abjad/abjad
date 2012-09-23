@@ -7,6 +7,9 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
 
+    # TODO: add public region_division_commands command inventory
+    # TODO: add public division_region_expressions timespan inventory
+    # TODO: add public rhythm_region_expressions timespan inventory
     def __init__(self):
         OrderedDict.__init__(self)
 
