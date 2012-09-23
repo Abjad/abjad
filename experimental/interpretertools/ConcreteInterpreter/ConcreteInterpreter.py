@@ -555,7 +555,7 @@ class ConcreteInterpreter(Interpreter):
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
-        # NOTE: look slike start_offset and stop_offset are already score-relative
+        # NOTE: looks like start_offset and stop_offset are already score-relative
         division_command = settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice.name, 
@@ -567,7 +567,6 @@ class ConcreteInterpreter(Interpreter):
             fresh=True,
             truncate=True
             )
-        #self._debug(division_command, 'rdc')
         return division_command
 
     def make_time_signatures_for_segment_specification(self, segment_specification):
