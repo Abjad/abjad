@@ -628,16 +628,14 @@ class ConcreteInterpreter(Interpreter):
         self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
 
     def populate_all_division_region_commands(self):
-        all_division_region_commands = []
-        if not self.score_specification.segment_specifications:
-            return []
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            division_commands = self.get_division_commands_for_voice(voice)
-            division_commands = self.fuse_like_commands(division_commands)
-            division_commands = self.supply_missing_division_commands(division_commands, voice)
-            self.score_specification.contexts[voice.name]['division_region_commands'][:] = division_commands[:]
-            all_division_region_commands.extend(division_commands)
-        self.score_specification._all_division_region_commands[:] = all_division_region_commands[:]
+        if self.score_specification.segment_specifications:
+            for voice in iterationtools.iterate_voices_in_expr(self.score):
+                division_commands = self.get_division_commands_for_voice(voice)
+                division_commands = self.fuse_like_commands(division_commands)
+                division_commands = self.supply_missing_division_commands(division_commands, voice)
+                self.score_specification.contexts[voice.name][
+                    'division_region_commands'][:] = division_commands[:]
+                self.score_specification.all_division_region_commands.extend(division_commands)
 
     def rhythm_commands_to_rhythm_region_exressions(self):
         rhythm_commands = self.get_rhythm_commands_for_score()
