@@ -33,9 +33,11 @@ class Command(AbjadObject):
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)
+        assert start_offset <= stop_offset
         assert isinstance(start_segment_identifier, str)
         segment_start_offset = durationtools.Offset(segment_start_offset)
         segment_stop_offset = durationtools.Offset(segment_stop_offset)
+        assert segment_start_offset <= segment_stop_offset
         duration = durationtools.Duration(duration)
         assert segment_stop_offset - segment_start_offset == duration
         assert isinstance(index, (int, type(None))), repr(index)
@@ -115,9 +117,8 @@ class Command(AbjadObject):
         Return duration.
         ''' 
         #assert self._duration == (self.stop_offset - self.start_offset), (
-        #    self._duration, self.stop_offset, self.start_offset)
-        #return self.segment_stop_offset - self.segment_start_offset
-        return self._duration
+        #    self._class_name, self._duration, self.start_offset, self.stop_offset)
+        return self.segment_stop_offset - self.segment_start_offset
 
     @property
     def fresh(self):

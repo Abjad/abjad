@@ -478,7 +478,6 @@ class ConcreteInterpreter(Interpreter):
         third_weight = third_weight
         if third_weight:
             weights.append(third_weight)
-        #self._debug(weights, 'weights')
         divisions = sequencetools.split_sequence_by_weights(
             divisions, weights, cyclic=False, overhang=True)
         divisions = divisions[1]
