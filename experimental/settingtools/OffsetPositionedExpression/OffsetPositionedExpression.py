@@ -22,7 +22,9 @@ class OffsetPositionedExpression(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, start_offset=None, stop_offset=None):
+    def __init__(self, voice_name, start_offset=None, stop_offset=None):
+        assert isinstance(voice_name, str), repr(voice_name)
+        self._voice_name = voice_name
         if start_offset is None:
             start_offset = durationtools.Offset(0)
         else:
@@ -37,9 +39,9 @@ class OffsetPositionedExpression(AbjadObject):
 
     @property
     def start_offset(self):
-        '''Rhythm expression start offset.
+        '''Offset-positioned expression start offset.
 
-        Assigned at initialization during rhythm interpretation.
+        Assigned at initialization.
 
         Return offset.
         '''
@@ -47,11 +49,19 @@ class OffsetPositionedExpression(AbjadObject):
 
     @property
     def stop_offset(self):
-        '''Rhythm expression stop offset.
+        '''Offset-positioned expression stop offset.
         
-        Defined equal to start offset plus 
-        prolated duration of rhythm expression
+        Defined equal to expression start offset 
+        plus expression duration.
 
         Return offset.
         '''
         return self.start_offset + self.duration
+
+    @property
+    def voice_name(self):
+        '''Offset-positioned expression voice name.
+
+        Return string.
+        '''
+        return self._voice_name

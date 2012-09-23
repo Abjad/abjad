@@ -19,6 +19,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.voice_name
+
 Special Methods
 ---------------
 

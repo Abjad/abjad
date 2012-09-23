@@ -518,7 +518,8 @@ class ConcreteInterpreter(Interpreter):
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
-                rhythm_containers, start_offset=start_offset)
+                rhythm_containers, 
+                voice_name=rhythm_region_division_list.voice_name, start_offset=start_offset)
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
 
@@ -684,7 +685,8 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions.sort(lambda x, y: x.start_offset < y.start_offset)
         self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
-        result = settingtools.OffsetPositionedRhythmExpression(start_offset=start_offset)
+        result = settingtools.OffsetPositionedRhythmExpression(
+            voice_name=voice_name, start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)

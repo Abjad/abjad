@@ -34,15 +34,16 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, start_offset=None, stop_offset=None):
-        OffsetPositionedExpression.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
+    def __init__(self, music=None, voice_name=None, start_offset=None, stop_offset=None):
+        OffsetPositionedExpression.__init__(
+            self, voice_name, start_offset=start_offset, stop_offset=stop_offset)
         music = containertools.Container(music=music)
         self._music = music
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        new = type(self)(start_offset=self.start_offset)
+        new = type(self)(voice_name=self.voice_name, start_offset=self.start_offset)
         new._music = componenttools.copy_components_and_covered_spanners([self.music])[0]
         return new
 
