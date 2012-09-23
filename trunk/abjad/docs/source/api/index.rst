@@ -359,7 +359,7 @@ Composition packages
    tools/gracetools/detach_grace_containers_attached_to_leaf
    tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
    tools/gracetools/get_grace_containers_attached_to_leaf
-   tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
+   tools/gracetools/iterate_components_and_grace_containers_in_expr
 
 :py:mod:`instrumenttools <abjad.tools.instrumenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -587,7 +587,7 @@ Composition packages
    tools/leaftools/get_nth_leaf_in_expr
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
-   tools/leaftools/iterate_leaf_pairs_forward_in_expr
+   tools/leaftools/iterate_leaf_pairs_in_expr
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
@@ -1122,7 +1122,7 @@ Composition packages
    tools/pitchtools/is_pitch_class_octave_number_string
    tools/pitchtools/is_symbolic_accidental_string
    tools/pitchtools/is_symbolic_pitch_range_string
-   tools/pitchtools/iterate_named_chromatic_pitch_pairs_forward_in_expr
+   tools/pitchtools/iterate_named_chromatic_pitch_pairs_in_expr
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
    tools/pitchtools/list_harmonic_diatonic_intervals_in_expr
@@ -1633,7 +1633,7 @@ Composition packages
    tools/tietools/iterate_nontrivial_tie_chains_in_expr
    tools/tietools/iterate_pitched_tie_chains_in_expr
    tools/tietools/iterate_tie_chains_in_expr
-   tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
+   tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
    tools/tietools/remove_nonfirst_leaves_in_tie_chain
    tools/tietools/remove_tie_spanners_from_components_in_expr
    tools/tietools/tie_chain_to_tuplet_with_proportions

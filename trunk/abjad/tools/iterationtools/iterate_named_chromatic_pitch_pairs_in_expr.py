@@ -1,7 +1,7 @@
 from abjad.tools import sequencetools
 
 
-def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
+def iterate_named_chromatic_pitch_pairs_in_expr(expr):
     r'''.. versionadded:: 2.0
 
     Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`::
@@ -35,7 +35,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     ::
 
-        >>> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(score):
+        >>> for pair in iterationtools.iterate_named_chromatic_pitch_pairs_in_expr(score):
         ...     pair
         ...
         (NamedChromaticPitch("c'"), NamedChromaticPitch('c'))
@@ -70,7 +70,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     ::
 
-        >>> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(staff):
+        >>> for pair in iterationtools.iterate_named_chromatic_pitch_pairs_in_expr(staff):
         ...   print pair
         (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
         (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
@@ -85,10 +85,10 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools import leaftools
+    from abjad.tools import iterationtools
     from abjad.tools import pitchtools
 
-    for leaf_pair in leaftools.iterate_leaf_pairs_forward_in_expr(expr):
+    for leaf_pair in iterationtools.iterate_leaf_pairs_in_expr(expr):
         leaf_pair_list = list(leaf_pair)
         # iterate chord pitches if first leaf is chord
         for pair in pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr(leaf_pair_list[0]):

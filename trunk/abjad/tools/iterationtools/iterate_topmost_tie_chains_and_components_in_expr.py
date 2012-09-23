@@ -1,9 +1,8 @@
 from abjad.tools import containertools
 from abjad.tools import leaftools
-from abjad.tools import spannertools
 
 
-def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
+def iterate_topmost_tie_chains_and_components_in_expr(expr):
     r'''Iterate topemost tie chains and components forward in `expr`::
 
         >>> string = r"c'8 ~ c'32 d'8 ~ d'32 \times 2/3 { e'8 f'8 g'8 } a'8 ~ a'32 b'8 ~ b'32"
@@ -30,7 +29,7 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
 
     ::
 
-        >>> for x in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(staff):
+        >>> for x in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(staff):
         ...     x
         ...
         TieChain((Note("c'8"), Note("c'32")))
@@ -46,8 +45,9 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
 
     .. versionchanged:: 2.0
         renamed ``iterate.chained_contents()`` to
-        ``tietools.iterate_topmost_tie_chains_and_components_forward_in_expr()``.
+        ``iterationtools.iterate_topmost_tie_chains_and_components_in_expr()``.
     '''
+    from abjad.tools import spannertools
     from abjad.tools import tietools
 
     if isinstance(expr, leaftools.Leaf):

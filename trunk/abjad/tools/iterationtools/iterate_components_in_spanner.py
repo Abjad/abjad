@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import iterationtools
 
 
 def iterate_components_in_spanner(spanner, klass=None, reverse=False):
@@ -12,7 +11,7 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     ::
 
-        >>> notes = spannertools.iterate_components_in_spanner(p, klass=Note)
+        >>> notes = iterationtools.iterate_components_in_spanner(p, klass=Note)
 
     ::
 
@@ -25,7 +24,7 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     ::
 
-        >>> notes = spannertools.iterate_components_in_spanner(p, klass=Note, reverse=True)
+        >>> notes = iterationtools.iterate_components_in_spanner(p, klass=Note, reverse=True)
 
     ::
 
@@ -36,6 +35,7 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     Return generator.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
     if not isinstance(spanner, spannertools.Spanner):

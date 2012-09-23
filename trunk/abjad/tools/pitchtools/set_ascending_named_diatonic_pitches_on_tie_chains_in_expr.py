@@ -32,9 +32,9 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
         ``pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr()``.
     '''
     from abjad.tools import chordtools
+    from abjad.tools import iterationtools
     from abjad.tools import notetools
     from abjad.tools import pitchtools
-    from abjad.tools import tietools
     from abjad.tools import tietools
     from abjad.tools import tonalitytools
 
@@ -49,7 +49,7 @@ def set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(expr, key_signatu
     octave_number = 4
     pitch = pitchtools.NamedChromaticPitch(scale[0], octave_number)
 
-    for i, tie_chain in enumerate(tietools.iterate_tie_chains_in_expr(expr)):
+    for i, tie_chain in enumerate(iterationtools.iterate_tie_chains_in_expr(expr)):
         if isinstance(tie_chain[0], notetools.Note):
             for note in tie_chain:
                 note.written_pitch = pitch

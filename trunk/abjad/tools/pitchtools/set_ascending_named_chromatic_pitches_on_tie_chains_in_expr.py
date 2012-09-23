@@ -29,10 +29,10 @@ def set_ascending_named_chromatic_pitches_on_tie_chains_in_expr(expr):
         ``pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr()``.
     '''
     from abjad.tools import chordtools
+    from abjad.tools import iterationtools
     from abjad.tools import notetools
-    from abjad.tools import tietools
 
-    for i, tie_chain in enumerate(tietools.iterate_tie_chains_in_expr(expr)):
+    for i, tie_chain in enumerate(iterationtools.iterate_tie_chains_in_expr(expr)):
         pitch = i
         if isinstance(tie_chain[0], notetools.Note):
             for note in tie_chain:

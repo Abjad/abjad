@@ -1,5 +1,4 @@
 import copy
-from abjad.tools import iterationtools
 
 
 def attach_lilypond_command_marks_to_components_in_expr(expr, lilypond_command_marks):
@@ -28,6 +27,7 @@ def attach_lilypond_command_marks_to_components_in_expr(expr, lilypond_command_m
 
     Return none.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import marktools
 
     for component in iterationtools.iterate_components_in_expr(expr):

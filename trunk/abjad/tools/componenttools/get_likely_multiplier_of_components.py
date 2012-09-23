@@ -49,12 +49,13 @@ def get_likely_multiplier_of_components(components):
     Return fraction or none.
     '''
     from abjad.tools import componenttools
+    from abjad.tools import iterationtools
     from abjad.tools import tietools
 
     assert componenttools.all_are_components(components)
 
     chain_duration_numerators = []
-    for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(components):
+    for expr in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(components):
         if isinstance(expr, tietools.TieChain):
             chain_duration = expr.preprolated_duration
             chain_duration_numerators.append(chain_duration.numerator)

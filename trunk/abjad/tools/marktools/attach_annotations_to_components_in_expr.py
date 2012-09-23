@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 def attach_annotations_to_components_in_expr(expr, annotations):
     r'''.. versionadded:: 2.3
 
@@ -22,6 +19,7 @@ def attach_annotations_to_components_in_expr(expr, annotations):
 
     Return none.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import marktools
 
     for component in iterationtools.iterate_components_in_expr(expr):

@@ -1,7 +1,7 @@
 from abjad.tools import sequencetools
 
 
-def iterate_leaf_pairs_forward_in_expr(expr):
+def iterate_leaf_pairs_in_expr(expr):
     r'''.. versionadded:: 2.0
 
     Iterate leaf pairs forward in `expr`::
@@ -35,7 +35,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
     ::
 
-        >>> for pair in leaftools.iterate_leaf_pairs_forward_in_expr(score):
+        >>> for pair in iterationtools.iterate_leaf_pairs_in_expr(score):
         ...        pair
         (Note("c'8"), Note('c4'))
         (Note("c'8"), Note("d'8"))
@@ -57,9 +57,9 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
     Return generator.
     '''
-    from abjad.tools import verticalitytools
+    from abjad.tools import iterationtools
 
-    vertical_moments = verticalitytools.iterate_vertical_moments_in_expr(expr)
+    vertical_moments = iterationtools.iterate_vertical_moments_in_expr(expr)
     for moment_1, moment_2 in sequencetools.iterate_sequence_pairwise_strict(vertical_moments):
         for pair in sequencetools.yield_all_unordered_pairs_of_sequence(moment_1.start_leaves):
             yield pair

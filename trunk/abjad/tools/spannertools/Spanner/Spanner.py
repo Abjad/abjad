@@ -244,7 +244,7 @@ class Spanner(AbjadObject):
 
     def _is_my_first(self, leaf, klass):
         from abjad.tools import spannertools
-        for component in spannertools.iterate_components_in_spanner(self, klass=klass):
+        for component in iterationtools.iterate_components_in_spanner(self, klass=klass):
             if component is leaf:
                 return True
             else:
@@ -260,7 +260,7 @@ class Spanner(AbjadObject):
 
     def _is_my_last(self, leaf, klass):
         from abjad.tools import spannertools
-        components = spannertools.iterate_components_in_spanner(self, klass=klass, reverse=True)
+        components = iterationtools.iterate_components_in_spanner(self, klass=klass, reverse=True)
         for component in components:
             if component is leaf:
                 return True
@@ -277,7 +277,7 @@ class Spanner(AbjadObject):
 
     def _is_my_only(self, leaf, klass):
         from abjad.tools import spannertools
-        i, components = None, spannertools.iterate_components_in_spanner(self, klass=klass)
+        i, components = None, iterationtools.iterate_components_in_spanner(self, klass=klass)
         for i, component in enumerate(components):
             if 0 < i:
                 return False

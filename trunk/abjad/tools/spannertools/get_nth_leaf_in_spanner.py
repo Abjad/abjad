@@ -10,18 +10,18 @@ def get_nth_leaf_in_spanner(spanner, idx):
         renamed ``spannertools.get_nth_leaf()`` to
         ``spannertools.get_nth_leaf_in_spanner()``.
     '''
-    from abjad.tools import spannertools
+    from abjad.tools import iterationtools
 
     if not isinstance(idx, (int, long)):
         raise TypeError
 
     if 0 <= idx:
-        leaves = spannertools.iterate_components_in_spanner(spanner, klass=leaftools.Leaf)
+        leaves = iterationtools.iterate_components_in_spanner(spanner, klass=leaftools.Leaf)
         for leaf_index, leaf in enumerate(leaves):
             if leaf_index == idx:
                 return leaf
     else:
-        leaves = spannertools.iterate_components_in_spanner(spanner, klass=leaftools.Leaf, reverse=True)
+        leaves = iterationtools.iterate_components_in_spanner(spanner, klass=leaftools.Leaf, reverse=True)
         for leaf_index, leaf in enumerate(leaves):
             leaf_number = -leaf_index - 1
             if leaf_number == idx:

@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 # TODO: optimize without multiple full-component traversal.
 def iterate_vertical_moments_in_expr(expr, reverse=False):
     r'''.. versionadded:: 2.10
@@ -50,7 +47,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(score):
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(score):
         ...     x.leaves
         ...
         (Note("d''8"), Note("a'4"), Note("f'8"))
@@ -62,7 +59,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(piano_staff):
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(piano_staff):
         ...     x.leaves
         ...
         (Note("a'4"), Note("f'8"))
@@ -74,7 +71,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
         
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(score, reverse=True):
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(score, reverse=True):
         ...     x.leaves
         ...
         (Note("b'8"), Note("g'4"), Note("c'8"))
@@ -86,7 +83,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in verticalitytools.iterate_vertical_moments_in_expr(piano_staff, reverse=True):
+        >>> for x in iterationtools.iterate_vertical_moments_in_expr(piano_staff, reverse=True):
         ...     x.leaves
         ...
         (Note("g'4"), Note("c'8"))
@@ -96,6 +93,7 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
 
     Return generator.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import verticalitytools
     from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import \
         _yield_vertical_moments_forward_in_expr

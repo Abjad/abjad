@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
     r'''.. versionadded:: 2.3
 
@@ -23,6 +20,7 @@ def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
 
     Return none.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import marktools
 
     for component in iterationtools.iterate_components_in_expr(expr):

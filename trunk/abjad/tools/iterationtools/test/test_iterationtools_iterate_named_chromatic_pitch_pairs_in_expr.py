@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_01():
+def test_iterationtools_iterate_named_chromatic_pitch_pairs_in_expr_01():
 
     score = Score([])
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
@@ -28,7 +28,7 @@ def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_01():
     >>
     '''
 
-    pairs = pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(score)
+    pairs = iterationtools.iterate_named_chromatic_pitch_pairs_in_expr(score)
     pairs = list(pairs)
 
     assert pairs[0] == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('c', 3)) #
@@ -48,7 +48,7 @@ def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_01():
     assert pairs[14] == (pitchtools.NamedChromaticPitch('g', 4), pitchtools.NamedChromaticPitch('g', 2))
 
 
-def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_02():
+def test_iterationtools_iterate_named_chromatic_pitch_pairs_in_expr_02():
 
     chord_1 = Chord([0, 2, 4], (1, 4))
     chord_2 = Chord([17, 19], (1, 4))
@@ -61,7 +61,7 @@ def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_02():
     }
     '''
 
-    pairs = pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(staff)
+    pairs = iterationtools.iterate_named_chromatic_pitch_pairs_in_expr(staff)
     pairs = list(pairs)
 
     assert pairs[0] == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4))
