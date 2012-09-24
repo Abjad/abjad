@@ -348,7 +348,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/timetools/TimeObjectInequality/TimeObjectInequality
+   experimental/timetools/Inequality/Inequality
 
 .. rubric:: concrete classes
 

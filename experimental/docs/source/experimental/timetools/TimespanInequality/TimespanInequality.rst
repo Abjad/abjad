@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.timetools.TimespanInequality.TimespanInequality.TimespanInequality.template
 
-    Inherited from :py:class:`TimeObjectInequality.TimeObjectInequality <experimental.timetools.TimeObjectInequality.TimeObjectInequality.TimeObjectInequality>`
+    Inherited from :py:class:`Inequality.Inequality <experimental.timetools.Inequality.Inequality.Inequality>`
 
 .. autoattribute:: experimental.timetools.TimespanInequality.TimespanInequality.TimespanInequality.timespan
 

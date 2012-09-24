@@ -1,9 +1,9 @@
 import fractions
 from abjad.tools import durationtools
-from experimental.timetools.TimeObjectInequality import TimeObjectInequality
+from experimental.timetools.Inequality import Inequality
 
 
-class TimespanInequality(TimeObjectInequality):
+class TimespanInequality(Inequality):
     r'''.. versionadded:: 1.0
 
     SymbolicTimespan inequality.
@@ -106,7 +106,7 @@ class TimespanInequality(TimeObjectInequality):
     ### INITIALIZER ###
 
     def __init__(self, template, timespan_1=None, timespan_2=None):
-        TimeObjectInequality.__init__(self, template)
+        Inequality.__init__(self, template)
         self._timespan_1 = timespan_1
         self._timespan_2 = timespan_2
 
