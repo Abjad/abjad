@@ -26,10 +26,6 @@ Methods
 
 .. automethod:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_score_stop_offset
 
-.. automethod:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_segment_start_offset
-
-.. automethod:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_segment_stop_offset
-
 .. automethod:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_segment_identifier
 
 Special Methods

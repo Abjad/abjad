@@ -21,6 +21,7 @@ class SymbolicTimespan(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: implement this, make concrete, and remove on child classes
     @abc.abstractmethod
     def get_duration(self, score_specification):
         '''Evaluate duration of symbolic timespan when applied
@@ -42,24 +43,6 @@ class SymbolicTimespan(AbjadObject):
     @abc.abstractmethod
     def get_score_stop_offset(self, score_specification):
         '''Evaluate score stop offset of symbolic timespan when applied
-        to `score_specification`.
-
-        Return offset.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def get_segment_start_offset(self, score_specification):
-        '''Evaluate segment start offset of symbolic timespan when applied
-        to `score_specification`.
-
-        Return offset.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def get_segment_stop_offset(self, score_specification):
-        '''Evaluate segment stop offset of symbolic timespan when applied
         to `score_specification`.
 
         Return offset.

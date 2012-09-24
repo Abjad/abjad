@@ -139,26 +139,6 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         '''
         raise NotImplementedError
 
-    def get_segment_start_offset(self, score_specification):
-        '''Evaluate segment start offset of symbolic timespan when applied
-        to `score_specification`.
-
-        .. note:: not yet implemented.
-
-        Return offset.
-        '''
-        raise NotImplementedError
-
-    def get_segment_stop_offset(self, score_specification):
-        '''Evaluate segment stop offset of symbolic timespan when applied
-        to `score_specification`.
-
-        .. note:: not yet implemented.
-
-        Return offset.
-        '''
-        raise NotImplementedError
-
     def set_segment_identifier(self, segment_identifier):
         '''.. note:: not yet implemented.
         '''

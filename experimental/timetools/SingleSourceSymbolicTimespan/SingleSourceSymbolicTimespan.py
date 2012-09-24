@@ -218,26 +218,6 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         '''
         return self.selector.get_score_stop_offset(score_specification)
 
-    def get_segment_start_offset(self, score_specification):
-        '''Evaluate segment start offset of symbolic timespan when applied
-        to `score_specification`.
-
-        Delegate to ``self.selector.get_segment_start_offset()``.
-
-        Return offset.
-        '''
-        return self.selector.get_segment_start_offset(score_specification)
-
-    def get_segment_stop_offset(self, score_specification):
-        '''Evaluate segment stop offset of symbolic timespan when applied
-        to `score_specification`.
-        
-        Delegate to ``self.selector.get_segment_stop_offset()``.
-
-        Return offset.
-        '''
-        return self.selector.get_segment_stop_offset(score_specification)
-
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.selector.set_segment_identifier()``.
         '''

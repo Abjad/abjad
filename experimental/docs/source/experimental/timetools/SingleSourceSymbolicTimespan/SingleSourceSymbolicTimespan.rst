@@ -34,10 +34,6 @@ Methods
 
 .. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_score_stop_offset
 
-.. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_segment_start_offset
-
-.. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_segment_stop_offset
-
 .. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.set_segment_identifier
 
 Special Methods

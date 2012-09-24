@@ -30,8 +30,6 @@ Methods
 
 .. automethod:: experimental.timetools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.get_score_offset
 
-.. automethod:: experimental.timetools.SymbolicTimepoint.SymbolicTimepoint.SymbolicTimepoint.get_segment_offset
-
 Special Methods
 ---------------
 
