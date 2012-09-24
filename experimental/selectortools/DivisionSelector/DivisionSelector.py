@@ -90,8 +90,6 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        # FIXME: HARDCODED HACK
-        context_name = 'Voice 1'
         segment_division_lists = score_specification.contexts[context_name]['segment_division_lists'] 
         segment_division_list = segment_division_lists[segment_index]
         divisions = segment_division_list[start:stop]
@@ -111,7 +109,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        # FIXME: HARDCODED HACK
+        # FIXME: hardcoded hack
         context_name = 'Voice 1'
         segment_division_lists = score_specification.contexts[context_name]['segment_division_lists']
         segment_division_list = segment_division_lists[segment_index]
@@ -133,7 +131,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        # FIXME: HARDCODED HACK
+        # FIXME: hardcoded hack
         context_name = 'Voice 1'
         segment_division_lists = score_specification.contexts[context_name]['segment_division_lists']
         segment_division_list = segment_division_lists[segment_index]

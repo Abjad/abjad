@@ -125,9 +125,9 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_segment_start_offset(self, segment_specification, context_name):
-        r'''Evaluate segment start offset of selector when applied
-        to `context_name` in `segment_specification`.
+    def get_score_start_offset(self, score_specification, context_name):
+        '''Evaluate score start offset of selector when applied
+        to `context_name` in `score_specification`.
 
         .. note:: not yet implemented.
 
@@ -135,9 +135,29 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
         '''
         raise NotImplementedError
 
-    def get_segment_stop_offset(self, segment_specification, context_name):
+    def get_score_stop_offset(self, score_specification, context_name):
+        '''Evaluate score stop offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_segment_start_offset(self, score_specification, context_name):
+        r'''Evaluate segment start offset of selector when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: not yet implemented.
+
+        Return offset.
+        '''
+        raise NotImplementedError
+
+    def get_segment_stop_offset(self, score_specification, context_name):
         r'''Evaluate segment stop offset of selector when applied
-        to `context_name` in `segment_specification`.
+        to `context_name` in `score_specification`.
 
         .. note:: not yet implemented.
 

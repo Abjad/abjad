@@ -60,11 +60,7 @@ Methods
 
 .. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_score_start_offset
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_score_stop_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_segment_offsets
 
