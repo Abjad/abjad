@@ -76,53 +76,19 @@ class Selector(AbjadObject):
         stop_offset = self.get_score_stop_offset(score_specification, context_name)
         return start_offset, stop_offset
     
-    #@abc.abstractmethod
+    @abc.abstractmethod
     def get_score_start_offset(self, score_specification, context_name):
         r'''Evaluate score start offset of selector when applied
         to `context_name` in `score_specification`.
 
         Return offset.
         '''
-        segment_start_offset = self.get_segment_start_offset(score_specification, context_name)
-        return score_specification.segment_offset_to_score_offset(
-            self.start_segment_identifier, segment_start_offset)
+        pass
 
-    #@abc.abstractmethod
+    @abc.abstractmethod
     def get_score_stop_offset(self, score_specification, context_name):
         r'''Evaluate score stop offset of selector when applied
         to `context_name` in `score_specification`.
-
-        Return offset.
-        '''
-        segment_stop_offset = self.get_segment_stop_offset(score_specification, context_name)
-        return score_specification.segment_offset_to_score_offset(
-            self.start_segment_identifier, segment_stop_offset)
-
-    def get_segment_offsets(self, score_specification, context_name):
-        r'''Get segment start offset and segment stop offset of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return pair.
-        '''
-        start_offset = self.get_segment_start_offset(score_specification, context_name)
-        stop_offset = self.get_segment_stop_offset(score_specification, context_name)
-        return start_offset, stop_offset
-
-    def get_segment_start_offset(self, segment_specification, context_name):
-        r'''Evaluate segment start offset of selector when applied
-        to `context_name` in `segment_specification`.
-
-        .. note:: deprecated. Use ``self.get_score_start_offset()`` instead.
-
-        Return offset.
-        '''
-        pass
-
-    def get_segment_stop_offset(self, segment_specification, context_name):
-        r'''Evaluate segment stop offset of selector when applied
-        to `context_name` in `segment_specification`.
-
-        .. note:: deprecated. Use ``self.get_score_stop_offset()`` instead.
 
         Return offset.
         '''

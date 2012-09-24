@@ -46,18 +46,6 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.get_segment_offsets
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.get_segment_start_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.get_segment_stop_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.set_segment_identifier
 
 Special Methods

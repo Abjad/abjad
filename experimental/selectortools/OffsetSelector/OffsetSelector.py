@@ -84,30 +84,39 @@ class OffsetSelector(Selector):
 
     ### PUBLIC METHODS ##
 
-    def get_segment_start_offset(self, score_specification, context_name):
-        r'''Evaluate segment start offset of selector when applied
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
         to `context_name` in `score_specification`.
 
         Return offset.
         '''
         if self.start_offset is None:
-            return durationtools.Offset(0)
+            start_offset = durationtools.Offset(0)
         elif self.start_offset < 0:
-            return self.selector.get_duration(score_specification, context_name) + self.start_offset
+            start_offset = self.selector.get_duration(score_specification, context_name) + self.start_offset
         else:
-            return self.start_offset
+            start_offset = self.start_offset
+        segment_specification = score_specification.get_start_segment_specification(self)
+        segment_name = segment_specification.segment_name
+        start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
+        return start_offset
 
-    def get_segment_stop_offset(self, score_specification, context_name):
-        r'''Evaluate segment stop offset of selector when applied
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset of selector when applied
         to `context_name` in `score_specification`.
 
         Return offset.
         '''
         if self.stop_offset is None:
-            return durationtools.Offset(self.selector.get_duration(score_specification, context_name))
+            stop_offset = durationtools.Offset(self.selector.get_duration(score_specification, context_name))
         elif self.stop_offset < 0:
-            return self.selector.get_duration(score_specification, context_name) + self.stop_offset
-        return self.stop_offset
+            stop_offset = self.selector.get_duration(score_specification, context_name) + self.stop_offset
+        else:
+            stop_offset = self.stop_offset
+        segment_specification = score_specification.get_start_segment_specification(self)
+        segment_name = segment_specification.segment_name
+        stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
+        return stop_offset
 
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.selector.set_segment_identifier()``.

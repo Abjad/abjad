@@ -1,4 +1,4 @@
-1.  Reimplement all selector get_score_start_offset() and get_score_stop_offset()
+1.  Reimplement all TIMESPAN and TIMEPOINT get_score_start_offset() and get_score_stop_offset()
     methods to work independently of get_segment_start_offset() and get_segment_stop_offset().
     Then remove all get_segment_start_offset() and get_segment_stop_offset() methods.
 

@@ -164,27 +164,3 @@ class SegmentSelector(SliceSelector, InequalitySelector):
         start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
             self.stop_segment_identifier)
         return start_offset
-
-    def get_segment_start_offset(self, score_specification, context_name):
-        r'''Evaluate segment start offset of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        .. note:: might be possible to remove altogether.
-
-        Return offset.
-        '''
-        raise NotImplementedError
-
-    def get_segment_stop_offset(self, score_specification, context_name):
-        r'''Evaluate segment stop offset of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        .. note:: might be possible to remove altogether.
-
-        Return offset.
-        '''
-        raise NotImplementedError

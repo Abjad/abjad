@@ -84,27 +84,6 @@ class SingleSegmentSelector(InequalitySelector):
             self.start_segment_identifier)
         return stop_offset
 
-    def get_segment_start_offset(self, score_specification, context_name):
-        r'''Evaluate segment start offset of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return offset ``0``.
-        '''
-        return durationtools.Offset(0)
-
-    def get_segment_stop_offset(self, score_specification, context_name):
-        r'''Evaluate segment stop offset of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return offset.
-        '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        return durationtools.Offset(segment_specification.duration)
-
     def set_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, (str, int))
         self._identifier = segment_identifier

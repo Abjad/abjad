@@ -128,13 +128,14 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_segment_start_offset(self, score_specification, context_name):
-        r'''Evaluate segment start offset of selector when applied
+    def get_score_start_offset(self, score_specification, context_name):
+        r'''Evaluate score start offset of selector when applied
         to `context_name` in `score_specification`.
 
         Return offset.
         '''
         segment_specification = score_specification.get_start_segment_specification(self)
+        segment_name = segment_specification.segment_name
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
@@ -142,15 +143,17 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         durations_before = durations[:start]
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
+        start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
         return start_offset
 
-    def get_segment_stop_offset(self, score_specification, context_name):
-        r'''Evaluate segment stop offset when applied
+    def get_score_stop_offset(self, score_specification, context_name):
+        r'''Evaluate score stop offset when applied
         to `context_name` in `score_specification`.
 
         Return offset.
         '''
         segment_specification = score_specification.get_start_segment_specification(self)
+        segment_name = segment_specification.segment_name
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
@@ -158,6 +161,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         durations_up_through = durations[:stop]
         duration_up_through = sum(durations_up_through)
         stop_offset = durationtools.Offset(duration_up_through)
+        stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
         return stop_offset
 
     def set_segment_identifier(self, segment_identifier):
