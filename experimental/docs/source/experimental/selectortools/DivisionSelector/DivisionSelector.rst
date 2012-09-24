@@ -56,11 +56,7 @@ Methods
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_score_start_offset
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_score_stop_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_segment_offsets
 
@@ -68,7 +64,11 @@ Methods
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_segment_start_offset
 
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_segment_stop_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_segment_identifier
 

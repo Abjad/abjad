@@ -2,14 +2,16 @@
     methods to work independently of get_segment_start_offset() and get_segment_stop_offset().
     Then remove all get_segment_start_offset() and get_segment_stop_offset() methods.
 
-2.  Implement time signature material requests.
+2.  Kill segment_division_lists. Kill SegmentDivisionList class, too.
 
-3.  Implement from-future time signature material requests.
+3.  Implement time signature material requests.
 
-4.  Implement default time signature value to avoid exception
+4.  Implement from-future time signature material requests.
+
+5.  Implement default time signature value to avoid exception
     when time signatures have not yet been specified.
 
-5.  Author tests to make sure that persistent overlapping division selectors 
+6.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-6.  Make split() work with durated complex beam spanners.
+7.  Make split() work with durated complex beam spanners.

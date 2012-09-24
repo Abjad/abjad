@@ -454,6 +454,9 @@ class ScoreSpecification(Specification):
             'time_signatures', context_name=context_name, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
+    def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
+        raise NotImplementedError('implement this at some point.')
+
     def segment_offset_to_score_offset(self, segment_name, segment_offset):
         r'''Change `segment_name` and `segment_offset` to score offset.
 
@@ -486,9 +489,6 @@ class ScoreSpecification(Specification):
         else:
             stop_offset = None
         return start_offset, stop_offset
-
-    def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
-        raise NotImplementedError('implement this at some point.')
 
     def segment_identifier_expression_to_offsets(self, segment_identifier_expression):
         '''Change `segment_identifier_expression` to start offset and stop offset.
