@@ -220,15 +220,9 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'dcr')
-
         requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
-        requested_segment_offset = division_command_request.timepoint.get_segment_offset(
+        requested_offset = division_command_request.timepoint.get_score_offset(
             self.score_specification, voice_name)
-        requested_offset = self.score_specification.segment_offset_to_score_offset(
-            requested_segment_identifier, requested_segment_offset)
-
-        #request_offset = division_command_request.
-
         timespan_inventory = timetools.TimespanInventory()
         for division_region_command in self.score_specification.all_division_region_commands:
             if division_region_command.start_segment_identifier == requested_segment_identifier:
