@@ -29,7 +29,7 @@ class CommandRequest(Request):
             'divisions',
             timeobjecttools.SymbolicTimepoint(
                 selector=selectortools.BackgroundMeasureSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -117,7 +117,7 @@ class CommandRequest(Request):
             >>> z(command_request.timepoint)
             timeobjecttools.SymbolicTimepoint(
                 selector=selectortools.BackgroundMeasureSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(

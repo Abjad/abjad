@@ -20,7 +20,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> segment = selectortools.SingleSegmentSelector(identifier='red')
         >>> timespan = segment.timespan
-        >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
+        >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
 
@@ -30,7 +30,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> z(divisions)
         selectortools.DivisionSelector(
-            inequality=timespaninequalitytools.TimespanInequality(
+            inequality=timetools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(
@@ -48,7 +48,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> z(divisions)
         selectortools.DivisionSelector(
-            inequality=timespaninequalitytools.TimespanInequality(
+            inequality=timetools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(

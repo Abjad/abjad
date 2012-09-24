@@ -71,7 +71,7 @@ class TimespanInventory(ObjectInventory):
         r'''Get timespan that satisifies `timespan_inequality`::
 
             >>> timespan_1 = timeobjecttools.expr_to_timespan((2, 5))
-            >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(
+            >>> timespan_inequality = timetools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
@@ -100,7 +100,7 @@ class TimespanInventory(ObjectInventory):
         r'''Get timespans that satisfy `timespan_inequality`::
 
             >>> timespan_1 = timeobjecttools.expr_to_timespan((2, 8))
-            >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(
+            >>> timespan_inequality = timetools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
@@ -116,13 +116,13 @@ class TimespanInventory(ObjectInventory):
 
         Return list of ``0`` or more timespans.
         '''
-        from experimental import timespaninequalitytools
+        from experimental import timetools
         result = []
         for timespan in self:
-            if isinstance(timespan_inequality, timespaninequalitytools.TimespanInequality):
+            if isinstance(timespan_inequality, timetools.TimespanInequality):
                 if timespan_inequality(timespan_2=timespan):
                     result.append(timespan)
-            elif isinstance(timespan_inequality, timespaninequalitytools.TimepointInequality):
+            elif isinstance(timespan_inequality, timetools.TimepointInequality):
                 if timespan_inequality(timespan=timespan):
                     result.append(timespan)
             else:
@@ -133,7 +133,7 @@ class TimespanInventory(ObjectInventory):
         r'''True when timespan inventory has timespan that satisfies `timespan_inequality`::
 
             >>> timespan_1 = timeobjecttools.expr_to_timespan((2, 8))
-            >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(
+            >>> timespan_inequality = timetools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
@@ -144,7 +144,7 @@ class TimespanInventory(ObjectInventory):
         Otherwise false::
 
             >>> timespan_1 = timeobjecttools.expr_to_timespan((10, 20))
-            >>> timespan_inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(
+            >>> timespan_inequality = timetools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::

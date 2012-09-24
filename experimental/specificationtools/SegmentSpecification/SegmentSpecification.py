@@ -4,7 +4,7 @@ from experimental import helpertools
 from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
-from experimental import timespaninequalitytools
+from experimental import timetools
 from experimental import timeobjecttools
 from experimental.specificationtools.Specification import Specification
 
@@ -393,7 +393,7 @@ class SegmentSpecification(Specification):
                 'divisions',
                 timeobjecttools.SymbolicTimepoint(
                     selector=selectortools.BackgroundMeasureSelector(
-                        inequality=timespaninequalitytools.TimespanInequality(
+                        inequality=timetools.TimespanInequality(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
                             timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                                 selector=selectortools.SingleSegmentSelector(
@@ -548,7 +548,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.BackgroundMeasureSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -562,7 +562,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
+        inequality = timetools.timespan_2_starts_during_timespan_1(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
@@ -577,7 +577,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.BackgroundMeasureSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -590,7 +590,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
+        inequality = timetools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
@@ -606,7 +606,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioPartSelector(
                 selectortools.BackgroundMeasureSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -629,7 +629,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.TimeRatioPartSelector(
                 selectortools.BackgroundMeasureSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -656,7 +656,7 @@ class SegmentSpecification(Specification):
             
             >>> z(selector)
             selectortools.DivisionSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -670,7 +670,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
+        inequality = timetools.timespan_2_starts_during_timespan_1(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
@@ -685,7 +685,7 @@ class SegmentSpecification(Specification):
             
             >>> z(selector)
             selectortools.DivisionSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -698,7 +698,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
+        inequality = timetools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
@@ -713,7 +713,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioPartSelector(
                 selectortools.DivisionSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -740,7 +740,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.CounttimeComponentSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -754,7 +754,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
+        inequality = timetools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop)
@@ -770,7 +770,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioPartSelector(
                 selectortools.CounttimeComponentSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -798,7 +798,7 @@ class SegmentSpecification(Specification):
 
             >>> z(selector)
             selectortools.CounttimeComponentSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -815,7 +815,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(self.timespan)
+        inequality = timetools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop)
@@ -831,7 +831,7 @@ class SegmentSpecification(Specification):
             >>> z(selector)
             selectortools.CountRatioPartSelector(
                 selectortools.CounttimeComponentSelector(
-                    inequality=timespaninequalitytools.TimespanInequality(
+                    inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(

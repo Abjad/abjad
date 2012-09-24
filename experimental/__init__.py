@@ -10,5 +10,5 @@ import quantizationtools
 import requesttools
 import settingtools
 import specificationtools
-import timespaninequalitytools
+import timetools
 import timeobjecttools

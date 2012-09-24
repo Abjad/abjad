@@ -340,59 +340,59 @@ Unstable packages (load manually)
 
    experimental/timeobjecttools/expr_to_timespan
 
-:py:mod:`timespaninequalitytools <experimental.timespaninequalitytools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timetools <experimental.timetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespaninequalitytools/TimeObjectInequality/TimeObjectInequality
+   experimental/timetools/TimeObjectInequality/TimeObjectInequality
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespaninequalitytools/TimepointInequality/TimepointInequality
-   experimental/timespaninequalitytools/TimespanInequality/TimespanInequality
+   experimental/timetools/TimepointInequality/TimepointInequality
+   experimental/timetools/TimespanInequality/TimespanInequality
 
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/timespaninequalitytools/timepoint_happens_after_timespan_starts
-   experimental/timespaninequalitytools/timepoint_happens_after_timespan_stops
-   experimental/timespaninequalitytools/timepoint_happens_before_timespan_starts
-   experimental/timespaninequalitytools/timepoint_happens_before_timespan_stops
-   experimental/timespaninequalitytools/timepoint_happens_during_timespan
-   experimental/timespaninequalitytools/timepoint_happens_when_timespan_starts
-   experimental/timespaninequalitytools/timepoint_happens_when_timespan_stops
-   experimental/timespaninequalitytools/timespan_2_contains_timespan_1_improperly
-   experimental/timespaninequalitytools/timespan_2_curtails_timespan_1
-   experimental/timespaninequalitytools/timespan_2_delays_timespan_1
-   experimental/timespaninequalitytools/timespan_2_happens_during_timespan_1
-   experimental/timespaninequalitytools/timespan_2_intersects_timespan_1
-   experimental/timespaninequalitytools/timespan_2_is_congruent_to_timespan_1
-   experimental/timespaninequalitytools/timespan_2_overlaps_all_of_timespan_1
-   experimental/timespaninequalitytools/timespan_2_overlaps_only_start_of_timespan_1
-   experimental/timespaninequalitytools/timespan_2_overlaps_only_stop_of_timespan_1
-   experimental/timespaninequalitytools/timespan_2_overlaps_start_of_timespan_1
-   experimental/timespaninequalitytools/timespan_2_overlaps_stop_of_timespan_1
-   experimental/timespaninequalitytools/timespan_2_starts_after_timespan_1_starts
-   experimental/timespaninequalitytools/timespan_2_starts_after_timespan_1_stops
-   experimental/timespaninequalitytools/timespan_2_starts_before_timespan_1_starts
-   experimental/timespaninequalitytools/timespan_2_starts_before_timespan_1_stops
-   experimental/timespaninequalitytools/timespan_2_starts_during_timespan_1
-   experimental/timespaninequalitytools/timespan_2_starts_when_timespan_1_starts
-   experimental/timespaninequalitytools/timespan_2_starts_when_timespan_1_stops
-   experimental/timespaninequalitytools/timespan_2_stops_after_timespan_1_starts
-   experimental/timespaninequalitytools/timespan_2_stops_after_timespan_1_stops
-   experimental/timespaninequalitytools/timespan_2_stops_before_timespan_1_starts
-   experimental/timespaninequalitytools/timespan_2_stops_before_timespan_1_stops
-   experimental/timespaninequalitytools/timespan_2_stops_during_timespan_1
-   experimental/timespaninequalitytools/timespan_2_stops_when_timespan_1_starts
-   experimental/timespaninequalitytools/timespan_2_stops_when_timespan_1_stops
-   experimental/timespaninequalitytools/timespan_2_trisects_timespan_1
+   experimental/timetools/timepoint_happens_after_timespan_starts
+   experimental/timetools/timepoint_happens_after_timespan_stops
+   experimental/timetools/timepoint_happens_before_timespan_starts
+   experimental/timetools/timepoint_happens_before_timespan_stops
+   experimental/timetools/timepoint_happens_during_timespan
+   experimental/timetools/timepoint_happens_when_timespan_starts
+   experimental/timetools/timepoint_happens_when_timespan_stops
+   experimental/timetools/timespan_2_contains_timespan_1_improperly
+   experimental/timetools/timespan_2_curtails_timespan_1
+   experimental/timetools/timespan_2_delays_timespan_1
+   experimental/timetools/timespan_2_happens_during_timespan_1
+   experimental/timetools/timespan_2_intersects_timespan_1
+   experimental/timetools/timespan_2_is_congruent_to_timespan_1
+   experimental/timetools/timespan_2_overlaps_all_of_timespan_1
+   experimental/timetools/timespan_2_overlaps_only_start_of_timespan_1
+   experimental/timetools/timespan_2_overlaps_only_stop_of_timespan_1
+   experimental/timetools/timespan_2_overlaps_start_of_timespan_1
+   experimental/timetools/timespan_2_overlaps_stop_of_timespan_1
+   experimental/timetools/timespan_2_starts_after_timespan_1_starts
+   experimental/timetools/timespan_2_starts_after_timespan_1_stops
+   experimental/timetools/timespan_2_starts_before_timespan_1_starts
+   experimental/timetools/timespan_2_starts_before_timespan_1_stops
+   experimental/timetools/timespan_2_starts_during_timespan_1
+   experimental/timetools/timespan_2_starts_when_timespan_1_starts
+   experimental/timetools/timespan_2_starts_when_timespan_1_stops
+   experimental/timetools/timespan_2_stops_after_timespan_1_starts
+   experimental/timetools/timespan_2_stops_after_timespan_1_stops
+   experimental/timetools/timespan_2_stops_before_timespan_1_starts
+   experimental/timetools/timespan_2_stops_before_timespan_1_stops
+   experimental/timetools/timespan_2_stops_during_timespan_1
+   experimental/timetools/timespan_2_stops_when_timespan_1_starts
+   experimental/timetools/timespan_2_stops_when_timespan_1_stops
+   experimental/timetools/timespan_2_trisects_timespan_1

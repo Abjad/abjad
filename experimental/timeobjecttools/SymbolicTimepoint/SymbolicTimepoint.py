@@ -73,7 +73,7 @@ class SymbolicTimepoint(AbjadObject):
     during segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> counttime_component_selector = selectortools.CounttimeComponentSelector(
         ... inequality=inequality, klass=Note, start_identifier=10, stop_identifier=11)
 
@@ -86,7 +86,7 @@ class SymbolicTimepoint(AbjadObject):
         >>> z(timepoint)
         timeobjecttools.SymbolicTimepoint(
             selector=selectortools.CounttimeComponentSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -136,7 +136,7 @@ class SymbolicTimepoint(AbjadObject):
         >>> z(timepoint)
         timeobjecttools.SymbolicTimepoint(
             selector=selectortools.CounttimeComponentSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -241,7 +241,7 @@ class SymbolicTimepoint(AbjadObject):
         
             >>> z(timepoint.selector)
             selectortools.CounttimeComponentSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(

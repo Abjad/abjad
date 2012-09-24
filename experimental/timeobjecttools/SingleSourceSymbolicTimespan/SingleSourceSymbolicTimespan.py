@@ -43,7 +43,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of the first measure that starts during segment ``'red'``::
 
-        >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
 
     ::
@@ -55,7 +55,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         >>> z(timespan)
         timeobjecttools.SingleSourceSymbolicTimespan(
             selector=selectortools.BackgroundMeasureSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -80,7 +80,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
        >>> z(timespan)
         timeobjecttools.SingleSourceSymbolicTimespan(
             selector=selectortools.DivisionSelector(
-                inequality=timespaninequalitytools.TimespanInequality(
+                inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(

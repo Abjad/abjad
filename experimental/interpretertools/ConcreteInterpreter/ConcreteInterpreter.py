@@ -7,7 +7,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import specificationtools
-from experimental import timespaninequalitytools
+from experimental import timetools
 from experimental import timeobjecttools
 from experimental.interpretertools.Interpreter import Interpreter
 
@@ -235,7 +235,7 @@ class ConcreteInterpreter(Interpreter):
             if division_region_command.start_segment_identifier == requested_segment_identifier:
                 if not division_region_command.request == division_command_request:
                     timespan_inventory.append(division_region_command)
-        timespan_inequality = timespaninequalitytools.timepoint_happens_during_timespan(
+        timespan_inequality = timetools.timepoint_happens_during_timespan(
             timepoint=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
@@ -285,7 +285,7 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice_name]['division_region_expressions']
         #self._debug(division_region_expressions, 'drx')
         source_timespan = durationtools.TimespanConstant(start_offset, stop_offset)
-        timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
+        timespan_inequality = timetools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
@@ -658,7 +658,7 @@ class ConcreteInterpreter(Interpreter):
         source_timespan = durationtools.TimespanConstant(*source_score_offsets)
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
+        timespan_inequality = timetools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
@@ -730,14 +730,14 @@ class ConcreteInterpreter(Interpreter):
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
             for cooked_command in cooked_commands:
-                if timespaninequalitytools.timespan_2_contains_timespan_1_improperly(
+                if timetools.timespan_2_contains_timespan_1_improperly(
                     cooked_command, raw_command):
                     commands_to_remove.append(cooked_command)
-                elif timespaninequalitytools.timespan_2_delays_timespan_1(cooked_command, raw_command):
+                elif timetools.timespan_2_delays_timespan_1(cooked_command, raw_command):
                     commands_to_delay.append(cooked_command)
-                elif timespaninequalitytools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
+                elif timetools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
                     commands_to_curtail.append(cooked_command)
-                elif timespaninequalitytools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
+                elif timetools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
                     commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
@@ -914,10 +914,10 @@ class ConcreteInterpreter(Interpreter):
         return time_signatures
 
     def trim_rhythm_region_expressions(self, rhythm_region_expressions, source_timespan):
-        if timespaninequalitytools.timespan_2_overlaps_only_start_of_timespan_1(
+        if timetools.timespan_2_overlaps_only_start_of_timespan_1(
             timespan_1=source_timespan, timespan_2=rhythm_region_expressions[0]):
             rhythm_region_expressions[0].trim_to_start_offset(source_timespan.start_offset)
-        if timespaninequalitytools.timespan_2_overlaps_only_stop_of_timespan_1(
+        if timetools.timespan_2_overlaps_only_stop_of_timespan_1(
             timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
             rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)
 
