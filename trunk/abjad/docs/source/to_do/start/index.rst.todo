@@ -6,7 +6,7 @@ The Abjad intepreter appears.
 
 .. sourcecode:: python
 
-    abjad>
+    >>>
 
 Abjad is now up and running.
 

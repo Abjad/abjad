@@ -34,7 +34,7 @@ Extended markup handling is now available.
     >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
     >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
     >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-    >>> markup = markuptools.Markup(('X', square, 'Y', line, 'Z'), direction=Up)
+    >>> markup = markuptools.Markup(('X', square, 'Y', line, 'Z'), direction='up')
 
   ::
 
@@ -58,8 +58,8 @@ Extended markup handling is now available.
     >>> staff = Staff("c")
     >>> m1 = markuptools.Markup('foo')(staff[0])
     >>> m2 = markuptools.Markup('bar')(staff[0])
-    >>> m3 = markuptools.Markup('baz', Up)(staff[0])
-    >>> m4 = markuptools.Markup('quux', Down)(staff[0])
+    >>> m3 = markuptools.Markup('baz', 'up')(staff[0])
+    >>> m4 = markuptools.Markup('quux', 'down')(staff[0])
     >>> accent = marktools.Articulation('accent')(staff[0])
 
   ::
@@ -94,7 +94,7 @@ An entirely new tuplet microlanguage is now available.
 
   ::
 
-    >>> container = lilypondparsertools.parse_reduced_ly_syntax('4 -4 8 5/3 { 2/3 { 8 8 8 } { 8 8 } -8 } 4')
+    >>> container = rhythmtreetools.parse_reduced_ly_syntax('4 -4 8 5/3 { 2/3 { 8 8 8 } { 8 8 } -8 } 4')
 
   ::
 
@@ -120,7 +120,7 @@ An entirely new tuplet microlanguage is now available.
 
 - Measures and dotted values are also available::
 
-    >>> container = lilypondparsertools.parse_reduced_ly_syntax('|2/4 8. 16 8. 16| |4/4 2/3 { 2 2 2 }|')
+    >>> container = rhythmtreetools.parse_reduced_ly_syntax('|2/4 8. 16 8. 16| |4/4 2/3 { 2 2 2 }|')
 
   ::
 
@@ -364,9 +364,9 @@ New functionality is available for working with ties.
 
   Added new ``tietools`` functions:: 
 
-    iterationtools.iterate_pitched_tie_chains_in_expr()
+    tietools.iterate_pitched_tie_chains_forward_in_expr()
     tietools.iterate_pitched_tie_chains_backward_in_expr()
-    iterationtools.iterate_nontrivial_tie_chains_in_expr()
+    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
     tietools.iterate_nontrivial_tie_chains_backward_in_expr()
 
   Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, tietools.TieChain)`` instead.
@@ -639,7 +639,7 @@ Many new functions are available in the ``componenttools`` package.
     componenttools.get_improper_contents_of_component_that_stop_with_component()
     componenttools.get_proper_descendents_of_component()
     componenttools.get_improper_descendents_of_component()
-    componenttools.get_improper_descendents_of_component_that_cross_offset
+    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset
     componenttools.get_improper_descendents_of_component_that_start_with_component
     componenttools.get_improper_descendents_of_component_that_stop_with_component
     componenttools.get_lineage_of_component()
@@ -782,7 +782,7 @@ Changes to end-user functionality:
 
   ::
 
-    spannertools.report_spanner_format_contributions()
+    spannertools.report_as_string_format_contributions_of_spanners_attached_to_component()
 
 - Changed::
 
@@ -790,7 +790,7 @@ Changes to end-user functionality:
 
   ::
 
-    spannertools.report_format_contributions_of_improper_spanners()
+    spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component()
 
 - Changed::
 
@@ -823,7 +823,7 @@ Changes to end-user functionality:
     threadtools.iterate_thread_backward_from_component()
     threadtools.iterate_thread_backward_in_expr()
     threadtools.iterate_thread_forward_from_component()
-    threadtools.iterate_thread_in_expr()
+    threadtools.iterate_thread_forward_in_expr()
     threadtools.component_to_thread_signature()
 
   Use these::
@@ -831,7 +831,7 @@ Changes to end-user functionality:
     componenttools.iterate_thread_backward_from_component()
     componenttools.iterate_thread_backward_in_expr()
     componenttools.iterate_thread_forward_from_component()
-    iterationtools.iterate_thread_in_expr()
+    componenttools.iterate_thread_forward_in_expr()
     componenttools.component_to_containment_signature()
 
 - Removed the read-only ``Component.marks`` property entirely.
@@ -1464,7 +1464,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   ``tietools.TieSpanner` with an optional ``direction`` keyword::
 
     >>> c = Container("c'4 d'4 e'4 f'4")
-    >>> spanner = spannertools.SlurSpanner(c[:], Up)
+    >>> spanner = spannertools.SlurSpanner(c[:], 'up')
     >>> f(c)
     {
         c'4 ^ (
@@ -1474,7 +1474,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     }
 
   The direction options are exactly the same as for ``Articulation`` and ``Markup``: 
-  ``Up``, ``'^'``, ``Down``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
+  ``'up'``, ``'^'``, ``'down'``, ``'_'``, ``'neutral'``, ``'-'`` and ``None``.
 
 - Extended ``tonalitytools.Scale`` with ``create_named_chromatic_pitch_set_in_pitch_range()`` method.
 
@@ -1797,7 +1797,7 @@ Released 2011-09-12. Built from r4769.
 
 * Added Mozart Musikalisches Wuerfelspiel.
 
-.. image:: ../../examples/mozart/images/index-3.png
+.. image:: ../../examples/mozart/images/mozart-lily.png
 
 * Added new ``Tree`` class to ``sequencetools`` to work with sequences whose elements have been grouped into arbitrarily many levels of containment.
 
@@ -1930,3 +1930,6 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
 * Added Ferneyhough Unsichbare Farben example.
 
 .. image:: ../../examples/ferneyhough/images/ferneyhough-1.png
+
+
+
