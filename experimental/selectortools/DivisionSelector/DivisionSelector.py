@@ -77,26 +77,6 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: replace with Selector.get_duration() instead.
-    def get_duration(self, score_specification, context_name):
-        '''Evaluate duration of selector when applied 
-        to `context_name` in `score_specification`.
-
-        Return duration.
-        '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        segment_name = segment_specification.segment_name
-        segment_index = score_specification.segment_name_to_segment_index(segment_name)
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        segment_division_lists = score_specification.contexts[context_name]['segment_division_lists'] 
-        segment_division_list = segment_division_lists[segment_index]
-        divisions = segment_division_list[start:stop]
-        durations = [durationtools.Duration(division) for division in divisions]
-        duration = durationtools.Duration(sum(durations))
-        return duration
-
     def get_segment_start_offset(self, score_specification, context_name):
         '''Evaluate segment start offset of selector when applied
         to `context_name` in `score_specification`.
