@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -7,13 +6,9 @@ class TimespanConstant(AbjadObject):
 
     Timespan constant.
 
-    ::
-
-        >>> from experimental import *
-
     Timespan contant ``[1/2, 3/2)``::
 
-        >>> timespan_constant = timespantools.TimespanConstant((1, 2), (3, 2)) 
+        >>> timespan_constant = durationtools.TimespanConstant((1, 2), (3, 2)) 
 
     ::
 
@@ -23,7 +18,7 @@ class TimespanConstant(AbjadObject):
     ::
     
         >>> z(timespan_constant)
-        timespantools.TimespanConstant(
+        durationtools.TimespanConstant(
             start_offset=durationtools.Offset(1, 2),
             stop_offset=durationtools.Offset(3, 2)
             )
@@ -44,6 +39,7 @@ class TimespanConstant(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _initialize_offset(self, offset):
+        from abjad.tools import durationtools
         if offset is not None:
             return durationtools.Offset(offset)
 

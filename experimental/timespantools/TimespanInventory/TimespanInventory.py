@@ -14,23 +14,23 @@ class TimespanInventory(ObjectInventory):
 
     ::
 
-        >>> timespan_inventory.append(timespantools.TimespanConstant(0, 3))
-        >>> timespan_inventory.append(timespantools.TimespanConstant(3, 6))
-        >>> timespan_inventory.append(timespantools.TimespanConstant(6, 10))
+        >>> timespan_inventory.append(durationtools.TimespanConstant(0, 3))
+        >>> timespan_inventory.append(durationtools.TimespanConstant(3, 6))
+        >>> timespan_inventory.append(durationtools.TimespanConstant(6, 10))
 
     ::
 
         >>> z(timespan_inventory)
         timespantools.TimespanInventory([
-            timespantools.TimespanConstant(
+            durationtools.TimespanConstant(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(3, 1)
                 ),
-            timespantools.TimespanConstant(
+            durationtools.TimespanConstant(
                 start_offset=durationtools.Offset(3, 1),
                 stop_offset=durationtools.Offset(6, 1)
                 ),
-            timespantools.TimespanConstant(
+            durationtools.TimespanConstant(
                 start_offset=durationtools.Offset(6, 1),
                 stop_offset=durationtools.Offset(10, 1)
                 )

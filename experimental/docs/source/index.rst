@@ -388,7 +388,6 @@ Unstable packages (load manually)
    experimental/timespantools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
    experimental/timespantools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
    experimental/timespantools/SymbolicTimepoint/SymbolicTimepoint
-   experimental/timespantools/TimespanConstant/TimespanConstant
    experimental/timespantools/TimespanInventory/TimespanInventory
 
 .. rubric:: functions

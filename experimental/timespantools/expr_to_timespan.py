@@ -1,4 +1,5 @@
 import numbers
+from abjad.tools import durationtools
 from abjad.tools import sequencetools
 
 
@@ -52,11 +53,11 @@ def expr_to_timespan(expr):
     if hasattr(expr, 'timespan'):
         return expr.timespan
     elif hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
-        return timespantools.TimespanConstant(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
+        return durationtools.TimespanConstant(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
     elif isinstance(expr, numbers.Number):
-        return timespantools.TimespanConstant(start_offset=expr, stop_offset=expr)
+        return durationtools.TimespanConstant(start_offset=expr, stop_offset=expr)
     elif sequencetools.is_pair(expr):
         start_offset, stop_offset = expr
-        return timespantools.TimespanConstant(start_offset=start_offset, stop_offset=stop_offset)
+        return durationtools.TimespanConstant(start_offset=start_offset, stop_offset=stop_offset)
     else:
         raise TypeError('can not change {!r} to timespan.'.format(expr))

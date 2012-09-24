@@ -221,11 +221,15 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'dcr')
+
         requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
         requested_segment_offset = division_command_request.timepoint.get_segment_offset(
             self.score_specification, voice_name)
         requested_offset = self.score_specification.segment_offset_to_score_offset(
             requested_segment_identifier, requested_segment_offset)
+
+        #request_offset = division_command_request.
+
         timespan_inventory = timespantools.TimespanInventory()
         for division_region_command in self.score_specification.all_division_region_commands:
             if division_region_command.start_segment_identifier == requested_segment_identifier:
@@ -280,7 +284,7 @@ class ConcreteInterpreter(Interpreter):
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
         #self._debug(division_region_expressions, 'drx')
-        source_timespan = timespantools.TimespanConstant(start_offset, stop_offset)
+        source_timespan = durationtools.TimespanConstant(start_offset, stop_offset)
         timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_inequality(
@@ -587,7 +591,6 @@ class ConcreteInterpreter(Interpreter):
         if not len(time_signature_settings) == 1:
             return
         time_signature_setting = time_signature_settings[0]
-        #self._debug(time_signature_setting, 'tss')
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
             time_signatures = requesttools.apply_request_transforms(
@@ -595,9 +598,11 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(time_signature_setting.request, requesttools.MaterialRequest):
             time_signatures = self.time_signature_material_request_to_time_signatures(
                 time_signature_setting.request)
+        elif isinstance(time_signature_setting.request, requesttools.CommandRequest):
+            time_signatures = self.time_signature_command_request_to_time_signatures(
+                time_signature_setting.request)
         else:
-            raise NotImplementedError('implement time signature creation for {!r}'.format(
-                time_signature_setting.request))
+            raise TypeError(time_signature_setting.request)
         time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
         segment_specification._time_signatures = time_signatures[:]
         return time_signatures
@@ -650,7 +655,7 @@ class ConcreteInterpreter(Interpreter):
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_score_offsets(
             self.score_specification, rhythm_request.context_name)
-        source_timespan = timespantools.TimespanConstant(*source_score_offsets)
+        source_timespan = durationtools.TimespanConstant(*source_score_offsets)
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
         timespan_inequality = timespaninequalitytools.timespan_2_intersects_timespan_1(
@@ -666,6 +671,7 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
+        # TODO: encapsulate all of the following in a single call
         if rhythm_request.reverse:
             result.reverse()
         if rhythm_request.rotation:
@@ -886,6 +892,13 @@ class ConcreteInterpreter(Interpreter):
         result.append(right_division_region_command)
         #self._debug_values(result, 'result')
         return result
+
+    # NEXT TODO: implement method
+    def time_signature_command_request_to_time_signatures(self, command_request):
+        assert isinstance(command_request, requesttools.CommandRequest)
+        assert command_request.attribute == 'time_signatures'
+        self._debug(command_request, 'command request')
+        raise NotImplementedError
 
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)

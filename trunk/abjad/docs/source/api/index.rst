@@ -289,6 +289,7 @@ Composition packages
 
    tools/durationtools/Duration/Duration
    tools/durationtools/Offset/Offset
+   tools/durationtools/TimespanConstant/TimespanConstant
 
 .. rubric:: functions
 

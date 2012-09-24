@@ -41,7 +41,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
         >>> z(timepoint_inequality)
         timespaninequalitytools.TimepointInequality(
             'timepoint < timespan.start',
-            timespan=timespantools.TimespanConstant(
+            timespan=durationtools.TimespanConstant(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
                 )
@@ -58,7 +58,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
         >>> z(timepoint_inequality)
         timespaninequalitytools.TimepointInequality(
             'timepoint < timespan.start',
-            timespan=timespantools.TimespanConstant(
+            timespan=durationtools.TimespanConstant(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
                 ),
