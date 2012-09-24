@@ -84,16 +84,6 @@ class OffsetSelector(Selector):
 
     ### PUBLIC METHODS ##
 
-    # TODO: replace with Selector.get_duration() instead.
-    def get_duration(self, score_specification, context_name):
-        r'''Evaluate duration of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return duration.
-        '''
-        return self.get_segment_stop_offset(score_specification, context_name) - \
-            self.get_segment_start_offset(score_specification, context_name)
-
     def get_segment_start_offset(self, score_specification, context_name):
         r'''Evaluate segment start offset of selector when applied
         to `context_name` in `score_specification`.

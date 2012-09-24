@@ -36,6 +36,8 @@ Methods
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_duration
 
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_score_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

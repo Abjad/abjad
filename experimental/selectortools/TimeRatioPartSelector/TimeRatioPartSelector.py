@@ -51,18 +51,6 @@ class TimeRatioPartSelector(RatioPartSelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: replace with Selector.get_duration() instead.
-    def get_duration(self, score_specification, context_name):
-        r'''Evaluate duration of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return offset.
-        '''
-        selector_duration = self.selector.get_duration(score_specification, context_name)
-        parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
-        part = parts[self.part]
-        return part
-
     def get_segment_start_offset(self, score_specification, context_name):
         r'''Evaluate segment start offset of selector when applied
         to `context_name` in `score_specification`.

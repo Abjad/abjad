@@ -48,6 +48,8 @@ Methods
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_duration
 
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_score_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

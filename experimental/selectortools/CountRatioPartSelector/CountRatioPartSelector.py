@@ -53,21 +53,6 @@ class CountRatioPartSelector(RatioPartSelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: replace with Selector.get_duration() instead.
-    def get_duration(self, score_specification, context_name):
-        '''Evaluate duration of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return duration.
-        '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        time_signatures = segment_specification.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
-        part = parts[self.part]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = durationtools.Duration(sum(durations))
-        return duration
-
     def get_segment_start_offset(self, score_specification, context_name):
         r'''Evaluate segment start offset of selector when applied
         to `context_name` in `score_specification`.

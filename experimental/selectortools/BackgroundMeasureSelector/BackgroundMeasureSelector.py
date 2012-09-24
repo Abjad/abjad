@@ -128,22 +128,6 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: replace this with Selecto.get_duration() instead.
-    def get_duration(self, score_specification, context_name):
-        '''Evaluate duration of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return duration.
-        '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        time_signatures = segment_specification.time_signatures[start:stop]
-        durations = [durationtools.Duration(x) for x in time_signatures]
-        duration = durationtools.Duration(sum(durations))
-        return duration
-
     def get_segment_start_offset(self, score_specification, context_name):
         r'''Evaluate segment start offset of selector when applied
         to `context_name` in `score_specification`.

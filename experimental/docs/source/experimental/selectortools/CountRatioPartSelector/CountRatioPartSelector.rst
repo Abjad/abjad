@@ -42,6 +42,8 @@ Methods
 
 .. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_duration
 
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_score_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
