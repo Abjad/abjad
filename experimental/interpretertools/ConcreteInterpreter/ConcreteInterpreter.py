@@ -845,8 +845,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             settings = segment_specification.single_context_settings.get_settings(attribute='time_signatures')
             if settings:
-                assert len(settings) == 1, repr(settings)
-                setting = settings[0]
+                setting = settings[-1]
             else:
                 settings = self.score_specification.single_context_settings_by_context.get_settings(
                     attribute='time_signatures')
