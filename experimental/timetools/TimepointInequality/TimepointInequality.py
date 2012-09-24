@@ -21,14 +21,14 @@ class TimepointInequality(Inequality):
     def __call__(self, timespan=None, timepoint=None):
         r'''Evaluate timepoint inequality.
         '''
-        from experimental import timeobjecttools
+        from experimental import timetools
         if timespan is None:
             timespan = self.timespan
         if timepoint is None:
             timepoint = self.timepoint
         if timespan is None or timepoint is None:
             raise ValueError('timepoint inequality is not fully loaded.')
-        timespan = timeobjecttools.expr_to_timespan(timespan)
+        timespan = timetools.expr_to_timespan(timespan)
         timepoint = durationtools.Offset(timepoint)
         timespan_start = self._get_expr_start(timespan)
         timespan_stop = self._get_expr_stop(timespan)

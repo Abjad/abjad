@@ -3,8 +3,8 @@ from experimental import *
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.timeobjecttools.SymbolicTimepoint import SymbolicTimepoint
-from experimental.timeobjecttools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
+from experimental.timetools.SymbolicTimepoint import SymbolicTimepoint
+from experimental.timetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_MultipleContextSettingInventory_storage_format_01():
