@@ -1,4 +1,3 @@
-from abjad.tools import iterationtools
 from abjad.tools import marktools
 
 
@@ -34,6 +33,7 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
     a top-level context like score with a single override.
     '''
     from abjad.tools import contexttools
+    from abjad.tools import iterationtools
 
     for context in iterationtools.iterate_components_in_expr(expr, contexttools.Context):
         if context.is_semantic:

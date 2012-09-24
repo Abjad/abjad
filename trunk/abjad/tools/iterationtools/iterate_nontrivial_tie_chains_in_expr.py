@@ -1,3 +1,7 @@
+from abjad.tools import tietools
+from abjad.tools import spannertools
+
+
 def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
     r'''Iterate nontrivial tie chains forward in `expr`::
 
@@ -38,8 +42,6 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
     Return generator.
     '''
     from abjad.tools import iterationtools
-    from abjad.tools import spannertools
-    from abjad.tools import tietools
 
     if not reverse:
         for leaf in iterationtools.iterate_leaves_in_expr(expr):

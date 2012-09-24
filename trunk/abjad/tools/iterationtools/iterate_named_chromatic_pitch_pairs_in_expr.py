@@ -1,3 +1,4 @@
+from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
@@ -86,7 +87,6 @@ def iterate_named_chromatic_pitch_pairs_in_expr(expr):
     Return generator.
     '''
     from abjad.tools import iterationtools
-    from abjad.tools import pitchtools
 
     for leaf_pair in iterationtools.iterate_leaf_pairs_in_expr(expr):
         leaf_pair_list = list(leaf_pair)

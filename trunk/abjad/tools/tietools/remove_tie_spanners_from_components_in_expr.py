@@ -1,4 +1,3 @@
-from abjad.tools import iterationtools
 from abjad.tools import spannertools
 
 
@@ -38,6 +37,7 @@ def remove_tie_spanners_from_components_in_expr(expr):
         renamed ``componenttools.untie_shallow()`` to
         ``tietools.remove_tie_spanners_from_components_in_expr()``.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import tietools
 
     for component in iterationtools.iterate_components_in_expr(expr):

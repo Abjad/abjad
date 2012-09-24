@@ -1,3 +1,7 @@
+from abjad.tools import tietools
+from abjad.tools import spannertools
+
+
 def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     r'''.. versionadded:: 2.10
 
@@ -50,8 +54,6 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     Return generator.
     '''
     from abjad.tools import iterationtools
-    from abjad.tools import spannertools
-    from abjad.tools import tietools
 
     if not reverse:
         for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr):

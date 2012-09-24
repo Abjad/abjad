@@ -1,3 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import leaftools
+
+
 def iterate_timeline_in_expr(expr, klass=None, reverse=False):
     r'''.. versionadded:: 2.10
 

@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
     r'''.. versionadded:: 2.10
 
@@ -49,7 +52,6 @@ def iterate_thread_in_expr(expr, klass, containment_signature, reverse=False):
 
     Return generator.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import iterationtools
 
     if isinstance(expr, klass) and \

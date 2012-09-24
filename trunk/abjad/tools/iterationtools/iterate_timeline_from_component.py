@@ -1,3 +1,7 @@
+from abjad.tools import componenttools
+from abjad.tools import leaftools
+
+
 def iterate_timeline_from_component(expr, klass=None, reverse=False):
     r'''.. versionadded:: 2.10
 
@@ -54,9 +58,7 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import iterationtools
-    from abjad.tools import leaftools
 
     if klass is None:
         klass = leaftools.Leaf

@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 def apply_beam_spanners_to_measures_in_expr(expr):
     r'''.. versionadded:: 1.1
 
@@ -54,6 +51,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
         ``beamtools.apply_beam_spanners_to_measures_in_expr()``.
     '''
     from abjad.tools import beamtools
+    from abjad.tools import iterationtools
 
     # init beams created
     beams_created = []

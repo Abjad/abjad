@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import iterationtools
 
 
 def remove_trivial_tuplets_in_expr(expr):
@@ -51,7 +50,7 @@ def remove_trivial_tuplets_in_expr(expr):
         renamed ``tuplettools.slip_trivial()`` to
         ``tuplettools.remove_trivial_tuplets_in_expr()``.
     '''
-
+    from abjad.tools import iterationtools
     from abjad.tools import tuplettools
 
     for tuplet in list(iterationtools.iterate_components_in_expr(expr, tuplettools.Tuplet)):

@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
     r'''.. versionadded:: 2.9
 
@@ -36,6 +33,7 @@ def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
 
     Order of spanners in return value can not be predicted.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
     result = []

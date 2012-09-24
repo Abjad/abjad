@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 def append_spacer_skips_to_underfull_measures_in_expr(expr):
     r'''.. versionadded:: 1.1
 
@@ -57,6 +54,7 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
         renamed ``measuretools.remedy_underfull_measures()`` to
         ``measuretools.append_spacer_skips_to_underfull_measures_in_expr()``.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import measuretools
 
     treated_measures = []

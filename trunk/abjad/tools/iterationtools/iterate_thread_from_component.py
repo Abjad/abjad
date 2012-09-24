@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def iterate_thread_from_component(component, klass=None, reverse=False):
     r'''.. versionadded:: 2.10
 
@@ -90,7 +93,6 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
 
     Return generator.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import iterationtools
 
     # set default class

@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def iterate_namesakes_from_component(component, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
@@ -70,7 +73,6 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
 
     Return generator.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import iterationtools
 
     def _forward_helper(component):

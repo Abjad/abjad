@@ -1,6 +1,3 @@
-from abjad.tools import iterationtools
-
-
 def make_covered_spanner_schema(components):
     r'''.. versionadded:: 2.0
 
@@ -41,6 +38,7 @@ def make_covered_spanner_schema(components):
 
     Return dictionary.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import spannertools
 
     schema = {}

@@ -1,3 +1,8 @@
+from abjad.tools import verticalitytools
+from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import \
+    _yield_vertical_moments_forward_in_expr
+
+
 # TODO: optimize without multiple full-component traversal.
 def iterate_vertical_moments_in_expr(expr, reverse=False):
     r'''.. versionadded:: 2.10
@@ -94,9 +99,6 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     Return generator.
     '''
     from abjad.tools import iterationtools
-    from abjad.tools import verticalitytools
-    from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import \
-        _yield_vertical_moments_forward_in_expr
 
     # OPTIMIZED DROP-IN REPLACEMENT
     if not reverse:

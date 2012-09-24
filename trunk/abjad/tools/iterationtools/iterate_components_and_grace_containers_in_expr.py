@@ -59,7 +59,6 @@ def iterate_components_and_grace_containers_in_expr(expr, klass):
         renamed ``iterate.grace()`` to
         ``componenttools.iterate_components_and_grace_containers_in_expr()``.
     '''
-
     if hasattr(expr, '_grace'):
         for m in expr.grace:
             for x in iterate_components_and_grace_containers_in_expr(m, klass):

@@ -2,7 +2,6 @@ import copy
 import abc
 from abjad.tools import componenttools
 from abjad.tools import durationtools
-from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import lilypondproxytools
 from abjad.tools.abctools import AbjadObject
@@ -208,6 +207,7 @@ class Spanner(AbjadObject):
         return [(self, spanner, result)]
 
     def _initialize_components(self, components):
+        from abjad.tools import iterationtools
         if isinstance(components, componenttools.Component):
             components = [components]
         elif not components:
@@ -243,6 +243,7 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_first(self, leaf, klass):
+        from abjad.tools import iterationtools
         from abjad.tools import spannertools
         for component in iterationtools.iterate_components_in_spanner(self, klass=klass):
             if component is leaf:
@@ -259,7 +260,7 @@ class Spanner(AbjadObject):
             return False
 
     def _is_my_last(self, leaf, klass):
-        from abjad.tools import spannertools
+        from abjad.tools import iterationtools
         components = iterationtools.iterate_components_in_spanner(self, klass=klass, reverse=True)
         for component in components:
             if component is leaf:
@@ -379,6 +380,7 @@ class Spanner(AbjadObject):
             copy with leaves = spanner.leaves first. Or use spanner-
             specific iteration tools.
         '''
+        from abjad.tools import iterationtools
         result = []
         for component in self._components:
             # EXPERIMENTAL: expand to allow staff-level spanner eventually #

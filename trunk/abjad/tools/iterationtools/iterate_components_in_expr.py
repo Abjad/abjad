@@ -1,9 +1,11 @@
+from abjad.tools import componenttools
+
+
 def iterate_components_in_expr(expr, klass=None, reverse=False, start=0, stop=None):
     r'''.. versionadded:: 2.10
 
     Iterate components forward in `expr`.
     '''
-    from abjad.tools import componenttools
 
     klass = klass or componenttools.Component
 

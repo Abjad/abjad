@@ -1,5 +1,4 @@
 from abjad.tools import componenttools
-from abjad.tools import iterationtools
 from abjad.tools import spannertools
 
 
@@ -36,6 +35,7 @@ def get_nontrivial_tie_chains_masked_by_components(components):
         renamed ``tietools.get_tie_chains_in_expr()`` to
         ``tietools.get_nontrivial_tie_chains_masked_by_components()``.
     '''
+    from abjad.tools import iterationtools
     from abjad.tools import tietools
 
     assert componenttools.all_are_components(components)

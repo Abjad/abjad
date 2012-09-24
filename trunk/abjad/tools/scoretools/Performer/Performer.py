@@ -1,6 +1,4 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools.instrumenttools._Instrument import _Instrument
-from abjad.tools.instrumenttools.InstrumentInventory import InstrumentInventory
 
 
 class Performer(AbjadObject):
@@ -20,6 +18,7 @@ class Performer(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, name=None, instruments=None):
+        from abjad.tools.instrumenttools.InstrumentInventory import InstrumentInventory
         self._instruments = InstrumentInventory()
         self.name = name
         self.instruments = instruments
@@ -96,6 +95,7 @@ class Performer(AbjadObject):
             '''
             return self._instruments
         def fset(self, instruments):
+            from abjad.tools.instrumenttools._Instrument import _Instrument
             if instruments is None:
                 self._instruments[:] = []
             elif isinstance(instruments, list):
