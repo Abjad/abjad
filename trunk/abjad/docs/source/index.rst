@@ -47,7 +47,6 @@ System Overview
 
     system_overview/lcs/index
     system_overview/parsing/index
-    system_overview/quantization/index
 
 Tutorials
 ---------
@@ -115,7 +114,6 @@ Appendices
     :maxdepth: 1
 
     appendices/history/index
-    appendices/glossary/index
     appendices/text_alignment/index
     appendices/score_snippet_gallery/index
     appendices/bibliography/index
