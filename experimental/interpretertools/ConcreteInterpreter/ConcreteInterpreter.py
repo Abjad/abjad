@@ -8,7 +8,7 @@ from experimental import selectortools
 from experimental import settingtools
 from experimental import specificationtools
 from experimental import timespaninequalitytools
-from experimental import timespantools
+from experimental import timeobjecttools
 from experimental.interpretertools.Interpreter import Interpreter
 
 
@@ -230,7 +230,7 @@ class ConcreteInterpreter(Interpreter):
 
         #request_offset = division_command_request.
 
-        timespan_inventory = timespantools.TimespanInventory()
+        timespan_inventory = timeobjecttools.TimespanInventory()
         for division_region_command in self.score_specification.all_division_region_commands:
             if division_region_command.start_segment_identifier == requested_segment_identifier:
                 if not division_region_command.request == division_command_request:
@@ -289,7 +289,7 @@ class ConcreteInterpreter(Interpreter):
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
-        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
+        division_region_expressions = timeobjecttools.TimespanInventory(division_region_expressions)
         #self._debug(division_region_expressions, 'drx')
         if not division_region_expressions:
             return
@@ -501,14 +501,14 @@ class ConcreteInterpreter(Interpreter):
 
     def initialize_division_region_expression_inventories(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            timespan_inventory = timespantools.TimespanInventory()
+            timespan_inventory = timeobjecttools.TimespanInventory()
             self.score_specification.contexts[voice.name]['division_region_commands'] = timespan_inventory
-            timespan_inventory = timespantools.TimespanInventory()
+            timespan_inventory = timeobjecttools.TimespanInventory()
             self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
 
     def initialize_rhythm_region_expression_inventories(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            timespan_inventory = timespantools.TimespanInventory()
+            timespan_inventory = timeobjecttools.TimespanInventory()
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = timespan_inventory
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):

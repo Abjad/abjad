@@ -313,6 +313,33 @@ Unstable packages (load manually)
 
    experimental/statalservertools/StatalServer/StatalServer
 
+:py:mod:`timeobjecttools <experimental.timeobjecttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timeobjecttools/SymbolicTimespan/SymbolicTimespan
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timeobjecttools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   experimental/timeobjecttools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
+   experimental/timeobjecttools/SymbolicTimepoint/SymbolicTimepoint
+   experimental/timeobjecttools/TimespanInventory/TimespanInventory
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timeobjecttools/expr_to_timespan
+
 :py:mod:`timespaninequalitytools <experimental.timespaninequalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -369,30 +396,3 @@ Unstable packages (load manually)
    experimental/timespaninequalitytools/timespan_2_stops_when_timespan_1_starts
    experimental/timespaninequalitytools/timespan_2_stops_when_timespan_1_stops
    experimental/timespaninequalitytools/timespan_2_trisects_timespan_1
-
-:py:mod:`timespantools <experimental.timespantools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/timespantools/SymbolicTimespan/SymbolicTimespan
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/timespantools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
-   experimental/timespantools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
-   experimental/timespantools/SymbolicTimepoint/SymbolicTimepoint
-   experimental/timespantools/TimespanInventory/TimespanInventory
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/timespantools/expr_to_timespan

@@ -147,7 +147,7 @@ class TimespanInequality(TimeObjectInequality):
 
         Example 2. Substitute `timespan_1` during evaluation::
 
-            >>> new_timespan_1 = timespantools.expr_to_timespan((0, 10))
+            >>> new_timespan_1 = timeobjecttools.expr_to_timespan((0, 10))
 
         ::
 
@@ -161,7 +161,7 @@ class TimespanInequality(TimeObjectInequality):
 
         Example 3. Substitute `timespan_2` during evaluation::
 
-            >>> new_timespan_2 = timespantools.expr_to_timespan((2, 12))
+            >>> new_timespan_2 = timeobjecttools.expr_to_timespan((2, 12))
 
         ::
 
@@ -182,15 +182,15 @@ class TimespanInequality(TimeObjectInequality):
 
         Otherwise return boolean.
         '''
-        from experimental import timespantools
+        from experimental import timeobjecttools
         if timespan_1 is None:
             timespan_1 = self.timespan_1
         if timespan_2 is None:
             timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             raise ValueError('timespan inequality is not fully loaded.')
-        timespan_1 = timespantools.expr_to_timespan(timespan_1)
-        timespan_2 = timespantools.expr_to_timespan(timespan_2)
+        timespan_1 = timeobjecttools.expr_to_timespan(timespan_1)
+        timespan_2 = timeobjecttools.expr_to_timespan(timespan_2)
         timespan_1_start = self._get_expr_start(timespan_1)
         timespan_1_stop = self._get_expr_stop(timespan_1)
         timespan_2_start = self._get_expr_start(timespan_2)

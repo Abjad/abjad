@@ -1,8 +1,8 @@
 from experimental.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
-from experimental.timespantools.SymbolicTimepoint import SymbolicTimepoint
-from experimental.timespantools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
+from experimental.timeobjecttools.SymbolicTimepoint import SymbolicTimepoint
+from experimental.timeobjecttools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_SingleContextSetting___repr___01():

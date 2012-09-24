@@ -1,4 +1,4 @@
-from experimental import timespantools
+from experimental import timeobjecttools
 from experimental.requesttools.Request import Request
 
 
@@ -27,11 +27,11 @@ class CommandRequest(Request):
         >>> z(command_request)
         requesttools.CommandRequest(
             'divisions',
-            timespantools.SymbolicTimepoint(
+            timeobjecttools.SymbolicTimepoint(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -57,7 +57,7 @@ class CommandRequest(Request):
     def __init__(self, attribute, timepoint, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
-        assert isinstance(timepoint, timespantools.SymbolicTimepoint)
+        assert isinstance(timepoint, timeobjecttools.SymbolicTimepoint)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
@@ -115,11 +115,11 @@ class CommandRequest(Request):
         '''Command request timepoint specified by user.
 
             >>> z(command_request.timepoint)
-            timespantools.SymbolicTimepoint(
+            timeobjecttools.SymbolicTimepoint(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )

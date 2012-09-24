@@ -1,5 +1,5 @@
 from abjad.tools import abctools
-from experimental.timespantools.SymbolicTimespan import SymbolicTimespan
+from experimental.timeobjecttools.SymbolicTimespan import SymbolicTimespan
 
 
 class MixedSourceSymbolicTimespan(SymbolicTimespan):
@@ -16,29 +16,29 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
-        >>> start_timepoint = timespantools.SymbolicTimepoint(selector=measure_selector)
+        >>> start_timepoint = timeobjecttools.SymbolicTimepoint(selector=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='blue')
         >>> inequality = timespaninequalitytools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
-        >>> stop_timepoint = timespantools.SymbolicTimepoint(selector=measure_selector, edge=Right)
+        >>> stop_timepoint = timeobjecttools.SymbolicTimepoint(selector=measure_selector, edge=Right)
         
     ::
 
-        >>> timespan = timespantools.MixedSourceSymbolicTimespan(
+        >>> timespan = timeobjecttools.MixedSourceSymbolicTimespan(
         ... start_timepoint=start_timepoint, stop_timepoint=stop_timepoint)
 
     ::
 
         >>> z(timespan)
-        timespantools.MixedSourceSymbolicTimespan(
-            start_timepoint=timespantools.SymbolicTimepoint(
+        timeobjecttools.MixedSourceSymbolicTimespan(
+            start_timepoint=timeobjecttools.SymbolicTimepoint(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -47,11 +47,11 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     start_identifier=-1
                     )
                 ),
-            stop_timepoint=timespantools.SymbolicTimepoint(
+            stop_timepoint=timeobjecttools.SymbolicTimepoint(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='blue'
                                 )
@@ -69,9 +69,9 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     ### INITIALIZER ###
 
     def __init__(self, start_timepoint=None, stop_timepoint=None):
-        from experimental import timespantools
-        assert isinstance(start_timepoint, (timespantools.SymbolicTimepoint, type(None))), repr(start_timepoint)
-        assert isinstance(stop_timepoint, (timespantools.SymbolicTimepoint, type(None))), repr(stop_timepoint)
+        from experimental import timeobjecttools
+        assert isinstance(start_timepoint, (timeobjecttools.SymbolicTimepoint, type(None))), repr(start_timepoint)
+        assert isinstance(stop_timepoint, (timeobjecttools.SymbolicTimepoint, type(None))), repr(stop_timepoint)
         SymbolicTimespan.__init__(self)
         self._start_timepoint = start_timepoint
         self._stop_timepoint = stop_timepoint

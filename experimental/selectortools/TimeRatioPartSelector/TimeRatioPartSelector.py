@@ -30,7 +30,7 @@ class TimeRatioPartSelector(RatioPartSelector):
             selectortools.BackgroundMeasureSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )

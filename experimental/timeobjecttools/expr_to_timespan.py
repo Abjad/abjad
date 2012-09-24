@@ -26,29 +26,29 @@ def expr_to_timespan(expr):
 
     ::
 
-        >>> timespantools.expr_to_timespan(staff[1])
+        >>> timeobjecttools.expr_to_timespan(staff[1])
         TimespanConstant(start_offset=Offset(1, 8), stop_offset=Offset(1, 4))
 
     Return timespan constant when `expr` is a number::
 
-        >>> timespantools.expr_to_timespan(Fraction(7, 8))
+        >>> timeobjecttools.expr_to_timespan(Fraction(7, 8))
         TimespanConstant(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
 
     Return timespan constant when `expr` is an offset::
 
-        >>> timespantools.expr_to_timespan(durationtools.Offset(7, 8))
+        >>> timeobjecttools.expr_to_timespan(durationtools.Offset(7, 8))
         TimespanConstant(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
 
     Return timespan constant when `expr` is a pair::
 
-        >>> timespantools.expr_to_timespan(((1, 2), (3, 2)))
+        >>> timeobjecttools.expr_to_timespan(((1, 2), (3, 2)))
         TimespanConstant(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
 
     Otherwise raise type error.
     '''
-    from experimental import timespantools
+    from experimental import timeobjecttools
 
-    if isinstance(expr, timespantools.SymbolicTimespan):
+    if isinstance(expr, timeobjecttools.SymbolicTimespan):
         return expr
     if hasattr(expr, 'timespan'):
         return expr.timespan

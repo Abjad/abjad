@@ -29,7 +29,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
 
     Make timepoint inequality indicating that `timepoint` happens before timespan ``[2, 8)`` starts::
 
-        >>> timespan = timespantools.expr_to_timespan((2, 8))
+        >>> timespan = timeobjecttools.expr_to_timespan((2, 8))
 
     ::
 

@@ -1,4 +1,4 @@
-from experimental.timespantools.SymbolicTimespan import SymbolicTimespan
+from experimental.timeobjecttools.SymbolicTimespan import SymbolicTimespan
 
 
 class SingleSourceSymbolicTimespan(SymbolicTimespan):
@@ -14,22 +14,22 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of the entire score::
 
-        >>> timespantools.SingleSourceSymbolicTimespan()
+        >>> timeobjecttools.SingleSourceSymbolicTimespan()
         SingleSourceSymbolicTimespan()
 
     SymbolicTimespan of the first third of the score::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
+        >>> timeobjecttools.SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
         SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
 
     SymbolicTimespan of the first ``1/8`` of a whole note in score::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=durationtools.Offset(1, 8))
+        >>> timeobjecttools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=durationtools.Offset(1, 8))
         SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=Offset(1, 8))
 
     SymbolicTimespan of the last ``1/8`` of a whole note in score::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=durationtools.Offset(-1, 8))
+        >>> timeobjecttools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=durationtools.Offset(-1, 8))
         SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=Offset(-1, 8))
 
     SymbolicTimespan of the segment with name ``'red'``::
@@ -38,7 +38,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     ::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(selector=segment_selector)
+        >>> timeobjecttools.SingleSourceSymbolicTimespan(selector=segment_selector)
         SingleSourceSymbolicTimespan(selector=SingleSegmentSelector(identifier='red'))
 
     SymbolicTimespan of the first measure that starts during segment ``'red'``::
@@ -48,16 +48,16 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     ::
 
-        >>> timespan = timespantools.SingleSourceSymbolicTimespan(selector=measure_selector)
+        >>> timespan = timeobjecttools.SingleSourceSymbolicTimespan(selector=measure_selector)
 
     ::
 
         >>> z(timespan)
-        timespantools.SingleSourceSymbolicTimespan(
+        timeobjecttools.SingleSourceSymbolicTimespan(
             selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -73,16 +73,16 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     ::
 
-        >>> timespan = timespantools.SingleSourceSymbolicTimespan(selector=division_selector)
+        >>> timespan = timeobjecttools.SingleSourceSymbolicTimespan(selector=division_selector)
 
     ::
 
        >>> z(timespan)
-        timespantools.SingleSourceSymbolicTimespan(
+        timeobjecttools.SingleSourceSymbolicTimespan(
             selector=selectortools.DivisionSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -100,7 +100,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     ::
 
-        >>> timespantools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
+        >>> timeobjecttools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
         SingleSourceSymbolicTimespan(selector=SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.

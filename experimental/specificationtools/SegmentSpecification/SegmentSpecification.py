@@ -5,7 +5,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespaninequalitytools
-from experimental import timespantools
+from experimental import timeobjecttools
 from experimental.specificationtools.Specification import Specification
 
 
@@ -257,7 +257,7 @@ class SegmentSpecification(Specification):
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timespantools.SymbolicTimepoint(selector=selector, edge=Left)
+        return timeobjecttools.SymbolicTimepoint(selector=selector, edge=Left)
 
     @property
     def stop_timepoint(self):
@@ -269,7 +269,7 @@ class SegmentSpecification(Specification):
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timespantools.SymbolicTimepoint(selector=selector, edge=Right)
+        return timeobjecttools.SymbolicTimepoint(selector=selector, edge=Right)
 
     @property
     def storage_format(self):
@@ -308,7 +308,7 @@ class SegmentSpecification(Specification):
         Return timespan.
         '''
         selector = self.select_segment()
-        return timespantools.SingleSourceSymbolicTimespan(selector=selector)
+        return timeobjecttools.SingleSourceSymbolicTimespan(selector=selector)
 
     ### PUBLIC METHODS ###
 
@@ -352,7 +352,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'divisions',
-                timespantools.SymbolicTimepoint(
+                timeobjecttools.SymbolicTimepoint(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -368,7 +368,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'divisions',
-                timespantools.SymbolicTimepoint(
+                timeobjecttools.SymbolicTimepoint(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         ),
@@ -391,11 +391,11 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'divisions',
-                timespantools.SymbolicTimepoint(
+                timeobjecttools.SymbolicTimepoint(
                     selector=selectortools.BackgroundMeasureSelector(
                         inequality=timespaninequalitytools.TimespanInequality(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                            timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                            timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                                 selector=selectortools.SingleSegmentSelector(
                                     identifier='red'
                                     )
@@ -415,7 +415,7 @@ class SegmentSpecification(Specification):
         Return command request.        
         '''
         selector = selector or self.select_segment()
-        timepoint = timespantools.SymbolicTimepoint(
+        timepoint = timeobjecttools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'divisions', context_name=context, timepoint=timepoint,
@@ -460,7 +460,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'rhythm',
-                timespantools.SymbolicTimepoint(
+                timeobjecttools.SymbolicTimepoint(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -474,7 +474,7 @@ class SegmentSpecification(Specification):
         Return command request.        
         '''
         selector = selector or self.select_segment()
-        timepoint = timespantools.SymbolicTimepoint(
+        timepoint = timeobjecttools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'rhythm', context_name=context, timepoint=timepoint,
@@ -519,7 +519,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'time_signatures',
-                timespantools.SymbolicTimepoint(
+                timeobjecttools.SymbolicTimepoint(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -533,7 +533,7 @@ class SegmentSpecification(Specification):
         Return command request.        
         '''
         selector = selector or self.select_segment()
-        timepoint = timespantools.SymbolicTimepoint(
+        timepoint = timeobjecttools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'time_signatures', context_name=context, timepoint=timepoint,
@@ -550,7 +550,7 @@ class SegmentSpecification(Specification):
             selectortools.BackgroundMeasureSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -579,7 +579,7 @@ class SegmentSpecification(Specification):
             selectortools.BackgroundMeasureSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -608,7 +608,7 @@ class SegmentSpecification(Specification):
                 selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -631,7 +631,7 @@ class SegmentSpecification(Specification):
                 selectortools.BackgroundMeasureSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -658,7 +658,7 @@ class SegmentSpecification(Specification):
             selectortools.DivisionSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -687,7 +687,7 @@ class SegmentSpecification(Specification):
             selectortools.DivisionSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -715,7 +715,7 @@ class SegmentSpecification(Specification):
                 selectortools.DivisionSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -742,7 +742,7 @@ class SegmentSpecification(Specification):
             selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -772,7 +772,7 @@ class SegmentSpecification(Specification):
                 selectortools.CounttimeComponentSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
@@ -800,7 +800,7 @@ class SegmentSpecification(Specification):
             selectortools.CounttimeComponentSelector(
                 inequality=timespaninequalitytools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                    timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
                             identifier='red'
                             )
@@ -833,7 +833,7 @@ class SegmentSpecification(Specification):
                 selectortools.CounttimeComponentSelector(
                     inequality=timespaninequalitytools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=timespantools.SingleSourceSymbolicTimespan(
+                        timespan_1=timeobjecttools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
                                 identifier='red'
                                 )
