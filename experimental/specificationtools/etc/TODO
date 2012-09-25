@@ -1,4 +1,4 @@
-1.  Kill segment_division_lists. Kill SegmentDivisionList class, too.
+1.  Kill segment_division_lists.
 
 2.  Implement time signature material requests.
 

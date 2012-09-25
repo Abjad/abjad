@@ -109,29 +109,14 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         self.rhythm_quadruples_to_rhythm_region_expressions(voice, rhythm_quadruples)
 
-    # TODO: The older implementation here will probably be replaced by the newer one below.
     def add_rhythm_to_voices(self):
         self.initialize_rhythm_region_expression_inventories()
+        # TODO: replace this loop with just self.make_rhythm_region_epxressions()
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
             if voice_division_list:
                 self.add_rhythm_to_voice(voice, voice_division_list)
         self.dump_rhythm_region_expressions_into_voices()
-
-    # TODO: The newer implementation here will probably replace the older one above.
-#    def add_rhythm_to_voices(self):
-#        self.initialize_rhythm_region_expression_inventories()
-#        self.rhythm_commands_to_rhythm_region_expressions()
-#        self.dump_rhythm_region_expressions_into_voices()
-
-    def add_segment_division_lists_to_voice(
-        self, voice, segment_division_lists):
-        assert len(self.score_specification.segment_specifications) == len(segment_division_lists)
-        for segment_specification, segment_division_list in zip(
-            self.score_specification.segment_specifications, segment_division_lists):
-            segment_specification.contexts[voice.name]['segment_division_list'] = segment_division_list
-            segment_specification.contexts[voice.name]['segment_pairs'] = [
-                x.pair for x in segment_division_list]
 
     def add_time_signatures_to_segment(self, segment_specification):
         time_signatures = self.make_time_signatures_for_segment_specification(segment_specification)
@@ -525,6 +510,10 @@ class ConcreteInterpreter(Interpreter):
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
 
+    def make_rhythm_region_expressions(self):
+        rhythm_commands = self.get_rhythm_commands_for_score()
+        raise NotImplementedError('working on this one now.')
+
     def make_segment_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             if self.score_specification.contexts[voice.name]['division_region_expressions']:
@@ -543,14 +532,11 @@ class ConcreteInterpreter(Interpreter):
         for i, shard in enumerate(shards[:]):
             raw_segment_division_list = divisiontools.DivisionList(shard, voice.name)
             raw_segment_division_lists.append(raw_segment_division_list)
-        #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
         segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
-        #self._debug(segment_division_lists, 'sdls')
-        #return segment_division_lists
+        #self._debug(segment_division_lists, 'sdl')
         self.score_specification.contexts[voice.name]['segment_division_lists'] = segment_division_lists
-        self.add_segment_division_lists_to_voice(voice, segment_division_lists)
 
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
@@ -591,16 +577,11 @@ class ConcreteInterpreter(Interpreter):
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            self.make_voice_division_list_for_voice(voice)
-
-    def make_voice_division_list_for_voice(self, voice):
-        division_region_expressions = self.score_specification.contexts[voice.name][
-            'division_region_expressions']
-        voice_divisions = []
-        for division_region_expression in division_region_expressions:
-            voice_divisions.extend(division_region_expression.divisions)
-        voice_division_list = divisiontools.DivisionList(voice_divisions, voice.name)
-        self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
+            expressions = self.score_specification.contexts[voice.name]['division_region_expressions']
+            divisions = [expression.divisions for expression in expressions]
+            divisions = sequencetools.flatten_sequence(divisions, depth=1)
+            voice_division_list = divisiontools.DivisionList(divisions, voice.name)
+            self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
 
     def populate_all_division_region_commands(self):
         if self.score_specification.segment_specifications:
@@ -612,10 +593,6 @@ class ConcreteInterpreter(Interpreter):
                     'division_region_commands'][:] = division_commands[:]
                 self.score_specification.all_division_region_commands.extend(division_commands)
 
-    def rhythm_commands_to_rhythm_region_exressions(self):
-        rhythm_commands = self.get_rhythm_commands_for_score()
-        raise NotImplementedError('working on this one now.')
-        
     def rhythm_quadruples_to_rhythm_region_expressions(self, voice, rhythm_quadruples):
         for rhythm_quadruple in rhythm_quadruples:
             if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
