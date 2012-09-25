@@ -1,9 +1,7 @@
-1.  Kill segment_division_lists.
-
-2.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
+1.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
     in terms of a single get_score_offsets() method.
 
-3.  Integrate timespan inequality filtering into all inequality selector classes.
+2.  Integrate timespan inequality filtering into all inequality selector classes.
 
 3.  Implement time signature material requests.
 

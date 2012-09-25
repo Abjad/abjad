@@ -54,7 +54,6 @@ class ConcreteInterpreter(Interpreter):
         self.populate_all_division_region_commands()
         self.make_division_region_expressions()
         self.make_voice_division_lists()
-        self.make_segment_division_lists()
 
     def add_rhythm_to_voice(self, voice, voice_division_list):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
@@ -342,22 +341,6 @@ class ConcreteInterpreter(Interpreter):
                 raise TypeError('what is {!r}?'.format(flamingo))
         return result
 
-    def fix_boundary_indicators_to_raw_segment_division_lists(self,
-        voice_division_list, raw_segment_division_lists):
-        parts = sequencetools.partition_sequence_by_backgrounded_weights(
-            voice_division_list.divisions, self.score_specification.segment_durations)
-        overage_from_previous_segment = 0
-        segment_division_lists = []
-        for part, raw_segment_division_list in zip(parts, raw_segment_division_lists):
-            segment_division_list = copy.copy(raw_segment_division_list)
-            segment_division_list[0].is_left_open = bool(overage_from_previous_segment)
-            segment_duration_plus_fringe = overage_from_previous_segment + sum(part)
-            overage_from_current_segment = segment_duration_plus_fringe - raw_segment_division_list.duration
-            segment_division_list[-1].is_right_open = bool(overage_from_current_segment)
-            overage_from_previous_segment = overage_from_current_segment
-            segment_division_lists.append(segment_division_list)
-        return segment_division_lists
-
     def fuse_like_commands(self, commands):
         if any([x.request is None for x in commands]) or not commands:
             return []
@@ -509,20 +492,6 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythm_region_expressions(self):
         rhythm_commands = self.get_rhythm_commands_for_score()
         raise NotImplementedError('working on this one now.')
-
-    def make_segment_division_lists(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
-            if voice_division_list:
-                shards = sequencetools.split_sequence_by_weights(
-                    voice_division_list.divisions, 
-                    self.score_specification.segment_durations, 
-                    cyclic=False, overhang=True)
-                segment_division_lists = [divisiontools.DivisionList(shard, voice.name) for shard in shards]
-                segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
-                    voice_division_list, segment_division_lists)
-                self.score_specification.contexts[voice.name]['segment_division_lists'] = \
-                    segment_division_lists
 
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)

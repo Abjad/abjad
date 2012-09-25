@@ -63,26 +63,8 @@ class DivisionList(AbjadObject):
     The reason that ``'Voice 1'`` has only one division region division list is that the 
     composer specified only one division-maker for the entire score.
 
-    But ``'Voice 1'`` has three different segment division lists::
-
-        >>> for x in score_specification.contexts['Voice 1']['segment_division_lists']: x
-        ... 
-        DivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [2, 16)')
-        DivisionList('(1, 16], [3, 16], [3, 16], [3, 16], [3, 16], [1, 16)')
-        DivisionList('(2, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
-
-    The reason that ``'Voice 1'`` has three different segment division lists
-    is that the composer specified three different segments.
-
     Note that composers may specify an arbitrary number of division-makers for any given voice.
     This results in an arbitrary number of division regions per voice.
-
-    Note also that composers may specify an arbitrary number of segments per score.
-    This results in an arbtirary number of segments per voice.
-
-    Taken together these two facts mean that the division region division lists attaching 
-    to a voice and the segment division lists attaching to that same voice do not 
-    relate to each other in any systematic way.
 
     Composers do not specify division lists because division lists 
     arise as a byproduct of interpretation.
