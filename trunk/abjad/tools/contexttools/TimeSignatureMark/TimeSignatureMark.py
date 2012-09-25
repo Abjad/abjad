@@ -69,9 +69,8 @@ class TimeSignatureMark(ContextMark):
             numerator, denominator = args[0].numerator, args[0].denominator
         elif len(args) == 1 and isinstance(args[0], tuple):
             numerator, denominator = args[0][0], args[0][1]
-        # removed to bring initialization in line with rests and skips:
-        #elif len(args) == 2 and all([isinstance(x, int) for x in args]):
-        #    numerator, denominator = args[0], args[1]
+        elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
+            numerator, denominator = args[0].numerator, args[0].denominator 
         else:
             raise TypeError('invalid time_signature initialization: {!r}.'.format(args))
         self._numerator = numerator
