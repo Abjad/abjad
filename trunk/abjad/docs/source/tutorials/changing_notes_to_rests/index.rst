@@ -1,4 +1,4 @@
-Changing Notes to Rests
+Changing notes to rests
 ============================
 
 A series of notes
