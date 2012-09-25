@@ -34,6 +34,7 @@ class ScoreSpecification(Specification):
         from experimental import specificationtools
         Specification.__init__(self, score_template)
         self._all_division_region_commands = []
+        self._all_time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
 
@@ -79,6 +80,16 @@ class ScoreSpecification(Specification):
         Return list.
         '''
         return self._all_division_region_commands
+
+    @property
+    def all_time_signature_settings(self):
+        '''Read-only list of all time signature settings.
+
+        Populated at the beginning of time signature interpretation by interpreter.
+
+        Return list.
+        '''
+        return self._all_time_signature_settings
 
     @property
     def context_names(self):

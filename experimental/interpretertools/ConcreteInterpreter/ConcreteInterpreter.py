@@ -36,7 +36,7 @@ class ConcreteInterpreter(Interpreter):
         Return Abjad score object.
         '''
         Interpreter.__call__(self, score_specification)
-        self.add_time_signatures_to_score()
+        self.add_time_signatures_to_segments()
         self.add_division_lists_to_voices()
         self.add_rhythm_to_voices()
         self.apply_pitch_classes()
@@ -115,16 +115,17 @@ class ConcreteInterpreter(Interpreter):
                 self.add_rhythm_to_voice(voice, voice_division_list)
         self.dump_rhythm_region_expressions_into_voices()
 
-    def add_time_signatures_to_segment(self, segment_specification):
-        time_signatures = self.make_time_signatures_for_segment_specification(segment_specification)
-        if time_signatures is not None:
-            measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
-            context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
-            context.extend(measures)
+    def add_time_signatures_to_segments(self):
+        self.populate_all_time_signature_commands()
+        # maybe need to restructure loop to allow lookback and multiple retry
+        for time_signature_setting in self.score_specification.all_time_signature_settings:
+            self.make_time_signatures_for_time_signature_setting(time_signature_setting)
+        time_signatures = self.score_specification.time_signatures
+        time_signatures = [x.pair for x in time_signatures]
+        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
+        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
+        context.extend(measures)
 
-    def add_time_signatures_to_score(self):
-        for segment_specification in self.score_specification.segment_specifications:
-            self.add_time_signatures_to_segment(segment_specification)
         self.calculate_score_and_segment_durations()
 
     def apply_additional_parameters(self):
@@ -507,13 +508,7 @@ class ConcreteInterpreter(Interpreter):
             )
         return division_command
 
-    def make_time_signatures_for_segment_specification(self, segment_specification):
-        time_signature_settings = \
-            segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
-            attribute='time_signatures')
-        if not len(time_signature_settings) == 1:
-            return
-        time_signature_setting = time_signature_settings[0]
+    def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
             time_signatures = requesttools.apply_request_transforms(
@@ -527,8 +522,8 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise TypeError(time_signature_setting.request)
         time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
+        segment_specification = self.get_start_segment_specification(time_signature_setting.selector)
         segment_specification._time_signatures = time_signatures[:]
-        return time_signatures
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -553,6 +548,16 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.contexts[voice.name][
                     'division_region_commands'][:] = division_commands[:]
                 self.score_specification.all_division_region_commands.extend(division_commands)
+
+    def populate_all_time_signature_commands(self):
+        for segment_specification in self.score_specification.segment_specifications:
+            time_signature_settings = \
+                segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
+                attribute='time_signatures')
+            if not len(time_signature_settings) == 1:
+                continue
+            time_signature_setting = time_signature_settings[0]
+            self.score_specification.all_time_signature_settings.append(time_signature_setting)
 
     def rhythm_quadruples_to_rhythm_region_expressions(self, voice, rhythm_quadruples):
         for rhythm_quadruple in rhythm_quadruples:
