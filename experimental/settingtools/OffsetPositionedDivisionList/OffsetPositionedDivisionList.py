@@ -5,7 +5,7 @@ from experimental import divisiontools
 from experimental.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
 
-class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
+class OffsetPositionedDivisionList(OffsetPositionedExpression):
     r'''.. versionadded:: 1.0
 
     Offset-positioned division expression.
@@ -57,12 +57,12 @@ class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
 
         ::
 
-            >>> expr = settingtools.OffsetPositionedDivisionExpression(4 * [(3, 16)], 'Voice 1')
+            >>> expr = settingtools.OffsetPositionedDivisionList(4 * [(3, 16)], 'Voice 1')
 
         ::
 
             >>> expr
-            OffsetPositionedDivisionExpression(DivisionList('[3, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(3, 4))
+            OffsetPositionedDivisionList(DivisionList('[3, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(3, 4))
 
         ::
 
@@ -71,7 +71,7 @@ class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
         ::
 
             >>> expr
-            OffsetPositionedDivisionExpression(DivisionList('[2, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(1, 16), stop_offset=Offset(3, 4))
+            OffsetPositionedDivisionList(DivisionList('[2, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(1, 16), stop_offset=Offset(3, 4))
 
         ::
 
@@ -98,12 +98,12 @@ class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
 
         ::
 
-            >>> expr = settingtools.OffsetPositionedDivisionExpression(4 * [(3, 16)], 'Voice 1')
+            >>> expr = settingtools.OffsetPositionedDivisionList(4 * [(3, 16)], 'Voice 1')
 
         ::
 
             >>> expr
-            OffsetPositionedDivisionExpression(DivisionList('[3, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(3, 4))
+            OffsetPositionedDivisionList(DivisionList('[3, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(3, 4))
 
         ::
 
@@ -112,7 +112,7 @@ class OffsetPositionedDivisionExpression(OffsetPositionedExpression):
         ::
 
             >>> expr
-            OffsetPositionedDivisionExpression(DivisionList('[3, 16], [3, 16], [3, 16], [2, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(11, 16))
+            OffsetPositionedDivisionList(DivisionList('[3, 16], [3, 16], [3, 16], [2, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(11, 16))
 
         ::
 

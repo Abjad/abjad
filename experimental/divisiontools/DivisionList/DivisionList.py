@@ -48,7 +48,7 @@ class DivisionList(AbjadObject):
     ::
 
         >>> z(score_specification.contexts['Voice 1']['division_region_expressions'][0])
-        settingtools.OffsetPositionedDivisionExpression(
+        settingtools.OffsetPositionedDivisionList(
             divisiontools.DivisionList(
                 [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 
                 Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), 

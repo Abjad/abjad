@@ -274,7 +274,7 @@ Unstable packages (load manually)
    experimental/settingtools/DivisionCommand/DivisionCommand
    experimental/settingtools/MultipleContextSetting/MultipleContextSetting
    experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
-   experimental/settingtools/OffsetPositionedDivisionExpression/OffsetPositionedDivisionExpression
+   experimental/settingtools/OffsetPositionedDivisionList/OffsetPositionedDivisionList
    experimental/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    experimental/settingtools/RhythmCommand/RhythmCommand
    experimental/settingtools/SingleContextSetting/SingleContextSetting

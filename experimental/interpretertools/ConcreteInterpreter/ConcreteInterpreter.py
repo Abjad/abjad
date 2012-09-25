@@ -300,7 +300,7 @@ class ConcreteInterpreter(Interpreter):
             return division_region_expression
         else:
             raise NotImplementedError(division_region_command.request)
-        return settingtools.OffsetPositionedDivisionExpression(
+        return settingtools.OffsetPositionedDivisionList(
             divisions, 
             voice_name=voice_name, 
             start_offset=division_region_command.start_offset,
