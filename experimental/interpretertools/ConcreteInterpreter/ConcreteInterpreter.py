@@ -815,6 +815,7 @@ class ConcreteInterpreter(Interpreter):
         assert command_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(command_request.timepoint)
         time_signatures = segment_specification.time_signatures[:]
+        time_signatures = requesttools.apply_request_transforms(command_request, time_signatures)
         return time_signatures
 
     def time_signature_material_request_to_time_signatures(self, material_request):
