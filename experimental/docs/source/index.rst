@@ -262,6 +262,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/settingtools/Command/Command
+   experimental/settingtools/OffsetPositionedDivision/OffsetPositionedDivision
    experimental/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    experimental/settingtools/Setting/Setting
 
