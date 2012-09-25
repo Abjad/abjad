@@ -144,3 +144,11 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
         Return offset.
         '''
         raise NotImplementedError
+
+    def get_selected_objects(self, score_specification, context_name):
+        '''Get counttime components selected when selector is applied
+        to `context_name` in `score_specification`.
+
+        Return list.
+        '''
+        raise NotImplementedError

@@ -58,6 +58,8 @@ Methods
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_score_stop_offset
 
+.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_selected_objects
+
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_segment_identifier
 
 Special Methods

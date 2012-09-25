@@ -54,6 +54,8 @@ Methods
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_stop_offset
 
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_selected_objects
+
 Special Methods
 ---------------
 

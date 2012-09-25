@@ -125,7 +125,15 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         stop_offset = durationtools.Offset(duration_up_through)
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
         return stop_offset
+
+    def get_selected_objects(self, score_specification, voice_name):
+        '''Get divisions selected when selector is applied
+        to `voice_name` in `score_specification`.
         
+        Return list.
+        '''
+        raise NotImplementedError
+    
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.inequality.set_segment_identifier()``.
         '''

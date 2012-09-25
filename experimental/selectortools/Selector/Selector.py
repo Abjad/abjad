@@ -93,3 +93,12 @@ class Selector(AbjadObject):
         Return offset.
         '''
         pass
+
+    @abc.abstractmethod
+    def get_selected_objects(self, score_specification, context_name):
+        '''Get selected objects of selector when applied
+        to `context_name` in `score_specification`.
+
+        Return object or list of objects.
+        '''
+        pass        

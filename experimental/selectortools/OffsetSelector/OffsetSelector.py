@@ -118,6 +118,11 @@ class OffsetSelector(Selector):
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
         return stop_offset
 
+    def get_selected_objects(self, score_specification, context_name):
+        '''Implemented only for interface compliance.
+        '''
+        raise NotImplementedError
+
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.selector.set_segment_identifier()``.
         '''

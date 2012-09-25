@@ -64,6 +64,14 @@ class RatioPartSelector(Selector):
 
     ### PUBLIC METHODS ###
 
+    def get_selected_objects(self, score_specification, context_name):
+        '''Get ratio parts when selector is applied
+        to `context_name` in `score_specification`.
+
+        Return list.
+        '''
+        raise NotImplementedError
+
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.selector.set_segment_identifier()``.
         '''

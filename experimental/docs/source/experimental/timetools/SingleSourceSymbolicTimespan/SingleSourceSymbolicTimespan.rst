@@ -32,6 +32,10 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_score_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_score_start_offset
 
 .. automethod:: experimental.timetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_score_stop_offset

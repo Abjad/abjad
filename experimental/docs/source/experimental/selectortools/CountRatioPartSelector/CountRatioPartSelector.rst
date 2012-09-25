@@ -52,6 +52,10 @@ Methods
 
 .. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_score_stop_offset
 
+.. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.get_selected_objects
+
+    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
+
 .. automethod:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.set_segment_identifier
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`

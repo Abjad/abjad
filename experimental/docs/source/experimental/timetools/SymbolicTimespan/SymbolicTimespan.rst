@@ -18,6 +18,8 @@ Methods
 
 .. automethod:: experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_duration
 
+.. automethod:: experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_score_offsets
+
 .. automethod:: experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_score_start_offset
 
 .. automethod:: experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_score_stop_offset

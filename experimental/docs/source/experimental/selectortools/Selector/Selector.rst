@@ -30,6 +30,8 @@ Methods
 
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_stop_offset
 
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_selected_objects
+
 Special Methods
 ---------------
 

@@ -129,8 +129,10 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     ### PUBLIC METHODS ###
 
     def get_score_start_offset(self, score_specification, context_name):
-        r'''Evaluate score start offset of selector when applied
-        to `context_name` in `score_specification`.
+        r'''Evaluate selector score start offset when selector is applied
+        to `score_specification`.
+
+        Ignore `context_name`.
 
         Return offset.
         '''
@@ -147,8 +149,10 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         return start_offset
 
     def get_score_stop_offset(self, score_specification, context_name):
-        r'''Evaluate score stop offset when applied
-        to `context_name` in `score_specification`.
+        r'''Evaluate score stop offset when selector is applied
+        to `score_specification`.
+
+        Ignore `context_name`.
 
         Return offset.
         '''
@@ -163,6 +167,16 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         stop_offset = durationtools.Offset(duration_up_through)
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
         return stop_offset
+
+    def get_selected_objects(self, score_specification, context_name):
+        '''Get background measures selected when selector is applied
+        to `score_specification`.
+    
+        Ignore `context_name`.
+
+        Return list.
+        '''
+        raise NotImplementedError
 
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.inequality.set_segment_identifier()``.

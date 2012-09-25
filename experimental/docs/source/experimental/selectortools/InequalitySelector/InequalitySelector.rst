@@ -42,6 +42,10 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_selected_objects
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 

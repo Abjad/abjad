@@ -84,6 +84,16 @@ class SingleSegmentSelector(InequalitySelector):
             self.start_segment_identifier)
         return stop_offset
 
+    def get_selected_objects(self, score_specification, context_name):
+        '''Get segments selected when selector is applied
+        to `score_specification`.
+
+        Ignore `context_name`.
+
+        Return segment.
+        '''
+        raise NotImplementedError
+
     def set_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, (str, int))
         self._identifier = segment_identifier

@@ -164,3 +164,13 @@ class SegmentSelector(SliceSelector, InequalitySelector):
         start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
             self.stop_segment_identifier)
         return start_offset
+
+    def get_selected_objects(self, score_specification, context_name):
+        '''Get segments selected when selector is applied
+        to `score_specification`.
+
+        Ignore `context_name`.
+
+        Return list of segments.
+        '''
+        raise NotImplementedError

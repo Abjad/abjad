@@ -50,6 +50,10 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_selected_objects
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 

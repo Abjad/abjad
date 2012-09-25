@@ -44,6 +44,8 @@ Methods
 
 .. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_score_stop_offset
 
+.. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_selected_objects
+
 .. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.set_segment_identifier
 
 Special Methods
