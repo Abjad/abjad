@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
 from experimental import divisiontools
+from experimental import timetools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -98,11 +99,15 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
         return start_offset
 
-#    def new_get_score_start_offset(self, score_specification, voice_name):
+#    def get_score_start_offset(self, score_specification, voice_name):
 #        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
 #        if self.inequality is None:
 #            return durationtools.Offset(0)
 #        self._debug(self.inequality)
+#        timespan_2 = timetools.expr_to_timespan(((1, 16), (3, 16)))
+#        result = self.inequality(
+#            timespan_2=timespan_2, score_specification=score_specification, context_name=voice_name)
+#        self._debug(result, 'result')
 #        raise Exception
 
     def get_score_stop_offset(self, score_specification, voice_name):

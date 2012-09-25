@@ -112,7 +112,7 @@ class TimespanInequality(Inequality):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, timespan_1=None, timespan_2=None):
+    def __call__(self, timespan_1=None, timespan_2=None, score_specification=None, context_name=None):
         r'''Evaluate timespan inequality.
 
         Example 1. Evaluate timespan inequality without substitution::
@@ -193,10 +193,14 @@ class TimespanInequality(Inequality):
 
         timespan_1 = timetools.expr_to_timespan(timespan_1)
         timespan_2 = timetools.expr_to_timespan(timespan_2)
-        timespan_1_start = self._get_expr_start(timespan_1)
-        timespan_1_stop = self._get_expr_stop(timespan_1)
-        timespan_2_start = self._get_expr_start(timespan_2)
-        timespan_2_stop = self._get_expr_stop(timespan_2)
+        timespan_1_start = self._get_expr_start(
+            timespan_1, score_specification=score_specification, context_name=context_name)
+        timespan_1_stop = self._get_expr_stop(
+            timespan_1, score_specification=score_specification, context_name=context_name)
+        timespan_2_start = self._get_expr_start(
+            timespan_2, score_specification=score_specification, context_name=context_name)
+        timespan_2_stop = self._get_expr_stop(
+            timespan_2, score_specification=score_specification, context_name=context_name)
 
         command = self.template
         command = command.replace('timespan_1.start', repr(timespan_1_start))
