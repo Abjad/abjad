@@ -36,7 +36,7 @@ class ConcreteInterpreter(Interpreter):
         Return Abjad score object.
         '''
         Interpreter.__call__(self, score_specification)
-        self.add_time_signatures_to_segments()
+        self.interpret_time_signatures()
         self.add_division_lists_to_voices()
         self.add_rhythm_to_voices()
         self.apply_pitch_classes()
@@ -108,24 +108,12 @@ class ConcreteInterpreter(Interpreter):
 
     def add_rhythm_to_voices(self):
         self.initialize_rhythm_region_expression_inventories()
-        # TODO: replace this loop with just self.make_rhythm_region_epxressions()
+        # TODO: replace this loop with just self.make_rhythm_region_expressions()
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
             if voice_division_list:
                 self.add_rhythm_to_voice(voice, voice_division_list)
         self.dump_rhythm_region_expressions_into_voices()
-
-    def add_time_signatures_to_segments(self):
-        self.populate_all_time_signature_commands()
-        # maybe need to restructure loop to allow lookback and multiple retry
-        for time_signature_setting in self.score_specification.all_time_signature_settings:
-            self.make_time_signatures_for_time_signature_setting(time_signature_setting)
-        time_signatures = self.score_specification.time_signatures
-        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
-        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
-        context.extend(measures)
-
-        self.calculate_score_and_segment_durations()
 
     def apply_additional_parameters(self):
         pass
@@ -438,6 +426,17 @@ class ConcreteInterpreter(Interpreter):
             timespan_inventory = timetools.TimespanInventory()
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = timespan_inventory
 
+    def interpret_time_signatures(self):
+        self.populate_all_time_signature_commands()
+        while self.score_specification.all_time_signature_settings:
+            for time_signature_setting in self.score_specification.all_time_signature_settings:
+                self.make_time_signatures_for_time_signature_setting(time_signature_setting)
+        time_signatures = self.score_specification.time_signatures
+        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
+        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
+        context.extend(measures)
+        self.calculate_score_and_segment_durations()
+
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
         request = self.attribute_to_default_request(segment_specification, attribute)
         start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
@@ -520,9 +519,11 @@ class ConcreteInterpreter(Interpreter):
                 time_signature_setting.request)
         else:
             raise TypeError(time_signature_setting.request)
-        time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
-        segment_specification = self.get_start_segment_specification(time_signature_setting.selector)
-        segment_specification._time_signatures = time_signatures[:]
+        if time_signatures:
+            time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
+            segment_specification = self.get_start_segment_specification(time_signature_setting.selector)
+            segment_specification._time_signatures = time_signatures[:]
+            self.score_specification.all_time_signature_settings.remove(time_signature_setting)
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -809,12 +810,12 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(result, 'result')
         return result
 
-    # NEXT TODO: implement method
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
         assert command_request.attribute == 'time_signatures'
-        self._debug(command_request, 'command request')
-        raise NotImplementedError
+        segment_specification = self.get_start_segment_specification(command_request.timepoint)
+        time_signatures = segment_specification.time_signatures[:]
+        return time_signatures
 
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
