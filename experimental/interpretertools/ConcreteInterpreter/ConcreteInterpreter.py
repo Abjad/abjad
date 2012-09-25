@@ -121,7 +121,6 @@ class ConcreteInterpreter(Interpreter):
         for time_signature_setting in self.score_specification.all_time_signature_settings:
             self.make_time_signatures_for_time_signature_setting(time_signature_setting)
         time_signatures = self.score_specification.time_signatures
-        time_signatures = [x.pair for x in time_signatures]
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
         context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
         context.extend(measures)
