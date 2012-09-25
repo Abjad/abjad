@@ -19,7 +19,7 @@ class OffsetPositionedDivision(OffsetPositionedExpression):
         OffsetPositionedExpression.__init__(
             self, voice_name, start_offset=start_offset, stop_offset=stop_offset)
         division = divisiontools.Division(division)
-        self._division = divisions
+        self._division = division
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -38,3 +38,34 @@ class OffsetPositionedDivision(OffsetPositionedExpression):
         Return duration.
         '''
         return self.division.duration
+
+    ### PUBLIC METHODS ###
+
+    def trim_to_start_offset(self, start_offset):
+        '''Trim payload to start offset.
+
+        Adjust wrapper start offset.
+
+        Operate in place and return none.
+        '''
+        
+        start_offset = durationtools.Offset(start_offset)
+        assert self.start_offset <= start_offset
+        duration_to_trim = start_offset - self.start_offset
+        division = self.division - duration_to_trim
+        self._division = division
+        self._start_offset = start_offset
+
+    def trim_to_stop_offset(self, stop_offset):
+        '''Trim payload to stop offset.
+
+        Adjust wrapper stop offset.
+
+        Operate in place and return none.
+        '''
+        
+        stop_offset = durationtools.Offset(stop_offset)
+        assert stop_offset <= self.stop_offset
+        duration_to_trim = self.stop_offset - stop_offset
+        division = self.division - duration_to_trim
+        self._divison = division

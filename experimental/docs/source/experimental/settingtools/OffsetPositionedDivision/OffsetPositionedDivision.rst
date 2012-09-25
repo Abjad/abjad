@@ -38,11 +38,7 @@ Methods
 
 .. automethod:: experimental.settingtools.OffsetPositionedDivision.OffsetPositionedDivision.OffsetPositionedDivision.trim_to_start_offset
 
-    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
-
 .. automethod:: experimental.settingtools.OffsetPositionedDivision.OffsetPositionedDivision.OffsetPositionedDivision.trim_to_stop_offset
-
-    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
 Special Methods
 ---------------

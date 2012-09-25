@@ -262,7 +262,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/settingtools/Command/Command
-   experimental/settingtools/OffsetPositionedDivision/OffsetPositionedDivision
    experimental/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    experimental/settingtools/Setting/Setting
 
@@ -274,6 +273,7 @@ Unstable packages (load manually)
    experimental/settingtools/DivisionCommand/DivisionCommand
    experimental/settingtools/MultipleContextSetting/MultipleContextSetting
    experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
+   experimental/settingtools/OffsetPositionedDivision/OffsetPositionedDivision
    experimental/settingtools/OffsetPositionedDivisionList/OffsetPositionedDivisionList
    experimental/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    experimental/settingtools/RhythmCommand/RhythmCommand
