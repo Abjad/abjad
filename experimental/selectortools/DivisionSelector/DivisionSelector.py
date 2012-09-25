@@ -78,66 +78,92 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
+    def get_score_offsets(self, score_specification, voice_name):
+        divisions = self.get_selected_objects(score_specification, voice_name)
+        start_offset = divisions[0].start_offset
+        stop_offset = divisions[-1].stop_offset
+        self._debug((start_offset, stop_offset), 'offsets')
+        return start_offset, stop_offset
+        
+#    def get_score_start_offset(self, score_specification, voice_name):
+#        '''Evaluate score start offset of selector when applied
+#        to `voice_name` in `score_specification`.
+#
+#        Return offset.
+#        '''
+#        segment_specification = score_specification.get_start_segment_specification(self)
+#        segment_name = segment_specification.segment_name
+#        segment_index = score_specification.segment_name_to_segment_index(segment_name)
+#        start, stop = self.identifiers
+#        start = start or 0
+#        stop = stop or None
+#        segment_division_lists = score_specification.contexts[voice_name]['segment_division_lists']
+#        segment_division_list = segment_division_lists[segment_index]
+#        durations = [durationtools.Duration(x) for x in segment_division_list]
+#        durations_before = durations[:start]
+#        duration_before = sum(durations_before)
+#        start_offset = durationtools.Offset(duration_before)
+#        start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
+#        self._debug(start_offset, 'start_offset')
+#        return start_offset
+
     def get_score_start_offset(self, score_specification, voice_name):
-        '''Evaluate score start offset of selector when applied
+        r'''Get selector score start offset of selector when selector is applied
         to `voice_name` in `score_specification`.
+
+        .. note:: add example.
 
         Return offset.
         '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        segment_name = segment_specification.segment_name
-        segment_index = score_specification.segment_name_to_segment_index(segment_name)
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        segment_division_lists = score_specification.contexts[voice_name]['segment_division_lists']
-        segment_division_list = segment_division_lists[segment_index]
-        durations = [durationtools.Duration(x) for x in segment_division_list]
-        durations_before = durations[:start]
-        duration_before = sum(durations_before)
-        start_offset = durationtools.Offset(duration_before)
-        start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
+        start_offset, stop_offset = self.get_score_offsets(score_specification, voice_name)
         return start_offset
 
-#    def get_score_start_offset(self, score_specification, voice_name):
-#        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
-#        if self.inequality is None:
-#            return durationtools.Offset(0)
-#        self._debug(self.inequality)
-#        timespan_2 = timetools.expr_to_timespan(((1, 16), (3, 16)))
-#        result = self.inequality(
-#            timespan_2=timespan_2, score_specification=score_specification, context_name=voice_name)
-#        self._debug(result, 'result')
-#        raise Exception
+#    def get_score_stop_offset(self, score_specification, voice_name):
+#        r'''Evaluate score stop of selector when applied
+#        to `voice_name` in `score_specification`.
+#
+#        Return offset.
+#        '''
+#        segment_specification = score_specification.get_start_segment_specification(self)
+#        segment_name = segment_specification.segment_name
+#        segment_index = score_specification.segment_name_to_segment_index(segment_name)
+#        start, stop = self.identifiers
+#        start = start or 0
+#        stop = stop or None
+#        segment_division_lists = score_specification.contexts[voice_name]['segment_division_lists']
+#        segment_division_list = segment_division_lists[segment_index]
+#        durations = [durationtools.Duration(x) for x in segment_division_list]
+#        durations_up_through = durations[:stop]
+#        duration_up_through = sum(durations_up_through)
+#        stop_offset = durationtools.Offset(duration_up_through)
+#        stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
+#        return stop_offset
 
     def get_score_stop_offset(self, score_specification, voice_name):
-        r'''Evaluate score stop of selector when applied
+        r'''Get selector score stop offset of selector when selector is applied
         to `voice_name` in `score_specification`.
 
         Return offset.
         '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        segment_name = segment_specification.segment_name
-        segment_index = score_specification.segment_name_to_segment_index(segment_name)
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        segment_division_lists = score_specification.contexts[voice_name]['segment_division_lists']
-        segment_division_list = segment_division_lists[segment_index]
-        durations = [durationtools.Duration(x) for x in segment_division_list]
-        durations_up_through = durations[:stop]
-        duration_up_through = sum(durations_up_through)
-        stop_offset = durationtools.Offset(duration_up_through)
-        stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
+        start_offset, stop_offset = self.get_score_offsets(score_specification, voice_name)
         return stop_offset
 
     def get_selected_objects(self, score_specification, voice_name):
         '''Get divisions selected when selector is applied
         to `voice_name` in `score_specification`.
+
+        .. note:: add example.
         
-        Return list.
+        Return list of zero or more offset-positioned divisions.
         '''
-        raise NotImplementedError
+        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
+        divisions = []
+        for division in voice_division_list:
+            if self.inequality is None or self.inequality(timespan_2=division, 
+                score_specification=score_specification, context_name=voice_name):
+                divisions.append(division)
+        divisions = divisions[self.start_identifier:self.stop_identifier]
+        return divisions
     
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.inequality.set_segment_identifier()``.

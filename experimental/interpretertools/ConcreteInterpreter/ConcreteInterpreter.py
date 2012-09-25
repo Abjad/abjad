@@ -563,17 +563,16 @@ class ConcreteInterpreter(Interpreter):
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_division_list = divisiontools.DivisionList([], voice.name)
             expressions = self.score_specification.contexts[voice.name]['division_region_expressions']
             divisions = [expression.divisions for expression in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
-            offset_positioned_divisions = []
             for division in divisions:
                 offset_positioned_division = copy.deepcopy(division)
-                self._start_offset = durationtools.Offset(start_offset)
+                offset_positioned_division._start_offset = durationtools.Offset(start_offset)
                 start_offset += division.duration
-                offset_positioned_divisions.append(offset_positioned_division)
-            voice_division_list = divisiontools.DivisionList(offset_positioned_divisions, voice.name)
+                voice_division_list.divisions.append(offset_positioned_division)
             self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
 
     def populate_all_division_region_commands(self):

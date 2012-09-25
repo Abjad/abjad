@@ -45,7 +45,7 @@ class Division(NonreducedFraction, BoundedObject):
     ### INITIALIZER ###
 
     def __new__(klass, arg, 
-        is_left_open=None, is_right_open=None, start_offset=None, stop_offset=None):
+        is_left_open=None, is_right_open=None, start_offset=None):
         if isinstance(arg, str):
             triple = mathtools.interval_string_to_pair_and_indicators(arg)
             pair, is_left_open, is_right_open = triple
@@ -67,12 +67,17 @@ class Division(NonreducedFraction, BoundedObject):
 
     def __copy__(self, *args):
         return self.__class__(
-            self.pair, is_left_open=self.is_left_open, is_right_open=self.is_right_open)
+            self.pair, 
+            is_left_open=self.is_left_open, is_right_open=self.is_right_open, 
+            start_offset=self.start_offset)
 
     __deepcopy__ = __copy__
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, str(self))
+        if self.start_offset is not None:
+            return '{}({!r}, start_offset={!r})'.format(self._class_name, str(self), self.start_offset)
+        else:
+            return '{}({!r})'.format(self._class_name, str(self))
 
     def __str__(self):
         if self.is_left_open:
