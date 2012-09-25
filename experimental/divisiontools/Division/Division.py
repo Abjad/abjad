@@ -44,7 +44,8 @@ class Division(NonreducedFraction, BoundedObject):
 
     ### INITIALIZER ###
 
-    def __new__(klass, arg, is_left_open=None, is_right_open=None):
+    def __new__(klass, arg, 
+        is_left_open=None, is_right_open=None, start_offset=None, stop_offset=None):
         if isinstance(arg, str):
             triple = mathtools.interval_string_to_pair_and_indicators(arg)
             pair, is_left_open, is_right_open = triple
@@ -57,6 +58,9 @@ class Division(NonreducedFraction, BoundedObject):
             is_right_open = getattr(pair, 'is_right_open', False)
         self.is_left_open = is_left_open
         self.is_right_open = is_right_open
+        if start_offset is not None:
+            start_offset = durationtools.Offset(start_offset)
+        self._start_offset = start_offset
         return self
 
     ### SPECIAL METHODS ###
@@ -91,4 +95,28 @@ class Division(NonreducedFraction, BoundedObject):
 
     @property
     def duration(self):
+        '''Division duration.
+
+        Return duration.
+        '''
         return durationtools.Duration(self.numerator, self.denominator)
+
+    @property
+    def start_offset(self):
+        '''Division start offset specified at initialization.
+        
+        Return offset or none.
+        '''
+        return self._start_offset
+
+    @property
+    def stop_offset(self):
+        '''Division stop offset defined equal to start offset plus duration
+        when start offset is not none.
+
+        Defined equal to none when start offset is none.
+    
+        Return offset or none.
+        '''
+        if self.start_offset is not None:
+            return self.start_offset + self.duration

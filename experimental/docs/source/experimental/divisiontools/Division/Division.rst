@@ -47,6 +47,10 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: experimental.divisiontools.Division.Division.Division.start_offset
+
+.. autoattribute:: experimental.divisiontools.Division.Division.Division.stop_offset
+
 .. autoattribute:: experimental.divisiontools.Division.Division.Division.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
