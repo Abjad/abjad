@@ -57,14 +57,12 @@ class ConcreteInterpreter(Interpreter):
         self.make_segment_division_lists()
 
     def add_rhythm_to_voice(self, voice, voice_division_list):
-        #self._debug(voice, 'voice')
-        #self._debug(voice_division_list, 'vdl')
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        #self._debug_values(rhythm_commands, 'rcs')
+        #self._debug_values(rhythm_commands, 'rc')
         rhythm_commands = self.fuse_like_commands(rhythm_commands)
-        #self._debug_values(rhythm_commands, 'rcs')
+        #self._debug_values(rhythm_commands, 'rc')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
-        #self._debug(rhythm_command_durations, 'rcds')
+        #self._debug(rhythm_command_durations, 'rcd')
         division_region_expressions = \
             self.score_specification.contexts[voice.name]['division_region_expressions']
         #self._debug_values(division_region_expressions, 'drx')
@@ -377,7 +375,8 @@ class ConcreteInterpreter(Interpreter):
             segment_specification, context_name, attribute, include_improper_parentage=True)
         commands = []
         for single_context_setting in single_context_settings:
-            command = self.single_context_setting_to_command(single_context_setting, segment_specification)
+            command = self.single_context_setting_to_command(
+                single_context_setting, segment_specification)
             commands.append(command)
         return commands
 
@@ -638,11 +637,9 @@ class ConcreteInterpreter(Interpreter):
                     return element
 
     def single_context_setting_to_command(self, single_context_setting, segment_specification):
-        selector = single_context_setting.selector
-        assert selector.start_segment_identifier == segment_specification.segment_name
-        context_name = single_context_setting.context_name
-        segment_name = segment_specification.segment_name
-        start_offset, stop_offset = selector.get_score_offsets(self.score_specification, context_name)
+        assert single_context_setting.selector.start_segment_identifier == segment_specification.segment_name
+        start_offset, stop_offset = single_context_setting.selector.get_score_offsets(
+            self.score_specification, single_context_setting.context_name)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 

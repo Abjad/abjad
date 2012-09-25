@@ -59,7 +59,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
             start_identifier=-2
             )
 
-    Division slice selectors are immutable.
+    Division selectors are immutable.
     '''
 
     ### INITIALIZER ###
@@ -89,8 +89,10 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
+
         # FIXME: hardcoded hack
         context_name = 'Voice 1'
+
         segment_division_lists = score_specification.contexts[context_name]['segment_division_lists']
         segment_division_list = segment_division_lists[segment_index]
         durations = [durationtools.Duration(x) for x in segment_division_list]
