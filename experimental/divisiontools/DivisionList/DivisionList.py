@@ -101,14 +101,25 @@ class DivisionList(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
+        '''Concatenate division lists.
+
+            >>> left = divisiontools.DivisionList([(1, 16), (2, 16)])
+            >>> right = divisiontools.DivisionList([(3, 16), (4, 16)])
+
+        ::
+
+            >>> left + right
+            DivisionList('[1, 16], [2, 16], [3, 16], [4, 16]')
+
+        Return newly constructed division list.
+        '''
         assert isinstance(expr, type(self)), repr(expr)
-        assert self.is_right_open, repr(self)
-        assert expr.is_left_open, repr(expr)
-        divisions = []
-        divisions.extend(self[:-1])
-        divisions.append(self[-1] + expr[0])
-        divisions.extend(expr[1:])
-        return type(self)(divisions, is_left_open=self.is_left_open, is_right_open=expr.is_right_open)
+        if self.is_right_open and expr.is_left_open:
+            return self._add_open_division_lists(self, expr)
+        elif self.is_right_closed and expr.is_left_closed:
+            return self._add_closed_division_lists(self, expr)
+        else:
+            raise ValueError
 
     def __getitem__(self, expr):
         return self.divisions.__getitem__(expr)
@@ -126,6 +137,21 @@ class DivisionList(AbjadObject):
         contents_string = [str(x) for x in self.divisions]
         contents_string = ', '.join(contents_string)
         return contents_string
+
+    ### PRIVATE METHODS ###
+
+    def _add_closed_division_lists(self, left, right):
+        divisions = []
+        divisions.extend(left)
+        divisions.extend(right)
+        return type(left)(divisions)
+
+    def _add_open_division_lists(self, left, right):
+        divisions = []
+        divisions.extend(left[:-1])
+        divisions.append(left[-1] + right[0])
+        divisions.extend(right[1:])
+        return type(left)(divisions)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

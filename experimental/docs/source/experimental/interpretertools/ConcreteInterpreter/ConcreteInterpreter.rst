@@ -48,8 +48,6 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_command_request_to_divisions
 
-.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_commands_to_division_region_expressions
-
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_material_request_to_divisions
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_region_command_to_division_region_expression
@@ -85,6 +83,8 @@ Methods
     Inherited from :py:class:`Interpreter.Interpreter <experimental.interpretertools.Interpreter.Interpreter.Interpreter>`
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_default_command_for_segment_specification
+
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_division_region_expressions
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_region_expression
 
