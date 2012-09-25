@@ -346,11 +346,8 @@ class ConcreteInterpreter(Interpreter):
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
         voice_division_list, raw_segment_division_lists):
-        #self._debug(voice_division_list, 'vdl')
-        #self._debug(raw_segment_division_lists, 'rsdl')
-        voice_divisions = voice_division_list.divisions
         parts = sequencetools.partition_sequence_by_backgrounded_weights(
-            voice_divisions, self.score_specification.segment_durations)
+            voice_division_list.divisions, self.score_specification.segment_durations)
         overage_from_previous_segment = 0
         segment_division_lists = []
         for part, raw_segment_division_list in zip(parts, raw_segment_division_lists):
@@ -516,27 +513,17 @@ class ConcreteInterpreter(Interpreter):
 
     def make_segment_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            if self.score_specification.contexts[voice.name]['division_region_expressions']:
-                self.make_segment_division_lists_for_voice(voice)
-
-    def make_segment_division_lists_for_voice(self, voice):
-        #self._debug(voice, 'voice')
-        voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
-        voice_divisions = voice_division_list.divisions
-        #self._debug(voice_divisions, 'vd')
-        segment_durations = self.score_specification.segment_durations
-        #self._debug(segment_durations, 'sd')
-        shards = sequencetools.split_sequence_by_weights(
-            voice_divisions, segment_durations, cyclic=False, overhang=True)
-        raw_segment_division_lists = []
-        for i, shard in enumerate(shards[:]):
-            raw_segment_division_list = divisiontools.DivisionList(shard, voice.name)
-            raw_segment_division_lists.append(raw_segment_division_list)
-        #self._debug(raw_segment_division_lists, 'rsdl')
-        segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
-            voice_division_list, raw_segment_division_lists)
-        #self._debug(segment_division_lists, 'sdl')
-        self.score_specification.contexts[voice.name]['segment_division_lists'] = segment_division_lists
+            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
+            if voice_division_list:
+                shards = sequencetools.split_sequence_by_weights(
+                    voice_division_list.divisions, 
+                    self.score_specification.segment_durations, 
+                    cyclic=False, overhang=True)
+                segment_division_lists = [divisiontools.DivisionList(shard, voice.name) for shard in shards]
+                segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
+                    voice_division_list, segment_division_lists)
+                self.score_specification.contexts[voice.name]['segment_division_lists'] = \
+                    segment_division_lists
 
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
