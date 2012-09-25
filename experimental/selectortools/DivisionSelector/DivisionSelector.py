@@ -16,7 +16,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         >>> selectortools.DivisionSelector()
         DivisionSelector()
 
-    Select all divisions starting during segment ``'red'``::
+    Select all divisions that start during segment ``'red'``::
 
         >>> segment = selectortools.SingleSegmentSelector(identifier='red')
         >>> timespan = segment.timespan
@@ -24,11 +24,11 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     ::
 
-        >>> divisions = selectortools.DivisionSelector(inequality=inequality)
+        >>> division_selector = selectortools.DivisionSelector(inequality=inequality)
 
     ::
 
-        >>> z(divisions)
+        >>> z(division_selector)
         selectortools.DivisionSelector(
             inequality=timetools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -40,13 +40,13 @@ class DivisionSelector(SliceSelector, InequalitySelector):
                 )
             )
 
-    Select the last two divisions starting during segment ``'red'``::
+    Select the last two divisions that start during segment ``'red'``::
 
-        >>> divisions = selectortools.DivisionSelector(inequality=inequality, start_identifier=-2)
+        >>> division_selector = selectortools.DivisionSelector(inequality=inequality, start_identifier=-2)
 
     ::
 
-        >>> z(divisions)
+        >>> z(division_selector)
         selectortools.DivisionSelector(
             inequality=timetools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -77,9 +77,9 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_score_start_offset(self, score_specification, context_name):
+    def get_score_start_offset(self, score_specification, voice_name):
         '''Evaluate score start offset of selector when applied
-        to `context_name` in `score_specification`.
+        to `voice_name` in `score_specification`.
 
         Return offset.
         '''
@@ -89,11 +89,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-
-        # FIXME: hardcoded hack
-        context_name = 'Voice 1'
-
-        segment_division_lists = score_specification.contexts[context_name]['segment_division_lists']
+        segment_division_lists = score_specification.contexts[voice_name]['segment_division_lists']
         segment_division_list = segment_division_lists[segment_index]
         durations = [durationtools.Duration(x) for x in segment_division_list]
         durations_before = durations[:start]
@@ -102,9 +98,16 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
         return start_offset
 
-    def get_score_stop_offset(self, score_specification, context_name):
+#    def new_get_score_start_offset(self, score_specification, voice_name):
+#        voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
+#        if self.inequality is None:
+#            return durationtools.Offset(0)
+#        self._debug(self.inequality)
+#        raise Exception
+
+    def get_score_stop_offset(self, score_specification, voice_name):
         r'''Evaluate score stop of selector when applied
-        to `context_name` in `score_specification`.
+        to `voice_name` in `score_specification`.
 
         Return offset.
         '''
@@ -114,9 +117,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        # FIXME: hardcoded hack
-        context_name = 'Voice 1'
-        segment_division_lists = score_specification.contexts[context_name]['segment_division_lists']
+        segment_division_lists = score_specification.contexts[voice_name]['segment_division_lists']
         segment_division_list = segment_division_lists[segment_index]
         durations = [durationtools.Duration(x) for x in segment_division_list]
         durations_up_through = durations[:stop]

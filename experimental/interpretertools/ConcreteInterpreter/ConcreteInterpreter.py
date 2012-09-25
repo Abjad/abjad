@@ -376,7 +376,7 @@ class ConcreteInterpreter(Interpreter):
         commands = []
         for single_context_setting in single_context_settings:
             command = self.single_context_setting_to_command(
-                single_context_setting, segment_specification)
+                single_context_setting, segment_specification, context_name)
             commands.append(command)
         return commands
 
@@ -636,10 +636,10 @@ class ConcreteInterpreter(Interpreter):
                 if element.context_name == context_name:
                     return element
 
-    def single_context_setting_to_command(self, single_context_setting, segment_specification):
+    def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         assert single_context_setting.selector.start_segment_identifier == segment_specification.segment_name
         start_offset, stop_offset = single_context_setting.selector.get_score_offsets(
-            self.score_specification, single_context_setting.context_name)
+            self.score_specification, voice_name)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 

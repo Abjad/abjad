@@ -188,35 +188,25 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification):
-        '''Evaluate duration of symbolic timespan when applied
-        to `score_specification`.
-
-        Delegate to ``self.selector.get_timespan()``.
-
-        Return duration.
-        '''
-        return self.selector.get_duration(score_specification)
-
-    def get_score_start_offset(self, score_specification):
+    def get_score_start_offset(self, score_specification, context_name):
         '''Evaluate score start offset of symbolic timespan when applied
-        to `score_specification`.
+        to `context_name` in `score_specification`.
 
         Delegate to ``self.selector.get_score_start_offset()``.
 
         Return offset.
         '''
-        return self.selector.get_score_start_offset(score_specification)
+        return self.selector.get_score_start_offset(score_specification, context_name)
 
-    def get_score_stop_offset(self, score_specification):
+    def get_score_stop_offset(self, score_specification, context_name):
         '''Evaluate score stop offset of symbolic timespan when applied
-        to `score_specification`.
+        to `context_name` in `score_specification`.
         
         Delegate to ``self.selector.get_score_stop_offset()``.
 
         Return offset.
         '''
-        return self.selector.get_score_stop_offset(score_specification)
+        return self.selector.get_score_stop_offset(score_specification, context_name)
 
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.selector.set_segment_identifier()``.

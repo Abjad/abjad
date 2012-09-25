@@ -22,6 +22,8 @@ Methods
 
 .. automethod:: experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_score_stop_offset
 
+.. automethod:: experimental.timetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_segment_identifier
+
 Special Methods
 ---------------
 
