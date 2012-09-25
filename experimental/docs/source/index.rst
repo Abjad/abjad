@@ -35,9 +35,6 @@ Unstable packages (load manually)
 
    experimental/divisiontools/Division/Division
    experimental/divisiontools/DivisionList/DivisionList
-   experimental/divisiontools/RhythmRegionDivisionList/RhythmRegionDivisionList
-   experimental/divisiontools/SegmentDivisionList/SegmentDivisionList
-   experimental/divisiontools/VoiceDivisionList/VoiceDivisionList
 
 :py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
