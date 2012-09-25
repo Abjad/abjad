@@ -63,7 +63,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.divisiontools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.voice_name
 
-    Inherited from :py:class:`VoiceDivisionList.VoiceDivisionList <experimental.divisiontools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList>`
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
 
 Special Methods
 ---------------

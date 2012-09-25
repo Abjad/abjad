@@ -86,7 +86,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_division_lists = sequencetools.partition_sequence_by_counts(
             voice_division_list.divisions, rhythm_region_start_division_counts, cyclic=False, overhang=False)
         rhythm_region_division_lists = [
-            divisiontools.RhythmRegionDivisionList(x, voice.name) for x in rhythm_region_division_lists]
+            divisiontools.DivisionList(x, voice_name=voice.name) for x in rhythm_region_division_lists]
         assert len(rhythm_region_division_lists) == len(rhythm_command_merged_durations)
         #self._debug_values(rhythm_region_division_lists, 'rrdls')
         rhythm_region_durations = [x.duration for x in rhythm_region_division_lists]
@@ -489,7 +489,7 @@ class ConcreteInterpreter(Interpreter):
         voice_division_list = self.score_specification.contexts[voice.name].get('voice_division_list')
         if voice_division_list is None:
             time_signatures = self.score_specification.time_signatures
-            voice_division_list = divisiontools.VoiceDivisionList(time_signatures, voice.name)
+            voice_division_list = divisiontools.DivisionList(time_signatures, voice.name)
         return voice_division_list
 
     def initialize_division_region_expression_inventories(self):
@@ -549,7 +549,7 @@ class ConcreteInterpreter(Interpreter):
             voice_divisions, segment_durations, cyclic=False, overhang=True)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
-            raw_segment_division_list = divisiontools.SegmentDivisionList(shard, voice.name)
+            raw_segment_division_list = divisiontools.DivisionList(shard, voice.name)
             raw_segment_division_lists.append(raw_segment_division_list)
         #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
@@ -609,7 +609,7 @@ class ConcreteInterpreter(Interpreter):
         voice_divisions = []
         for division_region_expression in division_region_expressions:
             voice_divisions.extend(division_region_expression.divisions)
-        voice_division_list = divisiontools.VoiceDivisionList(voice_divisions, voice.name)
+        voice_division_list = divisiontools.DivisionList(voice_divisions, voice.name)
         self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
 
     def populate_all_division_region_commands(self):

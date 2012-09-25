@@ -1,7 +1,7 @@
-from experimental.divisiontools.VoiceDivisionList import VoiceDivisionList
+from experimental.divisiontools.DivisionList import DivisionList
 
 
-class SegmentDivisionList(VoiceDivisionList):
+class SegmentDivisionList(DivisionList):
     r'''.. versionadded:: 1.0
 
     Segment division lists model the **parts of** all

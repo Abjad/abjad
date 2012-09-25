@@ -63,6 +63,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.divisiontools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.voice_name
 
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.divisiontools.DivisionList.DivisionList.DivisionList>`
+
 Special Methods
 ---------------
 

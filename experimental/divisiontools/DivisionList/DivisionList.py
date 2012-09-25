@@ -1,4 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import helpertools
 
 
 class DivisionList(AbjadObject):
@@ -12,10 +13,12 @@ class DivisionList(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, divisions):
+    def __init__(self, divisions, voice_name=None):
         from experimental import divisiontools
-        assert isinstance(divisions, list), divisions
+        assert isinstance(divisions, list), repr(divisions)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._divisions = [divisiontools.Division(x) for x in divisions]
+        self._voice_name = voice_name
         assert self.is_well_formed
 
     ### SPECIAL METHODS ###
@@ -114,3 +117,7 @@ class DivisionList(AbjadObject):
     @property
     def pairs(self):
         return [division.pair for division in self]
+
+    @property
+    def voice_name(self):
+        return self._voice_name
