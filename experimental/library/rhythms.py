@@ -3,6 +3,41 @@ from abjad.tools import timetokentools
 __all__ = []
 
 
+pattern, denominator, prolation_addenda  = [3, 1], 16, []
+lefts, middles, rights = [0], [0], [0]
+left_lengths, right_lengths = [0], [0]
+dotted_eighths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
+   pattern, denominator, prolation_addenda,
+   lefts, middles, rights,
+   left_lengths, right_lengths)
+dotted_eighths.beam = True
+dotted_eighths.name = 'dotted_eighths'
+__all__.append(dotted_eighths.name)
+
+
+pattern, denominator, prolation_addenda  = [3, 1], 32, []
+lefts, middles, rights = [0], [0], [0]
+left_lengths, right_lengths = [0], [0]
+dotted_sixteenths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
+   pattern, denominator, prolation_addenda,
+   lefts, middles, rights,
+   left_lengths, right_lengths)
+dotted_sixteenths.beam = True
+dotted_sixteenths.name = 'dotted_sixteenths'
+__all__.append(dotted_sixteenths.name)
+
+
+pattern, denominator, prolation_addenda  = [3, 1], 64, []
+lefts, middles, rights = [0], [0], [0]
+left_lengths, right_lengths = [0], [0]
+dotted_thirty_seconds = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
+   pattern, denominator, prolation_addenda,
+   lefts, middles, rights,
+   left_lengths, right_lengths)
+dotted_thirty_seconds.beam = True
+dotted_thirty_seconds.name = 'dotted_thirty_seconds'
+__all__.append(dotted_thirty_seconds.name)
+
 
 pattern, denominator, prolation_addenda  = [1], 8, []
 lefts, middles, rights = [0], [0], [0]

@@ -302,7 +302,6 @@ class ConcreteInterpreter(Interpreter):
                     last_start_offset = result.pop()[1]
                     result.append((rhythm_command.request, last_start_offset, stop_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.CommandRequest):
-                self._debug(rhythm_command, 'command')
                 rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
                     rhythm_command.request, rhythm_command.request.context_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
