@@ -304,29 +304,23 @@ class ConcreteInterpreter(Interpreter):
         result = []
         for rhythm_quadruple in rhythm_quadruples:
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
-            if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
-                flamingo = rhythm_command.request.payload
-            elif isinstance(rhythm_command.request, requesttools.RhythmRequest):
-                flamingo = rhythm_command.request
-            else:
-                raise TypeError
             start_offset = durationtools.Offset(start_offset)
             stop_offset = durationtools.Offset(stop_offset)
-            if isinstance(flamingo, timetokentools.TimeTokenMaker):
-                result.append((flamingo, division_list, start_offset, rhythm_command))
-            # TODO: maybe smarter to do all of these comparisons on rhythm_command rather than flamingo
-            elif isinstance(flamingo, requesttools.RhythmRequest):
+            if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
+                result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
+            elif isinstance(rhythm_command.request, requesttools.RhythmRequest):
+                # maybe smarter to do all of these comparisons on command rather than request
                 if not result:
-                    result.append((flamingo, start_offset, stop_offset, rhythm_command))
+                    result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
                 elif not isinstance(result[-1][0], requesttools.RhythmRequest):
-                    result.append((flamingo, start_offset, stop_offset, rhythm_command))
-                elif flamingo != result[-1][0]:
-                    result.append((flamingo, start_offset, stop_offset, rhythm_command))
+                    result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
+                elif rhythm_command.request != result[-1][0]:
+                    result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
                 else:
                     last_start_offset = result.pop()[1]
-                    result.append((flamingo, last_start_offset, stop_offset, rhythm_command))
+                    result.append((rhythm_command.request, last_start_offset, stop_offset, rhythm_command))
             else:
-                raise TypeError('what is {!r}?'.format(flamingo))
+                raise TypeError(rhythm_command.request)
         return result
 
     def fuse_like_commands(self, commands):
