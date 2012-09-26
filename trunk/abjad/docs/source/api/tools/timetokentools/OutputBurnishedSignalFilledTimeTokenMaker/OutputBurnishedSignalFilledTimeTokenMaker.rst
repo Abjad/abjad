@@ -13,6 +13,13 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.timetokentools.OutputBurnishedSignalFilledTimeTokenMaker.OutputBurnishedSignalFilledTimeTokenMaker.OutputBurnishedSignalFilledTimeTokenMaker.reverse
+
+    Inherited from :py:class:`timetokentools.TimeTokenMaker <abjad.tools.timetokentools.TimeTokenMaker.TimeTokenMaker.TimeTokenMaker>`
+
 Special Methods
 ---------------
 

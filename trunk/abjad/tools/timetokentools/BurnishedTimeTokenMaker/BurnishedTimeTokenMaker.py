@@ -11,7 +11,7 @@ import types
 class BurnishedTimeTokenMaker(TimeTokenMaker):
     '''.. versionadded:: 2.8
 
-    Abstract base class for time token makers that burnish some of 
+    Abstract base class for time token makers that burnish some or
     all of the time tokens they produce.
 
     'Burnishing' means to forcibly cast the first or last 

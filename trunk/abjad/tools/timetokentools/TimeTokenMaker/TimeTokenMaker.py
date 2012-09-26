@@ -93,3 +93,35 @@ class TimeTokenMaker(AbjadObject):
 
     def _trivial_helper(self, signal, seeds):
         return signal
+
+    ### PUBLIC METHODS ###
+ 
+
+    def reverse(self):
+        '''.. versionadded:: 2.10
+
+        Reverse time token maker.
+
+        .. note:: method is provisional.
+
+        Defined equal to the in-place reversal of the following::
+
+            self.pattern
+            self.prolation_addenda
+            self.lefts
+            self.middles
+            self.rights
+            self.left_lengths
+            self.right_lengths
+            self.secondary_divisions
+
+        Operate in place and return none.
+        '''
+        self.pattern.reverse()
+        self.prolation_addenda.reverse()
+        self.lefts.reverse()
+        self.middles.reverse()
+        self.rights.reverse()
+        self.left_lengths.reverse()
+        self.right_lengths.reverse()
+        self.secondary_divisions.reverse()
