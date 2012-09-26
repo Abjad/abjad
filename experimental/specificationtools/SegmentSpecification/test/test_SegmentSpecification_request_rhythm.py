@@ -1,13 +1,12 @@
 from abjad import *
 from experimental import *
-import py
 
 
 # TODO: Add rhythm request tests for requests between voices.
-# TODO: Add rhythm request tests for requests for material from an earlier segment.
-# TODO: Add rhythm request tests for requests for material from a later segment.
 
 def test_SegmentSpecification_request_rhythm_01():
+    '''Request rhythm from earlier segment.
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -112,8 +111,6 @@ def test_SegmentSpecification_request_rhythm_04():
 
 def test_SegmentSpecification_request_rhythm_05():
     '''Reverse rhythm at both request- and set-time.
-
-    The modifiers effectively undo each other.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
