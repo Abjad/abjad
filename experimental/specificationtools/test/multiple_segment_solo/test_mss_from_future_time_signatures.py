@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_multiple_segment_solo_from_future_01():
+def test_mss_from_future_time_signatures_01():
     '''First segment defined after second.
     Absolute time signature request.
     '''
@@ -25,7 +25,7 @@ def test_multiple_segment_solo_from_future_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_02():
+def test_mss_from_future_time_signatures_02():
     '''First segment defined after second.
     Time signature command request.
     '''
@@ -48,7 +48,7 @@ def test_multiple_segment_solo_from_future_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_03():
+def test_mss_from_future_time_signatures_03():
     '''First segment defined after second.
     Time signature command request with request-time reverse.
     '''
@@ -72,7 +72,7 @@ def test_multiple_segment_solo_from_future_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_04():
+def test_mss_from_future_time_signatures_04():
     '''First segment defined after second.
     Time signature command request with set-time reverse.
     '''
@@ -95,7 +95,7 @@ def test_multiple_segment_solo_from_future_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_05():
+def test_mss_from_future_time_signatures_05():
     '''First segment defined after second.
     Time signature command request with both request- and set-time reverse.
     Reverse indications effectively undo each other.
@@ -120,7 +120,7 @@ def test_multiple_segment_solo_from_future_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_06():
+def test_mss_from_future_time_signatures_06():
     '''First segment defined after second.
     Time signature material request.
     '''
@@ -143,7 +143,7 @@ def test_multiple_segment_solo_from_future_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_07():
+def test_mss_from_future_time_signatures_07():
     '''First segment defined after second.
     Time signature material request with request-time reverse.
     '''
@@ -167,7 +167,7 @@ def test_multiple_segment_solo_from_future_07():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_08():
+def test_mss_from_future_time_signatures_08():
     '''First segment defined after second.
     Time signature material request with set-time reverse.
     '''
@@ -191,7 +191,7 @@ def test_multiple_segment_solo_from_future_08():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_from_future_09():
+def test_mss_from_future_time_signatures_09():
     '''First segment defined after second.
     Time signature material request with both request- and set-time reverse.
     The reverse indications effectively undo each other.
