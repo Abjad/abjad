@@ -606,21 +606,25 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_maker
 
     def rhythm_quadruples_to_rhythm_region_expressions(self, voice, rhythm_quadruples):
-        for rhythm_quadruple in rhythm_quadruples:
-            #self._debug(rhythm_quadruple, 'rq')
-            if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
-                rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
-            elif isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
-                rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*rhythm_quadruple)
-            else:
-                raise TypeError(rhythm_quadruple[0])
-            self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
-                rhythm_region_expression)
+        while rhythm_quadruples:
+            for rhythm_quadruple in rhythm_quadruples[:]:
+                #self._debug(rhythm_quadruple, 'rq')
+                if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
+                    rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
+                elif isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
+                    rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(
+                        *rhythm_quadruple)
+                else:
+                    raise TypeError(rhythm_quadruple[0])
+                if rhythm_region_expression is not None:
+                    rhythm_quadruples.remove(rhythm_quadruple)
+                    self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
+                        rhythm_region_expression)
 
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
-        #self._debug(rhythm_request, 'rhythm request')
+        self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_score_offsets(
@@ -628,10 +632,13 @@ class ConcreteInterpreter(Interpreter):
         source_timespan = durationtools.TimespanConstant(*source_score_offsets)
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
+        self._debug_values(rhythm_region_expressions, 'rrx')
         timespan_inequality = timetools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
+        if not rhythm_region_expressions:
+            return
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions.sort()
         self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
