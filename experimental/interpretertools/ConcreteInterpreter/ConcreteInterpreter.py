@@ -107,6 +107,8 @@ class ConcreteInterpreter(Interpreter):
         self.rhythm_quadruples_to_rhythm_region_expressions(voice, rhythm_quadruples)
 
     def add_rhythm_to_voices(self):
+        # TODO: implement method
+        #self.populate_all_rhythm_region_commands()
         self.initialize_rhythm_region_expression_inventories()
         # TODO: replace this loop with just self.make_rhythm_region_expressions()
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -286,7 +288,7 @@ class ConcreteInterpreter(Interpreter):
                 division_region_command, voice_name)
             return division_region_expression
         else:
-            raise NotImplementedError(division_region_command.request)
+            raise TypeError(division_region_command.request)
         return settingtools.OffsetPositionedDivisionList(
             divisions, 
             voice_name=voice_name, 
@@ -319,6 +321,11 @@ class ConcreteInterpreter(Interpreter):
                 else:
                     last_start_offset = result.pop()[1]
                     result.append((rhythm_command.request, last_start_offset, stop_offset, rhythm_command))
+            elif isinstance(rhythm_command.request, requesttools.CommandRequest):
+                self._debug(rhythm_command, 'command')
+                rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
+                    rhythm_command.request, rhythm_command.request.context_name)
+                result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             else:
                 raise TypeError(rhythm_command.request)
         return result
@@ -543,6 +550,10 @@ class ConcreteInterpreter(Interpreter):
                     'division_region_commands'][:] = division_commands[:]
                 self.score_specification.all_division_region_commands.extend(division_commands)
 
+    # NEXT TODO: implement method
+    def populate_all_rhythm_region_commands(self):
+        raise NotImplementedError
+
     def populate_all_time_signature_commands(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \
@@ -552,6 +563,36 @@ class ConcreteInterpreter(Interpreter):
                 continue
             time_signature_setting = time_signature_settings[0]
             self.score_specification.all_time_signature_settings.append(time_signature_setting)
+
+    # NEXT TODO: implement method
+    def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
+        assert isinstance(rhythm_command_request, requesttools.CommandRequest)
+        assert rhythm_command_request.attribute == 'rhythm'
+        #self._debug(rhythm_command_request, 'rcr')
+        requested_segment_identifier = rhythm_command_request.timepoint.start_segment_identifier
+        requested_offset = rhythm_command_request.timepoint.get_score_offset(
+            self.score_specification, voice_name)
+        timespan_inventory = timetools.TimespanInventory()
+        for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
+            if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
+                if not rhythm_region_command.request == rhythm_command_request:
+                    timespan_inventory.append(rhythm_region_command)
+        timespan_inequality = timetools.timepoint_happens_during_timespan(
+            timepoint=requested_offset)
+        candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
+        #self._debug_values(candidate_commands, 'candidates')
+        segment_specification = self.get_start_segment_specification(requested_segment_identifier)
+        source_command = self.select_first_element_in_expr_by_parentage(
+            candidate_commands, segment_specification, rhythm_command_request.context_name, 
+            include_improper_parentage=True)
+        assert source_command is not None
+        #self._debug(source_command, 'source_command')
+        absolute_request = source_command.request
+        assert isinstance(source_command.request, requesttools.AbsoluteRequest)
+        assert isinstance(source_command.request.payload, timetokentools.TimeTokenMaker)
+        rhythm_maker = copy.deepcopy(source_command.request.payload)
+        requesttools.apply_request_transforms(source_command.request, rhythm_maker)
+        return rhythm_maker
 
     def rhythm_quadruples_to_rhythm_region_expressions(self, voice, rhythm_quadruples):
         for rhythm_quadruple in rhythm_quadruples:
