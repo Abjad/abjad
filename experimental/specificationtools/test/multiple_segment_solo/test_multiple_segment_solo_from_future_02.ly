@@ -5,13 +5,16 @@
 			s1 * 3/8
 		}
 		{
+			\time 4/8
+			s1 * 1/2
+		}
+		{
+			\time 3/8
 			s1 * 3/8
 		}
 		{
-			s1 * 3/8
-		}
-		{
-			s1 * 3/8
+			\time 4/8
+			s1 * 1/2
 		}
 	}
 	\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
@@ -21,7 +24,7 @@
 					s1 * 3/8
 				}
 				{
-					s1 * 3/8
+					s1 * 1/2
 				}
 				{
 					\set stemLeftBeamCount = #0
@@ -33,6 +36,12 @@
 				}
 				{
 					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
+					\set stemRightBeamCount = #2
+					c'16
+					\set stemLeftBeamCount = #2
 					\set stemRightBeamCount = #2
 					c'16
 					\set stemLeftBeamCount = #2
