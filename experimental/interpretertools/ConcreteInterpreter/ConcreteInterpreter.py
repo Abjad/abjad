@@ -478,6 +478,7 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythm_region_expression(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
         if rhythm_region_division_list:
+            rhythm_maker = requesttools.apply_request_transforms(rhythm_command, rhythm_maker)
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
@@ -601,17 +602,18 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(source_command.request, requesttools.AbsoluteRequest)
         assert isinstance(source_command.request.payload, timetokentools.TimeTokenMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
-        requesttools.apply_request_transforms(source_command.request, rhythm_maker)
+        rhythm_maker = requesttools.apply_request_transforms(rhythm_command_request, rhythm_maker)
         return rhythm_maker
 
     def rhythm_quadruples_to_rhythm_region_expressions(self, voice, rhythm_quadruples):
         for rhythm_quadruple in rhythm_quadruples:
+            #self._debug(rhythm_quadruple, 'rq')
             if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
                 rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
             elif isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
                 rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(*rhythm_quadruple)
             else:
-                raise TypeError('what is {!r}?'.format(input_request[0]))
+                raise TypeError(rhythm_quadruple[0])
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
                 rhythm_region_expression)
 

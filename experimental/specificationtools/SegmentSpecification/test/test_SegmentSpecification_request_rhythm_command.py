@@ -22,3 +22,75 @@ def test_SegmentSpecification_request_rhythm_command_01():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification_request_rhythm_command_02():
+    '''Request rhythm command with request-time reverse.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8)])
+    red_segment.set_divisions([(1, 8)])
+    red_segment.set_rhythm(library.dotted_sixteenths)
+
+    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment.set_time_signatures([(4, 8), (5, 8)])
+    red_rhythm = red_segment.request_rhythm_command('Voice 1', reverse=True)
+    blue_segment.set_rhythm(red_rhythm)
+
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification_request_rhythm_command_03():
+    '''Request rhythm command with set-time reverse.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8)])
+    red_segment.set_divisions([(1, 8)])
+    red_segment.set_rhythm(library.dotted_sixteenths)
+
+    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment.set_time_signatures([(4, 8), (5, 8)])
+    red_rhythm = red_segment.request_rhythm_command('Voice 1')
+    blue_segment.set_rhythm(red_rhythm, reverse=True)
+
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification_request_rhythm_command_04():
+    '''Request rhythm command with both request- and set-time reverse.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8)])
+    red_segment.set_divisions([(1, 8)])
+    red_segment.set_rhythm(library.dotted_sixteenths)
+
+    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment.set_time_signatures([(4, 8), (5, 8)])
+    red_rhythm = red_segment.request_rhythm_command('Voice 1', reverse=True)
+    blue_segment.set_rhythm(red_rhythm, reverse=True)
+
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
