@@ -37,8 +37,8 @@ class ConcreteInterpreter(Interpreter):
         '''
         Interpreter.__call__(self, score_specification)
         self.interpret_time_signatures()
-        self.add_division_lists_to_voices()
-        self.add_rhythm_to_voices()
+        self.interpret_divisions()
+        self.interpret_rhythm()
         self.apply_pitch_classes()
         self.apply_registration()
         self.apply_additional_parameters()
@@ -48,12 +48,6 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     ### PUBLIC METHODS ###
-
-    def add_division_lists_to_voices(self):
-        self.initialize_division_region_expression_inventories()
-        self.populate_all_division_region_commands()
-        self.make_division_region_expressions()
-        self.make_voice_division_lists()
 
     def add_rhythm_to_voice(self, voice, voice_division_list):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
@@ -105,17 +99,6 @@ class ConcreteInterpreter(Interpreter):
         rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         self.rhythm_quadruples_to_rhythm_region_expressions(voice, rhythm_quadruples)
-
-    def add_rhythm_to_voices(self):
-        # TODO: implement method
-        #self.populate_all_rhythm_region_commands()
-        self.initialize_rhythm_region_expression_inventories()
-        # TODO: replace this loop with just self.make_rhythm_region_expressions()
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
-            if voice_division_list:
-                self.add_rhythm_to_voice(voice, voice_division_list)
-        self.dump_rhythm_region_expressions_into_voices()
 
     def apply_additional_parameters(self):
         pass
@@ -425,7 +408,26 @@ class ConcreteInterpreter(Interpreter):
     def initialize_rhythm_region_expression_inventories(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timetools.TimespanInventory()
+            self.score_specification.contexts[voice.name]['rhythm_region_commands'] = timespan_inventory
+            timespan_inventory = timetools.TimespanInventory()
             self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = timespan_inventory
+
+    def interpret_divisions(self):
+        self.initialize_division_region_expression_inventories()
+        self.populate_all_division_region_commands()
+        self.make_division_region_expressions()
+        self.make_voice_division_lists()
+
+    def interpret_rhythm(self):
+        self.initialize_rhythm_region_expression_inventories()
+        # TODO: implement method
+        #self.populate_all_rhythm_region_commands()
+        # TODO: replace this loop with just self.make_rhythm_region_expressions()
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
+            if voice_division_list:
+                self.add_rhythm_to_voice(voice, voice_division_list)
+        self.dump_rhythm_region_expressions_into_voices()
 
     def interpret_time_signatures(self):
         self.populate_all_time_signature_commands()
@@ -553,6 +555,15 @@ class ConcreteInterpreter(Interpreter):
     # NEXT TODO: implement method
     def populate_all_rhythm_region_commands(self):
         raise NotImplementedError
+        if self.score_specification.segment_specifications:
+            for voice in iterationtools.iterate_voices_in_expr(self.score):
+                # is this the correct series of three method calls?
+                rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+                rhythm_commands = self.fuse_like_commands(rhythm_commands)
+                rhythm_commands = self.supply_missing_rhythm_commands(rhythm_commands, voice)
+                self.score_specification.contexts[voice.name][
+                    'rhythm_region_commands'][:] = rhythm_commands[:]
+                self.score_specification.all_rhythm_region_commands.extend(rhythm_commands)
 
     def populate_all_time_signature_commands(self):
         for segment_specification in self.score_specification.segment_specifications:
