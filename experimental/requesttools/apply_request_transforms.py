@@ -1,4 +1,5 @@
 from abjad.tools import sequencetools
+from abjad.tools import timetokentools
 
 
 def apply_request_transforms(request, payload):
@@ -29,7 +30,7 @@ def apply_request_transforms(request, payload):
         )
 
     assert isinstance(request, request_klasses), repr(request)
-    assert isinstance(payload, (list, tuple)), repr(payload)
+    assert isinstance(payload, (list, tuple, timetokentools.TimeTokenMaker)), repr(payload)
 
     if request.index is not None or request.count is not None:
         original_payload_type = type(payload)

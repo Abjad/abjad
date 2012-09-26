@@ -574,18 +574,16 @@ class ConcreteInterpreter(Interpreter):
             time_signature_setting = time_signature_settings[0]
             self.score_specification.all_time_signature_settings.append(time_signature_setting)
 
-    # NEXT TODO: implement method
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
         assert rhythm_command_request.attribute == 'rhythm'
-        self._debug(rhythm_command_request, 'rcr')
+        #self._debug(rhythm_command_request, 'rcr')
         requested_segment_identifier = rhythm_command_request.timepoint.start_segment_identifier
-        self._debug(requested_segment_identifier, 'segment')
+        #self._debug(requested_segment_identifier, 'segment')
         requested_offset = rhythm_command_request.timepoint.get_score_offset(
             self.score_specification, voice_name)
-        self._debug(requested_offset, 'offset')
+        #self._debug(requested_offset, 'offset')
         timespan_inventory = timetools.TimespanInventory()
-        self._debug_values(self.score_specification.all_rhythm_region_commands, 'all')
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
             if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
                 if not rhythm_region_command.request == rhythm_command_request:
