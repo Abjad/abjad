@@ -50,10 +50,7 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def add_rhythm_to_voice(self, voice, voice_division_list):
-        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        #self._debug_values(rhythm_commands, 'rc')
-        rhythm_commands = self.fuse_like_commands(rhythm_commands)
-        #self._debug_values(rhythm_commands, 'rc')
+        rhythm_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcd')
         division_region_expressions = \
@@ -420,8 +417,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_rhythm(self):
         self.initialize_rhythm_region_expression_inventories()
-        # TODO: implement method
-        #self.populate_all_rhythm_region_commands()
+        self.populate_all_rhythm_region_commands()
         # TODO: replace this loop with just self.make_rhythm_region_expressions()
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
@@ -554,10 +550,8 @@ class ConcreteInterpreter(Interpreter):
 
     # NEXT TODO: implement method
     def populate_all_rhythm_region_commands(self):
-        raise NotImplementedError
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                # is this the correct series of three method calls?
                 rhythm_commands = self.get_rhythm_commands_for_voice(voice)
                 rhythm_commands = self.fuse_like_commands(rhythm_commands)
                 rhythm_commands = self.supply_missing_rhythm_commands(rhythm_commands, voice)
@@ -855,6 +849,10 @@ class ConcreteInterpreter(Interpreter):
         result.append(right_division_region_command)
         #self._debug_values(result, 'result')
         return result
+
+    # does this method need to be implemented?
+    def supply_missing_rhythm_commands(self, rhythm_region_commands, voice):
+        return rhythm_region_commands
 
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
