@@ -546,9 +546,11 @@ class ConcreteInterpreter(Interpreter):
                 division_commands = self.supply_missing_division_commands(division_commands, voice)
                 self.score_specification.contexts[voice.name][
                     'division_region_commands'][:] = division_commands[:]
-                self.score_specification.all_division_region_commands.extend(division_commands)
+                for division_command in division_commands:
+                    if division_command not in self.score_specification.all_division_region_commands:
+                        self.score_specification.all_division_region_commands.append(division_command)
+        #self._debug_values(self.score_specification.all_division_region_commands, 'drc')
 
-    # NEXT TODO: implement method
     def populate_all_rhythm_region_commands(self):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -557,7 +559,10 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_commands = self.supply_missing_rhythm_commands(rhythm_commands, voice)
                 self.score_specification.contexts[voice.name][
                     'rhythm_region_commands'][:] = rhythm_commands[:]
-                self.score_specification.all_rhythm_region_commands.extend(rhythm_commands)
+                for rhythm_command in rhythm_commands:
+                    if rhythm_command not in self.score_specification.all_rhythm_region_commands:
+                        self.score_specification.all_rhythm_region_commands.append(rhythm_command)
+        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'rrc')
 
     def populate_all_time_signature_commands(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -573,11 +578,14 @@ class ConcreteInterpreter(Interpreter):
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
         assert rhythm_command_request.attribute == 'rhythm'
-        #self._debug(rhythm_command_request, 'rcr')
+        self._debug(rhythm_command_request, 'rcr')
         requested_segment_identifier = rhythm_command_request.timepoint.start_segment_identifier
+        self._debug(requested_segment_identifier, 'segment')
         requested_offset = rhythm_command_request.timepoint.get_score_offset(
             self.score_specification, voice_name)
+        self._debug(requested_offset, 'offset')
         timespan_inventory = timetools.TimespanInventory()
+        self._debug_values(self.score_specification.all_rhythm_region_commands, 'all')
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
             if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
                 if not rhythm_region_command.request == rhythm_command_request:
