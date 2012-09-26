@@ -624,7 +624,7 @@ class ConcreteInterpreter(Interpreter):
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):
         assert isinstance(rhythm_request, requesttools.RhythmRequest)
-        self._debug(rhythm_request, 'rhythm request')
+        #self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_score_offsets(
@@ -632,7 +632,7 @@ class ConcreteInterpreter(Interpreter):
         source_timespan = durationtools.TimespanConstant(*source_score_offsets)
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        self._debug_values(rhythm_region_expressions, 'rrx')
+        #self._debug_values(rhythm_region_expressions, 'rrx')
         timespan_inequality = timetools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
@@ -644,8 +644,11 @@ class ConcreteInterpreter(Interpreter):
         self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(
             voice_name=voice_name, start_offset=start_offset)
+        #self._debug(result, 'result')
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
+        #self._debug(result, 'result')
+        assert componenttools.is_well_formed_component(result.music)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         # TODO: encapsulate all of the following in a single call

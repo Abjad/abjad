@@ -153,5 +153,8 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         result = componenttools.split_components_at_offsets(
             [self.music], [duration_to_keep], cyclic=False, fracture_spanners=True)
         trimmed_music = result[0][0]
+        if not componenttools.is_well_formed_component(trimmed_music):
+            self._debug(trimmed_music, 'trimmed music')
+            componenttools.tabulate_well_formedness_violations_in_expr(trimmed_music)
         assert componenttools.is_well_formed_component(trimmed_music)
         self._music = trimmed_music
