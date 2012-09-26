@@ -444,9 +444,8 @@ class SegmentSpecification(Specification):
             'rhythm', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: Removed 'selector' and always operate on timepsan of segment instead.
     def request_rhythm_command(self, context=None,
-        selector=None, edge=None, multiplier=None, offset=None, 
+        edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm command active at timepoint in `context`.
 
@@ -466,13 +465,13 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Specify timepoint with `selector`, `edge`, `multiplier`, `offset`.
+        Specify timepoint with segment-relative `edge`, `multiplier`, `offset`.
 
         Postprocess command with any of `index`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
-        selector = selector or self.select_segment()
+        selector = self.select_segment()
         timepoint = timetools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
@@ -502,9 +501,8 @@ class SegmentSpecification(Specification):
             'time_signatures', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: remove 'selector' and always operate on timespan of segment instead.
     def request_time_signature_command(self, context=None,
-        selector=None, edge=None, multiplier=None, offset=None, 
+        edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at timepoint
         in `context`.
@@ -525,13 +523,13 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Specify timepoint with `selector`, `edge`, `multiplier`, `offset`.
+        Specify timepoint with segment-relative `edge`, `multiplier`, `offset`.
 
         Postprocess command with any of `index`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
-        selector = selector or self.select_segment()
+        selector = self.select_segment()
         timepoint = timetools.SymbolicTimepoint(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
