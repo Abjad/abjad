@@ -1,17 +1,15 @@
-1.  Make split() work with durated complex beam spanners.
-
-2.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
+1.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
     in terms of a single get_score_offsets() method.
 
-3.  Integrate timespan inequality filtering into all inequality selector classes.
+2.  Integrate timespan inequality filtering into all inequality selector classes.
 
-4.  Implement default time signature value to avoid exception
+3.  Implement default time signature value to avoid exception
     when time signatures have not yet been specified.
 
-5.  Author tests to make sure that persistent overlapping division selectors 
+4.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-6.  Write between-voice division material request tests.
+5.  Write between-voice division material request tests.
     Write between-voice division command request tests.
     Write between-voice rhythm material request tests.
     Write between-voice rhythm command request tests.
