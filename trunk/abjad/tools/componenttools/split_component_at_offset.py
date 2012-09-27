@@ -121,6 +121,7 @@ def split_component_at_offset(component, offset,
     from abjad.tools import tietools
     
     # check input 
+    assert isinstance(component, componenttools.Component)
     offset = durationtools.Offset(offset)
     assert 0 <= offset
 
@@ -128,20 +129,18 @@ def split_component_at_offset(component, offset,
     if offset == 0:
         return [], component
 
-    # get global position of duration split in score
+    # get split point score offset
     global_split_point = component.start_offset + offset
 
-    # get duration crossers, if any
+    # get any duration-crossing descendents
     contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
         component, offset)
 
-    #print component, global_split_point, contents
-
-    # get duration crossing measures, if any
+    # get any duration-crossing measure descendents
     measures = [x for x in contents if isinstance(x, measuretools.Measure)]
 
     # if we must split a binary measure at a nonbinary split point
-    # go ahead and transform the binary measure to nonbinary equiavlent now;
+    # go ahead and transform the binary measure to nonbinary equivalent now;
     # code that crawls and splits later on will be happier
     if len(measures) == 1:
         measure = measures[0]
@@ -167,7 +166,7 @@ def split_component_at_offset(component, offset,
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')
 
-    # if leaf duration crosser, will be at end of list
+    # any duration-crossing leaf will be at end of list
     bottom = contents[-1]
 
     did_split_leaf = False
@@ -177,9 +176,6 @@ def split_component_at_offset(component, offset,
         assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom.start_offset
-        #left_list, right_list = leaftools.split_leaf_at_offset(bottom,
-        #    split_point_in_bottom, fracture_spanners=fracture_spanners, 
-        #    tie_split_notes=tie_after, tie_split_rests=tie_after)
         left_list, right_list = leaftools.split_leaf_at_offset(bottom,
             split_point_in_bottom, fracture_spanners=fracture_spanners, 
             tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
@@ -210,12 +206,15 @@ def split_component_at_offset(component, offset,
     else:
         raise ValueError('should we be able to get here?')
 
-    # fracture leaf spanners if requested
+    # crawl back up through duration-crossing containers and fracture spanners if requested
     if fracture_spanners:
-        spannertools.fracture_spanners_attached_to_component(leaf_right_of_split, direction=Left)
+        for x in componenttools.get_improper_parentage_of_component_that_start_with_component(
+            leaf_right_of_split):
+            spannertools.fracture_spanners_attached_to_component(x, direction=Left)
+            if x is component:
+                break
 
     # crawl back up through duration-crossing containers and split each
-    #prev = leaf_right_of_split
     prev = highest_level_component_right_of_split
     for duration_crossing_container in reversed(duration_crossing_containers):
         assert isinstance(duration_crossing_container, containertools.Container)
