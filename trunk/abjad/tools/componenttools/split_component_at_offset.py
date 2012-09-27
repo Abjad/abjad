@@ -232,28 +232,11 @@ def split_component_at_offset(component, offset,
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(
         tietools.get_tie_chain(leaf_right_of_split))
 
-    # crawl above will kill any tie applied to leaves;
-    # reapply tie here if necessary
-    # TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair()?
+    # reapply tie here if crawl above killed tie applied to leaves
     if did_split_leaf:
-        #if tie_after:
         if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
             (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
-            leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
-            if not tietools.are_components_in_same_tie_spanner(leaves_at_split):
-                if all([tietools.is_component_with_tie_spanner_attached(x) for x in leaves_at_split]):
-                    # TODO: replace with new tietools function
-                    leaf_left_of_split_tie_spanner = \
-                        spannertools.get_the_only_spanner_attached_to_component(
-                        leaf_left_of_split, tietools.TieSpanner)
-                    # TODO: replace with new tietools function
-                    leaf_right_of_split_tie_spanner = \
-                        spannertools.get_the_only_spanner_attached_to_component(
-                        leaf_right_of_split, tietools.TieSpanner)
-                    leaf_left_of_split_tie_spanner.fuse(leaf_right_of_split_tie_spanner)
-                else:
-                    # TODO: possibly replace with tietools.apply_tie_spanner_to_leaf_pair()?
-                    tietools.TieSpanner(leaves_at_split)
+            tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     # return pair of left and right list-wrapped halves of container
     return ([left], [right])
