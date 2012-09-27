@@ -10,7 +10,7 @@
     can be overwritten in a subsequent segment.
 
 5.  Write between-voice division material request tests.
-    Write between-voice division command request tests.
+    [Write between-voice division command request tests.]
     Write between-voice rhythm material request tests.
     Write between-voice rhythm command request tests.
     
