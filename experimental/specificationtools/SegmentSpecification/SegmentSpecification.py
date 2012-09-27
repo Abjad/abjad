@@ -1077,6 +1077,33 @@ class SegmentSpecification(Specification):
         persist=True):
         r'''Set rhythm of segment `contexts` to `source`.
 
+            >>> setting = segment.set_rhythm(library.sixteenths)
+
+        ::
+
+            >>> z(setting)
+            settingtools.MultipleContextSetting(
+                'rhythm',
+                requesttools.AbsoluteRequest(
+                    timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        lefts=[0],
+                        middles=[0],
+                        rights=[0],
+                        left_lengths=[0],
+                        right_lengths=[0],
+                        secondary_divisions=[]
+                        )
+                    ),
+                selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    ),
+                context_names=['Grouped Rhythmic Staves Score'],
+                persist=True
+                )
+
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'rhythm'
@@ -1102,6 +1129,23 @@ class SegmentSpecification(Specification):
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True):
         r'''Set time signatures according to `source` for segment `contexts`.
+
+            >>> setting = segment.set_time_signatures([(3, 8), (4, 8)])
+
+        ::
+
+            >>> z(setting)
+            settingtools.MultipleContextSetting(
+                'time_signatures',
+                requesttools.AbsoluteRequest(
+                    [(3, 8), (4, 8)]
+                    ),
+                selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    ),
+                context_names=['Grouped Rhythmic Staves Score'],
+                persist=True
+                )
 
         Create, store and return ``MultipleContextSetting``.
         '''
