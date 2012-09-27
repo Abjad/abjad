@@ -3,6 +3,8 @@ from experimental import *
 
 
 def test_SegmentSpecification_request_rhythm_command_from_past_01():
+    '''From-past rhythm command request.
+    '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -14,8 +16,8 @@ def test_SegmentSpecification_request_rhythm_command_from_past_01():
 
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    red_rhythm = red_segment.request_rhythm_command('Voice 1')
-    blue_segment.set_rhythm(red_rhythm)
+    red_rhythm_command = red_segment.request_rhythm_command('Voice 1')
+    blue_segment.set_rhythm(red_rhythm_command)
 
     score = score_specification.interpret()
 
@@ -25,7 +27,7 @@ def test_SegmentSpecification_request_rhythm_command_from_past_01():
 
 
 def test_SegmentSpecification_request_rhythm_command_from_past_02():
-    '''Request rhythm command with request-time reverse.
+    '''From-past rhythm command request with request-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -38,8 +40,8 @@ def test_SegmentSpecification_request_rhythm_command_from_past_02():
 
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    red_rhythm = red_segment.request_rhythm_command('Voice 1', reverse=True)
-    blue_segment.set_rhythm(red_rhythm)
+    red_rhythm_command = red_segment.request_rhythm_command('Voice 1', reverse=True)
+    blue_segment.set_rhythm(red_rhythm_command)
 
     score = score_specification.interpret()
 
@@ -49,7 +51,7 @@ def test_SegmentSpecification_request_rhythm_command_from_past_02():
 
 
 def test_SegmentSpecification_request_rhythm_command_from_past_03():
-    '''Request rhythm command with set-time reverse.
+    '''From-past rhythm command request with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -62,8 +64,8 @@ def test_SegmentSpecification_request_rhythm_command_from_past_03():
 
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    red_rhythm = red_segment.request_rhythm_command('Voice 1')
-    blue_segment.set_rhythm(red_rhythm, reverse=True)
+    red_rhythm_command = red_segment.request_rhythm_command('Voice 1')
+    blue_segment.set_rhythm(red_rhythm_command, reverse=True)
 
     score = score_specification.interpret()
 
@@ -73,7 +75,7 @@ def test_SegmentSpecification_request_rhythm_command_from_past_03():
 
 
 def test_SegmentSpecification_request_rhythm_command_from_past_04():
-    '''Request rhythm command with both request- and set-time reverse.
+    '''From-past rhythm command request with both request- and set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -86,8 +88,8 @@ def test_SegmentSpecification_request_rhythm_command_from_past_04():
 
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures([(4, 8), (5, 8)])
-    red_rhythm = red_segment.request_rhythm_command('Voice 1', reverse=True)
-    blue_segment.set_rhythm(red_rhythm, reverse=True)
+    red_rhythm_command = red_segment.request_rhythm_command('Voice 1', reverse=True)
+    blue_segment.set_rhythm(red_rhythm_command, reverse=True)
 
     score = score_specification.interpret()
 

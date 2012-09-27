@@ -3,7 +3,7 @@ from experimental import *
 
 
 def test_SegmentSpecification_request_rhythm_from_future_01():
-    '''Request from-future rhythm.
+    '''From-future rhythm material request.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -28,7 +28,7 @@ def test_SegmentSpecification_request_rhythm_from_future_01():
 
 
 def test_SegmentSpecification_request_rhythm_from_future_02():
-    '''Request from-future rhythm with request-time reverse.
+    '''From-future rhythm material request with request-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -53,7 +53,7 @@ def test_SegmentSpecification_request_rhythm_from_future_02():
 
 
 def test_SegmentSpecification_request_rhythm_from_future_03():
-    '''Request from-future rhythm with set-time reverse.
+    '''From-future rhythm material request with set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -78,7 +78,7 @@ def test_SegmentSpecification_request_rhythm_from_future_03():
 
 
 def test_SegmentSpecification_request_rhythm_from_future_04():
-    '''Request from-future rhythm with both request- and set-time reverse.
+    '''From-future rhythm material request with both request- and set-time reverse.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

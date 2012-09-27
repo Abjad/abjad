@@ -2,10 +2,8 @@ from abjad import *
 from experimental import *
 
 
-# TODO: Add rhythm request tests for requests between voices.
-
 def test_SegmentSpecification_request_rhythm_from_past_01():
-    '''Request rhythm from earlier segment.
+    '''From-past rhythm material request.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -31,7 +29,9 @@ def test_SegmentSpecification_request_rhythm_from_past_01():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_02():
-    '''Fit larger source rhythm into smaller target.
+    '''From-past rhythm material request.
+
+    Fit larger source into smaller target.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -58,7 +58,7 @@ def test_SegmentSpecification_request_rhythm_from_past_02():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_03():
-    '''Reverse rhythm at request-time.
+    '''From-past rhythm material request with request-time reverse.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -84,7 +84,7 @@ def test_SegmentSpecification_request_rhythm_from_past_03():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_04():
-    '''Reverse rhythm at set-time.
+    '''From-past rhythm material request with set-time reverse.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -110,7 +110,7 @@ def test_SegmentSpecification_request_rhythm_from_past_04():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_05():
-    '''Reverse rhythm at both request- and set-time.
+    '''From-past rhythm material request with both request- and set-time reverse.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -136,7 +136,7 @@ def test_SegmentSpecification_request_rhythm_from_past_05():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_06():
-    '''Rotate rhythm at request time.
+    '''From-past rhythm material request with request-time rotation.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -162,7 +162,7 @@ def test_SegmentSpecification_request_rhythm_from_past_06():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_07():
-    '''Rotate rhythm at set time.
+    '''From-past rhythm material request with set-time rotation.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -188,9 +188,7 @@ def test_SegmentSpecification_request_rhythm_from_past_07():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_08():
-    '''Rhythm 'rotation' keyword set at both request- and set-time.
-
-    The keywords undo each other with the addition of severed spanners.
+    '''From-past rhythm material request with both request- and set-time rotation.
     '''    
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -216,7 +214,9 @@ def test_SegmentSpecification_request_rhythm_from_past_08():
 
 
 def test_SegmentSpecification_request_rhythm_from_past_09():
-    '''Request shorter rhythm and repeat to fill longer duration.
+    '''From-past rhythm material request.
+
+    Repeat smaller source to filler larger target.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
