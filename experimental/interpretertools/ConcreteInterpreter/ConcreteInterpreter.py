@@ -623,6 +623,7 @@ class ConcreteInterpreter(Interpreter):
                     rhythm_quadruples.remove(rhythm_quadruple)
                     self.score_specification.contexts[voice.name]['rhythm_region_expressions'].append(
                         rhythm_region_expression)
+                    self.score_specification.contexts[voice.name]['rhythm_region_expressions'].sort()
 
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):

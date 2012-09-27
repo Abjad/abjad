@@ -3,14 +3,10 @@
 
 2.  Integrate timespan inequality filtering into all inequality selector classes.
 
-3.  Implement time signature material requests.
-
-4.  Implement from-future time signature material requests.
-
-5.  Implement default time signature value to avoid exception
+3.  Implement default time signature value to avoid exception
     when time signatures have not yet been specified.
 
-6.  Author tests to make sure that persistent overlapping division selectors 
+4.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-7.  Make split() work with durated complex beam spanners.
+5.  Make split() work with durated complex beam spanners.
