@@ -1,5 +1,6 @@
 from abjad.tools.beamtools.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.tools import durationtools
+from abjad.tools import sequencetools
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
@@ -93,6 +94,28 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             if right is not None:
                 result.append(r'\set stemRightBeamCount = #%s' % right)
         return result
+
+    def _fracture_left(self, i):
+        self, left, right = ComplexBeamSpanner._fracture_left(self, i)
+        weights = [left.prolated_duration, right.prolated_duration]
+        assert sum(self.durations) == sum(weights)
+        split_durations = sequencetools.split_sequence_by_weights(
+            self.durations, weights, cyclic=False, overhang=False)
+        left_durations, right_durations = split_durations 
+        left._durations = left_durations
+        right._durations = right_durations
+        return self, left, right
+
+    def _fracture_right(self, i):
+        self, left, right = ComplexBeamSpanner._fracture_right(self, i)
+        weights = [left.prolated_duration, right.prolated_duration]
+        assert sum(self.durations) == sum(weights)
+        split_durations = sequencetools.split_sequence_by_weights(
+            self.durations, weights, cyclic=False, overhang=False)
+        left_durations, right_durations = split_durations 
+        left._durations = left_durations
+        right._durations = right_durations
+        return self, left, right
 
     def _reverse_components(self):
         ComplexBeamSpanner._reverse_components(self)
