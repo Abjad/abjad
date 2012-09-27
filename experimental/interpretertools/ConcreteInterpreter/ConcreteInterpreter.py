@@ -417,22 +417,12 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_rhythm_region_expression_inventories()
         self.populate_all_rhythm_region_commands()
-        # TODO: replace this loop with just self.make_rhythm_region_expressions()
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
-            if voice_division_list:
-                self.add_rhythm_to_voice(voice, voice_division_list)
+        self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
     def interpret_time_signatures(self):
         self.populate_all_time_signature_commands()
-        while self.score_specification.all_time_signature_settings:
-            for time_signature_setting in self.score_specification.all_time_signature_settings:
-                self.make_time_signatures_for_time_signature_setting(time_signature_setting)
-        time_signatures = self.score_specification.time_signatures
-        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
-        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
-        context.extend(measures)
+        self.make_time_signatures()
         self.calculate_score_and_segment_durations()
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
@@ -487,9 +477,13 @@ class ConcreteInterpreter(Interpreter):
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
 
+    # maybe the loop should iterate over rhythm commands instead of voices
     def make_rhythm_region_expressions(self):
-        rhythm_commands = self.get_rhythm_commands_for_score()
-        raise NotImplementedError('working on this one now.')
+        #rhythm_commands = self.get_rhythm_commands_for_score()
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
+            if voice_division_list:
+                self.add_rhythm_to_voice(voice, voice_division_list)
 
     def make_time_signature_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
@@ -504,6 +498,15 @@ class ConcreteInterpreter(Interpreter):
             truncate=True
             )
         return division_command
+
+    def make_time_signatures(self):
+        while self.score_specification.all_time_signature_settings:
+            for time_signature_setting in self.score_specification.all_time_signature_settings:
+                self.make_time_signatures_for_time_signature_setting(time_signature_setting)
+        time_signatures = self.score_specification.time_signatures
+        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
+        context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
+        context.extend(measures)
 
     def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
