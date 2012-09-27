@@ -124,11 +124,9 @@ def split_component_at_offset(component, offset,
     offset = durationtools.Offset(offset)
     assert 0 <= offset
 
-    # if zero offset then return component
+    # if zero offset then return empty list and component
     if offset == 0:
-        # TODO: this one case should be ([], component)
-        return (component, )
-        #return [], component
+        return [], component
 
     # get global position of duration split in score
     global_split_point = component.start_offset + offset

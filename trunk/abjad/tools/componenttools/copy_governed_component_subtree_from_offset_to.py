@@ -176,16 +176,15 @@ def _copy_container_from_start_offset_to_stop_offset(container, start, stop):
     # split first leaf
     leaf_start_splitted = componenttools.split_component_at_offset(
         leaf_start, first_dif, fracture_spanners=False)
-    #print repr(leaf_start_splitted), 'start'
-    if len(leaf_start_splitted) == 2:
-        #raise Exception(leaf_start_splitted)
+    assert len(leaf_start_splitted) == 2
+    if not leaf_start_splitted[0] == []:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf_start_splitted[0][0])
 
     # split second leaf
     leaf_end_splitted = componenttools.split_component_at_offset(
         leaf_end, second_dif, fracture_spanners=False)
-    #print leaf_end_splitted, 'end'
-    if len(leaf_end_splitted) == 2:
+    assert len(leaf_end_splitted) == 2
+    if not leaf_end_splitted[0] == []:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(
             leaf_end_splitted[1][0])
 
