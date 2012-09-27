@@ -119,7 +119,8 @@ def split_component_at_offset(component, offset,
     from abjad.tools import resttools
     from abjad.tools import spannertools
     from abjad.tools import tietools
-
+    
+    # check input 
     offset = durationtools.Offset(offset)
     assert 0 <= offset
 
@@ -127,6 +128,7 @@ def split_component_at_offset(component, offset,
     if offset == 0:
         # TODO: this one case should be ([], component)
         return (component, )
+        #return [], component
 
     # get global position of duration split in score
     global_split_point = component.start_offset + offset

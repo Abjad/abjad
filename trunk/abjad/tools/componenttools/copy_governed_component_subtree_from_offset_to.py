@@ -113,7 +113,7 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
 
     ::
 
-        >>> new_leaf._parent is None
+        >>> new_leaf.parent is None
         True
 
     Return ``(untrimmed_copy, first_dif, second_dif)``.
@@ -122,67 +122,87 @@ def copy_governed_component_subtree_from_offset_to(component, start=0, stop=None
     from abjad.tools import containertools
     from abjad.tools import leaftools
 
+    # check input
     assert isinstance(component, componenttools.Component)
-    start = durationtools.Duration(*durationtools.duration_token_to_duration_pair(start))
+    start = durationtools.Duration(start)
     if start < 0:
         start = durationtools.Duration(0)
     if stop is None:
         stop = component.prolated_duration
     else:
-        stop = durationtools.Duration(*durationtools.duration_token_to_duration_pair(stop))
+        stop = durationtools.Duration(stop)
     assert start <= stop
+
+    # copy component from start offset to stop offset and return
     if isinstance(component, leaftools.Leaf):
-        return _scopy_leaf(component, start, stop)
+        return _copy_leaf_from_start_offset_to_stop_offset(component, start, stop)
     elif isinstance(component, containertools.Container):
-        return _scopy_container(component, start, stop)
+        return _copy_container_from_start_offset_to_stop_offset(component, start, stop)
     else:
-        raise ValueError('must be leaf or container.')
+        raise ValueError('must be leaf or container: {!r}'.format(component))
 
 
-def _scopy_leaf(leaf, start, stop):
-    from abjad.tools import leaftools
-    from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
-    if leaf.prolated_duration <= start:
-        return None
-    if leaf.prolated_duration < stop:
-        stop = leaf.prolated_duration
-    total = stop - start
-    if total == 0:
-        return None
-    new = copy_components_and_fracture_crossing_spanners([leaf])[0]
-    leaftools.set_preprolated_leaf_duration(new, total)
-    return new
-
-
-def _scopy_container(container, start, stop):
+def _copy_leaf_from_start_offset_to_stop_offset(leaf, start, stop):
     from abjad.tools import componenttools
     from abjad.tools import leaftools
 
+    if leaf.prolated_duration <= start:
+        return None
+
+    if leaf.prolated_duration < stop:
+        stop = leaf.prolated_duration
+
+    total = stop - start
+    if total == 0:
+        return None
+
+    new_leaf = componenttools.copy_components_and_fracture_crossing_spanners([leaf])[0]
+    leaftools.set_preprolated_leaf_duration(new_leaf, total)
+
+    return new_leaf
+
+
+def _copy_container_from_start_offset_to_stop_offset(container, start, stop):
+    from abjad.tools import componenttools
+    from abjad.tools import leaftools
+
+    # copy container
     container, first_dif, second_dif = _get_lcopy(container, start, stop)
-    #print first_dif, second_dif
+
+    # get container start and stop leaves
     leaf_start = container.leaves[0]
     leaf_end = container.leaves[-1]
+
     # split first leaf
     leaf_start_splitted = componenttools.split_component_at_offset(
         leaf_start, first_dif, fracture_spanners=False)
+    #print repr(leaf_start_splitted), 'start'
     if len(leaf_start_splitted) == 2:
-        leaftools.remove_leaf_and_shrink_durated_parent_containers(
-            leaf_start_splitted[0][0])
+        #raise Exception(leaf_start_splitted)
+        leaftools.remove_leaf_and_shrink_durated_parent_containers(leaf_start_splitted[0][0])
+
     # split second leaf
     leaf_end_splitted = componenttools.split_component_at_offset(
         leaf_end, second_dif, fracture_spanners=False)
+    #print leaf_end_splitted, 'end'
     if len(leaf_end_splitted) == 2:
         leaftools.remove_leaf_and_shrink_durated_parent_containers(
             leaf_end_splitted[1][0])
+
+    # return adjusted container
     return container
 
 
+# TODO: rename explicitly
 def _get_lcopy(container, start, stop):
-    from abjad.tools.componenttools.copy_governed_component_subtree_by_leaf_range import copy_governed_component_subtree_by_leaf_range
+    from abjad.tools import componenttools
     from abjad.tools import iterationtools
+
+    # initialize loop variables
     total_dur = durationtools.Duration(0)
     start_leaf, stop_leaf = None, None
     first_dif = second_dif = 0
+
     for i, leaf in enumerate(iterationtools.iterate_leaves_in_expr(container)):
         total_dur += leaf.prolated_duration
         if total_dur == start and start_leaf is None:
@@ -201,7 +221,9 @@ def _get_lcopy(container, start, stop):
             #print second_dif
             #print 'breaking after stop'
             break
+
     #print start_leaf, stop_leaf
-    untrimmed_copy = copy_governed_component_subtree_by_leaf_range(
+    untrimmed_copy = componenttools.copy_governed_component_subtree_by_leaf_range(
         container, start_leaf, stop_leaf)
+
     return untrimmed_copy, first_dif, second_dif

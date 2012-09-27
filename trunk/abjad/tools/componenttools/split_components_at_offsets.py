@@ -255,19 +255,20 @@ def split_components_at_offsets(components, offsets,
     assert componenttools.all_are_components(components)
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
+    # calculate total component duration
     total_component_duration = componenttools.sum_prolated_duration_of_components(components)
     total_offset_duration = sum(offsets)
 
+    # calculate offsets
     if cyclic:
-        #total_component_duration = componenttools.sum_prolated_duration_of_components(components)
         offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, total_component_duration)
-        #print 'offsets {}'.format(offsets)
     elif total_offset_duration < total_component_duration:
         final_offset = total_component_duration - sum(offsets)
         offsets.append(final_offset)
     elif total_component_duration < total_offset_duration:
         offsets = sequencetools.truncate_sequence_to_weight(offsets, total_component_duration)
     
+    # calculate total offset duration
     total_offset_duration = sum(offsets)
     assert total_offset_duration == total_component_duration
 
@@ -278,16 +279,10 @@ def split_components_at_offsets(components, offsets,
     remaining_components = list(components[:])
     advance_to_next_offset = True
 
-    # loop and build shards
-    # grab next component and next offset each time through loop
+    # loop and build shards by grabbing next component and next offset each time through loop
     while True:
-        #print 'remaining_components are now %s' % remaining_components
 
         # grab next split point
-        # old
-        #if offset_index < offset_count:
-        #    next_split_point = offsets[offset_index]
-        # new 
         if advance_to_next_offset:
             if offsets:
                 #print offsets
@@ -344,11 +339,7 @@ def split_components_at_offsets(components, offsets,
                 result.extend(leaf_shards)
                 offset_index += len(additional_offsets)
             else:
-            #if True:
                 #print 'splitting container ...'
-                #left_list, right_list = componenttools.split_component_at_offset(
-                #    current_component, local_split_duration, 
-                #    fracture_spanners=fracture_spanners, tie_after=tie_after)
                 left_list, right_list = componenttools.split_component_at_offset(
                     current_component, local_split_duration, fracture_spanners=fracture_spanners, 
                     tie_split_notes=tie_split_notes, tie_split_rests=tie_split_rests)
