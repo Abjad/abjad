@@ -3,13 +3,13 @@ from experimental import *
 
 
 def test_SegmentSpecification_set_time_signatures_transform_keywords_01():
-    '''Set-time 'reverse' keyword.
+    '''Time signature 'index' transform.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
-    segment.set_time_signatures([(2, 8), (3, 8), (4, 8)], reverse=True)
+    red_segment = score_specification.make_segment('red')
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], index=-2)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -18,16 +18,13 @@ def test_SegmentSpecification_set_time_signatures_transform_keywords_01():
 
 
 def test_SegmentSpecification_set_time_signatures_transform_keywords_02():
-    '''Request-time 'reverse' keyword.
+    '''Time signature 'count' transform.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
-    segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    reversed_red_time_signatures = segment.request_time_signatures(reverse=True)
-    segment = score_specification.make_segment(name='blue')
-    segment.set_time_signatures(reversed_red_time_signatures)
+    red_segment = score_specification.make_segment('red')
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], count=6)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -36,16 +33,13 @@ def test_SegmentSpecification_set_time_signatures_transform_keywords_02():
 
 
 def test_SegmentSpecification_set_time_signatures_transform_keywords_03():
-    '''Request- and set-time 'reverse' keywords undo each other.
+    '''Time signature 'reverse' transform.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
-    segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    reversed_red_time_signatures = segment.request_time_signatures(reverse=True)
-    segment = score_specification.make_segment(name='blue')
-    segment.set_time_signatures(reversed_red_time_signatures, reverse=True)
+    red_segment = score_specification.make_segment('red')
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], reverse=True)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -54,16 +48,13 @@ def test_SegmentSpecification_set_time_signatures_transform_keywords_03():
 
 
 def test_SegmentSpecification_set_time_signatures_transform_keywords_04():
-    '''Multiple time signature settings are allowed for a single segment.
-    Interpreter ignores all but the last.
+    '''Time signature 'rotation' transform.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
-    segment.set_time_signatures([(2, 8), (2, 8)])
-    segment.set_time_signatures([(4, 8), (4, 8)])
-    segment.set_time_signatures([(3, 8), (3, 8)])
+    red_segment = score_specification.make_segment('red')
+    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], rotation=-2)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
