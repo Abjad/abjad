@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSpecification_request_rhythm_command_01():
+def test_SegmentSpecification_request_rhythm_command_from_past_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -24,7 +24,7 @@ def test_SegmentSpecification_request_rhythm_command_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification_request_rhythm_command_02():
+def test_SegmentSpecification_request_rhythm_command_from_past_02():
     '''Request rhythm command with request-time reverse.
     '''
 
@@ -48,7 +48,7 @@ def test_SegmentSpecification_request_rhythm_command_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification_request_rhythm_command_03():
+def test_SegmentSpecification_request_rhythm_command_from_past_03():
     '''Request rhythm command with set-time reverse.
     '''
 
@@ -72,7 +72,7 @@ def test_SegmentSpecification_request_rhythm_command_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification_request_rhythm_command_04():
+def test_SegmentSpecification_request_rhythm_command_from_past_04():
     '''Request rhythm command with both request- and set-time reverse.
     '''
 
