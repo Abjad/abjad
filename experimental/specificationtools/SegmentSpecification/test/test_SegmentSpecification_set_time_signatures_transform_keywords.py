@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSpecification_set_time_signatures_01():
+def test_SegmentSpecification_set_time_signatures_transform_keywords_01():
     '''Set-time 'reverse' keyword.
     '''
 
@@ -17,7 +17,7 @@ def test_SegmentSpecification_set_time_signatures_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification_set_time_signatures_02():
+def test_SegmentSpecification_set_time_signatures_transform_keywords_02():
     '''Request-time 'reverse' keyword.
     '''
 
@@ -35,7 +35,7 @@ def test_SegmentSpecification_set_time_signatures_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification_set_time_signatures_03():
+def test_SegmentSpecification_set_time_signatures_transform_keywords_03():
     '''Request- and set-time 'reverse' keywords undo each other.
     '''
 
@@ -53,7 +53,7 @@ def test_SegmentSpecification_set_time_signatures_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification_set_time_signatures_04():
+def test_SegmentSpecification_set_time_signatures_transform_keywords_04():
     '''Multiple time signature settings are allowed for a single segment.
     Interpreter ignores all but the last.
     '''
