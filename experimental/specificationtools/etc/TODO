@@ -9,7 +9,7 @@
 4.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-5.  Write from-past between-voice division material request tests.
+5. [Write from-past between-voice division material request tests.]
     Write from-past between-voice division command request tests.
     Write from-past between-voice rhythm material request tests.
     Write from-past between-voice rhythm command request tests.
