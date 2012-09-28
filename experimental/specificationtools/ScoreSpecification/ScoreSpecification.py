@@ -34,6 +34,7 @@ class ScoreSpecification(Specification):
         from experimental import specificationtools
         Specification.__init__(self, score_template)
         self._all_division_region_commands = []
+        self._all_rhythm_quintuples = []
         self._all_rhythm_region_commands = []
         self._all_time_signature_settings = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
@@ -81,6 +82,14 @@ class ScoreSpecification(Specification):
         Return list.
         '''
         return self._all_division_region_commands
+
+    @property
+    def all_rhythm_quintuples(self):
+        '''Read-only list of all rhythm quintuples.
+
+        Return list.
+        '''
+        return self._all_rhythm_quintuples
 
     @property
     def all_rhythm_region_commands(self):

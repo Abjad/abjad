@@ -127,6 +127,7 @@ class ConcreteInterpreter(Interpreter):
         requested_offset = division_command_request.timepoint.get_score_offset(
             self.score_specification, voice_name)
         timespan_inventory = timetools.TimespanInventory()
+        #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
         for division_region_command in self.score_specification.all_division_region_commands:
             if division_region_command.start_segment_identifier == requested_segment_identifier:
                 if not division_region_command.request == division_command_request:
@@ -371,7 +372,7 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_rhythm_region_expression_inventories()
         self.populate_all_rhythm_region_commands()
-        self.make_all_rhythm_quintuples()
+        self.populate_all_rhythm_quintuples()
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
@@ -379,15 +380,6 @@ class ConcreteInterpreter(Interpreter):
         self.populate_all_time_signature_commands()
         self.make_time_signatures()
         self.calculate_score_and_segment_durations()
-
-    def make_all_rhythm_quintuples(self):
-        all_rhythm_quintuples = []
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
-            if voice_division_list:
-                rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice, voice_division_list)
-                all_rhythm_quintuples.extend(rhythm_quintuples)
-        self.score_specification.all_rhythm_quintuples = all_rhythm_quintuples
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
         request = self.attribute_to_default_request(segment_specification, attribute)
@@ -578,8 +570,13 @@ class ConcreteInterpreter(Interpreter):
                 for division_command in division_commands:
                     if division_command not in self.score_specification.all_division_region_commands:
                         self.score_specification.all_division_region_commands.append(division_command)
-        #print '\n', 'FOO'
-        #self._debug_values(self.score_specification.all_division_region_commands, 'drc')
+
+    def populate_all_rhythm_quintuples(self):
+        for voice in iterationtools.iterate_voices_in_expr(self.score):
+            voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
+            if voice_division_list:
+                rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice, voice_division_list)
+                self.score_specification.all_rhythm_quintuples.extend(rhythm_quintuples)
 
     def populate_all_rhythm_region_commands(self):
         if self.score_specification.segment_specifications:
