@@ -129,9 +129,9 @@ class ConcreteInterpreter(Interpreter):
         timespan_inventory = timetools.TimespanInventory()
         #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
         for division_region_command in self.score_specification.all_division_region_commands:
-            if division_region_command.start_segment_identifier == requested_segment_identifier:
-                if not division_region_command.request == division_command_request:
-                    timespan_inventory.append(division_region_command)
+            if not division_region_command.request == division_command_request:
+                timespan_inventory.append(division_region_command)
+        #self._debug_values(timespan_inventory, 'timespan inventory')
         timespan_inequality = timetools.timepoint_happens_during_timespan(
             timepoint=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
