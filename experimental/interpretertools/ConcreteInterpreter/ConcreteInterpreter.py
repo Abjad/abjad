@@ -276,6 +276,7 @@ class ConcreteInterpreter(Interpreter):
     def get_commands_that_start_during_segment(self, segment_specification, context_name, attribute):
         single_context_settings = self.get_single_context_settings_that_start_during_segment(
             segment_specification, context_name, attribute, include_improper_parentage=True)
+        #self._debug_values(single_context_settings, 'scs')
         commands = []
         for single_context_setting in single_context_settings:
             command = self.single_context_setting_to_command(
@@ -288,6 +289,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             raw_commands = self.get_commands_that_start_during_segment(
                 segment_specification, voice.name, 'divisions')
+            #self._debug_values(raw_commands, 'raw commands')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
             if cooked_commands:
                 division_commands.extend(cooked_commands)
@@ -413,6 +415,7 @@ class ConcreteInterpreter(Interpreter):
                     self.score_specification.contexts[voice.name]['division_region_commands']
                 division_region_commands_to_reattempt = []
                 for division_region_command in division_region_commands:
+                    #self._debug(division_region_command, 'drc')
                     division_region_expression = self.division_region_command_to_division_region_expression(
                         division_region_command, voice.name)
                     if division_region_expression is not None:
@@ -565,13 +568,17 @@ class ConcreteInterpreter(Interpreter):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 division_commands = self.get_division_commands_for_voice(voice)
+                #self._debug_values(division_commands, 'dc1')
                 division_commands = self.fuse_like_commands(division_commands)
+                #self._debug_values(division_commands, 'dc2')
                 division_commands = self.supply_missing_division_commands(division_commands, voice)
+                #self._debug_values(division_commands, 'dc3')
                 self.score_specification.contexts[voice.name][
                     'division_region_commands'][:] = division_commands[:]
                 for division_command in division_commands:
                     if division_command not in self.score_specification.all_division_region_commands:
                         self.score_specification.all_division_region_commands.append(division_command)
+        #print '\n', 'FOO'
         #self._debug_values(self.score_specification.all_division_region_commands, 'drc')
 
     def populate_all_rhythm_region_commands(self):
@@ -773,6 +780,32 @@ class ConcreteInterpreter(Interpreter):
         self.store_single_context_registration_settings_by_context()
         self.store_additional_single_context_settings_by_context()
 
+#    def old_store_single_context_division_settings_by_context(self):
+#        '''For every segment specification:
+#
+#        Get new single-context division settings for segment.
+#
+#        If no new single-context division settings exist, then copy existing
+#        single-context division settings from global score context.
+#
+#        Then store single-context division settings in global score context.
+#        '''
+#        for segment_specification in self.score_specification.segment_specifications:
+#            #self._debug(segment_specification, 'segment')
+#            new_settings = segment_specification.single_context_settings.get_settings(attribute='divisions')
+#            #self._debug_values(new_settings, 'ns')
+#            if not new_settings:
+#                new_settings = []
+#                existing_settings = \
+#                    self.score_specification.single_context_settings_by_context.get_settings(
+#                    attribute='divisions')
+#                #self._debug_values(existing_settings, 'es')
+#                for existing_setting in existing_settings:
+#                    new_setting = existing_setting.copy_setting_to_segment(segment_specification)
+#                    new_settings.append(new_setting)
+#            #self._debug_values(new_settings, 'ns')
+#            self.store_single_context_settings_by_context(new_settings, clear_persistent_first=True)
+
     def store_single_context_division_settings_by_context(self):
         '''For every segment specification:
 
@@ -785,18 +818,20 @@ class ConcreteInterpreter(Interpreter):
         '''
         for segment_specification in self.score_specification.segment_specifications:
             new_settings = segment_specification.single_context_settings.get_settings(attribute='divisions')
-            #self._debug(segment_specification, 'segment')
-            #self._debug_values(new_settings, 'ns')
-            if not new_settings:
-                new_settings = []
-                existing_settings = self.score_specification.single_context_settings_by_context.get_settings(
-                    attribute='divisions')
-                for existing_setting in existing_settings:
-                    #self._debug(existing_setting, 'es')
-                    new_setting = existing_setting.copy_setting_to_segment(segment_specification)
-                    new_settings.append(new_setting)
-            #self._debug_values(new_settings, 'NS')
-            self.store_single_context_settings_by_context(new_settings, clear_persistent_first=True)
+            existing_settings = \
+                self.score_specification.single_context_settings_by_context.get_settings(
+                attribute='divisions')
+            new_context_names = [x.context_name for x in new_settings]
+            forwarded_existing_settings = []
+            for existing_setting in existing_settings[:]:
+                if existing_setting.context_name in new_context_names:
+                    existing_settings.remove(existing_setting)
+                else:
+                    forwarded_existing_setting = existing_setting.copy_setting_to_segment(
+                        segment_specification)
+                    forwarded_existing_settings.append(forwarded_existing_setting)
+            settings_to_store = new_settings + forwarded_existing_settings
+            self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings_by_context(self):
         for segment_specification in self.score_specification.segment_specifications:
