@@ -270,12 +270,12 @@ class ConcreteInterpreter(Interpreter):
             commands.append(command)
         return commands
 
+    # TODO: eventually merge with self.get_rhythm_commnads_for_voice()
     def get_division_commands_for_voice(self, voice):
         division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
             raw_commands = self.get_commands_that_start_during_segment(
                 segment_specification, voice.name, 'divisions')
-            #self._debug_values(raw_commands, 'raw commands')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
             if cooked_commands:
                 division_commands.extend(cooked_commands)
@@ -292,18 +292,16 @@ class ConcreteInterpreter(Interpreter):
             score_rhythm_commands.extend(voice_rhythm_commands)
         return score_rhythm_commands
 
+    # TODO: eventually merge with self.get_division_commands_for_voice()
     def get_rhythm_commands_for_voice(self, voice):
         rhythm_commands = []
         for segment_specification in self.score_specification.segment_specifications:
             raw_commands = self.get_commands_that_start_during_segment(
                 segment_specification, voice.name, 'rhythm')
-            #self._debug(raw_commands, 'raw')
             default_command = self.make_default_command_for_segment_specification(
                 segment_specification, 'rhythm')
             raw_commands.insert(0, default_command)
-            #self._debug(raw_commands, 'raw')
             cooked_commands = self.sort_and_split_raw_commands(raw_commands)
-            #self._debug(cooked_commands, 'cooked')
             rhythm_commands.extend(cooked_commands)
         return rhythm_commands
 
@@ -334,25 +332,20 @@ class ConcreteInterpreter(Interpreter):
         result = [x.pair for x in result]
         return result
 
-    def initialize_division_region_expression_inventories(self):
+    def initialize_region_expression_inventories_for_attribute(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             timespan_inventory = timetools.TimespanInventory()
-            self.score_specification.contexts[voice.name]['division_region_commands'] = timespan_inventory
+            region_commands = '{}_region_commands'.format(attribute)
+            self.score_specification.contexts[voice.name][region_commands] = timespan_inventory
             timespan_inventory = timetools.TimespanInventory()
-            self.score_specification.contexts[voice.name]['division_region_expressions'] = timespan_inventory
-
-    def initialize_rhythm_region_expression_inventories(self):
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            timespan_inventory = timetools.TimespanInventory()
-            self.score_specification.contexts[voice.name]['rhythm_region_commands'] = timespan_inventory
-            timespan_inventory = timetools.TimespanInventory()
-            self.score_specification.contexts[voice.name]['rhythm_region_expressions'] = timespan_inventory
+            region_expressions = '{}_region_expressions'.format(attribute)
+            self.score_specification.contexts[voice.name][region_expressions] = timespan_inventory
 
     def interpret_additional_parameters(self):
         pass
 
     def interpret_divisions(self):
-        self.initialize_division_region_expression_inventories()
+        self.initialize_region_expression_inventories_for_attribute('division')
         self.populate_all_division_region_commands()
         self.make_division_region_expressions()
         self.make_voice_division_lists()
@@ -364,7 +357,7 @@ class ConcreteInterpreter(Interpreter):
         pass
 
     def interpret_rhythm(self):
-        self.initialize_rhythm_region_expression_inventories()
+        self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_rhythm_region_commands()
         self.populate_all_rhythm_quintuples()
         self.make_rhythm_region_expressions()
