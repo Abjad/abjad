@@ -669,6 +669,7 @@ class ConcreteInterpreter(Interpreter):
                 if element.context_name == context_name:
                     return element
 
+    # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         assert single_context_setting.selector.start_segment_identifier == segment_specification.segment_name
         start_offset, stop_offset = single_context_setting.selector.get_score_offsets(
@@ -778,6 +779,7 @@ class ConcreteInterpreter(Interpreter):
     def supply_missing_region_commands_for_attribute(self, region_commands, voice, attribute):
         if attribute == 'divisions':
             return self.supply_missing_division_commands(region_commands, voice)
+        # does a rhythm version of this method need to be implemented eventually?
         else:
             return region_commands
         
@@ -838,14 +840,3 @@ class ConcreteInterpreter(Interpreter):
         if timetools.timespan_2_overlaps_only_stop_of_timespan_1(
             timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
             rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)
-
-    def voice_name_to_divisions(self, voice_name):
-        voice = componenttools.get_first_component_in_expr_with_name(self.score, voice_name)
-        assert isinstance(voice, voicetools.Voice), voice
-        division_region_expressions = self.score_specification.contexts[voice.name][
-            'division_region_expressions']
-        divisions = []
-        for division_region_expression in division_region_expressions:
-            divisions.extend(division_region_expression.division_list)
-        assert isinstance(divisions, list), divisions
-        return divisions

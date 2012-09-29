@@ -138,8 +138,6 @@ Methods
 
     Inherited from :py:class:`Interpreter.Interpreter <experimental.interpretertools.Interpreter.Interpreter.Interpreter>`
 
-.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.voice_name_to_divisions
-
 Special Methods
 ---------------
 
