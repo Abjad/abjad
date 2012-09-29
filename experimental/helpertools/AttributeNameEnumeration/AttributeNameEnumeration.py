@@ -19,8 +19,9 @@ class AttributeNameEnumeration(OrderedDict):
         ('articulations', 0)
         ('divisions', 1)
         ('pitch_classes', 2)
-        ('rhythm', 3)
-        ('time_signatures', 4)
+        ('registration', 3)
+        ('rhythm', 4)
+        ('time_signatures', 5)
 
     Attribute names are alphabetized.
 
@@ -35,6 +36,7 @@ class AttributeNameEnumeration(OrderedDict):
         'articulations',
         'divisions', 
         'pitch_classes',
+        'registration',
         'rhythm',
         'time_signatures',
         )
