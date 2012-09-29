@@ -455,6 +455,8 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
+        rhythm_quadruples = self.reestablish_rhythm_material_request_offsets(rhythm_quadruples)
+        #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quintuples = [(voice.name,) + x for x in rhythm_quadruples]
         return rhythm_quintuples
 
@@ -585,6 +587,19 @@ class ConcreteInterpreter(Interpreter):
                 continue
             time_signature_setting = time_signature_settings[-1]
             self.score_specification.all_time_signature_commands.append(time_signature_setting)
+
+    def reestablish_rhythm_material_request_offsets(self, rhythm_quadruples):
+        result = []
+        for rhythm_quadruple in rhythm_quadruples:
+            if isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
+                rhythm_command = rhythm_quadruple[-1]
+                assert isinstance(rhythm_command, settingtools.RhythmCommand)
+                start_offset = rhythm_command.start_offset
+                stop_offset = rhythm_command.stop_offset
+                result.append((rhythm_quadruple[0], start_offset, stop_offset, rhythm_command))
+            else:
+                result.append(rhythm_quadruple)
+        return result
 
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
