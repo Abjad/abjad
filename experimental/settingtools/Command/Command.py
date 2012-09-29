@@ -23,7 +23,7 @@ class Command(AbjadObject):
     ### INTIAILIZER ###
 
     def __init__(self, request, context_name, 
-        start_offset, stop_offset, start_segment_identifier, 
+        start_offset, stop_offset, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
@@ -31,7 +31,6 @@ class Command(AbjadObject):
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)
         assert start_offset <= stop_offset
-        assert isinstance(start_segment_identifier, str)
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(reverse, (bool, type(None))), repr(reverse)
@@ -42,7 +41,6 @@ class Command(AbjadObject):
         self._context_name = context_name
         self._start_offset = start_offset
         self._stop_offset = stop_offset
-        self._start_segment_identifier = start_segment_identifier
         self._index = index
         self._count = count
         self._reverse = reverse
@@ -155,14 +153,6 @@ class Command(AbjadObject):
         Return offset.
         '''
         return self._start_offset
-
-    @property
-    def start_segment_identifier(self):
-        '''Command start segment identifier.
-
-        Return string or integer.
-        '''
-        return self._start_segment_identifier
 
     @property
     def stop_offset(self):

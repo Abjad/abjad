@@ -359,7 +359,9 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_region_commands_for_attribute('rhythm')
+        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
         self.populate_all_rhythm_quintuples()
+        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
@@ -378,7 +380,6 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.score_name,
             start_offset,
             stop_offset,
-            segment_specification.segment_name,
             fresh=True
             )
         if attribute == 'divisions':
@@ -495,7 +496,6 @@ class ConcreteInterpreter(Interpreter):
             voice.name, 
             start_offset,
             stop_offset,
-            segment_identifier,
             fresh=True,
             truncate=True
             )
@@ -597,7 +597,8 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(requested_offset, 'offset')
         timespan_inventory = timetools.TimespanInventory()
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
-            if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
+            #if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
+            if True:
                 if not rhythm_region_command.request == rhythm_command_request:
                     timespan_inventory.append(rhythm_region_command)
         timespan_inequality = timetools.timepoint_happens_during_timespan(
@@ -680,7 +681,6 @@ class ConcreteInterpreter(Interpreter):
             single_context_setting.context_name,
             start_offset,
             stop_offset,
-            segment_specification.segment_name,
             index=single_context_setting.index,
             count=single_context_setting.count,
             reverse=single_context_setting.reverse,
@@ -693,10 +693,8 @@ class ConcreteInterpreter(Interpreter):
         return command
 
     def sort_and_split_raw_commands(self, raw_commands):
-        cooked_commands = []
-        segment_identifiers = [x.start_segment_identifier for x in raw_commands]
-        assert sequencetools.all_are_equal(segment_identifiers)
         #self._debug_values(raw_commands, 'raw')
+        cooked_commands = []
         for raw_command in raw_commands:
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
