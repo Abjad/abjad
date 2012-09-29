@@ -270,7 +270,7 @@ class ConcreteInterpreter(Interpreter):
             commands.append(command)
         return commands
 
-    # TODO: eventually merge with self.get_rhythm_commnads_for_voice()
+    # TODO: eventually merge with self.get_rhythm_commands_for_voice()
     def get_division_commands_for_voice(self, voice):
         division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
@@ -664,7 +664,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(result, 'result')
         assert componenttools.is_well_formed_component(result.music)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
-        result.repeat_to_stop_offset(stop_offset)
         # TODO: encapsulate all of the following in a single call
         if rhythm_request.reverse:
             result.reverse()
@@ -674,6 +673,7 @@ class ConcreteInterpreter(Interpreter):
             result.reverse()
         if rhythm_command.rotation:
             result.rotate(rhythm_command.rotation)
+        result.repeat_to_stop_offset(stop_offset)
         return result
 
     def select_first_element_in_expr_by_parentage(self, expr, segment_specification, context_name, 
