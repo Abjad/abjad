@@ -33,6 +33,8 @@ Methods
 
     Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.delete_timespans_between
+
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.extend
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`

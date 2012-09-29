@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.duration
 
+.. autoattribute:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.offsets
+
 .. autoattribute:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.start_offset
 
 .. autoattribute:: experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.stop_offset

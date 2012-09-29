@@ -43,6 +43,14 @@ class OffsetPositionedExpression(AbjadObject):
         pass
 
     @property
+    def offsets(self):
+        '''Start- and stop-offsets of offset-positioned expression.
+
+        Return pair.
+        '''
+        return self.start_offset, self.stop_offset
+
+    @property
     def start_offset(self):
         '''Offset-positioned expression start offset.
 

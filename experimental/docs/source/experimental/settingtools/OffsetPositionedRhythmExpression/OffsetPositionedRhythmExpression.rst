@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.music
 
+.. autoattribute:: experimental.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.offsets
+
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
+
 .. autoattribute:: experimental.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.start_offset
 
     Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`

@@ -1,3 +1,4 @@
+from abjad.tools import durationtools
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 
 
@@ -66,6 +67,17 @@ class TimespanInventory(ObjectInventory):
         return True
 
     ### PUBLIC METHODS ###
+
+    def delete_timespans_between(self, start_offset, stop_offset):
+        from experimental import timetools
+        timespan_2 = durationtools.TimespanConstant(start_offset, stop_offset)
+        for timespan_1 in self[:]:
+            if timetools.timespan_2_curtails_timespan_1(timespan_1, timespan_2):
+                timespan_1.trim_to_stop_offset(timespan_2.start_offset)
+            elif timetools.timespan_2_delays_timespan_1(timespan_1, timespan_2):
+                timespan_1.trim_to_start_offset(timespan_2.stop_offset)
+            elif timetools.timespan_2_contains_timespan_1_improperly(timespan_1, timespan_2):
+                self.remove(timespan_1)
 
     def get_timespan_that_satisfies_inequality(self, timespan_inequality):
         r'''Get timespan that satisifies `timespan_inequality`::

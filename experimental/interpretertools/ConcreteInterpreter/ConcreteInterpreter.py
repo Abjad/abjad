@@ -359,9 +359,7 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_region_commands_for_attribute('rhythm')
-        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
         self.populate_all_rhythm_quintuples()
-        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
@@ -486,6 +484,10 @@ class ConcreteInterpreter(Interpreter):
                     raise TypeError(rhythm_quadruple[0])
                 if rhythm_region_expression is not None:
                     self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
+                    start_offset, stop_offset = rhythm_region_expression.offsets
+                    self.score_specification.contexts[voice_name][
+                        'rhythm_region_expressions'].delete_timespans_between(
+                        *rhythm_region_expression.offsets)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].append(
                         rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()

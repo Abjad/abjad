@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.duration
 
+.. autoattribute:: experimental.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.offsets
+
+    Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
+
 .. autoattribute:: experimental.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.start_offset
 
     Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
