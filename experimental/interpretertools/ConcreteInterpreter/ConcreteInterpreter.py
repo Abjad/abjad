@@ -346,7 +346,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_divisions(self):
         self.initialize_region_expression_inventories_for_attribute('division')
-        self.populate_all_division_region_commands()
+        self.populate_all_region_commands_for_attribute('divisions')
         self.make_division_region_expressions()
         self.make_voice_division_lists()
 
@@ -358,7 +358,7 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
-        self.populate_all_rhythm_region_commands()
+        self.populate_all_region_commands_for_attribute('rhythm')
         self.populate_all_rhythm_quintuples()
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
@@ -502,8 +502,8 @@ class ConcreteInterpreter(Interpreter):
         return division_command
 
     def make_time_signatures(self):
-        while self.score_specification.all_time_signature_settings:
-            for time_signature_setting in self.score_specification.all_time_signature_settings:
+        while self.score_specification.all_time_signature_commands:
+            for time_signature_setting in self.score_specification.all_time_signature_commands:
                 self.make_time_signatures_for_time_signature_setting(time_signature_setting)
         time_signatures = self.score_specification.time_signatures
         measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
@@ -527,7 +527,7 @@ class ConcreteInterpreter(Interpreter):
             time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
             segment_specification = self.get_start_segment_specification(time_signature_setting.selector)
             segment_specification._time_signatures = time_signatures[:]
-            self.score_specification.all_time_signature_settings.remove(time_signature_setting)
+            self.score_specification.all_time_signature_commands.remove(time_signature_setting)
 
     def make_voice_division_lists(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -543,21 +543,6 @@ class ConcreteInterpreter(Interpreter):
                 voice_division_list.divisions.append(offset_positioned_division)
             self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
 
-    def populate_all_division_region_commands(self):
-        if self.score_specification.segment_specifications:
-            for voice in iterationtools.iterate_voices_in_expr(self.score):
-                division_commands = self.get_division_commands_for_voice(voice)
-                #self._debug_values(division_commands, 'dc1')
-                division_commands = self.fuse_like_commands(division_commands)
-                #self._debug_values(division_commands, 'dc2')
-                division_commands = self.supply_missing_division_commands(division_commands, voice)
-                #self._debug_values(division_commands, 'dc3')
-                self.score_specification.contexts[voice.name][
-                    'division_region_commands'][:] = division_commands[:]
-                for division_command in division_commands:
-                    if division_command not in self.score_specification.all_division_region_commands:
-                        self.score_specification.all_division_region_commands.append(division_command)
-
     def populate_all_rhythm_quintuples(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
@@ -565,18 +550,32 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice, voice_division_list)
                 self.score_specification.all_rhythm_quintuples.extend(rhythm_quintuples)
 
-    def populate_all_rhythm_region_commands(self):
+    def populate_all_region_commands_for_attribute(self, attribute):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-                rhythm_commands = self.fuse_like_commands(rhythm_commands)
-                rhythm_commands = self.supply_missing_rhythm_commands(rhythm_commands, voice)
-                self.score_specification.contexts[voice.name][
-                    'rhythm_region_commands'][:] = rhythm_commands[:]
-                for rhythm_command in rhythm_commands:
-                    if rhythm_command not in self.score_specification.all_rhythm_region_commands:
-                        self.score_specification.all_rhythm_region_commands.append(rhythm_command)
+                if attribute == 'divisions':
+                    region_commands = self.get_division_commands_for_voice(voice)
+                elif attribute == 'rhythm':
+                    region_commands = self.get_rhythm_commands_for_voice(voice)
+#                elif attribute == 'time_signatures':
+#                    region_commands = \
+#                        segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
+#                        attribute='time_signatures')
+#                    region_commands = region_commands[-1:]
+                else:
+                    raise ValueError(attribute)
+                region_commands = self.fuse_like_commands(region_commands)
+                region_commands = self.supply_missing_region_commands_for_attribute(
+                    region_commands, voice, attribute)
+                singular_attribute = attribute.rstrip('s')
+                key = '{}_region_commands'.format(singular_attribute)
+                self.score_specification.contexts[voice.name][key][:] = region_commands[:]
+                all_region_commands = getattr(self.score_specification, 'all_' + key)
+                for region_command in region_commands:
+                    if region_command not in all_region_commands:
+                        all_region_commands.append(region_command)
 
+    # TODO: eventually merge with self.populate_all_region_commands_for_attribute()
     def populate_all_time_signature_commands(self):
         for segment_specification in self.score_specification.segment_specifications:
             time_signature_settings = \
@@ -585,7 +584,7 @@ class ConcreteInterpreter(Interpreter):
             if not time_signature_settings:
                 continue
             time_signature_setting = time_signature_settings[-1]
-            self.score_specification.all_time_signature_settings.append(time_signature_setting)
+            self.score_specification.all_time_signature_commands.append(time_signature_setting)
 
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
@@ -776,6 +775,12 @@ class ConcreteInterpreter(Interpreter):
             settings_to_store = new_settings + forwarded_existing_settings
             self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
 
+    def supply_missing_region_commands_for_attribute(self, region_commands, voice, attribute):
+        if attribute == 'divisions':
+            return self.supply_missing_division_commands(region_commands, voice)
+        else:
+            return region_commands
+        
     def supply_missing_division_commands(self, division_region_commands, voice):
         #self._debug_values(division_region_commands, 'rdcs')
         if not division_region_commands:
@@ -804,10 +809,6 @@ class ConcreteInterpreter(Interpreter):
         result.append(right_division_region_command)
         #self._debug_values(result, 'result')
         return result
-
-    # does this method need to be implemented?
-    def supply_missing_rhythm_commands(self, rhythm_region_commands, voice):
-        return rhythm_region_commands
 
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)

@@ -36,7 +36,7 @@ class ScoreSpecification(Specification):
         self._all_division_region_commands = []
         self._all_rhythm_quintuples = []
         self._all_rhythm_region_commands = []
-        self._all_time_signature_settings = []
+        self._all_time_signature_commands = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
 
@@ -102,14 +102,14 @@ class ScoreSpecification(Specification):
         return self._all_rhythm_region_commands
 
     @property
-    def all_time_signature_settings(self):
+    def all_time_signature_commands(self):
         '''Read-only list of all time signature settings.
 
         Populated at the beginning of time signature interpretation by interpreter.
 
         Return list.
         '''
-        return self._all_time_signature_settings
+        return self._all_time_signature_commands
 
     @property
     def context_names(self):
