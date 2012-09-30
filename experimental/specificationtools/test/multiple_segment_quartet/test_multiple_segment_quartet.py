@@ -138,6 +138,7 @@ def test_multiple_segment_quartet_04():
 def test_multiple_segment_quartet_05():
     '''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
     '''
+    py.test.skip('working on reintegrating rotation now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -162,6 +163,7 @@ def test_multiple_segment_quartet_05():
 def test_multiple_segment_quartet_06():
     '''As above with T2 equal to T1 and a hard break between.
     '''
+    py.test.skip('working on reintegrating rotation now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)

@@ -42,6 +42,8 @@ Methods
 
     Inherited from :py:class:`OffsetPositionedExpression.OffsetPositionedExpression <experimental.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
+.. automethod:: experimental.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.reverse
+
 .. automethod:: experimental.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.trim_to_start_offset
 
 .. automethod:: experimental.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.trim_to_stop_offset

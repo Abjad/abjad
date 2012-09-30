@@ -11,6 +11,12 @@ Read-only Properties
 
 .. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.all_are_contiguous
 
+.. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.axis
+
+.. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.start_offset
+
+.. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.stop_offset
+
 .. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -24,6 +30,8 @@ Read/write Properties
 
 Methods
 -------
+
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.adjust_to_stop_offset
 
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.append
 
@@ -63,13 +71,19 @@ Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.reverse
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.repeat_to_stop_offset
 
-    Inherited from :py:class:`__builtin__.list`
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.reverse
 
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.sort
 
     Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.translate_timespans
+
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.trim_to_start_offset
+
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.trim_to_stop_offset
 
 Special Methods
 ---------------

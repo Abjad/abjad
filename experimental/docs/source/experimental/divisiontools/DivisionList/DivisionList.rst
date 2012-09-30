@@ -39,6 +39,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.voice_name
 
+Methods
+-------
+
+.. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.reverse
+
 Special Methods
 ---------------
 

@@ -206,3 +206,10 @@ class DivisionList(AbjadObject):
     @property
     def voice_name(self):
         return self._voice_name
+
+    ### PUBLIC METHODS ###
+
+    def reverse(self):
+        '''Operate in place and return none.
+        '''
+        self.divisions.reverse()

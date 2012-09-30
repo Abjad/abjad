@@ -52,6 +52,9 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
     ### PUBLIC METHODS ###
 
+    def reverse(self):
+        self.division_list.reverse()
+
     def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
 
