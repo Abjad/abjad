@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.axis
 
+.. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.contents_length
+
 .. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.start_offset
 
 .. autoattribute:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.stop_offset
@@ -74,6 +76,8 @@ Methods
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.repeat_to_stop_offset
 
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.reverse
+
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.rotate
 
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.sort
 

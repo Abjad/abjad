@@ -78,6 +78,16 @@ class TimespanInventory(ObjectInventory):
             return (self.start_offset + self.stop_offset) / 2
 
     @property
+    def contents_length(self):
+        '''Sum of the length of all timespans in inventory.
+
+        .. note:: add example.
+
+        Return nonnegative integer.
+        '''
+        return sum([len(timespan) for timespan in self])
+    
+    @property
     def start_offset(self):
         '''Earliest start offset of any timespan in inventory.
 
@@ -258,6 +268,44 @@ class TimespanInventory(ObjectInventory):
             timespan._stop_offset = new_stop_offset
             if hasattr(timespan, 'reverse'):
                 timespan.reverse()
+
+    def rotate(self, rotation):
+        '''Rotate *elements* of timespans.
+
+        .. note:: add example.
+        
+        Operation only makes sense if timespans are contiguous.
+
+        Operate in place and return none.
+        '''
+        assert isinstance(rotation, int)
+        assert self.all_are_contiguous
+        elements_to_move = rotation % self.contents_length
+        if elements_to_move == 0:
+            return
+        if True:
+            for timespan in reversed(self[:]):
+                if len(timespan) <= elements_to_move:
+                    inventory_start_offset = self.start_offset
+                    self.remove(timespan)
+                    self.translate_timespans(timespan.duration)
+                    timespan._start_offset = inventory_start_offset
+                    self.insert(0, timespan)
+                    elements_to_move -= len(timespan)
+                elif elements_to_move < len(timespan):
+                    #left_timespan, right_timespan = timespan.fracture(elements_to_move)
+                    left_timespan, right_timespan = timespan.fracture(-elements_to_move)
+                    inventory_start_offset = self.start_offset
+                    self.remove(timespan)
+                    self.append(left_timespan)
+                    self.translate_timespans(right_timespan.duration)
+                    right_timespan._start_offset = inventory_start_offset
+                    self.insert(0, right_timespan)
+                    elements_to_move -= len(right_timespan)
+                if elements_to_move < 0:
+                    raise Exception(elements_to_move)
+                if elements_to_move == 0:
+                    break
 
     def translate_timespans(self, addendum):
         '''Translate every timespan in inventory by `addendum`.

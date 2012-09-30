@@ -49,6 +49,13 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
     __deepcopy__ = __copy__
 
+    def __len__(self):
+        '''Defined equal to number of leaves in ``self.music``.
+    
+        Return nonnegative integer.
+        '''
+        return len(self.music.leaves)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

@@ -42,6 +42,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.fracture
+
 .. automethod:: experimental.divisiontools.DivisionList.DivisionList.DivisionList.reverse
 
 Special Methods

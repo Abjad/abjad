@@ -138,18 +138,17 @@ def test_multiple_segment_quartet_04():
 def test_multiple_segment_quartet_05():
     '''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
     '''
-    py.test.skip('working on reintegrating rotation now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.make_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(3, 16)], contexts=segment.v1)
-    source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
-    segment.set_divisions(source, contexts=segment.v2, rotation=-1, truncate=True)
-    segment.set_divisions(source, contexts=segment.v3, rotation=-2, truncate=True)
-    segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
+    segment.set_divisions([(3, 16)], contexts=['Voice 1'])
+    source = segment.request_divisions('Voice 1') 
+    segment.set_divisions(source, contexts=['Voice 2'], rotation=-1, truncate=True)
+    segment.set_divisions(source, contexts=['Voice 3'], rotation=-2, truncate=True)
+    segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.make_segment('T2')
@@ -163,7 +162,6 @@ def test_multiple_segment_quartet_05():
 def test_multiple_segment_quartet_06():
     '''As above with T2 equal to T1 and a hard break between.
     '''
-    py.test.skip('working on reintegrating rotation now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -171,10 +169,10 @@ def test_multiple_segment_quartet_06():
     segment = score_specification.make_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
-    source = score_specification.request_divisions('Voice 1', 'T1', segment_count=1)
-    segment.set_divisions(source, contexts=segment.v2, rotation=-1, truncate=True)
-    segment.set_divisions(source, contexts=segment.v3, rotation=-2, truncate=True)
-    segment.set_divisions(source, contexts=segment.v4, rotation=-3, truncate=True)
+    source = segment.request_divisions('Voice 1') 
+    segment.set_divisions(source, contexts=['Voice 2'], rotation=-1, truncate=True)
+    segment.set_divisions(source, contexts=['Voice 3'], rotation=-2, truncate=True)
+    segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.make_segment('T2')

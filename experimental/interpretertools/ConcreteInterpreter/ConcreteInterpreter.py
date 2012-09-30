@@ -165,8 +165,11 @@ class ConcreteInterpreter(Interpreter):
         keep_timespan = durationtools.TimespanConstant(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         #self._debug(trimmed_division_region_expressions, 'trimmed')
+        # TODO: eventually encapsulate in a single call
         if division_material_request.reverse:
             trimmed_division_region_expressions.reverse()
+        if division_material_request.rotation:
+            trimmed_division_region_expressions.rotate(division_material_request.rotation)
         return trimmed_division_region_expressions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
@@ -203,12 +206,12 @@ class ConcreteInterpreter(Interpreter):
             else:
                 for division_region_expression in division_region_expressions:
                     division_region_expression._voice_name = voice_name
-                #self._debug(division_region_expressions, 'expressions')
                 addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
                 division_region_expressions.translate_timespans(addendum)
-                #self._debug(division_region_expressions, 'translated')
                 if division_region_command.reverse:
                     division_region_expressions.reverse()
+                if division_region_command.rotation:
+                    division_region_expressions.rotate(division_region_command.rotation)
                 division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
                 return division_region_expressions
         else:

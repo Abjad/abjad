@@ -19,8 +19,14 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
     def __init__(self, division_list, voice_name=None, start_offset=None, stop_offset=None):
         OffsetPositionedExpression.__init__(
             self, voice_name, start_offset=start_offset, stop_offset=stop_offset)
-        division_list = divisiontools.DivisionList(division_list)
+        if not isinstance(division_list, divisiontools.DivisionList):
+            division_list = divisiontools.DivisionList(division_list)
         self._division_list = division_list
+
+    ### SPECIAL METHODS ###
+
+    def __len__(self):
+        return len(self.division_list)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -51,6 +57,15 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         return self.division_list.duration
 
     ### PUBLIC METHODS ###
+    
+    def fracture(self, slice_index):
+        assert isinstance(slice_index, int)
+        left_division_list, right_division_list = self.division_list.fracture(slice_index)
+        left_result = type(self)(
+            left_division_list, voice_name=self.voice_name, start_offset=self.start_offset)
+        right_result = type(self)(
+            right_division_list, voice_name=self.voice_name, start_offset=left_result.stop_offset)
+        return left_result, right_result
 
     def reverse(self):
         self.division_list.reverse()
