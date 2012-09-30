@@ -1,15 +1,20 @@
-1.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
+1.  Remove all references to T1, T2.
+
+2.  Reimplement exemplum [X3] using division material requests instead
+    of rhythm material requests.
+
+3.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
     in terms of a single get_score_offsets() method.
 
-2.  Integrate timespan inequality filtering into all inequality selector classes.
+4.  Integrate timespan inequality filtering into all inequality selector classes.
 
-3.  Author tests to make sure that persistent overlapping division selectors 
+5.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-4.  Extend markuptools.make_centered_title_markup() with optional single_line=True keyword.
+6.  Extend markuptools.make_centered_title_markup() with optional single_line=True keyword.
     Then set to false in helpertools.write_test_output() and rerender all test collateral.
 
-5.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+7.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
