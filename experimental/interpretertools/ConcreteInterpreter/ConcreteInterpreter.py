@@ -233,11 +233,12 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
                     rhythm_command.request, rhythm_command.request.context_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
-            elif isinstance(rhythm_command.request, requesttools.RhythmRequest):
+            elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
+                assert rhythm_command.request.attribute == 'rhythm'
                 # maybe smarter to do all of these comparisons on command rather than request
                 if not result:
                     result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
-                elif not isinstance(result[-1][0], requesttools.RhythmRequest):
+                elif not isinstance(result[-1][0], requesttools.MaterialRequest):
                     result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
                 elif rhythm_command.request != result[-1][0]:
                     result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
@@ -481,7 +482,7 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_quadruple = rhythm_quintuple[1:]
                 if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
-                elif isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
+                elif isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
                     rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(
                         *rhythm_quadruple)
                 else:
@@ -597,7 +598,7 @@ class ConcreteInterpreter(Interpreter):
     def reestablish_rhythm_material_request_offsets(self, rhythm_quadruples):
         result = []
         for rhythm_quadruple in rhythm_quadruples:
-            if isinstance(rhythm_quadruple[0], requesttools.RhythmRequest):
+            if isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
                 rhythm_command = rhythm_quadruple[-1]
                 assert isinstance(rhythm_command, settingtools.RhythmCommand)
                 start_offset = rhythm_command.start_offset
@@ -641,7 +642,8 @@ class ConcreteInterpreter(Interpreter):
 
     def rhythm_request_to_rhythm_region_expression(
         self, rhythm_request, start_offset, stop_offset, rhythm_command):
-        assert isinstance(rhythm_request, requesttools.RhythmRequest)
+        assert isinstance(rhythm_request, requesttools.MaterialRequest)
+        assert rhythm_request.attribute == 'rhythm'
         #self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name

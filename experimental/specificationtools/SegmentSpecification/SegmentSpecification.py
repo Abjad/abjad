@@ -432,7 +432,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(request)
-            requesttools.RhythmRequest(
+            requesttools.MaterialRequest(
                 'rhythm',
                 selectortools.SingleSegmentSelector(
                     identifier='red'
@@ -443,7 +443,7 @@ class SegmentSpecification(Specification):
         Return rhythm request.        
         '''
         selector = self.select_segment()
-        return requesttools.RhythmRequest(
+        return requesttools.MaterialRequest(
             'rhythm', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
