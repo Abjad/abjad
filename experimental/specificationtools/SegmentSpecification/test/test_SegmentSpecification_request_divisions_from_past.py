@@ -98,7 +98,6 @@ def test_SegmentSpecification_request_divisions_from_past_04():
 def test_SegmentSpecification_request_divisions_from_past_05():
     '''From-past division material request with region break preservation.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -114,10 +113,10 @@ def test_SegmentSpecification_request_divisions_from_past_05():
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures([(5, 8), (6, 8)])
     red_voice_1_divisions = red_segment.request_divisions('Voice 1')
-    blue_segment.set_divisions(red_voice_1_divisions)
+    blue_segment.set_divisions(red_voice_1_divisions, contexts=['Voice 1'])
 
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
