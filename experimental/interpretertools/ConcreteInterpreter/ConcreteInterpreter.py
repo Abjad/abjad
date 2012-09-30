@@ -184,17 +184,6 @@ class ConcreteInterpreter(Interpreter):
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-        elif isinstance(division_region_command.request, requesttools.MaterialRequest):
-            assert division_region_command.request.attribute == 'divisions'
-            division_material_request = division_region_command.request
-            divisions = self.division_material_request_to_divisions(division_material_request)
-            if divisions is None:
-                return
-            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
-            division_region_command._request = divisions
-            division_region_expression = self.division_region_command_to_division_region_expression(
-                division_region_command, voice_name)
-            return division_region_expression
         elif isinstance(division_region_command.request, requesttools.CommandRequest):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
@@ -202,6 +191,17 @@ class ConcreteInterpreter(Interpreter):
                 division_command_request, voice_name)
             divisions = requesttools.apply_request_transforms(division_command_request, divisions)
             divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
+            division_region_command._request = divisions
+            division_region_expression = self.division_region_command_to_division_region_expression(
+                division_region_command, voice_name)
+            return division_region_expression
+        elif isinstance(division_region_command.request, requesttools.MaterialRequest):
+            assert division_region_command.request.attribute == 'divisions'
+            division_material_request = division_region_command.request
+            divisions = self.division_material_request_to_divisions(division_material_request)
+            if divisions is None:
+                return
+            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
@@ -229,6 +229,10 @@ class ConcreteInterpreter(Interpreter):
             stop_offset = durationtools.Offset(stop_offset)
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
+            elif isinstance(rhythm_command.request, requesttools.CommandRequest):
+                rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
+                    rhythm_command.request, rhythm_command.request.context_name)
+                result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.RhythmRequest):
                 # maybe smarter to do all of these comparisons on command rather than request
                 if not result:
@@ -240,10 +244,6 @@ class ConcreteInterpreter(Interpreter):
                 else:
                     last_start_offset = result.pop()[1]
                     result.append((rhythm_command.request, last_start_offset, stop_offset, rhythm_command))
-            elif isinstance(rhythm_command.request, requesttools.CommandRequest):
-                rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
-                    rhythm_command.request, rhythm_command.request.context_name)
-                result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             else:
                 raise TypeError(rhythm_command.request)
         return result
@@ -523,11 +523,11 @@ class ConcreteInterpreter(Interpreter):
             time_signatures = time_signature_setting.request.payload
             time_signatures = requesttools.apply_request_transforms(
                 time_signature_setting.request, time_signatures)
-        elif isinstance(time_signature_setting.request, requesttools.MaterialRequest):
-            time_signatures = self.time_signature_material_request_to_time_signatures(
-                time_signature_setting.request)
         elif isinstance(time_signature_setting.request, requesttools.CommandRequest):
             time_signatures = self.time_signature_command_request_to_time_signatures(
+                time_signature_setting.request)
+        elif isinstance(time_signature_setting.request, requesttools.MaterialRequest):
+            time_signatures = self.time_signature_material_request_to_time_signatures(
                 time_signature_setting.request)
         else:
             raise TypeError(time_signature_setting.request)
