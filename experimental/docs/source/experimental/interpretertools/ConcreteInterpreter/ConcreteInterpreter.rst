@@ -130,8 +130,6 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.time_signature_material_request_to_time_signatures
 
-.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.trim_rhythm_region_expressions
-
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.unpack_multiple_context_settings_for_score
 
     Inherited from :py:class:`Interpreter.Interpreter <experimental.interpretertools.Interpreter.Interpreter.Interpreter>`

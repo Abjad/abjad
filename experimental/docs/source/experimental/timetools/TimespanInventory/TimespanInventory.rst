@@ -53,6 +53,8 @@ Methods
 
     Inherited from :py:class:`__builtin__.list`
 
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.keep_timespans_between
+
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.pop
 
     Inherited from :py:class:`__builtin__.list`

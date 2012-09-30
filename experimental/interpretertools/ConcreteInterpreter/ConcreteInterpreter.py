@@ -161,6 +161,7 @@ class ConcreteInterpreter(Interpreter):
         if not division_region_expressions.all_are_contiguous:
             return
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
+        # maybe better to insert into timespan inventory for trimming
         trimmed_division_region_expressions[0].trim_to_start_offset(start_offset)
         trimmed_division_region_expressions[-1].trim_to_stop_offset(stop_offset)
         divisions = []
@@ -359,7 +360,9 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_region_commands_for_attribute('rhythm')
+        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
         self.populate_all_rhythm_quintuples()
+        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
@@ -472,6 +475,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_rhythm_region_expressions(self):
         while self.score_specification.all_rhythm_quintuples:
+            #self._debug(len(self.score_specification.all_rhythm_quintuples), 'len')
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 rhythm_quadruple = rhythm_quintuple[1:]
@@ -644,9 +648,10 @@ class ConcreteInterpreter(Interpreter):
         source_score_offsets = rhythm_request.selector.get_score_offsets(
             self.score_specification, rhythm_request.context_name)
         source_timespan = durationtools.TimespanConstant(*source_score_offsets)
+        #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        #self._debug_values(rhythm_region_expressions, 'rrx')
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         timespan_inequality = timetools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
@@ -654,8 +659,9 @@ class ConcreteInterpreter(Interpreter):
         if not rhythm_region_expressions:
             return
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
+        rhythm_region_expressions = timetools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
-        self.trim_rhythm_region_expressions(rhythm_region_expressions, source_timespan)
+        rhythm_region_expressions.keep_timespans_between(source_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(
             voice_name=voice_name, start_offset=start_offset)
         #self._debug(result, 'result')
@@ -847,11 +853,3 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(absolute_request, requesttools.AbsoluteRequest)
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
         return time_signatures
-
-    def trim_rhythm_region_expressions(self, rhythm_region_expressions, source_timespan):
-        if timetools.timespan_2_overlaps_only_start_of_timespan_1(
-            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[0]):
-            rhythm_region_expressions[0].trim_to_start_offset(source_timespan.start_offset)
-        if timetools.timespan_2_overlaps_only_stop_of_timespan_1(
-            timespan_1=source_timespan, timespan_2=rhythm_region_expressions[-1]):
-            rhythm_region_expressions[-1].trim_to_stop_offset(source_timespan.stop_offset)

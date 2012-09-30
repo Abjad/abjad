@@ -16,3 +16,9 @@
 
 6.  Extend markuptools.make_centered_title_markup() with optional single_line=True keyword.
     Then set to false in helpertools.write_test_output() and rerender all test collateral.
+
+7.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+    It means truncate last division in section. It also means restart divisions at
+    beginning of following section. Implement a SegmentSpecification.set_divisions()
+    boolean 'restart' keyword to separate these functions. When restart=True
+    then truncate will always effectively be interpreted as true.

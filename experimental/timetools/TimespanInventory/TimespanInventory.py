@@ -68,6 +68,7 @@ class TimespanInventory(ObjectInventory):
 
     ### PUBLIC METHODS ###
 
+    # TODO: change interface to accept single timespan
     def delete_timespans_between(self, start_offset, stop_offset):
         from experimental import timetools
         timespan_2 = durationtools.TimespanConstant(start_offset, stop_offset)
@@ -167,3 +168,20 @@ class TimespanInventory(ObjectInventory):
         Return boolean.
         '''
         return bool(self.get_timespans_that_satisfy_inequality(timespan_inequality))
+
+    def keep_timespans_between(self, keep_timespan):
+        from experimental import timetools
+        for timespan_1 in self[:]:
+            if timetools.timespan_2_contains_timespan_1_improperly(timespan_1, keep_timespan):
+                pass
+            elif not timetools.timespan_2_intersects_timespan_1(timespan_1, keep_timespan):
+                self.remove(timespan_1)
+            elif timetools.timespan_2_delays_timespan_1(timespan_1, keep_timespan):
+                timespan_1.trim_to_stop_offset(keep_timespan.stop_offset)
+            elif timetools.timespan_2_curtails_timespan_1(timespan_1, keep_timespan):
+                timespan_1.trim_to_start_offset(keep_timespan.start_offset)
+            elif timetools.timespan_2_trisects_timespan_1(timespan_1, keep_timespan):
+                timespan_1.trim_to_start_offset(keep_timespan.start_offset)
+                timespan_1.trim_to_stop_offset(keep_timespan.stop_offset)
+            else:
+                raise ValueError
