@@ -490,8 +490,8 @@ class ConcreteInterpreter(Interpreter):
                     self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
                     start_offset, stop_offset = rhythm_region_expression.offsets
                     self.score_specification.contexts[voice_name][
-                        'rhythm_region_expressions'].delete_timespans_between(
-                        *rhythm_region_expression.offsets)
+                        'rhythm_region_expressions'].delete_material_that_intersects_timespan(
+                            rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].append(
                         rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()
@@ -661,7 +661,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions = timetools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
-        rhythm_region_expressions.keep_timespans_between(source_timespan)
+        rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(
             voice_name=voice_name, start_offset=start_offset)
         #self._debug(result, 'result')

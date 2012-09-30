@@ -33,7 +33,7 @@ Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.delete_timespans_between
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.delete_material_that_intersects_timespan
 
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.extend
 
@@ -53,7 +53,7 @@ Methods
 
     Inherited from :py:class:`__builtin__.list`
 
-.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.keep_timespans_between
+.. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.keep_material_that_intersects_timespan
 
 .. automethod:: experimental.timetools.TimespanInventory.TimespanInventory.TimespanInventory.pop
 
