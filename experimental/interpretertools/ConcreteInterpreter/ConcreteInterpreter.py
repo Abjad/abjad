@@ -161,9 +161,9 @@ class ConcreteInterpreter(Interpreter):
         if not division_region_expressions.all_are_contiguous:
             return
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
-        # maybe better to insert into timespan inventory for trimming
-        trimmed_division_region_expressions[0].trim_to_start_offset(start_offset)
-        trimmed_division_region_expressions[-1].trim_to_stop_offset(stop_offset)
+        trimmed_division_region_expressions = timetools.TimespanInventory(trimmed_division_region_expressions)
+        keep_timespan = durationtools.TimespanConstant(start_offset, stop_offset)
+        trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         divisions = []
         for division_region_expression in trimmed_division_region_expressions:
             divisions.extend(division_region_expression.divisions)
