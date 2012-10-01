@@ -20,7 +20,7 @@ def test_multiple_segment_quartet_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.make_segment(name='T1')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
@@ -30,8 +30,8 @@ def test_multiple_segment_quartet_01():
     lower = [segment.v3, segment.v4]
     segment.set_rhythm(library.note_filled_tokens, contexts=lower)
 
-    segment = score_specification.make_segment(name='T2')
-    source = score_specification['T1'].request_time_signatures()
+    segment = score_specification.make_segment(name='blue')
+    source = score_specification['red'].request_time_signatures()
     segment.set_time_signatures(source, index=-2, count=2)
 
     score = score_specification.interpret()
@@ -50,7 +50,7 @@ def test_multiple_segment_quartet_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.make_segment(name='T1')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
@@ -61,8 +61,8 @@ def test_multiple_segment_quartet_02():
     segment.set_divisions([(4, 16), (3, 16)], contexts=lower)
     segment.set_rhythm(library.note_filled_tokens, contexts=lower)
 
-    segment = score_specification.make_segment(name='T2')
-    source = score_specification['T1'].request_time_signatures()
+    segment = score_specification.make_segment(name='blue')
+    source = score_specification['red'].request_time_signatures()
     segment.set_time_signatures(source, index=-2, count=2)
 
     score = score_specification.interpret()

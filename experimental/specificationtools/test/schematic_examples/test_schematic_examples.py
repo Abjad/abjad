@@ -1,3 +1,4 @@
+import py
 from abjad import *
 from experimental import *
 
@@ -16,16 +17,16 @@ def test_schematic_examples_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.make_segment('T1')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
-    source = segment.request_divisions('Voice 1') 
-    segment.set_divisions(source, contexts=['Voice 2'], rotation=-1, truncate=True)
-    segment.set_divisions(source, contexts=['Voice 3'], rotation=-2, truncate=True)
-    segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], truncate=True)
+    source = red_segment.request_divisions('Voice 1') 
+    red_segment.set_divisions(source, contexts=['Voice 2'], rotation=-1, truncate=True)
+    red_segment.set_divisions(source, contexts=['Voice 3'], rotation=-2, truncate=True)
+    red_segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
+    red_segment.set_rhythm(library.thirty_seconds)
 
-    segment = score_specification.make_segment('T2')
+    blue_segment = score_specification.make_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -46,17 +47,17 @@ def test_schematic_examples_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.make_segment('red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(3, 16)], contexts='Voice 1', truncate=True)
-    segment.set_divisions([(4, 16)], contexts='Voice 2', truncate=True)
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(3, 16)], contexts='Voice 1', truncate=True)
+    red_segment.set_divisions([(4, 16)], contexts='Voice 2', truncate=True)
     source_1 = score_specification.request_divisions('Voice 1', 'red', segment_count=1)
     source_2 = score_specification.request_divisions('Voice 2', 'red', segment_count=1)
+    red_segment.set_divisions(source_1, contexts=['Voice 3'], reverse=True, truncate=True)
+    red_segment.set_divisions(source_2, contexts=['Voice 4'], reverse=True, truncate=True)
+    red_segment.set_rhythm(library.thirty_seconds)
 
-    segment.set_divisions(source_1, contexts=['Voice 3'], reverse=True, truncate=True)
-    segment.set_divisions(source_2, contexts=['Voice 4'], reverse=True, truncate=True)
-    segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.make_segment('blue')
+    blue_segment = score_specification.make_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -124,3 +125,33 @@ def test_schematic_examples_03():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_schematic_examples_04():
+    '''Schematic example X4.
+    Quartet in two segments.
+    First segment time signatures [4/8, 3/8]. 
+    First staff 1:1:1 total time then thirty-seconds then sixteenths then eighths.
+    Staff 2 rhythm equal to staff 1 rhythm regions rotated -1.
+    Staff 3 rhythm equal to staff 1 rhythm regions rotate -2.
+    Staff 4 divisions equal to naive time signature divisions.
+    Staff 4 rhythm equal to note-filled tokens.
+    Segment 2 time signatures preserve segment 1 time signatures.
+    Segment 2 otherwise equal to segment 1 flipped about the y axis.
+    '''
+    py.test.skip('working on this one now.')
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    #left = red_segment.select_segment_ratio_part((1, 1, 1), 0)
+    #middle = red_segment.select_segment_ratio_part((1, 1, 1), 1)
+    #right = red_segment.select_segment_ratio_part((1, 1, 1), 2)
+    # TODO: implement SegmentSpecification method to return [(7, 24), (7, 24), (7, 24)] directly
+    red_segment.set_divisions(3 * [(7, 24)])
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
+    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
