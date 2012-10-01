@@ -110,31 +110,6 @@ def test_multiple_segment_quartet_03():
 
 
 def test_multiple_segment_quartet_04():
-    '''V3, V4 divisions equal V1, V2 divisions reversed.
-    '''
-
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
-
-    segment = score_specification.make_segment('red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(3, 16)], contexts='Voice 1', truncate=True)
-    segment.set_divisions([(4, 16)], contexts='Voice 2', truncate=True)
-    source_1 = score_specification.request_divisions('Voice 1', 'red', segment_count=1)
-    source_2 = score_specification.request_divisions('Voice 2', 'red', segment_count=1)
-
-    segment.set_divisions(source_1, contexts=['Voice 3'], reverse=True, truncate=True)
-    segment.set_divisions(source_2, contexts=['Voice 4'], reverse=True, truncate=True)
-    segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.make_segment('blue')
-    score = score_specification.interpret()
-
-    current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
-
-
-def test_multiple_segment_quartet_05():
     '''F1 divisions truncated in F1. F2, F3, F4 divisions with rotation.
     '''
 
@@ -152,91 +127,6 @@ def test_multiple_segment_quartet_05():
 
     segment = score_specification.make_segment('T2')
     score = score_specification.interpret()
-
-    current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
-
-
-def test_multiple_segment_quartet_06():
-    '''As above with T2 equal to T1 and a hard break between.
-    '''
-
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
-
-    segment = score_specification.make_segment('T1')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
-    source = segment.request_divisions('Voice 1') 
-    segment.set_divisions(source, contexts=['Voice 2'], rotation=-1, truncate=True)
-    segment.set_divisions(source, contexts=['Voice 3'], rotation=-2, truncate=True)
-    segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
-    segment.set_rhythm(library.thirty_seconds)
-
-    segment = score_specification.make_segment('T2')
-    score = score_specification.interpret()
-
-    current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
-
-
-def test_multiple_segment_quartet_07():
-    '''Exemplum [X3].
-    Quartet in 2 segments. T1 time signatures 6/8 3/8. 
-    F1 1:1 of measures then [3/16, 5/16] divisions.
-    F2 1:1 of meaures then [5/16, 3/16] divisions.
-    F3 1:1 of total time then [3/16, 5/16] divisions from F1.
-    F4 1:1 of total time then [5/16, 3/16] divisions from F2.
-    Note-filled tokens scorewide.
-    T2 equal to T1 flipped about the y axis in all respects.
-    ''' 
-
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = specificationtools.ScoreSpecification(score_template)
-
-    red_segment = score_specification.make_segment(name='red')
-    red_segment.set_time_signatures([(6, 8), (3, 8)])
-    left_measure = red_segment.select_background_measures_ratio_part((1, 1), 0, is_count=True)
-    right_measure = red_segment.select_background_measures_ratio_part((1, 1), -1, is_count=True)
-    red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], selector=left_measure)
-    red_segment.set_divisions([(5, 16)], contexts=['Voice 1'], selector=right_measure)
-    red_segment.set_divisions([(5, 16)], contexts=['Voice 2'], selector=left_measure)
-    red_segment.set_divisions([(3, 16)], contexts=['Voice 2'], selector=right_measure)
-
-    left_half = red_segment.select_segment_ratio_part((1, 1), 0)
-    right_half = red_segment.select_segment_ratio_part((1, 1), -1)
-
-    voice_1_left_division_command = red_segment.request_division_command('Voice 1', selector=left_measure)
-    voice_1_right_division_command = red_segment.request_division_command('Voice 1', selector=right_measure)
-
-    red_segment.set_divisions(voice_1_left_division_command, contexts=['Voice 3'], selector=left_half)
-    red_segment.set_divisions(voice_1_right_division_command, contexts=['Voice 3'], selector=right_half)
-
-    voice_2_left_division_command = red_segment.request_division_command('Voice 2', selector=left_measure)
-    voice_2_right_division_command = red_segment.request_division_command('Voice 2', selector=right_measure)
-
-    red_segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], selector=left_half)
-    red_segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], selector=right_half)
-
-    red_segment.set_rhythm(library.note_filled_tokens)
-
-    blue_segment = score_specification.make_segment(name='blue')
-    
-    red_time_signatures = red_segment.request_time_signatures()
-    blue_segment.set_time_signatures(red_time_signatures, reverse=True)
-
-    red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
-    red_voice_2_rhythm = red_segment.request_rhythm('Voice 2')
-    red_voice_3_rhythm = red_segment.request_rhythm('Voice 3')
-    red_voice_4_rhythm = red_segment.request_rhythm('Voice 4')
-    blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'], reverse=True)
-    blue_segment.set_rhythm(red_voice_2_rhythm, contexts=['Voice 2'], reverse=True)
-    blue_segment.set_rhythm(red_voice_3_rhythm, contexts=['Voice 3'], reverse=True)
-    blue_segment.set_rhythm(red_voice_4_rhythm, contexts=['Voice 4'], reverse=True)
-
-    score = score_specification.interpret() 
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
