@@ -2,6 +2,832 @@ Version history
 ===============
 
 
+Abjad 2.10
+----------
+
+Released 2012-10-01. Built from r7577.
+Implements 437 public classes and 982 functions totalling 179,000 lines of code.
+
+The following packages now load by default when you start Abjad::
+
+    abjadbooktools
+    beamtools
+    chordtools
+    componenttools
+    containertools
+    contexttools
+    developerscripttools
+    durationtools
+    formattools
+    gracetools
+    instrumenttools
+    introspectiontools
+    iotools
+    iterationtools
+    labeltools
+    layouttools
+    leaftools
+    lilypondfiletools
+    marktools
+    markuptools
+    mathtools
+    measuretools
+    notetools
+    offsettools
+    pitcharraytools
+    pitchtools
+    resttools
+    rhythmtreetools
+    schemetools
+    scoretemplatetools
+    scoretools
+    sequencetools
+    sievetools
+    skiptools
+    spannertools
+    stafftools
+    stringtools
+    tempotools
+    tietools
+    timeintervaltools
+    timesignaturetools
+    timetokentools
+    tonalitytools
+    tuplettools
+    verticalitytools
+    voicetools
+
+Improved formatting engine.  Scores now format approximately 30% faster.
+
+Improved LilyPond parser.
+
+Replaced that Abjad 'abjad>' prompt with the Python '>>>' prompt everywhere in the API.
+
+Implemented parsing in markuptools.Markup on instantiation from a single string::
+
+    >>> markuptools.Markup(r'\bold \tiny { foo bar baz }')
+    Markup((MarkupCommand('bold', MarkupCommand('tiny', ['foo', 'bar', 'baz'])),))
+  
+  ::
+
+    >>> print _.indented_lilypond_format
+    \markup {
+        \bold
+            \tiny
+                {
+                    foo
+                    bar
+                    baz
+                }
+        }
+
+New constants are available globally::
+
+    Left
+    Right
+    Down
+    Center
+    Up
+
+A new configuration tool is available::
+
+    configurationtools.get_abjad_startup_string()
+
+New context tools are available::
+
+    contexttools.all_are_contexts()
+
+New LilyPond file tools are available::
+
+    lilypondfiletools.make_floating_time_signature_lilypond_file()
+    
+New LilyPond parser tools are available::
+
+    lilypondparsertools.ReducedLyParser
+    lilypondparsertools.SchemeParser
+
+New rhythm-tree tools are available.
+
+- Implemented RTM expression parser::
+
+    rhythmtreetools.RhythmTreeParser
+
+- Implemented new classes for explicitly constructing rhythm-trees::
+
+    RhythmTreeNode
+    RhythmTreeLeaf
+    RhythmTreeContainer
+
+  ::
+
+    >>> from abjad import *
+    >>> rtm = '(1 (1 (2 (1 -1 1)) -2))'
+    >>> result = rhythmtreetools.RhythmTreeParser()(rtm)
+
+  ::
+
+    >>> result[0]
+    RhythmTreeContainer(
+        children=(
+            RhythmTreeLeaf(
+                duration=1,
+                pitched=True,
+                ),
+            RhythmTreeContainer(
+                children=(
+                    RhythmTreeLeaf(
+                        duration=1,
+                        pitched=True,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=1,
+                        pitched=False,
+                        ),
+                    RhythmTreeLeaf(
+                        duration=1,
+                        pitched=True,
+                        ),
+                ),
+                duration=2
+                ),
+            RhythmTreeLeaf(
+                duration=2,
+                pitched=False,
+                ),
+        ),
+        duration=1
+        )
+
+  ::
+
+    >>> _.rtm_format
+    '(1 (1 (2 (1 -1 1)) -2))'
+
+  ::
+
+    >>> result[0]((1, 4))
+    FixedDurationTuplet(1/4, [c'16, {@ 3:2 c'16, r16, c'16 @}, r8])
+
+  ::
+
+    >>> f(_)
+    \times 4/5 {
+        c'16
+        \times 2/3 {
+            c'16
+            r16
+            c'16
+        }
+        r8
+    }
+
+New Scheme tools are available::
+
+    schemetools.format_scheme_value()
+
+New sequence tools are available::
+
+- Added ``sequencetools.merge_duration_sequences()``::
+
+    >>> sequencetools.merge_duration_sequences([10, 10, 10], [7])
+    [7, 3, 10, 10]
+
+- Added ``sequencetools.pair_duration_sequence_elements_with_input_pair_values()``::
+
+    >>> duration_sequence = [10, 10, 10, 10]
+    >>> input_pairs = [('red', 1), ('orange', 18), ('yellow', 200)]
+    >>> sequencetools.pair_duration_sequence_elements_with_input_pair_values(
+    ... duration_sequence, input_pairs)
+    [(10, 'red'), (10, 'orange'), (10, 'yellow'), (10, 'yellow')]
+
+New tie tools are available::
+
+    tietools.get_tie_spanner_attached_to_component()
+
+New time-token tools are available::
+
+- Added ``SkipFilledTimeTokenMaker`` to ``timetokentools`` package::
+
+    >>> maker = timetokentools.SkipFilledTimeTokenMaker()
+
+  ::
+
+    >>> duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
+    >>> leaf_lists = maker(duration_tokens)
+    >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+
+  ::
+
+    >>> staff = Staff(leaves)
+
+  ::
+
+    >>> f(staff)
+    \new Staff {
+        s1 * 1/5
+        s1 * 1/4
+        s1 * 1/6
+        s1 * 7/9
+    }
+
+- Added ``TupletMonadTimeTokenMaker`` to ``timetokentools`` package::
+
+    >>> maker = timetokentools.TupletMonadTimeTokenMaker()
+
+  ::
+
+    >>> duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
+    >>> tuplets = maker(duration_tokens)
+    >>> staff = Staff(tuplets)
+
+  ::
+
+    >>> f(staff)
+    \new Staff {
+        \times 4/5 {
+            c'4
+        }
+        {
+            c'4
+        }
+        \times 2/3 {
+            c'4
+        }
+        \times 8/9 {
+            c'2..
+        }
+    }
+
+- Added Ratio class to the mathtools package::
+
+    >>> mathtools.Ratio(1, 2, -1)
+    Ratio(1, 2, -1)
+
+  Ratio is basically a tuple of 2 or more nonzero numbers.
+
+Changes to end-user functionality:
+
+- Changed::
+
+  Changed default split function behavior.
+
+    The componenttools.split_components_at_offsets() function no longer implements a tie_after keyword.
+    Use the new tie_split_notes and tie_split_rests keywords. Note that the new tie_split_rests 
+    keyword defaults to true where the old tie_after keyword defaulted to false.
+    This changes the default behavior of the function.
+
+    All the same is true of the (singular version) componenttools.split_component_at_offset() function.
+
+- Changed::
+
+    componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang()
+    componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang()
+    componenttools.partition_components_cyclically_by_durations_in_seconds_ge_with_overhang()
+    componenttools.partition_components_cyclically_by_durations_in_seconds_ge_without_overhang()
+    componenttools.partition_components_cyclically_by_durations_in_seconds_le_with_overhang()
+    componenttools.partition_components_cyclically_by_durations_in_seconds_le_without_overhang()
+    componenttools.partition_components_cyclically_by_prolated_durations_exactly_with_overhang()
+    componenttools.partition_components_cyclically_by_prolated_durations_exactly_without_overhang()
+    componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang()
+    componenttools.partition_components_cyclically_by_prolated_durations_ge_without_overhang()
+    componenttools.partition_components_cyclically_by_prolated_durations_le_with_overhang()
+    componenttools.partition_components_cyclically_by_prolated_durations_le_without_overhang()
+    componenttools.partition_components_once_by_durations_in_seconds_exactly_with_overhang()
+    componenttools.partition_components_once_by_durations_in_seconds_exactly_without_overhang()
+    componenttools.partition_components_once_by_durations_in_seconds_ge_with_overhang()
+    componenttools.partition_components_once_by_durations_in_seconds_ge_without_overhang()
+    componenttools.partition_components_once_by_durations_in_seconds_le_with_overhang()
+    componenttools.partition_components_once_by_durations_in_seconds_le_without_overhang()
+    componenttools.partition_components_once_by_prolated_durations_exactly_with_overhang()
+    componenttools.partition_components_once_by_prolated_durations_exactly_without_overhang()
+    componenttools.partition_components_once_by_prolated_durations_ge_with_overhang()
+    componenttools.partition_components_once_by_prolated_durations_ge_without_overhang()
+    componenttools.partition_components_once_by_prolated_durations_le_with_overhang()
+    componenttools.partition_components_once_by_prolated_durations_le_without_overhang()
+
+  ::
+
+    componenttools.partition_components_by_durations_exactly()
+    componenttools.partition_components_by_durations_ge()
+    componenttools.partition_components_by_durations_le()
+
+- Changed::
+
+    componenttools.extend_left_in_parent_of_component_and_grow_spanners()
+    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
+
+  ::
+
+    componenttools.extend_left_in_parent_of_component()
+
+- Changed::
+
+    componenttools.extend_in_parent_of_component_and_grow_spanners()
+     componenttools.extend_in_parent_of_component_and_do_not_grow_spanners()
+
+  ::
+
+    componenttools.extend_in_parent_of_component()
+
+- Changed::
+
+    componenttools.number_is_between_prolated_start_and_stop_offsets_of_component()
+
+  ::
+
+    componenttools.number_is_between_start_and_stop_offsets_of_component()
+
+- Changed::
+
+    componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()
+    componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners()
+
+  ::
+
+    componenttools.split_component_at_offset(fracture_spanners=[True, False])
+
+- Changed::
+
+    componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners()
+    componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners()
+    componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners()
+    componenttools.split_components_once_by_prolated_durations_and_fracture_crossing_spanners()
+
+  ::
+
+    componenttools.split_components_at_offsets(fracture_spanners=[True, False], cyclic=[True, False])
+
+- Changed::
+
+    containertools.replace_larger_left_half_of_elements_in_container_with_big_endian_rests()
+    containertools.replace_larger_left_half_of_elements_in_container_with_little_endian_rests()
+    containertools.replace_larger_right_half_of_elements_in_container_with_big_endian_rests()
+    containertools.replace_larger_right_half_of_elements_in_container_with_little_endian_rests()
+    containertools.replace_n_edge_elements_in_container_with_big_endian_rests()
+    containertools.replace_n_edge_elements_in_container_with_little_endian_rests()
+    containertools.replace_n_edge_elements_in_container_with_rests()
+    containertools.replace_smaller_left_half_of_elements_in_container_with_big_endian_rests()
+    containertools.replace_smaller_left_half_of_elements_in_container_with_little_endian_rests()
+    containertools.replace_smaller_right_half_of_elements_in_container_with_big_endian_rests()
+    containertools.replace_smaller_right_half_of_elements_in_container_with_little_endian_rests()
+
+  ::
+
+    containertools.replace_container_slice_with_rests()
+
+- Changed::
+
+    containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()
+    containertools.split_container_at_index_and_fracture_crossing_spanners()
+
+  ::
+
+    containertools.split_container_at_index(fracture_spanners=[True, False])
+
+- Changed::
+
+    containertools.split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners()
+    containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners()
+    containertools.split_container_once_by_counts_and_do_not_fracture_crossing_spanners()
+    containertools.split_container_once_by_counts_and_fracture_crossing_spanners()
+
+  ::
+
+    containertools.split_container_by_counts(fracture_spanners=[True, False], cyclic=[True, False])
+
+- Changed::
+
+    containertools.remove_empty_containers_in_expr()
+
+  ::
+
+    containertools.remove_leafless_containers_in_expr()
+
+- Changed::
+
+    durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
+    durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
+    durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order()
+    durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
+    durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order()
+
+  ::
+
+    durationtools.yield_all_assignable_rationals()
+    durationtools.yield_all_positive_integer_pairs()
+    durationtools.yield_all_positive_rationals()
+    durationtools.yield_all_positive_rationals_uniquely()
+    durationtools.yield_prolation_rewrite_pairs()
+
+- Changed::
+
+    durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order()
+
+  ::
+
+    durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonlized_order()
+
+- Changed::
+
+    instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch()
+
+  ::
+
+    instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch()
+
+- Changed::
+
+    instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch()
+
+   ::
+
+    instrumenttools.transpose_from_fingered_pitch_to_souding_pitch()
+
+- Changed::
+
+    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_notes()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_rests()
+
+  ::
+
+    leaftools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
+
+- Changed::
+
+    measuretools.fill_measures_in_expr_with_meter_denominator_notes()
+    measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure()
+    measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators()
+    measuretools.scale_measure_by_multiplier_and_adjust_meter()
+
+  ::
+
+    measuretools.fill_measures_in_expr_with_time_signature_denominator_notes()
+    measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature()
+    measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
+    measuretools.scale_measure_and_adjust_time_signature()
+
+- Changed::
+
+    measuretools.fill_measures_in_expr_with_big_endian_notes()
+    measuretools.fill_measures_in_expr_with_litte_endian_notes()
+
+  ::
+
+    measuretools.measuretools.fill_measures_in_expr_with_minimal_number_of_notes(big_endian=[True, False])
+
+- Changed::
+
+    measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents()
+
+  ::
+
+    measuretoools.extend_measures_in_expr_and_apply_full_measure_tuplets()
+
+- Changed::
+
+    measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
+
+  ::
+
+    measuretools.multiply_and_scale_contents_of_measures_in_expr()
+
+
+- Changed::
+
+    pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier()
+    pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
+    pitchtools.calculate_harmonic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_harmonic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_harmonic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
+
+  ::
+
+    pitchtools.calculate_harmonic_chromatic_interval_class()
+    pitchtools.calculate_harmonic_chromatic_interval()
+    pitchtools.calculate_harmonic_counterpoint_interval_class()
+    pitchtools.calculate_harmonic_counterpoint_interval()
+    pitchtools.calculate_harmonic_diatonic_interval_class()
+    pitchtools.calculate_harmonic_diatonic_interval()
+
+- Changed::
+
+    pitchtools.calculate_melodic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier()
+    pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
+    pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_melodic_diatonic_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch()
+    pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch()
+
+  ::
+
+    pitchtools.calculate_melodic_chromatic_interval_class()
+    pitchtools.calculate_melodic_chromatic_interval()
+    pitchtools.calculate_melodic_counterpoint_interval_class()
+    pitchtools.calculate_melodic_counterpoint_interval()
+    pitchtools.calculate_melodic_diatonic_interval_class()
+    pitchtools.calculate_melodic_diatonic_interval()
+
+- Changed::
+
+    pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair()
+
+  ::
+
+    pitchtools.split_chromatic_pitch_class_name()
+
+
+- Changed::
+
+    pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval()
+ 
+  ::
+
+    pitchtools.spell_chromatic_interval_number()
+
+- Changed::
+
+    pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary()
+
+  ::
+
+    pitchtools.harmonic_chromatic_interval_class_number_dictionary()
+
+- Changed::
+
+    pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair()
+
+  ::
+
+    pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_accidental_octave_number_pair()
+
+- Changed::
+
+    pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class()
+
+  ::
+
+    pitchtools.sort_named_chromatic_pitch_carriers_in_expr()
+
+- Changed::
+
+    pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary()
+
+  ::
+
+    pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary()
+
+- Changed::
+
+    pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number()
+
+  ::
+
+    pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
+
+- Changed::
+
+    pitchtools.ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers()
+
+  ::
+
+    pitchtools.contains_subsegment()
+
+- Changed::
+
+    pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers()
+
+  ::
+
+    pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise()
+
+- Changed::
+
+    pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers()
+
+  ::
+
+    pitchtools.list_melodic_chromatic_interval_numbers_pairwise()
+
+- Changed::
+
+Renamed pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple().
+The new name is pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple().
+
+Renamed pitchtools.apply_octavation_spanner_to_pitched_components().
+The new name is spannertools.apply_octavation_spanner_to_pitched_components().
+
+Renamed pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr().
+The new name is pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr().
+
+Renamed pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr().
+The new name is pitchtools.set_ascending_diatonic_pitches_on_tie_chains_in_expr().
+
+Renamed pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number().
+The new name is pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor().
+
+
+- Changed::
+
+    sequencetools.partition_sequence_cyclically_by_counts_with_overhang()
+    sequencetools.partition_sequence_cyclically_by_counts_without_overhang()
+    sequencetools.partition_sequence_once_by_counts_with_overhang()
+    sequencetools.partition_sequence_once_by_counts_without_overhang()
+
+  ::
+
+    sequencetools.partition_sequence_by_counts(cyclic=[True, False], overhang=[True, False]) 
+
+- Changed::
+
+    sequencetools.partition_sequence_extended_to_counts_with_overhang()
+    sequencetools.partition_sequence_extended_to_counts_without_overhang()
+
+  ::
+
+    sequencetools.partition_sequence_extended_to_counts(overhang=[True, False])
+
+- Changed::
+
+    sequencetools.partition_sequence_cyclically_by_weights_at_least_with_overhang()
+    sequencetools.partition_sequence_cyclically_by_weights_at_least_without_overhang()
+    sequencetools.partition_sequence_once_by_weights_at_least_with_overhang()
+    sequencetools.partition_sequence_once_by_weights_at_least_without_overhang()
+
+  ::
+
+    sequencetools.partition_sequence_by_weights_at_least()
+
+- Changed::
+
+    sequencetools.partition_sequence_cyclically_by_weights_at_most_with_overhang()
+    sequencetools.partition_sequence_cyclically_by_weights_at_most_without_overhang()
+    sequencetools.partition_sequence_once_by_weights_at_most_with_overhang()
+    sequencetools.partition_sequence_once_by_weights_at_most_without_overhang()
+
+  ::
+
+    sequencetools.partition_sequence_by_weights_at_most()
+
+- Changed::
+
+    sequencetools.partition_sequence_cyclically_by_weights_at_exactly_with_overhang()
+    sequencetools.partition_sequence_cyclically_by_weights_at_exactly_without_overhang()
+    sequencetools.partition_sequence_once_by_weights_at_exactly_with_overhang()
+    sequencetools.partition_sequence_once_by_weights_at_exactly_without_overhang()
+
+  ::
+
+    sequencetools.partition_sequence_by_weights_at_exactly()
+
+- Changed::
+
+    sequencetools.split_sequence_cyclically_by_weights_with_overhang()
+    sequencetools.split_sequence_cyclically_by_weights_without_overhang()
+    sequencetools.split_sequence_once_by_weights_with_overhang()
+    sequencetools.split_sequence_once_by_weights_without_overhang()
+
+  ::
+
+    sequencetools.split_sequence_by_weights()
+
+- Changed::
+
+    sequencetools.split_sequence_extended_to_weights_with_overhang()
+    sequencetools.split_sequence_extended_to_weights_without_overhang()
+
+  ::
+
+    sequencetools.split_sequence_extended_to_weights()
+
+
+
+
+- Changed::
+
+    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.n
+
+  ::
+
+    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.staff_count
+
+
+- Changed::
+
+    tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots()
+    tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots()
+    tietools.tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots()
+    tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots()
+
+  ::
+
+    tietools.tie_chain_to_tuplet_with_proportions()
+
+- Changed::
+
+    tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()
+    tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()
+    tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots()
+    tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots()
+
+    In place of direction='big-endian' use big_endian=True instead.
+    In place of direction='little-endian' use big_endian=False instead.
+
+- Changed::
+
+    leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration()
+    leaftools.leaf_to_augmented_tuplet_with_proportions()
+    leaftools.leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration()
+    leaftools.leaf_to_diminished_tuplet_with_proportions()
+
+  ::
+
+    leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
+    leaftools.leaf_to_tuplet_with_proportions()
+
+- Changed::
+
+    durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
+    leaftools.fuse_leaves_big_endian()
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()
+
+  ::
+
+    durationtools.duration_token_to_assignable_duration_pairs()
+    leaftools.fuse_leaves()
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()
+
+- Changed ``format`` to ``lilypond_format`` on all system objects.
+
+- Changed all functions that contained ``prolated_offset`` to simply ``offset``::
+
+    componenttools.copy_governed_component_subtree_from_prolated_offset_to()
+    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset()
+    containertools.delete_contents_of_container_starting_at_or_after_prolated_offset()
+    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset()
+    containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()
+    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset()
+    containertools.get_element_starting_at_exactly_prolated_offset()
+    containertools.get_first_element_starting_at_or_after_prolated_offset()
+    containertools.get_first_element_starting_before_or_at_prolated_offset()
+    containertools.get_first_element_starting_strictly_after_prolated_offset()
+    containertools.get_first_element_starting_strictly_before_prolated_offset()
+    prolated_offsettools.update_offset_values_of_component()
+    verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()
+
+  ::
+
+    componenttools.copy_governed_component_subtree_from_offset_to()
+    componenttools.get_improper_descendents_of_component_that_cross_offset()
+    containertools.delete_contents_of_container_starting_at_or_after_offset()
+    containertools.delete_contents_of_container_starting_before_or_at_offset()
+    containertools.delete_contents_of_container_starting_strictly_after_offset()
+    containertools.delete_contents_of_container_starting_strictly_before_offset()
+    containertools.get_element_starting_at_exactly_offset()
+    containertools.get_first_element_starting_at_or_after_offset()
+    containertools.get_first_element_starting_before_or_at_offset()
+    containertools.get_first_element_starting_strictly_after_offset()
+    containertools.get_first_element_starting_strictly_before_offset()
+    offsettools.update_offset_values_of_component()
+    verticalitytools.get_vertical_moment_at_offset_in_expr()
+
+- Changed::
+
+    componenttools.split_component_at_prolated_duration()
+    componenttools.split_components_by_prolated_durations()
+    leaftools.split_leaf_at_prolated_duration()
+    leaftools.split_leaf_at_prolated_duration_and_rest_right_half()
+
+  ::
+
+    componenttools.split_component_at_offset()
+    componenttools.split_components_by_offsets()
+    leaftools.split_leaf_at_offset()
+    leaftools.split_leaf_at_offset_and_rest_right_half()
+
+- Changed::
+
+    componenttools.report_component_format_contributions_as_string()
+    containertools.report_container_modifications_as_string()
+    measuretools.report_meter_distribution_as_string()
+
+  ::
+
+    componenttools.report_component_format_contributions()
+    containertools.report_container_modifications()
+    measuretools.report_time_signature_distribution()
+
+Removed ``constrainttools`` package.
+
+Removed ``lyricstools`` package.
+
+Removed ``quantizationtools`` package.
+
+
+
+
 Abjad 2.9
 ---------
 
@@ -1930,6 +2756,3 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
 * Added Ferneyhough Unsichbare Farben example.
 
 .. image:: ../../examples/ferneyhough/images/ferneyhough-1.png
-
-
-
