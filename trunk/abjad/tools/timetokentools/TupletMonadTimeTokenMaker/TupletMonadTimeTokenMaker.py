@@ -1,19 +1,14 @@
+import fractions
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import tuplettools
 from abjad.tools.timetokentools.TimeTokenMaker import TimeTokenMaker
-import fractions
 
 
 class TupletMonadTimeTokenMaker(TimeTokenMaker):
     r'''.. versionadded:: 2.10
 
     Tuplet monad time-token maker::
-
-        >>> from abjad.tools import sequencetools
-        >>> from abjad.tools import timetokentools
-
-    ::
 
         >>> maker = timetokentools.TupletMonadTimeTokenMaker()
 
