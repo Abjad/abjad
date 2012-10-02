@@ -51,6 +51,12 @@ eighths.name = 'eighths'
 __all__.append(eighths.name)
 
 
+equal_divisions = timetokentools.EqualDivisionTimeTokenMaker
+equal_divisions.beam = True
+equal_divisions.name = 'equal_divisions'
+__all__.append(equal_divisions.name)
+
+
 pattern, denominator, prolation_addenda  = [1], 2, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]

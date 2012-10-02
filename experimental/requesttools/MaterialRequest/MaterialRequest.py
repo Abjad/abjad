@@ -39,7 +39,7 @@ class MaterialRequest(Request):
 
     def __init__(self, attribute, selector, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        assert attribute in self.attributes, repr(attribute)
+        assert isinstance(attribute, str)
         assert isinstance(selector, selectortools.Selector)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(

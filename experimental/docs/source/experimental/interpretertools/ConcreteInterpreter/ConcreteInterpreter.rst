@@ -44,6 +44,8 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_division_commands_for_voice
 
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_naive_time_signature_beat_slice
+
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_rhythm_commands_for_score
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_rhythm_commands_for_voice
@@ -75,6 +77,8 @@ Methods
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_default_command_for_segment_specification
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_division_region_expressions
+
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_naive_time_signature_beat_division_command
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_quintuples_for_voice
 

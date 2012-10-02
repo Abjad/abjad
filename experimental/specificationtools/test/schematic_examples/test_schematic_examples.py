@@ -130,7 +130,7 @@ def test_schematic_examples_03():
 def test_schematic_examples_04():
     '''Schematic example X4.
     Quartet in two segments.
-    First segment time signatures [4/8, 3/8]. 
+    First segment time signatures [4/8, 3/8, 2/8]. 
     First staff 1:1:1 total time then thirty-seconds then sixteenths then eighths.
     Staff 2 rhythm equal to staff 1 rhythm regions rotated -1.
     Staff 3 rhythm equal to staff 1 rhythm regions rotate -2.
@@ -139,19 +139,42 @@ def test_schematic_examples_04():
     Segment 2 time signatures preserve segment 1 time signatures.
     Segment 2 otherwise equal to segment 1 flipped about the y axis.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     red_segment = score_specification.make_segment(name='red')
-    red_segment.set_time_signatures([(4, 8), (3, 8)])
-    #left = red_segment.select_segment_ratio_part((1, 1, 1), 0)
-    #middle = red_segment.select_segment_ratio_part((1, 1, 1), 1)
-    #right = red_segment.select_segment_ratio_part((1, 1, 1), 2)
-    # TODO: implement SegmentSpecification method to return [(7, 24), (7, 24), (7, 24)] directly
-    red_segment.set_divisions(3 * [(7, 24)])
+    time_signatures = [mathtools.NonreducedFraction(x) for x in [(4, 8), (3, 8), (2, 8)]]
+    red_segment.set_time_signatures(time_signatures)
+    # TODO: implement SegmentSpecification method to return segment time divisions directly
+    divisions = mathtools.divide_number_by_ratio(sum(time_signatures), [1, 1, 1])
+    red_segment.set_divisions(divisions)
+    left = red_segment.select_division(0)
+    middle = red_segment.select_division(1)
+    right = red_segment.select_division(2)
+    red_segment.set_rhythm(library.equal_divisions(16), selector=left, contexts=['Voice 1'])
+    red_segment.set_rhythm(library.equal_divisions(8), selector=middle, contexts=['Voice 1'])
+    red_segment.set_rhythm(library.equal_divisions(4), selector=right, contexts=['Voice 1'])
+    # TODO: implement SegmentSpecification.request_divisions() 'populated=False' keyword
+    voice_1_rhythm = red_segment.request_rhythm('Voice 1')
+    red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=-16)
+    red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=-24)
+    naive_beats = red_segment.request_naive_beats()
+    red_segment.set_divisions(naive_beats, contexts=['Voice 4'])
+    red_segment.set_rhythm(library.note_filled_tokens)
+
+    blue_segment = score_specification.make_segment(name='blue')
+    red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
+    red_voice_2_rhythm = red_segment.request_rhythm('Voice 2')
+    red_voice_3_rhythm = red_segment.request_rhythm('Voice 3')
+    red_voice_4_rhythm = red_segment.request_rhythm('Voice 4')
+    blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'], reverse=True)
+    blue_segment.set_rhythm(red_voice_2_rhythm, contexts=['Voice 2'], reverse=True)
+    blue_segment.set_rhythm(red_voice_3_rhythm, contexts=['Voice 3'], reverse=True)
+    blue_segment.set_rhythm(red_voice_4_rhythm, contexts=['Voice 4'], reverse=True)
+
+    score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

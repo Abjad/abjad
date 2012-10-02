@@ -35,6 +35,10 @@ Read-only Properties
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
 
+.. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.offsets
+
+    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+
 .. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.request
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`

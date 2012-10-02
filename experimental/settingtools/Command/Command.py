@@ -123,6 +123,12 @@ class Command(AbjadObject):
         return self._index
 
     @property
+    def offsets(self):
+        '''Return pair.
+        '''
+        return self.start_offset, self.stop_offset
+
+    @property
     def request(self):
         '''Command request.
         

@@ -82,7 +82,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         divisions = self.get_selected_objects(score_specification, voice_name)
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
-        self._debug((start_offset, stop_offset), 'offsets')
+        #self._debug((start_offset, stop_offset), 'offsets')
         return start_offset, stop_offset
         
     def get_score_start_offset(self, score_specification, voice_name):

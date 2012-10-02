@@ -50,6 +50,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_divisions
 
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_naive_beats
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_rhythm
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_rhythm_command

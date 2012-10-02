@@ -197,8 +197,18 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
-        elif isinstance(division_region_command.request, requesttools.MaterialRequest):
-            assert division_region_command.request.attribute == 'divisions'
+        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
+            division_region_command.request.attribute == 'naive_beats':
+            start_offset, stop_offset = division_region_command.offsets
+            divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
+            divisions = requesttools.apply_request_transforms(division_region_command.request, divisions)
+            divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
+            division_region_command._request = divisions
+            division_region_expression = self.division_region_command_to_division_region_expression(
+                division_region_command, voice_name)
+            return division_region_expression
+        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
+            division_region_command.request.attribute == 'divisions':
             division_region_expressions = self.division_material_request_to_division_region_expressions(
                 division_region_command.request)
             if division_region_expressions is None:
@@ -330,6 +340,23 @@ class ConcreteInterpreter(Interpreter):
 
     def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
+
+    # TODO: combine with self.get_time_signature_slice()
+    def get_naive_time_signature_beat_slice(self, start_offset, stop_offset):
+        time_signatures = self.score_specification.time_signatures
+        assert time_signatures
+        naive_beats = []
+        for time_signature in time_signatures:
+            numerator, denominator = time_signature.pair
+            naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
+        #self._debug(naive_beats, 'naive beats')
+        slice_duration = stop_offset - start_offset
+        weights = [start_offset, slice_duration]
+        shards = sequencetools.split_sequence_by_weights(
+            naive_beats, weights, cyclic=False, overhang=False)
+        result = shards[1]
+        result = [x.pair for x in result]
+        return result
 
     def get_time_signature_slice(self, start_offset, stop_offset):
         time_signatures = self.score_specification.time_signatures
@@ -516,10 +543,9 @@ class ConcreteInterpreter(Interpreter):
                         rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()
 
-    def make_time_signature_division_command(self, voice, start_offset, stop_offset):
-        divisions = self.get_time_signature_slice(start_offset, stop_offset)
-        segment_identifier = self.score_specification.score_offset_to_segment_identifier(start_offset)
-        division_command = settingtools.DivisionCommand(
+    def make_naive_time_signature_beat_division_command(self, voice, start_offset, stop_offset):
+        divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
+        return settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
             voice.name, 
             start_offset,
@@ -527,7 +553,17 @@ class ConcreteInterpreter(Interpreter):
             fresh=True,
             truncate=True
             )
-        return division_command
+
+    def make_time_signature_division_command(self, voice, start_offset, stop_offset):
+        divisions = self.get_time_signature_slice(start_offset, stop_offset)
+        return settingtools.DivisionCommand(
+            requesttools.AbsoluteRequest(divisions),
+            voice.name, 
+            start_offset,
+            stop_offset,
+            fresh=True,
+            truncate=True
+            )
 
     def make_time_signatures(self):
         while self.score_specification.all_time_signature_commands:

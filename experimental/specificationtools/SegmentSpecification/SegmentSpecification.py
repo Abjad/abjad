@@ -423,6 +423,30 @@ class SegmentSpecification(Specification):
             'divisions', context_name=voice, timepoint=timepoint,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
+    def request_naive_beats(self, context=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment naive beats in `voice`::
+
+            >>> request = segment.request_naive_beats('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'naive_beats',
+                selectortools.SingleSegmentSelector(
+                    identifier='red'
+                    ),
+                context_name='Voice 1'
+                )
+
+        Return material request.        
+        '''
+        selector = self.select_segment()
+        return requesttools.MaterialRequest(
+            'naive_beats', selector, context_name=context, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
     def request_rhythm(self, voice,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::

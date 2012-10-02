@@ -23,6 +23,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.index
 
+.. autoattribute:: experimental.settingtools.Command.Command.Command.offsets
+
 .. autoattribute:: experimental.settingtools.Command.Command.Command.request
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.reverse
