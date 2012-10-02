@@ -54,7 +54,7 @@ Tutorials
 .. toctree::
     :numbered:
 
-	tutorials/changing_notes_to_rests/index
+    tutorials/changing_notes_to_rests/index
     tutorials/creating_rest_delimited_slurs/index
     tutorials/making_grob_overrides/index
     tutorials/understanding_lilypond_grobs/index
