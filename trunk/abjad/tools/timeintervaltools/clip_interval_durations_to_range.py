@@ -28,7 +28,7 @@ def clip_interval_durations_to_range(intervals, minimum=None, maximum=None):
     intervals = []
     for interval in tree:
         if minimum is not None and interval.duration < minimum:
-            intervals.append(interval.scale_to_rational(min))
+            intervals.append(interval.scale_to_rational(minimum))
         elif maximum is not None and maximum < interval.duration:
             intervals.append(interval.scale_to_rational(maximum))
         else:
