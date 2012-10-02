@@ -1746,6 +1746,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/timetokentools/EqualDivisionTimeTokenMaker/EqualDivisionTimeTokenMaker
    tools/timetokentools/NoteFilledTimeTokenMaker/NoteFilledTimeTokenMaker
    tools/timetokentools/OutputBurnishedSignalFilledTimeTokenMaker/OutputBurnishedSignalFilledTimeTokenMaker
    tools/timetokentools/OutputIncisedNoteFilledTimeTokenMaker/OutputIncisedNoteFilledTimeTokenMaker
