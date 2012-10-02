@@ -5,7 +5,6 @@ import py
 def test_MetricGridSpanner_split_on_bar_01():
     '''MetricGrid splits notes on bar lines.
     '''
-    py.test.skip('FIXME')
 
     t = Staff(Note(0, (1,8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(3, 16)])
