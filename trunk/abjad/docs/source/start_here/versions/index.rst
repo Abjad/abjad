@@ -81,6 +81,22 @@ Implemented parsing in markuptools.Markup on instantiation from a single string:
                 }
         }
 
+Implemented __getitem__ for named Contexts on Container::
+
+    >>> template = scoretemplatetools.StringQuartetScoreTemplate()
+    >>> score = template()
+
+::
+
+    >>> score['First Violin Staff']
+    Staff-"First Violin Staff"{1}
+
+::
+
+    >>> score['First Violin Voice']
+    Voice-"First Violin Voice"{}
+
+
 New constants are available globally::
 
     Left
@@ -103,8 +119,16 @@ New LilyPond file tools are available::
     
 New LilyPond parser tools are available::
 
+    lilypondparsertools.GuileProxy
+    lilypondparsertools.LilyPondDuration
+    lilypondparsertools.LilyPondEvent
+    lilypondparsertools.LilyPondFraction
+    lilypondparsertools.LilyPondLexicalDefinition
+    lilypondparsertools.LilyPondSyntacticalDefinition
     lilypondparsertools.ReducedLyParser
     lilypondparsertools.SchemeParser
+    lilypondparsertools.SyntaxNode
+    lilypondparsertools.lilypond_enharmonic_transpose()
 
 New rhythm-tree tools are available.
 
@@ -185,6 +209,10 @@ New Scheme tools are available::
 
     schemetools.format_scheme_value()
 
+New score-template tools are available::
+
+    scoretemplatetools.GroupedStavesScoreTemplate
+
 New sequence tools are available::
 
 - Added ``sequencetools.merge_duration_sequences()``::
@@ -203,6 +231,10 @@ New sequence tools are available::
 New tie tools are available::
 
     tietools.get_tie_spanner_attached_to_component()
+
+New time-interval tools are available::
+
+    timeintervaltools.make_voice_from_nonoverlapping_intervals()
 
 New time-token tools are available::
 
@@ -264,6 +296,18 @@ New time-token tools are available::
     Ratio(1, 2, -1)
 
   Ratio is basically a tuple of 2 or more nonzero numbers.
+
+Improved schemetools.Scheme quote handling:
+
+- Added "force_quotes" boolean keyword to ``schemetools.Scheme`` and ``schemetools.format_scheme_value()``::
+
+    >>> schemetools.format_scheme_value('foo')
+    'foo'
+    >>> schemetools.format_scheme_value('foo', force_quotes=True)
+    '"foo"'
+
+  This allows for forcing double quotes around strings which contain no spaces, 
+  which is necessary for certain grob overrides.
 
 Changes to end-user functionality:
 
@@ -442,6 +486,282 @@ Changes to end-user functionality:
    ::
 
     instrumenttools.transpose_from_fingered_pitch_to_souding_pitch()
+
+- Changed::
+
+    chordtools.iterate_chords_forward_in_expr()
+    chordtools.iterate_chords_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_chords_in_expr(reverse=[True, False])
+
+- Changed::
+
+    componenttools.iterate_components_depth_first()
+    componenttools.iterate_components_forward_in_expr()
+    componenttools.iterate_components_backward_in_expr()
+    componenttools.iterate_namesakes_forward_from_component()
+    componenttools.iterate_namesakes_backward_from_component()
+    componenttools.iterate_thread_forward_from_component()
+    componenttools.iterate_thread_backward_from_component()
+    componenttools.iterate_thread_forward_in_expr()
+    componenttools.iterate_thread_backward_in_expr()
+    componenttools.iterate_timeline_forward_from_component()
+    componenttools.iterate_timeline_backward_from_component()
+    componenttools.iterate_timeline_forward_in_expr()
+    componenttools.iterate_timeline_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_components_depth_first()
+    iterationtools.iterate_components_in_expr(reverse=[True, False])
+    iterationtools.iterate_namesakes_from_component(reverse=[True, False])
+    iterationtools.iterate_thread_from_component(reverse=[True, False])
+    iterationtools.iterate_thread_in_expr(reverse=[True, False])
+    iterationtools.iterate_timeline_from_component(reverse=[True, False])
+    iterationtools.iterate_timeline_in_expr(reverse=[True, False])
+
+- Changed::
+
+    containertools.iterate_containers_forward_in_expr()
+    containertools.iterate_containers_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_containers_in_expr(reverse=[True, False])
+
+- Changed::
+
+    contexttools.iterate_contexts_forward_in_expr()
+    contexttools.iterate_contexts_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_contexts_in_expr(reverse=[True, False])
+
+- Changed::
+
+    gracetools.iterate_components_and_grace_containers_forward_in_expr()
+
+  ::
+
+    iterationtools.iterate_components_and_grace_containers_in_expr()
+
+- Changed::
+
+    instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
+
+  ::
+
+    iterationtools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
+
+- Changed::
+
+    leaftools.iterate_leaf_pairs_forward_in_expr()
+    leaftools.iterate_leaves_forward_in_expr()
+    leaftools.iterate_leaves_backward_in_expr()
+    leaftools.iterate_notes_and_chords_forward_in_expr()
+    leaftools.iterate_notes_and_chords_backward_in_expr()
+
+
+  ::
+
+    iterationtools.iterate_leaf_pairs_in_expr()
+    iterationtools.iterate_leaves_in_expr(reverse=[True, False])
+    iterationtools.iterate_notes_and_chords_in_expr(reverse=[True, False])
+
+- Changed::
+
+    measuretools.iterate_measures_forward_in_expr()
+    measuretools.iterate_measures_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_measures_in_expr(reverse=[True, False])
+
+- Changed::
+
+    notetools.iterate_notes_forward_in_expr()
+    notetools.iterate_notes_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_notes_in_expr(reverse=[True, False])
+
+- Changed::
+
+    pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr()
+
+  ::
+
+    iterationtools.iterate_named_chromatic_pitch_pairs_in_expr()
+
+- Changed::
+
+    resttools.iterate_rests_forward_in_expr()
+    resttools.iterate_rests_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_rests_in_expr(reverse=[True, False])
+
+- Changed::
+
+    scoretools.iterate_scores_forward_in_expr()
+    scoretools.iterate_scores_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_scores_in_expr(reverse=[True, False])
+
+- Changed::
+
+    skiptools.iterate_skips_forward_in_expr()
+    skiptools.iterate_skips_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_skips_in_expr(reverse=[True, False])
+
+- Changed::
+
+    spannertools.iterate_components_forward_in_spanner()
+    spannertools.iterate_components_backward_in_spanner()
+
+  ::
+
+    iterationtools.iterate_components_in_spanner(reverse=[True, False])
+
+- Changed::
+
+    stafftools.iterate_staves_forward_in_expr()
+    stafftools.iterate_staves_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_staves_in_expr(reverse=[True, False])
+
+- Changed::
+
+    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
+    tietools.iterate_pitched_tie_chains_forward_in_expr()
+    tietools.iterate_pitched_tie_chains_backward_in_expr()
+    tietools.iterate_tie_chains_forward_in_expr()
+    tietools.iterate_tie_chains_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
+
+- Changed::
+
+    tuplettools.iterate_tuplets_forward_in_expr()
+    tuplettools.iterate_tuplets_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_tuplets_in_expr(reverse=[True, False])
+
+- Changed::
+
+    verticalitytools.iterate_vertical_moments_forward_in_expr()
+    verticalitytools.iterate_vertical_moments_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_vertical_moments_in_expr(reverse=[True, False])
+
+- Changed::
+
+    voicetools.iterate_semantic_voices_forward_in_expr()
+    voicetools.iterate_semantic_voices_backward_in_expr()
+    voicetools.iterate_voices_forward_in_expr()
+    voicetools.iterate_voices_backward_in_expr()
+
+  ::
+
+    voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
+    voicetools.iterate_voices_in_expr(reverse=[True, False])
+
+- Changed::
+
+    chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
+    containertools.color_contents_of_container()
+    leaftools.color_leaf()
+    leaftools.color_leaves_in_expr()
+    leaftools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
+    leaftools.label_leaves_in_expr_with_leaf_depth()
+    leaftools.label_leaves_in_expr_with_leaf_durations()
+    leaftools.label_leaves_in_expr_with_leaf_indices()
+    leaftools.label_leaves_in_expr_with_leaf_numbers()
+    leaftools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
+    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals()
+    leaftools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
+    leaftools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
+    leaftools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
+    leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals()
+    leaftools.label_leaves_in_expr_with_pitch_class_numbers()
+    leaftools.label_leaves_in_expr_with_pitch_numbers()
+    leaftools.label_leaves_in_expr_with_prolated_leaf_duration()
+    leaftools.label_leaves_in_expr_with_tuplet_depth()
+    leaftools.label_leaves_in_expr_with_written_leaf_duration()
+    markuptools.remove_markup_from_leaves_in_expr()
+    measuretools.color_measure()
+    measuretools.color_nonbinary_measures_in_expr()
+    notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    notetools.label_notes_in_expr_with_note_indices()
+    tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    tietools.label_tie_chains_in_expr_with_tie_chain_durations()
+    tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+    verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()
+    verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers()
+
+  ::
+
+    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
+    labeltools.color_contents_of_container()
+    labeltools.color_leaf()
+    labeltools.color_leaves_in_expr()
+    labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
+    labeltools.label_leaves_in_expr_with_leaf_depth()
+    labeltools.label_leaves_in_expr_with_leaf_durations()
+    labeltools.label_leaves_in_expr_with_leaf_indices()
+    labeltools.label_leaves_in_expr_with_leaf_numbers()
+    labeltools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
+    labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals()
+    labeltools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
+    labeltools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
+    labeltools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
+    labeltools.label_leaves_in_expr_with_melodic_diatonic_intervals()
+    labeltools.label_leaves_in_expr_with_pitch_class_numbers()
+    labeltools.label_leaves_in_expr_with_pitch_numbers()
+    labeltools.label_leaves_in_expr_with_prolated_leaf_duration()
+    labeltools.label_leaves_in_expr_with_tuplet_depth()
+    labeltools.remove_markup_from_leaves_in_expr()
+    labeltools.color_measure()
+    labeltools.color_nonbinary_measures_in_expr()
+    labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    labeltools.label_leaves_in_expr_with_written_leaf_duration()
+    labeltools.label_notes_in_expr_with_note_indices()
+    labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
+    labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+    labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
+    labeltools.label_vertical_moments_in_expr_with_chromatic_intervals()
+    labeltools.label_vertical_moments_in_expr_with_counterpoint_intervals()
+    labeltools.label_vertical_moments_in_expr_with_diatonic_intervals()
+    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
+    labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
 
 - Changed::
 
@@ -628,6 +948,13 @@ The new name is pitchtools.set_ascending_diatonic_pitches_on_tie_chains_in_expr(
 Renamed pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number().
 The new name is pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor().
 
+- Changed::
+
+    rhythmtreetools.parse_reduced_ly_syntax()
+
+  ::
+
+    lilypondparsertools.parse_reduced_ly_syntax()
 
 - Changed::
 
