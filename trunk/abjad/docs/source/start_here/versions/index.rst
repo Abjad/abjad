@@ -313,7 +313,7 @@ Changes to end-user functionality:
 
 - Changed::
 
-  Changed default split function behavior.
+    Changed default split function behavior.
 
     The componenttools.split_components_at_offsets() function no longer implements a tie_after keyword.
     Use the new tie_split_notes and tie_split_rests keywords. Note that the new tie_split_rests 
@@ -933,20 +933,43 @@ Changes to end-user functionality:
 
 - Changed::
 
-Renamed pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple().
-The new name is pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple().
+    pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple()
 
-Renamed pitchtools.apply_octavation_spanner_to_pitched_components().
-The new name is spannertools.apply_octavation_spanner_to_pitched_components().
+  ::
 
-Renamed pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr().
-The new name is pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr().
+    pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple()
 
-Renamed pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr().
-The new name is pitchtools.set_ascending_diatonic_pitches_on_tie_chains_in_expr().
+- Changed::
 
-Renamed pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number().
-The new name is pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor().
+    pitchtools.apply_octavation_spanner_to_pitched_components()
+
+  ::
+
+    spannertools.apply_octavation_spanner_to_pitched_components()
+
+-Changed::
+
+    pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr()
+
+  ::
+
+    pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr()
+
+- Changed::
+
+    pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr()
+
+  ::
+
+    pitchtools.set_ascending_diatonic_pitches_on_tie_chains_in_expr()
+
+- Changed::
+
+    pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
+
+  ::
+
+    pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor()
 
 - Changed::
 
