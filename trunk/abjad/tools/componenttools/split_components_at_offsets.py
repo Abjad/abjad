@@ -42,8 +42,6 @@ def split_components_at_offsets(components, offsets,
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
-    .. note:: Fix the grouping of returned parts above.
-
     ::
 
         >>> f(staff)
@@ -101,8 +99,6 @@ def split_components_at_offsets(components, offsets,
         >>> result
         [[Note("c'16.")], [Note("c'32"), Note("d'16")], [Note("d'16"), Note("e'32")],
         [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
-
-    .. note:: Fix the grouping of returned parts above.
 
     ::
 
@@ -267,6 +263,9 @@ def split_components_at_offsets(components, offsets,
         offsets.append(final_offset)
     elif total_component_duration < total_offset_duration:
         offsets = sequencetools.truncate_sequence_to_weight(offsets, total_component_duration)
+
+    # keep copy of offsets to partition result components
+    offsets_copy = offsets[:]
     
     # calculate total offset duration
     total_offset_duration = sum(offsets)
@@ -336,7 +335,8 @@ def split_components_at_offsets(components, offsets,
                 leaf_shards = leaftools.split_leaf_at_offsets(
                     current_component, leaf_split_durations, 
                     cyclic=False, fracture_spanners=fracture_spanners)
-                result.extend(leaf_shards)
+                shard.extend(leaf_shards)
+                result.append(shard)
                 offset_index += len(additional_offsets)
             else:
                 #print 'splitting container ...'
@@ -370,6 +370,10 @@ def split_components_at_offsets(components, offsets,
     # append any unexamined components
     if len(remaining_components):
         result.append(remaining_components)
+
+    # group split components according to input durations
+    result = sequencetools.flatten_sequence(result)
+    result = componenttools.partition_components_by_durations_exactly(result, offsets_copy)
 
     # return list of shards
     return result

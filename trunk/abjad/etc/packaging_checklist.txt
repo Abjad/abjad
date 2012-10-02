@@ -16,7 +16,7 @@ Abjad packaging checklist:
         Record the output of "python --version" in the packaging transcript.
     (d) Update pip with "sudo pip install --upgrade pip".
         Record the output of "pip --version" in the packaging transcript.
-    (e) Update py.test with "pip install --upgrade pytest".
+    (e) Update py.test with "sudo pip install --upgrade pytest".
         Record the output "py.test --version" in the packaging transcript.
     (f) Update Sphinx with "sudo pip install --upgrade Sphinx".
         Record the output of "sphinx-build --version" in the packaging transcript.
