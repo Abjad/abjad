@@ -9,9 +9,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
     fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''.. versionadded:: 2.10
 
-    Split `leaf` by `offsets`.
+    Split `leaf` at `offsets`.
 
-    Example 1. Split note once by `offsets` and tie split notes::
+    Example 1. Split note once at `offsets` and tie split notes::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -38,7 +38,7 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 2. Split note cyclically by `offsets` and tie split notes::
+    Example 2. Split note cyclically at `offsets` and tie split notes::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -65,7 +65,7 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 3. Split note once by `offsets` and do no tie split notes::
+    Example 3. Split note once at `offsets` and do no tie split notes::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -92,7 +92,7 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
-    Example 4. Split note cyclically by `offsets` and do not tie split notes::
+    Example 4. Split note cyclically at `offsets` and do not tie split notes::
 
         >>> staff = Staff("c'1 ( d'1 )")
 
@@ -119,6 +119,38 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
             d'1 )
         }
 
+    Example 5. Split tupletted note once at `offsets` and tie split notes::
+
+        >>> staff = Staff(r"\times 2/3 { c'2 ( d'2 e'2 ) }")
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            \times 2/3 {
+                c'2 (
+                d'2
+                e'2 )
+            }
+        }
+
+    ::
+
+        >>> leaftools.split_leaf_at_offsets(staff.leaves[1], [(1, 6)], cyclic=False, tie_split_notes=True)
+        [[Note("d'4")], [Note("d'4")]]
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            \times 2/3 {
+                c'2 (
+                d'4 ~
+                d'4
+                e'2 )
+            }
+        }
+
     .. note:: Add examples showing mark and context mark handling.
 
     Return list of shards.
@@ -134,21 +166,23 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
     if cyclic:
-        offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, leaf.written_duration)
+        offsets = sequencetools.repeat_sequence_to_weight_exactly(offsets, leaf.prolated_duration)
 
     durations = [durationtools.Duration(offset) for offset in offsets]
 
-    if sum(durations) < leaf.written_duration:
-        last_duration = leaf.written_duration - sum(durations)
+    if sum(durations) < leaf.prolated_duration:
+        last_duration = leaf.prolated_duration - sum(durations)
         durations.append(last_duration) 
 
-    sequencetools.truncate_sequence_to_weight(durations, leaf.written_duration)
+    sequencetools.truncate_sequence_to_weight(durations, leaf.prolated_duration)
 
     result = []
+    leaf_prolation = leaf.prolation
     leaf_copy = copy.deepcopy(leaf)
-    for duration in durations:
+    for prolated_duration in durations:
         new_leaf = copy.deepcopy(leaf)
-        shard = leaftools.set_preprolated_leaf_duration(new_leaf, duration)
+        preprolated_duration = prolated_duration / leaf_prolation
+        shard = leaftools.set_preprolated_leaf_duration(new_leaf, preprolated_duration)
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)
