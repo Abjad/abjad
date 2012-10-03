@@ -76,21 +76,23 @@ Abjad packaging checklist:
     Create a v2.x optimization transcript by copying the most recent such file.
     Record memory usage and profiling test results in the optimization transcript.
 
-10. Change to abjad/docs and run 'make clean'.
-    This step is important because failing to 'make clean' before building
-    the docs can cause the doc tarball made below to exceed 20 megs.
-    PyPI rejects doc tarballs greater than 20 megs.
-
-11. Run make-abjad-api. If any errors occur, fix, commit and go back to (5.)
-    Record HTML build results in the packaging transcript.
-
-12. Run 'make latex'. If any errors occur, fix, commit and go back to (5.)
-
-13. Run "svn info"
+10. Run "svn info"
     Note the current revision of the working copy you are packaging.
-    Open docs/chapters/start_here/versions/index.rst again.
+    Open docs/source/start_here/versions/index.rst again.
+    Check the release date indicated there.
     Check the revision number indicated there.
     Make sure the revision number equals current revision + 1.
+
+11. Change to abjad/docs and run 'make clean'.
+    This step is important because failing to 'make clean' before building
+    the docs can cause the doc tarball made below to exceed 25 megs.
+    PyPI rejects doc tarballs greater than 25 megs.
+
+12. Run "ajv api -M". If any errors occur, fix, commit and go back to (5.)
+    Record HTML build results in the packaging transcript.
+
+13. Run 'make latex'. If any errors occur, fix, commit and go back to (5.)
+    Record the LaTeX build results in the packaging transcript.
 
 14. Change to docs/_build/latex and run 'make all-pdf'.
     If any errors occur, fix, commit and go back to (5.)

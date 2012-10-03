@@ -5,7 +5,7 @@ Version history
 Abjad 2.10
 ----------
 
-Released 2012-10-01. Built from r7577.
+Released 2012-10-03. Built from r7600.
 Implements 437 public classes and 982 functions totalling 179,000 lines of code.
 
 The following packages now load by default when you start Abjad::

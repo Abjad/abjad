@@ -24,9 +24,9 @@ Abjad 2.10
        10. sanity check test results: 
             Abjad starts and f(), show(), play(), iotools.log(), iotools.ly() all pass
        11. HTML build results:
-            build succeeds with 0 errors and 0 warnings.
+            0 errors and 0 warnings.
        12. LaTeX build results:
-            TBD
+            0 errors and 0 warnings.
        13. PDF build results:
             TBD
 
