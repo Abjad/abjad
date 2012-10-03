@@ -1,9 +1,9 @@
 from abjad import *
-import py
 
 
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_01():
-    '''Tied leaves inside containers can be fused.'''
+    '''Tied leaves inside containers can be fused.
+    '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tie = tietools.TieSpanner(t.leaves)
@@ -30,7 +30,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 
 
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_02():
-    '''Tied leaves inside containers can be fused.'''
+    '''Tied leaves inside containers can be fused.
+    '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tie = tietools.TieSpanner(t.leaves[1:])
@@ -60,7 +61,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 
 
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_03():
-    '''multiple ties inside the same duration span are independently fused.'''
+    '''multiple ties inside the same duration span are independently fused.
+    '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tie1 = tietools.TieSpanner(t.leaves[0:2])
@@ -85,7 +87,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 
 
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_04():
-    '''multiple ties inside the same duration span are independently fused.'''
+    '''multiple ties inside the same duration span are independently fused.
+    '''
 
     t = Voice(notetools.make_repeated_notes(8))
     tietools.TieSpanner(t.leaves[0:4])
@@ -121,10 +124,9 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
 
 
 def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_05():
-    '''Steve Lehman's "Rai" slicing example.'''
-    py.test.skip('investigate me and fixme if necessary')
+    '''Steve Lehman's "Rai" slicing example.
+    '''
     
-
     durations = [5, 7, 2, 11, 13, 5, 13, 3]
     durations = zip(durations, [16] * len(durations))
 
@@ -135,7 +137,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     meters = [Duration(*meter) for meter in meters]
 
     componenttools.split_components_at_offsets(t.leaves, meters, 
-        cyclic=False, fracture_spanners=False, tie_after=True)
+        cyclic=False, fracture_spanners=False, tie_split_notes=True)
 
     r'''
     \new RhythmicStaff \with {

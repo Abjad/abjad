@@ -157,6 +157,7 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
     '''
     from abjad.tools import contexttools
     from abjad.tools import gracetools
+    from abjad.tools import iterationtools
     from abjad.tools import leaftools
     from abjad.tools import marktools
     from abjad.tools import spannertools
@@ -221,8 +222,11 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
-        tietools.TieSpanner(flattened_result)
-     
+        flattened_result_leaves = iterationtools.iterate_leaves_in_expr(flattened_result)
+        # TODO: maybe generalize tietools.apply_tie_spanner_to_leaf_pair()
+        #       to tietools.apply_tie_spanner_to_leaves().
+        for leaf_pair in sequencetools.iterate_sequence_pairwise_strict(flattened_result_leaves):
+            tietools.apply_tie_spanner_to_leaf_pair(*leaf_pair)
+
     # return result
     return result
