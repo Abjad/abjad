@@ -111,7 +111,7 @@ Abjad packaging checklist:
     All tests have now passed in the packaging environment.
     All documentation has now built in the packaging environment.
 
-19. For each addition test environment, repeat the following steps:
+19. For each additional test environment, repeat the following steps:
     [2] documenting the test environment.
     [7], [8], [9] recording py.test, doctest and sanity check test results.
     [13], [16] recording HTML & PDF build results.
