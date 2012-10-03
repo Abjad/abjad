@@ -175,7 +175,7 @@ New score-template tools are available::
 
     scoretemplatetools.GroupedStavesScoreTemplate
 
-New sequence tools are available::
+New sequence tools are available:
 
 - Added ``sequencetools.merge_duration_sequences()``::
 
@@ -198,7 +198,7 @@ New time-interval tools are available::
 
     timeintervaltools.make_voice_from_nonoverlapping_intervals()
 
-New time-token tools are available::
+New time-token tools are available:
 
 - Added ``SkipFilledTimeTokenMaker`` to ``timetokentools`` package::
 
@@ -286,6 +286,67 @@ Changes to end-user functionality:
 
 - Changed::
 
+    chordtools.iterate_chords_forward_in_expr()
+    chordtools.iterate_chords_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_chords_in_expr(reverse=[True, False])
+
+- Changed::
+
+    componenttools.extend_left_in_parent_of_component_and_grow_spanners()
+    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
+
+  ::
+
+    componenttools.extend_left_in_parent_of_component()
+
+- Changed::
+
+    componenttools.extend_in_parent_of_component_and_grow_spanners()
+    componenttools.extend_in_parent_of_component_and_do_not_grow_spanners()
+
+  ::
+
+    componenttools.extend_in_parent_of_component()
+
+- Changed::
+
+    componenttools.iterate_components_depth_first()
+    componenttools.iterate_components_forward_in_expr()
+    componenttools.iterate_components_backward_in_expr()
+    componenttools.iterate_namesakes_forward_from_component()
+    componenttools.iterate_namesakes_backward_from_component()
+    componenttools.iterate_thread_forward_from_component()
+    componenttools.iterate_thread_backward_from_component()
+    componenttools.iterate_thread_forward_in_expr()
+    componenttools.iterate_thread_backward_in_expr()
+    componenttools.iterate_timeline_forward_from_component()
+    componenttools.iterate_timeline_backward_from_component()
+    componenttools.iterate_timeline_forward_in_expr()
+    componenttools.iterate_timeline_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_components_depth_first()
+    iterationtools.iterate_components_in_expr(reverse=[True, False])
+    iterationtools.iterate_namesakes_from_component(reverse=[True, False])
+    iterationtools.iterate_thread_from_component(reverse=[True, False])
+    iterationtools.iterate_thread_in_expr(reverse=[True, False])
+    iterationtools.iterate_timeline_from_component(reverse=[True, False])
+    iterationtools.iterate_timeline_in_expr(reverse=[True, False])
+
+- Changed::
+
+    componenttools.number_is_between_prolated_start_and_stop_offsets_of_component()
+
+  ::
+
+    componenttools.number_is_between_start_and_stop_offsets_of_component()
+
+- Changed::
+
     componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang()
     componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang()
     componenttools.partition_components_cyclically_by_durations_in_seconds_ge_with_overhang()
@@ -319,32 +380,6 @@ Changes to end-user functionality:
 
 - Changed::
 
-    componenttools.extend_left_in_parent_of_component_and_grow_spanners()
-    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
-
-  ::
-
-    componenttools.extend_left_in_parent_of_component()
-
-- Changed::
-
-    componenttools.extend_in_parent_of_component_and_grow_spanners()
-     componenttools.extend_in_parent_of_component_and_do_not_grow_spanners()
-
-  ::
-
-    componenttools.extend_in_parent_of_component()
-
-- Changed::
-
-    componenttools.number_is_between_prolated_start_and_stop_offsets_of_component()
-
-  ::
-
-    componenttools.number_is_between_start_and_stop_offsets_of_component()
-
-- Changed::
-
     componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()
     componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners()
 
@@ -362,6 +397,23 @@ Changes to end-user functionality:
   ::
 
     componenttools.split_components_at_offsets(fracture_spanners=[True, False], cyclic=[True, False])
+
+- Changed::
+
+    containertools.iterate_containers_forward_in_expr()
+    containertools.iterate_containers_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_containers_in_expr(reverse=[True, False])
+
+- Changed::
+
+    containertools.remove_empty_containers_in_expr()
+
+  ::
+
+    containertools.remove_leafless_containers_in_expr()
 
 - Changed::
 
@@ -403,11 +455,12 @@ Changes to end-user functionality:
 
 - Changed::
 
-    containertools.remove_empty_containers_in_expr()
+    contexttools.iterate_contexts_forward_in_expr()
+    contexttools.iterate_contexts_backward_in_expr()
 
   ::
 
-    containertools.remove_leafless_containers_in_expr()
+    iterationtools.iterate_contexts_in_expr(reverse=[True, False])
 
 - Changed::
 
@@ -415,7 +468,7 @@ Changes to end-user functionality:
     durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
     durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order()
     durationtools.yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely()
-    durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonalized_order()
+    durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order()
 
   ::
 
@@ -424,83 +477,6 @@ Changes to end-user functionality:
     durationtools.yield_all_positive_rationals()
     durationtools.yield_all_positive_rationals_uniquely()
     durationtools.yield_prolation_rewrite_pairs()
-
-- Changed::
-
-    durationtools.yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order()
-
-  ::
-
-    durationtools.yield_prolation_rewrite_pairs_in_cantor_diagonlized_order()
-
-- Changed::
-
-    instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch()
-
-  ::
-
-    instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch()
-
-- Changed::
-
-    instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch()
-
-   ::
-
-    instrumenttools.transpose_from_fingered_pitch_to_souding_pitch()
-
-- Changed::
-
-    chordtools.iterate_chords_forward_in_expr()
-    chordtools.iterate_chords_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_chords_in_expr(reverse=[True, False])
-
-- Changed::
-
-    componenttools.iterate_components_depth_first()
-    componenttools.iterate_components_forward_in_expr()
-    componenttools.iterate_components_backward_in_expr()
-    componenttools.iterate_namesakes_forward_from_component()
-    componenttools.iterate_namesakes_backward_from_component()
-    componenttools.iterate_thread_forward_from_component()
-    componenttools.iterate_thread_backward_from_component()
-    componenttools.iterate_thread_forward_in_expr()
-    componenttools.iterate_thread_backward_in_expr()
-    componenttools.iterate_timeline_forward_from_component()
-    componenttools.iterate_timeline_backward_from_component()
-    componenttools.iterate_timeline_forward_in_expr()
-    componenttools.iterate_timeline_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_components_depth_first()
-    iterationtools.iterate_components_in_expr(reverse=[True, False])
-    iterationtools.iterate_namesakes_from_component(reverse=[True, False])
-    iterationtools.iterate_thread_from_component(reverse=[True, False])
-    iterationtools.iterate_thread_in_expr(reverse=[True, False])
-    iterationtools.iterate_timeline_from_component(reverse=[True, False])
-    iterationtools.iterate_timeline_in_expr(reverse=[True, False])
-
-- Changed::
-
-    containertools.iterate_containers_forward_in_expr()
-    containertools.iterate_containers_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_containers_in_expr(reverse=[True, False])
-
-- Changed::
-
-    contexttools.iterate_contexts_forward_in_expr()
-    contexttools.iterate_contexts_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_contexts_in_expr(reverse=[True, False])
 
 - Changed::
 
@@ -517,6 +493,22 @@ Changes to end-user functionality:
   ::
 
     iterationtools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
+
+- Changed::
+
+    instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch()
+
+  ::
+
+    instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch()
+
+- Changed::
+
+    instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch()
+
+   ::
+
+    instrumenttools.transpose_from_fingered_pitch_to_souding_pitch()
 
 - Changed::
 
