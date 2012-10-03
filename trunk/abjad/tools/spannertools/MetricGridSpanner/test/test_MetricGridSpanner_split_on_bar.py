@@ -66,7 +66,6 @@ def test_MetricGridSpanner_split_on_bar_02():
 def test_MetricGridSpanner_split_on_bar_03():
     '''Metric grid spanner split works with tuplets.
     '''
-    py.test.skip('FIXME')
 
     t = Voice([Tuplet(Fraction(2,3), Note(0, (1,8)) * 6)])
     m = spannertools.MetricGridSpanner(t.leaves, [(1, 8)])
@@ -88,7 +87,7 @@ def test_MetricGridSpanner_split_on_bar_03():
     }
     '''
     
-    assert componenttools.is_well_formed_component(staff)
+    assert componenttools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t\tc'8\n\t\tc'16 ~\n\t\tc'16\n\t\tc'8\n\t}\n}"
 
 
@@ -138,7 +137,7 @@ def test_MetricGridSpanner_split_on_bar_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert componenttools.is_well_formed_component(t)
     assert t.lilypond_format =="\\new Voice {\n\t\\times 2/3 {\n\t\t\\time 1/8\n\t\tc'8\n\t\t\\fraction \\times 3/2 {\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'16 ~\n\t\t\t}\n\t\t\t\\times 2/3 {\n\t\t\t\tc'8\n\t\t\t}\n\t\t}\n\t}\n}"
 
 

@@ -236,6 +236,58 @@ def split_components_at_offsets(components, offsets,
             }
         }
 
+    Example 5. Split tupletted components once and fracture crossing spanners::
+
+        >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
+
+    ::
+
+        >>> beamtools.BeamSpanner(staff[0])
+        BeamSpanner({c'8, d'8, e'8})
+        >>> beamtools.BeamSpanner(staff[1])
+        BeamSpanner({f'8, g'8, a'8})
+        >>> spannertools.SlurSpanner(staff.leaves)
+        SlurSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            \times 2/3 {
+                c'8 [ (
+                d'8
+                e'8 ]
+            }
+            \times 2/3 {
+                f'8 [
+                g'8
+                a'8 ] )
+            }
+        }
+
+    ::
+
+        >>> offsets = [(1, 8)]
+        >>> shards = componenttools.split_components_at_offsets(
+        ... staff.leaves, offsets, cyclic=False, fracture_spanners=True, tie_split_notes=True)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            \times 2/3 {
+                c'8 [ (
+                d'16 ) ~
+                d'16 (
+                e'8 ]
+            }
+            \times 2/3 {
+                f'8 [
+                g'8
+                a'8 ] )
+            }
+        }
+
     Return list of newly split shards.
 
     .. note:: Add tests of tupletted notes and rests.
@@ -263,6 +315,8 @@ def split_components_at_offsets(components, offsets,
         offsets.append(final_offset)
     elif total_component_duration < total_offset_duration:
         offsets = sequencetools.truncate_sequence_to_weight(offsets, total_component_duration)
+
+    #print offsets, 'offsets'
 
     # keep copy of offsets to partition result components
     offsets_copy = offsets[:]
@@ -323,12 +377,12 @@ def split_components_at_offsets(components, offsets,
             if isinstance(current_component, leaftools.Leaf):
                 #print 'splitting leaf ...'
                 leaf_split_durations = [local_split_duration]
-                additional_required_duration = current_component.written_duration - local_split_duration
+                additional_required_duration = current_component.prolated_duration - local_split_duration
                 #print 'additional_required_duration {}'.format(additional_required_duration)
                 #print 'offsets {}'.format(offsets)
                 split_offsets = sequencetools.split_sequence_by_weights(
                     offsets, [additional_required_duration], cyclic=False, overhang=True)
-                #print 'split_offsets {}'.format(split_offsets)
+                #print 'split_offsets {}\n'.format(split_offsets)
                 additional_offsets = split_offsets[0]
                 leaf_split_durations.extend(additional_offsets)
                 offsets = split_offsets[-1]

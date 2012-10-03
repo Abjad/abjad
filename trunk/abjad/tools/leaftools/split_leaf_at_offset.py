@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import pitchtools
 
 
+# TODO: can this be replaced in favor of leaftools.split_leaf_at_offsets()?
 def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''Split `leaf` at `offset`.
 
