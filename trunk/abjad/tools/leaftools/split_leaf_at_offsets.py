@@ -187,6 +187,9 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)
+    if spannertools.get_spanners_attached_to_any_improper_parent_of_component(
+        leaf, klass=tietools.TieSpanner):
+        tietools.remove_tie_spanners_from_components_in_expr(flattened_result)
     componenttools.move_parentage_and_spanners_from_components_to_components([leaf], flattened_result)
 
     if fracture_spanners:
