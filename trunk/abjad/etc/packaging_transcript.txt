@@ -18,7 +18,7 @@ Abjad 2.10
         7. lilypond --version
             GNU LilyPond 2.17.3
         8. py.test test results:
-            4695 passed in 184.99 seconds
+            4695 passed in 184.99 seconds (laptop)
         9. doctest test results:
             0 errors over 1541 total modules
        10. sanity check test results: 
@@ -28,7 +28,7 @@ Abjad 2.10
        12. LaTeX build results:
             0 errors and 0 warnings.
        13. PDF build results:
-            TBD
+            2354 pages over 17.3M with 0 errors and 0 warnings.
 
 
 Abjad 2.9

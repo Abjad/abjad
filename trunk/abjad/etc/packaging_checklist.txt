@@ -94,13 +94,13 @@ Abjad packaging checklist:
 13. Run 'make latex'. If any errors occur, fix, commit and go back to (5.)
     Record the LaTeX build results in the packaging transcript.
 
-14. Change to docs/_build/latex and run 'make all-pdf'.
+14. Change to docs/build/latex and run 'make all-pdf'.
     If any errors occur, fix, commit and go back to (5.)
-    Open the docs/_build/latex/Abjad.pdf file that results.
+    Open the docs/build/latex/Abjad.pdf file that results.
     Click around some to make sure everything looks OK.
     Record PDF build results in the packaging transcript.
 
-15. Copy docs/_build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
+15. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
     Do this with 'cp' and not with 'svn cp'.
 
 16. Add docs/pdf/Abajd-x-y.pdf to svn.
@@ -133,12 +133,12 @@ Abjad packaging checklist:
     The directories are no longer needed after upload to PyPI.
     The directories should not be checked into the Abjad repository.
 
-24. Change to docs/_build/html and archive all 9 or 10 files and subdirectories therein.
+24. Change to docs/build/html and archive all 9 or 10 files and subdirectories therein.
     You must create a single archive of all 9 or 10 files.
     Through the Finder on the Mac you can shift-click all 9 or 10 files,
     then control-click the selected files and choose "Compress 9 items"
     from the context menu that appears.
-    (Note that archiving just the docs/_build/html folder will not work.)
+    (Note that archiving just the docs/build/html folder will not work.)
     Name the archive Archive.zip.
     Check the size of the archive.
     The archive must be less than 10 megs.
@@ -147,7 +147,7 @@ Abjad packaging checklist:
     Click on the Abjad link to edit PyPI's information about the package.
 
 26. At the bottom of the "Package 'Abjad' Editing" page, click on "Choose file"
-    and select docs/_build/html/Archive.zip. Then click on "Upload Documentation".
+    and select docs/build/html/Archive.zip. Then click on "Upload Documentation".
     PyPI will redirect to http://packages.python.org/Abjad/.
     The newest version of the docs will appear.
     If it doesn't, debug and fix what went wrong.
@@ -172,7 +172,7 @@ Abjad packaging checklist:
 31. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-32. Return to your Abjad sources and remove docs/_build/html/Archive.zip.
+32. Return to your Abjad sources and remove docs/build/html/Archive.zip.
     The archive should not be checked in to the Abjad repository.
 
 33. Edit abjad/__init__.py and increment '__version__' to the *next* minor number.

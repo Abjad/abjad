@@ -10,65 +10,27 @@ Implements 437 public classes and 982 functions totalling 179,000 lines of code.
 
 The following packages now load by default when you start Abjad::
 
-    abjadbooktools
-    beamtools
-    chordtools
-    componenttools
-    containertools
-    contexttools
-    developerscripttools
-    durationtools
-    formattools
-    gracetools
-    instrumenttools
-    introspectiontools
-    iotools
-    iterationtools
-    labeltools
-    layouttools
-    leaftools
-    lilypondfiletools
-    marktools
-    markuptools
-    mathtools
-    measuretools
-    notetools
-    offsettools
-    pitcharraytools
-    pitchtools
-    resttools
-    rhythmtreetools
-    schemetools
-    scoretemplatetools
-    scoretools
-    sequencetools
-    sievetools
-    skiptools
-    spannertools
-    stafftools
-    stringtools
-    tempotools
-    tietools
-    timeintervaltools
-    timesignaturetools
-    timetokentools
-    tonalitytools
-    tuplettools
-    verticalitytools
-    voicetools
+    Abjad 2.10
+    >>> [x for x in dir() if x.endswith('tools')]
+    ['abjadbooktools', 'beamtools', 'chordtools', 'componenttools', 'containertools', 'contexttools', 
+    'developerscripttools', 'durationtools', 'formattools', 'gracetools', 'instrumenttools', 
+    'introspectiontools', 'iotools', 'iterationtools', 'labeltools', 'layouttools', 'leaftools', 
+    'lilypondfiletools', 'marktools', 'markuptools', 'mathtools', 'measuretools', 'notetools', '
+    'offsettools', 'pitcharraytools', 'pitchtools', 'resttools', 'rhythmtreetools', 'schemetools', 
+    'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'skiptools', 'spannertools', 
+    'stafftools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools', 
+    'timetokentools', 'tonalitytools', 'tuplettools', 'verticalitytools', 'voicetools']
 
 Improved formatting engine.  Scores now format approximately 30% faster.
 
 Improved LilyPond parser.
-
-Replaced that Abjad 'abjad>' prompt with the Python '>>>' prompt everywhere in the API.
 
 Implemented parsing in markuptools.Markup on instantiation from a single string::
 
     >>> markuptools.Markup(r'\bold \tiny { foo bar baz }')
     Markup((MarkupCommand('bold', MarkupCommand('tiny', ['foo', 'bar', 'baz'])),))
   
-  ::
+::
 
     >>> print _.indented_lilypond_format
     \markup {
