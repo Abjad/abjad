@@ -252,7 +252,7 @@ New time-token tools are available:
         }
     }
 
-- Added Ratio class to the mathtools package::
+Added Ratio class to the mathtools package::
 
     >>> mathtools.Ratio(1, 2, -1)
     Ratio(1, 2, -1)
@@ -273,16 +273,16 @@ Improved schemetools.Scheme quote handling:
 
 Changes to end-user functionality:
 
-- Changed::
+- Changed ``format`` to ``lilypond_format`` on all system objects.
 
-    Changed default split function behavior.
+- Changed default split function behavior.
 
-    The componenttools.split_components_at_offsets() function no longer implements a tie_after keyword.
-    Use the new tie_split_notes and tie_split_rests keywords. Note that the new tie_split_rests 
-    keyword defaults to true where the old tie_after keyword defaulted to false.
-    This changes the default behavior of the function.
+  The componenttools.split_components_at_offsets() function no longer implements a tie_after keyword.
+  Use the new tie_split_notes and tie_split_rests keywords. Note that the new tie_split_rests 
+  keyword defaults to true where the old tie_after keyword defaulted to false.
+  This changes the default behavior of the function.
 
-    All the same is true of the (singular version) componenttools.split_component_at_offset() function.
+  All the same is true of the (singular version) componenttools.split_component_at_offset() function.
 
 - Changed::
 
@@ -292,6 +292,14 @@ Changes to end-user functionality:
   ::
 
     iterationtools.iterate_chords_in_expr(reverse=[True, False])
+
+- Changed::
+
+    chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
+
+  ::
+
+    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
 
 - Changed::
 
@@ -409,6 +417,14 @@ Changes to end-user functionality:
 
 - Changed::
 
+    containertools.color_contents_of_container()
+
+  ::
+
+    labeltools.color_contents_of_container()
+
+- Changed::
+
     containertools.remove_empty_containers_in_expr()
 
   ::
@@ -506,9 +522,9 @@ Changes to end-user functionality:
 
     instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch()
 
-   ::
+  ::
 
-    instrumenttools.transpose_from_fingered_pitch_to_souding_pitch()
+    instrumenttools.transpose_from_fingered_pitch_to_sounding_pitch()
 
 - Changed::
 
@@ -518,7 +534,6 @@ Changes to end-user functionality:
     leaftools.iterate_notes_and_chords_forward_in_expr()
     leaftools.iterate_notes_and_chords_backward_in_expr()
 
-
   ::
 
     iterationtools.iterate_leaf_pairs_in_expr()
@@ -527,124 +542,17 @@ Changes to end-user functionality:
 
 - Changed::
 
-    measuretools.iterate_measures_forward_in_expr()
-    measuretools.iterate_measures_backward_in_expr()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_notes()
+    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_rests()
 
   ::
 
-    iterationtools.iterate_measures_in_expr(reverse=[True, False])
+    leaftools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
 
 - Changed::
 
-    notetools.iterate_notes_forward_in_expr()
-    notetools.iterate_notes_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_notes_in_expr(reverse=[True, False])
-
-- Changed::
-
-    pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr()
-
-  ::
-
-    iterationtools.iterate_named_chromatic_pitch_pairs_in_expr()
-
-- Changed::
-
-    resttools.iterate_rests_forward_in_expr()
-    resttools.iterate_rests_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_rests_in_expr(reverse=[True, False])
-
-- Changed::
-
-    scoretools.iterate_scores_forward_in_expr()
-    scoretools.iterate_scores_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_scores_in_expr(reverse=[True, False])
-
-- Changed::
-
-    skiptools.iterate_skips_forward_in_expr()
-    skiptools.iterate_skips_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_skips_in_expr(reverse=[True, False])
-
-- Changed::
-
-    spannertools.iterate_components_forward_in_spanner()
-    spannertools.iterate_components_backward_in_spanner()
-
-  ::
-
-    iterationtools.iterate_components_in_spanner(reverse=[True, False])
-
-- Changed::
-
-    stafftools.iterate_staves_forward_in_expr()
-    stafftools.iterate_staves_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_staves_in_expr(reverse=[True, False])
-
-- Changed::
-
-    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
-    tietools.iterate_pitched_tie_chains_forward_in_expr()
-    tietools.iterate_pitched_tie_chains_backward_in_expr()
-    tietools.iterate_tie_chains_forward_in_expr()
-    tietools.iterate_tie_chains_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
-
-- Changed::
-
-    tuplettools.iterate_tuplets_forward_in_expr()
-    tuplettools.iterate_tuplets_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_tuplets_in_expr(reverse=[True, False])
-
-- Changed::
-
-    verticalitytools.iterate_vertical_moments_forward_in_expr()
-    verticalitytools.iterate_vertical_moments_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_vertical_moments_in_expr(reverse=[True, False])
-
-- Changed::
-
-    voicetools.iterate_semantic_voices_forward_in_expr()
-    voicetools.iterate_semantic_voices_backward_in_expr()
-    voicetools.iterate_voices_forward_in_expr()
-    voicetools.iterate_voices_backward_in_expr()
-
-  ::
-
-    voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
-    voicetools.iterate_voices_in_expr(reverse=[True, False])
-
-- Changed::
-
-    chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
-    containertools.color_contents_of_container()
     leaftools.color_leaf()
     leaftools.color_leaves_in_expr()
     leaftools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
@@ -663,26 +571,9 @@ Changes to end-user functionality:
     leaftools.label_leaves_in_expr_with_prolated_leaf_duration()
     leaftools.label_leaves_in_expr_with_tuplet_depth()
     leaftools.label_leaves_in_expr_with_written_leaf_duration()
-    markuptools.remove_markup_from_leaves_in_expr()
-    measuretools.color_measure()
-    measuretools.color_nonbinary_measures_in_expr()
-    notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
-    notetools.label_notes_in_expr_with_note_indices()
-    tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
-    tietools.label_tie_chains_in_expr_with_tie_chain_durations()
-    tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
-    verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
-    verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()
-    verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals()
-    verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()
-    verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()
-    verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
-    verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers()
 
   ::
 
-    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
-    labeltools.color_contents_of_container()
     labeltools.color_leaf()
     labeltools.color_leaves_in_expr()
     labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
@@ -700,33 +591,64 @@ Changes to end-user functionality:
     labeltools.label_leaves_in_expr_with_pitch_numbers()
     labeltools.label_leaves_in_expr_with_prolated_leaf_duration()
     labeltools.label_leaves_in_expr_with_tuplet_depth()
-    labeltools.remove_markup_from_leaves_in_expr()
-    labeltools.color_measure()
-    labeltools.color_nonbinary_measures_in_expr()
-    labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
     labeltools.label_leaves_in_expr_with_written_leaf_duration()
-    labeltools.label_notes_in_expr_with_note_indices()
-    labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
-    labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
-    labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
-    labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
-    labeltools.label_vertical_moments_in_expr_with_chromatic_intervals()
-    labeltools.label_vertical_moments_in_expr_with_counterpoint_intervals()
-    labeltools.label_vertical_moments_in_expr_with_diatonic_intervals()
-    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
-    labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
-    labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
 
 - Changed::
 
-    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
-    leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests()
-    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_notes()
-    leaftools.fuse_leaves_in_container_once_by_counts_into_little_endian_rests()
+    leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration()
+    leaftools.leaf_to_augmented_tuplet_with_proportions()
+    leaftools.leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration()
+    leaftools.leaf_to_diminished_tuplet_with_proportions()
 
   ::
 
-    leaftools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
+    leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
+    leaftools.leaf_to_tuplet_with_proportions()
+
+- Changed::
+
+    leaftools.split_leaf_at_offset_and_rest_right_half()
+
+  ::
+
+    leaftools.rest_leaf_at_offset()
+
+- Changed::
+
+    leaftools.repeat_leaf_and_extend_spanners()
+    leaftools.repeat_leaves_in_expr_and_extend_spanners()
+
+  ::
+
+    leaftools.repeat_leaf()
+    leaftools.repeat_leaves_in_expr()
+
+- Changed::
+
+    markuptools.remove_markup_from_leaves_in_expr()
+
+  ::
+
+    labeltools.remove_markup_from_leaves_in_expr()
+
+- Changed::
+
+    measuretools.color_measure()
+    measuretools.color_nonbinary_measures_in_expr()
+
+  ::
+
+    labeltools.color_measure()
+    labeltools.color_nonbinary_measures_in_expr()
+
+- Changed::
+
+    measuretools.iterate_measures_forward_in_expr()
+    measuretools.iterate_measures_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_measures_in_expr(reverse=[True, False])
 
 - Changed::
 
@@ -767,6 +689,32 @@ Changes to end-user functionality:
 
     measuretools.multiply_and_scale_contents_of_measures_in_expr()
 
+- Changed::
+
+    notetools.iterate_notes_forward_in_expr()
+    notetools.iterate_notes_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_notes_in_expr(reverse=[True, False])
+
+- Changed::
+
+    notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    notetools.label_notes_in_expr_with_note_indices()
+
+  ::
+
+    labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    labeltools.label_notes_in_expr_with_note_indices()
+
+- Changed::
+
+    pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr()
+
+  ::
+
+    iterationtools.iterate_named_chromatic_pitch_pairs_in_expr()
 
 - Changed::
 
@@ -927,11 +875,37 @@ Changes to end-user functionality:
 
 - Changed::
 
+    resttools.iterate_rests_forward_in_expr()
+    resttools.iterate_rests_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_rests_in_expr(reverse=[True, False])
+
+- Changed::
+
     rhythmtreetools.parse_reduced_ly_syntax()
 
   ::
 
     lilypondparsertools.parse_reduced_ly_syntax()
+
+- Changed::
+
+    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.n
+
+  ::
+
+    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.staff_count
+
+- Changed::
+
+    scoretools.iterate_scores_forward_in_expr()
+    scoretools.iterate_scores_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_scores_in_expr(reverse=[True, False])
 
 - Changed::
 
@@ -1006,17 +980,47 @@ Changes to end-user functionality:
 
     sequencetools.split_sequence_extended_to_weights()
 
-
-
-
 - Changed::
 
-    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.n
+    skiptools.iterate_skips_forward_in_expr()
+    skiptools.iterate_skips_backward_in_expr()
 
   ::
 
-    scoretemplatetools.GroupedRhythmcStavesScoreTemplate.staff_count
+    iterationtools.iterate_skips_in_expr(reverse=[True, False])
 
+- Changed::
+
+    spannertools.iterate_components_forward_in_spanner()
+    spannertools.iterate_components_backward_in_spanner()
+
+  ::
+
+    iterationtools.iterate_components_in_spanner(reverse=[True, False])
+
+- Changed::
+
+    stafftools.iterate_staves_forward_in_expr()
+    stafftools.iterate_staves_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_staves_in_expr(reverse=[True, False])
+
+- Changed::
+
+    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
+    tietools.iterate_pitched_tie_chains_forward_in_expr()
+    tietools.iterate_pitched_tie_chains_backward_in_expr()
+    tietools.iterate_tie_chains_forward_in_expr()
+    tietools.iterate_tie_chains_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
 
 - Changed::
 
@@ -1031,27 +1035,78 @@ Changes to end-user functionality:
 
 - Changed::
 
+    tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    tietools.label_tie_chains_in_expr_with_tie_chain_durations()
+    tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+
+  ::
+
+    labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
+    labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+
+- Changed::
+
+    tuplettools.iterate_tuplets_forward_in_expr()
+    tuplettools.iterate_tuplets_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_tuplets_in_expr(reverse=[True, False])
+
+- Changed::
+
     tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()
     tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()
     tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots()
     tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots()
 
-    In place of direction='big-endian' use big_endian=True instead.
-    In place of direction='little-endian' use big_endian=False instead.
+  ::
+
+    tuplettools.make_tuplet_from_durations_and_proportions(big_endian=[True, False])
 
 - Changed::
 
-    leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration()
-    leaftools.leaf_to_augmented_tuplet_with_proportions()
-    leaftools.leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration()
-    leaftools.leaf_to_diminished_tuplet_with_proportions()
+    verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()
+    verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers()
 
   ::
 
-    leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
-    leaftools.leaf_to_tuplet_with_proportions()
+    labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
+    labeltools.label_vertical_moments_in_expr_with_chromatic_intervals()
+    labeltools.label_vertical_moments_in_expr_with_counterpoint_intervals()
+    labeltools.label_vertical_moments_in_expr_with_diatonic_intervals()
+    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
+    labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
 
 - Changed::
+
+    verticalitytools.iterate_vertical_moments_forward_in_expr()
+    verticalitytools.iterate_vertical_moments_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_vertical_moments_in_expr(reverse=[True, False])
+
+- Changed::
+
+    voicetools.iterate_semantic_voices_forward_in_expr()
+    voicetools.iterate_semantic_voices_backward_in_expr()
+    voicetools.iterate_voices_forward_in_expr()
+    voicetools.iterate_voices_backward_in_expr()
+
+  ::
+
+    voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
+    voicetools.iterate_voices_in_expr(reverse=[True, False])
+
+- Changed all functions that contained ``big_endian``::
 
     durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
     leaftools.fuse_leaves_big_endian()
@@ -1062,8 +1117,6 @@ Changes to end-user functionality:
     durationtools.duration_token_to_assignable_duration_pairs()
     leaftools.fuse_leaves()
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()
-
-- Changed ``format`` to ``lilypond_format`` on all system objects.
 
 - Changed all functions that contained ``prolated_offset`` to simply ``offset``::
 
@@ -1111,7 +1164,7 @@ Changes to end-user functionality:
     leaftools.split_leaf_at_offset()
     leaftools.split_leaf_at_offset_and_rest_right_half()
 
-- Changed::
+- Changed all functions that contained ``as_string``::
 
     componenttools.report_component_format_contributions_as_string()
     containertools.report_container_modifications_as_string()
