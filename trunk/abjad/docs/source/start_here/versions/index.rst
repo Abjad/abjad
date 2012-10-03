@@ -602,8 +602,8 @@ Changes to end-user functionality:
 
   ::
 
-    leaftools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
-    leaftools.leaf_to_tuplet_with_proportions()
+    tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
+    tuplettools.leaf_to_tuplet_with_proportions()
 
 - Changed::
 
@@ -683,11 +683,29 @@ Changes to end-user functionality:
 
 - Changed::
 
+    measuretools.get_prev_measure_from_component()
+
+  ::
+
+    measuretools.get_previous_measure_from_component()
+
+- Changed::
+
     measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
 
   ::
 
     measuretools.multiply_and_scale_contents_of_measures_in_expr()
+
+- Changed::
+
+    measuretools.pitch_array_row_to_measure()
+    measuretools.pitch_array_to_measures()
+
+  ::
+
+    pitchtools.pitch_array_row_to_measure()
+    pitchtools.pitch_array_to_measures()
 
 - Changed::
 
@@ -849,7 +867,7 @@ Changes to end-user functionality:
 
     spannertools.apply_octavation_spanner_to_pitched_components()
 
--Changed::
+- Changed::
 
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr()
 
@@ -906,6 +924,14 @@ Changes to end-user functionality:
   ::
 
     iterationtools.iterate_scores_in_expr(reverse=[True, False])
+
+- Changed::
+
+    scoretools.make_pitch_array_score_from_pitch_arrays()
+
+  ::
+
+    pitchtools.make_pitch_array_score_from_pitch_arrays()
 
 - Changed::
 
@@ -1056,6 +1082,14 @@ Changes to end-user functionality:
 
 - Changed::
 
+    tuplettools.is_proper_tuplet_multiplier()
+
+  ::
+
+    durationtools.is_proper_tuplet_multiplier()
+
+- Changed::
+
     tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()
     tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()
     tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots()
@@ -1180,10 +1214,9 @@ Removed ``constrainttools`` package.
 
 Removed ``lyricstools`` package.
 
+Removed ``mathtools.partition_integer_into_thirds()``.
+
 Removed ``quantizationtools`` package.
-
-
-
 
 Abjad 2.9
 ---------
