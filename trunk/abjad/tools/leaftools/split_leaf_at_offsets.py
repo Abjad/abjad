@@ -183,6 +183,7 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
         new_leaf = copy.deepcopy(leaf)
         preprolated_duration = prolated_duration / leaf_prolation
         shard = leaftools.set_preprolated_leaf_duration(new_leaf, preprolated_duration)
+        shard = [componenttools.component_to_score_root(x) for x in shard]
         result.append(shard)
 
     flattened_result = sequencetools.flatten_sequence(result)
