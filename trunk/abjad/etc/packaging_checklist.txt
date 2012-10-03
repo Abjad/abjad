@@ -113,21 +113,21 @@ Abjad packaging checklist:
 
 19. For each additional test environment, repeat the following steps:
     [2] documenting the test environment.
-    [7], [8], [9] recording py.test, doctest and sanity check test results.
-    [13], [16] recording HTML & PDF build results.
+    [5], [6], [7] recording py.test, doctest and sanity check test results.
+    [12], [13], [14] recording HTML, LaTeX & PDF build results.
 
 20. Complete all addition platform testing.
     Close and save the packaging transcript.
     Commit.
 
 21. Change to abjad/trunk.
-    Upgrade setuptools with "sudo pip intall --upgrade setuptools".
+    Upgrade setuptools with "sudo pip install --upgrade setuptools".
 
 22. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
     You must have Abjad package owner credentials for this step to work.
-    If you need Abjad package owner credentials, talk to Trevor, Victor or Josiah.
-    PyPI will respond with "Server response (200): OK".
+    If you need Abjad package owner credentials, talk to Trevor, Víctor or Josiah.
+    PyPI should respond with "error: None"
 
 23. Remove 'dist' and 'Abjad.egg-info'.
     The directories are no longer needed after upload to PyPI.
