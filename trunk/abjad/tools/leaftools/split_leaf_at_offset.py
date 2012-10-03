@@ -3,7 +3,9 @@ from abjad.tools import durationtools
 from abjad.tools import pitchtools
 
 
-# TODO: can this be replaced in favor of leaftools.split_leaf_at_offsets()?
+# TODO: This be replaced in favor of leaftools.split_leaf_at_offsets().
+#       The precondition is that leaftools.split_leaf_at_offsets() must be extended to handle graces.
+#       Also important to migrate over the (large-ish) set of tests for this function.
 def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
     r'''Split `leaf` at `offset`.
 
@@ -158,13 +160,14 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
     if fracture_spanners:
         spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction=Right)
 
-#    if tie_after:
-#        tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
-
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \
         (not pitchtools.is_pitch_carrier(leaf) and tie_split_rests):
-        #tietools.TieSpanner(flattened_result)
         tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     return left_leaf_list, right_leaf_list
+
+    # TODO: make this substitution work
+#    return leaftools.split_leaf_at_offsets(leaf, [offset], cyclic=False, 
+#        fracture_spanners=fracture_spanners, tie_split_notes=tie_split_notes,
+#        tie_split_rests=tie_split_rests)

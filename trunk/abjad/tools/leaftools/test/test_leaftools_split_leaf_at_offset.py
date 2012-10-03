@@ -163,7 +163,8 @@ def test_leaftools_split_leaf_at_offset_05():
 
 def test_leaftools_split_leaf_at_offset_06():
     '''Notehead-assignable duration produces two notes.
-        This test comes from a container-crossing spanner bug.'''
+    This test comes from a container-crossing spanner bug.
+    '''
 
     t = Voice(notetools.make_repeated_notes(1) + [tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -199,7 +200,8 @@ def test_leaftools_split_leaf_at_offset_06():
 
 
 def test_leaftools_split_leaf_at_offset_07():
-    '''Split duration equal to zero produces no change.'''
+    '''Split duration equal to zero produces no change.
+    '''
 
     t = Note("c'4")
 
@@ -214,7 +216,8 @@ def test_leaftools_split_leaf_at_offset_07():
 
 
 def test_leaftools_split_leaf_at_offset_08():
-    '''Leaf duration less than split duration produces no change.'''
+    '''Leaf duration less than split duration produces no change.
+    '''
 
     t = Note("c'4")
 
@@ -250,7 +253,8 @@ def test_leaftools_split_leaf_at_offset_09():
 
 
 def test_leaftools_split_leaf_at_offset_10():
-    '''Split returns two lists of zero or more.'''
+    '''Split returns two lists of zero or more.
+    '''
 
     t = Note("c'4")
     halves = leaftools.split_leaf_at_offset(t, Duration(1, 16))
@@ -294,7 +298,8 @@ def test_leaftools_split_leaf_at_offset_11():
 
 
 def test_leaftools_split_leaf_at_offset_12():
-    '''Lone spanned Leaf results in two spanned leaves.'''
+    '''Lone spanned Leaf results in two spanned leaves.
+    '''
 
     t = Staff([Note("c'4")])
     s = tietools.TieSpanner(t.leaves)
@@ -326,7 +331,8 @@ def test_leaftools_split_leaf_at_offset_13():
 
 def test_leaftools_split_leaf_at_offset_14():
     '''Split returns three leaves, two are tied.
-        Spanner is shared by all 3 leaves.'''
+    Spanner is shared by all 3 leaves.
+    '''
 
     t = Staff([Note("c'4")])
     s = tietools.TieSpanner(t.leaves)
@@ -343,10 +349,8 @@ def test_leaftools_split_leaf_at_offset_14():
 
 
 def test_leaftools_split_leaf_at_offset_15():
-    '''Split leaf is not tied again when a container
-    containing it is already tie-spanned.
+    '''Split leaf is not tied again when a container containing it is already tie-spanned.
     '''
-    py.test.skip('FIXME')
 
     t = Staff(notetools.make_repeated_notes(4))
     s = tietools.TieSpanner(t)
@@ -362,7 +366,6 @@ def test_leaftools_split_leaf_at_offset_15():
 def test_leaftools_split_leaf_at_offset_16():
     '''Split leaf is not tied again when a container containing it is already tie-spanned.
     '''
-    py.test.skip('FIXME')
 
     t = Staff(Container(notetools.make_repeated_notes(4)) * 2)
     s = tietools.TieSpanner(t[:])
@@ -378,7 +381,8 @@ def test_leaftools_split_leaf_at_offset_16():
 
 
 def test_leaftools_split_leaf_at_offset_17():
-    '''After grace notes are removed from first leaf in bipartition.'''
+    '''After grace notes are removed from first leaf in bipartition.
+    '''
 
     t = Note("c'4")
     gracetools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
@@ -389,7 +393,8 @@ def test_leaftools_split_leaf_at_offset_17():
 
 
 def test_leaftools_split_leaf_at_offset_18():
-    '''After grace notes are removed from first tied leaves in bipartition.'''
+    '''After grace notes are removed from first tied leaves in bipartition.
+    '''
 
     t = Note("c'4")
     gracetools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
@@ -403,7 +408,8 @@ def test_leaftools_split_leaf_at_offset_18():
 
 
 def test_leaftools_split_leaf_at_offset_19():
-    '''Grace notes are removed from second leaf in bipartition.'''
+    '''Grace notes are removed from second leaf in bipartition.
+    '''
 
     t = Note("c'4")
     gracetools.GraceContainer([Note(0, (1, 32))])(t)

@@ -49,6 +49,15 @@ def apply_tie_spanner_to_leaf_pair(left, right):
     if tietools.are_components_in_same_tie_spanner([left, right]):
         return
 
+    # do nothing if leaves are already effectively tied because of parents somewhere in score tree
+    left_parent_ties = spannertools.get_spanners_attached_to_any_proper_parent_of_component(
+        left, klass=tietools.TieSpanner)
+    right_parent_ties = spannertools.get_spanners_attached_to_any_proper_parent_of_component(
+        right, klass=tietools.TieSpanner)
+    shared_parent_ties = set(left_parent_ties) & set(right_parent_ties)
+    if shared_parent_ties:
+        return
+
     # get any left tie spanner
     try:
         left_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
