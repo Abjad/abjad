@@ -1,10 +1,10 @@
 Abjad 2.10
-    Date of package: 2012-10-01
-    Revision of Abjad repository: r7577
+    Date of package: 2012-10-03
+    Revision of Abjad repository: r7597
 
     Packaging environment:
         1. uname -v:
-            Darwin Kernel Version 11.4.2: Thu Aug 23 16:25:48 PDT 2012; root:xnu-1699.32.7~1/RELEASE_X86_64
+            Darwin Kernel Version 11.4.2
         2. svn --version:
             svn, version 1.6.17 (r1128011)
         3. python --version:
@@ -18,16 +18,13 @@ Abjad 2.10
         7. lilypond --version
             GNU LilyPond 2.17.3
         8. py.test test results:
-            4688 passed, 7 skipped in 103.28 seconds
-            FIXME: fix skipped tests
+            4695 passed in 184.99 seconds
         9. doctest test results:
-            ***Test Failed*** 2 failures.
-            Total modules: 1540
-            FIXME: fix two failed tests
+            0 errors over 1541 total modules
        10. sanity check test results: 
             Abjad starts and f(), show(), play(), iotools.log(), iotools.ly() all pass
        11. HTML build results:
-            TBD
+            build succeeds with 0 errors and 0 warnings.
        12. LaTeX build results:
             TBD
        13. PDF build results:
@@ -40,13 +37,13 @@ Abjad 2.9
 
     Packaging environment:
         1. uname -v:
-            Darwin Kernel Version 11.4.0: Mon Apr  9 19:32:15 PDT 2012; root:xnu-1699.26.8~1/RELEASE_X86_64
+            Darwin Kernel Version 11.4.0
         2. svn --version:
             svn, version 1.6.17 (r1128011)
         3. python --version:
             Python 2.7.3
         4. pip --version:
-            pip 1.1 from /Library/Python/2.7/site-packages/pip-1.1-py2.7.egg (python 2.7)
+            pip 1.1
         5. py.test --version:
             This is py.test version 2.2.4 ...
         6. sphinx-build --version
