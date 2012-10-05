@@ -1,6 +1,6 @@
 Abjad 2.10
-    Date of package: 2012-10-03
-    Revision of Abjad repository: r7597
+    Date of package: 2012-10-05
+    Revision of Abjad repository: r7615
 
     Packaging environment:
         1. uname -v:
