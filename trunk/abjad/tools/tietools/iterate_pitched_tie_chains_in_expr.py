@@ -1,4 +1,3 @@
-from abjad.tools import tietools
 from abjad.tools import spannertools
 
 
@@ -27,7 +26,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in iterationtools.iterate_pitched_tie_chains_in_expr(staff):
+        >>> for x in tietools.iterate_pitched_tie_chains_in_expr(staff):
         ...     x
         ... 
         TieChain((Note("c'4"), Note("c'16")))
@@ -39,7 +38,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
 
     ::
 
-        >>> for x in iterationtools.iterate_pitched_tie_chains_in_expr(staff, reverse=True):
+        >>> for x in tietools.iterate_pitched_tie_chains_in_expr(staff, reverse=True):
         ...     x
         ... 
         TieChain((Note("f'8"), Note("f'16")))
@@ -54,6 +53,7 @@ def iterate_pitched_tie_chains_in_expr(expr, reverse=False):
     Return generator.
     '''
     from abjad.tools import iterationtools
+    from abjad.tools import tietools
 
     if not reverse:
         for leaf in iterationtools.iterate_notes_and_chords_in_expr(expr):

@@ -1,4 +1,0 @@
-iterationtools.iterate_nontrivial_tie_chains_in_expr
-====================================================
-
-.. autofunction:: abjad.tools.iterationtools.iterate_nontrivial_tie_chains_in_expr.iterate_nontrivial_tie_chains_in_expr

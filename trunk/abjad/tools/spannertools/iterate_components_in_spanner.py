@@ -11,7 +11,7 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     ::
 
-        >>> notes = iterationtools.iterate_components_in_spanner(p, klass=Note)
+        >>> notes = spannertools.iterate_components_in_spanner(p, klass=Note)
 
     ::
 
@@ -24,7 +24,7 @@ def iterate_components_in_spanner(spanner, klass=None, reverse=False):
 
     ::
 
-        >>> notes = iterationtools.iterate_components_in_spanner(p, klass=Note, reverse=True)
+        >>> notes = spannertools.iterate_components_in_spanner(p, klass=Note, reverse=True)
 
     ::
 

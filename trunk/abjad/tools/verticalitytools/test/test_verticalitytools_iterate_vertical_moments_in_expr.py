@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import verticalitytools
 
 
-def test_iterationtools_iterate_vertical_moments_in_expr_01():
+def test_verticalitytools_iterate_vertical_moments_in_expr_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -38,7 +38,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_01():
     >>
     '''
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(score, reverse=True)
+    moment_generator = verticalitytools.iterate_vertical_moments_in_expr(score, reverse=True)
     moments = list(moment_generator)
 
     r'''
@@ -62,7 +62,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_01():
     assert moments[5].leaves == (tuplet[0], treble[0], bass[0])
 
 
-def test_iterationtools_iterate_vertical_moments_in_expr_02():
+def test_verticalitytools_iterate_vertical_moments_in_expr_02():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -75,7 +75,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_02():
 
     # see above for formatted score #
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(piano_staff, reverse=True)
+    moment_generator = verticalitytools.iterate_vertical_moments_in_expr(piano_staff, reverse=True)
     moments = list(moment_generator)
 
     r'''
@@ -94,7 +94,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_02():
     assert moments[3].leaves == (treble[0], bass[0])
 
 
-def test_iterationtools_iterate_vertical_moments_in_expr_03():
+def test_verticalitytools_iterate_vertical_moments_in_expr_03():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -130,7 +130,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_03():
     >>
     '''
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(score)
+    moment_generator = verticalitytools.iterate_vertical_moments_in_expr(score)
     moments = list(moment_generator)
 
     r'''
@@ -154,7 +154,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_03():
     assert set(moments[5].leaves) == set((tuplet[2], treble[1], bass[3]))
 
 
-def test_iterationtools_iterate_vertical_moments_in_expr_04():
+def test_verticalitytools_iterate_vertical_moments_in_expr_04():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -167,7 +167,7 @@ def test_iterationtools_iterate_vertical_moments_in_expr_04():
 
     # see above for formatted score #
 
-    moment_generator = iterationtools.iterate_vertical_moments_in_expr(piano_staff)
+    moment_generator = verticalitytools.iterate_vertical_moments_in_expr(piano_staff)
     moments = list(moment_generator)
 
     r'''

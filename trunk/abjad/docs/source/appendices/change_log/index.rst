@@ -7,16 +7,7 @@ Changes from 2.9 to 2.10
 
 Renamed the read-only ``format`` property to ``lilypond_format`` on all system objects.
 
-Removed three packages.
-
-- Removed ``constrainttools`` package.
-
-- Removed ``lyricstools`` package.
-
-- Removed ``quantizationtools`` package.
-
-All iteration functions are now housed in the new ``iterationtools`` package.
-This entails the following changes:
+All iteration functions are now housed in the new ``iterationtools`` package:
 
 - Renamed::
 
@@ -149,21 +140,6 @@ This entails the following changes:
 
 - Renamed::
 
-    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
-    tietools.iterate_pitched_tie_chains_forward_in_expr()
-    tietools.iterate_pitched_tie_chains_backward_in_expr()
-    tietools.iterate_tie_chains_forward_in_expr()
-    tietools.iterate_tie_chains_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
-
-- Renamed::
-
     tuplettools.iterate_tuplets_forward_in_expr()
     tuplettools.iterate_tuplets_backward_in_expr()
 
@@ -183,8 +159,7 @@ This entails the following changes:
     voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
     voicetools.iterate_voices_in_expr(reverse=[True, False])
 
-All labeling functions are now housed in the new ``labeltools`` package.
-This entails the following changes:
+All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
@@ -351,16 +326,6 @@ Changes to the ``componenttools`` package:
     durationtools.yield_all_positive_rationals()
     durationtools.yield_all_positive_rationals_uniquely()
     durationtools.yield_prolation_rewrite_pairs()
-
-CHANGEME:
-
-- Renamed::
-
-    instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
-
-  ::
-
-    iterationtools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
 
 - Renamed::
 
@@ -551,15 +516,6 @@ Changes to the ``measuretools`` package:
 
     labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
     labeltools.label_notes_in_expr_with_note_indices()
-
-FIXME:
-- Renamed::
-
-    pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr()
-
-  ::
-
-    iterationtools.iterate_named_chromatic_pitch_pairs_in_expr()
 
 - Renamed::
 
@@ -815,16 +771,6 @@ FIXME:
 
     sequencetools.split_sequence_extended_to_weights()
 
-FIXME:
-- Renamed::
-
-    spannertools.iterate_components_forward_in_spanner()
-    spannertools.iterate_components_backward_in_spanner()
-
-  ::
-
-    iterationtools.iterate_components_in_spanner(reverse=[True, False])
-
 - Renamed::
 
     tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots()
@@ -835,6 +781,21 @@ FIXME:
   ::
 
     tietools.tie_chain_to_tuplet_with_proportions()
+
+- Renamed::
+
+    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
+    tietools.iterate_pitched_tie_chains_forward_in_expr()
+    tietools.iterate_pitched_tie_chains_backward_in_expr()
+    tietools.iterate_tie_chains_forward_in_expr()
+    tietools.iterate_tie_chains_backward_in_expr()
+
+  ::
+
+    tietools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
+    tietools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
+    tietools.iterate_tie_chains_in_expr(reverse=[True, False])
 
 - Renamed::
 
@@ -886,16 +847,6 @@ FIXME:
     labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
     labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
     labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
-
-FIXME:
-- Renamed::
-
-    verticalitytools.iterate_vertical_moments_forward_in_expr()
-    verticalitytools.iterate_vertical_moments_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_vertical_moments_in_expr(reverse=[True, False])
 
 - Renamed all functions that contained ``big_endian``::
 
@@ -966,3 +917,11 @@ FIXME:
     componenttools.report_component_format_contributions()
     containertools.report_container_modifications()
     measuretools.report_time_signature_distribution()
+
+Removed three packages.
+
+- Removed ``constrainttools`` package.
+
+- Removed ``lyricstools`` package.
+
+- Removed ``quantizationtools`` package.

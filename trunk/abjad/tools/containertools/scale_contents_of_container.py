@@ -99,7 +99,7 @@ def scale_contents_of_container(container, multiplier):
     from abjad.tools import tietools
     from abjad.tools import tuplettools
 
-    for expr in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(container[:]):
+    for expr in tietools.iterate_topmost_tie_chains_and_components_in_expr(container[:]):
         if isinstance(expr, tietools.TieChain):
             tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(expr, multiplier)
         elif isinstance(expr, tuplettools.FixedDurationTuplet):

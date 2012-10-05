@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_components_in_spanner_01():
+def test_spannertools_iterate_components_in_spanner_01():
 
     t = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
     p = beamtools.BeamSpanner(t[:])
@@ -21,7 +21,7 @@ def test_iterationtools_iterate_components_in_spanner_01():
     }
     '''
 
-    components = iterationtools.iterate_components_in_spanner(p, reverse=True)
+    components = spannertools.iterate_components_in_spanner(p, reverse=True)
     components = list(components)
     leaves = t.leaves
 
@@ -33,10 +33,10 @@ def test_iterationtools_iterate_components_in_spanner_01():
     assert components[5] is leaves[-4]
 
 
-def test_iterationtools_iterate_components_in_spanner_02():
+def test_spannertools_iterate_components_in_spanner_02():
 
     t = Staff("c'8 d'8 e'8 f'8")
     spanner = beamtools.BeamSpanner(t[2:])
 
-    notes = iterationtools.iterate_components_in_spanner(spanner, klass=Note)
+    notes = spannertools.iterate_components_in_spanner(spanner, klass=Note)
     assert list(notes) == t[2:]

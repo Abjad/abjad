@@ -1,7 +1,7 @@
-from abjad.tools import iterationtools
 from abjad.tools import markuptools
 from abjad.tools import notetools
 from abjad.tools import pitchtools
+from abjad.tools import verticalitytools
 
 
 def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_direction=Down):
@@ -81,7 +81,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
     Return none.
     '''
 
-    for vertical_moment in iterationtools.iterate_vertical_moments_in_expr(expr):
+    for vertical_moment in verticalitytools.iterate_vertical_moments_in_expr(expr):
         leaves = vertical_moment.leaves
         notes = [leaf for leaf in leaves if isinstance(leaf, notetools.Note)]
         if not notes:

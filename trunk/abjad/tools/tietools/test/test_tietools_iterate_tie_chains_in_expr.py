@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_iterationtools_iterate_tie_chains_in_expr_01():
+def test_tietools_iterate_tie_chains_in_expr_01():
     '''Yield successive tie chains.
     '''
 
@@ -18,13 +18,13 @@ def test_iterationtools_iterate_tie_chains_in_expr_01():
     }
     '''
 
-    chains = list(iterationtools.iterate_tie_chains_in_expr(t, reverse=True))
+    chains = list(tietools.iterate_tie_chains_in_expr(t, reverse=True))
 
     assert chains[0] == tietools.TieChain((t[2], t[3]))
     assert chains[1] == tietools.TieChain((t[0], t[1]))
 
 
-def test_iterationtools_iterate_tie_chains_in_expr_02():
+def test_tietools_iterate_tie_chains_in_expr_02():
     '''Yield successive tie chains.
     '''
 
@@ -39,7 +39,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_02():
     }
     '''
 
-    chains = list(iterationtools.iterate_tie_chains_in_expr(t, reverse=True))
+    chains = list(tietools.iterate_tie_chains_in_expr(t, reverse=True))
 
     assert chains[0] == tietools.TieChain(t[3])
     assert chains[1] == tietools.TieChain(t[2])
@@ -47,7 +47,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_02():
     assert chains[3] == tietools.TieChain(t[0])
 
 
-def test_iterationtools_iterate_tie_chains_in_expr_03():
+def test_tietools_iterate_tie_chains_in_expr_03():
     '''Yield successive tie chains.
     '''
 
@@ -64,13 +64,13 @@ def test_iterationtools_iterate_tie_chains_in_expr_03():
     }
     '''
 
-    chains = list(iterationtools.iterate_tie_chains_in_expr(t))
+    chains = list(tietools.iterate_tie_chains_in_expr(t))
 
     assert chains[0] == tietools.TieChain((t[0], t[1]))
     assert chains[1] == tietools.TieChain((t[2], t[3]))
 
 
-def test_iterationtools_iterate_tie_chains_in_expr_04():
+def test_tietools_iterate_tie_chains_in_expr_04():
     '''Yield successive tie chains.
     '''
 
@@ -85,7 +85,7 @@ def test_iterationtools_iterate_tie_chains_in_expr_04():
     }
     '''
 
-    chains = list(iterationtools.iterate_tie_chains_in_expr(t))
+    chains = list(tietools.iterate_tie_chains_in_expr(t))
 
     assert chains[0] == tietools.TieChain(t[0])
     assert chains[1] == tietools.TieChain(t[1])

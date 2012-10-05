@@ -15,7 +15,7 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
     ::
 
         >>> list(
-        ... iterationtools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(
+        ... instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(
         ... staff))
         [Chord('<d fs>8')]
 

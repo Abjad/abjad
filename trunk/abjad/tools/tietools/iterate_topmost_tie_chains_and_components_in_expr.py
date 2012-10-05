@@ -1,8 +1,6 @@
 from abjad.tools import containertools
 from abjad.tools import leaftools
 from abjad.tools import spannertools
-from abjad.tools import tietools
-
 
 
 def iterate_topmost_tie_chains_and_components_in_expr(expr):
@@ -32,7 +30,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
 
     ::
 
-        >>> for x in iterationtools.iterate_topmost_tie_chains_and_components_in_expr(staff):
+        >>> for x in tietools.iterate_topmost_tie_chains_and_components_in_expr(staff):
         ...     x
         ...
         TieChain((Note("c'8"), Note("c'32")))
@@ -48,8 +46,10 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
 
     .. versionchanged:: 2.0
         renamed ``iterate.chained_contents()`` to
-        ``iterationtools.iterate_topmost_tie_chains_and_components_in_expr()``.
+        ``tietools.iterate_topmost_tie_chains_and_components_in_expr()``.
     '''
+    from abjad.tools import tietools
+
     if isinstance(expr, leaftools.Leaf):
         if len(tietools.get_tie_chain(expr)) == 1:
             yield tietools.get_tie_chain(expr)
