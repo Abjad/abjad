@@ -399,8 +399,9 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         from abjad.tools import lilypondparsertools
         note_head = notetools.NoteHead(
             written_pitch=p[1],
-            is_cautionary=p[3],
-            is_forced=p[2])
+            is_cautionary=bool(p[3]),
+            is_forced=bool(p[2])
+            )
         p[0] = lilypondparsertools.SyntaxNode('chord_body_element', (note_head, p[5]))
 
 
@@ -1163,12 +1164,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_exclamations__Empty(self, p):
         'exclamations : '
-        p[0] = ''
+        p[0] = 0
 
 
     def p_exclamations__exclamations__Chr33(self, p):
         "exclamations : exclamations '!'"
-        p[0] = p[1] + '!'
+        p[0] = p[1] + 1
 
 
     ### figure_list ###
@@ -2822,12 +2823,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_questions__Empty(self, p):
         'questions : '
-        p[0] = ''
+        p[0] = 0
 
 
     def p_questions__questions__Chr63(self, p):
         "questions : questions '?'"
-        p[0] = p[1] + '?'
+        p[0] = p[1] + 1
 
 
     ### re_rhythmed_music ###
@@ -3070,6 +3071,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest'
         if not p[6]:
             leaf = notetools.Note(p[1], p[5].duration)
+            leaf.note_head.is_forced = bool(p[2])
+            leaf.note_head.is_cautionary = bool(p[3])
         else:
             leaf = resttools.Rest(p[5].duration)
             resttools.set_vertical_positioning_pitch_on_rest(leaf, p[1])
