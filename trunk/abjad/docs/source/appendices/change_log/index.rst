@@ -169,6 +169,186 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
     labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
 
+- Renamed::
+
+    containertools.color_contents_of_container()
+
+  ::
+
+    labeltools.color_contents_of_container()
+
+- Renamed::
+
+    leaftools.color_leaf()
+    leaftools.color_leaves_in_expr()
+    leaftools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
+    leaftools.label_leaves_in_expr_with_leaf_depth()
+    leaftools.label_leaves_in_expr_with_leaf_durations()
+    leaftools.label_leaves_in_expr_with_leaf_indices()
+    leaftools.label_leaves_in_expr_with_leaf_numbers()
+    leaftools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
+    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals()
+    leaftools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
+    leaftools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
+    leaftools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
+    leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals()
+    leaftools.label_leaves_in_expr_with_pitch_class_numbers()
+    leaftools.label_leaves_in_expr_with_pitch_numbers()
+    leaftools.label_leaves_in_expr_with_prolated_leaf_duration()
+    leaftools.label_leaves_in_expr_with_tuplet_depth()
+    leaftools.label_leaves_in_expr_with_written_leaf_duration()
+
+  ::
+
+    labeltools.color_leaf()
+    labeltools.color_leaves_in_expr()
+    labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
+    labeltools.label_leaves_in_expr_with_leaf_depth()
+    labeltools.label_leaves_in_expr_with_leaf_durations()
+    labeltools.label_leaves_in_expr_with_leaf_indices()
+    labeltools.label_leaves_in_expr_with_leaf_numbers()
+    labeltools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
+    labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals()
+    labeltools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
+    labeltools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
+    labeltools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
+    labeltools.label_leaves_in_expr_with_melodic_diatonic_intervals()
+    labeltools.label_leaves_in_expr_with_pitch_class_numbers()
+    labeltools.label_leaves_in_expr_with_pitch_numbers()
+    labeltools.label_leaves_in_expr_with_prolated_leaf_duration()
+    labeltools.label_leaves_in_expr_with_tuplet_depth()
+    labeltools.label_leaves_in_expr_with_written_leaf_duration()
+
+- Renamed::
+
+    markuptools.remove_markup_from_leaves_in_expr()
+
+  ::
+
+    labeltools.remove_markup_from_leaves_in_expr()
+
+- Renamed::
+
+    measuretools.color_measure()
+    measuretools.color_nonbinary_measures_in_expr()
+
+  ::
+
+    labeltools.color_measure()
+    labeltools.color_nonbinary_measures_in_expr()
+
+- Renamed::
+
+    notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    notetools.label_notes_in_expr_with_note_indices()
+
+  ::
+
+    labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
+    labeltools.label_notes_in_expr_with_note_indices()
+
+- Renamed::
+
+    tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    tietools.label_tie_chains_in_expr_with_tie_chain_durations()
+    tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+
+  ::
+
+    labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
+    labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+
+- Renamed::
+
+    verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()
+    verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()
+    verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers()
+
+  ::
+
+    labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
+    labeltools.label_vertical_moments_in_expr_with_chromatic_intervals()
+    labeltools.label_vertical_moments_in_expr_with_counterpoint_intervals()
+    labeltools.label_vertical_moments_in_expr_with_diatonic_intervals()
+    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
+    labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
+    labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
+
+Renamed all functions that contained ``big_endian``::
+
+    durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
+    leaftools.fuse_leaves_big_endian()
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()
+
+::
+
+    durationtools.duration_token_to_assignable_duration_pairs()
+    leaftools.fuse_leaves()
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()
+
+Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
+
+    componenttools.copy_governed_component_subtree_from_prolated_offset_to()
+    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset()
+    containertools.delete_contents_of_container_starting_at_or_after_prolated_offset()
+    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset()
+    containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()
+    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset()
+    containertools.get_element_starting_at_exactly_prolated_offset()
+    containertools.get_first_element_starting_at_or_after_prolated_offset()
+    containertools.get_first_element_starting_before_or_at_prolated_offset()
+    containertools.get_first_element_starting_strictly_after_prolated_offset()
+    containertools.get_first_element_starting_strictly_before_prolated_offset()
+    prolated_offsettools.update_offset_values_of_component()
+    verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()
+
+::
+
+    componenttools.copy_governed_component_subtree_from_offset_to()
+    componenttools.get_improper_descendents_of_component_that_cross_offset()
+    containertools.delete_contents_of_container_starting_at_or_after_offset()
+    containertools.delete_contents_of_container_starting_before_or_at_offset()
+    containertools.delete_contents_of_container_starting_strictly_after_offset()
+    containertools.delete_contents_of_container_starting_strictly_before_offset()
+    containertools.get_element_starting_at_exactly_offset()
+    containertools.get_first_element_starting_at_or_after_offset()
+    containertools.get_first_element_starting_before_or_at_offset()
+    containertools.get_first_element_starting_strictly_after_offset()
+    containertools.get_first_element_starting_strictly_before_offset()
+    offsettools.update_offset_values_of_component()
+    verticalitytools.get_vertical_moment_at_offset_in_expr()
+
+Renamed ``prolated_duration`` to ``offset`` in some functions::
+
+    componenttools.split_component_at_prolated_duration()
+    componenttools.split_components_by_prolated_durations()
+    leaftools.split_leaf_at_prolated_duration()
+    leaftools.split_leaf_at_prolated_duration_and_rest_right_half()
+
+::
+
+    componenttools.split_component_at_offset()
+    componenttools.split_components_by_offsets()
+    leaftools.split_leaf_at_offset()
+    leaftools.split_leaf_at_offset_and_rest_right_half()
+
+- Renamed all functions that contained ``as_string``::
+
+    componenttools.report_component_format_contributions_as_string()
+    containertools.report_container_modifications_as_string()
+    measuretools.report_meter_distribution_as_string()
+
+::
+
+    componenttools.report_component_format_contributions()
+    containertools.report_container_modifications()
+    measuretools.report_time_signature_distribution()
+
 Changes to the ``componenttools`` package:
 
 - The ``componenttools.split_components_at_offsets()`` function no longer 
@@ -257,13 +437,7 @@ Changes to the ``componenttools`` package:
 
     componenttools.split_components_at_offsets(fracture_spanners=[True, False], cyclic=[True, False])
 
-- Renamed::
-
-    containertools.color_contents_of_container()
-
-  ::
-
-    labeltools.color_contents_of_container()
+Changeds to the ``continertools`` package:
 
 - Renamed::
 
@@ -311,6 +485,8 @@ Changes to the ``componenttools`` package:
 
     containertools.split_container_by_counts(fracture_spanners=[True, False], cyclic=[True, False])
 
+Changes to the ``durationtools`` package:
+
 - Renamed::
 
     durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
@@ -326,6 +502,8 @@ Changes to the ``componenttools`` package:
     durationtools.yield_all_positive_rationals()
     durationtools.yield_all_positive_rationals_uniquely()
     durationtools.yield_prolation_rewrite_pairs()
+
+Changes to the ``instrumenttools`` package:
 
 - Renamed::
 
@@ -343,6 +521,8 @@ Changes to the ``componenttools`` package:
 
     instrumenttools.transpose_from_fingered_pitch_to_sounding_pitch()
 
+Chnages to the ``leaftools`` package:
+
 - Renamed::
 
     leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
@@ -353,48 +533,6 @@ Changes to the ``componenttools`` package:
   ::
 
     leaftools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
-
-- Renamed::
-
-    leaftools.color_leaf()
-    leaftools.color_leaves_in_expr()
-    leaftools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
-    leaftools.label_leaves_in_expr_with_leaf_depth()
-    leaftools.label_leaves_in_expr_with_leaf_durations()
-    leaftools.label_leaves_in_expr_with_leaf_indices()
-    leaftools.label_leaves_in_expr_with_leaf_numbers()
-    leaftools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
-    leaftools.label_leaves_in_expr_with_melodic_chromatic_intervals()
-    leaftools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
-    leaftools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
-    leaftools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
-    leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals()
-    leaftools.label_leaves_in_expr_with_pitch_class_numbers()
-    leaftools.label_leaves_in_expr_with_pitch_numbers()
-    leaftools.label_leaves_in_expr_with_prolated_leaf_duration()
-    leaftools.label_leaves_in_expr_with_tuplet_depth()
-    leaftools.label_leaves_in_expr_with_written_leaf_duration()
-
-  ::
-
-    labeltools.color_leaf()
-    labeltools.color_leaves_in_expr()
-    labeltools.label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes()
-    labeltools.label_leaves_in_expr_with_leaf_depth()
-    labeltools.label_leaves_in_expr_with_leaf_durations()
-    labeltools.label_leaves_in_expr_with_leaf_indices()
-    labeltools.label_leaves_in_expr_with_leaf_numbers()
-    labeltools.label_leaves_in_expr_with_melodic_chromatic_interval_classes()
-    labeltools.label_leaves_in_expr_with_melodic_chromatic_intervals()
-    labeltools.label_leaves_in_expr_with_melodic_counterpoint_interval_classes()
-    labeltools.label_leaves_in_expr_with_melodic_counterpoint_intervals()
-    labeltools.label_leaves_in_expr_with_melodic_diatonic_interval_classes()
-    labeltools.label_leaves_in_expr_with_melodic_diatonic_intervals()
-    labeltools.label_leaves_in_expr_with_pitch_class_numbers()
-    labeltools.label_leaves_in_expr_with_pitch_numbers()
-    labeltools.label_leaves_in_expr_with_prolated_leaf_duration()
-    labeltools.label_leaves_in_expr_with_tuplet_depth()
-    labeltools.label_leaves_in_expr_with_written_leaf_duration()
 
 - Renamed::
 
@@ -425,24 +563,6 @@ Changes to the ``componenttools`` package:
 
     leaftools.repeat_leaf()
     leaftools.repeat_leaves_in_expr()
-
-- Renamed::
-
-    markuptools.remove_markup_from_leaves_in_expr()
-
-  ::
-
-    labeltools.remove_markup_from_leaves_in_expr()
-
-- Renamed::
-
-    measuretools.color_measure()
-    measuretools.color_nonbinary_measures_in_expr()
-
-  ::
-
-    labeltools.color_measure()
-    labeltools.color_nonbinary_measures_in_expr()
 
 Changes to the ``mathtools`` package.
 
@@ -507,15 +627,7 @@ Changes to the ``measuretools`` package:
     pitchtools.pitch_array_row_to_measure()
     pitchtools.pitch_array_to_measures()
 
-- Renamed::
-
-    notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
-    notetools.label_notes_in_expr_with_note_indices()
-
-  ::
-
-    labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
-    labeltools.label_notes_in_expr_with_note_indices()
+Changes to the ``pitchtools`` package:
 
 - Renamed::
 
@@ -674,6 +786,8 @@ Changes to the ``measuretools`` package:
 
     pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor()
 
+Changes to the ``rhythmtreetools`` package:
+
 - Renamed::
 
     rhythmtreetools.parse_reduced_ly_syntax()
@@ -681,6 +795,8 @@ Changes to the ``measuretools`` package:
   ::
 
     lilypondparsertools.parse_reduced_ly_syntax()
+
+Chnages to the ``scoretemplatetools`` package:
 
 - Renamed::
 
@@ -690,6 +806,8 @@ Changes to the ``measuretools`` package:
 
     scoretemplatetools.GroupedRhythmcStavesScoreTemplate.staff_count
 
+Changes to the ``scoretools`` package:
+
 - Renamed::
 
     scoretools.make_pitch_array_score_from_pitch_arrays()
@@ -697,6 +815,8 @@ Changes to the ``measuretools`` package:
   ::
 
     pitchtools.make_pitch_array_score_from_pitch_arrays()
+
+Changes to the ``sequencetools`` package:
 
 - Renamed::
 
@@ -771,6 +891,8 @@ Changes to the ``measuretools`` package:
 
     sequencetools.split_sequence_extended_to_weights()
 
+Changes to the ``tietools`` package:
+
 - Renamed::
 
     tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots()
@@ -797,17 +919,7 @@ Changes to the ``measuretools`` package:
     tietools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
     tietools.iterate_tie_chains_in_expr(reverse=[True, False])
 
-- Renamed::
-
-    tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
-    tietools.label_tie_chains_in_expr_with_tie_chain_durations()
-    tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
-
-  ::
-
-    labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
-    labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
-    labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
+Changes to the ``tuplettools`` package:
 
 - Renamed::
 
@@ -827,96 +939,6 @@ Changes to the ``measuretools`` package:
   ::
 
     tuplettools.make_tuplet_from_durations_and_proportions(big_endian=[True, False])
-
-- Renamed::
-
-    verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
-    verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()
-    verticalitytools.label_vertical_moments_in_expr_with_counterpoint_intervals()
-    verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals()
-    verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()
-    verticalitytools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
-    verticalitytools.label_vertical_moments_in_expr_with_pitch_numbers()
-
-  ::
-
-    labeltools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
-    labeltools.label_vertical_moments_in_expr_with_chromatic_intervals()
-    labeltools.label_vertical_moments_in_expr_with_counterpoint_intervals()
-    labeltools.label_vertical_moments_in_expr_with_diatonic_intervals()
-    labeltools.label_vertical_moments_in_expr_with_interval_class_vectors()
-    labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
-    labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
-
-- Renamed all functions that contained ``big_endian``::
-
-    durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
-    leaftools.fuse_leaves_big_endian()
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian()
-
-  ::
-
-    durationtools.duration_token_to_assignable_duration_pairs()
-    leaftools.fuse_leaves()
-    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()
-
-- Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
-
-    componenttools.copy_governed_component_subtree_from_prolated_offset_to()
-    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset()
-    containertools.delete_contents_of_container_starting_at_or_after_prolated_offset()
-    containertools.delete_contents_of_container_starting_before_or_at_prolated_offset()
-    containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()
-    containertools.delete_contents_of_container_starting_strictly_before_prolated_offset()
-    containertools.get_element_starting_at_exactly_prolated_offset()
-    containertools.get_first_element_starting_at_or_after_prolated_offset()
-    containertools.get_first_element_starting_before_or_at_prolated_offset()
-    containertools.get_first_element_starting_strictly_after_prolated_offset()
-    containertools.get_first_element_starting_strictly_before_prolated_offset()
-    prolated_offsettools.update_offset_values_of_component()
-    verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()
-
-  ::
-
-    componenttools.copy_governed_component_subtree_from_offset_to()
-    componenttools.get_improper_descendents_of_component_that_cross_offset()
-    containertools.delete_contents_of_container_starting_at_or_after_offset()
-    containertools.delete_contents_of_container_starting_before_or_at_offset()
-    containertools.delete_contents_of_container_starting_strictly_after_offset()
-    containertools.delete_contents_of_container_starting_strictly_before_offset()
-    containertools.get_element_starting_at_exactly_offset()
-    containertools.get_first_element_starting_at_or_after_offset()
-    containertools.get_first_element_starting_before_or_at_offset()
-    containertools.get_first_element_starting_strictly_after_offset()
-    containertools.get_first_element_starting_strictly_before_offset()
-    offsettools.update_offset_values_of_component()
-    verticalitytools.get_vertical_moment_at_offset_in_expr()
-
-- Renamed::
-
-    componenttools.split_component_at_prolated_duration()
-    componenttools.split_components_by_prolated_durations()
-    leaftools.split_leaf_at_prolated_duration()
-    leaftools.split_leaf_at_prolated_duration_and_rest_right_half()
-
-  ::
-
-    componenttools.split_component_at_offset()
-    componenttools.split_components_by_offsets()
-    leaftools.split_leaf_at_offset()
-    leaftools.split_leaf_at_offset_and_rest_right_half()
-
-- Renamed all functions that contained ``as_string``::
-
-    componenttools.report_component_format_contributions_as_string()
-    containertools.report_container_modifications_as_string()
-    measuretools.report_meter_distribution_as_string()
-
-  ::
-
-    componenttools.report_component_format_contributions()
-    containertools.report_container_modifications()
-    measuretools.report_time_signature_distribution()
 
 Removed three packages.
 
