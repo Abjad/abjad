@@ -117,6 +117,7 @@ Appendices
     appendices/history/index
     appendices/text_alignment/index
     appendices/score_snippet_gallery/index
+    appendices/change_log/index
     appendices/bibliography/index
 
 Abjad API
