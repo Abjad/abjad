@@ -5,7 +5,7 @@ Version history
 Abjad 2.10
 ----------
 
-Released 2012-10-03. Built from r7600.
+Released 2012-10-03. Built from r7612.
 Implements 437 public classes and 982 functions totalling 179,000 lines of code.
 
 The following packages now load by default when you start Abjad::
@@ -25,7 +25,7 @@ Improved formatting engine.  Scores now format approximately 30% faster.
 
 Improved LilyPond parser.
 
-Implemented parsing in markuptools.Markup on instantiation from a single string::
+Markup objects now parse input string input on initialization::
 
     >>> markuptools.Markup(r'\bold \tiny { foo bar baz }')
     Markup((MarkupCommand('bold', MarkupCommand('tiny', ['foo', 'bar', 'baz'])),))
@@ -43,7 +43,7 @@ Implemented parsing in markuptools.Markup on instantiation from a single string:
                 }
         }
 
-Implemented __getitem__ for named Contexts on Container::
+You can now context names to reference named contexts attached to any container:: 
 
     >>> template = scoretemplatetools.StringQuartetScoreTemplate()
     >>> score = template()
@@ -59,13 +59,10 @@ Implemented __getitem__ for named Contexts on Container::
     Voice-"First Violin Voice"{}
 
 
-New constants are available globally::
-
-    Left
-    Right
-    Down
-    Center
-    Up
+Five new constants are available globally. 
+These are ``Left``, ``Right``, ``Up``, ``Down`` and ``Center``.
+The constants function like Python's built-in ``True`` and ``False``
+and are designed for use as keyword defaults.
 
 A new configuration tool is available::
 
@@ -91,6 +88,11 @@ New LilyPond parser tools are available::
     lilypondparsertools.SchemeParser
     lilypondparsertools.SyntaxNode
     lilypondparsertools.lilypond_enharmonic_transpose()
+
+A new ``Ratio`` class is available in the ``mathtools`` package::
+
+    >>> mathtools.Ratio(1, 2, -1)
+    Ratio(1, 2, -1)
 
 New rhythm-tree tools are available.
 
@@ -167,7 +169,23 @@ New rhythm-tree tools are available.
         r8
     }
 
-New Scheme tools are available::
+New Scheme tools are available.
+
+- Added ``force_quotes`` boolean keyword to ``schemetools.Scheme`` 
+  and ``schemetools.format_scheme_value()``::
+
+    >>> schemetools.format_scheme_value('foo')
+    'foo'
+
+  ::
+
+    >>> schemetools.format_scheme_value('foo', force_quotes=True)
+    '"foo"'
+
+  This allows you to force double quotes around strings which contain no spaces.
+  This is necessary for some LilyPond grob overrides.
+
+- A new Scheme formatting function is available::
 
     schemetools.format_scheme_value()
 
@@ -252,24 +270,6 @@ New time-token tools are available:
         }
     }
 
-Added Ratio class to the mathtools package::
-
-    >>> mathtools.Ratio(1, 2, -1)
-    Ratio(1, 2, -1)
-
-  Ratio is basically a tuple of 2 or more nonzero numbers.
-
-Improved schemetools.Scheme quote handling:
-
-- Added "force_quotes" boolean keyword to ``schemetools.Scheme`` and ``schemetools.format_scheme_value()``::
-
-    >>> schemetools.format_scheme_value('foo')
-    'foo'
-    >>> schemetools.format_scheme_value('foo', force_quotes=True)
-    '"foo"'
-
-  This allows for forcing double quotes around strings which contain no spaces, 
-  which is necessary for certain grob overrides.
 
 
 Abjad 2.9

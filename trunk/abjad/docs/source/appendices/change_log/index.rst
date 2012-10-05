@@ -5,18 +5,20 @@ Change log
 Changes from 2.9 to 2.10
 ------------------------
 
-- Changed ``format`` to ``lilypond_format`` on all system objects.
+Renamed the read-only ``format`` property to ``lilypond_format`` on all system objects.
 
-- Changed default split function behavior.
+Removed three packages.
 
-  The componenttools.split_components_at_offsets() function no longer implements a tie_after keyword.
-  Use the new tie_split_notes and tie_split_rests keywords. Note that the new tie_split_rests 
-  keyword defaults to true where the old tie_after keyword defaulted to false.
-  This changes the default behavior of the function.
+- Removed ``constrainttools`` package.
 
-  All the same is true of the (singular version) componenttools.split_component_at_offset() function.
+- Removed ``lyricstools`` package.
 
-- Changed::
+- Removed ``quantizationtools`` package.
+
+All iteration functions are now housed in the new ``iterationtools`` package.
+This entails the following changes:
+
+- Renamed::
 
     chordtools.iterate_chords_forward_in_expr()
     chordtools.iterate_chords_backward_in_expr()
@@ -25,33 +27,7 @@ Changes from 2.9 to 2.10
 
     iterationtools.iterate_chords_in_expr(reverse=[True, False])
 
-- Changed::
-
-    chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
-
-  ::
-
-    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
-
-- Changed::
-
-    componenttools.extend_left_in_parent_of_component_and_grow_spanners()
-    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
-
-  ::
-
-    componenttools.extend_left_in_parent_of_component()
-
-- Changed::
-
-    componenttools.extend_in_parent_of_component_and_grow_spanners()
-    componenttools.extend_in_parent_of_component_and_do_not_grow_spanners()
-
-  ::
-
-    componenttools.extend_in_parent_of_component()
-
-- Changed::
+- Renamed::
 
     componenttools.iterate_components_depth_first()
     componenttools.iterate_components_forward_in_expr()
@@ -77,7 +53,175 @@ Changes from 2.9 to 2.10
     iterationtools.iterate_timeline_from_component(reverse=[True, False])
     iterationtools.iterate_timeline_in_expr(reverse=[True, False])
 
-- Changed::
+- Renamed::
+
+    containertools.iterate_containers_forward_in_expr()
+    containertools.iterate_containers_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_containers_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    contexttools.iterate_contexts_forward_in_expr()
+    contexttools.iterate_contexts_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_contexts_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    gracetools.iterate_components_and_grace_containers_forward_in_expr()
+
+  ::
+
+    iterationtools.iterate_components_and_grace_containers_in_expr()
+
+- Renamed::
+
+    leaftools.iterate_leaf_pairs_forward_in_expr()
+    leaftools.iterate_leaves_forward_in_expr()
+    leaftools.iterate_leaves_backward_in_expr()
+    leaftools.iterate_notes_and_chords_forward_in_expr()
+    leaftools.iterate_notes_and_chords_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_leaf_pairs_in_expr()
+    iterationtools.iterate_leaves_in_expr(reverse=[True, False])
+    iterationtools.iterate_notes_and_chords_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    measuretools.iterate_measures_forward_in_expr()
+    measuretools.iterate_measures_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_measures_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    notetools.iterate_notes_forward_in_expr()
+    notetools.iterate_notes_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_notes_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    resttools.iterate_rests_forward_in_expr()
+    resttools.iterate_rests_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_rests_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    scoretools.iterate_scores_forward_in_expr()
+    scoretools.iterate_scores_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_scores_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    skiptools.iterate_skips_forward_in_expr()
+    skiptools.iterate_skips_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_skips_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    stafftools.iterate_staves_forward_in_expr()
+    stafftools.iterate_staves_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_staves_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
+    tietools.iterate_pitched_tie_chains_forward_in_expr()
+    tietools.iterate_pitched_tie_chains_backward_in_expr()
+    tietools.iterate_tie_chains_forward_in_expr()
+    tietools.iterate_tie_chains_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
+    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    tuplettools.iterate_tuplets_forward_in_expr()
+    tuplettools.iterate_tuplets_backward_in_expr()
+
+  ::
+
+    iterationtools.iterate_tuplets_in_expr(reverse=[True, False])
+
+- Renamed::
+
+    voicetools.iterate_semantic_voices_forward_in_expr()
+    voicetools.iterate_semantic_voices_backward_in_expr()
+    voicetools.iterate_voices_forward_in_expr()
+    voicetools.iterate_voices_backward_in_expr()
+
+  ::
+
+    voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
+    voicetools.iterate_voices_in_expr(reverse=[True, False])
+
+All labeling functions are now housed in the new ``labeltools`` package.
+This entails the following changes:
+
+- Renamed::
+
+    chordtools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
+
+  ::
+
+    labeltools.color_chord_note_heads_in_expr_by_pitch_class_color_map()
+
+Changes to the ``componenttools`` package:
+
+- The ``componenttools.split_components_at_offsets()`` function no longer 
+  implements a ``tie_after keyword``.
+  Use the new ``tie_split_notes`` and ``tie_split_rests`` keywords.
+  Note that the new ``tie_split_rests``
+  keyword defaults to true where the old ``tie_after`` keyword defaulted to false.
+  This changes the default behavior of the function.
+
+- Renamed::
+
+    componenttools.extend_left_in_parent_of_component_and_grow_spanners()
+    componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners()
+
+  ::
+
+    componenttools.extend_left_in_parent_of_component(grow_spanners=[True, False])
+
+- Renamed::
+
+    componenttools.extend_in_parent_of_component_and_grow_spanners()
+    componenttools.extend_in_parent_of_component_and_do_not_grow_spanners()
+
+  ::
+
+    componenttools.extend_in_parent_of_component(grow_spanners=[True, False])
+
+- Renamed::
 
     componenttools.number_is_between_prolated_start_and_stop_offsets_of_component()
 
@@ -85,7 +229,7 @@ Changes from 2.9 to 2.10
 
     componenttools.number_is_between_start_and_stop_offsets_of_component()
 
-- Changed::
+- Renamed::
 
     componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_with_overhang()
     componenttools.partition_components_cyclically_by_durations_in_seconds_exactly_without_overhang()
@@ -118,7 +262,7 @@ Changes from 2.9 to 2.10
     componenttools.partition_components_by_durations_ge()
     componenttools.partition_components_by_durations_le()
 
-- Changed::
+- Renamed::
 
     componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners()
     componenttools.split_component_at_prolated_duration_and_fracture_crossing_spanners()
@@ -127,7 +271,7 @@ Changes from 2.9 to 2.10
 
     componenttools.split_component_at_offset(fracture_spanners=[True, False])
 
-- Changed::
+- Renamed::
 
     componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners()
     componenttools.split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners()
@@ -138,16 +282,7 @@ Changes from 2.9 to 2.10
 
     componenttools.split_components_at_offsets(fracture_spanners=[True, False], cyclic=[True, False])
 
-- Changed::
-
-    containertools.iterate_containers_forward_in_expr()
-    containertools.iterate_containers_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_containers_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     containertools.color_contents_of_container()
 
@@ -155,7 +290,7 @@ Changes from 2.9 to 2.10
 
     labeltools.color_contents_of_container()
 
-- Changed::
+- Renamed::
 
     containertools.remove_empty_containers_in_expr()
 
@@ -163,7 +298,7 @@ Changes from 2.9 to 2.10
 
     containertools.remove_leafless_containers_in_expr()
 
-- Changed::
+- Renamed::
 
     containertools.replace_larger_left_half_of_elements_in_container_with_big_endian_rests()
     containertools.replace_larger_left_half_of_elements_in_container_with_little_endian_rests()
@@ -181,7 +316,7 @@ Changes from 2.9 to 2.10
 
     containertools.replace_container_slice_with_rests()
 
-- Changed::
+- Renamed::
 
     containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()
     containertools.split_container_at_index_and_fracture_crossing_spanners()
@@ -190,7 +325,7 @@ Changes from 2.9 to 2.10
 
     containertools.split_container_at_index(fracture_spanners=[True, False])
 
-- Changed::
+- Renamed::
 
     containertools.split_container_cyclically_by_counts_and_do_not_fracture_crossing_spanners()
     containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners()
@@ -201,16 +336,7 @@ Changes from 2.9 to 2.10
 
     containertools.split_container_by_counts(fracture_spanners=[True, False], cyclic=[True, False])
 
-- Changed::
-
-    contexttools.iterate_contexts_forward_in_expr()
-    contexttools.iterate_contexts_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_contexts_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     durationtools.yield_all_assignable_rationals_in_cantor_diagonalized_order()
     durationtools.yield_all_positive_integer_pairs_in_cantor_diagonalized_order()
@@ -226,15 +352,9 @@ Changes from 2.9 to 2.10
     durationtools.yield_all_positive_rationals_uniquely()
     durationtools.yield_prolation_rewrite_pairs()
 
-- Changed::
+CHANGEME:
 
-    gracetools.iterate_components_and_grace_containers_forward_in_expr()
-
-  ::
-
-    iterationtools.iterate_components_and_grace_containers_in_expr()
-
-- Changed::
+- Renamed::
 
     instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
 
@@ -242,7 +362,7 @@ Changes from 2.9 to 2.10
 
     iterationtools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges()
 
-- Changed::
+- Renamed::
 
     instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch()
 
@@ -250,7 +370,7 @@ Changes from 2.9 to 2.10
 
     instrumenttools.transpose_from_sounding_pitch_to_fingered_pitch()
 
-- Changed::
+- Renamed::
 
     instrumenttools.transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch()
 
@@ -258,21 +378,7 @@ Changes from 2.9 to 2.10
 
     instrumenttools.transpose_from_fingered_pitch_to_sounding_pitch()
 
-- Changed::
-
-    leaftools.iterate_leaf_pairs_forward_in_expr()
-    leaftools.iterate_leaves_forward_in_expr()
-    leaftools.iterate_leaves_backward_in_expr()
-    leaftools.iterate_notes_and_chords_forward_in_expr()
-    leaftools.iterate_notes_and_chords_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_leaf_pairs_in_expr()
-    iterationtools.iterate_leaves_in_expr(reverse=[True, False])
-    iterationtools.iterate_notes_and_chords_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_notes()
     leaftools.fuse_leaves_in_container_once_by_counts_into_big_endian_rests()
@@ -283,7 +389,7 @@ Changes from 2.9 to 2.10
 
     leaftools.fuse_leaves_in_container_once_by_counts(big_endian=[True, False], klass=None)
 
-- Changed::
+- Renamed::
 
     leaftools.color_leaf()
     leaftools.color_leaves_in_expr()
@@ -325,7 +431,7 @@ Changes from 2.9 to 2.10
     labeltools.label_leaves_in_expr_with_tuplet_depth()
     labeltools.label_leaves_in_expr_with_written_leaf_duration()
 
-- Changed::
+- Renamed::
 
     leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration()
     leaftools.leaf_to_augmented_tuplet_with_proportions()
@@ -337,7 +443,7 @@ Changes from 2.9 to 2.10
     tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
     tuplettools.leaf_to_tuplet_with_proportions()
 
-- Changed::
+- Renamed::
 
     leaftools.split_leaf_at_offset_and_rest_right_half()
 
@@ -345,7 +451,7 @@ Changes from 2.9 to 2.10
 
     leaftools.rest_leaf_at_offset()
 
-- Changed::
+- Renamed::
 
     leaftools.repeat_leaf_and_extend_spanners()
     leaftools.repeat_leaves_in_expr_and_extend_spanners()
@@ -355,7 +461,7 @@ Changes from 2.9 to 2.10
     leaftools.repeat_leaf()
     leaftools.repeat_leaves_in_expr()
 
-- Changed::
+- Renamed::
 
     markuptools.remove_markup_from_leaves_in_expr()
 
@@ -363,7 +469,7 @@ Changes from 2.9 to 2.10
 
     labeltools.remove_markup_from_leaves_in_expr()
 
-- Changed::
+- Renamed::
 
     measuretools.color_measure()
     measuretools.color_nonbinary_measures_in_expr()
@@ -373,16 +479,13 @@ Changes from 2.9 to 2.10
     labeltools.color_measure()
     labeltools.color_nonbinary_measures_in_expr()
 
-- Changed::
+Changes to the ``mathtools`` package.
 
-    measuretools.iterate_measures_forward_in_expr()
-    measuretools.iterate_measures_backward_in_expr()
+- Removed ``mathtools.partition_integer_into_thirds()``.
 
-  ::
+Changes to the ``measuretools`` package:
 
-    iterationtools.iterate_measures_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     measuretools.fill_measures_in_expr_with_meter_denominator_notes()
     measuretools.move_prolation_of_full_measure_tuplet_to_meter_of_measure()
@@ -396,7 +499,7 @@ Changes from 2.9 to 2.10
     measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
     measuretools.scale_measure_and_adjust_time_signature()
 
-- Changed::
+- Renamed::
 
     measuretools.fill_measures_in_expr_with_big_endian_notes()
     measuretools.fill_measures_in_expr_with_litte_endian_notes()
@@ -405,7 +508,7 @@ Changes from 2.9 to 2.10
 
     measuretools.measuretools.fill_measures_in_expr_with_minimal_number_of_notes(big_endian=[True, False])
 
-- Changed::
+- Renamed::
 
     measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents()
 
@@ -413,7 +516,7 @@ Changes from 2.9 to 2.10
 
     measuretoools.extend_measures_in_expr_and_apply_full_measure_tuplets()
 
-- Changed::
+- Renamed::
 
     measuretools.get_prev_measure_from_component()
 
@@ -421,7 +524,7 @@ Changes from 2.9 to 2.10
 
     measuretools.get_previous_measure_from_component()
 
-- Changed::
+- Renamed::
 
     measuretools.multiply_contents_of_measures_in_expr_and_scale_time_signature_denominators()
 
@@ -429,7 +532,7 @@ Changes from 2.9 to 2.10
 
     measuretools.multiply_and_scale_contents_of_measures_in_expr()
 
-- Changed::
+- Renamed::
 
     measuretools.pitch_array_row_to_measure()
     measuretools.pitch_array_to_measures()
@@ -439,16 +542,7 @@ Changes from 2.9 to 2.10
     pitchtools.pitch_array_row_to_measure()
     pitchtools.pitch_array_to_measures()
 
-- Changed::
-
-    notetools.iterate_notes_forward_in_expr()
-    notetools.iterate_notes_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_notes_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
     notetools.label_notes_in_expr_with_note_indices()
@@ -458,7 +552,8 @@ Changes from 2.9 to 2.10
     labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map()
     labeltools.label_notes_in_expr_with_note_indices()
 
-- Changed::
+FIXME:
+- Renamed::
 
     pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr()
 
@@ -466,7 +561,7 @@ Changes from 2.9 to 2.10
 
     iterationtools.iterate_named_chromatic_pitch_pairs_in_expr()
 
-- Changed::
+- Renamed::
 
     pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier()
     pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
@@ -484,7 +579,7 @@ Changes from 2.9 to 2.10
     pitchtools.calculate_harmonic_diatonic_interval_class()
     pitchtools.calculate_harmonic_diatonic_interval()
 
-- Changed::
+- Renamed::
 
     pitchtools.calculate_melodic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier()
     pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier()
@@ -502,7 +597,7 @@ Changes from 2.9 to 2.10
     pitchtools.calculate_melodic_diatonic_interval_class()
     pitchtools.calculate_melodic_diatonic_interval()
 
-- Changed::
+- Renamed::
 
     pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair()
 
@@ -511,7 +606,7 @@ Changes from 2.9 to 2.10
     pitchtools.split_chromatic_pitch_class_name()
 
 
-- Changed::
+- Renamed::
 
     pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval()
  
@@ -519,7 +614,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.spell_chromatic_interval_number()
 
-- Changed::
+- Renamed::
 
     pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary()
 
@@ -527,7 +622,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.harmonic_chromatic_interval_class_number_dictionary()
 
-- Changed::
+- Renamed::
 
     pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair()
 
@@ -535,7 +630,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_accidental_octave_number_pair()
 
-- Changed::
+- Renamed::
 
     pitchtools.list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pitch_class()
 
@@ -543,7 +638,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.sort_named_chromatic_pitch_carriers_in_expr()
 
-- Changed::
+- Renamed::
 
     pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary()
 
@@ -551,7 +646,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.inversion_equivalent_chromatic_interval_class_number_dictionary()
 
-- Changed::
+- Renamed::
 
     pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number()
 
@@ -559,7 +654,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
 
-- Changed::
+- Renamed::
 
     pitchtools.ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers()
 
@@ -567,7 +662,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.contains_subsegment()
 
-- Changed::
+- Renamed::
 
     pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers()
 
@@ -575,7 +670,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise()
 
-- Changed::
+- Renamed::
 
     pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers()
 
@@ -583,7 +678,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.list_melodic_chromatic_interval_numbers_pairwise()
 
-- Changed::
+- Renamed::
 
     pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple()
 
@@ -591,7 +686,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.chromatic_pitch_number_to_chromatic_pitch_triple()
 
-- Changed::
+- Renamed::
 
     pitchtools.apply_octavation_spanner_to_pitched_components()
 
@@ -599,7 +694,7 @@ Changes from 2.9 to 2.10
 
     spannertools.apply_octavation_spanner_to_pitched_components()
 
-- Changed::
+- Renamed::
 
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr()
 
@@ -607,7 +702,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.set_ascending_named_chromatic_pitches_on_tie_chains_in_expr()
 
-- Changed::
+- Renamed::
 
     pitchtools.set_ascending_diatonic_pitches_on_nontied_pitched_components_in_expr()
 
@@ -615,7 +710,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.set_ascending_diatonic_pitches_on_tie_chains_in_expr()
 
-- Changed::
+- Renamed::
 
     pitchtools.transpose_chromatic_pitch_class_number_to_neighbor_of_chromatic_pitch_number()
 
@@ -623,16 +718,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.transpose_chromatic_pitch_class_number_chromatic_pitch_number_neighbor()
 
-- Changed::
-
-    resttools.iterate_rests_forward_in_expr()
-    resttools.iterate_rests_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_rests_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     rhythmtreetools.parse_reduced_ly_syntax()
 
@@ -640,7 +726,7 @@ Changes from 2.9 to 2.10
 
     lilypondparsertools.parse_reduced_ly_syntax()
 
-- Changed::
+- Renamed::
 
     scoretemplatetools.GroupedRhythmcStavesScoreTemplate.n
 
@@ -648,16 +734,7 @@ Changes from 2.9 to 2.10
 
     scoretemplatetools.GroupedRhythmcStavesScoreTemplate.staff_count
 
-- Changed::
-
-    scoretools.iterate_scores_forward_in_expr()
-    scoretools.iterate_scores_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_scores_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     scoretools.make_pitch_array_score_from_pitch_arrays()
 
@@ -665,7 +742,7 @@ Changes from 2.9 to 2.10
 
     pitchtools.make_pitch_array_score_from_pitch_arrays()
 
-- Changed::
+- Renamed::
 
     sequencetools.partition_sequence_cyclically_by_counts_with_overhang()
     sequencetools.partition_sequence_cyclically_by_counts_without_overhang()
@@ -676,7 +753,7 @@ Changes from 2.9 to 2.10
 
     sequencetools.partition_sequence_by_counts(cyclic=[True, False], overhang=[True, False]) 
 
-- Changed::
+- Renamed::
 
     sequencetools.partition_sequence_extended_to_counts_with_overhang()
     sequencetools.partition_sequence_extended_to_counts_without_overhang()
@@ -685,7 +762,7 @@ Changes from 2.9 to 2.10
 
     sequencetools.partition_sequence_extended_to_counts(overhang=[True, False])
 
-- Changed::
+- Renamed::
 
     sequencetools.partition_sequence_cyclically_by_weights_at_least_with_overhang()
     sequencetools.partition_sequence_cyclically_by_weights_at_least_without_overhang()
@@ -696,7 +773,7 @@ Changes from 2.9 to 2.10
 
     sequencetools.partition_sequence_by_weights_at_least()
 
-- Changed::
+- Renamed::
 
     sequencetools.partition_sequence_cyclically_by_weights_at_most_with_overhang()
     sequencetools.partition_sequence_cyclically_by_weights_at_most_without_overhang()
@@ -707,7 +784,7 @@ Changes from 2.9 to 2.10
 
     sequencetools.partition_sequence_by_weights_at_most()
 
-- Changed::
+- Renamed::
 
     sequencetools.partition_sequence_cyclically_by_weights_at_exactly_with_overhang()
     sequencetools.partition_sequence_cyclically_by_weights_at_exactly_without_overhang()
@@ -718,7 +795,7 @@ Changes from 2.9 to 2.10
 
     sequencetools.partition_sequence_by_weights_at_exactly()
 
-- Changed::
+- Renamed::
 
     sequencetools.split_sequence_cyclically_by_weights_with_overhang()
     sequencetools.split_sequence_cyclically_by_weights_without_overhang()
@@ -729,7 +806,7 @@ Changes from 2.9 to 2.10
 
     sequencetools.split_sequence_by_weights()
 
-- Changed::
+- Renamed::
 
     sequencetools.split_sequence_extended_to_weights_with_overhang()
     sequencetools.split_sequence_extended_to_weights_without_overhang()
@@ -738,16 +815,8 @@ Changes from 2.9 to 2.10
 
     sequencetools.split_sequence_extended_to_weights()
 
-- Changed::
-
-    skiptools.iterate_skips_forward_in_expr()
-    skiptools.iterate_skips_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_skips_in_expr(reverse=[True, False])
-
-- Changed::
+FIXME:
+- Renamed::
 
     spannertools.iterate_components_forward_in_spanner()
     spannertools.iterate_components_backward_in_spanner()
@@ -756,31 +825,7 @@ Changes from 2.9 to 2.10
 
     iterationtools.iterate_components_in_spanner(reverse=[True, False])
 
-- Changed::
-
-    stafftools.iterate_staves_forward_in_expr()
-    stafftools.iterate_staves_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_staves_in_expr(reverse=[True, False])
-
-- Changed::
-
-    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
-    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
-    tietools.iterate_pitched_tie_chains_forward_in_expr()
-    tietools.iterate_pitched_tie_chains_backward_in_expr()
-    tietools.iterate_tie_chains_forward_in_expr()
-    tietools.iterate_tie_chains_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_nontrivial_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_pitched_tie_chains_in_expr(reverse=[True, False])
-    iterationtools.iterate_tie_chains_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     tietools.tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots()
     tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots()
@@ -791,7 +836,7 @@ Changes from 2.9 to 2.10
 
     tietools.tie_chain_to_tuplet_with_proportions()
 
-- Changed::
+- Renamed::
 
     tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
     tietools.label_tie_chains_in_expr_with_tie_chain_durations()
@@ -803,16 +848,7 @@ Changes from 2.9 to 2.10
     labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
     labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
 
-- Changed::
-
-    tuplettools.iterate_tuplets_forward_in_expr()
-    tuplettools.iterate_tuplets_backward_in_expr()
-
-  ::
-
-    iterationtools.iterate_tuplets_in_expr(reverse=[True, False])
-
-- Changed::
+- Renamed::
 
     tuplettools.is_proper_tuplet_multiplier()
 
@@ -820,7 +856,7 @@ Changes from 2.9 to 2.10
 
     durationtools.is_proper_tuplet_multiplier()
 
-- Changed::
+- Renamed::
 
     tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots()
     tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots()
@@ -831,7 +867,7 @@ Changes from 2.9 to 2.10
 
     tuplettools.make_tuplet_from_durations_and_proportions(big_endian=[True, False])
 
-- Changed::
+- Renamed::
 
     verticalitytools.label_vertical_moments_in_expr_with_chromatic_interval_classes()
     verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()
@@ -851,7 +887,8 @@ Changes from 2.9 to 2.10
     labeltools.label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes()
     labeltools.label_vertical_moments_in_expr_with_pitch_numbers()
 
-- Changed::
+FIXME:
+- Renamed::
 
     verticalitytools.iterate_vertical_moments_forward_in_expr()
     verticalitytools.iterate_vertical_moments_backward_in_expr()
@@ -860,19 +897,7 @@ Changes from 2.9 to 2.10
 
     iterationtools.iterate_vertical_moments_in_expr(reverse=[True, False])
 
-- Changed::
-
-    voicetools.iterate_semantic_voices_forward_in_expr()
-    voicetools.iterate_semantic_voices_backward_in_expr()
-    voicetools.iterate_voices_forward_in_expr()
-    voicetools.iterate_voices_backward_in_expr()
-
-  ::
-
-    voicetools.iterate_semantic_voices_in_expr(reverse=[True, False])
-    voicetools.iterate_voices_in_expr(reverse=[True, False])
-
-- Changed all functions that contained ``big_endian``::
+- Renamed all functions that contained ``big_endian``::
 
     durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs()
     leaftools.fuse_leaves_big_endian()
@@ -884,7 +909,7 @@ Changes from 2.9 to 2.10
     leaftools.fuse_leaves()
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent()
 
-- Changed all functions that contained ``prolated_offset`` to simply ``offset``::
+- Renamed all functions that contained ``prolated_offset`` to simply ``offset``::
 
     componenttools.copy_governed_component_subtree_from_prolated_offset_to()
     componenttools.get_improper_descendents_of_component_that_cross_prolated_offset()
@@ -916,7 +941,7 @@ Changes from 2.9 to 2.10
     offsettools.update_offset_values_of_component()
     verticalitytools.get_vertical_moment_at_offset_in_expr()
 
-- Changed::
+- Renamed::
 
     componenttools.split_component_at_prolated_duration()
     componenttools.split_components_by_prolated_durations()
@@ -930,7 +955,7 @@ Changes from 2.9 to 2.10
     leaftools.split_leaf_at_offset()
     leaftools.split_leaf_at_offset_and_rest_right_half()
 
-- Changed all functions that contained ``as_string``::
+- Renamed all functions that contained ``as_string``::
 
     componenttools.report_component_format_contributions_as_string()
     containertools.report_container_modifications_as_string()
@@ -941,11 +966,3 @@ Changes from 2.9 to 2.10
     componenttools.report_component_format_contributions()
     containertools.report_container_modifications()
     measuretools.report_time_signature_distribution()
-
-Removed ``constrainttools`` package.
-
-Removed ``lyricstools`` package.
-
-Removed ``mathtools.partition_integer_into_thirds()``.
-
-Removed ``quantizationtools`` package.
