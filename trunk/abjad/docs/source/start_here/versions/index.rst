@@ -5,7 +5,7 @@ Version history
 Abjad 2.10
 ----------
 
-Released 2012-10-03. Built from r7612.
+Released 2012-10-05. Built from r7615.
 Implements 437 public classes and 982 functions totalling 179,000 lines of code.
 
 The following packages now load by default when you start Abjad::
@@ -60,9 +60,12 @@ You can now context names to reference named contexts attached to any container:
 
 
 Five new constants are available globally. 
-These are ``Left``, ``Right``, ``Up``, ``Down`` and ``Center``.
-The constants function like Python's built-in ``True`` and ``False``
-and are designed for use as keyword defaults.
+
+- The constants are ``Left``, ``Right``, ``Up``, ``Down`` and ``Center``.
+
+- The constants function like Python's built-in ``True`` and ``False``.
+
+- Use the constants as keyword defaults.
 
 A new configuration tool is available::
 
@@ -71,6 +74,32 @@ A new configuration tool is available::
 New context tools are available::
 
     contexttools.all_are_contexts()
+
+A new ``iterationtools`` package is available::
+
+    iterationtools.iterate_chords_in_expr()
+    iterationtools.iterate_components_and_grace_containers_in_expr()
+    iterationtools.iterate_components_depth_first()
+    iterationtools.iterate_components_in_expr()
+    iterationtools.iterate_containers_in_expr()
+    iterationtools.iterate_contexts_in_expr()
+    iterationtools.iterate_leaf_pairs_in_expr()
+    iterationtools.iterate_leaves_in_expr()
+    iterationtools.iterate_measures_in_expr()
+    iterationtools.iterate_namesakes_from_component()
+    iterationtools.iterate_notes_and_chords_in_expr()
+    iterationtools.iterate_notes_in_expr()
+    iterationtools.iterate_rests_in_expr()
+    iterationtools.iterate_scores_in_expr()
+    iterationtools.iterate_semantic_voices_in_expr()
+    iterationtools.iterate_skips_in_expr()
+    iterationtools.iterate_staves_in_expr()
+    iterationtools.iterate_thread_from_component()
+    iterationtools.iterate_thread_in_expr()
+    iterationtools.iterate_timeline_from_component()
+    iterationtools.iterate_timeline_in_expr()
+    iterationtools.iterate_tuplets_in_expr()
+    iterationtools.iterate_voices_in_expr()
 
 New LilyPond file tools are available::
 

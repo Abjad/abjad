@@ -337,7 +337,7 @@ Renamed ``prolated_duration`` to ``offset`` in some functions::
     leaftools.split_leaf_at_offset()
     leaftools.split_leaf_at_offset_and_rest_right_half()
 
-- Renamed all functions that contained ``as_string``::
+Renamed all functions that contained ``as_string``::
 
     componenttools.report_component_format_contributions_as_string()
     containertools.report_container_modifications_as_string()
