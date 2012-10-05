@@ -48,7 +48,7 @@ class Chord(Leaf):
 
     def __contains__(self, arg):
         from abjad.tools.notetools.NoteHead import NoteHead
-        note_head = NoteHead(arg)
+        note_head = NoteHead(written_pitch=arg)
         return note_head in self.note_heads
 
     def __copy__(self, *args):
@@ -245,7 +245,7 @@ class Chord(Leaf):
         if isinstance(note_head_token, NoteHead):
             note_head = note_head_token
         else:
-            note_head = NoteHead(note_head_token)
+            note_head = NoteHead(written_pitch=note_head_token)
         note_head._client = self
         self._note_heads.append(note_head)
         self._note_heads.sort()

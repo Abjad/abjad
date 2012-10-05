@@ -397,7 +397,12 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_chord_body_element__pitch__exclamations__questions__octave_check__post_events(self, p):
         'chord_body_element : pitch exclamations questions octave_check post_events'
         from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('chord_body_element', p[1:])
+        note_head = notetools.NoteHead(
+            written_pitch=p[1],
+            is_cautionary=p[3],
+            is_forced=p[2])
+        p[0] = lilypondparsertools.SyntaxNode('chord_body_element', (note_head, p[5]))
+
 
 
     ### chord_body_elements ###
@@ -2425,14 +2430,14 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_note_chord_element__chord_body__optional_notemode_duration__post_events(self, p):
         'note_chord_element : chord_body optional_notemode_duration post_events'
+        chord = chordtools.Chord([], p[2].duration)
         pitches = []
-        post_events = []
+        post_events =[]
         for node in p[1]:
-            if 5 == len(node):
-                pitches.append(node[0])
-                post_events.extend(node[4])
+            pitches.append(node[0].written_pitch)
+            chord.append(node[0])
+            post_events.extend(node[1])
         post_events.extend(p[3])
-        chord = chordtools.Chord(pitches, p[2].duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             chord.duration_multiplier = p[2].multiplier

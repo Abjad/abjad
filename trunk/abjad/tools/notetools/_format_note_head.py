@@ -17,7 +17,12 @@ def _format_note_head(note_head):
                     _format_lilypond_value(value)))
 
     # format note head pitch
-    result.append(note_head.written_pitch.lilypond_format)
+    kernel = note_head.written_pitch.lilypond_format
+    if note_head.is_forced:
+        kernel += '!'
+    if note_head.is_cautionary:
+        kernel += '?'
+    result.append(kernel)
     result = '\n'.join(result)
 
     # return formatted note head

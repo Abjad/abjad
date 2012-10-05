@@ -148,7 +148,7 @@ class Note(Leaf):
             elif isinstance(arg, NoteHead):
                 self._note_head = arg
             else:
-                note_head = NoteHead(self, arg)
+                note_head = NoteHead(client=self, written_pitch=arg)
                 self._note_head = note_head
         return property(**locals())
 

@@ -1,4 +1,5 @@
 import copy
+from abjad.tools import leaftools
 from abjad.tools.abctools.SortableAttributeEqualityAbjadObject import SortableAttributeEqualityAbjadObject
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
@@ -14,32 +15,15 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     Note heads are immutable.
     '''
 
-    __slots__ = ('_client', '_written_pitch', '_tweak')
+    __slots__ = ('_client', '_is_cautionary', '_is_forced', '_tweak', '_written_pitch')
 
-    def __init__(self, *args):
-        from abjad.tools.leaftools.Leaf import Leaf
-        if isinstance(args[0], (type(None), Leaf)):
-            _client, written_pitch, tweak_pairs = args[0], args[1], args[2:]
-        else:
-            _client, written_pitch, tweak_pairs = None, args[0], args[1:]
-#        primary_args = []
-#        tweak_pairs = []
-#        for x in args:
-#            if isinstance(x, tuple) and len(x) == 2 and \
-#                isinstance(x[0], str) and isinstance(x[1], str):
-#                tweak_pairs.append(x)
-#            else:
-#                primary_args.append(x)
-#        args = primary_args
-#        if len(args) == 1:
-#            _client = None
-#            written_pitch = args[0]
-#        elif len(args) == 2:
-#            _client, written_pitch = args
-#        else:
-#            raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
-        self._client = _client
+    def __init__(self, written_pitch=None, client=None,
+        is_cautionary=False, is_forced=False, tweak_pairs=()):
+        assert isinstance(client, (type(None), leaftools.Leaf))
+        self._client = client
         self.written_pitch = written_pitch
+        self.is_cautionary = is_cautionary
+        self.is_forced = is_forced
         # must assign comparison attribute after written pitch initialization #
         self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
@@ -49,13 +33,17 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(*self.__getnewargs__())
+        return type(self)(**self.__getnewargs__())
 
     __deepcopy__ = __copy__
 
     def __getnewargs__(self):
-        args = [self.written_pitch]
-        args.extend(self.tweak._get_attribute_pairs())
+        args = {
+            'written_pitch': self.written_pitch,
+            'is_cautionary': self.is_cautionary,
+            'is_forced': self.is_forced,
+            'tweak_pairs': self.tweak._get_attribute_pairs(),
+        }
         return args
 
     def __repr__(self):
@@ -74,11 +62,58 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     @property
     def _format_string(self):
+        result = ' '
         if self.written_pitch:
-            return str(self.written_pitch)
-        return ' '
+            result = str(self.written_pitch)
+            if self.is_forced:
+                result += '!'
+            if self.is_cautionary:
+                result += '?'
+        return result
 
     ### PUBLIC PROPERTIES ###
+
+    @apply
+    def is_cautionary():
+        def fget(self):
+            '''Get cautionary accidental flag::
+
+                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head.is_cautionary
+                False
+
+            Set cautionary accidental flag::
+
+                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head.is_cautionary = True
+
+            Return boolean.
+            '''
+            return self._is_cautionary
+        def fset(self, arg):
+            self._is_cautionary = bool(arg)
+        return property(**locals())
+
+    @apply
+    def is_forced():
+        '''Get forced accidental flag::
+
+            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head.is_forced
+            False
+
+        Set forced accidental flag::
+
+            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head.is_forced = True
+
+        Return boolean.
+        '''
+        def fget(self):
+            return self._is_forced
+        def fset(self, arg):
+            self._is_forced = bool(arg)
+        return property(**locals())
 
     @property
     def lilypond_format(self):

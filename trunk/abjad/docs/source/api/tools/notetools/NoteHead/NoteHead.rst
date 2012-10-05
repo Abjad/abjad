@@ -22,6 +22,10 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
+.. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.is_cautionary
+
+.. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.is_forced
+
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.written_pitch
 
 Special Methods

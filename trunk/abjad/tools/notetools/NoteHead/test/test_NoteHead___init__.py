@@ -34,7 +34,7 @@ def test_NoteHead___init___04():
     '''Init note head with tweak pairs.
     '''
 
-    note_head = notetools.NoteHead("cs''", ('color', 'red'))
+    note_head = notetools.NoteHead("cs''", tweak_pairs=(('color', 'red'),))
     tweak = LilyPondTweakReservoir()
     tweak.color = 'red'
 
