@@ -43,7 +43,7 @@ Markup objects now parse input string input on initialization::
                 }
         }
 
-You can now context names to reference named contexts attached to any container:: 
+You can now use context names to reference named contexts attached to any container:: 
 
     >>> template = scoretemplatetools.StringQuartetScoreTemplate()
     >>> score = template()
