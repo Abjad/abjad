@@ -52,4 +52,4 @@ del platform
 del tools
 del wellformednesstools
 
-__version__ = '2.10'
+__version__ = '2.11'
