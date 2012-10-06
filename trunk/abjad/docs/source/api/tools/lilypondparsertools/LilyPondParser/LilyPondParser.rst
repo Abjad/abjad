@@ -55,6 +55,8 @@ Read/write Properties
 Methods
 -------
 
+.. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.register_markup_function
+
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.tokenize
 
     Inherited from :py:class:`abctools.Parser <abjad.tools.abctools.Parser.Parser.Parser>`

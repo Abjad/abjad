@@ -64,3 +64,15 @@ def test_LilyPondParser__marks__Markup_03():
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
     assert 1 == len(markuptools.get_markup_attached_to_component(result[0]))
+
+
+def test_LilyPondParser__markups__Markup_04():
+    command1 = markuptools.MarkupCommand('bold', ['A', 'B', 'C'])
+    command2 = markuptools.MarkupCommand('italic', '123')
+    markup = markuptools.Markup((command1, command2))
+
+    parser = LilyPondParser()
+    result = parser(markup.lilypond_format)
+
+    assert isinstance(result, markuptools.Markup)
+    assert result.lilypond_format == markup.lilypond_format

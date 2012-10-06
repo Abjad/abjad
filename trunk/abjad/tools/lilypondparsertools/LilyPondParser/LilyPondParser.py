@@ -32,6 +32,9 @@ class LilyPondParser(abctools.Parser):
     ::
 
         >>> from abjad.tools.lilypondparsertools import LilyPondParser
+
+    ::
+
         >>> parser = LilyPondParser()
         >>> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
         >>> result = parser(input)
@@ -160,6 +163,7 @@ class LilyPondParser(abctools.Parser):
 
         return result
 
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -196,17 +200,33 @@ class LilyPondParser(abctools.Parser):
             ::
 
                 >>> from abjad.tools.lilypondparsertools import LilyPondParser
+
+            ::
+
                 >>> parser = LilyPondParser()
+
+            ::
+
                 >>> parser.default_language
                 'english'
+
+            ::
+
                 >>> parser('{ c df e fs }')
                 {c4, df4, e4, fs4}
+
+            ::
+
                 >>> parser.default_language = 'nederlands'
                 >>> parser.default_language
                 'nederlands'
+
+            ::
+
                 >>> parser('{ c des e fis }')
                 {c4, df4, e4, fs4}
 
+            Return string.
             '''
             return self._default_language
         def fset(self, arg):
@@ -521,6 +541,41 @@ class LilyPondParser(abctools.Parser):
 
         return container
 
+    @classmethod
+    def _get_scheme_predicates(cls):
+        return {
+            'boolean?':           lambda x: isinstance(x, bool),
+            'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
+            'cheap-markup?':      lambda x: isinstance(x, markuptools.MarkupCommand),
+            'fraction?':          lambda x: isinstance(x, lilypondparsertools.LilyPondFraction),
+            'integer?':           lambda x: isinstance(x, int),
+            'list?':              lambda x: isinstance(x, (list, tuple)),
+            'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
+            'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
+            'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
+            'markup?':            lambda x: isinstance(x, markuptools.MarkupCommand),
+            'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
+                                            all([isinstance(y, (int, float)) for y in x]),
+            'number?':            lambda x: isinstance(x, (int, float)),
+            'real?':              lambda x: isinstance(x, (int, float)),
+            'string?':            lambda x: isinstance(x, (str, unicode)),
+            'void?':              lambda x: isinstance(x, type(None)),
+            # the following predicates have not yet been implemented in Abjad
+            'hash-table?':        lambda x: True,
+            'list-or-symbol?':    lambda x: True,
+            'ly:dir?':            lambda x: True,
+            'ly:moment?':         lambda x: True,
+            'number-or-string?':  lambda x: True,
+            'number-pair?':       lambda x: True,
+            'optional?':          lambda x: True,
+            'pair?':              lambda x: True,
+            'procedure?':         lambda x: True,
+            'scheme?':            lambda x: True,
+            'string-or-pair?':    lambda x: True,
+            'symbol-or-boolean?': lambda x: True,
+            'symbol?':            lambda x: True,
+        }
+
     def _get_span_events(self, leaf):
         annotations = marktools.get_annotations_attached_to_component(leaf)
         if annotations:
@@ -636,36 +691,44 @@ class LilyPondParser(abctools.Parser):
 
     def _test_scheme_predicate(self, predicate, value):
         from abjad.tools import lilypondparsertools
-        predicates = {
-            'boolean?':           lambda x: isinstance(x, bool),
-            'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
-            'cheap-markup?':      lambda x: isinstance(x, markuptools.MarkupCommand),
-            'fraction?':          lambda x: isinstance(x, lilypondparsertools.LilyPondFraction),
-            #'hash-table?':        lambda x: True,
-            'integer?':           lambda x: isinstance(x, int),
-            #'list-or-symbol?':    lambda x: True,
-            'list?':              lambda x: isinstance(x, (list, tuple)),
-            #'ly:dir?':            lambda x: True,
-            'ly:duration?':       lambda x: isinstance(x, lilypondparsertools.LilyPondDuration),
-            #'ly:moment?':         lambda x: True,
-            'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
-            'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
-            'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
-                                            all([isinstance(y, (int, float)) for y in x]),
-            #'number-or-string?':  lambda x: True,
-            #'number-pair?':       lambda x: True,
-            'number?':            lambda x: isinstance(x, (int, float)),
-            #'optional?':          lambda x: True,
-            #'pair?':              lambda x: True,
-            #'procedure?':         lambda x: True,
-            'real?':              lambda x: isinstance(x, (int, float)),
-            'scheme?':            lambda x: True,
-            #'string-or-pair?':    lambda x: True,
-            'string?':            lambda x: isinstance(x, (str, unicode)),
-            #'symbol-or-boolean?': lambda x: True,
-            #'symbol?':            lambda x: True,
-            'void?':              lambda x: isinstance(x, type(None)),
-        }
+        predicates = self._get_scheme_predicates()
         if predicate in predicates:
             return predicates[predicate](value)
         return True
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def register_markup_function(cls, name, signature):
+        r'''Register a custom markup function globally with LilyPondParser:
+
+        ::
+
+            >>> from abjad.tools.lilypondparsertools import LilyPondParser
+
+        ::
+
+            >>> name = 'my-custom-markup-function'
+            >>> signature = ['markup?']
+            >>> LilyPondParser.register_markup_function(name, signature)
+
+        ::
+
+            >>> parser = LilyPondParser()
+            >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
+            >>> parser(string)
+            Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
+
+        Return None
+        '''
+
+        from abjad.ly.py.markup_functions import markup_functions
+
+        assert isinstance(name, str)
+        assert all([not x.isspace() for x in name])
+        assert isinstance(signature, (list, tuple))
+        predicates = cls._get_scheme_predicates()
+        for predicate in signature:
+            assert predicate in predicates
+
+        markup_functions[name] = tuple(signature)
