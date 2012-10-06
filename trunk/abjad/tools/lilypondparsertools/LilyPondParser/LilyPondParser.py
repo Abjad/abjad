@@ -719,6 +719,10 @@ class LilyPondParser(abctools.Parser):
             >>> parser(string)
             Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
 
+        `signature` should be a sequence of zero or more type-predicate names, as
+        understood by LilyPond.  Consult LilyPond's documentation for a complete
+        list of all understood type-predicates.
+
         Return None
         '''
 
@@ -727,8 +731,9 @@ class LilyPondParser(abctools.Parser):
         assert isinstance(name, str)
         assert all([not x.isspace() for x in name])
         assert isinstance(signature, (list, tuple))
-        predicates = cls._get_scheme_predicates()
         for predicate in signature:
-            assert predicate in predicates
+            assert isinstance(predicate, str)
+            assert all([not x.isspace() for x in predicate])
+            assert predicate.endswith('?')
 
         markup_functions[name] = tuple(signature)

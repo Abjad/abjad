@@ -172,7 +172,7 @@ parser = lilypondparsertools.ReducedLyParser()
 </abjad>
 
 <abjad>
-string = '| 4/4 c d e f || 3/8 r8 g4 |'
+string = "| 4/4 c' d' e' f' || 3/8 r8 g'4 |"
 result = parser(string)
 </abjad>
 

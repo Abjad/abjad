@@ -107,27 +107,27 @@ It understands contexts and markup:
 ::
 
    >>> f(result)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/iotools/f.py", line 19, in f
-       print expr.lilypond_format
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/contexttools/Context/Context.py", line 215, in lilypond_format
-       return self._format_component()
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/componenttools/Component/Component.py", line 189, in _format_component
-       result.extend(self._format_contents_slot(format_contributions))
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/containertools/Container/Container.py", line 246, in _format_contents_slot
-       result.append([('contents', '_contents'), self._format_content_pieces()])
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/containertools/Container/Container.py", line 211, in _format_content_pieces
-       result.extend(m.lilypond_format.split('\n'))
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/contexttools/Context/Context.py", line 215, in lilypond_format
-       return self._format_component()
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/componenttools/Component/Component.py", line 187, in _format_component
-       result.extend(self._format_open_brackets_slot(format_contributions))
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/contexttools/Context/Context.py", line 129, in _format_open_brackets_slot
-       contributions = [context._format_invocation() + ' %s' % brackets_open[0]]
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/contexttools/Context/Context.py", line 97, in _format_invocation
-       return r'\context %s = %s' % (self.context_name, schemetools.format_scheme_value(self.name))
-   NameError: global name 'schemetools' is not defined
+   \new Score <<
+       \context Staff = "Treble Staff" {
+           \context Voice = "Treble Voice" {
+               c'4
+                   ^ \markup {
+                       \bold
+                           Treble!
+                       }
+           }
+       }
+       \context Staff = "Bass Staff" {
+           \context Voice = "Bass Voice" {
+               \clef "bass"
+               c,4
+                   _ \markup {
+                       \italic
+                           Bass!
+                       }
+           }
+       }
+   >>
 
 
 ::
@@ -162,18 +162,18 @@ It even understands certain aspects of LilyPond file layouts, like header blocks
 ::
 
    >>> f(result)
-   % Abjad revision 6987
-   % 2012-08-31 22:05
+   % Abjad revision 7619:7620
+   % 2012-10-06 12:13
    
    \version "2.14.2"
    \language "english"
    \include "/Users/josiah/Documents/Projects/abjad/trunk/abjad/cfg/abjad.scm"
    
    \header {
-       composer = \markup { by \bold #"Foo von Bar" }
+       composer = \markup { by \bold "Foo von Bar" }
        name = #"Foo von Bar"
        tagline = \markup {  }
-       title = \markup { The ballad of Foo von Bar }
+       title = \markup { The ballad of "Foo von Bar" }
    }
    
    \score {
@@ -335,7 +335,7 @@ Abjad documentation:
 
 ::
 
-   >>> string = '| 4/4 c d e f || 3/8 r8 g4 |'
+   >>> string = "| 4/4 c' d' e' f' || 3/8 r8 g'4 |"
    >>> result = parser(string)
 
 
@@ -345,15 +345,15 @@ Abjad documentation:
    {
        {
            \time 4/4
-           c4
-           d4
-           e4
-           f4
+           c'4
+           d'4
+           e'4
+           f'4
        }
        {
            \time 3/8
            r8
-           g4
+           g'4
        }
    }
 
