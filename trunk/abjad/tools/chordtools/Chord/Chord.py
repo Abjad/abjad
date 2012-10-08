@@ -64,7 +64,7 @@ class Chord(Leaf):
             new.append(new_note_head)
         return new
 
-    # TODO: should this be removed? Just like for note and rest?
+    # necessary to ensure deepcopied chords copy note heads correctly
     __deepcopy__ = __copy__
 
     def __delitem__(self, i):

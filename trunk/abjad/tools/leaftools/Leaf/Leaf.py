@@ -1,11 +1,11 @@
 import abc
+import copy
+import fractions
+import operator
 from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import sequencetools
 from abjad.tools.componenttools.Component import Component
-import copy
-import fractions
-import operator
 
 
 class Leaf(Component):
