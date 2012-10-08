@@ -1,5 +1,4 @@
 from abjad.tools.resttools.Rest import Rest
-from abjad.tools.leaftools.Leaf import Leaf
 
 
 class MultiMeasureRest(Rest):
@@ -30,6 +29,7 @@ class MultiMeasureRest(Rest):
     @property
     def _body(self):
         '''Read-only list of string representation of body of rest.
-        Picked up as format contribution at format-time.'''
+        Picked up as format contribution at format-time.
+        '''
         result = 'R' + str(self._formatted_duration)
         return [result]

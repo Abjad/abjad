@@ -1,5 +1,5 @@
-from abjad.tools.leaftools.Leaf import Leaf
 import copy
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Rest(Leaf):
@@ -21,6 +21,7 @@ class Rest(Leaf):
 
     ### INITIALIZER ###
 
+    # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
@@ -40,10 +41,6 @@ class Rest(Leaf):
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
 
-    # SPECIAL METHODS #
-
-    #__deepcopy__ = __copy__
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -56,7 +53,6 @@ class Rest(Leaf):
             result += str(vertical_positioning_pitch)
         else:
             result += 'r'
-        #result += str(self.duration)
         result += str(self._formatted_duration)
         if vertical_positioning_pitch:
             result += r' \rest'
@@ -64,5 +60,4 @@ class Rest(Leaf):
 
     @property
     def _compact_representation(self):
-        #return 'r%s' % self.duration
         return 'r%s' % self._formatted_duration

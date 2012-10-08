@@ -1,6 +1,6 @@
-from abjad.tools.leaftools.Leaf import Leaf
 import copy
 import re
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 class Chord(Leaf):
@@ -14,8 +14,13 @@ class Chord(Leaf):
     Return chord instance.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_note_heads', '_written_pitches', )
 
+    ### INITIALIZER ###
+
+    # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
@@ -59,6 +64,7 @@ class Chord(Leaf):
             new.append(new_note_head)
         return new
 
+    # TODO: should this be removed? Just like for note and rest?
     __deepcopy__ = __copy__
 
     def __delitem__(self, i):
