@@ -34,14 +34,20 @@ class Chord(Leaf):
             #written_pitches, written_duration = match.groups()
             #lilypond_multiplier = None
 
+        is_cautionary = []
+        is_forced = []
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             lilypond_multiplier = leaf.duration_multiplier
             if hasattr(leaf, 'written_pitch'):
                 written_pitches = [leaf.written_pitch]
+                is_cautionary = [leaf.note_head.is_cautionary]
+                is_forced = [leaf.note_head.is_forced]
             elif hasattr(leaf, 'written_pitches'):
                 written_pitches = leaf.written_pitches
+                is_cautionary = [x.is_cautionary for x in leaf.note_heads]
+                is_forced = [x.is_forced for x in leaf.note_heads]
             else:
                 written_pitches = []
             self._copy_override_and_set_from_leaf(leaf)
@@ -52,8 +58,12 @@ class Chord(Leaf):
             written_pitches, written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize chord from "%s".' % str(args))
+
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.written_pitches = written_pitches
+        for note_head, cautionary, forced in zip(self.note_heads, is_cautionary, is_forced):
+            note_head.is_cautionary = cautionary
+            note_head.is_forced = forced
         self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
@@ -109,7 +119,7 @@ class Chord(Leaf):
     def _summary(self):
         '''Read-only string summary of noteh eads in chord.
         '''
-        return ' '.join([str(x) for x in self])
+        return ' '.join([str(x) for x in self.note_heads])
 
     ### PUBLIC PROPERTIES ### 
 

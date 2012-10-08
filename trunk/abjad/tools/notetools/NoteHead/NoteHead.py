@@ -53,16 +53,13 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
         return '%s(%s)' % (type(self).__name__, args)
 
     def __str__(self):
-        if self.written_pitch:
-            return str(self.written_pitch)
-        else:
-            return ''
+        return self._format_string
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
-        result = ' '
+        result = ''
         if self.written_pitch:
             result = str(self.written_pitch)
             if self.is_forced:

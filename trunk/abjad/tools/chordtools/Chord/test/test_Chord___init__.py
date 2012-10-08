@@ -204,3 +204,20 @@ def test_Chord___init___18():
     chord = Chord('<>8.')
     assert isinstance(chord, Chord)
     assert len(chord) == 0
+
+
+def test_Chord___init___19():
+    '''Init with forced and cautionary accidentals.
+    '''
+
+    chord = Chord('<c!? e? g! b>4')
+    assert chord.lilypond_format == '<c!? e? g! b>4'
+
+
+def test_Chord___init___20():
+    '''Init from Note with forced and cautionary accidentals.
+    '''
+
+    note = Note("c'!?4")
+    chord = Chord(note)
+    assert chord.lilypond_format == "<c'!?>4"

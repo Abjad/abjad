@@ -161,3 +161,36 @@ def test_Note___init___14():
     assert isinstance(note, Note)
     assert t[1]._parent is t
     assert note._parent is None
+
+
+def test_Note___init___15():
+    '''Init note with cautionary accidental.
+    '''
+
+    t = Note("c'?4")
+    assert t.lilypond_format == "c'?4"
+
+
+def test_Note___init___16():
+    '''Init note with forced accidental.
+    '''
+
+    t = Note("c'!4")
+    assert t.lilypond_format == "c'!4"
+
+
+def test_Note__init___17():
+    '''Init note with both forced and cautionary accidental.
+    '''
+
+    t = Note("c'!?4")
+    assert t.lilypond_format == "c'!?4"
+
+
+def test_Note___init___18():
+    '''Init note from chord with forced and cautionary accidental.
+    '''
+
+    c = Chord("<c'!? e' g'>4")
+    t = Note(c)
+    assert t.lilypond_format == "c'!?4"

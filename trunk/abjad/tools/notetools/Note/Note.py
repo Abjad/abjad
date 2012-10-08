@@ -30,6 +30,7 @@ class Note(Leaf):
     def __init__(self, *args, **kwargs):
         #from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
         from abjad.tools import lilypondparsertools
+        from abjad.tools import notetools
 
         if len(args) == 1 and isinstance(args[0], str):
             input = '{{ {} }}'.format(args[0])
@@ -42,14 +43,20 @@ class Note(Leaf):
             #written_duration = duration_body + dots
             #lilypond_multiplier = None
 
+        is_cautionary = False
+        is_forced = False
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             lilypond_multiplier = leaf.duration_multiplier
             if hasattr(leaf, 'written_pitch'):
                 pitch = leaf.written_pitch
+                is_cautionary = leaf.note_head.is_cautionary
+                is_forced = leaf.note_head.is_forced
             elif hasattr(leaf, 'written_pitches') and 0 < len(leaf.written_pitches):
                 pitch = leaf.written_pitches[0]
+                is_cautionary = leaf.note_heads[0].is_cautionary
+                is_forced = leaf.note_heads[0].is_forced
             else:
                 pitch = None
             self._copy_override_and_set_from_leaf(leaf)
@@ -62,7 +69,14 @@ class Note(Leaf):
             raise ValueError('can not initialize note from "%s".' % str(args))
 
         Leaf.__init__(self, written_duration, lilypond_multiplier)
-        self.note_head = pitch
+        if pitch is not None:
+            self.note_head = notetools.NoteHead(
+                written_pitch=pitch,
+                is_cautionary=is_cautionary,
+                is_forced=is_forced
+                )
+        else:
+            self.note_head = None
         self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
