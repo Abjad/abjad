@@ -55,7 +55,7 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         expr = [expr]
     expr = containertools.Container(expr)
 
-    g = iterationtools.iterate_components_depth_first(expr, direction='right')
+    g = iterationtools.iterate_components_depth_first(expr, direction=Right)
     for component in g:
         next_component = componenttools.get_nth_namesake_from_component(component, 1)
         if isinstance(next_component, containertools.Container) and \

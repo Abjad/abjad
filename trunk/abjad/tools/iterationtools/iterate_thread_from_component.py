@@ -109,7 +109,7 @@ def iterate_thread_from_component(component, klass=None, reverse=False):
                 if componenttools.component_to_containment_signature(x) == component_thread_signature:
                     yield x
     else:
-        for x in iterationtools.iterate_components_depth_first(component, capped=False, direction='right'):
+        for x in iterationtools.iterate_components_depth_first(component, capped=False, direction=Right):
             if isinstance(x, klass):
                 if componenttools.component_to_containment_signature(x) == component_thread_signature:
                     yield x

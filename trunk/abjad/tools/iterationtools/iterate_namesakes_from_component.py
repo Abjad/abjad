@@ -90,7 +90,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
         prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if prev is None:
             return
-        dfs = iterationtools.iterate_components_depth_first(prev, capped=False, direction='right')
+        dfs = iterationtools.iterate_components_depth_first(prev, capped=False, direction=Right)
         for node in dfs:
             if type(node) == type(component) and \
                 componenttools.component_to_parentage_signature(node) == \

@@ -1,7 +1,7 @@
 import collections
 
 
-def iterate_components_depth_first(component, capped=True, unique=True, forbid=None, direction='left'):
+def iterate_components_depth_first(component, capped=True, unique=True, forbid=None, direction=Left):
     '''.. versionadded:: 1.1
 
     Iterate components depth-first from `component`.
@@ -72,7 +72,8 @@ def _handle_forbidden_node(node, queue):
     return node, rank
 
 def _advance_node_depth_first(node, rank, direction):
-    if direction == 'left':
+    # TODO: remove 'left'
+    if direction in ('left', Left):
         node, rank = _next_node_depth_first(node, rank)
     else:
         node, rank = _prev_node_depth_first(node, rank)
