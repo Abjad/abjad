@@ -14,4 +14,4 @@ def test_instrumenttools_Flute_storage_format_02():
 
     flute = instrumenttools.Flute(instrument_name_markup=markuptools.Markup('Foo'))
 
-    assert flute.storage_format == "instrumenttools.Flute(\n\tinstrument_name_markup=markuptools.Markup(\n\t\t('Foo',)\n\t\t)\n\t)"
+    assert flute.storage_format == "instrumenttools.Flute(\n\tinstrument_name_markup=markuptools.Markup((\n\t\t'Foo',\n\t\t))\n\t)"
