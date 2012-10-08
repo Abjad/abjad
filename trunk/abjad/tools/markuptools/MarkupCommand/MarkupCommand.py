@@ -57,8 +57,8 @@ class MarkupCommand(AbjadObject):
     def __init__(self, command, *args):
         assert isinstance(command, str) \
             and len(command) and command.find(' ') == -1
-        object.__setattr__(self, '_command', command)
-        object.__setattr__(self, '_args', tuple(args))
+        self._command = command
+        self._args = tuple(args)
 
     ### SPECIAL METHODS ###
 
@@ -82,6 +82,31 @@ class MarkupCommand(AbjadObject):
     @property
     def _format_pieces(self):
         return self._get_format_pieces(is_indented=False)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def args(self):
+        r'''Read-only tuple of markup command arguments.'''
+        return self._args
+
+    @property
+    def command(self):
+        r'''Read-only string of markup command command-name.'''
+        return self._command
+
+    @property
+    def lilypond_format(self):
+        r'''Read-only format of markup command::
+
+            >>> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> markup_command.lilypond_format
+            '\\draw-circle #2.5 #0.1 ##f'
+
+        Returns string.
+        '''
+
+        return ' '.join(self._format_pieces)
 
     ### PRIVATE METHODS ###
 
@@ -121,27 +146,40 @@ class MarkupCommand(AbjadObject):
         parts.extend(recurse(self.args))
         return parts
 
-    ### PUBLIC PROPERTIES ###
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        def recurse(args, is_indented=True):
+            indent = '\t'
+            if not is_indented:
+                indent = ''
+            result = []
+            for i, arg in enumerate(args):
+                if len(args) == 1:
+                    comma = ''
+                elif 1 < len(args) and i == len(args) - 1:
+                    comma = ''    
+                else:
+                    comma = ','
+                if isinstance(arg, AbjadObject):
+                    pieces = arg._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                    for piece in pieces[:-1]:
+                        result.append('{}{}'.format(indent, piece))
+                    result.append('{}{}{}'.format(indent, pieces[-1], comma))
+                elif isinstance(arg, (list, tuple)):
+                    result.append('{}['.format(indent))
+                    pieces = recurse(arg, is_indented=is_indented)
+                    for piece in pieces:
+                        result.append('{}{}'.format(indent, piece))
+                    result.append('{}]{}'.format(indent, comma))
+                else:
+                    result.append('{}{!r}{}'.format(indent, arg, comma))
+            return result
 
-    @property
-    def args(self):
-        r'''Read-only tuple of markup command arguments.'''
-        return self._args
-
-    @property
-    def command(self):
-        r'''Read-only string of markup command command-name.'''
-        return self._command
-
-    @property
-    def lilypond_format(self):
-        r'''Read-only format of markup command::
-
-            >>> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-            >>> markup_command.lilypond_format
-            '\\draw-circle #2.5 #0.1 ##f'
-
-        Returns string.
-        '''
-
-        return ' '.join(self._format_pieces)
+        indent = '\t'
+        if not is_indented:
+            indent = ''
+        result = []
+        result.append('{}('.format(self._tools_package_qualified_class_name))
+        result.append('{}{!r},'.format(indent, self.command))
+        result.extend(recurse(self.args, is_indented=is_indented))
+        result.append('{})'.format(indent))
+        return result
