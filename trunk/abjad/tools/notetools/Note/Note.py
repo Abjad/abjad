@@ -72,6 +72,10 @@ class Note(Leaf):
         result = ''
         if self.written_pitch:
             result += str(self.written_pitch)
+            if self.note_head.is_forced:
+                result += '!'
+            if self.note_head.is_cautionary:
+                result += '?'
         result += self._formatted_duration
         return [result]
 
