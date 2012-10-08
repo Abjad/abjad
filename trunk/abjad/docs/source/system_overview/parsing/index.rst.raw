@@ -1,7 +1,8 @@
 Parsing
 =======
 
-Abjad provides a growing number of language parsers, including a sophisticated LilyPond parser, 
+Abjad provides a growing number of language parsers. 
+The most important of these is a sophisticate LilyPond parser.
 
 LilyPond Parsing
 ----------------
@@ -9,11 +10,11 @@ LilyPond Parsing
 ``lilypondparsertools.LilyPondParser`` parses a large, although incomplete, subset of LilyPond's syntax:
 
 <abjad>
-from abjad.tools import lilypondparsertools
 parser = lilypondparsertools.LilyPondParser()
 </abjad>
 
-It understands notes, chords, skips and rests, including default durations and the ``q`` chord-repeat construct:
+The LilyPond parser understands notes, chords, skips and rests, 
+including default durations and the ``q`` chord-repeat construct:
 
 <abjad>
 string = r"{ c'\longa r4. <d' fs' bff'> g q8 s1 c''\breve. }"
@@ -28,7 +29,7 @@ f(result)
 show(result)
 </abjad>
 
-It understands most spanners, articulations and dynamics too:
+The LilyPond parser understands most spanners, articulations and dynamics too:
 
 <abjad>
 string = r'''\new Staff {
@@ -53,7 +54,7 @@ f(result)
 show(result)
 </abjad>
 
-It understands contexts and markup:
+The LilyPond parser understands contexts and markup:
 
 <abjad>
 string = r'''\new Score <<
@@ -81,7 +82,7 @@ f(result)
 show(result)
 </abjad>
 
-It even understands certain aspects of LilyPond file layouts, like header blocks:
+The LilyPond parser even understands certain aspects of LilyPond file layouts, like header blocks:
 
 <abjad>
 string = r'''
@@ -111,7 +112,7 @@ show(result)
 </abjad>
 
 A small number of music functions are also supported, such as ``\relative``. Music functions which mutate 
-the score during compilation, result in a "normalized" Abjad score structure.  That is, the resulting Abjad 
+the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad 
 structure corresponds to the music as it appears on the page:
 
 <abjad>
@@ -135,7 +136,6 @@ generates a sequence of RhythmTree structures, which can be furthered manipulate
 being converted into Abjad score object:
 
 <abjad>
-from abjad.tools import rhythmtreetools
 parser = rhythmtreetools.RhythmTreeParser()
 </abjad>
 
@@ -167,7 +167,6 @@ speedups for rapidly notating notes and rests without needing to specify pitches
 Abjad documentation:
 
 <abjad>
-from abjad.tools import rhythmtreetools
 parser = lilypondparsertools.ReducedLyParser()
 </abjad>
 

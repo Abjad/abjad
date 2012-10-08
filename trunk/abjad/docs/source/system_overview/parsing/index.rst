@@ -1,7 +1,8 @@
 Parsing
 =======
 
-Abjad provides a growing number of language parsers, including a sophisticated LilyPond parser, 
+Abjad provides a growing number of language parsers. 
+The most important of these is a sophisticate LilyPond parser.
 
 LilyPond Parsing
 ----------------
@@ -10,11 +11,11 @@ LilyPond Parsing
 
 ::
 
-   >>> from abjad.tools import lilypondparsertools
    >>> parser = lilypondparsertools.LilyPondParser()
 
 
-It understands notes, chords, skips and rests, including default durations and the ``q`` chord-repeat construct:
+The LilyPond parser understands notes, chords, skips and rests, 
+including default durations and the ``q`` chord-repeat construct:
 
 ::
 
@@ -43,7 +44,7 @@ It understands notes, chords, skips and rests, including default durations and t
 .. image:: images/index-1.png
 
 
-It understands most spanners, articulations and dynamics too:
+The LilyPond parser understands most spanners, articulations and dynamics too:
 
 ::
 
@@ -83,7 +84,7 @@ It understands most spanners, articulations and dynamics too:
 .. image:: images/index-2.png
 
 
-It understands contexts and markup:
+The LilyPond parser understands contexts and markup:
 
 ::
 
@@ -137,7 +138,7 @@ It understands contexts and markup:
 .. image:: images/index-3.png
 
 
-It even understands certain aspects of LilyPond file layouts, like header blocks:
+The LilyPond parser even understands certain aspects of LilyPond file layouts, like header blocks:
 
 ::
 
@@ -162,12 +163,12 @@ It even understands certain aspects of LilyPond file layouts, like header blocks
 ::
 
    >>> f(result)
-   % Abjad revision 7619:7620
-   % 2012-10-06 12:13
+   % Abjad revision 7627
+   % 2012-10-08 15:16
    
-   \version "2.14.2"
+   \version "2.17.3"
    \language "english"
-   \include "/Users/josiah/Documents/Projects/abjad/trunk/abjad/cfg/abjad.scm"
+   \include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
    
    \header {
        composer = \markup { by \bold "Foo von Bar" }
@@ -197,7 +198,7 @@ It even understands certain aspects of LilyPond file layouts, like header blocks
 
 
 A small number of music functions are also supported, such as ``\relative``. Music functions which mutate 
-the score during compilation, result in a "normalized" Abjad score structure.  That is, the resulting Abjad 
+the score during compilation, result in a normalized Abjad score structure.  That is, the resulting Abjad 
 structure corresponds to the music as it appears on the page:
 
 ::
@@ -251,7 +252,6 @@ being converted into Abjad score object:
 
 ::
 
-   >>> from abjad.tools import rhythmtreetools
    >>> parser = rhythmtreetools.RhythmTreeParser()
 
 
@@ -329,7 +329,6 @@ Abjad documentation:
 
 ::
 
-   >>> from abjad.tools import rhythmtreetools
    >>> parser = lilypondparsertools.ReducedLyParser()
 
 
