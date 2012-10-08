@@ -28,7 +28,20 @@ class Note(Leaf):
 
     # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
-        from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
+        #from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
+        from abjad.tools import lilypondparsertools
+
+        if len(args) == 1 and isinstance(args[0], str):
+            input = '{{ {} }}'.format(args[0])
+            parsed = lilypondparsertools.LilyPondParser()(input)
+            assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
+            args = [parsed[0]]
+            #match = re.match(_lilypond_leaf_regex, args[0])
+            #chromatic_pitch_class_name, octave_tick_string, duration_body, dots = match.groups()
+            #pitch = chromatic_pitch_class_name + octave_tick_string
+            #written_duration = duration_body + dots
+            #lilypond_multiplier = None
+
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
@@ -40,12 +53,6 @@ class Note(Leaf):
             else:
                 pitch = None
             self._copy_override_and_set_from_leaf(leaf)
-        elif len(args) == 1 and isinstance(args[0], str):
-            match = re.match(_lilypond_leaf_regex, args[0])
-            chromatic_pitch_class_name, octave_tick_string, duration_body, dots = match.groups()
-            pitch = chromatic_pitch_class_name + octave_tick_string
-            written_duration = duration_body + dots
-            lilypond_multiplier = None
         elif len(args) == 2:
             pitch, written_duration = args
             lilypond_multiplier = None
@@ -53,6 +60,7 @@ class Note(Leaf):
             pitch, written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize note from "%s".' % str(args))
+
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.note_head = pitch
         self._initialize_keyword_values(**kwargs)

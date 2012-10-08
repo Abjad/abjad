@@ -22,6 +22,18 @@ class Chord(Leaf):
 
     # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
+        from abjad.tools import lilypondparsertools
+
+        if len(args) == 1 and isinstance(args[0], str):
+            input = '{{ {} }}'.format(args[0])
+            parsed = lilypondparsertools.LilyPondParser()(input)
+            assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
+            args = [parsed[0]]
+            #pattern = '^<(.*)>\s*(.+)'
+            #match = re.match(pattern, args[0])
+            #written_pitches, written_duration = match.groups()
+            #lilypond_multiplier = None
+
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
@@ -33,11 +45,6 @@ class Chord(Leaf):
             else:
                 written_pitches = []
             self._copy_override_and_set_from_leaf(leaf)
-        elif len(args) == 1 and isinstance(args[0], str):
-            pattern = '^<(.*)>\s*(.+)'
-            match = re.match(pattern, args[0])
-            written_pitches, written_duration = match.groups()
-            lilypond_multiplier = None
         elif len(args) == 2:
             written_pitches, written_duration = args
             lilypond_multiplier = None

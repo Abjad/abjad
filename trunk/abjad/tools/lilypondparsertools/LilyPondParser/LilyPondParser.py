@@ -646,7 +646,7 @@ class LilyPondParser(abctools.Parser):
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
         self._default_duration = lilypondparsertools.LilyPondDuration(durationtools.Duration(1, 4), None)
-        self._last_chord = chordtools.Chord("<c g c'>4") # LilyPond's default!
+        self._last_chord = chordtools.Chord(['c', 'g', "c'"], (1, 4)) # LilyPond's default!
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 
