@@ -55,6 +55,7 @@ Tutorials
     :numbered:
 
     tutorials/starting_the_python_interpreter/index
+    tutorials/writing_hello_world_in_lilypond/index
     tutorials/changing_notes_to_rests/index
     tutorials/creating_rest_delimited_slurs/index
     tutorials/making_grob_overrides/index
