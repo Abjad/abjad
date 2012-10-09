@@ -17,9 +17,13 @@ show(staff)
 
 The pattern?  Slurs in the example span groups of notes and chords separated by rests.
 
-Abjad makes it easy to create such rest-delimited slurs in a structured way.
+Abjad makes it easy to create rest-delimited slurs in a structured way.
 
-Let's start with the notes, rests and chords like this:
+
+Entering input
+--------------
+
+Let's start with the note input like this:
 
 <abjad>
 string = r"\times 2/3 { c'4 d' r } r8 e'4 <fs' a' c''>8 ~ q4 \times 4/5 { r16 g' r b' d'' } df'4 c' ~ c'1"
@@ -27,9 +31,14 @@ staff = Staff(string)
 show(staff)
 </abjad>
 
+
+Grouping notes and chords
+-------------------------
+
 Next we'll group notes and chords together with one of the functions
-available in the ``componenttools`` package, and add slur spanners inside
-our loop:
+available in the ``componenttools`` package.
+
+We add slur spanners inside our loop:
 
 <abjad>
 leaves = iterationtools.iterate_leaves_in_expr(staff)
@@ -38,17 +47,21 @@ for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, (N
 
 </abjad>
 
-And now we can take a look at the result:
+Here's the result:
 
 <abjad>
 show(staff)
 </abjad>
 
-Notice now that there's a little problem with the notation we just created.
+But there's a problem.
 
-Four SlurSpanners were generated, but only three slurs are shown.
+Four slur spanners were generated but only three slurs are shown.
 
-Why?  LilyPond ignores slur terminators attached to the same note as the slur begins on.
+Why? Because LilyPond ignores one-note slurs.
+
+
+Skipping one-note slurs
+-----------------------
 
 Let's rewrite our example to prevent that from happening:
 
@@ -61,7 +74,7 @@ for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(leaves, kl
         spannertools.SlurSpanner(group)
 </abjad>
 
-And now the corrected result:
+And here's the corrected result:
 
 <abjad>
 show(staff)

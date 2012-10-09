@@ -9,9 +9,13 @@ there is a pattern to how they arranged.
 
 The pattern?  Slurs in the example span groups of notes and chords separated by rests.
 
-Abjad makes it easy to create such rest-delimited slurs in a structured way.
+Abjad makes it easy to create rest-delimited slurs in a structured way.
 
-Let's start with the notes, rests and chords like this:
+
+Entering input
+--------------
+
+Let's start with the note input like this:
 
 ::
 
@@ -22,9 +26,14 @@ Let's start with the notes, rests and chords like this:
 .. image:: images/index-2.png
 
 
+
+Grouping notes and chords
+-------------------------
+
 Next we'll group notes and chords together with one of the functions
-available in the ``componenttools`` package, and add slur spanners inside
-our loop:
+available in the ``componenttools`` package.
+
+We add slur spanners inside our loop:
 
 ::
 
@@ -38,7 +47,7 @@ our loop:
    SlurSpanner(b'16, d''16, df'4, c'4, c'1)
 
 
-And now we can take a look at the result:
+Here's the result:
 
 ::
 
@@ -47,11 +56,15 @@ And now we can take a look at the result:
 .. image:: images/index-3.png
 
 
-Notice now that there's a little problem with the notation we just created.
+But there's a problem.
 
-Four SlurSpanners were generated, but only three slurs are shown.
+Four slur spanners were generated but only three slurs are shown.
 
-Why?  LilyPond ignores slur terminators attached to the same note as the slur begins on.
+Why? Because LilyPond ignores one-note slurs.
+
+
+Skipping one-note slurs
+-----------------------
 
 Let's rewrite our example to prevent that from happening:
 
@@ -69,7 +82,7 @@ Let's rewrite our example to prevent that from happening:
    SlurSpanner(b'16, d''16, df'4, c'4, c'1)
 
 
-And now the corrected result:
+And here's the corrected result:
 
 ::
 
