@@ -1,15 +1,19 @@
 Understanding time signature marks
 ==================================
 
-In this tutorial is to take a deeper look at what happens
+In this tutorial we take a deeper look at what happens
 when we attach time signature marks to staves and other score components.
-To work through the tutorial, enter each of the examples into the Abjad interpreter
-and study what comes back.
+
 At the end of the tutorial you'll understand how time signature marks are created.
+
 You'll also understand how the states of different objects change when
 time signature marks are attached and detached.
 
-First we start by creating a staff full of notes:
+
+Getting started
+---------------
+
+We start by creating a staff full of notes:
 
 ::
 
@@ -34,7 +38,7 @@ the staff we've created. We can motivate this a bit by asking two questions:
 
 1. what time signature is currently in effect for the staff we have just created?
 2. what is the time signature currently in effect for
-    the five notes contained within the staff we have just created?
+   the five notes contained within the staff we have just created?
 
 The answer to both questions is the same:
 there is no time signature currently in effect for either our staff
@@ -62,7 +66,7 @@ And:
    True
 
 
-If we want, we can iterate both the staff and its leaves at one and the same time like this:
+And we can iterate both the staff and its leaves at one and the same time like this:
 
 ::
 
@@ -80,6 +84,10 @@ If we want, we can iterate both the staff and its leaves at one and the same tim
 This confirms the answer to our questions that there is not yet any time signature
 in effect for any component in our staff because we have not yet attached
 a time signature mark to any component in our staff.
+
+
+LilyPond's implicit ``4/4``
+---------------------------
 
 So what happens if we format our staff and send it off to LilyPond to render as a PDF?
 Will LilyPond render the staff with a time signature? Without a time signature?
@@ -119,7 +127,11 @@ The LilyPond format of our staff contains no LilyPond ``\time`` command.
 This is, again, because we have not yet attached a time signature mark
 to any component in our staff.
 
-We can no practice attaching and detaching time signature marks
+
+Using time signature marks
+--------------------------
+
+We can now practice attaching and detaching time signature marks
 to different components in our staff and study what happens as we do.
 
 We'll start with ``3/4``.
@@ -169,7 +181,7 @@ So now we attach our time signature mark to our staff:
 
 Abjad responds immediately by returning the time signature mark we have just attached.
 
-Notice that our time signature mark's repr ha changed.
+Notice that our time signature mark's repr has changed.
 The repr of our ``3/4`` time signature mark now includes the repr of the staff
 to which we have just attached the time signature mark.
 That is to say that the repr of our time signature mark is statal.
@@ -248,7 +260,11 @@ And let's confirm what we see in the PDF in the staff's format:
 
 The staff's format now contains a LilyPond ``\time`` command because we have attached an Abjad time signature mark to the staff.
 
-What we've just been through above will cover over 80% of what you'll ever wind up doing with time signature marks: creating them and attaching them directly to staves. But what if we wanna get rid of a time signature mark? Or what if the time signature will be changing all over the place? We cover those cases next.
+What we've just been through above will cover over 80% of what you'll ever wind up doing 
+with time signature marks: creating them and attaching them directly to staves. 
+But what if we wanna get rid of a time signature mark? 
+Or what if the time signature will be changing all over the place? 
+We cover those cases next.
 
 Detaching a time signature mark is easy:
 
@@ -258,7 +274,11 @@ Detaching a time signature mark is easy:
    TimeSignatureMark((3, 4))
 
 
-The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
+The Abjad returns the mark we have just detached. 
+And, observing the repr of the time signature mark, 
+we see that the time signature mark has again changed state: 
+the time signature mark has transitioned from attached to unattached. 
+We confirm this like so:
 
 ::
 
@@ -276,7 +296,7 @@ And also like so:
 
 Yup: our time signature mark knows nothing about our staff. And vice versa. This is good.
 
-So now what if we want to set up a time signature of 2/4? That fits our music, too.
+So now what if we want to set up a time signature of ``2/4``? That fits our music, too.
 
 We have a couple of options.
 
@@ -407,6 +427,10 @@ To change to, for example, ``4/4`` we change just change the time signature mark
        g'2
    }
 
+
+
+First-measure pick-ups
+----------------------
 
 But what if our time signature has a ``2/4`` pick-up?
 
@@ -547,6 +571,10 @@ more options for where to attach our ``2/4`` time signature mark.
 If, for example, we had chosen to populate our staff with a series
 of measures then it's possible we could have attached
 our ``2/4`` time signature to a measure instead of a note.
+
+
+Time signature API
+------------------
 
 That covers the vast majority of things you'll do with time signature marks.
 
