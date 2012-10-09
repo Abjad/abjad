@@ -40,8 +40,8 @@ Now, iterate over the staff's contents, substituting an eighth rest for every fi
 .. image:: images/index-2.png
 
 
-Notes can be used directly.
----------------------------
+Notes can be used directly
+--------------------------
 
 In the previous example, we used an index (i) to keep track of where we are in the list of notes, and based our decision to flip on that index. We can also decide to flip a note to a rest based on the note iteself:
 
