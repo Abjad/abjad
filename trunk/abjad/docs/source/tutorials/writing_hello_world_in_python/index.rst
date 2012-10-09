@@ -1,5 +1,5 @@
-Starting the Python interpreter
-===============================
+Writing "hello, world!" in Python
+=================================
 
 Working with Abjad means programming in Python.
 This tutorial explains how to get started.
