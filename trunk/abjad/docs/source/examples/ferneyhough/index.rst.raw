@@ -29,20 +29,13 @@ proportions
 The transforms
 --------------
 
-Then we make aliases to give shorter names to two functions with long names:
-
-<abjad>
-make_tuplet = tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
-tie_chain_to_tuplet = tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
-</abjad>
-
-And then define a helper function:
+Then we define a helper function:
 
 <abjad>[strip_prompt=true]
 def divide_tuplet(tuplet, n):
     last_tie_chain = tietools.get_tie_chain(tuplet[-1])
     proportions = n * [1]
-    tie_chain_to_tuplet(last_tie_chain, proportions)
+    tietools.tie_chain_to_tuplet_with_proportions(last_tie_chain, proportions)
 </abjad>
 
 The rhythms
@@ -61,7 +54,7 @@ music = []
 for proportion in proportions:
     tuplets = []
     for n in range(1, 6 + 1):
-        tuplet = make_tuplet(duration, proportion)
+        tuplet = tuplettools.make_tuplet_from_duration_and_proportions(duration, proportion)
         divide_tuplet(tuplet, n)
         tuplets.append(tuplet)
     music.extend(tuplets)
@@ -70,37 +63,40 @@ for proportion in proportions:
 The score
 ---------
 
-Finally we make the score:
+We make the score:
 
 <abjad>
 staff = stafftools.RhythmicStaff(music)
+time_signature = contexttools.TimeSignatureMark((1, 4))(staff)
 score = Score([staff])
+</abjad>
+
+And then configure it:
+
+<abjad>
+score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+score.set.tuplet_full_length = True
+score.override.bar_line.stencil = False
+score.override.bar_number.transparent = True
+score.override.spacing_spanner.uniform_stretching = True
+score.override.spacing_spanner.strict_note_spacing = True
+score.override.time_signature.stencil = False
+score.override.tuplet_bracket.padding = 2
+score.override.tuplet_bracket.staff_padding = 4
+score.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+</abjad>
+
+
+The LilyPond file
+-----------------
+
+Finally we insert the score into a LilyPond file:
+
+<abjad>
 lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
 </abjad>
 
-Configure containers:
-
-<abjad>
-contexttools.TimeSignatureMark((1, 4))(staff)
-score.override.bar_number.transparent = True
-score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
-score.set.tuplet_full_length = True
-score.override.spacing_spanner.uniform_stretching = True
-score.override.spacing_spanner.strict_note_spacing = True
-score.override.tuplet_bracket.padding = 2
-score.override.tuplet_bracket.staff_padding = 4
-score.override.tuplet_number.text = schemetools.SchemeFunction('tuplet-number::calc-fraction-text')
-score.override.time_signature.stencil = False
-score.override.bar_line.stencil = False
-</abjad>
-
-Import layout tools:
-
-<abjad>
-from abjad.tools import layouttools
-</abjad>
-
-Configure the LilyPond file:
+And then configure it:
 
 <abjad>
 lilypond_file.default_paper_size = '11x17', 'portrait'
@@ -111,7 +107,7 @@ lilypond_file.paper_block.ragged_bottom = True
 lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
 </abjad>
 
-And show the result:
+Which looks like this:
 
 <abjad>
 show(lilypond_file)

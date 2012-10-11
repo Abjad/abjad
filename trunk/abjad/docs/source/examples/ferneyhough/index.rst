@@ -32,22 +32,14 @@ First we define proportions:
 The transforms
 --------------
 
-Then we make aliases to give shorter names to two functions with long names:
-
-::
-
-   >>> make_tuplet = tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
-   >>> tie_chain_to_tuplet = tietools.tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
-
-
-And then define a helper function:
+Then we define a helper function:
 
 ::
 
    def divide_tuplet(tuplet, n):
        last_tie_chain = tietools.get_tie_chain(tuplet[-1])
        proportions = n * [1]
-       tie_chain_to_tuplet(last_tie_chain, proportions)
+       tietools.tie_chain_to_tuplet_with_proportions(last_tie_chain, proportions)
 
 
 The rhythms
@@ -68,7 +60,7 @@ And then we make the rhythms:
    >>> for proportion in proportions:
    ...     tuplets = []
    ...     for n in range(1, 6 + 1):
-   ...         tuplet = make_tuplet(duration, proportion)
+   ...         tuplet = tuplettools.make_tuplet_from_duration_and_proportions(duration, proportion)
    ...         divide_tuplet(tuplet, n)
    ...         tuplets.append(tuplet)
    ...     music.extend(tuplets)
@@ -78,44 +70,43 @@ And then we make the rhythms:
 The score
 ---------
 
-Finally we make the score:
+We make the score:
 
 ::
 
    >>> staff = stafftools.RhythmicStaff(music)
+   >>> time_signature = contexttools.TimeSignatureMark((1, 4))(staff)
    >>> score = Score([staff])
+
+
+And then configure it:
+
+::
+
+   >>> score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
+   >>> score.set.tuplet_full_length = True
+   >>> score.override.bar_line.stencil = False
+   >>> score.override.bar_number.transparent = True
+   >>> score.override.spacing_spanner.uniform_stretching = True
+   >>> score.override.spacing_spanner.strict_note_spacing = True
+   >>> score.override.time_signature.stencil = False
+   >>> score.override.tuplet_bracket.padding = 2
+   >>> score.override.tuplet_bracket.staff_padding = 4
+   >>> score.override.tuplet_number.text = schemetools.Scheme('tuplet-number::calc-fraction-text')
+
+
+
+The LilyPond file
+-----------------
+
+Finally we insert the score into a LilyPond file:
+
+::
+
    >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
 
 
-Configure containers:
-
-::
-
-   >>> contexttools.TimeSignatureMark((1, 4))(staff)
-   TimeSignatureMark((1, 4))(RhythmicStaff{66})
-   >>> score.override.bar_number.transparent = True
-   >>> score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 56)
-   >>> score.set.tuplet_full_length = True
-   >>> score.override.spacing_spanner.uniform_stretching = True
-   >>> score.override.spacing_spanner.strict_note_spacing = True
-   >>> score.override.tuplet_bracket.padding = 2
-   >>> score.override.tuplet_bracket.staff_padding = 4
-   >>> score.override.tuplet_number.text = schemetools.SchemeFunction('tuplet-number::calc-fraction-text')
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   AttributeError: 'module' object has no attribute 'SchemeFunction'
-   >>> score.override.time_signature.stencil = False
-   >>> score.override.bar_line.stencil = False
-
-
-Import layout tools:
-
-::
-
-   >>> from abjad.tools import layouttools
-
-
-Configure the LilyPond file:
+And then configure it:
 
 ::
 
@@ -127,7 +118,7 @@ Configure the LilyPond file:
    >>> lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
 
 
-And show the result:
+Which looks like this:
 
 ::
 
