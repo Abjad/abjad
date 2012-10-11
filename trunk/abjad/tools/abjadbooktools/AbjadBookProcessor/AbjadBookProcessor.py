@@ -89,7 +89,9 @@ class AbjadBookProcessor(abctools.AbjadObject):
             os.mkdir(image_directory)
         for x in os.listdir(image_directory):
             if x.startswith('{}-'.format(image_prefix)) and x.endswith(image_format):
-                number = int(x.lstrip('-{}'.format(image_prefix)).partition('.')[0])
+                # this should handle both 'index-1.png' and 'index-1-page3.png'
+                name = os.path.splitext(x)[0]
+                number = int(name.split('-')[1])
                 if image_count < number:
                     os.remove(os.path.join(image_directory, x))
         for x in os.listdir(tmp_directory):
