@@ -664,6 +664,8 @@ class LilyPondParser(abctools.Parser):
             return marktools.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
             return contexttools.DynamicMark(lookup['text'])
+        elif name == 'LaissezVibrerEvent':
+            return marktools.LilyPondCommandMark('laissezVibrer', 'after')
         event = lilypondparsertools.LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
