@@ -128,7 +128,7 @@ us avoid using measure number tables entirely; Python's list-indexing affordance
            {'b': 'c8 c8 c8', 't': "<fs' d''>8 <d'' fs''>8 <fs'' a''>8"},
            {'b': 'c4 r8', 't': "d''16 a'16 fs''16 d''16 a''16 fs''16"},
            {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"},
-           {'b': 'c4 r8', 't': "d''8 a'8 ^\\turn fs''8"},
+           {'b': 'c4 r8', 't': r"d''8 a'8 ^\turn fs''8"},
            {'b': 'c4 r8', 't': "d''16 cs''16 d''16 fs''16 a''16 fs''16"},
            {'b': '<c a>4 <c a>8', 't': "fs''8 a''8 d''8"},
            {'b': '<c fs>8 <c fs>8 <c a>8', 't': "a'8 a'16 d''16 fs''8"},
@@ -172,7 +172,7 @@ us avoid using measure number tables entirely; Python's list-indexing affordance
            {'b': '<d a>8 <d fs>8 <c d>8', 't': "fs''8 a''8 fs''8"},
            {'b': '<c a>4 <c a>8', 't': "fs''16 a''16 d'''16 a''16 fs''16 a''16"},
            {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"},
-           {'b': 'd,16 d16 cs16 d16 c16 d16', 't': "<a' d'' fs''>8 fs''4 ^\\tr"},
+           {'b': 'd,16 d16 cs16 d16 c16 d16', 't': r"<a' d'' fs''>8 fs''4 ^\trill"},
            {'b': '<d fs>4 <c fs>8', 't': "a''8 ( fs''8 d''8 )"},
            {'b': '<d fs>4 <c fs>8', 't': "d'''8 a''16 fs''16 d''16 a'16"},
            {'b': '<d fs>4 r8', 't': "d''16 a'16 d''8 fs''8"},
@@ -189,7 +189,7 @@ us avoid using measure number tables entirely; Python's list-indexing affordance
            {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'16 g'16"},
            {'b': '<b, d>4 <b, d>8', 't': "g''16 d''16 g''16 b''16 g''16 d''16"},
            {'b': '<b, d>4 <b, g>8', 't': "g''16 b''16 g''8 d''8"},
-           {'b': 'g,16 b,16 g8 b,8', 't': "g''8 d''4 ^\\tr"},
+           {'b': 'g,16 b,16 g8 b,8', 't': r"g''8 d''4 ^\trill"},
            {'b': 'b,4 r8', 't': "g''8 b''16 d'''16 d''8"},
        ],
        [ # measure 11 choices
@@ -198,7 +198,7 @@ us avoid using measure number tables entirely; Python's list-indexing affordance
            {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"},
            {'b': '<c g>4 r8', 't': "e''16 c''16 e''16 g''16 c'''16 g''16"},
            {'b': '<c g>4 <c g>8', 't': "e''16 g''16 c'''16 g''16 e''16 c''16"},
-           {'b': 'c16 b,16 c16 d16 e16 fs16', 't': "<g' c'' e''>8 e''4 ^\\tr"},
+           {'b': 'c16 b,16 c16 d16 e16 fs16', 't': r"<g' c'' e''>8 e''4 ^\trill"},
            {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 c''8 g'8"},
            {'b': '<c g>4 <c e>8', 't': "e''8 c''16 e''16 g''16 c'''16"},
            {'b': '<c g>4 <c e>8', 't': "e''16 c''16 e''8 g''8"},
@@ -280,32 +280,19 @@ Let's try with a measure-definition of our own:
 
 ::
 
-   >>> my_measure_dict = {'b': 'c4 ^\\tr r8', 't': "e''8 ( c''8 g'8 )"}
+   >>> my_measure_dict = {'b': r'c4 ^\trill r8', 't': "e''8 ( c''8 g'8 )"}
    >>> treble, bass = build_one_mozart_measure(my_measure_dict)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "<stdin>", line 5, in build_one_mozart_measure
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/iotools/p.py", line 33, in p
-       return LilyPondParser()(args[0])
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondParser/LilyPondParser.py", line 196, in __call__
-       lexer=self._lexer)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/_parse.py", line 66, in _parse
-       self.lookahead = get_token()     # Get the next token
-     File "/usr/local/lib/python2.7/dist-packages/ply/lex.py", line 348, in token
-       newtok = func(tok)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/_LilyPondLexicalDefinition/_LilyPondLexicalDefinition.py", line 463, in t_notes_421
-       t.type = self.scan_escaped_word(t)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/_LilyPondLexicalDefinition/_LilyPondLexicalDefinition.py", line 821, in scan_escaped_word
-       raise Exception('Unknown escaped word "%s".' % t.value)
-   Exception: Unknown escaped word "\tr".
    >>> f(treble)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'treble' is not defined
+   {
+       e''8 (
+       c''8
+       g'8 )
+   }
    >>> f(bass)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'bass' is not defined
+   {
+       c4 ^\trill
+       r8
+   }
 
 
 Now with one from the Mozart measure collection defined earlier.
@@ -323,8 +310,8 @@ We'll grab the very last choice for the very last measure:
    }
    >>> f(bass)
    {
-   	c4
-   	c,8
+       c4
+       c,8
    }
 
 
@@ -340,7 +327,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
    >>> my_list = [1, 'b', 3]
    >>> my_result = [random.choice(my_list) for i in range(20)]
    >>> my_result
-   ['b', 'b', 1, 3, 3, 1, 'b', 3, 1, 'b', 'b', 3, 'b', 'b', 1, 'b', 'b', 1, 3, 3]
+   [3, 3, 'b', 3, 3, 1, 1, 1, 1, 1, 3, 'b', 1, 3, 3, 3, 1, 'b', 'b', 1]
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -375,22 +362,22 @@ The result will be a *seventeen*-item-long list of measure definitions:
    >>> for i, measure in enumerate(choices):
    ...     print i, measure
    ... 
-   0 {'b': 'c4 r8', 't': "e''8 c''8 g'8"}
-   1 {'b': '<c e>4 r8', 't': "c''8 g'8 e''8"}
-   2 {'b': 'g,4 r8', 't': "b'8 d''8 g''8"}
-   3 {'b': '<e g>4 r8', 't': "c''16 e''16 c''16 g'16 e'8"}
-   4 {'b': '<c fs>8 <c fs>8 <c a>8', 't': "a'8 a'16 d''16 fs''8"}
-   5 {'b': '<b, g>4 r8', 't': "a'8 fs'16 g'16 b'16 g''16"}
-   6 {'b': 'c8 d8 d,8', 't': "e''16 c'''16 b''16 g''16 a''16 fs''16"}
+   0 {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"}
+   1 {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"}
+   2 {'b': '<b, d>4 r8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"}
+   3 {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'8"}
+   4 {'b': 'c8 c8 c8', 't': "<d'' fs''>8 <d'' fs''>8 <d'' fs''>8"}
+   5 {'b': '<b, d>4 r8', 't': "g''8 b''16 g''16 d''16 b'16"}
+   6 {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"}
    7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
    8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-   9 {'b': '<c a>4 <c a>8', 't': "fs''16 d''16 a'8 fs''8"}
-   10 {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'16 g'16"}
-   11 {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"}
-   12 {'b': 'g8 g,8 r8', 't': "<c'' e''>8 <b' d''>16 <g' b'>16 g'8"}
-   13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
-   14 {'b': '<c e>4 <c g>8', 't': "g'8 ( c''8 e''8 )"}
-   15 {'b': 'f4 g8', 't': "d''16 f''16 a'16 d''16 b'16 d''16"}
+   9 {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"}
+   10 {'b': 'b,4 r8', 't': "g''16 b''16 g''16 b''16 d''8"}
+   11 {'b': '<c g>4 <c e>8', 't': "e''8 c''16 e''16 g''16 c'''16"}
+   12 {'b': '<g b>4 r8', 't': "d''16 b''16 g''16 d''16 b'8"}
+   13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g'8 c''8 e''8"}
+   14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
+   15 {'b': 'f4 g8', 't': "a'8 f''16 d''16 a'16 b'16"}
    16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
 
 
@@ -429,12 +416,12 @@ commands like "\break" relative to any score component:
    >>> f(con)
    \before-the-container
    {
-   	\opening-of-the-container
-   	c'4
-   	d'4
-   	e'4 \to-the-right-of-a-note
-   	f'4
-   	\closing-of-the-container
+       \opening-of-the-container
+       c'4
+       d'4
+       e'4 \to-the-right-of-a-note
+       f'4
+       \closing-of-the-container
    }
    \after-the-container
 
@@ -502,32 +489,9 @@ Now let's take a look at the code that puts our score together:
 ::
 
    >>> piano_staff = build_mozart_piano_staff()
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-     File "<stdin>", line 34, in build_mozart_piano_staff
-     File "<stdin>", line 4, in build_one_mozart_measure
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/iotools/p.py", line 33, in p
-       return LilyPondParser()(args[0])
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/LilyPondParser/LilyPondParser.py", line 196, in __call__
-       lexer=self._lexer)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/_parse.py", line 66, in _parse
-       self.lookahead = get_token()     # Get the next token
-     File "/usr/local/lib/python2.7/dist-packages/ply/lex.py", line 348, in token
-       newtok = func(tok)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/_LilyPondLexicalDefinition/_LilyPondLexicalDefinition.py", line 463, in t_notes_421
-       t.type = self.scan_escaped_word(t)
-     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/lilypondparsertools/_LilyPondLexicalDefinition/_LilyPondLexicalDefinition.py", line 821, in scan_escaped_word
-       raise Exception('Unknown escaped word "%s".' % t.value)
-   Exception: Unknown escaped word "\tr".
    >>> show(piano_staff)
 
 .. image:: images/index-2.png
-
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'piano_staff' is not defined
 
 
 .. note:: Our instrument name got cut off!  Looks like we need to do a little formatting.  Keep reading...
@@ -549,7 +513,7 @@ change the global staff size, paper size, staff spacing and so forth.
        # wrap the PianoStaff with a LilyPondFile
        lily = lilypondfiletools.make_basic_lilypond_file(piano_staff)
        # create some markup to use in our header block
-       title = markuptools.Markup('\\bold \\sans "Ein Musikalisches Wuerfelspiel"')
+       title = markuptools.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')
        composer = schemetools.Scheme("W. A. Mozart (maybe?)")
        # change various settings 
        lily.global_staff_size = 12
@@ -564,49 +528,40 @@ change the global staff size, paper size, staff spacing and so forth.
 ::
 
    >>> lily = build_mozart_lily(piano_staff)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'piano_staff' is not defined
    >>> print lily
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   LilyPondFile(PianoStaff<<2>>)
 
 
 ::
 
    >>> print lily.header_block
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   HeaderBlock(2)
    >>> f(lily.header_block)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   \header {
+       composer = #"W. A. Mozart (maybe?)"
+       title = \markup { \bold \sans "Ein Musikalisches Wuerfelspiel" }
+   }
 
 
 ::
 
    >>> print lily.layout_block
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   LayoutBlock(1)
    >>> f(lily.layout_block)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   \layout {
+       ragged-right = ##t
+   }
 
 
 ::
 
    >>> print lily.paper_block
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   PaperBlock(2)
    >>> f(lily.paper_block)
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
+   \paper {
+       markup-system-spacing #'basic-distance = #8
+       paper-width = #180
+   }
 
 
 And now the final result:
@@ -616,10 +571,4 @@ And now the final result:
    >>> show(lily)
 
 .. image:: images/index-3.png
-
-::
-
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-   NameError: name 'lily' is not defined
 
