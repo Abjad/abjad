@@ -31,7 +31,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.viewcode',
+    #'sphinx.ext.viewcode',
     'abjad.docs.source._ext.inheritance_diagram',
     'abjad.docs.source._ext.autodoc',
 ]

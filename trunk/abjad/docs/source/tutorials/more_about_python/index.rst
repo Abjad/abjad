@@ -1,55 +1,13 @@
-Writing "hello, world!" in Python
-=================================
+More about Python
+==================
 
-Working with Abjad means programming in Python.
-This tutorial explains how to get started.
-
-
-Opening the terminal
---------------------
-
-To start the Python interpreter you'll need a terminal window.
-
-The way that you open terminal window depends on your computer.
-If you're using MacOS X you can navigate from ``Applications`` to ``Utilities``
-and then click on ``Terminal``.
-If you're using Linux or Windows you can check with Google or ask a nearby friend.
-
-The purpose of a terminal session is to let you type commands to your
-computer's operating system.
+The tutorials earlier in this section showed basic ways to work with Python.
+In this tutorial we'll use the interactive interpreter to find out
+more about the language and library of tools that it contains.
 
 
-Starting the interpreter
-------------------------
-
-Open the terminal and type ``python`` to start the Python interpreter::
-
-    $ python
-
-::
-
-    Python 2.7.3 (v2.7.3:70274d53c1dd, Apr  9 2012, 20:52:43) 
-    [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> 
-
-Python starts and responds with version information and with the Python prompt.
-
-The purpose of a Python interpreter session is to let you type commands
-to the Python interpreter.
-
-
-Writing "hello, world!"
------------------------
-
-Type the following at the Python interpreter::
-
-    >>> print 'hello, world!'
-    hello, world!
-
-Python responds by printing ``hello, world!``.
-
-That's all there is to "hello, world!" when you're working with Python.
+Doing many things
+-----------------
 
 You can use the Python interpreter to do many things.
 
@@ -78,7 +36,7 @@ Use ``dir()`` to see the things the Python interpreter knows about::
     >>> dir()
     ['__builtins__', '__doc__', '__name__', '__package__']
 
-These four things are the only elements that Python loads into the so-called 
+These four things are the only elements that Python loads into the so-called
 global namespace when you start the interpreter.
 
 Now let's define the variable ``x``::
@@ -141,20 +99,3 @@ As you learn Abjad you'll use some Python built-ins all the time and others less
 
 Before moving on, notice that both ``dir()`` and ``len()`` appear in the list above.
 This explains why we've been able to use these commands in this tutorial.
-
-
-Stopping the interpreter
-------------------------
-
-Type ``quit()`` when you're done looking around::
-
-    >>> quit()
-
-The Python interpreter stops and returns you to the terminal.
-
-Instead of ``quit()`` you can type the two-key combination ``ctrl+D``.
-This keyboard interrupt is as fast way to stop the interpreter.
-
-The tutorials that follow teach you how to make musical score with Abjad.
-But before we get there we need to understand some LilyPond basics.
-This is the topic of the next tutorial.

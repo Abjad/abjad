@@ -54,9 +54,14 @@ Tutorials
 .. toctree::
     :numbered:
 
-    tutorials/writing_hello_world_in_python/index
-    tutorials/writing_hello_world_in_lilypond/index
-    tutorials/writing_hello_world_in_abjad/index
+    tutorials/getting_started/index
+    tutorials/lilypond_hello_world/index
+    tutorials/python_hello_world_at_the_interpreter/index
+    tutorials/python_hello_world_in_a_file/index
+    tutorials/more_about_python/index
+    tutorials/abjad_hello_world_at_the_interpreter/index
+    tutorials/abjad_hello_world_in_a_file/index
+    tutorials/more_about_abjad/index
     tutorials/changing_notes_to_rests/index
     tutorials/creating_rest_delimited_slurs/index
     tutorials/making_grob_overrides/index
