@@ -1,7 +1,8 @@
 import abc
+from abjad.tools.abctools import AbjadObject
 
 
-class AttributedBlock(object):
+class AttributedBlock(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file block with attributes.

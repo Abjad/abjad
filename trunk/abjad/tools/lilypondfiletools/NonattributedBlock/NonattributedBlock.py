@@ -1,8 +1,8 @@
 import abc
-import abc
+from abjad.tools.abctools import AbjadObject
 
 
-class NonattributedBlock(list):
+class NonattributedBlock(list, AbjadObject):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file block with no attributes.
