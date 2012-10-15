@@ -1204,6 +1204,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/rhythmtreetools/ENPParser/ENPParser
    tools/rhythmtreetools/RhythmTreeContainer/RhythmTreeContainer
    tools/rhythmtreetools/RhythmTreeLeaf/RhythmTreeLeaf
    tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser

@@ -23,6 +23,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.set
 
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 
@@ -38,6 +42,30 @@ Read/write Properties
 
 Special Methods
 ---------------
+
+.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__repr__
 

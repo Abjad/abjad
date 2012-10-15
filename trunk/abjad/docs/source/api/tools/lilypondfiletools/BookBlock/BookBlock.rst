@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
 
+.. autoattribute:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 
