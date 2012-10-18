@@ -55,7 +55,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
     if tempo is None:
         assert contexttools.get_effective_tempo(leaves[0]) is not None
     else:
-        assert isinstance(tempo, contexttools.TempoMark)
+        tempo = contexttools.TempoMark(tempo)
 
     # sort by silence and tied leaves
     groups = []

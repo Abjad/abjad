@@ -11,7 +11,8 @@ class Quantizer(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_event_sequence, q_schema=None, grace_handler=None,
-        heuristic=None, job_handler=None, attack_point_optimizer=None):
+        heuristic=None, job_handler=None, attack_point_optimizer=None,
+        attach_tempo_marks=True):
         from experimental import quantizationtools
 
         q_event_sequence = quantizationtools.QEventSequence(q_event_sequence)
@@ -26,7 +27,9 @@ class Quantizer(AbjadObject):
             grace_handler=grace_handler,
             heuristic=heuristic,
             job_handler=job_handler,
-            attack_point_optimizer=attack_point_optimizer)
+            attack_point_optimizer=attack_point_optimizer,
+            attach_tempo_marks=attach_tempo_marks,
+            )
 
         #return notation, q_target
         return notation

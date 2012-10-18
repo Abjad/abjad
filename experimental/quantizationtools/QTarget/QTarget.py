@@ -35,7 +35,9 @@ class QTarget(AbjadObject):
         grace_handler=None,
         heuristic=None,
         job_handler=None,
-        attack_point_optimizer=None):
+        attack_point_optimizer=None,
+        attach_tempo_marks=True
+        ):
 
         from experimental import quantizationtools
 
@@ -95,7 +97,7 @@ class QTarget(AbjadObject):
 
         # convert the QGrid representation into notation,
         # handling grace-note behavior with the GraceHandler
-        return self._notate(grace_handler, attack_point_optimizer)
+        return self._notate(grace_handler, attack_point_optimizer, attach_tempo_marks)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -131,7 +133,7 @@ class QTarget(AbjadObject):
         return new_leaf
 
     @abc.abstractmethod
-    def _notate(self, grace_handler, attack_point_optimizer):
+    def _notate(self, grace_handler, attack_point_optimizer, attach_tempo_marks):
         raise NotImplemented
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
