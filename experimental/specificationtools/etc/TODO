@@ -1,3 +1,9 @@
+A.  Extend SignalFilledTimeTokenMaker optionally to beam every division's worth of rhythm it creates.
+    Perhaps extend all time-token makers the same way.
+    This will enable a segment full of beamed divisions that are not, however, complex span-beamed.
+
+B.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string input.
+
 1.  Remove all references to T1, T2.
 
 2.  Reimplement exemplum [X3] using division material requests instead
@@ -19,3 +25,39 @@
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
+
+8.  Explain beam spanner function in beam spanner doc strings.
+    Change 'span' keyword to 'span_beam_count'.
+    Change 'lone' keyword to something self-documenting.
+    Change 'Complex' in ComplexBeamSpanner, DuratedComplexBeamSpanner, MeasuredComplexBeamSpanner
+    to something self-documenting; this will mean renaming all three classes.
+    Generalize MeasureComplexBeamSpanner to something that will handle arbitrary objects
+    (and not just measures). 
+    Clean up docstrings for all beamtools classes and functions.
+    Write a tutorial clearly explaining beam spanner types.
+
+9.  Rename all occurrences of (note value) 'signal' to 'talea'.
+
+10. Rename all occurrences of 'time-token maker' to 'rhythm maker'.
+
+11. Change all occurrences of 'duration tokens' (in timetokentools) to 'time tokens'.
+
+12. Remove all occurrences of 'duration token' from the mainline.
+    Check that coercion is implemented pervasively instead.
+
+13. Extend tuplettools.make_tuplet_from_duration_and_proportions() to coererce duration argument.
+
+14. Change 'proportions' to 'ratio' everywhere in tuplettools API.
+
+15. Extend OffsetPositionedRhythmExpression.rotate() to inspect the type of the 'n' argument.
+    Where 'n' is a duration implement a new type of duration-based rotation.
+    Where 'n' is a nonduration number fall back on rotation as currently implemented.
+
+16. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+    The keyword will specify the score-tree level at which rotation should happen.
+
+17. Extend OffsetPositionedRhythmExpression.rotate() to optionally leave spanners 
+    alone during component rotation. This will have the effect of optionally 
+    allowing beams not to fracture during rotation.
+
+18. Change 'beam' to 'beam_cells_together' in rhythm library.

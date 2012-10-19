@@ -98,6 +98,10 @@ class ConcreteInterpreter(Interpreter):
         if getattr(rhythm_maker, 'beam', False):
             durations = [x.prolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
+        elif getattr(rhythm_maker, 'beam_each_cell', False):
+            for rhythm_container in rhythm_containers:
+                beamtools.DuratedComplexBeamSpanner(
+                    [rhythm_container], [rhythm_container.prolated_duration], span=1)
 
     def context_name_to_parentage_names(self, segment_specification, context_name, proper=True):
         context = componenttools.get_first_component_in_expr_with_name(
@@ -736,6 +740,7 @@ class ConcreteInterpreter(Interpreter):
             result.reverse()
         if rhythm_command.rotation:
             result.rotate(rhythm_command.rotation)
+        #self._debug(result, 'result')
         result.repeat_to_stop_offset(stop_offset)
         return result
 

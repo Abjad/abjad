@@ -430,9 +430,10 @@ class ScoreSpecification(Specification):
 
         Return rhythm request.
         '''
-        selector = self.select_score()
-        return requesttools.RhythmRequest(
-            'rhythm', selector, context_name=context,
+        if selector is None:
+            selector = self.select_score()
+        return requesttools.MaterialRequest(
+            'rhythm', selector, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_rhythm_command(self, voice,

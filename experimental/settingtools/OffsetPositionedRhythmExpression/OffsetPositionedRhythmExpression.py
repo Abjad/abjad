@@ -107,10 +107,12 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
             spanner._reverse_components()
 
-    def rotate(self, n):
+    def rotate(self, n, fracture_spanners=True):
         '''Rotate rhythm.
 
         .. note:: add example.
+
+        .. note:: extend method in several ways; check todo file.
 
         Operate in place and return none.
         '''
@@ -118,14 +120,25 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             split_offset = self.music.leaves[-n].start_offset
         else:
             split_offset = self.music.leaves[-(n+1)].stop_offset
-        result = componenttools.split_components_at_offsets(
-            [self.music], [split_offset], cyclic=False, fracture_spanners=True)
-        left_half, right_half = result[0][0], result[-1][0]
-        music = containertools.Container()
-        music.extend(right_half)
-        music.extend(left_half)
-        assert componenttools.is_well_formed_component(music)
-        self._music = music
+        if fracture_spanners:
+            result = componenttools.split_components_at_offsets(
+                [self.music], [split_offset], cyclic=False, fracture_spanners=True)
+            left_half, right_half = result[0][0], result[-1][0]
+            music = containertools.Container()
+            music.extend(right_half)
+            music.extend(left_half)
+            assert componenttools.is_well_formed_component(music)
+            self._music = music
+        # TODO: make this case work
+        else:
+            result = componenttools.split_components_at_offsets(
+                self.music[:], [split_offset], cyclic=False, fracture_spanners=False)
+            left_half, right_half = result[0], result[-1]
+            self.music._music = right_half + left_half
+            for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
+                spanner._components.sort(lambda x, y: 
+                    cmp(componenttools.component_to_score_index(x), componenttools.component_to_score_index(y)))
+            assert componenttools.is_well_formed_component(self.music)
 
     def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
