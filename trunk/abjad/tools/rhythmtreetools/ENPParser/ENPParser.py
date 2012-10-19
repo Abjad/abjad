@@ -2,6 +2,33 @@ from abjad.tools.abctools import Parser
 
 
 class ENPParser(Parser):
+    '''Parses a subset of PWGL's ENP syntax:
+
+    ::
+
+        ((:instrument "alto saxophone"
+          :staff :treble-staff
+          (((2
+             ((1 :notes (52) :expressions ((:slur/1 :slope -6.0) :pp/1))))
+            (1
+             ((1.0
+               :notes (52) :expressions (:slur/1))
+              (1 :notes ((58 :enharmonic 1)) :expressions (:slur/1))
+              (1 :notes (59) :expressions (:slur/1))
+              (1 :notes (62) :expressions (:slur/1))))
+            (1
+             ((1 :notes ((63 :enharmonic 1)) :expressions  (:slur/1 :crescendo/1))
+              (1 :notes (65)  :expressions  (:crescendo/1))
+              (1 :notes ((66 :enharmonic 1)) :expressions  (:crescendo/1))
+              (1  :notes ((68 :enharmonic 1))  :expressions  (:crescendo/1))
+              (1   :notes (69) :expressions  (:crescendo/1))))
+            (1
+             ((1  :notes (72)  :expressions  (:slur/1 :f/1))
+              (1 :x-offset 1.0  :notes  ((73 :enharmonic 1)) :expressions (:slur/1 :f/1))
+              (6  :x-offset 2.0 :notes (79) :expressions (:f/1))))))))
+
+    Return `ENPParser` instance.
+    '''
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

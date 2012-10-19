@@ -61,6 +61,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         from abjad.tools import componenttools
         from abjad.tools import measuretools
         result = []
+        left, right = None, None
         #if leaf.beam.beamable:
         if beamtools.is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):

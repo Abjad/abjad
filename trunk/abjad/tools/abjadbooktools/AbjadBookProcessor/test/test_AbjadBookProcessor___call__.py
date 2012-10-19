@@ -1,9 +1,9 @@
-from abjad.tools import *
 import os
 import shutil
-import py
+import py.test
+from abjad.tools import *
 
-
+@py.test.skip('Test runs incredibly slow.')
 def test_AbjadBookProcessor___call___01():
 
     if __name__ == '__main__':

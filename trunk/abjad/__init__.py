@@ -1,3 +1,5 @@
+print 'FLAMINGO'
+
 import platform
 
 _python_version = platform.python_version()
