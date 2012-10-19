@@ -1355,3 +1355,17 @@ def test_componenttools_split_component_at_offset_26():
     assert componenttools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 14/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'32 [ (\n\t\t\td'32\n\t\t\te'32\n\t\t\tf'32\n\t\t\tg'32\n\t\t\ta'32\n\t\t\tb'32 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc''64 [ ] ( )\n\t\t}\n\t}\n}"
+
+
+def test_componenttools_split_component_at_offset_27():
+    '''Make sure tie (re)application happens only where sensible.
+    '''
+
+    halves = componenttools.split_component_at_offset(
+        Container("c'4"), (3, 16), fracture_spanners=True)
+
+    assert componenttools.is_well_formed_component(halves[0][0])
+    assert componenttools.is_well_formed_component(halves[-1][0])
+
+    assert halves[0][0].lilypond_format == "{\n\tc'8.\n}"   
+    assert halves[-1][0].lilypond_format == "{\n\tc'16\n}"

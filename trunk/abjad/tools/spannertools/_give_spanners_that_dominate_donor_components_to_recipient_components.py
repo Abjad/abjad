@@ -3,12 +3,12 @@ from abjad.tools import componenttools
 
 def _give_spanners_that_dominate_donor_components_to_recipient_components(donor_components, recipient_components):
     '''Find all spanners dominating 'donor_components'.
-        Insert each component in 'recipient_components' into
-        each spanner dominating 'donor_components'.
-        Remove 'donor_components' from each dominating spanner.
-        Return 'donor_components'.
+    Insert each component in 'recipient_components' into
+    each spanner dominating 'donor_components'.
+    Remove 'donor_components' from each dominating spanner.
+    Return 'donor_components'.
 
-        Not composer-safe.
+    Not composer-safe.
     '''
     from abjad.tools import spannertools
 
