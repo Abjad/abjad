@@ -34,7 +34,7 @@ class Command(AbjadObject):
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(reverse, (bool, type(None))), repr(reverse)
-        assert isinstance(rotation, (int, type(None))), repr(rotation)
+        #assert isinstance(rotation, (int, type(None))), repr(rotation)
         assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request

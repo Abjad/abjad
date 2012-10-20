@@ -1,8 +1,10 @@
 import math
+from abjad.tools import beamtools
 from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
+from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from experimental.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
@@ -116,15 +118,22 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
         Operate in place and return none.
         '''
-        if 0 <= n:
-            split_offset = self.music.leaves[-n].start_offset
+        if isinstance(n, int):
+            if 0 <= n:
+                split_offset = self.music.leaves[-n].start_offset
+            else:
+                split_offset = self.music.leaves[-(n+1)].stop_offset
         else:
-            split_offset = self.music.leaves[-(n+1)].stop_offset
+            n = durationtools.Duration(n)
+            if 0 <= n:
+                split_offset = self.music.prolated_duration - n
+            else:
+                split_offset = abs(n)
         if split_offset == self.music.prolated_duration:
             return
         if fracture_spanners:
             result = componenttools.split_components_at_offsets(
-                [self.music], [split_offset], cyclic=False, fracture_spanners=True)
+                [self.music], [split_offset], cyclic=False, fracture_spanners=True, tie_split_notes=False)
             left_half, right_half = result[0][0], result[-1][0]
             music = containertools.Container()
             music.extend(right_half)
@@ -133,8 +142,17 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             self._music = music
         else:
             result = componenttools.split_components_at_offsets(
-                self.music[:], [split_offset], cyclic=False, fracture_spanners=False)
+                self.music[:], [split_offset], cyclic=False, fracture_spanners=False, tie_split_notes=False)
             left_half, right_half = result[0], result[-1]
+            for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(
+                self.music, klass=beamtools.DuratedComplexBeamSpanner):
+                if left_half[-1] in spanner and right_half[0] in spanner:
+                    leaf_right_of_split = right_half[0]
+                    split_offset_in_beam = spanner._duration_offset_in_me(leaf_right_of_split)
+                    left_durations, right_durations = sequencetools.split_sequence_by_weights(
+                        spanner.durations, [split_offset_in_beam], cyclic=False, overhang=True)
+                    new_durations = right_durations + left_durations
+                    spanner._durations = new_durations
             new_music = right_half + left_half
             self.music._music = new_music
             for component in new_music:

@@ -49,11 +49,7 @@ B.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string i
 
 14. Change 'proportions' to 'ratio' everywhere in tuplettools API.
 
-15. Extend OffsetPositionedRhythmExpression.rotate() to inspect the type of the 'n' argument.
-    Where 'n' is a duration implement a new type of duration-based rotation.
-    Where 'n' is a nonduration number fall back on rotation as currently implemented.
-
-16. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+15. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
 
-17. Change 'beam' to 'beam_cells_together' in rhythm library.
+16. Change 'beam' to 'beam_cells_together' in rhythm library.
