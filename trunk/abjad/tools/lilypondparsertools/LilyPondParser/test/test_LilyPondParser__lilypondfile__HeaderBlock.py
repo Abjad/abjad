@@ -22,14 +22,17 @@ def test_LilyPondParser__lilypondfile__HeaderBlock_01():
     assert isinstance(result, lilypondfiletools.LilyPondFile)
     assert len(result) == 2
 
-    assert result[0].lilypond_format == '\\header {\n\tglobalvariable = #"This overrides the global variable"\n\tlocalvariable = #"and this is a local variable."\n\tsomething = #4\n\ttitle = \\markup { "This overrides the global variable" "and this is a local variable." }\n}'
+    assert result[0].lilypond_format == '\\header {\n\tglobalvariable = #"This overrides the global variable"\n\tlocalvariable = #"and this is a local variable."\n\tsomething = #4\n\ttitle = \\markup {\n\t\t"This overrides the global variable"\n\t\t"and this is a local variable."\n\t\t}\n}'
 
     r'''
     \header {
         globalvariable = #"This overrides the global variable"
         localvariable = #"and this is a local variable."
         something = #4
-        title = \markup { "This overrides the global variable" "and this is a local variable." }
+        title = \markup {
+            "This overrides the global variable"
+            "and this is a local variable."
+        }
     }
     '''
 

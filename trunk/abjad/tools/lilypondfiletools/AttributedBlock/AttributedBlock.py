@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools import AbjadObject
 
 
-class AttributedBlock(AbjadObject):
+class AttributedBlock(list, AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file block with attributes.
@@ -58,6 +58,9 @@ class AttributedBlock(AbjadObject):
         from abjad.tools import markuptools
         from abjad.tools import schemetools
         result = []
+        for value in self:
+            if isinstance(value, schemetools.Scheme):
+                result.append(value.lilypond_format)
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
                 # format subkeys via double underscore

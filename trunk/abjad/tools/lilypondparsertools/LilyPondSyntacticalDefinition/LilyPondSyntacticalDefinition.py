@@ -1,5 +1,5 @@
 import fractions
-import ply
+from ply import lex
 from abjad.tools import chordtools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
@@ -1287,14 +1287,16 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     def p_full_markup_list__MARKUPLIST_IDENTIFIER(self, p):
         'full_markup_list : MARKUPLIST_IDENTIFIER'
-        from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1:])
+        #from abjad.tools import lilypondparsertools
+        #p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1:])
+        p[0] = p[1]
 
 
     def p_full_markup_list__MARKUPLIST__markup_list(self, p):
         'full_markup_list : MARKUPLIST markup_list'
-        from abjad.tools import lilypondparsertools
-        p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1:])
+        #from abjad.tools import lilypondparsertools
+        #p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1:])
+        p[0] = p[2]
 
 
     ### function_arglist ###
