@@ -129,15 +129,18 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             music.extend(left_half)
             assert componenttools.is_well_formed_component(music)
             self._music = music
-        # TODO: make this case work
         else:
             result = componenttools.split_components_at_offsets(
                 self.music[:], [split_offset], cyclic=False, fracture_spanners=False)
             left_half, right_half = result[0], result[-1]
-            self.music._music = right_half + left_half
+            new_music = right_half + left_half
+            self.music._music = new_music
+            for component in new_music:
+                component._mark_entire_score_tree_for_later_update('prolated')
             for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
-                spanner._components.sort(lambda x, y: 
-                    cmp(componenttools.component_to_score_index(x), componenttools.component_to_score_index(y)))
+                spanner._components.sort(lambda x, y: cmp(
+                    componenttools.component_to_score_index(x), 
+                    componenttools.component_to_score_index(y)))
             assert componenttools.is_well_formed_component(self.music)
 
     def trim_to_start_offset(self, start_offset):

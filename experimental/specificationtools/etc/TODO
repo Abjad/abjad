@@ -56,8 +56,4 @@ B.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string i
 16. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
 
-17. Extend OffsetPositionedRhythmExpression.rotate() to optionally leave spanners 
-    alone during component rotation. This will have the effect of optionally 
-    allowing beams not to fracture during rotation.
-
-18. Change 'beam' to 'beam_cells_together' in rhythm library.
+17. Change 'beam' to 'beam_cells_together' in rhythm library.
