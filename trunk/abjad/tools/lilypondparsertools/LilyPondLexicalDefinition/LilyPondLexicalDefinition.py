@@ -363,20 +363,20 @@ class LilyPondLexicalDefinition(AbjadObject):
 #        t.type = 'MULTI_MEASURE_REST'
 #        return t
 
-    def t_INITIAL_markup_notes_353_boolean(self, t):
-        '\#\#(t|f)'
-        t.type = 'SCM_TOKEN'
-        if t.value[2] == 't':
-            t.value = True
-        else:
-            t.value = False
-        return t
+    #def t_INITIAL_markup_notes_353_boolean(self, t):
+    #    '\#\#(t|f)'
+    #    t.type = 'SCM_TOKEN'
+    #    if t.value[2] == 't':
+    #        t.value = True
+    #    else:
+    #        t.value = False
+    #    return t
 
-    @lex.TOKEN("\#'%s" % DASHED_WORD)
-    def t_INITIAL_markup_notes_353_identifier(self, t):
-        t.type = 'SCM_IDENTIFIER'
-        t.value = t.value[2:]
-        return t
+    #@lex.TOKEN("\#'%s" % DASHED_WORD)
+    #def t_INITIAL_markup_notes_353_identifier(self, t):
+    #    t.type = 'SCM_IDENTIFIER'
+    #    t.value = t.value[2:]
+    #    return t
 
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
@@ -387,6 +387,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         #t.lexer.push_state('INITIAL')
         scheme_parser = lilypondparsertools.SchemeParser(debug=False)
         input_string = t.lexer.lexdata[t.lexpos+1:]
+        #print 'PREPARSE'
         try:
             scheme_parser(input_string)
         except SchemeParserFinishedException:

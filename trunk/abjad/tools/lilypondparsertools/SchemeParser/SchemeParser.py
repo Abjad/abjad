@@ -47,7 +47,7 @@ class SchemeParser(abctools.Parser):
     #IDENTIFIER      = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
 
     # this has been rewritten to prevent Sphinx from complaining that it looks like bad ReST
-    IDENTIFIER      = r'([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=]*|[\+-]|\.\.\.)'
+    IDENTIFIER      = r'([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=\.\+-]*|[\+-]|\.\.\.)'
 
     states = (
         ('quote', 'exclusive'),
@@ -258,6 +258,8 @@ class SchemeParser(abctools.Parser):
 
     def p_form__expression(self, p):
         '''form : expression'''
+        #print 'form : expression'
+        #print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
         self.result = p[0]
@@ -289,8 +291,10 @@ class SchemeParser(abctools.Parser):
 
     def p_variable__IDENTIFIER(self, p):
         '''variable : IDENTIFIER'''
+        #print 'variable : IDENTIFIER'
+        #print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
-        p[0] = p[1]
+        p[0] = schemetools.Scheme(p[1])
 
     ### body ###
 
@@ -324,11 +328,15 @@ class SchemeParser(abctools.Parser):
 
     def p_expression__variable(self, p):
         '''expression : variable'''
+        #print 'expression : variable'
+        #print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
     def p_expression__QUOTE__datum(self, p):
         '''expression : QUOTE datum'''
+        #print 'expression : QUOTE datum'
+        #print p[2]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         datum = p[2]
         if isinstance(datum, schemetools.Scheme):
@@ -354,6 +362,8 @@ class SchemeParser(abctools.Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
         if self.expression_depth < 1:
+            #print 'constant : boolean'
+            #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
             raise SchemeParserFinishedException
@@ -363,6 +373,8 @@ class SchemeParser(abctools.Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1] 
         if self.expression_depth < 1:
+            #print 'constant : number'
+            #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
             raise SchemeParserFinishedException
@@ -372,6 +384,8 @@ class SchemeParser(abctools.Parser):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1] 
         if self.expression_depth < 1:
+            #print 'constant : string'
+            #print p[1]
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
             raise SchemeParserFinishedException
@@ -495,6 +509,8 @@ class SchemeParser(abctools.Parser):
 
     def p_symbol__IDENTIFIER(self, p):
         '''symbol : IDENTIFIER'''
+        #print 'symbol : IDENTIFIER'
+        #print p[1]
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 

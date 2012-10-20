@@ -71,17 +71,19 @@ class Markup(DirectedMark):
     def __init__(self, argument, direction=None, markup_name=None):
         from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
-        if isinstance(argument, str):
+        if not argument:
+            contents = None
+        elif isinstance(argument, str):
             to_parse = r'\markup {{ {} }}'.format(argument)
             parsed = lilypondparsertools.LilyPondParser()(to_parse)
             if all([isinstance(x, str) for x in parsed.contents]):
                 contents = (' '.join(parsed.contents),)
             else:
-                contents = parsed.contents          
+                contents = tuple(parsed.contents)          
         elif isinstance(argument, markuptools.MarkupCommand):
             contents = (argument,)
         elif isinstance(argument, type(self)):
-            contents = argument._contents
+            contents = tuple(argument._contents)
             direction = direction or argument._direction
             markup_name = markup_name or argument._markup_name
         elif isinstance(argument, (list, tuple)) and 0 < len(argument):
@@ -95,7 +97,7 @@ class Markup(DirectedMark):
         else:
             contents = (str(argument),)
         DirectedMark.__init__(self, direction=direction)
-        self._contents = tuple(contents)
+        self._contents = contents
         self._format_slot = 'right'
         self._markup_name = markup_name
 
@@ -207,6 +209,10 @@ class Markup(DirectedMark):
         direction = ''
         if self.direction is not None:
             direction = stringtools.arg_to_tridirectional_lilypond_symbol(self.direction)
+
+        # None
+        if self.contents is None:
+            return [r'\markup { }']
 
         # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):

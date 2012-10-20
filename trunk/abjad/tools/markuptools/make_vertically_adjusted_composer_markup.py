@@ -11,7 +11,7 @@ def make_vertically_adjusted_composer_markup(composer,
         >>> print markup.indented_lilypond_format
         \markup {
             \override
-                #'(font - name Times)
+                #'(font-name . Times)
                 {
                     \hspace
                         #0
