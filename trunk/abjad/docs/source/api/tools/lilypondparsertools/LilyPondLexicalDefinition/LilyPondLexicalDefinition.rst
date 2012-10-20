@@ -52,10 +52,6 @@ Methods
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.t_INITIAL_markup_notes_353
 
-.. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.t_INITIAL_markup_notes_353_boolean
-
-.. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.t_INITIAL_markup_notes_353_identifier
-
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.t_INITIAL_notes_233
 
 .. automethod:: abjad.tools.lilypondparsertools.LilyPondLexicalDefinition.LilyPondLexicalDefinition.LilyPondLexicalDefinition.t_INITIAL_notes_387

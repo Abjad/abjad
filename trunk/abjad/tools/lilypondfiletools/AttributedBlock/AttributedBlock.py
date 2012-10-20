@@ -53,6 +53,8 @@ class AttributedBlock(AbjadObject):
 
     @property
     def _formatted_user_attributes(self):
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import marktools
         from abjad.tools import markuptools
         from abjad.tools import schemetools
         result = []
@@ -67,13 +69,18 @@ class AttributedBlock(AbjadObject):
                 formatted_key = ' '.join(formatted_key)
                 # format value
                 if isinstance(value, markuptools.Markup):
-                    formatted_value = value.lilypond_format
-                elif isinstance(value, schemetools.Scheme):
-                    formatted_value = value.lilypond_format
+                    formatted_value = value._get_format_pieces()
+                elif isinstance(value, (
+                    schemetools.Scheme, 
+                    lilypondfiletools.LilyPondDimension,
+                    marktools.LilyPondCommandMark,
+                    )):
+                    formatted_value = [value.lilypond_format]
                 else:
-                    formatted_value = schemetools.Scheme(value).lilypond_format
-                setting = '%s = %s' % (formatted_key, formatted_value)
+                    formatted_value = [schemetools.Scheme(value).lilypond_format]
+                setting = '%s = %s' % (formatted_key, formatted_value[0])
                 result.append(setting)
+                result.extend(formatted_value[1:])
         return result
 
     @property
