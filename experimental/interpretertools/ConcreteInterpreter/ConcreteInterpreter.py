@@ -738,8 +738,12 @@ class ConcreteInterpreter(Interpreter):
             result.rotate(rhythm_request.rotation)    
         if rhythm_command.reverse:
             result.reverse()
+        # TODO: Decide whether fracture_spanners=True or fracture_spanners=False
+        #       Probably fracture_spanners=False.
         if rhythm_command.rotation:
-            result.rotate(rhythm_command.rotation)
+            #result.rotate(rhythm_command.rotation)
+            #result.rotate(rhythm_command.rotation, fracture_spanners=False)
+            result.rotate(rhythm_command.rotation, fracture_spanners=True)
         #self._debug(result, 'result')
         result.repeat_to_stop_offset(stop_offset)
         return result

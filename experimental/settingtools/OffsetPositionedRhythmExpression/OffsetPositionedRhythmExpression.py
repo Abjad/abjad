@@ -120,6 +120,8 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             split_offset = self.music.leaves[-n].start_offset
         else:
             split_offset = self.music.leaves[-(n+1)].stop_offset
+        if split_offset == self.music.prolated_duration:
+            return
         if fracture_spanners:
             result = componenttools.split_components_at_offsets(
                 [self.music], [split_offset], cyclic=False, fracture_spanners=True)
