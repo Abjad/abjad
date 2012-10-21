@@ -23,9 +23,9 @@ def all_are_tuplets(expr):
         >>> tuplettools.all_are_tuplets('foo')
         False
 
-    Return boolean.
-
     Function wraps ``componenttools.all_are_components()``.
+
+    Return boolean.
     '''
     from abjad.tools import tuplettools
 

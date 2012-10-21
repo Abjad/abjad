@@ -4,15 +4,47 @@ from abjad.tools import leaftools
 
 
 def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
-    '''Scale fixed-duration tuplet by multiplier.
-        Preserve tuplet multiplier.
-        Return tuplet.
+    r'''Scale contents of fixed-duration `tuplet` by `multiplier`::
+
+        >>> tuplet = tuplettools.FixedDurationTuplet((3, 8), "c'8 d'8 e'8 f'8 g'8")
+
+    ::
+
+        >>> f(tuplet)
+        \fraction \times 3/5 {
+            c'8
+            d'8
+            e'8
+            f'8
+            g'8
+        }
+
+    ::
+
+        >>> tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, Fraction(2))
+        FixedDurationTuplet(3/4, [c'4, d'4, e'4, f'4, g'4])
+
+    ::
+
+        >>> f(tuplet)
+        \fraction \times 3/5 {
+            c'4
+            d'4
+            e'4
+            f'4
+            g'4
+        }
+
+    Preserve `tuplet` multiplier.
+
+    Return tuplet.
     '''
     from abjad.tools import tuplettools
 
     # check input
     if not isinstance(tuplet, tuplettools.FixedDurationTuplet):
-        raise TypeError('must be tuplet.')
+        raise TypeError('must be fixed-duration tuplet.')
+
     assert isinstance(multiplier, fractions.Fraction)
 
     # find new target duration

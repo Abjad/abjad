@@ -3,14 +3,9 @@ from abjad.tools import containertools
 
 
 def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
-    r'''Scale ``tuplet`` contents and then bequeath in-score \
-    position of ``tuplet`` to contents.
+    r'''Move prolation of `tuplet` to contents of `tuplet` and remove `tuplet`::
 
-    Return orphaned ``tuplet`` emptied of all contents. ::
-
-        >>> t = Staff(tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8") * 2)
-        >>> beamtools.BeamSpanner(t.leaves)
-        BeamSpanner(c'8, d'8, c'8, d'8)
+        >>> t = Staff(r"\times 3/2 { c'8 [ d'8 } \times 3/2 { c'8 d'8 ] }")
 
     ::
 
@@ -29,7 +24,7 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
     ::
 
         >>> tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(t[0])
-        FixedDurationTuplet(3/8, [])
+        Tuplet(3/2, [])
 
     ::
 
@@ -43,9 +38,7 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
             }
         }
 
-    .. versionchanged:: 2.0
-        renamed ``tuplettools.subsume()`` to
-        ``tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet()``.
+    Return `tuplet`.
     '''
     from abjad.tools import tuplettools
 
