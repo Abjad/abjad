@@ -28,33 +28,132 @@ Read/write Properties
 
     Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.append
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.count
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.extend
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.index
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.insert
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.pop
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.remove
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.reverse
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.sort
+
+    Inherited from :py:class:`__builtin__.list`
+
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__add__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__contains__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__delitem__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__delslice__
+
+    Inherited from :py:class:`__builtin__.list`
+
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__ge__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__getitem__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__getslice__
+
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__gt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__iadd__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__imul__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__iter__
+
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__le__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__len__
+
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__lt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__mul__
+
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__ne__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__repr__
 
     Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__reversed__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__rmul__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__setitem__
+
+    Inherited from :py:class:`__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LayoutBlock.LayoutBlock.LayoutBlock.__setslice__
+
+    Inherited from :py:class:`__builtin__.list`
