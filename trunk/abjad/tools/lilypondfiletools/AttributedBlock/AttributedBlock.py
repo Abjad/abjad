@@ -59,7 +59,7 @@ class AttributedBlock(list, AbjadObject):
         from abjad.tools import schemetools
         result = []
         for value in self:
-            if isinstance(value, schemetools.Scheme):
+            if isinstance(value, (schemetools.Scheme, marktools.LilyPondCommandMark)):
                 result.append(value.lilypond_format)
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):

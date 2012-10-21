@@ -33,3 +33,26 @@ def test_PaperBlock_02():
     '''
 
     assert paper_block.lilypond_format == "\\paper {\n\tsystem-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))\n}"
+
+
+def test_PaperBlock_03():
+
+    paper_block = lilypondfiletools.PaperBlock()
+    paper_block.append(schemetools.Scheme([
+        'define', 'fonts', [
+            'make-pango-font-tree',
+            schemetools.Scheme('Baskerville', force_quotes=True),
+            schemetools.Scheme('Baskerville', force_quotes=True),
+            schemetools.Scheme('Baskerville', force_quotes=True),
+            schemetools.Scheme(['/', 14, 20])
+            ]
+        ]))
+
+    r'''
+    \paper {
+        #(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))
+    }
+    '''
+
+    assert paper_block.lilypond_format == '\\paper {\n\t#(define fonts (make-pango-font-tree "Baskerville" "Baskerville" "Baskerville" (/ 14 20)))\n}'
+

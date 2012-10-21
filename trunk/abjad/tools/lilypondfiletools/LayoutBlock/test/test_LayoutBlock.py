@@ -15,3 +15,19 @@ def test_LayoutBlock_01():
     '''
 
     assert lb.lilypond_format == '\\layout {\n\tindent = #0\n\tragged-right = ##t\n}'
+
+
+def test_LayoutBlock_02():
+
+    lb = lilypondfiletools.LayoutBlock()
+    m = marktools.LilyPondCommandMark('accidentalStyle modern')
+    lb.append(m)
+
+    r'''
+    \layout {
+        \accidentalStyle modern
+    }
+    '''
+
+    assert lb.lilypond_format == '\\layout {\n\t\\accidentalStyle modern\n}'
+
