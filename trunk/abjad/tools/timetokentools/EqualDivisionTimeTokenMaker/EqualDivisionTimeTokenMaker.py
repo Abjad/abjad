@@ -86,7 +86,7 @@ class EqualDivisionTimeTokenMaker(TimeTokenMaker):
         numerator, denominator = duration_token
         token_duration = durationtools.Duration(duration_token)
         proportions = self.leaf_count * [1]
-        tuplet = tuplettools.make_tuplet_from_duration_and_proportions(
+        tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
             token_duration, proportions, avoid_dots=True, is_diminution=self.is_diminution)
         return tuplet
 

@@ -39,7 +39,7 @@ Then we define a helper function:
    def divide_tuplet(tuplet, n):
        last_tie_chain = tietools.get_tie_chain(tuplet[-1])
        proportions = n * [1]
-       tietools.tie_chain_to_tuplet_with_proportions(last_tie_chain, proportions)
+       tietools.tie_chain_to_tuplet_with_ratio(last_tie_chain, proportions)
 
 
 The rhythms
@@ -60,7 +60,7 @@ And then we make the rhythms:
    >>> for proportion in proportions:
    ...     tuplets = []
    ...     for n in range(1, 6 + 1):
-   ...         tuplet = tuplettools.make_tuplet_from_duration_and_proportions(duration, proportion)
+   ...         tuplet = tuplettools.make_tuplet_from_duration_and_ratio(duration, proportion)
    ...         divide_tuplet(tuplet, n)
    ...         tuplets.append(tuplet)
    ...     music.extend(tuplets)

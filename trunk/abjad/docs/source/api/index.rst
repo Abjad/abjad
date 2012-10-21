@@ -1641,7 +1641,7 @@ Composition packages
    tools/tietools/iterate_topmost_tie_chains_and_components_in_expr
    tools/tietools/remove_nonfirst_leaves_in_tie_chain
    tools/tietools/remove_tie_spanners_from_components_in_expr
-   tools/tietools/tie_chain_to_tuplet_with_proportions
+   tools/tietools/tie_chain_to_tuplet_with_ratio
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1831,9 +1831,9 @@ Composition packages
    tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
    tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
    tools/tuplettools/leaf_to_tuplet_with_n_notes_of_equal_written_duration
-   tools/tuplettools/leaf_to_tuplet_with_proportions
-   tools/tuplettools/make_tuplet_from_duration_and_proportions
-   tools/tuplettools/make_tuplet_from_proportions_and_pair
+   tools/tuplettools/leaf_to_tuplet_with_ratio
+   tools/tuplettools/make_tuplet_from_duration_and_ratio
+   tools/tuplettools/make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
    tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
    tools/tuplettools/remove_trivial_tuplets_in_expr
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier

@@ -544,7 +544,7 @@ Chnages to the ``leaftools`` package:
   ::
 
     tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
-    tuplettools.leaf_to_tuplet_with_proportions()
+    tuplettools.leaf_to_tuplet_with_ratio()
 
 - Renamed::
 
@@ -902,7 +902,7 @@ Changes to the ``tietools`` package:
 
   ::
 
-    tietools.tie_chain_to_tuplet_with_proportions()
+    tietools.tie_chain_to_tuplet_with_ratio()
 
 - Renamed::
 

@@ -8,37 +8,37 @@ from abjad.tools import resttools
 
 
 # TODO: change name to make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
-def make_tuplet_from_proportions_and_pair(proportions, (n, d)):
+def make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(proportions, (n, d)):
     '''Divide nonreduced fraction `(n, d)` according to `proportions`.
 
     Return container when no prolation is necessary::
 
-        >>> tuplettools.make_tuplet_from_proportions_and_pair([1], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1], (7, 16))
         {c'4..}
 
     Return fixed-duration tuplet when prolation is necessary::
 
-        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2], (7, 16))
         FixedDurationTuplet(7/16, [c'8, c'4])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4, 1], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4, 1, 2], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2, 4], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4, 1, 2, 4], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8, c'4])
 
     .. note:: function interprets `d` as tuplet denominator.
@@ -47,7 +47,7 @@ def make_tuplet_from_proportions_and_pair(proportions, (n, d)):
 
     .. versionchanged:: 2.0
         renamed ``divide.pair()`` to
-        ``tuplettools.make_tuplet_from_proportions_and_pair()``.
+        ``tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction()``.
     '''
     from abjad.tools import tuplettools
 

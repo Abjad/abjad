@@ -6,7 +6,7 @@ from abjad.tools import spannertools
 from abjad.tools import tuplettools
 
 
-def tie_chain_to_tuplet_with_proportions(tie_chain, proportions, is_diminution=True, dotted=True):
+def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, dotted=True):
     r'''.. versionadded:: 2.0
 
     Example 1a. Change `tie_chain` to augmented tuplet with proportions ``[1]``.
@@ -26,7 +26,7 @@ def tie_chain_to_tuplet_with_proportions(tie_chain, proportions, is_diminution=T
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
-        >>> tietools.tie_chain_to_tuplet_with_proportions(
+        >>> tietools.tie_chain_to_tuplet_with_ratio(
         ...     tie_chain, [1], is_diminution=False, dotted=False)
         FixedDurationTuplet(3/16, [c'8])
 
@@ -57,7 +57,7 @@ def tie_chain_to_tuplet_with_proportions(tie_chain, proportions, is_diminution=T
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
-        >>> tietools.tie_chain_to_tuplet_with_proportions(
+        >>> tietools.tie_chain_to_tuplet_with_ratio(
         ...     tie_chain, [1, 2], is_diminution=False, dotted=False)
         FixedDurationTuplet(3/16, [c'16, c'8])
 
@@ -89,7 +89,7 @@ def tie_chain_to_tuplet_with_proportions(tie_chain, proportions, is_diminution=T
     ::
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
-        >>> tietools.tie_chain_to_tuplet_with_proportions(
+        >>> tietools.tie_chain_to_tuplet_with_ratio(
         ...     tie_chain, [1, 2, 2], is_diminution=False, dotted=False)
         FixedDurationTuplet(3/16, [c'32, c'16, c'16])
 
