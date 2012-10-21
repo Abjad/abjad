@@ -1,6 +1,4 @@
 from abjad import *
-from abjad.tools import durationtools
-from abjad.tools import verticalitytools
 
 
 def test_verticalitytools_get_vertical_moment_at_offset_in_expr_01():
@@ -43,19 +41,19 @@ def test_verticalitytools_get_vertical_moment_at_offset_in_expr_01():
         return verticalitytools.get_vertical_moment_at_offset_in_expr(
             piano_staff, prolated_offset)
 
-    vm = piano_staff_moment(durationtools.Offset(0, 8))
+    vm = piano_staff_moment(Offset(0, 8))
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
 
-    vm = piano_staff_moment(durationtools.Offset(1, 8))
+    vm = piano_staff_moment(Offset(1, 8))
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][1])
 
-    vm = piano_staff_moment(durationtools.Offset(2, 8))
+    vm = piano_staff_moment(Offset(2, 8))
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][2])
 
-    vm = piano_staff_moment(durationtools.Offset(3, 8))
+    vm = piano_staff_moment(Offset(3, 8))
     assert vm.leaves == (piano_staff[0][1], piano_staff[1][3])
 
-    vm = piano_staff_moment(durationtools.Offset(99, 8))
+    vm = piano_staff_moment(Offset(99, 8))
     assert vm.leaves == ()
 
 
@@ -99,17 +97,17 @@ def test_verticalitytools_get_vertical_moment_at_offset_in_expr_02():
         return verticalitytools.get_vertical_moment_at_offset_in_expr(
             score, prolated_offset)
 
-    vm = scorewide_vertical_moment(durationtools.Offset(0, 8))
+    vm = scorewide_vertical_moment(Offset(0, 8))
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])
 
-    vm = scorewide_vertical_moment(durationtools.Offset(1, 8))
+    vm = scorewide_vertical_moment(Offset(1, 8))
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][1])
 
-    vm = scorewide_vertical_moment(durationtools.Offset(2, 8))
+    vm = scorewide_vertical_moment(Offset(2, 8))
     assert vm.leaves == (score[0][0][1], piano_staff[0][1], piano_staff[1][2])
 
-    vm = scorewide_vertical_moment(durationtools.Offset(3, 8))
+    vm = scorewide_vertical_moment(Offset(3, 8))
     assert vm.leaves == (score[0][0][2], piano_staff[0][1], piano_staff[1][3])
 
-    vm = scorewide_vertical_moment(durationtools.Offset(99, 8))
+    vm = scorewide_vertical_moment(Offset(99, 8))
     assert vm.leaves == ()

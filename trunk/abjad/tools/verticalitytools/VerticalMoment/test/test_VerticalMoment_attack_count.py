@@ -1,6 +1,4 @@
 from abjad import *
-from abjad.tools import durationtools
-from abjad.tools import verticalitytools
 
 
 def test_VerticalMoment_attack_count_01():
@@ -40,9 +38,9 @@ def test_VerticalMoment_attack_count_01():
     '''
 
     vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        score, durationtools.Offset(0))
+        score, Offset(0))
     assert vertical_moment.attack_count == 3
 
     vertical_moment = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        score, durationtools.Offset(1, 8))
+        score, Offset(1, 8))
     assert vertical_moment.attack_count == 1

@@ -1,6 +1,4 @@
 from abjad import *
-from abjad.tools import durationtools
-from abjad.tools import verticalitytools
 
 
 def test_VerticalMoment___eq___01():
@@ -40,12 +38,12 @@ def test_VerticalMoment___eq___01():
     '''
 
     vertical_moment_1 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        piano_staff, durationtools.Offset(1, 8))
+        piano_staff, Offset(1, 8))
 
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
     vertical_moment_2 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        piano_staff, durationtools.Offset(1, 8))
+        piano_staff, Offset(1, 8))
 
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
@@ -90,12 +88,12 @@ def test_VerticalMoment___eq___02():
     '''
 
     vertical_moment_1 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        piano_staff, durationtools.Offset(1, 8))
+        piano_staff, Offset(1, 8))
 
     "VerticalMoment(PianoStaff<<2>>, Staff{2}, a'4, Staff{4}, e'8)"
 
     vertical_moment_2 = verticalitytools.get_vertical_moment_at_offset_in_expr(
-        (piano_staff[0], piano_staff[1]), durationtools.Offset(1, 8))
+        (piano_staff[0], piano_staff[1]), Offset(1, 8))
 
     "VerticalMoment(Staff{2}, a'4, Staff{4}, e'8)"
 
