@@ -179,7 +179,7 @@ def test_Note___init___16():
     assert t.lilypond_format == "c'!4"
 
 
-def test_Note__init___17():
+def test_Note___init___17():
     '''Init note with both forced and cautionary accidental.
     '''
 
