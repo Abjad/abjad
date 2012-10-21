@@ -762,6 +762,7 @@ Composition packages
    :maxdepth: 1
 
    tools/mathtools/NonreducedFraction/NonreducedFraction
+   tools/mathtools/NonreducedRatio/NonreducedRatio
    tools/mathtools/Ratio/Ratio
 
 .. rubric:: functions

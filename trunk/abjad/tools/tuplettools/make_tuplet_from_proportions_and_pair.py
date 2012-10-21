@@ -52,9 +52,7 @@ def make_tuplet_from_proportions_and_pair(proportions, (n, d)):
     from abjad.tools import tuplettools
 
     # check input
-    # TODO: coerce as nonreduced ratio
-    #proportions = mathtools.Ratio(proportions)
-    assert proportions
+    proportions = mathtools.NonreducedRatio(proportions)
     duration = durationtools.Duration(n, d)
     
     if len(proportions) == 1:

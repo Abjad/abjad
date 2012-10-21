@@ -37,6 +37,8 @@ Special Methods
 
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__eq__
 
+    Inherited from :py:class:`mathtools.NonreducedRatio <abjad.tools.mathtools.NonreducedRatio.NonreducedRatio.NonreducedRatio>`
+
 .. automethod:: abjad.tools.mathtools.Ratio.Ratio.Ratio.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
