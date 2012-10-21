@@ -95,7 +95,7 @@ class ConcreteInterpreter(Interpreter):
             del(self.score_specification.single_context_settings_by_context[context_name][attribute])
 
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
-        if getattr(rhythm_maker, 'beam', False):
+        if getattr(rhythm_maker, 'beam_cells_together', False):
             durations = [x.prolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
         elif getattr(rhythm_maker, 'beam_each_cell', False):

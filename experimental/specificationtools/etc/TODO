@@ -32,7 +32,7 @@ A.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string i
 
 8.  Rename all occurrences of (note value) 'signal' to 'talea'.
 
-9. Rename all occurrences of 'time-token maker' to 'rhythm maker'.
+9.  Rename all occurrences of 'time-token maker' to 'rhythm maker'.
 
 10. Change all occurrences of 'duration tokens' (in timetokentools) to 'time tokens'.
 
@@ -45,5 +45,3 @@ A.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string i
 
 14. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
-
-15. Change 'beam' to 'beam_cells_together' in rhythm library.

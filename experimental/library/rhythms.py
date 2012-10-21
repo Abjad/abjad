@@ -10,7 +10,7 @@ dotted_eighths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-dotted_eighths.beam = True
+dotted_eighths.beam_cells_together = True
 dotted_eighths.name = 'dotted_eighths'
 __all__.append(dotted_eighths.name)
 
@@ -22,7 +22,7 @@ dotted_sixteenths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-dotted_sixteenths.beam = True
+dotted_sixteenths.beam_cells_together = True
 dotted_sixteenths.name = 'dotted_sixteenths'
 __all__.append(dotted_sixteenths.name)
 
@@ -34,7 +34,7 @@ dotted_thirty_seconds = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-dotted_thirty_seconds.beam = True
+dotted_thirty_seconds.beam_cells_together = True
 dotted_thirty_seconds.name = 'dotted_thirty_seconds'
 __all__.append(dotted_thirty_seconds.name)
 
@@ -46,13 +46,13 @@ eighths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-eighths.beam = True
+eighths.beam_cells_together = True
 eighths.name = 'eighths'
 __all__.append(eighths.name)
 
 
 equal_divisions = timetokentools.EqualDivisionTimeTokenMaker
-equal_divisions.beam = True
+equal_divisions.beam_cells_together = True
 equal_divisions.name = 'equal_divisions'
 __all__.append(equal_divisions.name)
 
@@ -64,7 +64,7 @@ halves = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-halves.beam = False
+halves.beam_cells_together = False
 halves.name = 'halves'
 __all__.append(halves.name)
 
@@ -81,7 +81,7 @@ quarters = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-quarters.beam = False
+quarters.beam_cells_together = False
 quarters.name = 'quarters'
 __all__.append(quarters.name)
 
@@ -98,7 +98,7 @@ sixteenths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-sixteenths.beam = True
+sixteenths.beam_cells_together = True
 sixteenths.name = 'sixteenths'
 __all__.append(sixteenths.name)
 
@@ -110,7 +110,7 @@ sixty_fourths = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-sixty_fourths.beam = True
+sixty_fourths.beam_cells_together = True
 sixty_fourths.name = 'sixty_fourths'
 __all__.append(sixty_fourths.name)
 
@@ -127,7 +127,7 @@ thirty_seconds = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
-thirty_seconds.beam = True
+thirty_seconds.beam_cells_together = True
 thirty_seconds.name = 'thirty_seconds'
 __all__.append(thirty_seconds.name)
 

@@ -12,7 +12,7 @@ def test_ScoreSpecification_request_rhythm_01():
     red_segment.set_divisions([(6, 32)], contexts=['Voice 1'])
 
     maker = timetokentools.SignalFilledTimeTokenMaker([1, 2, 3], 32)
-    maker.beam = True
+    maker.beam_cells_together = True
     red_segment.set_rhythm(maker, contexts=['Voice 1'])
     first_division = red_segment.select_division(0)
     red_rhythm_cell = score_specification.request_rhythm('Voice 1', selector=first_division)
