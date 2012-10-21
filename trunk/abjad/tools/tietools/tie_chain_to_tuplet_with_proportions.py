@@ -5,7 +5,7 @@ from abjad.tools import spannertools
 from abjad.tools import tuplettools
 
 
-def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dotted=True):
+def tie_chain_to_tuplet_with_proportions(chain, divisions, is_diminution=True, dotted=True):
     r'''.. versionadded:: 2.0
 
     Generalized tie-chain division function.
@@ -28,7 +28,7 @@ def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dott
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
         >>> tietools.tie_chain_to_tuplet_with_proportions(
-        ...     tie_chain, [1], diminution=False, dotted=False)
+        ...     tie_chain, [1], is_diminution=False, dotted=False)
         FixedDurationTuplet(3/16, [c'8])
 
     ::
@@ -59,7 +59,7 @@ def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dott
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
         >>> tietools.tie_chain_to_tuplet_with_proportions(
-        ...     tie_chain, [1, 2], diminution=False, dotted=False)
+        ...     tie_chain, [1, 2], is_diminution=False, dotted=False)
         FixedDurationTuplet(3/16, [c'16, c'8])
 
     ::
@@ -91,7 +91,7 @@ def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dott
 
         >>> tie_chain = tietools.get_tie_chain(staff[0])
         >>> tietools.tie_chain_to_tuplet_with_proportions(
-        ...     tie_chain, [1, 2, 2], diminution=False, dotted=False)
+        ...     tie_chain, [1, 2, 2], is_diminution=False, dotted=False)
         FixedDurationTuplet(3/16, [c'32, c'16, c'16])
 
     ::
@@ -118,15 +118,13 @@ def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dott
     prolated_duration = target_duration / sum(divisions)
 
     # find written duration of each notes in tuplet
-    #if prolation == 'diminution':
-    if diminution:
+    if is_diminution:
         if dotted:
             basic_written_duration = \
                 durationtools.rational_to_equal_or_greater_assignable_rational(prolated_duration)
         else:
             basic_written_duration = \
                 durationtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
-    #elif prolation == 'augmentation':
     else:
         if dotted:
             basic_written_duration = \
@@ -154,7 +152,6 @@ def tie_chain_to_tuplet_with_proportions(chain, divisions, diminution=True, dott
     componenttools.move_parentage_and_spanners_from_components_to_components(list(chain), [tuplet])
 
     # untie tuplet
-    #tuplet.tie.unspan()
     spannertools.destroy_spanners_attached_to_component(tuplet, tietools.TieSpanner)
 
     # return tuplet

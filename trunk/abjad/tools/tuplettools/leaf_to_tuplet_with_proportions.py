@@ -3,8 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-# TODO: move to tuplettools
-def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
+def leaf_to_tuplet_with_proportions(leaf, proportions, is_diminution=True):
     '''Change `leaf` to tuplet with `proportions`.
 
     Example 1. Change `leaf` to augmented tuplet with `proportions`::
@@ -14,37 +13,37 @@ def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1], diminution=False)
+        ...     note, [1], is_diminution=False)
         {@ 1:1 c'8. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2], diminution=False)
+        ...     note, [1, 2], is_diminution=False)
         {@ 1:1 c'16, c'8 @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2], diminution=False)
+        ...     note, [1, 2, 2], is_diminution=False)
         {@ 5:8 c'64., c'32., c'32. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2, 3], diminution=False)
+        ...     note, [1, 2, 2, 3], is_diminution=False)
         {@ 2:3 c'64, c'32, c'32, c'32. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2, 3, 3], diminution=False)
+        ...     note, [1, 2, 2, 3, 3], is_diminution=False)
         {@ 11:12 c'64, c'32, c'32, c'32., c'32. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2, 3, 3, 4], diminution=False)
+        ...     note, [1, 2, 2, 3, 3, 4], is_diminution=False)
         {@ 5:8 c'128, c'64, c'64, c'64., c'64., c'32 @}
 
     Example 2. Change `leaf` to diminished tuplet::
@@ -54,37 +53,37 @@ def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1], diminution=True)
+        ...     note, [1], is_diminution=True)
         {@ 1:1 c'8. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2], diminution=True)
+        ...     note, [1, 2], is_diminution=True)
         {@ 1:1 c'16, c'8 @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2], diminution=True)
+        ...     note, [1, 2, 2], is_diminution=True)
         {@ 5:4 c'32., c'16., c'16. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2, 3], diminution=True)
+        ...     note, [1, 2, 2, 3], is_diminution=True)
         {@ 4:3 c'32, c'16, c'16, c'16. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2, 3, 3], diminution=True)
+        ...     note, [1, 2, 2, 3, 3], is_diminution=True)
         {@ 11:6 c'32, c'16, c'16, c'16., c'16. @}
 
     ::
 
         >>> print tuplettools.leaf_to_tuplet_with_proportions(
-        ...     note, [1, 2, 2, 3, 3, 4], diminution=True)
+        ...     note, [1, 2, 2, 3, 3, 4], is_diminution=True)
         {@ 5:4 c'64, c'32, c'32, c'32., c'32., c'16 @}
 
     Return fixed-duration tuplet.
@@ -121,8 +120,7 @@ def leaf_to_tuplet_with_proportions(leaf, proportions, diminution=True):
 
     # switch prolation if necessary
     if not tuplet.multiplier == 1:
-        #if prolation == 'diminution':
-        if diminution:
+        if is_diminution:
             if not tuplet.is_diminution:
                 tuplettools.change_augmented_tuplets_in_expr_to_diminished(tuplet)
         else:

@@ -2,8 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 
 
-# TODO: move to tuplettools
-def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=True):
+def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, is_diminution=True):
     '''Change `leaf` to tuplet `n` notes of equal written duration.
 
     Example 1. Change leaf to augmented tuplet::
@@ -11,7 +10,7 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=Tr
         >>> for n in range(1, 11):
         ...     note = Note(0, (3, 16))
         ...     tuplet = tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(
-        ...         note, n, diminution=False)
+        ...         note, n, is_diminution=False)
         ...     print tuplet
         ...
         {@ 1:1 c'8. @}
@@ -30,7 +29,7 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=Tr
         >>> for n in range(1, 11):
         ...     note = Note(0, (3, 16))
         ...     tuplet = tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration(
-        ...         note, n, diminution=True)
+        ...         note, n, is_diminution=True)
         ...     print tuplet
         ...
         {@ 1:1 c'8. @}
@@ -56,17 +55,15 @@ def leaf_to_tuplet_with_n_notes_of_equal_written_duration(leaf, n, diminution=Tr
     prolated_duration = target_duration / n
 
     # find written duration of each note in tuplet
-    #if prolation == 'diminution':
-    if diminution:
+    if is_diminution:
         written_duration = durationtools.rational_to_equal_or_greater_assignable_rational(
             prolated_duration)
-    #elif prolation == 'augmentation':
     else:
         written_duration = durationtools.rational_to_equal_or_lesser_assignable_rational(
             prolated_duration)
 
     # make tuplet notes
-    notes = notetools.Note(0, written_duration) * n
+    notes = n * notetools.Note(0, written_duration)
 
     # make tuplet
     tuplet = tuplettools.FixedDurationTuplet(target_duration, notes)
