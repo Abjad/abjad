@@ -3,18 +3,18 @@ from experimental import *
 
 
 def test_multiple_segment_quartet_01():
-    '''Create 4-staff score S with sections T1, T2.
-    Set T1 time signatures equal to [(3, 8), (3, 8), (2, 8), (2, 8)].
-    Set T1 1 & 2 divisions equal to a repeating pattern of [(3, 16)].
-    Set T1 1 & 2 rhythm equal to running 32nd notes.
-    Set T1 3 & 4 divisions equal to T1 time signatures.
-    Set T1 3 & 4 rhythm equal to note-filled tokens.
+    '''Create 4-staff score S with sections red, blue.
+    Set red time signatures equal to [(3, 8), (3, 8), (2, 8), (2, 8)].
+    Set red 1 & 2 divisions equal to a repeating pattern of [(3, 16)].
+    Set red 1 & 2 rhythm equal to running 32nd notes.
+    Set red 3 & 4 divisions equal to red time signatures.
+    Set red 3 & 4 rhythm equal to note-filled tokens.
 
-    Set T2 time signatures equal to the last 2 time signatures of T1.
-    Let all other T1 specifications continue to T2.
+    Set blue time signatures equal to the last 2 time signatures of red.
+    Let all other red specifications continue to blue.
 
-    Tests for spanning divisions in 1 & 2 over T1 / T2.
-    Tests for truncated divisions in 1 & 2 at the end of T2.
+    Tests for spanning divisions in 1 & 2 over red / blue.
+    Tests for truncated divisions in 1 & 2 at the end of blue.
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
@@ -116,7 +116,7 @@ def test_multiple_segment_quartet_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.make_segment('T1')
+    segment = score_specification.make_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=['Voice 1'])
     source = segment.request_divisions('Voice 1') 
@@ -125,7 +125,7 @@ def test_multiple_segment_quartet_04():
     segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
 
-    segment = score_specification.make_segment('T2')
+    segment = score_specification.make_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

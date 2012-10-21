@@ -4,13 +4,13 @@ from experimental import *
 
 def test_single_segment_quartet_01():
     '''Single-segment test in preparation for exemplum [X3].
-    Quartet in 2 segments. T1 time signatures 6/8 3/8. 
+    Quartet in 2 segments red, blue. Red time signatures 6/8 3/8. 
     F1 1:1 of measures then left part 3/16 and right part 5/16 divisions.
     F2 1:1 of meaures then [5/16, 3/16]
     F3 1:1 of total time then [3/16, 5/16] from F1.
     F4 1:1 of total time then [5/16, 3/16] from F2.
     Filled note tokens scorewide.
-    T2 equal to T1 flipped about the y axis exactly.
+    Blue segment equal to red flipped about the y axis exactly.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
