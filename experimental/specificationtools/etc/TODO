@@ -1,8 +1,4 @@
-A.  Extend SignalFilledTimeTokenMaker optionally to beam every division's worth of rhythm it creates.
-    Perhaps extend all time-token makers the same way.
-    This will enable a segment full of beamed divisions that are not, however, complex span-beamed.
-
-B.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string input.
+A.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string input.
 
 1.  Remove all references to T1, T2.
 

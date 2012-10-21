@@ -1,4 +1,5 @@
-from abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker import TokenBurnishedSignalFilledTimeTokenMaker
+from abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker import \
+    TokenBurnishedSignalFilledTimeTokenMaker
 
 
 class SignalFilledTimeTokenMaker(TokenBurnishedSignalFilledTimeTokenMaker):
@@ -63,10 +64,12 @@ class SignalFilledTimeTokenMaker(TokenBurnishedSignalFilledTimeTokenMaker):
     ### INITIALIZER ###
 
     def __init__(self, pattern, denominator, prolation_addenda=None, secondary_divisions=None,
-        pattern_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None):
+        pattern_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None,
+        beam_each_cell=False):
         lefts, middles, rights = [0], [0], [0]
         left_lengths, right_lengths = [0], [0]
         TokenBurnishedSignalFilledTimeTokenMaker.__init__(self, pattern, denominator, prolation_addenda,
             lefts, middles, rights, left_lengths, right_lengths, secondary_divisions,
             pattern_helper=pattern_helper, prolation_addenda_helper=prolation_addenda_helper,
-            secondary_divisions_helper=secondary_divisions_helper)
+            secondary_divisions_helper=secondary_divisions_helper,
+            beam_each_cell=beam_each_cell)

@@ -1,5 +1,5 @@
 import abc
-import abc
+from abjad.tools import beamtools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
@@ -37,7 +37,8 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
         secondary_divisions=None,
         pattern_helper=None, prolation_addenda_helper=None,
         lefts_helper=None, middles_helper=None, rights_helper=None,
-        left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None):
+        left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None,
+        beam_each_cell=False):
         TimeTokenMaker.__init__(self)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
@@ -87,6 +88,7 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
         self.left_lengths_helper = left_lengths_helper
         self.right_lengths_helper = right_lengths_helper
         self.secondary_divisions_helper = secondary_divisions_helper
+        self.beam_each_cell = beam_each_cell
         self._repr_signals.append(self.pattern)
         self._repr_signals.append(self.prolation_addenda)
         self._repr_signals.append(self.lefts)
@@ -110,10 +112,14 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
         numeric_map = self._make_numeric_map(secondary_duration_pairs, septuplet)
         leaf_lists = self._make_leaf_lists(numeric_map, lcd)
         if not prolation_addenda:
-            return leaf_lists
+            result = leaf_lists
         else:
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
-            return tuplets
+            result = tuplets
+        if self.beam_each_cell:
+            for cell in result:
+                beamtools.MultipartBeamSpanner(cell)
+        return result
 
     def __eq__(self, other):
         return isinstance(other, type(self)) and all([
