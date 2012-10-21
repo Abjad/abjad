@@ -1,5 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import leaftools
 from abjad.tools import mathtools
 
 
@@ -90,6 +91,10 @@ def leaf_to_tuplet_with_proportions(leaf, proportions, is_diminution=True):
     '''
     from abjad.tools import notetools
     from abjad.tools import tuplettools
+
+    # check input
+    assert isinstance(leaf, leaftools.Leaf)
+    proportions = mathtools.Ratio(proportions)
 
     # find target duration of fixed-duration tuplet
     target_duration = leaf.written_duration

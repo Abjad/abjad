@@ -1,5 +1,6 @@
 import math
 from abjad.tools import containertools
+from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
@@ -50,11 +51,10 @@ def make_tuplet_from_proportions_and_pair(proportions, (n, d)):
     '''
     from abjad.tools import tuplettools
 
-    duration = (n, d)
-
-    if len(proportions) == 0:
-        raise ValueError('proportions must contain at least one term.')
-
+    # check input
+    proportions = mathtools.Ratio(proportions)
+    duration = durationtools.Duration(n, d)
+    
     if len(proportions) == 1:
         if 0 < proportions[0]:
             try:

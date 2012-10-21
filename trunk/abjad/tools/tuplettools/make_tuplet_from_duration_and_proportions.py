@@ -84,8 +84,9 @@ def make_tuplet_from_duration_and_proportions(duration, proportions,
     '''
     from abjad.tools import tuplettools
 
-    # coerce duration
+    # coerce duration and proportions
     duration = durationtools.Duration(duration)
+    proportions = mathtools.Ratio(proportions)
 
     # reduce proportions relative to each other
     proportions = sequencetools.divide_sequence_elements_by_greatest_common_divisor(proportions)

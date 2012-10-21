@@ -6,11 +6,7 @@ class Ratio(ImmutableAbjadObject, tuple):
 
     Ratio of two or more nonzero integers.
 
-    Initialize from two or more nonzero integers::
-
-        >>> from abjad.tools import mathtools
-
-    ::
+    Initialize from one or more nonzero integers::
 
         >>> mathtools.Ratio(1, 2, 1)
         Ratio(1, 2, 1)
@@ -25,6 +21,9 @@ class Ratio(ImmutableAbjadObject, tuple):
 
         >>> tuple(ratio)
         (1, 2, 1)
+
+    .. note:: class does not currently reduce terms.
+        But class will reduce terms. Do not rely on class to preserve nonreducing behavior.
     
     Ratios are immutable.
     '''
@@ -34,7 +33,7 @@ class Ratio(ImmutableAbjadObject, tuple):
     def __new__(klass, *args):
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
-        assert 2 <= len(args), repr(args)
+        assert args, repr(args)
         assert all([x != 0 for x in args]), repr(args) 
         self = tuple.__new__(klass, args)
         return self
