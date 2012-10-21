@@ -289,3 +289,13 @@ def test_tuplettools_make_tuplet_from_duration_and_proportions_14():
     t = tuplettools.make_tuplet_from_duration_and_proportions(
         Fraction(1, 8), [27], avoid_dots=False, is_diminution=True)
     assert t.lilypond_format == "{\n\tc'8\n}"
+
+
+def test_tuplettools_make_tuplet_from_duration_and_proportions_15():
+    '''Coerce duration.
+    '''
+    
+    tuplet = tuplettools.make_tuplet_from_duration_and_proportions(
+        (1, 4), [1, -1, 1], avoid_dots=True, is_diminution=True)
+
+    assert tuplet.lilypond_format == "\\times 2/3 {\n\tc'8\n\tr8\n\tc'8\n}"
