@@ -7,7 +7,7 @@ from abjad.tools import notetools
 from abjad.tools import resttools
 
 
-# TODO: change name to make_tuplet_from_ratio_and_nonreduced_fraction
+# TODO: change name to make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction
 def make_tuplet_from_proportions_and_pair(proportions, (n, d)):
     '''Divide nonreduced fraction `(n, d)` according to `proportions`.
 
@@ -52,7 +52,9 @@ def make_tuplet_from_proportions_and_pair(proportions, (n, d)):
     from abjad.tools import tuplettools
 
     # check input
-    proportions = mathtools.Ratio(proportions)
+    # TODO: coerce as nonreduced ratio
+    #proportions = mathtools.Ratio(proportions)
+    assert proportions
     duration = durationtools.Duration(n, d)
     
     if len(proportions) == 1:

@@ -8,12 +8,12 @@ class Ratio(ImmutableAbjadObject, tuple):
 
     Initialize from one or more nonzero integers::
 
-        >>> mathtools.Ratio(1, 2, 1)
+        >>> mathtools.Ratio(2, 4, 2)
         Ratio(1, 2, 1)
 
     Or initialize from a tuple or list::
 
-        >>> ratio = mathtools.Ratio((1, 2, 1))
+        >>> ratio = mathtools.Ratio((2, 4, 2))
         >>> ratio
         Ratio(1, 2, 1)
 
@@ -22,19 +22,18 @@ class Ratio(ImmutableAbjadObject, tuple):
         >>> tuple(ratio)
         (1, 2, 1)
 
-    .. note:: class does not currently reduce terms.
-        But class will reduce terms. Do not rely on class to preserve nonreducing behavior.
-    
     Ratios are immutable.
     '''
 
     ### INITIALIZER ###
 
     def __new__(klass, *args):
+        from abjad.tools import sequencetools
         if len(args) == 1 and isinstance(args[0], (list, tuple)):
             args = args[0]
         assert args, repr(args)
         assert all([x != 0 for x in args]), repr(args) 
+        args = sequencetools.divide_sequence_elements_by_greatest_common_divisor(args)
         self = tuple.__new__(klass, args)
         return self
 
