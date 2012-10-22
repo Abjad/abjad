@@ -21,7 +21,7 @@ Use Python's ``dir()`` built-in to get a sense of the answer::
     'measuretools', 'notetools', 'offsettools', 'p', 'pitcharraytools', 'pitchtools', 'play', 'resttools',
     'rhythmtreetools', 'schemetools', 'scoretemplatetools', 'scoretools', 'sequencetools', 'show', 'sievetools',
     'skiptools', 'spannertools', 'stafftools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools',
-    'timesignaturetools', 'timetokentools', 'tonalitytools', 'tuplettools', 'verticalitytools', 'voicetools',
+    'timesignaturetools', 'rhythmmakertools', 'tonalitytools', 'tuplettools', 'verticalitytools', 'voicetools',
     'wellformednesstools', 'z']
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of lines

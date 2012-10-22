@@ -1,6 +1,6 @@
 import copy
 from abjad.tools import sequencetools
-from abjad.tools import timetokentools
+from abjad.tools import rhythmmakertools
 
 
 def apply_request_transforms(request, payload):
@@ -31,9 +31,9 @@ def apply_request_transforms(request, payload):
         )
 
     assert isinstance(request, request_klasses), repr(request)
-    assert isinstance(payload, (list, tuple, timetokentools.TimeTokenMaker)), repr(payload)
+    assert isinstance(payload, (list, tuple, rhythmmakertools.TimeTokenMaker)), repr(payload)
 
-    if isinstance(payload, timetokentools.TimeTokenMaker):
+    if isinstance(payload, rhythmmakertools.TimeTokenMaker):
         if request.reverse:
             payload = copy.deepcopy(payload)
             payload.reverse()

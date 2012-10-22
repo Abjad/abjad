@@ -19,7 +19,7 @@ The following packages now load by default when you start Abjad::
     'offsettools', 'pitcharraytools', 'pitchtools', 'resttools', 'rhythmtreetools', 'schemetools', 
     'scoretemplatetools', 'scoretools', 'sequencetools', 'sievetools', 'skiptools', 'spannertools', 
     'stafftools', 'stringtools', 'tempotools', 'tietools', 'timeintervaltools', 'timesignaturetools', 
-    'timetokentools', 'tonalitytools', 'tuplettools', 'verticalitytools', 'voicetools']
+    'rhythmmakertools', 'tonalitytools', 'tuplettools', 'verticalitytools', 'voicetools']
 
 Improved formatting engine.  Scores now format approximately 30% faster.
 
@@ -247,9 +247,9 @@ New time-interval tools are available::
 
 New time-token tools are available:
 
-- Added ``SkipFilledTimeTokenMaker`` to ``timetokentools`` package::
+- Added ``SkipFilledTimeTokenMaker`` to ``rhythmmakertools`` package::
 
-    >>> maker = timetokentools.SkipFilledTimeTokenMaker()
+    >>> maker = rhythmmakertools.SkipFilledTimeTokenMaker()
 
   ::
 
@@ -271,9 +271,9 @@ New time-token tools are available:
         s1 * 7/9
     }
 
-- Added ``TupletMonadTimeTokenMaker`` to ``timetokentools`` package::
+- Added ``TupletMonadTimeTokenMaker`` to ``rhythmmakertools`` package::
 
-    >>> maker = timetokentools.TupletMonadTimeTokenMaker()
+    >>> maker = rhythmmakertools.TupletMonadTimeTokenMaker()
 
   ::
 
@@ -1417,21 +1417,21 @@ Added new ``rhythmtreetools`` package for parsing IRCAM-like RTM syntax.
 
 - Use the ``rhythmtreetools`` package to turn nested lists of numbers into Abjad tuplets.
 
-Added new ``timetokentools`` package.
+Added new ``rhythmmakertools`` package.
 
 - This version of the package contains the following concrete classes::
 
-    timetokentools.NoteFilledTimeTokenMaker
-    timetokentools.OutputBurnishedSignalFilledTimeTokenMaker
-    timetokentools.OutputIncisedNoteFilledTimeTokenMaker
-    timetokentools.OutputIncisedRestFilledTimeTokenMaker
-    timetokentools.RestFilledTimeTokenMaker
-    timetokentools.SignalFilledTimeTokenMaker
-    timetokentools.TokenBurnishedSignalFilledTimeTokenMaker
-    timetokentools.TokenIncisedNoteFilledTimeTokenMaker
-    timetokentools.TokenIncisedRestFilledTimeTokenMaker
+    rhythmmakertools.NoteFilledTimeTokenMaker
+    rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker
+    rhythmmakertools.OutputIncisedNoteFilledTimeTokenMaker
+    rhythmmakertools.OutputIncisedRestFilledTimeTokenMaker
+    rhythmmakertools.RestFilledTimeTokenMaker
+    rhythmmakertools.SignalFilledTimeTokenMaker
+    rhythmmakertools.TokenBurnishedSignalFilledTimeTokenMaker
+    rhythmmakertools.TokenIncisedNoteFilledTimeTokenMaker
+    rhythmmakertools.TokenIncisedRestFilledTimeTokenMaker
 
-- The ``timetokentools`` package implements a family of related rhythm-making classes.
+- The ``rhythmmakertools`` package implements a family of related rhythm-making classes.
 
 - Class usage follows a two-step initialize-then-call pattern.
 

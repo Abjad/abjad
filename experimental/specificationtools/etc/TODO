@@ -30,12 +30,10 @@
 
 8.  Rename all occurrences of (note value) 'signal' to 'talea'.
 
-9.  Rename all occurrences of 'time-token maker' to 'rhythm maker'.
+9.  Change all occurrences of 'duration tokens' (in rhythmmakertools) to 'time tokens'.
 
-10. Change all occurrences of 'duration tokens' (in timetokentools) to 'time tokens'.
-
-11. Remove all occurrences of 'duration token' from the mainline.
+10. Remove all occurrences of 'duration token' from the mainline.
     Check that coercion is implemented pervasively instead.
 
-12. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+11. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.

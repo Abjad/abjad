@@ -55,7 +55,7 @@ from abjad.tools import tempotools
 from abjad.tools import tietools
 from abjad.tools import timeintervaltools
 from abjad.tools import timesignaturetools
-from abjad.tools import timetokentools
+from abjad.tools import rhythmmakertools
 from abjad.tools import tonalitytools
 from abjad.tools import tuplettools
 from abjad.tools import verticalitytools

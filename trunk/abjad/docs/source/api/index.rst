@@ -1192,6 +1192,38 @@ Composition packages
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
+:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmmakertools/BurnishedTimeTokenMaker/BurnishedTimeTokenMaker
+   tools/rhythmmakertools/IncisedTimeTokenMaker/IncisedTimeTokenMaker
+   tools/rhythmmakertools/OutputIncisedTimeTokenMaker/OutputIncisedTimeTokenMaker
+   tools/rhythmmakertools/TimeTokenMaker/TimeTokenMaker
+   tools/rhythmmakertools/TokenIncisedTimeTokenMaker/TokenIncisedTimeTokenMaker
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmmakertools/EqualDivisionTimeTokenMaker/EqualDivisionTimeTokenMaker
+   tools/rhythmmakertools/NoteFilledTimeTokenMaker/NoteFilledTimeTokenMaker
+   tools/rhythmmakertools/OutputBurnishedSignalFilledTimeTokenMaker/OutputBurnishedSignalFilledTimeTokenMaker
+   tools/rhythmmakertools/OutputIncisedNoteFilledTimeTokenMaker/OutputIncisedNoteFilledTimeTokenMaker
+   tools/rhythmmakertools/OutputIncisedRestFilledTimeTokenMaker/OutputIncisedRestFilledTimeTokenMaker
+   tools/rhythmmakertools/RestFilledTimeTokenMaker/RestFilledTimeTokenMaker
+   tools/rhythmmakertools/SignalFilledTimeTokenMaker/SignalFilledTimeTokenMaker
+   tools/rhythmmakertools/SkipFilledTimeTokenMaker/SkipFilledTimeTokenMaker
+   tools/rhythmmakertools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
+   tools/rhythmmakertools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
+   tools/rhythmmakertools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
+   tools/rhythmmakertools/TupletMonadTimeTokenMaker/TupletMonadTimeTokenMaker
+
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1729,38 +1761,6 @@ Composition packages
    tools/timesignaturetools/get_nonbinary_factor_from_time_signature_denominator
    tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
    tools/timesignaturetools/time_signature_to_binary_time_signature
-
-:py:mod:`timetokentools <abjad.tools.timetokentools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/timetokentools/BurnishedTimeTokenMaker/BurnishedTimeTokenMaker
-   tools/timetokentools/IncisedTimeTokenMaker/IncisedTimeTokenMaker
-   tools/timetokentools/OutputIncisedTimeTokenMaker/OutputIncisedTimeTokenMaker
-   tools/timetokentools/TimeTokenMaker/TimeTokenMaker
-   tools/timetokentools/TokenIncisedTimeTokenMaker/TokenIncisedTimeTokenMaker
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/timetokentools/EqualDivisionTimeTokenMaker/EqualDivisionTimeTokenMaker
-   tools/timetokentools/NoteFilledTimeTokenMaker/NoteFilledTimeTokenMaker
-   tools/timetokentools/OutputBurnishedSignalFilledTimeTokenMaker/OutputBurnishedSignalFilledTimeTokenMaker
-   tools/timetokentools/OutputIncisedNoteFilledTimeTokenMaker/OutputIncisedNoteFilledTimeTokenMaker
-   tools/timetokentools/OutputIncisedRestFilledTimeTokenMaker/OutputIncisedRestFilledTimeTokenMaker
-   tools/timetokentools/RestFilledTimeTokenMaker/RestFilledTimeTokenMaker
-   tools/timetokentools/SignalFilledTimeTokenMaker/SignalFilledTimeTokenMaker
-   tools/timetokentools/SkipFilledTimeTokenMaker/SkipFilledTimeTokenMaker
-   tools/timetokentools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
-   tools/timetokentools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
-   tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
-   tools/timetokentools/TupletMonadTimeTokenMaker/TupletMonadTimeTokenMaker
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

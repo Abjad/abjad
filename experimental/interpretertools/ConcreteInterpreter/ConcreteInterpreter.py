@@ -554,7 +554,7 @@ class ConcreteInterpreter(Interpreter):
                 if isinstance(rhythm_quadruple[0], str):
                     rhythm_region_expression = self.make_rhythm_region_expression_from_parseable_string(
                         *rhythm_quadruple)
-                elif isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
+                elif isinstance(rhythm_quadruple[0], rhythmmakertools.TimeTokenMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
                     rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(
@@ -718,7 +718,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(source_command, 'source_command')
         absolute_request = source_command.request
         assert isinstance(source_command.request, requesttools.AbsoluteRequest)
-        assert isinstance(source_command.request.payload, timetokentools.TimeTokenMaker)
+        assert isinstance(source_command.request.payload, rhythmmakertools.TimeTokenMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
         rhythm_maker = requesttools.apply_request_transforms(rhythm_command_request, rhythm_maker)
         return rhythm_maker
