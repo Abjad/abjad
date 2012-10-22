@@ -1,5 +1,3 @@
-A.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string input.
-
 1.  Reimplement exemplum [X3] using division material requests instead
     of rhythm material requests.
 
@@ -39,7 +37,5 @@ A.  Extend SegmentSpecification.set_rhythm() to accept parseable rhythm string i
 11. Remove all occurrences of 'duration token' from the mainline.
     Check that coercion is implemented pervasively instead.
 
-12. Change 'proportions' to 'ratio' everywhere in tuplettools API.
-
-13. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+12. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.

@@ -524,13 +524,37 @@ class ConcreteInterpreter(Interpreter):
             self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
             return rhythm_region_expression
 
+    def make_rhythm_region_expression_from_parseable_string(
+        self, parseable_string, rhythm_region_division_list, start_offset, rhythm_command):
+        component = iotools.p(parseable_string)
+        rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
+            music=[component],
+            voice_name=rhythm_region_division_list.voice_name, 
+            start_offset=start_offset)
+        # TODO: eventually encapsulate in a single call
+        # TODO: eventually implement 'index' and 'count' handling
+        if rhythm_command.reverse:
+            rhythm_region_expression.reverse()
+        if rhythm_command.rotation:
+            rhythm_region_expression.rotate(rhythm_command.rotation, fracture_spanners=False)
+        duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
+        stop_offset = start_offset + duration_needed
+        if rhythm_region_expression.stop_offset < stop_offset:
+            rhythm_region_expression.repeat_to_stop_offset(stop_offset)
+        elif stop_offset < rhythm_region_expression.stop_offset:
+            rhythm_region_expression.trim_to_stop_offset(stop_offset)
+        return rhythm_region_expression
+
     def make_rhythm_region_expressions(self):
         while self.score_specification.all_rhythm_quintuples:
             #self._debug(len(self.score_specification.all_rhythm_quintuples), 'len')
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 rhythm_quadruple = rhythm_quintuple[1:]
-                if isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
+                if isinstance(rhythm_quadruple[0], str):
+                    rhythm_region_expression = self.make_rhythm_region_expression_from_parseable_string(
+                        *rhythm_quadruple)
+                elif isinstance(rhythm_quadruple[0], timetokentools.TimeTokenMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
                     rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(
