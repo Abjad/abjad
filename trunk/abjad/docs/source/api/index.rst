@@ -342,7 +342,6 @@ Composition packages
    tools/durationtools/rational_to_fraction_string
    tools/durationtools/rational_to_prolation_string
    tools/durationtools/rational_to_proper_fraction
-   tools/durationtools/rewrite_duration_under_new_tempo
    tools/durationtools/yield_all_assignable_durations
    tools/durationtools/yield_all_positive_integer_pairs
    tools/durationtools/yield_all_positive_rationals
@@ -1649,6 +1648,7 @@ Composition packages
 
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
+   tools/tempotools/rewrite_duration_under_new_tempo
 
 :py:mod:`tietools <abjad.tools.tietools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
