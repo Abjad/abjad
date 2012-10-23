@@ -31,7 +31,10 @@ def duration_token_to_assignable_duration_pairs(duration_token):
     '''
     from abjad.tools import durationtools
 
-    numerator, denominator = durationtools.duration_token_to_duration_pair(duration_token)
+    if isinstance(duration_token, tuple):
+        numerator, denominator = duration_token
+    else:
+        numerator, denominator = durationtools.Duration(duration_token).pair
 
     result = [(n, denominator)
         for n in mathtools.partition_integer_into_canonic_parts(numerator)]

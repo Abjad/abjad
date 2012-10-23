@@ -11,4 +11,4 @@ def duration_tokens_to_duration_pairs(duration_tokens):
     from abjad.tools import durationtools
 
     return type(duration_tokens)([
-        durationtools.duration_token_to_duration_pair(x) for x in duration_tokens])
+        durationtools.Duration(x).pair for x in duration_tokens])
