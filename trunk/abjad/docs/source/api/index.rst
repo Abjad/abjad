@@ -318,7 +318,6 @@ Composition packages
    tools/durationtools/duration_tokens_to_rationals
    tools/durationtools/group_duration_tokens_by_implied_prolation
    tools/durationtools/integer_to_implied_prolation
-   tools/durationtools/is_assignable_rational
    tools/durationtools/is_binary_rational
    tools/durationtools/is_duration_pair
    tools/durationtools/is_duration_token

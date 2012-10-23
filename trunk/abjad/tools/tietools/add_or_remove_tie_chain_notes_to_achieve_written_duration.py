@@ -47,7 +47,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
     assert isinstance(tie_chain, tietools.TieChain)
     new_written_duration = durationtools.Duration(new_written_duration)
 
-    if durationtools.is_assignable_rational(new_written_duration):
+    if new_written_duration.is_assignable:
         tie_chain[0].written_duration = new_written_duration
         tietools.remove_nonfirst_leaves_in_tie_chain(tie_chain)
     elif durationtools.is_binary_rational(new_written_duration):

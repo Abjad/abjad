@@ -13,7 +13,7 @@ def rational_to_equal_or_lesser_assignable_rational(rational):
     ::
 
         >>> for n in range(1, 17):
-        ...     rational = Fraction(n, 16)
+        ...     rational = Duration(n, 16)
         ...     written = durationtools.rational_to_equal_or_lesser_assignable_rational(rational)
         ...     print '%s/16\t%s' % (n, written)
         ...
@@ -48,13 +48,16 @@ def rational_to_equal_or_lesser_assignable_rational(rational):
     '''
     from abjad.tools import durationtools
 
+    # check input
+    rational = durationtools.Duration(rational)
+
     good_denominator = mathtools.least_power_of_two_greater_equal(rational.denominator)
 
     cur_numerator = rational.numerator
-    candidate = fractions.Fraction(cur_numerator, good_denominator)
+    candidate = durationtools.Duration(cur_numerator, good_denominator)
 
-    while not durationtools.is_assignable_rational(candidate):
+    while not candidate.is_assignable:
         cur_numerator -= 1
-        candidate = fractions.Fraction(cur_numerator, good_denominator)
+        candidate = durationtools.Duration(cur_numerator, good_denominator)
 
     return candidate

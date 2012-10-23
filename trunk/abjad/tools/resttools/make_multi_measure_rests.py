@@ -17,7 +17,8 @@ def make_multi_measure_rests(duration_tokens):
 
     for duration_token in duration_tokens:
         written_duration = durationtools.duration_token_to_rational(duration_token)
-        if not durationtools.is_assignable_rational(written_duration):
+        written_duration = durationtools.Duration(written_duration)
+        if not written_duration.is_assignable:
             raise AssignabilityError('multi-measure rest durations must be assignable.')
         multi_measure_rest = resttools.MultiMeasureRest(written_duration)
         multi_measure_rests.append(multi_measure_rest)

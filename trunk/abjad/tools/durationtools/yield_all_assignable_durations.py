@@ -32,5 +32,5 @@ def yield_all_assignable_durations():
     while True:
         duration = generator.next()
         duration = durationtools.Duration(duration)
-        if durationtools.is_assignable_rational(duration):
+        if duration.is_assignable:
             yield duration

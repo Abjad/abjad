@@ -1,4 +1,3 @@
-import fractions
 import math
 from abjad.tools import mathtools
 
@@ -30,7 +29,7 @@ def rational_to_equal_or_greater_assignable_rational(rational):
         15/16   15/16
         16/16   1
 
-    Return fraction.
+    Return duration.
 
     Function returns dotted and double dotted durations where possible.
 
@@ -45,14 +44,12 @@ def rational_to_equal_or_greater_assignable_rational(rational):
     from abjad.tools import durationtools
 
     good_denominator = mathtools.greatest_power_of_two_less_equal(rational.denominator)
-    #print good_denominator
 
     cur_numerator = rational.numerator
-    candidate = fractions.Fraction(cur_numerator, good_denominator)
+    candidate = durationtools.Duration(cur_numerator, good_denominator)
 
-    while not durationtools.is_assignable_rational(candidate):
-        #print cur_numerator
+    while not candidate.is_assignable:
         cur_numerator += 1
-        candidate = fractions.Fraction(cur_numerator, good_denominator)
+        candidate = durationtools.Duration(cur_numerator, good_denominator)
 
     return candidate

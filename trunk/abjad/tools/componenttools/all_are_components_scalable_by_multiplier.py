@@ -27,10 +27,11 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
     # check input
     multiplier = durationtools.Multiplier(multiplier)
 
+    # check components
     for component in components:
         if isinstance(component, leaftools.Leaf):
             candidate_duration = multiplier * component.written_duration
-            if not durationtools.is_assignable_rational(candidate_duration):
+            if not candidate_duration.is_assignable:
                 return False
 
     return True

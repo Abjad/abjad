@@ -28,7 +28,10 @@ def assignable_rational_to_dot_count(rational):
     '''
     from abjad.tools import durationtools
 
-    if not durationtools.is_assignable_rational(rational):
+    # check input
+    rational = durationtools.Duration(rational)
+
+    if not rational.is_assignable:
         raise AssignabilityError
 
     binary_string = mathtools.integer_to_binary_string(rational.numerator)

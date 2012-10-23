@@ -67,6 +67,7 @@ def duration_token_to_assignable_rationals(duration_token):
 
     from abjad.tools import durationtools
 
+    # check input
     rational = durationtools.Duration(duration_token)
 
     if 0 == rational:
@@ -74,7 +75,7 @@ def duration_token_to_assignable_rationals(duration_token):
 
     def recurse(rational):
         result = []
-        if durationtools.is_assignable_rational(rational):
+        if rational.is_assignable:
             result.append(rational)
         elif 8 < rational:
             result.append(durationtools.Duration(8))

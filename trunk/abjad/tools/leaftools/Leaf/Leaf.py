@@ -319,7 +319,7 @@ class Leaf(Component):
             return self._written_duration
         def fset(self, expr):
             rational = durationtools.Duration(expr)
-            if not durationtools.is_assignable_rational(rational):
+            if not rational.is_assignable:
                 raise AssignabilityError('not assignable duration: "%s".' % str(rational))
             self._written_duration = rational
         return property(**locals())

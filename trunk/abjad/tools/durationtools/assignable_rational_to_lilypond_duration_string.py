@@ -15,7 +15,10 @@ def assignable_rational_to_lilypond_duration_string(rational):
     '''
     from abjad.tools import durationtools
 
-    if not durationtools.is_assignable_rational(rational):
+    # check input
+    rational = durationtools.Duration(rational)
+
+    if not rational.is_assignable:
         raise AssignabilityError
 
     undotted_rational = durationtools.rational_to_equal_or_lesser_binary_rational(rational)
