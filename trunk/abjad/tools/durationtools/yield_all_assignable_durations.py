@@ -28,7 +28,7 @@ def yield_all_assignable_durations():
     '''
     from abjad.tools import durationtools
 
-    generator = durationtools.yield_all_positive_rationals_uniquely()
+    generator = durationtools.yield_all_positive_rationals(unique=True)
     while True:
         duration = generator.next()
         duration = durationtools.Duration(duration)

@@ -340,7 +340,6 @@ Composition packages
    tools/durationtools/yield_all_assignable_durations
    tools/durationtools/yield_all_positive_integer_pairs
    tools/durationtools/yield_all_positive_rationals
-   tools/durationtools/yield_all_positive_rationals_uniquely
    tools/durationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`gracetools <abjad.tools.gracetools>`

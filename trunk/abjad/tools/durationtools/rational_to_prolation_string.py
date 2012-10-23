@@ -3,24 +3,24 @@ def rational_to_prolation_string(rational):
 
     Change `rational` to prolation string::
 
-        >>> generator = durationtools.yield_all_positive_rationals_uniquely()
+        >>> generator = durationtools.yield_all_positive_rationals(unique=True)
         >>> for n in range(16):
         ...     rational = generator.next()
         ...     prolation_string = durationtools.rational_to_prolation_string(rational)
         ...     print '%s\t%s' % (rational, prolation_string)
         ...
-        1         1:1
-        2         1:2
+        1       1:1
+        2       1:2
         1/2     2:1
         1/3     3:1
-        3         1:3
-        4         1:4
+        3       1:3
+        4       1:4
         3/2     2:3
         2/3     3:2
         1/4     4:1
         1/5     5:1
-        5         1:5
-        6         1:6
+        5       1:5
+        6       1:6
         5/2     2:5
         4/3     3:4
         3/4     4:3
