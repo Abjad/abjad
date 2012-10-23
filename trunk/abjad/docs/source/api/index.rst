@@ -330,7 +330,6 @@ Composition packages
    tools/durationtools/multiply_duration_pair_and_reduce_factors
    tools/durationtools/multiply_duration_pair_and_try_to_preserve_numerator
    tools/durationtools/numeric_seconds_to_clock_string
-   tools/durationtools/numeric_seconds_to_escaped_clock_string
    tools/durationtools/positive_integer_to_implied_prolation_multiplier
    tools/durationtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
    tools/durationtools/rational_to_duration_pair_with_specified_integer_denominator

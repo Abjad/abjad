@@ -26,3 +26,13 @@ def test_durationtools_numeric_seconds_to_clock_string_02():
 def test_durationtools_numeric_seconds_to_clock_string_03():
 
     assert py.test.raises(ValueError, 'durationtools.numeric_seconds_to_clock_string(-1.5)')
+
+
+def test_durationtools_numeric_seconds_to_clock_string_04():
+
+    assert durationtools.numeric_seconds_to_clock_string(0, escape_ticks=True) == "0'00\\\""
+    assert durationtools.numeric_seconds_to_clock_string(4, escape_ticks=True) == "0'04\\\""
+    assert durationtools.numeric_seconds_to_clock_string(20, escape_ticks=True) == "0'20\\\""
+    assert durationtools.numeric_seconds_to_clock_string(60, escape_ticks=True) == "1'00\\\""
+    assert durationtools.numeric_seconds_to_clock_string(120, escape_ticks=True) == "2'00\\\""
+    assert durationtools.numeric_seconds_to_clock_string(240, escape_ticks=True) == "4'00\\\""
