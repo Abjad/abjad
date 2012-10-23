@@ -1646,9 +1646,9 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
-   tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
+   tools/tempotools/report_integer_tempo_rewrite_pairs
    tools/tempotools/rewrite_duration_under_new_tempo
+   tools/tempotools/rewrite_integer_tempo
 
 :py:mod:`tietools <abjad.tools.tietools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

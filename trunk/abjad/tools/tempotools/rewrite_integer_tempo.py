@@ -4,16 +4,14 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
-    maximum_numerator=None, maximum_denominator=None):
+def rewrite_integer_tempo(integer_tempo, maximum_numerator=None, maximum_denominator=None):
     r'''.. versionadded:: 2.0
 
-    Return all multiplier, tempo pairs possible from `integer_tempo`.
+    Rewrite `integer_tempo`.
 
-    Tempo return values must be no less than half `integer_tempo`
-    and no greater than double `integer_tempo`.
+    Allow no tempo less than half `integer_tempo` or greater than double `integer_tempo`::
 
-        >>> pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(
+        >>> pairs = tempotools.rewrite_integer_tempo(
         ...     58, maximum_numerator=8, maximum_denominator=8)
 
     ::

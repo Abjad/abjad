@@ -2,9 +2,9 @@ from abjad import *
 from abjad.tools import tempotools
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01():
+def test_tempotools_rewrite_integer_tempo_01():
 
-    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 8, 8)
+    pairs = tempotools.rewrite_integer_tempo(58, 8, 8)
 
     assert pairs == [(Fraction(1, 2), Fraction(29, 1)),
         (Fraction(1, 1), Fraction(58, 1)),
@@ -12,9 +12,9 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_01():
         (Fraction(2, 1), Fraction(116, 1))]
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_02():
+def test_tempotools_rewrite_integer_tempo_02():
 
-    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 30, 30)
+    pairs = tempotools.rewrite_integer_tempo(58, 30, 30)
 
     assert pairs == [(Fraction(1, 2), Fraction(29, 1)),
         (Fraction(15, 29), Fraction(30, 1)),
@@ -37,9 +37,9 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_02():
         (Fraction(2, 1), Fraction(116, 1))]
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_03():
+def test_tempotools_rewrite_integer_tempo_03():
 
-    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(52, 4, 4)
+    pairs = tempotools.rewrite_integer_tempo(52, 4, 4)
 
     assert pairs == [(Fraction(1, 2), Fraction(26, 1)),
         (Fraction(3, 4), Fraction(39, 1)),
@@ -48,9 +48,9 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_03():
         (Fraction(2, 1), Fraction(104, 1))]
 
 
-def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_04():
+def test_tempotools_rewrite_integer_tempo_04():
 
-    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(52, 8, 8)
+    pairs = tempotools.rewrite_integer_tempo(52, 8, 8)
 
     assert pairs == [(Fraction(1, 2), Fraction(26, 1)),
         (Fraction(3, 4), Fraction(39, 1)),

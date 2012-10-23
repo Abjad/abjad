@@ -1,16 +1,16 @@
 from abjad.tools import durationtools
 
 
-def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
+def report_integer_tempo_rewrite_pairs(integer_tempo,
     maximum_numerator=None, maximum_denominator=None):
     '''.. versionadded:: 2.0
 
-    Print all multiplier / tempo pairs possible from `integer_tempo`.
+    Report `integer_tempo` rewrite pairs.
 
     Allow no tempo less than half `integer_tempo` or 
     greater than double `integer_tempo`::
 
-        >>> tempotools.integer_tempo_to_multiplier_tempo_pairs_report(
+        >>> tempotools.report_integer_tempo_rewrite_pairs(
         ...   58, maximum_numerator=8, maximum_denominator=8)
         2:1     29
         1:1     58
@@ -19,7 +19,7 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
 
     With more lenient numerator and denominator::
 
-        >>> tempotools.integer_tempo_to_multiplier_tempo_pairs_report(
+        >>> tempotools.report_integer_tempo_rewrite_pairs(
         ...     58, maximum_numerator=30, maximum_denominator=30)
         2:1     29
         29:15   30
@@ -45,8 +45,8 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
     '''
     from abjad.tools import tempotools
 
-    pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(
-      integer_tempo, maximum_numerator, maximum_denominator)
+    pairs = tempotools.rewrite_integer_tempo(
+      integer_tempo, maximum_numerator=maximum_numerator, maximum_denominator=maximum_denominator)
 
     for multiplier, tempo in pairs:
       prolation_string = durationtools.rational_to_prolation_string(multiplier)

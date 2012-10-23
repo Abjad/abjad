@@ -1,4 +1,3 @@
-# TODO: move to tempotools
 def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
     r'''.. versionadded:: 2.0
 
@@ -10,9 +9,7 @@ def rewrite_duration_under_new_tempo(duration, tempo_mark_1, tempo_mark_2):
     Ensure that `duration` and new duration
     consume exactly the same amount of time in seconds.
 
-    Example.
-
-    Consider the two tempo indications below. ::
+    Example. Consider the two tempo indications below. ::
 
         >>> tempo_mark_1 = contexttools.TempoMark(Duration(1, 4), 60)
         >>> tempo_mark_2 = contexttools.TempoMark(Duration(1, 4), 90)
