@@ -1,14 +1,13 @@
 from abjad.tools import mathtools
 
 
-def positive_integer_to_implied_prolation_multiplier(n):
+def integer_to_implied_prolation(n):
     '''.. versionadded:: 1.1
 
     Change positive integer `n` to implied porlation multiplier::
 
         >>> for denominator in range(1, 17):
-        ...     multiplier = durationtools.positive_integer_to_implied_prolation_multiplier(
-        ...         denominator)
+        ...     multiplier = durationtools.integer_to_implied_prolation(denominator)
         ...     print '%s %4s' % (denominator, multiplier)
         ...
         1         1
@@ -28,11 +27,7 @@ def positive_integer_to_implied_prolation_multiplier(n):
         15        8/15
         16        1
 
-    Return positive fraction less than or equal to ``1``.
-
-    .. versionchanged:: 2.0
-        renamed ``durationtools.denominator_to_multiplier()`` to
-        ``durationtools.positive_integer_to_implied_prolation_multiplier()``.
+    Return multiplier less than or equal to ``1``.
     '''
     from abjad.tools import durationtools
 

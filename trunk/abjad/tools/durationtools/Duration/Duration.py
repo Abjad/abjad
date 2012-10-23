@@ -1,5 +1,6 @@
-from abjad.tools.abctools import ImmutableAbjadObject
 from fractions import Fraction
+from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools import mathtools
 
 
 class Duration(ImmutableAbjadObject, Fraction):
@@ -226,6 +227,42 @@ class Duration(ImmutableAbjadObject, Fraction):
             ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def is_assignable(self):
+        '''.. versionadded:: 2.11
+
+        True when assignable. Otherwise false::
+
+            >>> for numerator in range(0, 17):
+            ...     duration = Duration(numerator, 16)
+            ...     print '{}\t{}'.format(duration, duration.is_assignable)
+            ... 
+            0       False
+            1/16    True
+            1/8     True
+            3/16    True
+            1/4     True
+            5/16    False
+            3/8     True
+            7/16    True
+            1/2     True
+            9/16    False
+            5/8     False
+            11/16   False
+            3/4     True
+            13/16   False
+            7/8     True
+            15/16   True
+            1       True
+
+        Return boolean.
+        '''
+        if 0 < self < 16:
+            if mathtools.is_nonnegative_integer_power_of_two(self.denominator):
+                if mathtools.is_assignable_integer(self.numerator):
+                    return True
+        return False
 
     @property
     def pair(self):

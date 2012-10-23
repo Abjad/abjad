@@ -148,7 +148,7 @@ def split_component_at_offset(component, offset,
         split_point_denominator = split_point_in_measure.denominator
         if measure.is_nonbinary:
             measure_multiplier = measure.multiplier
-            split_point_multiplier = durationtools.positive_integer_to_implied_prolation_multiplier(
+            split_point_multiplier = durationtools.integer_to_implied_prolation(
                 split_point_denominator)
             if not measure_multiplier == split_point_multiplier:
                 raise NotImplementedError

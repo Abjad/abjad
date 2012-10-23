@@ -17,6 +17,8 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.is_assignable
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.numerator
 
     Inherited from :py:class:`fractions.Fraction`

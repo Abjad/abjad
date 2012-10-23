@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.is_assignable
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.numerator
 
     Inherited from :py:class:`fractions.Fraction`
