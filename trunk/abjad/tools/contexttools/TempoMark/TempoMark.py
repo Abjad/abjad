@@ -1,3 +1,4 @@
+import fractions
 import numbers
 from abjad.tools import durationtools
 from abjad.tools import schemetools
@@ -125,7 +126,8 @@ class TempoMark(ContextMark):
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
                 raise ImpreciseTempoError
-            return self.quarters_per_minute / expr.quarters_per_minute
+            result = self.quarters_per_minute / expr.quarters_per_minute
+            return durationtools.Multiplier(result)
         raise TypeError('must be tempo indication.')
 
     def __eq__(self, expr):
@@ -290,10 +292,13 @@ class TempoMark(ContextMark):
 
             >>> tempo = contexttools.TempoMark(Duration(1, 8), 52)
             >>> tempo.quarters_per_minute
-            Duration(104, 1)
+            Fraction(104, 1)
 
-        Return fraction, or tuple if units_per_minute is a range, 
-        or None if tempo mark is imprecise.
+        Return fraction.
+        
+        Or tuple if tempo mark `units_per_minute` is a range.
+
+        Or none if tempo mark is imprecise.
         '''
         if self.is_imprecise:
             return None
@@ -302,7 +307,8 @@ class TempoMark(ContextMark):
             low = durationtools.Duration(1, 4) / self.duration * self.units_per_minute[0]
             high = durationtools.Duration(1, 4) / self.duration * self.units_per_minute[1]
             return (low, high)
-        return durationtools.Duration(1, 4) / self.duration * self.units_per_minute
+        result = durationtools.Duration(1, 4) / self.duration * self.units_per_minute
+        return fractions.Fraction(result)
 
     @apply
     def textual_indication():

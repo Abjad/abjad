@@ -1,3 +1,6 @@
+from abjad.tools import durationtools
+
+
 def sum_duration_of_components_in_seconds(components):
     r'''.. versionadded:: 1.1
 
@@ -7,11 +10,14 @@ def sum_duration_of_components_in_seconds(components):
         >>> score = Score([Staff([tuplet])])
         >>> contexttools.TempoMark(Duration(1, 4), 48)(score)
         TempoMark(Duration(1, 4), 48)(Score<<1>>)
-        >>> f(score) # doctest: +SKIP
+
+    ::
+
+        >>> f(score)
         \new Score <<
+            \tempo 4=48
             \new Staff {
                 \times 2/3 {
-                    \tempo 4=48
                     c'8
                     d'8
                     e'8
@@ -30,4 +36,5 @@ def sum_duration_of_components_in_seconds(components):
     '''
 
     assert isinstance(components, list)
-    return sum([component.duration_in_seconds for component in components])
+    #return sum([component.duration_in_seconds for component in components])
+    return durationtools.Duration(sum([component.duration_in_seconds for component in components]))

@@ -18,7 +18,7 @@ def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_ma
     The second tempo is 1 1/2 times as fast as the first::
 
         >>> tempo_mark_2 / tempo_mark_1
-        Duration(3, 2)
+        Multiplier(3, 2)
 
     An triplet eighth note at tempo 1 equals a regular eighth note
     at tempo 2. ::
