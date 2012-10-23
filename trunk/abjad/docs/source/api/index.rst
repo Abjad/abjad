@@ -303,7 +303,6 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/durationtools/all_are_duration_tokens
    tools/durationtools/all_are_durations
    tools/durationtools/assignable_rational_to_dot_count
    tools/durationtools/assignable_rational_to_lilypond_duration_string

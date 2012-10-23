@@ -109,15 +109,15 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
-    # change durations to duration tokens
-    durations = [durationtools.duration_token_to_duration_pair(duration) for duration in durations]
+    # make duration pairs
+    duration_pairs = [durationtools.Duration(duration).pair for duration in durations]
 
-    # set lists of pitches and durations to the same length
-    size = max(len(durations), len(pitches))
-    durations = sequencetools.repeat_sequence_to_length(durations, size)
+    # set lists of pitches and duration pairs to the same length
+    size = max(len(duration_pairs), len(pitches))
+    duration_pairs = sequencetools.repeat_sequence_to_length(duration_pairs, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    duration_groups = durationtools.group_duration_tokens_by_implied_prolation(durations)
+    duration_groups = durationtools.group_duration_tokens_by_implied_prolation(duration_pairs)
 
     result = []
     for duration_group in duration_groups:

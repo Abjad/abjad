@@ -1,7 +1,7 @@
 def is_duration_token(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` has the form of an Abjad duration token::
+    True when `expr` can initialize an Abjad duration object:
 
         >>> durationtools.is_duration_token('8.')
         True
@@ -16,7 +16,7 @@ def is_duration_token(expr):
     from abjad.tools import durationtools
 
     try:
-        durationtools.duration_token_to_duration_pair(expr)
+        durationtools.Duration(expr)
         return True
-    except (TypeError, ValueError, DurationError):
-        return False
+    except:
+        return False 

@@ -18,4 +18,4 @@ def duration_token_to_rational(duration_token):
     '''
     from abjad.tools import durationtools
 
-    return fractions.Fraction(*durationtools.duration_token_to_duration_pair(duration_token))
+    return fractions.Fraction(durationtools.Duration(duration_token))

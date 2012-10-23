@@ -4,7 +4,7 @@ import fractions
 def rational_to_duration_pair_with_specified_integer_denominator(duration, integer_denominator):
     r'''.. versionadded:: 1.1
 
-    Change `duration` to duraiton pair with specified `integer_denominator`::
+    Change `duration` to duration pair with specified `integer_denominator`::
 
         >>> for n in range(1, 17):
         ...     rational = Fraction(n, 16)
@@ -38,7 +38,10 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
     from abjad.tools import durationtools
 
     assert isinstance(duration, (fractions.Fraction, int, long, tuple))
-    n, d = durationtools.duration_token_to_duration_pair(duration)
+    if isinstance(duration, tuple):
+        n, d = duration
+    else:
+        n, d = durationtools.Duration(duration).pair
     multiplier = fractions.Fraction(integer_denominator, d)
     new_numerator = multiplier * n
     new_denominator = multiplier * d

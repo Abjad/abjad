@@ -66,14 +66,14 @@ def make_notes(pitches, durations, big_endian=True):
     # Durations should always reduce;
     # So tokens can represent tuplet multipliers or something
     # else that shouldn't reduce?
-    durations = [durationtools.duration_token_to_duration_pair(dur) for dur in durations]
+    duration_pairs = [durationtools.Duration(duration).pair for duration in durations]
 
-    # set lists of pitches and durations to the same length
-    size = max(len(durations), len(pitches))
-    durations = sequencetools.repeat_sequence_to_length(durations, size)
+    # set lists of pitches and duration pairs to the same length
+    size = max(len(duration_pairs), len(pitches))
+    duration_pairs = sequencetools.repeat_sequence_to_length(duration_pairs, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    durations = durationtools.group_duration_tokens_by_implied_prolation(durations)
+    durations = durationtools.group_duration_tokens_by_implied_prolation(duration_pairs)
 
     def _make_unprolated_notes(pitches, durations, big_endian=big_endian):
         assert len(pitches) == len(durations)

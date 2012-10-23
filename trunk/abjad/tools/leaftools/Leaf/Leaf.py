@@ -27,8 +27,7 @@ class Leaf(Component):
         Component.__init__(self)
         self._duration_multiplier = duration_multiplier
         self._leaf_index = None
-        self.written_duration = durationtools.Duration(
-            durationtools.duration_token_to_duration_pair(written_duration))
+        self.written_duration = durationtools.Duration(written_duration)
         self.written_pitch_indication_is_nonsemantic = False
         self.written_pitch_indication_is_at_sounding_pitch = True
 
