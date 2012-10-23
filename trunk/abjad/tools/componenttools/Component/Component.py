@@ -85,6 +85,10 @@ class Component(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
+    @abc.abstractproperty
+    def duration_in_seconds(self):
+        pass
+
     @property
     def lilypond_format(self):
         self._update_marks_of_entire_score_tree_if_necessary()

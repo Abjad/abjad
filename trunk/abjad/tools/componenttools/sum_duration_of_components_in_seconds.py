@@ -36,5 +36,4 @@ def sum_duration_of_components_in_seconds(components):
     '''
 
     assert isinstance(components, list)
-    #return sum([component.duration_in_seconds for component in components])
-    return durationtools.Duration(sum([component.duration_in_seconds for component in components]))
+    return sum([component.duration_in_seconds for component in components])

@@ -63,12 +63,18 @@ Composition packages
 :py:mod:`componenttools <abjad.tools.componenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: concrete classes
+.. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/componenttools/Component/Component
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
    tools/componenttools/ContainmentSignature/ContainmentSignature
 
 .. rubric:: functions
