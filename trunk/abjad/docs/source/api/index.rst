@@ -314,10 +314,8 @@ Composition packages
    tools/durationtools/duration_tokens_to_rationals
    tools/durationtools/group_duration_tokens_by_implied_prolation
    tools/durationtools/integer_to_implied_prolation
-   tools/durationtools/is_binary_rational
    tools/durationtools/is_lilypond_duration_name
    tools/durationtools/is_lilypond_duration_string
-   tools/durationtools/is_proper_tuplet_multiplier
    tools/durationtools/lilypond_duration_string_to_rational
    tools/durationtools/lilypond_duration_string_to_rational_list
    tools/durationtools/multiply_duration_pair

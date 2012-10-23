@@ -21,6 +21,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.is_assignable
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.is_binary
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.lilypond_duration_string
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.numerator

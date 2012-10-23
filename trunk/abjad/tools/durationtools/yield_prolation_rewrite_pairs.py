@@ -73,8 +73,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
         if written_duration < minimum_written_duration:
             pairs = tuple(pairs)
             return pairs
-        #prolation = prolated_duration / written_duration
         prolation = durationtools.Multiplier(prolated_duration / written_duration)
-        if durationtools.is_proper_tuplet_multiplier(prolation):
+        if prolation.is_proper_tuplet_multiplier:
             pair = (prolation, written_duration)
             pairs.append(pair)

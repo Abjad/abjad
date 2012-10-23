@@ -25,6 +25,12 @@ Read-only Properties
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.is_binary
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.is_proper_tuplet_multiplier
+
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.lilypond_duration_string
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`

@@ -1,3 +1,4 @@
+import math
 from fractions import Fraction
 from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools import mathtools
@@ -296,6 +297,39 @@ class Duration(ImmutableAbjadObject, Fraction):
                 if mathtools.is_assignable_integer(self.numerator):
                     return True
         return False
+
+    @property
+    def is_binary(self):
+        '''.. versionadded:: 2.11
+
+            True when duration is an integer power of ``2``.
+            Otherwise false::
+
+            >>> for n in range(1, 17):
+            ...     duration = Duration(1, n)
+            ...     print '{}\t{}'.format(duration, duration.is_binary)
+            ...
+            1       True
+            1/2     True
+            1/3     False
+            1/4     True
+            1/5     False
+            1/6     False
+            1/7     False
+            1/8     True
+            1/9     False
+            1/10    False
+            1/11    False
+            1/12    False
+            1/13    False
+            1/14    False
+            1/15    False
+            1/16    True
+
+        Return boolean.
+        '''
+        exponent = math.log(self.denominator, 2)
+        return int(exponent) == exponent
 
     @property
     def lilypond_duration_string(self):

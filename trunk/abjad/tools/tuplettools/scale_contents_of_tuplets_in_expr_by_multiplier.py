@@ -59,7 +59,7 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
                 leaftools.scale_preprolated_leaf_duration(component, multiplier)
 
     # otherwise doctor up tuplet multiplier, if necessary
-    elif not durationtools.is_proper_tuplet_multiplier(tuplet.multiplier):
+    elif not tuplet.multiplier.is_proper_tuplet_multiplier:
         tuplettools.fix_contents_of_tuplets_in_expr(tuplet)
 
     # return tuplet

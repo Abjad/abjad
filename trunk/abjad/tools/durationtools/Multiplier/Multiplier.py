@@ -16,3 +16,19 @@ class Multiplier(Duration):
             return Duration(Duration.__mul__(self, *args))
         else:
             return Duration.__mul__(self, *args)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def is_proper_tuplet_multiplier(self):
+        '''.. versionadded:: 2.11
+
+        True when mutliplier is greater than ``1/2`` and less than ``2``.
+        Otherwise false::
+
+            >>> Multiplier(3, 2).is_proper_tuplet_multiplier
+            True
+
+        Return boolean.
+        '''
+        return type(self)(1, 2) < self < type(self)(2)
