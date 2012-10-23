@@ -2,23 +2,23 @@ r'''Module: rhythmmakertools.
 
 The following name changes were made when migrating into Abjad for initial check-in:
 
-    NoteFilledTokens ==> NoteFilledTimeTokenMaker
-    RestFilledTokens ==> RestFilledTimeTokenMaker
-    PatternedTokens ==> SignalFilledTimeTokenMaker
+    NoteFilledTokens ==> NoteFilledRhythmMaker
+    RestFilledTokens ==> RestFilledRhythmMaker
+    PatternedTokens ==> TaleaFilledRhythmMaker
 
-    PartForcedChunkWithPatternedTokens ==> OutputBurnishedSignalFilledTimeTokenMaker
-    PartForcedPatternedTokens ==> TokenBurnishedSignalFilledTimeTokenMaker
+    PartForcedChunkWithPatternedTokens ==> OutputBurnishedTaleaFilledRhythmMaker
+    PartForcedPatternedTokens ==> DivisionBurnishedTaleaFilledRhythmMaker
 
-    SignalAffixedChunkWithNoteFilledTokens ==> OutputIncisedNoteFilledTimeTokenMaker
+    SignalAffixedChunkWithNoteFilledTokens ==> OutputIncisedNoteFilledRhythmMaker
     SignalAffixedChunkWithRestFilledTokens ==> OutputIncisedtRestFilledTimeTokenMaker
-    SignalAffixedNoteFilledTokens ==> TokenIncisedNoteFilledTimeTokenMaker
-    SignalAffixedRestFilledTokens ==> TokenIncisedRestFilledTimeTokenMaker
+    SignalAffixedNoteFilledTokens ==> DivisionIncisedNoteFilledRhythmMaker
+    SignalAffixedRestFilledTokens ==> DivisionIncisedRestFilledRhythmMaker
 
-    _PartForcedObjectWithPatternedTokens ==> BurnishedTimeTokenMaker
-    _RhythmicKaleid ==> TimeTokenMaker
-    _SignalAffixedChunkWithFilledTokens ==> OutputIncisedTimeTokenMaker
-    _SignalAffixedFilledTokens ==> TokenIncisedTimeTokenMaker
-    _SignalAffixedObjectWithFilledTokens ==> IncisedTimeTokenMaker
+    _PartForcedObjectWithPatternedTokens ==> BurnishedRhythmMaker
+    _RhythmicKaleid ==> RhythmMaker
+    _SignalAffixedChunkWithFilledTokens ==> OutputIncisedRhythmMaker
+    _SignalAffixedFilledTokens ==> DivisionIncisedRhythmMaker
+    _SignalAffixedObjectWithFilledTokens ==> IncisedRhythmMaker
 
 These name changes no longer matter when using the public version of the package.
 '''

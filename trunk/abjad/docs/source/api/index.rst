@@ -1200,29 +1200,29 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmmakertools/BurnishedTimeTokenMaker/BurnishedTimeTokenMaker
-   tools/rhythmmakertools/IncisedTimeTokenMaker/IncisedTimeTokenMaker
-   tools/rhythmmakertools/OutputIncisedTimeTokenMaker/OutputIncisedTimeTokenMaker
-   tools/rhythmmakertools/TimeTokenMaker/TimeTokenMaker
-   tools/rhythmmakertools/TokenIncisedTimeTokenMaker/TokenIncisedTimeTokenMaker
+   tools/rhythmmakertools/BurnishedRhythmMaker/BurnishedRhythmMaker
+   tools/rhythmmakertools/DivisionIncisedRhythmMaker/DivisionIncisedRhythmMaker
+   tools/rhythmmakertools/IncisedRhythmMaker/IncisedRhythmMaker
+   tools/rhythmmakertools/OutputIncisedRhythmMaker/OutputIncisedRhythmMaker
+   tools/rhythmmakertools/RhythmMaker/RhythmMaker
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmmakertools/EqualDivisionTimeTokenMaker/EqualDivisionTimeTokenMaker
-   tools/rhythmmakertools/NoteFilledTimeTokenMaker/NoteFilledTimeTokenMaker
-   tools/rhythmmakertools/OutputBurnishedSignalFilledTimeTokenMaker/OutputBurnishedSignalFilledTimeTokenMaker
-   tools/rhythmmakertools/OutputIncisedNoteFilledTimeTokenMaker/OutputIncisedNoteFilledTimeTokenMaker
-   tools/rhythmmakertools/OutputIncisedRestFilledTimeTokenMaker/OutputIncisedRestFilledTimeTokenMaker
-   tools/rhythmmakertools/RestFilledTimeTokenMaker/RestFilledTimeTokenMaker
-   tools/rhythmmakertools/SignalFilledTimeTokenMaker/SignalFilledTimeTokenMaker
-   tools/rhythmmakertools/SkipFilledTimeTokenMaker/SkipFilledTimeTokenMaker
-   tools/rhythmmakertools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
-   tools/rhythmmakertools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
-   tools/rhythmmakertools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
-   tools/rhythmmakertools/TupletMonadTimeTokenMaker/TupletMonadTimeTokenMaker
+   tools/rhythmmakertools/DivisionBurnishedTaleaFilledRhythmMaker/DivisionBurnishedTaleaFilledRhythmMaker
+   tools/rhythmmakertools/DivisionIncisedNoteFilledRhythmMaker/DivisionIncisedNoteFilledRhythmMaker
+   tools/rhythmmakertools/DivisionIncisedRestFilledRhythmMaker/DivisionIncisedRestFilledRhythmMaker
+   tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
+   tools/rhythmmakertools/NoteFilledRhythmMaker/NoteFilledRhythmMaker
+   tools/rhythmmakertools/OutputBurnishedTaleaFilledRhythmMaker/OutputBurnishedTaleaFilledRhythmMaker
+   tools/rhythmmakertools/OutputIncisedNoteFilledRhythmMaker/OutputIncisedNoteFilledRhythmMaker
+   tools/rhythmmakertools/OutputIncisedRestFilledRhythmMaker/OutputIncisedRestFilledRhythmMaker
+   tools/rhythmmakertools/RestFilledRhythmMaker/RestFilledRhythmMaker
+   tools/rhythmmakertools/SkipFilledRhythmMaker/SkipFilledRhythmMaker
+   tools/rhythmmakertools/TaleaFilledRhythmMaker/TaleaFilledRhythmMaker
+   tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
 
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

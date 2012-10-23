@@ -247,9 +247,9 @@ New time-interval tools are available::
 
 New time-token tools are available:
 
-- Added ``SkipFilledTimeTokenMaker`` to ``rhythmmakertools`` package::
+- Added ``SkipFilledRhythmMaker`` to ``rhythmmakertools`` package::
 
-    >>> maker = rhythmmakertools.SkipFilledTimeTokenMaker()
+    >>> maker = rhythmmakertools.SkipFilledRhythmMaker()
 
   ::
 
@@ -271,9 +271,9 @@ New time-token tools are available:
         s1 * 7/9
     }
 
-- Added ``TupletMonadTimeTokenMaker`` to ``rhythmmakertools`` package::
+- Added ``TupletMonadRhythmMaker`` to ``rhythmmakertools`` package::
 
-    >>> maker = rhythmmakertools.TupletMonadTimeTokenMaker()
+    >>> maker = rhythmmakertools.TupletMonadRhythmMaker()
 
   ::
 
@@ -1421,15 +1421,15 @@ Added new ``rhythmmakertools`` package.
 
 - This version of the package contains the following concrete classes::
 
-    rhythmmakertools.NoteFilledTimeTokenMaker
-    rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker
-    rhythmmakertools.OutputIncisedNoteFilledTimeTokenMaker
-    rhythmmakertools.OutputIncisedRestFilledTimeTokenMaker
-    rhythmmakertools.RestFilledTimeTokenMaker
-    rhythmmakertools.SignalFilledTimeTokenMaker
-    rhythmmakertools.TokenBurnishedSignalFilledTimeTokenMaker
-    rhythmmakertools.TokenIncisedNoteFilledTimeTokenMaker
-    rhythmmakertools.TokenIncisedRestFilledTimeTokenMaker
+    rhythmmakertools.NoteFilledRhythmMaker
+    rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker
+    rhythmmakertools.OutputIncisedNoteFilledRhythmMaker
+    rhythmmakertools.OutputIncisedRestFilledRhythmMaker
+    rhythmmakertools.RestFilledRhythmMaker
+    rhythmmakertools.TaleaFilledRhythmMaker
+    rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker
+    rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker
+    rhythmmakertools.DivisionIncisedRestFilledRhythmMaker
 
 - The ``rhythmmakertools`` package implements a family of related rhythm-making classes.
 

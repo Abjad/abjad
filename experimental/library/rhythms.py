@@ -6,7 +6,7 @@ __all__ = []
 pattern, denominator, prolation_addenda  = [3, 1], 16, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-dotted_eighths = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+dotted_eighths = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -18,7 +18,7 @@ __all__.append(dotted_eighths.name)
 pattern, denominator, prolation_addenda  = [3, 1], 32, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-dotted_sixteenths = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+dotted_sixteenths = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -30,7 +30,7 @@ __all__.append(dotted_sixteenths.name)
 pattern, denominator, prolation_addenda  = [3, 1], 64, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-dotted_thirty_seconds = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+dotted_thirty_seconds = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -42,7 +42,7 @@ __all__.append(dotted_thirty_seconds.name)
 pattern, denominator, prolation_addenda  = [1], 8, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-eighths = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+eighths = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -51,7 +51,7 @@ eighths.name = 'eighths'
 __all__.append(eighths.name)
 
 
-equal_divisions = rhythmmakertools.EqualDivisionTimeTokenMaker
+equal_divisions = rhythmmakertools.EqualDivisionRhythmMaker
 equal_divisions.beam_cells_together = True
 equal_divisions.name = 'equal_divisions'
 __all__.append(equal_divisions.name)
@@ -60,7 +60,7 @@ __all__.append(equal_divisions.name)
 pattern, denominator, prolation_addenda  = [1], 2, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-halves = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+halves = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -69,7 +69,7 @@ halves.name = 'halves'
 __all__.append(halves.name)
 
 
-note_filled_tokens = rhythmmakertools.NoteFilledTimeTokenMaker()
+note_filled_tokens = rhythmmakertools.NoteFilledRhythmMaker()
 note_filled_tokens.name = 'note_filled_tokens'
 __all__.append(note_filled_tokens.name)
 
@@ -77,7 +77,7 @@ __all__.append(note_filled_tokens.name)
 pattern, denominator, prolation_addenda  = [1], 4, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-quarters = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+quarters = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -86,7 +86,7 @@ quarters.name = 'quarters'
 __all__.append(quarters.name)
 
 
-rest_filled_tokens = rhythmmakertools.RestFilledTimeTokenMaker()
+rest_filled_tokens = rhythmmakertools.RestFilledRhythmMaker()
 rest_filled_tokens.name = 'rest_filled_tokens'
 __all__.append(rest_filled_tokens.name)
 
@@ -94,7 +94,7 @@ __all__.append(rest_filled_tokens.name)
 pattern, denominator, prolation_addenda  = [1], 16, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-sixteenths = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+sixteenths = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -106,7 +106,7 @@ __all__.append(sixteenths.name)
 pattern, denominator, prolation_addenda  = [1], 64, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-sixty_fourths = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+sixty_fourths = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -115,7 +115,7 @@ sixty_fourths.name = 'sixty_fourths'
 __all__.append(sixty_fourths.name)
 
 
-skip_filled_tokens = rhythmmakertools.SkipFilledTimeTokenMaker()
+skip_filled_tokens = rhythmmakertools.SkipFilledRhythmMaker()
 skip_filled_tokens.name = 'skip_filled_tokens'
 __all__.append(skip_filled_tokens.name)
 
@@ -123,7 +123,7 @@ __all__.append(skip_filled_tokens.name)
 pattern, denominator, prolation_addenda  = [1], 32, []
 lefts, middles, rights = [0], [0], [0]
 left_lengths, right_lengths = [0], [0]
-thirty_seconds = rhythmmakertools.OutputBurnishedSignalFilledTimeTokenMaker(
+thirty_seconds = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
    pattern, denominator, prolation_addenda,
    lefts, middles, rights,
    left_lengths, right_lengths)
@@ -132,6 +132,6 @@ thirty_seconds.name = 'thirty_seconds'
 __all__.append(thirty_seconds.name)
 
 
-tuplet_monads = rhythmmakertools.TupletMonadTimeTokenMaker()
+tuplet_monads = rhythmmakertools.TupletMonadRhythmMaker()
 tuplet_monads.name = 'tuplet_monads'
 __all__.append(tuplet_monads.name)

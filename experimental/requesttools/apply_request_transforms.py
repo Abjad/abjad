@@ -31,9 +31,9 @@ def apply_request_transforms(request, payload):
         )
 
     assert isinstance(request, request_klasses), repr(request)
-    assert isinstance(payload, (list, tuple, rhythmmakertools.TimeTokenMaker)), repr(payload)
+    assert isinstance(payload, (list, tuple, rhythmmakertools.RhythmMaker)), repr(payload)
 
-    if isinstance(payload, rhythmmakertools.TimeTokenMaker):
+    if isinstance(payload, rhythmmakertools.RhythmMaker):
         if request.reverse:
             payload = copy.deepcopy(payload)
             payload.reverse()
