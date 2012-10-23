@@ -12,10 +12,10 @@ def rational_to_equal_or_lesser_assignable_rational(rational):
 
     ::
 
-        >>> for n in range(1, 17): # doctest: +SKIP
+        >>> for n in range(1, 17):
         ...     rational = Fraction(n, 16)
         ...     written = durationtools.rational_to_equal_or_lesser_assignable_rational(rational)
-        ...     print '%s/16\\t%s' % (n, written)
+        ...     print '%s/16\t%s' % (n, written)
         ...
         1/16    1/16
         2/16    1/8

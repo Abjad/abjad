@@ -3,7 +3,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
     Change `component` to pitch and rhythm skeleton::
 
-        >>> tuplet = Tuplet(Fraction(3, 4), "c'8 d'8 e'8 f'8")
+        >>> tuplet = Tuplet(Multiplier(3, 4), "c'8 d'8 e'8 f'8")
         >>> measure = Measure((6, 16), [tuplet])
         >>> staff = Staff([measure])
         >>> score = Score(staff * 2)
@@ -16,7 +16,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
         Score([
             Staff([
                 Measure((6, 16), [
-                    Tuplet(Fraction(3, 4), [
+                    Tuplet(Multiplier(3, 4), [
                         Note(('c', 4), Duration(1, 8)),
                         Note(('d', 4), Duration(1, 8)),
                         Note(('e', 4), Duration(1, 8)),
@@ -26,7 +26,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
             ]),
             Staff([
                 Measure((6, 16), [
-                    Tuplet(Fraction(3, 4), [
+                    Tuplet(Multiplier(3, 4), [
                         Note(('g', 4), Duration(1, 8)),
                         Note(('a', 4), Duration(1, 8)),
                         Note(('b', 4), Duration(1, 8)),

@@ -3,10 +3,6 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(dur
 
     Change `duration` to duration pair with multiple of specified `integer_denominator`::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 2)
         (1, 2)

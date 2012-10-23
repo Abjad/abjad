@@ -1,6 +1,5 @@
-from fractions import Fraction
-from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
 from abjad.tools import durationtools
+from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
 
 
 class FixedDurationTuplet(Tuplet):
@@ -26,7 +25,7 @@ class FixedDurationTuplet(Tuplet):
     ### INITIALIZER ###
 
     def __init__(self, duration, music=None, **kwargs):
-        dummy_multiplier = 1
+        dummy_multiplier = durationtools.Multiplier(1)
         Tuplet.__init__(self, dummy_multiplier, music)
         self._signifier = '@'
         self.target_duration = duration
@@ -67,12 +66,12 @@ class FixedDurationTuplet(Tuplet):
 
                 >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
                 >>> tuplet.multiplier
-                Fraction(2, 3)
+                Multiplier(2, 3)
 
             Return fraction.
             '''
             if 0 < len(self):
-                return Fraction(self.target_duration / self.contents_duration)
+                return durationtools.Multiplier(self.target_duration / self.contents_duration)
             else:
                 return None
         def fset(self, expr):

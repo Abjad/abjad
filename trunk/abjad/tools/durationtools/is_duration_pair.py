@@ -6,10 +6,6 @@ def is_duration_pair(arg):
 
     True when `arg` has the form of a pair of integers that initialize a positive rational::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.is_duration_pair((5, 16))
         True
 

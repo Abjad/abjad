@@ -6,10 +6,6 @@ def numeric_seconds_to_clock_string(seconds):
 
     Change numeric `seconds` to clock string::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.numeric_seconds_to_clock_string(117)
         '1\'57"'
 

@@ -69,7 +69,7 @@ class Tuplet(Container):
     @property
     def _multiplier_fraction_string(self):
         if self.preferred_denominator is not None:
-            inverse_multiplier = fractions.Fraction(
+            inverse_multiplier = durationtools.Multiplier(
                 self.multiplier.denominator, self.multiplier.numerator)
             d, n = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 inverse_multiplier, self.preferred_denominator)
@@ -379,24 +379,22 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> tuplet.multiplier
-                Fraction(2, 3)
+                Multiplier(2, 3)
 
-            Return fraction.
+            Return multiplier.
             ''' 
             return self._multiplier
         def fset(self, expr):
-            if isinstance(expr, (int, long)):
-                rational = fractions.Fraction(expr)
+            if isinstance(expr, (int, long, fractions.Fraction)):
+                rational = durationtools.Multiplier(expr)
             elif isinstance(expr, tuple):
-                rational = fractions.Fraction(*expr)
-            elif isinstance(expr, fractions.Fraction):
-                rational = fractions.Fraction(expr)
+                rational = durationtools.Multiplier(expr)
             else:
-                raise ValueError('can not set tuplet multiplier: "%s".' % str(expr))
+                raise ValueError('can not set tuplet multiplier: {!r}.'.format(expr))
             if 0 < rational:
                 self._multiplier = rational
             else:
-                raise ValueError('tuplet multiplier must be positive: "%s".' % rational)
+                raise ValueError('tuplet multiplier must be positive: {!r}.'.format(expr))
         return property(**locals())
 
     @apply

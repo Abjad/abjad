@@ -3,10 +3,6 @@ def yield_all_positive_integer_pairs():
 
     Yield all positive integer pairs in Cantor diagonalized order::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> generator = durationtools.yield_all_positive_integer_pairs()
         >>> for n in range(16):
         ...     generator.next()

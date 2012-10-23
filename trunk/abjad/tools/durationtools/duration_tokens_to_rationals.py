@@ -3,10 +3,6 @@ def duration_tokens_to_rationals(duration_tokens):
 
     Change `duration_tokens` to rationals::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.duration_tokens_to_rationals([Fraction(2, 4), 3, '8.', (5, 16)])
         [Fraction(1, 2), Fraction(3, 1), Fraction(3, 16), Fraction(5, 16)]
 

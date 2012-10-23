@@ -1,3 +1,4 @@
+# TODO: move to tempotools
 def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_mark_2):
     r'''.. versionadded:: 2.0
 
@@ -7,10 +8,6 @@ def rewrite_rational_under_new_tempo(prolated_duration_1, tempo_mark_1, tempo_ma
     consume exactly the same amount of time in seconds.
 
     Consider the two tempo indications below. ::
-
-        >>> from abjad.tools import durationtools
-
-    ::
 
         >>> tempo_mark_1 = contexttools.TempoMark(Duration(1, 4), 60)
         >>> tempo_mark_2 = contexttools.TempoMark(Duration(1, 4), 90)

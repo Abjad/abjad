@@ -6,10 +6,6 @@ def yield_all_positive_rationals():
 
     Yield all positive rationals in Cantor diagonalized order::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> generator = durationtools.yield_all_positive_rationals()
         >>> for n in range(16):
         ...     generator.next()

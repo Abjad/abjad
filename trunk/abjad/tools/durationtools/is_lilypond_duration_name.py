@@ -13,10 +13,6 @@ def is_lilypond_duration_name(expr):
 
     True when `expr` is a LilyPond duartion name::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.is_lilypond_duration_name('\\breve')
         True
 

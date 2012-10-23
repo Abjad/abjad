@@ -6,10 +6,6 @@ def numeric_seconds_to_escaped_clock_string(seconds):
 
     Change numeric `seconds` to escaped clock string::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> note = Note("c'4")
         >>> clock_string = durationtools.numeric_seconds_to_escaped_clock_string(117)
 

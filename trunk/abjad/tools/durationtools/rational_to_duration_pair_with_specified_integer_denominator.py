@@ -6,10 +6,6 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
 
     Change `duration` to duraiton pair with specified `integer_denominator`::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> for n in range(1, 17):
         ...     rational = Fraction(n, 16)
         ...     pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(

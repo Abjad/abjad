@@ -6,10 +6,6 @@ def rational_to_fraction_string(rational):
 
     Change `rational` to fraction string::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.rational_to_fraction_string(Fraction(2, 4))
         '1/2'
 

@@ -3,10 +3,6 @@ def duration_tokens_to_duration_pairs(duration_tokens):
 
     Change `duration_tokens` to duration pairs::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.duration_tokens_to_duration_pairs([Fraction(2, 4), 3, '8.', (5, 16)])
         [(1, 2), (3, 1), (3, 16), (5, 16)]
 

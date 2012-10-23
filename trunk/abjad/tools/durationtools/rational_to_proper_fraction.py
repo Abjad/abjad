@@ -6,10 +6,6 @@ def rational_to_proper_fraction(rational):
 
     Change `rational` to proper fraction::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.rational_to_proper_fraction(Fraction(116, 8))
         (14, Fraction(1, 2))
 

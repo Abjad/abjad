@@ -7,10 +7,6 @@ def multiply_duration_pair_and_reduce_factors(pair, multiplier):
 
     Multiply `pair` by rational `multiplier` and reduce factors::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.multiply_duration_pair_and_reduce_factors((4, 8), Fraction(2, 3))
         (4, 12)
 

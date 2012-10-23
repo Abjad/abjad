@@ -379,7 +379,7 @@ class Measure(FixedDurationContainer):
             >>> measure.multiplier
             Multiplier(2, 3)
 
-        Return fraction.
+        Return multiplier.
         '''
         return contexttools.get_effective_time_signature(self).multiplier
 

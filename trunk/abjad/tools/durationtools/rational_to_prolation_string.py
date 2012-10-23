@@ -3,15 +3,11 @@ def rational_to_prolation_string(rational):
 
     Change `rational` to prolation string::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> generator = durationtools.yield_all_positive_rationals_uniquely()
-        >>> for n in range(16): # doctest: +SKIP
+        >>> for n in range(16):
         ...     rational = generator.next()
         ...     prolation_string = durationtools.rational_to_prolation_string(rational)
-        ...     print '%s\\t%s' % (rational, prolation_string)
+        ...     print '%s\t%s' % (rational, prolation_string)
         ...
         1         1:1
         2         1:2

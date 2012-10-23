@@ -6,10 +6,6 @@ def duration_token_to_assignable_duration_pairs(duration_token):
 
     Change `duration_token` to big-endian tuple of assignable duration pairs::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> duration_tokens = [(n, 16) for n in range(10, 20)]
         >>> for duration_token in duration_tokens:
         ...     pairs = durationtools.duration_token_to_assignable_duration_pairs(

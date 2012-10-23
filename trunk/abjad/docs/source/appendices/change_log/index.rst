@@ -497,7 +497,7 @@ Changes to the ``durationtools`` package:
 
   ::
 
-    durationtools.yield_all_assignable_rationals()
+    durationtools.yield_all_assignable_durations()
     durationtools.yield_all_positive_integer_pairs()
     durationtools.yield_all_positive_rationals()
     durationtools.yield_all_positive_rationals_uniquely()

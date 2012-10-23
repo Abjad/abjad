@@ -8,14 +8,10 @@ def rational_to_equal_or_greater_assignable_rational(rational):
 
     Change `rational` to equal or greater assignable rational::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
-        >>> for n in range(1, 17): # doctest: +SKIP
+        >>> for n in range(1, 17):
         ...     prolated = Fraction(n, 16)
         ...     written = durationtools.rational_to_equal_or_greater_assignable_rational(prolated)
-        ...     print '%s/16\\t%s' % (n, written)
+        ...     print '%s/16\t%s' % (n, written)
         ...
         1/16    1/16
         2/16    1/8
