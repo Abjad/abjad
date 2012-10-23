@@ -17,6 +17,7 @@ from abjad.tools import *
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
+from abjad.tools.durationtools import Multiplier
 from abjad.tools.durationtools import Offset
 from abjad.tools.iotools import f
 from abjad.tools.iotools import p

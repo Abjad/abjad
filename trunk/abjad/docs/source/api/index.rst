@@ -288,6 +288,7 @@ Composition packages
    :maxdepth: 1
 
    tools/durationtools/Duration/Duration
+   tools/durationtools/Multiplier/Multiplier
    tools/durationtools/Offset/Offset
    tools/durationtools/TimespanConstant/TimespanConstant
 
