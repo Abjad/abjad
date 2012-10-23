@@ -314,8 +314,6 @@ Composition packages
    tools/durationtools/integer_to_implied_prolation
    tools/durationtools/is_lilypond_duration_name
    tools/durationtools/is_lilypond_duration_string
-   tools/durationtools/lilypond_duration_string_to_rational
-   tools/durationtools/lilypond_duration_string_to_rational_list
    tools/durationtools/multiply_duration_pair
    tools/durationtools/multiply_duration_pair_and_reduce_factors
    tools/durationtools/multiply_duration_pair_and_try_to_preserve_numerator

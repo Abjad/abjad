@@ -1,4 +1,5 @@
 import math
+import re
 from fractions import Fraction
 from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools import mathtools
@@ -99,7 +100,9 @@ class Duration(ImmutableAbjadObject, Fraction):
         elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
             self = Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
         elif len(args) == 1 and durationtools.is_lilypond_duration_string(args[0]):
-            self = Fraction.__new__(klass, durationtools.lilypond_duration_string_to_rational(args[0]))
+            #self = Fraction.__new__(klass, durationtools.lilypond_duration_string_to_rational(args[0]))
+            result = Duration._init_from_lilypond_duration_string(args[0])
+            self = Fraction.__new__(klass, result)
         elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
             self = Fraction.__new__(klass, args[0].numerator, args[0].denominator)
         elif sequencetools.all_are_integer_equivalent_numbers(args):
@@ -226,6 +229,43 @@ class Duration(ImmutableAbjadObject, Fraction):
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
             ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+
+    @staticmethod
+    def _init_from_lilypond_duration_string(duration_string):
+        numeric_body_strings = [str(2 ** n) for n in range(8)]
+        other_body_strings = [r'\\breve', r'\\longa', r'\\maxima']
+        body_strings = numeric_body_strings + other_body_strings
+        body_strings = '|'.join(body_strings)
+        pattern = r'^(%s)(\.*)$' % body_strings
+
+        match = re.match(pattern, duration_string)
+        if match is None:
+            raise DurationError('incorrect duration string format: %s.' %
+                duration_string)
+        body_string, dots_string = match.groups()
+
+        try:
+            body_denominator = int(body_string)
+            body_duration = Fraction(1, body_denominator)
+        except ValueError:
+            if body_string == r'\breve':
+                body_duration = Fraction(2)
+            elif body_string == r'\longa':
+                body_duration = Fraction(4)
+            elif body_string == r'\maxima':
+                body_duration = Fraction(8)
+            else:
+                raise ValueError('unknown body string %s.' % body_string)
+
+        rational = body_duration
+        for n in range(len(dots_string)):
+            exponent = n + 1
+            denominator = 2 ** exponent
+            multiplier = Fraction(1, denominator)
+            addend = multiplier * body_duration
+            rational += addend
+
+        return rational
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
