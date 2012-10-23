@@ -56,13 +56,13 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     multipliers = mathtools.interpolate_divide(*args)
 
     # change floats to rationals
-    multipliers = [fractions.Fraction(int(round(x * 2**10)), 2**10) for x in multipliers]
+    multipliers = [durationtools.Multiplier(int(round(x * 2**10)), 2**10) for x in multipliers]
 
     # make notes
     result = []
     for i, multiplier in enumerate(multipliers):
         note = notetools.Note(pitches[i % len(pitches)], written)
-        note.duration_multiplier = fractions.Fraction(multiplier / written)
+        note.duration_multiplier = durationtools.Multiplier(multiplier / written)
         result.append(note)
 
     # return result

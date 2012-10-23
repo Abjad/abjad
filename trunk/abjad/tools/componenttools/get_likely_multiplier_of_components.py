@@ -18,7 +18,7 @@ def get_likely_multiplier_of_components(components):
             f'8..
         }
         >>> componenttools.get_likely_multiplier_of_components(staff[:])
-        Duration(7, 4)
+        Multiplier(7, 4)
 
     Return 1 when no multiplier is likely::
 
@@ -31,7 +31,7 @@ def get_likely_multiplier_of_components(components):
             f'8
         }
         >>> componenttools.get_likely_multiplier_of_components(staff[:])
-        Duration(1, 1)
+        Multiplier(1, 1)
 
     Return none when more than one multiplier is likely::
 
@@ -63,5 +63,5 @@ def get_likely_multiplier_of_components(components):
     if len(sequencetools.truncate_runs_in_sequence(chain_duration_numerators)) == 1:
         numerator = chain_duration_numerators[0]
         denominator = mathtools.greatest_power_of_two_less_equal(numerator)
-        likely_multiplier = durationtools.Duration(numerator, denominator)
+        likely_multiplier = durationtools.Multiplier(numerator, denominator)
         return likely_multiplier

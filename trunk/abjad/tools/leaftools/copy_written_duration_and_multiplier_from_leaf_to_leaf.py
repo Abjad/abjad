@@ -7,7 +7,7 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
     Copy written duration and multiplier from `source_leaf` to `target_leaf`::
 
         >>> note = Note("c'4")
-        >>> note.duration_multiplier = Duration(1, 2)
+        >>> note.duration_multiplier = Multiplier(1, 2)
         >>> rest = Rest((1, 64))
         >>> leaftools.copy_written_duration_and_multiplier_from_leaf_to_leaf(note, rest)
         Rest('r4 * 1/2')
@@ -26,7 +26,7 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
 
     # copy source leaf written duration and multiplier
     written = durationtools.Duration(source_leaf.written_duration)
-    multiplier = durationtools.Duration(source_leaf.duration_multiplier)
+    multiplier = durationtools.Multiplier(source_leaf.duration_multiplier)
 
     # set target leaf written duration and multiplier
     target_leaf.written_duration = written

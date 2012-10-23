@@ -1,4 +1,3 @@
-import fractions
 from abjad.tools import mathtools
 
 
@@ -35,5 +34,6 @@ def positive_integer_to_implied_prolation_multiplier(n):
         renamed ``durationtools.denominator_to_multiplier()`` to
         ``durationtools.positive_integer_to_implied_prolation_multiplier()``.
     '''
+    from abjad.tools import durationtools
 
-    return fractions.Fraction(mathtools.greatest_power_of_two_less_equal(n), n)
+    return durationtools.Multiplier(mathtools.greatest_power_of_two_less_equal(n), n)

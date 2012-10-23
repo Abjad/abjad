@@ -1,4 +1,3 @@
-import fractions
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 
@@ -42,10 +41,9 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
     from abjad.tools import tuplettools
 
     # check input
+    multiplier = durationtools.Multiplier(multiplier)
     if not isinstance(tuplet, tuplettools.FixedDurationTuplet):
         raise TypeError('must be fixed-duration tuplet.')
-
-    assert isinstance(multiplier, fractions.Fraction)
 
     # find new target duration
     old_target_duration = tuplet.target_duration

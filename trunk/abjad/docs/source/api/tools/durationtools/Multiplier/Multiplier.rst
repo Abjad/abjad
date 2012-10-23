@@ -113,8 +113,6 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__mul__
 
-    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
-
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.__ne__
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`

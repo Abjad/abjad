@@ -1,15 +1,12 @@
-import fractions
-
-
 def is_proper_tuplet_multiplier(multiplier):
     '''True when ``1/2 < multiplier < 2``.
 
     ::
 
         >>> for n in range(17):
-        ...     rational = Fraction(n, 8)
-        ...     multiplier = durationtools.is_proper_tuplet_multiplier(rational)
-        ...     print '%s   %s' % (rational, multiplier)
+        ...     multiplier = Multiplier(n, 8)
+        ...     result = durationtools.is_proper_tuplet_multiplier(multiplier)
+        ...     print '%s   %s' % (multiplier, result)
         ...
         0         False
         1/8     False
@@ -37,8 +34,12 @@ def is_proper_tuplet_multiplier(multiplier):
         renamed ``durationtools.is_tuplet_multiplier()`` to
         ``durationtools.is_proper_tuplet_multiplier()``.
     '''
+    from abjad.tools import durationtools
 
-    if fractions.Fraction(1, 2) < multiplier < fractions.Fraction(2):
+    # check input
+    multiplier = durationtools.Multiplier(multiplier)
+
+    if durationtools.Multiplier(1, 2) < multiplier < durationtools.Multiplier(2):
         return True
 
     return False

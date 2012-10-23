@@ -377,7 +377,7 @@ class Measure(FixedDurationContainer):
         ::
 
             >>> measure.multiplier
-            Fraction(2, 3)
+            Multiplier(2, 3)
 
         Return fraction.
         '''

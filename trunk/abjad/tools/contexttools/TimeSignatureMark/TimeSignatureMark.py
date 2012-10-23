@@ -255,7 +255,7 @@ class TimeSignatureMark(ContextMark):
 
             >>> time_signature = contexttools.TimeSignatureMark((3, 8))
             >>> time_signature.multiplier
-            Fraction(1, 1)
+            Multiplier(1, 1)
 
         Return fraction.
         '''

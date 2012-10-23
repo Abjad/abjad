@@ -1,3 +1,6 @@
+from abjad.tools import durationtools
+
+
 # TODO: reimplement as settable attribute of container duration interface.
 def set_container_multiplier(container, multiplier):
     r'''Set `container` `multiplier`::
@@ -15,7 +18,7 @@ def set_container_multiplier(container, multiplier):
 
     ::
 
-        >>> containertools.set_container_multiplier(tuplet, Duration(3, 4))
+        >>> containertools.set_container_multiplier(tuplet, Multiplier(3, 4))
 
     ::
 
@@ -35,6 +38,10 @@ def set_container_multiplier(container, multiplier):
     from abjad.tools import contexttools
     from abjad.tools import measuretools
     from abjad.tools import tuplettools
+
+    # check input
+    if multiplier is not None:
+        multiplier = durationtools.Multiplier(multiplier)
 
     if isinstance(container, tuplettools.FixedDurationTuplet):
         container.target_duration = multiplier * container.contents_duration

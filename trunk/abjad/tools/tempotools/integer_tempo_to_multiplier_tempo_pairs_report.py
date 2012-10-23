@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
-    maximum_numerator = None, maximum_denominator = None):
+    maximum_numerator=None, maximum_denominator=None):
     '''.. versionadded:: 2.0
 
     Print all multiplier, tempo pairs possible from `integer_tempo`.
