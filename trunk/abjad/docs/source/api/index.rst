@@ -307,11 +307,9 @@ Composition packages
    tools/durationtools/duration_pair_to_prolation_string
    tools/durationtools/duration_token_to_assignable_duration_pairs
    tools/durationtools/duration_token_to_assignable_rationals
-   tools/durationtools/duration_token_to_rational
    tools/durationtools/duration_tokens_to_duration_pairs
    tools/durationtools/duration_tokens_to_duration_pairs_with_least_common_denominator
    tools/durationtools/duration_tokens_to_least_common_denominator
-   tools/durationtools/duration_tokens_to_rationals
    tools/durationtools/group_duration_tokens_by_implied_prolation
    tools/durationtools/integer_to_implied_prolation
    tools/durationtools/is_lilypond_duration_name

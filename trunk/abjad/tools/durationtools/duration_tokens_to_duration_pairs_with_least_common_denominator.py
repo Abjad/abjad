@@ -11,7 +11,7 @@ def duration_tokens_to_duration_pairs_with_least_common_denominator(duration_tok
     '''
     from abjad.tools import durationtools
 
-    rationals = durationtools.duration_tokens_to_rationals(duration_tokens)
+    rationals = [durationtools.Duration(x) for x in duration_tokens]
     lcd = durationtools.duration_tokens_to_least_common_denominator(duration_tokens)
 
     duration_pairs = [

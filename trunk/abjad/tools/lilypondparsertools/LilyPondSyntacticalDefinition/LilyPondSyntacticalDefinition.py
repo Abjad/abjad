@@ -3229,7 +3229,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         assert durationtools.Duration.is_token(p[1])
         dots = p[2].value
         token = str(p[1]) + '.' * dots
-        duration = durationtools.Duration(durationtools.duration_token_to_rational(token))
+        duration = durationtools.Duration(token)
         p[0] = lilypondparsertools.LilyPondDuration(duration, None)
 
 
