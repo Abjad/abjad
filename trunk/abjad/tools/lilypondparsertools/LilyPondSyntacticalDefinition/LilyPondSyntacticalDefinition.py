@@ -3226,7 +3226,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_steno_duration__bare_unsigned__dots(self, p):
         'steno_duration : bare_unsigned dots'
         from abjad.tools import lilypondparsertools
-        assert durationtools.is_duration_token(p[1])
+        assert durationtools.Duration.is_token(p[1])
         dots = p[2].value
         token = str(p[1]) + '.' * dots
         duration = durationtools.Duration(durationtools.duration_token_to_rational(token))

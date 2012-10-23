@@ -20,7 +20,7 @@ class SchemeMoment(Scheme):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        if len(args) == 1 and durationtools.is_duration_token(args[0]):
+        if len(args) == 1 and durationtools.Duration.is_token(args[0]):
             args = durationtools.Duration(args[0])
         elif len(args) == 1 and isinstance(args[0], type(self)):
             args = args[0].duration

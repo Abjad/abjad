@@ -280,3 +280,23 @@ class Duration(ImmutableAbjadObject, Fraction):
         Return integer pair.
         '''
         return self.numerator, self.denominator
+
+    ### PUBLIC FUNCTIONS ###
+
+    @staticmethod
+    def is_token(expr):
+        '''.. versionadded:: 2.11
+
+        True if `expr` correctly initializes a duration.
+        Otherwise false.
+
+            >>> Duration.is_token('8.')
+            True
+
+        Return boolean.
+        '''
+        try:
+            Duration.__new__(Duration, expr)
+            return True
+        except:
+            return False
