@@ -3217,7 +3217,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         duration = p[1].duration
         multiplier = p[1].multiplier
         if dots:
-            token = durationtools.assignable_rational_to_lilypond_duration_string(duration)
+            token = duration.lilypond_duration_string
             token += '.' * dots
             duration = durationtools.Duration(durationtools.duration_token_to_rational(token))
         p[0] = lilypondparsertools.LilyPondDuration(duration, multiplier)

@@ -80,7 +80,7 @@ class Leaf(Component):
 
     @property
     def _formatted_duration(self):
-        duration_string = durationtools.assignable_rational_to_lilypond_duration_string(self.written_duration)
+        duration_string = self.written_duration.lilypond_duration_string
         if self.duration_multiplier is not None:
             return '%s * %s' % (duration_string, self.duration_multiplier)
         else:

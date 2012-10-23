@@ -304,8 +304,6 @@ Composition packages
    :maxdepth: 1
 
    tools/durationtools/all_are_durations
-   tools/durationtools/assignable_rational_to_dot_count
-   tools/durationtools/assignable_rational_to_lilypond_duration_string
    tools/durationtools/duration_pair_to_prolation_string
    tools/durationtools/duration_token_to_assignable_duration_pairs
    tools/durationtools/duration_token_to_assignable_rationals

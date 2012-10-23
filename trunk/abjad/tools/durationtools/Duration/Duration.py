@@ -229,6 +229,39 @@ class Duration(ImmutableAbjadObject, Fraction):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def dot_count(self):
+        '''.. versionadded:: 2.11
+
+        Positive integer number of dots required to notate duration.
+
+        Raise assignability error when duration is not assignable::
+
+            >>> for n in range(1, 9):
+            ...     try:
+            ...         duration = Duration(n, 16)
+            ...         print '{}\t{}'.format(duration, duration.dot_count)
+            ...     except AssignabilityError:
+            ...         pass
+            ... 
+            1/16    0
+            1/8     0
+            3/16    1
+            1/4     0
+            3/8     1
+            7/16    2
+            1/2     0
+
+        Return positive integer.
+        '''
+        if not self.is_assignable:
+            raise AssignabilityError
+
+        binary_string = mathtools.integer_to_binary_string(self.numerator)
+        digit_sum = sum([int(x) for x in list(binary_string)])
+        dot_count = digit_sum - 1
+        return dot_count
+
+    @property
     def is_assignable(self):
         '''.. versionadded:: 2.11
 
@@ -263,6 +296,41 @@ class Duration(ImmutableAbjadObject, Fraction):
                 if mathtools.is_assignable_integer(self.numerator):
                     return True
         return False
+
+    @property
+    def lilypond_duration_string(self):
+        '''.. versionadded:: 2.11
+
+        LilyPond duration string of assignable duration.
+
+        Raise assignability error when duration is not assignable::
+
+            >>> Duration(3, 16).lilypond_duration_string
+            '8.'
+
+        Return string.
+        '''
+        from abjad.tools import durationtools
+
+        if not self.is_assignable:
+            raise AssignabilityError
+
+        undotted_rational = durationtools.rational_to_equal_or_lesser_binary_rational(self)
+        if undotted_rational <= 1:
+            undotted_duration_string = str(undotted_rational.denominator)
+        elif undotted_rational == type(self)(2, 1):
+            undotted_duration_string = r'\breve'
+        elif undotted_rational == type(self)(4, 1):
+            undotted_duration_string = r'\longa'
+        elif undotted_rational == type(self)(8, 1):
+            undotted_duration_string = r'\maxima'
+        else:
+            raise ValueError('can not process undotted rational: %s' % undotted_rational)
+
+        dot_count = self.dot_count
+        dot_string = '.' * dot_count
+        dotted_duration_string = undotted_duration_string + dot_string
+        return dotted_duration_string
 
     @property
     def pair(self):

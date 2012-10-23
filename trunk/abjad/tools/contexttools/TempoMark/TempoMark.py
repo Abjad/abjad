@@ -164,8 +164,9 @@ class TempoMark(ContextMark):
 
     @property
     def _dotted(self):
-        '''Dotted numeral representation of duration.'''
-        return durationtools.assignable_rational_to_lilypond_duration_string(self.duration)
+        '''Dotted numeral representation of duration.
+        '''
+        return self.duration.lilypond_duration_string
 
     @property
     def _equation(self):
