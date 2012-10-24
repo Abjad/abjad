@@ -65,7 +65,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
     else:
         minimum_written_duration = durationtools.Duration(minimum_written_duration)
 
-    generator = durationtools.yield_all_assignable_durations()
+    generator = durationtools.yield_assignable_durations()
     pairs = []
 
     while True:

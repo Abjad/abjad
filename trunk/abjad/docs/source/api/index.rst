@@ -317,9 +317,9 @@ Composition packages
    tools/durationtools/rational_to_equal_or_greater_binary_rational
    tools/durationtools/rational_to_equal_or_lesser_assignable_rational
    tools/durationtools/rational_to_equal_or_lesser_binary_rational
-   tools/durationtools/yield_all_assignable_durations
-   tools/durationtools/yield_all_positive_integer_pairs
-   tools/durationtools/yield_all_positive_rationals
+   tools/durationtools/yield_assignable_durations
+   tools/durationtools/yield_positive_fractions
+   tools/durationtools/yield_positive_nonreduced_fractions
    tools/durationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`gracetools <abjad.tools.gracetools>`

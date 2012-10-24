@@ -455,7 +455,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
         Prolation string.
 
-            >>> generator = durationtools.yield_all_positive_rationals(unique=True)
+            >>> generator = durationtools.yield_positive_fractions(unique=True)
             >>> for n in range(16):
             ...     rational = generator.next()
             ...     duration = Duration(rational)

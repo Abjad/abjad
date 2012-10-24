@@ -497,9 +497,9 @@ Changes to the ``durationtools`` package:
 
   ::
 
-    durationtools.yield_all_assignable_durations()
-    durationtools.yield_all_positive_integer_pairs()
-    durationtools.yield_all_positive_rationals()
+    durationtools.yield_assignable_durations()
+    durationtools.yield_positive_nonreduced_fractions()
+    durationtools.yield_positive_fractions()
     durationtools.yield_all_positive_rationals_uniquely()
     durationtools.yield_prolation_rewrite_pairs()
 

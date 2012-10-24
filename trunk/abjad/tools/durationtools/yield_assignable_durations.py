@@ -1,9 +1,9 @@
-def yield_all_assignable_durations():
+def yield_assignable_durations():
     '''.. versionadded:: 2.0
 
     Yield all assignable rationals in Cantor diagonalized order::
 
-        >>> generator = durationtools.yield_all_assignable_durations()
+        >>> generator = durationtools.yield_assignable_durations()
         >>> for n in range(16):
         ...     generator.next()
         ...
@@ -28,7 +28,7 @@ def yield_all_assignable_durations():
     '''
     from abjad.tools import durationtools
 
-    generator = durationtools.yield_all_positive_rationals(unique=True)
+    generator = durationtools.yield_positive_fractions(unique=True)
     while True:
         duration = generator.next()
         duration = durationtools.Duration(duration)

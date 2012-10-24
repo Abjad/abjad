@@ -2,9 +2,9 @@ from abjad import *
 from abjad.tools import durationtools
 
 
-def test_durationtools_yield_all_assignable_durations_01():
+def test_durationtools_yield_assignable_durations_01():
 
-    generator = durationtools.yield_all_assignable_durations()
+    generator = durationtools.yield_assignable_durations()
 
     assert generator.next() == Fraction(1, 1)
     assert generator.next() == Fraction(2, 1)
