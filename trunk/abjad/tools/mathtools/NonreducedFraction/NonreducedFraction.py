@@ -293,7 +293,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         from abjad.tools import durationtools
         from abjad.tools import mathtools
         denominator = mathtools.least_common_multiple(denominator, fraction.denominator)
-        return type(self)(fraction).with_denominator(denominator)
+        return NonreducedFraction(fraction).with_denominator(denominator)
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 

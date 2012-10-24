@@ -97,6 +97,10 @@ Methods
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
+.. automethod:: experimental.divisiontools.Division.Division.Division.with_denominator
+
+    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
 Special Methods
 ---------------
 
