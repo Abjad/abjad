@@ -1741,6 +1741,13 @@ Composition packages
 :py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timesignaturetools/BeatHierarchy/BeatHierarchy
+
 .. rubric:: functions
 
 .. toctree::

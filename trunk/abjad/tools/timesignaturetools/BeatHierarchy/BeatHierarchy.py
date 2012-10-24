@@ -24,12 +24,12 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> quantizationtools.BeatHierarchy((4, 4))
+        >>> timesignaturetools.BeatHierarchy((4, 4))
         BeatHierarchy(TimeSignatureMark((4, 4)), big_endian=True)
 
     ::
 
-        >>> print quantizationtools.BeatHierarchy((4, 4)).pretty_rtm_format
+        >>> print timesignaturetools.BeatHierarchy((4, 4)).pretty_rtm_format
         (4 (
             (2 (
                 1
@@ -40,7 +40,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print quantizationtools.BeatHierarchy((3, 4)).pretty_rtm_format
+        >>> print timesignaturetools.BeatHierarchy((3, 4)).pretty_rtm_format
         (3 (
             1
             1
@@ -48,7 +48,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print quantizationtools.BeatHierarchy((6, 8)).pretty_rtm_format
+        >>> print timesignaturetools.BeatHierarchy((6, 8)).pretty_rtm_format
         (6 (
             (3 (
                 1
@@ -61,7 +61,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print quantizationtools.BeatHierarchy((5, 4)).pretty_rtm_format
+        >>> print timesignaturetools.BeatHierarchy((5, 4)).pretty_rtm_format
         (5 (
             (3 (
                 1
@@ -73,7 +73,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print quantizationtools.BeatHierarchy((5, 4), big_endian=False).pretty_rtm_format
+        >>> print timesignaturetools.BeatHierarchy((5, 4), big_endian=False).pretty_rtm_format
         (5 (
             (2 (
                 1
@@ -85,7 +85,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print quantizationtools.BeatHierarchy((12, 8)).pretty_rtm_format
+        >>> print timesignaturetools.BeatHierarchy((12, 8)).pretty_rtm_format
         (12 (
             (6 (
                 (3 (
@@ -194,7 +194,7 @@ class BeatHierarchy(AbjadObject):
 
         ::
 
-            >>> bh = quantizationtools.BeatHierarchy((5, 4), big_endian=True)
+            >>> bh = timesignaturetools.BeatHierarchy((5, 4), big_endian=True)
             >>> bh.big_endian
             True
             >>> print bh.pretty_rtm_format 
@@ -209,7 +209,7 @@ class BeatHierarchy(AbjadObject):
 
         ::
 
-            >>> bh = quantizationtools.BeatHierarchy((5, 4), big_endian=False)
+            >>> bh = timesignaturetools.BeatHierarchy((5, 4), big_endian=False)
             >>> bh.big_endian
             False
             >>> print bh.pretty_rtm_format 
@@ -232,7 +232,7 @@ class BeatHierarchy(AbjadObject):
 
         ::
 
-            >>> bh = quantizationtools.BeatHierarchy((2, 4))
+            >>> bh = timesignaturetools.BeatHierarchy((2, 4))
 
         ::
 
@@ -259,7 +259,7 @@ class BeatHierarchy(AbjadObject):
 
         ::
 
-            >>> quantizationtools.BeatHierarchy((2, 4)).root_node
+            >>> timesignaturetools.BeatHierarchy((2, 4)).root_node
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
@@ -284,7 +284,7 @@ class BeatHierarchy(AbjadObject):
 
         ::
 
-            >>> bh = quantizationtools.BeatHierarchy((2, 4))
+            >>> bh = timesignaturetools.BeatHierarchy((2, 4))
 
         ::
 
@@ -306,7 +306,7 @@ class BeatHierarchy(AbjadObject):
 
         ::
 
-            >>> bh = quantizationtools.BeatHierarchy((7, 4))
+            >>> bh = timesignaturetools.BeatHierarchy((7, 4))
             >>> bh.time_signature
             TimeSignatureMark((7, 4))
 
