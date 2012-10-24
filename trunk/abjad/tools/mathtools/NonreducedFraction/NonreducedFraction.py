@@ -408,6 +408,45 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         return NonreducedFraction(result_numerator, result_denominator)
 
+    def multiply_with_numerator_preservation(self, multiplier):
+        '''.. versionadded:: 2.11
+
+        Multiply nonreduced fraction by `multiplier` with numerator preservation 
+        where possible.
+
+            >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((2, 3))
+            NonreducedFraction(9, 24)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((1, 2))
+            NonreducedFraction(9, 32)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(9, 16).multiply_with_numerator_preservation((5, 6))
+            NonreducedFraction(45, 96)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(3, 8).multiply_with_numerator_preservation((2, 3))
+            NonreducedFraction(3, 12)
+
+        Return nonreduced fraction.
+        '''
+        from abjad.tools import durationtools
+
+        multiplier = durationtools.Multiplier(multiplier)
+        self_denominator = self.denominator
+        candidate_result_denominator = self_denominator / multiplier
+
+        if candidate_result_denominator.denominator == 1:
+            return NonreducedFraction(self.numerator, candidate_result_denominator.numerator)
+        else:
+            result_numerator = self.numerator * candidate_result_denominator.denominator
+            result_denominator = candidate_result_denominator.numerator
+            return NonreducedFraction(result_numerator, result_denominator)
+
     def multiply_without_reducing(self, expr):
         '''.. versionadded:: 2.11
 

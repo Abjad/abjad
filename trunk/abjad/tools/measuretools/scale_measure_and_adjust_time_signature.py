@@ -45,8 +45,8 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     reduced_pair = reduced_pair.pair
 
     if reduced_pair != multiplied_pair:
-        new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
-            old_pair, multiplier)
+        new_pair = mathtools.NonreducedFraction(old_pair)
+        new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
@@ -64,16 +64,16 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
             new_pair = durationtools.multiply_duration_pair(old_pair, multiplier)
         # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
         elif durationtools.Duration(0) < multiplier:
-            new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
-                old_pair, multiplier)
+            new_pair = mathtools.NonreducedFraction(old_pair)
+            new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
         elif multiplier == durationtools.Duration(0):
             raise ZeroDivisionError
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
     else:
-        new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
-            old_pair, multiplier)
+        new_pair = mathtools.NonreducedFraction(old_pair)
+        new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
