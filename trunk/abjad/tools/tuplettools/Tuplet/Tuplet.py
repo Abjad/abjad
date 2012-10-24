@@ -71,9 +71,8 @@ class Tuplet(Container):
         if self.preferred_denominator is not None:
             inverse_multiplier = durationtools.Multiplier(
                 self.multiplier.denominator, self.multiplier.numerator)
-            nonreduced_fraction = \
-                durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                inverse_multiplier, self.preferred_denominator)
+            nonreduced_fraction = mathtools.NonreducedFraction(inverse_multiplier)
+            nonreduced_fraction = nonreduced_fraction.with_denominator(self.preferred_denominator)
             d, n = nonreduced_fraction.pair
         else:
             n, d = self.multiplier.numerator, self.multiplier.denominator

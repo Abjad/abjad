@@ -1,8 +1,9 @@
+import copy
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import formattools
+from abjad.tools import mathtools
 from abjad.tools.containertools.FixedDurationContainer import FixedDurationContainer
-import copy
 
 
 class Measure(FixedDurationContainer):
@@ -159,8 +160,8 @@ class Measure(FixedDurationContainer):
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
             naive_meter = self.preprolated_duration
-            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                naive_meter, old_denominator)
+            better_meter = mathtools.NonreducedFraction(naive_meter)
+            better_meter = better_meter.with_denominator(old_denominator)
             better_meter = contexttools.TimeSignatureMark(better_meter)
             contexttools.detach_time_signature_marks_attached_to_component(self)
             better_meter.attach(self)

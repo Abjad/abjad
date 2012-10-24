@@ -1,6 +1,7 @@
 import fractions
 import numbers
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.contexttools.ContextMark import ContextMark
 
@@ -110,9 +111,8 @@ class TempoMark(ContextMark):
                 raise ImpreciseTempoError
             new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
-            nonreduced_fraction = \
-                durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                new_quarters_per_minute / 4, minimum_denominator)
+            nonreduced_fraction = mathtools.NonreducedFraction(new_quarters_per_minute / 4)
+            nonreduced_fraction = nonreduced_fraction.with_denominator(minimum_denominator)
             new_units_per_minute, new_duration_denominator = nonreduced_fraction.pair
             new_duration = durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
@@ -154,9 +154,8 @@ class TempoMark(ContextMark):
                 raise ImpreciseTempoError
             new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
-            nonreduced_fraction = \
-                durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                new_quarters_per_minute / 4, minimum_denominator)
+            nonreduced_fraction = mathtools.NonreducedFraction(new_quarters_per_minute / 4)
+            nonreduced_fraction = nonreduced_fraction.with_denominator(minimum_denominator)
             new_units_per_minute, new_duration_denominator = nonreduced_fraction.pair
             new_duration = durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)

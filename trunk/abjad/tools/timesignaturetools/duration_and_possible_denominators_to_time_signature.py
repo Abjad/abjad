@@ -36,8 +36,8 @@ def duration_and_possible_denominators_to_time_signature(duration, denominators=
         if factor is not None:
             denominators = [d for d in denominators if factor in mathtools.factors(d)]
         for desired_denominator in sorted(denominators):
-            candidate_pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                duration, desired_denominator)
+            nonreduced_fraction = mathtools.NonreducedFraction(duration)
+            candidate_pair = nonreduced_fraction.with_denominator(desired_denominator)
             if candidate_pair.denominator == desired_denominator:
                 return contexttools.TimeSignatureMark(candidate_pair)
 

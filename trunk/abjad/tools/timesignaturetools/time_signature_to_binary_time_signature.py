@@ -42,9 +42,8 @@ def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier
         binary_denominator = mathtools.greatest_power_of_two_less_equal(nonbinary_denominator, 1)
 
     # find binary pair
-    nonbinary_pair = (nonbinary_meter.numerator, nonbinary_meter.denominator)
-    binary_pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-        nonbinary_pair, binary_denominator)
+    nonbinary_pair = mathtools.NonreducedFraction(nonbinary_meter.numerator, nonbinary_meter.denominator)
+    binary_pair = nonbinary_pair.with_denominator(binary_denominator)
 
     # return new binary meter
     return contexttools.TimeSignatureMark(binary_pair)

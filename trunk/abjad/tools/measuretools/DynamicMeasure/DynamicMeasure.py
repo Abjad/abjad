@@ -1,5 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools.measuretools.Measure.Measure import Measure
 
 
@@ -50,8 +51,8 @@ class DynamicMeasure(Measure):
 
     def _update_time_signature(self):
         if self.denominator:
-            meter_pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                self.contents_duration, self.denominator)
+            meter_pair = mathtools.NonreducedFraction(self.contents_duration)
+            meter_pair = meter_pair.with_denominator(self.denominator)
         else:
             meter_pair = (self.contents_duration.numerator, self.contents_duration.denominator)
         meter = contexttools.TimeSignatureMark(meter_pair)

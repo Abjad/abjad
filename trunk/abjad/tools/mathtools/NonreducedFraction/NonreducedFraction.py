@@ -359,3 +359,15 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         Return fraction.
         '''
         return Fraction(self.numerator, self.denominator)
+
+    def with_denominator(self, denominator):
+        '''Return new nonreduced fraction with integer `denominator`.
+
+            >>> mathtools.NonreducedFraction(3, 6).with_denominator(12)
+            NonreducedFraction(6, 12)
+
+        Return nonreduced fraction.
+        '''
+        from abjad.tools import durationtools
+        return durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+            self, denominator)

@@ -41,6 +41,8 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
     assert isinstance(duration, (fractions.Fraction, int, long, tuple))
     if isinstance(duration, tuple):
         n, d = duration
+    elif isinstance(duration, mathtools.NonreducedFraction):
+        n, d = duration.pair
     else:
         n, d = durationtools.Duration(duration).pair
     multiplier = fractions.Fraction(integer_denominator, d)
