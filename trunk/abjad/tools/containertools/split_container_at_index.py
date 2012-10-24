@@ -1,5 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import leaftools
 
 
@@ -149,15 +150,13 @@ def split_container_at_index(component, i, fracture_spanners=False):
     if isinstance(component, measuretools.Measure):
         meter_denominator = contexttools.get_effective_time_signature(component).denominator
         left_duration = sum([x.prolated_duration for x in left_music])
-        left_pair = \
-            durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
-            left_duration, meter_denominator)
+        left_pair = mathtools.NonreducedFraction(left_duration)
+        left_pair = left_pair.with_multiple_of_denominator(meter_denominator)
         left_meter = contexttools.TimeSignatureMark(left_pair)
         left = component.__class__(left_meter, left_music)
         right_duration = sum([x.prolated_duration for x in right_music])
-        right_pair = \
-            durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
-            right_duration, meter_denominator)
+        right_pair = mathtools.NonreducedFraction(right_duration)
+        right_pair = right_pair.with_multiple_of_denominator(meter_denominator)
         right_meter = contexttools.TimeSignatureMark(right_pair)
         right = component.__class__(right_meter, right_music)
     elif isinstance(component, tuplettools.FixedDurationTuplet):

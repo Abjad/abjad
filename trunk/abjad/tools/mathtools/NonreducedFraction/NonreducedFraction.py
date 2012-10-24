@@ -375,3 +375,18 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
             return type(self)(new_numerator.numerator, new_denominator.numerator)
         else:
             return type(self)(n, d)
+
+    def with_multiple_of_denominator(self, denominator):
+        '''Return new nonreduced fraction with multiple of integer `denominator`.
+
+            >>> mathtools.NonreducedFraction(3, 6).with_multiple_of_denominator(5)
+            NonreducedFraction(5, 10)
+
+        Return nonreduced fraction.
+        '''
+        result = self.with_denominator(denominator)
+        while not result.denominator == denominator:
+            denominator *= 2
+            result = result.with_denominator(denominator)
+
+        return result

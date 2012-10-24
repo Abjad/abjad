@@ -50,6 +50,8 @@ Methods
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.with_denominator
 
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.with_multiple_of_denominator
+
 Special Methods
 ---------------
 
