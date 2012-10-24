@@ -38,7 +38,7 @@ def duration_and_possible_denominators_to_time_signature(duration, denominators=
         for desired_denominator in sorted(denominators):
             candidate_pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 duration, desired_denominator)
-            if candidate_pair[-1] == desired_denominator:
+            if candidate_pair.denominator == desired_denominator:
                 return contexttools.TimeSignatureMark(candidate_pair)
 
     if factor is not None:

@@ -1,3 +1,4 @@
+from abjad.tools import mathtools
 from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 
 
@@ -19,7 +20,10 @@ class DivisionIncisedRhythmMaker(IncisedRhythmMaker):
             prefix_signal_index += prefix_length
             suffix_signal_index += suffix_length
             prolation_addendum = prolation_addenda[pair_index]
-            numerator = duration_pair[0] + (prolation_addendum % duration_pair[0])
+            if isinstance(duration_pair, tuple):
+                numerator = duration_pair[0] + (prolation_addendum % duration_pair[0])
+            else:
+                numerator = duration_pair.numerator + (prolation_addendum % duration_pair.numerator)
             numeric_map_part = self._make_numeric_map_part(numerator, prefix, suffix)
             numeric_map.append(numeric_map_part)
         return numeric_map

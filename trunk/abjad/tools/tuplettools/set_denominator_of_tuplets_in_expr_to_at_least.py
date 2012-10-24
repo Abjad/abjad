@@ -46,4 +46,4 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
         durations = [tuplet.contents_duration, tuplet.preprolated_duration, (1, n)]
         duration_pairs = durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator(
             durations)
-        tuplet.preferred_denominator = duration_pairs[1][0]
+        tuplet.preferred_denominator = duration_pairs[1].numerator

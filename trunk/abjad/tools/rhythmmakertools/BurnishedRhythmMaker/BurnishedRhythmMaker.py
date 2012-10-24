@@ -174,7 +174,10 @@ class BurnishedRhythmMaker(RhythmMaker):
         pattern, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths = septuplet
         prolated_duration_pairs = self._make_prolated_duration_pairs(
             duration_pairs, prolation_addenda)
-        prolated_numerators = [pair[0] for pair in prolated_duration_pairs]
+        if isinstance(prolated_duration_pairs[0], tuple):
+            prolated_numerators = [pair[0] for pair in prolated_duration_pairs]
+        else:
+            prolated_numerators = [pair.numerator for pair in prolated_duration_pairs]
         map_tokens = sequencetools.split_sequence_extended_to_weights(
             pattern, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
@@ -189,8 +192,15 @@ class BurnishedRhythmMaker(RhythmMaker):
                 prolated_duration_pairs.append(duration_pair)
             else:
                 prolation_addendum = prolation_addenda[i]
-                prolation_addendum %= duration_pair[0]
-                prolated_duration_pair = (duration_pair[0] + prolation_addendum, duration_pair[1])
+                if hasattr(duration_pair, 'numerator'):
+                    prolation_addendum %= duration_pair.numerator
+                else:
+                    prolation_addendum %= duration_pair[0]
+                if isinstance(duration_pair, tuple):
+                    numerator, denominator = duration_pair
+                else:
+                    numerator, denominator = duration_pair.pair
+                prolated_duration_pair = (numerator + prolation_addendum, denominator)
                 prolated_duration_pairs.append(prolated_duration_pair)
         return prolated_duration_pairs
 

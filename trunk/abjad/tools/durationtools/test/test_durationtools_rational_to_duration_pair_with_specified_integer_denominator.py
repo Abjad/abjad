@@ -1,5 +1,7 @@
 from abjad import *
 from abjad.tools import durationtools
+import py
+py.test.skip('deprecated')
 
 
 def test_durationtools_rational_to_duration_pair_with_specified_integer_denominator_01():

@@ -38,11 +38,11 @@ class RhythmMaker(AbjadObject):
     def _make_secondary_duration_pairs(self, duration_pairs, secondary_divisions):
         if not secondary_divisions:
             return duration_pairs[:]
-        numerators = [duration_pair[0] for duration_pair in duration_pairs]
+        numerators = [duration_pair.numerator for duration_pair in duration_pairs]
         secondary_numerators = sequencetools.split_sequence_by_weights(
             numerators, secondary_divisions, cyclic=True, overhang=True)
         secondary_numerators = sequencetools.flatten_sequence(secondary_numerators)
-        denominator = duration_pairs[0][1]
+        denominator = duration_pairs[0].denominator
         secondary_duration_pairs = [(n, denominator) for n in secondary_numerators]
         return secondary_duration_pairs
 
@@ -70,7 +70,7 @@ class RhythmMaker(AbjadObject):
         duration_pairs = durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
-        lcd = dummy_duration_pair[1]
+        lcd = dummy_duration_pair.denominator
         multiplier = lcd / denominator
         scaled_signals = []
         for signal in signals:

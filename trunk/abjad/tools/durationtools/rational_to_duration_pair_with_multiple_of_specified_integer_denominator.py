@@ -5,82 +5,82 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(dur
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 2)
-        (1, 2)
+        NonreducedFraction(1, 2)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 4)
-        (2, 4)
+        NonreducedFraction(2, 4)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 8)
-        (4, 8)
+        NonreducedFraction(4, 8)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 16)
-        (8, 16)
+        NonreducedFraction(8, 16)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 3)
-        (3, 6)
+        NonreducedFraction(3, 6)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 6)
-        (3, 6)
+        NonreducedFraction(3, 6)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 12)
-        (6, 12)
+        NonreducedFraction(6, 12)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 24)
-        (12, 24)
+        NonreducedFraction(12, 24)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 5)
-        (5, 10)
+        NonreducedFraction(5, 10)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 10)
-        (5, 10)
+        NonreducedFraction(5, 10)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 20)
-        (10, 20)
+        NonreducedFraction(10, 20)
 
     ::
 
         >>> durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
         ...     Fraction(1, 2), 40)
-        (20, 40)
+        NonreducedFraction(20, 40)
 
-    Return integer pair.
+    Return nonreduced fraction.
     '''
     from abjad.tools import durationtools
 
     pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
         duration, integer_denominator)
 
-    while not pair[-1] == integer_denominator:
+    while not pair.denominator == integer_denominator:
         integer_denominator *= 2
         pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
             pair, integer_denominator)

@@ -5,7 +5,7 @@ def duration_tokens_to_duration_pairs_with_least_common_denominator(duration_tok
 
         >>> durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator(
         ... [Fraction(2, 4), 3, '8.', (5, 16)])
-        [(8, 16), (48, 16), (3, 16), (5, 16)]
+        [NonreducedFraction(8, 16), NonreducedFraction(48, 16), NonreducedFraction(3, 16), NonreducedFraction(5, 16)]
 
     Return new object of `duration_tokens` type.
     '''

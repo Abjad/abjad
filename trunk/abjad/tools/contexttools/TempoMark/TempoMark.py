@@ -110,9 +110,10 @@ class TempoMark(ContextMark):
                 raise ImpreciseTempoError
             new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
-            new_units_per_minute, new_duration_denominator = \
+            nonreduced_fraction = \
                 durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 new_quarters_per_minute / 4, minimum_denominator)
+            new_units_per_minute, new_duration_denominator = nonreduced_fraction.pair
             new_duration = durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
@@ -153,9 +154,10 @@ class TempoMark(ContextMark):
                 raise ImpreciseTempoError
             new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
-            new_units_per_minute, new_duration_denominator = \
+            nonreduced_fraction = \
                 durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 new_quarters_per_minute / 4, minimum_denominator)
+            new_units_per_minute, new_duration_denominator = nonreduced_fraction.pair
             new_duration = durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
