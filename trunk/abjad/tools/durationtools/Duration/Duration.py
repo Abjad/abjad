@@ -326,7 +326,6 @@ class Duration(ImmutableAbjadObject, Fraction):
         # TODO: rewrite with only one operation per line
         flag_count = max(-int(math.floor(math.log(float(self.numerator) /
             self.denominator, 2))) - 2, 0)
-
         return flag_count
 
     @property
