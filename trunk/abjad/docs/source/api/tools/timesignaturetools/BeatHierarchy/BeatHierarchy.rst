@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.big_endian
 
+.. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.depthwise_offset_inventory
+
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.pretty_rtm_format
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.root_node

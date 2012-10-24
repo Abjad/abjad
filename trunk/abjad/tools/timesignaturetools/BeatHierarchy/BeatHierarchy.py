@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools.abctools import AbjadObject
@@ -227,6 +228,31 @@ class BeatHierarchy(AbjadObject):
         return self._big_endian
 
     @property
+    def depthwise_offset_inventory(self):
+        '''Depthwise inventory of offsets at each grouping level:
+
+        ::
+
+            >>> bh = timesignaturetools.BeatHierarchy((5, 4))
+            >>> for depth, offsets in bh.depthwise_offset_inventory.items():
+            ...     print depth, offsets
+            0 (Offset(0, 1), Offset(5, 4))
+            1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
+            2 (Offset(0, 1), Offset(1, 4), Offset(1, 2), Offset(3, 4), Offset(1, 1), Offset(5, 4))
+
+        Return dictionary.
+        '''
+        inventory = {}
+        for depth, nodes in self.root_node.depthwise_inventory.items():
+            offsets = []
+            for node in nodes:
+                offset = node.offset / self.time_signature.denominator
+                offsets.append(offset)
+            offsets.append(durationtools.Offset(self.time_signature.duration))
+            inventory[depth] = tuple(offsets)
+        return inventory
+
+    @property
     def pretty_rtm_format(self):
         '''The pretty RTM format of the root RhythmTreeNode of the BeatHierarchy:
 
@@ -313,4 +339,6 @@ class BeatHierarchy(AbjadObject):
         Return `TimeSignatureMark` instance.
         '''
         return self._time_signature
+
+    ### PUBLIC METHODS ###
 
