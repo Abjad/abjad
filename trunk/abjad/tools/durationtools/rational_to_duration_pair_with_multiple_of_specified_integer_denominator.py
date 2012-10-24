@@ -1,3 +1,6 @@
+from abjad.tools import mathtools
+
+
 def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(duration, integer_denominator):
     '''.. versionadded: 1.1.1
 
@@ -77,12 +80,10 @@ def rational_to_duration_pair_with_multiple_of_specified_integer_denominator(dur
     '''
     from abjad.tools import durationtools
 
-    pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-        duration, integer_denominator)
+    pair = mathtools.NonreducedFraction(duration).with_denominator(integer_denominator)
 
     while not pair.denominator == integer_denominator:
         integer_denominator *= 2
-        pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-            pair, integer_denominator)
+        pair = mathtools.NonreducedFraction(duration).with_denominator(integer_denominator)
 
     return pair
