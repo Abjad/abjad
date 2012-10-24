@@ -344,6 +344,70 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     ### PUBLIC METHODS ###
 
+    def multiply_with_cross_cancelation(self, multiplier):
+        '''.. versionadded:: 2.11
+
+        Multiply nonreduced fraction by `expr` with cross-cancelation::
+
+            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((2, 3))
+            NonreducedFraction(4, 12)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((4, 1))
+            NonreducedFraction(4, 2)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((3, 5))
+            NonreducedFraction(12, 40)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(4, 8).multiply_with_cross_cancelation((6, 5))
+            NonreducedFraction(12, 20)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(5, 6).multiply_with_cross_cancelation((6, 5))
+            NonreducedFraction(1, 1)
+
+        Return nonreduced fraction.
+        '''
+        from abjad.tools import durationtools
+        from abjad.tools import mathtools
+
+        multiplier = durationtools.Multiplier(multiplier)
+
+        self_numerator_factors = mathtools.factors(self.numerator)
+        multiplier_denominator_factors = mathtools.factors(multiplier.denominator)
+        for factor in multiplier_denominator_factors[:]:
+            if factor in self_numerator_factors:
+                self_numerator_factors.remove(factor)
+                multiplier_denominator_factors.remove(factor)
+
+        self_denominator_factors = mathtools.factors(self.denominator)
+        multiplier_numerator_factors = mathtools.factors(multiplier.numerator)
+        for factor in multiplier_numerator_factors[:]:
+            if factor in self_denominator_factors:
+                self_denominator_factors.remove(factor)
+                multiplier_numerator_factors.remove(factor)
+
+        result_numerator_factors = self_numerator_factors + \
+            multiplier_numerator_factors
+        result_denominator_factors = self_denominator_factors + \
+            multiplier_denominator_factors
+
+        result_numerator = 1
+        for factor in result_numerator_factors:
+            result_numerator *= factor
+
+        result_denominator = 1
+        for factor in result_denominator_factors:
+            result_denominator *= factor
+
+        return NonreducedFraction(result_numerator, result_denominator)
+
     def multiply_without_reducing(self, expr):
         '''.. versionadded:: 2.11
 

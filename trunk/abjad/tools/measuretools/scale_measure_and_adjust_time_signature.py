@@ -40,8 +40,9 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
     multiplied_pair = multiplied_pair.multiply_without_reducing(multiplier)
     multiplied_pair = multiplied_pair.pair
-    reduced_pair = durationtools.multiply_duration_pair_and_reduce_factors(
-        old_multiplier_pair, multiplier)
+    reduced_pair = mathtools.NonreducedFraction(old_multiplier_pair)
+    reduced_pair = reduced_pair.multiply_with_cross_cancelation(multiplier)
+    reduced_pair = reduced_pair.pair
 
     if reduced_pair != multiplied_pair:
         new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
@@ -49,13 +50,15 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
-        remaining_multiplier = durationtools.Duration(*reduced_pair)
+        remaining_multiplier = durationtools.Duration(reduced_pair)
         if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
         containertools.scale_contents_of_container(measure, multiplier)
         if old_meter.is_nonbinary or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
-            new_pair = durationtools.multiply_duration_pair_and_reduce_factors(old_pair, multiplier)
+            new_pair = mathtools.NonreducedFraction(old_pair)
+            new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
+            new_pair = new_pair.pair
         # multiplier is a negative power of two, like 1/2, 1/4, etc.
         elif multiplier < durationtools.Duration(0):
             new_pair = durationtools.multiply_duration_pair(old_pair, multiplier)

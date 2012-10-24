@@ -46,6 +46,8 @@ Methods
 
     Inherited from :py:class:`fractions.Fraction`
 
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.multiply_with_cross_cancelation
+
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.multiply_without_reducing
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.reduce

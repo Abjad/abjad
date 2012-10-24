@@ -316,7 +316,6 @@ Composition packages
    tools/durationtools/integer_to_implied_prolation
    tools/durationtools/is_lilypond_duration_name
    tools/durationtools/is_lilypond_duration_string
-   tools/durationtools/multiply_duration_pair_and_reduce_factors
    tools/durationtools/multiply_duration_pair_and_try_to_preserve_numerator
    tools/durationtools/numeric_seconds_to_clock_string
    tools/durationtools/rational_to_equal_or_greater_assignable_rational
