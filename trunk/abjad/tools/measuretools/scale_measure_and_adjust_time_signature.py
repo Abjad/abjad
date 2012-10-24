@@ -37,8 +37,9 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     old_multiplier = old_meter.multiplier
     old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
 
-    #multiplied_pair = durationtools.multiply_duration_pair(old_multiplier_pair, multiplier)
-    multiplied_pair = durationtools.multiply_duration_pair(old_multiplier_pair, multiplier).pair
+    multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
+    multiplied_pair = multiplied_pair.multiply_without_reducing(multiplier)
+    multiplied_pair = multiplied_pair.pair
     reduced_pair = durationtools.multiply_duration_pair_and_reduce_factors(
         old_multiplier_pair, multiplier)
 

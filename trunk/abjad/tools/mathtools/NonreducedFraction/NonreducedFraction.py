@@ -344,6 +344,31 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     ### PUBLIC METHODS ###
 
+    def multiply_without_reducing(self, expr):
+        '''.. versionadded:: 2.11
+
+        Multiply nonreduced fraction by `expr` without reducing::
+
+            >>> mathtools.NonreducedFraction(3, 8).multiply_without_reducing((3, 3))
+            NonreducedFraction(9, 24)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(4, 8).multiply_without_reducing((4, 5))
+            NonreducedFraction(16, 40)
+
+        ::
+
+            >>> mathtools.NonreducedFraction(4, 8).multiply_without_reducing((3, 4))
+            NonreducedFraction(12, 32)
+
+        Return nonreduced fraction.
+        '''
+        expr = NonreducedFraction(expr)
+        numerator = self.numerator * expr.numerator
+        denominator = self.denominator * expr.denominator
+        return NonreducedFraction(numerator, denominator)
+
     def reduce(self):
         '''Reduce nonreduced fraction::
 
@@ -357,21 +382,6 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         Return fraction.
         '''
         return Fraction(self.numerator, self.denominator)
-
-    def multiply_without_reducing(self, expr):
-        '''.. versionadded:: 2.11
-
-        Multiply nonreduced fraction by `expr` without reducing::
-
-            >>> mathtools.NonreducedFraction(3, 8).multiply_without_reducing((3, 3))
-            NonreducedFraction(9, 24)
-
-        Return nonreduced fraction.
-        '''
-        expr = NonreducedFraction(expr)
-        numerator = self.numerator * expr.numerator
-        denominator = self.denominator * expr.denominator
-        return NonreducedFraction(numerator, denominator)
 
     def with_denominator(self, denominator):
         '''Return new nonreduced fraction with integer `denominator`.

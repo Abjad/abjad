@@ -1,5 +1,6 @@
 from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 
 
 def multiply_contents_of_measures_in_expr(expr, n):
@@ -55,7 +56,8 @@ def multiply_contents_of_measures_in_expr(expr, n):
         old_meter = contexttools.get_effective_time_signature(measure)
         containertools.repeat_contents_of_container(measure, n)
         old_pair = (old_meter.numerator, old_meter.denominator)
-        new_pair = durationtools.multiply_duration_pair(old_pair, durationtools.Duration(n))
+        new_pair = mathtools.NonreducedFraction(old_pair)
+        new_pair = new_pair.multiply_without_reducing(n)
         time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         time_signature.attach(measure)
