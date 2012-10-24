@@ -307,7 +307,6 @@ Composition packages
    :maxdepth: 1
 
    tools/durationtools/all_are_durations
-   tools/durationtools/duration_pair_to_prolation_string
    tools/durationtools/duration_token_to_assignable_duration_pairs
    tools/durationtools/duration_token_to_assignable_rationals
    tools/durationtools/duration_tokens_to_duration_pairs
