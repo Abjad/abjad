@@ -110,7 +110,7 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
         durations = [durations]
 
     # make duration pairs
-    duration_pairs = [durationtools.Duration(duration).pair for duration in durations]
+    duration_pairs = [durationtools.Duration(duration) for duration in durations]
 
     # set lists of pitches and duration pairs to the same length
     size = max(len(duration_pairs), len(pitches))
@@ -122,7 +122,7 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
     result = []
     for duration_group in duration_groups:
         # get factors in denominator of duration group other than 1, 2.
-        factors = set(mathtools.factors(duration_group[0][1]))
+        factors = set(mathtools.factors(duration_group[0].denominator))
         factors.discard(1)
         factors.discard(2)
         ps = pitches[0:len(duration_group)]
@@ -133,11 +133,11 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
                 result.extend(leaves)
         else:
             # compute prolation
-            denominator = duration_group[0][1]
+            denominator = duration_group[0].denominator
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / durationtools.Duration(*multiplier)
-            duration_group = [ratio * durationtools.Duration(*duration) for duration in duration_group]
+            duration_group = [ratio * durationtools.Duration(duration) for duration in duration_group]
             # make leaves
             leaves = []
             for pitch, duration in zip(ps, duration_group):

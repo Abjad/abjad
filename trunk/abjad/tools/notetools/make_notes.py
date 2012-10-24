@@ -66,7 +66,7 @@ def make_notes(pitches, durations, big_endian=True):
     # Durations should always reduce;
     # So tokens can represent tuplet multipliers or something
     # else that shouldn't reduce?
-    duration_pairs = [durationtools.Duration(duration).pair for duration in durations]
+    duration_pairs = [durationtools.Duration(duration) for duration in durations]
 
     # set lists of pitches and duration pairs to the same length
     size = max(len(duration_pairs), len(pitches))
@@ -85,7 +85,7 @@ def make_notes(pitches, durations, big_endian=True):
     result = []
     for duration in durations:
         # get factors in denominator of duration group duration other than 1, 2.
-        factors = set(mathtools.factors(duration[0][1]))
+        factors = set(mathtools.factors(duration[0].denominator))
         factors.discard(1)
         factors.discard(2)
         ps = pitches[0:len(duration)]
@@ -94,11 +94,11 @@ def make_notes(pitches, durations, big_endian=True):
             result.extend(_make_unprolated_notes(ps, duration, big_endian=big_endian))
         else:
             # compute prolation
-            denominator = duration[0][1]
+            denominator = duration[0].denominator
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
-            duration = [ratio * durationtools.Duration(*d) for d in duration]
+            duration = [ratio * durationtools.Duration(d) for d in duration]
             ns = _make_unprolated_notes(ps, duration, big_endian=big_endian)
             t = tuplettools.Tuplet(multiplier, ns)
             result.append(t)

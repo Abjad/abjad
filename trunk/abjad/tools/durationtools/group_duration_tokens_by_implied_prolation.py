@@ -1,3 +1,4 @@
+import fractions
 from abjad.tools import mathtools
 
 
@@ -6,29 +7,26 @@ def group_duration_tokens_by_implied_prolation(durations):
 
     Group `durations` by implied prolation::
 
-        >>> duration_tokens = [(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)]
+        >>> durations = [(1, 4), (1, 8), (1, 3), (1, 6), (1, 4)]
 
     ::
 
-        >>> durationtools.group_duration_tokens_by_implied_prolation(duration_tokens)
-        [[(1, 4), (1, 8)], [(1, 3), (1, 6)], [(1, 4)]]
+        >>> durationtools.group_duration_tokens_by_implied_prolation(durations)
+        [[NonreducedFraction(1, 4), NonreducedFraction(1, 8)], [NonreducedFraction(1, 3), NonreducedFraction(1, 6)], [NonreducedFraction(1, 4)]]
 
-    Return list of integer pair lists.
-
-    .. versionchanged:: 2.0
-        renamed ``durationtools.agglomerate_by_prolation()`` to
-        ``durationtools.group_duration_tokens_by_implied_prolation()``.
+    Return list of duration lists.
     '''
+    from abjad.tools import durationtools
 
-    assert isinstance(durations, list)
+    durations = [mathtools.NonreducedFraction(duration) for duration in durations]
     assert 0 < len(durations)
 
     group = [durations[0]]
     result = [group]
     for d in durations[1:]:
-        d_f = set(mathtools.factors(d[1]))
+        d_f = set(mathtools.factors(d.denominator))
         d_f.discard(2)
-        gd_f = set(mathtools.factors(group[0][1]))
+        gd_f = set(mathtools.factors(group[0].denominator))
         gd_f.discard(2)
         if d_f == gd_f:
             group.append(d)
