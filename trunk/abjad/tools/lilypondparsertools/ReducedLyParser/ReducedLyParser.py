@@ -90,15 +90,13 @@ class ReducedLyParser(abctools.Parser):
         >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
         >>> result = parser(string)
         >>> f(result)
-        {
-            \times 2/3 {
-                c'4
-                c'4
-                \fraction \times 3/5 {
-                    c'8
-                    c'8
-                    c'8
-                }
+        \times 2/3 {
+            c'4
+            c'4
+            \fraction \times 3/5 {
+                c'8
+                c'8
+                c'8
             }
         }
 
@@ -423,14 +421,17 @@ class ReducedLyParser(abctools.Parser):
 
     def p_start__EMPTY(self, p):
         '''start : '''
+        self._toplevel_component_count = 0
         p[0] = []
 
     def p_start__start__component(self, p):
         '''start : start component'''
+        self._toplevel_component_count += 1
         p[0] = p[1] + [p[2]]
 
     def p_start__start__measure(self, p):
         '''start : start measure'''
+        self._toplevel_component_count += 1
         p[0] = p[1] + [p[2]]
 
     def p_tie__TILDE(self, p):
@@ -539,7 +540,9 @@ class ReducedLyParser(abctools.Parser):
             self._apply_spanners(leaves)
         for leaf in leaves:
             marktools.detach_annotations_attached_to_component(leaf)
-        return parsed
+        if 1 < self._toplevel_component_count:
+            return parsed
+        return parsed[0]
 
     def _get_span_events(self, leaf):
         annotations = [x for x in marktools.detach_annotations_attached_to_component(leaf)
@@ -549,4 +552,5 @@ class ReducedLyParser(abctools.Parser):
         return {}
 
     def _setup(self):
+        self._toplevel_component_count = 0
         self._default_duration = durationtools.Duration((1, 4))
