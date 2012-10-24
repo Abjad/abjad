@@ -1,10 +1,10 @@
 from abjad.tools import mathtools
 
 
-def duration_tokens_to_duration_pairs_with_least_common_denominator(duration_tokens):
+def duration_tokens_to_duration_pairs_with_least_common_denominator(durations):
     '''.. versionadded:: 2.0
 
-    Change `duration_tokens` to duration pairs with least common denominator::
+    Change `durations` to nonreduced fractions with least common denominator::
 
         >>> durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator(
         ... [Fraction(2, 4), 3, '8.', (5, 16)])
@@ -14,10 +14,11 @@ def duration_tokens_to_duration_pairs_with_least_common_denominator(duration_tok
     '''
     from abjad.tools import durationtools
 
-    rationals = [durationtools.Duration(x) for x in duration_tokens]
-    lcd = durationtools.duration_tokens_to_least_common_denominator(duration_tokens)
+    durations = [durationtools.Duration(x) for x in durations]
+    denominators = [duration.denominator for duration in durations]
+    lcd = mathtools.least_common_multiple(*denominators)
 
-    duration_pairs = [
-        mathtools.NonreducedFraction(x).with_denominator(lcd) for x in rationals]
+    nonreduced_fractions = [mathtools.NonreducedFraction(x).with_denominator(lcd) for x in durations]
+    result = type(durations)(nonreduced_fractions)
 
-    return type(duration_tokens)(duration_pairs)
+    return result
