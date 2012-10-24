@@ -73,7 +73,7 @@ def make_notes(pitches, durations, big_endian=True):
     duration_pairs = sequencetools.repeat_sequence_to_length(duration_pairs, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    durations = durationtools.group_duration_tokens_by_implied_prolation(duration_pairs)
+    durations = durationtools.group_nonreduced_fractions_by_implied_prolation(duration_pairs)
 
     def _make_unprolated_notes(pitches, durations, big_endian=big_endian):
         assert len(pitches) == len(durations)

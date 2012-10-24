@@ -117,7 +117,7 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
     duration_pairs = sequencetools.repeat_sequence_to_length(duration_pairs, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    duration_groups = durationtools.group_duration_tokens_by_implied_prolation(duration_pairs)
+    duration_groups = durationtools.group_nonreduced_fractions_by_implied_prolation(duration_pairs)
 
     result = []
     for duration_group in duration_groups:

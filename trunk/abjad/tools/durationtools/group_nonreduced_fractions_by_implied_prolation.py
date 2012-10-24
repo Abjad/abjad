@@ -2,7 +2,7 @@ import fractions
 from abjad.tools import mathtools
 
 
-def group_duration_tokens_by_implied_prolation(durations):
+def group_nonreduced_fractions_by_implied_prolation(durations):
     '''.. versionadded:: 1.1
 
     Group `durations` by implied prolation::
@@ -11,7 +11,7 @@ def group_duration_tokens_by_implied_prolation(durations):
 
     ::
 
-        >>> durationtools.group_duration_tokens_by_implied_prolation(durations)
+        >>> durationtools.group_nonreduced_fractions_by_implied_prolation(durations)
         [[NonreducedFraction(1, 4), NonreducedFraction(1, 8)], [NonreducedFraction(1, 3), NonreducedFraction(1, 6)], [NonreducedFraction(1, 4)]]
 
     Return list of duration lists.
