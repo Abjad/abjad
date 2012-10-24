@@ -33,6 +33,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.pair
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.prolation_string
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.real
 
     Inherited from :py:class:`numbers.Real`

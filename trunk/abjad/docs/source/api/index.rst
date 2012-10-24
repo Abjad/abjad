@@ -327,7 +327,6 @@ Composition packages
    tools/durationtools/rational_to_equal_or_greater_binary_rational
    tools/durationtools/rational_to_equal_or_lesser_assignable_rational
    tools/durationtools/rational_to_equal_or_lesser_binary_rational
-   tools/durationtools/rational_to_prolation_string
    tools/durationtools/rational_to_proper_fraction
    tools/durationtools/yield_all_assignable_durations
    tools/durationtools/yield_all_positive_integer_pairs

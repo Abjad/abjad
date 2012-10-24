@@ -49,5 +49,4 @@ def report_integer_tempo_rewrite_pairs(integer_tempo,
       integer_tempo, maximum_numerator=maximum_numerator, maximum_denominator=maximum_denominator)
 
     for multiplier, tempo in pairs:
-      prolation_string = durationtools.rational_to_prolation_string(multiplier)
-      print '%s\t%s' % (prolation_string, tempo)
+      print '{}\t{}'.format(multiplier.prolation_string, tempo)

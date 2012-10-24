@@ -47,6 +47,10 @@ Read-only Properties
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.prolation_string
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.real
 
     Inherited from :py:class:`numbers.Real`

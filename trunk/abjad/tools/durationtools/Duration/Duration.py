@@ -449,6 +449,39 @@ class Duration(ImmutableAbjadObject, Fraction):
         '''
         return self.numerator, self.denominator
 
+    @property
+    def prolation_string(self):
+        '''.. versionadded:: 2.11
+
+        Prolation string.
+
+            >>> generator = durationtools.yield_all_positive_rationals(unique=True)
+            >>> for n in range(16):
+            ...     rational = generator.next()
+            ...     duration = Duration(rational)
+            ...     print '{}\t{}'.format(duration, duration.prolation_string)
+            ...
+            1       1:1
+            2       1:2
+            1/2     2:1
+            1/3     3:1
+            3       1:3
+            4       1:4
+            3/2     2:3
+            2/3     3:2
+            1/4     4:1
+            1/5     5:1
+            5       1:5
+            6       1:6
+            5/2     2:5
+            4/3     3:4
+            3/4     4:3
+            2/5     5:2
+
+        Return string.
+        '''
+        return '{}:{}'.format(self.denominator, self.numerator)
+
     ### PUBLIC FUNCTIONS ###
 
     @staticmethod
