@@ -307,7 +307,7 @@ Composition packages
    :maxdepth: 1
 
    tools/durationtools/all_are_durations
-   tools/durationtools/duration_tokens_to_duration_pairs_with_least_common_denominator
+   tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
    tools/durationtools/group_nonreduced_fractions_by_implied_prolation
    tools/durationtools/integer_to_implied_prolation
    tools/durationtools/is_lilypond_duration_name

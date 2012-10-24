@@ -67,7 +67,7 @@ class RhythmMaker(AbjadObject):
     def _scale_signals(self, duration_pairs, denominator, signals):
         dummy_duration_pair = (1, denominator)
         duration_pairs.append(dummy_duration_pair)
-        duration_pairs = durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator(
+        duration_pairs = durationtools.durations_to_nonreduced_fractions_with_common_denominator(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator
