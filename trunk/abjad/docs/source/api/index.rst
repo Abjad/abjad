@@ -307,7 +307,6 @@ Composition packages
    :maxdepth: 1
 
    tools/durationtools/all_are_durations
-   tools/durationtools/duration_tokens_to_duration_pairs
    tools/durationtools/duration_tokens_to_duration_pairs_with_least_common_denominator
    tools/durationtools/duration_tokens_to_least_common_denominator
    tools/durationtools/group_nonreduced_fractions_by_implied_prolation

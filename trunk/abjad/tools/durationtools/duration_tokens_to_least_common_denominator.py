@@ -14,7 +14,6 @@ def duration_tokens_to_least_common_denominator(duration_tokens):
     '''
     from abjad.tools import durationtools
 
-    duration_pairs = durationtools.duration_tokens_to_duration_pairs(duration_tokens)
-    denominators = [pair[1] for pair in duration_pairs]
+    denominators = [durationtools.Duration(x).denominator for x in duration_tokens]
 
     return mathtools.least_common_multiple(*denominators)

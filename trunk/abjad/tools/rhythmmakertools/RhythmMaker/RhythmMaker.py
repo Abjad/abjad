@@ -24,7 +24,7 @@ class RhythmMaker(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, duration_tokens, seeds=None):
-        duration_pairs = durationtools.duration_tokens_to_duration_pairs(duration_tokens)
+        duration_pairs = [durationtools.Duration(x).pair for x in duration_tokens]
         seeds = self._none_to_new_list(seeds)
         return duration_pairs, seeds
 
