@@ -54,3 +54,13 @@ class ScoreSelection(AbjadObject):
         '''Read-only tuple of components in selection.
         '''
         return self._music
+
+    @property
+    def start_offset(self):
+        '''Read-only start offset of earliest component in selection.'''
+        return min(x.start_offset for x in self)
+
+    @property
+    def stop_offset(self):
+        '''Read-only stop offset of earliest component in selection.'''
+        return max(x.stop_offset for x in self)

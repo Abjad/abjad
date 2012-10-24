@@ -15,6 +15,14 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
 
+.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.start_offset
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+
+.. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.stop_offset
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

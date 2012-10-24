@@ -31,6 +31,14 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.prolated_duration
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.start_offset
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.stop_offset
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
