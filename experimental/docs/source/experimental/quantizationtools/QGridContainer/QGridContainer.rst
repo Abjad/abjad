@@ -31,10 +31,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.leaves
 
-.. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.offset
-
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
-
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parent
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
@@ -62,6 +58,14 @@ Read-only Properties
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.rtm_format
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+
+.. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.start_offset
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.stop_offset
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. autoattribute:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.storage_format
 

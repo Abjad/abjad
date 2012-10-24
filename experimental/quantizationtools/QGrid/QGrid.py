@@ -108,7 +108,7 @@ class QGrid(AbjadObject):
     @property
     def offsets(self):
         '''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.'''
-        return tuple([x.offset for x in self.leaves[:-1]] + [durationtools.Offset(1)])
+        return tuple([x.start_offset for x in self.leaves[:-1]] + [durationtools.Offset(1)])
 
     @property
     def root_node(self):
@@ -165,7 +165,7 @@ class QGrid(AbjadObject):
             if next_leaf is self.next_downbeat:
                 next_leaf_offset = durationtools.Offset(1)
             else:
-                next_leaf_offset = next_leaf.offset
+                next_leaf_offset = next_leaf.start_offset
             
             q_event_proxies.extend(self.subdivide_leaf(leaf, subdivisions[i]))
             for q_event_proxy in tuple(next_leaf.q_event_proxies):

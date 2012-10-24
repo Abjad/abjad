@@ -93,11 +93,27 @@ Methods
 
     Inherited from :py:class:`fractions.Fraction`
 
+.. automethod:: experimental.divisiontools.Division.Division.Division.multiply_with_cross_cancelation
+
+    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
+.. automethod:: experimental.divisiontools.Division.Division.Division.multiply_with_numerator_preservation
+
+    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
+.. automethod:: experimental.divisiontools.Division.Division.Division.multiply_without_reducing
+
+    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
 .. automethod:: experimental.divisiontools.Division.Division.Division.reduce
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
 .. automethod:: experimental.divisiontools.Division.Division.Division.with_denominator
+
+    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
+
+.. automethod:: experimental.divisiontools.Division.Division.Division.with_multiple_of_denominator
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 

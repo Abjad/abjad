@@ -88,7 +88,7 @@ class SearchTree(AbjadObject):
         for leaf_one, leaf_two in sequencetools.iterate_sequence_pairwise_strict(leaves):
             if (leaf_one.succeeding_q_event_proxies or leaf_two.preceding_q_event_proxies) \
                 and leaf_one.is_divisible:
-                if len(leaf_one.q_event_proxies) == 1 and leaf_one.q_event_proxies[0].offset == leaf_one.offset:
+                if len(leaf_one.q_event_proxies) == 1 and leaf_one.q_event_proxies[0].offset == leaf_one.start_offset:
                     pass # a perfect match, don't bother to continue subdivision
                 else:
                     parentage_ratios = leaf_one.parentage_ratios

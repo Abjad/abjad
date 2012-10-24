@@ -57,7 +57,7 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def preceding_q_event_proxies(self):
-        return [x for x in self._q_event_proxies if x.offset < self.offset]
+        return [x for x in self._q_event_proxies if x.offset < self.start_offset]
 
     @property
     def q_event_proxies(self):
@@ -65,7 +65,7 @@ class QGridLeaf(RhythmTreeNode):
 
     @property
     def succeeding_q_event_proxies(self):
-        return [x for x in self._q_event_proxies if self.offset <= x.offset]
+        return [x for x in self._q_event_proxies if self.start_offset <= x.offset]
 
     ### READ/WRITE PUBLIC PROPERTIES ###
 
