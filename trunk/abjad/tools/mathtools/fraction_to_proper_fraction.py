@@ -1,12 +1,12 @@
 import fractions
 
 
-def rational_to_proper_fraction(rational):
+def fraction_to_proper_fraction(rational):
     '''.. versionadded:: 2.0
 
     Change `rational` to proper fraction::
 
-        >>> durationtools.rational_to_proper_fraction(Fraction(116, 8))
+        >>> mathtools.fraction_to_proper_fraction(Fraction(116, 8))
         (14, Fraction(1, 2))
 
     Return pair.

@@ -327,7 +327,6 @@ Composition packages
    tools/durationtools/rational_to_equal_or_greater_binary_rational
    tools/durationtools/rational_to_equal_or_lesser_assignable_rational
    tools/durationtools/rational_to_equal_or_lesser_binary_rational
-   tools/durationtools/rational_to_proper_fraction
    tools/durationtools/yield_all_assignable_durations
    tools/durationtools/yield_all_positive_integer_pairs
    tools/durationtools/yield_all_positive_rationals
@@ -773,6 +772,7 @@ Composition packages
    tools/mathtools/divide_number_by_ratio
    tools/mathtools/divisors
    tools/mathtools/factors
+   tools/mathtools/fraction_to_proper_fraction
    tools/mathtools/get_shared_numeric_sign
    tools/mathtools/greatest_common_divisor
    tools/mathtools/greatest_multiple_less_equal
