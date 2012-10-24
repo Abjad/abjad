@@ -448,9 +448,12 @@ class Container(Component):
         from abjad.tools import rhythmtreetools
         user_input = string.strip()
         if user_input.startswith('abj:'):
-            parsed = lilypondparsertools.parse_reduced_ly_syntax(user_input.partition('abj:')[-1])
+            parser = lilypondparsertools.ReducedLyParser()
+            parsed = parser(user_input[4:])
+            if parser._toplevel_component_count == 1:
+                parsed = Container([parsed])
         elif user_input.startswith('rtm:'):
-            parsed = rhythmtreetools.parse_rtm_syntax(user_input.partition('rtm:')[-1])
+            parsed = rhythmtreetools.parse_rtm_syntax(user_input[4:])
         else:
             if not user_input.startswith('<<') and not user_input.endswith('>>'):
                 user_input = '{ %s }' % user_input

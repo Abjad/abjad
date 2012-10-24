@@ -77,4 +77,4 @@ def test_Container___init___04():
     '''
 
     assert isinstance(container, Container)
-    assert container.lilypond_format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert container.lilypond_format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
