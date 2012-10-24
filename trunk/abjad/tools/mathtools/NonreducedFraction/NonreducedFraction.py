@@ -293,9 +293,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         from abjad.tools import durationtools
         from abjad.tools import mathtools
         denominator = mathtools.least_common_multiple(denominator, fraction.denominator)
-        pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-            fraction, denominator)
-        return type(self)(pair)
+        return type(self)(fraction).with_denominator(denominator)
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -369,5 +367,11 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         Return nonreduced fraction.
         '''
         from abjad.tools import durationtools
-        return durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-            self, denominator)
+        n, d = self.pair
+        multiplier = durationtools.Multiplier(denominator, d)
+        new_numerator = multiplier * n
+        new_denominator = multiplier * d
+        if new_numerator.denominator == 1 and new_denominator.denominator == 1:
+            return type(self)(new_numerator.numerator, new_denominator.numerator)
+        else:
+            return type(self)(n, d)
