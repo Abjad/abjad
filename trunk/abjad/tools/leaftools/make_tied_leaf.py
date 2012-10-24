@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 
 
 def make_tied_leaf(kind, duration, big_endian=True, pitches=None, tied=True):
@@ -21,17 +22,22 @@ def make_tied_leaf(kind, duration, big_endian=True, pitches=None, tied=True):
     '''
     from abjad.tools import tietools
 
+    # check input
+    duration = durationtools.Duration(duration)
+
     result = []
-    for written_duration in durationtools.duration_token_to_assignable_rationals(
-        duration):
+    for numerator in mathtools.partition_integer_into_canonic_parts(duration.numerator):
+        written_duration = durationtools.Duration(numerator, duration.denominator)
         if not pitches is None:
             args = (pitches, written_duration)
         else:
             args = (written_duration, )
         result.append(kind(*args))
+
     if 1 < len(result):
         if not big_endian:
             result.reverse()
         if tied:
             tietools.TieSpanner(result)
+
     return result
