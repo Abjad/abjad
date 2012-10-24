@@ -48,7 +48,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_container__LPAREN__INTEGER__node_list_closed__RPAREN
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_container__LPAREN__DURATION__node_list_closed__RPAREN
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_error
 
@@ -70,7 +70,7 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_toplevel__toplevel__container
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.t_INTEGER
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.t_DURATION
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.t_error
 

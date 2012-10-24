@@ -14,7 +14,7 @@ class RhythmTreeContainer(RhythmTreeNode):
         >>> container = rhythmtreetools.RhythmTreeContainer(duration=1, children=[])
         >>> container
         RhythmTreeContainer(
-            duration=1
+            duration=Duration(1, 1)
             )
 
     Similar to Abjad containers, `RhythmTreeContainer` supports a list interface,
@@ -30,15 +30,15 @@ class RhythmTreeContainer(RhythmTreeNode):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=1,
+                    duration=durationtools.Duration(1, 1),
                     is_pitched=True,
                     ),
                 RhythmTreeLeaf(
-                    duration=2,
+                    duration=durationtools.Duration(2, 1),
                     is_pitched=True,
                     ),
             ),
-            duration=1
+            duration=Duration(1, 1)
             )
 
     ::
@@ -51,24 +51,24 @@ class RhythmTreeContainer(RhythmTreeNode):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=1,
+                    duration=durationtools.Duration(1, 1),
                     is_pitched=True,
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
-                            duration=3,
+                            duration=durationtools.Duration(3, 1),
                             is_pitched=True,
                             ),
                         RhythmTreeLeaf(
-                            duration=2,
+                            duration=durationtools.Duration(2, 1),
                             is_pitched=True,
                             ),
                     ),
-                    duration=2
+                    duration=Duration(2, 1)
                     ),
             ),
-            duration=1
+            duration=Duration(1, 1)
             )
 
     Call `RhythmTreeContainer` with a duration to generate a tuplet structure:
@@ -129,7 +129,7 @@ class RhythmTreeContainer(RhythmTreeNode):
         ::
 
             >>> c.duration
-            3
+            Duration(3, 1)
 
         ::
 
@@ -137,27 +137,27 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=1,
+                        duration=durationtools.Duration(1, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=1,
+                        duration=durationtools.Duration(1, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=1,
+                        duration=durationtools.Duration(1, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=4,
+                        duration=durationtools.Duration(4, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=3
+                duration=Duration(3, 1)
                 )
 
         '''
@@ -338,7 +338,7 @@ class RhythmTreeContainer(RhythmTreeNode):
                 result.extend(pieces[:-1])
                 result.append(pieces[-1] + ',')
             result.append('\t),')
-        result.append('\tduration={}'.format(self.duration))
+        result.append('\tduration={!r}'.format(self.duration))
         result.append('\t)')
         return '\n'.join(result)
 
@@ -479,12 +479,12 @@ class RhythmTreeContainer(RhythmTreeNode):
         ::
 
             >>> tree.contents_duration
-            5
+            Duration(5, 1)
 
         ::
 
             >>> tree[1].contents_duration
-            3
+            Duration(3, 1)
 
         Return int.
         '''
@@ -522,7 +522,7 @@ class RhythmTreeContainer(RhythmTreeNode):
 
             >>> a
             RhythmTreeContainer(
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         ::
@@ -532,11 +532,11 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         ::
@@ -546,15 +546,15 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         It is also possible to append with valid RTM strings, so long as they parse
@@ -567,32 +567,32 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                         ),
-                        duration=7
+                        duration=Duration(7, 1)
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         Return `None`.
@@ -615,7 +615,7 @@ class RhythmTreeContainer(RhythmTreeNode):
 
             >>> a
             RhythmTreeContainer(
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         ::
@@ -625,15 +625,15 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         It is also possible to extend with valid RTM strings:
@@ -645,41 +645,41 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                         ),
-                        duration=4
+                        duration=Duration(4, 1)
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                             RhythmTreeLeaf(
-                                duration=1,
+                                duration=durationtools.Duration(1, 1),
                                 is_pitched=True,
                                 ),
                         ),
-                        duration=5
+                        duration=Duration(5, 1)
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         Return `None`.
@@ -741,15 +741,15 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         ::
@@ -762,19 +762,19 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=100,
+                        duration=durationtools.Duration(100, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
 
@@ -804,15 +804,15 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         ::
@@ -830,11 +830,11 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         Return node.
@@ -862,15 +862,15 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=2,
+                        duration=durationtools.Duration(2, 1),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         ::
@@ -883,11 +883,11 @@ class RhythmTreeContainer(RhythmTreeNode):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=3,
+                        duration=durationtools.Duration(3, 1),
                         is_pitched=True,
                         ),
                 ),
-                duration=1
+                duration=Duration(1, 1)
                 )
 
         Return `None`.

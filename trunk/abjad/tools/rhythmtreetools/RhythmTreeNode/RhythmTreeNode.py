@@ -160,7 +160,7 @@ class RhythmTreeNode(AbjadObject):
             >>> for depth in sorted(inventory):
             ...     print 'DEPTH: {}'.format(depth)
             ...     for node in inventory[depth]:
-            ...         print node.duration, node.offset
+            ...         print str(node.duration), str(node.start_offset)
             ...
             DEPTH: 0
             4 0
@@ -228,35 +228,6 @@ class RhythmTreeNode(AbjadObject):
         return tuple(parentage)
 
     @property
-    def offset(self):
-        '''The starting offset of a node in a rhythm-tree relative the root:
-
-        ::
-
-            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
-
-        ::
-
-            >>> tree.offset
-            Offset(0, 1)
-
-        ::
-
-            >>> tree[1].offset
-            Offset(1, 2)
-
-        ::
-
-            >>> tree[0][1].offset
-            Offset(1, 4)
-
-        Return Offset instance.
-        '''
-        self._update_offsets_of_entire_tree_if_necessary()
-        return self._offset
-
-    @property
     def parent(self):
         '''The node's parent node:
 
@@ -316,27 +287,27 @@ class RhythmTreeNode(AbjadObject):
         ::
 
             >>> a.parentage_ratios
-            (1,)
+            (Duration(1, 1),)
 
         ::
 
             >>> b.parentage_ratios
-            (1, (2, 5))
+            (Duration(1, 1), (Duration(2, 1), Duration(5, 1)))
 
         ::
 
             >>> c.parentage_ratios
-            (1, (3, 5))
+            (Duration(1, 1), (Duration(3, 1), Duration(5, 1)))
         
         ::
 
             >>> d.parentage_ratios
-            (1, (2, 5), (4, 9))
+            (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(4, 1), Duration(9, 1)))
 
         ::
 
             >>> e.parentage_ratios
-            (1, (2, 5), (5, 9))
+            (Duration(1, 1), (Duration(2, 1), Duration(5, 1)), (Duration(5, 1), Duration(9, 1)))
 
         Return tuple.
         '''
@@ -488,6 +459,41 @@ class RhythmTreeNode(AbjadObject):
         '''
         raise NotImplemented
 
+    @property
+    def start_offset(self):
+        '''The starting offset of a node in a rhythm-tree relative the root:
+
+        ::
+
+            >>> rtm = '(1 ((1 (1 1)) (1 (1 1))))'
+            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+
+        ::
+
+            >>> tree.start_offset
+            Offset(0, 1)
+
+        ::
+
+            >>> tree[1].start_offset
+            Offset(1, 2)
+
+        ::
+
+            >>> tree[0][1].start_offset
+            Offset(1, 4)
+
+        Return Offset instance.
+        '''
+        self._update_offsets_of_entire_tree_if_necessary()
+        return self._offset
+
+    @property
+    def stop_offset(self):
+        '''The stopping offset of a node in a rhythm-tree relative the root.
+        '''
+        return self.start_offset + self.prolated_duration
+
     ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply
@@ -499,19 +505,19 @@ class RhythmTreeNode(AbjadObject):
 
                 >>> node = rhythmtreetools.RhythmTreeLeaf(1)
                 >>> node.duration
-                1
+                Duration(1, 1)
 
             ::
 
                 >>> node.duration = 2
                 >>> node.duration
-                2
+                Duration(2, 1)
 
             Return int.
             '''
             return self._duration
         def fset(self, arg):
-            assert isinstance(arg, int)
+            arg = durationtools.Duration(arg)
             assert 0 < arg
             self._duration = arg
             self._mark_entire_tree_for_later_update()

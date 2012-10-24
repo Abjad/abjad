@@ -31,81 +31,81 @@ class BeatHierarchy(AbjadObject):
     ::
 
         >>> print timesignaturetools.BeatHierarchy((4, 4)).pretty_rtm_format
-        (4 (
-            (2 (
-                1
-                1))
-            (2 (
-                1
-                1))))
+        (1 (
+            (1/2 (
+                1/4
+                1/4))
+            (1/2 (
+                1/4
+                1/4))))
 
     ::
 
         >>> print timesignaturetools.BeatHierarchy((3, 4)).pretty_rtm_format
-        (3 (
-            1
-            1
-            1))
+        (3/4 (
+            1/4
+            1/4
+            1/4))
 
     ::
 
         >>> print timesignaturetools.BeatHierarchy((6, 8)).pretty_rtm_format
-        (6 (
-            (3 (
-                1
-                1
-                1))
-            (3 (
-                1
-                1
-                1))))
+        (3/4 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
 
     ::
 
         >>> print timesignaturetools.BeatHierarchy((5, 4)).pretty_rtm_format
-        (5 (
-            (3 (
-                1
-                1
-                1))
-            (2 (
-                1
-                1))))
+        (5/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (1/2 (
+                1/4
+                1/4))))
 
     ::
 
         >>> print timesignaturetools.BeatHierarchy((5, 4), big_endian=False).pretty_rtm_format
-        (5 (
-            (2 (
-                1
-                1))
-            (3 (
-                1
-                1
-                1))))
+        (5/4 (
+            (1/2 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
 
     ::
 
         >>> print timesignaturetools.BeatHierarchy((12, 8)).pretty_rtm_format
-        (12 (
-            (6 (
-                (3 (
-                    1
-                    1
-                    1))
-                (3 (
-                    1
-                    1
-                    1))))
-            (6 (
-                (3 (
-                    1
-                    1
-                    1))
-                (3 (
-                    1
-                    1
-                    1))))))
+        (3/2 (
+            (3/4 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+            (3/4 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))))
 
     Return `BeatHierarchy` instance.
     '''
@@ -125,12 +125,12 @@ class BeatHierarchy(AbjadObject):
 
         numerator, denominator = time_signature.numerator, time_signature.denominator
         factors = mathtools.factors(numerator)[1:]
-        root = rhythmtreetools.RhythmTreeContainer(numerator)
+        root = rhythmtreetools.RhythmTreeContainer((numerator, denominator))
         
         def recurse(node, factors):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                duration = node.duration / factor
+                duration = durationtools.Duration(node.duration / factor)
 
                 if factor in (2, 3):
                     if factors:
@@ -140,7 +140,7 @@ class BeatHierarchy(AbjadObject):
                             recurse(child, factors)
                     else:
                         for _ in range(factor):
-                            node.append(rhythmtreetools.RhythmTreeLeaf())
+                            node.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
 
                 else:
                     parts = [3]
@@ -160,11 +160,12 @@ class BeatHierarchy(AbjadObject):
                                 recurse(child, factors)
                         else:
                             for _ in range(part):
-                                grouping.append(rhythmtreetools.RhythmTreeLeaf())
+                                grouping.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
                         node.append(grouping)
 
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf() for _ in range(node.duration)])
+                node.extend([rhythmtreetools.RhythmTreeLeaf((1, denominator)) 
+                    for _ in range(node.duration.numerator)])
 
         recurse(root, factors)
         self._root_node = root
@@ -182,9 +183,8 @@ class BeatHierarchy(AbjadObject):
             result.append(node)
             return result
         result = recurse(self.root_node)
-        denominator = self.time_signature.denominator
         for x in result:
-            yield (x.offset / denominator, (x.offset + x.duration) / denominator)
+            yield x.start_offset, x.stop_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -199,14 +199,14 @@ class BeatHierarchy(AbjadObject):
             >>> bh.big_endian
             True
             >>> print bh.pretty_rtm_format 
-            (5 (
-                (3 (
-                    1
-                    1
-                    1))
-                (2 (
-                    1
-                    1))))
+            (5/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (1/2 (
+                    1/4
+                    1/4))))
 
         ::
 
@@ -214,14 +214,14 @@ class BeatHierarchy(AbjadObject):
             >>> bh.big_endian
             False
             >>> print bh.pretty_rtm_format 
-            (5 (
-                (2 (
-                    1
-                    1))
-                (3 (
-                    1
-                    1
-                    1))))
+            (5/4 (
+                (1/2 (
+                    1/4
+                    1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))))
 
         Return boolean.
         '''
@@ -246,8 +246,7 @@ class BeatHierarchy(AbjadObject):
         for depth, nodes in self.root_node.depthwise_inventory.items():
             offsets = []
             for node in nodes:
-                offset = node.offset / self.time_signature.denominator
-                offsets.append(offset)
+                offsets.append(node.start_offset)
             offsets.append(durationtools.Offset(self.time_signature.duration))
             inventory[depth] = tuple(offsets)
         return inventory
@@ -263,16 +262,16 @@ class BeatHierarchy(AbjadObject):
         ::
 
             >>> print bh.root_node.pretty_rtm_format
-            (2 (
-                1
-                1))
+            (1/2 (
+                1/4
+                1/4))
 
         ::
 
             >>> print bh.pretty_rtm_format
-            (2 (
-                1
-                1))
+            (1/2 (
+                1/4
+                1/4))
 
 
         Return string.
@@ -289,15 +288,15 @@ class BeatHierarchy(AbjadObject):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=1,
+                        duration=durationtools.Duration(1, 4),
                         is_pitched=True,
                         ),
                     RhythmTreeLeaf(
-                        duration=1,
+                        duration=durationtools.Duration(1, 4),
                         is_pitched=True,
                         ),
                 ),
-                duration=2
+                duration=Duration(1, 2)
                 )
 
         Return `RhythmTreeNode` instance.
@@ -315,12 +314,12 @@ class BeatHierarchy(AbjadObject):
         ::
 
             >>> print bh.root_node.rtm_format
-            (2 (1 1))
+            (1/2 (1/4 1/4))
 
         ::
 
             >>> print bh.rtm_format
-            (2 (1 1))
+            (1/2 (1/4 1/4))
 
         Return string.
         '''

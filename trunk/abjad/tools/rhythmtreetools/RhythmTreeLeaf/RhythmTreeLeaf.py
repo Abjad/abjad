@@ -13,7 +13,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
         >>> leaf = rhythmtreetools.RhythmTreeLeaf(duration=5, is_pitched=True)
         >>> leaf
         RhythmTreeLeaf(
-            duration=5,
+            duration=durationtools.Duration(5, 1),
             is_pitched=True,
             )
     

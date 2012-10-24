@@ -1,3 +1,5 @@
+import fractions
+from abjad.tools import durationtools
 from abjad.tools.abctools import Parser
 
 
@@ -16,32 +18,32 @@ class RhythmTreeParser(Parser):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=1,
+                    duration=durationtools.Duration(1, 1),
                     is_pitched=True,
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
-                            duration=1,
+                            duration=durationtools.Duration(1, 1),
                             is_pitched=True,
                             ),
                         RhythmTreeLeaf(
-                            duration=1,
+                            duration=durationtools.Duration(1, 1),
                             is_pitched=False,
                             ),
                         RhythmTreeLeaf(
-                            duration=1,
+                            duration=durationtools.Duration(1, 1),
                             is_pitched=True,
                             ),
                     ),
-                    duration=2
+                    duration=Duration(2, 1)
                     ),
                 RhythmTreeLeaf(
-                    duration=2,
+                    duration=durationtools.Duration(2, 1),
                     is_pitched=False,
                     ),
             ),
-            duration=1
+            duration=Duration(1, 1)
             )
 
     ::
@@ -65,8 +67,8 @@ class RhythmTreeParser(Parser):
     ### LEX SETUP ###
 
     tokens = (
+        'DURATION',
         'LPAREN',
-        'INTEGER',
         'RPAREN'
     )
 
@@ -80,9 +82,9 @@ class RhythmTreeParser(Parser):
 
     ### LEX METHODS ###
 
-    def t_INTEGER(self, t):
-        r'(-?[1-9]\d*)'
-        t.value = int(t.value)
+    def t_DURATION(self, t):
+        r'-?[1-9]\d*(/[1-9]\d*)?'
+        t.value = durationtools.Duration(fractions.Fraction(t.value))
         return t
 
     def t_newline(self, t):
@@ -95,13 +97,13 @@ class RhythmTreeParser(Parser):
 
     ### YACC METHODS ###
 
-    def p_container__LPAREN__INTEGER__node_list_closed__RPAREN(self, p):
-        '''container : LPAREN INTEGER node_list_closed RPAREN'''
+    def p_container__LPAREN__DURATION__node_list_closed__RPAREN(self, p):
+        '''container : LPAREN DURATION node_list_closed RPAREN'''
         from abjad.tools import rhythmtreetools
-        p[0] = rhythmtreetools.RhythmTreeContainer(p[2], p[3])
+        p[0] = rhythmtreetools.RhythmTreeContainer(abs(p[2]), p[3])
 
     def p_leaf__INTEGER(self, p):
-        '''leaf : INTEGER'''
+        '''leaf : DURATION'''
         from abjad.tools import rhythmtreetools
         p[0] = rhythmtreetools.RhythmTreeLeaf(abs(p[1]), 0 < p[1])
 

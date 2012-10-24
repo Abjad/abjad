@@ -182,6 +182,12 @@ class Duration(ImmutableAbjadObject, Fraction):
     def __rdivmod__(self, *args):
         return type(self)(Fraction.__rdivmod__(self, *args))
 
+    def __reduce__(self):
+        return self.__class__, (self.numerator, self.denominator)
+
+    def __reduce_ex__(self, protocol):
+        return self.__class__, (self.numerator, self.denominator)
+
     def __repr__(self):
         return '%s(%s, %s)' % (type(self).__name__, self.numerator, self.denominator)
 
