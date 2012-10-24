@@ -13,7 +13,7 @@ class ScoreSelection(AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-    __slots__ = ()
+    __slots__ = ('_music',)
 
     _default_mandatory_input_arguments = ([], )
 

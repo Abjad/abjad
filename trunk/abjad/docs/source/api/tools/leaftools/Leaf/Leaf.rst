@@ -9,11 +9,19 @@ leaftools.Leaf
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.duration_in_seconds
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.leaf_index
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.lineage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -24,6 +32,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.duration_in_seconds
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -23,6 +27,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lilypond_format
 
+.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lineage
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.music
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -32,6 +40,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

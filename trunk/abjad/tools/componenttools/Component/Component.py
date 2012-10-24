@@ -90,9 +90,21 @@ class Component(AbjadObject):
         pass
 
     @property
+    def descendants(self):
+        '''Read-only reference to component descendants score selection.'''
+        from abjad.tools import componenttools
+        return componenttools.Descendants(self)
+
+    @property
     def lilypond_format(self):
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._format_component()
+
+    @property
+    def lineage(self):
+        '''Read-only reference to component lineage score selection.'''
+        from abjad.tools import componenttools
+        return componenttools.Lineage(self)
 
     @property
     def override(self):
@@ -105,6 +117,12 @@ class Component(AbjadObject):
     @property
     def parent(self):
         return self._parent
+
+    @property
+    def parentage(self):
+        '''Read-only reference to component parentage score selection.'''
+        from abjad.tools import componenttools
+        return componenttools.Parentage(self)
 
     @property
     def prolated_duration(self):

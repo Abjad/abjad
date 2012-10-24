@@ -9,13 +9,19 @@ componenttools.Component
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.descendants
+
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.duration_in_seconds
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.lilypond_format
 
+.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.lineage
+
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.override
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.parent
+
+.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.parentage
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.prolated_duration
 

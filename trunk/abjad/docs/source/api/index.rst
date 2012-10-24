@@ -76,6 +76,9 @@ Composition packages
    :maxdepth: 1
 
    tools/componenttools/ContainmentSignature/ContainmentSignature
+   tools/componenttools/Descendants/Descendants
+   tools/componenttools/Lineage/Lineage
+   tools/componenttools/Parentage/Parentage
 
 .. rubric:: functions
 

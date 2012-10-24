@@ -56,6 +56,7 @@ class Mode(AbjadObject):
         mdi_segment = []
         m2 = pitchtools.MelodicDiatonicInterval('minor', 2)
         M2 = pitchtools.MelodicDiatonicInterval('major', 2)
+        A2 = pitchtools.MelodicDiatonicInterval('augmented', 2)
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == 'dorian':
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, 0))
@@ -65,12 +66,16 @@ class Mode(AbjadObject):
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, -2))
         elif mode_name == 'mixolydian':
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, -3))
-        elif mode_name in ('aeolian', 'minor'):
+        elif mode_name in ('aeolian', 'minor', 'natural minor'):
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, -4))
         elif mode_name == 'locrian':
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, -5))
         elif mode_name in ('ionian', 'major'):
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, -6))
+        elif mode_name == 'melodic minor':
+            mdi_segment.extend([M2, m2, M2, M2, M2, M2, m2])
+        elif mode_name == 'harmonic minor':
+            mdi_segment.extend([M2, m2, M2, M2, m2, A2, m2])
         else:
             raise ValueError("unknown mode name '%s'." % mode_name)
         #self._mode_name = mode_name

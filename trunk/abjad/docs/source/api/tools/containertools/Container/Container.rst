@@ -11,11 +11,19 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.contents_duration
 
+.. autoattribute:: abjad.tools.containertools.Container.Container.Container.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.duration_in_seconds
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.leaves
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.containertools.Container.Container.Container.lineage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -26,6 +34,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.containertools.Container.Container.Container.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

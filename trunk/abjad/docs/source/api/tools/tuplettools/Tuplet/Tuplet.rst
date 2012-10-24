@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.duration_in_seconds
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -33,6 +37,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lilypond_format
 
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lineage
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.multiplied_duration
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.music
@@ -44,6 +52,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
