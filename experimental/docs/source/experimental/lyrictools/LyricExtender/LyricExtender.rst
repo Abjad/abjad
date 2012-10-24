@@ -9,6 +9,10 @@ lyrictools.LyricExtender
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.lyrictools.LyricExtender.LyricExtender.LyricExtender.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.LyricExtender.LyricExtender.LyricExtender.duration_in_seconds
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
@@ -21,6 +25,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: experimental.lyrictools.LyricExtender.LyricExtender.LyricExtender.lineage
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.LyricExtender.LyricExtender.LyricExtender.multiplied_duration
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
@@ -30,6 +38,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: experimental.lyrictools.LyricExtender.LyricExtender.LyricExtender.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyrictools.LyricExtender.LyricExtender.LyricExtender.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

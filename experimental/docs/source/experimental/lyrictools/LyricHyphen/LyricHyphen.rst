@@ -9,6 +9,10 @@ lyrictools.LyricHyphen
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.duration_in_seconds
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
@@ -21,6 +25,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: experimental.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.lineage
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.multiplied_duration
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
@@ -30,6 +38,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: experimental.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyrictools.LyricHyphen.LyricHyphen.LyricHyphen.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

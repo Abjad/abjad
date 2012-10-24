@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: experimental.lyrictools.AddLyrics.AddLyrics.AddLyrics.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.AddLyrics.AddLyrics.AddLyrics.duration_in_seconds
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -25,6 +29,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: experimental.lyrictools.AddLyrics.AddLyrics.AddLyrics.lineage
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.AddLyrics.AddLyrics.AddLyrics.music
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
@@ -34,6 +42,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: experimental.lyrictools.AddLyrics.AddLyrics.AddLyrics.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyrictools.AddLyrics.AddLyrics.AddLyrics.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

@@ -9,6 +9,10 @@ lyrictools.LyricText
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.descendants
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.duration_in_seconds
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
@@ -21,6 +25,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.lineage
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.multiplied_duration
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
@@ -30,6 +38,10 @@ Read-only Properties
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.parent
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.parentage
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
