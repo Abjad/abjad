@@ -115,10 +115,10 @@ class ComplexBeamSpanner(BeamSpanner):
         # first
         elif self._is_my_first_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1):
             left = 0
-            right = durationtools.rational_to_flag_count(leaf.written_duration)
+            right = leaf.written_duration.flag_count
         # last
         elif self._is_my_last_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
-            left = durationtools.rational_to_flag_count(leaf.written_duration)
+            left = leaf.written_duration.flag_count
             right = 0
         else:
             raise ValueError('leaf must be first or last in spanner.')
@@ -136,9 +136,9 @@ class ComplexBeamSpanner(BeamSpanner):
         cur_written = leaf.written_duration
         next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
         next_written = next_leaf.written_duration
-        prev_flag_count = durationtools.rational_to_flag_count(prev_written)
-        cur_flag_count = durationtools.rational_to_flag_count(cur_written)
-        next_flag_count = durationtools.rational_to_flag_count(next_written)
+        prev_flag_count = prev_written.flag_count
+        cur_flag_count = cur_written.flag_count
+        next_flag_count = next_written.flag_count
         # [unbeamable leaf beamable]
         if not beamtools.is_beamable_component(prev_leaf) and \
             beamtools.is_beamable_component(next_leaf):
@@ -164,7 +164,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
     def _get_left_right_for_lone_leaf(self, leaf):
         '''Get left and right flag counts for only leaf in spanner.'''
-        cur_flag_count = durationtools.rational_to_flag_count(leaf.written_duration)
+        cur_flag_count = leaf.written_duration.flag_count
         left, right = None, None
         if self.lone == 'left':
             left = cur_flag_count

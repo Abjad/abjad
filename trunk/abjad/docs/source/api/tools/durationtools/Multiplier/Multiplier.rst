@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.flag_count
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.imag
 
     Inherited from :py:class:`numbers.Real`

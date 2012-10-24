@@ -78,14 +78,14 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 assert isinstance(self.span, int)
                 left = self.span
                 #right = leaf.duration._flags
-                right = durationtools.rational_to_flag_count(leaf.written_duration)
+                right = leaf.written_duration.flag_count
             # just left of span gap
             elif self._duration_offset_in_me(leaf) + leaf.prolated_duration in \
                 self._span_points and not self._duration_offset_in_me(leaf) in \
                 self._span_points:
                 assert isinstance(self.span, int)
                 #left = leaf.duration._flags
-                left = durationtools.rational_to_flag_count(leaf.written_duration)
+                left = leaf.written_duration.flag_count
                 right = self.span
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)

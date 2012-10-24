@@ -10,11 +10,7 @@ class MisrepresentedFlagCheck(Check):
         total = 0
         for leaf in iterationtools.iterate_leaves_in_expr(expr):
             total += 1
-            flags = durationtools.rational_to_flag_count(leaf.written_duration)
-            #if leaf.beam.counts is None:
-            #   left, right = None, None
-            #else:
-            #   left, right = leaf.beam.counts
+            flags = leaf.written_duration.flag_count
             left = getattr(leaf.set, 'stem_left_beam_count', None)
             right = getattr(leaf.set, 'stem_right_beam_count', None)
             if left is not None:

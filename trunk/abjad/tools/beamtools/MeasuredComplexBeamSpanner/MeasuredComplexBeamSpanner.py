@@ -74,13 +74,11 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 if measure._is_one_of_my_first_leaves(leaf):
                     assert isinstance(self.span, int)
                     left = self.span
-                    #right = leaf.duration._flags
-                    right = durationtools.rational_to_flag_count(leaf.written_duration)
+                    right = leaf.written_duration.flag_count
                 # leaf at end of measure
                 elif measure._is_one_of_my_last_leaves(leaf):
                     assert isinstance(self.span, int)
-                    #left = leaf.duration._flags
-                    left = durationtools.rational_to_flag_count(leaf.written_duration)
+                    left = leaf.written_duration.flag_count
                     right = self.span
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)

@@ -303,6 +303,33 @@ class Duration(ImmutableAbjadObject, Fraction):
         return dot_count
 
     @property
+    def flag_count(self):
+        '''.. versionadded:: 2.11
+
+        Nonnegative integer number of flags required to notate duration::
+
+            >>> for n in range(1, 8 + 1):
+            ...     duration = Duration(n, 64)
+            ...     print '{}\t{}'.format(duration, duration.flag_count)
+            ... 
+            1/64    4
+            1/32    3
+            3/64    3
+            1/16    2
+            5/64    2
+            3/32    2
+            7/64    2
+            1/8     1
+
+        Return nonnegative integer.
+        '''
+        # TODO: rewrite with only one operation per line
+        flag_count = max(-int(math.floor(math.log(float(self.numerator) /
+            self.denominator, 2))) - 2, 0)
+
+        return flag_count
+
+    @property
     def is_assignable(self):
         '''.. versionadded:: 2.11
 

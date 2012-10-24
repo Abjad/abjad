@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.dot_count
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.flag_count
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.imag
 
     Inherited from :py:class:`numbers.Real`

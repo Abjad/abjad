@@ -19,6 +19,6 @@ def is_beamable_component(expr):
     '''
 
     if isinstance(expr, (notetools.Note, chordtools.Chord)):
-        if 0 < durationtools.rational_to_flag_count(expr.written_duration):
+        if 0 < expr.written_duration.flag_count:
             return True
     return False
