@@ -68,15 +68,13 @@ def test_Container___init___04():
 
     container = Container('abj: 2/3 { 8 8 8 }')
 
-    '''
-    {
-        \times 2/3 {
-            c'8
-            c'8
-            c'8
-        }
+    r'''
+    \times 2/3 {
+        c'8
+        c'8
+        c'8
     }
     '''
 
     assert isinstance(container, Container)
-    assert container.lilypond_format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
+    assert container.lilypond_format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
