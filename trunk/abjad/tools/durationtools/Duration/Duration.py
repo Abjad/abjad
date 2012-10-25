@@ -309,6 +309,140 @@ class Duration(ImmutableAbjadObject, Fraction):
         return dot_count
 
     @property
+    def equal_or_greater_assignable(self):
+        '''Equal or greater assignable::
+
+            >>> for numerator in range(1, 16 + 1):
+            ...     duration = Duration(numerator, 16)
+            ...     result = duration.equal_or_greater_assignable
+            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ... 
+            1/16    1/16
+            2/16    1/8
+            3/16    3/16
+            4/16    1/4
+            5/16    3/8
+            6/16    3/8
+            7/16    7/16
+            8/16    1/2
+            9/16    3/4
+            10/16   3/4
+            11/16   3/4
+            12/16   3/4
+            13/16   7/8
+            14/16   7/8
+            15/16   15/16
+            16/16   1
+
+        Return new duration.
+        '''
+        good_denominator = mathtools.greatest_power_of_two_less_equal(self.denominator)
+        current_numerator = self.numerator
+        candidate = type(self)(current_numerator, good_denominator)
+        while not candidate.is_assignable:
+            current_numerator += 1
+            candidate = type(self)(current_numerator, good_denominator)
+        return candidate
+
+    @property
+    def equal_or_greater_power_of_two(self):
+        '''Equal or greater power of ``2``::
+
+            >>> for numerator in range(1, 16 + 1):
+            ...     duration = Duration(numerator, 16)
+            ...     result = duration.equal_or_greater_power_of_two
+            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ... 
+            1/16    1/16
+            2/16    1/8
+            3/16    1/4
+            4/16    1/4
+            5/16    1/2
+            6/16    1/2
+            7/16    1/2
+            8/16    1/2
+            9/16    1
+            10/16   1
+            11/16   1
+            12/16   1
+            13/16   1
+            14/16   1
+            15/16   1
+            16/16   1
+
+        Return new duration.
+        '''
+        denominator_exponent = -int(math.ceil(math.log(self, 2)))
+        return type(self)(1, 2) ** denominator_exponent
+
+    @property
+    def equal_or_lesser_assignable(self):
+        '''Equal or lesser assignable::
+
+            >>> for numerator in range(1, 16 + 1):
+            ...     duration = Duration(numerator, 16)
+            ...     result = duration.equal_or_lesser_assignable
+            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ... 
+            1/16    1/16
+            2/16    1/8
+            3/16    3/16
+            4/16    1/4
+            5/16    1/4
+            6/16    3/8
+            7/16    7/16
+            8/16    1/2
+            9/16    1/2
+            10/16   1/2
+            11/16   1/2
+            12/16   3/4
+            13/16   3/4
+            14/16   7/8
+            15/16   15/16
+            16/16   1
+
+        Return new duration.
+        '''
+        good_denominator = mathtools.least_power_of_two_greater_equal(self.denominator)
+        current_numerator = self.numerator
+        candidate = type(self)(current_numerator, good_denominator)
+        while not candidate.is_assignable:
+            current_numerator -= 1
+            candidate = type(self)(current_numerator, good_denominator)
+        return candidate
+
+    @property
+    def equal_or_lesser_power_of_two(self):
+        '''Equal or lesser power of ``2``::
+
+            >>> for numerator in range(1, 16 + 1):
+            ...     duration = Duration(numerator, 16)
+            ...     result = duration.equal_or_lesser_power_of_two
+            ...     print '{}\t{}'.format(duration.with_denominator(16), result)
+            ... 
+            1/16    1/16
+            2/16    1/8
+            3/16    1/8
+            4/16    1/4
+            5/16    1/4
+            6/16    1/4
+            7/16    1/4
+            8/16    1/2
+            9/16    1/2
+            10/16   1/2
+            11/16   1/2
+            12/16   1/2
+            13/16   1/2
+            14/16   1/2
+            15/16   1/2
+            16/16   1
+
+        Return new duration.
+        '''
+        denominator_exponent = -int(math.floor(math.log(self, 2)))
+        return type(self)(1, 2) ** denominator_exponent
+        
+    @property
     def flag_count(self):
         '''.. versionadded:: 2.11
 
@@ -487,6 +621,10 @@ class Duration(ImmutableAbjadObject, Fraction):
         Return string.
         '''
         return '{}:{}'.format(self.denominator, self.numerator)
+
+    def with_denominator(self, denominator):
+        nonreduced_fraction = mathtools.NonreducedFraction(self)
+        return nonreduced_fraction.with_denominator(denominator)
 
     ### PUBLIC FUNCTIONS ###
 

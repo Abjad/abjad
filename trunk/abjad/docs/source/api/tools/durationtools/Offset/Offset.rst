@@ -17,6 +17,22 @@ Read-only Properties
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
+.. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.equal_or_greater_assignable
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.equal_or_greater_power_of_two
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.equal_or_lesser_assignable
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.equal_or_lesser_power_of_two
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.flag_count
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
@@ -75,6 +91,10 @@ Methods
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
 
     Inherited from :py:class:`fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.with_denominator
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 Special Methods
 ---------------

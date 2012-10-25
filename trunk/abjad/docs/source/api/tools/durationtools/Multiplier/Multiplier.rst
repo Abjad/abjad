@@ -17,6 +17,22 @@ Read-only Properties
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_greater_assignable
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_greater_power_of_two
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_lesser_assignable
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.equal_or_lesser_power_of_two
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.flag_count
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
@@ -77,6 +93,10 @@ Methods
 .. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.limit_denominator
 
     Inherited from :py:class:`fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.with_denominator
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 Special Methods
 ---------------
