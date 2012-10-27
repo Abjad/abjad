@@ -1,6 +1,6 @@
-import inspect
 import abc
-from fractions import Fraction
+import fractions
+import inspect
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
@@ -371,7 +371,7 @@ class RhythmTreeNode(AbjadObject):
         while node.parent is not None:
             duration = node.duration
             total_duration = node.parent.contents_duration
-            prolation *= Fraction(duration, total_duration)
+            prolation *= durationtools.Duration(duration, total_duration)
             node = node.parent
         prolation *= node.duration
         return prolation
@@ -517,7 +517,8 @@ class RhythmTreeNode(AbjadObject):
             '''
             return self._duration
         def fset(self, arg):
-            arg = durationtools.Duration(arg)
+            if not isinstance(arg, fractions.Fraction):
+                arg = durationtools.Duration(arg)
             assert 0 < arg
             self._duration = arg
             self._mark_entire_tree_for_later_update()

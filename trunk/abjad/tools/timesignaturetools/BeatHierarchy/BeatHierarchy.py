@@ -26,16 +26,16 @@ class BeatHierarchy(AbjadObject):
     ::
 
         >>> timesignaturetools.BeatHierarchy((4, 4))
-        BeatHierarchy(TimeSignatureMark((4, 4)), big_endian=True)
+        BeatHierarchy((4, 4), big_endian=True)
 
     ::
 
         >>> print timesignaturetools.BeatHierarchy((4, 4)).pretty_rtm_format
-        (1 (
-            (1/2 (
+        (4/4 (
+            (2/4 (
                 1/4
                 1/4))
-            (1/2 (
+            (2/4 (
                 1/4
                 1/4))))
 
@@ -50,7 +50,7 @@ class BeatHierarchy(AbjadObject):
     ::
 
         >>> print timesignaturetools.BeatHierarchy((6, 8)).pretty_rtm_format
-        (3/4 (
+        (6/8 (
             (3/8 (
                 1/8
                 1/8
@@ -68,7 +68,7 @@ class BeatHierarchy(AbjadObject):
                 1/4
                 1/4
                 1/4))
-            (1/2 (
+            (2/4 (
                 1/4
                 1/4))))
 
@@ -76,7 +76,7 @@ class BeatHierarchy(AbjadObject):
 
         >>> print timesignaturetools.BeatHierarchy((5, 4), big_endian=False).pretty_rtm_format
         (5/4 (
-            (1/2 (
+            (2/4 (
                 1/4
                 1/4))
             (3/4 (
@@ -87,8 +87,8 @@ class BeatHierarchy(AbjadObject):
     ::
 
         >>> print timesignaturetools.BeatHierarchy((12, 8)).pretty_rtm_format
-        (3/2 (
-            (3/4 (
+        (12/8 (
+            (6/8 (
                 (3/8 (
                     1/8
                     1/8
@@ -97,7 +97,7 @@ class BeatHierarchy(AbjadObject):
                     1/8
                     1/8
                     1/8))))
-            (3/4 (
+            (6/8 (
                 (3/8 (
                     1/8
                     1/8
@@ -112,25 +112,24 @@ class BeatHierarchy(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_big_endian', '_root_node', '_time_signature')
+    __slots__ = ('_big_endian', '_denominator', '_numerator', '_root_node',)
 
     ### INITIALIZER ###
 
-    def __init__(self, time_signature, big_endian=True):
-
-        time_signature = contexttools.TimeSignatureMark(time_signature)
-        self._time_signature = time_signature
-
+    def __init__(self, arg, big_endian=True):
+        if isinstance(arg, tuple):
+            arg = mathtools.NonreducedFraction(arg)
+        self._numerator, self._denominator = arg.numerator, arg.denominator
         self._big_endian = bool(big_endian)
 
-        numerator, denominator = time_signature.numerator, time_signature.denominator
-        factors = mathtools.factors(numerator)[1:]
-        root = rhythmtreetools.RhythmTreeContainer((numerator, denominator))
-        
+        factors = mathtools.factors(self.numerator)[1:]
+        fraction = mathtools.NonreducedFraction(self.numerator, self.denominator)
+        root = rhythmtreetools.RhythmTreeContainer(fraction)
+         
         def recurse(node, factors):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                duration = durationtools.Duration(node.duration / factor)
+                duration = node.duration / factor
 
                 if factor in (2, 3):
                     if factors:
@@ -140,7 +139,7 @@ class BeatHierarchy(AbjadObject):
                             recurse(child, factors)
                     else:
                         for _ in range(factor):
-                            node.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
+                            node.append(rhythmtreetools.RhythmTreeLeaf((1, self.denominator)))
 
                 else:
                     parts = [3]
@@ -160,11 +159,11 @@ class BeatHierarchy(AbjadObject):
                                 recurse(child, factors)
                         else:
                             for _ in range(part):
-                                grouping.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
+                                grouping.append(rhythmtreetools.RhythmTreeLeaf((1, self.denominator)))
                         node.append(grouping)
 
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf((1, denominator)) 
+                node.extend([rhythmtreetools.RhythmTreeLeaf((1, self.denominator)) 
                     for _ in range(node.duration.numerator)])
 
         recurse(root, factors)
@@ -186,6 +185,12 @@ class BeatHierarchy(AbjadObject):
         for x in result:
             yield x.start_offset, x.stop_offset
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _mandatory_argument_values(self):
+        return ((self.numerator, self.denominator),)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -204,7 +209,7 @@ class BeatHierarchy(AbjadObject):
                     1/4
                     1/4
                     1/4))
-                (1/2 (
+                (2/4 (
                     1/4
                     1/4))))
 
@@ -215,7 +220,7 @@ class BeatHierarchy(AbjadObject):
             False
             >>> print bh.pretty_rtm_format 
             (5/4 (
-                (1/2 (
+                (2/4 (
                     1/4
                     1/4))
                 (3/4 (
@@ -226,6 +231,10 @@ class BeatHierarchy(AbjadObject):
         Return boolean.
         '''
         return self._big_endian
+
+    @property
+    def denominator(self):
+        return self._denominator
 
     @property
     def depthwise_offset_inventory(self):
@@ -246,10 +255,14 @@ class BeatHierarchy(AbjadObject):
         for depth, nodes in self.root_node.depthwise_inventory.items():
             offsets = []
             for node in nodes:
-                offsets.append(node.start_offset)
-            offsets.append(durationtools.Offset(self.time_signature.duration))
+                offsets.append(durationtools.Offset(node.start_offset))
+            offsets.append(durationtools.Offset(self.numerator, self.denominator))
             inventory[depth] = tuple(offsets)
         return inventory
+
+    @property
+    def numerator(self):
+        return self._numerator
 
     @property
     def pretty_rtm_format(self):
@@ -262,14 +275,14 @@ class BeatHierarchy(AbjadObject):
         ::
 
             >>> print bh.root_node.pretty_rtm_format
-            (1/2 (
+            (2/4 (
                 1/4
                 1/4))
 
         ::
 
             >>> print bh.pretty_rtm_format
-            (1/2 (
+            (2/4 (
                 1/4
                 1/4))
 
@@ -296,7 +309,7 @@ class BeatHierarchy(AbjadObject):
                         is_pitched=True,
                         ),
                 ),
-                duration=Duration(1, 2)
+                duration=NonreducedFraction(2, 4)
                 )
 
         Return `RhythmTreeNode` instance.
@@ -314,30 +327,15 @@ class BeatHierarchy(AbjadObject):
         ::
 
             >>> print bh.root_node.rtm_format
-            (1/2 (1/4 1/4))
+            (2/4 (1/4 1/4))
 
         ::
 
             >>> print bh.rtm_format
-            (1/2 (1/4 1/4))
+            (2/4 (1/4 1/4))
 
         Return string.
         '''
         return self._root_node.rtm_format
 
-    @property
-    def time_signature(self):
-        '''The `TimeSignatureMark` associated with the `BeatHierarchy`: 
-
-        ::
-
-            >>> bh = timesignaturetools.BeatHierarchy((7, 4))
-            >>> bh.time_signature
-            TimeSignatureMark((7, 4))
-
-        Return `TimeSignatureMark` instance.
-        '''
-        return self._time_signature
-
-    ### PUBLIC METHODS ###
 

@@ -11,7 +11,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.big_endian
 
+.. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.denominator
+
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.depthwise_offset_inventory
+
+.. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.numerator
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.pretty_rtm_format
 
@@ -22,8 +26,6 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.time_signature
 
 Special Methods
 ---------------
