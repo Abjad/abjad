@@ -4,20 +4,20 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier=fractions.Fraction(1)):
+def time_signature_to_time_signature_with_power_of_two_denominator(nonbinary_meter, contents_multiplier=fractions.Fraction(1)):
     '''Change nonbinary `meter` to binary meter::
 
         >>> from abjad.tools import timesignaturetools
 
     ::
 
-        >>> timesignaturetools.time_signature_to_binary_time_signature(
+        >>> timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(
         ...         contexttools.TimeSignatureMark((3, 12)))
         TimeSignatureMark((2, 8))
 
     Preserve binary `meter`::
 
-        >>> timesignaturetools.time_signature_to_binary_time_signature(
+        >>> timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(
         ...     contexttools.TimeSignatureMark((2, 8)))
         TimeSignatureMark((2, 8))
 
@@ -25,7 +25,7 @@ def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier
 
     .. versionchanged:: 2.0
         renamed ``timesignaturetools.make_binary()`` to
-        ``timesignaturetools.time_signature_to_binary_time_signature()``.
+        ``timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator()``.
     '''
 
     # check input

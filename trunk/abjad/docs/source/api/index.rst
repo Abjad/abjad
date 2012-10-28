@@ -1743,8 +1743,8 @@ Composition packages
 
    tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
    tools/timesignaturetools/get_non_power_of_two_factor_from_time_signature_denominator
-   tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
-   tools/timesignaturetools/time_signature_to_binary_time_signature
+   tools/timesignaturetools/is_equivalent_to_time_signature_with_power_of_two_denominator
+   tools/timesignaturetools/time_signature_to_time_signature_with_power_of_two_denominator
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
