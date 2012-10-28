@@ -2,38 +2,38 @@ from abjad.tools import contexttools
 from abjad.tools import mathtools
 
 
-def get_nonbinary_factor_from_time_signature_denominator(time_signature):
+def get_non_power_of_two_factor_from_time_signature_denominator(time_signature):
     '''Get nonbinary factor from nonbinary `time_signature` denominator::
 
         >>> from abjad.tools import timesignaturetools
 
     ::
 
-        >>> timesignaturetools.get_nonbinary_factor_from_time_signature_denominator(
+        >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 12)))
         3
 
     ::
 
-        >>> timesignaturetools.get_nonbinary_factor_from_time_signature_denominator(
+        >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 13)))
         13
 
     ::
 
-        >>> timesignaturetools.get_nonbinary_factor_from_time_signature_denominator(
+        >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 14)))
         7
 
     ::
 
-        >>> timesignaturetools.get_nonbinary_factor_from_time_signature_denominator(
+        >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 15)))
         15
 
     Get ``1`` from binary `time_signature` denominator::
 
-        >>> timesignaturetools.get_nonbinary_factor_from_time_signature_denominator(
+        >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 16)))
         1
 

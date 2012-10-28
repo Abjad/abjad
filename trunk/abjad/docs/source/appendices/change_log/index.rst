@@ -230,12 +230,12 @@ All labeling functions are now housed in the new ``labeltools`` package:
 - Renamed::
 
     measuretools.color_measure()
-    measuretools.color_nonbinary_measures_in_expr()
+    measuretools.color_measures_with_non_power_of_two_denominators_in_expr()
 
   ::
 
     labeltools.color_measure()
-    labeltools.color_nonbinary_measures_in_expr()
+    labeltools.color_measures_with_non_power_of_two_denominators_in_expr()
 
 - Renamed::
 

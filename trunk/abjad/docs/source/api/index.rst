@@ -479,7 +479,7 @@ Composition packages
    tools/labeltools/color_leaf
    tools/labeltools/color_leaves_in_expr
    tools/labeltools/color_measure
-   tools/labeltools/color_nonbinary_measures_in_expr
+   tools/labeltools/color_measures_with_non_power_of_two_denominators_in_expr
    tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
    tools/labeltools/label_leaves_in_expr_with_leaf_depth
@@ -1742,7 +1742,7 @@ Composition packages
    :maxdepth: 1
 
    tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
-   tools/timesignaturetools/get_nonbinary_factor_from_time_signature_denominator
+   tools/timesignaturetools/get_non_power_of_two_factor_from_time_signature_denominator
    tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
    tools/timesignaturetools/time_signature_to_binary_time_signature
 

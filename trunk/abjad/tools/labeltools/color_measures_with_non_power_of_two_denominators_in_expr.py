@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import iterationtools
 
 
-def color_nonbinary_measures_in_expr(expr, color='red'):
+def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red'):
     r'''.. versionadded:: 2.0
 
     Color nonbinary measures in `expr` with `color`::
@@ -31,7 +31,7 @@ def color_nonbinary_measures_in_expr(expr, color='red'):
 
     ::
 
-        >>> labeltools.color_nonbinary_measures_in_expr(staff, 'red')
+        >>> labeltools.color_measures_with_non_power_of_two_denominators_in_expr(staff, 'red')
         [Measure(3/12, [c'8., d'8.])]
 
     ::
