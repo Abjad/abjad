@@ -21,6 +21,10 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.has_non_power_of_two_denominator
+
+    Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
+
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.has_power_of_two_denominator
 
     Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
@@ -30,10 +34,6 @@ Read-only Properties
     Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
 
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.is_diminution
-
-    Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
-
-.. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.is_nonbinary
 
     Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
 

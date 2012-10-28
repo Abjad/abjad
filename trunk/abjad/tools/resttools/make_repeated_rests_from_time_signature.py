@@ -15,7 +15,7 @@ def make_repeated_rests_from_time_signature(time_signature):
     time_signature = contexttools.TimeSignatureMark(time_signature)
 
     # check input
-    if time_signature.is_nonbinary:
+    if time_signature.has_non_power_of_two_denominator:
         raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
 
     # make and return repeated rests

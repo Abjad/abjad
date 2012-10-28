@@ -150,7 +150,7 @@ class Measure(FixedDurationContainer):
     def _check_duration(self):
         from abjad.tools import contexttools
         effective_meter = contexttools.get_effective_time_signature(self)
-        if effective_meter.is_nonbinary and effective_meter.suppress:
+        if effective_meter.has_non_power_of_two_denominator and effective_meter.suppress:
             raise NonbinaryTimeSignatureSuppressionError
         if effective_meter.duration < self.preprolated_duration:
             raise OverfullContainerError
@@ -170,7 +170,7 @@ class Measure(FixedDurationContainer):
         result = []
         # the class name test here functions to exclude scaleDurations from anonymous and dynamic measures
         # TODO: subclass this prooperly on anonymous and dynamic measures
-        if self.is_nonbinary and self._class_name == 'Measure':
+        if self.has_non_power_of_two_denominator and self._class_name == 'Measure':
             result.append("\t\\scaleDurations #'(%s . %s) {" % (
                 self.multiplier.numerator,
                 self.multiplier.denominator))
@@ -218,7 +218,7 @@ class Measure(FixedDurationContainer):
 
         Return boolean.
         '''
-        return not self.is_nonbinary
+        return not self.has_non_power_of_two_denominator
 
     @property
     def is_full(self):
@@ -274,22 +274,22 @@ class Measure(FixedDurationContainer):
         return FixedDurationContainer.is_overfull.fget(self)
 
     @property
-    def is_nonbinary(self):
+    def has_non_power_of_two_denominator(self):
         '''True when measure time signature denominator is not an integer power of 2::
 
             >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            >>> measure.is_nonbinary
+            >>> measure.has_non_power_of_two_denominator
             True
     
         Otherwise false::
 
             >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            >>> measure.is_nonbinary
+            >>> measure.has_non_power_of_two_denominator
             False
 
         Return boolean.
         '''
-        return contexttools.get_effective_time_signature(self).is_nonbinary
+        return contexttools.get_effective_time_signature(self).has_non_power_of_two_denominator
 
     @property
     def is_overfull(self):

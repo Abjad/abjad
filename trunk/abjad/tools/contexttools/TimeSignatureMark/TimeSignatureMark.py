@@ -95,7 +95,7 @@ class TimeSignatureMark(ContextMark):
         # initialize derived attributes
         _multiplier = durationtools.integer_to_implied_prolation(self.denominator)
         self._multiplier = _multiplier
-        self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
+        self._has_non_power_of_two_denominator = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 
     ### SPECIAL METHODS ###
 
@@ -238,16 +238,16 @@ class TimeSignatureMark(ContextMark):
             return result
 
     @property
-    def is_nonbinary(self):
+    def has_non_power_of_two_denominator(self):
         r'''Read-only indicator true when time siganture mark is nonbinary::
 
             >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-            >>> time_signature.is_nonbinary
+            >>> time_signature.has_non_power_of_two_denominator
             False
 
         Return boolean.
         '''
-        return self._is_nonbinary
+        return self._has_non_power_of_two_denominator
 
     @property
     def multiplier(self):

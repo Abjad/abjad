@@ -89,7 +89,7 @@ class Tuplet(Container):
 
     def _format_lilypond_fraction_command_string(self):
         if self._is_visible:
-            if self.is_augmentation or self.is_nonbinary or self.force_fraction:
+            if self.is_augmentation or self.has_non_power_of_two_denominator or self.force_fraction:
                 return r'\fraction '
         return ''
 
@@ -219,11 +219,11 @@ class Tuplet(Container):
             return False
 
     @property
-    def is_nonbinary(self):
+    def has_non_power_of_two_denominator(self):
         '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
 
             >>> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
-            >>> tuplet.is_nonbinary
+            >>> tuplet.has_non_power_of_two_denominator
             True
 
         Return boolean.

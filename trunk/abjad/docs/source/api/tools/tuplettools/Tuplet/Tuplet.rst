@@ -21,13 +21,13 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.has_non_power_of_two_denominator
+
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.has_power_of_two_denominator
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_augmentation
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_diminution
-
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_nonbinary
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_trivial
 

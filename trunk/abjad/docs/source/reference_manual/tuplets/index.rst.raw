@@ -187,8 +187,8 @@ print repr(tuplet.has_power_of_two_denominator) <hide
 Other tuplets are nonbinary:
 
 <abjad>
-tuplet.is_nonbinary
-print repr(tuplet.is_nonbinary) <hide
+tuplet.has_non_power_of_two_denominator
+print repr(tuplet.has_non_power_of_two_denominator) <hide
 </abjad>
 
 Adding one component to the end of a tuplet

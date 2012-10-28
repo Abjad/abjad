@@ -21,13 +21,13 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.has_non_power_of_two_denominator
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.has_power_of_two_denominator
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_full
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_misfilled
-
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_nonbinary
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_overfull
 

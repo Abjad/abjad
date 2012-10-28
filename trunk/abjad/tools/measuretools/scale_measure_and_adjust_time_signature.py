@@ -55,7 +55,7 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
         containertools.scale_contents_of_container(measure, multiplier)
-        if old_meter.is_nonbinary or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
+        if old_meter.has_non_power_of_two_denominator or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
             new_pair = mathtools.NonreducedFraction(old_pair)
             new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
             new_pair = new_pair.pair

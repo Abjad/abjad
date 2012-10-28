@@ -15,7 +15,7 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.is_nonbinary
+.. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.has_non_power_of_two_denominator
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.lilypond_format
 

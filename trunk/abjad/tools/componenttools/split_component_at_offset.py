@@ -146,7 +146,7 @@ def split_component_at_offset(component, offset,
         measure = measures[0]
         split_point_in_measure = global_split_point - measure.start_offset
         split_point_denominator = split_point_in_measure.denominator
-        if measure.is_nonbinary:
+        if measure.has_non_power_of_two_denominator:
             measure_multiplier = measure.multiplier
             split_point_multiplier = durationtools.integer_to_implied_prolation(
                 split_point_denominator)

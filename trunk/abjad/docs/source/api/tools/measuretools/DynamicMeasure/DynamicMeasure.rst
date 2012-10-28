@@ -21,6 +21,10 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
+.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.has_non_power_of_two_denominator
+
+    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
+
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.has_power_of_two_denominator
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
@@ -30,10 +34,6 @@ Read-only Properties
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.is_misfilled
-
-    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
-
-.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.is_nonbinary
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 

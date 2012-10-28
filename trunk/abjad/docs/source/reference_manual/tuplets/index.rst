@@ -212,7 +212,7 @@ Other tuplets are nonbinary:
 
 ::
 
-	>>> tuplet.is_nonbinary
+	>>> tuplet.has_non_power_of_two_denominator
 	False
 
 
