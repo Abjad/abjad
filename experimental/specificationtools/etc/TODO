@@ -37,3 +37,11 @@
 
 11. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
+
+12. Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
+    MixedSourceSymbolicTimespan to a new symbolictimetools package in the experimental branch
+    in preparation for timetools merge to mainline.
+
+13. Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
+
+14. Rename timetools to timerelationtools in preparation for merge to mainline.
