@@ -308,8 +308,6 @@ Composition packages
    tools/durationtools/all_are_durations
    tools/durationtools/durations_to_nonreduced_fractions_with_common_denominator
    tools/durationtools/group_nonreduced_fractions_by_implied_prolation
-   tools/durationtools/is_lilypond_duration_name
-   tools/durationtools/is_lilypond_duration_string
    tools/durationtools/numeric_seconds_to_clock_string
    tools/durationtools/yield_durations
 

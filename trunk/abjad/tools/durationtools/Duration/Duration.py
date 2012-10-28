@@ -83,14 +83,12 @@ class Duration(ImmutableAbjadObject, Fraction):
     '''
 
     def __new__(klass, *args):
-        from abjad.tools import durationtools
         from abjad.tools import sequencetools
         if len(args) == 1 and sequencetools.is_integer_equivalent_singleton(args[0]):
             self = Fraction.__new__(klass, int(args[0][0]))
         elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
             self = Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
-        elif len(args) == 1 and durationtools.is_lilypond_duration_string(args[0]):
-            #self = Fraction.__new__(klass, durationtools.lilypond_duration_string_to_rational(args[0]))
+        elif len(args) == 1 and isinstance(args[0], str) and not '/' in args[0]:
             result = Duration._init_from_lilypond_duration_string(args[0])
             self = Fraction.__new__(klass, result)
         elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
