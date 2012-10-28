@@ -31,6 +31,8 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.implied_prolation
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.is_assignable
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.lilypond_duration_string

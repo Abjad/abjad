@@ -145,16 +145,12 @@ def split_component_at_offset(component, offset,
     if len(measures) == 1:
         measure = measures[0]
         split_point_in_measure = global_split_point - measure.start_offset
-        split_point_denominator = split_point_in_measure.denominator
         if measure.has_non_power_of_two_denominator:
-            measure_multiplier = measure.multiplier
-            split_point_multiplier = durationtools.integer_to_implied_prolation(
-                split_point_denominator)
-            if not measure_multiplier == split_point_multiplier:
+            if not measure.multiplier == split_point_in_measure.implied_prolation:
                 raise NotImplementedError
-        elif not mathtools.is_nonnegative_integer_power_of_two(split_point_denominator):
-            non_power_of_two_factors = mathtools.factors(
-                mathtools.remove_powers_of_two(split_point_denominator))
+        elif not mathtools.is_nonnegative_integer_power_of_two(split_point_in_measure.denominator):
+            non_power_of_two_factors = mathtools.remove_powers_of_two(split_point_in_measure.denominator)
+            non_power_of_two_factors = mathtools.factors(non_power_of_two_factors)
             non_power_of_two_product = 1
             for non_power_of_two_factor in non_power_of_two_factors:
                 non_power_of_two_product *= non_power_of_two_factor
