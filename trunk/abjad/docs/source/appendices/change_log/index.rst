@@ -498,7 +498,7 @@ Changes to the ``durationtools`` package:
   ::
 
     durationtools.yield_assignable_durations()
-    durationtools.yield_nonreduced_fractions()
+    mathtools.yield_nonreduced_fractions()
     durationtools.yield_durations()
     durationtools.yield_all_positive_rationals_uniquely()
     metricmodulationtools.yield_prolation_rewrite_pairs()

@@ -1,3 +1,6 @@
+from abjad.tools import mathtools
+
+
 def yield_durations(unique=False):
     r'''.. versionadded:: 2.0
 
@@ -51,7 +54,7 @@ def yield_durations(unique=False):
     '''
     from abjad.tools import durationtools
 
-    generator = durationtools.yield_nonreduced_fractions()
+    generator = mathtools.yield_nonreduced_fractions()
     while True:
         integer_pair = generator.next()
         duration = durationtools.Duration(integer_pair)

@@ -313,7 +313,6 @@ Composition packages
    tools/durationtools/is_lilypond_duration_string
    tools/durationtools/numeric_seconds_to_clock_string
    tools/durationtools/yield_durations
-   tools/durationtools/yield_nonreduced_fractions
 
 :py:mod:`gracetools <abjad.tools.gracetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -793,6 +792,7 @@ Composition packages
    tools/mathtools/weight
    tools/mathtools/yield_all_compositions_of_integer
    tools/mathtools/yield_all_partitions_of_integer
+   tools/mathtools/yield_nonreduced_fractions
 
 :py:mod:`measuretools <abjad.tools.measuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

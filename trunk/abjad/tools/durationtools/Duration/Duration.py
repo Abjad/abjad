@@ -68,10 +68,6 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     ::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> Duration(mathtools.NonreducedFraction(3, 16))
         Duration(3, 16)
         
@@ -117,7 +113,6 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(Fraction.__abs__(self, *args))
 
     def __add__(self, *args):
-        from abjad.tools import mathtools
         if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__radd__(self)
         else:
@@ -125,7 +120,6 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     def __div__(self, *args):
         from abjad.tools import durationtools
-        from abjad.tools import mathtools
         if len(args) == 1 and isinstance(args[0], type(self)):
             return durationtools.Multiplier(Fraction.__div__(self, *args))
         elif len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
@@ -155,7 +149,6 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(Fraction.__mod__(self, *args))
 
     def __mul__(self, *args):
-        from abjad.tools import mathtools
         if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rmul__(self)
         else:
@@ -207,7 +200,6 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(Fraction.__rtruediv__(self, *args))
 
     def __sub__(self, *args):
-        from abjad.tools import mathtools
         if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
             return args[0].__rsub__(self)
         else:
