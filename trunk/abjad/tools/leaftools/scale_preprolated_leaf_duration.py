@@ -32,7 +32,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
             f'8 ]
         }
 
-    Scale preprolated `leaf` duration by nonbinary `multiplier`::
+    Scale preprolated `leaf` duration by by `multiplier` without power-of-two denominator::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -49,7 +49,7 @@ def scale_preprolated_leaf_duration(leaf, multiplier):
             f'8 ]
         }
 
-    Scale preprolated `leaf` duration by tied nonbinary `multiplier`::
+    Scale preprolated `leaf` duration by tied `multiplier` without power-of-two denominator::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

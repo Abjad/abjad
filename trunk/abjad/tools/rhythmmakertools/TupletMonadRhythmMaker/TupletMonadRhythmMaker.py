@@ -67,11 +67,11 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     def _make_monad(self, duration_token):
         numerator, denominator = duration_token
-        binary_denominator = mathtools.greatest_power_of_two_less_equal(denominator)
+        power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(denominator)
         duration = fractions.Fraction(abs(numerator), denominator)
-        binary_duration = fractions.Fraction(abs(numerator), binary_denominator)
-        binary_duration_token = (numerator, binary_denominator) 
-        tuplet_multiplier = duration / binary_duration
-        leaves = leaftools.make_leaves([0], [binary_duration_token])
+        power_of_two_duration = fractions.Fraction(abs(numerator), power_of_two_denominator)
+        power_of_two_duration_token = (numerator, power_of_two_denominator) 
+        tuplet_multiplier = duration / power_of_two_duration
+        leaves = leaftools.make_leaves([0], [power_of_two_duration_token])
         tuplet = tuplettools.Tuplet(tuplet_multiplier, leaves)
         return tuplet

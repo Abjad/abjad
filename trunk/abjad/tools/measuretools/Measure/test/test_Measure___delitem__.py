@@ -58,7 +58,7 @@ def test_Measure___delitem___04():
 
 
 def test_Measure___delitem___05():
-    '''Trim nonbinary measure.
+    '''Trim non-power-of-two measure.
 
     Automatically update time signature.
     '''
@@ -83,7 +83,7 @@ def test_Measure___delitem___05():
 
 
 def test_Measure___delitem___06():
-    '''Trim nonbinary measure, with denominator change.
+    '''Trim non-power-of-two measure, with denominator change.
 
     Automatically update time signature.
     '''
@@ -135,7 +135,7 @@ def test_Measure___delitem___07():
 
 
 def test_Measure___delitem___08():
-    '''Nonbinary measure.
+    '''Non-power-of-two measure.
 
     Do NOT automatically update time signature.
     '''

@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_containertools_scale_contents_of_container_01():
-    '''Scale leaves in voice by 3/2; ie, dot leaves.'''
+    '''Scale leaves in voice by 3/2; ie, dot leaves.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     containertools.scale_contents_of_container(t, Duration(3, 2))
@@ -21,7 +22,8 @@ def test_containertools_scale_contents_of_container_01():
 
 
 def test_containertools_scale_contents_of_container_02():
-    '''Scale leaves in voice by 5/4; ie, quarter-tie leaves.'''
+    '''Scale leaves in voice by 5/4; ie, quarter-tie leaves.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     containertools.scale_contents_of_container(t, Duration(5, 4))
@@ -44,7 +46,7 @@ def test_containertools_scale_contents_of_container_02():
 
 
 def test_containertools_scale_contents_of_container_03():
-    '''Scale leaves in voice by untied nonbinary 4/3; ie, tupletize notes.
+    '''Scale leaves in voice by untied 4/3; ie, tupletize notes.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -72,7 +74,8 @@ def test_containertools_scale_contents_of_container_03():
 
 
 def test_containertools_scale_contents_of_container_04():
-    '''Scale leaves in voice by tied nonbinary 5/4; ie, tupletize notes.
+    '''Scale leaves in voice by tied 5/4 (tied and without power-of-two denominator); 
+    ie, tupletize notes.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -104,7 +107,8 @@ def test_containertools_scale_contents_of_container_04():
 
 
 def test_containertools_scale_contents_of_container_05():
-    '''Scale mixed notes and tuplets.'''
+    '''Scale mixed notes and tuplets.
+    '''
 
     t = Voice([Note(0, (3, 16)),
         tuplettools.FixedDurationTuplet(Duration(3, 8), notetools.make_repeated_notes(4))])
@@ -141,7 +145,8 @@ def test_containertools_scale_contents_of_container_05():
 
 
 def test_containertools_scale_contents_of_container_06():
-    '''Undo scale of 5/4 with scale of 4/5.'''
+    '''Undo scale of 5/4 with scale of 4/5.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     containertools.scale_contents_of_container(t, Duration(5, 4))
@@ -177,7 +182,8 @@ def test_containertools_scale_contents_of_container_06():
 
 
 def test_containertools_scale_contents_of_container_07():
-    '''Double all contents, including measure.'''
+    '''Double all contents, including measure.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -220,7 +226,8 @@ def test_containertools_scale_contents_of_container_07():
 
 
 def test_containertools_scale_contents_of_container_08():
-    '''Multiply all contents by 5/4, including measure.'''
+    '''Multiply all contents by 5/4, including measure.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)

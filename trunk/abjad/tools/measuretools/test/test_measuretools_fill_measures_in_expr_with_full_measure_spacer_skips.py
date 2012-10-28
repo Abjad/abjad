@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
-    '''Populate nonbinary measure with time-scaled skip.'''
+    '''Populate non-power-of-two measure with time-scaled skip.
+    '''
 
     t = Measure((5, 18), [])
     measuretools.fill_measures_in_expr_with_full_measure_spacer_skips(t)

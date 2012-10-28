@@ -36,7 +36,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
             f'8 ]
         }
 
-    Cut `component` at nonbinary `prolated_duration`::
+    Cut `component` at `prolated_duration` without power-of-two denominator::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

@@ -3,7 +3,8 @@ import py
 
 
 def test_containertools_split_container_at_index_01():
-    '''Index split tuplet in score and do not fracture spanners.'''
+    '''Split tuplet in score and do not fracture spanners.
+    '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -48,7 +49,8 @@ def test_containertools_split_container_at_index_01():
 
 
 def test_containertools_split_container_at_index_02():
-    '''Index split binary measure in score and do not fracture spanners.'''
+    '''Split in-score measure with power-of-two denominator and do not fracture spanners.
+    '''
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -99,7 +101,8 @@ def test_containertools_split_container_at_index_02():
 
 
 def test_containertools_split_container_at_index_03():
-    '''Index split nonbinary measure in score and do not frature spanners.'''
+    '''Split in-score measure without power-of-two denominator and do not frature spanners.
+    '''
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -160,8 +163,8 @@ def test_containertools_split_container_at_index_03():
 
 
 def test_containertools_split_container_at_index_04():
-    '''A single container can be index split in two by the middle;
-        no parent.'''
+    '''A single container can be index split in two by the middle; no parent.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     t1, t2 = containertools.split_container_at_index(t, 2, fracture_spanners=False)
@@ -185,8 +188,9 @@ def test_containertools_split_container_at_index_04():
 
 def test_containertools_split_container_at_index_05():
     '''A single container 'split' at index 0 gives
-        an empty lefthand part and a complete righthand part.
-        Original container empties contents.'''
+    an empty lefthand part and a complete righthand part.
+    Original container empties contents.
+    '''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
@@ -212,9 +216,10 @@ def test_containertools_split_container_at_index_05():
 
 def test_containertools_split_container_at_index_06():
     '''Split container at index greater than len(container).
-        Lefthand part instantiates with all contents.
-        Righthand part instantiates empty.
-        Original container empties contents.'''
+    Lefthand part instantiates with all contents.
+    Righthand part instantiates empty.
+    Original container empties contents.
+    '''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
@@ -228,7 +233,8 @@ def test_containertools_split_container_at_index_06():
 
 
 def test_containertools_split_container_at_index_07():
-    '''Voice can be index split.'''
+    '''Voice can be index split.
+    '''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
@@ -243,7 +249,8 @@ def test_containertools_split_container_at_index_07():
 
 
 def test_containertools_split_container_at_index_08():
-    '''Index split container in score and do not fracture spanners.'''
+    '''Slit container in score and do not fracture spanners.
+    '''
 
     t = Staff([Container("c'8 d'8 e'8 f'8")])
     v = t[0]
@@ -271,7 +278,8 @@ def test_containertools_split_container_at_index_08():
 
 
 def test_containertools_split_container_at_index_09():
-    '''Index split tuplet in score and do not fracture spanners.'''
+    '''Split tuplet in score and do not fracture spanners.
+    '''
 
     t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
     v = t[0]
@@ -304,7 +312,7 @@ def test_containertools_split_container_at_index_09():
 
 
 def test_containertools_split_container_at_index_10():
-    '''Index split left of leaf in score and do not fracture spanners.
+    '''Split left of leaf in score and do not fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -356,7 +364,7 @@ def test_containertools_split_container_at_index_10():
 
 
 def test_containertools_split_container_at_index_11():
-    '''Index split right of leaf in score and do not fracture spanners.
+    '''Split right of leaf in score and do not fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -408,7 +416,8 @@ def test_containertools_split_container_at_index_11():
 
 
 def test_containertools_split_container_at_index_12():
-    '''Index split triplet, and fracture spanners.'''
+    '''Split triplet, and fracture spanners.
+    '''
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     tuplet = t[1]
@@ -457,7 +466,9 @@ def test_containertools_split_container_at_index_12():
 
 
 def test_containertools_split_container_at_index_13():
-    '''Index split binary measure, and fracture spanners.'''
+    '''Split measure with power-of-two time signature denominator.
+    Fracture spanners.
+    '''
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
@@ -511,7 +522,9 @@ def test_containertools_split_container_at_index_13():
 
 
 def test_containertools_split_container_at_index_14():
-    '''Index split nonbinary measure, and fracture spanners.'''
+    '''Split measure without power-of-two time signature denominator.
+    Fracture spanners.
+    '''
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
@@ -575,8 +588,9 @@ def test_containertools_split_container_at_index_14():
 
 
 def test_containertools_split_container_at_index_15():
-    '''Index split voice outside of score.
-        Fracture spanners.'''
+    '''Split voice outside of score.
+    Fracture spanners.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:])
@@ -613,8 +627,9 @@ def test_containertools_split_container_at_index_15():
 
 def test_containertools_split_container_at_index_16():
     '''A single container 'split' at index 0 gives
-        an empty lefthand part and a complete righthand part.
-        Original container empties contents.'''
+    an empty lefthand part and a complete righthand part.
+    Original container empties contents.
+    '''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
@@ -652,9 +667,10 @@ def test_containertools_split_container_at_index_16():
 
 def test_containertools_split_container_at_index_17():
     '''Split container at index greater than len(container).
-        Lefthand part instantiates with all contents.
-        Righthand part instantiates empty.
-        Original container empties contents.'''
+    Lefthand part instantiates with all contents.
+    Righthand part instantiates empty.
+    Original container empties contents.
+    '''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
@@ -680,7 +696,8 @@ def test_containertools_split_container_at_index_17():
 
 
 def test_containertools_split_container_at_index_18():
-    '''Index split measure in score and fracture spanners.'''
+    '''Split measure in score and fracture spanners.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -730,7 +747,7 @@ def test_containertools_split_container_at_index_18():
 
 
 def test_containertools_split_container_at_index_19():
-    '''Index split left of leaf in score and fracture spanners.
+    '''Split left of leaf in score and fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -781,7 +798,7 @@ def test_containertools_split_container_at_index_19():
 
 
 def test_containertools_split_container_at_index_20():
-    '''Index split right of leaf in score and fracture spanners.
+    '''Split right of leaf in score and fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -831,7 +848,7 @@ def test_containertools_split_container_at_index_20():
 
 
 def test_containertools_split_container_at_index_21():
-    '''Index split nonbinary measure in score.
+    '''Split in-score measure without power-of-two time signature denominator.
     Fractured spanners but do not tie over split locus.
     Measure contents necessitate denominator change.
     '''
@@ -880,7 +897,7 @@ def test_containertools_split_container_at_index_21():
 
 
 def test_containertools_split_container_at_index_22():
-    '''Index split binary measure in score.
+    '''Split in-score measure with power-of-two time signature denominator.
     Fractured spanners but do not tie over split locus.
     Measure contents necessitate denominator change.
     '''

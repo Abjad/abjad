@@ -3,7 +3,9 @@ import py.test
 
 
 def test_measuretools_fuse_measures_01():
-    '''Fuse unicorporated binary measures.'''
+    '''Fuse unicorporated measures carrying 
+    time signatures with power-of-two denominators.
+    '''
 
     t1 = Measure((1, 8), "c'16 d'16")
     beamtools.BeamSpanner(t1[:])
@@ -46,9 +48,10 @@ def test_measuretools_fuse_measures_01():
 
 
 def test_measuretools_fuse_measures_02():
-    '''Fuse binary measures with different denominators.
-        Helpers selects minimum of two denominators.
-        Beams are OK because they attach to leaves rather than containers.'''
+    '''Fuse measures carrying time signatures with differing power-of-two denominators.
+    Helpers selects minimum of two denominators.
+    Beams are OK because they attach to leaves rather than containers.
+    '''
 
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
     measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
@@ -89,9 +92,10 @@ def test_measuretools_fuse_measures_02():
 
 
 def test_measuretools_fuse_measures_03():
-    '''Fuse binary measures with different denominators.
-        Helpers selects minimum of two denominators.
-        Beam attaches to container rather than leaves.'''
+    '''Fuse measures with differing power-of-two denominators.
+    Helpers selects minimum of two denominators.
+    Beam attaches to container rather than leaves.
+    '''
 
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
     measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
@@ -132,9 +136,11 @@ def test_measuretools_fuse_measures_03():
 
 
 def test_measuretools_fuse_measures_04():
-    '''Fuse binary and nonbinary measures.
-        Helpers selects least common multiple of denominators.
-        Beams are OK because they attach to leaves rather than containers.'''
+    '''Fuse measures with power-of-two-denominators together with measures 
+    without power-of-two denominators.
+    Helpers selects least common multiple of denominators.
+    Beams are OK because they attach to leaves rather than containers.
+    '''
 
     m1 = Measure((1, 8), notetools.make_repeated_notes(1))
     m2 = Measure((1, 12), notetools.make_repeated_notes(1))
@@ -176,14 +182,16 @@ def test_measuretools_fuse_measures_04():
 
 
 def test_measuretools_fuse_measures_05():
-    '''Fusing empty list raises no excpetion but returns None.'''
+    '''Fusing empty list raises no excpetion but returns None.
+    '''
 
     result = measuretools.fuse_measures([])
     assert result is None
 
 
 def test_measuretools_fuse_measures_06():
-    '''Fusing list of only one measure returns measure unaltered.'''
+    '''Fusing list of only one measure returns measure unaltered.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
     new = measuretools.fuse_measures([t])
@@ -192,7 +200,8 @@ def test_measuretools_fuse_measures_06():
 
 
 def test_measuretools_fuse_measures_07():
-    '''Fuse three measures.'''
+    '''Fuse three measures.
+    '''
 
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
     measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
@@ -240,7 +249,8 @@ def test_measuretools_fuse_measures_07():
 
 
 def test_measuretools_fuse_measures_08():
-    '''Measure fusion across intervening container boundaries is undefined.'''
+    '''Measure fusion across intervening container boundaries is undefined.
+    '''
 
     t = Voice(Container(Measure((2, 8), notetools.make_repeated_notes(2)) * 2) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -278,8 +288,10 @@ def test_measuretools_fuse_measures_08():
 
 
 def test_measuretools_fuse_measures_09():
-    '''Fusing binary and nonbinary measures.
-        With change in number of note_heads because of nonbinary multiplier.'''
+    '''Fusing measures with power-of-two denominators
+    to measures without power-of-two denominators.
+    With change in number of note heads because of non-power-of-two multiplier.
+    '''
 
     t = Staff([
         Measure((9, 80), []),

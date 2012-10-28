@@ -165,7 +165,7 @@ def test_componenttools_split_component_at_offset_03():
 
 
 def test_componenttools_split_component_at_offset_04():
-    '''Duration split one leaf in score.
+    '''Split one leaf in score.
     Do not fracture spanners. But do tie after split.
     '''
 
@@ -218,7 +218,7 @@ def test_componenttools_split_component_at_offset_04():
 
 
 def test_componenttools_split_component_at_offset_05():
-    '''Duration split one measure in score.
+    '''Split one measure in score.
     Do not fracture spanners. But do add tie after split.
     '''
 
@@ -274,7 +274,8 @@ def test_componenttools_split_component_at_offset_05():
 
 
 def test_componenttools_split_component_at_offset_06():
-    '''Duration split binary measure in score at nonbinary split point.
+    '''Split in-score measure with power-of-two time signature denominator 
+    at split offset without power-of-two denominator.
     Do not fracture spanners and do not tie leaves after split.
     '''
 
@@ -335,7 +336,8 @@ def test_componenttools_split_component_at_offset_06():
 
 
 def test_componenttools_split_component_at_offset_07():
-    '''Duration split binary measure in score at nonbinary split point.
+    '''Split in-score measure with power-of-two time signature denominator 
+    at split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
     '''
 
@@ -394,7 +396,7 @@ def test_componenttools_split_component_at_offset_07():
 
 
 def test_componenttools_split_component_at_offset_08():
-    '''Duration split leaf in score and fracture spanners.
+    '''Split leaf in score and fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -446,7 +448,7 @@ def test_componenttools_split_component_at_offset_08():
 
 
 def test_componenttools_split_component_at_offset_09():
-    '''Duration split measure in score and fracture spanners.
+    '''Split measure in score and fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -501,7 +503,7 @@ def test_componenttools_split_component_at_offset_09():
 
 
 def test_componenttools_split_component_at_offset_10():
-    '''Duration split staff outside of score and fracture spanners.
+    '''Split staff outside of score and fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -563,7 +565,7 @@ def test_componenttools_split_component_at_offset_10():
 
 
 def test_componenttools_split_component_at_offset_11():
-    '''Duration fracture leaf in score at nonzero index.
+    '''Split leaf in score at nonzero index.
     Fracture spanners.
     Test comes from a bug fix.
     '''
@@ -614,7 +616,7 @@ def test_componenttools_split_component_at_offset_11():
 
 
 def test_componenttools_split_component_at_offset_12():
-    '''Duration fracture container over leaf at nonzero index.
+    '''Split container over leaf at nonzero index.
     Fracture spanners.
     Test results from bug fix.
     '''
@@ -668,7 +670,7 @@ def test_componenttools_split_component_at_offset_12():
 
 
 def test_componenttools_split_component_at_offset_13():
-    '''Duration split container between leaves and fracture spanners.
+    '''Split container between leaves and fracture spanners.
     '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
@@ -723,7 +725,7 @@ def test_componenttools_split_component_at_offset_13():
 
 
 def test_componenttools_split_component_at_offset_14():
-    '''Duration split leaf outside of score and fracture spanners.
+    '''Split leaf outside of score and fracture spanners.
     '''
 
     t = Note(0, (1, 8))
@@ -741,7 +743,7 @@ def test_componenttools_split_component_at_offset_14():
 
 
 def test_componenttools_split_component_at_offset_15():
-    '''Duration split leaf in score and fracture spanners.
+    '''Split leaf in score and fracture spanners.
     Tie leaves after split.
     '''
 
@@ -795,7 +797,7 @@ def test_componenttools_split_component_at_offset_15():
 
 
 def test_componenttools_split_component_at_offset_16():
-    '''Duration split measure in score and fracture spanners.
+    '''Split measure in score and fracture spanners.
     Tie leaves after split.
     '''
 
@@ -851,7 +853,8 @@ def test_componenttools_split_component_at_offset_16():
 
 
 def test_componenttools_split_component_at_offset_17():
-    '''Duration split binary measure in score at nonbinary split point.
+    '''Split in-score measure with power-of-two time signature denominator 
+    at split offset without power-of-two denominator.
     Do fracture spanners but do not tie leaves after split.
     '''
 
@@ -910,7 +913,8 @@ def test_componenttools_split_component_at_offset_17():
 
 
 def test_componenttools_split_component_at_offset_18():
-    '''Duration split binary measure in score at nonbinary split point.
+    '''Split in-score measure with power-of-two time signature denominator at
+    split offset without power-of-two denominator.
     Do fracture spanners and do tie leaves after split.
     '''
 
@@ -969,7 +973,8 @@ def test_componenttools_split_component_at_offset_18():
 
 
 def test_componenttools_split_component_at_offset_19():
-    '''Split binary measure at nonbinary split point.
+    '''Split measure with power-of-two time signature denominator at 
+    split offset without power-of-two denominator.
     Do fracture spanners but do not tie across split locus.
     This test results from a fix.
     What's being tested here is contents rederivation.
@@ -1034,8 +1039,8 @@ def test_componenttools_split_component_at_offset_19():
 
 
 def test_componenttools_split_component_at_offset_20():
-    '''Duration split leaf with LilyPond multiplier.
-    Split at binary split point.
+    '''Split leaf with LilyPond multiplier.
+    Split at split offset with power-of-two denominator.
     Halves carry original written duration.
     Halves carry adjusted LilyPond multipliers.
     '''
@@ -1057,8 +1062,8 @@ def test_componenttools_split_component_at_offset_20():
 
 
 def test_componenttools_split_component_at_offset_21():
-    '''Duration split leaf with LilyPond multiplier.
-    Split at nonbinary split point.
+    '''Split leaf with LilyPond multiplier.
+    Split at offset without power-of-two denominator.
     Halves carry original written duration.
     Halves carry adjusted LilyPond multipliers.
     '''
@@ -1080,8 +1085,8 @@ def test_componenttools_split_component_at_offset_21():
 
 
 def test_componenttools_split_component_at_offset_22():
-    '''Duration split binary measure with multiplied leaves.
-    Split at binary split point between leaves.
+    '''Split measure with power-of-two time signature denominator with multiplied leaes.
+    Split at between-leaf offset with power-of-two denominator.
     Leaves remain unaltered.
     '''
 
@@ -1137,8 +1142,8 @@ def test_componenttools_split_component_at_offset_22():
 
 
 def test_componenttools_split_component_at_offset_23():
-    '''Duration split binary measure with multiplied leaves.
-    Split at binary split point through leaves.
+    '''Split measure with power-of-two time signature denominator with multiplied leaves.
+    Split at through-leaf offset with power-of-two denominator.
     Leaf written durations stay the same but multipliers change.
     '''
 
@@ -1194,9 +1199,10 @@ def test_componenttools_split_component_at_offset_23():
 
 
 def test_componenttools_split_component_at_offset_24():
-    '''Duration split binary measure with multiplied leaves.
-    Split at nonbinary split point through leaves.
-    Leaf written durations adjust for binary-to-nonbinary change.
+    '''Split measure with power-of-two time signature denominator with multiplied leaves.
+    Split at through-leaf offset without power-of-two denominator.
+    Leaf written durations adjust for change from power-of-two denominator
+    to non-power-of-two denominator.
     Leaf multipliers also change.
     '''
 
@@ -1256,9 +1262,9 @@ def test_componenttools_split_component_at_offset_24():
 
 
 def test_componenttools_split_component_at_offset_25():
-    '''Duration split binary measure with multiplied leaves.
+    '''Split measure with power-of-two time signature denominator with multiplied leaves.
     Time signature carries numerator that necessitates ties.
-    Split at nonbinary split point through leaves.
+    Split at through-leaf offset without power-of-two denominator.
     '''
 
     t = Staff([Measure((5, 16), [skiptools.Skip((1, 1))])])
@@ -1298,8 +1304,9 @@ def test_componenttools_split_component_at_offset_25():
 
 
 def test_componenttools_split_component_at_offset_26():
-    '''Duration split nonbinary measure at nonbinary split point.
-    Measure multiplier and split point multiplier match.
+    '''Split measure without power-of-two time signature denominator
+    at split offset without power-of-two denominator.
+    Measure multiplier and split offset multiplier match.
     Split between leaves but do fracture spanners.
     '''
 

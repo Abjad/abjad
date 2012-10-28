@@ -44,7 +44,8 @@ def test_timesignaturetools_is_equivalent_to_time_signature_with_power_of_two_de
 
 
 def test_timesignaturetools_is_equivalent_to_time_signature_with_power_of_two_denominator_03():
-    '''True for binary meters.'''
+    '''True for time signatures with power-of-two denominators.
+    '''
 
     assert timesignaturetools.is_equivalent_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 8)))
     assert timesignaturetools.is_equivalent_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((2, 8)))

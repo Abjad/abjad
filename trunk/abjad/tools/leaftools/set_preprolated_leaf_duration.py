@@ -36,7 +36,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             f'8 ]
         }
 
-    Set nonbinary preprolated `leaf` duration::
+    Set preprolated `leaf` duration without power-of-two denominator::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)
@@ -53,7 +53,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             f'8 ]
         }
 
-    Set tied nonbinary preprolated `leaf` duration::
+    Set preprolated `leaf` duration without power-of-two denominator::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beamtools.BeamSpanner(staff.leaves)

@@ -2,11 +2,10 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 
 
-# TODO: implement measuretools.change_nonbinary_measure_to_binary().
-def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominator_factor):
+def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     r'''.. versionadded:: 1.1
 
-    Change binary `measure` to nonbinary measure with `new_denominator_factor`::
+    Change power-of-two `measure` to non-power-of-two measure with new denominator `factor`::
 
         >>> measure = Measure((2, 8), "c'8 d'8")
         >>> beamtools.BeamSpanner(measure.leaves)
@@ -38,7 +37,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
         }
 
 
-    Treat `new_denominator_factor` like clever form of ``1``:
+    Treat new denominator `factor` like clever form of ``1``:
     ``3/3`` or ``5/5`` or ``7/7``, etc.
 
     Preserve `measure` prolated duration.
@@ -48,10 +47,6 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
     Scale `measure` contents.
 
     Pick best new meter.
-
-    .. versionchanged:: 2.0
-        renamed ``measuretools.change_binary_measure_to_nonbinary()`` to
-        ``measuretools.scale_measure_denominator_and_adjust_measure_contents()``.
     '''
     from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
@@ -61,11 +56,10 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
 
     # find new meter
     new_meter = timesignaturetools.duration_and_possible_denominators_to_time_signature(
-        old_meter_duration, factor = new_denominator_factor)
+        old_meter_duration, factor=factor)
 
     # find new measure multiplier
-    new_measure_multiplier = durationtools.integer_to_implied_prolation(
-        new_denominator_factor)
+    new_measure_multiplier = durationtools.integer_to_implied_prolation(factor)
 
     # inverse scale measure ... but throw away resultant meter
     numerator, denominator = new_measure_multiplier.numerator, new_measure_multiplier.denominator

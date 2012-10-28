@@ -180,7 +180,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
 
 
 def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10():
-    '''Nonbinary target duration.
+    '''Target duration without power-of-two denominator.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), [Note(0, (2, 8)), Note(0, (3, 8))])

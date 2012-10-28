@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_DynamicMeasure_duration_interface_01():
-    '''Notes as contents.'''
+    '''Notes as contents.
+    '''
 
     t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
     t.denominator = 8
@@ -26,7 +27,8 @@ def test_DynamicMeasure_duration_interface_01():
 
 
 def test_DynamicMeasure_duration_interface_02():
-    '''Binary tuplet as contents.'''
+    '''Tuplet with power-of-two multiplier denominator as contents.
+    '''
 
     t = measuretools.DynamicMeasure([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
     t.denominator = 8
@@ -51,7 +53,8 @@ def test_DynamicMeasure_duration_interface_02():
 
 
 def test_DynamicMeasure_duration_interface_03():
-    '''Nonbinary tuplet as contents.'''
+    '''Tuplet without power-of-two multiplier denominator as contents.
+    '''
 
     t = measuretools.DynamicMeasure([Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8")])
     t.denominator = 12

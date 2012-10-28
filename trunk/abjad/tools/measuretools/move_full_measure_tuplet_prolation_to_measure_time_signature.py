@@ -8,7 +8,7 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
 
     Move prolation of full-measure tuplet to meter of measure.
 
-    Measures usually become nonbinary as as result::
+    Measures usually become non-power-of-two as as result::
 
         >>> t = Measure((2, 8), [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
         >>> measuretools.move_full_measure_tuplet_prolation_to_measure_time_signature(t)

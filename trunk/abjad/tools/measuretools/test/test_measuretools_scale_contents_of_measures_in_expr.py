@@ -2,8 +2,9 @@ from abjad import *
 
 
 def test_measuretools_scale_contents_of_measures_in_expr_01():
-    '''Quadruple binary meter.
-    Time siganture denominator adjust appropriately.'''
+    '''Quadruple time signature with power-of-two denominator.
+    Time siganture denominator adjusts appropriately.
+    '''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
     beamtools.BeamSpanner(t[:])
@@ -24,7 +25,8 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
 
 
 def test_measuretools_scale_contents_of_measures_in_expr_02():
-    '''Triple binary meter.'''
+    '''Triple time signature with power-of-two denominator.
+    '''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
     beamtools.BeamSpanner(t[:])
@@ -45,7 +47,8 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
 
 
 def test_measuretools_scale_contents_of_measures_in_expr_03():
-    '''Multiply binary measure by 2/3.'''
+    '''Multiply measure with power-of-two time signature denomiantor by 2/3.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
     beamtools.BeamSpanner(t[:])

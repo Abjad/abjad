@@ -216,6 +216,19 @@ class TimeSignatureMark(ContextMark):
         return durationtools.Duration(self.numerator, self.denominator)
 
     @property
+    def has_non_power_of_two_denominator(self):
+        r'''Read-only indicator true when time siganture mark 
+        has non-power-of-two denominator::
+
+            >>> time_signature = contexttools.TimeSignatureMark((3, 8))
+            >>> time_signature.has_non_power_of_two_denominator
+            False
+
+        Return boolean.
+        '''
+        return self._has_non_power_of_two_denominator
+
+    @property
     def lilypond_format(self):
         r'''Read-only LilyPond format of time signature mark::
 
@@ -236,18 +249,6 @@ class TimeSignatureMark(ContextMark):
             result.append(partial_directive)
             result.append(r'\time %s/%s' % (self.numerator, self.denominator))
             return result
-
-    @property
-    def has_non_power_of_two_denominator(self):
-        r'''Read-only indicator true when time siganture mark is nonbinary::
-
-            >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-            >>> time_signature.has_non_power_of_two_denominator
-            False
-
-        Return boolean.
-        '''
-        return self._has_non_power_of_two_denominator
 
     @property
     def multiplier(self):

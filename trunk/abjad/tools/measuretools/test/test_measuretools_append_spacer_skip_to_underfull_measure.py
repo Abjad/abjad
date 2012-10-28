@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_measuretools_append_spacer_skip_to_underfull_measure_01():
-    '''Handles measure prolation from nonbinary meter.'''
+    '''Handles measure prolation from time signature non-power-of-two denominator.
+    '''
 
     t = Measure((4, 12), "c'8 d'8 e'8 f'8")
     contexttools.detach_time_signature_marks_attached_to_component(t)
@@ -30,7 +31,8 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01():
 
 
 def test_measuretools_append_spacer_skip_to_underfull_measure_02():
-    '''Handles regular measure with no meter prolation.'''
+    '''Handles regular measure with no meter prolation.
+    '''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")
     contexttools.detach_time_signature_marks_attached_to_component(t)

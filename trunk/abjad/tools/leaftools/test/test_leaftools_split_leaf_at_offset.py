@@ -270,7 +270,8 @@ def test_leaftools_split_leaf_at_offset_10():
 
 
 def test_leaftools_split_leaf_at_offset_11():
-    '''Nonassignable binary split duration produces two lists.
+    '''Nonassignable split duration with power-of-two denominator 
+    produces two lists.
     Left list contains two notes tied together.
     Right list contains only one note.
     '''

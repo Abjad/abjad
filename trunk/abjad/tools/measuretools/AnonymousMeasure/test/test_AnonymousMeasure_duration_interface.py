@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_AnonymousMeasure_duration_interface_01():
-    '''Notes as contents.'''
+    '''Notes as contents.
+    '''
 
     t = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
 
@@ -27,7 +28,8 @@ def test_AnonymousMeasure_duration_interface_01():
 
 
 def test_AnonymousMeasure_duration_interface_02():
-    '''Works with binary tuplet as contents.'''
+    '''Works with power-of-two tuplet as contents.
+    '''
 
     t = measuretools.AnonymousMeasure([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
 
@@ -53,7 +55,8 @@ def test_AnonymousMeasure_duration_interface_02():
 
 
 def test_AnonymousMeasure_duration_interface_03():
-    '''Works with nonbinary tuplet.'''
+    '''Works with non-power-of-two tuplet.
+    '''
 
     t = measuretools.AnonymousMeasure([Tuplet(Fraction(2, 3), "c'8 d'8 e'8 f'8")])
     t.denominator = 12

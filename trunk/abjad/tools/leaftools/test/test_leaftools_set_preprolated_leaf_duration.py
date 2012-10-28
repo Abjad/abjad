@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_leaftools_set_preprolated_leaf_duration_01():
-    '''Change leaf to tied duration.'''
+    '''Change leaf to tied duration.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:2])
@@ -34,7 +35,8 @@ def test_leaftools_set_preprolated_leaf_duration_01():
 
 def test_leaftools_set_preprolated_leaf_duration_02():
     '''Change tied leaf to tied value.
-      Duplicate ties are not created.'''
+    Duplicate ties are not created.
+    '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tietools.TieSpanner(t[:2])
@@ -67,7 +69,8 @@ def test_leaftools_set_preprolated_leaf_duration_02():
 
 def test_leaftools_set_preprolated_leaf_duration_03():
     '''Change leaf to nontied duration.
-      Same as t.written_duration = Duration(3, 16).'''
+    Same as t.written_duration = Duration(3, 16).
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:2])
@@ -97,8 +100,9 @@ def test_leaftools_set_preprolated_leaf_duration_03():
 
 
 def test_leaftools_set_preprolated_leaf_duration_04():
-    '''Change leaf to tied, nonbinary duration.
-      Tuplet inserted over new tied notes.'''
+    '''Change leaf to tied duration without power-of-two denominator.
+    Tuplet inserted over new tied notes.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:2])
@@ -131,8 +135,9 @@ def test_leaftools_set_preprolated_leaf_duration_04():
 
 
 def test_leaftools_set_preprolated_leaf_duration_05():
-    '''Change leaf to untied, nonbinary duration.
-      Tuplet inserted over input leaf.'''
+    '''Change leaf to untied duration without power-of-two denominator.
+    Tuplet inserted over input leaf.
+    '''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beamtools.BeamSpanner(t[:2])
@@ -164,8 +169,9 @@ def test_leaftools_set_preprolated_leaf_duration_05():
 
 
 def test_leaftools_set_preprolated_leaf_duration_06():
-    '''Change leaf with LilyPond multiplier to untied, binary duration.
-      LilyPond multiplier changes but leaf written duration does not.'''
+    '''Change leaf with LilyPond multiplier to untied duration with power-of-two denominator.
+    LilyPond multiplier changes but leaf written duration does not.
+    '''
 
     t = Note(0, (1, 8))
     t.duration_multiplier = Duration(1, 2)
@@ -179,8 +185,9 @@ def test_leaftools_set_preprolated_leaf_duration_06():
 
 
 def test_leaftools_set_preprolated_leaf_duration_07():
-    '''Change leaf with LilyPond multiplier to untied, binary duration.
-      LilyPond multiplier changes but leaf written duration does not.'''
+    '''Change leaf with LilyPond multiplier to untied duration with power-of-two denominator.
+    LilyPond multiplier changes but leaf written duration does not.
+    '''
 
     t = Note(0, (1, 8))
     t.duration_multiplier = Duration(1, 2)
@@ -194,8 +201,9 @@ def test_leaftools_set_preprolated_leaf_duration_07():
 
 
 def test_leaftools_set_preprolated_leaf_duration_08():
-    '''Change leaf with LilyPond multiplier to tied, binary duration.
-      LilyPond multiplier changes but leaf written duration does not.'''
+    '''Change leaf with LilyPond multiplier to tied duration with power-of-two denominator.
+    LilyPond multiplier changes but leaf written duration does not.
+    '''
 
     t = Note(0, (1, 8))
     t.duration_multiplier = Duration(1, 2)
@@ -209,8 +217,9 @@ def test_leaftools_set_preprolated_leaf_duration_08():
 
 
 def test_leaftools_set_preprolated_leaf_duration_09():
-    '''Change leaf with LilyPond multiplier to nonbinary duration.
-      LilyPond multiplier changes but leaf written duration does not.'''
+    '''Change leaf with LilyPond multiplier to duration without power-of-two denominator.
+    LilyPond multiplier changes but leaf written duration does not.
+    '''
 
     t = Note(0, (1, 8))
     t.duration_multiplier = Duration(1, 2)
@@ -225,8 +234,9 @@ def test_leaftools_set_preprolated_leaf_duration_09():
 
 def test_leaftools_set_preprolated_leaf_duration_10():
     '''Change leaf with LilyPond multiplier.
-      Change to nonbinary duration necessitating ties.
-      LilyPond multiplier changes but leaf written duration does not.'''
+    Change to tie-necessitating duration without power-of-two denominator.
+    LilyPond multiplier changes but leaf written duration does not.
+    '''
 
     t = Note(0, (1, 8))
     t.duration_multiplier = Duration(1, 2)

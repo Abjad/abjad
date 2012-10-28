@@ -57,7 +57,7 @@ def scale_contents_of_container(container, multiplier):
             d'32 ]
         }
 
-    Scale contents of `container` by nonbinary `multiplier`::
+    Scale contents of `container` by `multiplier` without power-of-two denominator::
 
         >>> staff = Staff("c'8 d'8")
         >>> beamtools.BeamSpanner(staff.leaves)

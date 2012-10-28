@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Measure_duration_01():
-    '''Binary meter, properly filled.'''
+    '''Properly filled Measure with power-of-two time signature denominator.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
 
@@ -25,7 +26,8 @@ def test_Measure_duration_01():
 
 
 def test_Measure_duration_02():
-    '''Nonbinary meter, properly filled.'''
+    '''Properly filled measure without power-of-two time signature denominator.
+    '''
 
     t = Measure((3, 10), "c'8 d'8 e'8")
 
@@ -50,7 +52,8 @@ def test_Measure_duration_02():
 
 
 def test_Measure_duration_03():
-    '''Binary meter, improperly filled.'''
+    '''Improperly filled measure without power-of-two time signature denominator.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8 f'8")
 
@@ -63,7 +66,8 @@ def test_Measure_duration_03():
 
 
 def test_Measure_duration_04():
-    '''Nonbinary meter, improperly filled.'''
+    '''Impropely filled measure without power-of-two time signature denominator.
+    '''
 
     t = Measure((3, 10), "c'8 d'8 e'8 f'8")
 

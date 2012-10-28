@@ -139,8 +139,8 @@ def split_component_at_offset(component, offset,
     # get any duration-crossing measure descendents
     measures = [x for x in contents if isinstance(x, measuretools.Measure)]
 
-    # if we must split a binary measure at a nonbinary split point
-    # go ahead and transform the binary measure to nonbinary equivalent now;
+    # if we must split a power-of-two measure at a non-power-of-two split point
+    # go ahead and transform the power-of-two measure to non-power-of-two equivalent now;
     # code that crawls and splits later on will be happier
     if len(measures) == 1:
         measure = measures[0]
@@ -153,13 +153,13 @@ def split_component_at_offset(component, offset,
             if not measure_multiplier == split_point_multiplier:
                 raise NotImplementedError
         elif not mathtools.is_nonnegative_integer_power_of_two(split_point_denominator):
-            nonbinary_factors = mathtools.factors(
+            non_power_of_two_factors = mathtools.factors(
                 mathtools.remove_powers_of_two(split_point_denominator))
-            nonbinary_product = 1
-            for nonbinary_factor in nonbinary_factors:
-                nonbinary_product *= nonbinary_factor
+            non_power_of_two_product = 1
+            for non_power_of_two_factor in non_power_of_two_factors:
+                non_power_of_two_product *= non_power_of_two_factor
             measuretools.scale_measure_denominator_and_adjust_measure_contents(
-                measure, nonbinary_product)
+                measure, non_power_of_two_product)
             # rederive duration crosses with possibly new measure contents
             contents = componenttools.get_improper_descendents_of_component_that_cross_offset(
                 component, offset)

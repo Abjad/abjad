@@ -21,7 +21,7 @@ def test_FixedDurationTuplet_fraction_01():
 
 
 def test_FixedDurationTuplet_fraction_02():
-    '''Fraction format all augmentations, even binary ones.
+    '''Fraction format all augmentations, even ones with power-of-two denominator.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 d'8 e'8")
