@@ -1,5 +1,7 @@
 from abjad import *
-from experimental import *
+#from experimental import *
+import py
+py.test.skip('back-dependency to experimental is not allowed.')
 
 
 def test_BeatHierarchy___iter___01():

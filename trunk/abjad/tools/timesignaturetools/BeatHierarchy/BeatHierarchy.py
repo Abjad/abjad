@@ -17,13 +17,7 @@ class BeatHierarchy(AbjadObject):
     summing to that prime, hence `5` becomes `3+2`, and `7` becomes `3+2+2`.
 
     This process creates a reasonable analog to the common practice model of
-    metrical structure.
-
-    ::
-
-        >>> from experimental import *
-
-    ::
+    metrical structure::
 
         >>> timesignaturetools.BeatHierarchy((4, 4))
         BeatHierarchy((4, 4), big_endian=True)

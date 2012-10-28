@@ -1,5 +1,9 @@
 from abjad import *
-from experimental import *
+# back-dependency to experimental branch is not allowed
+#from experimental import *
+
+import py
+py.test.skip('back-dependency to experimental brach is now allowed')
 
 
 def test_BeatHierarchy___init___01():
