@@ -501,7 +501,7 @@ Changes to the ``durationtools`` package:
     durationtools.yield_nonreduced_fractions()
     durationtools.yield_durations()
     durationtools.yield_all_positive_rationals_uniquely()
-    durationtools.yield_prolation_rewrite_pairs()
+    metricmodulationtools.yield_prolation_rewrite_pairs()
 
 Changes to the ``instrumenttools`` package:
 

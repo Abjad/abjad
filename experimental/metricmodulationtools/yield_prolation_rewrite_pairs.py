@@ -7,7 +7,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
 
     The different ways to notate a prolated duration of ``1/8``::
 
-        >>> pairs = durationtools.yield_prolation_rewrite_pairs(Duration(1, 8))
+        >>> pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(1, 8))
 
     ::
 
@@ -24,7 +24,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
 
     The different ways to notate a prolated duration of ``1/12``::
 
-        >>> pairs = durationtools.yield_prolation_rewrite_pairs(Duration(1, 12))
+        >>> pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(1, 12))
 
     ::
 
@@ -40,7 +40,7 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
 
     The different ways to notate a prolated duration of ``5/48``::
 
-        >>> pairs = durationtools.yield_prolation_rewrite_pairs(Duration(5, 48))
+        >>> pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(5, 48))
 
     ::
 

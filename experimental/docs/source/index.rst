@@ -1,6 +1,22 @@
 Abjad Experimental API
 ======================
 
+Additional packages (load manually)
+-----------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+:py:mod:`metricmodulationtools <experimental.metricmodulationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/metricmodulationtools/yield_prolation_rewrite_pairs
+
 Unstable packages (load manually)
 ---------------------------------
 

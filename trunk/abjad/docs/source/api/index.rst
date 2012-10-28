@@ -314,7 +314,6 @@ Composition packages
    tools/durationtools/numeric_seconds_to_clock_string
    tools/durationtools/yield_durations
    tools/durationtools/yield_nonreduced_fractions
-   tools/durationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`gracetools <abjad.tools.gracetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
