@@ -58,13 +58,8 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
     new_time_signature = timesignaturetools.duration_and_possible_denominators_to_time_signature(
         old_time_signature_duration, factor=factor)
 
-    # find new measure multiplier
-    new_measure_multiplier = durationtools.integer_to_implied_prolation(factor)
-
-    # inverse scale measure ... but throw away resultant time signature
-    numerator, denominator = new_measure_multiplier.numerator, new_measure_multiplier.denominator
-    inverse_measure_multiplier = durationtools.Duration(denominator, numerator)
-    measuretools.scale_contents_of_measures_in_expr(measure, inverse_measure_multiplier)
+    # scale contents of measures in expr
+    measuretools.scale_contents_of_measures_in_expr(measure, new_time_signature.implied_prolation.reciprocal)
 
     # assign new time signature
     contexttools.detach_time_signature_marks_attached_to_component(measure)

@@ -533,8 +533,9 @@ class Duration(ImmutableAbjadObject, Fraction):
 
         Return new multipler.
         '''
+        from abjad.tools import durationtools
         numerator = mathtools.greatest_power_of_two_less_equal(self.denominator)
-        return type(self)(numerator, self.denominator)
+        return durationtools.Multiplier(numerator, self.denominator)
 
     @property
     def is_assignable(self):
@@ -656,26 +657,16 @@ class Duration(ImmutableAbjadObject, Fraction):
         Return string.
         '''
         return '{}:{}'.format(self.denominator, self.numerator)
+    
+    @property
+    def reciprocal(self):
+        '''.. versionadded:: 2.11
 
-    def with_denominator(self, denominator):
-        '''Duration with `denominator`::
+        Reciprocal of duration.
 
-            >>> duration = Duration(1, 4)
-
-        ::
-
-            >>> for denominator in (4, 8, 16, 32):
-            ...     print duration.with_denominator(denominator)
-            ... 
-            1/4
-            2/8
-            4/16
-            8/32
-
-        Return new duration.
+        Return newly constructed duration.
         '''
-        nonreduced_fraction = mathtools.NonreducedFraction(self)
-        return nonreduced_fraction.with_denominator(denominator)
+        return type(self)(self.denominator, self.numerator)
 
     ### PUBLIC FUNCTIONS ###
 
@@ -696,3 +687,23 @@ class Duration(ImmutableAbjadObject, Fraction):
             return True
         except:
             return False
+
+    def with_denominator(self, denominator):
+        '''Duration with `denominator`::
+
+            >>> duration = Duration(1, 4)
+
+        ::
+
+            >>> for denominator in (4, 8, 16, 32):
+            ...     print duration.with_denominator(denominator)
+            ... 
+            1/4
+            2/8
+            4/16
+            8/32
+
+        Return new duration.
+        '''
+        nonreduced_fraction = mathtools.NonreducedFraction(self)
+        return nonreduced_fraction.with_denominator(denominator)

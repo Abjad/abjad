@@ -17,6 +17,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.has_non_power_of_two_denominator
 
+.. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.implied_prolation
+
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.multiplier

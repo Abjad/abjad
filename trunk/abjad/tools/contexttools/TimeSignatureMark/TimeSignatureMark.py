@@ -93,9 +93,9 @@ class TimeSignatureMark(ContextMark):
         self.suppress = suppress
 
         # initialize derived attributes
-        _multiplier = durationtools.integer_to_implied_prolation(self.denominator)
-        self._multiplier = _multiplier
-        self._has_non_power_of_two_denominator = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
+        self._multiplier = self.implied_prolation
+        self._has_non_power_of_two_denominator = not mathtools.is_nonnegative_integer_power_of_two(
+            self.denominator)
 
     ### SPECIAL METHODS ###
 
@@ -227,6 +227,11 @@ class TimeSignatureMark(ContextMark):
         Return boolean.
         '''
         return self._has_non_power_of_two_denominator
+
+    @property
+    def implied_prolation(self):
+        dummy_duration = durationtools.Duration(1, self.denominator)
+        return dummy_duration.implied_prolation
 
     @property
     def lilypond_format(self):

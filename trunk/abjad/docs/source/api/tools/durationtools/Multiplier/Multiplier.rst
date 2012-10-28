@@ -75,6 +75,10 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.reciprocal
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
