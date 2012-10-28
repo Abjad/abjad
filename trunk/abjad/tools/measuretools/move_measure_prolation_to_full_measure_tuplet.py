@@ -28,11 +28,11 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     for measure in iterationtools.iterate_measures_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).has_non_power_of_two_denominator:
 
-            # find meter and contents multipliers
-            meter_multiplier = contexttools.get_effective_time_signature(measure).multiplier
+            # find time signature and contents multipliers
+            time_signature_multiplier = contexttools.get_effective_time_signature(measure).multiplier
             contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
 
-            # update non-power-of-two meter to power-of-two
+            # update non-power-of-two time signature to power-of-two
             power_of_two_time_signature = \
                 timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(
                 contexttools.get_effective_time_signature(measure), contents_multiplier)
@@ -40,7 +40,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             power_of_two_time_signature.attach(measure)
 
             # find target duration and create tuplet
-            target_duration = meter_multiplier * measure.contents_duration
+            target_duration = time_signature_multiplier * measure.contents_duration
             tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
 
             # scale tuplet contents, if helpful

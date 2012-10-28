@@ -29,9 +29,9 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
         keyword_attributes = ',\n'.join(keyword_attributes)
         keyword_attributes = '\n' + keyword_attributes
     if isinstance(container, measuretools.Measure):
-        meter = contexttools.get_effective_time_signature(container)
-        meter_pair = (meter.numerator, meter.denominator)
-        return '%s(%s, [\n%s\n])' % (class_name, str(meter_pair), contents)
+        time_signature = contexttools.get_effective_time_signature(container)
+        time_signature_pair = (time_signature.numerator, time_signature.denominator)
+        return '%s(%s, [\n%s\n])' % (class_name, str(time_signature_pair), contents)
     elif isinstance(container, tuplettools.FixedDurationTuplet):
         duration = repr(container.target_duration)
         if keyword_attributes:

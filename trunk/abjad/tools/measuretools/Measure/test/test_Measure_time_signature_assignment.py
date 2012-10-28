@@ -1,8 +1,9 @@
 from abjad import *
 
 
-def test_Measure_meter_assignment_01():
-    '''Measures allow meter reassignment.'''
+def test_Measure_time_signature_assignment_01():
+    '''Measures allow timesignature reassignment.
+    '''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")
 

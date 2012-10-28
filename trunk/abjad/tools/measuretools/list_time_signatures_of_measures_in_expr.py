@@ -49,10 +49,10 @@ def list_time_signatures_of_measures_in_expr(components):
     # create empty list to hold result
     result = []
 
-    # iterate measures and store meter pairs
+    # iterate measures and store time signature pairs
     for measure in iterationtools.iterate_measures_in_expr(components):
-        meter = contexttools.get_effective_time_signature(measure)
-        result.append(meter)
+        time_signature = contexttools.get_effective_time_signature(measure)
+        result.append(time_signature)
 
     # return result
     return result

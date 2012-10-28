@@ -3,7 +3,7 @@ from abjad.tools import timesignaturetools
 
 
 def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_denominator_01():
-    '''Make n/12 meters into n/8 meters, where possible.
+    '''Make n/12 time_signatures into n/8 time_signatures, where possible.
     '''
 
     assert timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 12))) == contexttools.TimeSignatureMark((1, 12))
@@ -15,7 +15,7 @@ def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_d
 
 
 def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_denominator_02():
-    '''Make n/14 meters into n/8 meters, where possible.
+    '''Make n/14 time_signatures into n/8 time_signatures, where possible.
     '''
 
     assert timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 14))) == contexttools.TimeSignatureMark((1, 14))
@@ -28,7 +28,7 @@ def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_d
 
 
 def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_denominator_03():
-    '''Make n/24 meters into n/16 meters, where possible.
+    '''Make n/24 time_signatures into n/16 time_signatures, where possible.
     '''
 
     assert timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 24))) == contexttools.TimeSignatureMark((1, 24))
@@ -42,7 +42,7 @@ def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_d
 
 
 def test_timesignaturetools_time_signature_to_time_signature_with_power_of_two_denominator_04():
-    '''Make n/24 meters into n/8 meters, where possible.
+    '''Make n/24 time_signatures into n/8 time_signatures, where possible.
     '''
 
     assert timesignaturetools.time_signature_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 24)), Duration(99)) == contexttools.TimeSignatureMark((1, 24))

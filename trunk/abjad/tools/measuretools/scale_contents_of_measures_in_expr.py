@@ -9,8 +9,8 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
     Scale contents of measures in `expr` by `multiplier`.
 
     Iterate expr. For every measure in expr first multiply the measure
-    meter by `multiplier` and then scale measure contents to fit
-    the new meter.
+    time siganture by `multiplier` and then scale measure contents to fit
+    the new time signature.
 
     Extend ``containertools.scale_contents_of_container()``.
 
@@ -29,16 +29,16 @@ def scale_contents_of_measures_in_expr(expr, multiplier=1):
             old_numerator = contexttools.get_effective_time_signature(measure).numerator
             old_denominator = contexttools.get_effective_time_signature(measure).denominator
             new_denominator = old_denominator / multiplier.numerator
-            new_meter = contexttools.TimeSignatureMark((old_numerator, new_denominator))
+            new_time_signature = contexttools.TimeSignatureMark((old_numerator, new_denominator))
         else:
-            old_meter = contexttools.get_effective_time_signature(measure)
-            old_denominator = old_meter.denominator
-            old_duration = old_meter.duration
+            old_time_signature = contexttools.get_effective_time_signature(measure)
+            old_denominator = old_time_signature.denominator
+            old_duration = old_time_signature.duration
             new_duration = multiplier * old_duration
-            new_meter = timesignaturetools.duration_and_possible_denominators_to_time_signature(
+            new_time_signature = timesignaturetools.duration_and_possible_denominators_to_time_signature(
                 new_duration, [old_denominator], multiplier.denominator)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
-        new_meter.attach(measure)
+        new_time_signature.attach(measure)
 
         contents_multiplier_denominator = \
             mathtools.greatest_power_of_two_less_equal(multiplier.denominator)

@@ -41,13 +41,13 @@ class Measure(FixedDurationContainer):
 
     ### INITIALIZER ###
 
-    def __init__(self, meter, music=None, **kwargs):
+    def __init__(self, time_signature, music=None, **kwargs):
         # set time signature adjustment indicator before contents initialization
         self._automatically_adjust_time_signature = False
-        FixedDurationContainer.__init__(self, meter, music)
+        FixedDurationContainer.__init__(self, time_signature, music)
         self._always_format_time_signature = False
         self._measure_number = None
-        time_signature = contexttools.TimeSignatureMark(meter)
+        time_signature = contexttools.TimeSignatureMark(time_signature)
         time_signature.attach(self)
         self._initialize_keyword_values(**kwargs)
 
@@ -97,13 +97,13 @@ class Measure(FixedDurationContainer):
         '''String form of measure with parentheses for interpreter display.
         '''
         class_name = type(self).__name__
-        forced_meter = contexttools.get_time_signature_mark_attached_to_component(self)
+        forced_time_signature = contexttools.get_time_signature_mark_attached_to_component(self)
         summary = self._summary
         length = len(self)
-        if forced_meter and length:
-            return '%s(%s, [%s])' % (class_name, forced_meter, summary)
-        elif forced_meter:
-            return '%s(%s)' % (class_name, forced_meter)
+        if forced_time_signature and length:
+            return '%s(%s, [%s])' % (class_name, forced_time_signature, summary)
+        elif forced_time_signature:
+            return '%s(%s)' % (class_name, forced_time_signature)
         elif length:
             return '%s([%s])' % (class_name, summary)
         else:
@@ -124,13 +124,13 @@ class Measure(FixedDurationContainer):
     def __str__(self):
         '''String form of measure with pipes for single string display.
         '''
-        forced_meter = contexttools.get_effective_time_signature(self)
+        forced_time_signature = contexttools.get_effective_time_signature(self)
         summary = self._summary
         length = len(self)
-        if forced_meter and length:
-            return '|%s, %s|' % (forced_meter, summary)
-        elif forced_meter:
-            return '|%s|' % forced_meter
+        if forced_time_signature and length:
+            return '|%s, %s|' % (forced_time_signature, summary)
+        elif forced_time_signature:
+            return '|%s|' % forced_time_signature
         elif length:
             return '|%s|' % summary
         else:
@@ -149,22 +149,22 @@ class Measure(FixedDurationContainer):
 
     def _check_duration(self):
         from abjad.tools import contexttools
-        effective_meter = contexttools.get_effective_time_signature(self)
-        if effective_meter.has_non_power_of_two_denominator and effective_meter.suppress:
+        effective_time_signature = contexttools.get_effective_time_signature(self)
+        if effective_time_signature.has_non_power_of_two_denominator and effective_time_signature.suppress:
             raise Exception('Can not suppress time signature with non-power of two denominator.')
-        if effective_meter.duration < self.preprolated_duration:
+        if effective_time_signature.duration < self.preprolated_duration:
             raise OverfullContainerError
-        if self.preprolated_duration < effective_meter.duration:
+        if self.preprolated_duration < effective_time_signature.duration:
             raise UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
-            naive_meter = self.preprolated_duration
-            better_meter = mathtools.NonreducedFraction(naive_meter)
-            better_meter = better_meter.with_denominator(old_denominator)
-            better_meter = contexttools.TimeSignatureMark(better_meter)
+            naive_time_signature = self.preprolated_duration
+            better_time_signature = mathtools.NonreducedFraction(naive_time_signature)
+            better_time_signature = better_time_signature.with_denominator(old_denominator)
+            better_time_signature = contexttools.TimeSignatureMark(better_time_signature)
             contexttools.detach_time_signature_marks_attached_to_component(self)
-            better_meter.attach(self)
+            better_time_signature.attach(self)
 
     def _format_content_pieces(self):
         result = []

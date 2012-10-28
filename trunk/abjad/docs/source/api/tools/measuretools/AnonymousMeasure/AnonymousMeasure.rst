@@ -144,7 +144,7 @@ Read/write Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.suppress_meter
+.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.suppress_time_signature
 
     Inherited from :py:class:`measuretools.DynamicMeasure <abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure>`
 

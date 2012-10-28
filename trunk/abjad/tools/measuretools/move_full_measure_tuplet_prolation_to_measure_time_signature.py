@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
     r'''.. versionadded:: 1.1
 
-    Move prolation of full-measure tuplet to meter of measure.
+    Move prolation of full-measure tuplet to time signature of measure.
 
     Measures usually become non-power-of-two as as result::
 
@@ -43,15 +43,16 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 tuplet_multiplier = tuplet.multiplier
                 tuplet_denominator = tuplet_multiplier.denominator
                 reduced_denominator = mathtools.remove_powers_of_two(tuplet_denominator)
-                meter = contexttools.get_effective_time_signature(measure)
-                meter_rational = durationtools.Duration(meter.numerator, meter.denominator)
-                numerator = meter_rational.numerator * reduced_denominator
-                denominator = meter_rational.denominator * reduced_denominator
+                time_signature = contexttools.get_effective_time_signature(measure)
+                time_signature_rational = durationtools.Duration(
+                    time_signature.numerator, time_signature.denominator)
+                numerator = time_signature_rational.numerator * reduced_denominator
+                denominator = time_signature_rational.denominator * reduced_denominator
                 time_signature = contexttools.TimeSignatureMark((numerator, denominator))
                 contexttools.detach_time_signature_marks_attached_to_component(measure)
                 time_signature.attach(measure)
-                meter_multiplier = contexttools.get_effective_time_signature(measure).multiplier
-                written_adjustment = tuplet_multiplier / meter_multiplier
+                time_signature_multiplier = contexttools.get_effective_time_signature(measure).multiplier
+                written_adjustment = tuplet_multiplier / time_signature_multiplier
                 componenttools.move_parentage_and_spanners_from_components_to_components(
                     [tuplet], tuplet[:])
                 containertools.scale_contents_of_container(measure, written_adjustment)

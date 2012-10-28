@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_contexttools_get_effective_time_signature_01():
-    '''The default effective meter is none.
+    '''The default effective time signature is none.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -21,7 +21,7 @@ def test_contexttools_get_effective_time_signature_01():
 
 
 def test_contexttools_get_effective_time_signature_02():
-    '''Forced meter settings propagate to later leaves.
+    '''Forced time signature settings propagate to later leaves.
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")

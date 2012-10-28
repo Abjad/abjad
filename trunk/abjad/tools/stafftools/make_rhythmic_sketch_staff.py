@@ -1,5 +1,5 @@
 def make_rhythmic_sketch_staff(music):
-    '''Make rhythmic staff with transparent meter and transparent bar lines.
+    '''Make rhythmic staff with transparent time_signature and transparent bar lines.
     '''
     from abjad.tools import stafftools
 

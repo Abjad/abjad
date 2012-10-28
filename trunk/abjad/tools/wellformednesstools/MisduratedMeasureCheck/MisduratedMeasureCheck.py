@@ -4,7 +4,8 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisduratedMeasureCheck(Check):
-    '''Does the (pre)prolated duration of the measure match its meter?'''
+    '''Does the (pre)prolated duration of the measure match its time signature?
+    '''
 
     def _run(self, expr):
         violators = []

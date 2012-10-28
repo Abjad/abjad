@@ -18,14 +18,14 @@ def time_signature_to_time_signature_with_power_of_two_denominator(
         ...     contexttools.TimeSignatureMark((2, 8)))
         TimeSignatureMark((2, 8))
 
-    Return newly constructed meter.
+    Return newly constructed time_signature.
     '''
 
     # check input
     assert isinstance(time_signature, contexttools.TimeSignatureMark)
     assert isinstance(contents_multiplier, fractions.Fraction)
 
-    # save non_power_of_two meter and denominator
+    # save non_power_of_two time_signature and denominator
     non_power_of_two_denominator = time_signature.denominator
 
     # find power_of_two denominator
@@ -38,5 +38,5 @@ def time_signature_to_time_signature_with_power_of_two_denominator(
     non_power_of_two_pair = mathtools.NonreducedFraction(time_signature.numerator, time_signature.denominator)
     power_of_two_pair = non_power_of_two_pair.with_denominator(power_of_two_denominator)
 
-    # return new power_of_two meter
+    # return new power_of_two time_signature
     return contexttools.TimeSignatureMark(power_of_two_pair)

@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_DynamicMeasure_suppress_meter_01():
-    '''It is possible to suppress meter from dynamic measures.
+def test_DynamicMeasure_suppress_time_signature_01():
+    '''It is possible to suppress time signature from dynamic measures.
     '''
 
     t = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
-    t.suppress_meter = True
+    t.suppress_time_signature = True
 
     r'''
     {

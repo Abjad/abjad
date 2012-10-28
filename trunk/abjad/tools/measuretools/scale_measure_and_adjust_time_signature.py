@@ -7,7 +7,7 @@ from abjad.tools import mathtools
 def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     r'''.. versionadded:: 2.0
 
-    Scale `measure` by `multiplier` and adjust meter::
+    Scale `measure` by `multiplier` and adjust time signature::
 
         >>> t = Measure((3, 8), "c'8 d'8 e'8")
         >>> measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
@@ -32,9 +32,9 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     if multiplier == 0:
         raise ZeroDivisionError
 
-    old_meter = contexttools.get_effective_time_signature(measure)
-    old_pair = (old_meter.numerator, old_meter.denominator)
-    old_multiplier = old_meter.multiplier
+    old_time_signature = contexttools.get_effective_time_signature(measure)
+    old_pair = (old_time_signature.numerator, old_time_signature.denominator)
+    old_multiplier = old_time_signature.multiplier
     old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
 
     multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
@@ -47,15 +47,15 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
     if reduced_pair != multiplied_pair:
         new_pair = mathtools.NonreducedFraction(old_pair)
         new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
-        new_meter = contexttools.TimeSignatureMark(new_pair)
+        new_time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
-        new_meter.attach(measure)
+        new_time_signature.attach(measure)
         remaining_multiplier = durationtools.Duration(reduced_pair)
         if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
         containertools.scale_contents_of_container(measure, multiplier)
-        if old_meter.has_non_power_of_two_denominator or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
+        if old_time_signature.has_non_power_of_two_denominator or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
             new_pair = mathtools.NonreducedFraction(old_pair)
             new_pair = new_pair.multiply_with_cross_cancelation(multiplier)
             new_pair = new_pair.pair
@@ -68,16 +68,16 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
             new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
         elif multiplier == durationtools.Duration(0):
             raise ZeroDivisionError
-        new_meter = contexttools.TimeSignatureMark(new_pair)
+        new_time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
-        new_meter.attach(measure)
+        new_time_signature.attach(measure)
     else:
         new_pair = mathtools.NonreducedFraction(old_pair)
         new_pair = new_pair.multiply_with_numerator_preservation(multiplier)
-        new_meter = contexttools.TimeSignatureMark(new_pair)
+        new_time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
-        new_meter.attach(measure)
-        remaining_multiplier = multiplier / new_meter.multiplier
+        new_time_signature.attach(measure)
+        remaining_multiplier = multiplier / new_time_signature.multiplier
         if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     return measure

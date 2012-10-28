@@ -5,12 +5,12 @@ def iterate_semantic_voices_in_expr(expr, reverse=False, start=0, stop=None):
 
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
         ...     [(3, 8), (5, 16), (5, 16)])
-        >>> meter_voice = Voice(measures)
-        >>> meter_voice.name = 'TimeSignatuerVoice'
-        >>> meter_voice.is_nonsemantic = True
+        >>> time_signature_voice = Voice(measures)
+        >>> time_signature_voice.name = 'TimeSignatuerVoice'
+        >>> time_signature_voice.is_nonsemantic = True
         >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
         >>> music_voice.name = 'MusicVoice'
-        >>> staff = Staff([meter_voice, music_voice])
+        >>> staff = Staff([time_signature_voice, music_voice])
         >>> staff.is_parallel = True
 
     ::

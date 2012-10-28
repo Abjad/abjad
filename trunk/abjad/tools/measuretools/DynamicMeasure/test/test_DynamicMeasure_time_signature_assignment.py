@@ -2,8 +2,8 @@ from abjad import *
 import py.test
 
 
-def test_DynamicMeasure_meter_assignment_01():
-    '''Dynamic measures block meter assignment.
+def test_DynamicMeasure_time_signature_assignment_01():
+    '''Dynamic measures block time signature assignment.
     '''
 
     measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")

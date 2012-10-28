@@ -10,20 +10,20 @@ def _fill_measures_in_expr(expr, mode, iterctrl=lambda measure, i: True):
 
     With mode = 'big-endian':
         Populate with big-endian series of notes
-        summing to duration of effective meter of measure.
+        summing to duration of effective time signature of measure.
 
     With mode = 'little-endian':
         Populate with little-endian series of notes
-        summing to duration of effective meter of measure.
+        summing to duration of effective time signature of measure.
 
-    With mode = 'meter series':
+    With mode = 'time signature series':
         Populate with n total 1/d notes, where
-        n equals effective_meter.numerator, and
-        d equals effective_meter.denominator.
+        n equals effective_time_signature.numerator, and
+        d equals effective_time_signature.denominator.
 
     With mode = 'skip':
         Populate with exactly one skip, such that
-        skip.prolated_duration == effective_meter.duration.
+        skip.prolated_duration == effective_time_signature.duration.
         Remove spanners attaching to measure.
 
     When mode is None:
@@ -38,8 +38,8 @@ def _fill_measures_in_expr(expr, mode, iterctrl=lambda measure, i: True):
         _measures_populate_big_endian(expr, iterctrl)
     elif mode == 'little-endian':
         _measures_populate_little_endian(expr, iterctrl)
-    elif mode == 'meter series':
-        _measures_populate_meter_series(expr, iterctrl)
+    elif mode == 'time signature series':
+        _measures_populate_time_signature(expr, iterctrl)
     elif mode == 'skip':
         _measures_populate_skip(expr, iterctrl)
     elif isinstance(mode, (numbers.Number, tuplet)):

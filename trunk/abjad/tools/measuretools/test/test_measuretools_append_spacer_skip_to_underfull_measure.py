@@ -31,7 +31,7 @@ def test_measuretools_append_spacer_skip_to_underfull_measure_01():
 
 
 def test_measuretools_append_spacer_skip_to_underfull_measure_02():
-    '''Handles regular measure with no meter prolation.
+    '''Handles regular measure with no time signature prolation.
     '''
 
     t = Measure((4, 8), "c'8 d'8 e'8 f'8")

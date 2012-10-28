@@ -4,7 +4,7 @@ from abjad.tools import measuretools
 def pitch_array_to_measures(pitch_array, cell_duration_denominator=8):
     r'''.. versionadded:: 2.0
 
-    Change `pitch_array` to measures with meters
+    Change `pitch_array` to measures with time signatures
     `row.width` over `cell_duration_denominator` for each
     row in `pitch_array`::
 

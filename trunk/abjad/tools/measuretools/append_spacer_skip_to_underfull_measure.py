@@ -46,8 +46,8 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
         target_duration = contexttools.get_effective_time_signature(rigid_measure).duration
         prolated_duration = rigid_measure.prolated_duration
         skip = skiptools.Skip((1, 1))
-        meter_multiplier = contexttools.get_effective_time_signature(rigid_measure).multiplier
-        new_multiplier = (target_duration - prolated_duration) / meter_multiplier
+        time_signature_multiplier = contexttools.get_effective_time_signature(rigid_measure).multiplier
+        new_multiplier = (target_duration - prolated_duration) / time_signature_multiplier
         skip.duration_multiplier = new_multiplier
         rigid_measure.append(skip)
 

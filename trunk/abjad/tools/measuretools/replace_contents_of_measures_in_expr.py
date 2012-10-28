@@ -64,10 +64,10 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     # init return list
     result = []
 
-    # get first measure and first meter
+    # get first measure and first time signature
     cur_measure = measuretools.get_next_measure_from_component(expr)
     result.append(cur_measure)
-    cur_meter = contexttools.get_effective_time_signature(cur_measure)
+    cur_time_signature = contexttools.get_effective_time_signature(cur_measure)
     # to avoide pychecker slice assignment error
     #del(cur_measure[:])
     cur_measure.__delitem__(slice(0, len(cur_measure)))
@@ -77,35 +77,35 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
         # find candidate duration of new element plus current measure
         cur_element = new_contents[0]
-        multiplier = cur_meter.multiplier
+        multiplier = cur_time_signature.multiplier
         preprolated_duration = cur_element.preprolated_duration
         prolated_duration = multiplier * preprolated_duration
         candidate_duration = cur_measure.prolated_duration + prolated_duration
 
         # if new element fits in current measure
-        if candidate_duration <= cur_meter.duration:
+        if candidate_duration <= cur_time_signature.duration:
             cur_element = new_contents.pop(0)
             cur_measure.append(cur_element)
 
         # otherwise restore currene measure and advance to next measure
         else:
-            cur_meter = contexttools.TimeSignatureMark(cur_meter)
+            cur_time_signature = contexttools.TimeSignatureMark(cur_time_signature)
             contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
-            cur_meter.attach(cur_measure)
+            cur_time_signature.attach(cur_measure)
             measuretools.append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
             cur_measure = measuretools.get_next_measure_from_component(cur_measure)
             if cur_measure is None:
                 raise StopIteration
             result.append(cur_measure)
-            cur_meter = contexttools.get_effective_time_signature(cur_measure)
+            cur_time_signature = contexttools.get_effective_time_signature(cur_measure)
             # to avoid pychecker slice assignment error
             #del(cur_measure[:])
             cur_measure.__delitem__(slice(0, len(cur_measure)))
 
     # restore last iterated measure
-    cur_meter = contexttools.TimeSignatureMark(cur_meter)
+    cur_time_signature = contexttools.TimeSignatureMark(cur_time_signature)
     contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
-    cur_meter.attach(cur_measure)
+    cur_time_signature.attach(cur_measure)
     measuretools.append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
 
     # return iterated measures

@@ -97,12 +97,12 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
                     measure_to_fuse = measuretools.get_next_measure_from_component(measure_to_fuse)
                     if measure_to_fuse is None:
                         break
-                meter_sum_str = ' + '.join([
+                time_signature_sum_str = ' + '.join([
                     str(contexttools.get_effective_time_signature(x)) for x in measures_to_fuse])
-                meter_sum_str = '"%s"' % meter_sum_str
+                time_signature_sum_str = '"%s"' % time_signature_sum_str
                 new = measuretools.fuse_measures(measures_to_fuse)
                 if mark:
-                    markuptools.Markup(meter_sum_str, Up)(new.leaves[0])
+                    markuptools.Markup(time_signature_sum_str, Up)(new.leaves[0])
                 cur_measure = new
             cur_measure = measuretools.get_next_measure_from_component(cur_measure)
             if cur_measure is None:

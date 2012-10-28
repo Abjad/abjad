@@ -3,7 +3,7 @@ from abjad import *
 
 def test_AnonymousMeasure_01():
     '''Anonymous measures dynamically adjust to the size of contents.
-    Anonymous measures print no meter.
+    Anonymous measures print no time signature.
     '''
 
     t = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
@@ -27,7 +27,7 @@ def test_AnonymousMeasure_01():
 
 def test_AnonymousMeasure_02():
     ''' Anonymous measures dynamically adjust to contents size.
-    Anonymous measures print no meter.
+    Anonymous measures print no time signature.
     '''
 
     t = measuretools.AnonymousMeasure("c'8 d'8 e'8")

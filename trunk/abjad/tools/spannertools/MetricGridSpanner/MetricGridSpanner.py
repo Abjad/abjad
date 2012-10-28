@@ -15,7 +15,7 @@ class MetricGridSpanner(Spanner):
 
     ::
 
-        >>> spannertools.MetricGridSpanner(staff.leaves, meters=[(1, 8), (1, 4)])
+        >>> spannertools.MetricGridSpanner(staff.leaves, time_signatures=[(1, 8), (1, 4)])
         MetricGridSpanner(c'8, d'8, e'8, f'8, g'8, a'8, b'8, c'8)
 
     ::
@@ -38,74 +38,74 @@ class MetricGridSpanner(Spanner):
             c'8
         }
 
-    Format leaves in spanner cyclically with `meters`.
+    Format leaves in spanner cyclically with `time_signatures`.
 
     Return metric grid spanner.
     '''
 
-    def __init__(self, components=None, meters=None):
+    def __init__(self, components=None, time_signatures=None):
         Spanner.__init__(self, components)
-        self._meters = meters
+        self._time_signatures = time_signatures
         self.hide = False
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
-        new._meters = self._meters
+        new._time_signatures = self._time_signatures
         new.hide = self.hide
 
     def _format_after_leaf(self, leaf):
         result = []
-        if hasattr(self, '_slicing_metersFound'):
-            delattr(self, '_slicing_metersFound')
+        if hasattr(self, '_slicing_time_signaturesFound'):
+            delattr(self, '_slicing_time_signaturesFound')
             result.append('>>')
         return result
 
     #FIXME: formatting is ridiculously slow.
     #         find a way to make it faster.
-    # Tue Jan 13 12:05:43 EST 2009 [VA] using _slicing_metersFound boolean
+    # Tue Jan 13 12:05:43 EST 2009 [VA] using _slicing_time_signaturesFound boolean
     # flag now to improve performance time. Better but still not perfect.
 
     def _format_before_leaf(self, leaf):
         result = []
         if not self.hide:
-            #meter = self._matching_meter(leaf)
-            matching_meter = self._matching_meter(leaf)
-            if matching_meter is None:
-                meter = None
+            #time_signature = self._matching_time_signature(leaf)
+            matching_time_signature = self._matching_time_signature(leaf)
+            if matching_time_signature is None:
+                time_signature = None
             else:
-                meter, temp_hide = matching_meter
-            #if meter and not getattr(meter, '_temp_hide', False):
-            if meter and not temp_hide:
-                result.append(meter.lilypond_format)
-            #m = self._slicing_meters(leaf)
-            m = self._slicing_meters(leaf)
-            #m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
+                time_signature, temp_hide = matching_time_signature
+            #if time_signature and not getattr(time_signature, '_temp_hide', False):
+            if time_signature and not temp_hide:
+                result.append(time_signature.lilypond_format)
+            #m = self._slicing_time_signatures(leaf)
+            m = self._slicing_time_signatures(leaf)
+            #m = [time_signature for time_signature in m if not getattr(time_signature, '_temp_hide', False)]
             m = [triple for triple in m if not triple[-1]]
             if m:
-                # set self._slicing_metersFound as temporary flag so that
-                # self._after does not have to recompute _slicing_meters()
-                self._slicing_metersFound = True
+                # set self._slicing_time_signaturesFound as temporary flag so that
+                # self._after does not have to recompute _slicing_time_signatures()
+                self._slicing_time_signaturesFound = True
                 result.append('<<')
-                for meter, moffset, temp_hide in m:
+                for time_signature, moffset, temp_hide in m:
                     s = skiptools.Skip(durationtools.Duration(1))
                     s.duration_multiplier = moffset - leaf.start_offset
-                    numerator, denominator = meter.numerator, meter.denominator
+                    numerator, denominator = time_signature.numerator, time_signature.denominator
                     mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
                     mark._is_cosmetic_mark = True
                     container = containertools.Container([s])
                     result.append(container.lilypond_format)
         return result
 
-    def _matching_meter(self, leaf):
-        for m, moffset, temp_hide in self.meters:
+    def _matching_time_signature(self, leaf):
+        for m, moffset, temp_hide in self.time_signatures:
             if leaf.start_offset == moffset:
                 return m, temp_hide
 
-    def _slicing_meters(self, leaf):
+    def _slicing_time_signatures(self, leaf):
         '''Return the MetricStrip(s) that slices leaf, if any.
         '''
-        for m, moffset, temp_hide in self.meters:
+        for m, moffset, temp_hide in self.time_signatures:
             if leaf.start_offset < moffset:
                 if moffset < leaf.stop_offset:
                     yield m, moffset, temp_hide
@@ -115,32 +115,32 @@ class MetricGridSpanner(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def meters():
+    def time_signatures():
         def fget(self):
-            '''Get metric grid meters::
+            '''Get metric grid time_signatures::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
                 >>> metric_grid_spanner = spannertools.MetricGridSpanner(
-                ...     staff.leaves, meters=[(1, 8), (1, 4)])
+                ...     staff.leaves, time_signatures=[(1, 8), (1, 4)])
 
-            Set metric grid meters::
+            Set metric grid time_signatures::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
                 >>> metric_grid_spanner = spannertools.MetricGridSpanner(
-                ...     staff.leaves, meters=[(1, 8), (1, 4)])
-                >>> metric_grid_spanner.meters = [Duration(1, 4)]
+                ...     staff.leaves, time_signatures=[(1, 8), (1, 4)])
+                >>> metric_grid_spanner.time_signatures = [Duration(1, 4)]
 
             Set iterable.
             '''
             i = 0
             moffset = 0
-            prev_meter = None
+            prev_time_signature = None
             #while moffset < self.duration:
             while moffset < self.prolated_duration:
-                m = self._meters[i % len(self._meters)]
+                m = self._time_signatures[i % len(self._time_signatures)]
                 m = contexttools.TimeSignatureMark(m)
                 # new attribute
-                if prev_meter and prev_meter == m:
+                if prev_time_signature and prev_time_signature == m:
                     #m.hide = True
                     #m._temp_hide = True
                     temp_hide = True
@@ -150,10 +150,10 @@ class MetricGridSpanner(Spanner):
                 yield m, moffset, temp_hide
                 moffset += m.duration
                 i += 1
-                prev_meter = m
-        def fset(self, meters):
-            assert isinstance(meters, list)
-            self._meters = meters
+                prev_time_signature = m
+        def fset(self, time_signatures):
+            assert isinstance(time_signatures, list)
+            self._time_signatures = time_signatures
         return property(**locals())
 
     ### PUBLIC METHODS ###
@@ -165,7 +165,7 @@ class MetricGridSpanner(Spanner):
 
         leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
         #self._debug(leaves, 'leaves')
-        componenttools.split_components_at_offsets(leaves, [x[0].duration for x in self.meters], 
+        componenttools.split_components_at_offsets(leaves, [x[0].duration for x in self.time_signatures], 
             cyclic=True, fracture_spanners=False, tie_split_notes=True)
         #self._fuse_tied_leaves_within_measures()
 

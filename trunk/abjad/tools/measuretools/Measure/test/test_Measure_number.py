@@ -6,8 +6,8 @@ def test_Measure_number_01():
     '''Measures in staff number correctly starting from 1.
     '''
 
-    meter_pairs = [(3, 16), (5, 16), (5, 16)]
-    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips(meter_pairs))
+    time_signature_pairs = [(3, 16), (5, 16), (5, 16)]
+    t = Staff(measuretools.make_measures_with_full_measure_spacer_skips(time_signature_pairs))
 
     assert t[0].measure_number == 1
     assert t[1].measure_number == 2

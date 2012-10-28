@@ -25,11 +25,11 @@ def test_TimeSignatureMark_partial_02():
     '''Time signature partial is read / write.
     '''
 
-    meter = contexttools.TimeSignatureMark((3, 8), partial = Duration(1, 8))
-    assert meter.partial == Duration(1, 8)
+    time_signature = contexttools.TimeSignatureMark((3, 8), partial = Duration(1, 8))
+    assert time_signature.partial == Duration(1, 8)
 
-    meter.partial = Duration(2, 8)
-    assert meter.partial == Duration(2, 8)
+    time_signature.partial = Duration(2, 8)
+    assert time_signature.partial == Duration(2, 8)
 
 
 def test_TimeSignatureMark_partial_03():

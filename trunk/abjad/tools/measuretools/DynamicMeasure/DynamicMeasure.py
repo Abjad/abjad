@@ -7,7 +7,7 @@ from abjad.tools.measuretools.Measure.Measure import Measure
 class DynamicMeasure(Measure):
     r'''.. versionadded:: 1.1
 
-    Measure sets meter dynamically to exactly equal contents duration::
+    Measure sets time signature dynamically to exactly equal contents duration::
 
         >>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
 
@@ -31,15 +31,15 @@ class DynamicMeasure(Measure):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_denominator', '_time_signature_is_current', '_suppress_meter', )
+    __slots__ = ('_denominator', '_time_signature_is_current', '_suppress_time_signature', )
 
     ### INITIALIZER ###
 
     def __init__(self, music=None, **kwargs):
-        Measure.__init__(self, meter=(99, 99), music=music, **kwargs)
+        Measure.__init__(self, time_signature=(99, 99), music=music, **kwargs)
         self._denominator = None
         self._time_signature_is_current = False
-        self._suppress_meter = False
+        self._suppress_time_signature = False
         self._update_time_signature()
 
     ### SPECIAL METHODS ###
@@ -51,14 +51,14 @@ class DynamicMeasure(Measure):
 
     def _update_time_signature(self):
         if self.denominator:
-            meter_pair = mathtools.NonreducedFraction(self.contents_duration)
-            meter_pair = meter_pair.with_denominator(self.denominator)
+            time_signature_pair = mathtools.NonreducedFraction(self.contents_duration)
+            time_signature_pair = time_signature_pair.with_denominator(self.denominator)
         else:
-            meter_pair = (self.contents_duration.numerator, self.contents_duration.denominator)
-        meter = contexttools.TimeSignatureMark(meter_pair)
-        meter.suppress = self.suppress_meter
+            time_signature_pair = (self.contents_duration.numerator, self.contents_duration.denominator)
+        time_signature = contexttools.TimeSignatureMark(time_signature_pair)
+        time_signature.suppress = self.suppress_time_signature
         contexttools.detach_time_signature_marks_attached_to_component(self)
-        meter.attach(self)
+        time_signature.attach(self)
         self._time_signature_is_current = True
 
     ### PUBLIC PROPERTIES ###
@@ -104,9 +104,9 @@ class DynamicMeasure(Measure):
         return self.contents_duration
 
     @apply
-    def suppress_meter():
+    def suppress_time_signature():
         def fget(self):
-            r'''Get meter suppression indicator::
+            r'''Get time signature suppression indicator::
 
             >>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
 
@@ -123,16 +123,16 @@ class DynamicMeasure(Measure):
 
         ::
 
-            >>> measure.suppress_meter
+            >>> measure.suppress_time_signature
             False
 
-        Set meter suppression indicator::
+        Set time signature suppression indicator::
 
-            >>> measure.suppress_meter = True
+            >>> measure.suppress_time_signature = True
 
         ::
 
-            >>> measure.suppress_meter
+            >>> measure.suppress_time_signature
             True
 
         ::
@@ -147,10 +147,10 @@ class DynamicMeasure(Measure):
 
         Set boolean.
         '''
-            return self._suppress_meter
+            return self._suppress_time_signature
         def fset(self, arg):
             assert isinstance(arg, (bool, type(None)))
-            self._suppress_meter = arg
+            self._suppress_time_signature = arg
             self._update_time_signature()
         return property(**locals())
 

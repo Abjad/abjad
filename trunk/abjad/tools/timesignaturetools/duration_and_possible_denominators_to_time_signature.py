@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 
 
 def duration_and_possible_denominators_to_time_signature(duration, denominators=None, factor=None):
-    '''Make new meter equal to `duration`::
+    '''Make new time_signature equal to `duration`::
 
         >>> from abjad.tools import timesignaturetools
 
@@ -13,20 +13,20 @@ def duration_and_possible_denominators_to_time_signature(duration, denominators=
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(Duration(3, 2))
         TimeSignatureMark((3, 2))
 
-    Make new meter equal to `duration` with denominator equal to the first possible 
+    Make new time_signature equal to `duration` with denominator equal to the first possible 
     element in `denominators`::
 
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(
         ... Duration(3, 2), denominators=[5, 6, 7, 8])
         TimeSignatureMark((9, 6))
 
-    Make new meter equal to `duration` with denominator divisible by `factor`::
+    Make new time_signature equal to `duration` with denominator divisible by `factor`::
 
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(
         ... Duration(3, 2), factor=5)
         TimeSignatureMark((15, 10))
 
-    Return new meter.
+    Return new time_signature.
 
     .. versionchanged:: 2.0
         renamed ``timesignaturetools.make_best()`` to
@@ -45,8 +45,8 @@ def duration_and_possible_denominators_to_time_signature(duration, denominators=
         if factor in mathtools.factors(duration.denominator):
             return contexttools.TimeSignatureMark(duration)
         else:
-            meter_numerator = factor * duration.numerator
-            meter_denominator = factor * duration.denominator
-            return contexttools.TimeSignatureMark((meter_numerator, meter_denominator))
+            time_signature_numerator = factor * duration.numerator
+            time_signature_denominator = factor * duration.denominator
+            return contexttools.TimeSignatureMark((time_signature_numerator, time_signature_denominator))
     else:
         return contexttools.TimeSignatureMark(duration)

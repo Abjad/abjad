@@ -5,11 +5,11 @@ def test_TimeSignatureMark_numerator_01():
     '''Time signature numerator is read / write.
     '''
 
-    meter = contexttools.TimeSignatureMark((3, 8))
-    assert meter.numerator == 3
+    time_signature = contexttools.TimeSignatureMark((3, 8))
+    assert time_signature.numerator == 3
 
-    meter.numerator = 4
-    assert meter.numerator == 4
+    time_signature.numerator = 4
+    assert time_signature.numerator == 4
 
 
 

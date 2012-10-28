@@ -96,25 +96,25 @@ def fuse_measures(measures):
     old_denominators = []
     new_duration = durationtools.Duration(0)
     for measure in measures:
-        effective_meter = contexttools.get_effective_time_signature(measure)
-        old_denominators.append(effective_meter.denominator)
-        new_duration += effective_meter.duration
+        effective_time_signature = contexttools.get_effective_time_signature(measure)
+        old_denominators.append(effective_time_signature.denominator)
+        new_duration += effective_time_signature.duration
 
-    new_meter = timesignaturetools.duration_and_possible_denominators_to_time_signature(
+    new_time_signature = timesignaturetools.duration_and_possible_denominators_to_time_signature(
         new_duration, old_denominators)
 
     music = []
     for measure in measures:
         # scale before reassignment to prevent tie chain scale drama
         multiplier = \
-            contexttools.get_effective_time_signature(measure).multiplier / new_meter.multiplier
+            contexttools.get_effective_time_signature(measure).multiplier / new_time_signature.multiplier
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
         _switch_components_to_parent(measure_music, None)
         #containertools.scale_contents_of_container(measure_music, multiplier)
         music += measure_music
 
-    new_measure = measuretools.Measure(new_meter, music)
+    new_measure = measuretools.Measure(new_time_signature, music)
 
     if parent is not None:
         _give_spanners_that_dominate_donor_components_to_recipient_components(measures, [new_measure])

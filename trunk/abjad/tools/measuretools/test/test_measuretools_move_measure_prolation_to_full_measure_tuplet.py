@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_move_measure_prolation_to_full_measure_tuplet_01():
-    '''Project 3/12 meter onto measure contents.
+    '''Project 3/12 time signature onto measure contents.
     '''
 
     inner = tuplettools.FixedDurationTuplet(Duration(2, 16), 

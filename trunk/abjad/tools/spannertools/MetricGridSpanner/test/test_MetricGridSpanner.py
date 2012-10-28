@@ -45,7 +45,7 @@ def test_MetricGridSpanner_02():
 
 
 def test_MetricGridSpanner_03():
-    '''MetricGrid cycles throught given meters to cover spanner's duration.'''
+    '''MetricGrid cycles throught given time_signatures to cover spanner's duration.'''
 
     t = Staff(Note(0, (1,8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(1, 8), (1, 4)])

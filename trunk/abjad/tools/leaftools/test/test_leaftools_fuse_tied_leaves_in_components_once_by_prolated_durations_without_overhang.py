@@ -133,10 +133,10 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     notes = notetools.make_notes(0, durations)
     t = stafftools.make_rhythmic_sketch_staff(notes)
 
-    meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
-    meters = [Duration(*meter) for meter in meters]
+    time_signatures = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
+    time_signatures = [Duration(*time_signature) for time_signature in time_signatures]
 
-    componenttools.split_components_at_offsets(t.leaves, meters, 
+    componenttools.split_components_at_offsets(t.leaves, time_signatures, 
         cyclic=False, fracture_spanners=False, tie_split_notes=True)
 
     r'''
@@ -170,7 +170,8 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     }
     '''
 
-    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, meters)
+    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
+        t.leaves, time_signatures)
 
     componenttools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new RhythmicStaff \\with {\n\t\\override BarLine #'transparent = ##t\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'4 ~\n\tc'16\n\tc'8. ~\n\tc'4\n\tc'8\n\tc'8 ~\n\tc'2 ~\n\tc'16\n\tc'8. ~\n\tc'4 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'8.\n\tc'16 ~\n\tc'4 ~\n\tc'2\n\tc'8.\n}"

@@ -117,11 +117,11 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
     # new: rewrite result denominator, if available
     if parent_denominator is not None:
-        old_meter = contexttools.get_effective_time_signature(result)
-        old_meter_pair = (old_meter.numerator, old_meter.denominator)
-        new_meter = mathtools.NonreducedFraction(old_meter_pair)
-        new_meter = new_meter.with_denominator(parent_denominator)
-        new_time_signature = contexttools.TimeSignatureMark(new_meter)
+        old_time_signature = contexttools.get_effective_time_signature(result)
+        old_time_signature_pair = (old_time_signature.numerator, old_time_signature.denominator)
+        new_time_signature = mathtools.NonreducedFraction(old_time_signature_pair)
+        new_time_signature = new_time_signature.with_denominator(parent_denominator)
+        new_time_signature = contexttools.TimeSignatureMark(new_time_signature)
         contexttools.detach_time_signature_marks_attached_to_component(result)
         new_time_signature.attach(result)
 

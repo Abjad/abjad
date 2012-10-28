@@ -27,8 +27,8 @@ def is_equivalent_to_time_signature_with_power_of_two_denominator(expr):
     if not isinstance(expr, contexttools.TimeSignatureMark):
         return False
 
-    # express meter as rational and reduce to relatively prime terms
-    meter_as_rational = durationtools.Duration(expr.numerator, expr.denominator)
+    # express time_signature as rational and reduce to relatively prime terms
+    time_signature_as_rational = durationtools.Duration(expr.numerator, expr.denominator)
 
-    # return True if reduced meter denominator is power of two
-    return mathtools.is_nonnegative_integer_power_of_two(meter_as_rational.denominator)
+    # return True if reduced time_signature denominator is power of two
+    return mathtools.is_nonnegative_integer_power_of_two(time_signature_as_rational.denominator)

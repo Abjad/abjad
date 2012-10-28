@@ -116,7 +116,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
     Preserve container multiplier.
 
-    Preserve meter denominator.
+    Preserve time signature denominator.
 
     Return split parts.
     '''
@@ -148,17 +148,17 @@ def split_container_at_index(component, i, fracture_spanners=False):
 
     # instantiate new left and right containers
     if isinstance(component, measuretools.Measure):
-        meter_denominator = contexttools.get_effective_time_signature(component).denominator
+        time_signature_denominator = contexttools.get_effective_time_signature(component).denominator
         left_duration = sum([x.prolated_duration for x in left_music])
         left_pair = mathtools.NonreducedFraction(left_duration)
-        left_pair = left_pair.with_multiple_of_denominator(meter_denominator)
-        left_meter = contexttools.TimeSignatureMark(left_pair)
-        left = component.__class__(left_meter, left_music)
+        left_pair = left_pair.with_multiple_of_denominator(time_signature_denominator)
+        left_time_signature = contexttools.TimeSignatureMark(left_pair)
+        left = component.__class__(left_time_signature, left_music)
         right_duration = sum([x.prolated_duration for x in right_music])
         right_pair = mathtools.NonreducedFraction(right_duration)
-        right_pair = right_pair.with_multiple_of_denominator(meter_denominator)
-        right_meter = contexttools.TimeSignatureMark(right_pair)
-        right = component.__class__(right_meter, right_music)
+        right_pair = right_pair.with_multiple_of_denominator(time_signature_denominator)
+        right_time_signature = contexttools.TimeSignatureMark(right_pair)
+        right = component.__class__(right_time_signature, right_music)
     elif isinstance(component, tuplettools.FixedDurationTuplet):
         left = component.__class__(1, left_music)
         right = component.__class__(1, right_music)

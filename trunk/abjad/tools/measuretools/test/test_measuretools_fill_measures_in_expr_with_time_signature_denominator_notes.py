@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_measuretools_fill_measures_in_expr_with_time_signature_denominator_notes_01():
-    '''Populate non-power-of-two measure with meter series.
+    '''Populate non-power-of-two measure with time signature denominator notes.
     '''
 
     t = Measure((5, 18), [])

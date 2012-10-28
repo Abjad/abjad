@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 def multiply_contents_of_measures_in_expr(expr, n):
     r'''.. versionadded:: 1.1
 
-    Multiply contents ``n - 1`` times and adjust meter of every measure in `expr`::
+    Multiply contents ``n - 1`` times and adjust time signature of every measure in `expr`::
 
         >>> measure = Measure((3, 8), "c'8 d'8 e'8")
         >>> beamtools.BeamSpanner(measure.leaves)
@@ -53,9 +53,9 @@ def multiply_contents_of_measures_in_expr(expr, n):
     assert 0 < n
 
     for measure in iterationtools.iterate_measures_in_expr(expr):
-        old_meter = contexttools.get_effective_time_signature(measure)
+        old_time_signature = contexttools.get_effective_time_signature(measure)
         containertools.repeat_contents_of_container(measure, n)
-        old_pair = (old_meter.numerator, old_meter.denominator)
+        old_pair = (old_time_signature.numerator, old_time_signature.denominator)
         new_pair = mathtools.NonreducedFraction(old_pair)
         new_pair = new_pair.multiply_without_reducing(n)
         time_signature = contexttools.TimeSignatureMark(new_pair)
