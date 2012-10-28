@@ -204,7 +204,7 @@ A tuplet is considered binary if the numerator of the tuplet multiplier is an in
 
 ::
 
-	>>> tuplet.is_binary
+	>>> tuplet.has_power_of_two_denominator
 	True
 
 

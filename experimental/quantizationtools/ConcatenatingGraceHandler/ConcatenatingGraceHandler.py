@@ -26,7 +26,7 @@ class ConcatenatingGraceHandler(GraceHandler):
         if grace_duration is None:
             grace_duration = (1, 16)
         grace_duration = durationtools.Duration(grace_duration)
-        assert grace_duration.is_binary
+        assert grace_duration.has_power_of_two_denominator
         self._grace_duration = grace_duration
 
     ### SPECIAL METHODS ###

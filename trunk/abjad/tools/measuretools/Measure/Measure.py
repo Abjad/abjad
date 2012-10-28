@@ -203,17 +203,17 @@ class Measure(FixedDurationContainer):
         return self._format_component()
 
     @property
-    def is_binary(self):
+    def has_power_of_two_denominator(self):
         '''True when measure time signature denominator is an integer power of 2::
 
             >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            >>> measure.is_binary
+            >>> measure.has_power_of_two_denominator
             True
 
         Otherwise false::
 
             >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            >>> measure.is_binary
+            >>> measure.has_power_of_two_denominator
             False
 
         Return boolean.

@@ -180,8 +180,8 @@ print repr(tuplet.multiplier) <hide
 </abjad>
 
 <abjad>
-tuplet.is_binary
-print repr(tuplet.is_binary) <hide
+tuplet.has_power_of_two_denominator
+print repr(tuplet.has_power_of_two_denominator) <hide
 </abjad>
 
 Other tuplets are nonbinary:

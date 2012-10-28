@@ -189,11 +189,11 @@ class Tuplet(Container):
             return False
 
     @property
-    def is_binary(self):
+    def has_power_of_two_denominator(self):
         '''Read-only boolean true when multiplier numerator is power of two. Otherwise false::
 
             >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> tuplet.is_binary
+            >>> tuplet.has_power_of_two_denominator
             True
 
         Return boolean.
@@ -228,7 +228,7 @@ class Tuplet(Container):
 
         Return boolean.
         '''
-        return not self.is_binary
+        return not self.has_power_of_two_denominator
 
     @property
     def is_trivial(self):
