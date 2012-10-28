@@ -1,24 +1,24 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class TimespanConstant(AbjadObject):
+class LiteralTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Timespan constant.
 
     Timespan contant ``[1/2, 3/2)``::
 
-        >>> timespan_constant = durationtools.TimespanConstant((1, 2), (3, 2)) 
+        >>> timespan_constant = timetools.LiteralTimespan((1, 2), (3, 2)) 
 
     ::
 
         >>> timespan_constant
-        TimespanConstant(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
+        LiteralTimespan(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
 
     ::
     
         >>> z(timespan_constant)
-        durationtools.TimespanConstant(
+        timetools.LiteralTimespan(
             start_offset=durationtools.Offset(1, 2),
             stop_offset=durationtools.Offset(3, 2)
             )
