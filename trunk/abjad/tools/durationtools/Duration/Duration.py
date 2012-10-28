@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 
 
 class Duration(ImmutableAbjadObject, Fraction):
-    '''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.0
 
     Abjad model of musical duration.
 
@@ -55,18 +55,12 @@ class Duration(ImmutableAbjadObject, Fraction):
         >>> Duration('3/16')
         Duration(3, 16)
 
-    .. versionchanged:: 2.9 
-        initialize from LilyPond duration string:
-
-    ::
+    initialize from LilyPond duration string::
 
         >>> Duration('8.')
         Duration(3, 16)
 
-    .. versionchanged:: 2.9
-        initialize from nonreduced fraction:
-
-    ::
+    Initialize from nonreduced fraction::
 
         >>> Duration(mathtools.NonreducedFraction(3, 16))
         Duration(3, 16)
@@ -269,28 +263,37 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     @property
     def dot_count(self):
-        '''.. versionadded:: 2.11
+        r'''.. versionadded:: 2.11
 
-        Positive integer number of dots required to notate duration.
+        Positive integer number of dots required to notate duration::
 
-        Raise assignability error when duration is not assignable::
-
-            >>> for n in range(1, 9):
+            >>> for n in range(1, 16 + 1):
             ...     try:
             ...         duration = Duration(n, 16)
-            ...         print '{}\t{}'.format(duration, duration.dot_count)
+            ...         print '{}\t{}'.format(duration.with_denominator(16), duration.dot_count)
             ...     except AssignabilityError:
-            ...         pass
+            ...         print '{}\t{}'.format(duration.with_denominator(16), '--')
             ... 
             1/16    0
-            1/8     0
+            2/16    0
             3/16    1
-            1/4     0
-            3/8     1
+            4/16    0
+            5/16    --
+            6/16    1
             7/16    2
-            1/2     0
+            8/16    0
+            9/16    --
+            10/16   --
+            11/16   --
+            12/16   1
+            13/16   --
+            14/16   2
+            15/16   3
+            16/16   0
 
         Return positive integer.
+
+        Raise assignability error when duration is not assignable.
         '''
         if not self.is_assignable:
             raise AssignabilityError
@@ -302,7 +305,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     @property
     def equal_or_greater_assignable(self):
-        '''Equal or greater assignable::
+        r'''Equal or greater assignable::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -338,7 +341,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     @property
     def equal_or_greater_power_of_two(self):
-        '''Equal or greater power of ``2``::
+        r'''Equal or greater power of ``2``::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -369,7 +372,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     @property
     def equal_or_lesser_assignable(self):
-        '''Equal or lesser assignable::
+        r'''Equal or lesser assignable::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -405,7 +408,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     @property
     def equal_or_lesser_power_of_two(self):
-        '''Equal or lesser power of ``2``::
+        r'''Equal or lesser power of ``2``::
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = Duration(numerator, 16)
@@ -436,22 +439,30 @@ class Duration(ImmutableAbjadObject, Fraction):
         
     @property
     def flag_count(self):
-        '''.. versionadded:: 2.11
+        r'''.. versionadded:: 2.11
 
         Nonnegative integer number of flags required to notate duration::
 
-            >>> for n in range(1, 8 + 1):
+            >>> for n in range(1, 16 + 1):
             ...     duration = Duration(n, 64)
-            ...     print '{}\t{}'.format(duration, duration.flag_count)
+            ...     print '{}\t{}'.format(duration.with_denominator(64), duration.flag_count)
             ... 
             1/64    4
-            1/32    3
+            2/64    3
             3/64    3
-            1/16    2
+            4/64    2
             5/64    2
-            3/32    2
+            6/64    2
             7/64    2
-            1/8     1
+            8/64    1
+            9/64    1
+            10/64   1
+            11/64   1
+            12/64   1
+            13/64   1
+            14/64   1
+            15/64   1
+            16/64   0
 
         Return nonnegative integer.
         '''
@@ -461,49 +472,13 @@ class Duration(ImmutableAbjadObject, Fraction):
         return flag_count
 
     @property
-    def is_assignable(self):
-        '''.. versionadded:: 2.11
-
-        True when assignable. Otherwise false::
-
-            >>> for numerator in range(0, 17):
-            ...     duration = Duration(numerator, 16)
-            ...     print '{}\t{}'.format(duration, duration.is_assignable)
-            ... 
-            0       False
-            1/16    True
-            1/8     True
-            3/16    True
-            1/4     True
-            5/16    False
-            3/8     True
-            7/16    True
-            1/2     True
-            9/16    False
-            5/8     False
-            11/16   False
-            3/4     True
-            13/16   False
-            7/8     True
-            15/16   True
-            1       True
-
-        Return boolean.
-        '''
-        if 0 < self < 16:
-            if mathtools.is_nonnegative_integer_power_of_two(self.denominator):
-                if mathtools.is_assignable_integer(self.numerator):
-                    return True
-        return False
-
-    @property
     def has_power_of_two_denominator(self):
-        '''.. versionadded:: 2.11
+        r'''.. versionadded:: 2.11
 
-            True when duration is an integer power of ``2``.
-            Otherwise false::
+        True when duration is an integer power of ``2``.
+        Otherwise false::
 
-            >>> for n in range(1, 17):
+            >>> for n in range(1, 16 + 1):
             ...     duration = Duration(1, n)
             ...     print '{}\t{}'.format(duration, duration.has_power_of_two_denominator)
             ...
@@ -530,17 +505,53 @@ class Duration(ImmutableAbjadObject, Fraction):
         return int(exponent) == exponent
 
     @property
+    def is_assignable(self):
+        r'''.. versionadded:: 2.11
+
+        True when assignable. Otherwise false::
+
+            >>> for numerator in range(0, 16 + 1):
+            ...     duration = Duration(numerator, 16)
+            ...     print '{}\t{}'.format(duration.with_denominator(16), duration.is_assignable)
+            ... 
+            0/16    False
+            1/16    True
+            2/16    True
+            3/16    True
+            4/16    True
+            5/16    False
+            6/16    True
+            7/16    True
+            8/16    True
+            9/16    False
+            10/16   False
+            11/16   False
+            12/16   True
+            13/16   False
+            14/16   True
+            15/16   True
+            16/16   True
+
+        Return boolean.
+        '''
+        if 0 < self < 16:
+            if mathtools.is_nonnegative_integer_power_of_two(self.denominator):
+                if mathtools.is_assignable_integer(self.numerator):
+                    return True
+        return False
+
+    @property
     def lilypond_duration_string(self):
-        '''.. versionadded:: 2.11
+        r'''.. versionadded:: 2.11
 
         LilyPond duration string of assignable duration.
-
-        Raise assignability error when duration is not assignable::
 
             >>> Duration(3, 16).lilypond_duration_string
             '8.'
 
         Return string.
+
+        Raise assignability error when duration is not assignable.
         '''
         from abjad.tools import durationtools
 
@@ -583,7 +594,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     @property
     def prolation_string(self):
-        '''.. versionadded:: 2.11
+        r'''.. versionadded:: 2.11
 
         Prolation string.
 
@@ -615,6 +626,22 @@ class Duration(ImmutableAbjadObject, Fraction):
         return '{}:{}'.format(self.denominator, self.numerator)
 
     def with_denominator(self, denominator):
+        '''Duration with `denominator`::
+
+            >>> duration = Duration(1, 4)
+
+        ::
+
+            >>> for denominator in (4, 8, 16, 32):
+            ...     print duration.with_denominator(denominator)
+            ... 
+            1/4
+            2/8
+            4/16
+            8/32
+
+        Return new duration.
+        '''
         nonreduced_fraction = mathtools.NonreducedFraction(self)
         return nonreduced_fraction.with_denominator(denominator)
 
