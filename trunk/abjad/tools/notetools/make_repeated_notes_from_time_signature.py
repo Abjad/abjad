@@ -21,7 +21,8 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
 
     # check input
     if time_signature.has_non_power_of_two_denominator:
-        raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
+        raise NotImplementedError(
+            'TODO: extend this function for time signatures with a non-power-of-two denominators.')
 
     # make and return repeated notes
     return time_signature.numerator * notetools.Note(pitch, (1, time_signature.denominator))

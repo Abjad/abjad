@@ -3,11 +3,7 @@ from abjad.tools import mathtools
 
 
 def get_non_power_of_two_factor_from_time_signature_denominator(time_signature):
-    '''Get nonbinary factor from nonbinary `time_signature` denominator::
-
-        >>> from abjad.tools import timesignaturetools
-
-    ::
+    '''Get non-power-of-two factor from `time_signature` denominator::
 
         >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 12)))
@@ -31,7 +27,7 @@ def get_non_power_of_two_factor_from_time_signature_denominator(time_signature):
         ... contexttools.TimeSignatureMark((3, 15)))
         15
 
-    Get ``1`` from binary `time_signature` denominator::
+    Get ``1`` from power_of_two `time_signature` denominator::
 
         >>> timesignaturetools.get_non_power_of_two_factor_from_time_signature_denominator(
         ... contexttools.TimeSignatureMark((3, 16)))
@@ -42,8 +38,8 @@ def get_non_power_of_two_factor_from_time_signature_denominator(time_signature):
     # check input
     assert isinstance(time_signature, contexttools.TimeSignatureMark)
 
-    # get nonbinary factor from time signature denominator
-    nonbinary_factor = mathtools.remove_powers_of_two(time_signature.denominator)
+    # get non_power_of_two factor from time signature denominator
+    non_power_of_two_factor = mathtools.remove_powers_of_two(time_signature.denominator)
 
-    # return nonbinary factor
-    return nonbinary_factor
+    # return non_power_of_two factor
+    return non_power_of_two_factor

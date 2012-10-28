@@ -3,8 +3,9 @@ from abjad.tools import timesignaturetools
 
 
 def test_timesignaturetools_is_equivalent_to_time_signature_with_power_of_two_denominator_01():
-    '''True when meter is binary or when meter is nonbinary
-    but mathematically equivalent to some binary meter.
+    '''True when meter has power-of-two denominator or when meter 
+    has non-power-of-two denominator but si but mathematically equivalent to some 
+    meter that does have a power-of-two denominator.
     '''
 
     assert not timesignaturetools.is_equivalent_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 12)))
@@ -22,8 +23,9 @@ def test_timesignaturetools_is_equivalent_to_time_signature_with_power_of_two_de
 
 
 def test_timesignaturetools_is_equivalent_to_time_signature_with_power_of_two_denominator_02():
-    '''True when meter is binary or when meter is nonbinary
-        but mathematically equivalent to some binary meter.'''
+    '''True when meter is power-of-two or when meter is non-power-of-two
+    but mathematically equivalent to some meter with power-of-two denominator.
+    '''
 
     assert not timesignaturetools.is_equivalent_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((1, 14)))
     assert not timesignaturetools.is_equivalent_to_time_signature_with_power_of_two_denominator(contexttools.TimeSignatureMark((2, 14)))

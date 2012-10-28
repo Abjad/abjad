@@ -3,8 +3,9 @@ import py.test
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_01():
-    '''Scale binary to nonbinary.
-        No note_head rewriting necessary.'''
+    '''Scale power-of-two to non-power-of-two.
+    No note head rewriting necessary.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
@@ -26,8 +27,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_01():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_02():
-    '''Scale nonbinary meter to binary.
-        No note_head rewriting necessary.'''
+    '''Scale non-power-of-two meter to power-of-two.
+    No note head rewriting necessary.
+    '''
 
     t = Measure((3, 12), "c'8 d'8 e'8")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(3, 2))
@@ -46,8 +48,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_02():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_03():
-    '''Scale binary meter to binary meter.
-        Noteheads rewrite with dots.'''
+    '''Scale power-of-two meter to power-of-two meter.
+    Noteheads rewrite with dots.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(3, 2))
@@ -66,8 +69,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_03():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_04():
-    '''Scale binary meter to binary meter.
-        Noteheads rewrite without dots.'''
+    '''Scale power-of-two meter to power-of-two meter.
+    Noteheads rewrite without dots.
+    '''
 
     t = Measure((9, 16), "c'8. d'8. e'8.")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
@@ -86,8 +90,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_04():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_05():
-    '''Scale binary meter to nonbinary meter.
-        No note_head rewriting necessary.'''
+    '''Scale power-of-two meter to non-power-of-two meter.
+    No note head rewriting necessary.
+    '''
 
     t = Measure((9, 16), "c'16 d'16 e'16 f'16 g'16 a'16 b'16 c''16 d''16")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(2, 3))
@@ -114,8 +119,9 @@ def test_measuretools_scale_measure_and_adjust_time_signature_05():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_06():
-    '''Scale nonbinary meter to binary meter.
-        Noteheads rewrite with double duration.'''
+    '''Scale non-power-of-two meter to power-of-two meter.
+    Noteheads rewrite with double duration.
+    '''
 
     t = Measure((3, 12), "c'8 d'8 e'8")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(3))
@@ -134,9 +140,10 @@ def test_measuretools_scale_measure_and_adjust_time_signature_06():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_07():
-    '''Scale binary meter by one half.
-        Noteheads rewrite with half duration.
-        Time signature rewrites with double denominator.'''
+    '''Scale power-of-two meter by one half.
+    Noteheads rewrite with half duration.
+    Time signature rewrites with double denominator.
+    '''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(1, 2))
@@ -158,9 +165,10 @@ def test_measuretools_scale_measure_and_adjust_time_signature_07():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_08():
-    '''Scale binary meter by one quarter.
-        Noteheads rewrite with quarter duration.
-        Time signature rewrites with quadruple denominator.'''
+    '''Scale power-of-two meter by one quarter.
+    Noteheads rewrite with quarter duration.
+    Time signature rewrites with quadruple denominator.
+    '''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(1, 4))
@@ -182,9 +190,10 @@ def test_measuretools_scale_measure_and_adjust_time_signature_08():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_09():
-    '''Scale binary meter by two.
-        Noteheads rewrite with double duration.
-        Time signature rewrites with half denominator.'''
+    '''Scale power-of-two meter by two.
+    Noteheads rewrite with double duration.
+    Time signature rewrites with half denominator.
+    '''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(2))
@@ -206,9 +215,10 @@ def test_measuretools_scale_measure_and_adjust_time_signature_09():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_10():
-    '''Scale binary meter by four.
-        Noteheads rewrite with quadruple duration.
-        Time signature rewrites with quarter denominator.'''
+    '''Scale power-of-two meter by four.
+    Noteheads rewrite with quadruple duration.
+    Time signature rewrites with quarter denominator.
+    '''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     measuretools.scale_measure_and_adjust_time_signature(t, Duration(4))
@@ -230,7 +240,8 @@ def test_measuretools_scale_measure_and_adjust_time_signature_10():
 
 
 def test_measuretools_scale_measure_and_adjust_time_signature_11():
-    '''Raise ZeroDivisionError when multiplier equals zero.'''
+    '''Raise ZeroDivisionError when multiplier equals zero.
+    '''
 
     t = Measure((6, 16), "c'16 d'16 e'16 f'16 g'16 a'16")
     py.test.raises(ZeroDivisionError, 'measuretools.scale_measure_and_adjust_time_signature(t, 0)')

@@ -22,7 +22,7 @@ def make_repeated_notes(count, duration=durationtools.Duration(1, 8)):
             c'16
         }
 
-    Make ad hoc tuplet holding `count` repeated notes with nonbinary `duration`::
+    Make ad hoc tuplet holding `count` repeated notes with non-power-of-two `duration`::
 
         >>> notetools.make_repeated_notes(3, (1, 12))
         [Tuplet(2/3, [c'8, c'8, c'8])]

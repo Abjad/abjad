@@ -16,7 +16,8 @@ def make_repeated_rests_from_time_signature(time_signature):
 
     # check input
     if time_signature.has_non_power_of_two_denominator:
-        raise NotImplementedError('TODO: extend this function for nonbinary time signatures.')
+        raise NotImplementedError(
+            'TODO: extend this function for time signatures with non-power-of-two denominators.')
 
     # make and return repeated rests
     return time_signature.numerator * resttools.Rest((1, time_signature.denominator))

@@ -20,7 +20,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
             c'16
         }
 
-    Fill binary remaining duration with binary notes of lesser written duration::
+    Fill power-of-two remaining duration with power-of-two notes of lesser written duration::
 
         >>> args = [0, Duration(1, 16), Duration(9, 32)]
         >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
@@ -37,7 +37,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
             c'32
         }
 
-    Fill nonbinary remaining duration with ad hoc tuplet::
+    Fill non-power-of-two remaining duration with ad hoc tuplet::
 
         >>> args = [0, Duration(1, 16), Duration(4, 10)]
         >>> notes = notetools.make_repeated_notes_with_shorter_notes_at_end(*args)
@@ -58,7 +58,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
             }
         }
 
-    Set `prolation` when constructing notes in a nonbinary measure.
+    Set `prolation` when constructing notes in a measure with a non-power-of-two denominator.
 
     Return list of newly constructed components.
 
