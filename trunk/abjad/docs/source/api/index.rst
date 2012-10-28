@@ -2062,8 +2062,6 @@ Internal packages
    tools/exceptiontools/MissingTempoError
    tools/exceptiontools/MusicContentsError
    tools/exceptiontools/NegativeDurationError
-   tools/exceptiontools/NonbinaryTimeSignatureConversionError
-   tools/exceptiontools/NonbinaryTimeSignatureSuppressionError
    tools/exceptiontools/NoteHeadError
    tools/exceptiontools/OverfullContainerError
    tools/exceptiontools/ParallelError

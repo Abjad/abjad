@@ -151,7 +151,7 @@ class Measure(FixedDurationContainer):
         from abjad.tools import contexttools
         effective_meter = contexttools.get_effective_time_signature(self)
         if effective_meter.has_non_power_of_two_denominator and effective_meter.suppress:
-            raise NonbinaryTimeSignatureSuppressionError
+            raise Exception('Can not suppress time signature with non-power of two denominator.')
         if effective_meter.duration < self.preprolated_duration:
             raise OverfullContainerError
         if self.preprolated_duration < effective_meter.duration:
