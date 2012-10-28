@@ -96,11 +96,9 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
 
     # find basic written duration of note in tuplet
     if avoid_dots:
-        basic_written_duration = durationtools.rational_to_equal_or_greater_binary_rational(
-            basic_prolated_duration)
+        basic_written_duration = basic_prolated_duration.equal_or_greater_power_of_two
     else:
-        basic_written_duration = durationtools.rational_to_equal_or_greater_assignable_rational(
-            basic_prolated_duration)
+        basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
 
     # find written duration of each note in tuplet
     written_durations = [x * basic_written_duration for x in proportions]

@@ -2,9 +2,9 @@ from abjad import *
 from abjad.tools import durationtools
 
 
-def test_durationtools_yield_positive_nonreduced_fractions_01():
+def test_durationtools_yield_nonreduced_fractions_01():
 
-    generator = durationtools.yield_positive_nonreduced_fractions()
+    generator = durationtools.yield_nonreduced_fractions()
 
     assert generator.next() == (1, 1)
     assert generator.next() == (2, 1)

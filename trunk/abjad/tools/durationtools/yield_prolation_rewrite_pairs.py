@@ -60,20 +60,24 @@ def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=No
     '''
     from abjad.tools import durationtools
 
+    prolated_duration = durationtools.Duration(prolated_duration)
+
     if minimum_written_duration is None:
         minimum_written_duration = durationtools.Duration(1, 128)
     else:
         minimum_written_duration = durationtools.Duration(minimum_written_duration)
 
-    generator = durationtools.yield_assignable_durations()
+    generator = durationtools.yield_durations(unique=True)
     pairs = []
 
     while True:
         written_duration = generator.next()
+        if not written_duration.is_assignable:
+            continue
         if written_duration < minimum_written_duration:
             pairs = tuple(pairs)
             return pairs
-        prolation = durationtools.Multiplier(prolated_duration / written_duration)
+        prolation = prolated_duration / written_duration
         if prolation.is_proper_tuplet_multiplier:
             pair = (prolation, written_duration)
             pairs.append(pair)

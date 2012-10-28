@@ -555,7 +555,7 @@ class Duration(ImmutableAbjadObject, Fraction):
         if not self.is_assignable:
             raise AssignabilityError
 
-        undotted_rational = durationtools.rational_to_equal_or_lesser_binary_rational(self)
+        undotted_rational = self.equal_or_lesser_power_of_two
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)
         elif undotted_rational == type(self)(2, 1):
@@ -595,7 +595,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
         Prolation string.
 
-            >>> generator = durationtools.yield_positive_fractions(unique=True)
+            >>> generator = durationtools.yield_durations(unique=True)
             >>> for n in range(16):
             ...     rational = generator.next()
             ...     duration = Duration(rational)

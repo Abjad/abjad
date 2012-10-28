@@ -313,13 +313,8 @@ Composition packages
    tools/durationtools/is_lilypond_duration_name
    tools/durationtools/is_lilypond_duration_string
    tools/durationtools/numeric_seconds_to_clock_string
-   tools/durationtools/rational_to_equal_or_greater_assignable_rational
-   tools/durationtools/rational_to_equal_or_greater_binary_rational
-   tools/durationtools/rational_to_equal_or_lesser_assignable_rational
-   tools/durationtools/rational_to_equal_or_lesser_binary_rational
-   tools/durationtools/yield_assignable_durations
-   tools/durationtools/yield_positive_fractions
-   tools/durationtools/yield_positive_nonreduced_fractions
+   tools/durationtools/yield_durations
+   tools/durationtools/yield_nonreduced_fractions
    tools/durationtools/yield_prolation_rewrite_pairs
 
 :py:mod:`gracetools <abjad.tools.gracetools>`

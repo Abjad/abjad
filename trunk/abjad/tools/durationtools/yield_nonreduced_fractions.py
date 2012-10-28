@@ -1,9 +1,9 @@
-def yield_positive_nonreduced_fractions():
+def yield_nonreduced_fractions():
     '''.. versionadded:: 2.0
 
     Yield all positive integer pairs in Cantor diagonalized order::
 
-        >>> generator = durationtools.yield_positive_nonreduced_fractions()
+        >>> generator = durationtools.yield_nonreduced_fractions()
         >>> for n in range(16):
         ...     generator.next()
         ...

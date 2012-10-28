@@ -103,8 +103,7 @@ def leaf_to_tuplet_with_ratio(leaf, proportions, is_diminution=True):
     basic_prolated_duration = target_duration / sum(proportions)
 
     # find basic written duration of note in tuplet
-    basic_written_duration = durationtools.rational_to_equal_or_greater_assignable_rational(
-        basic_prolated_duration)
+    basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
 
     # find written duration of each note in tuplet
     written_durations = [x * basic_written_duration for x in proportions]

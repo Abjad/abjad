@@ -122,19 +122,14 @@ def tie_chain_to_tuplet_with_ratio(tie_chain, proportions, is_diminution=True, d
     # find written duration of each notes in tuplet
     if is_diminution:
         if dotted:
-            basic_written_duration = \
-                durationtools.rational_to_equal_or_greater_assignable_rational(prolated_duration)
+            basic_written_duration = prolated_duration.equal_or_greater_assignable
         else:
-            basic_written_duration = \
-                durationtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
+            basic_written_duration = prolated_duration.equal_or_greater_power_of_two
     else:
         if dotted:
-            basic_written_duration = \
-                durationtools.rational_to_equal_or_lesser_assignable_rational(prolated_duration)
+            basic_written_duration = prolated_Duration.equal_or_lesser_assignable
         else:
-            basic_written_duration = \
-                durationtools.rational_to_equal_or_lesser_binary_rational(
-                prolated_duration)
+            basic_written_duration = prolated_duration.equal_or_lesser_power_of_two
 
     # find written duration of each note in tuplet
     written_durations = [x * basic_written_duration for x in proportions]
