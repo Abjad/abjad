@@ -324,6 +324,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/timetools/LiteralTimespan/LiteralTimespan
    experimental/timetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
    experimental/timetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
    experimental/timetools/SymbolicTimepoint/SymbolicTimepoint

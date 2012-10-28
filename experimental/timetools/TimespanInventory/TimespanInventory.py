@@ -319,6 +319,7 @@ class TimespanInventory(ObjectInventory):
     def trim_to_start_offset(self, start_offset):
         '''Operate in place and return none.
         '''
+        from experimental import timetools
         start_offset = durationtools.Offset(start_offset)
         assert self.start_offset <= start_offset
         delete_timespan = timetools.LiteralTimespan(self.start_offset, start_offset)
@@ -327,6 +328,7 @@ class TimespanInventory(ObjectInventory):
     def trim_to_stop_offset(self, stop_offset):
         '''Operate in place and return none.
         '''
+        from experimental import timetools
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.stop_offset
         delete_timespan = timetools.LiteralTimespan(stop_offset, self.stop_offset)
