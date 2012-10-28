@@ -37,15 +37,15 @@ Read-only Properties
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
+.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.has_power_of_two_denominator
+
+    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
+
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.imag
 
     Inherited from :py:class:`numbers.Real`
 
 .. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.is_assignable
-
-    Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
-
-.. autoattribute:: abjad.tools.durationtools.Multiplier.Multiplier.Multiplier.is_binary
 
     Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 

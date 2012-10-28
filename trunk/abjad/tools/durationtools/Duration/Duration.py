@@ -497,7 +497,7 @@ class Duration(ImmutableAbjadObject, Fraction):
         return False
 
     @property
-    def is_binary(self):
+    def has_power_of_two_denominator(self):
         '''.. versionadded:: 2.11
 
             True when duration is an integer power of ``2``.
@@ -505,7 +505,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
             >>> for n in range(1, 17):
             ...     duration = Duration(1, n)
-            ...     print '{}\t{}'.format(duration, duration.is_binary)
+            ...     print '{}\t{}'.format(duration, duration.has_power_of_two_denominator)
             ...
             1       True
             1/2     True

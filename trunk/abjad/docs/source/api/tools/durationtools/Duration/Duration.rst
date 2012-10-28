@@ -25,13 +25,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.flag_count
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.has_power_of_two_denominator
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.imag
 
     Inherited from :py:class:`numbers.Real`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.is_assignable
-
-.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.is_binary
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.lilypond_duration_string
 

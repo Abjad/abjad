@@ -50,7 +50,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
     if new_written_duration.is_assignable:
         tie_chain[0].written_duration = new_written_duration
         tietools.remove_nonfirst_leaves_in_tie_chain(tie_chain)
-    elif new_written_duration.is_binary:
+    elif new_written_duration.has_power_of_two_denominator:
         duration_tokens = notetools.make_notes(0, [new_written_duration])
         for leaf, token in zip(tie_chain, duration_tokens):
             leaf.written_duration = token.written_duration
