@@ -61,11 +61,10 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         if isinstance(next_component, containertools.Container) and \
             not next_component.is_parallel and \
             not isinstance(next_component, tuplettools.Tuplet) and \
-            componenttools.all_are_contiguous_components_in_same_score(
-                [component, next_component], allow_orphans=True):
-            component.extend(next_component)
-            componenttools.remove_component_subtree_from_score_and_spanners([next_component])
-            merged = True
+            component.parentage.root is next_component.parentage.root:
+                component.extend(next_component)
+                componenttools.remove_component_subtree_from_score_and_spanners([next_component])
+                merged = True
     if merged:
         containertools.remove_leafless_containers_in_expr(expr)
         return expr.pop(0)
