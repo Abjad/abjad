@@ -70,6 +70,14 @@ class Parentage(Selection):
         return self._component
 
     @property
+    def depth(self):
+        '''Length of proper parentage of component.
+
+        Return nonnegative integer.
+        '''
+        return len(self[1:])
+
+    @property
     def root(self):
         '''Last element in parentage.
         '''

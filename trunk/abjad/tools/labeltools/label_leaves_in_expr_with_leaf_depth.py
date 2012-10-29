@@ -11,7 +11,13 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
         >>> tuplettools.FixedDurationTuplet(Duration(2, 8), staff[-3:])
         FixedDurationTuplet(1/4, [e'8, f'8, g'8])
+
+    ::
+
         >>> labeltools.label_leaves_in_expr_with_leaf_depth(staff)
+
+    ::
+
         >>> f(staff)
         \new Staff {
             c'8 _ \markup { \small 1 }
@@ -31,5 +37,5 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
     '''
 
     for leaf in iterationtools.iterate_leaves_in_expr(expr):
-        label = markuptools.MarkupCommand('small', str(componenttools.component_to_score_depth(leaf)))
+        label = markuptools.MarkupCommand('small', str(leaf.parentage.depth))
         markuptools.Markup(label, markup_direction)(leaf)
