@@ -15,21 +15,19 @@
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-6.  Rename all occurrences of (note value) 'signal' to 'talea'.
+6.  Change all occurrences of 'duration tokens' (in rhythmmakertools) to 'time tokens' or 'divisions'.
 
-7.  Change all occurrences of 'duration tokens' (in rhythmmakertools) to 'time tokens' or 'divisions'.
-
-8.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+7.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
 
-9.  Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
+8.  Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
     MixedSourceSymbolicTimespan to a new symbolictimetools package in the experimental branch
     in preparation for timetools merge to mainline.
 
-10. Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
+9.  Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
 
-11. Rename timetools to timerelationtools in preparation for merge to mainline.
+10. Rename timetools to timerelationtools in preparation for merge to mainline.
 
-12. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
+11. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
 
-13. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
+12. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.

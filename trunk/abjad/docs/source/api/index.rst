@@ -555,7 +555,7 @@ Composition packages
    tools/leaftools/list_prolated_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
-   tools/leaftools/make_leaves_from_note_value_signal
+   tools/leaftools/make_leaves_from_talea
    tools/leaftools/make_tied_leaf
    tools/leaftools/remove_initial_rests_from_sequence
    tools/leaftools/remove_leaf_and_shrink_durated_parent_containers

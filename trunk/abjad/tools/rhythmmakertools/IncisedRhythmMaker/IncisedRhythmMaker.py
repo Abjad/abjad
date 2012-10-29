@@ -136,7 +136,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def _numeric_map_and_denominator_to_leaf_lists(self, numeric_map, lcd):
         leaf_lists = []
         for numeric_map_part in numeric_map:
-            leaf_list = leaftools.make_leaves_from_note_value_signal(numeric_map_part, lcd)
+            leaf_list = leaftools.make_leaves_from_talea(numeric_map_part, lcd)
             leaf_lists.append(leaf_list)
         return leaf_lists
 

@@ -166,7 +166,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     def _make_leaf_lists(self, numeric_map, denominator):
         leaf_lists = []
         for map_token in numeric_map:
-            leaf_list = leaftools.make_leaves_from_note_value_signal(map_token, denominator)
+            leaf_list = leaftools.make_leaves_from_talea(map_token, denominator)
             leaf_lists.append(leaf_list)
         return leaf_lists
 
