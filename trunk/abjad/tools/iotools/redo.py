@@ -61,6 +61,5 @@ def redo(target=-1, lily_time=10):
     # open pdf
     pdf_viewer = ABJCFG['pdf_viewer']
     ABJADOUTPUT = ABJCFG['abjad_output']
-    ABJADOUTPUT = config['abjad_output']
     name = target_ly
     _open_file('%s.pdf' % name[:-3], pdf_viewer)
