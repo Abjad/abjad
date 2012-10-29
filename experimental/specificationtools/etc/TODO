@@ -45,3 +45,7 @@
 13. Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
 
 14. Rename timetools to timerelationtools in preparation for merge to mainline.
+
+15. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
+
+16. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.

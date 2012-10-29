@@ -193,8 +193,7 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, requesttools.CommandRequest):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
-            divisions = self.division_command_request_to_divisions(
-                division_command_request, voice_name)
+            divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
             divisions = requesttools.apply_request_transforms(division_command_request, divisions)
             divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
             division_region_command._request = divisions
@@ -217,17 +216,22 @@ class ConcreteInterpreter(Interpreter):
                 division_region_command.request)
             if division_region_expressions is None:
                 return
-            else:
-                for division_region_expression in division_region_expressions:
-                    division_region_expression._voice_name = voice_name
-                addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
-                division_region_expressions.translate_timespans(addendum)
-                if division_region_command.reverse:
-                    division_region_expressions.reverse()
-                if division_region_command.rotation:
-                    division_region_expressions.rotate(division_region_command.rotation)
-                division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
-                return division_region_expressions
+            for division_region_expression in division_region_expressions:
+                division_region_expression._voice_name = voice_name
+            addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
+            division_region_expressions.translate_timespans(addendum)
+            if division_region_command.reverse:
+                division_region_expressions.reverse()
+            if division_region_command.rotation:
+                division_region_expressions.rotate(division_region_command.rotation)
+            division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
+            return division_region_expressions
+        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
+            division_region_command.request.attribute == 'time_signatures':    
+            time_signatures = self.time_signature_material_request_to_time_signatures(
+                division_region_command.request)
+            divisions = [divisiontools.Division(x) for x in time_signatures]
+            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
         else:
             raise TypeError(division_region_command.request)
         return settingtools.OffsetPositionedDivisionList(

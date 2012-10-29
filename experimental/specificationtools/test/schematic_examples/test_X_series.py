@@ -3,7 +3,7 @@ from abjad import *
 from experimental import *
 
 
-def test_schematic_examples_01():
+def test_X_series_01():
     '''Schematic example [X1].
     Quartet in two segments.
     First segment [4/8, 3/8] time signatures.
@@ -34,7 +34,7 @@ def test_schematic_examples_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_schematic_examples_02():
+def test_X_series_02():
     '''Schematic example [X2].
     Quartet in two segments.
     Segment 1 time signatures [4/8, 3/8].
@@ -65,7 +65,7 @@ def test_schematic_examples_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_schematic_examples_03():
+def test_X_series_03():
     '''Schematic example [X3].
     Quartet in 2 segments. 
     First segment time signatures [6/8, 3/8]. 
@@ -127,7 +127,7 @@ def test_schematic_examples_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_schematic_examples_04():
+def test_X_series_04():
     '''Schematic example X4.
     Quartet in two segments.
     First segment time signatures [4/8, 3/8, 2/8]. 
