@@ -86,7 +86,6 @@ Composition packages
    :maxdepth: 1
 
    tools/componenttools/all_are_components
-   tools/componenttools/all_are_components_in_same_score
    tools/componenttools/all_are_components_in_same_thread
    tools/componenttools/all_are_components_scalable_by_multiplier
    tools/componenttools/all_are_contiguous_components
