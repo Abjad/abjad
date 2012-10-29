@@ -335,7 +335,7 @@ class Component(AbjadObject):
         from abjad.tools import leaftools
         from abjad.tools import measuretools
         from abjad.tools.contexttools.Context import Context
-        score_root = componenttools.component_to_score_root(self)
+        score_root = self.parentage.root
         if isinstance(score_root, Context):
             for context in iterationtools.iterate_contexts_in_expr(score_root):
                 for leaf_index, leaf in enumerate(iterationtools.iterate_leaves_in_expr(context)):
@@ -410,9 +410,8 @@ class Component(AbjadObject):
     def _iterate_score_components_depth_first(self):
         from abjad.tools import componenttools
         from abjad.tools import iterationtools
-        score_root = componenttools.component_to_score_root(self)
         kwargs = {'capped': True, 'unique': True, 'forbid': None, 'direction': 'left'}
-        components = iterationtools.iterate_components_depth_first(score_root, **kwargs)
+        components = iterationtools.iterate_components_depth_first(self.parentage.root, **kwargs)
         return components
 
     def _mark_entire_score_tree_for_later_update(self, value):

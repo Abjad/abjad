@@ -231,9 +231,7 @@ def split_component_at_offset(component, offset,
     if did_split_leaf:
         if  (tie_split_notes and isinstance(leaf_left_of_split, notetools.Note)) or \
             (tie_split_rests and isinstance(leaf_left_of_split, resttools.Rest)):
-            left_score_root = componenttools.component_to_score_root(leaf_left_of_split)
-            right_score_root = componenttools.component_to_score_root(leaf_right_of_split)
-            if left_score_root is right_score_root:
+            if leaf_left_of_split.parentage.root is leaf_right_of_split.parentage.root:
                 tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     # return pair of left and right list-wrapped halves of container

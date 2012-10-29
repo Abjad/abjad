@@ -23,8 +23,7 @@ def _insert_measure_padding(expr, front, back, klass, splice=False):
     if not isinstance(klass, (resttools.Rest, skiptools.Skip)):
         raise TypeError
 
-    #root = expr[0]._parentage.root
-    root = componenttools.component_to_score_root(expr[0])
+    root = expr[0].parentage.root
 
     # forbid updates because
     # componenttools.extend_in_parent_of_component() and

@@ -42,14 +42,14 @@ def all_are_contiguous_components_in_same_score(expr, klasses=None, allow_orphan
     same_score = True
     strictly_contiguous = True
 
-    first_score = componenttools.component_to_score_root(first)
+    first_score = first.parentage.root
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
         if not componenttools.is_orphan_component(cur):
             orphan_components = False
-        if not componenttools.component_to_score_root(cur) is first_score:
+        if not cur.parentage.root is first_score:
             same_score = False
         if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             strictly_contiguous = False

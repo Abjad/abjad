@@ -101,7 +101,6 @@ Composition packages
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/component_to_score_depth
    tools/componenttools/component_to_score_index
-   tools/componenttools/component_to_score_root
    tools/componenttools/component_to_tuplet_depth
    tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
    tools/componenttools/copy_components_and_covered_spanners

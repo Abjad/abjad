@@ -63,9 +63,8 @@ def iterate_timeline_from_component(expr, klass=None, reverse=False):
     if klass is None:
         klass = leaftools.Leaf
 
-    root = componenttools.component_to_score_root(expr)
     component_generator = iterationtools.iterate_timeline_in_expr(
-        root, klass=klass, reverse=reverse)
+        expr.parentage.root, klass=klass, reverse=reverse)
 
     yielded_expr = False
     for component in component_generator:

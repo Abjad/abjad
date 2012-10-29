@@ -15,6 +15,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.root
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.start_offset
 
     Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
