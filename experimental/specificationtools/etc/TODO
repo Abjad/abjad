@@ -9,43 +9,27 @@
 4.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-5.  Extend markuptools.make_centered_title_markup() with optional single_line=True keyword.
-    Then set to false in helpertools.write_test_output() and rerender all test collateral.
-
-6.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+5.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-7.  Explain beam spanner function in beam spanner doc strings.
-    Change 'span' keyword to 'span_beam_count'.
-    Change 'lone' keyword to something self-documenting.
-    Change 'Complex' in ComplexBeamSpanner, DuratedComplexBeamSpanner, MeasuredComplexBeamSpanner
-    to something self-documenting; this will mean renaming all three classes.
-    Generalize MeasureComplexBeamSpanner to something that will handle arbitrary objects
-    (and not just measures). 
-    Clean up docstrings for all beamtools classes and functions.
-    Write a tutorial clearly explaining beam spanner types.
+6.  Rename all occurrences of (note value) 'signal' to 'talea'.
 
-8.  Rename all occurrences of (note value) 'signal' to 'talea'.
+7.  Change all occurrences of 'duration tokens' (in rhythmmakertools) to 'time tokens' or 'divisions'.
 
-9.  Change all occurrences of 'duration tokens' (in rhythmmakertools) to 'time tokens'.
-
-10. Remove all occurrences of 'duration token' from the mainline.
-    Check that coercion is implemented pervasively instead.
-
-11. Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+8.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
 
-12. Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
+9.  Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
     MixedSourceSymbolicTimespan to a new symbolictimetools package in the experimental branch
     in preparation for timetools merge to mainline.
 
-13. Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
+10. Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
 
-14. Rename timetools to timerelationtools in preparation for merge to mainline.
+11. Rename timetools to timerelationtools in preparation for merge to mainline.
 
-15. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
+12. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
 
-16. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
+13. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
