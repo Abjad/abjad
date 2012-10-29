@@ -94,7 +94,6 @@ Composition packages
    tools/componenttools/all_are_contiguous_components_in_same_parent
    tools/componenttools/all_are_contiguous_components_in_same_score
    tools/componenttools/all_are_contiguous_components_in_same_thread
-   tools/componenttools/all_are_orphan_components
    tools/componenttools/all_are_thread_contiguous_components
    tools/componenttools/component_to_containment_signature
    tools/componenttools/component_to_parentage_signature
