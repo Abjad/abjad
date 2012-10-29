@@ -1,4 +1,4 @@
-def make_centered_title_markup(title, font_name='Times', font_size=18):
+def make_centered_title_markup(title, font_name='Times', font_size=18, vspace_before=6, vspace_after=12):
     r'''.. versionadded:: 2.9
     
     Make centered `title` markup::
@@ -9,30 +9,26 @@ def make_centered_title_markup(title, font_name='Times', font_size=18):
 
         >>> print markup.indented_lilypond_format
         \markup {
-            \column
-                {
-                    \center-align
+            \override
+                #'(font-name . "Times")
+                \fontsize
+                    #18
+                    \column
                         {
-                            \override
-                                #'(font-name . "Times")
-                                \fontsize
-                                    #18
+                            \center-align
+                                {
                                     {
-                                        " "
-                                        " "
-                                        " "
-                                        " "
-                                        " "
+                                        \vspace
+                                            #6
                                         \line
                                             {
                                                 "String Quartet"
                                             }
-                                        " "
-                                        " "
-                                        " "
+                                        \vspace
+                                            #12
                                     }
+                                }
                         }
-                }
             }
 
     Return markup.
@@ -43,15 +39,17 @@ def make_centered_title_markup(title, font_name='Times', font_size=18):
     assert isinstance(font_name, str)
     assert isinstance(font_size, (int, float))
 
-    contents = r'''\column {
+    contents = r'''
+        \override #'(font-name . "%s")
+        \fontsize #%s 
+        \column {
             \center-align {
-                \override #'(font-name . "%s")
-                \fontsize #%s {
-                    " "   " "   " "   " "   " "
+                {
+                    \vspace #%s
                     \line { "%s" } 
-                    " "   " "   " "
+                    \vspace #%s
                 }
             }
-        }''' % (font_name, font_size, title)
+        }''' % (font_name, font_size, vspace_before, title, vspace_after)
 
     return markuptools.Markup(contents)
