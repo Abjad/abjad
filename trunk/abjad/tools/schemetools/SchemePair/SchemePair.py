@@ -34,7 +34,12 @@ class SchemePair(Scheme):
     @property
     def _formatted_value(self):
         from abjad.tools import schemetools
-        return '(%s . %s)' % tuple([schemetools.format_scheme_value(x) for x in self._value])
+        assert len(self._value) == 2
+        #return '(%s . %s)' % tuple([schemetools.format_scheme_value(x) for x in self._value])
+        lhs = schemetools.format_scheme_value(self._value[0])
+        # need to force quotes around pairs like \override #'(font-name . "Times")
+        rhs = schemetools.format_scheme_value(self._value[-1], force_quotes=True)
+        return '({} . {})'.format(lhs, rhs)
 
     ### PUBLIC PROPERTIES ###
 
