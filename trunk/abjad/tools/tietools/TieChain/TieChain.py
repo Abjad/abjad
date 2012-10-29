@@ -2,6 +2,7 @@ import itertools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import notetools
+from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.abctools.Selection import Selection
 
@@ -32,7 +33,7 @@ class TieChain(Selection):
 
         Return boolean.
         '''
-        return componenttools.all_are_components_in_same_parent(self[:])
+        return sequencetools.all_are_equal([leaf.parent for leaf in self.leaves])
 
     @property
     def duration_in_seconds(self):
