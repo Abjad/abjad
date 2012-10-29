@@ -33,11 +33,11 @@ def all_are_components_in_same_score(expr, klasses=None, allow_orphans=True):
     if not isinstance(first, klasses):
         return False
 
-    first_score = componenttools.component_to_score_root(first)
+    first_score = first.parentage.root
     for element in expr[1:]:
         if not isinstance(element, klasses):
             return False
-        if componenttools.component_to_score_root(element) is not first_score:
+        if element.parentage.root is not first_score:
             if not (allow_orphans and componenttools.is_orphan_component(element)):
                 return False
 

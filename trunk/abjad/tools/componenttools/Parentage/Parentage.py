@@ -45,18 +45,17 @@ class Parentage(Selection):
 
     Parentage is treated as a selection of the component's improper parentage.
 
-    Return Parentage instance.
+    Return parentage instance.
     '''
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_component',)
+    __slots__ = ('_component', '_root')
 
     ### INITIALIZER ###
 
     def __init__(self, component):
         from abjad.tools import componenttools 
-
         assert isinstance(component, componenttools.Component)
         music = componenttools.get_improper_parentage_of_component(component)
         Selection.__init__(self, music) 
@@ -66,7 +65,12 @@ class Parentage(Selection):
 
     @property
     def component(self):
-        '''The component from which the selection was derived.'''
+        '''The component from which the selection was derived.
+        '''
         return self._component
 
-
+    @property
+    def root(self):
+        '''Last element in parentage.
+        '''
+        return self[-1]
