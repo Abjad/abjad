@@ -1,7 +1,7 @@
-from abjad.tools.abctools.ScoreSelection import ScoreSelection
+from abjad.tools.abctools.Selection import Selection
 
 
-class Descendants(ScoreSelection):
+class Descendants(Selection):
     r'''Abjad model of Component descendants:
 
     ::
@@ -63,7 +63,7 @@ class Descendants(ScoreSelection):
 
         assert isinstance(component, componenttools.Component)
         music = componenttools.get_improper_descendents_of_component(component)
-        ScoreSelection.__init__(self, music)
+        Selection.__init__(self, music)
         self._component = component
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###

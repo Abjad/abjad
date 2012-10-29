@@ -13,15 +13,15 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.music
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.start_offset
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.stop_offset
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.componenttools.Lineage.Lineage.Lineage.storage_format
 
@@ -32,11 +32,11 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__contains__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__eq__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__ge__
 
@@ -44,7 +44,7 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__getitem__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__gt__
 
@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__len__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__lt__
 
@@ -64,7 +64,7 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__ne__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.componenttools.Lineage.Lineage.Lineage.__repr__
 

@@ -3,10 +3,10 @@ from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import notetools
 from abjad.tools import spannertools
-from abjad.tools.abctools.ScoreSelection import ScoreSelection
+from abjad.tools.abctools.Selection import Selection
 
 
-class TieChain(ScoreSelection):
+class TieChain(Selection):
     '''.. versionadded:: 2.9
 
     All the notes in a tie chain::
@@ -22,7 +22,7 @@ class TieChain(ScoreSelection):
     '''
 
     def __init__(self, music):
-        ScoreSelection.__init__(self, music)
+        Selection.__init__(self, music)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

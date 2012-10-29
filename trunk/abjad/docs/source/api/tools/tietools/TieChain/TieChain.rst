@@ -25,7 +25,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.music
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.preprolated_duration
 
@@ -33,11 +33,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.start_offset
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.stop_offset
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.storage_format
 
@@ -50,11 +50,11 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__contains__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__eq__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__ge__
 
@@ -62,7 +62,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__getitem__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__gt__
 
@@ -74,7 +74,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__len__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__lt__
 
@@ -82,7 +82,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__ne__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__repr__
 

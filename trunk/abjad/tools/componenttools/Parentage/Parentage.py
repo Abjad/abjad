@@ -1,7 +1,7 @@
-from abjad.tools.abctools.ScoreSelection import ScoreSelection
+from abjad.tools.abctools.Selection import Selection
 
 
-class Parentage(ScoreSelection):
+class Parentage(Selection):
     r'''Abjad model of Component parentage:
 
     ::
@@ -59,7 +59,7 @@ class Parentage(ScoreSelection):
 
         assert isinstance(component, componenttools.Component)
         music = componenttools.get_improper_parentage_of_component(component)
-        ScoreSelection.__init__(self, music) 
+        Selection.__init__(self, music) 
         self._component = component
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###

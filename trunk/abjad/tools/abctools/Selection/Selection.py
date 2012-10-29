@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ScoreSelection(AbjadObject):
+class Selection(AbjadObject):
     '''.. versionadded:: 2.9
 
     Abstract base class from which selection classes inherit.

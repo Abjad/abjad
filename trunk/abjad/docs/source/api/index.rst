@@ -1875,7 +1875,7 @@ Internal packages
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
    tools/abctools/Parser/Parser
-   tools/abctools/ScoreSelection/ScoreSelection
+   tools/abctools/Selection/Selection
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`

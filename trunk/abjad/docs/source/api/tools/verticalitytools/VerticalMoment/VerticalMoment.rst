@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.music
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.next_vertical_moment
 
@@ -47,11 +47,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.start_offset
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.stop_offset
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.storage_format
 
@@ -62,7 +62,7 @@ Special Methods
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__contains__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__eq__
 
@@ -72,7 +72,7 @@ Special Methods
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__getitem__
 
-    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+    Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__gt__
 
