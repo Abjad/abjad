@@ -11,7 +11,7 @@ class LaTeXOutputFormat(OutputFormat):
         code_block_opening += 'showtabs=false, showspaces=false]\n'
         code_block_closing = '\\end{lstlisting}\n'
         code_indent = 0
-        image_block = '\\includegraphics{images/{}.pdf}\n'
+        image_block = '\\includegraphics{{images/{}.pdf}}\n'
         image_format = 'pdf'
         OutputFormat.__init__(self, code_block_opening, code_block_closing,
             code_indent, image_block, image_format)
