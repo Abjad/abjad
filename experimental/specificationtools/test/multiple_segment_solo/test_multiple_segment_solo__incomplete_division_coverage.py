@@ -3,7 +3,7 @@ from experimental import *
 import py
 
 
-def test_multiple_segment_solo_incomplete_division_coverage_01():
+def test_multiple_segment_solo__incomplete_division_coverage_01():
     py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -17,7 +17,7 @@ def test_multiple_segment_solo_incomplete_division_coverage_01():
     blue_segment = score_specification.make_segment(name='blue')
 
 
-def test_multiple_segment_solo_incomplete_division_coverage_02():
+def test_multiple_segment_solo__incomplete_division_coverage_02():
     py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

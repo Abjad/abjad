@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_multiple_segment_solo_reset_division_selectors_01():
+def test_multiple_segment_solo__reset_division_selectors_01():
     '''Reset persistent selectors.
     '''
 
@@ -24,7 +24,7 @@ def test_multiple_segment_solo_reset_division_selectors_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_multiple_segment_solo_reset_division_selectors_02():
+def test_multiple_segment_solo__reset_division_selectors_02():
     '''Reset nonpersistent selectors.
     '''
 
