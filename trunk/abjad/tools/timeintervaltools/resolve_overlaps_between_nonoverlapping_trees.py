@@ -7,7 +7,6 @@ def resolve_overlaps_between_nonoverlapping_trees(trees, minimum_duration=None):
     Intervals in higher-indexed trees in `trees` only appear in part or whole where they do not
     overlap intervals from starter-indexed trees ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

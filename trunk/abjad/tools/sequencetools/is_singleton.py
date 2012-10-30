@@ -3,10 +3,6 @@ def is_singleton(expr):
     
     True when `expr` is a tuple of length ``1``::
 
-        >>> from abjad.tools import sequencetools
-    
-    ::
-
         >>> sequencetools.is_singleton((19,))
         True
 

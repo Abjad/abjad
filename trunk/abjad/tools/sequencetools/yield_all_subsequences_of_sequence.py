@@ -3,10 +3,6 @@ def yield_all_subsequences_of_sequence(sequence, min_length=0, max_length=None):
 
     Yield all subsequences of `sequence` in lex order::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> list(sequencetools.yield_all_subsequences_of_sequence([0, 1, 2]))
         [[], [0], [0, 1], [0, 1, 2], [1], [1, 2], [2]]
 

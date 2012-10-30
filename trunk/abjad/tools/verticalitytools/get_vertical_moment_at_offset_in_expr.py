@@ -8,10 +8,6 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
 
     Get vertical moment at `prolated_offset` in `expr`::
 
-        >>> from abjad.tools import verticalitytools
-
-    ::
-
         >>> score = Score([])
         >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
         >>> score.append(staff)

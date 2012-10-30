@@ -4,10 +4,6 @@ def analyze_incomplete_tonal_function(expr, key_signature):
 
     Analyze tonal function of `expr` according to `key_signature`::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> chord = Chord("<c' e'>4")
         >>> key_signature = contexttools.KeySignatureMark('g', 'major')
         >>> tonalitytools.analyze_incomplete_tonal_function(chord, key_signature)

@@ -6,10 +6,6 @@ def is_unlikely_melodic_diatonic_interval_in_chorale(mdi):
 
     True when `mdi` is unlikely melodic diatonic interval in JSB chorale. ::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> mdi = pitchtools.MelodicDiatonicInterval('major', 7)
         >>> tonalitytools.is_unlikely_melodic_diatonic_interval_in_chorale(mdi)
         True

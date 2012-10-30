@@ -9,10 +9,6 @@ def repeat_sequence_to_length(sequence, length, start=0):
 
     Repeat `sequence` to nonnegative integer `length`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.repeat_sequence_to_length(range(5), 11)
         [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 

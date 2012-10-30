@@ -9,10 +9,6 @@ class CyclicMatrix(Matrix):
 
     Initialize from rows::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> cyclic_matrix = sequencetools.CyclicMatrix(
         ...     [[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 

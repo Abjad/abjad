@@ -6,10 +6,6 @@ def all_are_nonnegative_integers(expr):
 
     True when `expr` is a sequence and all elements  in `expr` are nonnegative integers::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.all_are_nonnegative_integers([0, 1, 2, 99])
         True
 

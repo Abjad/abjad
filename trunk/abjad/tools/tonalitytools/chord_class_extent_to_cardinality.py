@@ -3,10 +3,6 @@ def chord_class_extent_to_cardinality(extent):
 
     Change integer chord class `extent` to integer chord class cardinality::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> tonalitytools.chord_class_extent_to_cardinality(7)
         4
 

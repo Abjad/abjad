@@ -1,12 +1,6 @@
 def arg_to_tridirectional_ordinal_constant(arg):
     '''Convert `arg` to tridirectional ordinal constant:
 
-    ::
-
-        >>> from abjad.tools import stringtools
-
-    ::
-
         >>> stringtools.arg_to_tridirectional_ordinal_constant('^')
         Up
 

@@ -3,10 +3,6 @@ class CyclicTuple(tuple):
 
     Abjad model of cyclic tuple::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> cyclic_tuple = sequencetools.CyclicTuple('abcd')
 
     ::

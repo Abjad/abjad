@@ -5,7 +5,6 @@ def scale_interval_offsets_by_rational(intervals, rational):
     '''Scale the starting offset of each interval in `intervals` by
     `rational`, maintaining the startest offset in `intervals` ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

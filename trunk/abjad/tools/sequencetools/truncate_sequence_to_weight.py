@@ -6,10 +6,6 @@ def truncate_sequence_to_weight(sequence, weight):
 
     Truncate `sequence` to `weight`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> l = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
         >>> for x in range(10):
         ...     print x, sequencetools.truncate_sequence_to_weight(l, x)

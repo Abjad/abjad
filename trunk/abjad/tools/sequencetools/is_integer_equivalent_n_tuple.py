@@ -6,10 +6,6 @@ def is_integer_equivalent_n_tuple(expr, n):
 
     True when `expr` is a tuple of `n` integer-equivalent expressions::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.is_integer_equivalent_n_tuple((2.0, '3', Fraction(4, 1)), 3)
         True
 

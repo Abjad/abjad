@@ -6,10 +6,6 @@ def rotate_sequence(sequence, n):
 
     Rotate `sequence` to the right::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.rotate_sequence(range(10), 4)
         [6, 7, 8, 9, 0, 1, 2, 3, 4, 5]
 

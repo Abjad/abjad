@@ -7,10 +7,6 @@ def permute_sequence(sequence, permutation):
 
     Permute `sequence` by `permutation`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.permute_sequence([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
         [15, 14, 10, 11, 12, 13]
 

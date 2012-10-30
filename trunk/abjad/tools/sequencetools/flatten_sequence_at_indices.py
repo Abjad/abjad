@@ -6,10 +6,6 @@ def flatten_sequence_at_indices(sequence, indices, klasses=None, depth=-1):
 
     Flatten `sequence` at `indices`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.flatten_sequence_at_indices([0, 1, [2, 3, 4], [5, 6, 7]], [3])
         [0, 1, [2, 3, 4], 5, 6, 7]
 

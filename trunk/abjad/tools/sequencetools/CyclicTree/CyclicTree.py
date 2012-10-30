@@ -14,10 +14,6 @@ class CyclicTree(Tree):
     like ``CyclicTuple``, ``CyclicList`` and ``CyclicMatrix``,
     no index errors raises in working with objects of this class.
 
-    ::
-
-        >>> from abjad.tools import sequencetools
-
     Here is a cyclic tree::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]

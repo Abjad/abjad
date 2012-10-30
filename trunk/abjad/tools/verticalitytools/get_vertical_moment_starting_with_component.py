@@ -7,10 +7,6 @@ def get_vertical_moment_starting_with_component(component, governor=None):
 
     Get vertical moment starting with `component`::
 
-        >>> from abjad.tools import verticalitytools
-
-    ::
-
         >>> score = Score([])
         >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
         >>> score.append(staff)

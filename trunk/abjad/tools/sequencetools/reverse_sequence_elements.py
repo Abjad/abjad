@@ -6,10 +6,6 @@ def reverse_sequence_elements(sequence):
 
     Reverse `sequence` elements::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.reverse_sequence_elements([1, (2, 3, 4), 5, (6, 7)])
         [1, (4, 3, 2), 5, (7, 6)]
 

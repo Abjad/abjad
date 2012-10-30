@@ -12,10 +12,6 @@ def make_all_notes_in_ascending_and_descending_diatonic_scale(key_signature=None
 
     Construct one up-down period of scale according to `key_signature`::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> score = tonalitytools.make_all_notes_in_ascending_and_descending_diatonic_scale(
         ... contexttools.KeySignatureMark('E', 'major'))
 

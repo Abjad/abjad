@@ -5,7 +5,6 @@ def split_intervals_at_rationals(intervals, offsets):
     '''Split `intervals` at each offset in
     `offsets` ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

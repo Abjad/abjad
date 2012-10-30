@@ -3,10 +3,6 @@ def list_checks():
 
     List checks::
 
-        >>> from abjad.tools import wellformednesstools
-
-    ::
-
         >>> for check in wellformednesstools.list_checks(): check
         ... 
         BeamedQuarterNoteCheck()

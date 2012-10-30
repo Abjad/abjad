@@ -3,10 +3,6 @@ def cycle_tokens_to_sieve(*cycle_tokens):
 
     Make Xenakis sieve from arbitrarily many `cycle_tokens`::
 
-        >>> from abjad.tools import sievetools
-
-    ::
-
         >>> cycle_token_1 = (6, [0, 4, 5])
         >>> cycle_token_2 = (10, [0, 1, 2], 6)
         >>> sievetools.cycle_tokens_to_sieve(cycle_token_1, cycle_token_2)

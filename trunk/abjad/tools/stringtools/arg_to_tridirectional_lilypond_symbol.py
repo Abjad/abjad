@@ -1,12 +1,6 @@
 def arg_to_tridirectional_lilypond_symbol(arg):
     '''Convert `arg` to tridirectional LilyPond symbol:
 
-    ::  
-
-        >>> from abjad.tools import stringtools
-
-    ::
-
         >>> stringtools.arg_to_tridirectional_lilypond_symbol(Up)
         '^'
 

@@ -6,10 +6,6 @@ def all_are_skips(expr):
 
     True when `expr` is a sequence of Abjad skips::
 
-        >>> from abjad.tools import skiptools
-    
-    ::
-
         >>> skips = 3 * skiptools.Skip('s4')
 
     ::

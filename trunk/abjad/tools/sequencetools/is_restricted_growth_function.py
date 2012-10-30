@@ -4,10 +4,6 @@ def is_restricted_growth_function(expr):
     True when `expr` is a sequence and `expr` meets the criteria for a restricted
     growth function::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.is_restricted_growth_function([1, 1, 1, 1])
         True
 

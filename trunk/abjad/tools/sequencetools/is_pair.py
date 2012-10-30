@@ -3,10 +3,6 @@ def is_pair(expr):
 
     True when `expr` is a tuple of length ``2``::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.is_pair((19, 20))
         True
 

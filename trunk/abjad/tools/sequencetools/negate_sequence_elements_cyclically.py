@@ -3,10 +3,6 @@ def negate_sequence_elements_cyclically(sequence, indices, period):
 
     Negate `sequence` elements at `indices` cyclically according to `period`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequence = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
 
     ::

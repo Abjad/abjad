@@ -1,10 +1,6 @@
 def all_are_pairs(expr):
     '''True when `expr` is a sequence whose members are all sequences of length 2::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.all_are_pairs([(1, 2), (3, 4), (5, 6), (7, 8)])
         True
 

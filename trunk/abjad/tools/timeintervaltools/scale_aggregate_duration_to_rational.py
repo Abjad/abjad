@@ -5,7 +5,6 @@ def scale_aggregate_duration_to_rational(intervals, rational):
     '''Scale the aggregate duration of all intervals in `intervals` to
     `rational`, maintaining the original start offset ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

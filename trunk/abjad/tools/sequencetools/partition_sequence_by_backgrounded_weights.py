@@ -7,10 +7,6 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
 
     Partition `sequence` by backgrounded `weights`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.partition_sequence_by_backgrounded_weights(
         ...     [-5, -15, -10], [20, 10])
         [[-5, -15], [-10]]

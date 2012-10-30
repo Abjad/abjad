@@ -4,7 +4,6 @@ from abjad.tools import durationtools
 def shift_aggregate_offset_by_rational(intervals, rational):
     '''Shift the aggregate offset of `intervals` by `rational` ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

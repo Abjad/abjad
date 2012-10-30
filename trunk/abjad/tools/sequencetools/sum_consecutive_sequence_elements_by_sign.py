@@ -7,10 +7,6 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1]):
 
     Sum consecutive `sequence` elements by `sign`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequence = [0, 0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
     ::

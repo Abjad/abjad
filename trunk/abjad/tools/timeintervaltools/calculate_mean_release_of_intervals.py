@@ -2,7 +2,8 @@ from abjad.tools import durationtools
 
 
 def calculate_mean_release_of_intervals(intervals):
-    '''Return a Fraction of the average release offset of `intervals`.'''
+    '''Return a Fraction of the average release offset of `intervals`.
+    '''
     from abjad.tools import timeintervaltools
 
     tree = timeintervaltools.TimeIntervalTree(intervals)

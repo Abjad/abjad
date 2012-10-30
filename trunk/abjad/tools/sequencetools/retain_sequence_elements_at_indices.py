@@ -3,10 +3,6 @@ def retain_sequence_elements_at_indices(sequence, indices):
 
     Retain `sequence` elements at `indices`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.retain_sequence_elements_at_indices(range(20), [1, 16, 17, 18])
         [1, 16, 17, 18]
 

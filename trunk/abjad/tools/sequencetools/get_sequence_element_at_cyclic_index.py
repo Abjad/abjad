@@ -6,10 +6,6 @@ def get_sequence_element_at_cyclic_index(sequence, index):
 
     Get `sequence` element at nonnegative cyclic `index`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> for index in range(10):
         ...     print '%s\t%s' % (index, sequencetools.get_sequence_element_at_cyclic_index(
         ...     'string', index))

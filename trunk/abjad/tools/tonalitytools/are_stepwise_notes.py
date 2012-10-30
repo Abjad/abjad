@@ -9,10 +9,6 @@ def are_stepwise_notes(*expr):
 
     True when notes in `expr` are stepwise. ::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> tonalitytools.are_stepwise_notes(t[:])
         True

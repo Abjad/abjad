@@ -6,10 +6,6 @@ def analyze_incomplete_chord(expr):
 
     Analyze `expr` and return chord class based on incomplete pitches. ::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> tonalitytools.analyze_incomplete_chord(Chord([7, 11], (1, 4)))
         GMajorTriadInRootPosition
 

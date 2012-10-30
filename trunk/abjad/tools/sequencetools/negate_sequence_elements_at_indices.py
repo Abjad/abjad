@@ -3,10 +3,6 @@ def negate_sequence_elements_at_indices(sequence, indices):
 
     Negate `sequence` elements at `indices`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequence = [1, 2, 3, 4, 5, -6, -7, -8, -9, -10]
 
     ::

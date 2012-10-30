@@ -1,12 +1,6 @@
 def arg_to_bidirectional_direction_string(arg):
     '''Convert `arg` to bidirectional direction string:
 
-    ::
-
-        >>> from abjad.tools import stringtools
-
-    ::
-
         >>> stringtools.arg_to_bidirectional_direction_string('^')
         'up'
 

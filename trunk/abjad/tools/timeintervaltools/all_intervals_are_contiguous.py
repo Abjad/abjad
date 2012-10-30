@@ -1,5 +1,7 @@
 def all_intervals_are_contiguous(intervals):
-    '''True when all intervals in `intervals` are contiguous and non-overlapping.'''
+    '''True when all intervals in `intervals` are contiguous and non-overlapping.
+    '''
+
     from abjad.tools import timeintervaltools
 
     tree = timeintervaltools.TimeIntervalTree(intervals)

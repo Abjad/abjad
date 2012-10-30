@@ -3,10 +3,6 @@ def get_sequence_elements_at_indices(sequence, indices):
 
     Get `sequence` elements at `indices`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.get_sequence_elements_at_indices('string of text', (2, 3, 10, 12))
         ('r', 'i', 't', 'x')
 

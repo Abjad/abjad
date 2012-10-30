@@ -6,10 +6,6 @@ from abjad.tools import mathtools
 def duration_and_possible_denominators_to_time_signature(duration, denominators=None, factor=None):
     '''Make new time_signature equal to `duration`::
 
-        >>> from abjad.tools import timesignaturetools
-
-    ::
-
         >>> timesignaturetools.duration_and_possible_denominators_to_time_signature(Duration(3, 2))
         TimeSignatureMark((3, 2))
 

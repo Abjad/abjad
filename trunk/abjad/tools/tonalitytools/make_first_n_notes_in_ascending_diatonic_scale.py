@@ -7,10 +7,6 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration=durat
     r'''Construct `count` notes with `written_duration`
     according to `key_signature`::
 
-        >>> from abjad.tools import tonalitytools
-
-    ::
-
         >>> tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(4)
         [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 

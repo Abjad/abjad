@@ -12,10 +12,6 @@ class Tree(AbjadObject):
     into cells that have, in turn, been grouped into groups of cells
     that have, in turn, been grouped into groups of groups of cells.
     
-    ::
-
-        >>> from abjad.tools import sequencetools
-
     Here is a tree::
 
         >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]

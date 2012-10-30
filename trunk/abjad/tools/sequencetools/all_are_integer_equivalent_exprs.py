@@ -6,10 +6,6 @@ def all_are_integer_equivalent_exprs(expr):
 
     True when `expr` is a sequence and all elements in `expr` are integer-equivalent expressions::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.all_are_integer_equivalent_exprs([1, '2', 3.0, Fraction(4, 1)])
         True
 

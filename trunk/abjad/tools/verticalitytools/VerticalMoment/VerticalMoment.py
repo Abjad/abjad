@@ -12,10 +12,6 @@ class VerticalMoment(Selection):
 
     Everything happening at a single moment in musical time::
 
-        >>> from abjad.tools import verticalitytools
-
-    ::
-
         >>> score = Score([])
         >>> piano_staff = scoretools.PianoStaff([])
         >>> piano_staff.append(Staff("c'4 e'4 d'4 f'4"))

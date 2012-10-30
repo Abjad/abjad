@@ -3,10 +3,6 @@ def all_are_residue_class_expressions(expr):
 
     True when `expr` is a sequence of Abjad residue class expressions::
 
-        >>> from abjad.tools import sievetools
-
-    ::
-
         >>> sieve = sievetools.ResidueClass(3, 0) | sievetools.ResidueClass(2, 0)
 
     ::

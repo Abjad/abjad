@@ -3,10 +3,6 @@ def get_sequence_degree_of_rotational_symmetry(sequence):
 
     Change `sequence` to degree of rotational symmetry::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.get_sequence_degree_of_rotational_symmetry([1, 2, 3, 4, 5, 6])
         1
 

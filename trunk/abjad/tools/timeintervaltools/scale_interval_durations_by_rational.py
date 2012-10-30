@@ -5,7 +5,6 @@ def scale_interval_durations_by_rational(intervals, rational):
     '''Scale the duration of each interval in `intervals` by
     `rational`, maintaining their start offsets ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

@@ -2,11 +2,8 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Scheme(AbjadObject):
-    r'''Abjad model of Scheme code:
+    r'''Abjad model of Scheme code::
 
-    ::
-
-        >>> from abjad.tools import schemetools
         >>> s = schemetools.Scheme(True)
         >>> s.lilypond_format
         '##t'

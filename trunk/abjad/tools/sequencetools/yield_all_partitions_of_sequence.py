@@ -6,10 +6,6 @@ def yield_all_partitions_of_sequence(sequence):
 
     Yield all partitions of `sequence`::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> for partition in sequencetools.yield_all_partitions_of_sequence([0, 1, 2, 3]):
         ...     partition
         ...

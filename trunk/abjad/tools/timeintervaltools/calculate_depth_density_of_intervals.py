@@ -8,7 +8,6 @@ def calculate_depth_density_of_intervals(intervals):
 
     The depth density of a single interval is 1 ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

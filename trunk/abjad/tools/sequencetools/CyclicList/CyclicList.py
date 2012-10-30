@@ -3,10 +3,6 @@ class CyclicList(list):
 
     Abjad model of cyclic list::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> cyclic_list = sequencetools.CyclicList('abcd')
 
     ::

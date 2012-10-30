@@ -3,7 +3,6 @@ def zip_sequences_without_truncation(*sequences):
 
     Zip `sequences` nontruncating::
 
-
         >>> sequencetools.zip_sequences_without_truncation(
         ...     [1, 2, 3, 4], [11, 12, 13], [21, 22, 23])
         [(1, 11, 21), (2, 12, 22), (3, 13, 23), (4,)]

@@ -3,10 +3,6 @@ def iterate_sequence_pairwise_strict(sequence):
 
     Iterate `sequence` pairwise strict::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> list(sequencetools.iterate_sequence_pairwise_strict(range(6)))
         [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5)]
 

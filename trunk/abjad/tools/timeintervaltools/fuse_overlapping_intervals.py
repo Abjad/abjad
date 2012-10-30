@@ -2,7 +2,6 @@ def fuse_overlapping_intervals(intervals):
     '''Fuse the overlapping intervals in `intervals` and return an `TimeIntervalTree`
     of the result ::
 
-        >>> from abjad.tools import timeintervaltools
         >>> from abjad.tools.timeintervaltools import TimeInterval
         >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 

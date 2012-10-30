@@ -3,10 +3,6 @@ def is_null_tuple(expr):
 
     True when `expr` is a tuple of length ``0``::
 
-        >>> from abjad.tools import sequencetools
-
-    ::
-
         >>> sequencetools.is_null_tuple(())
         True
 
