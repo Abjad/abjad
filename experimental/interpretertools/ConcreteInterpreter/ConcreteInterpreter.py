@@ -233,6 +233,8 @@ class ConcreteInterpreter(Interpreter):
             ratio = division_region_command.request.ratio
             divisions = mathtools.divide_number_by_ratio(segment_duration, ratio)
             divisions = [divisiontools.Division(x) for x in divisions]
+            region_duration = division_region_command.duration
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = requesttools.apply_request_transforms(division_region_command, divisions)
         elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
             division_region_command.request.attribute == 'time_signatures':    
@@ -446,13 +448,14 @@ class ConcreteInterpreter(Interpreter):
             for voice in iterationtools.iterate_voices_in_expr(self.score):
                 division_region_commands = \
                     self.score_specification.contexts[voice.name]['division_region_commands']
+                #self._debug(division_region_commands, 'division region commands')
                 division_region_commands_to_reattempt = []
                 for division_region_command in division_region_commands:
                     #self._debug(voice.name, 'voice')
                     #self._debug(division_region_command, 'command')
                     division_region_expression = self.division_region_command_to_division_region_expression(
                         division_region_command, voice.name)
-                    #self._debug(division_region_expression, 'result')
+                    #self._debug(division_region_expression, 'division region expression')
                     #print ''
                     if division_region_expression is not None:
                         # TODO: collapse branches by changing 
@@ -474,6 +477,8 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.contexts[voice.name]['division_region_expressions'].sort()
 
     def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
+        #self._debug(voice, 'voice')
+        #self._debug(voice_division_list, 'voice division list')
         rhythm_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcd')
@@ -637,6 +642,7 @@ class ConcreteInterpreter(Interpreter):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = divisiontools.DivisionList([], voice.name)
             expressions = self.score_specification.contexts[voice.name]['division_region_expressions']
+            #self._debug(expressions, 'expressions')
             divisions = [expression.divisions for expression in expressions]
             divisions = sequencetools.flatten_sequence(divisions, depth=1)
             start_offset = durationtools.Offset(0)
