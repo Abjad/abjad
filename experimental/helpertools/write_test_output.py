@@ -28,11 +28,17 @@ def write_test_output(score, full_file_name, test_function_name,
 
 def test_function_name_to_title_lines(test_function_name):
     title_lines = []
-    parts = test_function_name.split('_')
+    test_function_name = test_function_name[5:]
+    if '__' in test_function_name:
+        left_half, right_half = test_function_name.split('__')
+        left_half = left_half.replace('_', ' ')
+        title_lines.append(left_half)
+        parts = right_half.split('_')
+    else:
+        parts = test_function_name.split('_')
     test_number = int(parts[-1])
-    parts.pop(0)
     parts.pop(-1)
-    if parts[0][0].isupper():
+    if parts[0][0].isupper() and 1 < len(parts[0]):
         title_lines.append(parts.pop(0))
     lengths = [len(part) for part in parts]
     if 35 < sum(lengths):
