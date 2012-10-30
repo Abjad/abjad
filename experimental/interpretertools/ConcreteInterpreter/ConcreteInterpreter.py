@@ -227,6 +227,14 @@ class ConcreteInterpreter(Interpreter):
             division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
             return division_region_expressions
         elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
+            division_region_command.request.attribute == 'partitioned_total_time':    
+            segment_specification = self.get_start_segment_specification(division_region_command.request)
+            segment_duration = segment_specification.duration
+            ratio = division_region_command.request.ratio
+            divisions = mathtools.divide_number_by_ratio(segment_duration, ratio)
+            divisions = [divisiontools.Division(x) for x in divisions]
+            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
+        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
             division_region_command.request.attribute == 'time_signatures':    
             time_signatures = self.time_signature_material_request_to_time_signatures(
                 division_region_command.request)

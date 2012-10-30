@@ -447,6 +447,21 @@ class SegmentSpecification(Specification):
             'naive_beats', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
+    def request_partitioned_total_time(self, ratio,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment partitioned total time according to `ratio`.
+
+        .. note:: add example.
+
+        Return material request.
+        '''
+        selector = self.select_segment()
+        request = requesttools.MaterialRequest(
+            'partitioned_total_time', selector, context_name=None, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+        request.ratio = ratio
+        return request
+
     def request_rhythm(self, voice,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
