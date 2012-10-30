@@ -3,10 +3,6 @@ def make_populated_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 
     Make populated pitch array from `leaf_iterables`::
 
-        >>> from abjad.tools import pitcharraytools
-
-    ::
-
         >>> score = Score([])
         >>> score.append(Staff("c'8 d'8 e'8 f'8"))
         >>> score.append(Staff("c'4 d'4"))

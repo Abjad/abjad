@@ -7,10 +7,6 @@ class PitchArrayCell(AbjadObject):
 
     One cell in a pitch array. ::
 
-        >>> from abjad.tools import pitcharraytools
-
-    ::
-
         >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
         >>> print array
         [ ] [     ] [ ]

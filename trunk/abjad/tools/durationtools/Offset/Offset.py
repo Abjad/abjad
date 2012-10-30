@@ -6,10 +6,6 @@ class Offset(Duration):
 
     Abjad model of offset value of musical time::
 
-        >>> from abjad.tools import durationtools
-
-    ::
-
         >>> durationtools.Offset(121, 16)
         Offset(121, 16)
 

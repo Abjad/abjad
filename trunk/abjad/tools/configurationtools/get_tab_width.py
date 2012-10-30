@@ -3,10 +3,6 @@ def get_tab_width():
 
     Get system tab width::
 
-        >>> from abjad.tools import configurationtools
-
-    ::
-
         >>> configurationtools.get_tab_width()
         4
 

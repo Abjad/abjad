@@ -8,10 +8,6 @@ class OrdinalConstant(ImmutableAbjadObject):
 
     Initialize with `dimension`, `value` and `representation`::
 
-        >>> from abjad.tools import datastructuretools
-
-    ::
-
         >>> Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
         >>> Left
         Left

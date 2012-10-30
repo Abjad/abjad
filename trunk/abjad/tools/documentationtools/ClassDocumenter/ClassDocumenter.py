@@ -8,7 +8,6 @@ class ClassDocumenter(Documenter):
 
     ::
 
-        >>> from abjad.tools import notetools
         >>> from abjad.tools.documentationtools import ClassDocumenter
     
     ::

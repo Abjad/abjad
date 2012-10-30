@@ -6,10 +6,6 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
     Make spacing vector::
 
-        >>> from abjad.tools import layouttools
-
-    ::
-
         >>> vector = layouttools.make_spacing_vector(0, 0, 12, 0)
 
     Use to set paper block spacing attributes::

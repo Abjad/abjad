@@ -19,10 +19,6 @@ from abjad.tools import tuplettools
 class ReducedLyParser(abctools.Parser):
     r'''Parses the "reduced-ly" syntax, a modified subset of LilyPond syntax:
 
-        >>> from abjad.tools import lilypondparsertools
-
-    ::
-
         >>> parser = lilypondparsertools.ReducedLyParser()
 
     Understands LilyPond-like representation of notes, chords and rests:

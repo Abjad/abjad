@@ -7,10 +7,6 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     Initialize with an integer numerator and integer denominator::
         
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.NonreducedFraction(3, 6)
         NonreducedFraction(3, 6)
 

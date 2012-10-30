@@ -10,7 +10,6 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator=8):
     Change `pitch_array_row` to measure with time signature
     `pitch_array_row.width` over `cell_duration_denominator`::
 
-        >>> from abjad.tools import pitcharraytools
         >>> array = pitcharraytools.PitchArray([
         ...     [1, (2, 1), ([-2, -1.5], 2)],
         ...     [(7, 2), (6, 1), 1]])

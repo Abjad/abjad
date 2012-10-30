@@ -3,10 +3,6 @@ def get_abjad_version_string():
 
     Get Abjad version string::
 
-        >>> from abjad.tools import configurationtools
-
-    ::
-
         >>> configurationtools.get_abjad_version_string()
         '2.11'
 

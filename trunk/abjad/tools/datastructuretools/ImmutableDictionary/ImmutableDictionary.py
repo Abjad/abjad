@@ -6,10 +6,6 @@ class ImmutableDictionary(dict, AbjadObject):
     
     Immutable dictionary::
 
-        >>> from abjad.tools import datastructuretools
-
-    ::
-
         >>> dictionary = datastructuretools.ImmutableDictionary({'color': 'red', 'number': 9})
 
     ::

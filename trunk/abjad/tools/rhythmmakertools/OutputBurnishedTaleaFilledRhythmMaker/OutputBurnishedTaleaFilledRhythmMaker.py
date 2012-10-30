@@ -10,11 +10,6 @@ class OutputBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
 
     Configure the time-token maker at initialization::
 
-        >>> from abjad.tools import sequencetools
-        >>> from abjad.tools import rhythmmakertools
-
-    ::
-
         >>> pattern, denominator, prolation_addenda = [1, 2, 3], 16, [0, 2]
         >>> lefts, middles, rights = [-1], [0], [-1]
         >>> left_lengths, right_lengths = [1], [1]

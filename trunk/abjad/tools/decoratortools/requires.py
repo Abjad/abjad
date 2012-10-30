@@ -9,12 +9,7 @@ def requires(*tests):
 
     Example::
 
-        >>> from abjad.tools import mathtools
-        >>> from abjad.tools.decoratortools import requires
-
-    ::
-
-        >>> @requires(mathtools.is_nonnegative_integer, string) # doctest: +SKIP
+        >>> @decoratortools.requires(mathtools.is_nonnegative_integer, string) # doctest: +SKIP
         >>> def multiply_string(n, string): return n * string
 
     ::

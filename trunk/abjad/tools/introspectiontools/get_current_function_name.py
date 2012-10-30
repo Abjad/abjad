@@ -6,10 +6,6 @@ def get_current_function_name():
 
     Get current function name::
 
-        >>> from abjad.tools import introspectiontools
-
-    ::
-
         >>> def foo():
         ...        function_name = introspectiontools.get_current_function_name()
         ...        print 'Function name is {!r}.'.format(function_name)

@@ -9,10 +9,6 @@ def label_vertical_moments_in_expr_with_chromatic_interval_classes(expr, markup_
 
     Label harmonic chromatic interval-classes of every vertical moment in `expr`::
 
-        >>> from abjad.tools import verticalitytools
-
-    ::
-
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)

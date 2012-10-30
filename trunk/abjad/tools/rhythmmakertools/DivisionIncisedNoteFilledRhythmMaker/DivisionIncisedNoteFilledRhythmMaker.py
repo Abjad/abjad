@@ -6,11 +6,6 @@ class DivisionIncisedNoteFilledRhythmMaker(DivisionIncisedRhythmMaker):
 
     Token-incised note-filled time-token maker::
 
-        >>> from abjad.tools import sequencetools
-        >>> from abjad.tools import rhythmmakertools
-
-    ::
-
         >>> prefix_signal, prefix_lengths = [-8], [0, 1]
         >>> suffix_signal, suffix_lengths = [-1], [1]
         >>> denominator = 32

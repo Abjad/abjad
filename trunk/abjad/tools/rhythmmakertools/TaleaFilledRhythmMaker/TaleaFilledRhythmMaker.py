@@ -9,11 +9,6 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
 
     Configure the time-token maker at initialization::
 
-        >>> from abjad.tools import sequencetools
-        >>> from abjad.tools import rhythmmakertools
-
-    ::
-
         >>> pattern, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
         >>> maker = rhythmmakertools.TaleaFilledRhythmMaker(
         ...     pattern, denominator, prolation_addenda)

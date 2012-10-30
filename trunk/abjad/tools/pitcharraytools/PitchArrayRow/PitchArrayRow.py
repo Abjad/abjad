@@ -9,10 +9,6 @@ class PitchArrayRow(AbjadObject):
 
     One row in pitch array. ::
 
-        >>> from abjad.tools import pitcharraytools
-
-    ::
-
         >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
         >>> array[0].cells[0].pitches.append(0)
         >>> array[0].cells[1].pitches.append(2)

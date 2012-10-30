@@ -8,10 +8,6 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction=Dow
 
     Label pitch numbers of every vertical moment in `expr`::
 
-        >>> from abjad.tools import verticalitytools
-
-    ::
-
         >>> score = Score([])
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)

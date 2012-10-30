@@ -8,10 +8,6 @@ class PitchArrayColumn(AbjadObject):
 
     Column in a pitch array::
 
-        >>> from abjad.tools import pitcharraytools
-
-    ::
-
         >>> array = pitcharraytools.PitchArray([
         ...   [1, (2, 1), (-1.5, 2)],
         ...   [(7, 2), (6, 1), 1]])

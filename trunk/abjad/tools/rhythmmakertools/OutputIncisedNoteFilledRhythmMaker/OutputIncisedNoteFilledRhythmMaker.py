@@ -8,11 +8,6 @@ class OutputIncisedNoteFilledRhythmMaker(OutputIncisedRhythmMaker):
 
     Configure the time-token maker on initialization::
 
-        >>> from abjad.tools import sequencetools
-        >>> from abjad.tools import rhythmmakertools
-
-    ::
-
         >>> prefix_signal, prefix_lengths = [-8], [2]
         >>> suffix_signal, suffix_lengths = [-3], [4]
         >>> denominator = 32

@@ -8,9 +8,7 @@ class SpacingIndication(AbjadObject):
 
     LilyPond ``Score.proportionalNotationDuration``
     will equal ``proportional_notation_duration`` when tempo
-    equals ``tempo_indication``::
-
-        >>> from abjad.tools import layouttools
+    equals ``tempo_indication``.
 
     Initialize from tempo mark and proportional notation duration::
 

@@ -6,11 +6,6 @@ class RestFilledRhythmMaker(DivisionIncisedRestFilledRhythmMaker):
 
     Rest-filled time-token maker::
 
-        >>> from abjad.tools import sequencetools
-        >>> from abjad.tools import rhythmmakertools
-
-    ::
-
         >>> maker = rhythmmakertools.RestFilledRhythmMaker()
 
     ::

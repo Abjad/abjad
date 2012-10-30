@@ -3,10 +3,6 @@ def klass_to_tools_package_qualified_klass_name(klass):
 
     Change `klass` to tools package-qualified class name::
 
-        >>> from abjad.tools import introspectiontools
-
-    ::
-
         >>> introspectiontools.klass_to_tools_package_qualified_klass_name(Note)
         'notetools.Note'
 

@@ -8,8 +8,6 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
 
     Make pitch-array score from `pitch_arrays`::
 
-        >>> from abjad.tools import pitcharraytools
-
         >>> array_1 = pitcharraytools.PitchArray([
         ...   [1, (2, 1), ([-2, -1.5], 2)],
         ...   [(7, 2), (6, 1), 1]])

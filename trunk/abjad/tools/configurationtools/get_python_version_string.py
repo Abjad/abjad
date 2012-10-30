@@ -6,10 +6,6 @@ def get_python_version_string():
 
     Get Python version string::
 
-        >>> from abjad.tools import configurationtools
-
-    ::
-
         >>> configurationtools.get_python_version_string() # doctest: +SKIP
         '2.6.1'
 

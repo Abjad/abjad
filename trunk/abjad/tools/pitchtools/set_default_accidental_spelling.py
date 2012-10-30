@@ -3,10 +3,6 @@ def set_default_accidental_spelling(spelling='mixed'):
 
     Set default accidental spelling to sharps::
 
-        >>> from abjad.tools import configurationtools
-
-    ::
-
         >>> pitchtools.set_default_accidental_spelling('sharps')
 
     ::
