@@ -142,16 +142,9 @@ def test_schematic_examples__X_series_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.make_segment(name='red')
-
-    # TODO: implement SegmentSpecification method to return segment time divisions directly
-    time_signatures = [mathtools.NonreducedFraction(x) for x in [(4, 8), (3, 8), (2, 8)]]
-    red_segment.set_time_signatures(time_signatures)
-    divisions = mathtools.divide_number_by_ratio(sum(time_signatures), [1, 1, 1])
-#    red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-#    divisions = red_segment.request_partitioned_total_time([1, 1, 1])
-
+    red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
+    divisions = red_segment.request_partitioned_total_time([1, 1, 1])
     red_segment.set_divisions(divisions)
     left = red_segment.select_division(0)
     middle = red_segment.select_division(1)
