@@ -6,10 +6,6 @@ def is_positive_integer(expr):
 
     True when `expr` equals a positive integer::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.is_positive_integer(99)
         True
 

@@ -8,10 +8,6 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
 
     When `n` is odd the greater part of ``t`` corresponds to the value of `bigger`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.partition_integer_into_halves(7, bigger='left')
         (4, 3)
         >>> mathtools.partition_integer_into_halves(7, bigger='right')

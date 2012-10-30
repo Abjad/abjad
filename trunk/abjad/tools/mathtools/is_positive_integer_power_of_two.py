@@ -1,10 +1,6 @@
 def is_positive_integer_power_of_two(expr):
     '''True when `expr` is a positive integer power of ``2``::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> for n in range(10):
         ...     print n, mathtools.is_positive_integer_power_of_two(n)
         ...

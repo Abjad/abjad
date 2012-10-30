@@ -1,10 +1,6 @@
 def partition_integer_by_ratio(n, ratio):
     '''Partition positive integer-equivalent `n` by `ratio`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.partition_integer_by_ratio(10, [1, 2])
         [3, 7]
 

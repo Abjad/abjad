@@ -1,10 +1,6 @@
 def remove_powers_of_two(n):
     r'''Remove powers of ``2`` from the factors of positive integer `n`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> for n in range(10, 100, 10):
         ...     print '\t%s\t%s' % (n, mathtools.remove_powers_of_two(n))
         ...

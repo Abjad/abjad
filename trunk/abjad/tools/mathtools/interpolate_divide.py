@@ -3,10 +3,6 @@ def interpolate_divide(total, start_fraction, stop_fraction, exp='cosine'):
     '''Divide `total` into segments of sizes computed from interpolating
     between `start_fraction` and `stop_fraction`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.interpolate_divide(10, 1, 1, exp=1)
         [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
         >>> sum(mathtools.interpolate_divide(10, 1, 1, exp=1))

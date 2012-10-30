@@ -6,10 +6,6 @@ import numbers
 def divide_number_by_ratio(number, ratio):
     '''Divide integer by `ratio`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.divide_number_by_ratio(1, [1, 1, 3])
         [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
@@ -28,21 +24,16 @@ def divide_number_by_ratio(number, ratio):
     Raise type error on noninteger in `ratio`.
 
     Return list of fractions or list of floats.
-
-    .. versionchanged:: 2.0
-        renamed ``mathtools.divide_number_by_ratio()`` to
-        ``mathtools.divide_number_by_ratio()``.
     '''
+    from abjad.tools import mathtools
 
-    if not isinstance(number, numbers.Number):
-        raise TypeError('number "%s" be number.' % str(number))
+    # check input
+    assert isinstance(number, numbers.Number)
+    ratio = mathtools.Ratio(ratio)
 
-    if not all([isinstance(part, int) for part in ratio]):
-        raise TypeError('ratio "%s" must comprise only integers.' % str(ratio))
+    # find factors and multiply by factors
+    factors = [fractions.Fraction(p, sum(ratio)) for p in ratio]
+    result = [factor * number for factor in factors]
 
-    try:
-        factor = fractions.Fraction(number, sum(ratio))
-    except TypeError:
-        factor = number / sum(ratio)
-
-    return [p * factor for p in ratio]
+    # return result
+    return result

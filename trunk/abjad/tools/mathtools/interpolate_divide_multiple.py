@@ -6,10 +6,6 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
     Interpolate `key_values` such that the sum of the
     resulting interpolated values equals the given `totals`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.interpolate_divide_multiple([100, 50], [20, 10, 20]) # doctest: +SKIP
         [19.4487, 18.5201, 16.2270, 13.7156, 11.7488, 10.4879,
         9.8515, 9.5130, 10.4213, 13.0736, 16.9918]

@@ -6,10 +6,6 @@ def yield_all_compositions_of_integer(n):
 
     Yield all compositions of positive integer `n` in descending lex order::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> for integer_composition in mathtools.yield_all_compositions_of_integer(5):
         ...     integer_composition
         ...

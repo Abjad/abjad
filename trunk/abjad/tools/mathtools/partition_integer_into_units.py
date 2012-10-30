@@ -1,10 +1,6 @@
 def partition_integer_into_units(n):
     '''Partition positive integer into units::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.partition_integer_into_units(6)
         [1, 1, 1, 1, 1, 1]
 

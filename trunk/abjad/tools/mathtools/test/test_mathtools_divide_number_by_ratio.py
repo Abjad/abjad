@@ -31,4 +31,12 @@ def test_mathtools_divide_number_by_ratio_03():
     '''Raise type error on nonnumber.
     '''
 
-    assert py.test.raises(TypeError, "mathtools.divide_number_by_ratio('foo', [1, 1, 3])")
+    assert py.test.raises(Exception, "mathtools.divide_number_by_ratio('foo', [1, 1, 3])")
+
+
+def test_mathtools_divide_number_by_ratio_04():
+    '''Duration returns durations.
+    '''
+
+    result = mathtools.divide_number_by_ratio(Duration(1, 4), [1, 1, 1])
+    assert result == [Duration(1, 12), Duration(1, 12), Duration(1, 12)]

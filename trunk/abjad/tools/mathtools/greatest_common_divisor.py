@@ -3,10 +3,6 @@ def greatest_common_divisor(*integers):
 
     Greatest common divisor of `integers`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.greatest_common_divisor(84, -94, -144)
         2
 

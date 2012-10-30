@@ -6,11 +6,6 @@ def binomial_coefficient(n, k):
 
     Binomial coefficient of `n` choose `k`::
 
-
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> for k in range(8):
         ...     print k, '\t', mathtools.binomial_coefficient(8, k)
         ...

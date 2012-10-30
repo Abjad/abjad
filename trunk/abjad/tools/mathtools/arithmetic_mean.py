@@ -6,10 +6,6 @@ def arithmetic_mean(sequence):
 
     Arithmetic means of `sequence` as an exact integer::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.arithmetic_mean([1, 2, 2, 20, 30])
         11
 

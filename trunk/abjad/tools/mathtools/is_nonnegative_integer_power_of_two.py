@@ -4,10 +4,6 @@ import fractions
 def is_nonnegative_integer_power_of_two(expr):
     '''True when `expr` is a nonnegative integer power of ``2``::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> for n in range(10):
         ...     print n, mathtools.is_nonnegative_integer_power_of_two(n)
         ...

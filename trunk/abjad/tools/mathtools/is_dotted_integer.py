@@ -7,10 +7,6 @@ def is_dotted_integer(expr):
     True when `expr` is equivalent to a positive integer and
     can be written with zero or more dots::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> for expr in range(16):
         ...     print '%s\t%s' % (expr, mathtools.is_dotted_integer(expr))
         ...

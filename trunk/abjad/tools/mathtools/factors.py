@@ -1,10 +1,6 @@
 def factors(n):
     '''Integer factors of positive integer `n` in increasing order::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.factors(84)
         [1, 2, 2, 3, 7]
 

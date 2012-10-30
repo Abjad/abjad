@@ -6,10 +6,6 @@ def is_integer_equivalent_number(expr):
 
     True when `expr` is a number and `expr` is equivalent to an integer::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.is_integer_equivalent_number(12.0)
         True
 

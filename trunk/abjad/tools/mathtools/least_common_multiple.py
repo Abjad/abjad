@@ -1,10 +1,6 @@
 def least_common_multiple(*integers):
     '''Least common multiple of positive `integers`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.least_common_multiple(2, 4, 5, 10, 20)
         20
 

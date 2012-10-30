@@ -1,10 +1,6 @@
 def difference_series(sequence):
     '''Difference series of `sequence`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.difference_series([1, 1, 2, 3, 5, 5, 6])
         [0, 1, 1, 2, 0, 1]
 

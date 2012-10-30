@@ -1,10 +1,6 @@
 def cumulative_products(sequence):
     '''Cumulative products of `sequence`::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
         [1, 2, 6, 24, 120, 720, 5040, 40320]
 

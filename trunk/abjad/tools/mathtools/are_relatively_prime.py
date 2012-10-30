@@ -4,10 +4,6 @@ def are_relatively_prime(expr):
     True when `expr` is a sequence comprising zero or more numbers,
     all of which are relatively prime::
 
-        >>> from abjad.tools import mathtools
-
-    ::
-
         >>> mathtools.are_relatively_prime([13, 14, 15])
         True
 
