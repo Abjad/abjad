@@ -133,7 +133,7 @@ def test_schematic_examples__X_series_04():
     First segment time signatures [4/8, 3/8, 2/8]. 
     First staff 1:1:1 total time then thirty-seconds then sixteenths then eighths.
     Staff 2 rhythm equal to staff 1 rhythm regions rotated -1.
-    Staff 3 rhythm equal to staff 1 rhythm regions rotate -2.
+    Staff 3 rhythm equal to staff 1 rhythm regions rotated -2.
     Staff 4 divisions equal to naive time signature divisions.
     Staff 4 rhythm equal to note-filled tokens.
     Segment 2 time signatures preserve segment 1 time signatures.
@@ -152,9 +152,12 @@ def test_schematic_examples__X_series_04():
     red_segment.set_rhythm(library.equal_divisions(16), selector=left, contexts=['Voice 1'])
     red_segment.set_rhythm(library.equal_divisions(8), selector=middle, contexts=['Voice 1'])
     red_segment.set_rhythm(library.equal_divisions(4), selector=right, contexts=['Voice 1'])
-    # TODO: implement SegmentSpecification.request_divisions() 'populated=False' keyword
     voice_1_rhythm = red_segment.request_rhythm('Voice 1')
+    # TODO: implement rotation specifier
+    #red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=(index=-1, level=-2))
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=-16)
+    # TODO: implement rotation specifier
+    #red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=(index=-2, level=-2))
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=-24)
     naive_beats = red_segment.request_naive_beats()
     red_segment.set_divisions(naive_beats, contexts=['Voice 4'])
