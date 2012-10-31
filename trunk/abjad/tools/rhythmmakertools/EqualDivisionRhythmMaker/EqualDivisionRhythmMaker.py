@@ -85,9 +85,9 @@ class EqualDivisionRhythmMaker(RhythmMaker):
     def _make_tuplet(self, duration_token):
         numerator, denominator = duration_token
         token_duration = durationtools.Duration(duration_token)
-        proportions = self.leaf_count * [1]
+        ratio = self.leaf_count * [1]
         tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
-            token_duration, proportions, avoid_dots=True, is_diminution=self.is_diminution)
+            token_duration, ratio, avoid_dots=True, is_diminution=self.is_diminution)
         return tuplet
 
     ### READ-ONLY PUBLIC PROPERTIES ###

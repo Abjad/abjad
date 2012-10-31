@@ -38,7 +38,9 @@ class BurnishedRhythmMaker(RhythmMaker):
         pattern_helper=None, prolation_addenda_helper=None,
         lefts_helper=None, middles_helper=None, rights_helper=None,
         left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None,
-        beam_each_cell=False):
+        beam_each_cell=False,
+        big_endian=True, tie_rests=False
+        ):
         RhythmMaker.__init__(self)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
@@ -71,6 +73,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert isinstance(rights_helper, (types.FunctionType, types.MethodType))
         assert isinstance(left_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(right_lengths_helper, (types.FunctionType, types.MethodType))
+        assert isinstance(big_endian, bool)
+        assert isinstance(tie_rests, bool)
         self.pattern = pattern
         self.denominator = denominator
         self.prolation_addenda = prolation_addenda
@@ -89,6 +93,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.right_lengths_helper = right_lengths_helper
         self.secondary_divisions_helper = secondary_divisions_helper
         self.beam_each_cell = beam_each_cell
+        self.big_endian = big_endian
+        self.tie_rests = tie_rests
         self._repr_signals.append(self.pattern)
         self._repr_signals.append(self.prolation_addenda)
         self._repr_signals.append(self.lefts)
@@ -166,7 +172,8 @@ class BurnishedRhythmMaker(RhythmMaker):
     def _make_leaf_lists(self, numeric_map, denominator):
         leaf_lists = []
         for map_token in numeric_map:
-            leaf_list = leaftools.make_leaves_from_talea(map_token, denominator)
+            leaf_list = leaftools.make_leaves_from_talea(
+                map_token, denominator, big_endian=self.big_endian, tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 

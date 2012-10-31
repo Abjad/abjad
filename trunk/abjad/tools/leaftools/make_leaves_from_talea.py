@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 
 
-def make_leaves_from_talea(talea, denominator, tie_rests=False, use_skips=False):
+def make_leaves_from_talea(talea, denominator, big_endian=True, tie_rests=False, use_skips=False):
     r'''.. versionadded:: 2.0
 
     Make leaves from `talea` and `denominator`::
@@ -41,10 +41,13 @@ def make_leaves_from_talea(talea, denominator, tie_rests=False, use_skips=False)
         if note_value == 0:
             raise ValueError('note values must be nonzero.')
         elif 0 < note_value:
-            leaves = leaftools.make_leaves([0], [durationtools.Duration(note_value, denominator)])
+            leaves = leaftools.make_leaves(
+                [0], [durationtools.Duration(note_value, denominator)], 
+                big_endian=big_endian, tie_rests=tie_rests)
         else:
-            leaves = leaftools.make_leaves([None], [durationtools.Duration(-note_value, denominator)],
-                tie_rests = tie_rests)
+            leaves = leaftools.make_leaves(
+                [None], [durationtools.Duration(-note_value, denominator)],
+                big_endian=big_endian, tie_rests=tie_rests)
         result.extend(leaves)
 
     return result

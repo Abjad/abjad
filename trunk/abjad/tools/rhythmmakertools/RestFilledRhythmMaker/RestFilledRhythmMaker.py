@@ -47,4 +47,7 @@ class RestFilledRhythmMaker(DivisionIncisedRestFilledRhythmMaker):
     ### INITIALIZER ###
 
     def __init__(self):
-        DivisionIncisedRestFilledRhythmMaker.__init__(self, [], [0], [], [0], 1)
+        DivisionIncisedRestFilledRhythmMaker.__init__(
+            self, [], [0], [], [0], 1,
+            big_endian=True, tie_rests=False
+            )

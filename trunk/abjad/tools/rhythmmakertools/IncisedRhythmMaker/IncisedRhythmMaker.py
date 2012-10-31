@@ -37,7 +37,9 @@ class IncisedRhythmMaker(RhythmMaker):
         prolation_addenda=None, secondary_divisions=None,
         prefix_signal_helper=None, prefix_lengths_helper=None,
         suffix_signal_helper=None, suffix_lengths_helper=None,
-        prolation_addenda_helper=None, secondary_divisions_helper=None):
+        prolation_addenda_helper=None, secondary_divisions_helper=None,
+        big_endian=True, tie_rests=False
+        ):
         RhythmMaker.__init__(self)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         secondary_divisions = self._none_to_new_list(secondary_divisions)
@@ -60,6 +62,8 @@ class IncisedRhythmMaker(RhythmMaker):
         assert isinstance(suffix_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(prolation_addenda_helper, (types.FunctionType, types.MethodType))
         assert isinstance(secondary_divisions_helper, (types.FunctionType, types.MethodType))
+        assert isinstance(big_endian, bool)
+        assert isinstance(tie_rests, bool)
         self.prefix_signal = prefix_signal
         self.prefix_lengths = prefix_lengths
         self.suffix_signal = suffix_signal
@@ -73,6 +77,8 @@ class IncisedRhythmMaker(RhythmMaker):
         self.suffix_lengths_helper = self._none_to_trivial_helper(suffix_lengths_helper)
         self.prolation_addenda_helper = self._none_to_trivial_helper(prolation_addenda_helper)
         self.secondary_divisions_helper = self._none_to_trivial_helper(secondary_divisions_helper)
+        self.big_endian = big_endian
+        self.tie_rests = tie_rests
         self._repr_signals.append(self.prefix_signal)
         self._repr_signals.append(self.suffix_signal)
         self._repr_signals.append(self.secondary_divisions)
@@ -136,7 +142,9 @@ class IncisedRhythmMaker(RhythmMaker):
     def _numeric_map_and_denominator_to_leaf_lists(self, numeric_map, lcd):
         leaf_lists = []
         for numeric_map_part in numeric_map:
-            leaf_list = leaftools.make_leaves_from_talea(numeric_map_part, lcd)
+            leaf_list = leaftools.make_leaves_from_talea(
+                numeric_map_part, lcd,
+                big_endian=self.big_endian, tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 
