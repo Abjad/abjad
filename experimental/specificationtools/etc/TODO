@@ -1,38 +1,36 @@
-1.  Reimplement schematic example X3 using division material requests instead
-    of rhythm material requests.
-
-2.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
+1.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs
     in terms of a single get_score_offsets() method.
 
-3.  Integrate timespan inequality filtering into all inequality selector classes.
+2.  Integrate timespan inequality filtering into all inequality selector classes.
 
-4.  Author tests to make sure that persistent overlapping division selectors 
+3.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-5.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+4.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-6.  Change all occurrences of 'duration tokens' (in rhythmmakertools) to 'time tokens' or 'divisions'.
+5.  Change all occurrences of 'duration tokens' and 'time tokens' (in rhythmmakertools) 
+    to 'divisions'.
 
-7.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+6.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
 
-8.  Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
+7.  Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
     MixedSourceSymbolicTimespan to a new symbolictimetools package in the experimental branch
     in preparation for timetools merge to mainline.
 
-9.  Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
+8.  Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
 
-10. Rename timetools to timerelationtools in preparation for merge to mainline.
+9.  Rename timetools to timerelationtools in preparation for merge to mainline.
 
-11. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
+10. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
 
-12. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
+11. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
 
-13. Implement SegmentSpecification.select_multiple_divisions() to return multiple
+12. Implement SegmentSpecification.select_multiple_divisions() to return multiple
     selectors at once. This will change ...
         first_division = red_segment.select_division(0)
         second_division = red_segment.select_division(1)
@@ -41,4 +39,7 @@
         first_division, second_division, third_division = red_segment.select_all_divisions()
     ... instead.
 
-14. Implement very basic cycle detection.
+13. Implement very basic cycle detection.
+
+14. Make NoteFilleRhythmMaker.reverse() change the value of big_endian.
+    Make RestFilledRhythmMaker.reverse() change the value of big_endian. 

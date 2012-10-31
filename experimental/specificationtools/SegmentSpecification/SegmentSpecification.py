@@ -1134,7 +1134,9 @@ class SegmentSpecification(Specification):
                         left_lengths=[0],
                         right_lengths=[0],
                         secondary_divisions=[],
-                        beam_each_cell=False
+                        beam_each_cell=False,
+                        big_endian=True,
+                        tie_rests=False
                         )
                     ),
                 selectortools.SingleSegmentSelector(

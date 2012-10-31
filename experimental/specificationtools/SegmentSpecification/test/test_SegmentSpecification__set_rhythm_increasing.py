@@ -1,14 +1,12 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_SegmentSpecification__set_rhythm_increasing_01():
     '''Remake of schematic example X3.
-    But using division material requests instead of rhythm material requests.
+    Uses division material requests instead of rhythm material requests.
     Necessitates setting decreasing=False on rhythm maker.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -53,8 +51,9 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     blue_segment.set_divisions(red_voice_3_divisions, contexts=['Voice 3'], reverse=True)
     blue_segment.set_divisions(red_voice_4_divisions, contexts=['Voice 4'], reverse=True)
 
+    blue_segment.set_rhythm(library.note_filled_tokens.set(big_endian=False))
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
