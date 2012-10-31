@@ -35,8 +35,7 @@ def apply_request_transforms(request, payload):
 
     if isinstance(payload, rhythmmakertools.RhythmMaker):
         if request.reverse:
-            payload = copy.deepcopy(payload)
-            payload.reverse()
+            payload = payload.reverse()
         return payload
 
     if request.index is not None or request.count is not None:

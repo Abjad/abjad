@@ -100,31 +100,33 @@ class RhythmMaker(AbjadObject):
     def reverse(self):
         '''.. versionadded:: 2.10
 
-        Reverse time token maker.
+        Reverse rhythm maker.
 
         .. note:: method is provisional.
 
-        Defined equal to the in-place reversal of the following::
+        Defined equal to reversal of the following on a copy of rhythm maker::
 
-            self.pattern
-            self.prolation_addenda
-            self.lefts
-            self.middles
-            self.rights
-            self.left_lengths
-            self.right_lengths
-            self.secondary_divisions
+            new.pattern
+            new.prolation_addenda
+            new.lefts
+            new.middles
+            new.rights
+            new.left_lengths
+            new.right_lengths
+            new.secondary_divisions
 
-        Operate in place and return none.
+        Return newly constructed rhythm maker.
         '''
-        self.pattern.reverse()
-        self.prolation_addenda.reverse()
-        self.lefts.reverse()
-        self.middles.reverse()
-        self.rights.reverse()
-        self.left_lengths.reverse()
-        self.right_lengths.reverse()
-        self.secondary_divisions.reverse()
+        new = copy.deepcopy(self)
+        new.pattern.reverse()
+        new.prolation_addenda.reverse()
+        new.lefts.reverse()
+        new.middles.reverse()
+        new.rights.reverse()
+        new.left_lengths.reverse()
+        new.right_lengths.reverse()
+        new.secondary_divisions.reverse()
+        return new
 
     def set(self, **kwargs):
         r'''.. versionadded:: 2.11
