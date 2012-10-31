@@ -18,7 +18,7 @@ Methods
 
 .. automethod:: abjad.tools.rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker.DivisionIncisedNoteFilledRhythmMaker.DivisionIncisedNoteFilledRhythmMaker.reverse
 
-    Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
+    Inherited from :py:class:`rhythmmakertools.IncisedRhythmMaker <abjad.tools.rhythmmakertools.IncisedRhythmMaker.IncisedRhythmMaker.IncisedRhythmMaker>`
 
 .. automethod:: abjad.tools.rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker.DivisionIncisedNoteFilledRhythmMaker.DivisionIncisedNoteFilledRhythmMaker.set
 

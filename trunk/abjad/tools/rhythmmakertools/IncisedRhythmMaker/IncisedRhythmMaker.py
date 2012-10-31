@@ -1,4 +1,5 @@
 import abc
+import copy
 import types
 from abjad.tools import durationtools
 from abjad.tools import leaftools
@@ -166,3 +167,23 @@ class IncisedRhythmMaker(RhythmMaker):
         secondary_divisions = sequencetools.CyclicTuple(secondary_divisions)
         return prefix_signal, prefix_lengths, \
             suffix_signal, suffix_lengths, prolation_addenda, secondary_divisions
+
+    ### PUBLIC METHODS ###
+
+    def reverse(self):
+        r'''.. versionadded:: 2.10
+
+        Reverse incised rhythm maker.
+
+        Return newly constructed rhythm maker.
+        '''
+        new = copy.deepcopy(self)
+        new.prefix_signal.reverse()
+        new.prefix_lengths.reverse()
+        new.suffix_signal.reverse()
+        new.suffix_lengths.reverse()
+        new.prolation_addenda.reverse()
+        new.secondary_divisions.reverse()
+        if new.big_endian:
+            new.big_endian = False
+        return new

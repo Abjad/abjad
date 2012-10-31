@@ -104,28 +104,15 @@ class RhythmMaker(AbjadObject):
 
         .. note:: method is provisional.
 
-        Defined equal to reversal of the following on a copy of rhythm maker::
+        Defined equal to exact copy of rhythm maker.
 
-            new.pattern
-            new.prolation_addenda
-            new.lefts
-            new.middles
-            new.rights
-            new.left_lengths
-            new.right_lengths
-            new.secondary_divisions
+        This is the fallback for child classes.
+
+        Directed rhythm maker child classes should override this method.
 
         Return newly constructed rhythm maker.
         '''
         new = copy.deepcopy(self)
-        new.pattern.reverse()
-        new.prolation_addenda.reverse()
-        new.lefts.reverse()
-        new.middles.reverse()
-        new.rights.reverse()
-        new.left_lengths.reverse()
-        new.right_lengths.reverse()
-        new.secondary_divisions.reverse()
         return new
 
     def set(self, **kwargs):

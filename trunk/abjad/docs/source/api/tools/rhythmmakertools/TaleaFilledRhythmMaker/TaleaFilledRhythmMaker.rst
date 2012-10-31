@@ -18,7 +18,7 @@ Methods
 
 .. automethod:: abjad.tools.rhythmmakertools.TaleaFilledRhythmMaker.TaleaFilledRhythmMaker.TaleaFilledRhythmMaker.reverse
 
-    Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
+    Inherited from :py:class:`rhythmmakertools.BurnishedRhythmMaker <abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker>`
 
 .. automethod:: abjad.tools.rhythmmakertools.TaleaFilledRhythmMaker.TaleaFilledRhythmMaker.TaleaFilledRhythmMaker.set
 

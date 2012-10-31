@@ -18,8 +18,6 @@ Methods
 
 .. automethod:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker.reverse
 
-    Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
-
 .. automethod:: abjad.tools.rhythmmakertools.BurnishedRhythmMaker.BurnishedRhythmMaker.BurnishedRhythmMaker.set
 
     Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
