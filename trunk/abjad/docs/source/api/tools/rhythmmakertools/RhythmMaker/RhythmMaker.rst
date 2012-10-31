@@ -18,6 +18,8 @@ Methods
 
 .. automethod:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker.reverse
 
+.. automethod:: abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker.set
+
 Special Methods
 ---------------
 

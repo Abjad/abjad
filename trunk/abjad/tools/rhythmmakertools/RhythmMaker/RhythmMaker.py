@@ -1,4 +1,5 @@
 import abc
+import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
 from abjad.tools import tuplettools
@@ -96,7 +97,6 @@ class RhythmMaker(AbjadObject):
 
     ### PUBLIC METHODS ###
  
-
     def reverse(self):
         '''.. versionadded:: 2.10
 
@@ -125,3 +125,45 @@ class RhythmMaker(AbjadObject):
         self.left_lengths.reverse()
         self.right_lengths.reverse()
         self.secondary_divisions.reverse()
+
+    def set(self, **kwargs):
+        r'''.. versionadded:: 2.11
+
+        Copy rhythm maker.
+
+        Set keyword arguments on copied rhythm maker::
+
+            >>> maker = rhythmmakertools.NoteFilledRhythmMaker()
+
+        ::
+
+            >>> duration_tokens = [(5, 16), (3, 8)]
+            >>> leaf_lists = maker.set(big_endian=False)(duration_tokens)
+            >>> leaves = sequencetools.flatten_sequence(leaf_lists)
+
+        ::
+
+            >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+            >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+        ::
+
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 5/16
+                    c'16 ~
+                    c'4
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+            }
+
+        Return copied rhythm maker.
+        '''
+        new = copy.deepcopy(self)
+        for key, value in kwargs.iteritems():
+            setattr(new, key, value)
+        return new

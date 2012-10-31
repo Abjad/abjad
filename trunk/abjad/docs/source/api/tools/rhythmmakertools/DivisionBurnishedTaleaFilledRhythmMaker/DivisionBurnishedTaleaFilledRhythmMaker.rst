@@ -20,6 +20,10 @@ Methods
 
     Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
 
+.. automethod:: abjad.tools.rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker.DivisionBurnishedTaleaFilledRhythmMaker.DivisionBurnishedTaleaFilledRhythmMaker.set
+
+    Inherited from :py:class:`rhythmmakertools.RhythmMaker <abjad.tools.rhythmmakertools.RhythmMaker.RhythmMaker.RhythmMaker>`
+
 Special Methods
 ---------------
 
