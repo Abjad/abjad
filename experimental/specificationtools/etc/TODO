@@ -1,4 +1,4 @@
-1.  Reimplement exemplum [X3] using division material requests instead
+1.  Reimplement schematic example X3 using division material requests instead
     of rhythm material requests.
 
 2.  Reimplement all get_score_start_offset() and get_score_stop_offset() pairs

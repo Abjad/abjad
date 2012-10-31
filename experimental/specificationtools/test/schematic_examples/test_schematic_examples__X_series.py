@@ -4,7 +4,7 @@ from experimental import *
 
 
 def test_schematic_examples__X_series_01():
-    '''Schematic example [X1].
+    '''Schematic example X1.
     Quartet in two segments.
     First segment [4/8, 3/8] time signatures.
     Staff 1 [3/16] divisions truncated at end of segment.
@@ -35,7 +35,7 @@ def test_schematic_examples__X_series_01():
 
 
 def test_schematic_examples__X_series_02():
-    '''Schematic example [X2].
+    '''Schematic example X2.
     Quartet in two segments.
     Segment 1 time signatures [4/8, 3/8].
     Staff 1 [3/16] divisions and staff 2 [4/16] divisions.
@@ -66,7 +66,7 @@ def test_schematic_examples__X_series_02():
 
 
 def test_schematic_examples__X_series_03():
-    '''Schematic example [X3].
+    '''Schematic example X3.
     Quartet in 2 segments. 
     First segment time signatures [6/8, 3/8]. 
     First staff 1:1 of measures then [3/16, 5/16] divisions.
