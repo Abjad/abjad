@@ -52,14 +52,14 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     result = []
     sublist = []
     result.append(sublist)
-    cur_cumulative_weight = cumulative_weights.pop(0)
+    current_cumulative_weight = cumulative_weights.pop(0)
     for n in sequence:
         if not isinstance(n, (int, long, float, fractions.Fraction)):
             raise TypeError('must be number.')
         sublist.append(n)
-        while cur_cumulative_weight <= mathtools.weight(sequencetools.flatten_sequence(result)):
+        while current_cumulative_weight <= mathtools.weight(sequencetools.flatten_sequence(result)):
             try:
-                cur_cumulative_weight = cumulative_weights.pop(0)
+                current_cumulative_weight = cumulative_weights.pop(0)
                 sublist = []
                 result.append(sublist)
             except IndexError:

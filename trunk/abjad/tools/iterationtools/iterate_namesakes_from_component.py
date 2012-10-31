@@ -97,7 +97,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
                 componenttools.component_to_parentage_signature(component):
                 return node
 
-    cur_component = component
+    current_component = component
     total_components = 0
 
     if reverse:
@@ -105,12 +105,12 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
     else:
         _helper = _forward_helper
 
-    while cur_component is not None:
+    while current_component is not None:
         if start <= total_components:
             if stop is not None:
                 if total_components < stop:
-                    yield cur_component
+                    yield current_component
             else:
-                yield cur_component
+                yield current_component
         total_components += 1
-        cur_component = _helper(cur_component)
+        current_component = _helper(current_component)

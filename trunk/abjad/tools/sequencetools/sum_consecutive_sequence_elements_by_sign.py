@@ -65,8 +65,8 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1]):
     result = []
 
     generator = itertools.groupby(sequence, mathtools.sign)
-    for cur_sign, group in generator:
-        if cur_sign in sign:
+    for current_sign, group in generator:
+        if current_sign in sign:
             result.append(sum(group))
         else:
             for x in group:

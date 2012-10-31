@@ -18,13 +18,13 @@ def uppercamelcase_to_underscore_delimited_lowercase(string):
     '''
 
     words = []
-    cur_word = string[0].lower()
+    current_word = string[0].lower()
     for letter in string[1:]:
         if letter.isupper():
-            words.append(cur_word)
-            cur_word = letter.lower()
+            words.append(current_word)
+            current_word = letter.lower()
         else:
-            cur_word = cur_word + letter
-    words.append(cur_word)
+            current_word = current_word + letter
+    words.append(current_word)
     result = '_'.join(words)
     return result

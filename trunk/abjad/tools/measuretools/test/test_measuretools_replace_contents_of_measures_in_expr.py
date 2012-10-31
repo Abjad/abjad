@@ -1,5 +1,5 @@
 from abjad import *
-import py.test
+import py
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_01():
@@ -105,7 +105,8 @@ def test_measuretools_replace_contents_of_measures_in_expr_02():
 
 def test_measuretools_replace_contents_of_measures_in_expr_03():
     '''Raise MissingMeasureError when input expression
-    contains no measures.'''
+    contains no measures.
+    '''
 
     t = Note("c'4")
     notes = [Note("c'8"), Note("d'8")]
@@ -114,7 +115,8 @@ def test_measuretools_replace_contents_of_measures_in_expr_03():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_04():
-    '''Raise StopIteration when not enough measures.'''
+    '''Raise StopIteration when not enough measures.
+    '''
 
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
@@ -124,7 +126,8 @@ def test_measuretools_replace_contents_of_measures_in_expr_04():
 
 
 def test_measuretools_replace_contents_of_measures_in_expr_05():
-    '''Populate measures even when not enough total measures.'''
+    '''Populate measures even when not enough total measures.
+    '''
 
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
@@ -152,3 +155,23 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
 
     assert componenttools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'16\n\t\td'16\n\t}\n\t{\n\t\t\\time 1/8\n\t\te'16\n\t\tf'16\n\t}\n}"
+
+
+def test_measuretools_replace_contents_of_measures_in_expr_06():
+    '''Preserve ties.
+    '''
+    py.test.skip('working on this one now.')
+
+    maker = rhythmmakertools.NoteFilledRhythmMaker()
+
+    duration_tokens = [(5, 16), (3, 8)]
+    leaf_lists = maker(duration_tokens)
+    leaves = sequencetools.flatten_sequence(leaf_lists)
+
+    measures = measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens)
+    staff = Staff(measures)
+    measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+
+    # TODO: add string representation
+
+    # TODO: add assert

@@ -86,12 +86,12 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
         container._forbid_component_update()
         len_parts = len(counts)
         part_index = 0
-        cur_measure = measuretools.get_next_measure_from_component(container)
+        current_measure = measuretools.get_next_measure_from_component(container)
         while True:
             part_count = counts[part_index % len_parts]
             if 1 < part_count:
                 measures_to_fuse = []
-                measure_to_fuse = cur_measure
+                measure_to_fuse = current_measure
                 for x in range(part_count):
                     measures_to_fuse.append(measure_to_fuse)
                     measure_to_fuse = measuretools.get_next_measure_from_component(measure_to_fuse)
@@ -103,9 +103,9 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
                 new = measuretools.fuse_measures(measures_to_fuse)
                 if mark:
                     markuptools.Markup(time_signature_sum_str, Up)(new.leaves[0])
-                cur_measure = new
-            cur_measure = measuretools.get_next_measure_from_component(cur_measure)
-            if cur_measure is None:
+                current_measure = new
+            current_measure = measuretools.get_next_measure_from_component(current_measure)
+            if current_measure is None:
                 break
             part_index += 1
     finally:

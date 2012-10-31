@@ -20,10 +20,10 @@ def cycle_tokens_to_sieve(*cycle_tokens):
         sieves.append(sieve)
 
     if sieves:
-        cur_sieve = sieves[0]
+        current_sieve = sieves[0]
         for sieve in sieves[1:]:
-            cur_sieve = cur_sieve | sieve
+            current_sieve = current_sieve | sieve
     else:
-        cur_sieve = sievetools.ResidueClassExpression([])
+        current_sieve = sievetools.ResidueClassExpression([])
 
-    return cur_sieve
+    return current_sieve

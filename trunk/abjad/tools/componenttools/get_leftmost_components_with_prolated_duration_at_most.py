@@ -44,10 +44,10 @@ def get_leftmost_components_with_prolated_duration_at_most(components, prolated_
     total_duration = durationtools.Duration(0)
     result = []
     for component in components:
-        cur_duration = component.prolated_duration
-        if total_duration + cur_duration <= prolated_duration:
+        current_duration = component.prolated_duration
+        if total_duration + current_duration <= prolated_duration:
             result.append(component)
-            total_duration += cur_duration
+            total_duration += current_duration
         else:
             break
 

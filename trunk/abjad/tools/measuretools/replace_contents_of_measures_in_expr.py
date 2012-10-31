@@ -65,48 +65,48 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     result = []
 
     # get first measure and first time signature
-    cur_measure = measuretools.get_next_measure_from_component(expr)
-    result.append(cur_measure)
-    cur_time_signature = contexttools.get_effective_time_signature(cur_measure)
+    current_measure = measuretools.get_next_measure_from_component(expr)
+    result.append(current_measure)
+    current_time_signature = contexttools.get_effective_time_signature(current_measure)
     # to avoide pychecker slice assignment error
-    #del(cur_measure[:])
-    cur_measure.__delitem__(slice(0, len(cur_measure)))
+    #del(current_measure[:])
+    current_measure.__delitem__(slice(0, len(current_measure)))
 
     # iterate new contents
     while new_contents:
 
         # find candidate duration of new element plus current measure
-        cur_element = new_contents[0]
-        multiplier = cur_time_signature.multiplier
-        preprolated_duration = cur_element.preprolated_duration
+        current_element = new_contents[0]
+        multiplier = current_time_signature.multiplier
+        preprolated_duration = current_element.preprolated_duration
         prolated_duration = multiplier * preprolated_duration
-        candidate_duration = cur_measure.prolated_duration + prolated_duration
+        candidate_duration = current_measure.prolated_duration + prolated_duration
 
         # if new element fits in current measure
-        if candidate_duration <= cur_time_signature.duration:
-            cur_element = new_contents.pop(0)
-            cur_measure.append(cur_element)
+        if candidate_duration <= current_time_signature.duration:
+            current_element = new_contents.pop(0)
+            current_measure.append(current_element)
 
-        # otherwise restore currene measure and advance to next measure
+        # otherwise restore current measure and advance to next measure
         else:
-            cur_time_signature = contexttools.TimeSignatureMark(cur_time_signature)
-            contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
-            cur_time_signature.attach(cur_measure)
-            measuretools.append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
-            cur_measure = measuretools.get_next_measure_from_component(cur_measure)
-            if cur_measure is None:
+            current_time_signature = contexttools.TimeSignatureMark(current_time_signature)
+            contexttools.detach_time_signature_marks_attached_to_component(current_measure)
+            current_time_signature.attach(current_measure)
+            measuretools.append_spacer_skips_to_underfull_measures_in_expr([current_measure])
+            current_measure = measuretools.get_next_measure_from_component(current_measure)
+            if current_measure is None:
                 raise StopIteration
-            result.append(cur_measure)
-            cur_time_signature = contexttools.get_effective_time_signature(cur_measure)
+            result.append(current_measure)
+            current_time_signature = contexttools.get_effective_time_signature(current_measure)
             # to avoid pychecker slice assignment error
-            #del(cur_measure[:])
-            cur_measure.__delitem__(slice(0, len(cur_measure)))
+            #del(current_measure[:])
+            current_measure.__delitem__(slice(0, len(current_measure)))
 
     # restore last iterated measure
-    cur_time_signature = contexttools.TimeSignatureMark(cur_time_signature)
-    contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
-    cur_time_signature.attach(cur_measure)
-    measuretools.append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
+    current_time_signature = contexttools.TimeSignatureMark(current_time_signature)
+    contexttools.detach_time_signature_marks_attached_to_component(current_measure)
+    current_time_signature.attach(current_measure)
+    measuretools.append_spacer_skips_to_underfull_measures_in_expr(current_measure)
 
     # return iterated measures
     return result

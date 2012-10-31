@@ -14,13 +14,13 @@ def _yield_vertical_moments_forward_in_expr(expr):
         raise TypeError('must be Abjad component.')
 
     governors = (expr, )
-    cur_offset, stop_offsets, buffer = durationtools.Offset(0), [], []
+    current_offset, stop_offsets, buffer = durationtools.Offset(0), [], []
     _buffer_components_starting_with(expr, buffer, stop_offsets)
 
     while buffer:
-        yield verticalitytools.VerticalMoment(cur_offset, governors, tuple(buffer))
-        cur_offset, stop_offsets = min(stop_offsets), []
-        _update_buffer(cur_offset, buffer, stop_offsets)
+        yield verticalitytools.VerticalMoment(current_offset, governors, tuple(buffer))
+        current_offset, stop_offsets = min(stop_offsets), []
+        _update_buffer(current_offset, buffer, stop_offsets)
 
 
 def _buffer_components_starting_with(component, buffer, stop_offsets):
@@ -53,11 +53,11 @@ def _next_in_parent(component):
         raise StopIteration
 
 
-def _update_buffer(cur_offset, buffer, stop_offsets):
+def _update_buffer(current_offset, buffer, stop_offsets):
     #print ''
-    #print 'At %s with %s ...' % (cur_offset, buffer)
+    #print 'At %s with %s ...' % (current_offset, buffer)
     for component in buffer[:]:
-        if component.stop_offset <= cur_offset:
+        if component.stop_offset <= current_offset:
             #print 'removing %s ...' % component
             buffer.remove(component)
             #print buffer

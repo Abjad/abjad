@@ -29,16 +29,16 @@ def _line_break_every(expr, line_duration, klass=None,
     for cur in iterationtools.iterate_components_in_expr(expr, klass):
         # compress these 4 lines to only the 4th line after duration migration
         if kind == 'seconds':
-            cur_duration = cur.duration_in_seconds
+            current_duration = cur.duration_in_seconds
         elif kind == 'prolated':
-            cur_duration = cur.prolated_duration
+            current_duration = cur.prolated_duration
         elif kind == 'preprolated':
-            cur_duration = cur.preprolated_duration
+            current_duration = cur.preprolated_duration
         else:
-            cur_duration = getattr(cur.duration, kind)
-        candidate_duration = cum_duration + cur_duration
+            current_duration = getattr(cur.duration, kind)
+        candidate_duration = cum_duration + current_duration
         if candidate_duration < line_duration:
-            cum_duration += cur_duration
+            cum_duration += current_duration
         elif candidate_duration == line_duration:
             marktools.LilyPondCommandMark('break', 'closing')(cur)
             if adjust_eol:
@@ -57,5 +57,5 @@ def _line_break_every(expr, line_duration, klass=None,
                 if add_empty_bars:
                     if cur.bar_line.kind is None:
                         cur.bar_line.kind = ''
-            cum_duration = cur_duration
+            cum_duration = current_duration
         prev = cur

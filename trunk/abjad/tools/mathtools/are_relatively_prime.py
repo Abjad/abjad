@@ -29,12 +29,12 @@ def are_relatively_prime(expr):
     try:
         all_factors = set([])
         for number in expr:
-            cur_factors = mathtools.factors(number)
-            cur_factors.remove(1) 
-            cur_factors = set(cur_factors)
-            if all_factors & cur_factors:
+            current_factors = mathtools.factors(number)
+            current_factors.remove(1) 
+            current_factors = set(current_factors)
+            if all_factors & current_factors:
                 return False
-            all_factors.update(cur_factors)
+            all_factors.update(current_factors)
         return True
     # TODO: remove unqualified except
     except:

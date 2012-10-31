@@ -15,10 +15,10 @@ def least_common_multiple(*integers):
             raise ValueError('must be positive.')
         return integers[0]
 
-    cur_lcm = _least_common_multiple_helper(*integers[:2])
+    current_lcm = _least_common_multiple_helper(*integers[:2])
     for remaining_positive_integer in integers[2:]:
-        cur_lcm = _least_common_multiple_helper(cur_lcm, remaining_positive_integer)
-    return cur_lcm
+        current_lcm = _least_common_multiple_helper(current_lcm, remaining_positive_integer)
+    return current_lcm
 
 
 def _least_common_multiple_helper(m, n):

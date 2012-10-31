@@ -44,7 +44,7 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
 
     l_copy = sequence[:]
     result = []
-    cur_part = []
+    current_part = []
 
     for target_weight in weights:
         while True:
@@ -52,19 +52,19 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
                 x = l_copy.pop(0)
             except IndexError:
                 raise PartitionError('too few elements in sequence.')
-            cur_weight = mathtools.weight(cur_part)
-            candidate_weight = cur_weight + mathtools.weight([x])
+            current_weight = mathtools.weight(current_part)
+            candidate_weight = current_weight + mathtools.weight([x])
             if candidate_weight < target_weight:
-                cur_part.append(x)
+                current_part.append(x)
             elif candidate_weight == target_weight:
-                cur_part.append(x)
-                result.append(cur_part)
-                cur_part = []
+                current_part.append(x)
+                result.append(current_part)
+                current_part = []
                 break
             elif target_weight < candidate_weight:
-                if cur_part:
-                    result.append(cur_part)
-                    cur_part = []
+                if current_part:
+                    result.append(current_part)
+                    current_part = []
                     l_copy.insert(0, x)
                     break
                 else:
@@ -73,7 +73,7 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
                 raise ValueError('candidate and target weights must compare.')
 
     if overhang:
-        left_over = cur_part + l_copy
+        left_over = current_part + l_copy
         if left_over:
             result.append(left_over)
 
@@ -83,36 +83,36 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
 def _partition_sequence_cyclically_by_weights_at_most(sequence, weights, overhang=False):
 
     result = []
-    cur_part = []
-    cur_target_weight_index = 0
-    cur_target_weight = weights[cur_target_weight_index]
+    current_part = []
+    current_target_weight_index = 0
+    current_target_weight = weights[current_target_weight_index]
     l_copy = sequence[:]
 
     while l_copy:
-        cur_target_weight = weights[cur_target_weight_index % len(weights)]
+        current_target_weight = weights[current_target_weight_index % len(weights)]
         x = l_copy.pop(0)
-        cur_part_weight = mathtools.weight(cur_part)
-        candidate_part_weight = cur_part_weight + mathtools.weight([x])
-        if candidate_part_weight < cur_target_weight:
-            cur_part.append(x)
-        elif candidate_part_weight == cur_target_weight:
-            cur_part.append(x)
-            result.append(cur_part)
-            cur_part = []
-            cur_target_weight_index += 1
-        elif cur_target_weight < candidate_part_weight:
-            if cur_part:
+        current_part_weight = mathtools.weight(current_part)
+        candidate_part_weight = current_part_weight + mathtools.weight([x])
+        if candidate_part_weight < current_target_weight:
+            current_part.append(x)
+        elif candidate_part_weight == current_target_weight:
+            current_part.append(x)
+            result.append(current_part)
+            current_part = []
+            current_target_weight_index += 1
+        elif current_target_weight < candidate_part_weight:
+            if current_part:
                 l_copy.insert(0, x)
-                result.append(cur_part)
-                cur_part = []
-                cur_target_weight_index += 1
+                result.append(current_part)
+                current_part = []
+                current_target_weight_index += 1
             else:
                 raise PartitionError('Elements in sequence too big.')
         else:
             raise ValueError('candidate and target rates must compare.')
 
-    if cur_part:
+    if current_part:
         if overhang:
-            result.append(cur_part)
+            result.append(current_part)
 
     return result

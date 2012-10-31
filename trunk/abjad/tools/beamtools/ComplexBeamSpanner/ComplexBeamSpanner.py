@@ -133,48 +133,48 @@ class ComplexBeamSpanner(BeamSpanner):
         from abjad.tools import leaftools
         prev_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
         prev_written = prev_leaf.written_duration
-        cur_written = leaf.written_duration
+        current_written = leaf.written_duration
         next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
         next_written = next_leaf.written_duration
         prev_flag_count = prev_written.flag_count
-        cur_flag_count = cur_written.flag_count
+        current_flag_count = current_written.flag_count
         next_flag_count = next_written.flag_count
         # [unbeamable leaf beamable]
         if not beamtools.is_beamable_component(prev_leaf) and \
             beamtools.is_beamable_component(next_leaf):
-            left = cur_flag_count
-            right = min(cur_flag_count, next_flag_count)
+            left = current_flag_count
+            right = min(current_flag_count, next_flag_count)
         # [beamable leaf unbeamable]
         if beamtools.is_beamable_component(prev_leaf) and \
             not beamtools.is_beamable_component(next_leaf):
-            left = min(cur_flag_count, prev_flag_count)
-            right = cur_flag_count
+            left = min(current_flag_count, prev_flag_count)
+            right = current_flag_count
         # [unbeamable leaf unbeamable]
         elif not beamtools.is_beamable_component(prev_leaf) and \
             not beamtools.is_beamable_component(next_leaf):
-            left = cur_flag_count
-            right = cur_flag_count
+            left = current_flag_count
+            right = current_flag_count
         # [beamable leaf beamable]
         else:
-            left = min(cur_flag_count, prev_flag_count)
-            right = min(cur_flag_count, next_flag_count)
-            if left != cur_flag_count and right != cur_flag_count:
-                left = cur_flag_count
+            left = min(current_flag_count, prev_flag_count)
+            right = min(current_flag_count, next_flag_count)
+            if left != current_flag_count and right != current_flag_count:
+                left = current_flag_count
         return left, right
 
     def _get_left_right_for_lone_leaf(self, leaf):
         '''Get left and right flag counts for only leaf in spanner.'''
-        cur_flag_count = leaf.written_duration.flag_count
+        current_flag_count = leaf.written_duration.flag_count
         left, right = None, None
         if self.lone == 'left':
-            left = cur_flag_count
+            left = current_flag_count
             right = 0
         elif self.lone == 'right':
             left = 0
-            right = cur_flag_count
+            right = current_flag_count
         elif self.lone in ('both', True):
-            left = cur_flag_count
-            right = cur_flag_count
+            left = current_flag_count
+            right = current_flag_count
         elif self.lone in ('neither', False):
             left = None
             right = None

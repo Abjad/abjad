@@ -14,12 +14,12 @@ def iterate_sequence_cyclically_from_start_to_stop(sequence, start, stop):
     '''
 
     len_sequence = len(sequence)
-    cur_index = start
+    current_index = start
     cyclic_stop = stop % len_sequence
     while True:
-        cyclic_cur_index = cur_index % len_sequence
-        if cyclic_cur_index == cyclic_stop:
+        cyclic_current_index = current_index % len_sequence
+        if cyclic_current_index == cyclic_stop:
             return
         else:
-            yield sequence[cyclic_cur_index]
-            cur_index += 1
+            yield sequence[cyclic_current_index]
+            current_index += 1

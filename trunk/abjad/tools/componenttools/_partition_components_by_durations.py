@@ -33,8 +33,8 @@ def _partition_components_by_durations(duration_type, components, durations,
 
     result = []
     part = []
-    cur_duration_idx = 0
-    target_duration = durations[cur_duration_idx]
+    current_duration_idx = 0
+    target_duration = durations[current_duration_idx]
     cum_duration = durationtools.Duration(0)
 
     components_copy = list(components[:])
@@ -64,8 +64,8 @@ def _partition_components_by_durations(duration_type, components, durations,
             result.append(part)
             part = []
             cum_duration = durationtools.Duration(0)
-            cur_duration_idx += 1
-            target_duration = _get_next(durations, cur_duration_idx, cyclic)
+            current_duration_idx += 1
+            target_duration = _get_next(durations, current_duration_idx, cyclic)
         elif target_duration < candidate_duration:
             #print 'greater!'
             if fill == 'exact':
@@ -82,8 +82,8 @@ def _partition_components_by_durations(duration_type, components, durations,
                     cum_duration = sum([x.prolated_duration for x in part])
                 else:
                     cum_duration = sum([getattr(x.duration, duration_type) for x in part])
-                cur_duration_idx += 1
-                target_duration = _get_next(durations, cur_duration_idx, cyclic)
+                current_duration_idx += 1
+                target_duration = _get_next(durations, current_duration_idx, cyclic)
                 if target_duration is None:
                     break
                 if target_duration < cum_duration:
@@ -94,8 +94,8 @@ def _partition_components_by_durations(duration_type, components, durations,
                 result.append(part)
                 part = []
                 cum_duration = durationtools.Duration(0)
-                cur_duration_idx += 1
-                target_duration = _get_next(durations, cur_duration_idx, cyclic)
+                current_duration_idx += 1
+                target_duration = _get_next(durations, current_duration_idx, cyclic)
         if target_duration is None:
             break
 
@@ -110,11 +110,11 @@ def _partition_components_by_durations(duration_type, components, durations,
     return result
 
 
-def _get_next(durations, cur_duration_idx, cyclic):
+def _get_next(durations, current_duration_idx, cyclic):
     try:
         if cyclic:
-            return durations[cur_duration_idx % len(durations)]
+            return durations[current_duration_idx % len(durations)]
         else:
-            return durations[cur_duration_idx]
+            return durations[current_duration_idx]
     except IndexError:
         return None
