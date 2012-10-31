@@ -51,7 +51,8 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     blue_segment.set_divisions(red_voice_3_divisions, contexts=['Voice 3'], reverse=True)
     blue_segment.set_divisions(red_voice_4_divisions, contexts=['Voice 4'], reverse=True)
 
-    blue_segment.set_rhythm(library.note_filled_tokens.set(big_endian=False))
+    red_rhythm_command = red_segment.request_rhythm_command('Voice 1')
+    blue_segment.set_rhythm(red_rhythm_command, reverse=True)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
