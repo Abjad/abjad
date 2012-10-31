@@ -119,10 +119,27 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         Operate in place and return none.
         '''
         if isinstance(n, int):
-            if 0 <= n:
-                split_offset = self.music.leaves[-n].start_offset
+            leaves = sequencetools.CyclicTuple(self.music.leaves)
+            if 0 < n:
+                split_offset = leaves[-n].start_offset
+            elif n == 0:
+                return
             else:
-                split_offset = self.music.leaves[-(n+1)].stop_offset
+                split_offset = leaves[-(n+1)].stop_offset
+        elif isinstance(n, sequencetools.RotationIndicator):
+            rotation_indicator = n
+            components_at_level = []
+            for component in iterationtools.iterate_components_in_expr(self.music):
+                score_index = componenttools.component_to_score_index(component)
+                if len(score_index) == rotation_indicator.level:
+                    components_at_level.append(component)
+            components_at_level = sequencetools.CyclicTuple(components_at_level)
+            if 0 < rotation_indicator.index:
+                split_offset = components_at_level[-rotation_indicator.index].start_offset
+            elif n == 0:
+                return
+            else:
+                split_offset = components_at_level[-(rotation_indicator.index+1)].stop_offset
         else:
             n = durationtools.Duration(n)
             if 0 <= n:
