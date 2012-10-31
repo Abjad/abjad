@@ -26,7 +26,7 @@ class NoteFilledRhythmMaker(DivisionIncisedNoteFilledRhythmMaker):
         \new Staff {
             {
                 \time 5/16
-                c'4
+                c'4 ~
                 c'16
             }
             {

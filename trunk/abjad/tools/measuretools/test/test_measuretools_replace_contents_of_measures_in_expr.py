@@ -160,11 +160,9 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
 def test_measuretools_replace_contents_of_measures_in_expr_06():
     '''Preserve ties.
     '''
-    py.test.skip('working on this one now.')
 
     maker = rhythmmakertools.NoteFilledRhythmMaker()
-
-    duration_tokens = [(5, 16), (3, 8)]
+    duration_tokens = [(5, 16), (3, 16)]
     leaf_lists = maker(duration_tokens)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
@@ -172,6 +170,19 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
     staff = Staff(measures)
     measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
-    # TODO: add string representation
+    r'''
+    \new Staff {
+        {
+            \time 5/16
+            c'4 ~
+            c'16
+        }
+        {
+            \time 3/16
+            c'8.
+        }
+    }
+    '''
 
-    # TODO: add assert
+    assert componenttools.is_well_formed_component(staff)
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'4 ~\n\t\tc'16\n\t}\n\t{\n\t\t\\time 3/16\n\t\tc'8.\n\t}\n}"

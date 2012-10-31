@@ -30,24 +30,24 @@ class DivisionIncisedNoteFilledRhythmMaker(DivisionIncisedRhythmMaker):
         \new Staff {
             {
                 \time 5/8
-                c'2
+                c'2 ~
                 c'16.
                 r32
             }
             {
                 r4
-                c'4
+                c'4 ~
                 c'16.
                 r32
             }
             {
-                c'2
+                c'2 ~
                 c'16.
                 r32
             }
             {
                 r4
-                c'4
+                c'4 ~
                 c'16.
                 r32
             }

@@ -18,7 +18,7 @@ def test_NoteFilledRhythmMaker___call___01():
     \new Staff {
         {
             \time 5/16
-            c'4
+            c'4 ~
             c'16
         }
         {
@@ -28,4 +28,4 @@ def test_NoteFilledRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'4\n\t\tc'16\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'4.\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tc'4 ~\n\t\tc'16\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'4.\n\t}\n}"

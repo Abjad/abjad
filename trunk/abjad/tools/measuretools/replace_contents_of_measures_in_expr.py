@@ -85,7 +85,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         # if new element fits in current measure
         if candidate_duration <= current_time_signature.duration:
             current_element = new_contents.pop(0)
-            current_measure.append(current_element)
+            current_measure._append_without_withdrawing_from_crossing_spanners(current_element)
 
         # otherwise restore current measure and advance to next measure
         else:

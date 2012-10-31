@@ -137,63 +137,9 @@ class Container(Component):
         Find spanners that dominate self[i] and children of self[i].
         Replace contents at self[i] with 'expr'.
         Reattach spanners to new contents.
-        This operation leaves all score trees always in tact.
+        This operation always leaves score tree in tact.
         '''
-        from abjad.tools import componenttools
-        from abjad.tools import gracetools
-        from abjad.tools import spannertools
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
-            _withdraw_components_in_expr_from_crossing_spanners
-        # item assignment
-        if isinstance(i, int):
-            if isinstance(expr, str):
-                expr = self._parse_string(expr)[:]
-                assert len(expr) == 1
-                expr = expr[0]
-            assert componenttools.all_are_components([expr])
-            if any([isinstance(x, gracetools.GraceContainer) for x in [expr]]):
-                raise GraceContainerError('must attach grace container to note or chord.')
-            old = self[i]
-            spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
-            # must withdraw from spanners before parentage!
-            # otherwise begin / end assessments don't work!
-            _withdraw_components_in_expr_from_crossing_spanners([expr])
-            expr._switch(self)
-            self._music.insert(i, expr)
-            componenttools.remove_component_subtree_from_score_and_spanners([old])
-            for spanner, index in spanners_receipt:
-                spanner._insert(index, expr)
-                expr._spanners.add(spanner)
-        # slice assignment
-        else:
-            if isinstance(expr, str):
-                expr = self._parse_string(expr)[:]
-            elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
-                expr = self._parse_string(expr[0])[:]
-            assert componenttools.all_are_components(expr)
-            if any([isinstance(x, gracetools.GraceContainer) for x in expr]):
-                raise GraceContainerError('must attach grace container to note or chord.')
-            if i.start == i.stop and i.start is not None \
-                and i.stop is not None and i.start <= -len(self):
-                start, stop = 0, 0
-            else:
-                start, stop, stride = i.indices(len(self))
-            old = self[start:stop]
-            spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(
-                self, start, stop)
-            componenttools.remove_component_subtree_from_score_and_spanners(old)
-            # must withdraw before setting in self!
-            # otherwise circular withdraw ensues!
-            _withdraw_components_in_expr_from_crossing_spanners(expr)
-            # to make pychecker happy
-            #self._music[start:start] = expr
-            self._music.__setitem__(slice(start, start), expr)
-            for component in expr:
-                component._switch(self)
-            for spanner, index in spanners_receipt:
-                for component in reversed(expr):
-                    spanner._insert(index, component)
-                    component._spanners.add(spanner)
+        return self._set_item(i, expr)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -216,6 +162,11 @@ class Container(Component):
             return ''
 
     ### PRIVATE METHODS ###
+
+    # this is a composer-unsafe method to be called only by other private functions
+    def _append_without_withdrawing_from_crossing_spanners(self, component):
+        self._set_item(slice(len(self), len(self)), [component],
+            withdraw_components_in_expr_from_crossing_spanners=False)
 
     def _format_content_pieces(self):
         result = []
@@ -290,6 +241,70 @@ class Container(Component):
         for contributor, contributions in slot:
             result.append((contributor, tuple(['\t' + x for x in contributions])))
         return tuple(result)
+
+    def _set_item(self, i, expr, withdraw_components_in_expr_from_crossing_spanners=True):
+        '''This method exists beacuse __setitem__ can not accept keywords.
+        Note that setting withdraw_components_in_expr_from_crossing_spanners=False
+        constitutes a composer-unsafe use of this method.
+        Only pivate methods should set this keyword.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import gracetools
+        from abjad.tools import spannertools
+        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
+            _withdraw_components_in_expr_from_crossing_spanners
+        # item assignment
+        if isinstance(i, int):
+            if isinstance(expr, str):
+                expr = self._parse_string(expr)[:]
+                assert len(expr) == 1
+                expr = expr[0]
+            assert componenttools.all_are_components([expr])
+            if any([isinstance(x, gracetools.GraceContainer) for x in [expr]]):
+                raise GraceContainerError('must attach grace container to note or chord.')
+            old = self[i]
+            spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
+            # must withdraw from spanners before parentage!
+            # otherwise begin / end assessments don't work!
+            if withdraw_components_in_expr_from_crossing_spanners:
+                _withdraw_components_in_expr_from_crossing_spanners([expr])
+            expr._switch(self)
+            self._music.insert(i, expr)
+            componenttools.remove_component_subtree_from_score_and_spanners([old])
+            for spanner, index in spanners_receipt:
+                spanner._insert(index, expr)
+                expr._spanners.add(spanner)
+        # slice assignment
+        else:
+            if isinstance(expr, str):
+                expr = self._parse_string(expr)[:]
+            elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
+                expr = self._parse_string(expr[0])[:]
+            assert componenttools.all_are_components(expr)
+            if any([isinstance(x, gracetools.GraceContainer) for x in expr]):
+                raise GraceContainerError('must attach grace container to note or chord.')
+            if i.start == i.stop and i.start is not None \
+                and i.stop is not None and i.start <= -len(self):
+                start, stop = 0, 0
+            else:
+                start, stop, stride = i.indices(len(self))
+            old = self[start:stop]
+            spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(
+                self, start, stop)
+            componenttools.remove_component_subtree_from_score_and_spanners(old)
+            # must withdraw before setting in self!
+            # otherwise circular withdraw ensues!
+            if withdraw_components_in_expr_from_crossing_spanners:
+                _withdraw_components_in_expr_from_crossing_spanners(expr)
+            # to make pychecker happy
+            #self._music[start:start] = expr
+            self._music.__setitem__(slice(start, start), expr)
+            for component in expr:
+                component._switch(self)
+            for spanner, index in spanners_receipt:
+                for component in reversed(expr):
+                    spanner._insert(index, component)
+                    component._spanners.add(spanner)
 
     ### PUBLIC PROPERTIES ###
 

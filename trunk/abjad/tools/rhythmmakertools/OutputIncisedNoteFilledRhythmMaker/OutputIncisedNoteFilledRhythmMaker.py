@@ -38,7 +38,7 @@ class OutputIncisedNoteFilledRhythmMaker(OutputIncisedRhythmMaker):
                 c'8
             }
             {
-                c'2
+                c'2 ~
                 c'8
             }
             {

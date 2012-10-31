@@ -29,7 +29,7 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___01():
         }
         {
             \time 5/8
-            c'2
+            c'2 ~
             c'8
         }
         {
@@ -43,7 +43,7 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___01():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2 ~\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledRhythmMaker___call___02():
@@ -72,7 +72,7 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___02():
         }
         {
             \time 5/8
-            c'2
+            c'2 ~
             c'8
         }
         {
@@ -84,7 +84,7 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___02():
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\tr4\n\t\tr4\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2 ~\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\tr4\n\t\tr4\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledRhythmMaker___call___03():
@@ -107,23 +107,23 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___03():
     \new Staff {
         {
             \time 5/8
-            c'2
+            c'2 ~
             c'8
         }
         {
             \time 5/8
-            c'2
+            c'2 ~
             c'8
         }
         {
             \time 5/8
-            c'2
+            c'2 ~
             c'8
         }
     }
     '''
 
-    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'2 ~\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2 ~\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2 ~\n\t\tc'8\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledRhythmMaker___call___04():
