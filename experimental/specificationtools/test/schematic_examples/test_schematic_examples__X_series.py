@@ -153,9 +153,12 @@ def test_schematic_examples__X_series_04():
     red_segment.set_rhythm(library.equal_divisions(8), selector=middle, contexts=['Voice 1'])
     red_segment.set_rhythm(library.equal_divisions(4), selector=right, contexts=['Voice 1'])
     voice_1_rhythm = red_segment.request_rhythm('Voice 1')
+
     # TODO: implement rotation specifier
-    #red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=(index=-1, level=-2))
+    #indicator = sequencetools.RotationIndicator(-1, 1)
+    #red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=indicator)
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=-16)
+
     # TODO: implement rotation specifier
     #red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=(index=-2, level=-2))
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=-24)

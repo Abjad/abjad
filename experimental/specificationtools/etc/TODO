@@ -31,3 +31,14 @@
 11. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
 
 12. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
+
+13. Implement SegmentSpecification.select_multiple_divisions() to return multiple
+    selectors at once. This will change ...
+        first_division = red_segment.select_division(0)
+        second_division = red_segment.select_division(1)
+        third_division = red_segment.select_division(2)
+    ... into this ...
+        first_division, second_division, third_division = red_segment.select_all_divisions()
+    ... instead.
+
+14. Implement very basic cycle detection.
