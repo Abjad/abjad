@@ -128,11 +128,14 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                 split_offset = leaves[-(n+1)].stop_offset
         elif isinstance(n, sequencetools.RotationIndicator):
             rotation_indicator = n
-            components_at_level = []
-            for component in iterationtools.iterate_components_in_expr(self.music):
-                score_index = componenttools.component_to_score_index(component)
-                if len(score_index) == rotation_indicator.level:
-                    components_at_level.append(component)
+            if rotation_indicator.level is None:
+                components_at_level = self.music.leaves
+            else:
+                components_at_level = []
+                for component in iterationtools.iterate_components_in_expr(self.music):
+                    score_index = componenttools.component_to_score_index(component)
+                    if len(score_index) == rotation_indicator.level:
+                        components_at_level.append(component)
             components_at_level = sequencetools.CyclicTuple(components_at_level)
             if isinstance(rotation_indicator.index, int):
                 if 0 < rotation_indicator.index:

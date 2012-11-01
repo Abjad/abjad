@@ -184,7 +184,7 @@ def test_schematic_examples__X_series_05():
     F2 rhythm F1 surface rhythm rotated by 1 thirty-second.
     F3 rhythm F1 surface rhythm rotated by 2 thirty-seconds.
     F4 rhythm F1 surface rhythm rotated by 3 thirty-seconds.
-    First segment time signatures [1/8, 1/8]. 
+    Second segment time signatures [1/8, 1/8]. 
     Staves repeat rhythm exactly until cut off at end of score.
     '''
 
@@ -205,6 +205,49 @@ def test_schematic_examples__X_series_05():
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
     
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_schematic_examples__X_series_06():
+    '''Schematic example X6.
+    Quartet in two segments.
+    First segment time signatures [4/8, 3/8].
+    F1 rhythm 1, 2, 3, 4 thirty-seconds.
+    F2 rhythm F1 surface rhythm rotated by 1 leaf.
+    F3 rhythm F1 surface rhythm rotated by 2 leaves.
+    F4 rhythm F1 surface rhythm rotated by 3 leaves.
+    Second segment time signatures [1/8, 1/8]. 
+    Second segment staves repeat reversed first segment rhythms until cut off at end of score.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(10, 32)])
+    red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
+    first_division = red_segment.select_division(0)
+    rhythmic_cell = score_specification.request_rhythm('Voice 1', selector=first_division)
+    indicator = sequencetools.RotationIndicator(-1, fracture_spanners=False)
+    red_segment.set_rhythm(rhythmic_cell, contexts=['Voice 2'], rotation=indicator)
+    indicator = sequencetools.RotationIndicator(-2, fracture_spanners=False)
+    red_segment.set_rhythm(rhythmic_cell, contexts=['Voice 3'], rotation=indicator)
+    indicator = sequencetools.RotationIndicator(-3, fracture_spanners=False)
+    red_segment.set_rhythm(rhythmic_cell, contexts=['Voice 4'], rotation=indicator)
+    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment.set_time_signatures(2 * [(1, 8)])
+    red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
+    blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'], reverse=True)
+    red_voice_2_rhythm = red_segment.request_rhythm('Voice 2')
+    blue_segment.set_rhythm(red_voice_2_rhythm, contexts=['Voice 2'], reverse=True)
+    red_voice_3_rhythm = red_segment.request_rhythm('Voice 3')
+    blue_segment.set_rhythm(red_voice_3_rhythm, contexts=['Voice 3'], reverse=True)
+    red_voice_4_rhythm = red_segment.request_rhythm('Voice 4')
+    blue_segment.set_rhythm(red_voice_4_rhythm, contexts=['Voice 4'], reverse=True)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
