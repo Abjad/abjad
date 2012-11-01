@@ -84,6 +84,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/helpertools/configure_multiple_voice_rhythmic_staves
    experimental/helpertools/expr_to_component_name
    experimental/helpertools/expr_to_score_name
    experimental/helpertools/expr_to_segment_name
