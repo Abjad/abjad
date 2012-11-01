@@ -10,7 +10,7 @@ from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
     r'''.. versionadded:: 2.9
 
-    Grouped rhythmic staves score template::
+    Example 1. Grouped rhythmic staves score template with one voice per staff::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score = template()
@@ -44,7 +44,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             >>
         >>
 
-    Set `staff_count` to a list for staves with more than one voice::
+    Example 2. Grouped rhythmic staves score template with more than one voice per staff::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
         >>> score = template()
@@ -54,22 +54,22 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
         >>> f(score)
         \context Score = "Grouped Rhythmic Staves Score" <<
             \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                \context RhythmicStaff = "Staff 1" {
+                \context RhythmicStaff = "Staff 1" <<
                     \context Voice = "Voice 1-1" {
                     }
                     \context Voice = "Voice 1-2" {
                     }
-                }
+                >>
                 \context RhythmicStaff = "Staff 2" {
                     \context Voice = "Voice 2" {
                     }
                 }
-                \context RhythmicStaff = "Staff 3" {
+                \context RhythmicStaff = "Staff 3" <<
                     \context Voice = "Voice 3-1" {
                     }
                     \context Voice = "Voice 3-2" {
                     }
-                }
+                >>
             >>
         >>
 
@@ -105,6 +105,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
                         voice_identifier = str(staff_number)
                     else:
                         voice_identifier = '{}-{}'.format(staff_number, voice_number)
+                        staff.is_parallel = True
                     voice = voicetools.Voice(name='Voice {}'.format(voice_identifier))
                     staff.append(voice)
                     self.context_name_abbreviations['v{}'.format(voice_identifier)] = voice.name
