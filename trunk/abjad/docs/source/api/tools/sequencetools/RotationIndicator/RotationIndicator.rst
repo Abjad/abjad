@@ -9,6 +9,8 @@ sequencetools.RotationIndicator
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.sequencetools.RotationIndicator.RotationIndicator.RotationIndicator.fracture_spanners
+
 .. autoattribute:: abjad.tools.sequencetools.RotationIndicator.RotationIndicator.RotationIndicator.index
 
 .. autoattribute:: abjad.tools.sequencetools.RotationIndicator.RotationIndicator.RotationIndicator.level
