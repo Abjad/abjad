@@ -9,10 +9,10 @@ class RotationIndicator(abctools.AbjadObject):
     Rotation indicator.
     '''
 
-    def __init__(self, index, level=-1, fracture_spanners=None):
+    def __init__(self, index, level=None, fracture_spanners=None):
         from abjad.tools import durationtools
         assert isinstance(index, (int, durationtools.Duration))
-        assert isinstance(level, int)
+        assert isinstance(level, (int, type(None)))
         assert isinstance(fracture_spanners, (bool, type(None)))
         self._index = index
         self._level = level
