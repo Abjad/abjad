@@ -44,5 +44,13 @@
 
 14. Implement very basic cycle detection.
 
-15. Make NoteFilleRhythmMaker.reverse() change the value of big_endian.
-    Make RestFilledRhythmMaker.reverse() change the value of big_endian. 
+15. Afford rhythm command request of parseable string. This will make ...
+        red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
+        voice_1_rhythm_command = red_segment.request_rhythm_command('Voice 1')
+        red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
+    ... interpret correctly.
+    Then make X5 work with rhythm command request instead of rhythm request.
+
+16. Extend RotationIndicator with fracture_spanners=False property.
+
+17. Set all rotation to fracture_spanners=False by default in interpreter.

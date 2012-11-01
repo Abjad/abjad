@@ -175,3 +175,43 @@ def test_schematic_examples__X_series_04():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_schematic_examples__X_series_05():
+    '''Schematic example X5.
+    Quartet in two segments.
+    First segment time signatures [4/8, 3/8].
+    F1 rhythm 1, 2, 3 thirty-seconds.
+    F2 rhythm F1 surface rhythm rotated by 1 thirty-second.
+    F3 rhythm F1 surface rhythm rotated by 2 thirty-seconds.
+    F4 rhythm F1 surface rhythm rotated by 3 thirty-seconds.
+    First segment time signatures [1/8, 1/8]. 
+    Staves repeat rhythm exactly until cut off at end of score.
+    '''
+    py.test.skip('working on this one now.')
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(3, 16)])
+    red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
+    first_division = red_segment.select_division(0)
+    voice_1_rhythmic_cell = score_specification.request_rhythm('Voice 1', selector=first_division)
+    # TODO:
+    #indicator = sequencetools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
+    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 2'], rotation=Duration(-1, 32))
+    # TODO:
+    #indicator = sequencetools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)
+    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 3'], rotation=Duration(-2, 32))
+    # TODO:
+    #indicator = sequencetools.RotationIndicator(Duration(-3, 32), fracture_spanners=False)
+    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 4'], rotation=Duration(-3, 32))
+    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment.set_time_signatures(2 * [(1, 8)])
+    
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
+    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
