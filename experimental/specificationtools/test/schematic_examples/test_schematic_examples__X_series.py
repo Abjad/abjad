@@ -1,4 +1,3 @@
-import py
 from abjad import *
 from experimental import *
 
@@ -188,7 +187,6 @@ def test_schematic_examples__X_series_05():
     First segment time signatures [1/8, 1/8]. 
     Staves repeat rhythm exactly until cut off at end of score.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -198,20 +196,17 @@ def test_schematic_examples__X_series_05():
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
     first_division = red_segment.select_division(0)
     voice_1_rhythmic_cell = score_specification.request_rhythm('Voice 1', selector=first_division)
-    # TODO:
-    #indicator = sequencetools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
-    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 2'], rotation=Duration(-1, 32))
-    # TODO:
-    #indicator = sequencetools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)
-    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 3'], rotation=Duration(-2, 32))
-    # TODO:
-    #indicator = sequencetools.RotationIndicator(Duration(-3, 32), fracture_spanners=False)
-    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 4'], rotation=Duration(-3, 32))
+    indicator = sequencetools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
+    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 2'], rotation=indicator)
+    indicator = sequencetools.RotationIndicator(Duration(-2, 32), fracture_spanners=False)
+    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 3'], rotation=indicator)
+    indicator = sequencetools.RotationIndicator(Duration(-3, 32), fracture_spanners=False)
+    red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 4'], rotation=indicator)
     blue_segment = score_specification.make_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
     
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

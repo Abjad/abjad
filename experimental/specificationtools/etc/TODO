@@ -51,6 +51,4 @@
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
 
-16. Extend RotationIndicator with fracture_spanners=False property.
-
-17. Set all rotation to fracture_spanners=False by default in interpreter.
+16. Set all rotation to fracture_spanners=False by default in interpreter.

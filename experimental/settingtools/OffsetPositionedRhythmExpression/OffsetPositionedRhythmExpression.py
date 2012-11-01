@@ -134,12 +134,22 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                 if len(score_index) == rotation_indicator.level:
                     components_at_level.append(component)
             components_at_level = sequencetools.CyclicTuple(components_at_level)
-            if 0 < rotation_indicator.index:
-                split_offset = components_at_level[-rotation_indicator.index].start_offset
-            elif n == 0:
-                return
+            if isinstance(rotation_indicator.index, int):
+                if 0 < rotation_indicator.index:
+                    split_offset = components_at_level[-rotation_indicator.index].start_offset
+                elif n == 0:
+                    return
+                else:
+                    split_offset = components_at_level[-(rotation_indicator.index+1)].stop_offset
+            elif isinstance(rotation_indicator.index, durationtools.Duration):
+                if 0 <= rotation_indicator.index:
+                    split_offset = self.music.prolated_duration - rotation_indicator.index
+                else:
+                    split_offset = abs(rotation_indicator.index)
             else:
-                split_offset = components_at_level[-(rotation_indicator.index+1)].stop_offset
+                raise TypeError('what is {!r}?'.format(rotation_indicator.index))
+            if rotation_indicator.fracture_spanners is not None:
+                fracture_spanners = rotation_indicator.fracture_spanners
         else:
             n = durationtools.Duration(n)
             if 0 <= n:
