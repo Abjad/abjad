@@ -23,7 +23,7 @@ class OffsetPositionedExpression(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, voice_name, start_offset=None, stop_offset=None):
-        assert isinstance(voice_name, str), repr(voice_name)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._voice_name = voice_name
         if start_offset is None:
             start_offset = durationtools.Offset(0)

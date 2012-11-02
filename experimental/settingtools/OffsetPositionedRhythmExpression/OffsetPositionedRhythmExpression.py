@@ -144,13 +144,13 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                     return
                 else:
                     split_offset = components_at_level[-(rotation_indicator.index+1)].stop_offset
-            elif isinstance(rotation_indicator.index, durationtools.Duration):
-                if 0 <= rotation_indicator.index:
-                    split_offset = self.music.prolated_duration - rotation_indicator.index
-                else:
-                    split_offset = abs(rotation_indicator.index)
+            #elif isinstance(rotation_indicator.index, durationtools.Duration):
             else:
-                raise TypeError('what is {!r}?'.format(rotation_indicator.index))
+                index = durationtools.Duration(rotation_indicator.index)
+                if 0 <= index:
+                    split_offset = self.music.prolated_duration - index
+                else:
+                    split_offset = abs(index)
             if rotation_indicator.fracture_spanners is not None:
                 fracture_spanners = rotation_indicator.fracture_spanners
         else:
@@ -159,6 +159,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                 split_offset = self.music.prolated_duration - n
             else:
                 split_offset = abs(n)
+        #self._debug(split_offset, 'split offset')
         if split_offset == self.music.prolated_duration:
             return
         if fracture_spanners:

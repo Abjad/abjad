@@ -568,6 +568,7 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 rhythm_quadruple = rhythm_quintuple[1:]
+                #self._debug(rhythm_quadruple, 'rhythm quadruple')
                 if isinstance(rhythm_quadruple[0], str):
                     rhythm_region_expression = self.make_rhythm_region_expression_from_parseable_string(
                         *rhythm_quadruple)
@@ -759,15 +760,14 @@ class ConcreteInterpreter(Interpreter):
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
+        #self._debug(rhythm_region_expressions, 'rhythm region expressions')
         if not rhythm_region_expressions:
             return
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions = timetools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
         rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
-        result = settingtools.OffsetPositionedRhythmExpression(
-            voice_name=voice_name, start_offset=start_offset)
-        #self._debug(result, 'result')
+        result = settingtools.OffsetPositionedRhythmExpression(voice_name=voice_name, start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')

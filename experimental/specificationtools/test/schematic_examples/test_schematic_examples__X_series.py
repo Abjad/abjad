@@ -1,5 +1,6 @@
 from abjad import *
 from experimental import *
+import py
 
 
 def test_schematic_examples__X_series_01():
@@ -253,3 +254,33 @@ def test_schematic_examples__X_series_06():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_schematic_examples__X_series_07():
+    '''Schematic example X7.
+    Quartet in two segments.
+    First segment time signatures [4/8, 3/8].
+    Rhythm of each staff specified separately for first and second measures.
+    F1 m1 rhythm 1, 2, 3, 4 thirty-seconds; F1 m2 rhythm rotates F1 m1 rhythm by 1 thirty-second.
+    F2 m1 rhythm rotates F1 m1 rhythm 2 thirty-seconds; F2 m2 rotates F1 m1 rhythm 3 thirty-seconds.
+    F3 m1 rhythm rotates F1 m1 rhythm 4 thirty-seconds; F3 m2 rotates F1 m1 rhythm 5 thirty-seconds.
+    F4 m1 rhythm rotates F1 m1 rhythm 6 thirty-seconds; F4 m2 rotates F1 m1 rhythm 7 thirty-seconds.
+    Second segment time signatures [2/8]. 
+    Second segment equal to slice of first segment from start offset of F1 leaf 5.
+    '''
+    py.test.skip('working on this one now.')
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.make_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    first_measure = red_segment.select_background_measure(0)
+    second_measure = red_segment.select_background_measure(1)
+    red_segment.set_rhythm("{ c'32 ] c'16 c'16. c'8 ] }", contexts=['Voice 1'], selector=first_measure)
+    cell = score_specification.request_rhythm('Voice 1', selector=first_measure)
+    red_segment.set_rhythm(cell, contexts=['Voice 1'], selector=second_measure, rotation=Duration(-1, 32))
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
+    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
