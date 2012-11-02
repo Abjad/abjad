@@ -772,7 +772,6 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
         assert componenttools.is_well_formed_component(result.music)
-        result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         # TODO: encapsulate all of the following in a single call
         if rhythm_request.reverse:
             result.reverse()
@@ -785,7 +784,7 @@ class ConcreteInterpreter(Interpreter):
         if rhythm_command.rotation:
             #result.rotate(rhythm_command.rotation, fracture_spanners=False)
             result.rotate(rhythm_command.rotation, fracture_spanners=True)
-        #self._debug(result, 'result')
+        result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
 
