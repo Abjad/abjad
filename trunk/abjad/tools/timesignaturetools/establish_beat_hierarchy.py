@@ -4,6 +4,10 @@ from abjad.tools import tietools
 
 
 def establish_beat_hierarchy(components, beat_hierarchy):
+    r'''.. versionadded:: 2.11
+
+    Operate in place and return none.
+    '''
 
     from abjad.tools import timesignaturetools
 
