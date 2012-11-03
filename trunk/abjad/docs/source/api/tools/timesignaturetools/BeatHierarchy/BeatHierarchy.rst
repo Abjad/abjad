@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.depthwise_offset_inventory
 
+.. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.duration
+
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.numerator
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.pretty_rtm_format

@@ -1,6 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import measuretools
 from abjad.tools import rhythmtreetools
 from abjad.tools.abctools import AbjadObject
 
@@ -113,6 +114,8 @@ class BeatHierarchy(AbjadObject):
     def __init__(self, arg, big_endian=True):
         if isinstance(arg, tuple):
             arg = mathtools.NonreducedFraction(arg)
+        elif isinstance(arg, measuretools.Measure):
+            arg = contexttools.get_effective_time_signature(arg)
         self._numerator, self._denominator = arg.numerator, arg.denominator
         self._big_endian = bool(big_endian)
 
@@ -253,6 +256,10 @@ class BeatHierarchy(AbjadObject):
             offsets.append(durationtools.Offset(self.numerator, self.denominator))
             inventory[depth] = tuple(offsets)
         return inventory
+
+    @property
+    def duration(self):
+        return durationtools.Duration(self.numerator, self.denominator)
 
     @property
     def numerator(self):
