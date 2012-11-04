@@ -25,4 +25,4 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
         time_signature = contexttools.get_effective_time_signature(expr)
 
-        beat_hierarchy = timesignaturetools.BeatHierarchy(time_signature)
+        metrical_hierarchy = timesignaturetools.MetricalHierarchy(time_signature)

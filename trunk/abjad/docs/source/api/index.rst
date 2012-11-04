@@ -1724,7 +1724,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/timesignaturetools/BeatHierarchy/BeatHierarchy
+   tools/timesignaturetools/MetricalHierarchy/MetricalHierarchy
 
 .. rubric:: functions
 
@@ -1732,7 +1732,7 @@ Composition packages
    :maxdepth: 1
 
    tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
-   tools/timesignaturetools/establish_beat_hierarchy
+   tools/timesignaturetools/establish_metrical_hierarchy
    tools/timesignaturetools/get_non_power_of_two_factor_from_time_signature_denominator
    tools/timesignaturetools/is_equivalent_to_time_signature_with_power_of_two_denominator
    tools/timesignaturetools/make_gridded_test_rhythm

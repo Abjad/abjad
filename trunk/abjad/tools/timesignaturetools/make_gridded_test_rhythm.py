@@ -50,7 +50,7 @@ def make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         14  |5/4, c'4, c'2., c'4|
         15  |5/4, c'4, c'1|
 
-    Use for testing beat hierarchy establishment.
+    Use for testing metrical hierarchy establishment.
     '''
     from abjad.tools import notetools
 

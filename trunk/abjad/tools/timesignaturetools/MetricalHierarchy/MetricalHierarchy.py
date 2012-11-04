@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
-class BeatHierarchy(AbjadObject):
+class MetricalHierarchy(AbjadObject):
     '''.. versionadded:: 2.11
 
     A rhythm tree-based model of nested time signature groupings.
@@ -20,18 +20,18 @@ class BeatHierarchy(AbjadObject):
     Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3``
     summing to that prime. Hence ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2``.
 
-    The beat hierarchy models many parts of the common practice understanding of meter::
+    The metrical hierarchy models many parts of the common practice understanding of meter::
 
-        >>> beat_hierarchy = timesignaturetools.BeatHierarchy((4, 4))
-
-    ::
-
-        >>> beat_hierarchy
-        BeatHierarchy((4, 4), big_endian=True)
+        >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
 
     ::
 
-        >>> print beat_hierarchy.pretty_rtm_format
+        >>> metrical_hierarchy
+        MetricalHierarchy((4, 4), big_endian=True)
+
+    ::
+
+        >>> print metrical_hierarchy.pretty_rtm_format
         (4/4 (
             (2/4 (
                 1/4
@@ -42,7 +42,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.BeatHierarchy((3, 4)).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((3, 4)).pretty_rtm_format
         (3/4 (
             1/4
             1/4
@@ -50,7 +50,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.BeatHierarchy((6, 8)).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((6, 8)).pretty_rtm_format
         (6/8 (
             (3/8 (
                 1/8
@@ -63,7 +63,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.BeatHierarchy((5, 4)).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((5, 4)).pretty_rtm_format
         (5/4 (
             (3/4 (
                 1/4
@@ -75,7 +75,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.BeatHierarchy((5, 4), big_endian=False).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((5, 4), big_endian=False).pretty_rtm_format
         (5/4 (
             (2/4 (
                 1/4
@@ -87,7 +87,7 @@ class BeatHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.BeatHierarchy((12, 8)).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((12, 8)).pretty_rtm_format
         (12/8 (
             (6/8 (
                 (3/8 (
@@ -108,7 +108,7 @@ class BeatHierarchy(AbjadObject):
                     1/8
                     1/8))))))
 
-    Return beat hierarchy object.
+    Return metrical hierarchy object.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -175,13 +175,13 @@ class BeatHierarchy(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __iter__(self):
-        '''Iterate beat hierarchy::
+        '''Iterate metrical hierarchy::
 
-            >>> beat_hierarchy = timesignaturetools.BeatHierarchy((5, 4))
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4))
 
         ::
 
-            >>> for x in beat_hierarchy:
+            >>> for x in metrical_hierarchy:
             ...    x
             ... 
             (Offset(0, 1), NonreducedFraction(1, 4))
@@ -218,21 +218,21 @@ class BeatHierarchy(AbjadObject):
 
     @property
     def big_endian(self):
-        '''True if the beat hierarchy divides large primes into collections of
+        '''True if the metrical hierarchy divides large primes into collections of
         ``2`` and ``3`` with big-endian ordering.
 
-        Example 1. Little-endian beat hiearchy::
+        Example 1. Little-endian metrical hiearchy::
 
-            >>> beat_hierarchy = timesignaturetools.BeatHierarchy((5, 4), big_endian=False)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), big_endian=False)
 
         ::
 
-            >>> beat_hierarchy.big_endian
+            >>> metrical_hierarchy.big_endian
             False
 
         ::
 
-            >>> print beat_hierarchy.pretty_rtm_format 
+            >>> print metrical_hierarchy.pretty_rtm_format 
             (5/4 (
                 (2/4 (
                     1/4
@@ -242,18 +242,18 @@ class BeatHierarchy(AbjadObject):
                     1/4
                     1/4))))
 
-        Example 2. Big-endian beat hierarchy::
+        Example 2. Big-endian metrical hierarchy::
 
-            >>> beat_hierarchy = timesignaturetools.BeatHierarchy((5, 4), big_endian=True)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), big_endian=True)
 
         ::
 
-            >>> beat_hierarchy.big_endian
+            >>> metrical_hierarchy.big_endian
             True
 
         ::
 
-            >>> print beat_hierarchy.pretty_rtm_format 
+            >>> print metrical_hierarchy.pretty_rtm_format 
             (5/4 (
                 (3/4 (
                     1/4
@@ -271,7 +271,7 @@ class BeatHierarchy(AbjadObject):
     def denominator(self):
         r'''Beat hierarchy denominator::
 
-            >>> beat_hierarchy.denominator
+            >>> metrical_hierarchy.denominator
             4
 
         Return positive integer.
@@ -282,7 +282,7 @@ class BeatHierarchy(AbjadObject):
     def depthwise_offset_inventory(self):
         '''Depthwise inventory of offsets at each grouping level::
 
-            >>> for depth, offsets in beat_hierarchy.depthwise_offset_inventory.items():
+            >>> for depth, offsets in metrical_hierarchy.depthwise_offset_inventory.items():
             ...     print depth, offsets
             0 (Offset(0, 1), Offset(5, 4))
             1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
@@ -303,7 +303,7 @@ class BeatHierarchy(AbjadObject):
     def duration(self):
         '''Beat hierarchy duration::
 
-            >>> beat_hierarchy.duration
+            >>> metrical_hierarchy.duration
             Duration(5, 4)
 
         Return duration.
@@ -314,7 +314,7 @@ class BeatHierarchy(AbjadObject):
     def numerator(self):
         r'''Beat hierarchy numerator::
 
-            >>> beat_hierarchy.numerator
+            >>> metrical_hierarchy.numerator
             5
 
         Return positive integer.
@@ -325,7 +325,7 @@ class BeatHierarchy(AbjadObject):
     def pretty_rtm_format(self):
         '''Beat hiearchy pretty RTM format::
 
-            >>> print beat_hierarchy.pretty_rtm_format
+            >>> print metrical_hierarchy.pretty_rtm_format
             (5/4 (
                 (3/4 (
                     1/4
@@ -343,7 +343,7 @@ class BeatHierarchy(AbjadObject):
     def root_node(self):
         '''Beat hiearchy root node::
 
-            >>> beat_hierarchy.root_node
+            >>> metrical_hierarchy.root_node
             RhythmTreeContainer(
                 children=(
                     RhythmTreeContainer(
@@ -388,7 +388,7 @@ class BeatHierarchy(AbjadObject):
     def rtm_format(self):
         '''Beat hierarchy RTM format::
 
-            >>> beat_hierarchy.rtm_format
+            >>> metrical_hierarchy.rtm_format
             '(5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))'
 
         Return string.
@@ -399,8 +399,8 @@ class BeatHierarchy(AbjadObject):
     def storage_format(self):
         '''Beat hierarchy storage format::
 
-            >>> print beat_hierarchy.storage_format
-            timesignaturetools.BeatHierarchy(
+            >>> print metrical_hierarchy.storage_format
+            timesignaturetools.MetricalHierarchy(
                 (5, 4),
                 big_endian=True
                 )
@@ -412,14 +412,14 @@ class BeatHierarchy(AbjadObject):
     ### PUBLIC METHODS ###
 
     def generate_offset_kernel_to_denominator(self, denominator):
-        r'''Generate a dictionary of all offsets in a beat hierarchy up
+        r'''Generate a dictionary of all offsets in a metrical hierarchy up
         to `denominator`, where the keys are the offsets and the values
         are the normalized weights of those offsets:
         
         ::
         
-            >>> beat_hierarchy = timesignaturetools.BeatHierarchy((4, 4))
-            >>> kernel = beat_hierarchy.generate_offset_kernel_to_denominator(8)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+            >>> kernel = metrical_hierarchy.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.iteritems()):
             ...     print '{}\t{}'.format(offset, weight)
             ...
@@ -434,7 +434,7 @@ class BeatHierarchy(AbjadObject):
             1       4/19
          
         This is useful for testing how strongly a collection of offsets
-        responds to a given beat hierarchy.
+        responds to a given metrical hierarchy.
         
         Return dictionary.
         '''

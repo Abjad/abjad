@@ -4,9 +4,9 @@ import py
 py.test.skip('back-dependency to experimental is not allowed.')
 
 
-def test_BeatHierarchy___iter___01():
+def test_MetricalHierarchy___iter___01():
 
-    bh = timesignaturetools.BeatHierarchy(contexttools.TimeSignatureMark((3, 8)))
+    bh = timesignaturetools.MetricalHierarchy(contexttools.TimeSignatureMark((3, 8)))
 
     result = [x for x in bh]
 

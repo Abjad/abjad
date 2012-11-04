@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools import tietools
 
 
-def establish_beat_hierarchy(components, beat_hierarchy):
+def establish_metrical_hierarchy(components, metrical_hierarchy):
     r'''.. versionadded:: 2.11
 
     Operate in place and return none.
@@ -13,12 +13,12 @@ def establish_beat_hierarchy(components, beat_hierarchy):
     from abjad.tools import timesignaturetools
 
     assert componenttools.all_are_thread_contiguous_components(components)
-    assert isinstance(beat_hierarchy, timesignaturetools.BeatHierarchy)
-    assert sum([x.preprolated_duration for x in components]) == beat_hierarchy.duration
+    assert isinstance(metrical_hierarchy, timesignaturetools.MetricalHierarchy)
+    assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.duration
 
     first_offset = components[0].start_offset
     prolation = components[0].prolation
-    depthwise_offset_inventory = beat_hierarchy.depthwise_offset_inventory
+    depthwise_offset_inventory = metrical_hierarchy.depthwise_offset_inventory
 
     #print 'OFFSETS'
     for depth, offsets in depthwise_offset_inventory.iteritems():
@@ -81,5 +81,5 @@ def establish_beat_hierarchy(components, beat_hierarchy):
         else:
             #print 'DESCENDING:', item
             duration = sum([x.preprolated_duration for x in item])
-            sub_beat_hierarchy = timesignaturetools.BeatHierarchy(duration)
-            establish_beat_hierarchy(item[:], sub_beat_hierarchy)
+            sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(duration)
+            establish_metrical_hierarchy(item[:], sub_metrical_hierarchy)
