@@ -1,5 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import leaftools
+from abjad.tools import sequencetools
 from abjad.tools import tietools
 
 
