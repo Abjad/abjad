@@ -6,7 +6,7 @@ from experimental.timetools.Inequality import Inequality
 class TimepointInequality(Inequality):
     r'''.. versionadded:: 1.0
 
-    SymbolicTimepoint inequality.
+    SymbolicOffset inequality.
     '''
 
     ### INITIALIZER ###

@@ -3,7 +3,7 @@ from experimental import *
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.timetools.SymbolicTimepoint import SymbolicTimepoint
+from experimental.timetools.SymbolicOffset import SymbolicOffset
 from experimental.timetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 

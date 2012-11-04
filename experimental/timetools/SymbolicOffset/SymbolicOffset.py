@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SymbolicTimepoint(AbjadObject):
+class SymbolicOffset(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
@@ -14,28 +14,28 @@ class SymbolicTimepoint(AbjadObject):
 
     ::
 
-        >>> timetools.SymbolicTimepoint()
-        SymbolicTimepoint()
+        >>> timetools.SymbolicOffset()
+        SymbolicOffset()
 
     Symbolic timepoint indicating the right edge of score::
 
-        >>> timetools.SymbolicTimepoint(edge=Right)
-        SymbolicTimepoint(edge=Right)
+        >>> timetools.SymbolicOffset(edge=Right)
+        SymbolicOffset(edge=Right)
 
     Symbolic timepoint ``1/8`` of a whole note into score::
 
-        >>> timetools.SymbolicTimepoint(offset=durationtools.Offset(1, 8))
-        SymbolicTimepoint(offset=Offset(1, 8))
+        >>> timetools.SymbolicOffset(offset=durationtools.Offset(1, 8))
+        SymbolicOffset(offset=Offset(1, 8))
 
     Symbolic timepoint one third of the way into score::
 
-        >>> timetools.SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3))
-        SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3))
+        >>> timetools.SymbolicOffset(edge=Right, multiplier=Fraction(1, 3))
+        SymbolicOffset(edge=Right, multiplier=Fraction(1, 3))
 
     Symbolic timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> timetools.SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
-        SymbolicTimepoint(edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
+        >>> timetools.SymbolicOffset(edge=Right, multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
+        SymbolicOffset(edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
 
     Symbolic timepoint indicating the left edge of segment ``'red'``::
 
@@ -43,31 +43,31 @@ class SymbolicTimepoint(AbjadObject):
 
     ::
 
-        >>> timetools.SymbolicTimepoint(selector=segment_selector)
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'))
+        >>> timetools.SymbolicOffset(selector=segment_selector)
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'))
 
     Symbolic timepoint indicating the right edge of segment ``'red'``::
 
-        >>> timetools.SymbolicTimepoint(selector=segment_selector, edge=Right)
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right)
+        >>> timetools.SymbolicOffset(selector=segment_selector, edge=Right)
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right)
 
     Symbolic timepoint indicating ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
-        >>> timetools.SymbolicTimepoint(selector=segment_selector, offset=durationtools.Offset(1, 8))
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), offset=Offset(1, 8))
+        >>> timetools.SymbolicOffset(selector=segment_selector, offset=durationtools.Offset(1, 8))
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), offset=Offset(1, 8))
 
     Symbolic timepoint indicating one third of the way into segment ``'red'``::
 
-        >>> timetools.SymbolicTimepoint(selector=segment_selector, edge=Right, multiplier=Fraction(1, 3))
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3))
+        >>> timetools.SymbolicOffset(selector=segment_selector, edge=Right, multiplier=Fraction(1, 3))
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3))
 
     Symbolic timepoint indicating ``1/8`` of a whole note after the right edge of the 
     first third of segment ``'red'``::
     
-        >>> timetools.SymbolicTimepoint(selector=segment_selector, edge=Right, 
+        >>> timetools.SymbolicOffset(selector=segment_selector, edge=Right, 
         ... multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
-        SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
 
     Symbolic timepoint indicating the left edge of note ``10`` that starts
     during segment ``'red'``::
@@ -79,12 +79,12 @@ class SymbolicTimepoint(AbjadObject):
 
     ::
 
-        >>> timepoint = timetools.SymbolicTimepoint(selector=counttime_component_selector)
+        >>> timepoint = timetools.SymbolicOffset(selector=counttime_component_selector)
 
     ::
 
         >>> z(timepoint)
-        timetools.SymbolicTimepoint(
+        timetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
                 inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -110,12 +110,12 @@ class SymbolicTimepoint(AbjadObject):
 
     ::
     
-        >>> timepoint = timetools.SymbolicTimepoint(selector=timespan, edge=Right, multiplier=Fraction(1, 3))
+        >>> timepoint = timetools.SymbolicOffset(selector=timespan, edge=Right, multiplier=Fraction(1, 3))
 
     ::
     
         >>> z(timepoint)
-        timetools.SymbolicTimepoint(
+        timetools.SymbolicOffset(
             selector=timetools.SingleSourceSymbolicTimespan(
                 selector=selectortools.SegmentSelector(
                     start_identifier='red',
@@ -129,12 +129,12 @@ class SymbolicTimepoint(AbjadObject):
     Symbolic timepoint indicating the right edge of note ``10`` that starts
     during segment ``'red'``::
 
-        >>> timepoint = timetools.SymbolicTimepoint(selector=counttime_component_selector, edge=Right)
+        >>> timepoint = timetools.SymbolicOffset(selector=counttime_component_selector, edge=Right)
 
     ::
 
         >>> z(timepoint)
-        timetools.SymbolicTimepoint(
+        timetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
                 inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',

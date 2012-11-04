@@ -413,7 +413,7 @@ class ScoreSpecification(Specification):
         '''
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
-        timepoint = timetools.SymbolicTimepoint(
+        timepoint = timetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'divisions', context_name=context_name, timepoint=timepoint,
@@ -447,7 +447,7 @@ class ScoreSpecification(Specification):
         '''
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
-        timepoint = timetools.SymbolicTimepoint(
+        timepoint = timetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'rhythms', context_name=context_name, timepoint=timepoint,
@@ -480,7 +480,7 @@ class ScoreSpecification(Specification):
         '''
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
-        timepoint = timetools.SymbolicTimepoint(
+        timepoint = timetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'time_signatures', context_name=context_name, timepoint=timepoint,

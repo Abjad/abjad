@@ -414,9 +414,9 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_region_commands_for_attribute('rhythm')
-        self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
+        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
         self.populate_all_rhythm_quintuples()
-        self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
+        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 

@@ -27,7 +27,7 @@ class CommandRequest(Request):
         >>> z(command_request)
         requesttools.CommandRequest(
             'divisions',
-            timetools.SymbolicTimepoint(
+            timetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -57,7 +57,7 @@ class CommandRequest(Request):
     def __init__(self, attribute, timepoint, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
-        assert isinstance(timepoint, timetools.SymbolicTimepoint)
+        assert isinstance(timepoint, timetools.SymbolicOffset)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
@@ -115,7 +115,7 @@ class CommandRequest(Request):
         '''Command request timepoint specified by user.
 
             >>> z(command_request.timepoint)
-            timetools.SymbolicTimepoint(
+            timetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',

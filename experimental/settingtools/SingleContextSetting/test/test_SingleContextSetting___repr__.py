@@ -1,7 +1,7 @@
 from experimental.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
-from experimental.timetools.SymbolicTimepoint import SymbolicTimepoint
+from experimental.timetools.SymbolicOffset import SymbolicOffset
 from experimental.timetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 

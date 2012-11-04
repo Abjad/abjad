@@ -16,14 +16,14 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
-        >>> start_timepoint = timetools.SymbolicTimepoint(selector=measure_selector)
+        >>> start_timepoint = timetools.SymbolicOffset(selector=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='blue')
         >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
-        >>> stop_timepoint = timetools.SymbolicTimepoint(selector=measure_selector, edge=Right)
+        >>> stop_timepoint = timetools.SymbolicOffset(selector=measure_selector, edge=Right)
         
     ::
 
@@ -34,7 +34,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
         >>> z(timespan)
         timetools.MixedSourceSymbolicTimespan(
-            start_timepoint=timetools.SymbolicTimepoint(
+            start_timepoint=timetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -47,7 +47,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     start_identifier=-1
                     )
                 ),
-            stop_timepoint=timetools.SymbolicTimepoint(
+            stop_timepoint=timetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -70,8 +70,8 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
     def __init__(self, start_timepoint=None, stop_timepoint=None):
         from experimental import timetools
-        assert isinstance(start_timepoint, (timetools.SymbolicTimepoint, type(None))), repr(start_timepoint)
-        assert isinstance(stop_timepoint, (timetools.SymbolicTimepoint, type(None))), repr(stop_timepoint)
+        assert isinstance(start_timepoint, (timetools.SymbolicOffset, type(None))), repr(start_timepoint)
+        assert isinstance(stop_timepoint, (timetools.SymbolicOffset, type(None))), repr(stop_timepoint)
         SymbolicTimespan.__init__(self)
         self._start_timepoint = start_timepoint
         self._stop_timepoint = stop_timepoint

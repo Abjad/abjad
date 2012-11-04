@@ -251,24 +251,24 @@ class SegmentSpecification(Specification):
         '''Segment specification start timepoint.
 
             >>> segment.start_timepoint
-            SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Left)
+            SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Left)
 
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timetools.SymbolicTimepoint(selector=selector, edge=Left)
+        return timetools.SymbolicOffset(selector=selector, edge=Left)
 
     @property
     def stop_timepoint(self):
         '''Segment specification stop timepoint.
 
             >>> segment.stop_timepoint
-            SymbolicTimepoint(selector=SingleSegmentSelector(identifier='red'), edge=Right)
+            SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right)
 
         Return timepoint.
         '''
         selector = self.select_segment()
-        return timetools.SymbolicTimepoint(selector=selector, edge=Right)
+        return timetools.SymbolicOffset(selector=selector, edge=Right)
 
     @property
     def storage_format(self):
@@ -351,7 +351,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'divisions',
-                timetools.SymbolicTimepoint(
+                timetools.SymbolicOffset(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -368,7 +368,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'divisions',
-                timetools.SymbolicTimepoint(
+                timetools.SymbolicOffset(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         ),
@@ -392,7 +392,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'divisions',
-                timetools.SymbolicTimepoint(
+                timetools.SymbolicOffset(
                     selector=selectortools.BackgroundMeasureSelector(
                         inequality=timetools.TimespanInequality(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -417,7 +417,7 @@ class SegmentSpecification(Specification):
         Return command request.        
         '''
         selector = selector or self.select_segment()
-        timepoint = timetools.SymbolicTimepoint(
+        timepoint = timetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'divisions', context_name=voice, timepoint=timepoint,
@@ -500,7 +500,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'rhythm',
-                timetools.SymbolicTimepoint(
+                timetools.SymbolicOffset(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -515,7 +515,7 @@ class SegmentSpecification(Specification):
         Return command request.        
         '''
         selector = self.select_segment()
-        timepoint = timetools.SymbolicTimepoint(
+        timepoint = timetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'rhythm', context_name=voice, timepoint=timepoint,
@@ -559,7 +559,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.CommandRequest(
                 'time_signatures',
-                timetools.SymbolicTimepoint(
+                timetools.SymbolicOffset(
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         )
@@ -573,7 +573,7 @@ class SegmentSpecification(Specification):
         Return command request.        
         '''
         selector = self.select_segment()
-        timepoint = timetools.SymbolicTimepoint(
+        timepoint = timetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
             'time_signatures', context_name=None, timepoint=timepoint,
