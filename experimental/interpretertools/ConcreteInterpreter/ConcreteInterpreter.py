@@ -414,9 +414,9 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_region_commands_for_attribute('rhythm')
-        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
+        self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
         self.populate_all_rhythm_quintuples()
-        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
+        self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
@@ -563,12 +563,14 @@ class ConcreteInterpreter(Interpreter):
         return rhythm_region_expression
 
     def make_rhythm_region_expressions(self):
+        #self._debug(len(self.score_specification.all_rhythm_quintuples), 'quintuple count')
         while self.score_specification.all_rhythm_quintuples:
             #self._debug(len(self.score_specification.all_rhythm_quintuples), 'len')
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 rhythm_quadruple = rhythm_quintuple[1:]
                 #self._debug(rhythm_quadruple, 'rhythm quadruple')
+                #self._debug(rhythm_quadruple[0], 'rhythm quadruple 0')
                 if isinstance(rhythm_quadruple[0], str):
                     rhythm_region_expression = self.make_rhythm_region_expression_from_parseable_string(
                         *rhythm_quadruple)
