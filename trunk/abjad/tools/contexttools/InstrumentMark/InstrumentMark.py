@@ -59,10 +59,10 @@ class InstrumentMark(ContextMark):
         self._default_instrument_name_markup = None
         self._default_short_instrument_name = None
         self._default_short_instrument_name_markup = None
-        self._instrument_name = instrument_name
-        self._instrument_name_markup = instrument_name_markup
-        self._short_instrument_name = short_instrument_name
-        self._short_instrument_name_markup = short_instrument_name_markup
+        self.instrument_name = instrument_name
+        self.instrument_name_markup = instrument_name_markup
+        self.short_instrument_name = short_instrument_name
+        self.short_instrument_name_markup = short_instrument_name_markup
 
     ### SPECIAL METHODS ###
 
