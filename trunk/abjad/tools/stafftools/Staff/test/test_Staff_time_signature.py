@@ -1,13 +1,13 @@
 from abjad import *
-import py.test
 
 
-def test_Staff_meter_01():
-    '''Force time_signature on nonempty staff.'''
+def test_Staff_time_signature_01():
+    '''Force time signature on nonempty staff.
+    '''
 
     t = Staff(Note("c'4") * 8)
     contexttools.TimeSignatureMark((2, 4))(t)
-    assert t.lilypond_format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+
     r'''
     \new Staff {
         \time 2/4
@@ -22,9 +22,12 @@ def test_Staff_meter_01():
     }
     '''
 
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
-def test_Staff_meter_02():
-    '''Force time_signature on empty staff.'''
+
+def test_Staff_time_signature_02():
+    '''Force time signature on empty staff.
+    '''
 
     t = Staff([])
     contexttools.TimeSignatureMark((2, 4))(t)
@@ -38,8 +41,9 @@ def test_Staff_meter_02():
     assert t.lilypond_format == '\\new Staff {\n\t\\time 2/4\n}'
 
 
-def test_Staff_meter_03():
-    '''Staff time_signature carries over to staff-contained leaves.'''
+def test_Staff_time_signature_03():
+    '''Staff time signature carries over to staff-contained leaves.
+    '''
 
     t = Staff(Note("c'4") * 8)
     contexttools.TimeSignatureMark((2, 4))(t)
@@ -47,8 +51,8 @@ def test_Staff_meter_03():
         assert contexttools.get_effective_time_signature(x) == contexttools.TimeSignatureMark((2, 4))
 
 
-def test_Staff_meter_04():
-    '''Staff time_signature set and then clear.
+def test_Staff_time_signature_04():
+    '''Staff time signature set and then clear.
     '''
 
     t = Staff(Note("c'4") * 8)
