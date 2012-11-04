@@ -42,3 +42,12 @@ def test_timesignaturetools_establish_beat_hierarchy_05():
         notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
         timesignaturetools.establish_beat_hierarchy(measure[:], beat_hierarchy)
+
+
+def test_timesignaturetools_establish_beat_hierarchy_06():
+    source = p('abj: | 4/4 8 4. 2 |')
+    target = p('abj: | 4/4 8 4. 2 |')
+    beat_hierarchy = timesignaturetools.BeatHierarchy((4, 4))
+    timesignaturetools.establish_beat_hierarchy(source[:], beat_hierarchy)
+    assert source.lilypond_format == target.lilypond_format
+

@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import rhythmtreetools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -407,3 +408,62 @@ class BeatHierarchy(AbjadObject):
         Return string.
         '''
         return AbjadObject.storage_format.fget(self)
+
+    ### PUBLIC METHODS ###
+
+    def generate_offset_kernel_to_denominator(self, denominator):
+        r'''Generate a dictionary of all offsets in a beat hierarchy up
+        to `denominator`, where the keys are the offsets and the values
+        are the normalized weights of those offsets:
+        
+        ::
+        
+            >>> beat_hierarchy = timesignaturetools.BeatHierarchy((4, 4))
+            >>> kernel = beat_hierarchy.generate_offset_kernel_to_denominator(8)
+            >>> for offset, weight in sorted(kernel.iteritems()):
+            ...     print '{}\t{}'.format(offset, weight)
+            ...
+            0       4/19
+            1/8     1/19
+            1/4     2/19
+            3/8     1/19
+            1/2     3/19
+            5/8     1/19
+            3/4     2/19
+            7/8     1/19
+            1       4/19
+         
+        This is useful for testing how strongly a collection of offsets
+        responds to a given beat hierarchy.
+        
+        Return dictionary.
+        '''
+        assert mathtools.is_positive_integer_power_of_two(
+            denominator / self.denominator)
+
+        inventory = [value for key, value in sorted(self.depthwise_offset_inventory.items())]
+        old_flag_count = durationtools.Duration(1, self.denominator).flag_count
+        new_flag_count = durationtools.Duration(1, denominator).flag_count
+        extra_depth = new_flag_count - old_flag_count
+        for _ in range(extra_depth):
+            old_offsets = inventory[-1]
+            new_offsets = []
+            for first, second in sequencetools.iterate_sequence_pairwise_strict(old_offsets):
+                new_offsets.append(first)
+                new_offsets.append((first + second) / 2)
+            new_offsets.append(old_offsets[-1])
+            inventory.append(tuple(new_offsets))
+
+        total = 0
+        kernel = {}
+        for offsets in inventory:
+            for offset in offsets:
+                if offset not in kernel:
+                    kernel[offset] = 0
+                kernel[offset] += 1
+                total += 1
+            
+        for offset, response in kernel.iteritems():
+            kernel[offset] = durationtools.Multiplier(response, total)
+        
+        return kernel

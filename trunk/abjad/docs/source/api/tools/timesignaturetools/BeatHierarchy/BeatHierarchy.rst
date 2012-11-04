@@ -27,6 +27,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.storage_format
 
+Methods
+-------
+
+.. automethod:: abjad.tools.timesignaturetools.BeatHierarchy.BeatHierarchy.BeatHierarchy.generate_offset_kernel_to_denominator
+
 Special Methods
 ---------------
 
