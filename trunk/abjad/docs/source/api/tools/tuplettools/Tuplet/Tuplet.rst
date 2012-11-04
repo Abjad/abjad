@@ -25,6 +25,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.has_power_of_two_denominator
 
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.implied_prolation
+
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_augmentation
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_diminution

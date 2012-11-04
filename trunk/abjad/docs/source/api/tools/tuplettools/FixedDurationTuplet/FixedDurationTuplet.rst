@@ -29,6 +29,10 @@ Read-only Properties
 
     Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
 
+.. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.implied_prolation
+
+    Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
+
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.is_augmentation
 
     Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`

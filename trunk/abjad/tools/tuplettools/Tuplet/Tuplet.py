@@ -173,6 +173,16 @@ class Tuplet(Container):
         return self._format_component()
 
     @property
+    def implied_prolation(self):
+        r'''Tuplet implied prolation.
+
+        Defined equal to tuplet multiplier.
+
+        Return multiplier.
+        '''
+        return self.multiplier
+
+    @property
     def is_augmentation(self):
         '''True when multiplier is greater than 1.
         Otherwise false::
