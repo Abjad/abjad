@@ -62,9 +62,12 @@ def establish_beat_hierarchy(components, beat_hierarchy):
                     split_offset = offset - tie_chain.start_offset
                     break
             #print '\t', split_offset
-            tie_chains = [tietools.TieChain(shard) for shard in
-                componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
-            for tie_chain in tie_chains:
+            if split_offset is not None:
+                tie_chains = [tietools.TieChain(shard) for shard in
+                    componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
+                for tie_chain in tie_chains:
+                    recurse(tie_chain, depth=depth+1)
+            else:
                 recurse(tie_chain, depth=depth+1)
 
     # cache results of iterator, as we'll be mutating the underlying collection

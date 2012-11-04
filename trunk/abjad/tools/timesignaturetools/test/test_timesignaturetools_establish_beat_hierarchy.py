@@ -35,3 +35,10 @@ def test_timesignaturetools_establish_beat_hierarchy_04():
     timesignaturetools.establish_beat_hierarchy(source[:], beat_hierarchy)
     assert source.lilypond_format == target.lilypond_format
 
+
+def test_timesignaturetools_establish_beat_hierarchy_05():
+    beat_hierarchy = timesignaturetools.BeatHierarchy((4, 4))
+    for rhythm_number in range(8):
+        notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
+        measure = Measure((4, 4), notes)
+        timesignaturetools.establish_beat_hierarchy(measure[:], beat_hierarchy)
