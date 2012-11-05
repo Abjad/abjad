@@ -1734,7 +1734,6 @@ Composition packages
    tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
    tools/timesignaturetools/establish_metrical_hierarchy
    tools/timesignaturetools/make_gridded_test_rhythm
-   tools/timesignaturetools/time_signature_to_time_signature_with_power_of_two_denominator
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
