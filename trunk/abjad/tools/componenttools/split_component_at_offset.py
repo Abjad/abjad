@@ -146,7 +146,7 @@ def split_component_at_offset(component, offset,
         measure = measures[0]
         split_point_in_measure = global_split_point - measure.start_offset
         if measure.has_non_power_of_two_denominator:
-            if not measure.multiplier == split_point_in_measure.implied_prolation:
+            if not measure.implied_prolation == split_point_in_measure.implied_prolation:
                 raise NotImplementedError
         elif not mathtools.is_nonnegative_integer_power_of_two(split_point_in_measure.denominator):
             non_power_of_two_factors = mathtools.remove_powers_of_two(split_point_in_measure.denominator)

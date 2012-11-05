@@ -81,7 +81,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
     parent = components[0]._parent
 
     # new: remember parent multiplier, if any
-    parent_multiplier = getattr(parent, 'multiplier', 1)
+    parent_multiplier = getattr(parent, 'implied_prolation', 1)
 
     # new: remember parent denominator, if any
     if isinstance(parent, measuretools.Measure):

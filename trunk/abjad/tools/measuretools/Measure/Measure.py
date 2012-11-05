@@ -172,8 +172,8 @@ class Measure(FixedDurationContainer):
         # TODO: subclass this prooperly on anonymous and dynamic measures
         if self.has_non_power_of_two_denominator and self._class_name == 'Measure':
             result.append("\t\\scaleDurations #'(%s . %s) {" % (
-                self.multiplier.numerator,
-                self.multiplier.denominator))
+                self.implied_prolation.numerator,
+                self.implied_prolation.denominator))
             result.extend( ['\t' + x for x in FixedDurationContainer._format_content_pieces(self)])
             result.append('\t}')
         else:
@@ -292,6 +292,21 @@ class Measure(FixedDurationContainer):
         return contexttools.get_effective_time_signature(self).has_non_power_of_two_denominator
 
     @property
+    def implied_prolation(self):
+        '''Implied prolation of measure time signature::
+
+            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
+
+        ::
+
+            >>> measure.implied_prolation
+            Multiplier(2, 3)
+
+        Return multiplier.
+        '''
+        return contexttools.get_effective_time_signature(self).implied_prolation
+
+    @property
     def is_overfull(self):
         '''.. versionadded:: 1.1
 
@@ -382,7 +397,6 @@ class Measure(FixedDurationContainer):
 
         Return multiplier.
         '''
-        #return contexttools.get_effective_time_signature(self).multiplier
         return contexttools.get_effective_time_signature(self).implied_prolation
 
     @property

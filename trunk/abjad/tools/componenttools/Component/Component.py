@@ -79,7 +79,7 @@ class Component(AbjadObject):
         result = []
         parent = self.parent
         while parent is not None:
-            result.append(getattr(parent, 'multiplier', fractions.Fraction(1)))
+            result.append(getattr(parent, 'implied_prolation', fractions.Fraction(1)))
             parent = parent.parent
         return result
 

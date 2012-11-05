@@ -25,6 +25,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.has_power_of_two_denominator
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.implied_prolation
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_full
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_misfilled

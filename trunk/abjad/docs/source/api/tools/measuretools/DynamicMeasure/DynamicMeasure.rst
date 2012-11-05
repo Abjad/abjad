@@ -29,6 +29,10 @@ Read-only Properties
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 
+.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.implied_prolation
+
+    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
+
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.is_full
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`

@@ -139,8 +139,7 @@ def split_container_at_index(component, i, fracture_spanners=False):
             return component, None
 
     # remember container multiplier, if any
-    #container_multiplier = getattr(component.duration, 'multiplier', None)
-    container_multiplier = getattr(component, 'multiplier', None)
+    container_multiplier = getattr(component, 'implied_prolation', None)
 
     # partition music of input container
     left_music = component[:i]
