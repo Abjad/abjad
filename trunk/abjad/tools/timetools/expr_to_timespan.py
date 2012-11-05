@@ -48,9 +48,11 @@ def expr_to_timespan(expr):
     '''
     from abjad.tools import timetools
 
-    if isinstance(expr, timetools.SymbolicTimespan):
+    #if isinstance(expr, symbolictimetools.SymbolicTimespan):
+    #    return expr
+    if 'SymbolicTimespan' in expr.__class__.__name__:
         return expr
-    if hasattr(expr, 'timespan'):
+    elif hasattr(expr, 'timespan'):
         return expr.timespan
     elif hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
         return timetools.LiteralTimespan(start_offset=expr.start_offset, stop_offset=expr.stop_offset)

@@ -1,8 +1,8 @@
 from experimental.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.selectortools.SingleSegmentSelector import SingleSegmentSelector
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
-from abjad.tools.timetools.SymbolicOffset import SymbolicOffset
-from abjad.tools.timetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
+from experimental.symbolictimetools.SymbolicOffset import SymbolicOffset
+from experimental.symbolictimetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_SingleContextSetting___repr___01():

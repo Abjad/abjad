@@ -3,8 +3,8 @@ from experimental import *
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from abjad.tools.timetools.SymbolicOffset import SymbolicOffset
-from abjad.tools.timetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
+from experimental.symbolictimetools.SymbolicOffset import SymbolicOffset
+from experimental.symbolictimetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_MultipleContextSettingInventory_storage_format_01():

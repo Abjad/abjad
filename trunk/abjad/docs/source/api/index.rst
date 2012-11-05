@@ -1744,7 +1744,6 @@ Composition packages
    :maxdepth: 1
 
    tools/timetools/Inequality/Inequality
-   tools/timetools/SymbolicTimespan/SymbolicTimespan
 
 .. rubric:: concrete classes
 
@@ -1752,10 +1751,7 @@ Composition packages
    :maxdepth: 1
 
    tools/timetools/LiteralTimespan/LiteralTimespan
-   tools/timetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
    tools/timetools/OffsetInequality/OffsetInequality
-   tools/timetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
-   tools/timetools/SymbolicOffset/SymbolicOffset
    tools/timetools/TimespanInequality/TimespanInequality
    tools/timetools/TimespanInventory/TimespanInventory
 

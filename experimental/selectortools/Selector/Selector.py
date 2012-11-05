@@ -1,6 +1,6 @@
 import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from abjad.tools import timetools
+from experimental import symbolictimetools
 
 
 class Selector(AbjadObject):
@@ -53,7 +53,7 @@ class Selector(AbjadObject):
 
         Return timespan object.
         '''
-        return timetools.SingleSourceSymbolicTimespan(selector=self)
+        return symbolictimetools.SingleSourceSymbolicTimespan(selector=self)
 
     ### PUBLIC METHODS ###
 

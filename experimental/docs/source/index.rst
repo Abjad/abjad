@@ -318,3 +318,22 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/statalservertools/StatalServer/StatalServer
+
+:py:mod:`symbolictimetools <experimental.symbolictimetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   experimental/symbolictimetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
+   experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
