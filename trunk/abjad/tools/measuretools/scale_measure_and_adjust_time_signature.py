@@ -34,7 +34,7 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
 
     old_time_signature = contexttools.get_effective_time_signature(measure)
     old_pair = (old_time_signature.numerator, old_time_signature.denominator)
-    old_multiplier = old_time_signature.multiplier
+    old_multiplier = old_time_signature.implied_prolation
     old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
 
     multiplied_pair = mathtools.NonreducedFraction(old_multiplier_pair)
@@ -77,7 +77,7 @@ def scale_measure_and_adjust_time_signature(measure, multiplier=1):
         new_time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_time_signature.attach(measure)
-        remaining_multiplier = multiplier / new_time_signature.multiplier
+        remaining_multiplier = multiplier / new_time_signature.implied_prolation
         if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     return measure

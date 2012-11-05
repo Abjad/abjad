@@ -54,6 +54,6 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, it
     for i, measure in enumerate(iterationtools.iterate_measures_in_expr(expr)):
         if iterctrl(measure, i):
             time_signature = contexttools.get_effective_time_signature(measure)
-            written_duration = time_signature.duration / time_signature.multiplier
+            written_duration = time_signature.duration / time_signature.implied_prolation
             notes = notetools.make_notes(0, written_duration, big_endian=big_endian)
             measure[:] = notes

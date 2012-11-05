@@ -77,7 +77,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
         # find candidate duration of new element plus current measure
         current_element = new_contents[0]
-        multiplier = current_time_signature.multiplier
+        multiplier = current_time_signature.implied_prolation
         preprolated_duration = current_element.preprolated_duration
         prolated_duration = multiplier * preprolated_duration
         candidate_duration = current_measure.prolated_duration + prolated_duration

@@ -51,7 +51,8 @@ def move_full_measure_tuplet_prolation_to_measure_time_signature(expr):
                 time_signature = contexttools.TimeSignatureMark((numerator, denominator))
                 contexttools.detach_time_signature_marks_attached_to_component(measure)
                 time_signature.attach(measure)
-                time_signature_multiplier = contexttools.get_effective_time_signature(measure).multiplier
+                time_signature_multiplier = \
+                    contexttools.get_effective_time_signature(measure).implied_prolation
                 written_adjustment = tuplet_multiplier / time_signature_multiplier
                 componenttools.move_parentage_and_spanners_from_components_to_components(
                     [tuplet], tuplet[:])

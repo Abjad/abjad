@@ -19,6 +19,7 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
             skip = skiptools.Skip(1)
             # allow zero-update iteration
             time_siganture = contexttools.get_effective_time_signature(measure)
-            skip.duration_multiplier = time_siganture.duration / time_siganture.multiplier
+            #skip.duration_multiplier = time_siganture.duration / time_siganture.multiplier
+            skip.duration_multiplier = time_siganture.duration / time_siganture.implied_prolation
             measure[:] = [skip]
             _withdraw_component_from_attached_spanners(measure)

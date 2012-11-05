@@ -382,7 +382,8 @@ class Measure(FixedDurationContainer):
 
         Return multiplier.
         '''
-        return contexttools.get_effective_time_signature(self).multiplier
+        #return contexttools.get_effective_time_signature(self).multiplier
+        return contexttools.get_effective_time_signature(self).implied_prolation
 
     @property
     def preprolated_duration(self):
@@ -400,7 +401,8 @@ class Measure(FixedDurationContainer):
         Return duration.
         '''
         from abjad.tools import contexttools
-        return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
+        #return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
+        return contexttools.get_effective_time_signature(self).implied_prolation * self.contents_duration
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 

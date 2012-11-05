@@ -20,38 +20,6 @@ class Multiplier(Duration):
 
     ### PUBLIC PROPERTIES ###
 
-#    @property
-#    def implied_prolation(self):
-#        r'''.. versionadded:: 2.11
-#
-#        Implied prolation of multiplier::
-#
-#            >>> for denominator in range(1, 16 + 1):
-#            ...     multiplier = Multiplier(1, denominator)
-#            ...     print '{}\t{}'.format(multiplier, multiplier.implied_prolation)
-#            ... 
-#            1       1
-#            1/2     1
-#            1/3     2/3
-#            1/4     1
-#            1/5     4/5
-#            1/6     2/3
-#            1/7     4/7
-#            1/8     1
-#            1/9     8/9
-#            1/10    4/5
-#            1/11    8/11
-#            1/12    2/3
-#            1/13    8/13
-#            1/14    4/7
-#            1/15    8/15
-#            1/16    1
-#
-#        Return new multipler.
-#        '''
-#        numerator = mathtools.greatest_power_of_two_less_equal(self.denominator)
-#        return type(self)(numerator, self.denominator)
-
     @property
     def is_proper_tuplet_multiplier(self):
         '''.. versionadded:: 2.11

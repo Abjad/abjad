@@ -107,11 +107,11 @@ def fuse_measures(measures):
     for measure in measures:
         # scale before reassignment to prevent tie chain scale drama
         multiplier = \
-            contexttools.get_effective_time_signature(measure).multiplier / new_time_signature.multiplier
+            contexttools.get_effective_time_signature(measure).implied_prolation / \
+            new_time_signature.implied_prolation
         containertools.scale_contents_of_container(measure, multiplier)
         measure_music = measure[:]
         _switch_components_to_parent(measure_music, None)
-        #containertools.scale_contents_of_container(measure_music, multiplier)
         music += measure_music
 
     new_measure = measuretools.Measure(new_time_signature, music)
