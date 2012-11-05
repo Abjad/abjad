@@ -468,3 +468,37 @@ class TimeSignatureMark(ContextMark):
         Return time signature mark.
         '''
         return ContextMark.detach(self)
+
+    def with_power_of_two_denominator(self, contents_multiplier=durationtools.Multiplier(1)):
+        r'''Create new time signature equivalent to current
+        time signature with power-of-two denominator.
+
+            >>> time_signature = contexttools.TimeSignatureMark((3, 12))
+
+        ::
+
+            >>> time_signature.with_power_of_two_denominator()
+            TimeSignatureMark((2, 8))
+
+        Return new time signature mark.
+        '''
+        # check input
+        contents_multiplier = durationtools.Multiplier(contents_multiplier)
+    
+        # save non_power_of_two time_signature and denominator
+        non_power_of_two_denominator = self.denominator
+
+        # find power_of_two denominator
+        if contents_multiplier == durationtools.Multiplier(1):
+            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+                non_power_of_two_denominator)
+        else:
+            power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(
+                non_power_of_two_denominator, 1)
+
+        # find power_of_two pair
+        non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
+        power_of_two_pair = non_power_of_two_pair.with_denominator(power_of_two_denominator)
+
+        # return new power_of_two time signature mark
+        return type(self)(power_of_two_pair)

@@ -43,6 +43,8 @@ Methods
 
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.detach
 
+.. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.with_power_of_two_denominator
+
 Special Methods
 ---------------
 
