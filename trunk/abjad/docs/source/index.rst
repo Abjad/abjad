@@ -38,6 +38,7 @@ Examples
     examples/ferneyhough/index
     examples/ligeti/index
     examples/mozart/index
+    examples/part/index
 
 System Overview
 ---------------
