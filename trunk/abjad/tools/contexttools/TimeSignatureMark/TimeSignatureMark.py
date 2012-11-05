@@ -280,21 +280,6 @@ class TimeSignatureMark(ContextMark):
             return result
 
     @property
-    def multiplier(self):
-        r'''Time signature multiplier.
-
-            >>> contexttools.TimeSignatureMark((3, 8)).multiplier
-            Multiplier(1, 1)
-
-        Defined equal to time signature implied prolation.
-
-        .. note:: property is deprecated. Use `implied_prolation` instead.
-
-        Return multiplier.
-        '''
-        return self.implied_prolation
-
-    @property
     def pair(self):
         '''.. versionadded:: 2.8
 
