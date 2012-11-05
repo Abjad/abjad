@@ -259,6 +259,8 @@ class ConcreteInterpreter(Interpreter):
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
         for rhythm_quadruple in rhythm_quadruples:
+            #self._debug(rhythm_quadruple, 'rhythm quadruple')
+            #print '' # debug
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
             start_offset = durationtools.Offset(start_offset)
             stop_offset = durationtools.Offset(stop_offset)
@@ -280,6 +282,12 @@ class ConcreteInterpreter(Interpreter):
                 else:
                     last_start_offset = result.pop()[1]
                     result.append((rhythm_command.request, last_start_offset, stop_offset, rhythm_command))
+                # this replaces the reestablishment call
+                last_entry = result.pop()
+                result.append(
+                    (last_entry[0], rhythm_command.start_offset, rhythm_command.stop_offset, rhythm_command))
+                #self._debug_values(result, 'RESULT')
+                #print '' # debug
             else:
                 raise TypeError(rhythm_command.request)
         return result
@@ -413,9 +421,9 @@ class ConcreteInterpreter(Interpreter):
     def interpret_rhythm(self):
         self.initialize_region_expression_inventories_for_attribute('rhythm')
         self.populate_all_region_commands_for_attribute('rhythm')
-        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'region commands')
+        #self._debug_values(self.score_specification.all_rhythm_region_commands, 'all rhythm region commands')
         self.populate_all_rhythm_quintuples()
-        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'quintuples')
+        #self._debug_values(self.score_specification.all_rhythm_quintuples, 'all rhythm quintuples')
         self.make_rhythm_region_expressions()
         self.dump_rhythm_region_expressions_into_voices()
 
@@ -479,6 +487,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(voice, 'voice')
         #self._debug(voice_division_list, 'voice division list')
         rhythm_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
+        #self._debug_values(rhythm_commands, 'rhythm commands')
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         #self._debug(rhythm_command_durations, 'rcd')
         division_region_expressions = \
@@ -523,9 +532,8 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
-        rhythm_quadruples = self.reestablish_rhythm_material_request_offsets(rhythm_quadruples)
-        #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quintuples = [(voice.name,) + x for x in rhythm_quadruples]
+        #print '' # debug
         return rhythm_quintuples
 
     def make_rhythm_region_expression(
@@ -658,8 +666,10 @@ class ConcreteInterpreter(Interpreter):
     def populate_all_rhythm_quintuples(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
             voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
+            #self._debug(voice_division_list, 'vdl')
             if voice_division_list:
                 rhythm_quintuples = self.make_rhythm_quintuples_for_voice(voice, voice_division_list)
+                #self._debug_values(rhythm_quintuples, 'rq')
                 self.score_specification.all_rhythm_quintuples.extend(rhythm_quintuples)
 
     def populate_all_region_commands_for_attribute(self, attribute):
@@ -669,16 +679,17 @@ class ConcreteInterpreter(Interpreter):
                     region_commands = self.get_division_commands_for_voice(voice)
                 elif attribute == 'rhythm':
                     region_commands = self.get_rhythm_commands_for_voice(voice)
-#                elif attribute == 'time_signatures':
-#                    region_commands = \
-#                        segment_specification.single_context_settings_by_context.score_context_proxy.get_settings(
-#                        attribute='time_signatures')
-#                    region_commands = region_commands[-1:]
                 else:
                     raise ValueError(attribute)
+#                if voice.name == 'Voice 2' and attribute == 'rhythm':
+#                    self._debug_values(region_commands, 'region commands')
                 region_commands = self.fuse_like_commands(region_commands)
+#                if voice.name == 'Voice 2' and attribute == 'rhythm':
+#                    self._debug_values(region_commands, 'region commands')
                 region_commands = self.supply_missing_region_commands_for_attribute(
                     region_commands, voice, attribute)
+#                if voice.name == 'Voice 2' and attribute == 'rhythm':
+#                    self._debug_values(region_commands, 'region commands')
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
                 self.score_specification.contexts[voice.name][key][:] = region_commands[:]
@@ -686,6 +697,11 @@ class ConcreteInterpreter(Interpreter):
                 for region_command in region_commands:
                     if region_command not in all_region_commands:
                         all_region_commands.append(region_command)
+#                if voice.name == 'Voice 2' and attribute == 'rhythm':
+#                    self._debug_values(self.score_specification.contexts['Voice 2']['rhythm_region_commands'], 
+#                        'region commands')
+#                if voice.name == 'Voice 2' and attribute == 'rhythm':
+#                    self._debug_values(all_region_commands, 'all region commands')
 
     # TODO: eventually merge with self.populate_all_region_commands_for_attribute()
     def populate_all_time_signature_commands(self):
@@ -697,19 +713,6 @@ class ConcreteInterpreter(Interpreter):
                 continue
             time_signature_setting = time_signature_settings[-1]
             self.score_specification.all_time_signature_commands.append(time_signature_setting)
-
-    def reestablish_rhythm_material_request_offsets(self, rhythm_quadruples):
-        result = []
-        for rhythm_quadruple in rhythm_quadruples:
-            if isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
-                rhythm_command = rhythm_quadruple[-1]
-                assert isinstance(rhythm_command, settingtools.RhythmCommand)
-                start_offset = rhythm_command.start_offset
-                stop_offset = rhythm_command.stop_offset
-                result.append((rhythm_quadruple[0], start_offset, stop_offset, rhythm_command))
-            else:
-                result.append(rhythm_quadruple)
-        return result
 
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
