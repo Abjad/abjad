@@ -259,8 +259,6 @@ class ConcreteInterpreter(Interpreter):
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
         for rhythm_quadruple in rhythm_quadruples:
-            #self._debug(rhythm_quadruple, 'rhythm quadruple')
-            #print '' # debug
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
             start_offset = durationtools.Offset(start_offset)
             stop_offset = durationtools.Offset(stop_offset)
@@ -272,22 +270,18 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
-                # maybe smarter to do all of these comparisons on command rather than request
-                if not result:
-                    result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
-                elif not isinstance(result[-1][0], requesttools.MaterialRequest):
-                    result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
-                elif rhythm_command.request != result[-1][0]:
-                    result.append((rhythm_command.request, start_offset, stop_offset, rhythm_command))
-                else:
+                if result and rhythm_command.request == result[-1][0]:
                     last_start_offset = result.pop()[1]
-                    result.append((rhythm_command.request, last_start_offset, stop_offset, rhythm_command))
-                # this replaces the reestablishment call
-                last_entry = result.pop()
-                result.append(
-                    (last_entry[0], rhythm_command.start_offset, rhythm_command.stop_offset, rhythm_command))
-                #self._debug_values(result, 'RESULT')
-                #print '' # debug
+                    new_entry = (rhythm_command.request,
+                        last_start_offset,
+                        stop_offset,
+                        rhythm_command)
+                else:
+                    new_entry = (rhythm_command.request, 
+                            rhythm_command.start_offset, 
+                            rhythm_command.stop_offset, 
+                            rhythm_command)
+                result.append(new_entry)
             else:
                 raise TypeError(rhythm_command.request)
         return result
@@ -533,7 +527,6 @@ class ConcreteInterpreter(Interpreter):
         rhythm_quadruples = self.filter_rhythm_quadruples(rhythm_quadruples)
         #self._debug_values(rhythm_quadruples, 'rhythm quadruples')
         rhythm_quintuples = [(voice.name,) + x for x in rhythm_quadruples]
-        #print '' # debug
         return rhythm_quintuples
 
     def make_rhythm_region_expression(

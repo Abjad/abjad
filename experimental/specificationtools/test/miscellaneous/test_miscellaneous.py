@@ -1,13 +1,11 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_miscellaneous_01():
     '''Voice 2 rhythms interpret incorrectly.
     Fix this and then rename test and house somewhere appropriate.
     '''
-    py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
