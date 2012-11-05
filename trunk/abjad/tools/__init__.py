@@ -41,6 +41,7 @@ from abjad.tools import offsettools
 from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools
 from abjad.tools import resttools
+from abjad.tools import rhythmmakertools
 from abjad.tools import rhythmtreetools
 from abjad.tools import schemetools
 from abjad.tools import scoretemplatetools
@@ -56,7 +57,6 @@ from abjad.tools import tietools
 from abjad.tools import timeintervaltools
 from abjad.tools import timesignaturetools
 from abjad.tools import timetools
-from abjad.tools import rhythmmakertools # realphabetize me?
 from abjad.tools import tonalitytools
 from abjad.tools import tuplettools
 from abjad.tools import verticalitytools

@@ -2,7 +2,7 @@ import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Inequality(AbjadObject):
+class TimeInequality(AbjadObject):
     r'''.. versionadded:: 2.11
 
     Time-object inequality.

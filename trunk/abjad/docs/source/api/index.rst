@@ -1743,7 +1743,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/timetools/Inequality/Inequality
+   tools/timetools/TimeInequality/TimeInequality
 
 .. rubric:: concrete classes
 

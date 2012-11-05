@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timetools.TimespanInequality.TimespanInequality.TimespanInequality.template
 
-    Inherited from :py:class:`timetools.Inequality <abjad.tools.timetools.Inequality.Inequality.Inequality>`
+    Inherited from :py:class:`timetools.TimeInequality <abjad.tools.timetools.TimeInequality.TimeInequality.TimeInequality>`
 
 .. autoattribute:: abjad.tools.timetools.TimespanInequality.TimespanInequality.TimespanInequality.timespan
 
