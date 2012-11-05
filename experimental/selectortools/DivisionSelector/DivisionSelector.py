@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from experimental import divisiontools
-from experimental import timetools
+from abjad.tools import timetools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 

@@ -1,6 +1,6 @@
 import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental import timetools
+from abjad.tools import timetools
 
 
 class Selector(AbjadObject):

@@ -1735,6 +1735,70 @@ Composition packages
    tools/timesignaturetools/establish_metrical_hierarchy
    tools/timesignaturetools/make_gridded_test_rhythm
 
+:py:mod:`timetools <abjad.tools.timetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timetools/Inequality/Inequality
+   tools/timetools/SymbolicTimespan/SymbolicTimespan
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timetools/LiteralTimespan/LiteralTimespan
+   tools/timetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   tools/timetools/OffsetInequality/OffsetInequality
+   tools/timetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
+   tools/timetools/SymbolicOffset/SymbolicOffset
+   tools/timetools/TimespanInequality/TimespanInequality
+   tools/timetools/TimespanInventory/TimespanInventory
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timetools/expr_to_timespan
+   tools/timetools/offset_happens_after_timespan_starts
+   tools/timetools/offset_happens_after_timespan_stops
+   tools/timetools/offset_happens_before_timespan_starts
+   tools/timetools/offset_happens_before_timespan_stops
+   tools/timetools/offset_happens_during_timespan
+   tools/timetools/offset_happens_when_timespan_starts
+   tools/timetools/offset_happens_when_timespan_stops
+   tools/timetools/timespan_2_contains_timespan_1_improperly
+   tools/timetools/timespan_2_curtails_timespan_1
+   tools/timetools/timespan_2_delays_timespan_1
+   tools/timetools/timespan_2_happens_during_timespan_1
+   tools/timetools/timespan_2_intersects_timespan_1
+   tools/timetools/timespan_2_is_congruent_to_timespan_1
+   tools/timetools/timespan_2_overlaps_all_of_timespan_1
+   tools/timetools/timespan_2_overlaps_only_start_of_timespan_1
+   tools/timetools/timespan_2_overlaps_only_stop_of_timespan_1
+   tools/timetools/timespan_2_overlaps_start_of_timespan_1
+   tools/timetools/timespan_2_overlaps_stop_of_timespan_1
+   tools/timetools/timespan_2_starts_after_timespan_1_starts
+   tools/timetools/timespan_2_starts_after_timespan_1_stops
+   tools/timetools/timespan_2_starts_before_timespan_1_starts
+   tools/timetools/timespan_2_starts_before_timespan_1_stops
+   tools/timetools/timespan_2_starts_during_timespan_1
+   tools/timetools/timespan_2_starts_when_timespan_1_starts
+   tools/timetools/timespan_2_starts_when_timespan_1_stops
+   tools/timetools/timespan_2_stops_after_timespan_1_starts
+   tools/timetools/timespan_2_stops_after_timespan_1_stops
+   tools/timetools/timespan_2_stops_before_timespan_1_starts
+   tools/timetools/timespan_2_stops_before_timespan_1_stops
+   tools/timetools/timespan_2_stops_during_timespan_1
+   tools/timetools/timespan_2_stops_when_timespan_1_starts
+   tools/timetools/timespan_2_stops_when_timespan_1_stops
+   tools/timetools/timespan_2_trisects_timespan_1
+
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

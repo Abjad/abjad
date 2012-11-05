@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools 
 from experimental import requesttools 
-from experimental import timetools 
+from abjad.tools import timetools 
 
 
 class Command(AbjadObject):
