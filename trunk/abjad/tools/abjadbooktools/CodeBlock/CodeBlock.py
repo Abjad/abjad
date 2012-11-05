@@ -14,7 +14,7 @@ class CodeBlock(abctools.AbjadObject):
 
     def __init__(self, lines, starting_line_number, ending_line_number,
         hide=False, strip_prompt=False):
-        assert starting_line_number < ending_line_number
+        assert starting_line_number <= ending_line_number
         self._lines = tuple(lines)
         self._starting_line_number = starting_line_number
         self._ending_line_number = ending_line_number
@@ -45,10 +45,19 @@ class CodeBlock(abctools.AbjadObject):
 
         pipe.write('\n')
 
+        previous_line_was_empty = False
+
         for line in self.lines:
+
+            #print 'LINE:  ', line
+
             hide = self.hide
 
-            current = self.read(pipe)
+            if not previous_line_was_empty:
+                current = self.read(pipe)
+
+
+            #print '  READ', current
 
             if line.endswith('<hide'):
                 hide = True
@@ -78,10 +87,18 @@ class CodeBlock(abctools.AbjadObject):
                 grouped_results.append(result)
                 grouped_results.append(file_name)
                 result = []
-            else:
-                pipe.write(line)
+                pipe.write('\n')
+                previous_line_was_empty = False
 
-            pipe.write('\n')
+            else:
+                #print '  LINE?', line
+                if len(line.strip()):
+                    #print '  PIPE:', line
+                    pipe.write(line)
+                    pipe.write('\n')
+                    previous_line_was_empty = False
+                else:
+                    previous_line_was_empty = True
 
         result.extend(self.read(pipe))
         if result[-1] == '>>> ':

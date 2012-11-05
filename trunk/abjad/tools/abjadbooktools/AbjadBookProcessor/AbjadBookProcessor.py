@@ -1,12 +1,14 @@
+import importlib
+import inspect
+import os
+import shutil
+import subprocess
+import tempfile
 from abjad.tools import abctools
 from abjad.tools import sequencetools
 from abjad.tools import documentationtools
 from abjad.tools.abjadbooktools.CodeBlock import CodeBlock
 from abjad.tools.abjadbooktools.OutputFormat import OutputFormat
-import os
-import shutil
-import subprocess
-import tempfile
 
 
 class AbjadBookProcessor(abctools.AbjadObject):
@@ -120,23 +122,49 @@ class AbjadBookProcessor(abctools.AbjadObject):
                     in_block = True
                     block = [line]
                     starting_line_number = i
+
             elif line.startswith('</abjad>'):
                 if in_block:
                     in_block = False
                     hide = 'hide=true' in block[0]
                     strip_prompt = 'strip_prompt=true' in block[0]
-                    code_block = CodeBlock(block[1:],
+                    stopping_line_number = i
+                    code_block = CodeBlock(
+                        block[1:],
                         starting_line_number,
-                        i,
+                        stopping_line_number,
                         hide=hide,
-                        strip_prompt=strip_prompt)
+                        strip_prompt=strip_prompt
+                        )
                     blocks.append(code_block)
                 else:
                     raise Exception('Extra closing tag at line {}'.format(i))
+
             elif in_block:
                 block.append(line)
+
+            elif line.startswith('<abjadextract '):
+                block = []
+                starting_line_number = stopping_line_number = i
+                hide = 'hide=true' in line
+                strip_prompt = 'strip_prompt=true' in line
+                code_address = line.partition('<abjadextract ')[-1].partition(' \>')[0] 
+                module_name, dot, attr_name = code_address.rpartition('.')
+                module = importlib.import_module(module_name)
+                attr = getattr(module, attr_name)
+                code_lines = inspect.getsource(attr).splitlines()
+                code_block = CodeBlock(
+                    code_lines,
+                    starting_line_number,
+                    stopping_line_number,
+                    hide=hide,
+                    strip_prompt=strip_prompt
+                    )
+                blocks.append(code_block)
+
         if in_block:
             raise Exception('Unterminated tag at EOF.')
+
         return tuple(blocks)
 
     def _extract_ly_filenames(self, code_blocks):
