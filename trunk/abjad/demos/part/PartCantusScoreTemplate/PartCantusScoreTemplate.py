@@ -30,7 +30,10 @@ class PartCantusScoreTemplate(ScoreTemplate):
         first_violin_voice = voicetools.Voice(name='First Violin Voice')
         first_violin_staff = stafftools.Staff([first_violin_voice], name='First Violin Staff')
         contexttools.ClefMark('treble')(first_violin_staff)
-        instrumenttools.Violin('Violin I', 'Vln. I')(first_violin_staff)
+        instrumenttools.Violin(
+            instrument_name_markup='Violin I', 
+            short_instrument_name_markup='Vln. I'
+            )(first_violin_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(first_violin_staff)
         # contexttools.TimeSignatureMark((6, 4))(first_violin_staff)
 
@@ -38,7 +41,10 @@ class PartCantusScoreTemplate(ScoreTemplate):
         second_violin_voice = voicetools.Voice(name='Second Violin Voice')
         second_violin_staff = stafftools.Staff([second_violin_voice], name='Second Violin Staff')
         contexttools.ClefMark('treble')(second_violin_staff)
-        instrumenttools.Violin('Violin II', 'Vln. II')(second_violin_staff)
+        instrumenttools.Violin(
+            instrument_name_markup='Violin II', 
+            short_instrument_name_markup='Vln. II'
+            )(second_violin_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(second_violin_staff)
         # contexttools.TimeSignatureMark((6, 4))(second_violin_staff)
 
@@ -62,7 +68,7 @@ class PartCantusScoreTemplate(ScoreTemplate):
         bass_voice = voicetools.Voice(name='Bass Voice')
         bass_staff = stafftools.Staff([bass_voice], name='Bass Staff')
         contexttools.ClefMark('bass')(bass_staff)
-        instrumenttools.ContraBass()(bass_staff)
+        instrumenttools.Contrabass()(bass_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(bass_staff)
         # contexttools.TimeSignatureMark((6, 4))(bass_staff)
 
