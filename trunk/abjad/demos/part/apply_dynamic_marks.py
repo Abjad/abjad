@@ -18,23 +18,23 @@ def apply_dynamic_marks(score):
     contexttools.DynamicMark('pp')(voice[-1][0])
 
     voice = score['First Violin Voice']
-    contexttools.DynamicMark('ppp')(voice[7][1])
+    contexttools.DynamicMark('ppp')(voice[6][1])
     contexttools.DynamicMark('pp')(voice[15][0])
     contexttools.DynamicMark('p')(voice[22][3])
-    contexttools.DynamicMark('mp')(voice[32][0])
-    contexttools.DynamicMark('mf')(voice[39][3])
+    contexttools.DynamicMark('mp')(voice[31][0])
+    contexttools.DynamicMark('mf')(voice[38][3])
     contexttools.DynamicMark('f')(voice[47][0])
-    contexttools.DynamicMark('ff')(voice[56][0])
+    contexttools.DynamicMark('ff')(voice[55][2])
     contexttools.DynamicMark('fff')(voice[62][2])
 
-    voie = score['Second Violin Voice']
+    voice = score['Second Violin Voice']
     contexttools.DynamicMark('pp')(voice[7][0])
     contexttools.DynamicMark('p')(voice[12][0])
-    contexttools.DynamicMark('p')(voice[13][0])
-    contexttools.DynamicMark('mp')(voice[25][0])
+    contexttools.DynamicMark('p')(voice[16][0])
+    contexttools.DynamicMark('mp')(voice[25][1])
     contexttools.DynamicMark('mf')(voice[34][1])
     contexttools.DynamicMark('f')(voice[44][1])
-    contexttools.DynamicMark('ff')(voice[54][1])
+    contexttools.DynamicMark('ff')(voice[54][0])
     contexttools.DynamicMark('fff')(voice[62][1])
 
     voice = score['Viola Voice']
@@ -42,6 +42,7 @@ def apply_dynamic_marks(score):
     contexttools.DynamicMark('mp')(voice[19][1])
     contexttools.DynamicMark('mf')(voice[30][0])
     contexttools.DynamicMark('f')(voice[36][0])
+    contexttools.DynamicMark('f')(voice[42][0])
     contexttools.DynamicMark('ff')(voice[52][0])
     contexttools.DynamicMark('fff')(voice[62][0])
 
@@ -50,7 +51,7 @@ def apply_dynamic_marks(score):
     contexttools.DynamicMark('mp')(voice[21][0])
     contexttools.DynamicMark('mf')(voice[31][0])
     contexttools.DynamicMark('f')(voice[43][0])
-    contexttools.DynamicMark('ff')(voice[52][0])
+    contexttools.DynamicMark('ff')(voice[52][1])
     contexttools.DynamicMark('fff')(voice[62][0])
 
     voice = score['Bass Voice']
@@ -58,5 +59,5 @@ def apply_dynamic_marks(score):
     contexttools.DynamicMark('mf')(voice[27][0])
     contexttools.DynamicMark('f')(voice[39][0])
     contexttools.DynamicMark('ff')(voice[51][0])
-    contexttools.DynamicMark('fff')(voice[63][0])
+    contexttools.DynamicMark('fff')(voice[62][0])
 
