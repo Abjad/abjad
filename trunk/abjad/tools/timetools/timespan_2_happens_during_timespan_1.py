@@ -6,37 +6,6 @@ def timespan_2_happens_during_timespan_1(timespan_1=None, timespan_2=None, hold=
         >>> timetools.timespan_2_happens_during_timespan_1()
         TimespanInequality('timespan_1.start <= timespan_2.start <= timespan_2.stop <= timespan_1.stop')
 
-    Make timespan inequality indicating that expression 2 happens during segment ``'red'``::
-
-        >>> selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> timespan_inequality = timetools.timespan_2_happens_during_timespan_1(timespan_1=selector)
-
-    ::
-
-        >>> z(timespan_inequality)
-        timetools.TimespanInequality(
-            'timespan_1.start <= timespan_2.start <= timespan_2.stop <= timespan_1.stop',
-            timespan_1=selectortools.SingleSegmentSelector(
-                identifier='red'
-                )
-            )
-
-    Make timespan inequality indicating that offset ``7/16`` happens during segment ``'red'``::
-
-        >>> timespan_inequality = timetools.timespan_2_happens_during_timespan_1(
-        ...     timespan_1=selector, timespan_2=durationtools.Offset(7, 16), hold=True)
-
-    ::
-
-        >>> z(timespan_inequality)
-        timetools.TimespanInequality(
-            'timespan_1.start <= timespan_2.start <= timespan_2.stop <= timespan_1.stop',
-            timespan_1=selectortools.SingleSegmentSelector(
-                identifier='red'
-                ),
-            timespan_2=durationtools.Offset(7, 16)
-            )
-
     Evaluate whether timespan ``[7/8, 8/8)`` happens during timespan ``[1/2, 3/2)``::
 
         >>> timetools.timespan_2_happens_during_timespan_1(

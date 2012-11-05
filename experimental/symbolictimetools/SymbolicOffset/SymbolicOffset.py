@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 # TODO: merge back to experimental
 class SymbolicOffset(AbjadObject):
-    r'''.. versionadded:: 2.11
+    r'''.. versionadded:: 1.0
 
     Infinitely thin vertical line coincident with an arbitrary object-relative offset in score.
 

@@ -3,7 +3,7 @@ from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
 class MixedSourceSymbolicTimespan(SymbolicTimespan):
-    r'''.. versionadded:: 2.11
+    r'''.. versionadded:: 1.0
 
     Mixed-source timespan.
 

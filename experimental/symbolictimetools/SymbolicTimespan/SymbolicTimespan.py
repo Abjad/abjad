@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SymbolicTimespan(AbjadObject):
-    r'''.. versionadded:: 2.11
+    r'''.. versionadded:: 1.0
 
     Base symbolic timespan class from which concrete 
     symbolic timespan classes inherit.
