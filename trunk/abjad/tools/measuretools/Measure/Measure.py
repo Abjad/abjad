@@ -385,21 +385,6 @@ class Measure(FixedDurationContainer):
         return self._measure_number
 
     @property
-    def multiplier(self):
-        '''Multiplier of measure time signature::
-
-            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
-
-        ::
-
-            >>> measure.multiplier
-            Multiplier(2, 3)
-
-        Return multiplier.
-        '''
-        return contexttools.get_effective_time_signature(self).implied_prolation
-
-    @property
     def preprolated_duration(self):
         '''Preprolated duration of measure::
 
@@ -415,7 +400,6 @@ class Measure(FixedDurationContainer):
         Return duration.
         '''
         from abjad.tools import contexttools
-        #return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
         return contexttools.get_effective_time_signature(self).implied_prolation * self.contents_duration
 
     ### READ / WRITE PUBLIC PROPERTIES ###

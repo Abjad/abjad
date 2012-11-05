@@ -47,8 +47,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.measure_number
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.multiplier
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.music
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
