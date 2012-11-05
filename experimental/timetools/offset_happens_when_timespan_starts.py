@@ -1,4 +1,4 @@
-def timepoint_happens_when_timespan_starts(timespan=None, timepoint=None, hold=False):
+def offset_happens_when_timespan_starts(timespan=None, timepoint=None, hold=False):
     r'''.. versionadded:: 1.0
 
     ::
@@ -7,7 +7,7 @@ def timepoint_happens_when_timespan_starts(timespan=None, timepoint=None, hold=F
 
     Make timepoint inequality indicating that `timepoint` happens when `timespan` starts::
 
-        >>> timetools.timepoint_happens_when_timespan_starts()
+        >>> timetools.offset_happens_when_timespan_starts()
         TimepointInequality('timepoint == timespan.start')
 
     '''

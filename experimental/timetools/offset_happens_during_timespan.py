@@ -1,4 +1,4 @@
-def timepoint_happens_during_timespan(timespan=None, timepoint=None, hold=False):
+def offset_happens_during_timespan(timespan=None, timepoint=None, hold=False):
     r'''.. versionadded:: 1.0
 
     ::
@@ -7,7 +7,7 @@ def timepoint_happens_during_timespan(timespan=None, timepoint=None, hold=False)
 
     Make timepoint inequality indicating that `timepoint` happens during `timespan`::
 
-        >>> timetools.timepoint_happens_during_timespan()
+        >>> timetools.offset_happens_during_timespan()
         TimepointInequality('timespan.start <= timepoint < timespan.stop')
 
     '''

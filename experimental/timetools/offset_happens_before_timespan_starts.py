@@ -1,4 +1,4 @@
-def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold=False):
+def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=False):
     r'''.. versionadded:: 1.0
 
     ::
@@ -7,7 +7,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
 
     Make timepoint inequality indicating that `timepoint` happens before `timespan` starts::
 
-        >>> timetools.timepoint_happens_before_timespan_starts()
+        >>> timetools.offset_happens_before_timespan_starts()
         TimepointInequality('timepoint < timespan.start')
 
     Make timepoint inequality indicating that timepoint ``1/2`` happens before `timespan` starts::
@@ -16,7 +16,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
 
     ::
 
-        >>> timepoint_inequality = timetools.timepoint_happens_before_timespan_starts(
+        >>> timepoint_inequality = timetools.offset_happens_before_timespan_starts(
         ...     timepoint=timepoint)
 
     ::
@@ -33,7 +33,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
 
     ::
 
-        >>> timepoint_inequality = timetools.timepoint_happens_before_timespan_starts(
+        >>> timepoint_inequality = timetools.offset_happens_before_timespan_starts(
         ...     timespan=timespan)
 
     ::
@@ -50,7 +50,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
     Make timepoint inequality indicating that timepoint ``1/2`` happens before 
     timespan ``[2, 8)`` starts::
 
-        >>> timepoint_inequality = timetools.timepoint_happens_before_timespan_starts(
+        >>> timepoint_inequality = timetools.offset_happens_before_timespan_starts(
         ...     timespan=timespan, timepoint=timepoint, hold=True)
 
     ::
@@ -68,7 +68,7 @@ def timepoint_happens_before_timespan_starts(timespan=None, timepoint=None, hold
     Evaluate timepoint inequality indicating that timepoint ``1/2`` happens before 
     timespan ``[2, 8)`` starts::
 
-        >>> timetools.timepoint_happens_before_timespan_starts(
+        >>> timetools.offset_happens_before_timespan_starts(
         ...     timespan=timespan, timepoint=timepoint, hold=False)
         True
 

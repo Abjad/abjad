@@ -349,13 +349,13 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/timetools/expr_to_timespan
-   experimental/timetools/timepoint_happens_after_timespan_starts
-   experimental/timetools/timepoint_happens_after_timespan_stops
-   experimental/timetools/timepoint_happens_before_timespan_starts
-   experimental/timetools/timepoint_happens_before_timespan_stops
-   experimental/timetools/timepoint_happens_during_timespan
-   experimental/timetools/timepoint_happens_when_timespan_starts
-   experimental/timetools/timepoint_happens_when_timespan_stops
+   experimental/timetools/offset_happens_after_timespan_starts
+   experimental/timetools/offset_happens_after_timespan_stops
+   experimental/timetools/offset_happens_before_timespan_starts
+   experimental/timetools/offset_happens_before_timespan_stops
+   experimental/timetools/offset_happens_during_timespan
+   experimental/timetools/offset_happens_when_timespan_starts
+   experimental/timetools/offset_happens_when_timespan_stops
    experimental/timetools/timespan_2_contains_timespan_1_improperly
    experimental/timetools/timespan_2_curtails_timespan_1
    experimental/timetools/timespan_2_delays_timespan_1

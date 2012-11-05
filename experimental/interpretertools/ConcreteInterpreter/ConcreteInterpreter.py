@@ -126,7 +126,7 @@ class ConcreteInterpreter(Interpreter):
             if not division_region_command.request == division_command_request:
                 timespan_inventory.append(division_region_command)
         #self._debug_values(timespan_inventory, 'timespan inventory')
-        timespan_inequality = timetools.timepoint_happens_during_timespan(
+        timespan_inequality = timetools.offset_happens_during_timespan(
             timepoint=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
@@ -727,7 +727,7 @@ class ConcreteInterpreter(Interpreter):
             if True:
                 if not rhythm_region_command.request == rhythm_command_request:
                     timespan_inventory.append(rhythm_region_command)
-        timespan_inequality = timetools.timepoint_happens_during_timespan(
+        timespan_inequality = timetools.offset_happens_during_timespan(
             timepoint=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
