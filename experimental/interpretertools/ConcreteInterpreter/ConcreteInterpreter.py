@@ -270,6 +270,7 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
+                # NEXT TODO: check to make sure that equality fails when *indices of rotation* differ!
                 if result and rhythm_command.request == result[-1][0]:
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command.request,
