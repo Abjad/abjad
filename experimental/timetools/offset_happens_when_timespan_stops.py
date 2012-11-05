@@ -1,23 +1,23 @@
-def offset_happens_when_timespan_stops(timespan=None, timepoint=None, hold=False):
+def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
     r'''.. versionadded:: 1.0
 
     ::
 
         >>> from experimental import *
 
-    Make timepoint inequality indicating that `timepoint` happens when `timespan` stops::
+    Make offset inequality indicating that `offset` happens when `timespan` stops::
 
         >>> timetools.offset_happens_when_timespan_stops()
-        OffsetInequality('timepoint == timespan.stop')
+        OffsetInequality('offset == timespan.stop')
 
     '''
     from experimental import timetools
 
-    timepoint_inequality = timetools.OffsetInequality(
-        'timepoint == timespan.stop',
-        timespan=timespan, timepoint=timepoint)
+    offset_inequality = timetools.OffsetInequality(
+        'offset == timespan.stop',
+        timespan=timespan, offset=offset)
 
-    if timepoint_inequality.is_fully_loaded and not hold:
-        return timepoint_inequality()
+    if offset_inequality.is_fully_loaded and not hold:
+        return offset_inequality()
     else:
-        return timepoint_inequality
+        return offset_inequality

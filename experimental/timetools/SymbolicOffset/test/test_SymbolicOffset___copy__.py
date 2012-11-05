@@ -5,10 +5,10 @@ from experimental import *
 
 def test_SymbolicOffset___copy___01():
 
-    timepoint_1 = timetools.SymbolicOffset(edge=Right, multiplier=fractions.Fraction(1, 3))
-    timepoint_2 = copy.deepcopy(timepoint_1)
+    offset_1 = timetools.SymbolicOffset(edge=Right, multiplier=fractions.Fraction(1, 3))
+    offset_2 = copy.deepcopy(offset_1)
 
-    assert isinstance(timepoint_1, timetools.SymbolicOffset)
-    assert isinstance(timepoint_2, timetools.SymbolicOffset)
-    assert not timepoint_1 is timepoint_2
-    assert timepoint_1 == timepoint_2
+    assert isinstance(offset_1, timetools.SymbolicOffset)
+    assert isinstance(offset_2, timetools.SymbolicOffset)
+    assert not offset_1 is offset_2
+    assert offset_1 == offset_2

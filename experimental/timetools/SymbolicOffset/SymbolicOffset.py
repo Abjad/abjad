@@ -6,9 +6,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class SymbolicOffset(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
+    Infinitely thin vertical line coincident with an arbitrary object-relative offset in score.
 
-    Symbolic timepoint indicating the left edge of score::
+    Symbolic offset indicating the left edge of score::
 
         >>> from experimental import *
 
@@ -17,27 +17,27 @@ class SymbolicOffset(AbjadObject):
         >>> timetools.SymbolicOffset()
         SymbolicOffset()
 
-    Symbolic timepoint indicating the right edge of score::
+    Symbolic offset indicating the right edge of score::
 
         >>> timetools.SymbolicOffset(edge=Right)
         SymbolicOffset(edge=Right)
 
-    Symbolic timepoint ``1/8`` of a whole note into score::
+    Symbolic offset ``1/8`` of a whole note into score::
 
         >>> timetools.SymbolicOffset(offset=durationtools.Offset(1, 8))
         SymbolicOffset(offset=Offset(1, 8))
 
-    Symbolic timepoint one third of the way into score::
+    Symbolic offset one third of the way into score::
 
         >>> timetools.SymbolicOffset(edge=Right, multiplier=Fraction(1, 3))
         SymbolicOffset(edge=Right, multiplier=Fraction(1, 3))
 
-    Symbolic timepoint ``1/8`` of a whole note after the first third of score::
+    Symbolic offset ``1/8`` of a whole note after the first third of score::
 
         >>> timetools.SymbolicOffset(edge=Right, multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
         SymbolicOffset(edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
 
-    Symbolic timepoint indicating the left edge of segment ``'red'``::
+    Symbolic offset indicating the left edge of segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
 
@@ -46,30 +46,30 @@ class SymbolicOffset(AbjadObject):
         >>> timetools.SymbolicOffset(selector=segment_selector)
         SymbolicOffset(selector=SingleSegmentSelector(identifier='red'))
 
-    Symbolic timepoint indicating the right edge of segment ``'red'``::
+    Symbolic offset indicating the right edge of segment ``'red'``::
 
         >>> timetools.SymbolicOffset(selector=segment_selector, edge=Right)
         SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right)
 
-    Symbolic timepoint indicating ``1/8`` of a whole note after the left edge of
+    Symbolic offset indicating ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
         >>> timetools.SymbolicOffset(selector=segment_selector, offset=durationtools.Offset(1, 8))
         SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), offset=Offset(1, 8))
 
-    Symbolic timepoint indicating one third of the way into segment ``'red'``::
+    Symbolic offset indicating one third of the way into segment ``'red'``::
 
         >>> timetools.SymbolicOffset(selector=segment_selector, edge=Right, multiplier=Fraction(1, 3))
         SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3))
 
-    Symbolic timepoint indicating ``1/8`` of a whole note after the right edge of the 
+    Symbolic offset indicating ``1/8`` of a whole note after the right edge of the 
     first third of segment ``'red'``::
     
         >>> timetools.SymbolicOffset(selector=segment_selector, edge=Right, 
         ... multiplier=Fraction(1, 3), offset=durationtools.Offset(1, 8))
         SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Fraction(1, 3), offset=Offset(1, 8))
 
-    Symbolic timepoint indicating the left edge of note ``10`` that starts
+    Symbolic offset indicating the left edge of note ``10`` that starts
     during segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
@@ -79,11 +79,11 @@ class SymbolicOffset(AbjadObject):
 
     ::
 
-        >>> timepoint = timetools.SymbolicOffset(selector=counttime_component_selector)
+        >>> offset = timetools.SymbolicOffset(selector=counttime_component_selector)
 
     ::
 
-        >>> z(timepoint)
+        >>> z(offset)
         timetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
                 inequality=timetools.TimespanInequality(
@@ -102,7 +102,7 @@ class SymbolicOffset(AbjadObject):
 
     Timepoint selectors can be arbitrary timespans. This allows recursion into the model.
 
-    Symbolic timepoint one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
+    Symbolic offset one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=stop)
@@ -110,11 +110,11 @@ class SymbolicOffset(AbjadObject):
 
     ::
     
-        >>> timepoint = timetools.SymbolicOffset(selector=timespan, edge=Right, multiplier=Fraction(1, 3))
+        >>> offset = timetools.SymbolicOffset(selector=timespan, edge=Right, multiplier=Fraction(1, 3))
 
     ::
     
-        >>> z(timepoint)
+        >>> z(offset)
         timetools.SymbolicOffset(
             selector=timetools.SingleSourceSymbolicTimespan(
                 selector=selectortools.SegmentSelector(
@@ -126,14 +126,14 @@ class SymbolicOffset(AbjadObject):
             multiplier=Fraction(1, 3)
             )
 
-    Symbolic timepoint indicating the right edge of note ``10`` that starts
+    Symbolic offset indicating the right edge of note ``10`` that starts
     during segment ``'red'``::
 
-        >>> timepoint = timetools.SymbolicOffset(selector=counttime_component_selector, edge=Right)
+        >>> offset = timetools.SymbolicOffset(selector=counttime_component_selector, edge=Right)
 
     ::
 
-        >>> z(timepoint)
+        >>> z(offset)
         timetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
                 inequality=timetools.TimespanInequality(
@@ -151,7 +151,7 @@ class SymbolicOffset(AbjadObject):
             edge=Right
             )
 
-    Symbolic timepoints are immutable.
+    Symbolic offsets are immutable.
     '''
 
     ### INITIALIZER ###
@@ -175,7 +175,7 @@ class SymbolicOffset(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
-        '''True when `other` is a timepoint with score object indicator,
+        '''True when `other` is a offset with score object indicator,
         edge and offset all indicating those of `self`.
         
         Otherwise false.
@@ -199,9 +199,9 @@ class SymbolicOffset(AbjadObject):
 
     @property
     def offset(self):
-        '''Symbolic timepoint offset specified by user.
+        '''Symbolic offset offset specified by user.
 
-            >>> timepoint.offset is None
+            >>> offset.offset is None
             True
 
         Value of none is interpreted as ``Offset(0)``.
@@ -212,9 +212,9 @@ class SymbolicOffset(AbjadObject):
 
     @property
     def edge(self):
-        '''Symbolic timepoint edge indicator specified by user.
+        '''Symbolic offset edge indicator specified by user.
         
-            >>> timepoint.edge
+            >>> offset.edge
             Right
 
         Value of none is interpreted as ``Left``.
@@ -225,9 +225,9 @@ class SymbolicOffset(AbjadObject):
 
     @property
     def multiplier(self):
-        '''Symbolic timepoint multiplier specified by user.
+        '''Symbolic offset multiplier specified by user.
 
-            >>> timepoint.multiplier is None
+            >>> offset.multiplier is None
             True
 
         Value of none is interpreted as ``Fraction(1)``.
@@ -238,9 +238,9 @@ class SymbolicOffset(AbjadObject):
 
     @property
     def selector(self):
-        '''Symbolic timepoint selector specified by user.
+        '''Symbolic offset selector specified by user.
         
-            >>> z(timepoint.selector)
+            >>> z(offset.selector)
             selectortools.CounttimeComponentSelector(
                 inequality=timetools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -263,9 +263,9 @@ class SymbolicOffset(AbjadObject):
 
     @property
     def start_segment_identifier(self):
-        '''Symbolic timepoint start segment identifier.
+        '''Symbolic offset start segment identifier.
 
-            >>> timepoint.start_segment_identifier
+            >>> offset.start_segment_identifier
             'red'
 
         Delegate to ``self.selector.start_segment_identifier``.
@@ -276,9 +276,9 @@ class SymbolicOffset(AbjadObject):
 
     @property
     def stop_segment_identifier(self):
-        '''Symbolic timepoint stop segment identifier.
+        '''Symbolic offset stop segment identifier.
 
-            >>> timepoint.stop_segment_identifier
+            >>> offset.stop_segment_identifier
             SegmentIdentifierExpression("'red' + 1")
 
         Delegate to ``self.selector.stop_segment_identifier``.
@@ -290,7 +290,7 @@ class SymbolicOffset(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_score_offset(self, score_specification, context_name):
-        '''Evaluate score offset of symbolic timepoint when applied
+        '''Evaluate score offset of symbolic offset when applied
         to `context_name` in `score_specification`.
 
         .. note:: add example.

@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.timetools.OffsetInequality.OffsetInequality.OffsetInequality.is_fully_loaded
 
+.. autoattribute:: experimental.timetools.OffsetInequality.OffsetInequality.OffsetInequality.offset
+
 .. autoattribute:: experimental.timetools.OffsetInequality.OffsetInequality.OffsetInequality.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -18,8 +20,6 @@ Read-only Properties
 .. autoattribute:: experimental.timetools.OffsetInequality.OffsetInequality.OffsetInequality.template
 
     Inherited from :py:class:`Inequality.Inequality <experimental.timetools.Inequality.Inequality.Inequality>`
-
-.. autoattribute:: experimental.timetools.OffsetInequality.OffsetInequality.OffsetInequality.timepoint
 
 .. autoattribute:: experimental.timetools.OffsetInequality.OffsetInequality.OffsetInequality.timespan
 

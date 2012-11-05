@@ -11,43 +11,43 @@ class OffsetInequality(Inequality):
 
     ### INITIALIZER ###
 
-    def __init__(self, template, timespan=None, timepoint=None):
+    def __init__(self, template, timespan=None, offset=None):
         Inequality.__init__(self, template)
         self._timespan = timespan
-        self._timepoint = timepoint
+        self._offset = offset
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, timespan=None, timepoint=None):
-        r'''Evaluate timepoint inequality.
+    def __call__(self, timespan=None, offset=None):
+        r'''Evaluate offset inequality.
         '''
         from experimental import timetools
         if timespan is None:
             timespan = self.timespan
-        if timepoint is None:
-            timepoint = self.timepoint
-        if timespan is None or timepoint is None:
-            raise ValueError('timepoint inequality is not fully loaded.')
+        if offset is None:
+            offset = self.offset
+        if timespan is None or offset is None:
+            raise ValueError('offset inequality is not fully loaded.')
         timespan = timetools.expr_to_timespan(timespan)
-        timepoint = durationtools.Offset(timepoint)
+        offset = durationtools.Offset(offset)
         timespan_start = self._get_expr_start(timespan)
         timespan_stop = self._get_expr_stop(timespan)
         command = self.template
         command = command.replace('timespan.start', repr(timespan_start))
         command = command.replace('timespan.stop', repr(timespan_stop))
-        command = command.replace('timepoint', repr(timepoint))
+        command = command.replace('offset', repr(offset))
         result = eval(command, {'Offset': durationtools.Offset})
         return result
 
     def __eq__(self, expr):
-        '''True when `expr` equals timepoint inequality. Otherwise false.
+        '''True when `expr` equals offset inequality. Otherwise false.
 
         Return boolean.
         '''
         if isinstance(expr, type(self)):
             if self.template == expr.template:
                 if self.timespan == expr.timespan:
-                    if self.timepoint == expr.timepoint:
+                    if self.offset == expr.offset:
                         return True
         return False
 
@@ -55,11 +55,11 @@ class OffsetInequality(Inequality):
 
     @property
     def is_fully_loaded(self):
-        return self.timespan is not None and self.timepoint is not None
+        return self.timespan is not None and self.offset is not None
 
     @property
-    def timepoint(self):
-        return self._timepoint
+    def offset(self):
+        return self._offset
 
     @property
     def timespan(self):

@@ -1,23 +1,23 @@
-def offset_happens_after_timespan_starts(timespan=None, timepoint=None, hold=False):
+def offset_happens_after_timespan_starts(timespan=None, offset=None, hold=False):
     r'''.. versionadded:: 1.0
 
     ::
 
         >>> from experimental import *
 
-    Make timepoint inequality indicating that `timepoint` happens after `timespan` starts::
+    Make offset inequality indicating that `offset` happens after `timespan` starts::
 
         >>> timetools.offset_happens_after_timespan_starts()
-        OffsetInequality('timespan.start < timepoint')
+        OffsetInequality('timespan.start < offset')
 
     '''
     from experimental import timetools
 
-    timepoint_inequality = timetools.OffsetInequality(
-        'timespan.start < timepoint',
-        timespan=timespan, timepoint=timepoint)
+    offset_inequality = timetools.OffsetInequality(
+        'timespan.start < offset',
+        timespan=timespan, offset=offset)
 
-    if timepoint_inequality.is_fully_loaded and not hold:
-        return timepoint_inequality()
+    if offset_inequality.is_fully_loaded and not hold:
+        return offset_inequality()
     else:
-        return timepoint_inequality
+        return offset_inequality

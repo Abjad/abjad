@@ -9,9 +9,9 @@ timetools.MixedSourceSymbolicTimespan
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_timepoint
+.. autoattribute:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_offset
 
-.. autoattribute:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.stop_timepoint
+.. autoattribute:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.stop_offset
 
 .. autoattribute:: experimental.timetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.storage_format
 

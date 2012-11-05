@@ -1,86 +1,86 @@
-def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=False):
+def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False):
     r'''.. versionadded:: 1.0
 
     ::
 
         >>> from experimental import *
 
-    Make timepoint inequality indicating that `timepoint` happens before `timespan` starts::
+    Make offset inequality indicating that `offset` happens before `timespan` starts::
 
         >>> timetools.offset_happens_before_timespan_starts()
-        OffsetInequality('timepoint < timespan.start')
+        OffsetInequality('offset < timespan.start')
 
-    Make timepoint inequality indicating that timepoint ``1/2`` happens before `timespan` starts::
+    Make offset inequality indicating that offset ``1/2`` happens before `timespan` starts::
 
-        >>> timepoint = durationtools.Offset(1, 2)
-
-    ::
-
-        >>> timepoint_inequality = timetools.offset_happens_before_timespan_starts(
-        ...     timepoint=timepoint)
+        >>> offset = durationtools.Offset(1, 2)
 
     ::
 
-        >>> z(timepoint_inequality)
+        >>> offset_inequality = timetools.offset_happens_before_timespan_starts(
+        ...     offset=offset)
+
+    ::
+
+        >>> z(offset_inequality)
         timetools.OffsetInequality(
-            'timepoint < timespan.start',
-            timepoint=durationtools.Offset(1, 2)
+            'offset < timespan.start',
+            offset=durationtools.Offset(1, 2)
             )
 
-    Make timepoint inequality indicating that `timepoint` happens before timespan ``[2, 8)`` starts::
+    Make offset inequality indicating that `offset` happens before timespan ``[2, 8)`` starts::
 
         >>> timespan = timetools.expr_to_timespan((2, 8))
 
     ::
 
-        >>> timepoint_inequality = timetools.offset_happens_before_timespan_starts(
+        >>> offset_inequality = timetools.offset_happens_before_timespan_starts(
         ...     timespan=timespan)
 
     ::
 
-        >>> z(timepoint_inequality)
+        >>> z(offset_inequality)
         timetools.OffsetInequality(
-            'timepoint < timespan.start',
+            'offset < timespan.start',
             timespan=timetools.LiteralTimespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
                 )
             )
 
-    Make timepoint inequality indicating that timepoint ``1/2`` happens before 
+    Make offset inequality indicating that offset ``1/2`` happens before 
     timespan ``[2, 8)`` starts::
 
-        >>> timepoint_inequality = timetools.offset_happens_before_timespan_starts(
-        ...     timespan=timespan, timepoint=timepoint, hold=True)
+        >>> offset_inequality = timetools.offset_happens_before_timespan_starts(
+        ...     timespan=timespan, offset=offset, hold=True)
 
     ::
 
-        >>> z(timepoint_inequality)
+        >>> z(offset_inequality)
         timetools.OffsetInequality(
-            'timepoint < timespan.start',
+            'offset < timespan.start',
             timespan=timetools.LiteralTimespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
                 ),
-            timepoint=durationtools.Offset(1, 2)
+            offset=durationtools.Offset(1, 2)
             )
 
-    Evaluate timepoint inequality indicating that timepoint ``1/2`` happens before 
+    Evaluate offset inequality indicating that offset ``1/2`` happens before 
     timespan ``[2, 8)`` starts::
 
         >>> timetools.offset_happens_before_timespan_starts(
-        ...     timespan=timespan, timepoint=timepoint, hold=False)
+        ...     timespan=timespan, offset=offset, hold=False)
         True
 
-    Return timepoint inequality or boolean.
+    Return offset inequality or boolean.
     '''
     from experimental import timetools
 
-    timepoint_inequality = timetools.OffsetInequality(
-        'timepoint < timespan.start',
-        timespan=timespan, timepoint=timepoint)
+    offset_inequality = timetools.OffsetInequality(
+        'offset < timespan.start',
+        timespan=timespan, offset=offset)
 
-    if timepoint_inequality.is_fully_loaded and not hold:
-        return timepoint_inequality()
+    if offset_inequality.is_fully_loaded and not hold:
+        return offset_inequality()
     else:
-        return timepoint_inequality
+        return offset_inequality

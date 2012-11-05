@@ -16,25 +16,25 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
         >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-1)
-        >>> start_timepoint = timetools.SymbolicOffset(selector=measure_selector)
+        >>> start_offset = timetools.SymbolicOffset(selector=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='blue')
         >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
-        >>> stop_timepoint = timetools.SymbolicOffset(selector=measure_selector, edge=Right)
+        >>> stop_offset = timetools.SymbolicOffset(selector=measure_selector, edge=Right)
         
     ::
 
         >>> timespan = timetools.MixedSourceSymbolicTimespan(
-        ... start_timepoint=start_timepoint, stop_timepoint=stop_timepoint)
+        ... start_offset=start_offset, stop_offset=stop_offset)
 
     ::
 
         >>> z(timespan)
         timetools.MixedSourceSymbolicTimespan(
-            start_timepoint=timetools.SymbolicOffset(
+            start_offset=timetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -47,7 +47,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     start_identifier=-1
                     )
                 ),
-            stop_timepoint=timetools.SymbolicOffset(
+            stop_offset=timetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timetools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -68,13 +68,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_timepoint=None, stop_timepoint=None):
+    def __init__(self, start_offset=None, stop_offset=None):
         from experimental import timetools
-        assert isinstance(start_timepoint, (timetools.SymbolicOffset, type(None))), repr(start_timepoint)
-        assert isinstance(stop_timepoint, (timetools.SymbolicOffset, type(None))), repr(stop_timepoint)
+        assert isinstance(start_offset, (timetools.SymbolicOffset, type(None))), repr(start_offset)
+        assert isinstance(stop_offset, (timetools.SymbolicOffset, type(None))), repr(stop_offset)
         SymbolicTimespan.__init__(self)
-        self._start_timepoint = start_timepoint
-        self._stop_timepoint = stop_timepoint
+        self._start_offset = start_offset
+        self._stop_offset = stop_offset
 
     ### SPECIAL METHODS ###
 
@@ -84,28 +84,28 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         Return boolean.
         '''
         if isintance(expr, type(self)):
-            if self.start_timepoint == timespan_2.start_timepoint:
-                if self.stop_timepoint == timespan_2.stop_timepoint:
+            if self.start_offset == timespan_2.start_offset:
+                if self.stop_offset == timespan_2.stop_offset:
                     return True
         return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def start_timepoint(self):
-        '''Mixed-source timespan start timepoint specified by user.
+    def start_offset(self):
+        '''Mixed-source timespan start offset specified by user.
 
-        Return timepoint or none.
+        Return offset or none.
         '''
-        return self._start_timepoint
+        return self._start_offset
 
     @property
-    def stop_timepoint(self):
-        '''Mixed-source timepsan stop timepoint specified by user.
+    def stop_offset(self):
+        '''Mixed-source timepsan stop offset specified by user.
 
-        Return timepoint or none.
+        Return offset or none.
         '''
-        return self._stop_timepoint
+        return self._stop_offset
 
     ### PUBLIC METHODS ###
 
