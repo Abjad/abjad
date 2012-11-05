@@ -17,10 +17,14 @@ def durate_pitch_contour_reservoir(pitch_contour_reservoir):
     durated_reservoir = {}
 
     for i, instrument_name in enumerate(instrument_names):
-        long_duration = durationtools.Duration(1, 2) * pow(2, i)
+        long_duration = Fraction(1, 2) * pow(2, i)
         short_duration = long_duration / 2
         rest_duration = long_duration * Fraction(3, 2)
-        initial_rest = resttools.make_rests(rest_duration)
+        div, mod = divmod(rest_duration, Fraction(3, 2))
+        
+        initial_rest = resttools.MultiMeasureRest((3, 2)) * div
+        if mod:
+            initial_rest += resttools.make_rests(mod)
 
         durated_contours = [tuple(initial_rest)]
 

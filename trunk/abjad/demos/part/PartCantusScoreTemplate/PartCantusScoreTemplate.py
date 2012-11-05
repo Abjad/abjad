@@ -32,7 +32,7 @@ class PartCantusScoreTemplate(ScoreTemplate):
         contexttools.ClefMark('treble')(first_violin_staff)
         instrumenttools.Violin(
             instrument_name_markup='Violin I', 
-            short_instrument_name_markup='Vln. I'
+            short_instrument_name_markup='Vl. I'
             )(first_violin_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(first_violin_staff)
         # contexttools.TimeSignatureMark((6, 4))(first_violin_staff)
@@ -43,7 +43,7 @@ class PartCantusScoreTemplate(ScoreTemplate):
         contexttools.ClefMark('treble')(second_violin_staff)
         instrumenttools.Violin(
             instrument_name_markup='Violin II', 
-            short_instrument_name_markup='Vln. II'
+            short_instrument_name_markup='Vl. II'
             )(second_violin_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(second_violin_staff)
         # contexttools.TimeSignatureMark((6, 4))(second_violin_staff)
@@ -60,7 +60,9 @@ class PartCantusScoreTemplate(ScoreTemplate):
         cello_voice = voicetools.Voice(name='Cello Voice')
         cello_staff = stafftools.Staff([cello_voice], name='Cello Staff')
         contexttools.ClefMark('bass')(cello_staff)
-        instrumenttools.Cello()(cello_staff)
+        instrumenttools.Cello(
+            short_instrument_name_markup='Vc.'
+            )(cello_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(cello_staff)
         # contexttools.TimeSignatureMark((6, 4))(cello_staff)
 
@@ -68,7 +70,9 @@ class PartCantusScoreTemplate(ScoreTemplate):
         bass_voice = voicetools.Voice(name='Bass Voice')
         bass_staff = stafftools.Staff([bass_voice], name='Bass Staff')
         contexttools.ClefMark('bass')(bass_staff)
-        instrumenttools.Contrabass()(bass_staff)
+        instrumenttools.Contrabass(
+            short_instrument_name_markup='Cb.'
+            )(bass_staff)
         # contexttools.TempoMark((1, 4), (112, 120))(bass_staff)
         # contexttools.TimeSignatureMark((6, 4))(bass_staff)
 
