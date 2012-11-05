@@ -10,18 +10,18 @@ from abjad import *
 
 <abjadextract abjad.demos.part.build_score.build_score \>[strip_prompt=true]
 
-The Score Template
+The score template
 ------------------
 
 <abjadextract abjad.demos.part.PartCantusScoreTemplate.PartCantusScoreTemplate.PartCantusScoreTemplate \>[strip_prompt=true]
 
-Creating the Bell Music
------------------------
+The bell music
+--------------
 
 <abjadextract abjad.demos.part.add_bell_music_to_score.add_bell_music_to_score \>[strip_prompt=true]
 
-Creating the Procedural String Music
-------------------------------------
+The string music
+----------------
 
 <abjadextract abjad.demos.part.add_string_music_to_score.add_string_music_to_score \>[strip_prompt=true]
 
@@ -29,8 +29,8 @@ Creating the Procedural String Music
 <abjadextract abjad.demos.part.shadow_pitch_contour_reservoir.shadow_pitch_contour_reservoir \>[strip_prompt=true]
 <abjadextract abjad.demos.part.durate_pitch_contour_reservoir.durate_pitch_contour_reservoir \>[strip_prompt=true]
 
-Editing the String Music
-------------------------
+The edits
+---------
 
 <abjadextract abjad.demos.part.apply_first_violin_edits.apply_first_violin_edits \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_second_violin_edits.apply_second_violin_edits \>[strip_prompt=true]
@@ -38,16 +38,16 @@ Editing the String Music
 <abjadextract abjad.demos.part.apply_cello_edits.apply_cello_edits \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_bass_edits.apply_bass_edits \>[strip_prompt=true]
 
-Applying Marks
---------------
+The marks
+---------
 
 <abjadextract abjad.demos.part.apply_dynamic_marks.apply_dynamic_marks \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_expressive_marks.apply_expressive_marks \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_page_breaks.apply_page_breaks \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_rehearsal_marks.apply_rehearsal_marks \>[strip_prompt=true]
 
-Formatting the Document
------------------------
+The LilyPond file
+-----------------
 
 <abjadextract abjad.demos.part.format_lilypond_file.format_lilypond_file \>[strip_prompt=true]
 

@@ -29,7 +29,7 @@ Let's make some imports:
        return lilypond_file
 
 
-The Score Template
+The score template
 ------------------
 
 ::
@@ -126,8 +126,8 @@ The Score Template
            return score
 
 
-Creating the Bell Music
------------------------
+The bell music
+--------------
 
 ::
 
@@ -152,8 +152,8 @@ Creating the Bell Music
        bell_voice.append(measuretools.Measure((6,4), r"a'1. \laissezVibrer"))
 
 
-Creating the Procedural String Music
-------------------------------------
+The string music
+----------------
 
 ::
 
@@ -298,8 +298,8 @@ Creating the Procedural String Music
        return durated_reservoir
 
 
-Editing the String Music
-------------------------
+The edits
+---------
 
 ::
 
@@ -410,8 +410,8 @@ Editing the String Music
        voice[-3:] = '<e, e>\maxima <d, d>\longa <c, c>\maxima <b,>\longa <a,>\maxima r4 r2.'
 
 
-Applying Marks
---------------
+The marks
+---------
 
 ::
 
@@ -516,8 +516,8 @@ Applying Marks
                )(voice[measure_index])
 
 
-Formatting the Document
------------------------
+The LilyPond file
+-----------------
 
 ::
 
