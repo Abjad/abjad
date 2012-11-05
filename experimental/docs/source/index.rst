@@ -337,9 +337,9 @@ Unstable packages (load manually)
 
    experimental/timetools/LiteralTimespan/LiteralTimespan
    experimental/timetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   experimental/timetools/OffsetInequality/OffsetInequality
    experimental/timetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
    experimental/timetools/SymbolicOffset/SymbolicOffset
-   experimental/timetools/TimepointInequality/TimepointInequality
    experimental/timetools/TimespanInequality/TimespanInequality
    experimental/timetools/TimespanInventory/TimespanInventory
 

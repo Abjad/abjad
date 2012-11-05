@@ -8,12 +8,12 @@ def offset_happens_after_timespan_starts(timespan=None, timepoint=None, hold=Fal
     Make timepoint inequality indicating that `timepoint` happens after `timespan` starts::
 
         >>> timetools.offset_happens_after_timespan_starts()
-        TimepointInequality('timespan.start < timepoint')
+        OffsetInequality('timespan.start < timepoint')
 
     '''
     from experimental import timetools
 
-    timepoint_inequality = timetools.TimepointInequality(
+    timepoint_inequality = timetools.OffsetInequality(
         'timespan.start < timepoint',
         timespan=timespan, timepoint=timepoint)
 

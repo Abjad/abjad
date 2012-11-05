@@ -8,12 +8,12 @@ def offset_happens_before_timespan_stops(timespan=None, timepoint=None, hold=Fal
     Make timepoint inequality indicating that `timepoint` happens before `timespan` stops::
 
         >>> timetools.offset_happens_before_timespan_stops()
-        TimepointInequality('timepoint < timespan.stop')
+        OffsetInequality('timepoint < timespan.stop')
 
     '''
     from experimental import timetools
 
-    timepoint_inequality = timetools.TimepointInequality(
+    timepoint_inequality = timetools.OffsetInequality(
         'timepoint < timespan.stop',
         timespan=timespan, timepoint=timepoint)
 

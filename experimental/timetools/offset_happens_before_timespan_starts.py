@@ -8,7 +8,7 @@ def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=Fa
     Make timepoint inequality indicating that `timepoint` happens before `timespan` starts::
 
         >>> timetools.offset_happens_before_timespan_starts()
-        TimepointInequality('timepoint < timespan.start')
+        OffsetInequality('timepoint < timespan.start')
 
     Make timepoint inequality indicating that timepoint ``1/2`` happens before `timespan` starts::
 
@@ -22,7 +22,7 @@ def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=Fa
     ::
 
         >>> z(timepoint_inequality)
-        timetools.TimepointInequality(
+        timetools.OffsetInequality(
             'timepoint < timespan.start',
             timepoint=durationtools.Offset(1, 2)
             )
@@ -39,7 +39,7 @@ def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=Fa
     ::
 
         >>> z(timepoint_inequality)
-        timetools.TimepointInequality(
+        timetools.OffsetInequality(
             'timepoint < timespan.start',
             timespan=timetools.LiteralTimespan(
                 start_offset=durationtools.Offset(2, 1),
@@ -56,7 +56,7 @@ def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=Fa
     ::
 
         >>> z(timepoint_inequality)
-        timetools.TimepointInequality(
+        timetools.OffsetInequality(
             'timepoint < timespan.start',
             timespan=timetools.LiteralTimespan(
                 start_offset=durationtools.Offset(2, 1),
@@ -76,7 +76,7 @@ def offset_happens_before_timespan_starts(timespan=None, timepoint=None, hold=Fa
     '''
     from experimental import timetools
 
-    timepoint_inequality = timetools.TimepointInequality(
+    timepoint_inequality = timetools.OffsetInequality(
         'timepoint < timespan.start',
         timespan=timespan, timepoint=timepoint)
 

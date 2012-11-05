@@ -182,7 +182,7 @@ class TimespanInventory(ObjectInventory):
             if isinstance(timespan_inequality, timetools.TimespanInequality):
                 if timespan_inequality(timespan_2=timespan):
                     result.append(timespan)
-            elif isinstance(timespan_inequality, timetools.TimepointInequality):
+            elif isinstance(timespan_inequality, timetools.OffsetInequality):
                 if timespan_inequality(timespan=timespan):
                     result.append(timespan)
             else:

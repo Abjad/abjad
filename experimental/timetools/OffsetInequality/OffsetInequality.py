@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from experimental.timetools.Inequality import Inequality
 
 
-class TimepointInequality(Inequality):
+class OffsetInequality(Inequality):
     r'''.. versionadded:: 1.0
 
     SymbolicOffset inequality.
