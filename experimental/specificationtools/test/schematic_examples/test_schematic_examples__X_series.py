@@ -279,19 +279,12 @@ def test_schematic_examples__X_series_07():
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'], selector=first_measure)
     cell = score_specification.request_rhythm('Voice 1', selector=first_measure)
     red_segment.set_rhythm(cell, contexts=['Voice 1'], selector=second_measure, rotation=Duration(-1, 32))
-
-    # TODO: make these two indices of rotation hold separately
     red_segment.set_rhythm(cell, contexts=['Voice 2'], selector=first_measure, rotation=Duration(-2, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 2'], selector=second_measure, rotation=Duration(-3, 32))
-
-    # TODO: make these two indices of rotation hold separately
     red_segment.set_rhythm(cell, contexts=['Voice 3'], selector=first_measure, rotation=Duration(-4, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 3'], selector=second_measure, rotation=Duration(-5, 32))
-
-    # TODO: make these two indices of rotation hold separately
     red_segment.set_rhythm(cell, contexts=['Voice 4'], selector=first_measure, rotation=Duration(-6, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 4'], selector=second_measure, rotation=Duration(-7, 32))
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
