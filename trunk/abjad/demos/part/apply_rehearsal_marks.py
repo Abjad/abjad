@@ -3,7 +3,7 @@ from abjad import *
 
 def apply_rehearsal_marks(score):
 
-    voice = score['Bell Voice']
+    bell_voice = score['Bell Voice']
 
     measure_indices = [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84,
         90, 96, 102]
@@ -12,6 +12,6 @@ def apply_rehearsal_marks(score):
         marktools.LilyPondCommandMark(
             r'mark \default', 
             'before'
-            )(voice[measure_index])
+            )(bell_voice[measure_index])
 
 

@@ -2,6 +2,7 @@ from abjad.tools import pitchtools
 
 
 def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
+
     shadow_pitch_lookup = {
         pitchtools.NamedDiatonicPitchClass('a'): -5, # add a P4 below
         pitchtools.NamedDiatonicPitchClass('g'): -3, # add a m3 below

@@ -8,6 +8,7 @@ def format_lilypond_file(score):
     score.override.vertical_axis_group.staff_staff_spacing = spacing_vector
     score.override.staff_grouper.staff_staff_spacing = spacing_vector
     score.set.mark_formatter = schemetools.Scheme('format-mark-box-numbers')
+    score.override.staff_symbol.thickness = 0.5
 
     #score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 8)
     #score.override.spacing_spanner.uniform_stretching = False
