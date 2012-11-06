@@ -50,3 +50,5 @@
 15. Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
+
+16. Finishing class renames of 'time token maker' to 'rhythm maker' in external libraries.
