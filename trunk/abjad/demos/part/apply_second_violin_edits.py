@@ -6,6 +6,7 @@ from abjad.tools import tietools
 
 
 def apply_second_violin_edits(score, durated_reservoir):
+
     voice = score['Second Violin Voice']
     descents = durated_reservoir['Second Violin']
 
