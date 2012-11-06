@@ -118,6 +118,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
         Operate in place and return none.
         '''
+        from experimental import settingtools
         if isinstance(n, int):
             leaves = sequencetools.CyclicTuple(self.music.leaves)
             if 0 < n:
@@ -126,7 +127,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                 return
             else:
                 split_offset = leaves[-(n+1)].stop_offset
-        elif isinstance(n, sequencetools.RotationIndicator):
+        elif isinstance(n, settingtools.RotationIndicator):
             rotation_indicator = n
             if rotation_indicator.level is None:
                 components_at_level = self.music.leaves

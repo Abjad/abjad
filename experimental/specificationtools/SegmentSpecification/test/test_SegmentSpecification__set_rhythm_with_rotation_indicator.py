@@ -18,7 +18,7 @@ def test_SegmentSpecification__set_rhythm_with_rotation_indicator_01():
     red_segment.set_rhythm(library.sixteenths, selector=second_division)
     red_segment.set_rhythm(library.thirty_seconds, selector=third_division)
     red_rhythm = red_segment.request_rhythm('Voice 1')
-    indicator = sequencetools.RotationIndicator(-1, 1)
+    indicator = settingtools.RotationIndicator(-1, 1)
     red_segment.set_rhythm(red_rhythm, contexts=['Voice 2'], rotation=indicator)
 
     score = score_specification.interpret()

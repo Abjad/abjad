@@ -285,6 +285,7 @@ Unstable packages (load manually)
    experimental/settingtools/OffsetPositionedDivisionList/OffsetPositionedDivisionList
    experimental/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    experimental/settingtools/RhythmCommand/RhythmCommand
+   experimental/settingtools/RotationIndicator/RotationIndicator
    experimental/settingtools/SingleContextSetting/SingleContextSetting
    experimental/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 

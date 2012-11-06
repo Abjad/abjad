@@ -1302,7 +1302,6 @@ Composition packages
    tools/sequencetools/CyclicTree/CyclicTree
    tools/sequencetools/CyclicTuple/CyclicTuple
    tools/sequencetools/Matrix/Matrix
-   tools/sequencetools/RotationIndicator/RotationIndicator
    tools/sequencetools/Tree/Tree
 
 .. rubric:: functions

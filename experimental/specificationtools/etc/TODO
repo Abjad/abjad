@@ -52,6 +52,3 @@
     Then make X5 work with rhythm command request instead of rhythm request.
 
 16. Set all rotation to fracture_spanners=False by default in interpreter.
-
-17. Move RotationIndicator somewhere other than sequencetools.
-    Probably one of the experimental specification-oriented packages.
