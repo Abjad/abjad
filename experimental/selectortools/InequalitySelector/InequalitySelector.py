@@ -6,7 +6,7 @@ from experimental.selectortools.Selector import Selector
 class InequalitySelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Inequality selector.
+    TimeInequality selector.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -26,7 +26,7 @@ class InequalitySelector(Selector):
 
     @property
     def inequality(self):
-        '''Inequality of selector.
+        '''TimeInequality of selector.
         
         Return timespan inequality or none.
         '''
