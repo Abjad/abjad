@@ -271,23 +271,8 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
-#                if result and rhythm_command.request == result[-1][0] and \
-#                    (rhythm_command.index == result[-1][0].index and
-#                    rhythm_command.count == result[-1][0].count and
-#                    rhythm_command.reverse == result[-1][0].reverse and
-#                    rhythm_command.rotation == result[-1][0].rotation and
-#                    rhythm_command.callback == result[-1][0].callback
-#                    ):
                 if result and rhythm_command.request == result[-1][0]:
-#                    print result[-1][0]
-#                    print ''
-#                    print rhythm_command.request
-#                    print rhythm_command.request.index
-#                    print rhythm_command.request.count
-#                    print rhythm_command.request.reverse
-#                    print rhythm_command.request.rotation
-#                    print rhythm_command.request.callback
-#                    print ''
+                #if result and self.rhythm_command_is_continuation_of_expr(rhythm_command, result[-1][0]):
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command.request,
                         last_start_offset,
@@ -302,6 +287,43 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise TypeError(rhythm_command.request)
         return result
+
+    # alphabetize me
+    def rhythm_command_is_continuation_of_expr(self, rhythm_command, expr):
+        current_material_request = rhythm_command.request
+        assert isinstance(current_material_request, requesttools.MaterialRequest)
+        assert current_material_request.attribute == 'rhythm'
+        print 'IN!\n'
+        print 'EXPR'
+        print expr
+        print ''
+        print 'COMMAND'
+        print rhythm_command
+        print ''
+        # current material request must equal last material request
+        if not current_material_request == expr:
+            return False
+        else:
+            last_material_request = expr
+        print 'same so far ...\n'
+        # if rhythm command specifies a treatment,
+        # then rhythm command treatment must be the same as last material command treatment
+        if rhythm_command.index is not None and last_material_request.index is not None:
+            if rhythm_command.index != last_material_request.index:
+                return False
+        if rhythm_command.count is not None and last_material_request.count is not None:
+            if rhythm_command.count != last_material_request.count:
+                return False
+        if rhythm_command.reverse is not None and last_material_request.reverse is not None:
+            if rhythm_command.reverse != last_material_request.reverse:
+                return False
+        if rhythm_command.rotation is not None and last_material_request.rotation is not None:
+            if rhythm_command.rotation != last_material_request.rotation:
+                return False
+        if rhythm_command.callback is not None and last_material_request.callback is not None:
+            if rhythm_command.callback != last_material_request.callback:
+                return False
+        return True
 
     def fuse_like_commands(self, commands):
         if any([x.request is None for x in commands]) or not commands:
