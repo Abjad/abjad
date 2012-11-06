@@ -29,11 +29,23 @@ class OutputFormat(abctools.AbjadObject):
                     self.code_block_opening +
                     '\n'.join([(' ' * self.code_indent) + x for x in result]) +
                     self.code_block_closing)
-            elif isinstance(result, str):
-                for image_filename in image_filenames:
-                    if image_filename.startswith(result):
+            elif isinstance(result, dict):
+                file_name = result['file_name']
+                page_range = result['page_range']
+                image_filenames = [x for x in image_filenames if x.startswith(file_name)]
+                if page_range is None:
+                    for image_filename in image_filenames:
                         image_filename = image_filename.rpartition('.')[0]
                         reformatted.append(self.image_block.format(image_filename))
+                else:
+                    for image_filename in image_filenames:
+                        page_number = image_filename.partition(file_name)[-1]
+                        page_number = page_number.partition('.')[0]
+                        page_number = page_number.partition('page')[-1]
+                        if (page_number and int(page_number) in page_range) or not page_number:
+                            image_filename = image_filename.rpartition('.')[0]
+                            reformatted.append(self.image_block.format(image_filename))
+                            
         return tuple(reformatted)
 
     ### PUBLIC READ-ONLY PROPERTIES ###

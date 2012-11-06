@@ -42,10 +42,10 @@ class AbjadBookProcessor(abctools.AbjadObject):
         pipe = self._setup_pipe()
         image_count = self._process_code_blocks(pipe, code_blocks, tmp_directory,
             self.image_prefix)
-        ly_filenames = self._extract_ly_filenames(code_blocks)
+        ly_file_names = self._extract_ly_file_names(code_blocks)
         self._cleanup_pipe(pipe)
         if not self.skip_rendering:
-            self._render_ly_files(ly_filenames, self.output_format, verbose)
+            self._render_ly_files(ly_file_names, self.output_format, verbose)
 
         # Step out of the tmp directory, back to the original, and cleanup.
         os.chdir(self.directory)
@@ -85,7 +85,8 @@ class AbjadBookProcessor(abctools.AbjadObject):
     ### PRIVATE METHODS ###
 
     def _cleanup_image_files(self, directory, tmp_directory,
-            image_count, image_prefix, image_format):
+        image_count, image_prefix, image_format):
+        #print 'CLEANUP IMAGE FILES'
         image_directory = os.path.join(directory, 'images')
         if not os.path.isdir(image_directory):
             os.mkdir(image_directory)
@@ -103,13 +104,16 @@ class AbjadBookProcessor(abctools.AbjadObject):
                 os.rename(old, new)
 
     def _cleanup_pipe(self, pipe):
+        #print 'CLEANUP PIPE'
         pipe.write('quit()\n')
         pipe.close()
 
     def _cleanup_tmp_directory(self, tmp_directory):
+        #print 'CLEANUP TMP DIRECTORY'
         shutil.rmtree(tmp_directory)
 
     def _extract_code_blocks(self, lines):
+        #print 'EXTRACT CODE BLOCKS'
         blocks = []
         block = []
         starting_line_number = 0
@@ -167,37 +171,42 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
         return tuple(blocks)
 
-    def _extract_ly_filenames(self, code_blocks):
-        filenames = []
+    def _extract_ly_file_names(self, code_blocks):
+        #print 'EXTRACT LY FILENAMES'
+        file_names = []
         for code_block in code_blocks:
             for result in code_block.processed_results:
-                if isinstance(result, str):
-                    filenames.append(result)
-        return filenames
+                if isinstance(result, dict):
+                    file_names.append(result['file_name'])
+        return file_names
 
     def _interleave_source_with_code_blocks(self, lines, code_blocks, output_format):
+        #print 'INTERLEAVE SOURCE WITH CODE BLOCKS'
         image_directory = os.path.join(self.directory, 'images')
-        image_filenames = [x for x in os.listdir(image_directory)
+        image_file_names = [x for x in os.listdir(image_directory)
             if (x.endswith(output_format.image_format) and
                x.startswith(self.image_prefix))]
         interleaved = []
         interleaved.append('\n'.join(lines[:code_blocks[0].starting_line_number]))
         for pair in sequencetools.iterate_sequence_pairwise_strict(code_blocks):
             first_block, second_block = pair
-            interleaved.extend(output_format(first_block, image_filenames))
+            interleaved.extend(output_format(first_block, image_file_names))
             interleaved.append('\n'.join(lines[
                 first_block.ending_line_number + 1:second_block.starting_line_number]))
-        interleaved.extend(output_format(code_blocks[-1], image_filenames))
+        interleaved.extend(output_format(code_blocks[-1], image_file_names))
         interleaved.append('\n'.join(lines[code_blocks[-1].ending_line_number + 1:]))
         return '\n'.join(interleaved)
 
     def _process_code_blocks(self, pipe, code_blocks, directory, image_prefix):
+        #print 'PROCESS CODE BLOCKS'
         image_count = 0
-        for code_block in code_blocks:
+        for i, code_block in enumerate(code_blocks):
+            #print '\tCODE BLOCK', i
             image_count = code_block(pipe, image_count, directory, image_prefix)
         return image_count
 
     def _setup_pipe(self):
+        #print 'SETUP PIPE'
         pipe = documentationtools.Pipe()
         pipe.read_wait()
         pipe.write('from abjad import *\n')
@@ -205,26 +214,28 @@ class AbjadBookProcessor(abctools.AbjadObject):
         return pipe
 
     def _setup_tmp_directory(self, directory):
+        #print 'SETUP TMP DIRECTORY'
         tmp_directory = os.path.abspath(tempfile.mkdtemp(dir=directory))
         return tmp_directory
 
-    def _render_ly_files(self, filenames, output_format, verbose):
-        for filename in filenames:
-            print '\tRendering {}.ly...'.format(filename)
+    def _render_ly_files(self, file_names, output_format, verbose):
+        #print 'RENDER LY FILES'
+        for file_name in file_names:
+            print '\tRendering {}.ly...'.format(file_name)
             if output_format.image_format == 'pdf':
-                command = 'lilypond {}.ly'.format(filename)
+                command = 'lilypond {}.ly'.format(file_name)
                 print '\t\t{}'.format(command)
                 self._run_command(command, verbose)
-                command = 'pdfcrop {}.pdf {}.pdf'.format(filename, filename)
+                command = 'pdfcrop {}.pdf {}.pdf'.format(file_name, file_name)
                 print '\t\t{}'.format(command)
                 self._run_command(command, verbose)
             elif output_format.image_format == 'png':
-                command = 'lilypond --png -dresolution=300 {}.ly'.format(filename)
+                command = 'lilypond --png -dresolution=300 {}.ly'.format(file_name)
                 print '\t\t{}'.format(command)
+                assert os.path.exists('{}.ly'.format(file_name))
                 self._run_command(command, verbose)
-                prefix = filename.rpartition('.ly')[0]
                 for file in os.listdir('.'):
-                    if file.startswith(prefix) and file.endswith('.png'):
+                    if file.startswith(file_name) and file.endswith('.png'):
                         command = 'convert {} -trim -resample 40%% {}'.format(file, file)
                         print '\t\t{}'.format(command)
                         self._run_command(command, verbose)
