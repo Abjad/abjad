@@ -1,4 +1,5 @@
 import abc
+import os
 from abjad.tools import abctools
 
 
@@ -20,7 +21,7 @@ class OutputFormat(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, code_block):
+    def __call__(self, code_block, image_filenames):
         reformatted = []
         for result in code_block.processed_results:
             if isinstance(result, tuple):
@@ -29,7 +30,10 @@ class OutputFormat(abctools.AbjadObject):
                     '\n'.join([(' ' * self.code_indent) + x for x in result]) +
                     self.code_block_closing)
             elif isinstance(result, str):
-                reformatted.append(self.image_block.format(result))
+                for image_filename in image_filenames:
+                    if image_filename.startswith(result):
+                        image_filename = image_filename.rpartition('.')[0]
+                        reformatted.append(self.image_block.format(image_filename))
         return tuple(reformatted)
 
     ### PUBLIC READ-ONLY PROPERTIES ###

@@ -176,13 +176,18 @@ class AbjadBookProcessor(abctools.AbjadObject):
         return filenames
 
     def _interleave_source_with_code_blocks(self, lines, code_blocks, output_format):
+        image_directory = os.path.join(self.directory, 'images')
+        image_filenames = [x for x in os.listdir(image_directory)
+            if (x.endswith(output_format.image_format) and
+               x.startswith(self.image_prefix))]
         interleaved = []
         interleaved.append('\n'.join(lines[:code_blocks[0].starting_line_number]))
         for pair in sequencetools.iterate_sequence_pairwise_strict(code_blocks):
             first_block, second_block = pair
-            interleaved.extend(output_format(first_block))
-            interleaved.append('\n'.join(lines[first_block.ending_line_number + 1:second_block.starting_line_number]))
-        interleaved.extend(output_format(code_blocks[-1]))
+            interleaved.extend(output_format(first_block, image_filenames))
+            interleaved.append('\n'.join(lines[
+                first_block.ending_line_number + 1:second_block.starting_line_number]))
+        interleaved.extend(output_format(code_blocks[-1], image_filenames))
         interleaved.append('\n'.join(lines[code_blocks[-1].ending_line_number + 1:]))
         return '\n'.join(interleaved)
 
@@ -204,21 +209,29 @@ class AbjadBookProcessor(abctools.AbjadObject):
         return tmp_directory
 
     def _render_ly_files(self, filenames, output_format, verbose):
-        if output_format.image_format == 'pdf':
-            commands = [ 
-                'lilypond {}.ly',
-                'pdfcrop {}.pdf {}.pdf'
-            ]
-        elif output_format.image_format == 'png':
-            commands = [
-                'lilypond --png -dresolution=300 {}.ly',
-                'convert {}.png -trim -resample 40%% {}.png'
-            ]
         for filename in filenames:
             print '\tRendering {}.ly...'.format(filename)
-            for command in commands:
-                command = command.format(*([filename] * command.count('{}')))
-                if verbose:
-                    subprocess.call(command, shell=True)
-                else:
-                    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            if output_format.image_format == 'pdf':
+                command = 'lilypond {}.ly'.format(filename)
+                print '\t\t{}'.format(command)
+                self._run_command(command, verbose)
+                command = 'pdfcrop {}.pdf {}.pdf'.format(filename, filename)
+                print '\t\t{}'.format(command)
+                self._run_command(command, verbose)
+            elif output_format.image_format == 'png':
+                command = 'lilypond --png -dresolution=300 {}.ly'.format(filename)
+                print '\t\t{}'.format(command)
+                self._run_command(command, verbose)
+                prefix = filename.rpartition('.ly')[0]
+                for file in os.listdir('.'):
+                    if file.startswith(prefix) and file.endswith('.png'):
+                        command = 'convert {} -trim -resample 40%% {}'.format(file, file)
+                        print '\t\t{}'.format(command)
+                        self._run_command(command, verbose)
+
+    def _run_command(self, command, verbose):
+        if verbose:
+            subprocess.call(command, shell=True)
+        else:
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
