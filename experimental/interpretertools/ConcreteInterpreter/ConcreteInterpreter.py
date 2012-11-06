@@ -258,10 +258,11 @@ class ConcreteInterpreter(Interpreter):
 
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
+        #print len(rhythm_quadruples)
         for rhythm_quadruple in rhythm_quadruples:
+            #self._debug(rhythm_quadruple, 'rq')
+            #print ''
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
-            start_offset = durationtools.Offset(start_offset)
-            stop_offset = durationtools.Offset(stop_offset)
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.CommandRequest):
@@ -270,8 +271,23 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
-                # NEXT TODO: check to make sure that equality fails when *indices of rotation* differ!
+#                if result and rhythm_command.request == result[-1][0] and \
+#                    (rhythm_command.index == result[-1][0].index and
+#                    rhythm_command.count == result[-1][0].count and
+#                    rhythm_command.reverse == result[-1][0].reverse and
+#                    rhythm_command.rotation == result[-1][0].rotation and
+#                    rhythm_command.callback == result[-1][0].callback
+#                    ):
                 if result and rhythm_command.request == result[-1][0]:
+#                    print result[-1][0]
+#                    print ''
+#                    print rhythm_command.request
+#                    print rhythm_command.request.index
+#                    print rhythm_command.request.count
+#                    print rhythm_command.request.reverse
+#                    print rhythm_command.request.rotation
+#                    print rhythm_command.request.callback
+#                    print ''
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command.request,
                         last_start_offset,
@@ -512,7 +528,9 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(rhythm_region_durations, 'rrds')
         cumulative_sums = mathtools.cumulative_sums_zero(rhythm_region_durations)
         rhythm_region_start_offsets = cumulative_sums[:-1]
+        rhythm_region_start_offsets = [durationtools.Offset(x) for x in rhythm_region_start_offsets]
         rhythm_region_stop_offsets = cumulative_sums[1:]
+        rhythm_region_stop_offsets = [durationtools.Offset(x) for x in rhythm_region_stop_offsets]
         rhythm_command_duration_pairs = [(x, x.duration) for x in rhythm_commands]
         #self._debug_values(rhythm_command_duration_pairs, 'rhythm command / duration pairs')
         merged_duration_rhythm_command_pairs = \
