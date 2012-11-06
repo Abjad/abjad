@@ -3,7 +3,7 @@ from abjad.tools import *
 from experimental import helpertools
 from experimental import requesttools
 from experimental import selectortools
-from abjad.tools import timetools
+from abjad.tools import timerelationtools
 from experimental.specificationtools.Specification import Specification
 
 

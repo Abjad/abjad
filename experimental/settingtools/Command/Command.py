@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools 
 from experimental import requesttools 
-from abjad.tools import timetools 
+from abjad.tools import timerelationtools 
 
 
 class Command(AbjadObject):
@@ -61,7 +61,7 @@ class Command(AbjadObject):
         return False
 
     def __lt__(self, expr):
-        return timetools.timespan_2_starts_before_timespan_1_starts(expr, self)
+        return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -174,7 +174,7 @@ class Command(AbjadObject):
 
         Return timespan.
         '''
-        return timetools.LiteralTimespan(
+        return timerelationtools.LiteralTimespan(
             start_offset=self.start_offset, stop_offset=self.stop_offset)
 
     @property

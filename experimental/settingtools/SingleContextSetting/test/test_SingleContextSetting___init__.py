@@ -2,7 +2,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import specificationtools
-from abjad.tools import timetools
+from abjad.tools import timerelationtools
 
 
 def test_SingleContextSetting___init___01():

@@ -70,7 +70,7 @@ class SymbolicOffset(AbjadObject):
     during segment ``'red'``::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> counttime_component_selector = selectortools.CounttimeComponentSelector(
         ... inequality=inequality, klass=Note, start_identifier=10, stop_identifier=11)
 
@@ -83,7 +83,7 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
-                inequality=timetools.TimespanInequality(
+                inequality=timerelationtools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -133,7 +133,7 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
-                inequality=timetools.TimespanInequality(
+                inequality=timerelationtools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -239,7 +239,7 @@ class SymbolicOffset(AbjadObject):
         
             >>> z(offset.selector)
             selectortools.CounttimeComponentSelector(
-                inequality=timetools.TimespanInequality(
+                inequality=timerelationtools.TimespanInequality(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(

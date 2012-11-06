@@ -7,7 +7,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import specificationtools
-from abjad.tools import timetools
+from abjad.tools import timerelationtools
 from experimental.interpretertools.Interpreter import Interpreter
 
 
@@ -120,13 +120,13 @@ class ConcreteInterpreter(Interpreter):
         requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
         requested_offset = division_command_request.timepoint.get_score_offset(
             self.score_specification, voice_name)
-        timespan_inventory = timetools.TimespanInventory()
+        timespan_inventory = timerelationtools.TimespanInventory()
         #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
         for division_region_command in self.score_specification.all_division_region_commands:
             if not division_region_command.request == division_command_request:
                 timespan_inventory.append(division_region_command)
         #self._debug_values(timespan_inventory, 'timespan inventory')
-        timespan_inequality = timetools.offset_happens_during_timespan(offset=requested_offset)
+        timespan_inequality = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
@@ -152,20 +152,20 @@ class ConcreteInterpreter(Interpreter):
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
         #self._debug(division_region_expressions, 'drx')
-        source_timespan = timetools.LiteralTimespan(start_offset, stop_offset)
-        timespan_inequality = timetools.timespan_2_intersects_timespan_1(
+        source_timespan = timerelationtools.LiteralTimespan(start_offset, stop_offset)
+        timespan_inequality = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
-        division_region_expressions = timetools.TimespanInventory(division_region_expressions)
+        division_region_expressions = timerelationtools.TimespanInventory(division_region_expressions)
         #self._debug(division_region_expressions, 'drx')
         if not division_region_expressions:
             return
         if not division_region_expressions.all_are_contiguous:
             return
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
-        trimmed_division_region_expressions = timetools.TimespanInventory(trimmed_division_region_expressions)
-        keep_timespan = timetools.LiteralTimespan(start_offset, stop_offset)
+        trimmed_division_region_expressions = timerelationtools.TimespanInventory(trimmed_division_region_expressions)
+        keep_timespan = timerelationtools.LiteralTimespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         #self._debug(trimmed_division_region_expressions, 'trimmed')
         # TODO: eventually encapsulate in a single call
@@ -423,10 +423,10 @@ class ConcreteInterpreter(Interpreter):
 
     def initialize_region_expression_inventories_for_attribute(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            timespan_inventory = timetools.TimespanInventory()
+            timespan_inventory = timerelationtools.TimespanInventory()
             region_commands = '{}_region_commands'.format(attribute)
             self.score_specification.contexts[voice.name][region_commands] = timespan_inventory
-            timespan_inventory = timetools.TimespanInventory()
+            timespan_inventory = timerelationtools.TimespanInventory()
             region_expressions = '{}_region_expressions'.format(attribute)
             self.score_specification.contexts[voice.name][region_expressions] = timespan_inventory
 
@@ -751,13 +751,13 @@ class ConcreteInterpreter(Interpreter):
         requested_offset = rhythm_command_request.timepoint.get_score_offset(
             self.score_specification, voice_name)
         #self._debug(requested_offset, 'offset')
-        timespan_inventory = timetools.TimespanInventory()
+        timespan_inventory = timerelationtools.TimespanInventory()
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
             #if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
             if True:
                 if not rhythm_region_command.request == rhythm_command_request:
                     timespan_inventory.append(rhythm_region_command)
-        timespan_inequality = timetools.offset_happens_during_timespan(offset=requested_offset)
+        timespan_inequality = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
@@ -782,12 +782,12 @@ class ConcreteInterpreter(Interpreter):
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_score_offsets(
             self.score_specification, rhythm_request.context_name)
-        source_timespan = timetools.LiteralTimespan(*source_score_offsets)
+        source_timespan = timerelationtools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
-        timespan_inequality = timetools.timespan_2_intersects_timespan_1(
+        timespan_inequality = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
             timespan_inequality)
@@ -795,7 +795,7 @@ class ConcreteInterpreter(Interpreter):
         if not rhythm_region_expressions:
             return
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
-        rhythm_region_expressions = timetools.TimespanInventory(rhythm_region_expressions)
+        rhythm_region_expressions = timerelationtools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
         rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(voice_name=voice_name, start_offset=start_offset)
@@ -859,14 +859,14 @@ class ConcreteInterpreter(Interpreter):
             command_was_delayed, command_was_split = False, False
             commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split = [], [], [], []
             for cooked_command in cooked_commands:
-                if timetools.timespan_2_contains_timespan_1_improperly(
+                if timerelationtools.timespan_2_contains_timespan_1_improperly(
                     cooked_command, raw_command):
                     commands_to_remove.append(cooked_command)
-                elif timetools.timespan_2_delays_timespan_1(cooked_command, raw_command):
+                elif timerelationtools.timespan_2_delays_timespan_1(cooked_command, raw_command):
                     commands_to_delay.append(cooked_command)
-                elif timetools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
+                elif timerelationtools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
                     commands_to_curtail.append(cooked_command)
-                elif timetools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
+                elif timerelationtools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
                     commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:

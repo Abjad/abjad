@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from experimental import divisiontools
-from abjad.tools import timetools
+from abjad.tools import timerelationtools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -21,7 +21,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> segment = selectortools.SingleSegmentSelector(identifier='red')
         >>> timespan = segment.timespan
-        >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
+        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
 
@@ -31,7 +31,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> z(division_selector)
         selectortools.DivisionSelector(
-            inequality=timetools.TimespanInequality(
+            inequality=timerelationtools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(
@@ -49,7 +49,7 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> z(division_selector)
         selectortools.DivisionSelector(
-            inequality=timetools.TimespanInequality(
+            inequality=timerelationtools.TimespanInequality(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(

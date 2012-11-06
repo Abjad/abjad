@@ -34,7 +34,7 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
     Then select the last three leaves in tuplet ``-1`` in this measure::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timetools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
 
     ::
 
@@ -59,7 +59,7 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
             selector=selectortools.CounttimeComponentSelector(
                 klass=tuplettools.Tuplet,
                 selector=selectortools.CounttimeComponentSelector(
-                    inequality=timetools.TimespanInequality(
+                    inequality=timerelationtools.TimespanInequality(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(

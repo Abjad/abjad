@@ -1,5 +1,5 @@
 import abc
-from abjad.tools import timetools
+from abjad.tools import timerelationtools
 from experimental.selectortools.Selector import Selector
 
 
@@ -18,7 +18,7 @@ class InequalitySelector(Selector):
     @abc.abstractmethod
     def __init__(self, inequality=None):
         assert isinstance(inequality, 
-            (timetools.TimespanInequality, type(None))), repr(inequality)
+            (timerelationtools.TimespanInequality, type(None))), repr(inequality)
         Selector.__init__(self)
         self._inequality = inequality
 
