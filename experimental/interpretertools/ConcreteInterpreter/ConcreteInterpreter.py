@@ -258,10 +258,7 @@ class ConcreteInterpreter(Interpreter):
 
     def filter_rhythm_quadruples(self, rhythm_quadruples):
         result = []
-        #print len(rhythm_quadruples)
         for rhythm_quadruple in rhythm_quadruples:
-            #self._debug(rhythm_quadruple, 'rq')
-            #print ''
             rhythm_command, division_list, start_offset, stop_offset = rhythm_quadruple
             if isinstance(rhythm_command.request, requesttools.AbsoluteRequest):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
@@ -271,57 +268,54 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
-                if result and rhythm_command.request == result[-1][0]:
-                #if result and self.rhythm_command_is_continuation_of_expr(rhythm_command, result[-1][0]):
+                if result and self.rhythm_command_prolongs_expr(rhythm_command, result[-1][0]):
                     last_start_offset = result.pop()[1]
-                    new_entry = (rhythm_command.request,
+                    new_entry = (rhythm_command,
                         last_start_offset,
                         stop_offset,
                         rhythm_command)
                 else:
-                    new_entry = (rhythm_command.request, 
+                    new_entry = (rhythm_command,
                             rhythm_command.start_offset, 
                             rhythm_command.stop_offset, 
                             rhythm_command)
                 result.append(new_entry)
             else:
                 raise TypeError(rhythm_command.request)
-        return result
+        # make one last pass over commands that bear a material request
+        postprocessed_result = []
+        for quadruple in result:
+            if isinstance(quadruple[0], settingtools.Command):
+                postprocessed_result.append((quadruple[0].request, ) + quadruple[1:])
+            else:
+                postprocessed_result.append(quadruple)
+        return postprocessed_result
 
     # alphabetize me
-    def rhythm_command_is_continuation_of_expr(self, rhythm_command, expr):
-        current_material_request = rhythm_command.request
+    def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):
+        # check that current rhythm command bears a rhythm material request
+        assert isinstance(current_rhythm_command, settingtools.RhythmCommand)
+        current_material_request = current_rhythm_command.request
         assert isinstance(current_material_request, requesttools.MaterialRequest)
         assert current_material_request.attribute == 'rhythm'
-        print 'IN!\n'
-        print 'EXPR'
-        print expr
-        print ''
-        print 'COMMAND'
-        print rhythm_command
-        print ''
-        # current material request must equal last material request
-        if not current_material_request == expr:
+        # fuse only if expr is also a rhythm command that bears a rhythm material request
+        if not isinstance(expr, settingtools.RhythmCommand):
             return False
         else:
-            last_material_request = expr
-        print 'same so far ...\n'
-        # if rhythm command specifies a treatment,
-        # then rhythm command treatment must be the same as last material command treatment
-        if rhythm_command.index is not None and last_material_request.index is not None:
-            if rhythm_command.index != last_material_request.index:
-                return False
-        if rhythm_command.count is not None and last_material_request.count is not None:
-            if rhythm_command.count != last_material_request.count:
-                return False
-        if rhythm_command.reverse is not None and last_material_request.reverse is not None:
-            if rhythm_command.reverse != last_material_request.reverse:
-                return False
-        if rhythm_command.rotation is not None and last_material_request.rotation is not None:
-            if rhythm_command.rotation != last_material_request.rotation:
-                return False
-        if rhythm_command.callback is not None and last_material_request.callback is not None:
-            if rhythm_command.callback != last_material_request.callback:
+            previous_rhythm_command = expr
+        previous_material_request = getattr(previous_rhythm_command, 'request', None)
+        if not isinstance(previous_material_request, requesttools.MaterialRequest):
+            return False        
+        if not previous_material_request.attribute == 'rhythm':
+            return False
+        # fuse only if current and previous commands request same material
+        if not current_material_request == previous_material_request:
+            return False
+        # TODO: implement one-line statement for command treatment comparison
+        # fuse only if current and previous commands treat material equally
+        for attribute in ('index', 'count', 'reverse', 'rotation', 'callback'):
+            if getattr(current_rhythm_command, attribute, None) != \
+                getattr(previous_rhythm_command, attribute, None):
                 return False
         return True
 
