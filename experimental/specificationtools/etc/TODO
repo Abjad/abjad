@@ -21,19 +21,15 @@
 7.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
 
-8.  Migrate SymbolicOffset, SymbolicTimespan, SingleSourceSymbolicTimespan and
-    MixedSourceSymbolicTimespan to a new symbolictimetools package in the experimental branch
-    in preparation for timetools merge to mainline.
+8.  Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
 
-9.  Rename 'timepoint' to 'offset' everywhere in preparation for timetools merge to mainline.
+9. Rename timetools to timerelationtools in preparation for merge to mainline.
 
-10. Rename timetools to timerelationtools in preparation for merge to mainline.
+10. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
 
-11. Rename ScoreSpecification.make_segment() to ScoreSpecification.append_segment().
+11. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
 
-12. Add tied_notes=True and tied_rests=False keywords to all talea-based rhythm makers.
-
-13. Implement SegmentSpecification.select_multiple_divisions() to return multiple
+12. Implement SegmentSpecification.select_multiple_divisions() to return multiple
     selectors at once. This will change ...
         first_division = red_segment.select_division(0)
         second_division = red_segment.select_division(1)
@@ -42,13 +38,17 @@
         first_division, second_division, third_division = red_segment.select_all_divisions()
     ... instead.
 
-14. Implement very basic cycle detection.
+13. Implement very basic cycle detection.
 
-15. Afford rhythm command request of parseable string. This will make ...
+14. Afford rhythm command request of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
         voice_1_rhythm_command = red_segment.request_rhythm_command('Voice 1')
         red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
 
-16. Set all rotation to fracture_spanners=False by default in interpreter.
+15. Set all rotation to fracture_spanners=False by default in interpreter.
+
+16. Reimplement rhythm rotation to pay attention to the differences beteween
+    spanners that cover components and spanners that dominate components.
+    Fill in missing spannertools docstrings before doing this.
