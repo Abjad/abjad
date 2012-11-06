@@ -1,6 +1,10 @@
 Pärt: *Cantus in Memory of Benjamin Britten*
 ============================================
 
+Here is the original score's first page:
+
+.. image:: images/original.png
+
 Let's make some imports:
 
 <abjad>
@@ -51,7 +55,13 @@ The LilyPond file
 
 <abjadextract abjad.demos.part.format_lilypond_file.format_lilypond_file \>[strip_prompt=true]
 
+<abjad>
+lilypond_file = build_score()
+</abjad>
 
+<abjad>
+show(lilypond_file) <page 1-2
+</abjad>
 
 
 

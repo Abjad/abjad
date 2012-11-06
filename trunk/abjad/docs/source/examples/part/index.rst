@@ -1,6 +1,10 @@
 Pärt: *Cantus in Memory of Benjamin Britten*
 ============================================
 
+Here is the original score's first page:
+
+.. image:: images/original.png
+
 Let's make some imports:
 
 ::
@@ -61,8 +65,6 @@ The score template
                instrument_name_markup='Violin I', 
                short_instrument_name_markup='Vl. I'
                )(first_violin_staff)
-           # contexttools.TempoMark((1, 4), (112, 120))(first_violin_staff)
-           # contexttools.TimeSignatureMark((6, 4))(first_violin_staff)
    
            # make second violin voice and staff
            second_violin_voice = voicetools.Voice(name='Second Violin Voice')
@@ -72,16 +74,12 @@ The score template
                instrument_name_markup='Violin II', 
                short_instrument_name_markup='Vl. II'
                )(second_violin_staff)
-           # contexttools.TempoMark((1, 4), (112, 120))(second_violin_staff)
-           # contexttools.TimeSignatureMark((6, 4))(second_violin_staff)
    
            # make viola voice and staff
            viola_voice = voicetools.Voice(name='Viola Voice')
            viola_staff = stafftools.Staff([viola_voice], name='Viola Staff')
            contexttools.ClefMark('alto')(viola_staff)
            instrumenttools.Viola()(viola_staff)
-           # contexttools.TempoMark((1, 4), (112, 120))(viola_staff)
-           # contexttools.TimeSignatureMark((6, 4))(viola_staff)
    
            # make cello voice and staff
            cello_voice = voicetools.Voice(name='Cello Voice')
@@ -90,8 +88,6 @@ The score template
            instrumenttools.Cello(
                short_instrument_name_markup='Vc.'
                )(cello_staff)
-           # contexttools.TempoMark((1, 4), (112, 120))(cello_staff)
-           # contexttools.TimeSignatureMark((6, 4))(cello_staff)
    
            # make bass voice and staff
            bass_voice = voicetools.Voice(name='Bass Voice')
@@ -100,8 +96,6 @@ The score template
            instrumenttools.Contrabass(
                short_instrument_name_markup='Cb.'
                )(bass_staff)
-           # contexttools.TempoMark((1, 4), (112, 120))(bass_staff)
-           # contexttools.TimeSignatureMark((6, 4))(bass_staff)
    
            # make strings staff group
            strings_staff_group = scoretools.StaffGroup([
@@ -562,6 +556,18 @@ The LilyPond file
        return lily
 
 
+::
+
+   >>> lilypond_file = build_score()
+
+
+::
+
+   >>> show(lilypond_file) 
+
+.. image:: images/index-1-page1.png
+
+.. image:: images/index-1-page2.png
 
 
 
