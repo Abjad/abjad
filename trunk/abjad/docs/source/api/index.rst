@@ -147,7 +147,6 @@ Composition packages
    tools/componenttools/partition_components_by_durations_le
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/replace_components_with_children_of_components
-   tools/componenttools/report_component_format_contributions
    tools/componenttools/split_component_at_offset
    tools/componenttools/split_components_at_offsets
    tools/componenttools/sum_duration_of_components_in_seconds
@@ -2192,6 +2191,7 @@ Internal packages
    tools/formattools/get_spanner_format_contributions_for_slot
    tools/formattools/get_stem_tremolo_format_contributions
    tools/formattools/is_formattable_context_mark_for_component
+   tools/formattools/report_component_format_contributions
    tools/formattools/report_spanner_format_contributions
 
 :py:mod:`importtools <abjad.tools.importtools>`

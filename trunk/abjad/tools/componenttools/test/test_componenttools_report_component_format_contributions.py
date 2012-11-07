@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_report_component_format_contributions_01():
+def test_formattools_report_component_format_contributions_01():
     '''You can report_component_format_contributions on a heavily tweaked leaf.'''
 
     t = Note("c'4")
@@ -32,4 +32,4 @@ def test_componenttools_report_component_format_contributions_01():
             % textual information after
     '''
 
-    assert componenttools.report_component_format_contributions(t) == '''slot 1:\n\tcomments:\n\t\t% textual information before\n\tgrob overrides:\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot 3:\nslot 4:\n\tleaf body:\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { some markup }\nslot 5:\nslot 7:\n\tcomments:\n\t\t% textual information after\n'''
+    assert formattools.report_component_format_contributions(t) == '''slot 1:\n\tcomments:\n\t\t% textual information before\n\tgrob overrides:\n\t\t\\once \\override NoteHead #'color = #red\n\t\t\\once \\override NoteHead #'style = #'cross\n\t\t\\once \\override Stem #'color = #red\nslot 3:\nslot 4:\n\tleaf body:\n\t\tc'4 -\\staccato -\\tenuto _ \\markup { some markup }\nslot 5:\nslot 7:\n\tcomments:\n\t\t% textual information after\n'''

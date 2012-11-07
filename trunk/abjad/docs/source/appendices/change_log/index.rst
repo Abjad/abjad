@@ -345,7 +345,7 @@ Renamed all functions that contained ``as_string``::
 
 ::
 
-    componenttools.report_component_format_contributions()
+    formattools.report_component_format_contributions()
     containertools.report_container_modifications()
     measuretools.report_time_signature_distribution()
 
