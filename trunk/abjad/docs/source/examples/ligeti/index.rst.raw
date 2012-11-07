@@ -62,47 +62,20 @@ We add the articulation marking and finally ad the Chord to a Voice, to which we
 Finally we combine the two voices in a parallel Container:
 
 <abjad>
-p = Container([voice_lower, voice_higher])
-p.is_parallel = True
+container = Container([voice_lower, voice_higher])
+container.is_parallel = True
 </abjad>
 
 This results in the complete *Désordre* *cell*:
 
-<abjad>[hide = True]
-cell = Staff([p])
+<abjad>
+cell = Staff([container])
+show(cell)
 </abjad>
 
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches:
 
-<abjad>[strip_prompt=true]
-def desordre_cell(pitches):
-    '''The function constructs and returns a *Désordre cell*.
-    `pitches` is a list of numbers or, more generally, pitch tokens.
-    '''
-    notes = [Note(p, (1, 8)) for p in pitches]
-    beamtools.BeamSpanner(notes)
-    spannertools.SlurSpanner(notes)
-    contexttools.DynamicMark('f')(notes[0])
-    contexttools.DynamicMark('p')(notes[1])
-    # make the lower voice
-    v_lower = Voice(notes)
-    v_lower.name = 'rh_lower'
-    marktools.LilyPondCommandMark('voiceTwo')(v_lower)
-    n = int(math.ceil(len(pitches) / 2.))
-    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-    marktools.Articulation('>')(chord)
-    # make the upper voice
-    v_higher = Voice([chord])
-    v_higher.name = 'rh_higher'
-    marktools.LilyPondCommandMark('voiceOne')(v_higher)
-    # combine them together
-    p = Container([v_lower, v_higher])
-    p.is_parallel = True
-    # make all 1/8 beats breakable
-    for n in v_lower.leaves[:-1]:
-        marktools.BarLine('')(n)
-    return p
-</abjad>
+<abjadextract abjad.demos.desordre.make_desordre_cell.make_desordre_cell \>[strip_prompt=true]
 
 Now we can call this function to create any number of *cells*. That was actually the hardest part of reconstructing the opening of Ligeti's *Désordre*. Because the repetition of patters occurs also at the level of measures and staves, we will now define functions to create these other higher level constructs.
 
@@ -111,27 +84,16 @@ The measure
 
 We define a function to create a measure from a list of lists of numbers:
 
-<abjad>[strip_prompt=true]
-def measure_build(pitches):
-    '''Constructs a measure composed of *Désordre cells*.
-    `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
-    The function returns a DynamicMeasure.
-    '''
-    result = measuretools.DynamicMeasure([ ])
-    for seq in pitches:
-        result.append(desordre_cell(seq))
-    # make denominator 8
-    if contexttools.get_effective_time_signature(result).denominator == 1:
-        result.denominator = 8
-    return result
-</abjad>
+<abjadextract abjad.demos.desordre.make_desordre_measure.make_desordre_measure \>[strip_prompt=true]
 
 The function is very simple. It simply creates a DynamicMeasure and then populates it with *cells* that are created internally with the function previously defined. The function takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of pitches is iterated to create each of the *cells* to be appended to the DynamicMeasures. We could have defined the function to take ready made *cells* directly, but we are building the hierarchy of functions so that we can pass simple lists of lists of numbers to generate the full structure.
 To construct a Ligeti measure we would call the function like so:
 
 <abjad>
-measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
-show(Staff([measure]))
+pitches = [[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]]
+measure = make_desordre_measure(pitches)
+staff = Staff([measure])
+show(staff)
 </abjad>
 
 The staff
@@ -139,22 +101,14 @@ The staff
 
 Now we move up to the next level, the staff:
 
-<abjad>[strip_prompt=true]
-def staff_build(pitches):
-    '''Returns a Staff containing DynamicMeasures.'''
-    result = Staff([])
-    for seq in pitches:
-        measure = measure_build(seq)
-        result.append(measure)
-    return result
-</abjad>
+<abjadextract abjad.demos.desordre.make_desordre_staff.make_desordre_staff \>[strip_prompt=true]
 
 The function again takes a plain list as argument. The list must be a list of lists (for measures) of lists (for cells) of pitches. The function simply constructs the Ligeti measures internally by calling our previously defined function and puts them inside a Staff.
 As with measures, we can now create full measure sequences with this new function:
 
 <abjad>
 pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
-staff = staff_build(pitches)
+staff = make_desordre_staff(pitches)
 show(staff)
 </abjad>
 
@@ -163,20 +117,7 @@ The score
 
 Finally a function that will generate the whole opening section of the piece *Désordre*:
 
-<abjad>[strip_prompt=true]
-def desordre_build(pitches):
-    '''Returns a complete PianoStaff with Ligeti music!'''
-    assert len(pitches) == 2
-    piano = scoretools.PianoStaff([])
-    # build the music...
-    for hand in pitches:
-        seq = staff_build(hand)
-        piano.append(seq)
-    # set clef and key signature to left hand staff...
-    contexttools.ClefMark('bass')(piano[1])
-    contexttools.KeySignatureMark('b', 'major')(piano[1])
-    return piano
-</abjad>
+<abjadextract abjad.demos.desordre.make_desordre_score.make_desordre_score \>[strip_prompt=true]
 
 The function creates a PianoStaff, constructs Staves with Ligeti music and appends these to the empty PianoStaff. Finally it sets the clef and key signature of the lower staff to match the original score.
 The argument of the function is a list of length 2, depth 3. The first element in the list corresponds to the upper staff, the second to the lower staff.
@@ -189,12 +130,12 @@ bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]],
 </abjad>
 
 <abjad>
-desordre = desordre_build([top, bottom])
+score = make_desordre_score([top, bottom])
 </abjad>
 
 <abjad>
 from abjad.tools import documentationtools
-lilypond_file = documentationtools.make_ligeti_example_lilypond_file(desordre)
+lilypond_file = documentationtools.make_ligeti_example_lilypond_file(score)
 </abjad>
 
 <abjad>
