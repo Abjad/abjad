@@ -17,7 +17,7 @@ def get_likely_multiplier_of_components(components):
             e'8..
             f'8..
         }
-        >>> componenttools.get_likely_multiplier_of_components(staff[:])
+        >>> measuretools.get_likely_multiplier_of_components(staff[:])
         Multiplier(7, 4)
 
     Return 1 when no multiplier is likely::
@@ -30,7 +30,7 @@ def get_likely_multiplier_of_components(components):
             e'8
             f'8
         }
-        >>> componenttools.get_likely_multiplier_of_components(staff[:])
+        >>> measuretools.get_likely_multiplier_of_components(staff[:])
         Multiplier(1, 1)
 
     Return none when more than one multiplier is likely::
@@ -43,7 +43,7 @@ def get_likely_multiplier_of_components(components):
             e'8.
             f'8..
         }
-        >>> componenttools.get_likely_multiplier_of_components(staff[:]) is None
+        >>> measuretools.get_likely_multiplier_of_components(staff[:]) is None
         True
 
     Return fraction or none.

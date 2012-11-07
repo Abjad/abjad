@@ -1,4 +1,3 @@
-from abjad.tools import componenttools
 from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -22,6 +21,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     '''
     from abjad.tools import contexttools
     from abjad.tools import iterationtools
+    from abjad.tools import measuretools
     from abjad.tools import timesignaturetools
     from abjad.tools import tuplettools
 
@@ -30,7 +30,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
 
             # find time signature and contents multipliers
             time_signature_multiplier = contexttools.get_effective_time_signature(measure).implied_prolation
-            contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
+            contents_multiplier = measuretools.get_likely_multiplier_of_components(measure[:])
 
             # update non-power-of-two time signature to power-of-two
             effective_time_signature = contexttools.get_effective_time_signature(measure)
