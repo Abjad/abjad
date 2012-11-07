@@ -12,7 +12,7 @@ import copy
 from abjad import *
 </abjad>
 
-<abjadextract abjad.demos.part.build_score.build_score \>[strip_prompt=true]
+<abjadextract abjad.demos.part.make_part_lilypond_file.make_part_lilypond_file \>[strip_prompt=true]
 
 The score template
 ------------------
@@ -53,10 +53,11 @@ The marks
 The LilyPond file
 -----------------
 
-<abjadextract abjad.demos.part.format_lilypond_file.format_lilypond_file \>[strip_prompt=true]
+<abjadextract abjad.demos.part.configure_score.configure_score \>[strip_prompt=true]
+<abjadextract abjad.demos.part.configure_lilypond_file.configure_lilypond_file \>[strip_prompt=true]
 
 <abjad>
-lilypond_file = build_score()
+lilypond_file = make_part_lilypond_file()
 </abjad>
 
 <abjad>

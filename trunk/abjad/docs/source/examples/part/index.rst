@@ -15,7 +15,7 @@ Let's make some imports:
 
 ::
 
-   def build_score():
+   def make_part_lilypond_file():
    
        score_template = PartCantusScoreTemplate()
        score = score_template()
@@ -28,7 +28,9 @@ Let's make some imports:
        apply_page_breaks(score)
        apply_rehearsal_marks(score)
    
-       lilypond_file = format_lilypond_file(score)
+       configure_score(score)
+       lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+       configure_lilypond_file(lilypond_file)
    
        return lilypond_file
 
@@ -184,6 +186,7 @@ The string music
 ::
 
    def create_pitch_contour_reservoir():
+   
        scale = tonalitytools.Scale('a', 'minor')
        pitch_ranges = {
            'First Violin': pitchtools.PitchRange(("c'", "a'''")),
@@ -192,6 +195,7 @@ The string music
            'Cello': pitchtools.PitchRange(('a,', 'a')),
            'Bass': pitchtools.PitchRange(('c', 'a')),
        }
+   
        reservoir = {}
        for instrument_name, pitch_range in pitch_ranges.iteritems():
            pitch_set = scale.create_named_chromatic_pitch_set_in_pitch_range(pitch_range)
@@ -201,12 +205,14 @@ The string music
                descent = tuple(pitches[:i + 1])
                pitch_descents.append(descent)
            reservoir[instrument_name] = tuple(pitch_descents)
+   
        return reservoir
 
 
 ::
 
    def shadow_pitch_contour_reservoir(pitch_contour_reservoir):
+   
        shadow_pitch_lookup = {
            pitchtools.NamedDiatonicPitchClass('a'): -5, # add a P4 below
            pitchtools.NamedDiatonicPitchClass('g'): -3, # add a m3 below
@@ -498,7 +504,7 @@ The marks
 
    def apply_rehearsal_marks(score):
    
-       voice = score['Bell Voice']
+       bell_voice = score['Bell Voice']
    
        measure_indices = [6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84,
            90, 96, 102]
@@ -507,7 +513,7 @@ The marks
            marktools.LilyPondCommandMark(
                r'mark \default', 
                'before'
-               )(voice[measure_index])
+               )(bell_voice[measure_index])
 
 
 The LilyPond file
@@ -515,50 +521,41 @@ The LilyPond file
 
 ::
 
-   def format_lilypond_file(score):
+   def configure_score(score):
    
        spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
        score.override.vertical_axis_group.staff_staff_spacing = spacing_vector
        score.override.staff_grouper.staff_staff_spacing = spacing_vector
+       score.override.staff_symbol.thickness = 0.5
        score.set.mark_formatter = schemetools.Scheme('format-mark-box-numbers')
-   
-       #score.set.proportional_notation_duration = schemetools.SchemeMoment(1, 8)
-       #score.override.spacing_spanner.uniform_stretching = False
-       #score.override.spacing_spanner.strict_note_spacing = False
-   
-       #score.override.system_start_bar.thickness = 15
-       #score.override.system_start_square.padding = 3
-       #score.override.system_start_square.thickness = 5
-       #score.override.system_start_bracket.padding = 2.5
-       #score.override.rehearsal_mark.padding = 1.3
-       #score.override.rehearsal_mark.font_name = "Futura"
-       #score.override.script.padding = 0.9
-   
-       lily = lilypondfiletools.make_basic_lilypond_file(score)
-       lily.global_staff_size = 8
-   
-       context_block = lilypondfiletools.ContextBlock()
-       context_block.context_name = r'Staff \RemoveEmptyStaves'
-       context_block.override.vertical_axis_group.remove_first = True
-       lily.layout_block.context_blocks.append(context_block)
-   
-       lily.paper_block.system_separator_markup = marktools.LilyPondCommandMark('slashSeparator')
-       lily.paper_block.bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
-       lily.paper_block.top_margin =    lilypondfiletools.LilyPondDimension(0.5, 'in')
-       lily.paper_block.left_margin =   lilypondfiletools.LilyPondDimension(0.75, 'in')
-       lily.paper_block.right_margin =  lilypondfiletools.LilyPondDimension(0.5, 'in')
-       lily.paper_block.paper_width =   lilypondfiletools.LilyPondDimension(5.25, 'in')
-       lily.paper_block.paper_height =  lilypondfiletools.LilyPondDimension(7.25, 'in')
-   
-       lily.header_block.composer = markuptools.Markup('Arvo Pärt')
-       lily.header_block.title = markuptools.Markup('Cantus in Memory of Benjamin Britten (1980)')
-   
-       return lily
 
 
 ::
 
-   >>> lilypond_file = build_score()
+   def configure_lilypond_file(lilypond_file):
+   
+       lilypond_file.global_staff_size = 8
+   
+       context_block = lilypondfiletools.ContextBlock()
+       context_block.context_name = r'Staff \RemoveEmptyStaves'
+       context_block.override.vertical_axis_group.remove_first = True
+       lilypond_file.layout_block.context_blocks.append(context_block)
+   
+       lilypond_file.paper_block.system_separator_markup = marktools.LilyPondCommandMark('slashSeparator')
+       lilypond_file.paper_block.bottom_margin = lilypondfiletools.LilyPondDimension(0.5, 'in')
+       lilypond_file.paper_block.top_margin =    lilypondfiletools.LilyPondDimension(0.5, 'in')
+       lilypond_file.paper_block.left_margin =   lilypondfiletools.LilyPondDimension(0.75, 'in')
+       lilypond_file.paper_block.right_margin =  lilypondfiletools.LilyPondDimension(0.5, 'in')
+       lilypond_file.paper_block.paper_width =   lilypondfiletools.LilyPondDimension(5.25, 'in')
+       lilypond_file.paper_block.paper_height =  lilypondfiletools.LilyPondDimension(7.25, 'in')
+   
+       lilypond_file.header_block.composer = markuptools.Markup('Arvo Pärt')
+       lilypond_file.header_block.title = markuptools.Markup('Cantus in Memory of Benjamin Britten (1980)')
+
+
+::
+
+   >>> lilypond_file = make_part_lilypond_file()
 
 
 ::
