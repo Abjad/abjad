@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 from abjad.tools import rhythmmakertools
 
 
-def test_RestFilleTimeTokenMaker___call___01():
+def test_RestFilledRhythmMaker___call___01():
 
     maker = rhythmmakertools.RestFilledRhythmMaker()
 

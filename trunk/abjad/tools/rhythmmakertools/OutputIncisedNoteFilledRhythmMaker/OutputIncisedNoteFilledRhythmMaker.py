@@ -4,9 +4,9 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedR
 class OutputIncisedNoteFilledRhythmMaker(OutputIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
     
-    Output-incised note-filled time-token maker.
+    Output-incised note-filled rhythm maker.
 
-    Configure the time-token maker on initialization::
+    Configure the rhythm maker on initialization::
 
         >>> prefix_signal, prefix_lengths = [-8], [2]
         >>> suffix_signal, suffix_lengths = [-3], [4]
@@ -14,13 +14,13 @@ class OutputIncisedNoteFilledRhythmMaker(OutputIncisedRhythmMaker):
         >>> maker = rhythmmakertools.OutputIncisedNoteFilledRhythmMaker(
         ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
-    Then call the time-token maker on arbitrary duration tokens::
+    Then call the rhythm maker on arbitrary duration tokens::
 
         >>> duration_tokens = [(5, 8), (5, 8), (5, 8)]
         >>> leaf_lists = maker(duration_tokens)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    The resulting Abjad objects can be included in any score and the time-token 
+    The resulting Abjad objects can be included in any score and the rhythm 
     maker can be reused::
 
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens)
@@ -52,7 +52,7 @@ class OutputIncisedNoteFilledRhythmMaker(OutputIncisedRhythmMaker):
 
     Usage follows the two-step instantiate-then-call talea shown here.
 
-    Return time-token  maker.
+    Return rhythm  maker.
     '''
 
     ### PRIVATE METHODS ###

@@ -7,7 +7,7 @@ import fractions
 class SkipFilledRhythmMaker(RhythmMaker):
     r'''.. versionadded:: 2.10
 
-    Skip-filled time-token maker::
+    Skip-filled rhythm maker::
 
         >>> maker = rhythmmakertools.SkipFilledRhythmMaker()
 
@@ -33,7 +33,7 @@ class SkipFilledRhythmMaker(RhythmMaker):
 
     Usage follows the two-step instantiate-then-call talea shown here.
 
-    Return time-token maker.
+    Return rhythm maker.
     '''
 
     ### CLASS ATTRIBUTES ###

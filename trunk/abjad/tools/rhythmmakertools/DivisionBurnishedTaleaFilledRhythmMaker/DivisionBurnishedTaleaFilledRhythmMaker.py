@@ -6,9 +6,9 @@ from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import BurnishedRhythmMak
 class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Token-burnished signal-filled time-token maker.
+    Division-burnished signal-filled rhythm-maker.
 
-    Configure the time-token maker at instantiation::
+    Configure the rhythm maker at instantiation::
 
         >>> talea, denominator, prolation_addenda = [1, 1, 2, 4], 32, [0, 3]
         >>> lefts, middles, rights = [-1], [0], [-1]
@@ -18,12 +18,12 @@ class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
         ... talea, denominator, prolation_addenda, lefts, middles, rights, 
         ... left_lengths, right_lengths, secondary_divisions)
 
-    Then call the time-token maker on any sequence of duration tokens::
+    Then call the rhythm maker on any sequence of duration tokens::
 
         >>> duration_tokens = [(5, 16), (6, 16)]
         >>> music = maker(duration_tokens)
 
-    The resulting Abjad objects can then be included in any score and the time-token
+    The resulting Abjad objects can then be included in any score and the rhythm
     maker can be called again and again on different duration tokens::
 
         >>> music = sequencetools.flatten_sequence(music)
@@ -64,7 +64,7 @@ class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
 
     Usage follows the two-step instantiate-then-call talea shown here.
 
-    Return time-token maker.
+    Return rhythm maker.
     '''
 
     ### PRIVATE METHODS ###

@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker import Di
 class NoteFilledRhythmMaker(DivisionIncisedNoteFilledRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Note-filled time-token maker::
+    Note-filled rhythm maker::
 
         >>> maker = rhythmmakertools.NoteFilledRhythmMaker()
 
@@ -37,7 +37,7 @@ class NoteFilledRhythmMaker(DivisionIncisedNoteFilledRhythmMaker):
 
     Usage follows the two-step instantiate-then-call talea shown here.
 
-    Return time-token maker.
+    Return rhythm maker.
     '''
 
     ### CLASS ATTRIBUTES ###

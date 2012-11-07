@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker import DivisionInci
 class DivisionIncisedNoteFilledRhythmMaker(DivisionIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Token-incised note-filled time-token maker::
+    Division-incised note-filled rhythm maker::
 
         >>> prefix_signal, prefix_lengths = [-8], [0, 1]
         >>> suffix_signal, suffix_lengths = [-1], [1]
@@ -56,7 +56,7 @@ class DivisionIncisedNoteFilledRhythmMaker(DivisionIncisedRhythmMaker):
 
     Usage follows the two-step instantiate-then-call talea shown here.
 
-    Return time-token maker.
+    Return rhythm maker.
     '''
 
     ### PRIVATE METHODS ###

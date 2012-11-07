@@ -19,7 +19,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     (or both first and last) elements of a time token to be 
     either a note or rest.
 
-    'Token-burnishing' time token makers burnish every time token they produce.
+    'Division-burnishing' time token makers burnish every time token they produce.
 
     'Output-burnishing' time token makers burnish only the first and last 
     time tokens they produce and leave interior time tokens unchanged.
