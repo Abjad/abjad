@@ -83,8 +83,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds=None):
-        duration_pairs, seeds = RhythmMaker.__call__(self, duration_tokens, seeds)
+    def __call__(self, divisions, seeds=None):
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         result = self._prepare_input(seeds)
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths = result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]

@@ -15,14 +15,14 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
 
     Then call the rhythm maker on arbitrary duration tokens::
 
-        >>> duration_tokens = [(2, 8), (5, 8)]
-        >>> music = maker(duration_tokens)
+        >>> divisions = [(2, 8), (5, 8)]
+        >>> music = maker(divisions)
 
     The resulting Abjad objects can be included in any score and the rhythm
     make can be called indefinitely on other arbitrary sequences of duration tokens::
 
         >>> music = sequencetools.flatten_sequence(music)
-        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens)
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
         >>> staff = Staff(measures)
         >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 

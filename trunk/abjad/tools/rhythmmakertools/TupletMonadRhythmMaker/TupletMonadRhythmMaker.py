@@ -14,8 +14,8 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     ::
 
-        >>> duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
-        >>> tuplet_lists = maker(duration_tokens)
+        >>> divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
+        >>> tuplet_lists = maker(divisions)
         >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
 
     ::
@@ -56,22 +56,22 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds=None):
+    def __call__(self, divisions, seeds=None):
         result = []
-        for duration_token in duration_tokens:
-            monad = self._make_monad(duration_token)
+        for division in divisions:
+            monad = self._make_monad(division)
             result.append([monad])
         return result
 
     ### PRIVATE METHODS ###
 
-    def _make_monad(self, duration_token):
-        numerator, denominator = duration_token
+    def _make_monad(self, division):
+        numerator, denominator = division
         power_of_two_denominator = mathtools.greatest_power_of_two_less_equal(denominator)
         duration = fractions.Fraction(abs(numerator), denominator)
         power_of_two_duration = fractions.Fraction(abs(numerator), power_of_two_denominator)
-        power_of_two_duration_token = (numerator, power_of_two_denominator) 
+        power_of_two_division = (numerator, power_of_two_denominator) 
         tuplet_multiplier = duration / power_of_two_duration
-        leaves = leaftools.make_leaves([0], [power_of_two_duration_token])
+        leaves = leaftools.make_leaves([0], [power_of_two_division])
         tuplet = tuplettools.Tuplet(tuplet_multiplier, leaves)
         return tuplet

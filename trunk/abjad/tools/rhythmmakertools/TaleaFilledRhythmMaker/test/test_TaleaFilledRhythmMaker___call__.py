@@ -8,11 +8,11 @@ def test_TaleaFilledRhythmMaker___call___01():
     talea, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
     maker = rhythmmakertools.TaleaFilledRhythmMaker(talea, denominator, prolation_addenda)
 
-    duration_tokens = [(2, 8), (5, 8)]
-    music = maker(duration_tokens)
+    divisions = [(2, 8), (5, 8)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -48,11 +48,11 @@ def test_TaleaFilledRhythmMaker___call___02():
     secondary_divisions = [6]
     maker = rhythmmakertools.TaleaFilledRhythmMaker(talea, denominator, prolation_addenda, secondary_divisions)
 
-    duration_tokens = [(2, 8), (5, 8)]
-    music = maker(duration_tokens)
+    divisions = [(2, 8), (5, 8)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''

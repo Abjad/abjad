@@ -24,8 +24,8 @@ class RhythmMaker(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds=None):
-        duration_pairs = [durationtools.Duration(x).pair for x in duration_tokens]
+    def __call__(self, divisions, seeds=None):
+        duration_pairs = [durationtools.Duration(x).pair for x in divisions]
         seeds = self._none_to_new_list(seeds)
         return duration_pairs, seeds
 
@@ -126,13 +126,13 @@ class RhythmMaker(AbjadObject):
 
         ::
 
-            >>> duration_tokens = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker.set(big_endian=False)(duration_tokens)
+            >>> divisions = [(5, 16), (3, 8)]
+            >>> leaf_lists = maker.set(big_endian=False)(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
         ::
 
-            >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+            >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
             >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
         ::

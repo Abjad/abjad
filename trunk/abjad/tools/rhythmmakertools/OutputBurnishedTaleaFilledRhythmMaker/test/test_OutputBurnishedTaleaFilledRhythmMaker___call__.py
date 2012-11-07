@@ -12,11 +12,11 @@ def test_OutputBurnishedTaleaFilledRhythmMaker___call___01():
         talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths)
 
-    duration_tokens = [(3, 16), (3, 8)]
-    music = maker(duration_tokens)
+    divisions = [(3, 16), (3, 8)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -59,11 +59,11 @@ def test_OutputBurnishedTaleaFilledRhythmMaker___call___02():
         talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths)
 
-    duration_tokens = [(3, 16), (3, 8)]
-    music = maker(duration_tokens)
+    divisions = [(3, 16), (3, 8)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -99,11 +99,11 @@ def test_OutputBurnishedTaleaFilledRhythmMaker___call___03():
         talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
 
-    duration_tokens = [(3, 8), (4, 8)]
-    music = maker(duration_tokens)
+    divisions = [(3, 8), (4, 8)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -146,11 +146,11 @@ def test_OutputBurnishedTaleaFilledRhythmMaker___call___04():
         lefts, middles, rights,
         left_lengths, right_lengths)
 
-    duration_tokens = [(8, 8)]
-    music = maker(duration_tokens)
+    divisions = [(8, 8)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''

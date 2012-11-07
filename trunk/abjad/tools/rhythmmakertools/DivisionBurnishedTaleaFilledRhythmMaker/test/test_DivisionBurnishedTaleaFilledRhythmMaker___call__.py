@@ -11,11 +11,11 @@ def test_DivisionBurnishedTaleaFilledRhythmMaker___call___01():
     maker = rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker(talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths)
 
-    duration_tokens = [(5, 16), (6, 16)]
-    music = maker(duration_tokens)
+    divisions = [(5, 16), (6, 16)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -55,11 +55,11 @@ def test_DivisionBurnishedTaleaFilledRhythmMaker___call___02():
     left_lengths, right_lengths = [2], [1]
     maker = rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker(talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths)
-    duration_tokens = [(5, 16), (6, 16)]
-    music = maker(duration_tokens)
+    divisions = [(5, 16), (6, 16)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -99,11 +99,11 @@ def test_DivisionBurnishedTaleaFilledRhythmMaker___call___03():
     left_lengths, right_lengths = [2], [1]
     maker = rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker(talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths)
-    duration_tokens = [(5, 16), (6, 16)]
-    music = maker(duration_tokens)
+    divisions = [(5, 16), (6, 16)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -147,11 +147,11 @@ def test_DivisionBurnishedTaleaFilledRhythmMaker___call___04():
     left_lengths, right_lengths = [1], [1]
     maker = rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker(talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths)
-    duration_tokens = [(5, 16), (6, 16)]
-    music = maker(duration_tokens)
+    divisions = [(5, 16), (6, 16)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''
@@ -194,11 +194,11 @@ def test_DivisionBurnishedTaleaFilledRhythmMaker___call___05():
     maker = rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker(talea, denominator, prolation_addenda,
         lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
 
-    duration_tokens = [(5, 16), (6, 16)]
-    music = maker(duration_tokens)
+    divisions = [(5, 16), (6, 16)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     r'''

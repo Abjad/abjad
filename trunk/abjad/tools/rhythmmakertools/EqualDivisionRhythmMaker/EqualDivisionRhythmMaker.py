@@ -16,8 +16,8 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     ::
 
-        >>> duration_tokens = [(1, 4), (1, 8), (1, 6), (1, 12)]
-        >>> tuplet_lists = maker(duration_tokens)
+        >>> divisions = [(1, 4), (1, 8), (1, 6), (1, 12)]
+        >>> tuplet_lists = maker(divisions)
         >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
 
     ::
@@ -73,18 +73,18 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds=None):
+    def __call__(self, divisions, seeds=None):
         result = []
-        for duration_token in duration_tokens:
-            tuplet = self._make_tuplet(duration_token)
+        for division in divisions:
+            tuplet = self._make_tuplet(division)
             result.append([tuplet])
         return result
 
     ### PRIVATE METHODS ###
 
-    def _make_tuplet(self, duration_token):
-        numerator, denominator = duration_token
-        token_duration = durationtools.Duration(duration_token)
+    def _make_tuplet(self, division):
+        numerator, denominator = division
+        token_duration = durationtools.Duration(division)
         ratio = self.leaf_count * [1]
         tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
             token_duration, ratio, avoid_dots=True, is_diminution=self.is_diminution)

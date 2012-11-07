@@ -7,11 +7,11 @@ def test_RestFilledRhythmMaker___call___01():
 
     maker = rhythmmakertools.RestFilledRhythmMaker()
 
-    duration_tokens = [(5, 16), (3, 8)]
-    leaf_lists = maker(duration_tokens)
+    divisions = [(5, 16), (3, 8)]
+    leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     r'''

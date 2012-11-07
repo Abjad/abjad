@@ -13,8 +13,8 @@ class SkipFilledRhythmMaker(RhythmMaker):
 
     ::
 
-        >>> duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
-        >>> leaf_lists = maker(duration_tokens)
+        >>> divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
+        >>> leaf_lists = maker(divisions)
         >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
     ::
@@ -47,11 +47,11 @@ class SkipFilledRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds=None):
+    def __call__(self, divisions, seeds=None):
         result = []
-        for duration_token in duration_tokens:
+        for division in divisions:
             written_duration = durationtools.Duration(1)
-            multiplied_duration = duration_token
+            multiplied_duration = division
             skip = skiptools.make_skips_with_multiplied_durations(written_duration, [multiplied_duration])
             result.append(skip)
         return result

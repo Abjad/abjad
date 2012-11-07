@@ -99,8 +99,8 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds=None):
-        duration_pairs, seeds = RhythmMaker.__call__(self, duration_tokens, seeds)
+    def __call__(self, divisions, seeds=None):
+        duration_pairs, seeds = RhythmMaker.__call__(self, divisions, seeds)
         octuplet = self._prepare_input(seeds)
         talea, prolation_addenda = octuplet[:2]
         secondary_divisions = octuplet[-1]

@@ -6,8 +6,8 @@ def test_TupletMonadRhythmMaker___call___01():
 
     maker = rhythmmakertools.TupletMonadRhythmMaker()
 
-    duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
-    tuplet_lists = maker(duration_tokens)
+    divisions = [(1, 5), (1, 4), (1, 6), (7, 9)]
+    tuplet_lists = maker(divisions)
     tuplets = sequencetools.flatten_sequence(tuplet_lists)
     staff = Staff(tuplets)
 

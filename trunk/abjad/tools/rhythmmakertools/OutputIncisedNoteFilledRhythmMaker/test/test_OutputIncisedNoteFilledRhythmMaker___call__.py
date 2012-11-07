@@ -11,11 +11,11 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___01():
     maker = rhythmmakertools.OutputIncisedNoteFilledRhythmMaker(
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
-    duration_tokens = [(5, 8), (5, 8), (5, 8)]
-    leaf_lists = maker(duration_tokens)
+    divisions = [(5, 8), (5, 8), (5, 8)]
+    leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -54,11 +54,11 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___02():
     maker = rhythmmakertools.OutputIncisedNoteFilledRhythmMaker(
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
-    duration_tokens = [(5, 8), (5, 8), (5, 8)]
-    leaf_lists = maker(duration_tokens)
+    divisions = [(5, 8), (5, 8), (5, 8)]
+    leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -95,11 +95,11 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___03():
     maker = rhythmmakertools.OutputIncisedNoteFilledRhythmMaker(
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
-    duration_tokens = [(5, 8), (5, 8), (5, 8)]
-    leaf_lists = maker(duration_tokens)
+    divisions = [(5, 8), (5, 8), (5, 8)]
+    leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -136,11 +136,11 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___04():
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator,
         prolation_addenda = prolation_addenda)
 
-    duration_tokens = [(4, 8), (4, 8), (4, 8)]
-    leaf_lists = maker(duration_tokens)
+    divisions = [(4, 8), (4, 8), (4, 8)]
+    leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
@@ -183,11 +183,11 @@ def test_OutputIncisedNoteFilledRhythmMaker___call___05():
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator,
         prolation_addenda = prolation_addenda, secondary_divisions = secondary_divisions)
 
-    duration_tokens = [(4, 8), (4, 8), (4, 8)]
-    leaf_lists = maker(duration_tokens)
+    divisions = [(4, 8), (4, 8), (4, 8)]
+    leaf_lists = maker(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+    staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 

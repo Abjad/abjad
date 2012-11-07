@@ -9,11 +9,11 @@ def test_TaleaFilledRhythmMaker_beam_cells_together_01():
     maker = rhythmmakertools.TaleaFilledRhythmMaker(
         talea, denominator, prolation_addenda, beam_each_cell=True)
 
-    duration_tokens = [(2, 16), (5, 16)]
-    music = maker(duration_tokens)
+    divisions = [(2, 16), (5, 16)]
+    music = maker(divisions)
 
     music = sequencetools.flatten_sequence(music)
-    measures = measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens)
+    measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
     staff = Staff(measures)
     measuretools.replace_contents_of_measures_in_expr(staff, music)
     score = Score([staff])
