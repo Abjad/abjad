@@ -20,7 +20,7 @@ class RhythmMaker(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self):
-        self._repr_signals = []
+        pass
 
     ### SPECIAL METHODS ###
 

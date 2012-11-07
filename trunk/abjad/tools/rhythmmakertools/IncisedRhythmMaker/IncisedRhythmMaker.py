@@ -80,9 +80,6 @@ class IncisedRhythmMaker(RhythmMaker):
         self.secondary_divisions_helper = self._none_to_trivial_helper(secondary_divisions_helper)
         self.big_endian = big_endian
         self.tie_rests = tie_rests
-        self._repr_signals.append(self.prefix_signal)
-        self._repr_signals.append(self.suffix_signal)
-        self._repr_signals.append(self.secondary_divisions)
 
     ### SPECIAL METHODS ###
 

@@ -96,12 +96,6 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.beam_each_cell = beam_each_cell
         self.big_endian = big_endian
         self.tie_rests = tie_rests
-        self._repr_signals.append(self.talea)
-        self._repr_signals.append(self.prolation_addenda)
-        self._repr_signals.append(self.lefts)
-        self._repr_signals.append(self.middles)
-        self._repr_signals.append(self.rights)
-        self._repr_signals.append(self.secondary_divisions)
 
     ### SPECIAL METHODS ###
 
