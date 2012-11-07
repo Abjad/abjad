@@ -8,7 +8,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures(4 * [(2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.thirty_seconds)
@@ -26,7 +26,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures(4 * [(2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.thirty_seconds)
@@ -45,7 +45,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures(4 * [(2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.thirty_seconds)
@@ -64,7 +64,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures(4 * [(2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.thirty_seconds)
@@ -83,7 +83,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(3, 8), (4, 8), (3, 8)])
     red_segment.set_rhythm("{ c'4 }")
     first_measure = red_segment.select_background_measure(0)

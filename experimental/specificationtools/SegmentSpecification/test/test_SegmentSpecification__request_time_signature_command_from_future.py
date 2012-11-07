@@ -9,8 +9,8 @@ def test_SegmentSpecification__request_time_signature_command_from_future_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
 
     blue_time_signature_command = blue_segment.request_time_signature_command()
     red_segment.set_time_signatures(blue_time_signature_command)
@@ -33,8 +33,8 @@ def test_SegmentSpecification__request_time_signature_command_from_future_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
 
     blue_time_signature_command = blue_segment.request_time_signature_command(reverse=True)
     red_segment.set_time_signatures(blue_time_signature_command)
@@ -57,8 +57,8 @@ def test_SegmentSpecification__request_time_signature_command_from_future_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
 
     blue_time_signature_command = blue_segment.request_time_signature_command()
     red_segment.set_time_signatures(blue_time_signature_command, reverse=True)
@@ -81,8 +81,8 @@ def test_SegmentSpecification__request_time_signature_command_from_future_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
 
     blue_time_signature_command = blue_segment.request_time_signature_command(reverse=True)
     red_segment.set_time_signatures(blue_time_signature_command, reverse=True)

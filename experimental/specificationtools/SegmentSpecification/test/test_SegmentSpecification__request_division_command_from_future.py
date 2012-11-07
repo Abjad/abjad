@@ -9,8 +9,8 @@ def test_SegmentSpecification__request_division_command_from_future_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
     
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_division_command = blue_segment.request_division_command('Voice 1')
@@ -34,8 +34,8 @@ def test_SegmentSpecification__request_division_command_from_future_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
     
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_division_command = blue_segment.request_division_command('Voice 1', reverse=True)
@@ -59,8 +59,8 @@ def test_SegmentSpecification__request_division_command_from_future_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
     
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_division_command = blue_segment.request_division_command('Voice 1')
@@ -84,8 +84,8 @@ def test_SegmentSpecification__request_division_command_from_future_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
-    blue_segment = score_specification.make_segment(name='blue')
+    red_segment = score_specification.append_segment(name='red')
+    blue_segment = score_specification.append_segment(name='blue')
     
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_division_command = blue_segment.request_division_command('Voice 1', reverse=True)

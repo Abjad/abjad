@@ -8,7 +8,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measure(1)
@@ -26,7 +26,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measure(0)
@@ -46,7 +46,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measure(1)
@@ -65,7 +65,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measure(0)
@@ -85,7 +85,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measures(start=-2)
@@ -105,7 +105,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_06():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measures(start=-2)
@@ -125,7 +125,7 @@ def test_single_segment_solo__incomplete_rhythm_coverage_07():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     selector = segment.select_background_measures(start=-2)

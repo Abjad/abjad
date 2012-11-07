@@ -9,7 +9,7 @@ def test_miscellaneous_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_background_measure(0)
     second_measure = red_segment.select_background_measure(1)

@@ -10,7 +10,7 @@ def test_SegmentSpecification__set_rhythm_transform_keywords_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.dotted_sixteenths, index=1)
@@ -28,7 +28,7 @@ def test_SegmentSpecification__set_rhythm_transform_keywords_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.dotted_sixteenths, count=1)
@@ -45,7 +45,7 @@ def test_SegmentSpecification__set_rhythm_transform_keywords_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.dotted_sixteenths, reverse=True)
@@ -63,7 +63,7 @@ def test_SegmentSpecification__set_rhythm_transform_keywords_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.dotted_sixteenths, rotation=-1)
@@ -80,7 +80,7 @@ def test_SegmentSpecification__set_rhythm_transform_keywords_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_background_measure(0)
     second_measure = red_segment.select_background_measure(1)

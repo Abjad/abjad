@@ -17,7 +17,7 @@ def test_schematic_examples__X_series_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], truncate=True)
     source = red_segment.request_divisions('Voice 1') 
@@ -26,7 +26,7 @@ def test_schematic_examples__X_series_01():
     red_segment.set_divisions(source, contexts=['Voice 4'], rotation=-3, truncate=True)
     red_segment.set_rhythm(library.thirty_seconds)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -47,7 +47,7 @@ def test_schematic_examples__X_series_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts='Voice 1', truncate=True)
     red_segment.set_divisions([(4, 16)], contexts='Voice 2', truncate=True)
@@ -57,7 +57,7 @@ def test_schematic_examples__X_series_02():
     red_segment.set_divisions(source_2, contexts=['Voice 4'], reverse=True, truncate=True)
     red_segment.set_rhythm(library.thirty_seconds)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -80,7 +80,7 @@ def test_schematic_examples__X_series_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = red_segment.select_background_measures_ratio_part((1, 1), 0, is_count=True)
     right_measure = red_segment.select_background_measures_ratio_part((1, 1), -1, is_count=True)
@@ -106,7 +106,7 @@ def test_schematic_examples__X_series_03():
 
     red_segment.set_rhythm(library.note_filled_tokens)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, reverse=True)
@@ -142,7 +142,7 @@ def test_schematic_examples__X_series_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     divisions = red_segment.request_partitioned_total_time([1, 1, 1])
     red_segment.set_divisions(divisions)
@@ -160,7 +160,7 @@ def test_schematic_examples__X_series_04():
     naive_beats = red_segment.request_naive_beats()
     red_segment.set_divisions(naive_beats, contexts=['Voice 4'])
     red_segment.set_rhythm(library.note_filled_tokens)
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
     red_voice_2_rhythm = red_segment.request_rhythm('Voice 2')
     red_voice_3_rhythm = red_segment.request_rhythm('Voice 3')
@@ -191,7 +191,7 @@ def test_schematic_examples__X_series_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
@@ -203,7 +203,7 @@ def test_schematic_examples__X_series_05():
     red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 3'], rotation=indicator)
     indicator = settingtools.RotationIndicator(Duration(-3, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell, contexts=['Voice 4'], rotation=indicator)
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
     
     score = score_specification.interpret()
@@ -227,7 +227,7 @@ def test_schematic_examples__X_series_06():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(10, 32)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
@@ -239,7 +239,7 @@ def test_schematic_examples__X_series_06():
     red_segment.set_rhythm(rhythmic_cell, contexts=['Voice 3'], rotation=indicator)
     indicator = settingtools.RotationIndicator(-3, fracture_spanners=False)
     red_segment.set_rhythm(rhythmic_cell, contexts=['Voice 4'], rotation=indicator)
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(1, 8)])
     red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
     blue_segment.set_rhythm(red_voice_1_rhythm, contexts=['Voice 1'], reverse=True)
@@ -272,7 +272,7 @@ def test_schematic_examples__X_series_07():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_background_measure(0)
     second_measure = red_segment.select_background_measure(1)

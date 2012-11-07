@@ -8,7 +8,7 @@ def test_SegmentSpecification__select_segment_offsets_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_part_of_segment = segment.select_segment_offsets(start=(1, 8), stop=(4, 8))
     segment.set_divisions([(2, 16)])
@@ -27,7 +27,7 @@ def test_SegmentSpecification__select_segment_offsets_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_part_of_segment = segment.select_segment_offsets(stop=(4, 8))
     segment.set_divisions([(2, 16)])
@@ -46,7 +46,7 @@ def test_SegmentSpecification__select_segment_offsets_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_part_of_segment = segment.select_segment_offsets(start=(2, 8))
     segment.set_divisions([(2, 16)])
@@ -65,7 +65,7 @@ def test_SegmentSpecification__select_segment_offsets_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = segment.select_segment_offsets()
     segment.set_divisions([(2, 16)])
@@ -84,7 +84,7 @@ def test_SegmentSpecification__select_segment_offsets_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = segment.select_segment_offsets(start=(-4, 8))
     segment.set_divisions([(2, 16)])
@@ -103,7 +103,7 @@ def test_SegmentSpecification__select_segment_offsets_06():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = segment.select_segment_offsets(stop=(-2, 8))
     segment.set_divisions([(2, 16)])
@@ -122,7 +122,7 @@ def test_SegmentSpecification__select_segment_offsets_07():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = segment.select_segment_offsets(start=(-4, 8), stop=(-2, 8))
     segment.set_divisions([(2, 16)])

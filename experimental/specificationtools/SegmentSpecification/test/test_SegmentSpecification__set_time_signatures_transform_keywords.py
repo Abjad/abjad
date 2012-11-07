@@ -8,7 +8,7 @@ def test_SegmentSpecification__set_time_signatures_transform_keywords_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], index=-2)
     score = score_specification.interpret()
 
@@ -23,7 +23,7 @@ def test_SegmentSpecification__set_time_signatures_transform_keywords_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], count=6)
     score = score_specification.interpret()
 
@@ -38,7 +38,7 @@ def test_SegmentSpecification__set_time_signatures_transform_keywords_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], reverse=True)
     score = score_specification.interpret()
 
@@ -53,7 +53,7 @@ def test_SegmentSpecification__set_time_signatures_transform_keywords_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.make_segment('red')
+    red_segment = score_specification.append_segment('red')
     red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], rotation=-2)
     score = score_specification.interpret()
 

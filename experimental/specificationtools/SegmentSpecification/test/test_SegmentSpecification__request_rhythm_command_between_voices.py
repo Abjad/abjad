@@ -9,7 +9,7 @@ def test_SegmentSpecification__request_rhythm_command_between_voices_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm_command = red_segment.request_rhythm_command('Voice 2')
@@ -30,7 +30,7 @@ def test_SegmentSpecification__request_rhythm_command_between_voices_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm_command = red_segment.request_rhythm_command('Voice 2', reverse=True)
@@ -51,7 +51,7 @@ def test_SegmentSpecification__request_rhythm_command_between_voices_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm_command = red_segment.request_rhythm_command('Voice 2')
@@ -72,7 +72,7 @@ def test_SegmentSpecification__request_rhythm_command_between_voices_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm_command = red_segment.request_rhythm_command('Voice 2', reverse=True)

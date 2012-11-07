@@ -10,12 +10,12 @@ def test_SegmentSpecification__request_divisions_from_past_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(4, 16), (3, 16), (2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_divisions = red_segment.request_divisions('Voice 1')
     blue_segment.set_divisions(red_divisions)
 
@@ -33,12 +33,12 @@ def test_SegmentSpecification__request_divisions_from_past_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(4, 16), (3, 16), (2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_divisions = red_segment.request_divisions('Voice 1', reverse=True)
     blue_segment.set_divisions(red_divisions)
 
@@ -56,12 +56,12 @@ def test_SegmentSpecification__request_divisions_from_past_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(4, 16), (3, 16), (2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_divisions = red_segment.request_divisions('Voice 1')
     blue_segment.set_divisions(red_divisions, reverse=True)
 
@@ -79,12 +79,12 @@ def test_SegmentSpecification__request_divisions_from_past_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(4, 16), (3, 16), (2, 16)])
     red_segment.set_rhythm(library.sixteenths)
     
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_divisions = red_segment.request_divisions('Voice 1', reverse=True)
     blue_segment.set_divisions(red_divisions, reverse=True)
 
@@ -102,7 +102,7 @@ def test_SegmentSpecification__request_divisions_from_past_05():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
     left = red_segment.select_background_measure(0)
     right = red_segment.select_background_measure(-1)
@@ -110,7 +110,7 @@ def test_SegmentSpecification__request_divisions_from_past_05():
     red_segment.set_divisions([(3, 16)], selector=right)
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(5, 8), (6, 8)])
     red_voice_1_divisions = red_segment.request_divisions('Voice 1')
     blue_segment.set_divisions(red_voice_1_divisions, contexts=['Voice 1'])

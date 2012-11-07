@@ -14,7 +14,7 @@ class CommandRequest(Request):
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = score_specification.make_segment(name='red')
+        >>> segment = score_specification.append_segment(name='red')
 
     ::
 

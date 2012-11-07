@@ -9,12 +9,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
@@ -31,12 +31,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, count=1)
     score = score_specification.interpret()
@@ -53,12 +53,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, count=5)
     score = score_specification.interpret()
@@ -75,12 +75,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_04():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, index=-1)
     score = score_specification.interpret()
@@ -97,12 +97,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_05():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, count=5, index=-1)
     score = score_specification.interpret()
@@ -119,12 +119,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_06():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, reverse=True)
     score = score_specification.interpret()
@@ -141,12 +141,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_07():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures(reverse=True)
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
@@ -163,12 +163,12 @@ def test_SegmentSpecification__request_time_signatures_from_past_08():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures(reverse=True)
     blue_segment.set_time_signatures(red_time_signatures, reverse=True)
     score = score_specification.interpret()

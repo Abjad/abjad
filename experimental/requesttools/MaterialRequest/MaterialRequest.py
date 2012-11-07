@@ -16,7 +16,7 @@ class MaterialRequest(Request):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        >>> segment = score_specification.make_segment('red')
+        >>> segment = score_specification.append_segment('red')
 
     ::
 

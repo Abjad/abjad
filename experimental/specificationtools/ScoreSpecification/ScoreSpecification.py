@@ -21,9 +21,9 @@ class ScoreSpecification(Specification):
 
     With three named segments::
 
-        >>> segment = score_specification.make_segment('red')
-        >>> segment = score_specification.make_segment('orange')
-        >>> segment = score_specification.make_segment('yellow')
+        >>> segment = score_specification.append_segment('red')
+        >>> segment = score_specification.append_segment('orange')
+        >>> segment = score_specification.append_segment('yellow')
 
     All score specification properties are read-only.
     '''
@@ -295,26 +295,20 @@ class ScoreSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def make_segment(self, name=None, index=None):
+    def append_segment(self, name=None):
         r'''Append segment specification to score specification::
 
-            >>> score_specification.make_segment('green')
+            >>> score_specification.append_segment('green')
             SegmentSpecification('green')
 
         Assign segment `name` or first unused segment number to segment.
-
-        Set integer `index` to insert segment specification
-        at any arbitrary point in ``self.segment_specifications``.
 
         Return segment specification.
         '''
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
         segment_specification = self.segment_specification_class(self.score_template, name)
-        if index is not None:
-            self.segment_specifications.insert(index, segment_specification)
-        else:
-            self.segment_specifications.append(segment_specification)
+        self.segment_specifications.append(segment_specification)
         return segment_specification
 
     def get_start_segment_specification(self, expr):

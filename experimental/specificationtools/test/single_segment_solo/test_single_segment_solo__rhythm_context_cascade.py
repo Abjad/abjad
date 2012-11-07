@@ -9,7 +9,7 @@ def test_single_segment_solo__rhythm_context_cascade_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
@@ -28,7 +28,7 @@ def test_single_segment_solo__rhythm_context_cascade_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
@@ -49,7 +49,7 @@ def test_single_segment_solo__rhythm_context_cascade_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)
@@ -70,7 +70,7 @@ def test_single_segment_solo__rhythm_context_cascade_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.note_filled_tokens, contexts=['Voice 1'])
@@ -90,7 +90,7 @@ def test_single_segment_solo__rhythm_context_cascade_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.make_segment(name='red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment.set_divisions([(3, 16)])
     segment.set_rhythm(library.sixteenths)

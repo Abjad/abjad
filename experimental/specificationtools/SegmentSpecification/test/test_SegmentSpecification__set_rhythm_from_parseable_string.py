@@ -7,7 +7,7 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8), (3, 8)])
     red_segment.set_rhythm("{ c'16 [ ( c'8 c'8. ] ) }")
     score = score_specification.interpret()
@@ -24,7 +24,7 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_02():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8), (3, 8)])
     red_segment.set_rhythm("{ c'16 [ ( c'8 c'8. ] ) }", reverse=True)
     score = score_specification.interpret()
@@ -41,7 +41,7 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8), (3, 8)])
     red_segment.set_rhythm("{ c'16 [ ( c'8 c'8. ] ) }", rotation=-1)
     score = score_specification.interpret()

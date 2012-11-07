@@ -11,7 +11,7 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    red_segment = score_specification.make_segment(name='red')
+    red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     left_measure = red_segment.select_background_measures_ratio_part((1, 1), 0, is_count=True)
     right_measure = red_segment.select_background_measures_ratio_part((1, 1), -1, is_count=True)
@@ -37,7 +37,7 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
 
     red_segment.set_rhythm(library.note_filled_tokens)
 
-    blue_segment = score_specification.make_segment(name='blue')
+    blue_segment = score_specification.append_segment(name='blue')
 
     red_time_signatures = red_segment.request_time_signatures()
     blue_segment.set_time_signatures(red_time_signatures, reverse=True)
