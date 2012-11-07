@@ -47,6 +47,10 @@ chords, rests and skips, as well as beams, slurs, ties, and articulations.
        <g' b' d''>4 ^\marcato ~
        <g' b' d''>1
    }
+
+
+::
+
    >>> show(parsed_result)
 
 .. image:: images/index-1.png
@@ -70,197 +74,198 @@ us avoid using measure number tables entirely; Python's list-indexing affordance
 
 ::
 
-   mozart_measures = [
-       [ # measure 1 choices
-           {'b': 'c4 r8', 't': "e''8 c''8 g'8"},
-           {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"},
-           {'b': '<c e>4 r8', 't': "g''8 ( e''8 c''8 )"},
-           {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"},
-           {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
-           {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
-           {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"},
-           {'b': '<c e>4 r8', 't': "e''16 c''16 g''16 e''16 c'''16 g''16"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"},
-           {'b': '<c e>4 r8', 't': "g''8 c''8 e''8"},
-           {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
-       ],
-       [ # measure 2 choices
-           {'b': 'c4 r8', 't': "e''8 c''8 g'8"},
-           {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"},
-           {'b': '<c e>4 r8', 't': "g''8 e''8 c''8"},
-           {'b': '<e g>4 r8', 't': "c''16 g'16 c''16 e''16 g'16 c''16"},
-           {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
-           {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
-           {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"},
-           {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"},
-           {'b': '<c e>4 r8', 't': "c''8 g'8 e''8"},
-           {'b': '<c e>4 <c g>8', 't': "g''8 c''8 e''8"},
-           {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
-       ],
-       [ # measure 3 choices
-           {'b': '<b, g>4 g,8', 't': "d''16 e''16 f''16 d''16 c''16 b'16"},
-           {'b': 'g,4 r8', 't': "b'8 d''8 g''8"},
-           {'b': 'g,4 r8', 't': "b'8 d''16 b'16 a'16 g'16"},
-           {'b': '<g b>4 r8', 't': "f''8 d''8 b'8"},
-           {'b': '<b, d>4 r8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"},
-           {'b': '<g b>4 r8', 't': "f''16 e''16 f''16 d''16 c''16 b'16"},
-           {'b': '<g, g>4 <b, g>8', 't': "b'16 c''16 d''16 e''16 f''16 d''16"},
-           {'b': 'g8 g8 g8', 't': "<b' d''>8 <b' d''>8 <b' d''>8"},
-           {'b': 'g,4 r8', 't': "b'16 c''16 d''16 b'16 a'16 g'16"},
-           {'b': 'b,4 r8', 't': "d''8 ( b'8 g'8 )"},
-           {'b': 'g4 r8', 't': "b'16 a'16 b'16 c''16 d''16 b'16"},
-       ],
-       [ # measure 4 choices
-           {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'8"},
-           {'b': 'c4 r8', 't': "e''16 c''16 b'16 c''16 g'8"},
-           {'b': '<e g>4 r8', 't': "c''8 ( g'8 e'8 )"},
-           {'b': '<e g>4 r8', 't': "c''8 e''8 g'8"},
-           {'b': '<e g>4 r8', 't': "c''16 b'16 c''16 g'16 e'16 c'16"},
-           {'b': '<c e>4 r8', 't': "c''8 c''16 d''16 e''8"},
-           {'b': 'c4 r8', 't': "<c'' e''>8 <c'' e''>16 <d'' f''>16 <e'' g''>8"},
-           {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g'8"},
-           {'b': '<e g>4 r8', 't': "c''16 g'16 e''16 c''16 g''8"},
-           {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g''8"},
-           {'b': '<e g>4 r8', 't': "c''16 e''16 c''16 g'16 e'8"},
-       ],
-       [ # measure 5 choices
-           {'b': 'c4 r8', 't': "fs''8 a''16 fs''16 d''16 fs''16"},
-           {'b': 'c8 c8 c8', 't': "<fs' d''>8 <d'' fs''>8 <fs'' a''>8"},
-           {'b': 'c4 r8', 't': "d''16 a'16 fs''16 d''16 a''16 fs''16"},
-           {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"},
-           {'b': 'c4 r8', 't': r"d''8 a'8 ^\turn fs''8"},
-           {'b': 'c4 r8', 't': "d''16 cs''16 d''16 fs''16 a''16 fs''16"},
-           {'b': '<c a>4 <c a>8', 't': "fs''8 a''8 d''8"},
-           {'b': '<c fs>8 <c fs>8 <c a>8', 't': "a'8 a'16 d''16 fs''8"},
-           {'b': 'c8 c8 c8', 't': "<d'' fs''>8 <d'' fs''>8 <d'' fs''>8"},
-           {'b': '<c d>8 <c d>8 <c d>8', 't': "fs''8 fs''16 d''16 a''8"},
-           {'b': '<c a>4 r8', 't': "fs''16 d''16 a'16 a''16 fs''16 d''16"},
-       ],
-       [ # measure 6 choices
-           {'b': '<b, d>8 <b, d>8 <b, d>8', 't': "g''16 fs''16 g''16 b''16 d''8"},
-           {'b': '<b, d>4 r8', 't': "g''8 b''16 g''16 d''16 b'16"},
-           {'b': '<b, d>4 r8', 't': "g''8 b''8 d''8"},
-           {'b': '<b, g>4 r8', 't': "a'8 fs'16 g'16 b'16 g''16"},
-           {'b': '<b, d>4 <b, g>8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"},
-           {'b': 'b,4 r8', 't': "g''8 b''16 g''16 d''16 g''16"},
-           {'b': '<b, g>4 r8', 't': "d''8 g''16 d''16 b'16 d''16"},
-           {'b': '<b, g>4 r8', 't': "d''8 d''16 g''16 b''8"},
-           {'b': '<b, d>8 <b, d>8 <b, g>8', 't': "a''16 g''16 fs''16 g''16 d''8"},
-           {'b': '<b, d>4 r8', 't': "g''8 g''16 d''16 b''8"},
-           {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'8"},
-       ],
-       [ # measure 7 choices
-           {'b': 'c8 d8 d,8', 't': "e''16 c''16 b'16 a'16 g'16 fs'16"},
-           {'b': 'c8 d8 d,8', 't': "a'16 e''16 <b' d''>16 <a' c''>16 <g' b'>16 <fs' a'>16"},
-           {'b': 'c8 d8 d,8', 't': "<b' d''>16 ( <a' c''>16 ) <a' c''>16 ( <g' b'>16 ) <g' b'>16 ( <fs' a'>16 )"},
-           {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"},
-           {'b': 'c8 d8 d,8', 't': "a'16 e''16 d''16 g''16 fs''16 a''16"},
-           {'b': 'c8 d8 d,8', 't': "e''16 a''16 g''16 b''16 fs''16 a''16"},
-           {'b': 'c8 d8 d,8', 't': "c''16 e''16 g''16 d''16 a'16 fs''16"},
-           {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 g''16 a'16 fs''16"},
-           {'b': 'c8 d8 d,8', 't': "e''16 c''16 b'16 g'16 a'16 fs'16"},
-           {'b': 'c8 d8 d,8', 't': "e''16 c'''16 b''16 g''16 a''16 fs''16"},
-           {'b': 'c8 d8 d,8', 't': "a'8 d''16 c''16 b'16 a'16"},
-       ],
-       [ # measure 8 choices (always using both)
-           {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"},
-           {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"},
-       ],
-       [ # measure 9 choices
-           {'b': 'd4 c8', 't': "fs''8 a''16 fs''16 d''16 fs''16"},
-           {'b': '<d fs>4 r8', 't': "d''16 a'16 d''16 fs''16 a''16 fs''16"},
-           {'b': '<d a>8 <d fs>8 <c d>8', 't': "fs''8 a''8 fs''8"},
-           {'b': '<c a>4 <c a>8', 't': "fs''16 a''16 d'''16 a''16 fs''16 a''16"},
-           {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"},
-           {'b': 'd,16 d16 cs16 d16 c16 d16', 't': r"<a' d'' fs''>8 fs''4 ^\trill"},
-           {'b': '<d fs>4 <c fs>8', 't': "a''8 ( fs''8 d''8 )"},
-           {'b': '<d fs>4 <c fs>8', 't': "d'''8 a''16 fs''16 d''16 a'16"},
-           {'b': '<d fs>4 r8', 't': "d''16 a'16 d''8 fs''8"},
-           {'b': '<c a>4 <c a>8', 't': "fs''16 d''16 a'8 fs''8"},
-           {'b': '<d fs>4 <c a>8', 't': "a'8 d''8 fs''8"},
-       ],
-       [ # measure 10 choices
-           {'b': '<b, g>4 r8', 't': "g''8 b''16 g''16 d''8"},
-           {'b': 'b,16 d16 g16 d16 b,16 g,16', 't': "g''8 g'8 g'8"},
-           {'b': 'b,4 r8', 't': "g''16 b''16 g''16 b''16 d''8"},
-           {'b': '<b, d>4 <b, d>8', 't': "a''16 g''16 b''16 g''16 d''16 g''16"},
-           {'b': '<b, d>4 <b, d>8', 't': "g''8 d''16 b'16 g'8"},
-           {'b': '<b, d>4 <b, d>8', 't': "g''16 b''16 d'''16 b''16 g''8"},
-           {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'16 g'16"},
-           {'b': '<b, d>4 <b, d>8', 't': "g''16 d''16 g''16 b''16 g''16 d''16"},
-           {'b': '<b, d>4 <b, g>8', 't': "g''16 b''16 g''8 d''8"},
-           {'b': 'g,16 b,16 g8 b,8', 't': r"g''8 d''4 ^\trill"},
-           {'b': 'b,4 r8', 't': "g''8 b''16 d'''16 d''8"},
-       ],
-       [ # measure 11 choices
-           {'b': "c16 e16 g16 e16 c'16 c16", 't': "<c'' e''>8 <c'' e''>8 <c'' e''>8"},
-           {'b': 'e4 e16 c16', 't': "c''16 g'16 c''16 e''16 g''16 <c'' e''>16"},
-           {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"},
-           {'b': '<c g>4 r8', 't': "e''16 c''16 e''16 g''16 c'''16 g''16"},
-           {'b': '<c g>4 <c g>8', 't': "e''16 g''16 c'''16 g''16 e''16 c''16"},
-           {'b': 'c16 b,16 c16 d16 e16 fs16', 't': r"<g' c'' e''>8 e''4 ^\trill"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 c''8 g'8"},
-           {'b': '<c g>4 <c e>8', 't': "e''8 c''16 e''16 g''16 c'''16"},
-           {'b': '<c g>4 <c e>8', 't': "e''16 c''16 e''8 g''8"},
-           {'b': '<c g>4 <c g>8', 't': "e''16 c''16 g'8 e''8"},
-           {'b': '<c g>4 <c e>8', 't': "e''8 ( g''8 c'''8 )"},
-       ],
-       [ # measure 12 choices
-           {'b': 'g4 g,8', 't': "<c'' e''>8 <b' d''>8 r8"},
-           {'b': '<g, g>4 g8', 't': "d''16 b'16 g'8 r8"},
-           {'b': 'g8 g,8 r8', 't': "<c'' e''>8 <b' d''>16 <g' b'>16 g'8"},
-           {'b': 'g4 r8', 't': "e''16 c''16 d''16 b'16 g'8"},
-           {'b': 'g8 g,8 r8', 't': "g''16 e''16 d''16 b'16 g'8"},
-           {'b': 'g4 g,8', 't': "b'16 d''16 g''16 d''16 b'8"},
-           {'b': 'g8 g,8 r8', 't': "e''16 c''16 b'16 d''16 g''8"},
-           {'b': '<g b>4 r8', 't': "d''16 b''16 g''16 d''16 b'8"},
-           {'b': '<b, g>4 <b, d>8', 't': "d''16 b'16 g'8 g''8"},
-           {'b': 'g16 fs16 g16 d16 b,16 g,16', 't': "d''8 g'4"},
-       ],
-       [ # measure 13 choices
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 c''8 g'8"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g'8 c''8 e''8"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 e''8 c''8"},
-           {'b': '<c e>4 <e g>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"},
-           {'b': '<c e>4 <c g>8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
-           {'b': '<c g>4 <c e>8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
-           {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"},
-           {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"},
-           {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
-       ],
-       [ # measure 14 choices
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 ( c''8 g'8 )"},
-           {'b': '<c e>4 <c g>8', 't': "g'8 ( c''8 e''8 )"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 e''8 c''8"},
-           {'b': '<c e>4 <c e>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"},
-           {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
-           {'b': '<c g>4 <c e>8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
-           {'b': '<c e>4 <e g>8', 't': "g''8 f''16 e''16 d''16 c''16"},
-           {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"},
-           {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"},
-           {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
-       ],
-       [ # measure 15 choices
-           {'b': "<f a>4 <g d'>8", 't': "d''16 f''16 d''16 f''16 b'16 d''16"},
-           {'b': 'f4 g8', 't': "d''16 f''16 a''16 f''16 d''16 b'16"},
-           {'b': 'f4 g8', 't': "d''16 f''16 a'16 d''16 b'16 d''16"},
-           {'b': 'f4 g8', 't': "d''16 ( cs''16 ) d''16 f''16 g'16 b'16"},
-           {'b': 'f8 d8 g8', 't': "f''8 d''8 g''8"},
-           {'b': 'f16 e16 d16 e16 f16 g16', 't': "f''16 e''16 d''16 e''16 f''16 g''16"},
-           {'b': 'f16 e16 d8 g8', 't': "f''16 e''16 d''8 g''8"},
-           {'b': 'f4 g8', 't': "f''16 e''16 d''16 c''16 b'16 d''16"},
-           {'b': 'f4 g8', 't': "f''16 d''16 a'8 b'8"},
-           {'b': 'f4 g8', 't': "f''16 a''16 a'8 b'16 d''16"},
-           {'b': 'f4 g8', 't': "a'8 f''16 d''16 a'16 b'16"},
-       ],
-       [ # measure 16 choices
-           {'b': 'c8 g,8 c,8', 't': "c''4 r8"},
-           {'b': 'c4 c,8', 't': "c''8 c'8 r8"},
-       ],
-   ]
+   def make_mozart_measure_corpus():
+       return [
+           [
+               {'b': 'c4 r8', 't': "e''8 c''8 g'8"},
+               {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"},
+               {'b': '<c e>4 r8', 't': "g''8 ( e''8 c''8 )"},
+               {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"},
+               {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
+               {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
+               {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"},
+               {'b': '<c e>4 r8', 't': "e''16 c''16 g''16 e''16 c'''16 g''16"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"},
+               {'b': '<c e>4 r8', 't': "g''8 c''8 e''8"},
+               {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
+           ],
+           [
+               {'b': 'c4 r8', 't': "e''8 c''8 g'8"},
+               {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"},
+               {'b': '<c e>4 r8', 't': "g''8 e''8 c''8"},
+               {'b': '<e g>4 r8', 't': "c''16 g'16 c''16 e''16 g'16 c''16"},
+               {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
+               {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
+               {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"},
+               {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"},
+               {'b': '<c e>4 r8', 't': "c''8 g'8 e''8"},
+               {'b': '<c e>4 <c g>8', 't': "g''8 c''8 e''8"},
+               {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
+           ],
+           [
+               {'b': '<b, g>4 g,8', 't': "d''16 e''16 f''16 d''16 c''16 b'16"},
+               {'b': 'g,4 r8', 't': "b'8 d''8 g''8"},
+               {'b': 'g,4 r8', 't': "b'8 d''16 b'16 a'16 g'16"},
+               {'b': '<g b>4 r8', 't': "f''8 d''8 b'8"},
+               {'b': '<b, d>4 r8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"},
+               {'b': '<g b>4 r8', 't': "f''16 e''16 f''16 d''16 c''16 b'16"},
+               {'b': '<g, g>4 <b, g>8', 't': "b'16 c''16 d''16 e''16 f''16 d''16"},
+               {'b': 'g8 g8 g8', 't': "<b' d''>8 <b' d''>8 <b' d''>8"},
+               {'b': 'g,4 r8', 't': "b'16 c''16 d''16 b'16 a'16 g'16"},
+               {'b': 'b,4 r8', 't': "d''8 ( b'8 g'8 )"},
+               {'b': 'g4 r8', 't': "b'16 a'16 b'16 c''16 d''16 b'16"},
+           ],
+           [
+               {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'8"},
+               {'b': 'c4 r8', 't': "e''16 c''16 b'16 c''16 g'8"},
+               {'b': '<e g>4 r8', 't': "c''8 ( g'8 e'8 )"},
+               {'b': '<e g>4 r8', 't': "c''8 e''8 g'8"},
+               {'b': '<e g>4 r8', 't': "c''16 b'16 c''16 g'16 e'16 c'16"},
+               {'b': '<c e>4 r8', 't': "c''8 c''16 d''16 e''8"},
+               {'b': 'c4 r8', 't': "<c'' e''>8 <c'' e''>16 <d'' f''>16 <e'' g''>8"},
+               {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g'8"},
+               {'b': '<e g>4 r8', 't': "c''16 g'16 e''16 c''16 g''8"},
+               {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g''8"},
+               {'b': '<e g>4 r8', 't': "c''16 e''16 c''16 g'16 e'8"},
+           ],
+           [
+               {'b': 'c4 r8', 't': "fs''8 a''16 fs''16 d''16 fs''16"},
+               {'b': 'c8 c8 c8', 't': "<fs' d''>8 <d'' fs''>8 <fs'' a''>8"},
+               {'b': 'c4 r8', 't': "d''16 a'16 fs''16 d''16 a''16 fs''16"},
+               {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"},
+               {'b': 'c4 r8', 't': "d''8 a'8 ^\\turn fs''8"},
+               {'b': 'c4 r8', 't': "d''16 cs''16 d''16 fs''16 a''16 fs''16"},
+               {'b': '<c a>4 <c a>8', 't': "fs''8 a''8 d''8"},
+               {'b': '<c fs>8 <c fs>8 <c a>8', 't': "a'8 a'16 d''16 fs''8"},
+               {'b': 'c8 c8 c8', 't': "<d'' fs''>8 <d'' fs''>8 <d'' fs''>8"},
+               {'b': '<c d>8 <c d>8 <c d>8', 't': "fs''8 fs''16 d''16 a''8"},
+               {'b': '<c a>4 r8', 't': "fs''16 d''16 a'16 a''16 fs''16 d''16"},
+           ],
+           [
+               {'b': '<b, d>8 <b, d>8 <b, d>8', 't': "g''16 fs''16 g''16 b''16 d''8"},
+               {'b': '<b, d>4 r8', 't': "g''8 b''16 g''16 d''16 b'16"},
+               {'b': '<b, d>4 r8', 't': "g''8 b''8 d''8"},
+               {'b': '<b, g>4 r8', 't': "a'8 fs'16 g'16 b'16 g''16"},
+               {'b': '<b, d>4 <b, g>8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"},
+               {'b': 'b,4 r8', 't': "g''8 b''16 g''16 d''16 g''16"},
+               {'b': '<b, g>4 r8', 't': "d''8 g''16 d''16 b'16 d''16"},
+               {'b': '<b, g>4 r8', 't': "d''8 d''16 g''16 b''8"},
+               {'b': '<b, d>8 <b, d>8 <b, g>8', 't': "a''16 g''16 fs''16 g''16 d''8"},
+               {'b': '<b, d>4 r8', 't': "g''8 g''16 d''16 b''8"},
+               {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'8"},
+           ],
+           [
+               {'b': 'c8 d8 d,8', 't': "e''16 c''16 b'16 a'16 g'16 fs'16"},
+               {'b': 'c8 d8 d,8', 't': "a'16 e''16 <b' d''>16 <a' c''>16 <g' b'>16 <fs' a'>16"},
+               {'b': 'c8 d8 d,8', 't': "<b' d''>16 ( <a' c''>16 ) <a' c''>16 ( <g' b'>16 ) <g' b'>16 ( <fs' a'>16 )"},
+               {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"},
+               {'b': 'c8 d8 d,8', 't': "a'16 e''16 d''16 g''16 fs''16 a''16"},
+               {'b': 'c8 d8 d,8', 't': "e''16 a''16 g''16 b''16 fs''16 a''16"},
+               {'b': 'c8 d8 d,8', 't': "c''16 e''16 g''16 d''16 a'16 fs''16"},
+               {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 g''16 a'16 fs''16"},
+               {'b': 'c8 d8 d,8', 't': "e''16 c''16 b'16 g'16 a'16 fs'16"},
+               {'b': 'c8 d8 d,8', 't': "e''16 c'''16 b''16 g''16 a''16 fs''16"},
+               {'b': 'c8 d8 d,8', 't': "a'8 d''16 c''16 b'16 a'16"},
+           ],
+           [
+               {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"},
+               {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"},
+           ],
+           [
+               {'b': 'd4 c8', 't': "fs''8 a''16 fs''16 d''16 fs''16"},
+               {'b': '<d fs>4 r8', 't': "d''16 a'16 d''16 fs''16 a''16 fs''16"},
+               {'b': '<d a>8 <d fs>8 <c d>8', 't': "fs''8 a''8 fs''8"},
+               {'b': '<c a>4 <c a>8', 't': "fs''16 a''16 d'''16 a''16 fs''16 a''16"},
+               {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"},
+               {'b': 'd,16 d16 cs16 d16 c16 d16', 't': "<a' d'' fs''>8 fs''4 ^\\trill"},
+               {'b': '<d fs>4 <c fs>8', 't': "a''8 ( fs''8 d''8 )"},
+               {'b': '<d fs>4 <c fs>8', 't': "d'''8 a''16 fs''16 d''16 a'16"},
+               {'b': '<d fs>4 r8', 't': "d''16 a'16 d''8 fs''8"},
+               {'b': '<c a>4 <c a>8', 't': "fs''16 d''16 a'8 fs''8"},
+               {'b': '<d fs>4 <c a>8', 't': "a'8 d''8 fs''8"},
+           ],
+           [
+               {'b': '<b, g>4 r8', 't': "g''8 b''16 g''16 d''8"},
+               {'b': 'b,16 d16 g16 d16 b,16 g,16', 't': "g''8 g'8 g'8"},
+               {'b': 'b,4 r8', 't': "g''16 b''16 g''16 b''16 d''8"},
+               {'b': '<b, d>4 <b, d>8', 't': "a''16 g''16 b''16 g''16 d''16 g''16"},
+               {'b': '<b, d>4 <b, d>8', 't': "g''8 d''16 b'16 g'8"},
+               {'b': '<b, d>4 <b, d>8', 't': "g''16 b''16 d'''16 b''16 g''8"},
+               {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'16 g'16"},
+               {'b': '<b, d>4 <b, d>8', 't': "g''16 d''16 g''16 b''16 g''16 d''16"},
+               {'b': '<b, d>4 <b, g>8', 't': "g''16 b''16 g''8 d''8"},
+               {'b': 'g,16 b,16 g8 b,8', 't': "g''8 d''4 ^\\trill"},
+               {'b': 'b,4 r8', 't': "g''8 b''16 d'''16 d''8"},
+           ],
+           [
+               {'b': "c16 e16 g16 e16 c'16 c16", 't': "<c'' e''>8 <c'' e''>8 <c'' e''>8"},
+               {'b': 'e4 e16 c16', 't': "c''16 g'16 c''16 e''16 g''16 <c'' e''>16"},
+               {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"},
+               {'b': '<c g>4 r8', 't': "e''16 c''16 e''16 g''16 c'''16 g''16"},
+               {'b': '<c g>4 <c g>8', 't': "e''16 g''16 c'''16 g''16 e''16 c''16"},
+               {'b': 'c16 b,16 c16 d16 e16 fs16', 't': "<g' c'' e''>8 e''4 ^\\trill"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 c''8 g'8"},
+               {'b': '<c g>4 <c e>8', 't': "e''8 c''16 e''16 g''16 c'''16"},
+               {'b': '<c g>4 <c e>8', 't': "e''16 c''16 e''8 g''8"},
+               {'b': '<c g>4 <c g>8', 't': "e''16 c''16 g'8 e''8"},
+               {'b': '<c g>4 <c e>8', 't': "e''8 ( g''8 c'''8 )"},
+           ],
+           [
+               {'b': 'g4 g,8', 't': "<c'' e''>8 <b' d''>8 r8"},
+               {'b': '<g, g>4 g8', 't': "d''16 b'16 g'8 r8"},
+               {'b': 'g8 g,8 r8', 't': "<c'' e''>8 <b' d''>16 <g' b'>16 g'8"},
+               {'b': 'g4 r8', 't': "e''16 c''16 d''16 b'16 g'8"},
+               {'b': 'g8 g,8 r8', 't': "g''16 e''16 d''16 b'16 g'8"},
+               {'b': 'g4 g,8', 't': "b'16 d''16 g''16 d''16 b'8"},
+               {'b': 'g8 g,8 r8', 't': "e''16 c''16 b'16 d''16 g''8"},
+               {'b': '<g b>4 r8', 't': "d''16 b''16 g''16 d''16 b'8"},
+               {'b': '<b, g>4 <b, d>8', 't': "d''16 b'16 g'8 g''8"},
+               {'b': 'g16 fs16 g16 d16 b,16 g,16', 't': "d''8 g'4"},
+           ],
+           [
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 c''8 g'8"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g'8 c''8 e''8"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 e''8 c''8"},
+               {'b': '<c e>4 <e g>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"},
+               {'b': '<c e>4 <c g>8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
+               {'b': '<c g>4 <c e>8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
+               {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"},
+               {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"},
+               {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
+           ],
+           [
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 ( c''8 g'8 )"},
+               {'b': '<c e>4 <c g>8', 't': "g'8 ( c''8 e''8 )"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 e''8 c''8"},
+               {'b': '<c e>4 <c e>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"},
+               {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"},
+               {'b': '<c g>4 <c e>8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"},
+               {'b': '<c e>4 <e g>8', 't': "g''8 f''16 e''16 d''16 c''16"},
+               {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"},
+               {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"},
+               {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"},
+           ],
+           [
+               {'b': "<f a>4 <g d'>8", 't': "d''16 f''16 d''16 f''16 b'16 d''16"},
+               {'b': 'f4 g8', 't': "d''16 f''16 a''16 f''16 d''16 b'16"},
+               {'b': 'f4 g8', 't': "d''16 f''16 a'16 d''16 b'16 d''16"},
+               {'b': 'f4 g8', 't': "d''16 ( cs''16 ) d''16 f''16 g'16 b'16"},
+               {'b': 'f8 d8 g8', 't': "f''8 d''8 g''8"},
+               {'b': 'f16 e16 d16 e16 f16 g16', 't': "f''16 e''16 d''16 e''16 f''16 g''16"},
+               {'b': 'f16 e16 d8 g8', 't': "f''16 e''16 d''8 g''8"},
+               {'b': 'f4 g8', 't': "f''16 e''16 d''16 c''16 b'16 d''16"},
+               {'b': 'f4 g8', 't': "f''16 d''16 a'8 b'8"},
+               {'b': 'f4 g8', 't': "f''16 a''16 a'8 b'16 d''16"},
+               {'b': 'f4 g8', 't': "a'8 f''16 d''16 a'16 b'16"},
+           ],
+           [
+               {'b': 'c8 g,8 c,8', 't': "c''4 r8"},
+               {'b': 'c4 c,8', 't': "c''8 c'8 r8"},
+           ],
+       ]
 
 
 We can then use the :py:func:`~abjad.tools.iotools.p` function we saw earlier to "build" the treble and bass components of a 
@@ -268,7 +273,7 @@ measure like this:
 
 ::
 
-   def build_one_mozart_measure(measure_dict):
+   def make_mozart_measure(measure_dict):
        # parse the contents of a measure definition dictionary
        # wrap the expression to be parsed inside a LilyPond { } block
        treble = p('{{ {} }}'.format(measure_dict['t']))
@@ -281,13 +286,21 @@ Let's try with a measure-definition of our own:
 ::
 
    >>> my_measure_dict = {'b': r'c4 ^\trill r8', 't': "e''8 ( c''8 g'8 )"}
-   >>> treble, bass = build_one_mozart_measure(my_measure_dict)
+   >>> treble, bass = make_mozart_measure(my_measure_dict)
+
+
+::
+
    >>> f(treble)
    {
        e''8 (
        c''8
        g'8 )
    }
+
+
+::
+
    >>> f(bass)
    {
        c4 ^\trill
@@ -300,14 +313,22 @@ We'll grab the very last choice for the very last measure:
 
 ::
 
-   >>> my_measure_dict = mozart_measures[-1][-1]
-   >>> treble, bass = build_one_mozart_measure(my_measure_dict)
+   >>> my_measure_dict = make_mozart_measure_corpus()[-1][-1]
+   >>> treble, bass = make_mozart_measure(my_measure_dict)
+
+
+::
+
    >>> f(treble)
    {
        c''8
        c'8
        r8
    }
+
+
+::
+
    >>> f(bass)
    {
        c4
@@ -327,7 +348,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
    >>> my_list = [1, 'b', 3]
    >>> my_result = [random.choice(my_list) for i in range(20)]
    >>> my_result
-   [3, 3, 'b', 3, 3, 1, 1, 1, 1, 1, 3, 'b', 1, 3, 3, 3, 1, 'b', 'b', 1]
+   [1, 3, 'b', 1, 'b', 3, 1, 'b', 1, 'b', 'b', 3, 1, 3, 'b', 'b', 1, 3, 3, 1]
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -342,8 +363,9 @@ getting the index of each element in that collection:
 ::
 
    def choose_mozart_measures():
+       measure_corpus = make_mozart_measure_corpus()
        chosen_measures = []
-       for i, choices in enumerate(mozart_measures):
+       for i, choices in enumerate(measure_corpus):
            if i == 7: # get both alternative endings for mm. 8
                chosen_measures.extend(choices)
            else:
@@ -362,23 +384,23 @@ The result will be a *seventeen*-item-long list of measure definitions:
    >>> for i, measure in enumerate(choices):
    ...     print i, measure
    ... 
-   0 {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"}
-   1 {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"}
-   2 {'b': '<b, d>4 r8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"}
-   3 {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'8"}
-   4 {'b': 'c8 c8 c8', 't': "<d'' fs''>8 <d'' fs''>8 <d'' fs''>8"}
-   5 {'b': '<b, d>4 r8', 't': "g''8 b''16 g''16 d''16 b'16"}
-   6 {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"}
+   0 {'b': '<c e>4 r8', 't': "e''16 c''16 g''16 e''16 c'''16 g''16"}
+   1 {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"}
+   2 {'b': 'b,4 r8', 't': "d''8 ( b'8 g'8 )"}
+   3 {'b': '<e g>4 r8', 't': "c''8 e''8 g'8"}
+   4 {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"}
+   5 {'b': '<b, d>8 <b, d>8 <b, g>8', 't': "a''16 g''16 fs''16 g''16 d''8"}
+   6 {'b': 'c8 d8 d,8', 't': "a'16 e''16 <b' d''>16 <a' c''>16 <g' b'>16 <fs' a'>16"}
    7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
    8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-   9 {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"}
-   10 {'b': 'b,4 r8', 't': "g''16 b''16 g''16 b''16 d''8"}
-   11 {'b': '<c g>4 <c e>8', 't': "e''8 c''16 e''16 g''16 c'''16"}
-   12 {'b': '<g b>4 r8', 't': "d''16 b''16 g''16 d''16 b'8"}
-   13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g'8 c''8 e''8"}
+   9 {'b': 'd4 c8', 't': "fs''8 a''16 fs''16 d''16 fs''16"}
+   10 {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'16 g'16"}
+   11 {'b': '<c g>4 <c g>8', 't': "e''16 g''16 c'''16 g''16 e''16 c''16"}
+   12 {'b': 'g8 g,8 r8', 't': "<c'' e''>8 <b' d''>16 <g' b'>16 g'8"}
+   13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
    14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
-   15 {'b': 'f4 g8', 't': "a'8 f''16 d''16 a'16 b'16"}
-   16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
+   15 {'b': 'f4 g8', 't': "f''16 e''16 d''16 c''16 b'16 d''16"}
+   16 {'b': 'c4 c,8', 't': "c''8 c'8 r8"}
 
 
 The score
@@ -435,61 +457,80 @@ Now let's take a look at the code that puts our score together:
 
 ::
 
-   def build_mozart_piano_staff():
-       treble_staff = Staff([])
-       bass_staff = Staff([])
+   def make_mozart_score():
+   
+       score_template = scoretemplatetools.TwoStaffPianoScoreTemplate()
+       score = score_template()
+   
        # select the measures to use
        choices = choose_mozart_measures()
+   
        # create and populate the volta containers
-       treble_volta = Container([])
-       bass_volta = Container([])
+       treble_volta = Container()
+       bass_volta = Container()
        for choice in choices[:7]:
-           treble, bass = build_one_mozart_measure(choice)
+           treble, bass = make_mozart_measure(choice)
            treble_volta.append(treble)
            bass_volta.append(bass)
+   
        # add marks to the volta containers
-       marktools.LilyPondCommandMark('repeat volta 2', 'before')(treble_volta)
-       marktools.LilyPondCommandMark('repeat volta 2', 'before')(bass_volta)
+       marktools.LilyPondCommandMark(
+           'repeat volta 2', 'before'
+           )(treble_volta)
+       marktools.LilyPondCommandMark(
+           'repeat volta 2', 'before'
+           )(bass_volta)
+   
        # add the volta containers to our staves
-       treble_staff.append(treble_volta)
-       bass_staff.append(bass_volta)
+       score['RH Voice'].append(treble_volta)
+       score['LH Voice'].append(bass_volta)
+   
        # create and populate the alternative ending containers
-       treble_alternative = Container([])
-       bass_alternative = Container([])
+       treble_alternative = Container()
+       bass_alternative = Container()
        for choice in choices[7:9]:
-           treble, bass = build_one_mozart_measure(choice)
+           treble, bass = make_mozart_measure(choice)
            treble_alternative.append(treble)
            bass_alternative.append(bass)
+   
        # add marks to the alternative containers
-       marktools.LilyPondCommandMark('alternative', 'before')(treble_alternative)
-       marktools.LilyPondCommandMark('alternative', 'before')(bass_alternative)
+       marktools.LilyPondCommandMark(
+           'alternative', 'before'
+           )(treble_alternative)
+       marktools.LilyPondCommandMark(
+           'alternative', 'before'
+           )(bass_alternative)
+   
        # add the alternative containers to our staves
-       treble_staff.append(treble_alternative)
-       bass_staff.append(bass_alternative)
+       score['RH Voice'].append(treble_alternative)
+       score['LH Voice'].append(bass_alternative)
+   
        # create the remaining measures
        for choice in choices[9:]:
-           treble, bass = build_one_mozart_measure(choice)
-           treble_staff.append(treble)
-           bass_staff.append(bass)
-       # add meter
-       contexttools.TimeSignatureMark((3, 8))(treble_staff)
-       # add bass clef
-       contexttools.ClefMark('bass')(bass_staff)
-       # add the final double bar line at the end of each final measure
-       marktools.BarLine('|.')(treble_staff[-1])
-       marktools.BarLine('|.')(bass_staff[-1])
-       # combine into a PianoStaff           
-       piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
-       # add an instrument name via contexttools.InstrumentMark
-       contexttools.InstrumentMark('Katzenklavier', 'kk.',
-           target_context = scoretools.PianoStaff)(piano_staff)
-       return piano_staff
+           treble, bass = make_mozart_measure(choice)
+           score['RH Voice'].append(treble)
+           score['LH Voice'].append(bass)
+   
+       # add marks
+       contexttools.TimeSignatureMark((3, 8))(score['RH Staff'])
+       marktools.BarLine('|.')(score['RH Voice'][-1])
+       marktools.BarLine('|.')(score['LH Voice'][-1])
+   
+       # remove the old, default Piano InstrumentMark attached to the PianoStaff
+       # and add a custom instrument mark
+       contexttools.detach_instrument_marks_attached_to_component(score['Piano Staff'])
+       contexttools.InstrumentMark(
+           'Katzenklavier', 'kk.',
+           target_context = scoretools.PianoStaff
+           )(score['Piano Staff'])
+   
+       return score
 
 
 ::
 
-   >>> piano_staff = build_mozart_piano_staff()
-   >>> show(piano_staff)
+   >>> score = make_mozart_score()
+   >>> show(score)
 
 .. image:: images/index-2.png
 
@@ -503,19 +544,17 @@ As you can see above, we've now got our randomized minuet.  However, we can stil
 controlling the overall *look* of a musical document, often through its `\header`, `\layout` and `\paper` blocks.  Abjad, in turn, gives us object-oriented 
 access to these settings through the its `lilypondfiletools` module.
 
-We'll use :py:func:`abjad.tools.lilypondfiletools.make_basic_lilypond_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
+We'll use :py:func:`abjad.tools.lilypondfiletools.make_basic_lilypond_file` to wrap our :py:class:`~abjad.tools.scoretools.Score` inside a
 :py:class:`~abjad.tools.lilypondfiletools.LilyPondFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
 change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
-   def build_mozart_lily(piano_staff):
-       # wrap the PianoStaff with a LilyPondFile
-       lily = lilypondfiletools.make_basic_lilypond_file(piano_staff)
-       # create some markup to use in our header block
+   def make_mozart_lilypond_file():
+       score = make_mozart_score()
+       lily = lilypondfiletools.make_basic_lilypond_file(score)
        title = markuptools.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')
        composer = schemetools.Scheme("W. A. Mozart (maybe?)")
-       # change various settings 
        lily.global_staff_size = 12
        lily.header_block.title = title
        lily.header_block.composer = composer
@@ -527,27 +566,39 @@ change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
-   >>> lily = build_mozart_lily(piano_staff)
-   >>> print lily
-   LilyPondFile(PianoStaff<<2>>)
+   >>> lilypond_file = make_mozart_lilypond_file()
+   >>> print lilypond_file
+   LilyPondFile(Score-"Two-Staff Piano Score"<<1>>)
 
 
 ::
 
-   >>> print lily.header_block
+   >>> print lilypond_file.header_block
    HeaderBlock(2)
-   >>> f(lily.header_block)
+
+
+::
+
+   >>> f(lilypond_file.header_block)
    \header {
        composer = #"W. A. Mozart (maybe?)"
-       title = \markup { \bold \sans "Ein Musikalisches Wuerfelspiel" }
+       title = \markup {
+           \bold
+               \sans
+                   "Ein Musikalisches Wuerfelspiel"
+           }
    }
 
 
 ::
 
-   >>> print lily.layout_block
+   >>> print lilypond_file.layout_block
    LayoutBlock(1)
-   >>> f(lily.layout_block)
+
+
+::
+
+   >>> f(lilypond_file.layout_block)
    \layout {
        ragged-right = ##t
    }
@@ -555,9 +606,13 @@ change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
-   >>> print lily.paper_block
+   >>> print lilypond_file.paper_block
    PaperBlock(2)
-   >>> f(lily.paper_block)
+
+
+::
+
+   >>> f(lilypond_file.paper_block)
    \paper {
        markup-system-spacing #'basic-distance = #8
        paper-width = #180
@@ -568,7 +623,7 @@ And now the final result:
 
 ::
 
-   >>> show(lily)
+   >>> show(lilypond_file)
 
 .. image:: images/index-3.png
 
