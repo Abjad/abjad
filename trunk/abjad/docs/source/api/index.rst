@@ -143,8 +143,6 @@ Composition packages
    tools/componenttools/is_orphan_component
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
-   tools/componenttools/number_is_between_start_and_stop_offsets_of_component
-   tools/componenttools/number_is_between_start_and_stop_offsets_of_component_in_seconds
    tools/componenttools/partition_components_by_durations_exactly
    tools/componenttools/partition_components_by_durations_ge
    tools/componenttools/partition_components_by_durations_le
@@ -1906,6 +1904,47 @@ Composition packages
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
 
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/Check/Check
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/BeamedQuarterNoteCheck/BeamedQuarterNoteCheck
+   tools/wellformednesstools/DiscontiguousSpannerCheck/DiscontiguousSpannerCheck
+   tools/wellformednesstools/DuplicateIdCheck/DuplicateIdCheck
+   tools/wellformednesstools/EmptyContainerCheck/EmptyContainerCheck
+   tools/wellformednesstools/IntermarkedHairpinCheck/IntermarkedHairpinCheck
+   tools/wellformednesstools/MisduratedMeasureCheck/MisduratedMeasureCheck
+   tools/wellformednesstools/MisfilledMeasureCheck/MisfilledMeasureCheck
+   tools/wellformednesstools/MispitchedTieCheck/MispitchedTieCheck
+   tools/wellformednesstools/MisrepresentedFlagCheck/MisrepresentedFlagCheck
+   tools/wellformednesstools/MissingParentCheck/MissingParentCheck
+   tools/wellformednesstools/NestedMeasureCheck/NestedMeasureCheck
+   tools/wellformednesstools/OverlappingBeamCheck/OverlappingBeamCheck
+   tools/wellformednesstools/OverlappingGlissandoCheck/OverlappingGlissandoCheck
+   tools/wellformednesstools/OverlappingOctavationCheck/OverlappingOctavationCheck
+   tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/is_well_formed_component
+   tools/wellformednesstools/list_badly_formed_components_in_expr
+   tools/wellformednesstools/list_checks
+   tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
+
 Internal packages
 -----------------
 
@@ -2213,44 +2252,3 @@ Internal packages
 
    tools/offsettools/update_offset_values_of_component
    tools/offsettools/update_offset_values_of_component_in_seconds
-
-:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/wellformednesstools/Check/Check
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/wellformednesstools/BeamedQuarterNoteCheck/BeamedQuarterNoteCheck
-   tools/wellformednesstools/DiscontiguousSpannerCheck/DiscontiguousSpannerCheck
-   tools/wellformednesstools/DuplicateIdCheck/DuplicateIdCheck
-   tools/wellformednesstools/EmptyContainerCheck/EmptyContainerCheck
-   tools/wellformednesstools/IntermarkedHairpinCheck/IntermarkedHairpinCheck
-   tools/wellformednesstools/MisduratedMeasureCheck/MisduratedMeasureCheck
-   tools/wellformednesstools/MisfilledMeasureCheck/MisfilledMeasureCheck
-   tools/wellformednesstools/MispitchedTieCheck/MispitchedTieCheck
-   tools/wellformednesstools/MisrepresentedFlagCheck/MisrepresentedFlagCheck
-   tools/wellformednesstools/MissingParentCheck/MissingParentCheck
-   tools/wellformednesstools/NestedMeasureCheck/NestedMeasureCheck
-   tools/wellformednesstools/OverlappingBeamCheck/OverlappingBeamCheck
-   tools/wellformednesstools/OverlappingGlissandoCheck/OverlappingGlissandoCheck
-   tools/wellformednesstools/OverlappingOctavationCheck/OverlappingOctavationCheck
-   tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/wellformednesstools/is_well_formed_component
-   tools/wellformednesstools/list_badly_formed_components_in_expr
-   tools/wellformednesstools/list_checks
-   tools/wellformednesstools/tabulate_well_formedness_violations_in_expr

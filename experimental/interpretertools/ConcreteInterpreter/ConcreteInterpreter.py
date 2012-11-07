@@ -802,7 +802,7 @@ class ConcreteInterpreter(Interpreter):
         for rhythm_region_expression in rhythm_region_expressions:
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
-        assert componenttools.is_well_formed_component(result.music)
+        assert wellformednesstools.is_well_formed_component(result.music)
         # TODO: encapsulate all of the following in a single call
         if rhythm_request.reverse:
             result.reverse()

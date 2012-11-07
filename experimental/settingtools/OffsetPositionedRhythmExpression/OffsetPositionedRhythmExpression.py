@@ -6,6 +6,7 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
+from abjad.tools import wellformednesstools
 from experimental.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
 
@@ -170,7 +171,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             music = containertools.Container()
             music.extend(right_half)
             music.extend(left_half)
-            assert componenttools.is_well_formed_component(music)
+            assert wellformednesstools.is_well_formed_component(music)
             self._music = music
         else:
             result = componenttools.split_components_at_offsets(
@@ -193,7 +194,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                 spanner._components.sort(lambda x, y: cmp(
                     componenttools.component_to_score_index(x), 
                     componenttools.component_to_score_index(y)))
-            assert componenttools.is_well_formed_component(self.music)
+            assert wellformednesstools.is_well_formed_component(self.music)
 
     def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
@@ -210,7 +211,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         result = componenttools.split_components_at_offsets(
             [self.music], [duration_to_trim], cyclic=False, fracture_spanners=True)
         trimmed_music = result[-1][0]
-        assert componenttools.is_well_formed_component(trimmed_music)
+        assert wellformednesstools.is_well_formed_component(trimmed_music)
         self._music = trimmed_music
         self._start_offset = start_offset
 
@@ -228,8 +229,8 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         result = componenttools.split_components_at_offsets(
             [self.music], [duration_to_keep], cyclic=False, fracture_spanners=True)
         trimmed_music = result[0][0]
-        if not componenttools.is_well_formed_component(trimmed_music):
+        if not wellformednesstools.is_well_formed_component(trimmed_music):
             self._debug(trimmed_music, 'trimmed music')
-            componenttools.tabulate_well_formedness_violations_in_expr(trimmed_music)
-        assert componenttools.is_well_formed_component(trimmed_music)
+            wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_music)
+        assert wellformednesstools.is_well_formed_component(trimmed_music)
         self._music = trimmed_music
