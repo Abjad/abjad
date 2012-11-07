@@ -4,6 +4,7 @@ from abjad.tools import measuretools
 
 
 def add_bell_music_to_score(score):
+
     bell_voice = score['Bell Voice']
 
     def make_bell_phrase():

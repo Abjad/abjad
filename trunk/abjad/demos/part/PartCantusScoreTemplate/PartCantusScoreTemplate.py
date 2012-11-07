@@ -17,7 +17,7 @@ class PartCantusScoreTemplate(scoretemplatetools.ScoreTemplate):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-       
+
         # make bell voice and staff
         bell_voice = voicetools.Voice(name='Bell Voice')
         bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
