@@ -36,5 +36,5 @@ def test_labeltools_label_tie_chains_in_expr_with_tie_chain_durations_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\t\\times 2/3 {\n\t\tc'8 ~\n\t\t\t_ \\markup {\n\t\t\t\t\\column\n\t\t\t\t\t{\n\t\t\t\t\t\t\\small\n\t\t\t\t\t\t\t1/4\n\t\t\t\t\t\t\\small\n\t\t\t\t\t\t\t1/6\n\t\t\t\t\t}\n\t\t\t\t}\n\t\tc'8\n\t\tc'8 ~\n\t\t\t_ \\markup {\n\t\t\t\t\\column\n\t\t\t\t\t{\n\t\t\t\t\t\t\\small\n\t\t\t\t\t\t\t1/4\n\t\t\t\t\t\t\\small\n\t\t\t\t\t\t\t5/24\n\t\t\t\t\t}\n\t\t\t\t}\n\t}\n\tc'8\n}"

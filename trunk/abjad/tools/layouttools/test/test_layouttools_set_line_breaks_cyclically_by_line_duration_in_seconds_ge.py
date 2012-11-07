@@ -67,5 +67,5 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_in_seconds_ge_0
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t\\tempo 8=44\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t\t\\break\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tb'8\n\t\tc''8\n\t}\n}"

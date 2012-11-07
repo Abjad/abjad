@@ -29,7 +29,7 @@ def test_ClefMark___copy___01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert contexttools.get_effective_clef(t[0]) == contexttools.ClefMark('treble')
     assert contexttools.get_effective_clef(t[1]) == contexttools.ClefMark('treble')
     assert contexttools.get_effective_clef(t[2]) == contexttools.ClefMark('treble')
@@ -54,7 +54,7 @@ def test_ClefMark___copy___02():
     contexttools.ClefMark('bass')(t[4])
     t.extend(componenttools.copy_components_and_immediate_parent_of_first_component(t[2:4]))
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert contexttools.get_effective_clef(t[0]) == contexttools.ClefMark('treble')
     assert contexttools.get_effective_clef(t[1]) == contexttools.ClefMark('treble')
     assert contexttools.get_effective_clef(t[2]) == contexttools.ClefMark('treble')

@@ -16,7 +16,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -39,7 +39,7 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
 
 
@@ -62,5 +62,5 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_tie_chains_in_expr_0
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tfs'8 ~\n\tfs'32\n\tgs'8 ~\n\tgs'32\n\tas'8 ~\n\tas'32\n\tb'8 ~\n\tb'32\n}"

@@ -51,5 +51,5 @@ def test_beamtools_apply_durated_complex_beam_spanner_to_measures_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #1\n\t\tc'8 [\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #1\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #1\n\t\te'8\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #0\n\t\tf'8 ]\n\t}\n}"

@@ -27,4 +27,4 @@ def test_componenttools__give_donor_components_position_in_parent_to_recipient_c
 
     "Container t now carries a discontiguous spanner."
 
-    assert not componenttools.is_well_formed_component(t)
+    assert not wellformednesstools.is_well_formed_component(t)

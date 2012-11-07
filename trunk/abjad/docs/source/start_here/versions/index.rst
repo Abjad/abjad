@@ -1341,8 +1341,8 @@ Added new ``wellformednesstools`` package.
 
 - The classes check different aspects of score well-formedness.
 
-- To call these classes use ``componenttools.is_well_formed_component()``
-  or ``componenttools.tabulate_well_formedness_violations_in_expr()``.
+- To call these classes use ``wellformednesstools.is_well_formed_component()``
+  or ``wellformednesstools.tabulate_well_formedness_violations_in_expr()``.
 
 Added new ``decoratortools`` package.
 

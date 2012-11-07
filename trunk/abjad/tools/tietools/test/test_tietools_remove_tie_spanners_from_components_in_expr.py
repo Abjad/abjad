@@ -24,7 +24,7 @@ def test_tietools_remove_tie_spanners_from_components_in_expr_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'4\n\tc'16\n\tc'4\n\tc'16\n}"
 
 

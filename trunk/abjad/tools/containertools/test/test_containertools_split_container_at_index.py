@@ -44,7 +44,7 @@ def test_containertools_split_container_at_index_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8\n\t}\n\t\\times 2/3 {\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
@@ -95,7 +95,7 @@ def test_containertools_split_container_at_index_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
 
 
@@ -157,7 +157,7 @@ def test_containertools_split_container_at_index_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
     #assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 3/9\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 1/9\n\t\t\tf'8\n\t\t}\n\t}\n\t{\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\t\\time 2/9\n\t\t\tg'8\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
@@ -180,8 +180,8 @@ def test_containertools_split_container_at_index_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t1)
-    assert componenttools.is_well_formed_component(t2)
+    assert wellformednesstools.is_well_formed_component(t1)
+    assert wellformednesstools.is_well_formed_component(t2)
     assert t1.lilypond_format == "\\new Voice {\n\tc'8\n\td'8\n}"
     assert t2.lilypond_format == "\\new Voice {\n\te'8\n\tf'8\n}"
 
@@ -208,7 +208,7 @@ def test_containertools_split_container_at_index_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == '\\new Voice {\n}'
     assert right.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
     assert t.lilypond_format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
@@ -225,7 +225,7 @@ def test_containertools_split_container_at_index_06():
     v = t[0]
     left, right = containertools.split_container_at_index(v, 10, fracture_spanners=False)
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
     assert right.lilypond_format == '\\new Voice {\n}'
     assert v.lilypond_format == '\\new Voice {\n}'
@@ -241,7 +241,7 @@ def test_containertools_split_container_at_index_07():
     #assert py.test.raises(ContiguityError, 'containertools.split_container_at_index(v, -2, fracture_spanners=False)')
 
     left, right = containertools.split_container_at_index(v, -2, fracture_spanners=False)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "\\new Voice {\n\tc'8\n\td'8\n}"
     assert right.lilypond_format == "\\new Voice {\n\te'8\n\tf'8\n}"
     assert v.lilypond_format == '\\new Voice {\n}'
@@ -270,7 +270,7 @@ def test_containertools_split_container_at_index_08():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "{\n\tc'8 [\n\td'8\n}"
     assert right.lilypond_format == "{\n\te'8\n\tf'8 ]\n}"
     assert v.lilypond_format == '{\n}'
@@ -303,7 +303,7 @@ def test_containertools_split_container_at_index_09():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "\\times 4/5 {\n\tc'8 [\n\tc'8\n}"
     assert right.lilypond_format == "\\times 4/5 {\n\tc'8\n\tc'8\n\tc'8 ]\n}"
     assert tuplet.lilypond_format == '\\times 4/5 {\n}'
@@ -357,7 +357,7 @@ def test_containertools_split_container_at_index_10():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left is None
     assert right is leaf
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
@@ -409,7 +409,7 @@ def test_containertools_split_container_at_index_11():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left is leaf
     assert right is None
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
@@ -458,7 +458,7 @@ def test_containertools_split_container_at_index_12():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "\\times 2/3 {\n\tf'8 ]\n}"
     assert right.lilypond_format == "\\times 2/3 {\n\tg'8 [\n\ta'8 ]\n}"
     assert tuplet.lilypond_format == ''
@@ -514,7 +514,7 @@ def test_containertools_split_container_at_index_13():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "{\n\t\\time 1/8\n\tf'8 ]\n}"
     assert right.lilypond_format == "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
@@ -580,7 +580,7 @@ def test_containertools_split_container_at_index_14():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left.lilypond_format == "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
     assert right.lilypond_format == "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
     assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
@@ -742,7 +742,7 @@ def test_containertools_split_container_at_index_18():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
@@ -791,7 +791,7 @@ def test_containertools_split_container_at_index_19():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left is None
     assert right is leaf
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
@@ -841,7 +841,7 @@ def test_containertools_split_container_at_index_20():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert left is leaf
     assert right is None
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
@@ -890,7 +890,7 @@ def test_containertools_split_container_at_index_21():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
 
@@ -933,6 +933,6 @@ def test_containertools_split_container_at_index_22():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8. [ ] )\n\t}\n}"

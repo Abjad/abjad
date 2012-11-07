@@ -16,7 +16,7 @@ def test_skiptools_replace_leaves_in_expr_with_skips_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'
 
 
@@ -35,5 +35,5 @@ def test_skiptools_replace_leaves_in_expr_with_skips_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff {\n\ts8\n\ts8\n\ts8\n\ts8\n}'

@@ -29,5 +29,5 @@ def test_labeltools_color_leaf_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\t\\once \\override Accidental #'color = #red\n\t\\once \\override Dots #'color = #red\n\t\\once \\override NoteHead #'color = #red\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"

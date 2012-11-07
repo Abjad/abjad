@@ -65,7 +65,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     ::
 
-        >>> componenttools.is_well_formed_component(voice)
+        >>> wellformednesstools.is_well_formed_component(voice)
         False
 
     Preserve spanners.

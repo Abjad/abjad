@@ -19,7 +19,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\tautoBeaming = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -40,7 +40,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -61,7 +61,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t\\set Score.currentBarNumber = #12\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -90,7 +90,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\set Score.currentBarNumber = #12\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 def test_LilyPondContextSettingComponentPlugIn___setattr___05():
@@ -111,7 +111,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\tfontSize = #-3\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -133,7 +133,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff \\with {\n\tinstrumentName = "Violini I"\n} {\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
 
 
@@ -155,7 +155,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___07():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\tinstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -179,7 +179,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___08():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Score \\with {\n\tproportionalNotationDuration = #(ly:make-moment 1 56)\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
@@ -201,7 +201,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___09():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff \\with {\n\tshortInstrumentName = "Vni. I"\n} {\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
 
 
@@ -223,7 +223,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___10():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\tshortInstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -245,7 +245,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___11():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\tsuggestAccidentals = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -266,7 +266,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___12():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t\\set suggestAccidentals = ##t\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -285,7 +285,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff \\with {\n\ttupletFullLength = ##t\n} {\n}'
 
     #t.tuplet_bracket.tuplet_full_length = False
@@ -298,7 +298,7 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff \\with {\n\ttupletFullLength = ##f\n} {\n}'
 
     #t.tuplet_bracket.tuplet_full_length = None
@@ -309,5 +309,5 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Staff {\n}'

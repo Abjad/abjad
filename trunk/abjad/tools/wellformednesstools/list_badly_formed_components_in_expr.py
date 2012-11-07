@@ -14,7 +14,7 @@ def list_badly_formed_components_in_expr(expr):
             e'8
             f'8 ]
         }
-        >>> componenttools.list_badly_formed_components_in_expr(staff)
+        >>> wellformednesstools.list_badly_formed_components_in_expr(staff)
         [Note("d'4")]
 
     Beamed quarter notes are not well formed.

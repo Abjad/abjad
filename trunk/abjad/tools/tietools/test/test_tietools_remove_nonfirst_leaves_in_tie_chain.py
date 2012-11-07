@@ -22,7 +22,7 @@ def test_tietools_remove_nonfirst_leaves_in_tie_chain_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'4\n}"
 
 
@@ -40,5 +40,5 @@ def test_tietools_remove_nonfirst_leaves_in_tie_chain_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8\n}"

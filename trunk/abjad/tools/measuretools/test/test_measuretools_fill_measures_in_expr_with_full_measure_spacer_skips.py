@@ -17,7 +17,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\ts1 * 5/16\n\t}\n}"
 
 
@@ -84,7 +84,7 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/4\n\t}\n}"
 
 
@@ -143,5 +143,5 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 3/8\n\t\ts1 * 3/8\n\t}\n\t{\n\t\t\\time 4/8\n\t\ts1 * 1/2\n\t}\n}"

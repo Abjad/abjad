@@ -26,5 +26,5 @@ def test_labeltools_label_leaves_in_expr_with_written_leaf_duration_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t1/8\n\t\t\t}\n}"

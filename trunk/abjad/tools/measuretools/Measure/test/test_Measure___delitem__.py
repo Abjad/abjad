@@ -11,7 +11,7 @@ def test_Measure___delitem___01():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
@@ -25,7 +25,7 @@ def test_Measure___delitem___02():
     measure.automatically_adjust_time_signature = True
     del(measure[-1:])
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
@@ -39,7 +39,7 @@ def test_Measure___delitem___03():
     measure.automatically_adjust_time_signature = True
     del(measure[:2])
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
 
 
@@ -53,7 +53,7 @@ def test_Measure___delitem___04():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
@@ -78,7 +78,7 @@ def test_Measure___delitem___05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
@@ -116,7 +116,7 @@ def test_Measure___delitem___06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
@@ -129,7 +129,7 @@ def test_Measure___delitem___07():
     measure = Measure((4, 8), "c'8 c' c' c'")
     del(measure[:1])
 
-    assert not componenttools.is_well_formed_component(measure)
+    assert not wellformednesstools.is_well_formed_component(measure)
     assert len(measure) == 3
     assert contexttools.get_time_signature_mark_attached_to_component(measure) == (4, 8)
 
@@ -143,6 +143,6 @@ def test_Measure___delitem___08():
     measure = Measure((4, 9), "c'8 d' e' f'")
     del(measure[:1])
 
-    assert not componenttools.is_well_formed_component(measure)
+    assert not wellformednesstools.is_well_formed_component(measure)
     assert len(measure) == 3
     assert contexttools.get_time_signature_mark_attached_to_component(measure) == (4, 9)

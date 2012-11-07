@@ -15,7 +15,7 @@ def test_spannertools_apply_octavation_spanner_to_pitched_components_01():
         \ottava #0
     }"""
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'''8\n\td'''8\n\tef'''8\n\tf'''8\n\t\\ottava #0\n}"
 
 

@@ -17,7 +17,7 @@ def tabulate_well_formedness_violations_in_expr(expr):
 
     ::
 
-        >>> componenttools.tabulate_well_formedness_violations_in_expr(staff)
+        >>> wellformednesstools.tabulate_well_formedness_violations_in_expr(staff)
            1 /    4 beamed quarter note
            0 /    1 discontiguous spanner
            0 /    5 duplicate id

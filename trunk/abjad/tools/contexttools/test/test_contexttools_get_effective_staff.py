@@ -28,7 +28,7 @@ def test_contexttools_get_effective_staff_01():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(piano)
+    assert wellformednesstools.is_well_formed_component(piano)
     assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
     assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
     assert contexttools.get_effective_staff(piano[0][2]) is piano[1]
@@ -70,7 +70,7 @@ def test_contexttools_get_effective_staff_02():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(piano)
+    assert wellformednesstools.is_well_formed_component(piano)
     assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
     assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
     assert contexttools.get_effective_staff(piano[0][2]) is piano[0]
@@ -110,7 +110,7 @@ def test_contexttools_get_effective_staff_03():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(piano)
+    assert wellformednesstools.is_well_formed_component(piano)
     assert piano.lilypond_format == '\\new PianoStaff <<\n\t\\context Staff = "RH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\t\\change Staff = LH\n\t\tf\'8\n\t}\n\t\\context Staff = "LH" {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
 
 
@@ -143,7 +143,7 @@ def test_contexttools_get_effective_staff_04():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(piano)
+    assert wellformednesstools.is_well_formed_component(piano)
     assert contexttools.get_effective_staff(piano[0][0]) is piano[1]
     assert contexttools.get_effective_staff(piano[0][1]) is piano[1]
     assert contexttools.get_effective_staff(piano[0][2]) is piano[1]

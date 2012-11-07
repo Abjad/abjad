@@ -107,6 +107,6 @@ slr.position = Down
 
 lower_staff.barline.kind = '||'
 
-print componenttools.is_well_formed_component(piano)
+print wellformednesstools.is_well_formed_component(piano)
 f(piano)
 show(piano)

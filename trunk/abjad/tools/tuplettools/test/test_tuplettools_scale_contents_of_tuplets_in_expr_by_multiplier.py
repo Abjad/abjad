@@ -16,7 +16,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n\te'4\n}"
 
 
@@ -35,7 +35,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 2/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
@@ -54,7 +54,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 2/3 {\n\tc'2\n\td'2\n\te'2\n}"
 
 
@@ -73,7 +73,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 2/3 {\n\tc'32\n\td'32\n\te'32\n}"
 
 
@@ -92,7 +92,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 2/3 {\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
@@ -111,7 +111,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 8/9 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
@@ -130,7 +130,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_07():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 4/5 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
@@ -149,7 +149,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_08():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "{\n\tc'8.\n\td'8.\n\te'8.\n}"
 
 
@@ -175,7 +175,7 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_09():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 4/5 {\n\tc'8\n\tc'8.\n}"
 
 
@@ -201,5 +201,5 @@ def test_tuplettools_scale_contents_of_tuplets_in_expr_by_multiplier_10():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\times 8/15 {\n\tc'4\n\tc'4.\n}"

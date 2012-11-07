@@ -65,6 +65,6 @@ def test_leaftools_fuse_leaves_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(result) == 1
     assert t.prolated_duration == Duration(3, 8)

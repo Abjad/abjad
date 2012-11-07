@@ -61,5 +61,5 @@ def test_containertools_replace_contents_of_target_container_with_contents_of_so
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8 (\n\t\td'8\n\t\te'8 )\n\t}\n\t\\times 2/3 {\n\t\tb'8\n\t\tc''8\n\t\td''8 ]\n\t}\n}"

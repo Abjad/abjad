@@ -20,7 +20,7 @@ def test_LilyPondComment_opening_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t% Voice opening comments here.\n\t% More voice opening comments.\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -39,5 +39,5 @@ def test_LilyPondComment_opening_02():
     c'8
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\once \\override Beam #'thickness = #3\n% Leaf opening comments here.\n% More leaf opening comments.\nc'8"

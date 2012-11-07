@@ -13,7 +13,7 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_offset
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n}"
 
 
@@ -30,5 +30,5 @@ def test_containertools_delete_contents_of_container_starting_at_or_after_offset
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"

@@ -31,5 +31,5 @@ def test_Measure_parallel_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t<<\n\t\t\\time 2/8\n\t\t\\new Voice {\n\t\t\t\\voiceOne\n\t\t\tc'8\n\t\t\td'8\n\t\t}\n\t\t\\new Voice {\n\t\t\t\\voiceTwo\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n}"

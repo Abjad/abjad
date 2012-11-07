@@ -42,7 +42,7 @@ def test_Container___delitem___01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t{\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
     "Deleted component is now ..."
@@ -54,7 +54,7 @@ def test_Container___delitem___01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(old)
+    assert wellformednesstools.is_well_formed_component(old)
     assert old.lilypond_format == "{\n\tc'8 (\n\td'8 )\n}"
 
 
@@ -75,7 +75,7 @@ def test_Container___delitem___02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n}"
 
 
@@ -94,7 +94,7 @@ def test_Container___delitem___03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tf'8 ]\n}"
 
 
@@ -113,7 +113,7 @@ def test_Container___delitem___04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\te'8 [\n\tf'8 ]\n}"
 
 
@@ -132,7 +132,7 @@ def test_Container___delitem___05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
@@ -149,7 +149,7 @@ def test_Container___delitem___06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Voice {\n}'
 
 
@@ -168,5 +168,5 @@ def test_Container___delitem___07():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "{\n\tc'8 [\n\te'8 ]\n}"

@@ -13,7 +13,7 @@ def test_FixedDurationTuplet_in_place_apply_01():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_FixedDurationTuplet_in_place_apply_02():
@@ -28,7 +28,7 @@ def test_FixedDurationTuplet_in_place_apply_02():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_FixedDurationTuplet_in_place_apply_03():
@@ -44,7 +44,7 @@ def test_FixedDurationTuplet_in_place_apply_03():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_FixedDurationTuplet_in_place_apply_04():
@@ -61,7 +61,7 @@ def test_FixedDurationTuplet_in_place_apply_04():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_FixedDurationTuplet_in_place_apply_05():
@@ -76,7 +76,7 @@ def test_FixedDurationTuplet_in_place_apply_05():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_FixedDurationTuplet_in_place_apply_06():
@@ -91,4 +91,4 @@ def test_FixedDurationTuplet_in_place_apply_06():
             assert isinstance(x, tuplettools.FixedDurationTuplet)
         else:
             assert isinstance(x, Note)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)

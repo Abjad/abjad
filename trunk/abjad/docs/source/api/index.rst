@@ -141,8 +141,6 @@ Composition packages
    tools/componenttools/get_proper_parentage_of_component
    tools/componenttools/is_immediate_temporal_successor_of_component
    tools/componenttools/is_orphan_component
-   tools/componenttools/is_well_formed_component
-   tools/componenttools/list_badly_formed_components_in_expr
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/number_is_between_start_and_stop_offsets_of_component
@@ -158,7 +156,6 @@ Composition packages
    tools/componenttools/sum_duration_of_components_in_seconds
    tools/componenttools/sum_preprolated_duration_of_components
    tools/componenttools/sum_prolated_duration_of_components
-   tools/componenttools/tabulate_well_formedness_violations_in_expr
    tools/componenttools/yield_components_grouped_by_preprolated_duration
    tools/componenttools/yield_components_grouped_by_prolated_duration
    tools/componenttools/yield_groups_of_mixed_klasses_in_sequence
@@ -2253,4 +2250,7 @@ Internal packages
 .. toctree::
    :maxdepth: 1
 
+   tools/wellformednesstools/is_well_formed_component
+   tools/wellformednesstools/list_badly_formed_components_in_expr
    tools/wellformednesstools/list_checks
+   tools/wellformednesstools/tabulate_well_formedness_violations_in_expr

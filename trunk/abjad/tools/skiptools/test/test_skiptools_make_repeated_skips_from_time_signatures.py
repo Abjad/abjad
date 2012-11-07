@@ -23,4 +23,4 @@ def test_skiptools_make_repeated_skips_from_time_signatures_01():
     '''
 
     assert staff.lilypond_format == '\\new Staff {\n\tr8\n\tr8\n\tr32\n\tr32\n\tr32\n}'
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)

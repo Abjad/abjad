@@ -19,7 +19,7 @@ from abjad import *
 #    }
 #    '''
 #
-#    assert componenttools.is_well_formed_component(t)
+#    assert wellformednesstools.is_well_formed_component(t)
 #    assert result == t[-4:]
 #    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8 ]\n}"
 #
@@ -41,7 +41,7 @@ from abjad import *
 #    }
 #    '''
 #
-#    assert componenttools.is_well_formed_component(t)
+#    assert wellformednesstools.is_well_formed_component(t)
 #    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
 #    assert result == t[1:3]
 #
@@ -69,7 +69,7 @@ from abjad import *
 #    }
 #    '''
 #
-#    assert componenttools.is_well_formed_component(t)
+#    assert wellformednesstools.is_well_formed_component(t)
 #    assert result == t[:]
 #    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8 ]\n\t}\n}"
 #
@@ -96,7 +96,7 @@ from abjad import *
 #    }
 #    '''
 #
-#    assert componenttools.is_well_formed_component(t)
+#    assert wellformednesstools.is_well_formed_component(t)
 #    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t}\n\tdqs'8\n\t{\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
 #    assert result == t[0:2]
 
@@ -120,7 +120,7 @@ def test_componenttools_extend_in_parent_of_component_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert result == t[-4:]
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'8\n\td'8\n\te'8\n}"
 
@@ -142,6 +142,6 @@ def test_componenttools_extend_in_parent_of_component_06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
     assert result == t[1:3]

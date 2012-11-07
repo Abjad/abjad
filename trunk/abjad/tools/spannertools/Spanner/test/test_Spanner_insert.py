@@ -24,7 +24,7 @@ def test_Spanner_insert_01():
 
     "Interior insert leaves discontiguous spanner: beamtools.BeamSpanner(c'8, f'8, d'8)."
 
-    assert not componenttools.is_well_formed_component(t)
+    assert not wellformednesstools.is_well_formed_component(t)
 
 
 def test_Spanner_insert_02():

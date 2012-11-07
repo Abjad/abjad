@@ -123,7 +123,7 @@ def test_containertools_fuse_like_named_contiguous_containers_in_expr_07():
 #   Components.'''
 #   t = Staff(Voice(notetools.make_repeated_notes(2)) * 2)
 #   result = containertools.fuse_like_named_contiguous_containers_in_expr(t[:])
-#   assert componenttools.is_well_formed_component(t)
+#   assert wellformednesstools.is_well_formed_component(t)
 #   assert len(t) == 1
 
 

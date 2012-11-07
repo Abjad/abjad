@@ -10,7 +10,7 @@ def test_componenttools__switch_components_to_parent_01():
     components = u[:]
     _switch_components_to_parent(components, t)
 
-    assert componenttools.is_well_formed_component(u)
+    assert wellformednesstools.is_well_formed_component(u)
     assert len(u) == 0
 
     "Container t now assigned to components."
@@ -23,6 +23,6 @@ def test_componenttools__switch_components_to_parent_01():
 
     "Components now in container t."
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert components[0]._parent is t
     assert components[0] in t

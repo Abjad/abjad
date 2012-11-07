@@ -30,7 +30,7 @@ def test_spannertools_destroy_spanners_attached_to_component_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\startTrillSpan\n\td'8\n\te'8\n\tf'8 \\stopTrillSpan\n}"
 
 
@@ -63,5 +63,5 @@ def test_spannertools_destroy_spanners_attached_to_component_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 ( \\startTrillSpan\n\td'8\n\te'8\n\tf'8 ) \\stopTrillSpan\n}"

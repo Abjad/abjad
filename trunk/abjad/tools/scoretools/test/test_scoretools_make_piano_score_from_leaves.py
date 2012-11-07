@@ -35,7 +35,7 @@ def test_scoretools_make_piano_score_from_leaves_01():
     >>
     """
 
-    assert componenttools.is_well_formed_component(score)
+    assert wellformednesstools.is_well_formed_component(score)
     assert score.lilypond_format == '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\tcs\'\'\'\'4\n\t\t\tr4\n\t\t\tef\'\'\'4\n\t\t\te\'4\n\t\t\tf\'\'4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc4\n\t\t\tr4\n\t\t\td4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t}\n\t>>\n>>'
 
 

@@ -49,8 +49,8 @@ def test_sequencetools_rotate_sequence_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(container_1)
-    assert componenttools.is_well_formed_component(container_2)
+    assert wellformednesstools.is_well_formed_component(container_1)
+    assert wellformednesstools.is_well_formed_component(container_2)
     assert container_2.lilypond_format == "{\n\td'8\n\te'8\n\tf'8\n\tc'8\n}"
     assert container_2 is not container_1
     assert container_1[0] is not container_2[-1]

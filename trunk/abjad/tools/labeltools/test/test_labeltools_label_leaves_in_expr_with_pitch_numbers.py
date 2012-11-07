@@ -33,5 +33,5 @@ def test_labeltools_label_leaves_in_expr_with_pitch_numbers_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tr4\n\tc''4\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t12\n\t\t\t}\n\t<cs'' d'' ef''>4\n\t\t_ \\markup {\n\t\t\t\\column\n\t\t\t\t{\n\t\t\t\t\t\\small\n\t\t\t\t\t\t15\n\t\t\t\t\t\\small\n\t\t\t\t\t\t14\n\t\t\t\t\t\\small\n\t\t\t\t\t\t13\n\t\t\t\t}\n\t\t\t}\n\tr4\n}"

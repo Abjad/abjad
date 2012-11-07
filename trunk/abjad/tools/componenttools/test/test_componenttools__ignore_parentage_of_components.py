@@ -18,7 +18,7 @@ def test_componenttools__ignore_parentage_of_components_01():
 
     receipt = _ignore_parentage_of_components(t[:])
 
-    assert not componenttools.is_well_formed_component(t)
+    assert not wellformednesstools.is_well_formed_component(t)
 
     assert (t[0], t) in receipt
     assert (t[1], t) in receipt

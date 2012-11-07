@@ -44,7 +44,7 @@ def test_componenttools_split_component_at_offset_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
@@ -97,7 +97,7 @@ def test_componenttools_split_component_at_offset_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
@@ -210,7 +210,7 @@ def test_componenttools_split_component_at_offset_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
@@ -266,7 +266,7 @@ def test_componenttools_split_component_at_offset_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
@@ -329,7 +329,7 @@ def test_componenttools_split_component_at_offset_06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     # TODO: The tie at the split locus here is a (small) bug. #
     #         Eventually should fix. #
@@ -390,7 +390,7 @@ def test_componenttools_split_component_at_offset_07():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -439,7 +439,7 @@ def test_componenttools_split_component_at_offset_08():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
@@ -495,7 +495,7 @@ def test_componenttools_split_component_at_offset_09():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
@@ -611,7 +611,7 @@ def test_componenttools_split_component_at_offset_11():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 )\n\t\td'16. ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
@@ -665,7 +665,7 @@ def test_componenttools_split_component_at_offset_12():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'8 [ (\n\t\td'16. ] )\n\t}\n\t{\n\t\t\\time 1/32\n\t\td'32 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
@@ -717,7 +717,7 @@ def test_componenttools_split_component_at_offset_13():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(parts, tuple)
     assert isinstance(parts[0], list)
     assert isinstance(parts[1], list)
@@ -736,10 +736,10 @@ def test_componenttools_split_component_at_offset_14():
     halves = componenttools.split_component_at_offset(t, (1, 32), fracture_spanners=True)
 
     "c'32 [ ]"
-    assert componenttools.is_well_formed_component(halves[0][0])
+    assert wellformednesstools.is_well_formed_component(halves[0][0])
 
     "c'16. [ ]"
-    assert componenttools.is_well_formed_component(halves[1][0])
+    assert wellformednesstools.is_well_formed_component(halves[1][0])
 
 
 def test_componenttools_split_component_at_offset_15():
@@ -788,7 +788,7 @@ def test_componenttools_split_component_at_offset_15():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
@@ -845,7 +845,7 @@ def test_componenttools_split_component_at_offset_16():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
@@ -907,7 +907,7 @@ def test_componenttools_split_component_at_offset_17():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -967,7 +967,7 @@ def test_componenttools_split_component_at_offset_18():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ] ) ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
@@ -1033,7 +1033,7 @@ def test_componenttools_split_component_at_offset_19():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 14/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'8 ~\n\t\t\td'32\n\t\t\te'8 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/40\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\te'32 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8 ] )\n\t}\n}"
 
@@ -1054,8 +1054,8 @@ def test_componenttools_split_component_at_offset_20():
         t, (1, 32), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
-    assert componenttools.is_well_formed_component(halves[0][0])
-    assert componenttools.is_well_formed_component(halves[1][0])
+    assert wellformednesstools.is_well_formed_component(halves[0][0])
+    assert wellformednesstools.is_well_formed_component(halves[1][0])
 
     assert halves[0][0].lilypond_format == "c'8 * 1/4"
     assert halves[1][0].lilypond_format == "c'8 * 1/4"
@@ -1077,8 +1077,8 @@ def test_componenttools_split_component_at_offset_21():
         t, (1, 48), fracture_spanners=True, tie_split_notes=False)
 
     assert len(halves) == 2
-    assert componenttools.is_well_formed_component(halves[0][0])
-    assert componenttools.is_well_formed_component(halves[1][0])
+    assert wellformednesstools.is_well_formed_component(halves[0][0])
+    assert wellformednesstools.is_well_formed_component(halves[1][0])
 
     assert halves[0][0].lilypond_format == "c'8 * 1/6"
     assert halves[1][0].lilypond_format == "c'8 * 1/3"
@@ -1136,7 +1136,7 @@ def test_componenttools_split_component_at_offset_22():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'8 * 1/2 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'8 * 1/2 [ ] (\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
@@ -1193,7 +1193,7 @@ def test_componenttools_split_component_at_offset_23():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'8 * 1/2 [ (\n\t\td'8 * 1/4 ] )\n\t}\n\t{\n\t\t\\time 1/32\n\t\td'8 * 1/4 [ ] (\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
@@ -1256,7 +1256,7 @@ def test_componenttools_split_component_at_offset_24():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. * 1/2 [ (\n\t\t\td'8. * 1/6 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. * 1/3 [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 2/16\n\t\te'8 * 1/2 [\n\t\tf'8 * 1/2 ] )\n\t}\n}"
 
@@ -1298,7 +1298,7 @@ def test_componenttools_split_component_at_offset_25():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 16/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 1/4\n\t\t}\n\t}\n\t{\n\t\t\\time 9/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\ts1 * 9/64\n\t\t}\n\t}\n}"
 
@@ -1359,7 +1359,7 @@ def test_componenttools_split_component_at_offset_26():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert len(halves) == 2
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 14/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'32 [ (\n\t\t\td'32\n\t\t\te'32\n\t\t\tf'32\n\t\t\tg'32\n\t\t\ta'32\n\t\t\tb'32 ] )\n\t\t}\n\t}\n\t{\n\t\t\\time 1/80\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc''64 [ ] ( )\n\t\t}\n\t}\n}"
 
@@ -1371,8 +1371,8 @@ def test_componenttools_split_component_at_offset_27():
     halves = componenttools.split_component_at_offset(
         Container("c'4"), (3, 16), fracture_spanners=True)
 
-    assert componenttools.is_well_formed_component(halves[0][0])
-    assert componenttools.is_well_formed_component(halves[-1][0])
+    assert wellformednesstools.is_well_formed_component(halves[0][0])
+    assert wellformednesstools.is_well_formed_component(halves[-1][0])
 
     assert halves[0][0].lilypond_format == "{\n\tc'8.\n}"   
     assert halves[-1][0].lilypond_format == "{\n\tc'16\n}"

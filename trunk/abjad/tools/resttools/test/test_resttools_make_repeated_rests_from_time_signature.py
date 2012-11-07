@@ -8,7 +8,7 @@ def test_resttools_make_repeated_rests_from_time_signature_01():
     rests = resttools.make_repeated_rests_from_time_signature((5, 32))
     staff = Staff(rests)
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == '\\new Staff {\n\tr32\n\tr32\n\tr32\n\tr32\n\tr32\n}'
 
 
@@ -20,5 +20,5 @@ def test_resttools_make_repeated_rests_from_time_signature_02():
     rests = resttools.make_repeated_rests_from_time_signature(time_signature)
     staff = Staff(rests)
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == '\\new Staff {\n\tr32\n\tr32\n\tr32\n\tr32\n\tr32\n}'

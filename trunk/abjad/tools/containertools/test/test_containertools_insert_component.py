@@ -17,7 +17,7 @@ def test_containertools_insert_component_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -44,7 +44,7 @@ def test_containertools_insert_component_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
 
 
@@ -66,7 +66,7 @@ def test_containertools_insert_component_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n\tr4\n\tcs'8 [\n\td'8\n\tef'8 ]\n}"
 
 
@@ -88,7 +88,7 @@ def test_containertools_insert_component_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -109,7 +109,7 @@ def test_containertools_insert_component_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\tr4\n}"
 
 
@@ -131,7 +131,7 @@ def test_containertools_insert_component_06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8 ]\n\tr4\n\tef'8 [ ]\n}"
 
 
@@ -153,7 +153,7 @@ def test_containertools_insert_component_07():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tr4\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n}"
 
 
@@ -167,7 +167,7 @@ def test_containertools_insert_component_08():
     note = v[0]
     containertools.insert_component(t, 1, v[0], fracture_spanners=True)
 
-    assert componenttools.is_well_formed_component(v)
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(v)
+    assert wellformednesstools.is_well_formed_component(t)
     assert not note in v
     assert note._parent is t

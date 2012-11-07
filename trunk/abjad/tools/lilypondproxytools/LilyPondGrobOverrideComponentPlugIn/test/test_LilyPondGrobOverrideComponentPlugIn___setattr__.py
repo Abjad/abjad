@@ -67,7 +67,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___03():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(score)
+    assert wellformednesstools.is_well_formed_component(score)
     assert score.lilypond_format == "\\new Score \\with {\n\t\\override BarNumber #'break-visibility = #end-of-line-invisible\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t\tb'8\n\t\tc''8\n\t}\n>>"
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
@@ -90,7 +90,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___04():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Score \\with {\n\t\\override BarNumber #'color = #red\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
@@ -267,7 +267,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\override DynamicText #'thickness = #3\n\tc'8 [ \\f\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert DynamicText #'thickness\n}"
 
 
@@ -382,7 +382,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___17():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\t\\override InstrumentName #'color = #red\n\tinstrumentName = \\markup { \\circle { V } }\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -409,7 +409,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(score)
+    assert wellformednesstools.is_well_formed_component(score)
     assert score.lilypond_format == "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\new Staff {\n\t\t\\tempo 4=58\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
@@ -453,7 +453,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___20():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Score \\with {\n\t\\override NonMusicalPaperColumn #'line-break-permission = ##f\n\t\\override NonMusicalPaperColumn #'page-break-permission = ##f\n} <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
@@ -469,7 +469,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___21():
     c'4
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\once \\override NoteColumn #'ignore-collision = ##t\nc'4"
 
 
@@ -491,7 +491,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___22():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\t\\override NoteColumn #'ignore-collision = ##t\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -600,7 +600,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___29():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice \\with {\n\t\\override NoteHead #'color = #red\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
@@ -736,7 +736,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___35():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\\revert Score.SpacingSpanner #'uniform-stretching\n}"
 
 
@@ -776,7 +776,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___36():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\override Score.SpacingSpanner #'strict-grace-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'strict-note-spacing = ##t\n\t\t\\override Score.SpacingSpanner #'uniform-stretching = ##t\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8 ]\n\t\t\\revert Score.SpacingSpanner #'strict-grace-spacing\n\t\t\\revert Score.SpacingSpanner #'strict-note-spacing\n\t\t\\revert Score.SpacingSpanner #'uniform-stretching\n\t}\n}"
 
 
@@ -798,7 +798,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___37():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Score \\with {\n\t\\override SpacingSpanner #'strict-grace-spacing = ##t\n\t\\override SpacingSpanner #'strict-note-spacing = ##t\n\t\\override SpacingSpanner #'uniform-stretching = ##t\n} <<\n>>"
 
 
@@ -836,7 +836,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___38():
     >>
     '''
 
-    assert componenttools.is_well_formed_component(score)
+    assert wellformednesstools.is_well_formed_component(score)
     assert score.lilypond_format == '\\new Score \\with {\n\t\\override SpanBar #\'color = #red\n} <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\n\t\t\tf\'8\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc\'8\n\t\t\td\'8\n\t\t\te\'8\n\t\t\tf\'8\n\t\t}\n\t>>\n>>'
 
 
@@ -990,7 +990,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___45():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t\\override TextScript #'color = #red\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert TextScript #'color\n}"
 
 
@@ -1013,7 +1013,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___46():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\t\\override TextSpanner #'font-shape = #'italic\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n\t\\revert TextSpanner #'font-shape\n}"
 
 
@@ -1155,7 +1155,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice \\with {\n\t\\override TupletBracket #'direction = #down\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -1177,7 +1177,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletBracket #'direction = #down\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -1198,7 +1198,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___55():
     \revert TupletNumber #'fraction
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\override TupletNumber #'fraction = ##t\n\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}\n\\revert TupletNumber #'fraction"
 
 
@@ -1221,7 +1221,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice \\with {\n\t\\override TupletNumber #'fraction = ##t\n} {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -1243,7 +1243,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\t\\once \\override TupletNumber #'fraction = ##t\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
@@ -1266,7 +1266,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == '\\new Voice \\with {\n\t\\override TupletNumber #\'text = \\markup { 6:4 }\n} {\n\tc\'8 [\n\td\'8\n\te\'8\n\tf\'8 ]\n}'
 
 

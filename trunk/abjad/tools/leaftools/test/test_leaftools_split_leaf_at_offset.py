@@ -29,7 +29,7 @@ def test_leaftools_split_leaf_at_offset_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
 
 
@@ -60,7 +60,7 @@ def test_leaftools_split_leaf_at_offset_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'32 ]\n\td'16. [\n\te'8 ]\n}"
 
 
@@ -91,7 +91,7 @@ def test_leaftools_split_leaf_at_offset_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'32 ~\n\td'16.\n\te'8 ]\n}"
 
 
@@ -122,7 +122,7 @@ def test_leaftools_split_leaf_at_offset_04():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'32 ] ~\n\td'16. [\n\te'8 ]\n}"
 
 
@@ -157,7 +157,7 @@ def test_leaftools_split_leaf_at_offset_05():
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
 
 
@@ -195,7 +195,7 @@ def test_leaftools_split_leaf_at_offset_06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
@@ -311,7 +311,7 @@ def test_leaftools_split_leaf_at_offset_12():
         assert leaf.spanners == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
             leaf, tietools.TieSpanner) is s
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_leaftools_split_leaf_at_offset_13():
@@ -327,7 +327,7 @@ def test_leaftools_split_leaf_at_offset_13():
     for l in t.leaves:
         assert l.spanners == set([b])
         assert beamtools.get_beam_spanner_attached_to_component(l) is b
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_leaftools_split_leaf_at_offset_14():
@@ -346,7 +346,7 @@ def test_leaftools_split_leaf_at_offset_14():
         assert l.spanners == set([s])
         assert spannertools.get_the_only_spanner_attached_to_component(
             l, tietools.TieSpanner) is s
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_leaftools_split_leaf_at_offset_15():
@@ -361,7 +361,7 @@ def test_leaftools_split_leaf_at_offset_15():
     assert s.components == (t, )
     for l in t.leaves:
         assert not l.spanners
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_leaftools_split_leaf_at_offset_16():
@@ -378,7 +378,7 @@ def test_leaftools_split_leaf_at_offset_16():
         for l in v.leaves:
             assert not l.spanners
             assert l._parent is v
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_leaftools_split_leaf_at_offset_17():

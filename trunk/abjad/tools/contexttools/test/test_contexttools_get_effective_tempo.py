@@ -21,7 +21,7 @@ def test_contexttools_get_effective_tempo_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert contexttools.get_effective_tempo(t[0]) == contexttools.TempoMark(Duration(1, 8), 38)
     assert contexttools.get_effective_tempo(t[1]) == contexttools.TempoMark(Duration(1, 8), 38)
     assert contexttools.get_effective_tempo(t[2]) == contexttools.TempoMark(Duration(1, 8), 42)

@@ -16,5 +16,5 @@ def test_notetools_make_quarter_notes_with_lilypond_multipliers_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff {\n\tc'4 * 1\n\tc'4 * 4/5\n\tc'4 * 2/3\n\tc'4 * 4/7\n}"

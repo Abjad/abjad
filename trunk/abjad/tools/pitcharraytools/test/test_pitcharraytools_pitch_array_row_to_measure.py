@@ -24,5 +24,5 @@ def test_pitcharraytools_pitch_array_row_to_measure_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(measure)
+    assert wellformednesstools.is_well_formed_component(measure)
     assert measure.lilypond_format == "{\n\t\\time 4/8\n\tr8\n\td'8\n\t<bf bqf>4\n}"

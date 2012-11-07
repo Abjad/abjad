@@ -28,7 +28,7 @@ def test_tuplettools_fuse_tuplets_01():
 
     new = tuplettools.fuse_tuplets([t1, t2])
 
-    assert componenttools.is_well_formed_component(new)
+    assert wellformednesstools.is_well_formed_component(new)
     assert len(t1) == 0
     assert len(t2) == 0
     assert new is not t1 and new is not t2
@@ -87,7 +87,7 @@ def test_tuplettools_fuse_tuplets_02():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
@@ -136,7 +136,7 @@ def test_tuplettools_fuse_tuplets_03():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'8 (\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8 )\n\t}\n}"
 
 
@@ -192,5 +192,5 @@ def test_tuplettools_fuse_tuplets_06():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 (\n\t\tc'4\n\t}\n\tc'4 )\n}"

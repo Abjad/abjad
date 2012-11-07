@@ -17,5 +17,5 @@ def test_DynamicMeasure_suppress_time_signature_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "{\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

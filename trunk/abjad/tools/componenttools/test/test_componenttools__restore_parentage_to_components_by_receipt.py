@@ -19,7 +19,7 @@ def test_componenttools__restore_parentage_to_components_by_receipt_01():
 
     receipt = _ignore_parentage_of_components(t[:])
 
-    assert not componenttools.is_well_formed_component(t)
+    assert not wellformednesstools.is_well_formed_component(t)
 
     _restore_parentage_to_components_by_receipt(receipt)
 
@@ -32,5 +32,5 @@ def test_componenttools__restore_parentage_to_components_by_receipt_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"

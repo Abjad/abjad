@@ -19,5 +19,5 @@ def test_Staff_engraver_consists_01():
     }
     '''
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Staff \\with {\n\t\\consists Horizontal_bracket_engraver\n\t\\consists Instrument_name_engraver\n} {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

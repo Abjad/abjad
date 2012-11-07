@@ -25,7 +25,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t[1] in tie
     assert t[2] in tie
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'4 ~\n\tc'8 ~\n\tc'8\n}"
 
 
@@ -56,7 +56,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t[2] in tie
     assert t[3] in tie
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
@@ -82,7 +82,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t[0] in tie1
     assert t[1] in tie2
 
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new Voice {\n\tc'4\n\tc'4\n}"
 
 
@@ -173,7 +173,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
         t.leaves, time_signatures)
 
-    componenttools.is_well_formed_component(t)
+    wellformednesstools.is_well_formed_component(t)
     assert t.lilypond_format == "\\new RhythmicStaff \\with {\n\t\\override BarLine #'transparent = ##t\n\t\\override TimeSignature #'transparent = ##t\n} {\n\tc'4 ~\n\tc'16\n\tc'8. ~\n\tc'4\n\tc'8\n\tc'8 ~\n\tc'2 ~\n\tc'16\n\tc'8. ~\n\tc'4 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'8.\n\tc'16 ~\n\tc'4 ~\n\tc'2\n\tc'8.\n}"
 
 

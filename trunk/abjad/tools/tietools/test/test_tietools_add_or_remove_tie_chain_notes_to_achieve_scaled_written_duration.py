@@ -16,7 +16,7 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ~\n\tc'32 ]\n}"
 
 
@@ -34,5 +34,5 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_scaled_written_durati
     }
     '''
 
-    assert componenttools.is_well_formed_component(staff)
+    assert wellformednesstools.is_well_formed_component(staff)
     assert staff.lilypond_format == "\\new Staff {\n\tc'8 [ ]\n}"

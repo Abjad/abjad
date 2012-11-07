@@ -8,7 +8,7 @@ def test_Staff___getitem___01():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     assert isinstance(t[0], Note)
     assert isinstance(t[1], Rest)
     assert isinstance(t[2], Chord)
@@ -28,10 +28,10 @@ def test_Staff___getitem___02():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[0:0]
     assert len(slice) == 0
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_Staff___getitem___03():
@@ -41,13 +41,13 @@ def test_Staff___getitem___03():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[0:1]
     assert len(slice) == 1
     assert isinstance(slice[0], Note)
     for x in t:
         assert x._parent == t
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_Staff___getitem___04():
@@ -57,13 +57,13 @@ def test_Staff___getitem___04():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[-1:]
     assert len(slice) == 1
     assert isinstance(slice[0], tuplettools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == t
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_Staff___getitem___05():
@@ -73,7 +73,7 @@ def test_Staff___getitem___05():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[1:-1]
     assert len(slice) == 3
     assert isinstance(slice[0], Rest)
@@ -81,7 +81,7 @@ def test_Staff___getitem___05():
     assert isinstance(slice[2], skiptools.Skip)
     for x in slice:
         assert x._parent == t
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_Staff___getitem___06():
@@ -91,7 +91,7 @@ def test_Staff___getitem___06():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[2:]
     assert len(slice) == 3
     assert isinstance(slice[0], Chord)
@@ -99,7 +99,7 @@ def test_Staff___getitem___06():
     assert isinstance(slice[2], tuplettools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == t
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_Staff___getitem___07():
@@ -109,7 +109,7 @@ def test_Staff___getitem___07():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[:-2]
     assert len(slice) == 3
     assert isinstance(slice[0], Note)
@@ -117,7 +117,7 @@ def test_Staff___getitem___07():
     assert isinstance(slice[2], Chord)
     for x in slice:
         assert x._parent == t
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
 
 
 def test_Staff___getitem___08():
@@ -127,7 +127,7 @@ def test_Staff___getitem___08():
             skiptools.Skip((1, 4)),
             tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)])
     assert len(t) == 5
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)
     slice = t[:]
     assert len(slice) == 5
     assert isinstance(slice, list)
@@ -138,4 +138,4 @@ def test_Staff___getitem___08():
     assert isinstance(slice[4], tuplettools.FixedDurationTuplet)
     for x in slice:
         assert x._parent == t
-    assert componenttools.is_well_formed_component(t)
+    assert wellformednesstools.is_well_formed_component(t)

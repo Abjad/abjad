@@ -180,7 +180,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10():
     >4
     '''
 
-    assert componenttools.is_well_formed_component(treble)
+    assert wellformednesstools.is_well_formed_component(treble)
     assert treble.lilypond_format == "<\n\t\\tweak #'color #blue\n\td'\n\t\\tweak #'color #blue\n\tef'\n>4"
 
     r'''
@@ -192,7 +192,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10():
     >4    
     '''
 
-    assert componenttools.is_well_formed_component(bass)
+    assert wellformednesstools.is_well_formed_component(bass)
     assert bass.lilypond_format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"
 
 
@@ -210,10 +210,10 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_11():
 
     "<d' f'>4 ^ \markup { UP }"
 
-    assert componenttools.is_well_formed_component(treble)
+    assert wellformednesstools.is_well_formed_component(treble)
     assert treble.lilypond_format == "<d' f'>4 ^ \\markup { UP }"
 
     "cs4 _ \markup { DOWN }"
 
-    assert componenttools.is_well_formed_component(bass)
+    assert wellformednesstools.is_well_formed_component(bass)
     assert bass.lilypond_format == 'cs4 _ \\markup { DOWN }'
