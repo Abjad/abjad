@@ -36,9 +36,15 @@ class CodeBlock(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pipe, image_count=0, directory=None, image_prefix='image'):
+    def __call__(self, pipe, image_count=0, directory=None, image_prefix='image', verbose=False):
 
         assert isinstance(pipe, documentationtools.Pipe)
+
+        if verbose:
+            print '\nCODEBLOCK: {}:{}'.format(
+                self.starting_line_number, 
+                self.ending_line_number
+                )
 
         grouped_results = []
         result = []
@@ -72,6 +78,10 @@ class CodeBlock(abctools.AbjadObject):
             if not hide:
                 current[-1] += line
                 result.extend(current)
+
+            if verbose:
+                for x in current:
+                    print x
 
             if line.startswith('show('):
 

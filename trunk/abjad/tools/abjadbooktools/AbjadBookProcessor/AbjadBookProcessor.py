@@ -13,19 +13,17 @@ from abjad.tools.abjadbooktools.OutputFormat import OutputFormat
 
 class AbjadBookProcessor(abctools.AbjadObject):
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ('_directory', '_image_prefix', '_lines', '_output_format', '_skip_rendering')
-
     ### INITIALIZER ###
 
-    def __init__(self, directory, lines, output_format, skip_rendering=False, image_prefix='image'):
+    def __init__(self, directory, lines, output_format, skip_rendering=False, 
+        image_prefix='image', verbose=False):
         assert isinstance(output_format, OutputFormat)
         self._directory = os.path.abspath(directory)
         self._image_prefix = image_prefix
         self._lines = tuple(lines)
         self._output_format = output_format
         self._skip_rendering = bool(skip_rendering)
+        self._verbose = bool(verbose)
 
     ### SPECIAL METHOD ###
 
@@ -81,6 +79,10 @@ class AbjadBookProcessor(abctools.AbjadObject):
     @property
     def skip_rendering(self):
         return self._skip_rendering
+
+    @property
+    def verbose(self):
+        return self._verbose
 
     ### PRIVATE METHODS ###
 
@@ -202,7 +204,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
         image_count = 0
         for i, code_block in enumerate(code_blocks):
             #print '\tCODE BLOCK', i
-            image_count = code_block(pipe, image_count, directory, image_prefix)
+            image_count = code_block(pipe, image_count, directory, image_prefix, verbose=self.verbose)
         return image_count
 
     def _setup_pipe(self):

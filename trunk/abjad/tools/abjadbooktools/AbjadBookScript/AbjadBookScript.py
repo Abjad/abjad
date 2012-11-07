@@ -130,7 +130,8 @@ EXAMPLES
             output_format = self.output_formats[file_extension]()
             abjad_book_processor = AbjadBookProcessor(
                 directory, lines, output_format,
-                skip_rendering=args.skip_rendering, image_prefix=image_prefix)
+                skip_rendering=args.skip_rendering, image_prefix=image_prefix,
+                verbose=args.verbose)
             processed_lines = abjad_book_processor(verbose=args.verbose)
             print '\tWriting output to {!r}...'.format(os.path.relpath(output_filename))
             with open(output_filename, 'w') as f:
