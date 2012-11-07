@@ -54,7 +54,7 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call pattern shown here.
+    Usage follows the two-step instantiate-then-call talea shown here.
 
     Return time-token maker.
     '''

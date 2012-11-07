@@ -15,8 +15,7 @@
 5.  Change all occurrences of 'duration tokens' and 'time tokens' (in rhythmmakertools) 
     to 'divisions'.
 
-6.  Change all occurrences of 'pattern' (in rhythmmakertools) to 'talea'.
-    Change all occurrences of 'signal' (in rhythmmakertools) to 'talea'.
+6.  Change all occurrences of 'signal' (in rhythmmakertools) to 'talea'.
 
 7.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.

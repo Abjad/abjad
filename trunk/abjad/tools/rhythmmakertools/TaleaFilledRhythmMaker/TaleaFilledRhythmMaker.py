@@ -9,9 +9,9 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
 
     Configure the time-token maker at initialization::
 
-        >>> pattern, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
+        >>> talea, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
         >>> maker = rhythmmakertools.TaleaFilledRhythmMaker(
-        ...     pattern, denominator, prolation_addenda)
+        ...     talea, denominator, prolation_addenda)
 
     Then call the time-token maker on arbitrary duration tokens::
 
@@ -51,20 +51,20 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call pattern shown here.
+    Usage follows the two-step instantiate-then-call talea shown here.
 
     Return time-token maker.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, pattern, denominator, prolation_addenda=None, secondary_divisions=None,
-        pattern_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None,
+    def __init__(self, talea, denominator, prolation_addenda=None, secondary_divisions=None,
+        talea_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None,
         beam_each_cell=False):
         lefts, middles, rights = [0], [0], [0]
         left_lengths, right_lengths = [0], [0]
-        DivisionBurnishedTaleaFilledRhythmMaker.__init__(self, pattern, denominator, prolation_addenda,
+        DivisionBurnishedTaleaFilledRhythmMaker.__init__(self, talea, denominator, prolation_addenda,
             lefts, middles, rights, left_lengths, right_lengths, secondary_divisions,
-            pattern_helper=pattern_helper, prolation_addenda_helper=prolation_addenda_helper,
+            talea_helper=talea_helper, prolation_addenda_helper=prolation_addenda_helper,
             secondary_divisions_helper=secondary_divisions_helper,
             beam_each_cell=beam_each_cell)

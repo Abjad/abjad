@@ -10,12 +10,12 @@ class OutputBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
 
     Configure the time-token maker at initialization::
 
-        >>> pattern, denominator, prolation_addenda = [1, 2, 3], 16, [0, 2]
+        >>> talea, denominator, prolation_addenda = [1, 2, 3], 16, [0, 2]
         >>> lefts, middles, rights = [-1], [0], [-1]
         >>> left_lengths, right_lengths = [1], [1]
         >>> secondary_divisions = [9]
         >>> maker = rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
-        ... pattern, denominator, prolation_addenda, lefts, middles, rights, 
+        ... talea, denominator, prolation_addenda, lefts, middles, rights, 
         ... left_lengths, right_lengths, secondary_divisions)
 
     Then call the time-token maker on arbitrary duration tokens::
@@ -58,7 +58,7 @@ class OutputBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call pattern shown here.
+    Usage follows the two-step instantiate-then-call talea shown here.
 
     Return time-token maker.
     '''

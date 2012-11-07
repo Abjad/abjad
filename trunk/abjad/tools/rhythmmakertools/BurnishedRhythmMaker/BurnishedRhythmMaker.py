@@ -33,10 +33,10 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, pattern, denominator, prolation_addenda=None,
+    def __init__(self, talea, denominator, prolation_addenda=None,
         lefts=None, middles=None, rights=None, left_lengths=None, right_lengths=None,
         secondary_divisions=None,
-        pattern_helper=None, prolation_addenda_helper=None,
+        talea_helper=None, prolation_addenda_helper=None,
         lefts_helper=None, middles_helper=None, rights_helper=None,
         left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None,
         beam_each_cell=False,
@@ -50,7 +50,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         left_lengths = self._none_to_new_list(left_lengths)
         right_lengths = self._none_to_new_list(right_lengths)
         secondary_divisions = self._none_to_new_list(secondary_divisions)
-        pattern_helper = self._none_to_trivial_helper(pattern_helper)
+        talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(prolation_addenda_helper)
         lefts_helper = self._none_to_trivial_helper(lefts_helper)
         middles_helper = self._none_to_trivial_helper(middles_helper)
@@ -58,7 +58,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         left_lengths_helper = self._none_to_trivial_helper(left_lengths_helper)
         right_lengths_helper = self._none_to_trivial_helper(right_lengths_helper)
         secondary_divisions_helper = self._none_to_trivial_helper(secondary_divisions_helper)
-        assert sequencetools.all_are_integer_equivalent_numbers(pattern)
+        assert sequencetools.all_are_integer_equivalent_numbers(talea)
         assert mathtools.is_positive_integer_equivalent_number(denominator)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(prolation_addenda)
         assert all([x in (-1, 0, 1) for x in lefts])
@@ -67,7 +67,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(left_lengths)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(right_lengths)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(secondary_divisions)
-        assert isinstance(pattern_helper, (types.FunctionType, types.MethodType))
+        assert isinstance(talea_helper, (types.FunctionType, types.MethodType))
         assert isinstance(prolation_addenda_helper, (types.FunctionType, types.MethodType))
         assert isinstance(lefts_helper, (types.FunctionType, types.MethodType))
         assert isinstance(middles_helper, (types.FunctionType, types.MethodType))
@@ -76,7 +76,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert isinstance(right_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(big_endian, bool)
         assert isinstance(tie_rests, bool)
-        self.pattern = pattern
+        self.talea = talea
         self.denominator = denominator
         self.prolation_addenda = prolation_addenda
         self.lefts = lefts
@@ -85,7 +85,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.left_lengths = left_lengths
         self.right_lengths = right_lengths
         self.secondary_divisions = secondary_divisions
-        self.pattern_helper = pattern_helper
+        self.talea_helper = talea_helper
         self.prolation_addenda_helper = prolation_addenda_helper
         self.lefts_helper = lefts_helper
         self.middles_helper = middles_helper
@@ -96,7 +96,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.beam_each_cell = beam_each_cell
         self.big_endian = big_endian
         self.tie_rests = tie_rests
-        self._repr_signals.append(self.pattern)
+        self._repr_signals.append(self.talea)
         self._repr_signals.append(self.prolation_addenda)
         self._repr_signals.append(self.lefts)
         self._repr_signals.append(self.middles)
@@ -108,14 +108,14 @@ class BurnishedRhythmMaker(RhythmMaker):
     def __call__(self, duration_tokens, seeds=None):
         duration_pairs, seeds = RhythmMaker.__call__(self, duration_tokens, seeds)
         octuplet = self._prepare_input(seeds)
-        pattern, prolation_addenda = octuplet[:2]
+        talea, prolation_addenda = octuplet[:2]
         secondary_divisions = octuplet[-1]
-        signals = (pattern, prolation_addenda, secondary_divisions)
+        signals = (talea, prolation_addenda, secondary_divisions)
         result = self._scale_signals(duration_pairs, self.denominator, signals)
-        duration_pairs, lcd, pattern, prolation_addenda, secondary_divisions = result
+        duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = result
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
-        septuplet = (pattern, prolation_addenda) + octuplet[2:-1]
+        septuplet = (talea, prolation_addenda) + octuplet[2:-1]
         numeric_map = self._make_numeric_map(secondary_duration_pairs, septuplet)
         leaf_lists = self._make_leaf_lists(numeric_map, lcd)
         if not prolation_addenda:
@@ -130,7 +130,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     def __eq__(self, other):
         return isinstance(other, type(self)) and all([
-            self.pattern == other.pattern,
+            self.talea == other.talea,
             self.denominator == other.denominator,
             self.prolation_addenda == other.prolation_addenda,
             self.lefts == other.lefts,
@@ -139,7 +139,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             self.left_lengths == other.left_lengths,
             self.right_lengths == other.right_lengths,
             self.secondary_divisions == other.secondary_divisions,
-            #self.pattern_helper == other.pattern_helper,
+            #self.talea_helper == other.talea_helper,
             #self.prolation_addenda_helper == other.prolation_addenda_helper,
             #self.lefts_helper == other.lefts_helper,
             #self.middles_helper == other.middles_helper,
@@ -179,7 +179,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         return leaf_lists
 
     def _make_numeric_map(self, duration_pairs, septuplet):
-        pattern, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths = septuplet
+        talea, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths = septuplet
         prolated_duration_pairs = self._make_prolated_duration_pairs(
             duration_pairs, prolation_addenda)
         if isinstance(prolated_duration_pairs[0], tuple):
@@ -187,7 +187,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         else:
             prolated_numerators = [pair.numerator for pair in prolated_duration_pairs]
         map_tokens = sequencetools.split_sequence_extended_to_weights(
-            pattern, prolated_numerators, overhang=False)
+            talea, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
         forced_map_tokens = self._force_token_parts(map_tokens, quintuplet)
         numeric_map = forced_map_tokens
@@ -213,7 +213,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         return prolated_duration_pairs
 
     def _prepare_input(self, seeds):
-        pattern = sequencetools.CyclicTuple(self.pattern_helper(self.pattern, seeds))
+        talea = sequencetools.CyclicTuple(self.talea_helper(self.talea, seeds))
         prolation_addenda = self.prolation_addenda_helper(self.prolation_addenda, seeds)
         prolation_addenda = sequencetools.CyclicTuple(prolation_addenda)
         lefts = sequencetools.CyclicTuple(self.lefts_helper(self.lefts, seeds))
@@ -223,7 +223,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         right_lengths = sequencetools.CyclicTuple(self.right_lengths_helper(self.right_lengths, seeds))
         secondary_divisions = self.secondary_divisions_helper(self.secondary_divisions, seeds)
         secondary_divisions = sequencetools.CyclicTuple(secondary_divisions)
-        return pattern, prolation_addenda, \
+        return talea, prolation_addenda, \
             lefts, middles, rights, left_lengths, right_lengths, secondary_divisions
 
     ### PUBLIC METHODS ###
@@ -238,7 +238,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
         Defined equal to reversal of the following on a copy of rhythm maker::
 
-            new.pattern
+            new.talea
             new.prolation_addenda
             new.lefts
             new.middles
@@ -250,7 +250,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         Return newly constructed rhythm maker.
         '''
         new = copy.deepcopy(self)
-        new.pattern.reverse()
+        new.talea.reverse()
         new.prolation_addenda.reverse()
         new.lefts.reverse()
         new.middles.reverse()

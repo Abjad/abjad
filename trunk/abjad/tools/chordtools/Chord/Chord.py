@@ -20,20 +20,13 @@ class Chord(Leaf):
 
     ### INITIALIZER ###
 
-    # TODO: use LilyPond parser for initialization
     def __init__(self, *args, **kwargs):
         from abjad.tools import lilypondparsertools
-
         if len(args) == 1 and isinstance(args[0], str):
             input = '{{ {} }}'.format(args[0])
             parsed = lilypondparsertools.LilyPondParser()(input)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
-            #pattern = '^<(.*)>\s*(.+)'
-            #match = re.match(pattern, args[0])
-            #written_pitches, written_duration = match.groups()
-            #lilypond_multiplier = None
-
         is_cautionary = []
         is_forced = []
         if len(args) == 1 and isinstance(args[0], Leaf):
@@ -58,7 +51,6 @@ class Chord(Leaf):
             written_pitches, written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize chord from "%s".' % str(args))
-
         Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.written_pitches = written_pitches
         for note_head, cautionary, forced in zip(self.note_heads, is_cautionary, is_forced):

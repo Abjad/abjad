@@ -5,9 +5,9 @@ def test_TaleaFilledRhythmMaker_beam_cells_together_01():
     '''Beam each cell with a multipart beam spanner.
     '''
 
-    pattern, denominator, prolation_addenda = [1, 1, 1, -1, 2, 2], 32, [3, 4]
+    talea, denominator, prolation_addenda = [1, 1, 1, -1, 2, 2], 32, [3, 4]
     maker = rhythmmakertools.TaleaFilledRhythmMaker(
-        pattern, denominator, prolation_addenda, beam_each_cell=True)
+        talea, denominator, prolation_addenda, beam_each_cell=True)
 
     duration_tokens = [(2, 16), (5, 16)]
     music = maker(duration_tokens)
