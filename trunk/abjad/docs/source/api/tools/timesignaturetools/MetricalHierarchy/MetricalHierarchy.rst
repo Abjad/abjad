@@ -9,7 +9,7 @@ timesignaturetools.MetricalHierarchy
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.big_endian
+.. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.decrease_durations_monotonically
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.denominator
 

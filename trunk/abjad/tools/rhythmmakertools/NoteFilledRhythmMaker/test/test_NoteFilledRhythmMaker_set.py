@@ -6,7 +6,7 @@ def test_NoteFilledRhythmMaker_set_01():
     maker = rhythmmakertools.NoteFilledRhythmMaker()
 
     divisions = [(5, 16), (3, 8)]
-    leaf_lists = maker.set(big_endian=False)(divisions)
+    leaf_lists = maker.set(decrease_durations_monotonically=False)(divisions)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(divisions))

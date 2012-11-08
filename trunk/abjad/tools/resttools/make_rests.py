@@ -2,19 +2,19 @@ import numbers
 from abjad.tools import durationtools
 
 
-def make_rests(duration_tokens, big_endian=True, tied=False):
+def make_rests(duration_tokens, decrease_durations_monotonically=True, tied=False):
     r'''.. versionadded:: 1.1
 
     Make rests.
 
-    Make big-endian rests::
+    Make rests and drecrease durations monotonically::
 
-        >>> resttools.make_rests([(5, 16), (9, 16)], big_endian=True)
+        >>> resttools.make_rests([(5, 16), (9, 16)], decrease_durations_monotonically=True)
         [Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16')]
 
-    Make little-endian rests::
+    Makes rests and increase durations monotonically::
 
-        >>> resttools.make_rests([(5, 16), (9, 16)], big_endian=False)
+        >>> resttools.make_rests([(5, 16), (9, 16)], decrease_durations_monotonically=False)
         [Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2')]
 
     Make tied rests::
@@ -44,5 +44,5 @@ def make_rests(duration_tokens, big_endian=True, tied=False):
 
     result = []
     for d in duration_tokens:
-        result.extend(resttools.make_tied_rest(d, big_endian=big_endian, tied=tied))
+        result.extend(resttools.make_tied_rest(d, decrease_durations_monotonically=decrease_durations_monotonically, tied=tied))
     return result

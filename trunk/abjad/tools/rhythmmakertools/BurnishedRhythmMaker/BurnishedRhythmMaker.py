@@ -40,7 +40,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         lefts_helper=None, middles_helper=None, rights_helper=None,
         left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None,
         beam_each_cell=False,
-        big_endian=True, tie_rests=False
+        decrease_durations_monotonically=True, tie_rests=False
         ):
         RhythmMaker.__init__(self)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
@@ -74,7 +74,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert isinstance(rights_helper, (types.FunctionType, types.MethodType))
         assert isinstance(left_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(right_lengths_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(big_endian, bool)
+        assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_rests, bool)
         self.talea = talea
         self.talea_denominator = talea_denominator
@@ -94,7 +94,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.right_lengths_helper = right_lengths_helper
         self.secondary_divisions_helper = secondary_divisions_helper
         self.beam_each_cell = beam_each_cell
-        self.big_endian = big_endian
+        self.decrease_durations_monotonically = decrease_durations_monotonically
         self.tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
@@ -168,7 +168,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         leaf_lists = []
         for map_token in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
-                map_token, talea_denominator, big_endian=self.big_endian, tie_rests=self.tie_rests)
+                map_token, talea_denominator, decrease_durations_monotonically=self.decrease_durations_monotonically, tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 
@@ -252,6 +252,6 @@ class BurnishedRhythmMaker(RhythmMaker):
         new.left_lengths.reverse()
         new.right_lengths.reverse()
         new.secondary_divisions.reverse()
-        if new.big_endian:
-            new.big_endian = False
+        if new.decrease_durations_monotonically:
+            new.decrease_durations_monotonically = False
         return new

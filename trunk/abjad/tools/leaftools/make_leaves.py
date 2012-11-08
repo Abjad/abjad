@@ -13,7 +13,7 @@ from abjad.tools import sequencetools
 # TODO: Extend leaftools.make_leaves() to accept Abjad Pitch instances. Ex:
 #       Example: leaftools.make_leaves([NamedChromaticPitch('cs', 4)], [(1, 4)])
 
-def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
+def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_rests=False):
     r'''.. versionadded:: 1.1
 
     Construct a list of notes, rests or chords.
@@ -62,9 +62,9 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
         >>> leaftools.make_leaves([14], [(1, 12), (1, 12), (1, 12)])
         [Tuplet(2/3, [d''8, d''8, d''8])]
 
-    Set ``big_endian=False`` to return tied leaf durations from least to greatest::
+    Set ``decrease_durations_monotonically=False`` to return tied leaf durations from least to greatest::
 
-        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)], big_endian=False))
+        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)], decrease_durations_monotonically=False))
         >>> f(staff)
         \new Staff {
             ef''16 ~
@@ -92,13 +92,13 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
     from abjad.tools import resttools
     from abjad.tools import tuplettools
 
-    def _make_leaf_on_pitch(pitch, duration, big_endian=big_endian):
+    def _make_leaf_on_pitch(pitch, duration, decrease_durations_monotonically=decrease_durations_monotonically):
         if isinstance(pitch, (int, long, float, pitchtools.NamedChromaticPitch)):
-            leaves = notetools.make_tied_note(pitch, duration, big_endian=big_endian)
+            leaves = notetools.make_tied_note(pitch, duration, decrease_durations_monotonically=decrease_durations_monotonically)
         elif isinstance(pitch, (tuple, list)):
-            leaves = chordtools.make_tied_chord(pitch, duration, big_endian=big_endian)
+            leaves = chordtools.make_tied_chord(pitch, duration, decrease_durations_monotonically=decrease_durations_monotonically)
         elif pitch is None:
-            leaves = resttools.make_tied_rest(duration, big_endian=big_endian, tied=tie_rests)
+            leaves = resttools.make_tied_rest(duration, decrease_durations_monotonically=decrease_durations_monotonically, tied=tie_rests)
         else:
             raise ValueError('Unknown pitch {!r}.'.format(pitch))
         return leaves
@@ -129,7 +129,7 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
         pitches = pitches[len(duration_group):]
         if len(factors) == 0:
             for pitch, duration in zip(ps, duration_group):
-                leaves = _make_leaf_on_pitch(pitch, duration, big_endian=big_endian)
+                leaves = _make_leaf_on_pitch(pitch, duration, decrease_durations_monotonically=decrease_durations_monotonically)
                 result.extend(leaves)
         else:
             # compute prolation
@@ -141,7 +141,7 @@ def make_leaves(pitches, durations, big_endian=True, tie_rests=False):
             # make leaves
             leaves = []
             for pitch, duration in zip(ps, duration_group):
-                leaves.extend(_make_leaf_on_pitch(pitch, duration, big_endian=big_endian))
+                leaves.extend(_make_leaf_on_pitch(pitch, duration, decrease_durations_monotonically=decrease_durations_monotonically))
             tuplet = tuplettools.Tuplet(multiplier, leaves)
             result.append(tuplet)
 

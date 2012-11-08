@@ -39,7 +39,7 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_signal_helper=None, prefix_lengths_helper=None,
         suffix_signal_helper=None, suffix_lengths_helper=None,
         prolation_addenda_helper=None, secondary_divisions_helper=None,
-        big_endian=True, tie_rests=False
+        decrease_durations_monotonically=True, tie_rests=False
         ):
         RhythmMaker.__init__(self)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
@@ -63,7 +63,7 @@ class IncisedRhythmMaker(RhythmMaker):
         assert isinstance(suffix_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(prolation_addenda_helper, (types.FunctionType, types.MethodType))
         assert isinstance(secondary_divisions_helper, (types.FunctionType, types.MethodType))
-        assert isinstance(big_endian, bool)
+        assert isinstance(decrease_durations_monotonically, bool)
         assert isinstance(tie_rests, bool)
         self.prefix_signal = prefix_signal
         self.prefix_lengths = prefix_lengths
@@ -78,7 +78,7 @@ class IncisedRhythmMaker(RhythmMaker):
         self.suffix_lengths_helper = self._none_to_trivial_helper(suffix_lengths_helper)
         self.prolation_addenda_helper = self._none_to_trivial_helper(prolation_addenda_helper)
         self.secondary_divisions_helper = self._none_to_trivial_helper(secondary_divisions_helper)
-        self.big_endian = big_endian
+        self.decrease_durations_monotonically = decrease_durations_monotonically
         self.tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
@@ -142,7 +142,7 @@ class IncisedRhythmMaker(RhythmMaker):
         for numeric_map_part in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
                 numeric_map_part, lcd,
-                big_endian=self.big_endian, tie_rests=self.tie_rests)
+                decrease_durations_monotonically=self.decrease_durations_monotonically, tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 
@@ -181,6 +181,6 @@ class IncisedRhythmMaker(RhythmMaker):
         new.suffix_lengths.reverse()
         new.prolation_addenda.reverse()
         new.secondary_divisions.reverse()
-        if new.big_endian:
-            new.big_endian = False
+        if new.decrease_durations_monotonically:
+            new.decrease_durations_monotonically = False
         return new

@@ -4,7 +4,7 @@ from abjad import *
 #def test_containertools_replace_container_slice_with_rests_01():
 #
 #    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
-#    containertools.replace_container_slice_with_rests(staff, stop=5, big_endian=True)
+#    containertools.replace_container_slice_with_rests(staff, stop=5, decrease_durations_monotonically=True)
 #
 #    r'''
 #    \new Staff {
@@ -20,7 +20,7 @@ from abjad import *
 #def test_containertools_replace_container_slice_with_rests_02():
 #
 #    staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
-#    containertools.replace_container_slice_with_rests(staff, start=-5, big_endian=True)
+#    containertools.replace_container_slice_with_rests(staff, start=-5, decrease_durations_monotonically=True)
 #
 #    r'''
 #    \new Staff {
@@ -36,7 +36,7 @@ from abjad import *
 def test_containertools_replace_container_slice_with_rests_03():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
-    containertools.replace_container_slice_with_rests(staff, stop=5, big_endian=False)
+    containertools.replace_container_slice_with_rests(staff, stop=5, decrease_durations_monotonically=False)
 
     r'''
     \new Staff {
@@ -52,7 +52,7 @@ def test_containertools_replace_container_slice_with_rests_03():
 def test_containertools_replace_container_slice_with_rests_04():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
-    containertools.replace_container_slice_with_rests(staff, start=-5, big_endian=False)
+    containertools.replace_container_slice_with_rests(staff, start=-5, decrease_durations_monotonically=False)
 
     r'''
     \new Staff {

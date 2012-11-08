@@ -46,16 +46,16 @@ def test_mathtools_partition_integer_into_canonic_parts_03():
 
 def test_mathtools_partition_integer_into_canonic_parts_04():
 
-    assert mathtools.partition_integer_into_canonic_parts(11, big_endian=False) == (3, 8)
-    assert mathtools.partition_integer_into_canonic_parts(12, big_endian=False) == (12, )
-    assert mathtools.partition_integer_into_canonic_parts(13, big_endian=False) == (1, 12)
-    assert mathtools.partition_integer_into_canonic_parts(14, big_endian=False) == (14, )
-    assert mathtools.partition_integer_into_canonic_parts(15, big_endian=False) == (15, )
-    assert mathtools.partition_integer_into_canonic_parts(16, big_endian=False) == (16, )
-    assert mathtools.partition_integer_into_canonic_parts(17, big_endian=False) == (1, 16)
-    assert mathtools.partition_integer_into_canonic_parts(18, big_endian=False) == (2, 16)
-    assert mathtools.partition_integer_into_canonic_parts(19, big_endian=False) == (3, 16)
-    assert mathtools.partition_integer_into_canonic_parts(20, big_endian=False) == (4, 16)
+    assert mathtools.partition_integer_into_canonic_parts(11, decrease_parts_monotonically=False) == (3, 8)
+    assert mathtools.partition_integer_into_canonic_parts(12, decrease_parts_monotonically=False) == (12, )
+    assert mathtools.partition_integer_into_canonic_parts(13, decrease_parts_monotonically=False) == (1, 12)
+    assert mathtools.partition_integer_into_canonic_parts(14, decrease_parts_monotonically=False) == (14, )
+    assert mathtools.partition_integer_into_canonic_parts(15, decrease_parts_monotonically=False) == (15, )
+    assert mathtools.partition_integer_into_canonic_parts(16, decrease_parts_monotonically=False) == (16, )
+    assert mathtools.partition_integer_into_canonic_parts(17, decrease_parts_monotonically=False) == (1, 16)
+    assert mathtools.partition_integer_into_canonic_parts(18, decrease_parts_monotonically=False) == (2, 16)
+    assert mathtools.partition_integer_into_canonic_parts(19, decrease_parts_monotonically=False) == (3, 16)
+    assert mathtools.partition_integer_into_canonic_parts(20, decrease_parts_monotonically=False) == (4, 16)
 
 
 def test_mathtools_partition_integer_into_canonic_parts_05():

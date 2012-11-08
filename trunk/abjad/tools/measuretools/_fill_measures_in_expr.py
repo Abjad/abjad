@@ -8,12 +8,12 @@ from abjad.tools import mathtools
 def _fill_measures_in_expr(expr, mode, iterctrl=lambda measure, i: True):
     '''Populate each measure in 'expr' according to 'mode'.
 
-    With mode = 'big-endian':
-        Populate with big-endian series of notes
+    With mode = 'decrease_durations_monotonically':
+        Populate with decrease_durations_monotonically series of notes
         summing to duration of effective time signature of measure.
 
-    With mode = 'little-endian':
-        Populate with little-endian series of notes
+    With mode = 'increase_durations_monotonically':
+        Populate with increase_durations_monotonically series of notes
         summing to duration of effective time signature of measure.
 
     With mode = 'time signature series':
@@ -34,10 +34,10 @@ def _fill_measures_in_expr(expr, mode, iterctrl=lambda measure, i: True):
         to ``measuretools._fill_measures_in_expr()``.
     '''
 
-    if mode == 'big-endian':
-        _measures_populate_big_endian(expr, iterctrl)
-    elif mode == 'little-endian':
-        _measures_populate_little_endian(expr, iterctrl)
+    if mode == 'decrease_durations_monotonically':
+        _measures_populate_decrease_durations_monotonically(expr, iterctrl)
+    elif mode == 'increase_durations_monotonically':
+        _measures_populate_increase_durations_monotonically(expr, iterctrl)
     elif mode == 'time signature series':
         _measures_populate_time_signature(expr, iterctrl)
     elif mode == 'skip':

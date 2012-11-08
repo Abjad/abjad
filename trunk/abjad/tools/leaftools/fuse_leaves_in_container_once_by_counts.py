@@ -1,7 +1,7 @@
 from abjad.tools import componenttools
 
 
-def fuse_leaves_in_container_once_by_counts(container, counts, klass=None, big_endian=True):
+def fuse_leaves_in_container_once_by_counts(container, counts, klass=None, decrease_durations_monotonically=True):
     '''Fuse leaves in `container` once by `counts` into instances of `klass`.
     '''
     from abjad.tools import containertools
@@ -25,9 +25,9 @@ def fuse_leaves_in_container_once_by_counts(container, counts, klass=None, big_e
 
     # construct new notes or rests
     if klass == notetools.Note:
-        new_material = notetools.make_notes(0, durations, big_endian=big_endian)
+        new_material = notetools.make_notes(0, durations, decrease_durations_monotonically=decrease_durations_monotonically)
     elif klass == resttools.Rest:
-        new_material = resttools.make_rests(durations, big_endian=big_endian)
+        new_material = resttools.make_rests(durations, decrease_durations_monotonically=decrease_durations_monotonically)
     else:
         raise ValueError('unknown type of material to construct.')
 

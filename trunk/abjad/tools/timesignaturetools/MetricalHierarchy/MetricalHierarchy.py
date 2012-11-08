@@ -27,7 +27,7 @@ class MetricalHierarchy(AbjadObject):
     ::
 
         >>> metrical_hierarchy
-        MetricalHierarchy((4, 4), big_endian=True)
+        MetricalHierarchy((4, 4), decrease_durations_monotonically=True)
 
     ::
 
@@ -75,7 +75,7 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((5, 4), big_endian=False).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((5, 4), decrease_durations_monotonically=False).pretty_rtm_format
         (5/4 (
             (2/4 (
                 1/4
@@ -113,17 +113,17 @@ class MetricalHierarchy(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_big_endian', '_denominator', '_numerator', '_root_node',)
+    __slots__ = ('_decrease_durations_monotonically', '_denominator', '_numerator', '_root_node',)
 
     ### INITIALIZER ###
 
-    def __init__(self, arg, big_endian=True):
+    def __init__(self, arg, decrease_durations_monotonically=True):
         if isinstance(arg, tuple):
             arg = mathtools.NonreducedFraction(arg)
         elif isinstance(arg, measuretools.Measure):
             arg = contexttools.get_effective_time_signature(arg)
         self._numerator, self._denominator = arg.numerator, arg.denominator
-        self._big_endian = bool(big_endian)
+        self._decrease_durations_monotonically = bool(decrease_durations_monotonically)
 
         factors = mathtools.factors(self.numerator)[1:]
         fraction = mathtools.NonreducedFraction(self.numerator, self.denominator)
@@ -148,7 +148,7 @@ class MetricalHierarchy(AbjadObject):
                     parts = [3]
                     total = 3
                     while total < factor:
-                        if self.big_endian:
+                        if self.decrease_durations_monotonically:
                             parts.append(2)
                         else:
                             parts.insert(0, 2)
@@ -217,17 +217,17 @@ class MetricalHierarchy(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def big_endian(self):
+    def decrease_durations_monotonically(self):
         '''True if the metrical hierarchy divides large primes into collections of
-        ``2`` and ``3`` with big-endian ordering.
+        ``2`` and ``3`` that decrease monotonically.
 
-        Example 1. Little-endian metrical hiearchy::
+        Example 1. Metrical hiearchy with durations that increase monotonically::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), big_endian=False)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), decrease_durations_monotonically=False)
 
         ::
 
-            >>> metrical_hierarchy.big_endian
+            >>> metrical_hierarchy.decrease_durations_monotonically
             False
 
         ::
@@ -242,13 +242,13 @@ class MetricalHierarchy(AbjadObject):
                     1/4
                     1/4))))
 
-        Example 2. Big-endian metrical hierarchy::
+        Example 2. Metrical hierarchy with durations that decrease monotonically::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), big_endian=True)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), decrease_durations_monotonically=True)
 
         ::
 
-            >>> metrical_hierarchy.big_endian
+            >>> metrical_hierarchy.decrease_durations_monotonically
             True
 
         ::
@@ -265,7 +265,7 @@ class MetricalHierarchy(AbjadObject):
 
         Return boolean.
         '''
-        return self._big_endian
+        return self._decrease_durations_monotonically
 
     @property
     def denominator(self):
@@ -402,7 +402,7 @@ class MetricalHierarchy(AbjadObject):
             >>> print metrical_hierarchy.storage_format
             timesignaturetools.MetricalHierarchy(
                 (5, 4),
-                big_endian=True
+                decrease_durations_monotonically=True
                 )
 
         Return string.

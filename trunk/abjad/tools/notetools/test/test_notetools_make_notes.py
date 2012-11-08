@@ -75,19 +75,19 @@ def test_notetools_make_notes_07():
     assert t[0].written_duration == Duration(1, 4)
 
 def test_notetools_make_notes_08():
-    '''Keyword big_endian is default.
+    '''Keyword decrease_durations_monotonically is default.
     '''
 
-    t = notetools.make_notes(1, (5, 16), big_endian=True)
+    t = notetools.make_notes(1, (5, 16), decrease_durations_monotonically=True)
     assert len(t) == 2
     assert t[0].written_duration == Duration(4, 16)
     assert t[1].written_duration == Duration(1, 16)
 
 def test_notetools_make_notes_09():
-    '''With big_endian set to false.
+    '''With decrease_durations_monotonically set to false.
     '''
 
-    t = notetools.make_notes(1, (5, 16), big_endian=False)
+    t = notetools.make_notes(1, (5, 16), decrease_durations_monotonically=False)
     assert len(t) == 2
     assert t[0].written_duration == Duration(1, 16)
     assert t[1].written_duration == Duration(4, 16)
@@ -132,7 +132,7 @@ def test_notetools_make_notes_11():
 
 def test_notetools_make_notes_12():
 
-    t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], big_endian=False)
+    t = notetools.make_notes(1, [(5, 12), (1, 6), (1, 8)], decrease_durations_monotonically=False)
     assert len(t) == 2
     assert isinstance(t[0], Tuplet)
     assert isinstance(t[1], Note)

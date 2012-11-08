@@ -31,7 +31,7 @@ def test_NoteFilledRhythmMaker___call___01():
 
 def test_NoteFilledRhythmMaker___call___02():
 
-    maker = rhythmmakertools.NoteFilledRhythmMaker(big_endian=False)
+    maker = rhythmmakertools.NoteFilledRhythmMaker(decrease_durations_monotonically=False)
 
     divisions = [(5, 16), (3, 8)]
     leaf_lists = maker(divisions)

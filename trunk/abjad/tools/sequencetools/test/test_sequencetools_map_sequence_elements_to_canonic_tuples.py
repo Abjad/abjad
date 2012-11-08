@@ -13,7 +13,7 @@ def test_sequencetools_map_sequence_elements_to_canonic_tuples_01():
 def test_sequencetools_map_sequence_elements_to_canonic_tuples_02():
 
     l = range(10)
-    t = sequencetools.map_sequence_elements_to_canonic_tuples(l, big_endian=False)
+    t = sequencetools.map_sequence_elements_to_canonic_tuples(l, decrease_parts_monotonically=False)
 
     assert t == [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 

@@ -1,17 +1,17 @@
 from abjad.tools import notetools
 
 
-def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, iterctrl=None):
+def fill_measures_in_expr_with_minimal_number_of_notes(expr, decrease_durations_monotonically=True, iterctrl=None):
     '''.. versionadded:: 1.1
 
-    Fill measures in `expr` with minimal number of big-endian notes.
+    Fill measures in `expr` with minimal number of notes that decrease durations monotonically::
 
         >>> measure = Measure((5, 18), [])
 
     ::
 
         >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(
-        ...     measure, big_endian=True)
+        ...     measure, decrease_durations_monotonically=True)
 
     ::
 
@@ -24,14 +24,14 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, it
             }
         }
 
-    Fill measures in `expr` with minimal number of little-endian notes.
+    Fill measures in `expr` with minimal number of notes that increase durations monotonically::
 
         >>> measure = Measure((5, 18), [])
 
     ::
 
         >>> measuretools.fill_measures_in_expr_with_minimal_number_of_notes(
-        ...     measure, big_endian=False)
+        ...     measure, decrease_durations_monotonically=False)
 
     ::
 
@@ -55,5 +55,5 @@ def fill_measures_in_expr_with_minimal_number_of_notes(expr, big_endian=True, it
         if iterctrl(measure, i):
             time_signature = contexttools.get_effective_time_signature(measure)
             written_duration = time_signature.duration / time_signature.implied_prolation
-            notes = notetools.make_notes(0, written_duration, big_endian=big_endian)
+            notes = notetools.make_notes(0, written_duration, decrease_durations_monotonically=decrease_durations_monotonically)
             measure[:] = notes

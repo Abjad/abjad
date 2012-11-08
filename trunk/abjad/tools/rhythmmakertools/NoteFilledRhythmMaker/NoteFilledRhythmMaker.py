@@ -46,10 +46,10 @@ class NoteFilledRhythmMaker(DivisionIncisedNoteFilledRhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, big_endian=True, tie_rests=False):
+    def __init__(self, decrease_durations_monotonically=True, tie_rests=False):
         DivisionIncisedNoteFilledRhythmMaker.__init__(
             self, [], [0], [], [0], 1,
-            big_endian=big_endian, tie_rests=tie_rests
+            decrease_durations_monotonically=decrease_durations_monotonically, tie_rests=tie_rests
             )
 
     ### SPECIAL METHODS ###

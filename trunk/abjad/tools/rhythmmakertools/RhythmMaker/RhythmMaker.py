@@ -127,7 +127,7 @@ class RhythmMaker(AbjadObject):
         ::
 
             >>> divisions = [(5, 16), (3, 8)]
-            >>> leaf_lists = maker.set(big_endian=False)(divisions)
+            >>> leaf_lists = maker.set(decrease_durations_monotonically=False)(divisions)
             >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
         ::

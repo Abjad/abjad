@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_tied_leaf(kind, duration, big_endian=True, pitches=None, tied=True):
+def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitches=None, tied=True):
     '''Return list of leaves to fill the given duration `duration`.
 
     Leaves returned are tie-spanned when ``tied=True``.
@@ -10,7 +10,7 @@ def make_tied_leaf(kind, duration, big_endian=True, pitches=None, tied=True):
     `duration`
         must be of the form ``m / 2**n`` for any integer ``m``.
 
-    `big_endian` must be boolean.
+    `decrease_durations_monotonically` must be boolean.
         True returns a list of notes of decreasing duration.
         False returns a list of notes of increasing duration.
 
@@ -35,7 +35,7 @@ def make_tied_leaf(kind, duration, big_endian=True, pitches=None, tied=True):
         result.append(kind(*args))
 
     if 1 < len(result):
-        if not big_endian:
+        if not decrease_durations_monotonically:
             result.reverse()
         if tied:
             tietools.TieSpanner(result)

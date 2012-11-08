@@ -1,5 +1,5 @@
-def partition_integer_into_canonic_parts(n, big_endian=True):
-    '''Partition integer `n` into big-endian or small-endian parts.
+def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
+    '''Partition integer `n` into canonic parts.
 
     Return all parts positive on positive `n`::
 
@@ -33,10 +33,10 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
         -19 (-16, -3)
         -20 (-16, -4)
 
-    Return little-endian tuple::
+    Return parts that increase monotonically::
 
         >>> for n in range(11, 21):
-        ...     print n, mathtools.partition_integer_into_canonic_parts(n, big_endian=False)
+        ...     print n, mathtools.partition_integer_into_canonic_parts(n, decrease_parts_monotonically=False)
         ...
         11 (3, 8)
         12 (12,)
@@ -49,11 +49,7 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
         19 (3, 16)
         20 (4, 16)
 
-    Return big-endian tuple ``t = (t_0, ..., t_j)`` such that
-
-        *  ``sum(t) == n``
-        *  ``t_i`` can be written without recourse to ties, and
-        *  ``t_(i + 1) < t_i`` for every ``t_i`` in ``t``.
+    Return tuple with parts that decrease monotonically.
 
     Raise type error on noninteger `n`.
 
@@ -64,7 +60,7 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
     if not isinstance(n, (int, long)):
         raise TypeError
 
-    if not isinstance(big_endian, bool):
+    if not isinstance(decrease_parts_monotonically, bool):
         raise ValueError
 
     if n == 0:
@@ -90,7 +86,7 @@ def partition_integer_into_canonic_parts(n, big_endian=True):
     if mathtools.sign(n) == -1:
         result = [sign_n * x for x in result]
 
-    if big_endian:
+    if decrease_parts_monotonically:
         return tuple(result)
     else:
         return tuple(reversed(result))
