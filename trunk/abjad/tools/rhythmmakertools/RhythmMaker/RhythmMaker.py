@@ -65,7 +65,7 @@ class RhythmMaker(AbjadObject):
             return self._trivial_helper
         return expr
 
-    def _scale_signals(self, duration_pairs, talea_denominator, signals):
+    def _scale_talee(self, duration_pairs, talea_denominator, talee):
         dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)
         duration_pairs = durationtools.durations_to_nonreduced_fractions_with_common_denominator(
@@ -73,12 +73,12 @@ class RhythmMaker(AbjadObject):
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator
         multiplier = lcd / talea_denominator
-        scaled_signals = []
-        for signal in signals:
-            signal = sequencetools.CyclicTuple([multiplier * x for x in signal])
-            scaled_signals.append(signal)
+        scaled_talee = []
+        for talea in talee:
+            talea = sequencetools.CyclicTuple([multiplier * x for x in talea])
+            scaled_talee.append(talea)
         result = [duration_pairs, lcd]
-        result.extend(scaled_signals)
+        result.extend(scaled_talee)
         return tuple(result)
 
     def _sequence_to_ellipsized_string(self, sequence):
@@ -92,8 +92,8 @@ class RhythmMaker(AbjadObject):
         result = '[$%s$]' % result
         return result
 
-    def _trivial_helper(self, signal, seeds):
-        return signal
+    def _trivial_helper(self, talea, seeds):
+        return talea
 
     ### PUBLIC METHODS ###
  

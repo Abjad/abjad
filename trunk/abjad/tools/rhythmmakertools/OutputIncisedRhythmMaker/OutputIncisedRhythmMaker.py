@@ -11,11 +11,11 @@ class OutputIncisedRhythmMaker(IncisedRhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_numeric_map(self, duration_pairs,
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, prolation_addenda):
-        numeric_map, prefix_signal_index, suffix_signal_index = [], 0, 0
+        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, prolation_addenda):
+        numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         prefix_length, suffix_length = prefix_lengths[0], suffix_lengths[0]
-        prefix = prefix_signal[prefix_signal_index:prefix_signal_index+prefix_length]
-        suffix = suffix_signal[suffix_signal_index:suffix_signal_index+suffix_length]
+        prefix = prefix_talea[prefix_talea_index:prefix_talea_index+prefix_length]
+        suffix = suffix_talea[suffix_talea_index:suffix_talea_index+suffix_length]
         if len(duration_pairs) == 1:
             prolation_addendum = prolation_addenda[0]
             numerator = duration_pairs[0][0]

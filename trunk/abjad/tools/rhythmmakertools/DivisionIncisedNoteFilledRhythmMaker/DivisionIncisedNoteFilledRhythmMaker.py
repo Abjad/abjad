@@ -6,11 +6,11 @@ class DivisionIncisedNoteFilledRhythmMaker(DivisionIncisedRhythmMaker):
 
     Division-incised note-filled rhythm-maker::
 
-        >>> prefix_signal, prefix_lengths = [-8], [0, 1]
-        >>> suffix_signal, suffix_lengths = [-1], [1]
+        >>> prefix_talea, prefix_lengths = [-8], [0, 1]
+        >>> suffix_talea, suffix_lengths = [-1], [1]
         >>> talea_denominator = 32
         >>> maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(
-        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
+        ... prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
 
     ::
 

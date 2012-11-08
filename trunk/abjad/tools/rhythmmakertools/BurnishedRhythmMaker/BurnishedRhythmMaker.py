@@ -104,8 +104,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         octuplet = self._prepare_input(seeds)
         talea, prolation_addenda = octuplet[:2]
         secondary_divisions = octuplet[-1]
-        signals = (talea, prolation_addenda, secondary_divisions)
-        result = self._scale_signals(duration_pairs, self.talea_denominator, signals)
+        talee = (talea, prolation_addenda, secondary_divisions)
+        result = self._scale_talee(duration_pairs, self.talea_denominator, talee)
         duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = result
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
@@ -146,10 +146,10 @@ class BurnishedRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
-    def _force_division_parts(self, divisions, quintuplet):
+    def _burnish_division_parts(self, divisions, quintuplet):
         pass
 
-    def _force_division_part(self, division_part, indicator):
+    def _burnish_division_part(self, division_part, indicator):
         assert len(division_part) == len(indicator)
         new_division_part = []
         for number, i in zip(division_part, indicator):
@@ -183,8 +183,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         map_divisions = sequencetools.split_sequence_extended_to_weights(
             talea, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
-        forced_map_divisions = self._force_division_parts(map_divisions, quintuplet)
-        numeric_map = forced_map_divisions
+        burnished_map_divisions = self._burnish_division_parts(map_divisions, quintuplet)
+        numeric_map = burnished_map_divisions
         return numeric_map
 
     def _make_prolated_duration_pairs(self, duration_pairs, prolation_addenda):

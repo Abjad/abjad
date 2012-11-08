@@ -12,11 +12,11 @@ class OutputIncisedRestFilledRhythmMaker(OutputIncisedRhythmMaker):
 
     Configure the rhythm-maker on initialization::
 
-        >>> prefix_signal, prefix_lengths = [8], [2]
-        >>> suffix_signal, suffix_lengths = [3], [4]
+        >>> prefix_talea, prefix_lengths = [8], [2]
+        >>> suffix_talea, suffix_lengths = [3], [4]
         >>> talea_denominator = 32
         >>> maker = rhythmmakertools.OutputIncisedRestFilledRhythmMaker(
-        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
+        ... prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, talea_denominator)
 
     Then call the rhythm-maker on arbitrary divisions::
 

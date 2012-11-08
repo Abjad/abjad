@@ -6,7 +6,7 @@ from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import BurnishedRhythmMak
 class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Division-burnished signal-filled rhythm-maker.
+    Division-burnished talea-filled rhythm-maker.
 
     Configure the rhythm-maker at instantiation::
 
@@ -69,10 +69,10 @@ class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _force_division_parts(self, divisions, quintuplet):
+    def _burnish_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths=quintuplet
         lefts_index, rights_index = 0, 0
-        forced_divisions = []
+        burnished_divisions = []
         for division_index, division in enumerate(divisions):
             left_length = left_lengths[division_index]
             left = lefts[lefts_index:lefts_index+left_length]
@@ -92,12 +92,12 @@ class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
                 division, [left_length, middle_length, right_length], cyclic=False, overhang=False)
-            left_part = self._force_division_part(left_part, left)
-            middle_part = self._force_division_part(middle_part, middle)
-            right_part = self._force_division_part(right_part, right)
-            forced_division = left_part + middle_part + right_part
-            forced_divisions.append(forced_division)
-        unforced_weights = [mathtools.weight(x) for x in divisions]
-        forced_weights = [mathtools.weight(x) for x in forced_divisions]
-        assert forced_weights == unforced_weights
-        return forced_divisions
+            left_part = self._burnish_division_part(left_part, left)
+            middle_part = self._burnish_division_part(middle_part, middle)
+            right_part = self._burnish_division_part(right_part, right)
+            burnished_division = left_part + middle_part + right_part
+            burnished_divisions.append(burnished_division)
+        unburnished_weights = [mathtools.weight(x) for x in divisions]
+        burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
+        assert burnished_weights == unburnished_weights
+        return burnished_divisions

@@ -11,14 +11,14 @@ class DivisionIncisedRhythmMaker(IncisedRhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_numeric_map(self, duration_pairs,
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, prolation_addenda):
-        numeric_map, prefix_signal_index, suffix_signal_index = [], 0, 0
+        prefix_talea, prefix_lengths, suffix_talea, suffix_lengths, prolation_addenda):
+        numeric_map, prefix_talea_index, suffix_talea_index = [], 0, 0
         for pair_index, duration_pair in enumerate(duration_pairs):
             prefix_length, suffix_length = prefix_lengths[pair_index], suffix_lengths[pair_index]
-            prefix = prefix_signal[prefix_signal_index:prefix_signal_index+prefix_length]
-            suffix = suffix_signal[suffix_signal_index:suffix_signal_index+suffix_length]
-            prefix_signal_index += prefix_length
-            suffix_signal_index += suffix_length
+            prefix = prefix_talea[prefix_talea_index:prefix_talea_index+prefix_length]
+            suffix = suffix_talea[suffix_talea_index:suffix_talea_index+suffix_length]
+            prefix_talea_index += prefix_length
+            suffix_talea_index += suffix_length
             prolation_addendum = prolation_addenda[pair_index]
             if isinstance(duration_pair, tuple):
                 numerator = duration_pair[0] + (prolation_addendum % duration_pair[0])
