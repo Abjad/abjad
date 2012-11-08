@@ -2,6 +2,7 @@ from abjad import *
 from abjad.demos.part.PartCantusScoreTemplate import PartCantusScoreTemplate
 from abjad.demos.part.add_bell_music_to_score import add_bell_music_to_score
 from abjad.demos.part.add_string_music_to_score import add_string_music_to_score
+from abjad.demos.part.apply_bowing_marks import apply_bowing_marks
 from abjad.demos.part.apply_dynamic_marks import apply_dynamic_marks
 from abjad.demos.part.apply_expressive_marks import apply_expressive_marks
 from abjad.demos.part.apply_page_breaks import apply_page_breaks
@@ -18,6 +19,7 @@ def make_part_lilypond_file():
     add_bell_music_to_score(score)
     add_string_music_to_score(score)
 
+    apply_bowing_marks(score)
     apply_dynamic_marks(score)
     apply_expressive_marks(score)
     apply_page_breaks(score)
