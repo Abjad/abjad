@@ -5,7 +5,7 @@ from abjad.tools import notetools
 from abjad.tools import tietools
 
 
-def apply_cello_edits(score, durated_reservoir):
+def edit_cello_voice(score, durated_reservoir):
 
     voice = score['Cello Voice']
     descents = durated_reservoir['Cello']

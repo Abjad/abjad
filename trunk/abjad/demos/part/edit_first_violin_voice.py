@@ -3,7 +3,7 @@ from abjad.tools import notetools
 from abjad.tools import tietools
 
 
-def apply_first_violin_edits(score, durated_reservoir):
+def edit_first_violin_voice(score, durated_reservoir):
 
     voice = score['First Violin Voice']
     descents = durated_reservoir['First Violin']

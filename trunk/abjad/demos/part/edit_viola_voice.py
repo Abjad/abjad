@@ -5,7 +5,7 @@ from abjad.tools import notetools
 from abjad.tools import tietools
 
 
-def apply_viola_edits(score, durated_reservoir):
+def edit_viola_voice(score, durated_reservoir):
 
     voice = score['Viola Voice']
     descents = durated_reservoir['Viola']
