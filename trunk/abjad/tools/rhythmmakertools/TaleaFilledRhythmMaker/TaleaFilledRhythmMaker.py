@@ -5,21 +5,21 @@ from abjad.tools.rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker import
 class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Signal-affixed rhythm maker.
+    Talea-filled rhythm-maker.
 
-    Configure the rhythm maker at initialization::
+    Configure the rhythm-maker at initialization::
 
         >>> talea, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
         >>> maker = rhythmmakertools.TaleaFilledRhythmMaker(
         ...     talea, denominator, prolation_addenda)
 
-    Then call the rhythm maker on arbitrary duration tokens::
+    Then call the rhythm-maker on arbitrary divisions::
 
         >>> divisions = [(2, 8), (5, 8)]
         >>> music = maker(divisions)
 
-    The resulting Abjad objects can be included in any score and the rhythm
-    make can be called indefinitely on other arbitrary sequences of duration tokens::
+    The resulting Abjad objects can be included in any score and the rhythm-maker
+    can be called indefinitely on other arbitrary sequences of divisions::
 
         >>> music = sequencetools.flatten_sequence(music)
         >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
@@ -51,9 +51,9 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call talea shown here.
+    Usage follows the two-step instantiate-then-call pattern shown here.
 
-    Return rhythm maker.
+    Return rhythm-maker.
     '''
 
     ### INITIALIZER ###

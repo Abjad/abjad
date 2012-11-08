@@ -11,13 +11,13 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class IncisedRhythmMaker(RhythmMaker):
     '''.. versionadded 2.8
 
-    Abstract base class for time token makers that incise some or 
-    all of the time tokens they produce.
+    Abstract base class for rhythm-makers that incise some or 
+    all of the output cells they produce.
 
-    Time token makers can incise the edge of every time token.
+    Rhythm makers can incise the edge of every output cell.
     
-    Or time token makers can incise only the start of the first time token 
-    and the end of the last time token.
+    Or rhythm-makers can incise only the start of the first output cell 
+    and the end of the last output cell.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -170,9 +170,9 @@ class IncisedRhythmMaker(RhythmMaker):
     def reverse(self):
         r'''.. versionadded:: 2.10
 
-        Reverse incised rhythm maker.
+        Reverse incised rhythm-maker.
 
-        Return newly constructed rhythm maker.
+        Return newly constructed rhythm-maker.
         '''
         new = copy.deepcopy(self)
         new.prefix_signal.reverse()

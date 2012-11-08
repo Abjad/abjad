@@ -8,7 +8,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class TupletMonadRhythmMaker(RhythmMaker):
     r'''.. versionadded:: 2.10
 
-    Tuplet monad rhythm maker::
+    Tuplet monad rhythm-maker::
 
         >>> maker = rhythmmakertools.TupletMonadRhythmMaker()
 
@@ -40,9 +40,9 @@ class TupletMonadRhythmMaker(RhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call talea shown here.
+    Usage follows the two-step instantiate-then-call pattern shown here.
 
-    Return rhythm maker.
+    Return rhythm-maker.
     '''
 
     ### CLASS ATTRIBUTES ###

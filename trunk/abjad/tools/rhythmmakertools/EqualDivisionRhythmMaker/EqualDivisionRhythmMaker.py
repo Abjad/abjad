@@ -10,7 +10,7 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 class EqualDivisionRhythmMaker(RhythmMaker):
     r'''.. versionadded:: 2.10
 
-    Equal division rhythm maker::
+    Equal division rhythm-maker::
 
         >>> maker = rhythmmakertools.EqualDivisionRhythmMaker(4)
 
@@ -54,9 +54,9 @@ class EqualDivisionRhythmMaker(RhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call talea shown here.
+    Usage follows the two-step instantiate-then-call pattern shown here.
 
-    Return rhythm maker.
+    Return rhythm-maker.
     '''
 
     ### CLASS ATTRIBUTES ###

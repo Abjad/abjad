@@ -9,7 +9,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class RhythmMaker(AbjadObject):
     '''.. versionadded:: 2.8
 
-    Time token maker abstract base class.
+    Rhythm maker abstract base class.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -100,17 +100,17 @@ class RhythmMaker(AbjadObject):
     def reverse(self):
         '''.. versionadded:: 2.10
 
-        Reverse rhythm maker.
+        Reverse rhythm-maker.
 
         .. note:: method is provisional.
 
-        Defined equal to exact copy of rhythm maker.
+        Defined equal to exact copy of rhythm-maker.
 
         This is the fallback for child classes.
 
-        Directed rhythm maker child classes should override this method.
+        Directed rhythm-maker child classes should override this method.
 
-        Return newly constructed rhythm maker.
+        Return newly constructed rhythm-maker.
         '''
         new = copy.deepcopy(self)
         return new
@@ -118,9 +118,9 @@ class RhythmMaker(AbjadObject):
     def set(self, **kwargs):
         r'''.. versionadded:: 2.11
 
-        Copy rhythm maker.
+        Copy rhythm-maker.
 
-        Set keyword arguments on copied rhythm maker::
+        Set keyword arguments on copied rhythm-maker::
 
             >>> maker = rhythmmakertools.NoteFilledRhythmMaker()
 
@@ -150,7 +150,7 @@ class RhythmMaker(AbjadObject):
                 }
             }
 
-        Return copied rhythm maker.
+        Return copied rhythm-maker.
         '''
         new = copy.deepcopy(self)
         for key, value in kwargs.iteritems():

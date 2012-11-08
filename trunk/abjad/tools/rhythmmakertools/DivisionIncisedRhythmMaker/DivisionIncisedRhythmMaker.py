@@ -5,7 +5,7 @@ from abjad.tools.rhythmmakertools.IncisedRhythmMaker import IncisedRhythmMaker
 class DivisionIncisedRhythmMaker(IncisedRhythmMaker):
     '''.. versionadded:: 2.8
 
-    Abstract base class for time token makers that incise every time token they produce.
+    Abstract base class for rhythm-makers that incise every output cell they produce.
     '''
 
     ### PRIVATE METHODS ###

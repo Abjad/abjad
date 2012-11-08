@@ -8,9 +8,9 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedR
 class OutputIncisedRestFilledRhythmMaker(OutputIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Output-incised rest-filled rhythm maker.
+    Output-incised rest-filled rhythm-maker.
 
-    Configure the rhythm maker on initialization::
+    Configure the rhythm-maker on initialization::
 
         >>> prefix_signal, prefix_lengths = [8], [2]
         >>> suffix_signal, suffix_lengths = [3], [4]
@@ -18,7 +18,7 @@ class OutputIncisedRestFilledRhythmMaker(OutputIncisedRhythmMaker):
         >>> maker = rhythmmakertools.OutputIncisedRestFilledRhythmMaker(
         ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
-    Then call the rhythm maker on arbitrary duration tokens::
+    Then call the rhythm-maker on arbitrary divisions::
 
         >>> divisions = [(5, 8), (5, 8), (5, 8)]
         >>> leaf_lists = maker(divisions)
@@ -55,9 +55,9 @@ class OutputIncisedRestFilledRhythmMaker(OutputIncisedRhythmMaker):
         }
 
 
-    Usage follows the two-step instantiate-then-call talea shown here.
+    Usage follows the two-step instantiate-then-call pattern shown here.
 
-    Return rhythm maker.
+    Return rhythm-maker.
     '''
 
     ### PRIVATE METHODS ###

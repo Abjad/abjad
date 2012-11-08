@@ -12,17 +12,17 @@ import types
 class BurnishedRhythmMaker(RhythmMaker):
     '''.. versionadded:: 2.8
 
-    Abstract base class for time token makers that burnish some or
-    all of the time tokens they produce.
+    Abstract base class for rhythm-makers that burnish some or
+    all of the output cells they produce.
 
     'Burnishing' means to forcibly cast the first or last 
-    (or both first and last) elements of a time token to be 
+    (or both first and last) elements of a output cell to be 
     either a note or rest.
 
-    'Division-burnishing' time token makers burnish every time token they produce.
+    'Division-burnishing' rhythm-makers burnish every output cell they produce.
 
-    'Output-burnishing' time token makers burnish only the first and last 
-    time tokens they produce and leave interior time tokens unchanged.
+    'Output-burnishing' rhythm-makers burnish only the first and last 
+    output cells they produce and leave interior output cells unchanged.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -226,11 +226,11 @@ class BurnishedRhythmMaker(RhythmMaker):
     def reverse(self):
         '''.. versionadded:: 2.10
 
-        Reverse burnished rhythm maker.
+        Reverse burnished rhythm-maker.
 
         .. note:: method is provisional.
 
-        Defined equal to reversal of the following on a copy of rhythm maker::
+        Defined equal to reversal of the following on a copy of rhythm-maker::
 
             new.talea
             new.prolation_addenda
@@ -241,7 +241,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             new.right_lengths
             new.secondary_divisions
 
-        Return newly constructed rhythm maker.
+        Return newly constructed rhythm-maker.
         '''
         new = copy.deepcopy(self)
         new.talea.reverse()

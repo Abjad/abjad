@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker import DivisionInci
 class DivisionIncisedRestFilledRhythmMaker(DivisionIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Division-incised rest-filled rhythm maker::
+    Division-incised rest-filled rhythm-maker::
 
         >>> prefix_signal, prefix_lengths = [8], [1, 2, 3, 4]
         >>> suffix_signal, suffix_lengths = [1], [1]
@@ -53,9 +53,9 @@ class DivisionIncisedRestFilledRhythmMaker(DivisionIncisedRhythmMaker):
             }
         }
 
-    Usage follows the two-step instantiate-then-call talea shown here.
+    Usage follows the two-step instantiate-then-call pattern shown here.
 
-    Return rhythm maker.
+    Return rhythm-maker.
     '''
 
     ### PRIVATE METHODS ###
