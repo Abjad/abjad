@@ -809,6 +809,8 @@ Composition packages
    tools/measuretools/get_first_measure_in_improper_parentage_of_component
    tools/measuretools/get_first_measure_in_proper_parentage_of_component
    tools/measuretools/get_likely_multiplier_of_components
+   tools/measuretools/get_measure_that_starts_with_container
+   tools/measuretools/get_measure_that_stops_with_container
    tools/measuretools/get_next_measure_from_component
    tools/measuretools/get_nth_measure_in_expr
    tools/measuretools/get_one_indexed_measure_number_in_expr

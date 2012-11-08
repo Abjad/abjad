@@ -30,7 +30,6 @@ def _get_measure_from_component(component, direction):
     '''
     from abjad.tools import iterationtools
     from abjad.tools import measuretools
-    from abjad.tools.measuretools._get_contemporaneous_measure import _get_contemporaneous_measure
 
     if isinstance(component, leaftools.Leaf):
         for parent in componenttools.get_proper_parentage_of_component(component):
@@ -45,13 +44,14 @@ def _get_measure_from_component(component, direction):
         else:
             raise ValueError('direction must be _next or _prev.')
     elif isinstance(component, containertools.Container):
-        return _get_contemporaneous_measure(component, direction)
+        if direction == '_next':
+            return measuretools.get_measure_that_starts_with_container(component)
+        else:
+            return measuretools.get_measure_that_stops_with_container(component)
     elif isinstance(component, (list, tuple)):
         if direction == '_next':
-            #measure_generator = iterate_components_in_expr(component, measuretools.Measure)
             measure_generator = iterationtools.iterate_measures_in_expr(component)
         elif direction == '_prev':
-            #measure_generator = iterate_components_backward_in_expr(component, measuretools.Measure)
             measure_generator = iterationtools.iterate_measures_in_expr(component, reverse=True)
         else:
             raise ValueError('direction must be _next or _prev.')
