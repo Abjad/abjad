@@ -1,15 +1,52 @@
+import itertools
+
+
 def report_time_signature_distribution(expr):
     r'''.. versionadded:: 2.0
 
-    Report time_signature distribution of `expr` as string::
+    Report time_signature distribution of `expr`::
 
-        >>> measuretools.report_time_signature_distribution(t) # doctest: +SKIP
-        '\t3/80\t2\n\t2/16\t73\n\t7/40\t1\n\t3/16\t20\n\t16/80\t1\n\t17/80\t1\n
-        \t19/80\t1\n\t4/16\t73\n\t5/16\t62\n\t13/40\t1\n\t27/80\t1\n\t6/16\t12\
-        n\t7/16\t16\n\t8/16\t13\n\t9/16\t15\n\t10/16\t4\n'
+        >>> staff = Staff(r"abj: | 2/4 c'4 d'4 || 2/4 e'4 f'4 || 2/4 g'2 || 5/8 c'8 d'8 e'8 f'8 g'8 |")
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/4
+                c'4
+                d'4
+            }
+            {
+                e'4
+                f'4
+            }
+            {
+                g'2
+            }
+            {
+                \time 5/8
+                c'8
+                d'8
+                e'8
+                f'8
+                g'8
+            }
+        }
+        >>> print measuretools.report_time_signature_distribution(staff)
+            2/4 3
+            5/8 1
 
     Return string.
     '''
-    from abjad.tools.measuretools._report_time_signature_distribution import _report_time_signature_distribution
+    from abjad.tools import contexttools
+    from abjad.tools import iterationtools
 
-    return _report_time_signature_distribution(expr, delivery='string')
+    time_signatures = []
+    for measure in iterationtools.iterate_measures_in_expr(expr):
+        time_signatures.append(contexttools.get_effective_time_signature(measure))
+
+    time_signatures.sort()
+
+    result = ''
+    for key, values_generator in itertools.groupby(time_signatures):
+        result += '\t%s\t%s\n' % (key, len(list(values_generator)))
+
+    return result
