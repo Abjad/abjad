@@ -1099,7 +1099,6 @@ Composition packages
    tools/pitchtools/list_unordered_named_chromatic_pitch_pairs_in_expr
    tools/pitchtools/make_n_middle_c_centered_pitches
    tools/pitchtools/named_chromatic_pitch_and_clef_to_staff_position_number
-   tools/pitchtools/named_chromatic_pitch_tokens_to_named_chromatic_pitches
    tools/pitchtools/octave_number_to_octave_tick_string
    tools/pitchtools/octave_tick_string_to_octave_number
    tools/pitchtools/pentatonic_pitch_number_to_chromatic_pitch_number
