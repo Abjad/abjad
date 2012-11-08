@@ -65,14 +65,14 @@ class RhythmMaker(AbjadObject):
             return self._trivial_helper
         return expr
 
-    def _scale_signals(self, duration_pairs, denominator, signals):
-        dummy_duration_pair = (1, denominator)
+    def _scale_signals(self, duration_pairs, talea_denominator, signals):
+        dummy_duration_pair = (1, talea_denominator)
         duration_pairs.append(dummy_duration_pair)
         duration_pairs = durationtools.durations_to_nonreduced_fractions_with_common_denominator(
             duration_pairs)
         dummy_duration_pair = duration_pairs.pop()
         lcd = dummy_duration_pair.denominator
-        multiplier = lcd / denominator
+        multiplier = lcd / talea_denominator
         scaled_signals = []
         for signal in signals:
             signal = sequencetools.CyclicTuple([multiplier * x for x in signal])

@@ -33,7 +33,7 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, talea, denominator, prolation_addenda=None,
+    def __init__(self, talea, talea_denominator, prolation_addenda=None,
         lefts=None, middles=None, rights=None, left_lengths=None, right_lengths=None,
         secondary_divisions=None,
         talea_helper=None, prolation_addenda_helper=None,
@@ -59,7 +59,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         right_lengths_helper = self._none_to_trivial_helper(right_lengths_helper)
         secondary_divisions_helper = self._none_to_trivial_helper(secondary_divisions_helper)
         assert sequencetools.all_are_integer_equivalent_numbers(talea)
-        assert mathtools.is_positive_integer_equivalent_number(denominator)
+        assert mathtools.is_positive_integer_equivalent_number(talea_denominator)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(prolation_addenda)
         assert all([x in (-1, 0, 1) for x in lefts])
         assert all([x in (-1, 0, 1) for x in middles])
@@ -77,7 +77,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert isinstance(big_endian, bool)
         assert isinstance(tie_rests, bool)
         self.talea = talea
-        self.denominator = denominator
+        self.talea_denominator = talea_denominator
         self.prolation_addenda = prolation_addenda
         self.lefts = lefts
         self.middles = middles
@@ -105,7 +105,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         talea, prolation_addenda = octuplet[:2]
         secondary_divisions = octuplet[-1]
         signals = (talea, prolation_addenda, secondary_divisions)
-        result = self._scale_signals(duration_pairs, self.denominator, signals)
+        result = self._scale_signals(duration_pairs, self.talea_denominator, signals)
         duration_pairs, lcd, talea, prolation_addenda, secondary_divisions = result
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
@@ -125,7 +125,7 @@ class BurnishedRhythmMaker(RhythmMaker):
     def __eq__(self, other):
         return isinstance(other, type(self)) and all([
             self.talea == other.talea,
-            self.denominator == other.denominator,
+            self.talea_denominator == other.talea_denominator,
             self.prolation_addenda == other.prolation_addenda,
             self.lefts == other.lefts,
             self.middles == other.middles,
@@ -164,11 +164,11 @@ class BurnishedRhythmMaker(RhythmMaker):
         new_token_part = type(token_part)(new_token_part)
         return new_token_part
 
-    def _make_leaf_lists(self, numeric_map, denominator):
+    def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
         for map_token in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
-                map_token, denominator, big_endian=self.big_endian, tie_rests=self.tie_rests)
+                map_token, talea_denominator, big_endian=self.big_endian, tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 

@@ -7,9 +7,9 @@ def test_DivisionIncisedNoteFilledRhythmMaker___call___01():
 
     prefix_signal, prefix_lengths = [-8], [0, 1]
     suffix_signal, suffix_lengths = [-1], [1]
-    denominator = 32
+    talea_denominator = 32
     maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
@@ -57,9 +57,9 @@ def test_DivisionIncisedNoteFilledRhythmMaker___call___02():
 
     prefix_signal, prefix_lengths = [-8], [1, 2, 3, 4]
     suffix_signal, suffix_lengths = [-1], [1]
-    denominator = 32
+    talea_denominator = 32
     maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
 
     divisions = [(5, 8), (5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
@@ -107,9 +107,9 @@ def test_DivisionIncisedNoteFilledRhythmMaker___call___03():
 
     prefix_signal, prefix_lengths = [-1], [1]
     suffix_signal, suffix_lengths = [-8], [1, 2, 3]
-    denominator = 32
+    talea_denominator = 32
     maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
@@ -152,9 +152,9 @@ def test_DivisionIncisedNoteFilledRhythmMaker___call___04():
 
     prefix_signal, prefix_lengths = [], [0]
     suffix_signal, suffix_lengths = [], [0]
-    denominator = 8
+    talea_denominator = 8
     maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
 
     divisions = [(5, 8), (5, 8), (5, 8)]
     leaf_lists = maker(divisions)
@@ -191,10 +191,10 @@ def test_DivisionIncisedNoteFilledRhythmMaker___call___05():
 
     prefix_signal, prefix_lengths = [-1], [1]
     suffix_signal, suffix_lengths = [-1], [1]
-    denominator = 8
+    talea_denominator = 8
     prolation_addenda = [1, 0, 3]
     maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(
-        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator,
+        prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator,
         prolation_addenda = prolation_addenda)
 
     divisions = [(4, 8), (4, 8), (4, 8)]
@@ -242,9 +242,9 @@ def test_DivisionIncisedNoteFilledRhythmMaker___call___06():
 
     prefix_signal, prefix_lengths = [-1], [1]
     suffix_signal, suffix_lengths = [], [0]
-    denominator, prolation_addenda, secondary_divisions = 32, [2, 0], [20]
+    talea_denominator, prolation_addenda, secondary_divisions = 32, [2, 0], [20]
     maker = rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker(prefix_signal, prefix_lengths,
-        suffix_signal, suffix_lengths, denominator, prolation_addenda, secondary_divisions)
+        suffix_signal, suffix_lengths, talea_denominator, prolation_addenda, secondary_divisions)
 
     divisions = [(4, 8), (4, 8), (4, 8)]
     leaf_lists = maker(divisions)

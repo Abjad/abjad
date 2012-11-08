@@ -8,9 +8,9 @@ class DivisionIncisedRestFilledRhythmMaker(DivisionIncisedRhythmMaker):
 
         >>> prefix_signal, prefix_lengths = [8], [1, 2, 3, 4]
         >>> suffix_signal, suffix_lengths = [1], [1]
-        >>> denominator = 32
+        >>> talea_denominator = 32
         >>> maker = rhythmmakertools.DivisionIncisedRestFilledRhythmMaker(
-        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
 
     ::
 

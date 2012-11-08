@@ -5,8 +5,8 @@ from abjad.tools import rhythmmakertools
 
 def test_TaleaFilledRhythmMaker___call___01():
 
-    talea, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
-    maker = rhythmmakertools.TaleaFilledRhythmMaker(talea, denominator, prolation_addenda)
+    talea, talea_denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
+    maker = rhythmmakertools.TaleaFilledRhythmMaker(talea, talea_denominator, prolation_addenda)
 
     divisions = [(2, 8), (5, 8)]
     music = maker(divisions)
@@ -44,9 +44,9 @@ def test_TaleaFilledRhythmMaker___call___01():
 
 def test_TaleaFilledRhythmMaker___call___02():
 
-    talea, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
+    talea, talea_denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
     secondary_divisions = [6]
-    maker = rhythmmakertools.TaleaFilledRhythmMaker(talea, denominator, prolation_addenda, secondary_divisions)
+    maker = rhythmmakertools.TaleaFilledRhythmMaker(talea, talea_denominator, prolation_addenda, secondary_divisions)
 
     divisions = [(2, 8), (5, 8)]
     music = maker(divisions)

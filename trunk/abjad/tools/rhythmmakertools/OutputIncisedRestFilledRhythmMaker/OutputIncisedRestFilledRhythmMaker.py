@@ -14,9 +14,9 @@ class OutputIncisedRestFilledRhythmMaker(OutputIncisedRhythmMaker):
 
         >>> prefix_signal, prefix_lengths = [8], [2]
         >>> suffix_signal, suffix_lengths = [3], [4]
-        >>> denominator = 32
+        >>> talea_denominator = 32
         >>> maker = rhythmmakertools.OutputIncisedRestFilledRhythmMaker(
-        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator)
 
     Then call the rhythm-maker on arbitrary divisions::
 

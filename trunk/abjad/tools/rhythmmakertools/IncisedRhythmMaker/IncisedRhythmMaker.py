@@ -34,7 +34,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self, prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator,
+    def __init__(self, prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, talea_denominator,
         prolation_addenda=None, secondary_divisions=None,
         prefix_signal_helper=None, prefix_lengths_helper=None,
         suffix_signal_helper=None, suffix_lengths_helper=None,
@@ -54,7 +54,7 @@ class IncisedRhythmMaker(RhythmMaker):
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(prefix_lengths)
         assert sequencetools.all_are_integer_equivalent_numbers(suffix_signal)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(suffix_lengths)
-        assert mathtools.is_positive_integer_equivalent_number(denominator)
+        assert mathtools.is_positive_integer_equivalent_number(talea_denominator)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(prolation_addenda)
         assert sequencetools.all_are_nonnegative_integer_equivalent_numbers(secondary_divisions)
         assert isinstance(prefix_signal_helper, (types.FunctionType, types.MethodType))
@@ -70,7 +70,7 @@ class IncisedRhythmMaker(RhythmMaker):
         self.suffix_signal = suffix_signal
         self.suffix_lengths = suffix_lengths
         self.prolation_addenda = prolation_addenda
-        self.denominator = denominator
+        self.talea_denominator = talea_denominator
         self.secondary_divisions = secondary_divisions
         self.prefix_signal_helper = self._none_to_trivial_helper(prefix_signal_helper)
         self.prefix_lengths_helper = self._none_to_trivial_helper(prefix_lengths_helper)
@@ -89,14 +89,14 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths = result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]
         signals = (prefix_signal, suffix_signal, prolation_addenda, secondary_divisions)
-        result = self._scale_signals(duration_pairs, self.denominator, signals)
+        result = self._scale_signals(duration_pairs, self.talea_denominator, signals)
         duration_pairs, lcd, prefix_signal, suffix_signal = result[:-2]
         prolation_addenda, secondary_divisions = result[-2:]
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
         numeric_map = self._make_numeric_map(secondary_duration_pairs,
             prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, prolation_addenda)
-        leaf_lists = self._numeric_map_and_denominator_to_leaf_lists(numeric_map, lcd)
+        leaf_lists = self._numeric_map_and_talea_denominator_to_leaf_lists(numeric_map, lcd)
         if not self.prolation_addenda:
             return leaf_lists
         else:
@@ -110,7 +110,7 @@ class IncisedRhythmMaker(RhythmMaker):
             self.suffix_signal == other.suffix_signal,
             self.suffix_lengths == other.suffix_lengths,
             self.prolation_addenda == other.prolation_addenda,
-            self.denominator == other.denominator,
+            self.talea_denominator == other.talea_denominator,
             self.secondary_divisions == other.secondary_divisions,
             ])
 
@@ -137,7 +137,7 @@ class IncisedRhythmMaker(RhythmMaker):
         numeric_map_part = prefix + middle + suffix
         return numeric_map_part
 
-    def _numeric_map_and_denominator_to_leaf_lists(self, numeric_map, lcd):
+    def _numeric_map_and_talea_denominator_to_leaf_lists(self, numeric_map, lcd):
         leaf_lists = []
         for numeric_map_part in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(

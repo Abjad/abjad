@@ -10,12 +10,12 @@ class DivisionBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
 
     Configure the rhythm-maker at instantiation::
 
-        >>> talea, denominator, prolation_addenda = [1, 1, 2, 4], 32, [0, 3]
+        >>> talea, talea_denominator, prolation_addenda = [1, 1, 2, 4], 32, [0, 3]
         >>> lefts, middles, rights = [-1], [0], [-1]
         >>> left_lengths, right_lengths = [1], [1]
         >>> secondary_divisions = [14]
         >>> maker = rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker(
-        ... talea, denominator, prolation_addenda, lefts, middles, rights, 
+        ... talea, talea_denominator, prolation_addenda, lefts, middles, rights, 
         ... left_lengths, right_lengths, secondary_divisions)
 
     Then call the rhythm-maker on any sequence of divisions::
