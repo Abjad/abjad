@@ -2,7 +2,7 @@ import numbers
 from abjad.tools import durationtools
 
 
-def make_rests(duration_tokens, decrease_durations_monotonically=True, tied=False):
+def make_rests(durations, decrease_durations_monotonically=True, tied=False):
     r'''.. versionadded:: 1.1
 
     Make rests.
@@ -39,10 +39,11 @@ def make_rests(duration_tokens, decrease_durations_monotonically=True, tied=Fals
     '''
     from abjad.tools import resttools
 
-    if isinstance(duration_tokens, (numbers.Number, tuple)):
-        duration_tokens = [duration_tokens]
+    if isinstance(durations, (numbers.Number, tuple)):
+        durations = [durations]
 
     result = []
-    for d in duration_tokens:
-        result.extend(resttools.make_tied_rest(d, decrease_durations_monotonically=decrease_durations_monotonically, tied=tied))
+    for d in durations:
+        result.extend(resttools.make_tied_rest(d, 
+            decrease_durations_monotonically=decrease_durations_monotonically, tied=tied))
     return result

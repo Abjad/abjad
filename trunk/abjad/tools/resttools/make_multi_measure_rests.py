@@ -1,10 +1,10 @@
 from abjad.tools import durationtools
 
 
-def make_multi_measure_rests(duration_tokens):
+def make_multi_measure_rests(durations):
     '''.. versionadded:: 2.0
 
-    Make multi-measure rests from `duration_tokens`::
+    Make multi-measure rests from `durations`::
 
         >>> resttools.make_multi_measure_rests([(4, 4), (7, 4)])
         [MultiMeasureRest('R1'), MultiMeasureRest('R1..')]
@@ -15,8 +15,8 @@ def make_multi_measure_rests(duration_tokens):
 
     multi_measure_rests = []
 
-    for duration_token in duration_tokens:
-        written_duration = durationtools.Duration(duration_token)
+    for duration in durations:
+        written_duration = durationtools.Duration(duration)
         if not written_duration.is_assignable:
             raise AssignabilityError('multi-measure rest durations must be assignable.')
         multi_measure_rest = resttools.MultiMeasureRest(written_duration)

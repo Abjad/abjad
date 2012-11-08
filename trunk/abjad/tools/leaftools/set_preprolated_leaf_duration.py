@@ -106,28 +106,27 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         leaf.written_duration = new_preprolated_duration
         all_leaves = [leaf]
     except AssignabilityError:
-        duration_tokens = notetools.make_notes(0, new_preprolated_duration)
-        if isinstance(duration_tokens[0], leaftools.Leaf):
-            num_tied_leaves = len(duration_tokens) - 1
+        components = notetools.make_notes(0, new_preprolated_duration)
+        if isinstance(components[0], leaftools.Leaf):
+            num_tied_leaves = len(components) - 1
             tied_leaves = componenttools.copy_components_and_remove_spanners(
                 [leaf], num_tied_leaves)
             all_leaves = [leaf] + tied_leaves
-            for x, token in zip(all_leaves, duration_tokens):
-                x.written_duration = token.written_duration
+            for x, component in zip(all_leaves, components):
+                x.written_duration = component.written_duration
             componenttools.extend_in_parent_of_component(leaf, tied_leaves, grow_spanners=True)
             if not spannertools.get_spanners_attached_to_any_improper_parent_of_component(
                 leaf, tietools.TieSpanner):
                 tietools.TieSpanner(all_leaves)
-        elif isinstance(duration_tokens[0], tuplettools.Tuplet):
-            #print 'debug duration_tokens %s' % duration_tokens
-            fmtuplet = duration_tokens[0]
-            duration_tokens = fmtuplet[:]
-            num_tied_leaves = len(duration_tokens) - 1
+        elif isinstance(components[0], tuplettools.Tuplet):
+            fmtuplet = components[0]
+            components = fmtuplet[:]
+            num_tied_leaves = len(components) - 1
             tied_leaves = componenttools.copy_components_and_remove_spanners(
                 [leaf], num_tied_leaves)
             all_leaves = [leaf] + tied_leaves
-            for x, token in zip(all_leaves, duration_tokens):
-                x.written_duration = token.written_duration
+            for x, component in zip(all_leaves, components):
+                x.written_duration = component.written_duration
             componenttools.extend_in_parent_of_component(leaf, tied_leaves, grow_spanners=True)
             if not spannertools.is_component_with_spanner_attached(leaf, tietools.TieSpanner):
                 tietools.TieSpanner(all_leaves)

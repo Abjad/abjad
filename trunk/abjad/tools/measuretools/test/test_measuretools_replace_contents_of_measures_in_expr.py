@@ -162,11 +162,11 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
     '''
 
     maker = rhythmmakertools.NoteFilledRhythmMaker()
-    duration_tokens = [(5, 16), (3, 16)]
-    leaf_lists = maker(duration_tokens)
+    durations = [(5, 16), (3, 16)]
+    leaf_lists = maker(durations)
     leaves = sequencetools.flatten_sequence(leaf_lists)
 
-    measures = measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens)
+    measures = measuretools.make_measures_with_full_measure_spacer_skips(durations)
     staff = Staff(measures)
     measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
