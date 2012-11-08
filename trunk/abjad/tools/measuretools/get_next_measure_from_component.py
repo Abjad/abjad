@@ -1,9 +1,14 @@
+from abjad.tools import componenttools
+from abjad.tools import containertools
+from abjad.tools import leaftools
+
+
 def get_next_measure_from_component(component):
     '''.. versionadded:: 1.1
 
     Get next measure from `component`.
 
-    When `component` is voice, staff or other sequential context,
+    When `component` is a voice, staff or other sequential context,
     and when `component` contains a measure, return first measure
     in `component`. This starts the process of forwards measure iteration. ::
 
@@ -47,6 +52,25 @@ def get_next_measure_from_component(component):
         renamed ``iterate.measure_next()`` to
         ``measuretools.get_next_measure_from_component()``.
     '''
-    from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
+    from abjad.tools import iterationtools
+    from abjad.tools import iterationtools
+    from abjad.tools import measuretools
 
-    return _get_measure_from_component(component, '_next')
+    if isinstance(component, leaftools.Leaf):
+        for parent in componenttools.get_proper_parentage_of_component(component):
+            if isinstance(parent, measuretools.Measure):
+                return parent
+        raise MissingMeasureError
+    elif isinstance(component, measuretools.Measure):
+        return componenttools.get_nth_namesake_from_component(component, 1)
+    elif isinstance(component, containertools.Container):
+        return measuretools.get_measure_that_starts_with_container(component)
+    elif isinstance(component, (list, tuple)):
+        measure_generator = iterationtools.iterate_measures_in_expr(component)
+        try:
+            measure = measure_generator.next()
+            return measure
+        except StopIteration:
+            raise MissingMeasureError
+    else:
+        raise TypeError('"%s" is unknown Abjad component.' % component)

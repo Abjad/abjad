@@ -1,4 +1,8 @@
-# TODO: rename 'prev' to 'previous'
+from abjad.tools import componenttools
+from abjad.tools import containertools
+from abjad.tools import leaftools
+
+
 def get_previous_measure_from_component(component):
     '''.. versionadded:: 1.1
 
@@ -48,6 +52,24 @@ def get_previous_measure_from_component(component):
         renamed ``iterate.measure_prev()`` to
         ``measuretools.get_previous_measure_from_component()``.
     '''
-    from abjad.tools.measuretools._get_measure_from_component import _get_measure_from_component
+    from abjad.tools import iterationtools
+    from abjad.tools import measuretools
 
-    return _get_measure_from_component(component, '_prev')
+    if isinstance(component, leaftools.Leaf):
+        for parent in componenttools.get_proper_parentage_of_component(component):
+            if isinstance(parent, measuretools.Measure):
+                return parent
+        raise MissingMeasureError
+    elif isinstance(component, measuretools.Measure):
+        return componenttools.get_nth_namesake_from_component(component, -1)
+    elif isinstance(component, containertools.Container):
+        return measuretools.get_measure_that_stops_with_container(component)
+    elif isinstance(component, (list, tuple)):
+        measure_generator = iterationtools.iterate_measures_in_expr(component, reverse=True)
+        try:
+            measure = measure_generator.next()
+            return measure
+        except StopIteration:
+            raise MissingMeasureError
+    else:
+        raise TypeError('"%s" is unknown Abjad component.' % component)
