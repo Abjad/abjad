@@ -49,7 +49,9 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr):
 
     Return none.
     '''
-    from abjad.tools.measuretools._apply_full_measure_tuplets_to_contents_of_measures_in_expr import \
-        _apply_full_measure_tuplets_to_contents_of_measures_in_expr
+    from abjad.tools import iterationtools
+    from abjad.tools import tuplettools
 
-    return _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=None)
+    for measure in iterationtools.iterate_measures_in_expr(expr):
+        target_duration = measure.preprolated_duration
+        tuplet = tuplettools.FixedDurationTuplet(target_duration, measure[:])
