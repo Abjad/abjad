@@ -49,23 +49,12 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
     from abjad.tools import notetools
     from abjad.tools import tuplettools
 
-    if pitchtools.is_named_chromatic_pitch_token(pitches):
+    if not isinstance(pitches, list):
         pitches = [pitches]
 
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
-    # this block is a hack to allow the function to accept a Duration
-    # as the duration input parameter; better will be to change
-    # the rest of the implementation to allow for Durations directly.
-    # [VA] We don't want to change to Durations internally because
-    # Durations reduce fractions to their minimum expression. e.g.
-    # (3, 3) --> Duration(1, 1), and we sometimes generate duration
-    # tokens that are not reduced, so we want to preserve the denominator 3.
-    # [TB] When do we want (3, 3) instead of (1, 1)?
-    # Durations should always reduce;
-    # So tokens can represent tuplet multipliers or something
-    # else that shouldn't reduce?
     duration_pairs = [durationtools.Duration(duration) for duration in durations]
 
     # set lists of pitches and duration pairs to the same length
@@ -75,11 +64,13 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
 
     durations = durationtools.group_nonreduced_fractions_by_implied_prolation(duration_pairs)
 
-    def _make_unprolated_notes(pitches, durations, decrease_durations_monotonically=decrease_durations_monotonically):
+    def _make_unprolated_notes(pitches, durations, 
+        decrease_durations_monotonically=decrease_durations_monotonically):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
-            result.extend(notetools.make_tied_note(pitch, duration, decrease_durations_monotonically=decrease_durations_monotonically))
+            result.extend(notetools.make_tied_note(pitch, duration, 
+                decrease_durations_monotonically=decrease_durations_monotonically))
         return result
 
     result = []
@@ -91,7 +82,8 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         ps = pitches[0:len(duration)]
         pitches = pitches[len(duration):]
         if len(factors) == 0:
-            result.extend(_make_unprolated_notes(ps, duration, decrease_durations_monotonically=decrease_durations_monotonically))
+            result.extend(_make_unprolated_notes(ps, duration, 
+                decrease_durations_monotonically=decrease_durations_monotonically))
         else:
             # compute prolation
             denominator = duration[0].denominator
@@ -99,7 +91,8 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
             duration = [ratio * durationtools.Duration(d) for d in duration]
-            ns = _make_unprolated_notes(ps, duration, decrease_durations_monotonically=decrease_durations_monotonically)
+            ns = _make_unprolated_notes(ps, duration, 
+                decrease_durations_monotonically=decrease_durations_monotonically)
             t = tuplettools.Tuplet(multiplier, ns)
             result.append(t)
 

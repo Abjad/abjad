@@ -14,16 +14,18 @@ class NamedChromaticPitchSet(PitchObjectSet):
 
     __slots__ = ()
 
-    def __new__(klass, pitch_tokens):
+    ### INITIALIZER ###
+
+    def __new__(klass, pitchs):
         from abjad.tools import notetools
         from abjad.tools import pitchtools
         pitches = []
-        for token in pitch_tokens:
-            if isinstance(token, notetools.NoteHead):
-                pitch = pitchtools.NamedChromaticPitch(token.written_pitch)
+        for pitch in pitchs:
+            if isinstance(pitch, notetools.NoteHead):
+                pitch = pitchtools.NamedChromaticPitch(pitch.written_pitch)
                 pitches.append(pitch)
             else:
-                pitch = pitchtools.NamedChromaticPitch(token)
+                pitch = pitchtools.NamedChromaticPitch(pitch)
                 pitches.append(pitch)
         return frozenset.__new__(klass, pitches)
 

@@ -28,10 +28,10 @@ class NamedChromaticPitchVector(ObjectVector):
 
     ### INITIALIZER ###
 
-    def __init__(self, pitch_tokens):
+    def __init__(self, pitches):
         from abjad.tools import pitchtools
-        for token in pitch_tokens:
-            pitch = pitchtools.NamedChromaticPitch(token)
+        for pitch in pitches:
+            pitch = pitchtools.NamedChromaticPitch(pitch)
             try:
                 dict.__setitem__(self, str(pitch), self[str(pitch)] + 1)
             except KeyError:

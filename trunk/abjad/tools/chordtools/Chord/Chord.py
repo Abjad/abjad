@@ -172,11 +172,11 @@ class Chord(Leaf):
 
             '''
             return tuple(self._note_heads)
-        def fset(self, note_head_tokens):
+        def fset(self, note_heads):
             self._note_heads = []
-            if isinstance(note_head_tokens, str):
-                note_head_tokens = note_head_tokens.split()
-            self.extend(note_head_tokens)
+            if isinstance(note_heads, str):
+                note_heads = note_heads.split()
+            self.extend(note_heads)
         return property(**locals())
 
     @property
@@ -235,14 +235,14 @@ class Chord(Leaf):
 
             '''
             return tuple([note_head.written_pitch for note_head in self])
-        def fset(self, pitch_tokens):
-            self.note_heads = pitch_tokens
+        def fset(self, pitchs):
+            self.note_heads = pitchs
         return property(**locals())
 
     ### PUBLIC METHODS ### 
 
-    def append(self, note_head_token):
-        '''Append `note_head_token` to chord::
+    def append(self, note_head):
+        '''Append `note_head` to chord::
 
             >>> chord = Chord([4, 13, 17], (1, 4))
             >>> chord
@@ -257,10 +257,10 @@ class Chord(Leaf):
         Sort chord note heads automatically after append and return none.
         '''
         from abjad.tools.notetools.NoteHead import NoteHead
-        if isinstance(note_head_token, NoteHead):
-            note_head = note_head_token
+        if isinstance(note_head, NoteHead):
+            note_head = note_head
         else:
-            note_head = NoteHead(written_pitch=note_head_token)
+            note_head = NoteHead(written_pitch=note_head)
         note_head._client = self
         self._note_heads.append(note_head)
         self._note_heads.sort()
@@ -286,8 +286,8 @@ class Chord(Leaf):
         #del(self[:])
         self.__delitem__(slice(0, len(self)))
 
-    def extend(self, note_head_tokens):
-        '''Extend chord with `note_head_tokens`::
+    def extend(self, note_heads):
+        '''Extend chord with `note_heads`::
 
             >>> chord = Chord([4, 13, 17], (1, 4))
             >>> chord
@@ -301,8 +301,8 @@ class Chord(Leaf):
 
         Sort chord note heads automatically after extend and return none.
         '''
-        for note_head_token in note_head_tokens:
-            self.append(note_head_token)
+        for note_head in note_heads:
+            self.append(note_head)
 
     def pop(self, i=-1):
         '''Remove note head at index `i` in chord::
