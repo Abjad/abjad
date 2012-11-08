@@ -23,6 +23,7 @@ Let's make some imports:
        add_bell_music_to_score(score)
        add_string_music_to_score(score)
    
+       apply_bowing_marks(score)
        apply_dynamic_marks(score)
        apply_expressive_marks(score)
        apply_page_breaks(score)
@@ -50,8 +51,8 @@ The score template
        ### SPECIAL METHODS ###
    
        def __call__(self):
-          
-                  # make bell voice and staff
+   
+           # make bell voice and staff
            bell_voice = voicetools.Voice(name='Bell Voice')
            bell_staff = stafftools.Staff([bell_voice], name='Bell Staff')
            contexttools.ClefMark('treble')(bell_staff)
@@ -128,6 +129,7 @@ The bell music
 ::
 
    def add_bell_music_to_score(score):
+   
        bell_voice = score['Bell Voice']
    
        def make_bell_phrase():
@@ -170,11 +172,11 @@ The string music
                instrument_voice.extend(descent)
    
        # apply instrument-specific edits
-       apply_first_violin_edits(score, durated_reservoir)
-       apply_second_violin_edits(score, durated_reservoir)
-       apply_viola_edits(score, durated_reservoir)
-       apply_cello_edits(score, durated_reservoir)
-       apply_bass_edits(score, durated_reservoir)
+       edit_first_violin_voice(score, durated_reservoir)
+       edit_second_violin_voice(score, durated_reservoir)
+       edit_viola_voice(score, durated_reservoir)
+       edit_cello_voice(score, durated_reservoir)
+       edit_bass_voice(score, durated_reservoir)
    
        # chop all string parts into 6/4 measures
        for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
@@ -303,7 +305,7 @@ The edits
 
 ::
 
-   def apply_first_violin_edits(score, durated_reservoir):
+   def edit_first_violin_voice(score, durated_reservoir):
    
        voice = score['First Violin Voice']
        descents = durated_reservoir['First Violin']
@@ -320,7 +322,7 @@ The edits
 
 ::
 
-   def apply_second_violin_edits(score, durated_reservoir):
+   def edit_second_violin_voice(score, durated_reservoir):
    
        voice = score['Second Violin Voice']
        descents = durated_reservoir['Second Violin']
@@ -347,7 +349,7 @@ The edits
 
 ::
 
-   def apply_viola_edits(score, durated_reservoir):
+   def edit_viola_voice(score, durated_reservoir):
    
        voice = score['Viola Voice']
        descents = durated_reservoir['Viola']
@@ -379,7 +381,7 @@ The edits
 
 ::
 
-   def apply_cello_edits(score, durated_reservoir):
+   def edit_cello_voice(score, durated_reservoir):
    
        voice = score['Cello Voice']
        descents = durated_reservoir['Cello']
@@ -403,7 +405,7 @@ The edits
 
 ::
 
-   def apply_bass_edits(score, durated_reservoir):
+   def edit_bass_voice(score, durated_reservoir):
    
        voice = score['Bass Voice']
    
@@ -412,6 +414,47 @@ The edits
 
 The marks
 ---------
+
+::
+
+   def apply_bowing_marks(score):
+   
+       # apply alternating upbow and downbow for first two sounding bars
+       # of the first violin
+       for measure in score['First Violin Voice'][6:8]:
+           for i, chord in enumerate(iterationtools.iterate_chords_in_expr(measure)):
+               if i % 2 == 0:
+                   marktools.Articulation('downbow')(chord)
+               else:
+                   marktools.Articulation('upbow')(chord)
+   
+       # create and apply rebowing markup
+       rebow_markup = markuptools.Markup(
+           markuptools.MarkupCommand(
+               'concat', [
+               markuptools.MarkupCommand(
+                   'musicglyph',
+                   schemetools.Scheme(
+                       'scripts.downbow',
+                       force_quotes=True,
+                       ),
+                   ),
+               markuptools.MarkupCommand(
+                   'hspace',
+                   1,
+                   ),
+               markuptools.MarkupCommand(
+                   'musicglyph',
+                   schemetools.Scheme(
+                       'scripts.upbow',
+                       force_quotes=True,
+                       ),
+                   ),
+               ]))
+       copy.copy(rebow_markup)(score['First Violin Voice'][64][0]) 
+       copy.copy(rebow_markup)(score['Second Violin Voice'][75][0]) 
+       copy.copy(rebow_markup)(score['Viola Voice'][86][0]) 
+
 
 ::
 
@@ -480,8 +523,38 @@ The marks
 
    def apply_expressive_marks(score):
    
-       bell_voice = score['Bell Voice']
-       marktools.BarLine('|.')(bell_voice[-1])
+       voice = score['First Violin Voice']
+       markuptools.Markup(r'\left-column { div. \line { con sord. } }', Up)(voice[6][1])
+       markuptools.Markup('sim.', Up)(voice[8][0])
+       markuptools.Markup('uniti', Up)(voice[58][3])
+       markuptools.Markup('div.', Up)(voice[59][0])
+       markuptools.Markup('uniti', Up)(voice[63][3])
+   
+       voice = score['Second Violin Voice']
+       markuptools.Markup('div.', Up)(voice[7][0])
+       markuptools.Markup('uniti', Up)(voice[66][1])
+       markuptools.Markup('div.', Up)(voice[67][0])
+       markuptools.Markup('uniti', Up)(voice[74][0])
+   
+       voice = score['Viola Voice']
+       markuptools.Markup('sole', Up)(voice[8][0])
+   
+       voice = score['Cello Voice']
+       markuptools.Markup('div.', Up)(voice[10][0])
+       markuptools.Markup('uniti', Up)(voice[74][0])
+       markuptools.Markup('uniti', Up)(voice[84][1])
+       markuptools.Markup(r'\italic { espr. }', Down)(voice[86][0])
+       markuptools.Markup(r'\italic { molto espr. }', Down)(voice[88][1])
+   
+       voice = score['Bass Voice']
+       markuptools.Markup('div.', Up)(voice[14][0])
+       markuptools.Markup(r'\italic { espr. }', Down)(voice[86][0])
+       componenttools.split_components_at_offsets(voice[88][:], [Duration(1, 1), Duration(1, 2)])
+       markuptools.Markup(r'\italic { molto espr. }', Down)(voice[88][1])
+       markuptools.Markup('uniti', Up)(voice[99][1])
+   
+       for voice in iterationtools.iterate_voices_in_expr(score['Strings Staff Group']):
+           markuptools.Markup(r'\italic { (non dim.) }', Down)(voice[102][0])
 
 
 ::

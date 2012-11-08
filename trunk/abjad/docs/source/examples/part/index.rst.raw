@@ -36,15 +36,16 @@ The string music
 The edits
 ---------
 
-<abjadextract abjad.demos.part.apply_first_violin_edits.apply_first_violin_edits \>[strip_prompt=true]
-<abjadextract abjad.demos.part.apply_second_violin_edits.apply_second_violin_edits \>[strip_prompt=true]
-<abjadextract abjad.demos.part.apply_viola_edits.apply_viola_edits \>[strip_prompt=true]
-<abjadextract abjad.demos.part.apply_cello_edits.apply_cello_edits \>[strip_prompt=true]
-<abjadextract abjad.demos.part.apply_bass_edits.apply_bass_edits \>[strip_prompt=true]
+<abjadextract abjad.demos.part.edit_first_violin_voice.edit_first_violin_voice \>[strip_prompt=true]
+<abjadextract abjad.demos.part.edit_second_violin_voice.edit_second_violin_voice \>[strip_prompt=true]
+<abjadextract abjad.demos.part.edit_viola_voice.edit_viola_voice \>[strip_prompt=true]
+<abjadextract abjad.demos.part.edit_cello_voice.edit_cello_voice \>[strip_prompt=true]
+<abjadextract abjad.demos.part.edit_bass_voice.edit_bass_voice \>[strip_prompt=true]
 
 The marks
 ---------
 
+<abjadextract abjad.demos.part.apply_bowing_marks.apply_bowing_marks \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_dynamic_marks.apply_dynamic_marks \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_expressive_marks.apply_expressive_marks \>[strip_prompt=true]
 <abjadextract abjad.demos.part.apply_page_breaks.apply_page_breaks \>[strip_prompt=true]
