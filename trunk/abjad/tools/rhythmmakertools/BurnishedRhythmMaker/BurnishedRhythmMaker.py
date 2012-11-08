@@ -146,29 +146,29 @@ class BurnishedRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
-    def _force_token_parts(self, tokens, quintuplet):
+    def _force_division_parts(self, divisions, quintuplet):
         pass
 
-    def _force_token_part(self, token_part, indicator):
-        assert len(token_part) == len(indicator)
-        new_token_part = []
-        for number, i in zip(token_part, indicator):
+    def _force_division_part(self, division_part, indicator):
+        assert len(division_part) == len(indicator)
+        new_division_part = []
+        for number, i in zip(division_part, indicator):
             if i == -1:
-                new_token_part.append(-abs(number))
+                new_division_part.append(-abs(number))
             elif i == 0:
-                new_token_part.append(number)
+                new_division_part.append(number)
             elif i == 1:
-                new_token_part.append(abs(number))
+                new_division_part.append(abs(number))
             else:
                 raise ValueError
-        new_token_part = type(token_part)(new_token_part)
-        return new_token_part
+        new_division_part = type(division_part)(new_division_part)
+        return new_division_part
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
-        for map_token in numeric_map:
+        for map_division in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
-                map_token, talea_denominator, decrease_durations_monotonically=self.decrease_durations_monotonically, tie_rests=self.tie_rests)
+                map_division, talea_denominator, decrease_durations_monotonically=self.decrease_durations_monotonically, tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 
@@ -180,11 +180,11 @@ class BurnishedRhythmMaker(RhythmMaker):
             prolated_numerators = [pair[0] for pair in prolated_duration_pairs]
         else:
             prolated_numerators = [pair.numerator for pair in prolated_duration_pairs]
-        map_tokens = sequencetools.split_sequence_extended_to_weights(
+        map_divisions = sequencetools.split_sequence_extended_to_weights(
             talea, prolated_numerators, overhang=False)
         quintuplet = (lefts, middles, rights, left_lengths, right_lengths)
-        forced_map_tokens = self._force_token_parts(map_tokens, quintuplet)
-        numeric_map = forced_map_tokens
+        forced_map_divisions = self._force_division_parts(map_divisions, quintuplet)
+        numeric_map = forced_map_divisions
         return numeric_map
 
     def _make_prolated_duration_pairs(self, duration_pairs, prolation_addenda):

@@ -1135,7 +1135,7 @@ class SegmentSpecification(Specification):
                         right_lengths=[0],
                         secondary_divisions=[],
                         beam_each_cell=False,
-                        big_endian=True,
+                        decrease_durations_monotonically=True,
                         tie_rests=False
                         )
                     ),

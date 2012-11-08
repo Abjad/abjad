@@ -65,65 +65,65 @@ class OutputBurnishedTaleaFilledRhythmMaker(BurnishedRhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _force_token_parts(self, tokens, quintuplet):
+    def _force_division_parts(self, divisions, quintuplet):
         lefts, middles, rights, left_lengths, right_lengths = quintuplet
-        forced_tokens = []
+        forced_divisions = []
         left_length = left_lengths[0]
         left = lefts[:left_length]
         right_length = right_lengths[0]
         right = rights[:right_length]
-        if len(tokens) == 1:
-            available_left_length = len(tokens[0])
+        if len(divisions) == 1:
+            available_left_length = len(divisions[0])
             left_length = min([left_length, available_left_length])
-            available_right_length = len(tokens[0]) - left_length
+            available_right_length = len(divisions[0]) - left_length
             right_length = min([right_length, available_right_length])
-            middle_length = len(tokens[0]) - left_length - right_length
+            middle_length = len(divisions[0]) - left_length - right_length
             left = left[:left_length]
             middle = middle_length * [middles[0]]
             right = right[:right_length]
             left_part, middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                tokens[0], [left_length, middle_length, right_length], cyclic=False, overhang=False)
-            left_part = self._force_token_part(left_part, left)
-            middle_part = self._force_token_part(middle_part, middle)
-            right_part = self._force_token_part(right_part, right)
-            forced_token = left_part + middle_part + right_part
-            forced_tokens.append(forced_token)
+                divisions[0], [left_length, middle_length, right_length], cyclic=False, overhang=False)
+            left_part = self._force_division_part(left_part, left)
+            middle_part = self._force_division_part(middle_part, middle)
+            right_part = self._force_division_part(right_part, right)
+            forced_division = left_part + middle_part + right_part
+            forced_divisions.append(forced_division)
         else:
-            ## first token
-            available_left_length = len(tokens[0])
+            ## first division
+            available_left_length = len(divisions[0])
             left_length = min([left_length, available_left_length])
-            middle_length = len(tokens[0]) - left_length
+            middle_length = len(divisions[0]) - left_length
             left = left[:left_length]
             middle = middle_length * [middles[0]]
             left_part, middle_part = \
                 sequencetools.partition_sequence_by_counts(
-                tokens[0], [left_length, middle_length], cyclic=False, overhang=False)
-            left_part = self._force_token_part(left_part, left)
-            middle_part = self._force_token_part(middle_part, middle)
-            forced_token = left_part + middle_part
-            forced_tokens.append(forced_token)
-            ## middle tokens
-            for token in tokens[1:-1]:
-                middle_part = token
-                middle = len(token) * [middles[0]]
-                middle_part = self._force_token_part(middle_part, middle)
-                forced_token = middle_part
-                forced_tokens.append(forced_token)
-            ## last token:
-            available_right_length = len(tokens[-1])
+                divisions[0], [left_length, middle_length], cyclic=False, overhang=False)
+            left_part = self._force_division_part(left_part, left)
+            middle_part = self._force_division_part(middle_part, middle)
+            forced_division = left_part + middle_part
+            forced_divisions.append(forced_division)
+            ## middle divisions
+            for division in divisions[1:-1]:
+                middle_part = division
+                middle = len(division) * [middles[0]]
+                middle_part = self._force_division_part(middle_part, middle)
+                forced_division = middle_part
+                forced_divisions.append(forced_division)
+            ## last division:
+            available_right_length = len(divisions[-1])
             right_length = min([right_length, available_right_length])
-            middle_length = len(tokens[-1]) - right_length
+            middle_length = len(divisions[-1]) - right_length
             right = right[:right_length]
             middle = middle_length * [middles[0]]
             middle_part, right_part = \
                 sequencetools.partition_sequence_by_counts(
-                tokens[-1], [middle_length, right_length], cyclic=False, overhang=False)
-            middle_part = self._force_token_part(middle_part, middle)
-            right_part = self._force_token_part(right_part, right)
-            forced_token = middle_part + right_part
-            forced_tokens.append(forced_token)
-        unforced_weights = [mathtools.weight(x) for x in tokens]
-        forced_weights = [mathtools.weight(x) for x in forced_tokens]
+                divisions[-1], [middle_length, right_length], cyclic=False, overhang=False)
+            middle_part = self._force_division_part(middle_part, middle)
+            right_part = self._force_division_part(right_part, right)
+            forced_division = middle_part + right_part
+            forced_divisions.append(forced_division)
+        unforced_weights = [mathtools.weight(x) for x in divisions]
+        forced_weights = [mathtools.weight(x) for x in forced_divisions]
         assert forced_weights == unforced_weights
-        return forced_tokens
+        return forced_divisions

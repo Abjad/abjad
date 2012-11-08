@@ -84,10 +84,10 @@ class EqualDivisionRhythmMaker(RhythmMaker):
 
     def _make_tuplet(self, division):
         numerator, talea_denominator = division
-        token_duration = durationtools.Duration(division)
+        division_duration = durationtools.Duration(division)
         ratio = self.leaf_count * [1]
         tuplet = tuplettools.make_tuplet_from_duration_and_ratio(
-            token_duration, ratio, avoid_dots=True, is_diminution=self.is_diminution)
+            division_duration, ratio, avoid_dots=True, is_diminution=self.is_diminution)
         return tuplet
 
     ### READ-ONLY PUBLIC PROPERTIES ###
