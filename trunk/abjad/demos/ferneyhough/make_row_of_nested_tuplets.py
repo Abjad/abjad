@@ -2,6 +2,7 @@ from abjad.demos.ferneyhough.make_nested_tuplet import make_nested_tuplet
 
 
 def make_row_of_nested_tuplets(tuplet_duration, outer_tuplet_proportions, column_count):
+    assert 0 < column_count
     row_of_nested_tuplets = []
     for n in range(column_count):
         inner_tuplet_subdivision_count = n + 1
