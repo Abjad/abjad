@@ -3,7 +3,7 @@
 if __name__ == '__main__':
 
     from abjad import *
-    from abjad.demos import part
+    from abjad.demos import desordre
 
-    lilypond_file = part.make_part_lilypond_file()
+    lilypond_file = desordre.make_desordre_lilypond_file()
     show(lilypond_file)
