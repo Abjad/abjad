@@ -40,7 +40,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         lefts_helper=None, middles_helper=None, rights_helper=None,
         left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None,
         beam_each_cell=False,
-        decrease_durations_monotonically=True, tie_rests=False
+        decrease_durations_monotonically=True, tie_split_notes=False, tie_rests=False
         ):
         RhythmMaker.__init__(self)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
@@ -75,6 +75,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         assert isinstance(left_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(right_lengths_helper, (types.FunctionType, types.MethodType))
         assert isinstance(decrease_durations_monotonically, bool)
+        assert isinstance(tie_split_notes, bool)
         assert isinstance(tie_rests, bool)
         self.talea = talea
         self.talea_denominator = talea_denominator
@@ -95,6 +96,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.secondary_divisions_helper = secondary_divisions_helper
         self.beam_each_cell = beam_each_cell
         self.decrease_durations_monotonically = decrease_durations_monotonically
+        self.tie_split_notes = tie_split_notes
         self.tie_rests = tie_rests
 
     ### SPECIAL METHODS ###
@@ -120,6 +122,8 @@ class BurnishedRhythmMaker(RhythmMaker):
         if self.beam_each_cell:
             for cell in result:
                 beamtools.MultipartBeamSpanner(cell)
+        if self.tie_split_notes:
+            self._add_ties(result)
         return result
 
     def __eq__(self, other):
@@ -145,6 +149,10 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
+    # TODO: implement me
+    def _add_ties(self, result):
+        pass
+
     @abc.abstractmethod
     def _burnish_division_parts(self, divisions, quintuplet):
         pass
@@ -168,7 +176,9 @@ class BurnishedRhythmMaker(RhythmMaker):
         leaf_lists = []
         for map_division in numeric_map:
             leaf_list = leaftools.make_leaves_from_talea(
-                map_division, talea_denominator, decrease_durations_monotonically=self.decrease_durations_monotonically, tie_rests=self.tie_rests)
+                map_division, talea_denominator, 
+                decrease_durations_monotonically=self.decrease_durations_monotonically, 
+                tie_rests=self.tie_rests)
             leaf_lists.append(leaf_list)
         return leaf_lists
 

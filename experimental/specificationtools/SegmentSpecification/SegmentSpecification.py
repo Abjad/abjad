@@ -1136,6 +1136,7 @@ class SegmentSpecification(Specification):
                         secondary_divisions=[],
                         beam_each_cell=False,
                         decrease_durations_monotonically=True,
+                        tie_split_notes=False,
                         tie_rests=False
                         )
                     ),
