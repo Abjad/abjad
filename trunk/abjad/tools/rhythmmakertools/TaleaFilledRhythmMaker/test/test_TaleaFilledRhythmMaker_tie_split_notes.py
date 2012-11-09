@@ -1,9 +1,7 @@
 from abjad import *
-import py
 
 
 def test_TaleaFilledRhythmMaker_tie_split_notes_01():
-    py.test.skip('working on this one now.')
 
     leaves = leaftools.make_leaves_from_talea([1, 1, 2, -2, 4, -4, 5, -5], 16)
     maker = rhythmmakertools.TaleaFilledRhythmMaker([5], 16, tie_split_notes=True)
@@ -15,4 +13,26 @@ def test_TaleaFilledRhythmMaker_tie_split_notes_01():
     staff = Staff(measures)
     measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
-    #f(staff)
+    r'''
+    \new Staff {
+        {
+            \time 2/8
+            c'4 ~
+        }
+        {
+            c'16
+            c'8. ~
+        }
+        {
+            c'8
+            c'8 ~
+        }
+        {
+            c'8.
+            c'16
+        }
+    }
+    '''
+
+    assert wellformednesstools.is_well_formed_component(staff)
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\tc'16\n\t\tc'8. ~\n\t}\n\t{\n\t\tc'8\n\t\tc'8 ~\n\t}\n\t{\n\t\tc'8.\n\t\tc'16\n\t}\n}"

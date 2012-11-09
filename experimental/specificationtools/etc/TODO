@@ -16,9 +16,7 @@
     The keyword will specify the score-tree level at which rotation should happen.
     The keyword will be an attribute of the RotationIndicator class.
 
-6.  Add tie_notes=True and tie_rests=False keywords to all talea-based rhythm makers.
-
-7.  Implement SegmentSpecification.select_multiple_divisions() to return multiple
+6.  Implement SegmentSpecification.select_multiple_divisions() to return multiple
     selectors at once. This will change ...
         first_division = red_segment.select_division(0)
         second_division = red_segment.select_division(1)
@@ -27,17 +25,17 @@
         first_division, second_division, third_division = red_segment.select_all_divisions()
     ... instead.
 
-8.  Implement very basic cycle detection.
+7.  Implement very basic cycle detection.
 
-9.  Afford rhythm command request of parseable string. This will make ...
+8.  Afford rhythm command request of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
         voice_1_rhythm_command = red_segment.request_rhythm_command('Voice 1')
         red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
 
-10. Set all rotation to fracture_spanners=False by default in interpreter.
+9.  Set all rotation to fracture_spanners=False by default in interpreter.
 
-11. Reimplement rhythm rotation to pay attention to the differences beteween
+10. Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.

@@ -7,6 +7,8 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
 
     Talea-filled rhythm-maker.
 
+    Example 1. Basic usage.
+
     Configure the rhythm-maker at initialization::
 
         >>> talea, talea_denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
@@ -48,6 +50,45 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
                     c'8.
                     r16
                 }
+            }
+        }
+
+    Example 2. Tie split notes.
+
+        >>> maker = rhythmmakertools.TaleaFilledRhythmMaker([5], 16, tie_split_notes=True)
+
+    Then call the rhythm-maker on arbitrary divisions::
+
+        >>> divisions = [(2, 8), (2, 8), (2, 8), (2, 8)]
+        >>> music = maker(divisions)
+
+    The resulting Abjad objects can be included in any score and the rhythm-maker
+    can be called indefinitely on other arbitrary sequences of divisions::
+
+        >>> music = sequencetools.flatten_sequence(music)
+        >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(divisions)
+        >>> staff = Staff(measures)
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/8
+                c'4 ~
+            }
+            {
+                c'16
+                c'8. ~
+            }
+            {
+                c'8
+                c'8 ~
+            }
+            {
+                c'8.
+                c'16
             }
         }
 

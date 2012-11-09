@@ -1,12 +1,14 @@
 import abc
 import copy
+import types
 from abjad.tools import beamtools
 from abjad.tools import durationtools
+from abjad.tools import iterationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
+from abjad.tools import tietools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-import types
 
 
 class BurnishedRhythmMaker(RhythmMaker):
@@ -149,9 +151,18 @@ class BurnishedRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    # TODO: implement me
     def _add_ties(self, result):
-        pass
+        leaves = list(iterationtools.iterate_leaves_in_expr(result))
+        written_durations = leaftools.list_written_durations_of_leaves_in_expr(leaves)
+        weights = [durationtools.Duration(numerator, self.talea_denominator) for numerator in self.talea]
+        parts = sequencetools.partition_sequence_by_weights_exactly(
+            written_durations, weights=weights, cyclic=True, overhang=True)
+        counts = [len(part) for part in parts]
+        parts = sequencetools.partition_sequence_by_counts(leaves, counts)
+        for part in parts:
+            tie_spanner = tietools.TieSpanner()
+            tie_spanner._contiguity_constraint = None
+            tie_spanner.extend(part)
 
     @abc.abstractmethod
     def _burnish_division_parts(self, divisions, quintuplet):
