@@ -2061,6 +2061,7 @@ Internal packages
    tools/developerscripttools/CountToolsScript/CountToolsScript
    tools/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
    tools/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
+   tools/developerscripttools/PyTestScript/PyTestScript
    tools/developerscripttools/RenameModulesScript/RenameModulesScript
    tools/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
    tools/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
