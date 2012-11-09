@@ -27,22 +27,22 @@ class SymbolicTimespan(AbjadObject):
 
         Return duration.
         '''
-        stop_offset = self.get_score_stop_offset(score_specification, context_name)
-        start_offset = self.get_score_start_offset(score_specification, context_name)
+        stop_offset = self.get_stop_offset(score_specification, context_name)
+        start_offset = self.get_start_offset(score_specification, context_name)
         return stop_offset - start_offset
 
-    def get_score_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name):
         '''Get score start offset and score stop offset of symbolic timespan
         when applied to `context_name` in `score_specification`.
 
         Return pair.
         '''
-        start_offset = self.get_score_start_offset(score_specification, context_name)
-        stop_offset = self.get_score_stop_offset(score_specification, context_name)
+        start_offset = self.get_start_offset(score_specification, context_name)
+        stop_offset = self.get_stop_offset(score_specification, context_name)
         return start_offset, stop_offset
 
     @abc.abstractmethod
-    def get_score_start_offset(self, score_specification, context_name):
+    def get_start_offset(self, score_specification, context_name):
         '''Evaluate score start offset of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
@@ -51,7 +51,7 @@ class SymbolicTimespan(AbjadObject):
         pass
 
     @abc.abstractmethod
-    def get_score_stop_offset(self, score_specification, context_name):
+    def get_stop_offset(self, score_specification, context_name):
         '''Evaluate score stop offset of symbolic timespan when applied
         to `context_name` in `score_specification`.
 

@@ -63,21 +63,21 @@ class Selector(AbjadObject):
 
         Return duration.
         '''
-        start_offset, stop_offset = self.get_score_offsets(score_specification, context_name)
+        start_offset, stop_offset = self.get_offsets(score_specification, context_name)
         return stop_offset - start_offset
 
-    def get_score_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name):
         r'''Get score start offset and score stop offset of selector when applied
         to `context_name` in `score_specification`.
 
         Return pair.
         '''
-        start_offset = self.get_score_start_offset(score_specification, context_name)
-        stop_offset = self.get_score_stop_offset(score_specification, context_name)
+        start_offset = self.get_start_offset(score_specification, context_name)
+        stop_offset = self.get_stop_offset(score_specification, context_name)
         return start_offset, stop_offset
     
     @abc.abstractmethod
-    def get_score_start_offset(self, score_specification, context_name):
+    def get_start_offset(self, score_specification, context_name):
         r'''Evaluate score start offset of selector when applied
         to `context_name` in `score_specification`.
 
@@ -86,7 +86,7 @@ class Selector(AbjadObject):
         pass
 
     @abc.abstractmethod
-    def get_score_stop_offset(self, score_specification, context_name):
+    def get_stop_offset(self, score_specification, context_name):
         r'''Evaluate score stop offset of selector when applied
         to `context_name` in `score_specification`.
 

@@ -146,8 +146,8 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(division_material_request, 'dmr')
         selector = division_material_request.selector
         voice_name = division_material_request.voice_name
-        start_offset = selector.get_score_start_offset(self.score_specification, voice_name)
-        stop_offset = selector.get_score_stop_offset(self.score_specification, voice_name)
+        start_offset = selector.get_start_offset(self.score_specification, voice_name)
+        stop_offset = selector.get_stop_offset(self.score_specification, voice_name)
         #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
@@ -780,7 +780,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name
-        source_score_offsets = rhythm_request.selector.get_score_offsets(
+        source_score_offsets = rhythm_request.selector.get_offsets(
             self.score_specification, rhythm_request.context_name)
         source_timespan = timerelationtools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
@@ -833,7 +833,7 @@ class ConcreteInterpreter(Interpreter):
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         assert single_context_setting.selector.start_segment_identifier == segment_specification.segment_name
-        start_offset, stop_offset = single_context_setting.selector.get_score_offsets(
+        start_offset, stop_offset = single_context_setting.selector.get_offsets(
             self.score_specification, voice_name)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(

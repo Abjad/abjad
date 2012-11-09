@@ -46,15 +46,15 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_offsets
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_start_offset
-
-.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_score_stop_offset
-
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_selected_objects
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_start_offset
+
+.. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.get_stop_offset
 
 Special Methods
 ---------------

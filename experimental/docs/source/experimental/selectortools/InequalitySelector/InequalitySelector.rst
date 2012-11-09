@@ -30,19 +30,19 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_score_offsets
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_score_start_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_score_stop_offset
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_selected_objects
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_start_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_stop_offset
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 

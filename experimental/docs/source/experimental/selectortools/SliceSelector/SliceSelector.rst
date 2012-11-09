@@ -38,19 +38,19 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_score_offsets
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_score_start_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_score_stop_offset
+.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_selected_objects
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_start_offset
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.get_stop_offset
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 

@@ -128,7 +128,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_score_start_offset(self, score_specification, context_name):
+    def get_start_offset(self, score_specification, context_name):
         r'''Evaluate selector score start offset when selector is applied
         to `score_specification`.
 
@@ -148,7 +148,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
         return start_offset
 
-    def get_score_stop_offset(self, score_specification, context_name):
+    def get_stop_offset(self, score_specification, context_name):
         r'''Evaluate score stop offset when selector is applied
         to `score_specification`.
 

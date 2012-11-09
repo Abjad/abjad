@@ -107,7 +107,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def get_score_start_offset(self, score_specification, context_name):
+    def get_start_offset(self, score_specification, context_name):
         '''Evaluate score start offset of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
@@ -117,7 +117,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         '''
         raise NotImplementedError
 
-    def get_score_stop_offset(self, score_specification, context_name):
+    def get_stop_offset(self, score_specification, context_name):
         '''Evaluate score stop offset of symbolic timespan when applied
         to `context_name` in `score_specification`.
 

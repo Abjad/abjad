@@ -60,7 +60,7 @@ class SingleSegmentSelector(InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_score_start_offset(self, score_specification, context_name):
+    def get_start_offset(self, score_specification, context_name):
         '''Evaluate score start offset of selector when applied
         to `score_specification`.
 
@@ -72,7 +72,7 @@ class SingleSegmentSelector(InequalitySelector):
             self.start_segment_identifier)
         return start_offset
 
-    def get_score_stop_offset(self, score_specification, context_name):
+    def get_stop_offset(self, score_specification, context_name):
         '''Evaluate score stop offset of selector when applied
         to `score_specification`.
 

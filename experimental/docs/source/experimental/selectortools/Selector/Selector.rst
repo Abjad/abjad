@@ -24,13 +24,13 @@ Methods
 
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.get_duration
 
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_offsets
-
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_start_offset
-
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_score_stop_offset
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_offsets
 
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.get_selected_objects
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_start_offset
+
+.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_stop_offset
 
 Special Methods
 ---------------

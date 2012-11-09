@@ -50,13 +50,13 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_score_offsets
-
-.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_score_start_offset
-
-.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_score_stop_offset
+.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_offsets
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_selected_objects
+
+.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_start_offset
+
+.. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.get_stop_offset
 
 .. automethod:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_segment_identifier
 

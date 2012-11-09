@@ -54,15 +54,15 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_score_offsets
+.. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_offsets
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_score_start_offset
-
-.. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_score_stop_offset
-
 .. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_selected_objects
+
+.. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_start_offset
+
+.. automethod:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.get_stop_offset
 
 Special Methods
 ---------------
