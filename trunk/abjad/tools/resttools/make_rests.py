@@ -2,7 +2,7 @@ import numbers
 from abjad.tools import durationtools
 
 
-def make_rests(durations, decrease_durations_monotonically=True, tied=False):
+def make_rests(durations, decrease_durations_monotonically=True, tie_parts=False):
     r'''.. versionadded:: 1.1
 
     Make rests.
@@ -19,7 +19,7 @@ def make_rests(durations, decrease_durations_monotonically=True, tied=False):
 
     Make tied rests::
 
-        >>> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tied=True))
+        >>> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tie_parts=True))
 
     ::
 
@@ -39,11 +39,16 @@ def make_rests(durations, decrease_durations_monotonically=True, tied=False):
     '''
     from abjad.tools import resttools
 
+    # check input
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
 
+    # make rests
     result = []
-    for d in durations:
-        result.extend(resttools.make_tied_rest(d, 
-            decrease_durations_monotonically=decrease_durations_monotonically, tied=tied))
+    for duration in durations:
+        result.extend(resttools.make_tied_rest(
+            duration, decrease_durations_monotonically=decrease_durations_monotonically, 
+            tie_parts=tie_parts))
+
+    # return result
     return result

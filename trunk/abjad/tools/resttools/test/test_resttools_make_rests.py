@@ -29,10 +29,10 @@ def test_resttools_make_rests_02():
 
 
 def test_resttools_make_rests_03():
-    '''The tied keyword can be set to true to return tied rests.
+    '''Tie rest parts.
     '''
 
-    t = resttools.make_rests((5, 8), tied=True)
+    t = resttools.make_rests((5, 8), tie_parts=True)
     assert spannertools.get_the_only_spanner_attached_to_component(
         t[0], tietools.TieSpanner) is \
         spannertools.get_the_only_spanner_attached_to_component(

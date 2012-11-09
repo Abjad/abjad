@@ -41,5 +41,3 @@
 11. Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
-
-12. Change tied=True to tie_notes=True and tie_rests=True, as appropriate.

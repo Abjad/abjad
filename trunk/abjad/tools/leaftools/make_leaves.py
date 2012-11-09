@@ -102,7 +102,7 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
                 decrease_durations_monotonically=decrease_durations_monotonically)
         elif pitch is None:
             leaves = resttools.make_tied_rest(duration, 
-                decrease_durations_monotonically=decrease_durations_monotonically, tied=tie_rests)
+                decrease_durations_monotonically=decrease_durations_monotonically, tie_parts=tie_rests)
         else:
             raise ValueError('Unknown pitch {!r}.'.format(pitch))
         return leaves

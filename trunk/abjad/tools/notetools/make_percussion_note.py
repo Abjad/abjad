@@ -3,7 +3,9 @@ from abjad.tools import leaftools
 
 
 def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
-    '''Make percussion note::
+    '''.. versionadded:: 1.0
+
+    Make percussion note::
 
         >>> notetools.make_percussion_note(2, (1, 4), (1, 8))
         [Note("d'8"), Rest('r8')]
@@ -32,10 +34,6 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     Duration of rests returned will sum to note duration taken from `total_duration`.
 
     Useful for percussion music where attack duration is negligible and tied notes undesirable.
-
-    .. versionchanged:: 2.0
-        renamed ``construct.percussion_note()`` to
-        ``notetools.make_percussion_note()``.
     '''
     from abjad.tools import notetools
     from abjad.tools import resttools
@@ -44,14 +42,17 @@ def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     total_duration = durationtools.Duration(total_duration)
     max_note_duration = durationtools.Duration(max_note_duration)
 
+    # make note and rest
     if max_note_duration < total_duration:
         rest_duration = total_duration - max_note_duration
         r = resttools.make_tied_rest(rest_duration)
         n = notetools.make_tied_note(pitch, max_note_duration)
     else:
-        n = leaftools.make_tied_leaf(notetools.Note, total_duration, pitches=pitch, tied=False)
+        n = leaftools.make_tied_leaf(notetools.Note, total_duration, pitches=pitch, tie_parts=False)
         if 1 < len(n):
             for i in range(1, len(n)):
                 n[i] = resttools.Rest(n[i])
         r = []
+
+    # return list of percussion note followed by rest
     return n + r

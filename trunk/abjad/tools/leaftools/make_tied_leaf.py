@@ -2,22 +2,19 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
-def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitches=None, tied=True):
-    '''Return list of leaves to fill the given duration `duration`.
+def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitches=None, tie_parts=True):
+    '''.. versionadded:: 1.0
 
-    Leaves returned are tie-spanned when ``tied=True``.
-
-    `duration`
-        must be of the form ``m / 2**n`` for any integer ``m``.
+    Make tied leaf of `kind` with assignable `duration`.
 
     `decrease_durations_monotonically` must be boolean.
         True returns a list of notes of decreasing duration.
         False returns a list of notes of increasing duration.
 
     `pitches`
-        a pitch or list of pitch tokens.
+        a pitch or list of pitches.
 
-    `tied`
+    `tie_parts`
         True to return tied leaves. False otherwise.
     '''
     from abjad.tools import tietools
@@ -25,6 +22,7 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitche
     # check input
     duration = durationtools.Duration(duration)
 
+    # make leaves
     result = []
     for numerator in mathtools.partition_integer_into_canonic_parts(duration.numerator):
         written_duration = durationtools.Duration(numerator, duration.denominator)
@@ -33,11 +31,13 @@ def make_tied_leaf(kind, duration, decrease_durations_monotonically=True, pitche
         else:
             args = (written_duration, )
         result.append(kind(*args))
-
+    
+    # apply direction and tie spanner if required
     if 1 < len(result):
         if not decrease_durations_monotonically:
             result.reverse()
-        if tied:
+        if tie_parts:
             tietools.TieSpanner(result)
 
+    # return result
     return result
