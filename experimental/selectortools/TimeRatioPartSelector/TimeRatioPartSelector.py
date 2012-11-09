@@ -51,8 +51,8 @@ class TimeRatioPartSelector(RatioPartSelector):
 
     ### PUBLIC METHODS ###
 
-    def get_start_offset(self, score_specification, context_name):
-        r'''Evaluate score start offset of selector when applied
+    def get_offsets(self, score_specification, context_name):
+        r'''Evaluate start and stop offsets of selector when applied
         to `context_name` in `score_specification`.
 
         Return offset.
@@ -65,23 +65,9 @@ class TimeRatioPartSelector(RatioPartSelector):
         segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        return start_offset
-
-    def get_stop_offset(self, score_specification, context_name):
-        r'''Evaluate score stop offset of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return offset.
-        '''
-        selector_duration = self.selector.get_duration(score_specification, context_name)
-        parts = mathtools.divide_number_by_ratio(selector_duration, self.ratio)
         part = parts[self.part]
         duration = part
-        parts_before = parts[:self.part]
-        duration_before = sum(parts_before)
         stop_offset = duration_before + duration
         stop_offset = durationtools.Offset(stop_offset)
-        segment_specification = score_specification.get_start_segment_specification(self)
-        segment_name = segment_specification.segment_name
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
-        return stop_offset
+        return start_offset, stop_offset

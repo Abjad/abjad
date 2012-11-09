@@ -34,12 +34,6 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_offsets
 
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
-.. automethod:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_start_offset
-
-.. automethod:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.get_stop_offset
-
 .. automethod:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.set_segment_identifier
 
 Special Methods

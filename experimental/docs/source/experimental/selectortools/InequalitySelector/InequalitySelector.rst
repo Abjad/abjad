@@ -38,14 +38,6 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_start_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
-.. automethod:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.get_stop_offset
-
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 Special Methods
 ---------------
 

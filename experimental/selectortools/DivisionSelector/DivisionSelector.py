@@ -82,29 +82,8 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         divisions = self.get_selected_objects(score_specification, voice_name)
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
-        #self._debug((start_offset, stop_offset), 'offsets')
         return start_offset, stop_offset
         
-    def get_start_offset(self, score_specification, voice_name):
-        r'''Get selector score start offset of selector when selector is applied
-        to `voice_name` in `score_specification`.
-
-        .. note:: add example.
-
-        Return offset.
-        '''
-        start_offset, stop_offset = self.get_offsets(score_specification, voice_name)
-        return start_offset
-
-    def get_stop_offset(self, score_specification, voice_name):
-        r'''Get selector score stop offset of selector when selector is applied
-        to `voice_name` in `score_specification`.
-
-        Return offset.
-        '''
-        start_offset, stop_offset = self.get_offsets(score_specification, voice_name)
-        return stop_offset
-
     def get_selected_objects(self, score_specification, voice_name):
         '''Get divisions selected when selector is applied
         to `voice_name` in `score_specification`.

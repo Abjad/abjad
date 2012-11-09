@@ -28,10 +28,6 @@ Methods
 
 .. automethod:: experimental.selectortools.Selector.Selector.Selector.get_selected_objects
 
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_start_offset
-
-.. automethod:: experimental.selectortools.Selector.Selector.Selector.get_stop_offset
-
 Special Methods
 ---------------
 

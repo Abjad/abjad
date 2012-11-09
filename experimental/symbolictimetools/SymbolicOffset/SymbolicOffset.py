@@ -295,10 +295,11 @@ class SymbolicOffset(AbjadObject):
         Return offset.
         '''
         edge = self.edge or Left
+        start_offset, stop_offset = self.selector.get_offsets(score_specification, context_name)
         if edge == Left:
-            score_offset = self.selector.get_start_offset(score_specification, context_name)
+            score_offset = start_offset
         else:
-            score_offset = self.selector.get_stop_offset(score_specification, context_name)
+            score_offset = stop_offset
         multiplier = self.multiplier or fractions.Fraction(1)
         score_offset = multiplier * score_offset
         offset = self.offset or durationtools.Offset(0)

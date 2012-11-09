@@ -40,13 +40,7 @@ Methods
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_offsets
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_selected_objects
-
-.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_start_offset
-
-.. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.get_stop_offset
 
 .. automethod:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.set_segment_identifier
 

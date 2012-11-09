@@ -46,15 +46,9 @@ Methods
 
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.get_offsets
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.get_selected_objects
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
-
-.. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.get_start_offset
-
-.. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.get_stop_offset
 
 .. automethod:: experimental.selectortools.TimeRatioPartSelector.TimeRatioPartSelector.TimeRatioPartSelector.set_segment_identifier
 

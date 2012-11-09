@@ -128,13 +128,13 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_start_offset(self, score_specification, context_name):
-        r'''Evaluate selector score start offset when selector is applied
+    def get_offsets(self, score_specification, context_name):
+        r'''Evaluate start and stop offsets when selector is applied
         to `score_specification`.
 
         Ignore `context_name`.
 
-        Return offset.
+        Return pair.
         '''
         segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
@@ -146,27 +146,11 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        return start_offset
-
-    def get_stop_offset(self, score_specification, context_name):
-        r'''Evaluate score stop offset when selector is applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return offset.
-        '''
-        segment_specification = score_specification.get_start_segment_specification(self)
-        segment_name = segment_specification.segment_name
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_up_through = durations[:stop]
         duration_up_through = sum(durations_up_through)
         stop_offset = durationtools.Offset(duration_up_through)
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
-        return stop_offset
+        return start_offset, stop_offset
 
     def get_selected_objects(self, score_specification, context_name):
         '''Get background measures selected when selector is applied

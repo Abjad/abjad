@@ -146,8 +146,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(division_material_request, 'dmr')
         selector = division_material_request.selector
         voice_name = division_material_request.voice_name
-        start_offset = selector.get_start_offset(self.score_specification, voice_name)
-        stop_offset = selector.get_stop_offset(self.score_specification, voice_name)
+        start_offset, stop_offset = selector.get_offsets(self.score_specification, voice_name)
         #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']

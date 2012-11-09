@@ -141,29 +141,15 @@ class SegmentSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC PROPERTIES ###
 
-    def get_start_offset(self, score_specification, context_name):
-        '''Evaluate score start offset of selector when applied
+    def get_offsets(self, score_specification, context_name):
+        '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.
 
         Ignore `context_name`.
 
         Return offset.
         '''
-        start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
-            self.start_segment_identifier)
-        return start_offset
-
-    def get_stop_offset(self, score_specification, context_name):
-        '''Evaluate score stop offset of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return offset.
-        '''
-        start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
-            self.stop_segment_identifier)
-        return start_offset
+        return score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
 
     def get_selected_objects(self, score_specification, context_name):
         '''Get segments selected when selector is applied

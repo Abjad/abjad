@@ -498,7 +498,7 @@ class ScoreSpecification(Specification):
     def segment_offsets_to_score_offsets(self,
         segment_identifier, segment_start_offset=None, segment_stop_offset=None):
         '''Change `segment_start_offset` and `segment_stop_offset`
-        to score start offset and score stop offset.
+        to start offset and stop offset.
 
         .. note:: Add example.
 
@@ -593,7 +593,7 @@ class ScoreSpecification(Specification):
             >>> score_specification.segment_name_to_segment_offsets('red')
             (Offset(0, 1), Offset(0, 1))
 
-        Return pair of score start- and stop-offsets.
+        Return pair of start- and stop-offsets.
         '''
         if hasattr(self, 'segment_offset_pairs'):
             start_segment_index = self.segment_name_to_segment_index(segment_name)        

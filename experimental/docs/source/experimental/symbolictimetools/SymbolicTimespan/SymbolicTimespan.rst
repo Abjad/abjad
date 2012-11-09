@@ -20,10 +20,6 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_offsets
 
-.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_start_offset
-
-.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_stop_offset
-
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_segment_identifier
 
 Special Methods

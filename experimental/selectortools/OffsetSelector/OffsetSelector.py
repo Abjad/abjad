@@ -84,11 +84,11 @@ class OffsetSelector(Selector):
 
     ### PUBLIC METHODS ##
 
-    def get_start_offset(self, score_specification, context_name):
-        r'''Evaluate score start offset of selector when applied
+    def get_offsets(self, score_specification, context_name):
+        r'''Evaluate start and stop offsets of selector when applied
         to `context_name` in `score_specification`.
 
-        Return offset.
+        Return pair.
         '''
         if self.start_offset is None:
             start_offset = durationtools.Offset(0)
@@ -99,24 +99,14 @@ class OffsetSelector(Selector):
         segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        return start_offset
-
-    def get_stop_offset(self, score_specification, context_name):
-        r'''Evaluate score stop offset of selector when applied
-        to `context_name` in `score_specification`.
-
-        Return offset.
-        '''
         if self.stop_offset is None:
             stop_offset = durationtools.Offset(self.selector.get_duration(score_specification, context_name))
         elif self.stop_offset < 0:
             stop_offset = self.selector.get_duration(score_specification, context_name) + self.stop_offset
         else:
             stop_offset = self.stop_offset
-        segment_specification = score_specification.get_start_segment_specification(self)
-        segment_name = segment_specification.segment_name
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
-        return stop_offset
+        return start_offset, stop_offset
 
     def get_selected_objects(self, score_specification, context_name):
         '''Implemented only for interface compliance.

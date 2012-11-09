@@ -38,13 +38,7 @@ Methods
 
 .. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_offsets
 
-    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_selected_objects
-
-.. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_start_offset
-
-.. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.get_stop_offset
 
 .. automethod:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.set_segment_identifier
 

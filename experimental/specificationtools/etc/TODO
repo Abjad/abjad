@@ -1,22 +1,19 @@
-1.  Reimplement all get_start_offset() and get_stop_offset() pairs
-    in terms of a single get_offsets() method.
+1.  Integrate time-relation filtering into all inequality selector classes.
 
-2.  Integrate timespan inequality filtering into all inequality selector classes.
-
-3.  Author tests to make sure that persistent overlapping division selectors 
+2.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-4.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+3.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
     beginning of following section. Implement a SegmentSpecification.set_divisions()
     boolean 'restart' keyword to separate these functions. When restart=True
     then truncate will always effectively be interpreted as true.
 
-5.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+4.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
     The keyword will specify the score-tree level at which rotation should happen.
     The keyword will be an attribute of the RotationIndicator class.
 
-6.  Implement SegmentSpecification.select_multiple_divisions() to return multiple
+5.  Implement SegmentSpecification.select_multiple_divisions() to return multiple
     selectors at once. This will change ...
         first_division = red_segment.select_division(0)
         second_division = red_segment.select_division(1)
@@ -25,17 +22,17 @@
         first_division, second_division, third_division = red_segment.select_all_divisions()
     ... instead.
 
-7.  Implement very basic cycle detection.
+6.  Implement very basic cycle detection.
 
-8.  Afford rhythm command request of parseable string. This will make ...
+7.  Afford rhythm command request of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
         voice_1_rhythm_command = red_segment.request_rhythm_command('Voice 1')
         red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
 
-9.  Set all rotation to fracture_spanners=False by default in interpreter.
+8.  Set all rotation to fracture_spanners=False by default in interpreter.
 
-10. Reimplement rhythm rotation to pay attention to the differences beteween
+9.  Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
