@@ -41,7 +41,7 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.timepoint
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.symbolic_offset
 
 Special Methods
 ---------------

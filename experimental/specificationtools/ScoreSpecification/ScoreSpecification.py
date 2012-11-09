@@ -399,7 +399,7 @@ class ScoreSpecification(Specification):
     def request_division_command(self, voice,
         selector=None, edge=None, multiplier=None, offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request division command active at timepoint in `voice`.
+        r'''Request division command active at offset in `voice`.
 
         .. note:: not yet tested.
 
@@ -407,10 +407,10 @@ class ScoreSpecification(Specification):
         '''
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
-        timepoint = symbolictimetools.SymbolicOffset(
+        symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'divisions', context_name=context_name, timepoint=timepoint,
+            'divisions', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_rhythm(self, voice, selector=None,
@@ -433,7 +433,7 @@ class ScoreSpecification(Specification):
     def request_rhythm_command(self, voice,
         selector=None, edge=None, multiplier=None, offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request rhythm command active at timepoint in `voice`.
+        r'''Request rhythm command active at offset in `voice`.
 
         .. note:: not yet tested.
 
@@ -441,10 +441,10 @@ class ScoreSpecification(Specification):
         '''
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
-        timepoint = symbolictimetools.SymbolicOffset(
+        symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'rhythms', context_name=context_name, timepoint=timepoint,
+            'rhythms', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_time_signatures(self, context, selector=None,
@@ -466,7 +466,7 @@ class ScoreSpecification(Specification):
     def request_time_signature_command(self, voice,
         selector=None, edge=None, multiplier=None, offset=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request time signature command active at timepoint in `voice`.
+        r'''Request time signature command active at offset in `voice`.
 
         .. note:: not yet tested.
 
@@ -474,10 +474,10 @@ class ScoreSpecification(Specification):
         '''
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
-        timepoint = symbolictimetools.SymbolicOffset(
+        symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'time_signatures', context_name=context_name, timepoint=timepoint,
+            'time_signatures', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):

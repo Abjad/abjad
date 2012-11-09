@@ -33,11 +33,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.single_context_settings_by_context
 
-.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.start_timepoint
-
-.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.stop_timepoint
-
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.storage_format
+
+.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.symbolic_start_offset
+
+.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.symbolic_stop_offset
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.time_signatures
 

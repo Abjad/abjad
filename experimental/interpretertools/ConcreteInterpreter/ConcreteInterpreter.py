@@ -117,8 +117,8 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
         #self._debug(division_command_request, 'dcr')
-        requested_segment_identifier = division_command_request.timepoint.start_segment_identifier
-        requested_offset = division_command_request.timepoint.get_score_offset(
+        requested_segment_identifier = division_command_request.symbolic_offset.start_segment_identifier
+        requested_offset = division_command_request.symbolic_offset.get_score_offset(
             self.score_specification, voice_name)
         timespan_inventory = timerelationtools.TimespanInventory()
         #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
@@ -746,9 +746,9 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
         assert rhythm_command_request.attribute == 'rhythm'
         #self._debug(rhythm_command_request, 'rcr')
-        requested_segment_identifier = rhythm_command_request.timepoint.start_segment_identifier
+        requested_segment_identifier = rhythm_command_request.symbolic_offset.start_segment_identifier
         #self._debug(requested_segment_identifier, 'segment')
-        requested_offset = rhythm_command_request.timepoint.get_score_offset(
+        requested_offset = rhythm_command_request.symbolic_offset.get_score_offset(
             self.score_specification, voice_name)
         #self._debug(requested_offset, 'offset')
         timespan_inventory = timerelationtools.TimespanInventory()
@@ -973,7 +973,7 @@ class ConcreteInterpreter(Interpreter):
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
         assert command_request.attribute == 'time_signatures'
-        segment_specification = self.get_start_segment_specification(command_request.timepoint)
+        segment_specification = self.get_start_segment_specification(command_request.symbolic_offset)
         time_signatures = segment_specification.time_signatures[:]
         time_signatures = requesttools.apply_request_transforms(command_request, time_signatures)
         return time_signatures

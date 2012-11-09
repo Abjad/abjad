@@ -247,25 +247,25 @@ class SegmentSpecification(Specification):
         return Specification.single_context_settings_by_context.fget(self)
 
     @property
-    def start_timepoint(self):
-        '''Segment specification start timepoint.
+    def symbolic_start_offset(self):
+        '''Segment specification symbolic start offset::
 
-            >>> segment.start_timepoint
+            >>> segment.symbolic_start_offset
             SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Left)
 
-        Return timepoint.
+        Return symbolic offset.
         '''
         selector = self.select_segment()
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Left)
 
     @property
-    def stop_timepoint(self):
-        '''Segment specification stop timepoint.
+    def symbolic_stop_offset(self):
+        '''Segment specification symbolic stop offset::
 
-            >>> segment.stop_timepoint
+            >>> segment.symbolic_stop_offset
             SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right)
 
-        Return timepoint.
+        Return symbolic offset.
         '''
         selector = self.select_segment()
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Right)
@@ -339,7 +339,7 @@ class SegmentSpecification(Specification):
     def request_division_command(self, voice,
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment division command active at timepoint
+        r'''Request segment division command active at offset
         in `voice`.
 
         Example 1. Request division command active at start of segment::
@@ -410,17 +410,17 @@ class SegmentSpecification(Specification):
                 context_name='Voice 1'
                 )
 
-        Specify timepoint with `selector`, `edge`, `multiplier`, `offset`.
+        Specify symbolic offset with `selector`, `edge`, `multiplier`, `offset`.
 
         Postprocess command with any of `index`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
         selector = selector or self.select_segment()
-        timepoint = symbolictimetools.SymbolicOffset(
+        symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'divisions', context_name=voice, timepoint=timepoint,
+            'divisions', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_naive_beats(self, context=None,
@@ -489,7 +489,7 @@ class SegmentSpecification(Specification):
     def request_rhythm_command(self, voice,
         edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment rhythm command active at timepoint in `voice`.
+        r'''Request segment rhythm command active at offset in `voice`.
 
         Example. Request rhythm command active at start of segment::
 
@@ -508,17 +508,17 @@ class SegmentSpecification(Specification):
                 context_name='Voice 1'
                 )
 
-        Specify timepoint with segment-relative `edge`, `multiplier`, `offset`.
+        Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
 
         Postprocess command with any of `index`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
         selector = self.select_segment()
-        timepoint = symbolictimetools.SymbolicOffset(
+        symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'rhythm', context_name=voice, timepoint=timepoint,
+            'rhythm', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_time_signatures(self, context=None, 
@@ -547,7 +547,7 @@ class SegmentSpecification(Specification):
     def request_time_signature_command(self, 
         edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment time signature command active at timepoint
+        r'''Request segment time signature command active at offset
         in `context`.
 
         Example. Request time signature command active at start of segment::
@@ -566,17 +566,17 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Specify timepoint with segment-relative `edge`, `multiplier`, `offset`.
+        Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
 
         Postprocess command with any of `index`, `count`, `reverse`, `callback`.
 
         Return command request.        
         '''
         selector = self.select_segment()
-        timepoint = symbolictimetools.SymbolicOffset(
+        symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
-            'time_signatures', context_name=None, timepoint=timepoint,
+            'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measure(self, n):

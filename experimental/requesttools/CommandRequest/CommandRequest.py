@@ -5,7 +5,7 @@ from experimental.requesttools.Request import Request
 class CommandRequest(Request):
     r'''.. versionadded:: 1.0
 
-    Request `attribute` command active at `timepoint` in `context_name`::
+    Request `attribute` command active at `symbolic_offset` in `context_name`::
 
         >>> from experimental import *
 
@@ -54,14 +54,14 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, timepoint, context_name=None, 
+    def __init__(self, attribute, symbolic_offset, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
-        assert isinstance(timepoint, symbolictimetools.SymbolicOffset)
+        assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
-        self._timepoint = timepoint
+        self._symbolic_offset = symbolic_offset
         self._context_name = context_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -90,31 +90,31 @@ class CommandRequest(Request):
 
     @property
     def start_segment_identifier(self):
-        '''Delegate to ``self.timepoint.start_segment_identifier``.
+        '''Delegate to ``self.symbolic_offset.start_segment_identifier``.
 
             >>> command_request.start_segment_identifier
             'red'
 
         Return string or none.
         '''
-        return self.timepoint.start_segment_identifier
+        return self.symbolic_offset.start_segment_identifier
 
     @property
     def stop_segment_identifier(self):
-        '''Delegate to ``self.timepoint.stop_segment_identifier``.
+        '''Delegate to ``self.symbolic_offset.stop_segment_identifier``.
 
             >>> command_request.stop_segment_identifier
             SegmentIdentifierExpression("'red' + 1")
 
         Return string or none.
         '''
-        return self.timepoint.stop_segment_identifier
+        return self.symbolic_offset.stop_segment_identifier
 
     @property
-    def timepoint(self):
-        '''Command request timepoint specified by user.
+    def symbolic_offset(self):
+        '''Command request symbolic offset specified by user.
 
-            >>> z(command_request.timepoint)
+            >>> z(command_request.symbolic_offset)
             symbolictimetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
                     inequality=timerelationtools.TimespanInequality(
@@ -130,6 +130,6 @@ class CommandRequest(Request):
                     )
                 )
 
-        Return timepoint.
+        Return symbolic_offset.
         '''
-        return self._timepoint
+        return self._symbolic_offset
