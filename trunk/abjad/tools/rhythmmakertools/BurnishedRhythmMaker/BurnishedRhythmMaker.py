@@ -163,6 +163,7 @@ class BurnishedRhythmMaker(RhythmMaker):
             tie_spanner = tietools.TieSpanner()
             # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
+            tietools.remove_tie_spanners_from_components_in_expr(part)
             tie_spanner.extend(part)
 
     @abc.abstractmethod
