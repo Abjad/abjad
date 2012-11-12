@@ -1,3 +1,4 @@
+import pprint
 from abjad.tools import mathtools
 from experimental.quantizationtools.SearchTree import SearchTree
 
@@ -37,6 +38,19 @@ class SimpleSearchTree(SearchTree):
             11: None,            # 1/11
             13: None,            # 1/13
         }
+
+    ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        indent = '\t'
+        if not is_indented:
+            indent = ''
+        result = ['{}('.format(self._tools_package_qualified_class_name)]
+        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
+        result.append('{}definition={}'.format(indent, definition[0]))
+        result.extend([indent + x for x in definition[1:]])
+        result.append('{})'.format(indent))   
+        return result
 
     ### PUBLIC METHODS ###
 

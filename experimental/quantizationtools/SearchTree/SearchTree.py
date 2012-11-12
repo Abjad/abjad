@@ -7,6 +7,16 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SearchTree(AbjadObject):
+    '''Abstract base class from which concrete ``SearchTree`` subclasses inherit.
+
+    ``SearchTrees`` encapsulate strategies for generating collections of ``QGrids``,
+    given a set of ``QEventProxy`` instances as input.
+
+    They allow composers to define the degree and quality of nested rhythmic
+    subdivisions in the quantization output.  That is to say, they allow composers
+    to specify what sorts of tuplets and ratios of pulses may be contained within
+    other tuplets, to arbitrary levels of nesting.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

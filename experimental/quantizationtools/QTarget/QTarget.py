@@ -11,7 +11,11 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QTarget(AbjadObject):
-    '''Abstract base class from which concrete QTarget subclasses inherit.
+    '''Abstract base class from which concrete ``QTarget`` subclasses inherit.
+
+    ``QTarget`` is created by a concrete ``QSchema`` instance, and represents
+    the mold into which the timepoints contained by a ``QSequence`` instance
+    will be poured, as structured by that ``QSchema`` instance.
 
     Not composer-safe.
 

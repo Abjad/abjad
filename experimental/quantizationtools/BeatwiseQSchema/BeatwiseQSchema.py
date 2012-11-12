@@ -4,6 +4,35 @@ from experimental.quantizationtools.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):
+    '''Concrete ``QSchema`` subclass which treats "beats" as its time-step unit:
+
+    ::
+
+        >>> q_schema = quantizationtools.BeatwiseQSchema()
+
+    Without arguments, it uses smart defaults:
+
+    ::
+
+        >>> q_schema
+        quantizationtools.BeatwiseQSchema(
+            beatspan=durationtools.Duration(1, 4),
+            search_tree=quantizationtools.SimpleSearchTree(
+                definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
+                    3: {   2: {   2: None}, 3: None, 5: None},
+                    5: {   2: None, 3: None},
+                    7: {   2: None},
+                    11: None,
+                    13: None}
+                ),
+            tempo=contexttools.TempoMark(
+                durationtools.Duration(1, 4),
+                60
+                ),
+            )
+
+    Return ``BeatwiseQSchema`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

@@ -4,6 +4,38 @@ from experimental.quantizationtools.QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
+    '''Concrete QSchema subclass which treats "measures" as its time-step unit:
+
+    ::
+
+        >>> q_schema = quantizationtools.MeasurewiseQSchema()
+
+    Without arguments, it uses smart defaults:
+
+    ::
+
+        >>> q_schema
+        quantizationtools.MeasurewiseQSchema(
+            search_tree=quantizationtools.SimpleSearchTree(
+                definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
+                    3: {   2: {   2: None}, 3: None, 5: None},
+                    5: {   2: None, 3: None},
+                    7: {   2: None},
+                    11: None,
+                    13: None}
+                ),
+            tempo=contexttools.TempoMark(
+                durationtools.Duration(1, 4),
+                60
+                ),
+            time_signature=contexttools.TimeSignatureMark(
+                (4, 4)
+                ),
+            use_full_measure=False,
+            )
+
+    Return ``MeasurewiseQSchema`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
