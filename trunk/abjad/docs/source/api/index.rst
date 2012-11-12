@@ -95,7 +95,6 @@ Composition packages
    tools/componenttools/component_to_containment_signature
    tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_score_index
-   tools/componenttools/component_to_tuplet_depth
    tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
    tools/componenttools/copy_components_and_covered_spanners
    tools/componenttools/copy_components_and_fracture_crossing_spanners

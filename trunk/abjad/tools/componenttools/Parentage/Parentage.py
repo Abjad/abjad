@@ -78,6 +78,41 @@ class Parentage(Selection):
         return len(self[1:])
 
     @property
+    def tuplet_depth(self):
+        '''Tuplet-depth of component::
+
+            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> staff = Staff([tuplet])
+            >>> note = staff.leaves[0]
+
+        ::
+
+            >>> note.parentage.tuplet_depth
+            1
+
+        ::
+
+            >>> tuplet.parentage.tuplet_depth
+            0
+
+        ::
+
+            >>> staff.parentage.tuplet_depth
+            0
+
+        Return nonnegative integer.
+        '''
+        from abjad.tools import tuplettools
+        from abjad.tools import componenttools
+        result = 0
+        # should probably interate up to only first parallel container in parentage.
+        # note that we probably need a named idea for 'parentage up to first parallel container'.
+        for parent in self[1:]:
+            if isinstance(parent, tuplettools.Tuplet):
+                result += 1
+        return result
+
+    @property
     def root(self):
         '''Last element in parentage.
         '''
