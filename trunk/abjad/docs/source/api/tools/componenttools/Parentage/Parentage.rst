@@ -19,6 +19,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.parentage_signature
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.root
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.score_index

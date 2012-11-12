@@ -82,8 +82,7 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
         dfs = iterationtools.iterate_components_depth_first(next_component, capped=False)
         for node in dfs:
             if type(node) == type(component) and \
-                componenttools.component_to_parentage_signature(node) == \
-                componenttools.component_to_parentage_signature(component):
+                node.parentage.parentage_signature == component.parentage.parentage_signature:
                 return node
 
     def _backward_helper(component):
@@ -93,8 +92,8 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
         dfs = iterationtools.iterate_components_depth_first(prev, capped=False, direction=Right)
         for node in dfs:
             if type(node) == type(component) and \
-                componenttools.component_to_parentage_signature(node) == \
-                componenttools.component_to_parentage_signature(component):
+                node.parentage.parentage_signature == \
+                component.parentage.parentage_signature:
                 return node
 
     current_component = component

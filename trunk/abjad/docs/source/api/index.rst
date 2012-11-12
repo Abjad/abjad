@@ -92,7 +92,6 @@ Composition packages
    tools/componenttools/all_are_contiguous_components_in_same_parent
    tools/componenttools/all_are_contiguous_components_in_same_thread
    tools/componenttools/all_are_thread_contiguous_components
-   tools/componenttools/component_to_parentage_signature
    tools/componenttools/copy_and_partition_governed_component_subtree_by_leaf_counts
    tools/componenttools/copy_components_and_covered_spanners
    tools/componenttools/copy_components_and_fracture_crossing_spanners

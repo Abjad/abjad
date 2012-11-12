@@ -133,39 +133,40 @@ class Parentage(Selection):
         return len(self[1:])
 
     @property
-    def tuplet_depth(self):
-        '''Tuplet-depth of component::
+    def parentage_signature(self):
+        r'''.. versionadded:: 1.1
+
+        Parentage signature of component::
 
             >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
             >>> staff = Staff([tuplet])
             >>> note = staff.leaves[0]
+            >>> print note.parentage.parentage_signature
+                staff: Staff-...
+                self: Note-...
 
-        ::
-
-            >>> note.parentage.tuplet_depth
-            1
-
-        ::
-
-            >>> tuplet.parentage.tuplet_depth
-            0
-
-        ::
-
-            >>> staff.parentage.tuplet_depth
-            0
-
-        Return nonnegative integer.
+        Return parentage signature.
         '''
-        from abjad.tools import tuplettools
         from abjad.tools import componenttools
-        result = 0
-        # should probably interate up to only first parallel container in parentage.
-        # note that we probably need a named idea for 'parentage up to first parallel container'.
-        for parent in self[1:]:
-            if isinstance(parent, tuplettools.Tuplet):
-                result += 1
-        return result
+        from abjad.tools import scoretools
+        from abjad.tools import stafftools
+        from abjad.tools import voicetools
+        signature = componenttools.ContainmentSignature()
+        signature._self = self[0]._id_string
+        for component in self:
+            if isinstance(component, voicetools.Voice) and not signature._voice:
+                signature._voice = component._id_string
+            elif isinstance(component, stafftools.Staff) and not signature._staff:
+                signature._staff = component._id_string
+            elif isinstance(component, scoretools.StaffGroup) and not signature._staff_group:
+                signature._staff_group = component._id_string
+            elif isinstance(component, scoretools.Score) and not signature._score:
+                signature._score = component._id_string
+        else:
+            # root components must be manifestly equal to compare true
+            signature._root = id(component)
+            signature._root_str = component._id_string
+        return signature
 
     @property
     def root(self):
@@ -230,4 +231,39 @@ class Parentage(Selection):
             result.insert(0, index)
             cur = parent
         result = tuple(result)
+        return result
+
+    @property
+    def tuplet_depth(self):
+        '''Tuplet-depth of component::
+
+            >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            >>> staff = Staff([tuplet])
+            >>> note = staff.leaves[0]
+
+        ::
+
+            >>> note.parentage.tuplet_depth
+            1
+
+        ::
+
+            >>> tuplet.parentage.tuplet_depth
+            0
+
+        ::
+
+            >>> staff.parentage.tuplet_depth
+            0
+
+        Return nonnegative integer.
+        '''
+        from abjad.tools import tuplettools
+        from abjad.tools import componenttools
+        result = 0
+        # should probably interate up to only first parallel container in parentage.
+        # note that we probably need a named idea for 'parentage up to first parallel container'.
+        for parent in self[1:]:
+            if isinstance(parent, tuplettools.Tuplet):
+                result += 1
         return result
