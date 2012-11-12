@@ -1126,20 +1126,13 @@ class SegmentSpecification(Specification):
             settingtools.MultipleContextSetting(
                 'rhythm',
                 requesttools.AbsoluteRequest(
-                    rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker(
+                    rhythmmakertools.TaleaFilledRhythmMaker(
                         [1],
                         16,
                         prolation_addenda=[],
-                        lefts=[0],
-                        middles=[0],
-                        rights=[0],
-                        left_lengths=[0],
-                        right_lengths=[0],
                         secondary_divisions=[],
                         beam_each_cell=False,
-                        decrease_durations_monotonically=True,
-                        tie_split_notes=False,
-                        tie_rests=False
+                        tie_split_notes=False
                         )
                     ),
                 selectortools.SingleSegmentSelector(

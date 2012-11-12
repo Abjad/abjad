@@ -45,10 +45,15 @@
 10. Sprinkle asserts into all segment specification select methods.
     This will assert on red_segment.select_divisions('Voice 1') and similar.
 
-12. Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
+11. Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
     Establish metrical hierarchy after division specification and change divisions where necessary.
     Reestablish metrical hierarchy after rhythm specification but leave divisions in tact.
 
-11. Write E series schematic examples to all focus on different uses of the metrical hierarchy.
+12. Write E series schematic examples to all focus on different uses of the metrical hierarchy.
     Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
     Make selections equal to different levels of the metrical hierarchy.
+
+13. Find a way to make beam_cells_together (or beam_divisions_together) a rhythm-maker
+    initializer keyword. Right now it's added onto the side of already-initialized
+    rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
+    Also change name from beam_cells_together to beam_output_cells_together.

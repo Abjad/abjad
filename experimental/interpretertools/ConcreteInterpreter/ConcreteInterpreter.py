@@ -512,9 +512,9 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
         #self._debug(voice, 'voice')
         #self._debug(voice_division_list, 'voice division list')
-        rhythm_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
-        #self._debug_values(rhythm_commands, 'rhythm commands')
-        rhythm_command_durations = [x.duration for x in rhythm_commands]
+        rhythm_region_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
+        #self._debug_values(rhythm_region_commands, 'rhythm region commands')
+        rhythm_command_durations = [x.duration for x in rhythm_region_commands]
         #self._debug(rhythm_command_durations, 'rcd')
         division_region_expressions = \
             self.score_specification.contexts[voice.name]['division_region_expressions']
@@ -546,7 +546,7 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_start_offsets = [durationtools.Offset(x) for x in rhythm_region_start_offsets]
         rhythm_region_stop_offsets = cumulative_sums[1:]
         rhythm_region_stop_offsets = [durationtools.Offset(x) for x in rhythm_region_stop_offsets]
-        rhythm_command_duration_pairs = [(x, x.duration) for x in rhythm_commands]
+        rhythm_command_duration_pairs = [(x, x.duration) for x in rhythm_region_commands]
         #self._debug_values(rhythm_command_duration_pairs, 'rhythm command / duration pairs')
         merged_duration_rhythm_command_pairs = \
             sequencetools.pair_duration_sequence_elements_with_input_pair_values(
@@ -708,15 +708,9 @@ class ConcreteInterpreter(Interpreter):
                     region_commands = self.get_rhythm_commands_for_voice(voice)
                 else:
                     raise ValueError(attribute)
-#                if voice.name == 'Voice 2' and attribute == 'rhythm':
-#                    self._debug_values(region_commands, 'region commands')
                 region_commands = self.fuse_like_commands(region_commands)
-#                if voice.name == 'Voice 2' and attribute == 'rhythm':
-#                    self._debug_values(region_commands, 'region commands')
                 region_commands = self.supply_missing_region_commands_for_attribute(
                     region_commands, voice, attribute)
-#                if voice.name == 'Voice 2' and attribute == 'rhythm':
-#                    self._debug_values(region_commands, 'region commands')
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
                 self.score_specification.contexts[voice.name][key][:] = region_commands[:]
@@ -724,11 +718,6 @@ class ConcreteInterpreter(Interpreter):
                 for region_command in region_commands:
                     if region_command not in all_region_commands:
                         all_region_commands.append(region_command)
-#                if voice.name == 'Voice 2' and attribute == 'rhythm':
-#                    self._debug_values(self.score_specification.contexts['Voice 2']['rhythm_region_commands'], 
-#                        'region commands')
-#                if voice.name == 'Voice 2' and attribute == 'rhythm':
-#                    self._debug_values(all_region_commands, 'all region commands')
 
     # TODO: eventually merge with self.populate_all_region_commands_for_attribute()
     def populate_all_time_signature_commands(self):
