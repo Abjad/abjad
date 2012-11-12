@@ -14,10 +14,24 @@ $(document).ready(function() {
     var border_style = pre.css('border-top-style');
     var border_color = pre.css('border-top-color');
     var button_styles = {
-        'cursor':'pointer', 'position': 'absolute', 'top': '0', 'right': '0',
-        'border-color': border_color, 'border-style': border_style,
-        'border-width': border_width, 'color': border_color, 'text-size': '75%',
-        'font-family': 'monospace', 'padding-left': '0.2em', 'padding-right': '0.2em',
+        'cursor': 'pointer', 
+        'position': 'absolute', 
+        'top': '0', 
+        'right': '0',
+        'border-color': '#93A1A1', 
+        'border-style': 'dotted',
+        //'border-width': border_width, 
+        'border-color': '#93A1A1',
+        'border-width': '0 0 1px 1px',
+        'color': '#93A1A1', 
+        'font-family': 'monospace', 
+        'font-size': '0.9em',
+        'font-weight': 'bold',
+        'line-height': '120%',
+        'padding': '0.25em',
+        //'padding': '1em',
+        //'padding-left': '0.2em', 
+        //'padding-right': '0.2em',
         'border-radius': '0 3px 0 0'
     }
 
