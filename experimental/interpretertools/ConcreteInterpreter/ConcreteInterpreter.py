@@ -515,12 +515,13 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_commands = self.score_specification.contexts[voice.name]['rhythm_region_commands']
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
         rhythm_command_durations = [x.duration for x in rhythm_region_commands]
-        #self._debug(rhythm_command_durations, 'rcd')
+        #self._debug(rhythm_command_durations, 'rhythm command durations')
         division_region_expressions = \
             self.score_specification.contexts[voice.name]['division_region_expressions']
-        #self._debug_values(division_region_expressions, 'drx')
+        #self._debug_values(division_region_expressions, 'division region expressions')
         division_region_durations = [x.duration for x in division_region_expressions]
-        #self._debug(division_region_durations, 'drd')
+        #self._debug(division_region_durations, 'division region durations')
+        assert sum(rhythm_command_durations) == sum(division_region_durations)
         rhythm_command_merged_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
         #self._debug(rhythm_command_merged_durations, 'rcmds')
