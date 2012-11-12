@@ -101,11 +101,12 @@ class TaleaFilledRhythmMaker(DivisionBurnishedTaleaFilledRhythmMaker):
 
     def __init__(self, talea, talea_denominator, prolation_addenda=None, secondary_divisions=None,
         talea_helper=None, prolation_addenda_helper=None, secondary_divisions_helper=None,
-        beam_each_cell=False, tie_split_notes=False):
+        beam_each_cell=False, beam_cells_together=False, tie_split_notes=False):
         lefts, middles, rights = [0], [0], [0]
         left_lengths, right_lengths = [0], [0]
         DivisionBurnishedTaleaFilledRhythmMaker.__init__(self, talea, talea_denominator, prolation_addenda,
             lefts, middles, rights, left_lengths, right_lengths, secondary_divisions,
             talea_helper=talea_helper, prolation_addenda_helper=prolation_addenda_helper,
             secondary_divisions_helper=secondary_divisions_helper,
-            beam_each_cell=beam_each_cell, tie_split_notes=tie_split_notes)
+            beam_each_cell=beam_each_cell, beam_cells_together=beam_cells_together,
+            tie_split_notes=tie_split_notes)
