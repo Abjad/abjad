@@ -163,7 +163,8 @@ class ConcreteInterpreter(Interpreter):
         if not division_region_expressions.all_are_contiguous:
             return
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
-        trimmed_division_region_expressions = timerelationtools.TimespanInventory(trimmed_division_region_expressions)
+        trimmed_division_region_expressions = timerelationtools.TimespanInventory(
+            trimmed_division_region_expressions)
         keep_timespan = timerelationtools.LiteralTimespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         #self._debug(trimmed_division_region_expressions, 'trimmed')
@@ -333,11 +334,12 @@ class ConcreteInterpreter(Interpreter):
     def get_commands_that_start_during_segment(self, segment_specification, context_name, attribute):
         single_context_settings = self.get_single_context_settings_that_start_during_segment(
             segment_specification, context_name, attribute, include_improper_parentage=True)
-        #self._debug_values(single_context_settings, 'scs')
+        #self._debug_values(single_context_settings, 'single-context settings')
         commands = []
         for single_context_setting in single_context_settings:
             command = self.single_context_setting_to_command(
                 single_context_setting, segment_specification, context_name)
+            #self._debug(command, 'command')
             commands.append(command)
         return commands
 
@@ -365,15 +367,17 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: eventually merge with self.get_division_commands_for_voice()
     def get_rhythm_commands_for_voice(self, voice):
-        rhythm_commands = []
+        raw_commands = []
+        # TODO: replace with a new self.get_commands_for_voice('rhythm')
         for segment_specification in self.score_specification.segment_specifications:
-            raw_commands = self.get_commands_that_start_during_segment(
-                segment_specification, voice.name, 'rhythm')
-            default_command = self.make_default_command_for_segment_specification(
-                segment_specification, 'rhythm')
-            raw_commands.insert(0, default_command)
-            cooked_commands = self.sort_and_split_raw_commands(raw_commands)
-            rhythm_commands.extend(cooked_commands)
+            raw_commands.extend(self.get_commands_that_start_during_segment(
+                segment_specification, voice.name, 'rhythm'))
+        #self._debug_values(raw_commands, 'raw commands')
+        default_command = self.make_default_command_for_entire_score('rhythm')
+        raw_commands.insert(0, default_command)
+        cooked_commands = self.sort_and_split_raw_commands(raw_commands)
+        rhythm_commands = cooked_commands
+        #self._debug_values(rhythm_commands, 'rhythm commands')
         return rhythm_commands
 
     def get_single_context_settings_that_start_during_segment(
@@ -457,6 +461,23 @@ class ConcreteInterpreter(Interpreter):
         self.populate_all_time_signature_commands()
         self.make_time_signatures()
         self.calculate_score_and_segment_durations()
+
+    def make_default_command_for_entire_score(self, attribute):
+        request = self.attribute_to_default_request(None, attribute)
+        #start_offset, stop_offset = self.score_specification.offsets
+        start_offset = durationtools.Offset(0)
+        stop_offset = durationtools.Offset(sum(self.score_specification.time_signatures))
+        command_klass = self.attribute_to_command_klass(attribute)
+        command = command_klass(
+            request, 
+            self.score_specification.score_name,
+            start_offset,
+            stop_offset,
+            fresh=True
+            )
+        if attribute == 'divisions':
+            command._truncate = False
+        return command
 
     def make_default_command_for_segment_specification(self, segment_specification, attribute):
         request = self.attribute_to_default_request(segment_specification, attribute)
@@ -709,6 +730,7 @@ class ConcreteInterpreter(Interpreter):
                     region_commands = self.get_rhythm_commands_for_voice(voice)
                 else:
                     raise ValueError(attribute)
+                #self._debug_values(region_commands, 'region commands')
                 region_commands = self.fuse_like_commands(region_commands)
                 region_commands = self.supply_missing_region_commands_for_attribute(
                     region_commands, voice, attribute)
@@ -822,8 +844,10 @@ class ConcreteInterpreter(Interpreter):
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         assert single_context_setting.selector.start_segment_identifier == segment_specification.segment_name
+        #self._debug(single_context_setting.selector, 'selector')
         start_offset, stop_offset = single_context_setting.selector.get_offsets(
             self.score_specification, voice_name)
+        #self._debug((start_offset, stop_offset), 'selector offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
