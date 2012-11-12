@@ -1,7 +1,12 @@
-1.  Integrate time-relation filtering into all inequality selector classes.
+0.  Write test_SegmentSpecification__select_divisions.py file.
 
-2.  Author tests to make sure that persistent overlapping division selectors 
+1.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
+
+2.  Integrate time-relation filtering into all inequality selector classes.
+    Write test_SegmentSpecification__select_divisions_time_relation.py to test.
+    Maybe change 'inequality' to 'time_relation' globally.
+    Finish timerelationtools class docstrings before 2.11 build.
 
 3.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at
@@ -36,3 +41,14 @@
 9.  Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
+
+10. Sprinkle asserts into all segment specification select methods.
+    This will assert on red_segment.select_divisions('Voice 1') and similar.
+
+12. Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
+    Establish metrical hierarchy after division specification and change divisions where necessary.
+    Reestablish metrical hierarchy after rhythm specification but leave divisions in tact.
+
+11. Write E series schematic examples to all focus on different uses of the metrical hierarchy.
+    Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
+    Make selections equal to different levels of the metrical hierarchy.

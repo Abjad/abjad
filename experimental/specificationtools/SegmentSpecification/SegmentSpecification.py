@@ -738,6 +738,8 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
         inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
