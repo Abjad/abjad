@@ -161,6 +161,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         parts = sequencetools.partition_sequence_by_counts(leaves, counts)
         for part in parts:
             tie_spanner = tietools.TieSpanner()
+            # this is voodoo to temporarily neuter the contiguity constraint
             tie_spanner._contiguity_constraint = None
             tie_spanner.extend(part)
 
