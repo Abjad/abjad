@@ -108,21 +108,13 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
                 raise TypeError(message)
     else:
         raise TypeError(message)
-    governors.sort(lambda x, y: cmp(
-            componenttools.component_to_score_index(x),
-            componenttools.component_to_score_index(y)))
+    governors.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
     governors = tuple(governors)
 
     components = []
     for governor in governors:
         components.extend(recurse(governor, prolated_offset))
-#        for component in iterationtools.iterate_components_in_expr(governor):
-#            if component.start_offset <= prolated_offset:
-#                if prolated_offset < component.stop_offset:
-#                    components.append(component)
-    components.sort(lambda x, y: cmp(
-            componenttools.component_to_score_index(x),
-            componenttools.component_to_score_index(y)))
+    components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
     components = tuple(components)
 
     vertical_moment = verticalitytools.VerticalMoment(prolated_offset, governors, components)

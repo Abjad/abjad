@@ -66,10 +66,7 @@ class VerticalMoment(Selection):
         object.__setattr__(self, '_prolated_offset', prolated_offset)
         object.__setattr__(self, '_governors', tuple(governors))
         components = list(components)
-        components.sort(
-            lambda x, y: cmp(
-            componenttools.component_to_score_index(x),
-            componenttools.component_to_score_index(y)))
+        components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
         object.__setattr__(self, '_components', tuple(components))
 
     ### SPECIAL METHODS ###

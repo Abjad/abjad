@@ -19,6 +19,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.root
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.score_index
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.start_offset
 
     Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
