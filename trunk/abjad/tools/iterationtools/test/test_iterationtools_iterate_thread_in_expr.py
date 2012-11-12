@@ -2,50 +2,55 @@ from abjad import *
 
 
 def test_iterationtools_iterate_thread_in_expr_01():
-    '''Yield nothing when class not present.'''
+    '''Yield nothing when class not present.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = componenttools.component_to_containment_signature(t[-1])
+    thread_signature = t[-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Rest, thread_signature, reverse=True)
     assert len(list(iter)) == 0
 
 
 def test_iterationtools_iterate_thread_in_expr_02():
-    '''Yield internal nodes only.'''
+    '''Yield internal nodes only.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = componenttools.component_to_containment_signature(t[-1])
+    thread_signature = t[-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Tuplet, thread_signature, reverse=True)
     assert len(list(iter)) == 3
 
 
 def test_iterationtools_iterate_thread_in_expr_03():
-    '''Yield exact leaves.'''
+    '''Yield exact leaves.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = componenttools.component_to_containment_signature(t[-1])
+    thread_signature = t[-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature, reverse=True)
     assert len(list(iter)) == 9
 
 
 def test_iterationtools_iterate_thread_in_expr_04():
-    '''Yield leaves based on names higher in inheritence hierarchy.'''
+    '''Yield leaves based on names higher in inheritence hierarchy.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    thread_signature = componenttools.component_to_containment_signature(t[-1][-1])
+    thread_signature = t[-1][-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Leaf, thread_signature, reverse=True)
     assert len(list(iter)) == 9
 
 
 def test_iterationtools_iterate_thread_in_expr_05():
-    '''Yield Notes in two contiguous Voices with the same name.'''
+    '''Yield Notes in two contiguous Voices with the same name.
+    '''
 
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     t = Staff([v1, v2])
-    thread_signature = componenttools.component_to_containment_signature(t[-1])
+    thread_signature = t[-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature, reverse=True)
     iter = list(iter)
 
@@ -55,12 +60,13 @@ def test_iterationtools_iterate_thread_in_expr_05():
 
 
 def test_iterationtools_iterate_thread_in_expr_06():
-    '''Yield only Notes matching the given thread signature.'''
+    '''Yield only Notes matching the given thread signature.
+    '''
 
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     t = Staff([v1, v2])
-    thread_signature = componenttools.component_to_containment_signature(t[-1])
+    thread_signature = t[-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature, reverse=True)
     iter = list(iter)
 
@@ -71,14 +77,15 @@ def test_iterationtools_iterate_thread_in_expr_06():
 
 
 def test_iterationtools_iterate_thread_in_expr_07():
-    '''Yield only Notes matching the given thread signature.'''
+    '''Yield only Notes matching the given thread signature.
+    '''
 
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = 'flute'
     v2.name = 'piccolo'
     t = Staff([v1, v2])
-    thread_signature = componenttools.component_to_containment_signature(t[-1])
+    thread_signature = t[-1].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature, reverse=True)
     iter = list(iter)
 
@@ -89,45 +96,55 @@ def test_iterationtools_iterate_thread_in_expr_07():
 
 
 def test_iterationtools_iterate_thread_in_expr_08():
-    '''Yield nothing when class not present.'''
+    '''Yield nothing when class not present.
+    '''
+
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = componenttools.component_to_containment_signature(t[0])
+    thread_signature = t[0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Rest, thread_signature)
     assert len(list(iter)) == 0
 
 
 def test_iterationtools_iterate_thread_in_expr_09():
-    '''Yield internal nodes only.'''
+    '''Yield internal nodes only.
+    '''
+
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = componenttools.component_to_containment_signature(t[0])
+    thread_signature = t[0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Tuplet, thread_signature)
     assert len(list(iter)) == 3
 
 
 def test_iterationtools_iterate_thread_in_expr_10():
-    '''Yield exact leaves.'''
+    '''Yield exact leaves.
+    '''
+
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = componenttools.component_to_containment_signature(t[0])
+    thread_signature = t[0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature)
     assert len(list(iter)) == 9
 
 
 def test_iterationtools_iterate_thread_in_expr_11():
-    '''Yield leaves based on names higher in inheritence hierarchy.'''
+    '''Yield leaves based on names higher in inheritence hierarchy.
+    '''
+
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    thread_signature = componenttools.component_to_containment_signature(t[0][0])
+    thread_signature = t[0][0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Leaf, thread_signature)
     assert len(list(iter)) == 9
 
 
 def test_iterationtools_iterate_thread_in_expr_12():
-    '''Yield Notes in two contiguous Voices with the same name.'''
+    '''Yield Notes in two contiguous Voices with the same name.
+    '''
+
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     t = Staff([v1, v2])
-    thread_signature = componenttools.component_to_containment_signature(t[0])
+    thread_signature = t[0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature)
     iter = list(iter)
 
@@ -137,11 +154,13 @@ def test_iterationtools_iterate_thread_in_expr_12():
 
 
 def test_iterationtools_iterate_thread_in_expr_13():
-    '''Yield only Notes matching the given thread signature.'''
+    '''Yield only Notes matching the given thread signature.
+    '''
+
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     t = Staff([v1, v2])
-    thread_signature = componenttools.component_to_containment_signature(t[0])
+    thread_signature = t[0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature)
     iter = list(iter)
 
@@ -152,13 +171,15 @@ def test_iterationtools_iterate_thread_in_expr_13():
 
 
 def test_iterationtools_iterate_thread_in_expr_14():
-    '''Yield only Notes matching the given thread signature.'''
+    '''Yield only Notes matching the given thread signature.
+    '''
+
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = 'flute'
     v2.name = 'piccolo'
     t = Staff([v1, v2])
-    thread_signature = componenttools.component_to_containment_signature(t[0])
+    thread_signature = t[0].parentage.containment_signature
     iter = iterationtools.iterate_thread_in_expr(t, Note, thread_signature)
     iter = list(iter)
 

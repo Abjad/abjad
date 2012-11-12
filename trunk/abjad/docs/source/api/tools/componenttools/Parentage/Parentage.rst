@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.component
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.containment_signature
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.depth
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.music

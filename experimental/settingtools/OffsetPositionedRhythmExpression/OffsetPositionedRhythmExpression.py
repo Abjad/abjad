@@ -135,7 +135,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             else:
                 components_at_level = []
                 for component in iterationtools.iterate_components_in_expr(self.music):
-                    score_index = componenttools.component_to_score_index(component)
+                    score_index = component.parentage.score_index
                     if len(score_index) == rotation_indicator.level:
                         components_at_level.append(component)
             components_at_level = sequencetools.CyclicTuple(components_at_level)
@@ -191,9 +191,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             for component in new_music:
                 component._mark_entire_score_tree_for_later_update('prolated')
             for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
-                spanner._components.sort(lambda x, y: cmp(
-                    componenttools.component_to_score_index(x), 
-                    componenttools.component_to_score_index(y)))
+                spanner._components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
             assert wellformednesstools.is_well_formed_component(self.music)
 
     def trim_to_start_offset(self, start_offset):

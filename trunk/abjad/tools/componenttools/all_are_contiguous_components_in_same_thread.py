@@ -42,14 +42,14 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
     same_thread = True
     strictly_contiguous = True
 
-    first_signature = componenttools.component_to_containment_signature(first)
+    first_signature = first.parentage.containment_signature
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
         if not componenttools.is_orphan_component(cur):
             orphan_components = False
-        current_signature = componenttools.component_to_containment_signature(cur)
+        current_signature = cur.parentage.containment_signature
         if not current_signature == first_signature:
             same_thread = False
         if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):

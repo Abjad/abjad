@@ -26,10 +26,8 @@ class ContainmentSignature(AbjadObject):
 
     ::
 
-        >>> componenttools.component_to_containment_signature(score.leaves[0])
+        >>> score.leaves[0].parentage.containment_signature
         ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
-
-    Returned only by componenttools.component_to_containment_signature().
 
     Used for thread iteration behind the scenes.
     '''

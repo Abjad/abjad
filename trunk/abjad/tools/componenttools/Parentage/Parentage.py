@@ -2,7 +2,7 @@ from abjad.tools.abctools.Selection import Selection
 
 
 class Parentage(Selection):
-    r'''Abjad model of Component parentage:
+    r'''Abjad model of component parentage:
 
     ::
 
@@ -68,6 +68,61 @@ class Parentage(Selection):
         '''The component from which the selection was derived.
         '''
         return self._component
+
+    @property
+    def containment_signature(self):
+        r'''.. versionadded:: 1.1
+
+        Containment signature of component::
+
+            >>> score = Score(
+            ... r"""\context Staff = "CustomStaff" { """
+            ...     r"""\context Voice = "CustomVoice" { c' d' e' f' } }""")
+            >>> score.name = 'CustomScore'
+
+
+        ::
+
+            >>> f(score)
+            \context Score = "CustomScore" <<
+                \context Staff = "CustomStaff" {
+                    \context Voice = "CustomVoice" {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+            >>
+
+        ::
+
+            >>> score.leaves[0].parentage.containment_signature
+            ContainmentSignature(Note-..., Voice-'CustomVoice', Staff-..., Score-'CustomScore')
+
+        Return containment signature object.
+        '''
+        from abjad.tools import componenttools
+        from abjad.tools import scoretools
+        from abjad.tools import stafftools
+        from abjad.tools import voicetools
+        signature = componenttools.ContainmentSignature()
+        signature._self = self[0]._id_string
+        for component in self:
+            if isinstance(component, voicetools.Voice) and signature._voice is None:
+                signature._voice = component._id_string
+            elif isinstance(component, stafftools.Staff) and signature._staff is None:
+                # leaves inside different staves have diff containment signatures regardless of staff name
+                signature._staff = '{}-{}'.format(component._class_name, id(component))
+            elif isinstance(component, scoretools.StaffGroup) and signature._staff_group is None:
+                signature._staff_group = component._id_string
+            elif isinstance(component, scoretools.Score) and signature._score is None:
+                signature._score = component._id_string
+        else:
+            # root components must be the same object for containment signatures to compare true
+            signature._root = id(component)
+            signature._root_str = component._id_string
+        return signature
 
     @property
     def depth(self):
