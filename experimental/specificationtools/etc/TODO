@@ -53,7 +53,6 @@
     Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
     Make selections equal to different levels of the metrical hierarchy.
 
-13. Find a way to make beam_cells_together (or beam_divisions_together) a rhythm-maker
-    initializer keyword. Right now it's added onto the side of already-initialized
+13. Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
+    Right now it's added onto the side of already-initialized
     rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
-    Also change name from beam_cells_together to beam_output_cells_together.

@@ -51,8 +51,11 @@ class TupletMonadRhythmMaker(RhythmMaker):
 
     ### INITIALIZER ###
 
-    def __init__(self):
-        pass
+    def __init__(self, beam_each_cell=False, beam_cells_together=False):
+        RhythmMaker.__init__(self,
+            beam_each_cell=beam_each_cell,
+            beam_cells_together=beam_cells_together
+            )
 
     ### SPECIAL METHODS ###
 

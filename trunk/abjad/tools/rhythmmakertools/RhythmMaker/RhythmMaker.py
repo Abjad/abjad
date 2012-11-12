@@ -19,8 +19,9 @@ class RhythmMaker(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, beam_each_cell=True, beam_cells_together=False):
+        self.beam_each_cell = beam_each_cell
+        self.beam_cells_together = beam_cells_together
 
     ### SPECIAL METHODS ###
 

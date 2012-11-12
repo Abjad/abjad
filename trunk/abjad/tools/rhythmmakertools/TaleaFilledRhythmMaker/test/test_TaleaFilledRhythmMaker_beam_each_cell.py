@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TaleaFilledRhythmMaker_beam_cells_together_01():
+def test_TaleaFilledRhythmMaker_beam_each_cell_01():
     '''Beam each cell with a multipart beam spanner.
     '''
 

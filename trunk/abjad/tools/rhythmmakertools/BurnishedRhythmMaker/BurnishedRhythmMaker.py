@@ -41,10 +41,12 @@ class BurnishedRhythmMaker(RhythmMaker):
         talea_helper=None, prolation_addenda_helper=None,
         lefts_helper=None, middles_helper=None, rights_helper=None,
         left_lengths_helper=None, right_lengths_helper=None, secondary_divisions_helper=None,
-        beam_each_cell=False,
+        beam_each_cell=False, beam_cells_together=False,
         decrease_durations_monotonically=True, tie_split_notes=False, tie_rests=False
         ):
-        RhythmMaker.__init__(self)
+        RhythmMaker.__init__(self, 
+            beam_each_cell=beam_each_cell, 
+            beam_cells_together=beam_cells_together)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         lefts = self._none_to_new_list(lefts)
         middles = self._none_to_new_list(middles)
@@ -96,7 +98,7 @@ class BurnishedRhythmMaker(RhythmMaker):
         self.left_lengths_helper = left_lengths_helper
         self.right_lengths_helper = right_lengths_helper
         self.secondary_divisions_helper = secondary_divisions_helper
-        self.beam_each_cell = beam_each_cell
+        #self.beam_each_cell = beam_each_cell
         self.decrease_durations_monotonically = decrease_durations_monotonically
         self.tie_split_notes = tie_split_notes
         self.tie_rests = tie_rests

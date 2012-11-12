@@ -39,9 +39,12 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea_helper=None, prefix_lengths_helper=None,
         suffix_talea_helper=None, suffix_lengths_helper=None,
         prolation_addenda_helper=None, secondary_divisions_helper=None,
-        decrease_durations_monotonically=True, tie_rests=False
+        decrease_durations_monotonically=True, tie_rests=False,
+        beam_each_cell=False, beam_cells_together=False
         ):
-        RhythmMaker.__init__(self)
+        RhythmMaker.__init__(self,
+            beam_each_cell=beam_each_cell,
+            beam_cells_together=beam_cells_together)
         prolation_addenda = self._none_to_new_list(prolation_addenda)
         secondary_divisions = self._none_to_new_list(secondary_divisions)
         prefix_talea_helper = self._none_to_trivial_helper(prefix_talea_helper)
