@@ -60,7 +60,10 @@ class ConcreteInterpreter(Interpreter):
     def attribute_to_default_request(self, segment_specification, attribute):
         from experimental import requesttools
         if attribute == 'divisions':
-            return requesttools.AbsoluteRequest(segment_specification.time_signatures)
+            if segment_specification is not None:
+                return requesttools.AbsoluteRequest(segment_specification.time_signatures)
+            else:
+                return requesttools.AbsoluteRequest(self.score_specification.time_signatures)
         elif attribute == 'rhythm':
             return requesttools.AbsoluteRequest(library.skip_filled_tokens) 
         else:
@@ -331,53 +334,37 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(command))
         return result
 
-    def get_commands_that_start_during_segment(self, segment_specification, context_name, attribute):
-        single_context_settings = self.get_single_context_settings_that_start_during_segment(
-            segment_specification, context_name, attribute, include_improper_parentage=True)
-        #self._debug_values(single_context_settings, 'single-context settings')
+    def get_commands_for_voice(self, context_name, attribute):
         commands = []
-        for single_context_setting in single_context_settings:
-            command = self.single_context_setting_to_command(
-                single_context_setting, segment_specification, context_name)
-            #self._debug(command, 'command')
-            commands.append(command)
+        for segment_specification in self.score_specification.segment_specifications:
+            single_context_settings = self.get_single_context_settings_that_start_during_segment(
+                segment_specification, context_name, attribute, include_improper_parentage=True)
+            for single_context_setting in single_context_settings:
+                command = self.single_context_setting_to_command(
+                    single_context_setting, segment_specification, context_name)
+                commands.append(command)
         return commands
 
     # TODO: eventually merge with self.get_rhythm_commands_for_voice()
     def get_division_commands_for_voice(self, voice):
-        division_commands = []
-        for segment_specification in self.score_specification.segment_specifications:
-            raw_commands = self.get_commands_that_start_during_segment(
-                segment_specification, voice.name, 'divisions')
-            cooked_commands = self.sort_and_split_raw_commands(raw_commands)
-            if cooked_commands:
-                division_commands.extend(cooked_commands)
-            elif segment_specification.time_signatures:
-                command = self.make_default_command_for_segment_specification(
-                    segment_specification, 'divisions')
-                division_commands.append(command)
+        raw_commands = self.get_commands_for_voice(voice.name, 'divisions')
+        #default_command = self.make_default_command_for_entire_score('divisions')
+        #raw_commands.insert(0, default_command)
+        division_commands = self.sort_and_split_raw_commands(raw_commands)
         return division_commands
-
-    def get_rhythm_commands_for_score(self):
-        score_rhythm_commands = []
-        for voice in iterationtools.iterate_voices_in_expr(self.score):
-            voice_rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-            score_rhythm_commands.extend(voice_rhythm_commands)
-        return score_rhythm_commands
 
     # TODO: eventually merge with self.get_division_commands_for_voice()
     def get_rhythm_commands_for_voice(self, voice):
-        raw_commands = []
-        # TODO: replace with a new self.get_commands_for_voice('rhythm')
-        for segment_specification in self.score_specification.segment_specifications:
-            raw_commands.extend(self.get_commands_that_start_during_segment(
-                segment_specification, voice.name, 'rhythm'))
-        #self._debug_values(raw_commands, 'raw commands')
+        raw_commands = self.get_commands_for_voice(voice.name, 'rhythm')
+        # remove the following two lines to make exactly the same as get_division_commands_for_voice().
+        # doing this will require implementing supply_missing_rhythm_commands().
+        # also rename to supply_missing_division_commands_for_voice() to better indicate what's missing.
+        # this will eliminate self.make_default_comamnd_for_entire_score().
+        # this, in turn, will eliminate default commands entirely.
+        # this, in turn, will eliminate self.attribute_to_default_request().
         default_command = self.make_default_command_for_entire_score('rhythm')
         raw_commands.insert(0, default_command)
-        cooked_commands = self.sort_and_split_raw_commands(raw_commands)
-        rhythm_commands = cooked_commands
-        #self._debug_values(rhythm_commands, 'rhythm commands')
+        rhythm_commands = self.sort_and_split_raw_commands(raw_commands)
         return rhythm_commands
 
     def get_single_context_settings_that_start_during_segment(
@@ -464,25 +451,8 @@ class ConcreteInterpreter(Interpreter):
 
     def make_default_command_for_entire_score(self, attribute):
         request = self.attribute_to_default_request(None, attribute)
-        #start_offset, stop_offset = self.score_specification.offsets
         start_offset = durationtools.Offset(0)
         stop_offset = durationtools.Offset(sum(self.score_specification.time_signatures))
-        command_klass = self.attribute_to_command_klass(attribute)
-        command = command_klass(
-            request, 
-            self.score_specification.score_name,
-            start_offset,
-            stop_offset,
-            fresh=True
-            )
-        if attribute == 'divisions':
-            command._truncate = False
-        return command
-
-    def make_default_command_for_segment_specification(self, segment_specification, attribute):
-        request = self.attribute_to_default_request(segment_specification, attribute)
-        start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
-            segment_specification.segment_name)
         command_klass = self.attribute_to_command_klass(attribute)
         command = command_klass(
             request, 
@@ -734,6 +704,7 @@ class ConcreteInterpreter(Interpreter):
                 region_commands = self.fuse_like_commands(region_commands)
                 region_commands = self.supply_missing_region_commands_for_attribute(
                     region_commands, voice, attribute)
+                #self._debug_values(region_commands, 'region commands')
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
                 self.score_specification.contexts[voice.name][key][:] = region_commands[:]
@@ -880,6 +851,7 @@ class ConcreteInterpreter(Interpreter):
                 elif timerelationtools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
                     commands_to_curtail.append(cooked_command)
                 elif timerelationtools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
+                    print 'FOO'
                     commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
@@ -889,6 +861,8 @@ class ConcreteInterpreter(Interpreter):
             for command_to_delay in commands_to_delay:
                 command_to_delay._start_offset = raw_command.stop_offset
                 command_was_delayed = True
+            # NEXT TODO: branch inside and implement a method to split while treating cyclic payload smartly.
+            # or, alternatively, special-case for commands that cover the entire duration of score.
             for command_to_split in commands_to_split:
                 left_command = command_to_split
                 middle_command = raw_command
@@ -955,9 +929,14 @@ class ConcreteInterpreter(Interpreter):
             return region_commands
         
     def supply_missing_division_commands(self, division_region_commands, voice):
-        #self._debug_values(division_region_commands, 'rdcs')
+        #self._debug_values(division_region_commands, 'division region commands')
         if not division_region_commands:
-            return division_region_commands
+            if self.score_specification.time_signatures:
+                division_region_command = self.make_time_signature_division_command(
+                    voice, self.score_specification.start_offset, self.score_specification.stop_offset)
+                return [division_region_command]
+            else:
+                return []
         if not division_region_commands[0].start_offset == self.score_specification.start_offset:
             division_region_command = self.make_time_signature_division_command(
                 voice, self.score_specification.start_offset, division_region_commands[0].start_offset)
@@ -968,7 +947,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_commands.append(division_region_command)
         if len(division_region_commands) == 1:
             return division_region_commands
-        #self._debug_values(division_region_commands, 'rdcs')
+        #self._debug_values(division_region_commands, 'division region commands')
         result = []
         for left_division_region_command, right_division_region_command in \
             sequencetools.iterate_sequence_pairwise_strict(division_region_commands):
