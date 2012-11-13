@@ -18,11 +18,5 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
         from experimental import quantizationtools
 
         assert isinstance(expr, measuretools.Measure)
-
-        if len(expr) == 1 and isinstance(expr[0], tuplettools.Tuplet):
-            quantizationtools.NaiveAttackPointOptimizer()(expr.leaves)
-            return
-
-        time_signature = contexttools.get_effective_time_signature(expr)
-
-        metrical_hierarchy = timesignaturetools.MetricalHierarchy(time_signature)
+        metrical_hierarchy = timesignaturetools.MetricalHierarchy(expr)
+        timesignaturetools.establish_metrical_hierarchy(expr[:], metrical_hierarchy)	
