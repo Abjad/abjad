@@ -173,6 +173,24 @@ class ScoreSpecification(Specification):
         return durationtools.Duration(sum(result))
 
     @property
+    def offsets(self):
+        r'''Score specification start and stop offsets.
+
+        .. note:: add example.
+
+        Start offset always equal to ``0``.
+
+        Stop offset always equal to score duration.
+
+        Only available once interpretation is underway.
+
+        Return pair.
+        '''
+        start_offset = durationtools.Offset(0)
+        stop_offset = durationtools.Offset(sum(self.time_signatures))
+        return start_offset, stop_offset
+
+    @property
     def segment_names(self):
         r'''Score segment names::
 
@@ -505,8 +523,7 @@ class ScoreSpecification(Specification):
         Return pair.
         '''
         if segment_start_offset is not None:
-            start_offset = self.segment_offset_to_score_offset(
-                segment_identifier, segment_start_offset)
+            start_offset = self.segment_offset_to_score_offset(segment_identifier, segment_start_offset)
         else:
             start_offset = None
         if segment_stop_offset is not None:

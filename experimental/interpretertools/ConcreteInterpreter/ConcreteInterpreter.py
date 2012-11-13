@@ -923,20 +923,19 @@ class ConcreteInterpreter(Interpreter):
 
     def supply_missing_region_commands_for_attribute(self, region_commands, voice, attribute):
         if attribute == 'divisions':
-            return self.supply_missing_division_commands(region_commands, voice)
+            return self.supply_missing_division_region_commands(region_commands, voice)
         # does a rhythm version of this method need to be implemented eventually?
         else:
             return region_commands
         
-    def supply_missing_division_commands(self, division_region_commands, voice):
+    def supply_missing_division_region_commands(self, division_region_commands, voice):
         #self._debug_values(division_region_commands, 'division region commands')
-        if not division_region_commands:
-            if self.score_specification.time_signatures:
-                division_region_command = self.make_time_signature_division_command(
-                    voice, self.score_specification.start_offset, self.score_specification.stop_offset)
-                return [division_region_command]
-            else:
-                return []
+        if not division_region_commands and not self.score_specification.time_signatures:
+            return []
+        elif not division_region_commands and self.score_specification.time_signatures:
+            division_region_command = self.make_time_signature_division_command(
+                voice, self.score_specification.start_offset, self.score_specification.stop_offset)
+            return [division_region_command]
         if not division_region_commands[0].start_offset == self.score_specification.start_offset:
             division_region_command = self.make_time_signature_division_command(
                 voice, self.score_specification.start_offset, division_region_commands[0].start_offset)
@@ -947,7 +946,6 @@ class ConcreteInterpreter(Interpreter):
             division_region_commands.append(division_region_command)
         if len(division_region_commands) == 1:
             return division_region_commands
-        #self._debug_values(division_region_commands, 'division region commands')
         result = []
         for left_division_region_command, right_division_region_command in \
             sequencetools.iterate_sequence_pairwise_strict(division_region_commands):
@@ -959,8 +957,42 @@ class ConcreteInterpreter(Interpreter):
                     left_division_region_command.stop_offset, right_division_region_command.start_offset)
                 result.append(division_region_command)
         result.append(right_division_region_command)
-        #self._debug_values(result, 'result')
         return result
+
+    def supply_missing_rhythm_region__commands(self, rhythm_region_commands, voice):
+        #self._debug_values(rhythm_region_commands, 'rhythm region commands')
+        if not rhythm_region_commands and not self.score_specification.time_signatures:
+            return []
+        elif not rhythm_region_commands and self.score_specification.time_signatures:
+            rhythm_region_command = self.make_time_signature_rhythm_command(
+                voice, self.score_specification.start_offset, self.score_specification.stop_offset)
+            return [rhythm_region_command]
+        if not rhythm_region_commands[0].start_offset == self.score_specification.start_offset:
+            rhythm_region_command = self.make_time_signature_rhythm_command(
+                voice, self.score_specification.start_offset, rhythm_region_commands[0].start_offset)
+            rhythm_region_commands.insert(0, rhythm_region_command)
+        if not rhythm_region_commands[-1].stop_offset == self.score_specification.stop_offset:
+            rhythm_region_command = self.make_time_signature_rhythm_command(
+                voice, rhythm_region_commands[-1].stop_offset, self.score_specification.stop_offset)
+            rhythm_region_commands.append(rhythm_region_command)
+        if len(rhythm_region_commands) == 1:
+            return rhythm_region_commands
+        result = []
+        for left_rhythm_region_command, right_rhythm_region_command in \
+            sequencetools.iterate_sequence_pairwise_strict(rhythm_region_commands):
+            assert left_rhythm_region_command.stop_offset <= right_rhythm_region_command.start_offset
+            result.append(left_rhythm_region_command)
+            if left_rhythm_region_command.stop_offset < right_rhythm_region_command.start_offset:
+                rhythm_region_command = self.make_time_signature_rhythm_command(
+                    voice, 
+                    left_rhythm_region_command.stop_offset, right_rhythm_region_command.start_offset)
+                result.append(rhythm_region_command)
+        result.append(right_rhythm_region_command)
+        return result
+
+    # alphabetize me
+    def make_skip_filled_rhythm_command(self, voice, start_offset, stop_offset):
+        pass
 
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
