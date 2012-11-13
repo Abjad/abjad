@@ -716,8 +716,8 @@ class SegmentSpecification(Specification):
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_divisions(self, start=None, stop=None):
-        '''Select the first five segment divisions::
+    def select_divisions(self, start=None, stop=None, inequality=None):
+        '''Select the first five divisions that start during segment::
 
             >>> selector = segment.select_divisions(stop=5)
 
@@ -740,7 +740,9 @@ class SegmentSpecification(Specification):
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
+        if inequality is None:
+            inequality = timerelationtools.timespan_2_starts_during_timespan_1
+        inequality = inequality(self.timespan)
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
