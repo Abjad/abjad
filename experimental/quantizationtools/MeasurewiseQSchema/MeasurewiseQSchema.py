@@ -37,23 +37,38 @@ class MeasurewiseQSchema(QSchema):
 
     Each time-step in a ``MeasurewiseQSchema`` is composed of four settings:
 
-        * search_tree
-        * tempo
-        * time_signature
-        * use_full_measure
+        * ``search_tree``
+        * ``tempo``
+        * ``time_signature``
+        * ``use_full_measure``
 
-    These settings are understood to persist for the entirety of the measure which
-    comprises that time-step.  All of these settings are self-descriptive, except for
+    These settings can be applied as global defaults for the schema via keyword arguments,
+    which persist until overridden:
+
+    ::
+
+        >>> search_tree = quantizationtools.SimpleSearchTree({7: None})
+        >>> time_signature = contexttools.TimeSignatureMark((3, 4))
+        >>> tempo = contexttools.TempoMark((1, 4), 54)
+        >>> use_full_measure = True
+        >>> q_schema = quantizationtools.MeasurewiseQSchema(
+        ...     search_tree=search_tree,
+        ...     tempo=tempo,
+        ...     time_signature=time_signature,
+        ...     use_full_measure=use_full_measure,
+        ...     )
+
+    All of these settings are self-descriptive, except for
     ``use_full_measure``, which controls whether the measure is subdivided by the
     ``Quantizer`` into beats according to its time signature.
 
     If ``use_full_measure`` is ``False``, the time-step's measure will be divided 
-    into units according to its time-signature, with, for example, a 4/4 measure 
-    being divided into 4 units, each having a beatspan of 1/4.
+    into units according to its time-signature.  For example, a 4/4 measure 
+    will be divided into 4 units, each having a beatspan of 1/4.
 
     On the other hand, if ``use_full_measure`` is set to ``True``, the time-step's 
-    measure will not be subdivided into independent quantization units, likely
-    resulting in tuplets which take up the full duration of that measure.
+    measure will not be subdivided into independent quantization units.  This
+    usually results in full-measure tuplets.
     
     The computed value at any non-negative time-step can be found by subscripting:
 
@@ -63,16 +78,11 @@ class MeasurewiseQSchema(QSchema):
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ... 
         search_tree: SimpleSearchTree(
-            definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                3: {   2: {   2: None}, 3: None, 5: None},
-                5: {   2: None, 3: None},
-                7: {   2: None},
-                11: None,
-                13: None}
+            definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 60)
-        time_signature: 4/4
-        use_full_measure: False
+        tempo: TempoMark(Duration(1, 4), 54)
+        time_signature: 3/4
+        use_full_measure: True
 
     ::
 
@@ -80,16 +90,11 @@ class MeasurewiseQSchema(QSchema):
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ... 
         search_tree: SimpleSearchTree(
-            definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
-                3: {   2: {   2: None}, 3: None, 5: None},
-                5: {   2: None, 3: None},
-                7: {   2: None},
-                11: None,
-                13: None}
+            definition={   7: None}
             )
-        tempo: TempoMark(Duration(1, 4), 60)
-        time_signature: 4/4
-        use_full_measure: False
+        tempo: TempoMark(Duration(1, 4), 54)
+        time_signature: 3/4
+        use_full_measure: True
 
     Per-time-step settings can be applied in a variety of ways.
 
