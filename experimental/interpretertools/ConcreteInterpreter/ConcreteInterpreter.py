@@ -70,16 +70,16 @@ class ConcreteInterpreter(Interpreter):
         '''
         segment_durations = [x.duration for x in self.score_specification.segment_specifications]
         if sequencetools.all_are_numbers(segment_durations):
-            self.score_specification.segment_durations = segment_durations
-            self.score_specification.score_duration = sum(self.score_specification.segment_durations)
-            self.score_specification.start_offset = durationtools.Offset(0)
-            self.score_specification.stop_offset = durationtools.Offset(
+            self.score_specification._segment_durations = segment_durations
+            self.score_specification._score_duration = sum(self.score_specification.segment_durations)
+            self.score_specification._start_offset = durationtools.Offset(0)
+            self.score_specification._stop_offset = durationtools.Offset(
                 self.score_specification.score_duration)
             segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(
                 self.score_specification.segment_durations)
             segment_offset_pairs = [
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
-            self.score_specification.segment_offset_pairs = segment_offset_pairs
+            self.score_specification._segment_offset_pairs = segment_offset_pairs
 
     def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
         if attribute in self.score_specification.single_context_settings_by_context[context_name]:

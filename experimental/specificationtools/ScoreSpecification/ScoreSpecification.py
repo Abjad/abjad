@@ -182,35 +182,23 @@ class ScoreSpecification(Specification):
 
         Stop offset always equal to score duration.
 
-        Only available once interpretation is underway.
+        Only available after time signature interpretation completes.
 
         Return pair.
         '''
-        start_offset = durationtools.Offset(0)
-        stop_offset = durationtools.Offset(sum(self.time_signatures))
-        return start_offset, stop_offset
+        return self.start_offset, self.stop_offset
 
     @property
-    def segment_names(self):
-        r'''Score segment names::
+    def score_duration(self):
+        r'''Score specification score duration.
 
-            >>> score_specification.segment_names
-            ['red', 'orange', 'yellow']
+        .. note:: add example.
 
-        Return list of zero or more strings.
+        Only available after time signature interpretation completes.
+
+        Return duration.
         '''
-        return [segment_specification.segment_name for segment_specification in self.segment_specifications]
-
-    @property
-    def segment_specification_class(self):
-        r'''Segment specification class of score specification::
-
-            >>> score_specification.segment_specification_class
-            <class 'experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
-        
-        Return segment specification class.
-        '''
-        return self._segment_specification_class
+        return self._score_duration
 
     @property
     def score_name(self):
@@ -233,6 +221,52 @@ class ScoreSpecification(Specification):
         Return score template.
         '''
         return Specification.score_template.fget(self)
+
+    @property
+    def segment_durations(self):
+        r'''Score specification segment durations.
+
+        .. note:: add example.
+
+        Only available after time signature interpretation completes.
+
+        Return list of durations.
+        '''
+        return self._segment_durations
+
+    @property
+    def segment_names(self):
+        r'''Score segment names::
+
+            >>> score_specification.segment_names
+            ['red', 'orange', 'yellow']
+
+        Return list of zero or more strings.
+        '''
+        return [segment_specification.segment_name for segment_specification in self.segment_specifications]
+
+    @property
+    def segment_offset_pairs(self):
+        r'''Score specification segment offset pairs.
+
+        .. note:: add example.
+
+        Only available after time signature interpretation completes.
+
+        Return list of pairs.
+        '''
+        return self._segment_offset_pairs
+
+    @property
+    def segment_specification_class(self):
+        r'''Segment specification class of score specification::
+
+            >>> score_specification.segment_specification_class
+            <class 'experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
+        
+        Return segment specification class.
+        '''
+        return self._segment_specification_class
 
     @property
     def segment_specifications(self):
@@ -281,6 +315,34 @@ class ScoreSpecification(Specification):
         Return context proxy dictionary.
         '''
         return Specification.single_context_settings_by_context.fget(self)
+
+    @property
+    def start_offset(self):
+        r'''Score specification start offset.
+
+        .. note:: add example.
+
+        Always equal to ``0``.
+
+        Only available after time signature interpreation.
+
+        Return offset.
+        '''
+        return self._start_offset
+
+    @property
+    def stop_offset(self):
+        r'''Score specification stop offset.
+
+        .. note:: add example.
+
+        Always equal to duration of entire score.
+
+        Only available after time signature interpreation.
+
+        Return offset.
+        '''
+        return self._stop_offset
 
     @property
     def storage_format(self):
