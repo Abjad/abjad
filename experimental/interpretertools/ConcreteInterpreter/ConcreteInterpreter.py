@@ -107,7 +107,7 @@ class ConcreteInterpreter(Interpreter):
     def division_command_request_to_divisions(self, division_command_request, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
-        #self._debug(division_command_request, 'dcr')
+        #self._debug(division_command_request, 'division command request')
         requested_segment_identifier = division_command_request.symbolic_offset.start_segment_identifier
         requested_offset = division_command_request.symbolic_offset.get_score_offset(
             self.score_specification, voice_name)
@@ -282,84 +282,17 @@ class ConcreteInterpreter(Interpreter):
                 postprocessed_result.append(quadruple)
         return postprocessed_result
 
-    # alphabetize me
-    def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):
-        # check that current rhythm command bears a rhythm material request
-        assert isinstance(current_rhythm_command, settingtools.RhythmCommand)
-        current_material_request = current_rhythm_command.request
-        assert isinstance(current_material_request, requesttools.MaterialRequest)
-        assert current_material_request.attribute == 'rhythm'
-        # fuse only if expr is also a rhythm command that bears a rhythm material request
-        if not isinstance(expr, settingtools.RhythmCommand):
-            return False
-        else:
-            previous_rhythm_command = expr
-        previous_material_request = getattr(previous_rhythm_command, 'request', None)
-        if not isinstance(previous_material_request, requesttools.MaterialRequest):
-            return False        
-        if not previous_material_request.attribute == 'rhythm':
-            return False
-        # fuse only if current and previous commands request same material
-        if not current_material_request == previous_material_request:
-            return False
-        # TODO: implement one-line statement for command treatment comparison
-        # fuse only if current and previous commands treat material equally
-        for attribute in ('index', 'count', 'reverse', 'rotation', 'callback'):
-            if getattr(current_rhythm_command, attribute, None) != \
-                getattr(previous_rhythm_command, attribute, None):
-                return False
-        return True
-
-    def fuse_like_commands(self, commands):
-        if any([x.request is None for x in commands]) or not commands:
+    def fuse_like_region_commands(self, region_commands):
+        if any([x.request is None for x in region_commands]) or not region_commands:
             return []
-        assert commands[0].fresh, repr(commands[0])
-        result = [copy.deepcopy(commands[0])]
-        for command in commands[1:]:
-            if result[-1].can_fuse(command):
-                result[-1] = result[-1].fuse(command)
+        assert region_commands[0].fresh, repr(region_commands[0])
+        result = [copy.deepcopy(region_commands[0])]
+        for region_command in region_commands[1:]:
+            if result[-1].can_fuse(region_command):
+                result[-1] = result[-1].fuse(region_command)
             else:
-                result.append(copy.deepcopy(command))
+                result.append(copy.deepcopy(region_command))
         return result
-
-    def get_commands_for_voice(self, context_name, attribute):
-        commands = []
-        for segment_specification in self.score_specification.segment_specifications:
-            single_context_settings = self.get_single_context_settings_that_start_during_segment(
-                segment_specification, context_name, attribute, include_improper_parentage=True)
-            for single_context_setting in single_context_settings:
-                command = self.single_context_setting_to_command(
-                    single_context_setting, segment_specification, context_name)
-                commands.append(command)
-        return commands
-
-    # TODO: eventually merge with self.get_rhythm_region_commands_for_voice()
-    def get_division_region_commands_for_voice(self, voice):
-        raw_commands = self.get_commands_for_voice(voice.name, 'divisions')
-        division_commands = self.sort_and_split_raw_commands(raw_commands)
-        return division_commands
-
-    # TODO: eventually merge with self.get_division_region_commands_for_voice()
-    def get_rhythm_region_commands_for_voice(self, voice):
-        raw_commands = self.get_commands_for_voice(voice.name, 'rhythm')
-        rhythm_commands = self.sort_and_split_raw_commands(raw_commands)
-        return rhythm_commands
-
-    def get_single_context_settings_that_start_during_segment(
-        self, segment_specification, context_name, attribute, 
-        include_improper_parentage=False):
-        result = []
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names.extend(self.context_name_to_parentage_names(segment_specification, context_name))
-        for context_name in reversed(context_names):
-            single_context_settings = segment_specification.single_context_settings_by_context[context_name]
-            single_context_settings = single_context_settings.get_settings(attribute=attribute)
-            result.extend(single_context_settings)
-        return result
-
-    def get_start_segment_specification(self, expr):
-        return self.score_specification.get_start_segment_specification(expr)
 
     # TODO: combine with self.get_time_signature_slice()
     def get_naive_time_signature_beat_slice(self, start_offset, stop_offset):
@@ -377,6 +310,40 @@ class ConcreteInterpreter(Interpreter):
         result = shards[1]
         result = [x.pair for x in result]
         return result
+
+    def get_raw_commands_for_voice(self, context_name, attribute):
+        commands = []
+        for segment_specification in self.score_specification.segment_specifications:
+            single_context_settings = self.get_single_context_settings_that_start_during_segment(
+                segment_specification, context_name, attribute, include_improper_parentage=True)
+            for single_context_setting in single_context_settings:
+                command = self.single_context_setting_to_command(
+                    single_context_setting, segment_specification, context_name)
+                commands.append(command)
+        return commands
+
+    def get_region_commands_for_voice(self, voice_name, attribute):
+        raw_commands = self.get_raw_commands_for_voice(voice_name, attribute)
+        region_commands = self.sort_and_split_raw_commands(raw_commands)
+        region_commands = self.fuse_like_region_commands(region_commands)
+        region_commands = self.supply_missing_region_commands(region_commands, voice_name, attribute)
+        return region_commands
+
+    def get_single_context_settings_that_start_during_segment(
+        self, segment_specification, context_name, attribute, 
+        include_improper_parentage=False):
+        result = []
+        context_names = [context_name]
+        if include_improper_parentage:
+            context_names.extend(self.context_name_to_parentage_names(segment_specification, context_name))
+        for context_name in reversed(context_names):
+            single_context_settings = segment_specification.single_context_settings_by_context[context_name]
+            single_context_settings = single_context_settings.get_settings(attribute=attribute)
+            result.extend(single_context_settings)
+        return result
+
+    def get_start_segment_specification(self, expr):
+        return self.score_specification.get_start_segment_specification(expr)
 
     def get_time_signature_slice(self, start_offset, stop_offset):
         time_signatures = self.score_specification.time_signatures
@@ -461,6 +428,17 @@ class ConcreteInterpreter(Interpreter):
                     division_region_commands_to_reattempt[:]
                 # sort may have to happen as each expression adds in, above
                 self.score_specification.contexts[voice.name]['division_region_expressions'].sort()
+
+    def make_naive_time_signature_beat_division_command(self, voice, start_offset, stop_offset):
+        divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
+        return settingtools.DivisionCommand(
+            requesttools.AbsoluteRequest(divisions),
+            voice.name, 
+            start_offset,
+            stop_offset,
+            fresh=True,
+            truncate=True
+            )
 
     def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
         #self._debug(voice, 'voice')
@@ -579,22 +557,20 @@ class ConcreteInterpreter(Interpreter):
                         rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()
 
-    def make_naive_time_signature_beat_division_command(self, voice, start_offset, stop_offset):
-        divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
-        return settingtools.DivisionCommand(
-            requesttools.AbsoluteRequest(divisions),
-            voice.name, 
+    def make_skip_filled_rhythm_command(self, voice_name, start_offset, stop_offset):
+        return settingtools.RhythmCommand(
+            requesttools.AbsoluteRequest(library.skip_filled_tokens),
+            voice_name, 
             start_offset,
             stop_offset,
-            fresh=True,
-            truncate=True
+            fresh=True
             )
 
-    def make_time_signature_division_command(self, voice, start_offset, stop_offset):
+    def make_time_signature_division_command(self, voice_name, start_offset, stop_offset):
         divisions = self.get_time_signature_slice(start_offset, stop_offset)
         return settingtools.DivisionCommand(
             requesttools.AbsoluteRequest(divisions),
-            voice.name, 
+            voice_name, 
             start_offset,
             stop_offset,
             fresh=True,
@@ -656,17 +632,7 @@ class ConcreteInterpreter(Interpreter):
     def populate_all_region_commands_for_attribute(self, attribute):
         if self.score_specification.segment_specifications:
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                if attribute == 'divisions':
-                    region_commands = self.get_division_region_commands_for_voice(voice)
-                elif attribute == 'rhythm':
-                    region_commands = self.get_rhythm_region_commands_for_voice(voice)
-                else:
-                    raise ValueError(attribute)
-                #self._debug_values(region_commands, 'region commands')
-                region_commands = self.fuse_like_commands(region_commands)
-                region_commands = self.supply_missing_region_commands_for_attribute(
-                    region_commands, voice, attribute)
-                #self._debug_values(region_commands, 'region commands')
+                region_commands = self.get_region_commands_for_voice(voice.name, attribute)
                 singular_attribute = attribute.rstrip('s')
                 key = '{}_region_commands'.format(singular_attribute)
                 self.score_specification.contexts[voice.name][key][:] = region_commands[:]
@@ -685,6 +651,33 @@ class ConcreteInterpreter(Interpreter):
                 continue
             time_signature_setting = time_signature_settings[-1]
             self.score_specification.all_time_signature_commands.append(time_signature_setting)
+
+    def rhythm_command_prolongs_expr(self, current_rhythm_command, expr):
+        # check that current rhythm command bears a rhythm material request
+        assert isinstance(current_rhythm_command, settingtools.RhythmCommand)
+        current_material_request = current_rhythm_command.request
+        assert isinstance(current_material_request, requesttools.MaterialRequest)
+        assert current_material_request.attribute == 'rhythm'
+        # fuse only if expr is also a rhythm command that bears a rhythm material request
+        if not isinstance(expr, settingtools.RhythmCommand):
+            return False
+        else:
+            previous_rhythm_command = expr
+        previous_material_request = getattr(previous_rhythm_command, 'request', None)
+        if not isinstance(previous_material_request, requesttools.MaterialRequest):
+            return False        
+        if not previous_material_request.attribute == 'rhythm':
+            return False
+        # fuse only if current and previous commands request same material
+        if not current_material_request == previous_material_request:
+            return False
+        # TODO: implement one-line statement for command treatment comparison
+        # fuse only if current and previous commands treat material equally
+        for attribute in ('index', 'count', 'reverse', 'rotation', 'callback'):
+            if getattr(current_rhythm_command, attribute, None) != \
+                getattr(previous_rhythm_command, attribute, None):
+                return False
+        return True
 
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
         assert isinstance(rhythm_command_request, requesttools.CommandRequest)
@@ -883,27 +876,27 @@ class ConcreteInterpreter(Interpreter):
             settings_to_store = new_settings + forwarded_existing_settings
             self.store_single_context_settings_by_context(settings_to_store, clear_persistent_first=True)
 
-    def supply_missing_region_commands_for_attribute(self, region_commands, voice, attribute):
+    def supply_missing_region_commands(self, region_commands, voice_name, attribute):
         if attribute == 'divisions':
-            return self.supply_missing_division_region_commands_for_voice(region_commands, voice)
+            return self.supply_missing_division_region_commands_for_voice(region_commands, voice_name)
         else:
-            return self.supply_missing_rhythm_region_commands_for_voice(region_commands, voice)
+            return self.supply_missing_rhythm_region_commands_for_voice(region_commands, voice_name)
         
-    def supply_missing_division_region_commands_for_voice(self, division_region_commands, voice):
+    def supply_missing_division_region_commands_for_voice(self, division_region_commands, voice_name):
         #self._debug_values(division_region_commands, 'division region commands')
         if not division_region_commands and not self.score_specification.time_signatures:
             return []
         elif not division_region_commands and self.score_specification.time_signatures:
             division_region_command = self.make_time_signature_division_command(
-                voice, self.score_specification.start_offset, self.score_specification.stop_offset)
+                voice_name, self.score_specification.start_offset, self.score_specification.stop_offset)
             return [division_region_command]
         if not division_region_commands[0].start_offset == self.score_specification.start_offset:
             division_region_command = self.make_time_signature_division_command(
-                voice, self.score_specification.start_offset, division_region_commands[0].start_offset)
+                voice_name, self.score_specification.start_offset, division_region_commands[0].start_offset)
             division_region_commands.insert(0, division_region_command)
         if not division_region_commands[-1].stop_offset == self.score_specification.stop_offset:
             division_region_command = self.make_time_signature_division_command(
-                voice, division_region_commands[-1].stop_offset, self.score_specification.stop_offset)
+                voice_name, division_region_commands[-1].stop_offset, self.score_specification.stop_offset)
             division_region_commands.append(division_region_command)
         if len(division_region_commands) == 1:
             return division_region_commands
@@ -914,27 +907,27 @@ class ConcreteInterpreter(Interpreter):
             result.append(left_division_region_command)
             if left_division_region_command.stop_offset < right_division_region_command.start_offset:
                 division_region_command = self.make_time_signature_division_command(
-                    voice, 
+                    voice_name, 
                     left_division_region_command.stop_offset, right_division_region_command.start_offset)
                 result.append(division_region_command)
         result.append(right_division_region_command)
         return result
 
-    def supply_missing_rhythm_region_commands_for_voice(self, rhythm_region_commands, voice):
+    def supply_missing_rhythm_region_commands_for_voice(self, rhythm_region_commands, voice_name):
         #self._debug_values(rhythm_region_commands, 'rhythm region commands')
         if not rhythm_region_commands and not self.score_specification.time_signatures:
             return []
         elif not rhythm_region_commands and self.score_specification.time_signatures:
             rhythm_region_command = self.make_skip_filled_rhythm_command(
-                voice, self.score_specification.start_offset, self.score_specification.stop_offset)
+                voice_name, self.score_specification.start_offset, self.score_specification.stop_offset)
             return [rhythm_region_command]
         if not rhythm_region_commands[0].start_offset == self.score_specification.start_offset:
             rhythm_region_command = self.make_skip_filled_rhythm_command(
-                voice, self.score_specification.start_offset, rhythm_region_commands[0].start_offset)
+                voice_name, self.score_specification.start_offset, rhythm_region_commands[0].start_offset)
             rhythm_region_commands.insert(0, rhythm_region_command)
         if not rhythm_region_commands[-1].stop_offset == self.score_specification.stop_offset:
             rhythm_region_command = self.make_skip_filled_rhythm_command(
-                voice, rhythm_region_commands[-1].stop_offset, self.score_specification.stop_offset)
+                voice_name, rhythm_region_commands[-1].stop_offset, self.score_specification.stop_offset)
             rhythm_region_commands.append(rhythm_region_command)
         if len(rhythm_region_commands) == 1:
             return rhythm_region_commands
@@ -945,21 +938,11 @@ class ConcreteInterpreter(Interpreter):
             result.append(left_rhythm_region_command)
             if left_rhythm_region_command.stop_offset < right_rhythm_region_command.start_offset:
                 rhythm_region_command = self.make_skip_filled_rhythm_command(
-                    voice, 
+                    voice_name, 
                     left_rhythm_region_command.stop_offset, right_rhythm_region_command.start_offset)
                 result.append(rhythm_region_command)
         result.append(right_rhythm_region_command)
         return result
-
-    # alphabetize me
-    def make_skip_filled_rhythm_command(self, voice, start_offset, stop_offset):
-        return settingtools.RhythmCommand(
-            requesttools.AbsoluteRequest(library.skip_filled_tokens),
-            voice.name, 
-            start_offset,
-            stop_offset,
-            fresh=True
-            )
 
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)

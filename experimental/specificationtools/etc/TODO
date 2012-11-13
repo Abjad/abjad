@@ -1,5 +1,3 @@
-0.  Write test_SegmentSpecification__select_divisions.py file.
-
 1.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
@@ -56,3 +54,5 @@
 13. Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
     Right now it's added onto the side of already-initialized
     rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
+
+14. Get rid of 'Filled' from rhythm-maker class names.
