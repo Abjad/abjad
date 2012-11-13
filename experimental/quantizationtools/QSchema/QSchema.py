@@ -39,25 +39,31 @@ class QSchema(AbjadObject):
 
         elif 1 == len(args) and isinstance(args[0], dict):
             items = args[0].items()
-            if items:
-                assert 0 <= min(items)
             if sequencetools.all_are_pairs_of_types(items, int, dict):
                 items = [(x, self.item_klass(**y)) for x, y in items]
             assert sequencetools.all_are_pairs_of_types(items, int, self.item_klass)
+            items = dict(items)
 
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
             items = dict(args)
-            if items:
-                assert 0 <= min(items)
             
+        elif sequencetools.all_are_pairs_of_types(args, int, dict):
+            items = [(x, self.item_klass(**y)) for x, y in args]
+            items = dict(items)
+
         elif all([isinstance(x, self.item_klass) for x in args]):
             items = [(i, x) for i, x in enumerate(args)]
+            items = dict(items)
 
         elif all([isinstance(x, dict) for x in args]):
             items = [(i, self.item_klass(**x)) for i, x in enumerate(args)]
+            items = dict(items)
 
         else:
             raise ValueError
+
+        if items:
+            assert 0 <= min(items)
 
         self._items = datastructuretools.ImmutableDictionary(items)
 

@@ -5,6 +5,16 @@ from experimental.quantizationtools.SearchTree import SearchTree
 
 class SimpleSearchTree(SearchTree):
 
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        result = ['{}('.format(self._class_name)]
+        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
+        result.append('\tdefinition={}'.format(definition[0]))
+        result.extend(['\t' + x for x in definition[1:]])
+        result.append('\t)')
+        return '\n'.join(result)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
