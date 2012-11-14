@@ -166,8 +166,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__repr__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
-
 .. automethod:: experimental.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setitem__
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`

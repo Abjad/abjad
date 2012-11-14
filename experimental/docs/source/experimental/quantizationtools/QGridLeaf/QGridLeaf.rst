@@ -107,8 +107,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setstate__
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`

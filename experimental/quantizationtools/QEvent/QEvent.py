@@ -5,12 +5,12 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QEvent(AbjadObject):
-    '''Abstract base class from which concrete QEvent subclasses inherit.
+    '''Abstract base class from which concrete ``QEvent`` subclasses inherit.
 
     Represents an attack point to be quantized.
 
-    All QEvents have a rational offset, in milliseconds, and an optional index, for
-    disambiguating events which fall on the same offset.
+    All ``QEvents`` possess a rational offset in milliseconds, and an optional
+    index for disambiguating events which fall on the same offset in a ``QGrid``.
     '''
 
     ### CLASS ATTRIBUTES ###

@@ -19,7 +19,7 @@ class QTarget(AbjadObject):
 
     Not composer-safe.
 
-    Used internally by quantizationtools.Quantizer.
+    Used internally by the ``Quantizer``.
     '''
 
     ### CLASS ATTRIBUTES ###

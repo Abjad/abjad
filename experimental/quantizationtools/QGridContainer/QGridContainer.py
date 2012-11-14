@@ -2,10 +2,34 @@ from abjad.tools.rhythmtreetools import RhythmTreeContainer
 
 
 class QGridContainer(RhythmTreeContainer):
+    '''A container in a ``QGrid`` structure:
+
+    ::
+
+        >>> container = quantizationtools.QGridContainer()
+
+    ::
+
+        >>> container
+        quantizationtools.QGridContainer(
+            duration=durationtools.Duration(1, 1),
+            children=()
+            )
+
+    Used internally by ``QGrid``.
+
+    Return ``QGridContainer`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
     __slots__ = ()
+
+
+    ### SPECIAL METHODS ###
+    
+    def __repr__(self):
+        return self._tools_package_qualified_indented_repr
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

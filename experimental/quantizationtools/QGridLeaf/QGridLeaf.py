@@ -4,6 +4,25 @@ from abjad.tools.rhythmtreetools import RhythmTreeNode
 
 
 class QGridLeaf(RhythmTreeNode):
+    '''A leaf in a ``QGrid`` structure:
+
+    ::
+
+        >>> leaf = quantizationtools.QGridLeaf()
+
+    ::
+
+        >>> leaf
+        quantizationtools.QGridLeaf(
+            duration=durationtools.Duration(1, 1),
+            q_event_proxies=[],
+            is_divisible=True
+            )
+
+    Used internally by ``QGrid``.
+
+    Return ``QGridLeaf`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -42,6 +61,9 @@ class QGridLeaf(RhythmTreeNode):
 
     def __getnewargs__(self):
        return (self.duration, tuple(self.q_event_proxies), self.is_divisible)
+
+    def __repr__(self):
+        return self._tools_package_qualified_indented_repr
 
     ### READ-ONLY PRIVATE PROPERTIES ###
         
