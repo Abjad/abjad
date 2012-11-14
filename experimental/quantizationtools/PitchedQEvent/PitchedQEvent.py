@@ -3,6 +3,22 @@ from experimental.quantizationtools.QEvent import QEvent
 
 
 class PitchedQEvent(QEvent):
+    '''A ``QEvent`` which indicates the onset of a period of pitched material
+    in a ``QEventSequence``:
+
+    ::
+
+        >>> pitches = [0, 1, 4]
+        >>> q_event = quantizationtools.PitchedQEvent(1000, pitches)
+        >>> q_event
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(1000, 1),
+            (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"), NamedChromaticPitch("e'")),
+            attachments=()
+            )
+
+    Return ``PitchedQEvent`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

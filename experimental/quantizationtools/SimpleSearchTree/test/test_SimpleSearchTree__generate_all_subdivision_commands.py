@@ -1,7 +1,7 @@
 from experimental import quantizationtools
 import copy
 
-def test_SimpleSearchTree_generate_all_subdivision_commands_01():
+def test_SimpleSearchTree__generate_all_subdivision_commands_01():
 
     definition = {
             2: {
@@ -28,7 +28,7 @@ def test_SimpleSearchTree_generate_all_subdivision_commands_01():
     k = quantizationtools.QEventProxy(quantizationtools.SilentQEvent(1,      ['K'], index=11), 0, 1)
     q_grid.fit_q_events([a, b, c, d, e, f, g, h, i, j, k])
 
-    commands = search_tree.generate_all_subdivision_commands(q_grid)    
+    commands = search_tree._generate_all_subdivision_commands(q_grid)    
     assert commands == (
         ((0, (1, 1)),), 
         ((0, (1, 1, 1, 1, 1)),)
@@ -38,7 +38,7 @@ def test_SimpleSearchTree_generate_all_subdivision_commands_01():
     q_event_proxies = new_q_grid.subdivide_leaves(commands[0])
     new_q_grid.fit_q_events(q_event_proxies)
     new_q_grid.sort_q_events_by_index()
-    new_commands = search_tree.generate_all_subdivision_commands(new_q_grid)
+    new_commands = search_tree._generate_all_subdivision_commands(new_q_grid)
 
     assert new_q_grid.leaves[0].q_event_proxies == [a, b, c]
     assert new_q_grid.leaves[1].q_event_proxies == [d, e, f, g, h, i]
@@ -54,7 +54,7 @@ def test_SimpleSearchTree_generate_all_subdivision_commands_01():
     q_event_proxies = new_q_grid.subdivide_leaves(commands[1])
     new_q_grid.fit_q_events(q_event_proxies)
     new_q_grid.sort_q_events_by_index()
-    new_commands = search_tree.generate_all_subdivision_commands(new_q_grid)
+    new_commands = search_tree._generate_all_subdivision_commands(new_q_grid)
 
     assert new_q_grid.leaves[0].q_event_proxies == [a]
     assert new_q_grid.leaves[1].q_event_proxies == [b, c]

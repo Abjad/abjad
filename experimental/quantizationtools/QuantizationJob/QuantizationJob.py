@@ -3,10 +3,46 @@ from abjad.tools.abctools import AbjadObject
 
 
 class QuantizationJob(AbjadObject):
-    '''A copible, picklable class for generating all QGrids which are valid
-    under a given SearchTree for a sequence of QEventProxies.
+    '''A copiable, picklable class for generating all ``QGrids`` which are valid
+    under a given ``SearchTree`` for a sequence of ``QEventProxies``:
 
-    QuantizationJob is intended to be useful in multiprocessing-enabled environments.
+    ::
+
+        >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1, 4])
+        >>> q_event_b = quantizationtools.SilentQEvent(500)
+        >>> q_event_c = quantizationtools.PitchedQEvent(667, [2, 3, 7])
+        >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
+        >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.5)
+        >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.667)
+
+    ::
+
+        >>> definition = {2: {2: None}, 3: None, 5: None}
+        >>> search_tree = quantizationtools.SimpleSearchTree(definition)
+
+    ::
+
+        >>> job = quantizationtools.QuantizationJob(
+        ...     1, search_tree, [proxy_a, proxy_b, proxy_c])
+
+    ``QuantizationJob`` generates ``QGrids`` when called, and stores those
+    ``QGrids`` on its ``q_grids`` attribute, allowing them to be recalled later,
+    even if pickled:
+
+    ::
+
+        >>> job()
+        >>> for q_grid in job.q_grids:
+        ...     print q_grid.rtm_format
+        1
+        (1 (1 1 1 1 1))
+        (1 (1 1 1))
+        (1 (1 1))
+        (1 ((1 (1 1)) (1 (1 1))))
+
+    ``QuantizationJob`` is intended to be useful in multiprocessing-enabled environments.
+
+    Return ``QuantizationJob`` instance.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -71,17 +107,86 @@ class QuantizationJob(AbjadObject):
 
     @property
     def job_id(self):
+        '''The job id of the ``QuantizationJob``:
+
+        ::
+
+            >>> job.job_id
+            1            
+
+        Only meaningful when the job is processed via multiprocessing,
+        as the job id is necessary to reconstruct the order of jobs.
+
+        Return int.
+        '''
         return self._job_id
 
     @property
     def q_event_proxies(self):
+        '''The ``QEventProxies`` the ``QuantizationJob`` was instantiated with:
+
+        ::
+
+            >>> for q_event_proxy in job.q_event_proxies:
+            ...     q_event_proxy
+            quantizationtools.QEventProxy(
+                quantizationtools.PitchedQEvent(
+                    durationtools.Offset(250, 1),
+                    (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"), NamedChromaticPitch("e'")),
+                    attachments=()
+                    ),
+                durationtools.Offset(1, 4)
+                )
+            quantizationtools.QEventProxy(
+                quantizationtools.SilentQEvent(
+                    durationtools.Offset(500, 1),
+                    attachments=()
+                    ),
+                durationtools.Offset(1, 2)
+                )
+            quantizationtools.QEventProxy(
+                quantizationtools.PitchedQEvent(
+                    durationtools.Offset(667, 1),
+                    (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"), NamedChromaticPitch("g'")),
+                    attachments=()
+                    ),
+                durationtools.Offset(3003900951456121L, 4503599627370496L)
+                )
+
+        Return tuple.
+        '''
         return self._q_event_proxies
 
     @property
     def q_grids(self):
+        '''The generated ``QGrids``:
+
+        ::
+
+            >>> for q_grid in job.q_grids:
+            ...     print q_grid.rtm_format
+            1
+            (1 (1 1 1 1 1))
+            (1 (1 1 1))
+            (1 (1 1))
+            (1 ((1 (1 1)) (1 (1 1))))
+
+        Return tuple.
+        '''
         return self._q_grids
 
     @property
     def search_tree(self):
+        '''The search tree the ``QuantizationJob`` was instantiated with:
+
+        ::
+
+            >>> job.search_tree
+            SimpleSearchTree(
+                definition={   2: {   2: None}, 3: None, 5: None}
+                )
+
+        Return ``SearchTree`` instance.
+        '''
         return self._search_tree
 

@@ -2,6 +2,18 @@ from experimental.quantizationtools.QEvent import QEvent
 
 
 class SilentQEvent(QEvent):
+    '''A ``QEvent`` which indicates the onset of a period of silence
+    in a ``QEventSequence``:
+
+        >>> q_event = quantizationtools.SilentQEvent(1000)
+        >>> q_event
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(1000, 1),
+            attachments=()
+            )
+
+    Return ``SilentQEvent`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

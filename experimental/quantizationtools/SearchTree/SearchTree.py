@@ -28,7 +28,7 @@ class SearchTree(AbjadObject):
         if definition is None:
             definition = self.default_definition
         else:
-            assert self.is_valid_definition(definition)
+            assert self._is_valid_definition(definition)
         self._definition = definition
 
     ### SPECIAL METHODS ###
@@ -38,7 +38,7 @@ class SearchTree(AbjadObject):
 
         assert isinstance(q_grid, quantizationtools.QGrid)
         new_q_grids = []
-        commands = self.generate_all_subdivision_commands(q_grid)
+        commands = self._generate_all_subdivision_commands(q_grid)
         for command in commands:
             new_q_grid = copy.copy(q_grid)
             q_events = new_q_grid.subdivide_leaves(command)
@@ -72,22 +72,23 @@ class SearchTree(AbjadObject):
 
     @abc.abstractproperty
     def default_definition(self):
+        '''The default search tree definition.
+
+        Return dictionary.
+        '''
         raise NotImplemented
 
     @property
     def definition(self):
+        '''The search tree definition.
+
+        Return dictionary.
+        '''
         return copy.deepcopy(self._definition)
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def generate_all_subdivision_commands(self, q_grid):
-        indices, subdivisions = self.find_divisible_leaf_indices_and_subdivisions(q_grid)
-        if not indices:
-            return ()
-        combinations = [tuple(x) for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
-        return tuple(tuple(zip(indices, combo)) for combo in combinations)
-
-    def find_divisible_leaf_indices_and_subdivisions(self, q_grid):
+    def _find_divisible_leaf_indices_and_subdivisions(self, q_grid):
         # TODO: This should actually check for all QEvents which fall within the leaf's duration,
         # including QEvents attached to the next leaf
         # It may be prudent to actually store QEvents in two lists: before_offset and after_offset
@@ -102,7 +103,7 @@ class SearchTree(AbjadObject):
                     pass # a perfect match, don't bother to continue subdivision
                 else:
                     parentage_ratios = leaf_one.parentage_ratios
-                    leaf_subdivisions = self.find_leaf_subdivisions(parentage_ratios)
+                    leaf_subdivisions = self._find_leaf_subdivisions(parentage_ratios)
                     if leaf_subdivisions:
                         indices.append(i)
                         subdivisions.append(tuple(leaf_subdivisions))
@@ -110,9 +111,16 @@ class SearchTree(AbjadObject):
         return indices, subdivisions
 
     @abc.abstractmethod
-    def find_leaf_subdivisions(self, leaf):
+    def _find_leaf_subdivisions(self, leaf):
         raise NotImplemented
 
+    def _generate_all_subdivision_commands(self, q_grid):
+        indices, subdivisions = self._find_divisible_leaf_indices_and_subdivisions(q_grid)
+        if not indices:
+            return ()
+        combinations = [tuple(x) for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
+        return tuple(tuple(zip(indices, combo)) for combo in combinations)
+
     @abc.abstractmethod
-    def is_valid_definition(self, definition):
+    def _is_valid_definition(self, definition):
         raise NotImplemented

@@ -30,22 +30,12 @@ class ComplexSearchTree(SearchTree):
 
     ### PRIVATE METHODS ###
 
-    def _precompute_compositions(self):
-        compositions = {}
-        max_divisions = self._definition['max_divisions']
-        for divisor in self._definition['divisors']:
-            compositions[divisor] = [tuple(x) for x in mathtools.yield_all_compositions_of_integer(divisor)
-                if 1 < len(x) <= max_divisions]
-        return compositions
-
-    ### PUBLIC METHODS ###
-
-    def find_leaf_subdivisions(self, parentage_ratios):
+    def _find_leaf_subdivisions(self, parentage_ratios):
         if len(parentage_ratios[1:]) < self._definition['max_depth']:
             return self._all_compositions
         return ()
 
-    def is_valid_definition(self, definition):
+    def _is_valid_definition(self, definition):
         if not isinstance(definition, dict):
             return False
         elif 'divisors' not in definition:
@@ -69,3 +59,12 @@ class ComplexSearchTree(SearchTree):
         elif not 1 < definition['max_divisions']:
             return False
         return True
+
+    def _precompute_compositions(self):
+        compositions = {}
+        max_divisions = self._definition['max_divisions']
+        for divisor in self._definition['divisors']:
+            compositions[divisor] = [tuple(x) for x in mathtools.yield_all_compositions_of_integer(divisor)
+                if 1 < len(x) <= max_divisions]
+        return compositions
+

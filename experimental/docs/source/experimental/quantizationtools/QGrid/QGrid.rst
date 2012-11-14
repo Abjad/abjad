@@ -17,7 +17,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.offsets
 
+.. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.pretty_rtm_format
+
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.root_node
+
+.. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.rtm_format
 
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.storage_format
 

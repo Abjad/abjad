@@ -79,6 +79,18 @@ class QGrid(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def distance(self):
+        count = 0
+        absolute_distance = 0
+        for leaf, offset in zip(self.leaves, self.offsets):
+            for q_event_proxy in leaf.q_event_proxies:
+                absolute_distance += abs(q_event_proxy.offset - offset)
+                count += 1
+        if count:
+            return absolute_distance / count
+        return None
+
+    @property
     def leaves(self):
         '''All of the leaf nodes in the QGrid, includeing the next downbeat's node.'''
         from experimental import quantizationtools
@@ -94,25 +106,21 @@ class QGrid(AbjadObject):
         return self._next_downbeat
 
     @property
-    def distance(self):
-        count = 0
-        absolute_distance = 0
-        for leaf, offset in zip(self.leaves, self.offsets):
-            for q_event_proxy in leaf.q_event_proxies:
-                absolute_distance += abs(q_event_proxy.offset - offset)
-                count += 1
-        if count:
-            return absolute_distance / count
-        return None
-
-    @property
     def offsets(self):
         '''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.'''
         return tuple([x.start_offset for x in self.leaves[:-1]] + [durationtools.Offset(1)])
 
     @property
+    def pretty_rtm_format(self):
+        return self._root_node.pretty_rtm_format
+
+    @property
     def root_node(self):
         return self._root_node
+
+    @property
+    def rtm_format(self):
+        return self._root_node.rtm_format
 
     ### PUBLIC METHODS ###
 

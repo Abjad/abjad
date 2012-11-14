@@ -2,6 +2,18 @@ from experimental.quantizationtools.QEvent import QEvent
 
 
 class TerminalQEvent(QEvent):
+    '''The terminal event in a series of ``QEvents``:
+
+        >>> q_event = quantizationtools.TerminalQEvent(1000)
+        >>> q_event
+        quantizationtools.TerminalQEvent(
+            durationtools.Offset(1000, 1)
+            )
+
+    Carries no significance outside the context of a ``QEventSequence``.
+
+    Return ``TerminalQEvent`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

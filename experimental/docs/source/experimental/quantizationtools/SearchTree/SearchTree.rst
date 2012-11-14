@@ -17,17 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-Methods
--------
-
-.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_divisible_leaf_indices_and_subdivisions
-
-.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_leaf_subdivisions
-
-.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.generate_all_subdivision_commands
-
-.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.is_valid_definition
-
 Special Methods
 ---------------
 
