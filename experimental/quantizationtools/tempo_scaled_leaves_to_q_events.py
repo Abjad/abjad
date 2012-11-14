@@ -9,20 +9,16 @@ from abjad.tools import tietools
 
 
 def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
-    '''Convert `leaves` to a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+    '''Convert `leaves` to a list of ``QEvent`` objects.
     If the leaves have no effective tempo, `tempo` must be a
-    :py:class:`~abjad.tools.contexttools.TempoMark`.
+    ``TempoMark``.
 
     ::
 
-        >>> from experimental import *
-
-    ::
-
-        >>> from experimental.quantizationtools import tempo_scaled_leaves_to_q_events
         >>> source = Staff("c'4 r4. e'8 <g' b' d'' fs''>2")
         >>> source_tempo = contexttools.TempoMark((1, 4), 55)
-        >>> for x in tempo_scaled_leaves_to_q_events(source[:], tempo=source_tempo): x
+        >>> for x in quantizationtools.tempo_scaled_leaves_to_q_events(
+        ...     source[:], tempo=source_tempo): x
         ...
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
@@ -47,7 +43,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
             durationtools.Offset(60000, 11)
             )
 
-    Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+    Return a list of ``QEvent`` objects.
     '''
     from experimental import quantizationtools
 

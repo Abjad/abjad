@@ -2,6 +2,15 @@ from experimental.quantizationtools.Heuristic import Heuristic
 
 
 class DistanceHeuristic(Heuristic):
+    '''Concrete ``Heuristic`` subclass which considers only the computed distance
+    of each ``QGrid`` and the number of leaves of that ``QGrid`` when choosing
+    the optimal ``QGrid`` for a given ``QTargetBeat``.
+
+    The ``QGrid`` with the smallest distance and fewest number of leaves will
+    be selected.
+
+    Return ``DistanceHeuristic`` instance.
+    '''
 
     ### PRIVATE METHODS ###
 

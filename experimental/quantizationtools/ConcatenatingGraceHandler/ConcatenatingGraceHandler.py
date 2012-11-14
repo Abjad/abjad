@@ -7,11 +7,12 @@ from experimental.quantizationtools.GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):
-    '''Concatenates all but final QEvent attached to an offset into a
-    GraceContainer, using a fixed leaf duration `duration`.
+    '''Concrete ``GraceHandler`` subclass which concatenates all but the 
+    final ``QEvent`` attached to a ``QGrid`` offset into a ``GraceContainer``,
+    using a fixed leaf duration ``duration``.
 
-    When called, returns pitch information of final QEvent, and the
-    generated GraceContainer, if any.
+    When called, it returns pitch information of final ``QEvent``, and the
+    generated ``GraceContainer``, if any.
 
     Return ``ConcatenatingGraceHandler`` instance.
     '''

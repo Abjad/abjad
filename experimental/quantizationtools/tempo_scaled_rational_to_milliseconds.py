@@ -1,4 +1,3 @@
-import fractions
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 
@@ -8,23 +7,20 @@ def tempo_scaled_rational_to_milliseconds(rational, tempo):
 
     ::
 
-        >>> from experimental import *
-
-    ::
-
-        >>> from experimental.quantizationtools import tempo_scaled_rational_to_milliseconds
+        >>> rational = (1, 4)
         >>> tempo = contexttools.TempoMark((1, 4), 60)
-        >>> tempo_scaled_rational_to_milliseconds(Fraction(1, 4), tempo)
+        >>> quantizationtools.tempo_scaled_rational_to_milliseconds(
+        ...     rational, tempo)
         Duration(1000, 1)
 
-    Return a :py:class:`~abjad.tools.durationtools.Duration`.
+    Return ``Duration`` instance.
     '''
 
-    assert isinstance(rational, (int, fractions.Fraction))
-    assert isinstance(tempo, contexttools.TempoMark)
+    duration = durationtools.Duration(rational)
+    tempo = contexttools.TempoMark(tempo)
 
     whole_note_duration = 1000 \
-        * fractions.Fraction(tempo.duration.denominator, tempo.duration.numerator) \
-        * fractions.Fraction(60, tempo.units_per_minute)
+        * durationtools.Multiplier(tempo.duration.denominator, tempo.duration.numerator) \
+        * durationtools.Multiplier(60, tempo.units_per_minute)
 
-    return durationtools.Duration(rational * whole_note_duration)
+    return durationtools.Duration(duration * whole_note_duration)

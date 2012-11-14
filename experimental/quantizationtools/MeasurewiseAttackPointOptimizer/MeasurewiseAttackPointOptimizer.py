@@ -5,11 +5,13 @@ from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptim
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
-    '''The MeasurewiseAttackPointOptimizer attempts to optimize attack points
-    in an expression with regard for the effective time signature of that
-    expression.
+    '''Concrete ``AttackPointOptimizer`` instance which attempts to optimize
+    attack points in an expression with regard to the effective time signature
+    of that expression.
 
-    It only acts on Measure instances.
+    Only acts on Measure instances.
+
+    Return ``MeasurewiseAttackPointOptimizer`` instance.
     '''
 
     ### SPECIAL METHODS ###

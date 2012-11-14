@@ -7,7 +7,7 @@ from abjad.tools import mathtools
 
 def millisecond_pitch_pairs_to_q_events(pairs):
     '''Convert a list of pairs of millisecond durations and pitches to
-    a list of :py:class:`~abjad.tools.quantizationtools.QEvent` instances.
+    a list of ``QEvent`` instances.
 
     Pitch values must be one of the following:
 
@@ -17,11 +17,10 @@ def millisecond_pitch_pairs_to_q_events(pairs):
 
     ::
 
-        >>> from experimental.quantizationtools import millisecond_pitch_pairs_to_q_events
         >>> durations = [1001, 503, 230, 1340]
         >>> pitches = [None, 0, (1, 2, 3), 4.5]
         >>> pairs = zip(durations, pitches)
-        >>> for x in millisecond_pitch_pairs_to_q_events(pairs): x
+        >>> for x in quantizationtools.millisecond_pitch_pairs_to_q_events(pairs): x
         ...
         quantizationtools.SilentQEvent(
             durationtools.Offset(0, 1),
@@ -46,7 +45,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
             durationtools.Offset(3074, 1)
             )
 
-    Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` instances.
+    Return a list of ``QEvent`` instances.
     '''
     from experimental import quantizationtools
 

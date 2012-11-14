@@ -4,6 +4,12 @@ from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptim
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):
+    '''Concrete ``AttackPointOptimizer`` subclass which optimizes
+    attack points by fusing tie leaves within tie chains with
+    leaf durations decreasing monotonically.
+
+    Return ``NaiveAttackPointOptimizer`` instance.
+    '''
 
     ### SPECIAL METHODS ###
 

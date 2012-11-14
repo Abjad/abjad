@@ -2,9 +2,10 @@ from experimental.quantizationtools.GraceHandler import GraceHandler
 
 
 class DiscardingGraceHandler(GraceHandler):
-    '''Discards all but final QEvent attached to an offset.
+    '''Concrete ``GraceHandler`` subclass which discards all but final 
+    ``QEvent`` attached to an offset.
 
-    Does not create GraceContainers.
+    Does not create ``GraceContainers``.
 
     Return ``DiscardingGraceHandler`` instance.
     '''

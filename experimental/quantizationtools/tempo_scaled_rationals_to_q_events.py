@@ -8,22 +8,17 @@ from abjad.tools import sequencetools
 
 def tempo_scaled_rationals_to_q_events(durations, tempo):
     '''Convert a list of rational durations to a list of
-    :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+    ``QEvent`` instances.
 
     Negative duration values can be used to indicate silence.  Any resulting
-    pitched :py:class:`~abjad.tools.quantizationtools.QEvent` objects will
-    default to using middle-C.
+    pitched ``QEvents`` will default to using middle-C.
 
     ::
 
-        >>> from experimental import *
-
-    ::
-
-        >>> from experimental.quantizationtools import tempo_scaled_rationals_to_q_events
         >>> durations = [Duration(-1, 2), Duration(1, 4), Duration(1, 6)]
         >>> tempo = contexttools.TempoMark((1, 4), 55)
-        >>> for x in tempo_scaled_rationals_to_q_events(durations, tempo): x
+        >>> for x in quantizationtools.tempo_scaled_rationals_to_q_events(
+        ...     durations, tempo): x
         ...
         quantizationtools.SilentQEvent(
             durationtools.Offset(0, 1),
@@ -43,7 +38,7 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
             durationtools.Offset(4000, 1)
             )
 
-    Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+    Return a list of ``QEvent`` instances.
     '''
     from experimental import quantizationtools
 

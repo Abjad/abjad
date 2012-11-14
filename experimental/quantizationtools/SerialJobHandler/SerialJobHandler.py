@@ -2,7 +2,7 @@ from experimental.quantizationtools.JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):
-    '''Processes ``QuantizationJob`` instances sequentially.``
+    '''Processes ``QuantizationJob`` instances sequentially.
     '''
 
     ### SPECIAL METHODS ###

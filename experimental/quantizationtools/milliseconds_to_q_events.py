@@ -5,17 +5,15 @@ from abjad.tools import sequencetools
 
 def milliseconds_to_q_events(milliseconds, fuse_silences=False):
     '''Convert a list of millisecond durations to a list of
-    :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+    ``QEvent`` instances.
 
     Negative duration values can be used to indicate silence.  Any resulting
-    pitched :py:class:`~abjad.tools.quantizationtools.QEvent` objects will
-    default to using middle-C.
+    pitched ``QEvent`` instances will default to using middle-C.
 
     ::
 
-        >>> from experimental.quantizationtools import milliseconds_to_q_events
         >>> durations = [100, -250, 500]
-        >>> for x in milliseconds_to_q_events(durations): x
+        >>> for x in quantizationtools.milliseconds_to_q_events(durations): x
         ...
         quantizationtools.PitchedQEvent(
             durationtools.Offset(0, 1),
@@ -35,7 +33,7 @@ def milliseconds_to_q_events(milliseconds, fuse_silences=False):
             durationtools.Offset(850, 1)
             )
 
-    Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
+    Return a list of ``QEvent`` instances.
     '''
     from experimental import quantizationtools
 
