@@ -1,5 +1,5 @@
 quantizationtools.UnweightedSearchTree
-==================================
+======================================
 
 .. inheritance-diagram:: experimental.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree
    :private-bases:

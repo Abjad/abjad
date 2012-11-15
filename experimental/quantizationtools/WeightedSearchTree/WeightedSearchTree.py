@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 from experimental.quantizationtools.SearchTree import SearchTree
 
 
-class ComplexSearchTree(SearchTree):
+class WeightedSearchTree(SearchTree):
 
     ### CLASS ATTRIBUTES ###
 

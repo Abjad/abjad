@@ -1,13 +1,13 @@
 from experimental import quantizationtools
 
 
-def test_ComplexSearchTree___call___01():
+def test_WeightedSearchTree___call___01():
     definition = {
         'divisors': (2, 3, 5, 7),
         'max_depth': 3,
         'max_divisions': 2,
         }
-    search_tree = quantizationtools.ComplexSearchTree(definition)
+    search_tree = quantizationtools.WeightedSearchTree(definition)
     q_grid = quantizationtools.QGrid()
     a = quantizationtools.QEventProxy(quantizationtools.SilentQEvent(0,      ['A'], index=1), 0, 1)
     b = quantizationtools.QEventProxy(quantizationtools.SilentQEvent((1, 5), ['B'], index=2), 0, 1)

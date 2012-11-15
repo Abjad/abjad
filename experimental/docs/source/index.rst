@@ -163,7 +163,6 @@ Unstable packages (load manually)
    experimental/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
    experimental/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
    experimental/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
-   experimental/quantizationtools/ComplexSearchTree/ComplexSearchTree
    experimental/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
    experimental/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
    experimental/quantizationtools/DistanceHeuristic/DistanceHeuristic
@@ -187,8 +186,9 @@ Unstable packages (load manually)
    experimental/quantizationtools/Quantizer/Quantizer
    experimental/quantizationtools/SerialJobHandler/SerialJobHandler
    experimental/quantizationtools/SilentQEvent/SilentQEvent
-   experimental/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
+   experimental/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
+   experimental/quantizationtools/WeightedSearchTree/WeightedSearchTree
 
 .. rubric:: functions
 
