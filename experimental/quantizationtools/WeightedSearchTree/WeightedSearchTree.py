@@ -3,6 +3,51 @@ from experimental.quantizationtools.SearchTree import SearchTree
 
 
 class WeightedSearchTree(SearchTree):
+    '''A search tree that allows for dividing nodes in a ``QGrid`` into
+    parts with unequal weights:
+
+    ::
+
+        >>> search_tree = quantizationtools.WeightedSearchTree()
+
+    ::
+
+        >>> search_tree
+        WeightedSearchTree(
+            definition={   'divisors': (2, 3, 5, 7), 'max_depth': 3, 'max_divisions': 2}
+            )
+
+    In ``WeightedSearchTree``'s definition:
+
+        * ``divisors`` controls the sum of the parts of the ratio a node
+          may be divided into,
+        * ``max_depth`` controls how many levels of tuplet nesting are permitted, and
+        * ``max_divisions`` controls the maximum permitted length of the weights in
+          the ratio.
+
+    Thus, the default ``WeightedSearchTree`` permits the following ratios:
+
+    ::
+
+        >>> for x in search_tree.all_compositions:
+        ...     x
+        ... 
+        (1, 1)
+        (2, 1)
+        (1, 2)
+        (4, 1)
+        (3, 2)
+        (2, 3)
+        (1, 4)
+        (6, 1)
+        (5, 2)
+        (4, 3)
+        (3, 4)
+        (2, 5)
+        (1, 6)
+
+    Return ``WeightedSearchTree`` instance.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
@@ -19,6 +64,10 @@ class WeightedSearchTree(SearchTree):
         self._all_compositions = tuple(all_compositions)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def all_compositions(self):
+        return self._all_compositions
 
     @property
     def default_definition(self):

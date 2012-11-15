@@ -56,6 +56,8 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree.__repr__
 
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
 .. automethod:: experimental.quantizationtools.UnweightedSearchTree.UnweightedSearchTree.UnweightedSearchTree.__setstate__
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`

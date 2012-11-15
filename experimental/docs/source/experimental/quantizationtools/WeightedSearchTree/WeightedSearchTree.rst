@@ -9,6 +9,8 @@ quantizationtools.WeightedSearchTree
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.all_compositions
+
 .. autoattribute:: experimental.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.default_definition
 
 .. autoattribute:: experimental.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.definition
@@ -56,7 +58,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
 .. automethod:: experimental.quantizationtools.WeightedSearchTree.WeightedSearchTree.WeightedSearchTree.__setstate__
 

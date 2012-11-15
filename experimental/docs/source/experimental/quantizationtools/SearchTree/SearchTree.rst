@@ -48,6 +48,4 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__setstate__

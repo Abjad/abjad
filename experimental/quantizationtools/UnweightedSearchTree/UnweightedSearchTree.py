@@ -79,16 +79,6 @@ class UnweightedSearchTree(SearchTree):
     Return ``UnweightedSearchTree`` instance.
     '''
 
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        result = ['{}('.format(self._class_name)]
-        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
-        result.append('\tdefinition={}'.format(definition[0]))
-        result.extend(['\t' + x for x in definition[1:]])
-        result.append('\t)')
-        return '\n'.join(result)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -154,17 +144,6 @@ class UnweightedSearchTree(SearchTree):
         if node is None:
             return ()
         return tuple((1,) * x for x in sorted(node.keys()))
-
-    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        indent = '\t'
-        if not is_indented:
-            indent = ''
-        result = ['{}('.format(self._tools_package_qualified_class_name)]
-        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
-        result.append('{}definition={}'.format(indent, definition[0]))
-        result.extend([indent + x for x in definition[1:]])
-        result.append('{})'.format(indent))   
-        return result
 
     def _is_valid_definition(self, definition):
         if not isinstance(definition, dict) or not len(definition):

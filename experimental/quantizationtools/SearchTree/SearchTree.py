@@ -1,6 +1,7 @@
 import abc
 import copy
 import inspect
+import pprint
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
@@ -64,6 +65,14 @@ class SearchTree(AbjadObject):
                         state[slot] = getattr(self, slot)
         return state
     
+    def __repr__(self):
+        result = ['{}('.format(self._class_name)]
+        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
+        result.append('\tdefinition={}'.format(definition[0]))
+        result.extend(['\t' + x for x in definition[1:]])
+        result.append('\t)')
+        return '\n'.join(result)
+
     def __setstate__(self, state):
         for key, value in state.iteritems():
             setattr(self, key, value)
@@ -120,6 +129,17 @@ class SearchTree(AbjadObject):
             return ()
         combinations = [tuple(x) for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
         return tuple(tuple(zip(indices, combo)) for combo in combinations)
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        indent = '\t'
+        if not is_indented:
+            indent = ''
+        result = ['{}('.format(self._tools_package_qualified_class_name)]
+        definition = pprint.pformat(self.definition, indent=4, width=64).splitlines()
+        result.append('{}definition={}'.format(indent, definition[0]))
+        result.extend([indent + x for x in definition[1:]])
+        result.append('{})'.format(indent))
+        return result
 
     @abc.abstractmethod
     def _is_valid_definition(self, definition):
