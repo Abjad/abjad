@@ -4,9 +4,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class LiteralTimespan(AbjadObject):
     r'''.. versionadded:: 2.11
 
-    Timespan constant.
+    Literal timespan.
 
-    Timespan contant ``[1/2, 3/2)``::
+    Literal timespan ``[1/2, 3/2)``::
 
         >>> timespan_constant = timerelationtools.LiteralTimespan((1, 2), (3, 2)) 
 
@@ -23,9 +23,9 @@ class LiteralTimespan(AbjadObject):
             stop_offset=durationtools.Offset(3, 2)
             )
 
-    Timespan constants are object-modeled offset pairs.
+    Literal timespans are object-modeled offset pairs.
 
-    Timespan constants are immutable.
+    Literal timespans are immutable.
     '''
 
     ### INITIALIZER ###

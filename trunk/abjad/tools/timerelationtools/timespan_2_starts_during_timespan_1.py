@@ -4,13 +4,13 @@ def timespan_2_starts_during_timespan_1(timespan_1=None, timespan_2=None, hold=F
     Make timespan inequality indicating that expression 2 starts during expression 1::
 
         >>> timerelationtools.timespan_2_starts_during_timespan_1()
-        TimespanInequality('timespan_1.start <= timespan_2.start < timespan_1.stop')
+        TimespanTimespanTimeRelation('timespan_1.start <= timespan_2.start < timespan_1.stop')
 
     Return timespan inequality or boolean.
     '''
     from abjad.tools import timerelationtools
 
-    timespan_inequality = timerelationtools.TimespanInequality(
+    timespan_inequality = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start <= timespan_2.start < timespan_1.stop',
         timespan_1=timespan_1,
         timespan_2=timespan_2)

@@ -175,10 +175,10 @@ class TimespanInventory(ObjectInventory):
         from abjad.tools import timerelationtools
         result = []
         for timespan in self:
-            if isinstance(timespan_inequality, timerelationtools.TimespanInequality):
+            if isinstance(timespan_inequality, timerelationtools.TimespanTimespanTimeRelation):
                 if timespan_inequality(timespan_2=timespan):
                     result.append(timespan)
-            elif isinstance(timespan_inequality, timerelationtools.OffsetInequality):
+            elif isinstance(timespan_inequality, timerelationtools.OffsetTimespanTimeRelation):
                 if timespan_inequality(timespan=timespan):
                     result.append(timespan)
             else:

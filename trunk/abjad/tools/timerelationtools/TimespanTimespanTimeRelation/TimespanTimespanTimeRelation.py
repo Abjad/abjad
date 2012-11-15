@@ -3,10 +3,10 @@ from abjad.tools import durationtools
 from abjad.tools.timerelationtools.TimeRelation import TimeRelation
 
 
-class TimespanInequality(TimeRelation):
+class TimespanTimespanTimeRelation(TimeRelation):
     r'''.. versionadded:: 2.11
 
-    Timespan inequality.
+    Object-oriented timespan / timespan time relation.
 
     Score for examples::
 
@@ -81,7 +81,7 @@ class TimespanInequality(TimeRelation):
         >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(timespan_1=last_tuplet, timespan_2=long_note)
         False
 
-    SymbolicTimespan inequalities are immutable.
+    Timespan / timespan time relations are immutable.
     '''
 
     ### INITIALIZER ###
@@ -109,7 +109,7 @@ class TimespanInequality(TimeRelation):
         ::
 
             >>> z(timespan_inequality)
-            timerelationtools.TimespanInequality(
+            timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=timerelationtools.LiteralTimespan(
                     start_offset=durationtools.Offset(5, 1),

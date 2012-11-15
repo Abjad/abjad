@@ -4,12 +4,12 @@ def offset_happens_before_timespan_stops(timespan=None, offset=None, hold=False)
     Make offset inequality indicating that `offset` happens before `timespan` stops::
 
         >>> timerelationtools.offset_happens_before_timespan_stops()
-        OffsetInequality('offset < timespan.stop')
+        OffsetTimespanTimeRelation('offset < timespan.stop')
 
     '''
     from abjad.tools import timerelationtools
 
-    offset_inequality = timerelationtools.OffsetInequality(
+    offset_inequality = timerelationtools.OffsetTimespanTimeRelation(
         'offset < timespan.stop',
         timespan=timespan, offset=offset)
 

@@ -4,13 +4,13 @@ def timespan_2_overlaps_only_stop_of_timespan_1(timespan_1=None, timespan_2=None
     Make timespan inequality template indicating that expression happens during timespan::
 
         >>> timerelationtools.timespan_2_overlaps_only_stop_of_timespan_1()
-        TimespanInequality('timespan_1.start <= timespan_2.start < timespan_1.stop < timespan_2.stop')
+        TimespanTimespanTimeRelation('timespan_1.start <= timespan_2.start < timespan_1.stop < timespan_2.stop')
 
     Return boolean or timespan inequality.
     '''
     from abjad.tools import timerelationtools
 
-    timespan_inequality = timerelationtools.TimespanInequality(
+    timespan_inequality = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start <= timespan_2.start < timespan_1.stop < timespan_2.stop',
         timespan_1=timespan_1, 
         timespan_2=timespan_2)

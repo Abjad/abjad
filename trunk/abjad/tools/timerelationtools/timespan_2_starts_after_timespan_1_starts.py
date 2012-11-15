@@ -4,13 +4,13 @@ def timespan_2_starts_after_timespan_1_starts(timespan_1=None, timespan_2=None, 
     Make timespan inequality template indicating that expression happens during timespan::
 
         >>> timerelationtools.timespan_2_starts_after_timespan_1_starts()
-        TimespanInequality('timespan_1.start < timespan_2.start')
+        TimespanTimespanTimeRelation('timespan_1.start < timespan_2.start')
 
     Return boolean or timespan inequality.
     '''
     from abjad.tools import timerelationtools
 
-    timespan_inequality = timerelationtools.TimespanInequality(
+    timespan_inequality = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_1.start < timespan_2.start',
         timespan_1=timespan_1, 
         timespan_2=timespan_2)

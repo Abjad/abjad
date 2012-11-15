@@ -4,13 +4,13 @@ def timespan_2_overlaps_start_of_timespan_1(timespan_1=None, timespan_2=None, ho
     Make timespan inequality template indicating that expression overlaps start of timespan::
 
         >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1()
-        TimespanInequality('timespan_2.start < timespan_1.start < timespan_2.stop')
+        TimespanTimespanTimeRelation('timespan_2.start < timespan_1.start < timespan_2.stop')
 
     Return boolean or timespan inequality.
     '''
     from abjad.tools import timerelationtools
 
-    timespan_inequality = timerelationtools.TimespanInequality(
+    timespan_inequality = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_2.start < timespan_1.start < timespan_2.stop',
         timespan_1=timespan_1, 
         timespan_2=timespan_2)

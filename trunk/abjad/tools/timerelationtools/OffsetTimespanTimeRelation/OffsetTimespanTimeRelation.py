@@ -3,10 +3,14 @@ from abjad.tools import durationtools
 from abjad.tools.timerelationtools.TimeRelation import TimeRelation
 
 
-class OffsetInequality(TimeRelation):
+class OffsetTimespanTimeRelation(TimeRelation):
     r'''.. versionadded:: 2.11
 
-    SymbolicOffset inequality.
+    Object-oriented model of offset / timespan time relation.
+
+    .. note:: add example.
+
+    Offset / timespan time relations are immutable.
     '''
 
     ### INITIALIZER ###

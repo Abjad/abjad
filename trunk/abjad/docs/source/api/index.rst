@@ -1787,9 +1787,9 @@ Composition packages
    :maxdepth: 1
 
    tools/timerelationtools/LiteralTimespan/LiteralTimespan
-   tools/timerelationtools/OffsetInequality/OffsetInequality
-   tools/timerelationtools/TimespanInequality/TimespanInequality
+   tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
    tools/timerelationtools/TimespanInventory/TimespanInventory
+   tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
 
 .. rubric:: functions
 

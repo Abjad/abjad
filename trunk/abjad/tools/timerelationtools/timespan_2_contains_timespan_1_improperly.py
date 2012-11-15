@@ -4,13 +4,13 @@ def timespan_2_contains_timespan_1_improperly(timespan_1=None, timespan_2=None, 
     Make timespan inequality indicating that `timespan_2` contains `timespan_1` improperly::
 
         >>> timerelationtools.timespan_2_contains_timespan_1_improperly()
-        TimespanInequality('timespan_2.start <= timespan_1.start and timespan_1.stop <= timespan_2.stop')
+        TimespanTimespanTimeRelation('timespan_2.start <= timespan_1.start and timespan_1.stop <= timespan_2.stop')
 
     Return boolean or timespan inequality.
     '''
     from abjad.tools import timerelationtools
 
-    timespan_inequality = timerelationtools.TimespanInequality(
+    timespan_inequality = timerelationtools.TimespanTimespanTimeRelation(
         'timespan_2.start <= timespan_1.start and timespan_1.stop <= timespan_2.stop',
         timespan_1=timespan_1,
         timespan_2=timespan_2)
