@@ -197,9 +197,9 @@ Unstable packages (load manually)
 
    experimental/quantizationtools/millisecond_pitch_pairs_to_q_events
    experimental/quantizationtools/milliseconds_to_q_events
+   experimental/quantizationtools/tempo_scaled_duration_to_milliseconds
+   experimental/quantizationtools/tempo_scaled_durations_to_q_events
    experimental/quantizationtools/tempo_scaled_leaves_to_q_events
-   experimental/quantizationtools/tempo_scaled_rational_to_milliseconds
-   experimental/quantizationtools/tempo_scaled_rationals_to_q_events
 
 :py:mod:`requesttools <experimental.requesttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

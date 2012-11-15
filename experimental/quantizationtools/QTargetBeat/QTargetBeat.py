@@ -131,7 +131,7 @@ class QTargetBeat(AbjadObject):
         Return Duration instance.
         '''
         from experimental import quantizationtools
-        return quantizationtools.tempo_scaled_rational_to_milliseconds(
+        return quantizationtools.tempo_scaled_duration_to_milliseconds(
             self.beatspan, self.tempo)
 
     @property

@@ -28,9 +28,9 @@ Methods
 
 .. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_millisecond_pitch_pairs
 
-.. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_leaves
+.. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_durations
 
-.. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_rationals
+.. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.from_tempo_scaled_leaves
 
 .. automethod:: experimental.quantizationtools.QEventSequence.QEventSequence.QEventSequence.index
 

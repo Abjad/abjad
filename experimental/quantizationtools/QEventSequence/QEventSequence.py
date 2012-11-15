@@ -146,18 +146,18 @@ class QEventSequence(tuple, ImmutableAbjadObject):
         return klass(tempo_scaled_leaves_to_q_events(leaves, tempo))
 
     @classmethod
-    def from_tempo_scaled_rationals(klass, rationals, tempo=None):
-        '''Convert ``rationals``, scaled by ``tempo`` into a ``QEventSequence``:
+    def from_tempo_scaled_durations(klass, durations, tempo=None):
+        '''Convert ``durations``, scaled by ``tempo`` into a ``QEventSequence``:
 
         ::
 
             >>> tempo = contexttools.TempoMark((1, 4), 174)
-            >>> rationals = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
+            >>> durations = [(1, 4), (-3, 16), (1, 16), (-1, 2)]
 
         ::
 
-            >>> sequence = quantizationtools.QEventSequence.from_tempo_scaled_rationals(
-            ...     rationals, tempo=tempo)
+            >>> sequence = quantizationtools.QEventSequence.from_tempo_scaled_durations(
+            ...     durations, tempo=tempo)
 
         ::
 
@@ -188,8 +188,8 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from experimental.quantizationtools import tempo_scaled_rationals_to_q_events
-        return klass(tempo_scaled_rationals_to_q_events(rationals, tempo))
+        from experimental.quantizationtools import tempo_scaled_durations_to_q_events
+        return klass(tempo_scaled_durations_to_q_events(durations, tempo))
     
     @classmethod
     def from_millisecond_pitch_pairs(klass, pairs):

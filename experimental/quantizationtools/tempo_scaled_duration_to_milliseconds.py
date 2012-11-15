@@ -2,21 +2,21 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 
 
-def tempo_scaled_rational_to_milliseconds(rational, tempo):
-    '''Return the millisecond value of `rational` at `tempo`.
+def tempo_scaled_duration_to_milliseconds(duration, tempo):
+    '''Return the millisecond value of `duration` at `tempo`.
 
     ::
 
-        >>> rational = (1, 4)
+        >>> duration = (1, 4)
         >>> tempo = contexttools.TempoMark((1, 4), 60)
-        >>> quantizationtools.tempo_scaled_rational_to_milliseconds(
-        ...     rational, tempo)
+        >>> quantizationtools.tempo_scaled_duration_to_milliseconds(
+        ...     duration, tempo)
         Duration(1000, 1)
 
     Return ``Duration`` instance.
     '''
 
-    duration = durationtools.Duration(rational)
+    duration = durationtools.Duration(duration)
     tempo = contexttools.TempoMark(tempo)
 
     whole_note_duration = 1000 \

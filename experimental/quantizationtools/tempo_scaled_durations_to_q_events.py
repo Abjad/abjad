@@ -6,7 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 
 
-def tempo_scaled_rationals_to_q_events(durations, tempo):
+def tempo_scaled_durations_to_q_events(durations, tempo):
     '''Convert a list of rational durations to a list of
     ``QEvent`` instances.
 
@@ -17,7 +17,7 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
 
         >>> durations = [Duration(-1, 2), Duration(1, 4), Duration(1, 6)]
         >>> tempo = contexttools.TempoMark((1, 4), 55)
-        >>> for x in quantizationtools.tempo_scaled_rationals_to_q_events(
+        >>> for x in quantizationtools.tempo_scaled_durations_to_q_events(
         ...     durations, tempo): x
         ...
         quantizationtools.SilentQEvent(
@@ -46,7 +46,7 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
     assert isinstance(tempo, contexttools.TempoMark)
 
     durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(durations, sign=[-1]) if x]
-    durations = [quantizationtools.tempo_scaled_rational_to_milliseconds(x, tempo) for x in durations]
+    durations = [quantizationtools.tempo_scaled_duration_to_milliseconds(x, tempo) for x in durations]
 
     offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
 
