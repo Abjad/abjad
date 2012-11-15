@@ -1,6 +1,7 @@
 import abc
 import bisect
 from abjad.tools import chordtools
+from abjad.tools import contexttools
 from abjad.tools import marktools
 from abjad.tools import notetools
 from abjad.tools import resttools
@@ -133,6 +134,9 @@ class QTarget(AbjadObject):
             new_leaf = chordtools.Chord(leaf_one.written_pitches, duration)
         else:
             new_leaf = resttools.Rest(duration)
+        tempo_marks = contexttools.get_tempo_marks_attached_to_component(leaf_two)
+        if tempo_marks:
+            tempo_marks[0](new_leaf)
         leaf_two.parent[index] = new_leaf
         return new_leaf
 
@@ -142,7 +146,7 @@ class QTarget(AbjadObject):
 
     def _notate_leaves_pairwise(self, voice, grace_handler):
         # check first against second, notating first, tying as necessry
-        # keep track of the leaf index, as we're muting the structure as we go
+        # keep track of the leaf index, as we're mutating the structure as we go
         leaves = list(voice.leaves)
         for i in range(len(leaves) - 1):
             leaf_one, leaf_two = leaves[i], leaves[i + 1]
@@ -159,6 +163,7 @@ class QTarget(AbjadObject):
         
     def _notate_one_leaf(self, leaf, grace_handler):
         leaf_annotations = marktools.get_annotations_attached_to_component(leaf)
+        tempo_marks = contexttools.get_tempo_marks_attached_to_component(leaf)
         if leaf_annotations:
             pitches, grace_container = grace_handler(leaf_annotations[0].value)
             if not pitches:
@@ -172,7 +177,9 @@ class QTarget(AbjadObject):
             if grace_container:
                 grace_container(new_leaf)
             leaf.parent[leaf.parent.index(leaf)] = new_leaf
-            marktools.move_marks(leaf, new_leaf)
+            #marktools.move_marks(leaf, new_leaf)
+            if tempo_marks:
+                tempo_marks[0](new_leaf)
             tietools.TieSpanner(new_leaf)
             return new_leaf
         return leaf
