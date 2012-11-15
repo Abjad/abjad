@@ -1,7 +1,7 @@
 from experimental import quantizationtools
 
 
-def test_SimpleSearchTree__find_divisible_leaf_indices_and_subdivisions_01():
+def test_UnweightedSearchTree__find_divisible_leaf_indices_and_subdivisions_01():
 
     definition = {
         2: {
@@ -12,7 +12,7 @@ def test_SimpleSearchTree__find_divisible_leaf_indices_and_subdivisions_01():
         },
         5: None
     }
-    search_tree = quantizationtools.SimpleSearchTree(definition)
+    search_tree = quantizationtools.UnweightedSearchTree(definition)
 
     q_grid = quantizationtools.QGrid()
     a = quantizationtools.QEventProxy(quantizationtools.SilentQEvent(0,      ['A']), 0, 1)

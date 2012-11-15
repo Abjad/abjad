@@ -14,7 +14,7 @@ def test_QuantizationJob_pickle_01():
             },
             5: None
         }
-    search_tree = quantizationtools.SimpleSearchTree(definition)
+    search_tree = quantizationtools.UnweightedSearchTree(definition)
     q_event_proxies = [
         quantizationtools.QEventProxy(quantizationtools.SilentQEvent(0,      ['A'], index=1), 0, 1),
         quantizationtools.QEventProxy(quantizationtools.SilentQEvent((1, 5), ['B'], index=2), 0, 1),

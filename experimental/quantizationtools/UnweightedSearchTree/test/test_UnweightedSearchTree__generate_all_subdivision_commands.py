@@ -1,7 +1,7 @@
 from experimental import quantizationtools
 import copy
 
-def test_SimpleSearchTree__generate_all_subdivision_commands_01():
+def test_UnweightedSearchTree__generate_all_subdivision_commands_01():
 
     definition = {
             2: {
@@ -12,7 +12,7 @@ def test_SimpleSearchTree__generate_all_subdivision_commands_01():
             },
             5: None
         }
-    search_tree = quantizationtools.SimpleSearchTree(definition)
+    search_tree = quantizationtools.UnweightedSearchTree(definition)
 
     q_grid = quantizationtools.QGrid()
     a = quantizationtools.QEventProxy(quantizationtools.SilentQEvent(0,      ['A'], index=1), 0, 1)

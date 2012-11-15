@@ -8,7 +8,7 @@ class QTargetMeasure(AbjadObject):
 
     ::
 
-        >>> search_tree = quantizationtools.SimpleSearchTree({2: None})
+        >>> search_tree = quantizationtools.UnweightedSearchTree({2: None})
         >>> tempo = contexttools.TempoMark((1, 4), 60)
         >>> time_signature = contexttools.TimeSignatureMark((4, 4))
 
@@ -26,7 +26,7 @@ class QTargetMeasure(AbjadObject):
         >>> q_target_measure
         quantizationtools.QTargetMeasure(
             offset_in_ms=durationtools.Offset(1000, 1),
-            search_tree=quantizationtools.SimpleSearchTree(
+            search_tree=quantizationtools.UnweightedSearchTree(
                 definition={   2: None}
                 ),
             time_signature=contexttools.TimeSignatureMark(
@@ -91,7 +91,7 @@ class QTargetMeasure(AbjadObject):
         offset_in_ms = durationtools.Offset(offset_in_ms)
 
         if search_tree is None:
-            search_tree = quantizationtools.SimpleSearchTree()
+            search_tree = quantizationtools.UnweightedSearchTree()
         assert isinstance(search_tree, quantizationtools.SearchTree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
@@ -148,7 +148,7 @@ class QTargetMeasure(AbjadObject):
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(1000, 1),
-                search_tree=quantizationtools.SimpleSearchTree(
+                search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None}
                     ),
                 tempo=contexttools.TempoMark(
@@ -159,7 +159,7 @@ class QTargetMeasure(AbjadObject):
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(2000, 1),
-                search_tree=quantizationtools.SimpleSearchTree(
+                search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None}
                     ),
                 tempo=contexttools.TempoMark(
@@ -170,7 +170,7 @@ class QTargetMeasure(AbjadObject):
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(3000, 1),
-                search_tree=quantizationtools.SimpleSearchTree(
+                search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None}
                     ),
                 tempo=contexttools.TempoMark(
@@ -181,7 +181,7 @@ class QTargetMeasure(AbjadObject):
             quantizationtools.QTargetBeat(
                 beatspan=durationtools.Duration(1, 4),
                 offset_in_ms=durationtools.Offset(4000, 1),
-                search_tree=quantizationtools.SimpleSearchTree(
+                search_tree=quantizationtools.UnweightedSearchTree(
                     definition={   2: None}
                     ),
                 tempo=contexttools.TempoMark(
@@ -230,7 +230,7 @@ class QTargetMeasure(AbjadObject):
         ::
 
             >>> q_target_measure.search_tree
-            SimpleSearchTree(
+            UnweightedSearchTree(
                 definition={   2: None}
                 )
 

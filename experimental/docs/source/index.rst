@@ -187,7 +187,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/Quantizer/Quantizer
    experimental/quantizationtools/SerialJobHandler/SerialJobHandler
    experimental/quantizationtools/SilentQEvent/SilentQEvent
-   experimental/quantizationtools/SimpleSearchTree/SimpleSearchTree
+   experimental/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
 
 .. rubric:: functions

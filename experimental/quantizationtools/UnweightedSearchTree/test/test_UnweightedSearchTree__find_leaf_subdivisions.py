@@ -1,7 +1,7 @@
 from experimental import quantizationtools
 
 
-def test_SimpleSearchTree__find_leaf_subdivisions_01():
+def test_UnweightedSearchTree__find_leaf_subdivisions_01():
 
     definition = {
         2: {
@@ -12,7 +12,7 @@ def test_SimpleSearchTree__find_leaf_subdivisions_01():
         }, 
         5: None
     }
-    search_tree = quantizationtools.SimpleSearchTree(definition)
+    search_tree = quantizationtools.UnweightedSearchTree(definition)
 
     assert search_tree._find_leaf_subdivisions((1, (1, 2))) == ((1, 1), (1, 1, 1))
     assert search_tree._find_leaf_subdivisions((1, (1, 2), (1, 2))) == ((1, 1),)

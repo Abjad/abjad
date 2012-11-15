@@ -18,7 +18,7 @@ class QuantizationJob(AbjadObject):
     ::
 
         >>> definition = {2: {2: None}, 3: None, 5: None}
-        >>> search_tree = quantizationtools.SimpleSearchTree(definition)
+        >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
 
     ::
 
@@ -182,7 +182,7 @@ class QuantizationJob(AbjadObject):
         ::
 
             >>> job.search_tree
-            SimpleSearchTree(
+            UnweightedSearchTree(
                 definition={   2: {   2: None}, 3: None, 5: None}
                 )
 

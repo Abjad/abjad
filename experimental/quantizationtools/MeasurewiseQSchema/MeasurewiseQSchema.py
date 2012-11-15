@@ -17,7 +17,7 @@ class MeasurewiseQSchema(QSchema):
 
         >>> q_schema
         quantizationtools.MeasurewiseQSchema(
-            search_tree=quantizationtools.SimpleSearchTree(
+            search_tree=quantizationtools.UnweightedSearchTree(
                 definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
                     3: {   2: {   2: None}, 3: None, 5: None},
                     5: {   2: None, 3: None},
@@ -47,7 +47,7 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> search_tree = quantizationtools.SimpleSearchTree({7: None})
+        >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
         >>> time_signature = contexttools.TimeSignatureMark((3, 4))
         >>> tempo = contexttools.TempoMark((1, 4), 54)
         >>> use_full_measure = True
@@ -77,7 +77,7 @@ class MeasurewiseQSchema(QSchema):
         >>> index = 0
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ... 
-        search_tree: SimpleSearchTree(
+        search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
         tempo: TempoMark(Duration(1, 4), 54)
@@ -89,7 +89,7 @@ class MeasurewiseQSchema(QSchema):
         >>> index = 1000
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ... 
-        search_tree: SimpleSearchTree(
+        search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
         tempo: TempoMark(Duration(1, 4), 54)
@@ -104,9 +104,9 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> a = {'search_tree': quantizationtools.SimpleSearchTree({2: None})}
-        >>> b = {'search_tree': quantizationtools.SimpleSearchTree({3: None})}
-        >>> c = {'search_tree': quantizationtools.SimpleSearchTree({5: None})}
+        >>> a = {'search_tree': quantizationtools.UnweightedSearchTree({2: None})}
+        >>> b = {'search_tree': quantizationtools.UnweightedSearchTree({3: None})}
+        >>> c = {'search_tree': quantizationtools.UnweightedSearchTree({5: None})}
 
     ::
 
@@ -115,28 +115,28 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> q_schema[0]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   2: None}
             )
 
     ::
 
         >>> q_schema[1]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   3: None}
             )
 
     ::
 
         >>> q_schema[2]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   5: None}
             )
 
     ::
 
         >>> q_schema[1000]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   5: None}
             )
 
@@ -224,7 +224,7 @@ class MeasurewiseQSchema(QSchema):
     def __init__(self, *args, **kwargs):
         from experimental import quantizationtools
 
-        search_tree = kwargs.get('search_tree', quantizationtools.SimpleSearchTree())
+        search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 

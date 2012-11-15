@@ -85,10 +85,10 @@ def test_Quantizer___call___02():
 def test_Quantizer___call___03():
 
     q_schema = quantizationtools.BeatwiseQSchema(
-        {'search_tree': quantizationtools.SimpleSearchTree({2: None})},
-        {'search_tree': quantizationtools.SimpleSearchTree({3: None})},
-        {'search_tree': quantizationtools.SimpleSearchTree({5: None})},
-        {'search_tree': quantizationtools.SimpleSearchTree({7: None})},
+        {'search_tree': quantizationtools.UnweightedSearchTree({2: None})},
+        {'search_tree': quantizationtools.UnweightedSearchTree({3: None})},
+        {'search_tree': quantizationtools.UnweightedSearchTree({5: None})},
+        {'search_tree': quantizationtools.UnweightedSearchTree({7: None})},
         )
     milliseconds = [250, 250, 250, 250] * 4
     sequence = quantizationtools.QEventSequence.from_millisecond_durations(milliseconds)

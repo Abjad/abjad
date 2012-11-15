@@ -17,7 +17,7 @@ class BeatwiseQSchema(QSchema):
         >>> q_schema
         quantizationtools.BeatwiseQSchema(
             beatspan=durationtools.Duration(1, 4),
-            search_tree=quantizationtools.SimpleSearchTree(
+            search_tree=quantizationtools.UnweightedSearchTree(
                 definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
                     3: {   2: {   2: None}, 3: None, 5: None},
                     5: {   2: None, 3: None},
@@ -43,7 +43,7 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> beatspan = Duration(5, 16)
-        >>> search_tree = quantizationtools.SimpleSearchTree({7: None})
+        >>> search_tree = quantizationtools.UnweightedSearchTree({7: None})
         >>> tempo = contexttools.TempoMark((1, 4), 54)
         >>> q_schema = quantizationtools.BeatwiseQSchema(
         ...     beatspan=beatspan,
@@ -59,7 +59,7 @@ class BeatwiseQSchema(QSchema):
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ...
         beatspan: 5/16
-        search_tree: SimpleSearchTree(
+        search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
         tempo: TempoMark(Duration(1, 4), 54)
@@ -70,7 +70,7 @@ class BeatwiseQSchema(QSchema):
         >>> for key, value in sorted(q_schema[index].items()): print '{}:'.format(key), value
         ...
         beatspan: 5/16
-        search_tree: SimpleSearchTree(
+        search_tree: UnweightedSearchTree(
             definition={   7: None}
             )
         tempo: TempoMark(Duration(1, 4), 54)
@@ -117,8 +117,8 @@ class BeatwiseQSchema(QSchema):
 
     ::
 
-        >>> a = {'search_tree': quantizationtools.SimpleSearchTree({2: None})}
-        >>> b = {'search_tree': quantizationtools.SimpleSearchTree({3: None})}
+        >>> a = {'search_tree': quantizationtools.UnweightedSearchTree({2: None})}
+        >>> b = {'search_tree': quantizationtools.UnweightedSearchTree({3: None})}
 
     ::
 
@@ -134,7 +134,7 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> q_schema[0]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
                 3: {   2: {   2: None}, 3: None, 5: None},
                 5: {   2: None, 3: None},
@@ -146,7 +146,7 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> q_schema[1]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
                 3: {   2: {   2: None}, 3: None, 5: None},
                 5: {   2: None, 3: None},
@@ -158,28 +158,28 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> q_schema[2]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   2: None}
             )
 
     ::
 
         >>> q_schema[3]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   2: None}
             )
 
     ::
 
         >>> q_schema[4]['search_tree']
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   3: None}
             )
 
     ::
 
         >>> q_schema[1000]['search_tree'] 
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   3: None}
             )
 
@@ -188,8 +188,8 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> q_schema = quantizationtools.MeasurewiseQSchema(
-        ...     (2, {'search_tree': quantizationtools.SimpleSearchTree({2: None})}),
-        ...     (4, {'search_tree': quantizationtools.SimpleSearchTree({3: None})}),
+        ...     (2, {'search_tree': quantizationtools.UnweightedSearchTree({2: None})}),
+        ...     (4, {'search_tree': quantizationtools.UnweightedSearchTree({3: None})}),
         ...     )
 
     Return ``BeatwiseQSchema`` instance.
@@ -208,7 +208,7 @@ class BeatwiseQSchema(QSchema):
             kwargs.get('beatspan',
                 (1, 4)))
 
-        search_tree = kwargs.get('search_tree', quantizationtools.SimpleSearchTree()) 
+        search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree()) 
         assert isinstance(search_tree, quantizationtools.SearchTree)
         self._search_tree = search_tree
 

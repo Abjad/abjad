@@ -3,14 +3,14 @@ from abjad.tools import mathtools
 from experimental.quantizationtools.SearchTree import SearchTree
 
 
-class SimpleSearchTree(SearchTree):
+class UnweightedSearchTree(SearchTree):
     '''Concrete ``SearchTree`` subclass, based on Paul Nauert's search tree model:
 
     ::
 
-        >>> search_tree = quantizationtools.SimpleSearchTree()
+        >>> search_tree = quantizationtools.UnweightedSearchTree()
         >>> search_tree
-        SimpleSearchTree(
+        UnweightedSearchTree(
             definition={   2: {   2: {   2: {   2: None}, 3: None}, 3: None, 5: None, 7: None},
                 3: {   2: {   2: None}, 3: None, 5: None},
                 5: {   2: None, 3: None},
@@ -33,7 +33,7 @@ class SimpleSearchTree(SearchTree):
     no further permissable divisions, or dictionaries obeying these same rules, which
     then indicate the possibilities for further division.
 
-    Calling a ``SimpleSearchTree`` with a ``QGrid`` instance will generate all
+    Calling a ``UnweightedSearchTree`` with a ``QGrid`` instance will generate all
     permissable subdivided ``QGrids``, according to the definition of the called
     search tree:
 
@@ -58,7 +58,7 @@ class SimpleSearchTree(SearchTree):
         (1 (1 1 1 1 1 1 1 1 1 1 1))
         (1 (1 1 1 1 1 1 1 1 1 1 1 1 1))
 
-    A custom ``SimpleSearchTree`` may be defined by passing in a dictionary, as
+    A custom ``UnweightedSearchTree`` may be defined by passing in a dictionary, as
     described above.  The following search tree only permits divisions of the
     root node into ``2s`` and ``3s``, and if divided into ``2``, a node may be
     divided once more into ``2`` parts:
@@ -66,7 +66,7 @@ class SimpleSearchTree(SearchTree):
     ::
 
         >>> definition = {2: {2: None}, 3: None}
-        >>> search_tree = quantizationtools.SimpleSearchTree(definition)
+        >>> search_tree = quantizationtools.UnweightedSearchTree(definition)
         
     ::
 
@@ -76,7 +76,7 @@ class SimpleSearchTree(SearchTree):
         (1 (1 1))
         (1 (1 1 1))
 
-    Return ``SimpleSearchTree`` instance.
+    Return ``UnweightedSearchTree`` instance.
     '''
 
     ### SPECIAL METHODS ###
@@ -99,7 +99,7 @@ class SimpleSearchTree(SearchTree):
         ::
     
             >>> import pprint
-            >>> search_tree = quantizationtools.SimpleSearchTree()
+            >>> search_tree = quantizationtools.UnweightedSearchTree()
             >>> pprint.pprint(search_tree.default_definition)
             {2: {2: {2: {2: None}, 3: None}, 3: None, 5: None, 7: None},
              3: {2: {2: None}, 3: None, 5: None},
