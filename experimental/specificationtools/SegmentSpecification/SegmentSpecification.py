@@ -1,3 +1,4 @@
+import numbers
 from abjad.tools import *
 from experimental.exceptions import *
 from experimental import helpertools
@@ -579,7 +580,7 @@ class SegmentSpecification(Specification):
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measure(self, n):
+    def select_background_measure(self, n, inequality=None):
         '''Select segment background measure ``0``::
 
             >>> selector = segment.select_background_measure(0)
@@ -602,13 +603,16 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
+        assert isinstance(n, int), repr(n)
+        if inequality is None:
+            inequality = timerelationtools.timespan_2_starts_during_timespan_1
+        inequality = inequality(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_background_measures(self, start=None, stop=None):
+    def select_background_measures(self, start=None, stop=None, inequality=None):
         '''Select the first five segment background measures::
 
             >>> selector = segment.select_background_measures(stop=5)
@@ -630,12 +634,16 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        if inequality is None:
+            inequality = timerelationtools.timespan_2_starts_during_timespan_1
+        inequality = inequality(self.timespan)
         selector = selectortools.BackgroundMeasureSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
     
-    def select_background_measures_ratio_part(self, ratio, part, is_count=True):
+    def select_background_measures_ratio_part(self, ratio, part, is_count=True, inequality=None):
         r'''Select the first third of segment background measures 
         calculated according to count of segment background measures::
 
@@ -684,10 +692,12 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = self.select_background_measures()
+        ratio = mathtools.Ratio(ratio)
+        assert isinstance(part, int), repr(part)
+        selector = self.select_background_measures(inequality=inequality)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
-    def select_division(self, n):
+    def select_division(self, n, inequality=None):
         '''Select segment division ``0``::
 
             >>> selector = segment.select_division(0)
@@ -710,7 +720,10 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
+        assert isinstance(n, int), repr(n)
+        if inequality is None:
+            inequality = timerelationtools.timespan_2_starts_during_timespan_1
+        inequality = inequality(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.DivisionSelector(
             inequality=inequality, start_identifier=start, stop_identifier=stop)
@@ -747,7 +760,7 @@ class SegmentSpecification(Specification):
             inequality=inequality, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_divisions_ratio_part(self, ratio, part, is_count=True):
+    def select_divisions_ratio_part(self, ratio, part, is_count=True, inequality=None):
         r'''Select the first third of segment divisions::
 
             >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0)
@@ -772,10 +785,12 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = self.select_divisions()
+        ratio = mathtools.Ratio(ratio)
+        assert isinstance(part, int)
+        selector = self.select_divisions(inequality=inequality)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
-    def select_leaves(self, start=None, stop=None):
+    def select_leaves(self, start=None, stop=None, inequality=None):
         '''Select the first ``40`` segment leaves::
 
             >>> selector = segment.select_leaves(stop=40)
@@ -798,13 +813,17 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        if inequality is None:
+            inequality = timerelationtools.timespan_2_starts_during_timespan_1
+        inequality = inequality(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_leaves_ratio_part(self, ratio, part, is_count=True):
+    def select_leaves_ratio_part(self, ratio, part, is_count=True, inequality=None):
         r'''Select the first third of segment leaves::
 
             >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0)
@@ -830,10 +849,12 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = self.select_leaves()
+        ratio = mathtools.Ratio(ratio)
+        assert isinstance(part, int)
+        selector = self.select_leaves(inequality=inequality)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
-    def select_notes_and_chords(self, start=None, stop=None):
+    def select_notes_and_chords(self, start=None, stop=None, inequality=None):
         '''Select the first ``40`` segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords(stop=40)
@@ -859,13 +880,17 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        inequality = timerelationtools.timespan_2_starts_during_timespan_1(self.timespan)
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        if inequality is None:
+            inequality = timerelationtools.timespan_2_starts_during_timespan_1
+        inequality = inequality(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             inequality=inequality, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_notes_and_chords_ratio_part(self, ratio, part, is_count=True):
+    def select_notes_and_chords_ratio_part(self, ratio, part, is_count=True, inequality=None):
         r'''Select the first third of segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
@@ -894,7 +919,9 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        selector = self.select_notes_and_chords()
+        ratio = mathtools.Ratio(ratio)
+        assert isinstance(part, int), repr(part)
+        selector = self.select_notes_and_chords(inequality=inequality)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_segment(self):
@@ -931,6 +958,8 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
+        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
+        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
         selector = self.select_segment()
         return selectortools.OffsetSelector(selector, start_offset=start, stop_offset=stop)
 
@@ -952,6 +981,8 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
+        ratio = mathtools.Ratio(ratio)
+        assert isinstance(part, int), repr(part)
         selector = self.select_segment()
         return selectortools.TimeRatioPartSelector(selector, ratio, part)
 

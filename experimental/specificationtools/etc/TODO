@@ -40,8 +40,8 @@
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
 
-10. Sprinkle asserts into all segment specification select methods.
-    This will assert on red_segment.select_divisions('Voice 1') and similar.
+[10. Sprinkle asserts into all segment specification select methods.         ]
+[    This will assert on red_segment.select_divisions('Voice 1') and similar.]
 
 11. Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
     Establish metrical hierarchy after division specification and change divisions where necessary.
