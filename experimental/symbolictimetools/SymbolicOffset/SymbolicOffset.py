@@ -83,7 +83,7 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
-                inequality=timerelationtools.TimespanInequality(
+                inequality=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -133,7 +133,7 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=selectortools.CounttimeComponentSelector(
-                inequality=timerelationtools.TimespanInequality(
+                inequality=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -239,7 +239,7 @@ class SymbolicOffset(AbjadObject):
         
             >>> z(offset.selector)
             selectortools.CounttimeComponentSelector(
-                inequality=timerelationtools.TimespanInequality(
+                inequality=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(

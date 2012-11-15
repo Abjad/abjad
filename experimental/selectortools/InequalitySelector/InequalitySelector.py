@@ -17,7 +17,7 @@ class InequalitySelector(Selector):
 
     @abc.abstractmethod
     def __init__(self, inequality=None):
-        assert isinstance(inequality, (timerelationtools.TimespanInequality, type(None)))
+        assert isinstance(inequality, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
         Selector.__init__(self)
         self._inequality = inequality
 

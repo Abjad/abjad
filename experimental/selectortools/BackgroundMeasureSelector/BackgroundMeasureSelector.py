@@ -44,7 +44,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanInequality(
+            inequality=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SingleSegmentSelector(
                     identifier='red'
@@ -60,7 +60,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanInequality(
+            inequality=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SingleSegmentSelector(
                     identifier='red'
@@ -83,7 +83,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanInequality(
+            inequality=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SegmentSelector(
                     start_identifier='red',
@@ -100,7 +100,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanInequality(
+            inequality=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SegmentSelector(
                     start_identifier='red',

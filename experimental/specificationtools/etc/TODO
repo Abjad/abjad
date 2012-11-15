@@ -1,9 +1,7 @@
 1.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
 
-2.  Integrate time-relation filtering into all inequality selector classes.
-    Write test_SegmentSpecification__select_divisions_time_relation.py to test.
-    Change 'inequality' to 'time_relation' globally.
+2.  Change 'inequality' to 'time_relation' globally.
     Finish timerelationtools class docstrings before 2.11 build.
 
 3.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
