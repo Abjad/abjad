@@ -106,7 +106,8 @@ class Quantizer(AbjadObject):
 
     Here we quantize using settings specified by a ``BeatwiseQSchema``, which
     keeps the output of the quantizer "flattened", without measures or explicit
-    time signatures:
+    time signatures.  The default beat-wise settings of quarter=60 persists until
+    the third "beatspan":
 
     ::
 
