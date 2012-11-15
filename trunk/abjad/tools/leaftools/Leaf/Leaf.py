@@ -195,6 +195,7 @@ class Leaf(Component):
     def _format_closing_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_agrace_body())
+        result.append(('spanners', format_contributions.get('closing', {}).get('spanners', [])))
         result.append(('lilypond command marks', format_contributions.get('closing', {}).get('lilypond command marks', [])))
         result.append(('context marks', format_contributions.get('closing', {}).get('context marks', [])))
         result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
@@ -216,6 +217,7 @@ class Leaf(Component):
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
         result.append(('context marks', format_contributions.get('opening', {}).get('context marks', [])))
         result.append(('lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])))
+        result.append(('spanners', format_contributions.get('opening', {}).get('spanners', [])))
         #result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'opening'))
         #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
         #result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'opening'))
