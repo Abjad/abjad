@@ -1,8 +1,8 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from experimental import quantizationtools
-from experimental.quantizationtools._time_segments import _time_segments
+from abjad.tools import quantizationtools
+from abjad.tools.quantizationtools._time_segments import _time_segments
 
 
 def test_quantizationtools_milliseconds_to_q_events_01():

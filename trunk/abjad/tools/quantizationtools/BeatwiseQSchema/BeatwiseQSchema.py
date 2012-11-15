@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.QSchema import QSchema
+from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class BeatwiseQSchema(QSchema):
@@ -202,7 +202,7 @@ class BeatwiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         self._beatspan = durationtools.Duration(
             kwargs.get('beatspan',
@@ -234,15 +234,15 @@ class BeatwiseQSchema(QSchema):
     @property
     def item_klass(self):
         '''The schema's item class.'''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.BeatwiseQSchemaItem
 
     @property
     def target_item_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.QTargetBeat
 
     @property
     def target_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.BeatwiseQTarget

@@ -1,4 +1,4 @@
-from experimental.quantizationtools.JobHandler import JobHandler
+from abjad.tools.quantizationtools.JobHandler import JobHandler
 
 
 class SerialJobHandler(JobHandler):

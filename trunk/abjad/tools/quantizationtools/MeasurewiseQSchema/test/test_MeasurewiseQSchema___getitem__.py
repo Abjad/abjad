@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from experimental import quantizationtools
+from abjad.tools import quantizationtools
 
 
 def test_MeasurewiseQSchema___getitem___01():

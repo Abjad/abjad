@@ -1,5 +1,5 @@
 from abjad import *
-from experimental.quantizationtools import *
+from abjad.tools.quantizationtools import *
 import py
 
 

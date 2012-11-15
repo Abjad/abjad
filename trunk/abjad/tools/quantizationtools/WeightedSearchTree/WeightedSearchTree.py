@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from experimental.quantizationtools.SearchTree import SearchTree
+from abjad.tools.quantizationtools.SearchTree import SearchTree
 
 
 class WeightedSearchTree(SearchTree):

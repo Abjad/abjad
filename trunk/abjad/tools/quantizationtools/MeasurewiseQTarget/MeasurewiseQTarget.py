@@ -2,7 +2,7 @@ import copy
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from abjad.tools import voicetools
-from experimental.quantizationtools.QTarget import QTarget
+from abjad.tools.quantizationtools.QTarget import QTarget
 
 
 class MeasurewiseQTarget(QTarget):
@@ -21,7 +21,7 @@ class MeasurewiseQTarget(QTarget):
 
     @property
     def item_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.QTargetMeasure
 
     ### PRIVATE METHODS ###

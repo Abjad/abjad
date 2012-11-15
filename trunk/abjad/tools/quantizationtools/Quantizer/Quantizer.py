@@ -188,7 +188,7 @@ class Quantizer(AbjadObject):
     def __call__(self, q_event_sequence, q_schema=None, grace_handler=None,
         heuristic=None, job_handler=None, attack_point_optimizer=None,
         attach_tempo_marks=True):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         q_event_sequence = quantizationtools.QEventSequence(q_event_sequence)
 

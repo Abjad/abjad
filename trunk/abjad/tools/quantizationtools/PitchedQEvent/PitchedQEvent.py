@@ -1,5 +1,5 @@
 from abjad.tools import pitchtools
-from experimental.quantizationtools.QEvent import QEvent
+from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class PitchedQEvent(QEvent):

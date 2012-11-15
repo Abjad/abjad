@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import leaftools
 from abjad.tools import tietools
-from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
+from abjad.tools.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
 
 
 class NaiveAttackPointOptimizer(AttackPointOptimizer):

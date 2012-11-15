@@ -9,7 +9,7 @@ class QEventProxy(AbjadObject):
 
     ::
 
-        >>> from experimental import quantizationtools
+        >>> from abjad.tools import quantizationtools
         >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
         >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
         >>> proxy
@@ -36,7 +36,7 @@ class QEventProxy(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         if len(args) == 2:
             q_event, offset = args[0], durationtools.Offset(args[1])

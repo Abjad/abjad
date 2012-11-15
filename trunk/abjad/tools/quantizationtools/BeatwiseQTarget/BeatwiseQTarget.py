@@ -2,7 +2,7 @@ import copy
 from abjad.tools import containertools
 from abjad.tools import sequencetools   
 from abjad.tools import voicetools
-from experimental.quantizationtools.QTarget import QTarget
+from abjad.tools.quantizationtools.QTarget import QTarget
 
 
 class BeatwiseQTarget(QTarget): 
@@ -23,7 +23,7 @@ class BeatwiseQTarget(QTarget):
     
     @property
     def item_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.QTargetBeat
 
     ### PRIVATE METHODS ###

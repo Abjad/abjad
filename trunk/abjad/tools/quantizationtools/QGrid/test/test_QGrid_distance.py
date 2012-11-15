@@ -1,5 +1,5 @@
 from abjad.tools.durationtools import Offset
-from experimental.quantizationtools import *
+from abjad.tools.quantizationtools import *
 
 
 def test_QGrid_distance_01():

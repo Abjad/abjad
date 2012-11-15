@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import measuretools
 from abjad.tools import tuplettools
-from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
+from abjad.tools.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
 
 
 class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
@@ -17,7 +17,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         assert isinstance(expr, measuretools.Measure)
         metrical_hierarchy = timesignaturetools.MetricalHierarchy(expr)

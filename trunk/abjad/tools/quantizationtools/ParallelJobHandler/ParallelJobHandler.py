@@ -1,6 +1,6 @@
 import multiprocessing
 import pickle
-from experimental.quantizationtools.JobHandler import JobHandler
+from abjad.tools.quantizationtools.JobHandler import JobHandler
 
 
 class ParallelJobHandler(JobHandler):
@@ -11,7 +11,7 @@ class ParallelJobHandler(JobHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, jobs):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         finished_jobs = []
         job_queue = multiprocessing.JoinableQueue()

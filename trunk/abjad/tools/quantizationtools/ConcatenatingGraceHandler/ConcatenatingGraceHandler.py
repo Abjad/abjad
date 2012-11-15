@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import gracetools
 from abjad.tools import notetools
 from abjad.tools import resttools
-from experimental.quantizationtools.GraceHandler import GraceHandler
+from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class ConcatenatingGraceHandler(GraceHandler):
@@ -33,7 +33,7 @@ class ConcatenatingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         grace_events, final_event = q_events[:-1], q_events[-1]
 

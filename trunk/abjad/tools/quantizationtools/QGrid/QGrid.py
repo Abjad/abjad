@@ -86,7 +86,7 @@ class QGrid(AbjadObject):
     ### INITIALIZATION ###
 
     def __init__(self, root_node=None, next_downbeat=None):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         if root_node is None:
             root_node = quantizationtools.QGridLeaf(1)
@@ -175,7 +175,7 @@ class QGrid(AbjadObject):
 
         Return tuple of ``QGridLeaf`` instances.
         '''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         if isinstance(self._root_node, quantizationtools.QGridLeaf):
             return (self._root_node, self._next_downbeat)
         return self._root_node.leaves + (self._next_downbeat,)
@@ -229,7 +229,7 @@ class QGrid(AbjadObject):
  
         Return None
         '''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
         leaves, offsets = self.leaves, self.offsets
         for q_event_proxy in q_event_proxies:
@@ -261,7 +261,7 @@ class QGrid(AbjadObject):
 
         Return the ``QEventProxies`` attached to ``leaf``.
         '''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         container = quantizationtools.QGridContainer(
             leaf.duration, [
                 quantizationtools.QGridLeaf(subdivision) for subdivision in subdivisions

@@ -63,7 +63,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
     ### INITIALIZER ###
 
     def __new__(klass, args):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         klasses = (quantizationtools.PitchedQEvent, quantizationtools.SilentQEvent)
         assert 1 < len(args)
         assert all([isinstance(x, klasses) for x in args[:-1]])
@@ -142,7 +142,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from experimental.quantizationtools import tempo_scaled_leaves_to_q_events
+        from abjad.tools.quantizationtools import tempo_scaled_leaves_to_q_events
         return klass(tempo_scaled_leaves_to_q_events(leaves, tempo))
 
     @classmethod
@@ -188,7 +188,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from experimental.quantizationtools import tempo_scaled_durations_to_q_events
+        from abjad.tools.quantizationtools import tempo_scaled_durations_to_q_events
         return klass(tempo_scaled_durations_to_q_events(durations, tempo))
     
     @classmethod
@@ -240,7 +240,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from experimental.quantizationtools import millisecond_pitch_pairs_to_q_events
+        from abjad.tools.quantizationtools import millisecond_pitch_pairs_to_q_events
         return klass(millisecond_pitch_pairs_to_q_events(pairs))
 
     @classmethod
@@ -292,7 +292,7 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         q_events = [quantizationtools.PitchedQEvent(x, [0]) for x in offsets[:-1]]
         q_events.append(quantizationtools.TerminalQEvent(offsets[-1]))
         return klass(q_events)
@@ -344,5 +344,5 @@ class QEventSequence(tuple, ImmutableAbjadObject):
 
         Return ``QEventSequence`` instance.
         '''
-        from experimental.quantizationtools import milliseconds_to_q_events
+        from abjad.tools.quantizationtools import milliseconds_to_q_events
         return klass(milliseconds_to_q_events(durations, fuse_silences))

@@ -1,4 +1,4 @@
-from experimental.quantizationtools.GraceHandler import GraceHandler
+from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class CollapsingGraceHandler(GraceHandler):
@@ -11,7 +11,7 @@ class CollapsingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         pitches = []
         for q_event in q_events:
             if isinstance(q_event, quantizationtools.PitchedQEvent):

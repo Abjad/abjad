@@ -35,7 +35,7 @@ class SearchTree(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         assert isinstance(q_grid, quantizationtools.QGrid)
         new_q_grids = []

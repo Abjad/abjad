@@ -1,47 +1,47 @@
 quantizationtools.DiscardingGraceHandler
 ========================================
 
-.. inheritance-diagram:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
+.. inheritance-diagram:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
    :private-bases:
 
-.. autoclass:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
+.. autoclass:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.storage_format
+.. autoattribute:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__call__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__call__
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__ge__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__gt__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__le__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__lt__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__ne__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__repr__
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.DiscardingGraceHandler.DiscardingGraceHandler.DiscardingGraceHandler.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

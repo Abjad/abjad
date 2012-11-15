@@ -1,57 +1,57 @@
 quantizationtools.QTargetMeasure
 ================================
 
-.. inheritance-diagram:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
+.. inheritance-diagram:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
    :private-bases:
 
-.. autoclass:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
+.. autoclass:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.beats
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.beats
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.duration_in_ms
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.duration_in_ms
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.offset_in_ms
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.offset_in_ms
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.search_tree
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.search_tree
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.storage_format
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.tempo
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.tempo
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.time_signature
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.time_signature
 
-.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.use_full_measure
+.. autoattribute:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.use_full_measure
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__eq__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ge__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__gt__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__le__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__lt__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ne__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__repr__
+.. automethod:: abjad.tools.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.__repr__

@@ -1,93 +1,93 @@
 quantizationtools.ParallelJobHandlerWorker
 ==========================================
 
-.. inheritance-diagram:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
+.. inheritance-diagram:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
    :private-bases:
 
-.. autoclass:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
+.. autoclass:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.exitcode
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.exitcode
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ident
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ident
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.pid
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.pid
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.storage_format
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.authkey
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.authkey
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.daemon
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.daemon
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. autoattribute:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.name
+.. autoattribute:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.name
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
 Methods
 -------
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.is_alive
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.is_alive
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.join
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.join
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.run
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.run
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.start
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.start
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.terminate
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.terminate
 
     Inherited from :py:class:`multiprocessing.process.Process`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__eq__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__ge__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__gt__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__le__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__lt__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__ne__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__repr__
+.. automethod:: abjad.tools.quantizationtools.ParallelJobHandlerWorker.ParallelJobHandlerWorker.ParallelJobHandlerWorker.__repr__
 
     Inherited from :py:class:`multiprocessing.process.Process`

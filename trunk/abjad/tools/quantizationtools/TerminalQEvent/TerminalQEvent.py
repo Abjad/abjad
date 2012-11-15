@@ -1,4 +1,4 @@
-from experimental.quantizationtools.QEvent import QEvent
+from abjad.tools.quantizationtools.QEvent import QEvent
 
 
 class TerminalQEvent(QEvent):

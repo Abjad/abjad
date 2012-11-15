@@ -47,7 +47,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
 
     Return a list of ``QEvent`` instances.
     '''
-    from experimental import quantizationtools
+    from abjad.tools import quantizationtools
 
     # validate input
     assert isinstance(pairs, collections.Iterable)

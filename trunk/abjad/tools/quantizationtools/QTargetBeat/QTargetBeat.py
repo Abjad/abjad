@@ -52,7 +52,7 @@ class QTargetBeat(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         beatspan = durationtools.Duration(beatspan)
         offset_in_ms = durationtools.Offset(offset_in_ms)
@@ -78,7 +78,7 @@ class QTargetBeat(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, job_id):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         if not self.q_events:
             return None
         assert all([isinstance(x, quantizationtools.QEvent) for x in self.q_events])
@@ -130,7 +130,7 @@ class QTargetBeat(AbjadObject):
 
         Return Duration instance.
         '''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.tempo_scaled_duration_to_milliseconds(
             self.beatspan, self.tempo)
 

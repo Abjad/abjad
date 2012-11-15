@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.QSchema import QSchema
+from abjad.tools.quantizationtools.QSchema import QSchema
 
 
 class MeasurewiseQSchema(QSchema):
@@ -8,7 +8,7 @@ class MeasurewiseQSchema(QSchema):
 
     ::
 
-        >>> from experimental import quantizationtools
+        >>> from abjad.tools import quantizationtools
         >>> q_schema = quantizationtools.MeasurewiseQSchema()
 
     Without arguments, it uses smart defaults:
@@ -222,7 +222,7 @@ class MeasurewiseQSchema(QSchema):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         search_tree = kwargs.get('search_tree', quantizationtools.UnweightedSearchTree())
         assert isinstance(search_tree, quantizationtools.SearchTree)
@@ -251,17 +251,17 @@ class MeasurewiseQSchema(QSchema):
     @property
     def item_klass(self):
         '''The schema's item class.'''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQSchemaItem
 
     @property
     def target_item_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.QTargetMeasure
 
     @property
     def target_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.MeasurewiseQTarget
 
     @property

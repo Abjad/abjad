@@ -1,4 +1,4 @@
-from experimental.quantizationtools import *
+from abjad.tools.quantizationtools import *
 
 
 def test_QGrid_fit_q_events_01():

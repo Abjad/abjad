@@ -1,5 +1,5 @@
 from abjad.tools import durationtools
-from experimental import quantizationtools
+from abjad.tools import quantizationtools
 
 
 def test_SilentQEvent___init___01():

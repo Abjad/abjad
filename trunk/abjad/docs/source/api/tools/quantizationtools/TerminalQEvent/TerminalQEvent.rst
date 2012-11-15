@@ -1,59 +1,59 @@
 quantizationtools.TerminalQEvent
 ================================
 
-.. inheritance-diagram:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
+.. inheritance-diagram:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
    :private-bases:
 
-.. autoclass:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
+.. autoclass:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.index
+.. autoattribute:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.index
 
-    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`
 
-.. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.offset
+.. autoattribute:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.offset
 
-    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`
 
-.. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.storage_format
+.. autoattribute:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__eq__
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__eq__
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ge__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__getstate__
-
-    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
-
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__gt__
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__le__
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__getstate__
+
+    Inherited from :py:class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`
+
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__lt__
-
-    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
-
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ne__
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__repr__
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__lt__
 
-    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`
 
-.. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__setstate__
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__ne__
 
-    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__repr__
+
+    Inherited from :py:class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`
+
+.. automethod:: abjad.tools.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__setstate__
+
+    Inherited from :py:class:`quantizationtools.QEvent <abjad.tools.quantizationtools.QEvent.QEvent.QEvent>`

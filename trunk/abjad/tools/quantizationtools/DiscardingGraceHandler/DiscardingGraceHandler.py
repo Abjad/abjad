@@ -1,4 +1,4 @@
-from experimental.quantizationtools.GraceHandler import GraceHandler
+from abjad.tools.quantizationtools.GraceHandler import GraceHandler
 
 
 class DiscardingGraceHandler(GraceHandler):
@@ -13,7 +13,7 @@ class DiscardingGraceHandler(GraceHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, q_events):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         q_event = q_events[-1]
         if isinstance(q_event, quantizationtools.PitchedQEvent):

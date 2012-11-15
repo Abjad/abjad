@@ -1941,6 +1941,77 @@ Composition packages
    tools/wellformednesstools/list_checks
    tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
 
+Unstable packages (load manually)
+---------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/quantizationtools/AttackPointOptimizer/AttackPointOptimizer
+   tools/quantizationtools/GraceHandler/GraceHandler
+   tools/quantizationtools/Heuristic/Heuristic
+   tools/quantizationtools/JobHandler/JobHandler
+   tools/quantizationtools/QEvent/QEvent
+   tools/quantizationtools/QSchema/QSchema
+   tools/quantizationtools/QSchemaItem/QSchemaItem
+   tools/quantizationtools/QTarget/QTarget
+   tools/quantizationtools/SearchTree/SearchTree
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
+   tools/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
+   tools/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
+   tools/quantizationtools/CollapsingGraceHandler/CollapsingGraceHandler
+   tools/quantizationtools/ConcatenatingGraceHandler/ConcatenatingGraceHandler
+   tools/quantizationtools/DiscardingGraceHandler/DiscardingGraceHandler
+   tools/quantizationtools/DistanceHeuristic/DistanceHeuristic
+   tools/quantizationtools/MeasurewiseAttackPointOptimizer/MeasurewiseAttackPointOptimizer
+   tools/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
+   tools/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
+   tools/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
+   tools/quantizationtools/NaiveAttackPointOptimizer/NaiveAttackPointOptimizer
+   tools/quantizationtools/NullAttackPointOptimizer/NullAttackPointOptimizer
+   tools/quantizationtools/ParallelJobHandler/ParallelJobHandler
+   tools/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
+   tools/quantizationtools/PitchedQEvent/PitchedQEvent
+   tools/quantizationtools/QEventProxy/QEventProxy
+   tools/quantizationtools/QEventSequence/QEventSequence
+   tools/quantizationtools/QGrid/QGrid
+   tools/quantizationtools/QGridContainer/QGridContainer
+   tools/quantizationtools/QGridLeaf/QGridLeaf
+   tools/quantizationtools/QTargetBeat/QTargetBeat
+   tools/quantizationtools/QTargetMeasure/QTargetMeasure
+   tools/quantizationtools/QuantizationJob/QuantizationJob
+   tools/quantizationtools/Quantizer/Quantizer
+   tools/quantizationtools/SerialJobHandler/SerialJobHandler
+   tools/quantizationtools/SilentQEvent/SilentQEvent
+   tools/quantizationtools/TerminalQEvent/TerminalQEvent
+   tools/quantizationtools/UnweightedSearchTree/UnweightedSearchTree
+   tools/quantizationtools/WeightedSearchTree/WeightedSearchTree
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/quantizationtools/millisecond_pitch_pairs_to_q_events
+   tools/quantizationtools/milliseconds_to_q_events
+   tools/quantizationtools/tempo_scaled_duration_to_milliseconds
+   tools/quantizationtools/tempo_scaled_durations_to_q_events
+   tools/quantizationtools/tempo_scaled_leaves_to_q_events
+
 Internal packages
 -----------------
 

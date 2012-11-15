@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.QSchemaItem import QSchemaItem
+from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
@@ -9,7 +9,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> from experimental import quantizationtools
+        >>> from abjad.tools import quantizationtools
         >>> quantizationtools.MeasurewiseQSchemaItem()
         MeasurewiseQSchemaItem()
 
@@ -56,7 +56,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     ### INITIALIZER ###
 
     def __new__(klass, search_tree=None, tempo=None, time_signature=None, use_full_measure=None):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         if search_tree is not None:
             assert isinstance(search_tree, quantizationtools.SearchTree)

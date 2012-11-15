@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental import quantizationtools
+from abjad.tools import quantizationtools
 import py.test
 
 

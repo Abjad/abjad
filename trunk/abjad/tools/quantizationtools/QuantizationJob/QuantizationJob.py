@@ -52,7 +52,7 @@ class QuantizationJob(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, job_id, search_tree, q_event_proxies, q_grids=None):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         assert isinstance(search_tree, quantizationtools.SearchTree)
         assert all([isinstance(x, quantizationtools.QEventProxy) for x in q_event_proxies])
@@ -68,7 +68,7 @@ class QuantizationJob(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         q_grid = quantizationtools.QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
         old_q_grids = []

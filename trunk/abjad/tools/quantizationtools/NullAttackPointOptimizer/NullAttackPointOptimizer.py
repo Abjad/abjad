@@ -1,4 +1,4 @@
-from experimental.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
+from abjad.tools.quantizationtools.AttackPointOptimizer import AttackPointOptimizer
 
 class NullAttackPointOptimizer(AttackPointOptimizer):
     '''Concrete ``AttackPointOptimizer`` subclass which performs

@@ -1,4 +1,4 @@
-from experimental.quantizationtools.Heuristic import Heuristic
+from abjad.tools.quantizationtools.Heuristic import Heuristic
 
 
 class DistanceHeuristic(Heuristic):
@@ -15,7 +15,7 @@ class DistanceHeuristic(Heuristic):
     ### PRIVATE METHODS ###
 
     def _process(self, q_target_beats):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         for q_target_beat in q_target_beats:
             q_grids = q_target_beat.q_grids

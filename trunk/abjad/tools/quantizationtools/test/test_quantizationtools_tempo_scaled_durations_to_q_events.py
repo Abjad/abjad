@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from experimental import quantizationtools
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_tempo_scaled_durations_to_q_events_01():

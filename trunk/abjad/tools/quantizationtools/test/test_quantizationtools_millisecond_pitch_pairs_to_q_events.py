@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import pitchtools
-from experimental import quantizationtools
+from abjad.tools import quantizationtools
 
 
 def test_quantizationtools_millisecond_pitch_pairs_to_q_events_01():

@@ -35,14 +35,14 @@ class QGridContainer(RhythmTreeContainer):
 
     @property
     def _node_klass(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return (type(self), quantizationtools.QGridLeaf)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def leaves(self):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         def recurse(node):
             result = []
             for child in node.children:

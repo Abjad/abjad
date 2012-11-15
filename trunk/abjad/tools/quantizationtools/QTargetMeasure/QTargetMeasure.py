@@ -86,7 +86,7 @@ class QTargetMeasure(AbjadObject):
     def __init__(self, offset_in_ms=None, search_tree=None, time_signature=None,
         tempo=None, use_full_measure=False):
 
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         offset_in_ms = durationtools.Offset(offset_in_ms)
 
@@ -206,7 +206,7 @@ class QTargetMeasure(AbjadObject):
 
         Return Duration.
         '''
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         return quantizationtools.tempo_scaled_duration_to_milliseconds(
             self.time_signature.duration, self.tempo)
 

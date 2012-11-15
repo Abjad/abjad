@@ -1,4 +1,4 @@
-from experimental import quantizationtools
+from abjad.tools import quantizationtools
 
 
 def test_TerminalQEvent___eq___01():

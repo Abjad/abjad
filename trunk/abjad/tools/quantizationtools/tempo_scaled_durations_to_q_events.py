@@ -40,7 +40,7 @@ def tempo_scaled_durations_to_q_events(durations, tempo):
 
     Return a list of ``QEvent`` instances.
     '''
-    from experimental import quantizationtools
+    from abjad.tools import quantizationtools
 
     durations = [durationtools.Duration(x) for x in durations]
     assert isinstance(tempo, contexttools.TempoMark)

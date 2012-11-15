@@ -1,73 +1,73 @@
 quantizationtools.BeatwiseQSchema
 =================================
 
-.. inheritance-diagram:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
+.. inheritance-diagram:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
    :private-bases:
 
-.. autoclass:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
+.. autoclass:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.beatspan
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.beatspan
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.item_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.item_klass
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.items
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.items
 
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.search_tree
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.search_tree
 
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.storage_format
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_item_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_item_klass
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_klass
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.target_klass
 
-.. autoattribute:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.tempo
+.. autoattribute:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.tempo
 
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__call__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__call__
 
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__ge__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__getitem__
-
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
-
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__gt__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__le__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__getitem__
+
+    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`
+
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__lt__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__ne__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__repr__
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__ne__
 
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.BeatwiseQSchema.BeatwiseQSchema.BeatwiseQSchema.__repr__
+
+    Inherited from :py:class:`quantizationtools.QSchema <abjad.tools.quantizationtools.QSchema.QSchema.QSchema>`

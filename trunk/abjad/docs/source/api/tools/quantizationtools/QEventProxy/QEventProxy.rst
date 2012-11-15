@@ -1,51 +1,51 @@
 quantizationtools.QEventProxy
 =============================
 
-.. inheritance-diagram:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy
+.. inheritance-diagram:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
    :private-bases:
 
-.. autoclass:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy
+.. autoclass:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.index
+.. autoattribute:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.index
 
-.. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.offset
+.. autoattribute:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.offset
 
-.. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.q_event
+.. autoattribute:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.q_event
 
-.. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.storage_format
+.. autoattribute:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__eq__
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__eq__
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ge__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__getstate__
-
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__gt__
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__le__
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__getstate__
+
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__lt__
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ne__
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__repr__
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__ne__
 
-.. automethod:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__setstate__
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__repr__
+
+.. automethod:: abjad.tools.quantizationtools.QEventProxy.QEventProxy.QEventProxy.__setstate__

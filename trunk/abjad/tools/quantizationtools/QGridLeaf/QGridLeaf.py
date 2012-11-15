@@ -32,7 +32,7 @@ class QGridLeaf(RhythmTreeNode):
     ### INITIALIZER ###
 
     def __init__(self, duration=1, q_event_proxies=None, is_divisible=True):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
         RhythmTreeNode.__init__(self, duration)
         if q_event_proxies is None:
             self._q_event_proxies = []

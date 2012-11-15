@@ -1,6 +1,6 @@
 from fractions import Fraction
 from abjad.tools.contexttools import TempoMark
-from experimental.quantizationtools import tempo_scaled_duration_to_milliseconds
+from abjad.tools.quantizationtools import tempo_scaled_duration_to_milliseconds
 
 
 def test_quantizationtools_tempo_scaled_duration_to_milliseconds_01():

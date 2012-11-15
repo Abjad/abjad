@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.QSchemaItem import QSchemaItem
+from abjad.tools.quantizationtools.QSchemaItem import QSchemaItem
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
@@ -9,7 +9,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> from experimental import quantizationtools
+        >>> from abjad.tools import quantizationtools
         >>> quantizationtools.BeatwiseQSchemaItem()
         BeatwiseQSchemaItem()
 
@@ -50,7 +50,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
         pass
 
     def __new__(klass, beatspan=None, search_tree=None, tempo=None):
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         if beatspan is not None:
             beatspan = durationtools.Duration(beatspan)

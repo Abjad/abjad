@@ -35,7 +35,7 @@ def milliseconds_to_q_events(milliseconds, fuse_silences=False):
 
     Return a list of ``QEvent`` instances.
     '''
-    from experimental import quantizationtools
+    from abjad.tools import quantizationtools
 
     if fuse_silences:
         durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]) if x]

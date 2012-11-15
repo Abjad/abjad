@@ -44,7 +44,7 @@ class QTarget(AbjadObject):
         attach_tempo_marks=True
         ):
 
-        from experimental import quantizationtools
+        from abjad.tools import quantizationtools
 
         assert isinstance(q_event_sequence, quantizationtools.QEventSequence)
 
