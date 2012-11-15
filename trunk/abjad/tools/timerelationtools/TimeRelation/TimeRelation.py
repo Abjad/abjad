@@ -51,7 +51,7 @@ class TimeRelation(AbjadObject):
 
     @property
     def template(self):
-        '''Template of time-object inequality.
+        '''Time relation template.
 
         Return string.
         '''

@@ -1,40 +1,40 @@
 def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False):
     r'''.. versionadded:: 2.11
 
-    Make offset inequality indicating that `offset` happens before `timespan` starts::
+    Make time relation indicating that `offset` happens before `timespan` starts::
 
         >>> timerelationtools.offset_happens_before_timespan_starts()
         OffsetTimespanTimeRelation('offset < timespan.start')
 
-    Make offset inequality indicating that offset ``1/2`` happens before `timespan` starts::
+    Make time relation indicating that offset ``1/2`` happens before `timespan` starts::
 
         >>> offset = durationtools.Offset(1, 2)
 
     ::
 
-        >>> offset_inequality = timerelationtools.offset_happens_before_timespan_starts(
+        >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
         ...     offset=offset)
 
     ::
 
-        >>> z(offset_inequality)
+        >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
             offset=durationtools.Offset(1, 2)
             )
 
-    Make offset inequality indicating that `offset` happens before timespan ``[2, 8)`` starts::
+    Make time relation indicating that `offset` happens before timespan ``[2, 8)`` starts::
 
         >>> timespan = timerelationtools.expr_to_timespan((2, 8))
 
     ::
 
-        >>> offset_inequality = timerelationtools.offset_happens_before_timespan_starts(
+        >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
         ...     timespan=timespan)
 
     ::
 
-        >>> z(offset_inequality)
+        >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
             timespan=timerelationtools.LiteralTimespan(
@@ -43,15 +43,15 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
                 )
             )
 
-    Make offset inequality indicating that offset ``1/2`` happens before 
+    Make time relation indicating that offset ``1/2`` happens before 
     timespan ``[2, 8)`` starts::
 
-        >>> offset_inequality = timerelationtools.offset_happens_before_timespan_starts(
+        >>> time_relation = timerelationtools.offset_happens_before_timespan_starts(
         ...     timespan=timespan, offset=offset, hold=True)
 
     ::
 
-        >>> z(offset_inequality)
+        >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
             timespan=timerelationtools.LiteralTimespan(
@@ -61,22 +61,22 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
             offset=durationtools.Offset(1, 2)
             )
 
-    Evaluate offset inequality indicating that offset ``1/2`` happens before 
+    Evaluate time relation indicating that offset ``1/2`` happens before 
     timespan ``[2, 8)`` starts::
 
         >>> timerelationtools.offset_happens_before_timespan_starts(
         ...     timespan=timespan, offset=offset, hold=False)
         True
 
-    Return offset inequality or boolean.
+    Return time relation or boolean.
     '''
     from abjad.tools import timerelationtools
 
-    offset_inequality = timerelationtools.OffsetTimespanTimeRelation(
+    time_relation = timerelationtools.OffsetTimespanTimeRelation(
         'offset < timespan.start',
         timespan=timespan, offset=offset)
 
-    if offset_inequality.is_fully_loaded and not hold:
-        return offset_inequality()
+    if time_relation.is_fully_loaded and not hold:
+        return time_relation()
     else:
-        return offset_inequality
+        return time_relation

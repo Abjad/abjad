@@ -23,7 +23,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
     ### SPECIAL METHODS ###
 
     def __call__(self, timespan=None, offset=None):
-        r'''Evaluate offset inequality.
+        r'''Evaluate time relation.
         '''
         from abjad.tools import timerelationtools
         if timespan is None:
@@ -31,7 +31,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         if offset is None:
             offset = self.offset
         if timespan is None or offset is None:
-            raise ValueError('offset inequality is not fully loaded.')
+            raise ValueError('time relation is not fully loaded.')
         timespan = timerelationtools.expr_to_timespan(timespan)
         offset = durationtools.Offset(offset)
         timespan_start = self._get_expr_start(timespan)
@@ -44,7 +44,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
         return result
 
     def __eq__(self, expr):
-        '''True when `expr` equals offset inequality. Otherwise false.
+        '''True when `expr` equals time relation. Otherwise false.
 
         Return boolean.
         '''

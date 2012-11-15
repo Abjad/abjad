@@ -49,11 +49,11 @@ Methods
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
-.. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespan_that_satisfies_inequality
+.. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespan_that_satisfies_time_relation
 
-.. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespans_that_satisfy_inequality
+.. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespans_that_satisfy_time_relation
 
-.. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.has_timespan_that_satisfies_inequality
+.. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.has_timespan_that_satisfies_time_relation
 
 .. automethod:: abjad.tools.timerelationtools.TimespanInventory.TimespanInventory.TimespanInventory.index
 

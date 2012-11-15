@@ -123,28 +123,28 @@ class TimespanInventory(ObjectInventory):
             elif timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1, timespan_2):
                 self.remove(timespan_1)
 
-    def get_timespan_that_satisfies_inequality(self, timespan_inequality):
-        r'''Get timespan that satisifies `timespan_inequality`::
+    def get_timespan_that_satisfies_time_relation(self, time_relation):
+        r'''Get timespan that satisifies `time_relation`::
 
             >>> timespan_1 = timerelationtools.expr_to_timespan((2, 5))
-            >>> timespan_inequality = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespan_inventory.get_timespan_that_satisfies_inequality(timespan_inequality)
+            >>> timespan_inventory.get_timespan_that_satisfies_time_relation(time_relation)
             LiteralTimespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
         Return timespan when timespan inventory contains exactly one timespan
-        that satisfies `timespan_inequality`.
+        that satisfies `time_relation`.
 
         Raise exception when timespan inventory contains no timespan
-        that satisfies `timespan_inequality`.
+        that satisfies `time_relation`.
 
         Raise exception when timespan inventory contains more than one timespan
-        that satisfies `timespan_inequality`.
+        that satisfies `time_relation`.
         '''
-        timespans = self.get_timespans_that_satisfy_inequality(timespan_inequality)
+        timespans = self.get_timespans_that_satisfy_time_relation(time_relation)
         if len(timespans) == 1:
             return timespans[0]
         elif 1 < len(timespans):
@@ -152,16 +152,16 @@ class TimespanInventory(ObjectInventory):
         else:
             raise Exception('missing timespan error.')
 
-    def get_timespans_that_satisfy_inequality(self, timespan_inequality):
-        r'''Get timespans that satisfy `timespan_inequality`::
+    def get_timespans_that_satisfy_time_relation(self, time_relation):
+        r'''Get timespans that satisfy `time_relation`::
 
             >>> timespan_1 = timerelationtools.expr_to_timespan((2, 8))
-            >>> timespan_inequality = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespans = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
+            >>> timespans = timespan_inventory.get_timespans_that_satisfy_time_relation(time_relation)
 
         ::
 
@@ -175,42 +175,42 @@ class TimespanInventory(ObjectInventory):
         from abjad.tools import timerelationtools
         result = []
         for timespan in self:
-            if isinstance(timespan_inequality, timerelationtools.TimespanTimespanTimeRelation):
-                if timespan_inequality(timespan_2=timespan):
+            if isinstance(time_relation, timerelationtools.TimespanTimespanTimeRelation):
+                if time_relation(timespan_2=timespan):
                     result.append(timespan)
-            elif isinstance(timespan_inequality, timerelationtools.OffsetTimespanTimeRelation):
-                if timespan_inequality(timespan=timespan):
+            elif isinstance(time_relation, timerelationtools.OffsetTimespanTimeRelation):
+                if time_relation(timespan=timespan):
                     result.append(timespan)
             else:
                 raise ValueError
         return result
 
-    def has_timespan_that_satisfies_inequality(self, timespan_inequality):
-        r'''True when timespan inventory has timespan that satisfies `timespan_inequality`::
+    def has_timespan_that_satisfies_time_relation(self, time_relation):
+        r'''True when timespan inventory has timespan that satisfies `time_relation`::
 
             >>> timespan_1 = timerelationtools.expr_to_timespan((2, 8))
-            >>> timespan_inequality = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespan_inventory.has_timespan_that_satisfies_inequality(timespan_inequality)
+            >>> timespan_inventory.has_timespan_that_satisfies_time_relation(time_relation)
             True
 
         Otherwise false::
 
             >>> timespan_1 = timerelationtools.expr_to_timespan((10, 20))
-            >>> timespan_inequality = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1)
 
         ::
 
-            >>> timespan_inventory.has_timespan_that_satisfies_inequality(timespan_inequality)
+            >>> timespan_inventory.has_timespan_that_satisfies_time_relation(time_relation)
             False
 
         Return boolean.
         '''
-        return bool(self.get_timespans_that_satisfy_inequality(timespan_inequality))
+        return bool(self.get_timespans_that_satisfy_time_relation(time_relation))
 
     def keep_material_that_intersects_timespan(self, keep_timespan):
         from abjad.tools import timerelationtools

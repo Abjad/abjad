@@ -94,21 +94,21 @@ class TimespanTimespanTimeRelation(TimeRelation):
     ### SPECIAL METHODS ###
 
     def __call__(self, timespan_1=None, timespan_2=None, score_specification=None, context_name=None):
-        r'''Evaluate timespan inequality.
+        r'''Evaluate time relation.
 
-        Example 1. Evaluate timespan inequality without substitution::
+        Example 1. Evaluate time relation without substitution::
 
             >>> timespan_1 = timerelationtools.LiteralTimespan(5, 15)
             >>> timespan_2 = timerelationtools.LiteralTimespan(10, 20)
 
         ::
 
-            >>> timespan_inequality = timerelationtools.timespan_2_starts_during_timespan_1(
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(
             ...     timespan_1=timespan_1, timespan_2=timespan_2, hold=True)
 
         ::
 
-            >>> z(timespan_inequality)
+            >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=timerelationtools.LiteralTimespan(
@@ -123,7 +123,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan_inequality()
+            >>> time_relation()
             True
 
         Example 2. Substitute `timespan_1` during evaluation::
@@ -137,7 +137,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan_inequality(timespan_1=new_timespan_1)
+            >>> time_relation(timespan_1=new_timespan_1)
             False
 
         Example 3. Substitute `timespan_2` during evaluation::
@@ -151,12 +151,12 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         ::
 
-            >>> timespan_inequality(timespan_2=new_timespan_2)
+            >>> time_relation(timespan_2=new_timespan_2)
             False
         
         Example 4. Substitute both `timespan_1` and `timespan_2` during evaluation::
 
-            >>> timespan_inequality(timespan_1=new_timespan_1, timespan_2=new_timespan_2)
+            >>> time_relation(timespan_1=new_timespan_1, timespan_2=new_timespan_2)
             True
 
         Raise value error if either `timespan_1` or `timespan_2` is none.
@@ -170,7 +170,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         if timespan_2 is None:
             timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
-            raise ValueError('timespan inequality is not fully loaded.')
+            raise ValueError('time relation is not fully loaded.')
 
         timespan_1 = timerelationtools.expr_to_timespan(timespan_1)
         timespan_2 = timerelationtools.expr_to_timespan(timespan_2)
@@ -193,7 +193,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         return result
     
     def __eq__(self, expr):
-        '''True when `expr` equals timespan inequality. Otherwise false.
+        '''True when `expr` equals time relation. Otherwise false.
 
         Return boolean.
         '''
@@ -208,7 +208,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     @property
     def timespan_1(self):
-        '''Expression ``1`` of timespan inequality.
+        '''Expression ``1`` of time relation.
 
         Return arbitrary object.
         '''
@@ -216,7 +216,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         
     @property
     def timespan_2(self):
-        '''Expression ``2`` of timespan inequality.
+        '''Expression ``2`` of time relation.
 
         Return arbitrary object.
         '''
@@ -246,7 +246,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
     # TODO: eventually remove in favor of timespan_1
     @property
     def timespan(self):
-        '''SymbolicTimespan of timespan inequality.
+        '''SymbolicTimespan of time relation.
 
         Return timespan object.
         '''
