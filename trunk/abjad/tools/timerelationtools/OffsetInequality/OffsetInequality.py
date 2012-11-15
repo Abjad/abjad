@@ -1,9 +1,9 @@
 import fractions
 from abjad.tools import durationtools
-from abjad.tools.timerelationtools.TimeInequality import TimeInequality
+from abjad.tools.timerelationtools.TimeRelation import TimeRelation
 
 
-class OffsetInequality(TimeInequality):
+class OffsetInequality(TimeRelation):
     r'''.. versionadded:: 2.11
 
     SymbolicOffset inequality.
@@ -12,7 +12,7 @@ class OffsetInequality(TimeInequality):
     ### INITIALIZER ###
 
     def __init__(self, template, timespan=None, offset=None):
-        TimeInequality.__init__(self, template)
+        TimeRelation.__init__(self, template)
         self._timespan = timespan
         self._offset = offset
 

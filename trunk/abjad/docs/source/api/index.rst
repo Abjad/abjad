@@ -1779,7 +1779,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/timerelationtools/TimeInequality/TimeInequality
+   tools/timerelationtools/TimeRelation/TimeRelation
 
 .. rubric:: concrete classes
 

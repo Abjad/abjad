@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timerelationtools.OffsetInequality.OffsetInequality.OffsetInequality.template
 
-    Inherited from :py:class:`timerelationtools.TimeInequality <abjad.tools.timerelationtools.TimeInequality.TimeInequality.TimeInequality>`
+    Inherited from :py:class:`timerelationtools.TimeRelation <abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation>`
 
 .. autoattribute:: abjad.tools.timerelationtools.OffsetInequality.OffsetInequality.OffsetInequality.timespan
 

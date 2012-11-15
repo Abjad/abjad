@@ -2,11 +2,10 @@ import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# TODO: change name to TimeRelation
-class TimeInequality(AbjadObject):
+class TimeRelation(AbjadObject):
     r'''.. versionadded:: 2.11
 
-    Time-object inequality.
+    Object-oriented time relation.
     '''
 
     ### CLASS ATTRIBUTES ###
