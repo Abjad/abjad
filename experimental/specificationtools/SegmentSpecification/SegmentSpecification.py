@@ -1159,7 +1159,7 @@ class SegmentSpecification(Specification):
             settingtools.MultipleContextSetting(
                 'rhythm',
                 requesttools.AbsoluteRequest(
-                    rhythmmakertools.TaleaFilledRhythmMaker(
+                    rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
                         prolation_addenda=[],

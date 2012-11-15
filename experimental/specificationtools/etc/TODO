@@ -47,6 +47,4 @@
     Right now it's added onto the side of already-initialized
     rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
 
-12. Get rid of 'Filled' from rhythm-maker class names.
-
-13. Finish timerelationtools class docstrings before 2.11 build.
+12. Finish timerelationtools class docstrings before 2.11 build.
