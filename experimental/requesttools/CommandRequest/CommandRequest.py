@@ -29,7 +29,7 @@ class CommandRequest(Request):
             'divisions',
             symbolictimetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
-                    inequality=timerelationtools.TimespanTimespanTimeRelation(
+                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -117,7 +117,7 @@ class CommandRequest(Request):
             >>> z(command_request.symbolic_offset)
             symbolictimetools.SymbolicOffset(
                 selector=selectortools.BackgroundMeasureSelector(
-                    inequality=timerelationtools.TimespanTimespanTimeRelation(
+                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(

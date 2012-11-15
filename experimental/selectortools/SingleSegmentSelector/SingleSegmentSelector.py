@@ -26,8 +26,8 @@ class SingleSegmentSelector(InequalitySelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, identifier=0):
-        InequalitySelector.__init__(self, inequality=inequality)
+    def __init__(self, time_relation=None, identifier=0):
+        InequalitySelector.__init__(self, time_relation=time_relation)
         self._identifier = identifier
         self._klass = segmenttools.Segment
 

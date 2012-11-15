@@ -41,8 +41,8 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of the first measure that starts during segment ``'red'``::
 
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, stop_identifier=1)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> measure_selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation, stop_identifier=1)
 
     ::
 
@@ -53,7 +53,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
             selector=selectortools.BackgroundMeasureSelector(
-                inequality=timerelationtools.TimespanTimespanTimeRelation(
+                time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
@@ -67,7 +67,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of division ``0`` starting during segment ``'red'``::
 
-        >>> division_selector = selectortools.DivisionSelector(inequality=inequality, stop_identifier=1)
+        >>> division_selector = selectortools.DivisionSelector(time_relation=time_relation, stop_identifier=1)
 
     ::
 
@@ -78,7 +78,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
        >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
             selector=selectortools.DivisionSelector(
-                inequality=timerelationtools.TimespanTimespanTimeRelation(
+                time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(

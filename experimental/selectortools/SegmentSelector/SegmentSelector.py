@@ -74,17 +74,17 @@ class SegmentSelector(SliceSelector, InequalitySelector):
     Select all segments starting during the first third of the score:
 
         >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
 
-        >>> selector = selectortools.SegmentSelector(inequality=inequality)
+        >>> selector = selectortools.SegmentSelector(time_relation=time_relation)
 
     ::
 
         >>> z(selector)
         selectortools.SegmentSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     multiplier=Fraction(1, 3)
@@ -94,13 +94,13 @@ class SegmentSelector(SliceSelector, InequalitySelector):
 
     Select the last two segments starting during the first third of the score::
 
-        >>> selector = selectortools.SegmentSelector(inequality=inequality, start_identifier=-2)
+        >>> selector = selectortools.SegmentSelector(time_relation=time_relation, start_identifier=-2)
 
     ::
 
         >>> z(selector)
         selectortools.SegmentSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     multiplier=Fraction(1, 3)
@@ -114,9 +114,9 @@ class SegmentSelector(SliceSelector, InequalitySelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
+    def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None):
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
-        InequalitySelector.__init__(self, inequality=inequality)
+        InequalitySelector.__init__(self, time_relation=time_relation)
         self._klass = segmenttools.Segment
 
     ### READ-ONLY PUBLIC PROPERTIES ###

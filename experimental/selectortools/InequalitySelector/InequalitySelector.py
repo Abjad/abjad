@@ -16,33 +16,33 @@ class InequalitySelector(Selector):
     ### INTIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, inequality=None):
-        assert isinstance(inequality, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
+    def __init__(self, time_relation=None):
+        assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
         Selector.__init__(self)
-        self._inequality = inequality
+        self._time_relation = time_relation
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def inequality(self):
+    def time_relation(self):
         '''Inequality of selector.
         
-        Return inequality or none.
+        Return time_relation or none.
         '''
-        return self._inequality
+        return self._time_relation
 
     @property
     def start_segment_identifier(self):
-        '''Delegate to ``self.inequality.start_segment_identifier``.
+        '''Delegate to ``self.time_relation.start_segment_identifier``.
 
         Return string or none.
         '''
-        return self.inequality.start_segment_identifier
+        return self.time_relation.start_segment_identifier
 
     @property
     def stop_segment_identifier(self):
-        '''Delegate to ``self.inequality.stop_segment_identifier``.
+        '''Delegate to ``self.time_relation.stop_segment_identifier``.
 
         Return string or none.
         '''
-        return self.inequality.stop_segment_identifier
+        return self.time_relation.stop_segment_identifier

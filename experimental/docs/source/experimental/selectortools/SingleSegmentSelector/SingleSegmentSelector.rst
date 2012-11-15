@@ -11,10 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.identifier
 
-.. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.inequality
-
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
-
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.klass
 
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.start_segment_identifier
@@ -24,6 +20,10 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.time_relation
+
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.timespan
 

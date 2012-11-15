@@ -9,8 +9,6 @@ selectortools.InequalitySelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.inequality
-
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.start_segment_identifier
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.stop_segment_identifier
@@ -18,6 +16,8 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.time_relation
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.timespan
 

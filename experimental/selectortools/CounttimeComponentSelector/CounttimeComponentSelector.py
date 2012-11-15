@@ -34,12 +34,12 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
     Then select the last three leaves in tuplet ``-1`` in this measure::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
 
     ::
 
         >>> measure_selector = selectortools.CounttimeComponentSelector(
-        ... inequality=inequality, klass=Measure, start_identifier=3, stop_identifier=4)
+        ... time_relation=time_relation, klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
@@ -59,7 +59,7 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
             selector=selectortools.CounttimeComponentSelector(
                 klass=tuplettools.Tuplet,
                 selector=selectortools.CounttimeComponentSelector(
-                    inequality=timerelationtools.TimespanTimespanTimeRelation(
+                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                             selector=selectortools.SingleSegmentSelector(
@@ -81,14 +81,14 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, klass=None, predicate=None, selector=None,
+    def __init__(self, time_relation=None, klass=None, predicate=None, selector=None,
         start_identifier=None, stop_identifier=None):
         from experimental import selectortools
         assert isinstance(selector, (selectortools.SliceSelector, type(None))), repr(selector)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
-        InequalitySelector.__init__(self, inequality=inequality)
+        InequalitySelector.__init__(self, time_relation=time_relation)
         self._selector = selector
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)

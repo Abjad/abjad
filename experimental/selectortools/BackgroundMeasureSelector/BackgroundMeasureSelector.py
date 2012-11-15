@@ -34,17 +34,17 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     Select all measures starting during segment ``'red'``::
 
         >>> timespan = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
 
-        >>> selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
+        >>> selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation)
 
     ::
 
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SingleSegmentSelector(
                     identifier='red'
@@ -54,13 +54,13 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     Select the last two measures during segment ``'red'``::
 
-        >>> selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-2)
+        >>> selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation, start_identifier=-2)
 
     ::
     
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SingleSegmentSelector(
                     identifier='red'
@@ -73,17 +73,17 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
         >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
         >>> selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=expr)
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=selector)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=selector)
 
     ::
     
-        >>> selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
+        >>> selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation)
 
     ::
 
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SegmentSelector(
                     start_identifier='red',
@@ -94,13 +94,13 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     Select the last two measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> selector = selectortools.BackgroundMeasureSelector(inequality=inequality, start_identifier=-2)
+        >>> selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation, start_identifier=-2)
 
     ::
 
         >>> z(selector)
         selectortools.BackgroundMeasureSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SegmentSelector(
                     start_identifier='red',
@@ -115,9 +115,9 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
+    def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None):
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
-        InequalitySelector.__init__(self, inequality=inequality)
+        InequalitySelector.__init__(self, time_relation=time_relation)
         self._klass = measuretools.Measure
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -163,6 +163,6 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
         raise NotImplementedError
 
     def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.inequality.set_segment_identifier()``.
+        '''Delegate to ``self.time_relation.set_segment_identifier()``.
         '''
-        self.inequality.set_segment_identifier(segment_identifier)
+        self.time_relation.set_segment_identifier(segment_identifier)

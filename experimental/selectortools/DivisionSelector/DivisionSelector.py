@@ -21,17 +21,17 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
         >>> segment = selectortools.SingleSegmentSelector(identifier='red')
         >>> timespan = segment.timespan
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
 
-        >>> division_selector = selectortools.DivisionSelector(inequality=inequality)
+        >>> division_selector = selectortools.DivisionSelector(time_relation=time_relation)
 
     ::
 
         >>> z(division_selector)
         selectortools.DivisionSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(
@@ -43,13 +43,13 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     Select the last two divisions that start during segment ``'red'``::
 
-        >>> division_selector = selectortools.DivisionSelector(inequality=inequality, start_identifier=-2)
+        >>> division_selector = selectortools.DivisionSelector(time_relation=time_relation, start_identifier=-2)
 
     ::
 
         >>> z(division_selector)
         selectortools.DivisionSelector(
-            inequality=timerelationtools.TimespanTimespanTimeRelation(
+            time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     selector=selectortools.SingleSegmentSelector(
@@ -65,9 +65,9 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, inequality=None, start_identifier=None, stop_identifier=None):
+    def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None):
         SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
-        InequalitySelector.__init__(self, inequality=inequality)
+        InequalitySelector.__init__(self, time_relation=time_relation)
         self._klass = divisiontools.Division
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -95,13 +95,13 @@ class DivisionSelector(SliceSelector, InequalitySelector):
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []
         for division in voice_division_list:
-            if self.inequality is None or self.inequality(timespan_2=division, 
+            if self.time_relation is None or self.time_relation(timespan_2=division, 
                 score_specification=score_specification, context_name=voice_name):
                 divisions.append(division)
         divisions = divisions[self.start_identifier:self.stop_identifier]
         return divisions
     
     def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.inequality.set_segment_identifier()``.
+        '''Delegate to ``self.time_relation.set_segment_identifier()``.
         '''
-        self.inequality.set_segment_identifier(segment_identifier)
+        self.time_relation.set_segment_identifier(segment_identifier)

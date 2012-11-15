@@ -13,10 +13,6 @@ Read-only Properties
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.inequality
-
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
-
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.klass
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.predicate
@@ -42,6 +38,10 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.time_relation
+
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.timespan
 

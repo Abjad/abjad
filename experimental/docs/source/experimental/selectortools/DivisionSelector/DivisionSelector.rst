@@ -13,10 +13,6 @@ Read-only Properties
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.inequality
-
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
-
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.klass
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.start_identifier
@@ -38,6 +34,10 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.time_relation
+
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.timespan
 

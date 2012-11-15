@@ -15,8 +15,8 @@ class TimeRatioPartSelector(RatioPartSelector):
     Then select part ``0`` of this partition::
 
         >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
-        >>> inequality = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> background_measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> background_measure_selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation)
 
     ::
 
@@ -28,7 +28,7 @@ class TimeRatioPartSelector(RatioPartSelector):
         >>> z(time_ratio_part_selector)
         selectortools.TimeRatioPartSelector(
             selectortools.BackgroundMeasureSelector(
-                inequality=timerelationtools.TimespanTimespanTimeRelation(
+                time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                         selector=selectortools.SingleSegmentSelector(
