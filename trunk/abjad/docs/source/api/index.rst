@@ -1230,17 +1230,17 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmmakertools/DivisionBurnishedTaleaFilledRhythmMaker/DivisionBurnishedTaleaFilledRhythmMaker
-   tools/rhythmmakertools/DivisionIncisedNoteFilledRhythmMaker/DivisionIncisedNoteFilledRhythmMaker
-   tools/rhythmmakertools/DivisionIncisedRestFilledRhythmMaker/DivisionIncisedRestFilledRhythmMaker
+   tools/rhythmmakertools/DivisionBurnishedTaleaRhythmMaker/DivisionBurnishedTaleaRhythmMaker
+   tools/rhythmmakertools/DivisionIncisedNoteRhythmMaker/DivisionIncisedNoteRhythmMaker
+   tools/rhythmmakertools/DivisionIncisedRestRhythmMaker/DivisionIncisedRestRhythmMaker
    tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
-   tools/rhythmmakertools/NoteFilledRhythmMaker/NoteFilledRhythmMaker
-   tools/rhythmmakertools/OutputBurnishedTaleaFilledRhythmMaker/OutputBurnishedTaleaFilledRhythmMaker
-   tools/rhythmmakertools/OutputIncisedNoteFilledRhythmMaker/OutputIncisedNoteFilledRhythmMaker
-   tools/rhythmmakertools/OutputIncisedRestFilledRhythmMaker/OutputIncisedRestFilledRhythmMaker
-   tools/rhythmmakertools/RestFilledRhythmMaker/RestFilledRhythmMaker
-   tools/rhythmmakertools/SkipFilledRhythmMaker/SkipFilledRhythmMaker
-   tools/rhythmmakertools/TaleaFilledRhythmMaker/TaleaFilledRhythmMaker
+   tools/rhythmmakertools/NoteRhythmMaker/NoteRhythmMaker
+   tools/rhythmmakertools/OutputBurnishedTaleaRhythmMaker/OutputBurnishedTaleaRhythmMaker
+   tools/rhythmmakertools/OutputIncisedNoteRhythmMaker/OutputIncisedNoteRhythmMaker
+   tools/rhythmmakertools/OutputIncisedRestRhythmMaker/OutputIncisedRestRhythmMaker
+   tools/rhythmmakertools/RestRhythmMaker/RestRhythmMaker
+   tools/rhythmmakertools/SkipRhythmMaker/SkipRhythmMaker
+   tools/rhythmmakertools/TaleaRhythmMaker/TaleaRhythmMaker
    tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
 
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`

@@ -247,9 +247,9 @@ New time-interval tools are available::
 
 New time-token tools are available:
 
-- Added ``SkipFilledRhythmMaker`` to ``rhythmmakertools`` package::
+- Added ``SkipRhythmMaker`` to ``rhythmmakertools`` package::
 
-    >>> maker = rhythmmakertools.SkipFilledRhythmMaker()
+    >>> maker = rhythmmakertools.SkipRhythmMaker()
 
   ::
 
@@ -1421,15 +1421,15 @@ Added new ``rhythmmakertools`` package.
 
 - This version of the package contains the following concrete classes::
 
-    rhythmmakertools.NoteFilledRhythmMaker
-    rhythmmakertools.OutputBurnishedTaleaFilledRhythmMaker
-    rhythmmakertools.OutputIncisedNoteFilledRhythmMaker
-    rhythmmakertools.OutputIncisedRestFilledRhythmMaker
-    rhythmmakertools.RestFilledRhythmMaker
-    rhythmmakertools.TaleaFilledRhythmMaker
-    rhythmmakertools.DivisionBurnishedTaleaFilledRhythmMaker
-    rhythmmakertools.DivisionIncisedNoteFilledRhythmMaker
-    rhythmmakertools.DivisionIncisedRestFilledRhythmMaker
+    rhythmmakertools.NoteRhythmMaker
+    rhythmmakertools.OutputBurnishedTaleaRhythmMaker
+    rhythmmakertools.OutputIncisedNoteRhythmMaker
+    rhythmmakertools.OutputIncisedRestRhythmMaker
+    rhythmmakertools.RestRhythmMaker
+    rhythmmakertools.TaleaRhythmMaker
+    rhythmmakertools.DivisionBurnishedTaleaRhythmMaker
+    rhythmmakertools.DivisionIncisedNoteRhythmMaker
+    rhythmmakertools.DivisionIncisedRestRhythmMaker
 
 - The ``rhythmmakertools`` package implements a family of related rhythm-making classes.
 

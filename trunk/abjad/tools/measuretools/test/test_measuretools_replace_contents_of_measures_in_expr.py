@@ -161,7 +161,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_06():
     '''Preserve ties.
     '''
 
-    maker = rhythmmakertools.NoteFilledRhythmMaker()
+    maker = rhythmmakertools.NoteRhythmMaker()
     durations = [(5, 16), (3, 16)]
     leaf_lists = maker(durations)
     leaves = sequencetools.flatten_sequence(leaf_lists)

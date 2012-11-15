@@ -2,17 +2,17 @@ r'''Module: rhythmmakertools.
 
 The following name changes were made when migrating into Abjad for initial check-in:
 
-    NoteFilledTokens ==> NoteFilledRhythmMaker
-    RestFilledTokens ==> RestFilledRhythmMaker
-    PatternedTokens ==> TaleaFilledRhythmMaker
+    NoteFilledTokens ==> NoteRhythmMaker
+    RestFilledTokens ==> RestRhythmMaker
+    PatternedTokens ==> TaleaRhythmMaker
 
-    PartForcedChunkWithPatternedTokens ==> OutputBurnishedTaleaFilledRhythmMaker
-    PartForcedPatternedTokens ==> DivisionBurnishedTaleaFilledRhythmMaker
+    PartForcedChunkWithPatternedTokens ==> OutputBurnishedTaleaRhythmMaker
+    PartForcedPatternedTokens ==> DivisionBurnishedTaleaRhythmMaker
 
-    SignalAffixedChunkWithNoteFilledTokens ==> OutputIncisedNoteFilledRhythmMaker
+    SignalAffixedChunkWithNoteFilledTokens ==> OutputIncisedNoteRhythmMaker
     SignalAffixedChunkWithRestFilledTokens ==> OutputIncisedtRestFilledTimeTokenMaker
-    SignalAffixedNoteFilledTokens ==> DivisionIncisedNoteFilledRhythmMaker
-    SignalAffixedRestFilledTokens ==> DivisionIncisedRestFilledRhythmMaker
+    SignalAffixedNoteFilledTokens ==> DivisionIncisedNoteRhythmMaker
+    SignalAffixedRestFilledTokens ==> DivisionIncisedRestRhythmMaker
 
     _PartForcedObjectWithPatternedTokens ==> BurnishedRhythmMaker
     _RhythmicKaleid ==> RhythmMaker

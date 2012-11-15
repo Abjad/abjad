@@ -123,7 +123,7 @@ class RhythmMaker(AbjadObject):
 
         Set keyword arguments on copied rhythm-maker::
 
-            >>> maker = rhythmmakertools.NoteFilledRhythmMaker()
+            >>> maker = rhythmmakertools.NoteRhythmMaker()
 
         ::
 
