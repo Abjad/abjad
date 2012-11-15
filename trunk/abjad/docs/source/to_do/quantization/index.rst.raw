@@ -23,9 +23,9 @@ q_event_sequence = quantizationtools.QEventSequence.from_tempo_scaled_leaves(ori
 </abjad>
 
 <abjad>
-triplets =    quantizationtools.SimpleSearchTree({3: None})
-quintuplets = quantizationtools.SimpleSearchTree({5: None})
-septuplets =  quantizationtools.SimpleSearchTree({7: None})
+triplets =    quantizationtools.UnweightedSearchTree({3: None})
+quintuplets = quantizationtools.UnweightedSearchTree({5: None})
+septuplets =  quantizationtools.UnweightedSearchTree({7: None})
 search_trees = [triplets, quintuplets, septuplets]
 </abjad>
 
@@ -39,7 +39,7 @@ for search_tree in search_trees:
 
 <abjad>
 q_schema = quantizationtools.MeasurewiseQSchema(
-    search_tree=quantizationtools.SimpleSearchTree({11: None}),
+    search_tree=quantizationtools.UnweightedSearchTree({11: None}),
     use_full_measure=True)
 result = quantizer(q_event_sequence, q_schema)
 staves.append(stafftools.Staff([result]))

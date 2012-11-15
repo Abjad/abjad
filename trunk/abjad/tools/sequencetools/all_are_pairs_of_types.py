@@ -25,3 +25,5 @@ def all_are_pairs_of_types(expr, first_type, second_type):
             isinstance(x[1], second_type) for x in expr])
     except TypeError:
         return False
+    except KeyError:
+        return False
