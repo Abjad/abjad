@@ -43,7 +43,7 @@ def test_Leaf_set_minus_04():
 
 
 def test_Leaf_set_minus_05():
-    '''Duration inequality; noncommutative operation takes duration from LHS.'''
+    '''Differing durations; noncommutative operation takes duration from LHS.'''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 8))
     v = t - u
@@ -54,7 +54,7 @@ def test_Leaf_set_minus_05():
 
 
 def test_Leaf_set_minus_06():
-    '''Duration inequality; noncommutative operation takes duration from LHS.'''
+    '''Differing durations; noncommutative operation takes duration from LHS.'''
     t = Chord([0, 1, 2], (1, 8))
     u = Chord([3, 4, 5], (1, 4))
     v = t - u

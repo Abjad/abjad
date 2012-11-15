@@ -13,7 +13,7 @@ class PitchRange(AbjadObject):
     Initalize from pitch numbers, pitch names, pitch instances, one-line reprs 
     or other pitch range objects.
 
-    Pitch ranges test for equality and inequality against other pitch ranges.
+    Pitch ranges implement equality testing against other pitch ranges.
 
     Pitch ranges test less than, greater than, less-equal and greater-equal against pitches.
     

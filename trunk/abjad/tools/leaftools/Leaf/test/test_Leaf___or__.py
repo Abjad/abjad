@@ -42,7 +42,7 @@ def test_Leaf___or___04():
 
 
 def test_Leaf___or___05():
-    '''Duration inequality; noncommutative union takes from LHS.'''
+    '''Differing durations; noncommutative union takes from LHS.'''
     t = Chord([0, 1, 2], (1, 4))
     u = Chord([3, 4, 5], (1, 8))
     v = t | u
@@ -53,7 +53,7 @@ def test_Leaf___or___05():
 
 
 def test_Leaf___or___06():
-    '''Duration inequality; noncommutative union takes from LHS.'''
+    '''Differing durations; noncommutative union takes from LHS.'''
     t = Chord([0, 1, 2], (1, 8))
     u = Chord([3, 4, 5], (1, 4))
     v = t | u

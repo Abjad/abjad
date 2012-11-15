@@ -118,7 +118,7 @@ class ConcreteInterpreter(Interpreter):
                 timespan_inventory.append(division_region_command)
         #self._debug_values(timespan_inventory, 'timespan inventory')
         timespan_inequality = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
-        candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
+        candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
         source_command = self.select_first_element_in_expr_by_parentage(
@@ -145,7 +145,7 @@ class ConcreteInterpreter(Interpreter):
         source_timespan = timerelationtools.LiteralTimespan(start_offset, stop_offset)
         timespan_inequality = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
-        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_inequality(
+        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
             timespan_inequality)
         division_region_expressions = timerelationtools.TimespanInventory(division_region_expressions)
         #self._debug(division_region_expressions, 'drx')
@@ -703,7 +703,7 @@ class ConcreteInterpreter(Interpreter):
                 if not rhythm_region_command.request == rhythm_command_request:
                     timespan_inventory.append(rhythm_region_command)
         timespan_inequality = timerelationtools.offset_happens_during_timespan(offset=requested_offset)
-        candidate_commands = timespan_inventory.get_timespans_that_satisfy_inequality(timespan_inequality)
+        candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_inequality)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
         source_command = self.select_first_element_in_expr_by_parentage(
@@ -734,7 +734,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         timespan_inequality = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
-        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_inequality(
+        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_time_relation(
             timespan_inequality)
         #self._debug(rhythm_region_expressions, 'rhythm region expressions')
         if not rhythm_region_expressions:
