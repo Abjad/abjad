@@ -150,7 +150,7 @@ class QuantizationJob(AbjadObject):
                     (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"), NamedChromaticPitch("g'")),
                     attachments=()
                     ),
-                durationtools.Offset(3003900951456121L, 4503599627370496L)
+                durationtools.Offset(3003900951456121, 4503599627370496)
                 )
 
         Return tuple.

@@ -40,19 +40,16 @@
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
 
-[10. Sprinkle asserts into all segment specification select methods.         ]
-[    This will assert on red_segment.select_divisions('Voice 1') and similar.]
-
-11. Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
+10. Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
     Establish metrical hierarchy after division specification and change divisions where necessary.
     Reestablish metrical hierarchy after rhythm specification but leave divisions in tact.
 
-12. Write E series schematic examples to all focus on different uses of the metrical hierarchy.
+11. Write E series schematic examples to all focus on different uses of the metrical hierarchy.
     Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
     Make selections equal to different levels of the metrical hierarchy.
 
-13. Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
+12. Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
     Right now it's added onto the side of already-initialized
     rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
 
-14. Get rid of 'Filled' from rhythm-maker class names.
+13. Get rid of 'Filled' from rhythm-maker class names.

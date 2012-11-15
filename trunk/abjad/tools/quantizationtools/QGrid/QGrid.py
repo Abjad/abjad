@@ -71,7 +71,7 @@ class QGrid(AbjadObject):
                 (NamedChromaticPitch("cs'"),),
                 attachments=()
                 ),
-            durationtools.Offset(8106479329266893L, 9007199254740992L)
+            durationtools.Offset(8106479329266893, 9007199254740992)
             )]
 
     Used internally by the ``Quantizer``.
