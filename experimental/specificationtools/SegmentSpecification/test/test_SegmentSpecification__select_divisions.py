@@ -5,7 +5,7 @@ import py
 
 def test_SegmentSpecification__select_divisions_01():
     '''Divisions are interpreted for the entire score duration of a voice.
-    Divisions are not interpreted for segment by segment for a voice.
+    Divisions are not interpreted segment by segment for a voice.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

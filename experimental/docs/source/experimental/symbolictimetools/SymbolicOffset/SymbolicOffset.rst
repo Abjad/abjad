@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.start_segment_identifier
 
-.. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.stop_segment_identifier
-
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

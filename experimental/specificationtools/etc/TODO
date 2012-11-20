@@ -47,4 +47,52 @@
     Right now it's added onto the side of already-initialized
     rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
 
-12. Finish timerelationtools class docstrings before 2.11 build.
+12. Write reverse() tests for all rhythm-makers.
+
+13. Write rotate() tests for all rhythm-makers.
+
+14. Finish timerelationtools class docstrings before 2.11 build.
+
+15. Rename InequalitySelector. The new name should be TimeRelativeSelector.
+
+16. Merge DivisionSelector.get_offsets() and CounttimeComponentSelector.get_offsets().
+
+17. Change DivisionSelector.get_selected_objects() to return a Selection object.
+    Change CounttimeComponentSelector.get_selected_objects() to return a Selection object.
+    Change other selectors' get_selected_objects() to return a Selection object.
+
+18. Author tests to show selecting leaves that don't yet exist.
+    Make sure the command is ignored at first and then interpreted correctly in a later pass.
+
+19. Audit to get rid of string-based keys everywhere in interpreter.
+
+20. Write more extensive tests for talea rhythm-maker with tied notes.
+    Include some input divisions with non-power-of-two durations.
+
+21. Replace all occurrences of 'prev_' with 'previous_' in the mainline.
+    There are only about two dozen of these.
+
+22. Add examples to the docstrings all experimental class methods and properties before 2.11 build.
+
+23. Externalize Timespan and TimespanInventory to new timespantools package.
+    Do this before 2.11 build.
+
+24. Maybe change request_*() methods to copy_*() methods.
+
+25. Implement selections pervasively before renaing (score tree-mutating) componenttools functions.
+    The reason is because selection implementation may clarify the names of certain operations.
+
+26. Remove 'series' from 'X series 7' and the like to produce just 'X 7'.
+    Even better will be to extend helpertools.write_test_output() to write 'X7 'instead of 'X 7'.
+    Also remove 'series' from test file name.
+
+27. Unskip all experimental tests before 2.11 build.
+
+28. Grep for 'Return fraction' in both mainline and experimental.
+    When found see if a multiplier is meant instead.
+
+29. Implement a TreatmentSpecifier class.
+    This will clean up some classes and make treatment-to-treatment comparison cleaner.
+
+30. Check for any 'segment' that is not 'red_segment' or 'blue_segment'.
+    Then bring tests up to date.

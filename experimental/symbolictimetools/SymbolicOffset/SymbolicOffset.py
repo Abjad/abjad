@@ -3,7 +3,6 @@ from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# TODO: merge back to experimental
 class SymbolicOffset(AbjadObject):
     r'''.. versionadded:: 1.0
 
@@ -270,19 +269,6 @@ class SymbolicOffset(AbjadObject):
         Return string or none.
         '''
         return self.selector.start_segment_identifier
-
-    @property
-    def stop_segment_identifier(self):
-        '''Symbolic offset stop segment identifier.
-
-            >>> offset.stop_segment_identifier
-            SegmentIdentifierExpression("'red' + 1")
-
-        Delegate to ``self.selector.stop_segment_identifier``.
-
-        Return string or none.
-        '''
-        return self.selector.stop_segment_identifier
 
     ### PUBLIC METHODS ###
 

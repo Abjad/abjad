@@ -25,10 +25,6 @@ Read-only Properties
 
     Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
 
-.. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.stop_segment_identifier
-
-    Inherited from :py:class:`RatioPartSelector.RatioPartSelector <experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector>`
-
 .. autoattribute:: experimental.selectortools.CountRatioPartSelector.CountRatioPartSelector.CountRatioPartSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

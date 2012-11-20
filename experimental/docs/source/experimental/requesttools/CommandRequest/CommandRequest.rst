@@ -35,8 +35,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.start_segment_identifier
 
-.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.stop_segment_identifier
-
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

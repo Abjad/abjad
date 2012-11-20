@@ -38,11 +38,3 @@ class InequalitySelector(Selector):
         Return string or none.
         '''
         return self.time_relation.start_segment_identifier
-
-    @property
-    def stop_segment_identifier(self):
-        '''Delegate to ``self.time_relation.stop_segment_identifier``.
-
-        Return string or none.
-        '''
-        return self.time_relation.stop_segment_identifier

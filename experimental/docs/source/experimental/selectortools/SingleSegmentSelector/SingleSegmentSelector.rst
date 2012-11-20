@@ -15,8 +15,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.start_segment_identifier
 
-.. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.stop_segment_identifier
-
 .. autoattribute:: experimental.selectortools.SingleSegmentSelector.SingleSegmentSelector.SingleSegmentSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

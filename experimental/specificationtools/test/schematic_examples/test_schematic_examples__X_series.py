@@ -1,6 +1,6 @@
 from abjad import *
 from experimental import *
-import py
+#import py
 
 
 def test_schematic_examples__X_series_01():
@@ -268,7 +268,7 @@ def test_schematic_examples__X_series_07():
     Second segment time signatures [2/8]. 
     Second segment equal to slice of first segment from start offset of F1 leaf 5.
     '''
-    py.test.skip('working on this one now.')
+    #py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -285,8 +285,20 @@ def test_schematic_examples__X_series_07():
     red_segment.set_rhythm(cell, contexts=['Voice 3'], selector=second_measure, rotation=Duration(-5, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 4'], selector=first_measure, rotation=Duration(-6, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 4'], selector=second_measure, rotation=Duration(-7, 32))
+    blue_segment = score_specification.append_segment(name='blue')
+    blue_segment.set_time_signatures(2 * [(2, 8)])
+    # TODO: select semantically from the start offset of voice 1 leaf 5 instead of hard-coded offset
+    selector = red_segment.select_segment_offsets(start=Offset(10, 32))
+    voice_1_rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
+    voice_2_rhythm = score_specification.request_rhythm('Voice 2', selector=selector)
+    voice_3_rhythm = score_specification.request_rhythm('Voice 3', selector=selector)
+    voice_4_rhythm = score_specification.request_rhythm('Voice 4', selector=selector)
+    blue_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 1'])
+    blue_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 2'])
+    blue_segment.set_rhythm(voice_3_rhythm, contexts=['Voice 3'])
+    blue_segment.set_rhythm(voice_4_rhythm, contexts=['Voice 4'])
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

@@ -175,16 +175,6 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         '''
         return self.selector.start_segment_identifier
 
-    @property
-    def stop_segment_identifier(self):
-        '''Start segment identifier of symbolic timespan specified by user.
-
-        Delegate to ``self.selector.stop_segment_identifier``.
-
-        Return string or integer.
-        '''
-        return self.selector.stop_segment_identifier
-    
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name):

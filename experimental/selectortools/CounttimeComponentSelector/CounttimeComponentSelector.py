@@ -1,3 +1,5 @@
+from abjad.tools import durationtools
+from abjad.tools import iterationtools
 from experimental import helpertools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
@@ -117,7 +119,7 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
     def selector(self):
         '''Counttime component slice selector selector.
 
-        To allow selectors to selector recursively.
+        To allow selectors to select recursively.
 
         Return slice selector.
         '''
@@ -125,20 +127,53 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    # TODO: eventually merge with DivisionSelector.get_offsets()
+    def get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
-        to `context_name` in `score_specification`.
+        to `voice_name` in `score_specification`.
 
         .. note:: not yet implemented.
 
         Return pair.
         '''
-        raise NotImplementedError
+        counttime_components = self.get_selected_objects(score_specification, voice_name)
+        start_offset = counttime_components[0].start_offset
+        stop_offset = counttime_components[-1].stop_offset
+        return start_offset, stop_offset
 
-    def get_selected_objects(self, score_specification, context_name):
+    # TODO: eventually return selection
+    def get_selected_objects(self, score_specification, voice_name):
         '''Get counttime components selected when selector is applied
-        to `context_name` in `score_specification`.
+        to `voice_name` in `score_specification`.
 
-        Return list.
+        Return value of none means that selector can not yet interpret `score_specification`.
+
+        Return list of object references or none.
         '''
-        raise NotImplementedError
+        rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
+        if not rhythm_region_expressions:
+            return
+        if not rhythm_region_expressions[0].start_offset == durationtools.Offset(0):
+            return
+        counttime_components = []
+        total_counttime_components = 0
+        previous_rhythm_region_expression = None
+        for current_rhythm_region_expression in rhythm_region_expressions:
+            if previous_rhythm_region_expression is not None:
+                if not previous_rhythm_region_expression.stop_offset == \
+                    current_rhythm_region_expression.start_offset:
+                    return
+            for counttime_component in iterationtools.iterate_components_in_expr(
+                current_rhythm_region_expression.music, klass=self.klass):
+                if self.time_relation is None or self.time_relation(
+                    timespan_2=counttime_component,
+                    score_specification=score_specification,
+                    context_name=voice_name):
+                    counttime_components.append(counttime_component)
+                    total_counttime_components += 1
+                    if total_counttime_components == self.stop_identifier:
+                        break
+            if total_counttime_components == self.stop_identifier:
+                break
+        counttime_components = counttime_components[self.start_identifier:self.stop_identifier]
+        return counttime_components

@@ -100,17 +100,6 @@ class CommandRequest(Request):
         return self.symbolic_offset.start_segment_identifier
 
     @property
-    def stop_segment_identifier(self):
-        '''Delegate to ``self.symbolic_offset.stop_segment_identifier``.
-
-            >>> command_request.stop_segment_identifier
-            SegmentIdentifierExpression("'red' + 1")
-
-        Return string or none.
-        '''
-        return self.symbolic_offset.stop_segment_identifier
-
-    @property
     def symbolic_offset(self):
         '''Command request symbolic offset specified by user.
 

@@ -78,12 +78,21 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
+    # TODO: eventually merge with CounttimeComponentSelector.get_offsets()
     def get_offsets(self, score_specification, voice_name):
+        '''Evaluate start and stop offsets of selecto when applied
+        to `voice_name` in `score_specification`.
+
+        .. note:: add example.
+
+        Return pair.
+        '''
         divisions = self.get_selected_objects(score_specification, voice_name)
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
         return start_offset, stop_offset
         
+    # TODO: eventually return selection
     def get_selected_objects(self, score_specification, voice_name):
         '''Get divisions selected when selector is applied
         to `voice_name` in `score_specification`.

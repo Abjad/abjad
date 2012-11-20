@@ -39,14 +39,6 @@ class Selector(AbjadObject):
         '''
         pass
 
-    @abc.abstractproperty
-    def stop_segment_identifier(self):
-        '''Selector stop segment identifier.
-
-        Raise exception when no start segment identifier can be found.
-        '''
-        pass
-
     @property
     def timespan(self):
         '''SingleSourceSymbolicTimespan of selector.

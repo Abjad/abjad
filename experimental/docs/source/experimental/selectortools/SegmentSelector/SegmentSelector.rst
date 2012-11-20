@@ -25,8 +25,6 @@ Read-only Properties
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.stop_segment_identifier
-
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

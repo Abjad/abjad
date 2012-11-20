@@ -76,12 +76,6 @@ class OffsetSelector(Selector):
             return durationtools.Offset(self.selector.duration)
         return self.stop_offset
 
-    @property
-    def stop_segment_identifier(self):
-        '''Delegate to ``self.selector.stop_segment_identifier``.
-        '''
-        return self.selector.stop_segment_identifier
-
     ### PUBLIC METHODS ##
 
     def get_offsets(self, score_specification, context_name):

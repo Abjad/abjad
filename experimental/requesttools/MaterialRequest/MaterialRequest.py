@@ -75,12 +75,6 @@ class MaterialRequest(Request):
         return self.selector.start_segment_identifier
 
     @property
-    def stop_segment_identifier(self):
-        '''Delegate to ``self.selector.stop_segment_identifier``.
-        '''
-        return self.selector.stop_segment_identifier
-
-    @property
     def voice_name(self):
         '''Aliased to ``self.context_name``.
         '''

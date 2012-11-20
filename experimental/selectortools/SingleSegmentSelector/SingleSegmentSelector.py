@@ -54,10 +54,6 @@ class SingleSegmentSelector(InequalitySelector):
     def start_segment_identifier(self):
         return self._identifier
 
-    @property
-    def stop_segment_identifier(self):
-        return helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.start_segment_identifier))
-
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name):

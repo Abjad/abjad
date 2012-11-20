@@ -31,10 +31,6 @@ Read-only Properties
 
     Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.stop_segment_identifier
-
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
-
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

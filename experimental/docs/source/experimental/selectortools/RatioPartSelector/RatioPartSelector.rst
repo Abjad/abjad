@@ -17,8 +17,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.start_segment_identifier
 
-.. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.stop_segment_identifier
-
 .. autoattribute:: experimental.selectortools.RatioPartSelector.RatioPartSelector.RatioPartSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

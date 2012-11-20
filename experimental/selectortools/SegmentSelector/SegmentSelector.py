@@ -131,14 +131,6 @@ class SegmentSelector(SliceSelector, InequalitySelector):
         '''
         return self.start_identifier
 
-    @property
-    def stop_segment_identifier(self):
-        '''Temporary hack. Generalize later.
-
-        Return string or none.
-        '''
-        return self.stop_identifier
-
     ### PUBLIC PROPERTIES ###
 
     def get_offsets(self, score_specification, context_name):

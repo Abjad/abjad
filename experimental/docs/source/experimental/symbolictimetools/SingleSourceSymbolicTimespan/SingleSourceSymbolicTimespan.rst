@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.start_segment_identifier
 
-.. autoattribute:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.stop_segment_identifier
-
 .. autoattribute:: experimental.symbolictimetools.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.SingleSourceSymbolicTimespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

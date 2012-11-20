@@ -21,8 +21,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_offset_value
 
-.. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.stop_segment_identifier
-
 .. autoattribute:: experimental.selectortools.OffsetSelector.OffsetSelector.OffsetSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
