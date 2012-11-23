@@ -188,20 +188,24 @@ class AbjadObject(object):
 
     ### PRIVATE METHODS ###
 
-    def _debug(self, value, annotation=None):
+    def _debug(self, value, annotation=None, blank=False):
         if annotation is None:
             print 'debug: {!r}'.format(value)
         else:
             print 'debug ({}): {!r}'.format(annotation, value)
+        if blank:
+            print ''
 
-    def _debug_values(self, values, annotation=None):
+    def _debug_values(self, values, annotation=None, blank=True):
         if values:
             for value in values:
                 self._debug(value, annotation=annotation)
-            print ''
+            if blank:
+                print ''
         else:
             self._debug(repr(values), annotation=annotation)
-            print ''
+            if blank:
+                print ''
 
     @classmethod
     def _get_keyword_argument_names(cls):

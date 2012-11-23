@@ -580,7 +580,7 @@ class SegmentSpecification(Specification):
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measure(self, n, time_relation=None):
+    def select_background_measure(self, n, time_relation=None, voice=None):
         '''Select segment background measure ``0``::
 
             >>> selector = segment.select_background_measure(0)
@@ -609,10 +609,10 @@ class SegmentSpecification(Specification):
         time_relation = time_relation(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.BackgroundMeasureSelector(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop)
+            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_background_measures(self, start=None, stop=None, time_relation=None):
+    def select_background_measures(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five segment background measures::
 
             >>> selector = segment.select_background_measures(stop=5)
@@ -640,10 +640,11 @@ class SegmentSpecification(Specification):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = selectortools.BackgroundMeasureSelector(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop)
+            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
     
-    def select_background_measures_ratio_part(self, ratio, part, is_count=True, time_relation=None):
+    def select_background_measures_ratio_part(self, 
+        ratio, part, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment background measures 
         calculated according to count of segment background measures::
 
@@ -694,10 +695,10 @@ class SegmentSpecification(Specification):
         '''
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int), repr(part)
-        selector = self.select_background_measures(time_relation=time_relation)
+        selector = self.select_background_measures(time_relation=time_relation, voice=voice)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
-    def select_division(self, n, time_relation=None):
+    def select_division(self, n, time_relation=None, voice=None):
         '''Select segment division ``0``::
 
             >>> selector = segment.select_division(0)
@@ -726,10 +727,10 @@ class SegmentSpecification(Specification):
         time_relation = time_relation(self.timespan)
         start, stop = n, n + 1
         selector = selectortools.DivisionSelector(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop)
+            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_divisions(self, start=None, stop=None, time_relation=None):
+    def select_divisions(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five divisions that start during segment::
 
             >>> selector = segment.select_divisions(stop=5)
@@ -757,10 +758,10 @@ class SegmentSpecification(Specification):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = selectortools.DivisionSelector(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop)
+            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_divisions_ratio_part(self, ratio, part, is_count=True, time_relation=None):
+    def select_divisions_ratio_part(self, ratio, part, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment divisions::
 
             >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0)
@@ -787,10 +788,10 @@ class SegmentSpecification(Specification):
         '''
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int)
-        selector = self.select_divisions(time_relation=time_relation)
+        selector = self.select_divisions(time_relation=time_relation, voice=voice)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
-    def select_leaves(self, start=None, stop=None, time_relation=None):
+    def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
             >>> selector = segment.select_leaves(stop=40)
@@ -820,10 +821,10 @@ class SegmentSpecification(Specification):
         time_relation = time_relation(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             time_relation=time_relation, klass=leaftools.Leaf, 
-            start_identifier=start, stop_identifier=stop)
+            start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_leaves_ratio_part(self, ratio, part, is_count=True, time_relation=None):
+    def select_leaves_ratio_part(self, ratio, part, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment leaves::
 
             >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0)
@@ -851,10 +852,10 @@ class SegmentSpecification(Specification):
         '''
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int)
-        selector = self.select_leaves(time_relation=time_relation)
+        selector = self.select_leaves(time_relation=time_relation, voice=voice)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
-    def select_notes_and_chords(self, start=None, stop=None, time_relation=None):
+    def select_notes_and_chords(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords(stop=40)
@@ -887,10 +888,10 @@ class SegmentSpecification(Specification):
         time_relation = time_relation(self.timespan)
         selector = selectortools.CounttimeComponentSelector(
             time_relation=time_relation, klass=(notetools.Note, chordtools.Chord),
-            start_identifier=start, stop_identifier=stop)
+            start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_notes_and_chords_ratio_part(self, ratio, part, is_count=True, time_relation=None):
+    def select_notes_and_chords_ratio_part(self, ratio, part, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
@@ -921,7 +922,7 @@ class SegmentSpecification(Specification):
         '''
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int), repr(part)
-        selector = self.select_notes_and_chords(time_relation=time_relation)
+        selector = self.select_notes_and_chords(time_relation=time_relation, voice=voice)
         return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
 
     def select_segment(self):

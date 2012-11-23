@@ -84,12 +84,13 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
     ### INITIALIZER ###
 
     def __init__(self, time_relation=None, klass=None, predicate=None, selector=None,
-        start_identifier=None, stop_identifier=None):
+        start_identifier=None, stop_identifier=None, voice_name=None):
         from experimental import selectortools
         assert isinstance(selector, (selectortools.SliceSelector, type(None))), repr(selector)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        SliceSelector.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
+        SliceSelector.__init__(
+            self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
         InequalitySelector.__init__(self, time_relation=time_relation)
         self._selector = selector
         if isinstance(klass, tuple):
@@ -127,30 +128,43 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: eventually merge with DivisionSelector.get_offsets()
+    # TODO: eventually merge with DivisionSelector.get_offsets() ... or maybe not
     def get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
 
-        .. note:: not yet implemented.
+        .. note:: add example.
 
         Return pair.
         '''
-        counttime_components = self.get_selected_objects(score_specification, voice_name)
-        start_offset = counttime_components[0].start_offset
-        stop_offset = counttime_components[-1].stop_offset
+        counttime_component_pairs = self.get_selected_objects(
+            score_specification, voice_name, include_expression_start_offsets=True)
+        #self._debug(counttime_component_pairs, 'counttime component pairs')
+        first_component, first_component_expression_offset = counttime_component_pairs[0]
+        last_component, last_component_expression_offset = counttime_component_pairs[-1]
+        start_offset = first_component_expression_offset + first_component.start_offset
+        stop_offset = last_component_expression_offset + last_component.stop_offset
         return start_offset, stop_offset
 
     # TODO: eventually return selection
-    def get_selected_objects(self, score_specification, voice_name):
+    def get_selected_objects(self, score_specification, voice_name, include_expression_start_offsets=False):
         '''Get counttime components selected when selector is applied
         to `voice_name` in `score_specification`.
+
+        .. note:: add example.
 
         Return value of none means that selector can not yet interpret `score_specification`.
 
         Return list of object references or none.
+
+        When ``include_expression_start_offsets=True`` return list of start offset / object pairs.
+
+        .. note:: add examle with ``include_expression_start_offsets=True``.
         '''
+        # allow user-specification selector voice name to override passed-in voice name
+        voice_name = self.voice_name or voice_name
         rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         if not rhythm_region_expressions:
             return
         if not rhythm_region_expressions[0].start_offset == durationtools.Offset(0):
@@ -169,7 +183,11 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
                     timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
-                    counttime_components.append(counttime_component)
+                    if include_expression_start_offsets:
+                        counttime_components.append((
+                            counttime_component, current_rhythm_region_expression.start_offset))
+                    else:
+                        counttime_components.append(counttime_component)
                     total_counttime_components += 1
                     if total_counttime_components == self.stop_identifier:
                         break

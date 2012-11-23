@@ -53,7 +53,7 @@
 
 14. Finish timerelationtools class docstrings before 2.11 build.
 
-15. Rename InequalitySelector. The new name should be TimeRelativeSelector.
+15. Rename InequalitySelector. The new name should be TimeRelationSelector.
 
 16. Merge DivisionSelector.get_offsets() and CounttimeComponentSelector.get_offsets().
 
@@ -96,3 +96,21 @@
 
 30. Check for any 'segment' that is not 'red_segment' or 'blue_segment'.
     Then bring tests up to date.
+
+31. Remove these select methods:
+        SegmentSpecification.select_background_measures_ratio_part()
+        SegmentSpecification.select_divisions_ratio_part()
+        SegmentSpecification.select_leaves_ratio_part()
+        SegmentSpecification.select_notes_and_chords_ratio_part()
+        SegmentSpecification.select_segment_ratio_part()
+    Add these select methods:
+        SegmentSpecification.select_count_ratio_part()
+        SegmentSpecification.select_time_ratio_part()
+
+32. Add mathtools.RatioOrdinal class.
+    The class will model things like RatioOrdinal((1, 1, 1), 0) for the first third of something.
+    Optionally RatioOrdinal((1, 1, 1), [0, -1]) for the first and last thirds of something.
+    Integrate into CountRatioPartSelector and TimeRatioPartSelector.
+    Possibly change names to CountRatioOrdinalSelector and TimeRatioOrdinalSelector.
+
+33. Write voice-anchored selector tests.

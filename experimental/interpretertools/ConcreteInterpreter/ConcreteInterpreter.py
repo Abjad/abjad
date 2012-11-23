@@ -742,6 +742,9 @@ class ConcreteInterpreter(Interpreter):
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
         rhythm_region_expressions = timerelationtools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
+        #self._debug(source_timespan, 'source timespan', blank=True)
+        assert source_timespan.is_well_formed, repr(source_timespan)
         rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(voice_name=voice_name, start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:

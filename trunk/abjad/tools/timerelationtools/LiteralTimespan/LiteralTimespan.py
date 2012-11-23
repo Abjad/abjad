@@ -52,6 +52,14 @@ class LiteralTimespan(AbjadObject):
         return self.stop_offset - self.start_offset
 
     @property
+    def is_well_formed(self):
+        '''True when timespan start offset preceeds timespan stop offset.
+
+        Otherwise false.
+        '''
+        return self.start_offset < self.stop_offset
+
+    @property
     def start_offset(self):
         '''Start offset of timespan constant specified by user.
 

@@ -39,6 +39,10 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.voice_name
+
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 Methods
 -------
 

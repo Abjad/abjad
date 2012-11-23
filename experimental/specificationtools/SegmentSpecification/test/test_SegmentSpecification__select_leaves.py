@@ -1,6 +1,5 @@
 from abjad import *
 from experimental import *
-import py
 
 
 def test_SegmentSpecification__select_leaves_01():
@@ -44,9 +43,8 @@ def test_SegmentSpecification__select_leaves_02():
 
 
 def test_SegmentSpecification__select_leaves_03():
-    '''Leaves can select across the type of boundary shown here.
+    '''Leaves select correctly across offset-positioned rhythm expression boundaries.
     '''
-    #py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -59,12 +57,11 @@ def test_SegmentSpecification__select_leaves_03():
     red_segment.set_rhythm(cell, contexts=['Voice 1'], selector=second_measure, rotation=Duration(-1, 32))
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(2, 8)])
-    # TODO: make the following line work
     selector = red_segment.select_leaves(start=4, stop=8)
     voice_1_rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
     blue_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 1'])
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name, render_pdf=True)
-    #assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

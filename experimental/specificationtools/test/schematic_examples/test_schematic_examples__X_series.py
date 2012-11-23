@@ -1,6 +1,5 @@
 from abjad import *
 from experimental import *
-#import py
 
 
 def test_schematic_examples__X_series_01():
@@ -268,7 +267,6 @@ def test_schematic_examples__X_series_07():
     Second segment time signatures [2/8]. 
     Second segment equal to slice of first segment from start offset of F1 leaf 5.
     '''
-    #py.test.skip('working on this one now.')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -287,8 +285,7 @@ def test_schematic_examples__X_series_07():
     red_segment.set_rhythm(cell, contexts=['Voice 4'], selector=second_measure, rotation=Duration(-7, 32))
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(2, 8)])
-    # TODO: select semantically from the start offset of voice 1 leaf 5 instead of hard-coded offset
-    selector = red_segment.select_segment_offsets(start=Offset(10, 32))
+    selector = red_segment.select_leaves(start=4, voice='Voice 1')
     voice_1_rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
     voice_2_rhythm = score_specification.request_rhythm('Voice 2', selector=selector)
     voice_3_rhythm = score_specification.request_rhythm('Voice 3', selector=selector)

@@ -123,7 +123,7 @@ def split_component_at_offset(component, offset,
     # check input 
     assert isinstance(component, componenttools.Component)
     offset = durationtools.Offset(offset)
-    assert 0 <= offset
+    assert 0 <= offset, repr(offset)
 
     # if zero offset then return empty list and component
     if offset == 0:
