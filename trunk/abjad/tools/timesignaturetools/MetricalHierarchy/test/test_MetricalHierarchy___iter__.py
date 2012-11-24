@@ -1,7 +1,4 @@
 from abjad import *
-#from experimental import *
-import py
-py.test.skip('back-dependency to experimental is not allowed.')
 
 
 def test_MetricalHierarchy___iter___01():

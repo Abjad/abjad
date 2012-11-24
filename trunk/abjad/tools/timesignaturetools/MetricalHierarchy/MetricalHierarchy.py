@@ -184,14 +184,14 @@ class MetricalHierarchy(AbjadObject):
             >>> for x in metrical_hierarchy:
             ...    x
             ... 
-            (Offset(0, 1), NonreducedFraction(1, 4))
+            (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
             (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
             (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
-            (Offset(0, 1), NonreducedFraction(3, 4))
+            (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
             (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
             (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
             (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
-            (Offset(0, 1), NonreducedFraction(5, 4))
+            (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
         Yield pairs.
         '''
@@ -206,7 +206,9 @@ class MetricalHierarchy(AbjadObject):
             return result
         result = recurse(self.root_node)
         for x in result:
-            yield x.start_offset, x.stop_offset
+            start_offset = mathtools.NonreducedFraction(x.start_offset).with_denominator(self.denominator)
+            stop_offset = mathtools.NonreducedFraction(x.stop_offset).with_denominator(self.denominator)
+            yield start_offset, stop_offset
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
