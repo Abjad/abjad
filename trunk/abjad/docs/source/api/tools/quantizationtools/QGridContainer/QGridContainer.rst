@@ -31,6 +31,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.leaves
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.nodes
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parent
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`

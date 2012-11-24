@@ -254,6 +254,9 @@ class RhythmTreeContainer(RhythmTreeNode):
             >>> container.append(leaf)
             >>> container.children == (leaf,)
             True
+
+        ::
+
             >>> leaf.parent is container
             True
 
@@ -265,6 +268,9 @@ class RhythmTreeContainer(RhythmTreeNode):
 
             >>> container.children == ()
             True
+
+        ::
+
             >>> leaf.parent is None
             True
 
@@ -309,8 +315,14 @@ class RhythmTreeContainer(RhythmTreeNode):
 
             >>> a[0] is b
             True
+
+        ::
+
             >>> a[1] is c
             True
+
+        ::
+
             >>> a[2] is f
             True
 
@@ -358,6 +370,9 @@ class RhythmTreeContainer(RhythmTreeNode):
             >>> a.append(b)
             >>> b.parent is a
             True
+
+        ::
+
             >>> a.children == (b,)
             True
 
@@ -369,8 +384,14 @@ class RhythmTreeContainer(RhythmTreeNode):
 
             >>> c.parent is a
             True
+
+        ::
+
             >>> b.parent is None
             True
+
+        ::
+
             >>> a.children == (c,)
             True
 
@@ -489,6 +510,69 @@ class RhythmTreeContainer(RhythmTreeNode):
         Return int.
         '''
         return sum([x.duration for x in self])
+
+    @property
+    def nodes(self):
+        '''The collection of `RhythmTreeNodes` produced by iterating a node
+        depth-first:
+
+        ::
+
+            >>> a = rhythmtreetools.RhythmTreeContainer()
+            >>> b = rhythmtreetools.RhythmTreeContainer()
+            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> d = rhythmtreetools.RhythmTreeLeaf()
+            >>> e = rhythmtreetools.RhythmTreeContainer()
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+
+        ::
+
+            >>> nodes = a.nodes
+            >>> len(nodes)
+            5
+
+        ::
+
+            >>> nodes[0] is a
+            True
+
+        ::
+
+            >>> nodes[1] is b
+            True
+
+        ::
+
+            >>> nodes[2] is d
+            True
+
+        ::
+
+            >>> nodes[3] is e
+            True
+
+        ::
+
+            >>> nodes[4] is c
+            True
+
+        Return tuple.
+        '''
+
+        def recurse(container):
+            result = []
+            for child in container.children:
+                result.append(child)
+                if isinstance(child, type(self)):
+                    result.extend(recurse(child))
+            return result
+
+        result = [self] + recurse(self)
+        return tuple(result)
 
     @property
     def rtm_format(self):

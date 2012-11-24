@@ -366,6 +366,10 @@ class RhythmTreeNode(AbjadObject):
 
         Return `Duration` instance.
         '''
+        return self.prolation * self.root_node.duration
+
+    @property
+    def prolation(self):
         prolation = durationtools.Duration(1)
         node = self
         while node.parent is not None:
@@ -373,7 +377,6 @@ class RhythmTreeNode(AbjadObject):
             total_duration = node.parent.contents_duration
             prolation *= durationtools.Duration(duration, total_duration)
             node = node.parent
-        prolation *= node.duration
         return prolation
 
     @property
