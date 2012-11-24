@@ -158,7 +158,12 @@ class MetricalHierarchy(AbjadObject):
 
         decrease_durations_monotonically = bool(decrease_durations_monotonically)
 
-        if isinstance(arg, (str, rhythmtreetools.RhythmTreeContainer)):
+        if isinstance(arg, type(self)):
+            root = arg.root_node
+            numerator, denominator = arg.numerator, arg.denominator
+            decrease_durations_monotonically = arg.decrease_durations_monotonically
+
+        elif isinstance(arg, (str, rhythmtreetools.RhythmTreeContainer)):
             if isinstance(arg, str):
                 parsed = rhythmtreetools.RhythmTreeParser()(arg)
                 assert len(parsed) == 1

@@ -13,7 +13,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy):
     from abjad.tools import timesignaturetools
 
     assert componenttools.all_are_thread_contiguous_components(components)
-    assert isinstance(metrical_hierarchy, timesignaturetools.MetricalHierarchy)
+    metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
     assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.duration
 
     first_offset = components[0].start_offset
