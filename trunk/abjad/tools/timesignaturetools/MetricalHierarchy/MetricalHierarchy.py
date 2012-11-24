@@ -118,37 +118,25 @@ class MetricalHierarchy(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, arg, decrease_durations_monotonically=True):
-        if isinstance(arg, tuple):
-            arg = mathtools.NonreducedFraction(arg)
-        elif isinstance(arg, measuretools.Measure):
-            arg = contexttools.get_effective_time_signature(arg)
-        self._numerator, self._denominator = arg.numerator, arg.denominator
-        self._decrease_durations_monotonically = bool(decrease_durations_monotonically)
 
-        factors = mathtools.factors(self.numerator)[1:]
-        fraction = mathtools.NonreducedFraction(self.numerator, self.denominator)
-        root = rhythmtreetools.RhythmTreeContainer(fraction)
-         
-        def recurse(node, factors):
+        def recurse(node, factors, denominator, decrease_durations_monotonically):
             if factors:
                 factor, factors = factors[0], factors[1:]
                 duration = node.duration / factor
-
                 if factor in (2, 3):
                     if factors:
                         for _ in range(factor):
                             child = rhythmtreetools.RhythmTreeContainer(duration)
                             node.append(child)
-                            recurse(child, factors)
+                            recurse(child, factors, denominator, decrease_durations_monotonically)
                     else:
                         for _ in range(factor):
-                            node.append(rhythmtreetools.RhythmTreeLeaf((1, self.denominator)))
-
+                            node.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
                 else:
                     parts = [3]
                     total = 3
                     while total < factor:
-                        if self.decrease_durations_monotonically:
+                        if decrease_durations_monotonically:
                             parts.append(2)
                         else:
                             parts.insert(0, 2)
@@ -159,18 +147,50 @@ class MetricalHierarchy(AbjadObject):
                             for _ in range(part):
                                 child = rhythmtreetools.RhythmTreeContainer(duration)
                                 grouping.append(child)
-                                recurse(child, factors)
+                                recurse(child, factors, denominator, decrease_durations_monotonically)
                         else:
                             for _ in range(part):
-                                grouping.append(rhythmtreetools.RhythmTreeLeaf((1, self.denominator)))
+                                grouping.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
                         node.append(grouping)
-
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf((1, self.denominator)) 
+                node.extend([rhythmtreetools.RhythmTreeLeaf((1, denominator)) 
                     for _ in range(node.duration.numerator)])
 
-        recurse(root, factors)
+        decrease_durations_monotonically = bool(decrease_durations_monotonically)
+
+        if isinstance(arg, (str, rhythmtreetools.RhythmTreeContainer)):
+            if isinstance(arg, str):
+                parsed = rhythmtreetools.RhythmTreeParser()(arg)
+                assert len(parsed) == 1
+                root = parsed[0]
+            else:
+                root = arg
+            for node in root.nodes:
+                assert node.prolation == 1
+            numerator, denominator = root.duration.numerator, root.duration.denominator
+
+        elif isinstance(arg, (tuple, measuretools.Measure)) or \
+            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator')):
+            if isinstance(arg, tuple):
+                fraction = mathtools.NonreducedFraction(arg)
+            elif isinstance(arg, measuretools.Measure):
+                time_signature = contexttools.get_effective_time_signature(arg)
+                fraction = mathtools.NonreducedFraction(
+                    time_signature.numerator, time_signature.denominator)
+            else:
+                fraction = mathtools.NonreducedFraction(arg.numerator, arg.denominator)
+            numerator, denominator = fraction.numerator, fraction.denominator
+            factors = mathtools.factors(numerator)[1:]
+            root = rhythmtreetools.RhythmTreeContainer(fraction)
+            recurse(root, factors, denominator, decrease_durations_monotonically)
+
+        else:
+            raise ValueError("Can't initialize {} from {!r}.".format(type(self).__name__, arg))
+
         self._root_node = root
+        self._numerator = numerator
+        self._denominator = denominator
+        self._decrease_durations_monotonically = decrease_durations_monotonically
 
     ### SPECIAL METHODS ###
 
@@ -410,6 +430,13 @@ class MetricalHierarchy(AbjadObject):
         Return string.
         '''
         return AbjadObject.storage_format.fget(self)
+
+    ### PRIVATE METHODS ###
+
+    def _get_recurser(self):
+
+
+        return recurse
 
     ### PUBLIC METHODS ###
 
