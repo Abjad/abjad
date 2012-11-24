@@ -25,7 +25,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy):
         offsets = [(x * prolation) + first_offset for x in offsets]
         #print '\t', depth, offsets
         depthwise_offset_inventory[depth] = tuple(offsets)
-
+    #print ''
 
     def get_offsets_at_depth(depth):
         if depth in depthwise_offset_inventory:
@@ -49,32 +49,47 @@ def establish_metrical_hierarchy(components, metrical_hierarchy):
 
     def recurse(tie_chain, depth=0):
         offsets = get_offsets_at_depth(depth)
+        #print 'DEPTH:', depth
+
         if is_acceptable_tie_chain(tie_chain, offsets):
             #print 'ACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
-            #print '\t', offsets
+            #print '\t', ' '.join([str(x) for x in offsets])
+            #print ''
             leaftools.fuse_leaves(tie_chain[:])
+
         else:
             #print 'UNACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
-            #print '\t', offsets
+            #print '\t', ' '.join([str(x) for x in offsets])
             split_offset = None
-            offsets = get_offsets_at_depth(depth + 1)
+            offsets = get_offsets_at_depth(depth)
+
+            # if the tie chain's start aligns, take the latest possible offset
+            if tie_chain.start_offset in offsets:
+                offsets = reversed(offsets)
+
             for offset in offsets:
                 if tie_chain.start_offset < offset < tie_chain.stop_offset:
-                    split_offset = offset - tie_chain.start_offset
+                    split_offset = offset
                     break
-            #print '\t', split_offset
+
+            #print '\tABS:', split_offset
             if split_offset is not None:
+                split_offset -= tie_chain.start_offset
+                #print '\tREL:', split_offset
+                #print ''
                 tie_chains = [tietools.TieChain(shard) for shard in
                     componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
                 for tie_chain in tie_chains:
-                    recurse(tie_chain, depth=depth+1)
+                    recurse(tie_chain, depth=depth)
+
             else:
+                #print ''
                 recurse(tie_chain, depth=depth+1)
 
     # cache results of iterator, as we'll be mutating the underlying collection
     items = tuple(tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(components))
     for item in items:
-        #print 'ITEMS:', items
+        #print ''
         if isinstance(item, tietools.TieChain):
             #print 'RECURSING:', item
             recurse(item, depth=0)
