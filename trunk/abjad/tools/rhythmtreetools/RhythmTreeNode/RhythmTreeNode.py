@@ -2,6 +2,8 @@ import abc
 import fractions
 import inspect
 from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -366,18 +368,19 @@ class RhythmTreeNode(AbjadObject):
 
         Return `Duration` instance.
         '''
-        return self.prolation * self.root_node.duration
+        return self.prolation * self.duration
 
     @property
     def prolation(self):
-        prolation = durationtools.Duration(1)
-        node = self
-        while node.parent is not None:
-            duration = node.duration
-            total_duration = node.parent.contents_duration
-            prolation *= durationtools.Duration(duration, total_duration)
-            node = node.parent
-        return prolation
+        return mathtools.cumulative_products(self.prolations)[-1]
+
+    @property
+    def prolations(self):
+        prolations = [durationtools.Multiplier(1)]
+        improper_parentage = self.improper_parentage
+        for child, parent in sequencetools.iterate_sequence_pairwise_strict(improper_parentage):
+            prolations.append(durationtools.Multiplier(parent.duration, parent.contents_duration))
+        return tuple(prolations)
 
     @property
     def proper_parentage(self):
