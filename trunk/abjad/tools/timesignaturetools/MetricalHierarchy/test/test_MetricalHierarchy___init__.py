@@ -19,7 +19,7 @@ def test_MetricalHierarchy___init___03():
 
     time_signature = contexttools.TimeSignatureMark((4, 4))
     assert timesignaturetools.MetricalHierarchy(time_signature).rtm_format == \
-        '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+        '(4/4 (1/4 1/4 1/4 1/4))'
 
 
 def test_MetricalHierarchy___init___04():
@@ -40,7 +40,7 @@ def test_MetricalHierarchy___init___06():
 
     time_signature = contexttools.TimeSignatureMark((12, 4))
     assert timesignaturetools.MetricalHierarchy(time_signature).rtm_format == \
-        '(12/4 ((6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4)))) (6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))))'
+        '(12/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))'
 
 
 def test_MetricalHierarchy___init___07():
@@ -69,3 +69,8 @@ def test_MetricalHierarchy___init___10():
     time_signature = contexttools.TimeSignatureMark((25, 4))
     assert timesignaturetools.MetricalHierarchy(time_signature).rtm_format == \
         '(25/4 ((15/4 ((5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)))) (5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)))) (5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)))))) (10/4 ((5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)))) (5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))))))'
+
+
+def test_MetricalHierarchy___init___11():
+
+    hierarchy = timesignaturetools.MetricalHierarchy('(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))')

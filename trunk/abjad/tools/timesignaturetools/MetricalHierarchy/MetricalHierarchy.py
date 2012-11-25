@@ -123,7 +123,7 @@ class MetricalHierarchy(AbjadObject):
             if factors:
                 factor, factors = factors[0], factors[1:]
                 duration = node.duration / factor
-                if factor in (2, 3):
+                if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
                             child = rhythmtreetools.RhythmTreeContainer(duration)
@@ -186,6 +186,9 @@ class MetricalHierarchy(AbjadObject):
                 fraction = mathtools.NonreducedFraction(arg.numerator, arg.denominator)
             numerator, denominator = fraction.numerator, fraction.denominator
             factors = mathtools.factors(numerator)[1:]
+            # group two nested levels of 2s into a 4
+            if 1 < len(factors) and factors[0] == factors[1] == 2:
+                factors[0:2] = [4]
             root = rhythmtreetools.RhythmTreeContainer(fraction)
             recurse(root, factors, denominator, decrease_durations_monotonically)
 
@@ -234,6 +237,9 @@ class MetricalHierarchy(AbjadObject):
             start_offset = mathtools.NonreducedFraction(x.start_offset).with_denominator(self.denominator)
             stop_offset = mathtools.NonreducedFraction(x.stop_offset).with_denominator(self.denominator)
             yield start_offset, stop_offset
+
+    def __repr__(self):
+        return '{}({!r})'.format(self._class_name, self.rtm_format)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
