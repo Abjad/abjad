@@ -30,8 +30,6 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
 
     Iterate nontrivial tie chains backward in `expr`::
 
-    ::
-
         >>> for x in tietools.iterate_nontrivial_tie_chains_in_expr(staff, reverse=True):
         ...     x
         ...
@@ -57,4 +55,3 @@ def iterate_nontrivial_tie_chains_in_expr(expr, reverse=False):
                 tie_chain = tietools.get_tie_chain(leaf)
                 if not tie_chain.is_trivial:
                     yield tie_chain
-

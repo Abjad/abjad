@@ -1234,6 +1234,7 @@ Composition packages
    tools/rhythmmakertools/DivisionIncisedNoteRhythmMaker/DivisionIncisedNoteRhythmMaker
    tools/rhythmmakertools/DivisionIncisedRestRhythmMaker/DivisionIncisedRestRhythmMaker
    tools/rhythmmakertools/EqualDivisionRhythmMaker/EqualDivisionRhythmMaker
+   tools/rhythmmakertools/EvenRunRhythmMaker/EvenRunRhythmMaker
    tools/rhythmmakertools/NoteRhythmMaker/NoteRhythmMaker
    tools/rhythmmakertools/OutputBurnishedTaleaRhythmMaker/OutputBurnishedTaleaRhythmMaker
    tools/rhythmmakertools/OutputIncisedNoteRhythmMaker/OutputIncisedNoteRhythmMaker
