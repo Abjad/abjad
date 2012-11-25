@@ -1,5 +1,6 @@
 1.  Author tests to make sure that persistent overlapping division selectors 
     can be overwritten in a subsequent segment.
+    See test_multiple_segment_solo__persistent_overlapping_division_selectors_05().
 
 2.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
     It means truncate last division in section. It also means restart divisions at

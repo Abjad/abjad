@@ -819,7 +819,6 @@ class ConcreteInterpreter(Interpreter):
                 elif timerelationtools.timespan_2_curtails_timespan_1(cooked_command, raw_command):
                     commands_to_curtail.append(cooked_command)
                 elif timerelationtools.timespan_2_trisects_timespan_1(cooked_command, raw_command):
-                    print 'FOO'
                     commands_to_split.append(cooked_command)
             #print commands_to_remove, commands_to_curtail, commands_to_delay, commands_to_split
             for command_to_remove in commands_to_remove:
