@@ -66,14 +66,14 @@ class PyTestScript(DirectoryScript):
         if args.report:
             report = '-r {}'.format(args.report)
 
-        path = ' '.join(args.path)
-
         print 'TESTING:'
         for path in args.path:
             print '\t{}'.format(path)
         print ''
 
+        path = ' '.join(args.path)
         command = 'py.test {} {} {} {}'.format(parallel, exitfirst, report, path)
+        print command
 
         iotools.spawn_subprocess(command)
 
