@@ -33,7 +33,12 @@ extensions = [
     'sphinx.ext.viewcode',
     'abjad.docs.source._ext.inheritance_diagram',
     'abjad.docs.source._ext.autodoc',
+    'experimental.docs.source._ext.abjadbook',
 ]
+
+# abjad book settings
+abjadbook_should_process = True
+abjadbook_transform_path = 'experimental/'
 
 # For sphinx.ext.todo
 todo_include_todos = True
