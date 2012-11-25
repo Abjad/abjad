@@ -159,3 +159,16 @@
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.
+
+41. Maybe change the following method names:
+        SegmentSpecification.select_background_measures_ratio_part() ==>
+        SegmentSpecification.select_ratio_of_background_measures();
+        SegmentSpecification.select_divisions_ratio_part() ==>
+        SegmentSpecification.select_ratio_of_divisions();
+        SegmentSpecification.select_leaves_ratio_part() ==>
+        SegmentSpecification.select_ratio_of_leaves();
+        SegmentSpecification.select_notes_and_chords_ratio_part() ==>
+        SegmentSpecification.select_ratio_of_notes_and_chords();
+        SegmentSpecification.select_segment_ratio_part() ==>
+        SegmentSpecification.select_ratio_of_segment().
+    The naming works better with the new affordance to return all ratio parts.

@@ -644,8 +644,10 @@ class SegmentSpecification(Specification):
         return selector
     
     def select_background_measures_ratio_part(self, 
-        ratio, part, is_count=True, time_relation=None, voice=None):
-        r'''Select the first third of segment background measures 
+        ratio, part=None, is_count=True, time_relation=None, voice=None):
+        r'''Select background measures ratio part.
+    
+        Example 1. Select the first third of segment background measures 
         calculated according to count of segment background measures::
 
             >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
@@ -668,7 +670,7 @@ class SegmentSpecification(Specification):
                 0
                 )
 
-        Select the first third of segment background measures calculcated
+        Example 2. Select the first third of segment background measures calculated
         according to duration of segment background measures::
 
             >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
@@ -691,12 +693,77 @@ class SegmentSpecification(Specification):
                 0
                 )
 
+        Example 3. When ``part=None`` return one selector per part::
+
+            >>> selectors = segment.select_background_measures_ratio_part((1, 1, 1), is_count=True)
+
+        ::
+
+            >>> z(selectors[0])
+            selectortools.CountRatioPartSelector(
+                selectortools.BackgroundMeasureSelector(
+                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
+                            selector=selectortools.SingleSegmentSelector(
+                                identifier='red'
+                                )
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                0
+                )
+
+        ::
+
+            >>> z(selectors[1])
+            selectortools.CountRatioPartSelector(
+                selectortools.BackgroundMeasureSelector(
+                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
+                            selector=selectortools.SingleSegmentSelector(
+                                identifier='red'
+                                )
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                1
+                )
+
+        ::
+
+            >>> z(selectors[2])
+            selectortools.CountRatioPartSelector(
+                selectortools.BackgroundMeasureSelector(
+                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
+                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
+                            selector=selectortools.SingleSegmentSelector(
+                                identifier='red'
+                                )
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                2
+                )
+
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        assert isinstance(part, int), repr(part)
+        assert isinstance(part, (int, type(None))), repr(part)
         selector = self.select_background_measures(time_relation=time_relation, voice=voice)
-        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
+        if part is not None:
+            return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
+        else:
+            result = []
+            for part in range(len(ratio)):
+                result.append(self._wrap_selector_with_ratio_part_selector(
+                    selector, ratio, part, is_count=is_count))
+            return tuple(result)
 
     def select_division(self, n, time_relation=None, voice=None):
         '''Select segment division ``0``::
