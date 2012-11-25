@@ -146,8 +146,8 @@ class RhythmTreeParser(Parser):
         '''toplevel : '''
         p[0] = []
 
-    def p_toplevel__toplevel__container(self, p):
-        '''toplevel : toplevel container'''
+    def p_toplevel__toplevel__node(self, p):
+        '''toplevel : toplevel node'''
         p[0] = p[1] + [p[2]]
 
     def p_error(self, p):
