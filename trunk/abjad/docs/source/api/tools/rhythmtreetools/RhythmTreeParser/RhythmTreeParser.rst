@@ -68,7 +68,7 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_toplevel__EMPTY
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_toplevel__toplevel__container
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_toplevel__toplevel__node
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.t_DURATION
 
