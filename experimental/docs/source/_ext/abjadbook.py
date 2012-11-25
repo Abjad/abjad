@@ -12,18 +12,33 @@ def strip_prompt(text):
 def process_doctree(app, doctree, docname):
     if app.config.abjadbook_should_process and \
         docname.startswith(app.config.abjadbook_transform_path):
+
         print ''
         print docname
         print '-' * 80
+
         literal_blocks = list(doctree.traverse(docutils.nodes.literal_block))
         all_lines = []
         has_show_command = False
+
         for literal_block in literal_blocks:
             lines = strip_prompt(literal_block[0])
+            this_has_show_command = False
             for line in lines:
                 if line.startswith('show('):
                     has_show_command = True
+                    this_has_show_command = True
             all_lines.extend(lines)
+
+            if this_has_show_command:
+                warning = docutils.nodes.warning()
+                paragraph = docutils.nodes.paragraph()
+                message = 'abjad-book images will appear here!'
+                text = docutils.nodes.Text(message, message)
+                paragraph.append(text)
+                warning.append(paragraph)
+                literal_block.replace_self([literal_block, warning])
+
         if has_show_command:
             print '\n'.join(all_lines)
 

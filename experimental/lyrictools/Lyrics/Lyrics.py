@@ -6,8 +6,9 @@ class Lyrics(Context):
 
     ::
 
-        >>> from experimental import lyrictools 
+        >>> from experimental import lyrictools
         >>> lyrics = lyrictools.Lyrics()
+        >>> lyrics.append('foo')
         >>> show(lyrics)
 
     Return `Lyrics` instance.
