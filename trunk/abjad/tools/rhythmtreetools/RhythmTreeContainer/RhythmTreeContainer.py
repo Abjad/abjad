@@ -188,15 +188,15 @@ class RhythmTreeContainer(RhythmTreeNode):
         '''
         pulse_duration = durationtools.Duration(pulse_duration)
         assert 0 < pulse_duration
-        def recurse(node, duration):
-            tuplet = tuplettools.FixedDurationTuplet(duration, [])
-            denominator =  mathtools.greatest_power_of_two_less_equal(
-                (duration / node.contents_duration).denominator)
-            for x in node:
-                if isinstance(x, type(self)):
-                    tuplet.extend(recurse(x, durationtools.Duration(x.duration, denominator)))
+        def recurse(node, tuplet_duration):
+            basic_prolated_duration = tuplet_duration / node.contents_duration
+            basic_written_duration = basic_prolated_duration.equal_or_greater_power_of_two
+            tuplet = tuplettools.FixedDurationTuplet(tuplet_duration, [])
+            for child in node.children:
+                if isinstance(child, type(self)):
+                    tuplet.extend(recurse(child, child.duration * basic_written_duration))
                 else:
-                    leaves = x((1, denominator))
+                    leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
                         tietools.TieSpanner(leaves)
