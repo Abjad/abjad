@@ -299,3 +299,96 @@ def test_schematic_examples__X_series_07():
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_schematic_examples__X_series_08():
+    '''Schematic example X8.
+    Quartet in two segments.
+    First segment time signatures [4/8, 3/8, 2/8].
+    Rhythm of each staff specified separately for each measure.
+    F1 measures 1:1:1 by count.
+    F1 measures part 1 with denominator / 1;
+    F1 measures part 2 with denominator / 2;
+    F1 measures part 3 with denominator / 4;
+    F2 R-1 F1 tokens to give [d/2, d/4, d/1].
+    F3 R-2 F1 tokens to give [d/4, d/1, d/2].
+    F4 thirty-second-valued rest-incised notes.
+    T2 [3/16, 3/16].
+    F1, F2, F3 select last 10 notes of T1 F1 then cycle.
+    F4 continues as before.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
+    first_measure = red_segment.select_background_measures_ratio_part((1, 1, 1), 0)
+    middle_measure = red_segment.select_background_measures_ratio_part((1, 1, 1), 1)
+    last_measure = red_segment.select_background_measures_ratio_part((1, 1, 1), -1)
+    red_segment.set_rhythm(library.even_runs(0), contexts=['Voice 1'], selector=first_measure)
+    red_segment.set_rhythm(library.even_runs(1), contexts=['Voice 1'], selector=middle_measure)
+    red_segment.set_rhythm(library.even_runs(2), contexts=['Voice 1'], selector=last_measure)
+    red_segment.set_rhythm(library.even_runs(1), contexts=['Voice 2'], selector=first_measure)
+    red_segment.set_rhythm(library.even_runs(2), contexts=['Voice 2'], selector=middle_measure)
+    red_segment.set_rhythm(library.even_runs(0), contexts=['Voice 2'], selector=last_measure)
+    red_segment.set_rhythm(library.even_runs(2), contexts=['Voice 3'], selector=first_measure)
+    red_segment.set_rhythm(library.even_runs(0), contexts=['Voice 3'], selector=middle_measure)
+    red_segment.set_rhythm(library.even_runs(1), contexts=['Voice 3'], selector=last_measure)
+    maker = rhythmmakertools.DivisionIncisedNoteRhythmMaker([-1], [1], [-1], [1], 32)
+    red_segment.set_rhythm(maker, contexts=['Voice 4'])
+    blue_segment = score_specification.append_segment(name='blue')
+    blue_segment.set_time_signatures(2 * [(3, 16)])
+    selector = red_segment.select_leaves(start=-10)
+    last_leaves = score_specification.request_rhythm('Voice 1', selector=selector)
+    blue_segment.set_rhythm(last_leaves, contexts=['Voice 1', 'Voice 2', 'Voice 3'])
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_schematic_examples__X_series_09():
+    '''Schematic example X9.
+    Quartet in two segments.
+    First segment time signatures [4/8, 3/8].
+    F1 with [1, 2, 3, 4] thirty-seconds.
+    F2 rotation of F1 R left by exactly 1/4 of duration.
+    F3 rotation of F1 R left by exactly 2/4 quarter of duration.
+    F4 rotation of F1 R left by exactly 3/4 quarter of duration.
+    More description goes here.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
+    voice_1_rhythm = red_segment.request_rhythm('Voice 1')
+    # TODO: extend RotationIndicator to allow for symoblic rotation by portion of total duration
+    # This will remove hard-coded duration values in the three lines below.
+    # Might look like rotation=settingtools.RotationIndicator((-1, 3)).
+    # Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
+    # This also suggests a companion procedure that rotates based on ratio of total count of elements.
+    red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=Duration(-7, 32))
+    red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=Duration(-14, 32))
+    red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 4'], rotation=Duration(-21, 32))
+    # TODO: implement a composer "cake slice" management interface on SegmentSpecification.
+    # See the TODO file for an example of what the interface might look like.
+    blue_segment = score_specification.append_segment(name='blue')
+    blue_segment.set_time_signatures([(3, 16)])
+    selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+    rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
+    blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
+    rhythm = score_specification.request_rhythm('Voice 2', selector=selector)
+    blue_segment.set_rhythm(rhythm, contexts=['Voice 2'])
+    rhythm = score_specification.request_rhythm('Voice 3', selector=selector)
+    blue_segment.set_rhythm(rhythm, contexts=['Voice 3'])
+    rhythm = score_specification.request_rhythm('Voice 4', selector=selector)
+    blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
+    green_segment = score_specification.append_segment(name='green')
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

@@ -30,6 +30,12 @@ equal_divisions.name = 'equal_divisions'
 __all__.append(equal_divisions.name)
 
 
+even_runs = rhythmmakertools.EvenRunRhythmMaker
+even_runs.beam_cells_together = True
+even_runs.name = 'even_runs'
+__all__.append(even_runs.name)
+
+
 halves = rhythmmakertools.TaleaRhythmMaker([1], 2, beam_cells_together=False)
 halves.name = 'halves'
 __all__.append(halves.name)

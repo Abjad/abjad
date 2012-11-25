@@ -87,9 +87,11 @@ class ConcreteInterpreter(Interpreter):
 
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
         if getattr(rhythm_maker, 'beam_cells_together', False):
+            spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             durations = [x.prolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
         elif getattr(rhythm_maker, 'beam_each_cell', False):
+            spannertools.destroy_spanners_attached_to_components_in_expr(rhythm_containers)
             for rhythm_container in rhythm_containers:
                 beamtools.DuratedComplexBeamSpanner(
                     [rhythm_container], [rhythm_container.prolated_duration], span=1)
