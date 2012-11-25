@@ -4,7 +4,7 @@ from abjad.tools import sequencetools
 from abjad.tools import tietools
 
 
-def establish_metrical_hierarchy(components, metrical_hierarchy):
+def establish_metrical_hierarchy(components, metrical_hierarchy, maximum_dot_count=None):
     r'''.. versionadded:: 2.11
 
     Operate in place and return none.
@@ -15,6 +15,9 @@ def establish_metrical_hierarchy(components, metrical_hierarchy):
     assert componenttools.all_are_thread_contiguous_components(components)
     metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
     assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.duration
+    if maximum_dot_count is not None:
+        maximum_dot_count = int(maximum_dot_count)
+        assert 0 <= maximum_dot_count
 
     first_offset = components[0].start_offset
     prolation = components[0].prolation
@@ -41,6 +44,9 @@ def establish_metrical_hierarchy(components, metrical_hierarchy):
 
     def is_acceptable_tie_chain(tie_chain, offsets):
         if tie_chain.preprolated_duration.is_assignable:
+            if maximum_dot_count is not None and \
+                maximum_dot_count < tie_chain.preprolated_duration.dot_count:
+                return False
             if tie_chain.start_offset in offsets:
                 return True
             if tie_chain.stop_offset in offsets:

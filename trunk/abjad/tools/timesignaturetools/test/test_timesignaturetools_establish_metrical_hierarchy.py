@@ -51,3 +51,44 @@ def test_timesignaturetools_establish_metrical_hierarchy_06():
     timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy)
     assert source.lilypond_format == target.lilypond_format
 
+
+def test_timesignaturetools_establish_metrical_hierarchy_07():
+    '''Can limit dot count.'''
+
+    metrical_hierarchy = '(4/4 (1/4 1/4 1/4 1/4))'
+
+    maximum_dot_count = None
+    source = p('abj: | 4/4 2... 16 |')
+    target = p('abj: | 4/4 2... 16 |')
+    timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy,
+        maximum_dot_count=maximum_dot_count)
+    assert source.lilypond_format == target.lilypond_format
+
+    maximum_dot_count = 3
+    source = p('abj: | 4/4 2... 16 |')
+    target = p('abj: | 4/4 2... 16 |')
+    timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy,
+        maximum_dot_count=maximum_dot_count)
+    assert source.lilypond_format == target.lilypond_format
+
+    maximum_dot_count = 2
+    source = p('abj: | 4/4 2... 16 |')
+    target = p('abj: | 4/4 2. ~ 8. 16 |')
+    timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy,
+        maximum_dot_count=maximum_dot_count)
+    assert source.lilypond_format == target.lilypond_format
+
+    maximum_dot_count = 1
+    source = p('abj: | 4/4 2... 16 |')
+    target = p('abj: | 4/4 2. ~ 8. 16 |')
+    timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy,
+        maximum_dot_count=maximum_dot_count)
+    assert source.lilypond_format == target.lilypond_format
+
+    maximum_dot_count = 0
+    source = p('abj: | 4/4 2... 16 |')
+    target = p('abj: | 4/4 2 ~ 4 ~ 8 ~ 16 16 |')
+    timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy,
+        maximum_dot_count=maximum_dot_count)
+    assert source.lilypond_format == target.lilypond_format
+    
