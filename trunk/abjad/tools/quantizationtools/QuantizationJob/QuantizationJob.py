@@ -10,10 +10,10 @@ class QuantizationJob(AbjadObject):
 
         >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1, 4])
         >>> q_event_b = quantizationtools.SilentQEvent(500)
-        >>> q_event_c = quantizationtools.PitchedQEvent(667, [2, 3, 7])
+        >>> q_event_c = quantizationtools.PitchedQEvent(750, [2, 3, 7])
         >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
         >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.5)
-        >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.667)
+        >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.75)
 
     ::
 
@@ -146,11 +146,11 @@ class QuantizationJob(AbjadObject):
                 )
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
-                    durationtools.Offset(667, 1),
+                    durationtools.Offset(750, 1),
                     (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"), NamedChromaticPitch("g'")),
                     attachments=()
                     ),
-                durationtools.Offset(3003900951456121, 4503599627370496)
+                durationtools.Offset(3, 4)
                 )
 
         Return tuple.

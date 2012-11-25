@@ -42,9 +42,9 @@ class QGrid(AbjadObject):
     ::
 
         >>> q_event_a = quantizationtools.PitchedQEvent(250, [0])
-        >>> q_event_b = quantizationtools.PitchedQEvent(900, [1])
+        >>> q_event_b = quantizationtools.PitchedQEvent(750, [1])
         >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
-        >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.9)
+        >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.75)
 
     ::
 
@@ -67,11 +67,11 @@ class QGrid(AbjadObject):
         >>> q_grid.next_downbeat.q_event_proxies
         [quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
-                durationtools.Offset(900, 1),
+                durationtools.Offset(750, 1),
                 (NamedChromaticPitch("cs'"),),
                 attachments=()
                 ),
-            durationtools.Offset(8106479329266893, 9007199254740992)
+            durationtools.Offset(3, 4)
             )]
 
     Used internally by the ``Quantizer``.
