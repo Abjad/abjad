@@ -27,18 +27,16 @@ class MetricalHierarchy(AbjadObject):
     ::
 
         >>> metrical_hierarchy
-        MetricalHierarchy((4, 4), decrease_durations_monotonically=True)
+        MetricalHierarchy('(4/4 (1/4 1/4 1/4 1/4))')
 
     ::
 
         >>> print metrical_hierarchy.pretty_rtm_format
         (4/4 (
-            (2/4 (
-                1/4
-                1/4))
-            (2/4 (
-                1/4
-                1/4))))
+            1/4
+            1/4
+            1/4
+            1/4))
 
     ::
 
@@ -89,24 +87,22 @@ class MetricalHierarchy(AbjadObject):
 
         >>> print timesignaturetools.MetricalHierarchy((12, 8)).pretty_rtm_format
         (12/8 (
-            (6/8 (
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))))
-            (6/8 (
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))
-                (3/8 (
-                    1/8
-                    1/8
-                    1/8))))))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
 
     Return metrical hierarchy object.
     '''
@@ -463,16 +459,16 @@ class MetricalHierarchy(AbjadObject):
             >>> for offset, weight in sorted(kernel.iteritems()):
             ...     print '{}\t{}'.format(offset, weight)
             ...
-            0       4/19
-            1/8     1/19
-            1/4     2/19
-            3/8     1/19
-            1/2     3/19
-            5/8     1/19
-            3/4     2/19
-            7/8     1/19
-            1       4/19
-         
+            0       3/16
+            1/8     1/16
+            1/4     1/8
+            3/8     1/16
+            1/2     1/8
+            5/8     1/16
+            3/4     1/8
+            7/8     1/16
+            1       3/16
+
         This is useful for testing how strongly a collection of offsets
         responds to a given metrical hierarchy.
         
