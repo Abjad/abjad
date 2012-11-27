@@ -8,11 +8,11 @@ def test_single_segment_duo__context_cascade_01():
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    segment.set_divisions([(3, 16)])
-    segment.set_rhythm(library.sixteenths)
-    segment.set_rhythm(library.note_filled_tokens, contexts=['Voice 2'])
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
+    red_segment.set_divisions([(3, 16)])
+    red_segment.set_rhythm(library.sixteenths)
+    red_segment.set_rhythm(library.note_filled_tokens, contexts=['Voice 2'])
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

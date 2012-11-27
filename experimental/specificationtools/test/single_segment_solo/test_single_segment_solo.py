@@ -10,10 +10,10 @@ def test_single_segment_solo_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(3, 16)], contexts=segment.v1)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(3, 16)], contexts=red_segment.v1)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -27,10 +27,10 @@ def test_single_segment_solo_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(14, 16)], contexts=segment.v1)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(14, 16)], contexts=red_segment.v1)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -45,10 +45,10 @@ def test_single_segment_solo_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
-    segment.set_divisions([(20, 16)], contexts=segment.v1)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment.set_divisions([(20, 16)], contexts=red_segment.v1)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
