@@ -756,14 +756,7 @@ class SegmentSpecification(Specification):
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, (int, type(None))), repr(part)
         selector = self.select_background_measures(time_relation=time_relation, voice=voice)
-        if part is not None:
-            return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
-        else:
-            result = []
-            for part in range(len(ratio)):
-                result.append(self._wrap_selector_with_ratio_part_selector(
-                    selector, ratio, part, is_count=is_count))
-            return tuple(result)
+        return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
     def select_division(self, n, time_relation=None, voice=None):
         '''Select segment division ``0``::
@@ -828,7 +821,7 @@ class SegmentSpecification(Specification):
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_divisions_ratio_part(self, ratio, part, is_count=True, time_relation=None, voice=None):
+    def select_divisions_ratio_part(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment divisions::
 
             >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0)
@@ -856,7 +849,7 @@ class SegmentSpecification(Specification):
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int)
         selector = self.select_divisions(time_relation=time_relation, voice=voice)
-        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
+        return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
     def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
@@ -891,7 +884,7 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_leaves_ratio_part(self, ratio, part, is_count=True, time_relation=None, voice=None):
+    def select_leaves_ratio_part(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment leaves::
 
             >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0)
@@ -920,7 +913,7 @@ class SegmentSpecification(Specification):
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int)
         selector = self.select_leaves(time_relation=time_relation, voice=voice)
-        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
+        return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
     def select_notes_and_chords(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment notes and chords::
@@ -958,7 +951,8 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_notes_and_chords_ratio_part(self, ratio, part, is_count=True, time_relation=None, voice=None):
+    def select_notes_and_chords_ratio_part(
+        self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment notes and chords::
 
             >>> selector = segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
@@ -990,7 +984,7 @@ class SegmentSpecification(Specification):
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int), repr(part)
         selector = self.select_notes_and_chords(time_relation=time_relation, voice=voice)
-        return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
+        return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
     def select_segment(self):
         '''Select segment::
@@ -1031,7 +1025,7 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return selectortools.OffsetSelector(selector, start_offset=start, stop_offset=stop)
 
-    def select_segment_ratio_part(self, ratio, part):
+    def select_segment_ratio_part(self, ratio, part=None):
         r'''Select the first third of segment::
 
             >>> selector = segment.select_segment_ratio_part((1, 1, 1), 0)
@@ -1052,7 +1046,7 @@ class SegmentSpecification(Specification):
         ratio = mathtools.Ratio(ratio)
         assert isinstance(part, int), repr(part)
         selector = self.select_segment()
-        return selectortools.TimeRatioPartSelector(selector, ratio, part)
+        return self._return_ratio_part_selectors(selector, ratio, part, is_count=False)
 
     def set_aggregate(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
