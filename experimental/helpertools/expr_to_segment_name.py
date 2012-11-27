@@ -3,7 +3,6 @@ def expr_to_segment_name(expr):
     
     Change segment specification to segment name::
 
-        >>> from abjad.tools import *
         >>> from experimental import *
 
     ::
@@ -14,7 +13,7 @@ def expr_to_segment_name(expr):
     ::
 
         >>> red_segment
-        SegmentSpecification(name='red')
+        SegmentSpecification('red')
 
     ::
 
@@ -23,7 +22,7 @@ def expr_to_segment_name(expr):
 
     Leave string unchanged::
 
-        >>> helpertools.expr_to_segment_name(name='red')
+        >>> helpertools.expr_to_segment_name('red')
         'red'
 
     Raise exception on nonsegment, nonstring input.

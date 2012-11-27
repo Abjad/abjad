@@ -10,11 +10,11 @@ def test_SegmentSpecification__select_segment_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    selector = segment.select_segment()
-    segment.set_divisions([(3, 16)], selector=selector)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
+    selector = red_segment.select_segment()
+    red_segment.set_divisions([(3, 16)], selector=selector)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

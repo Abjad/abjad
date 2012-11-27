@@ -37,7 +37,7 @@ def test_ScoreSpecification_interpret_02():
     score_1 = score_specification_1.interpret()
 
     score_specification_2 = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification_2.append_segment(name='red')
+    red_segment = score_specification_2.append_segment(name='red')
     score_2 = score_specification_2.interpret()
 
     assert score_1.lilypond_format == score_2.lilypond_format
@@ -50,8 +50,8 @@ def test_ScoreSpecification_interpret_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     score = score_specification.interpret()
 

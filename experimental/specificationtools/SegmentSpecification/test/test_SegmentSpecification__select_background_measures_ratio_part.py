@@ -9,16 +9,16 @@ def test_SegmentSpecification__select_background_measures_ratio_part_01():
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(template)
 
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
 
-    selector = segment.select_background_measures_ratio_part((1, 1), 0)
-    segment.set_divisions([(3, 16)], selector=selector, truncate=True)
+    selector = red_segment.select_background_measures_ratio_part((1, 1), 0)
+    red_segment.set_divisions([(3, 16)], selector=selector, truncate=True)
 
-    selector = segment.select_background_measures_ratio_part((1, 1), 1)
-    segment.set_divisions([(5, 16)], selector=selector, truncate=True)
+    selector = red_segment.select_background_measures_ratio_part((1, 1), 1)
+    red_segment.set_divisions([(5, 16)], selector=selector, truncate=True)
 
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment.set_rhythm(library.thirty_seconds)
 
     score = score_specification.interpret()
 
@@ -34,12 +34,12 @@ def test_SegmentSpecification__select_background_measures_ratio_part_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    last_two_measures = segment.select_background_measures_ratio_part((1, 1), -1)
-    segment.set_divisions([(2, 32)])
-    segment.set_divisions([(3, 32)], selector=last_two_measures)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
+    last_two_measures = red_segment.select_background_measures_ratio_part((1, 1), -1)
+    red_segment.set_divisions([(2, 32)])
+    red_segment.set_divisions([(3, 32)], selector=last_two_measures)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -53,12 +53,12 @@ def test_SegmentSpecification__select_background_measures_ratio_part_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    last_measure = segment.select_background_measures_ratio_part((1, 1), -1, is_count=False)
-    segment.set_divisions([(2, 32)])
-    segment.set_divisions([(3, 32)], selector=last_measure)
-    segment.set_rhythm(library.thirty_seconds)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
+    last_measure = red_segment.select_background_measures_ratio_part((1, 1), -1, is_count=False)
+    red_segment.set_divisions([(2, 32)])
+    red_segment.set_divisions([(3, 32)], selector=last_measure)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

@@ -8,12 +8,12 @@ def test_SegmentSpecification__select_division_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures(4 * [(2, 8)])
-    segment.set_divisions([(3, 16)])
-    segment.set_rhythm(library.thirty_seconds)
-    antepenultimate_division = segment.select_division(-3)
-    segment.set_rhythm(library.sixteenths, selector=antepenultimate_division)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures(4 * [(2, 8)])
+    red_segment.set_divisions([(3, 16)])
+    red_segment.set_rhythm(library.thirty_seconds)
+    antepenultimate_division = red_segment.select_division(-3)
+    red_segment.set_rhythm(library.sixteenths, selector=antepenultimate_division)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

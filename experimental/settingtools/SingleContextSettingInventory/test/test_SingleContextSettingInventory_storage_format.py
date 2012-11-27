@@ -10,11 +10,11 @@ def test_SingleContextSettingInventory_storage_format_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
     score_specification.interpret()
 
-    setting_inventory_1 = segment.single_context_settings
+    setting_inventory_1 = red_segment.single_context_settings
     storage_format = setting_inventory_1.storage_format
     setting_inventory_2 = eval(storage_format)
 

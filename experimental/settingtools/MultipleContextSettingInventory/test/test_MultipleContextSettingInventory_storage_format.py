@@ -14,10 +14,10 @@ def test_MultipleContextSettingInventory_storage_format_01():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment(name='red')
-    segment.set_time_signatures([(4, 8), (3, 8)])
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(4, 8), (3, 8)])
 
-    multiple_context_setting_inventory_1 = segment.multiple_context_settings
+    multiple_context_setting_inventory_1 = red_segment.multiple_context_settings
     storage_format = multiple_context_setting_inventory_1.storage_format
     multiple_context_setting_inventory_2 = eval(storage_format)
 

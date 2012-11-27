@@ -28,7 +28,7 @@ class SegmentSpecification(Specification):
     ::
             
         >>> red_segment
-        SegmentSpecification(name='red')
+        SegmentSpecification('red')
 
     ``SegmentSpecification`` properties are read-only.
     '''
@@ -85,7 +85,7 @@ class SegmentSpecification(Specification):
     def abbreviated_context_names(self):
         r'''Segment specification abbreviated context names::
 
-            >>> segment.abbreviated_context_names
+            >>> red_segment.abbreviated_context_names
             ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
 
         Return list of strings.
@@ -96,7 +96,7 @@ class SegmentSpecification(Specification):
     def context_names(self):
         r'''Segment specification context names::
 
-            >>> for x in segment.context_names:
+            >>> for x in red_segment.context_names:
             ...     x
             ... 
             'Grouped Rhythmic Staves Score'
@@ -118,7 +118,7 @@ class SegmentSpecification(Specification):
     def contexts(self):
         r'''Segment specification context proxy dictionary::
 
-            >>> for key in segment.contexts:
+            >>> for key in red_segment.contexts:
             ...     key
             ... 
             'Grouped Rhythmic Staves Score'
@@ -140,7 +140,7 @@ class SegmentSpecification(Specification):
     def duration(self):
         '''Segment specification duration.
 
-            >>> segment.duration
+            >>> red_segment.duration
             Duration(0, 1)
 
         Return duration.
@@ -151,7 +151,7 @@ class SegmentSpecification(Specification):
     def multiple_context_settings(self):
         '''Segment specification multiple-context settings.
 
-            >>> segment.multiple_context_settings
+            >>> red_segment.multiple_context_settings
             MultipleContextSettingInventory([])
 
         Return multiple-context setting inventory.
@@ -162,7 +162,7 @@ class SegmentSpecification(Specification):
     def score_model(self):
         '''Segment specification score model::
 
-            >>> segment.score_model
+            >>> red_segment.score_model
             Score-"Grouped Rhythmic Staves Score"<<1>>
 
         Return Abjad score object.
@@ -173,7 +173,7 @@ class SegmentSpecification(Specification):
     def score_name(self):
         r'''Segment specification score name::
 
-            >>> segment.score_name
+            >>> red_segment.score_name
             'Grouped Rhythmic Staves Score'
 
         Return string.
@@ -184,7 +184,7 @@ class SegmentSpecification(Specification):
     def score_template(self):
         r'''Segment specification score template::
 
-            >>> segment.score_template
+            >>> red_segment.score_template
             GroupedRhythmicStavesScoreTemplate(staff_count=4)
 
         Return score template.
@@ -195,7 +195,7 @@ class SegmentSpecification(Specification):
     def segment_name(self):
         '''Segment specification name::
 
-            >>> segment.segment_name
+            >>> red_segment.segment_name
             'red'
 
         Return string.
@@ -206,7 +206,7 @@ class SegmentSpecification(Specification):
     def selector(self):
         '''Segment specification selector::
 
-            >>> segment.selector
+            >>> red_segment.selector
             SingleSegmentSelector(identifier='red')
 
         Return single-segment selector.
@@ -217,7 +217,7 @@ class SegmentSpecification(Specification):
     def single_context_settings(self):
         r'''Segment specification single-context settings::
 
-            >>> segment.single_context_settings
+            >>> red_segment.single_context_settings
             SingleContextSettingInventory([])
 
         Return single-context setting inventory.
@@ -228,7 +228,7 @@ class SegmentSpecification(Specification):
     def single_context_settings_by_context(self):
         r'''Segment specification single-context settings by context::
 
-            >>> for key in segment.single_context_settings_by_context:
+            >>> for key in red_segment.single_context_settings_by_context:
             ...     key
             ... 
             'Grouped Rhythmic Staves Score'
@@ -250,7 +250,7 @@ class SegmentSpecification(Specification):
     def symbolic_start_offset(self):
         '''Segment specification symbolic start offset::
 
-            >>> segment.symbolic_start_offset
+            >>> red_segment.symbolic_start_offset
             SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Left)
 
         Return symbolic offset.
@@ -262,7 +262,7 @@ class SegmentSpecification(Specification):
     def symbolic_stop_offset(self):
         '''Segment specification symbolic stop offset::
 
-            >>> segment.symbolic_stop_offset
+            >>> red_segment.symbolic_stop_offset
             SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right)
 
         Return symbolic offset.
@@ -274,7 +274,7 @@ class SegmentSpecification(Specification):
     def storage_format(self):
         r'''Segment specification storage format::
 
-            >>> z(segment)
+            >>> z(red_segment)
             specificationtools.SegmentSpecification(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=4
@@ -290,7 +290,7 @@ class SegmentSpecification(Specification):
     def time_signatures(self):
         '''Time signatures set on segment during time signature interpretation.
 
-                >>> segment.time_signatures
+                >>> red_segment.time_signatures
                 []
 
         Return list of zero or more nonreduced fractions.
@@ -301,7 +301,7 @@ class SegmentSpecification(Specification):
     def timespan(self):
         '''Segment specification timespan.
 
-            >>> segment.timespan
+            >>> red_segment.timespan
             SingleSourceSymbolicTimespan(selector=SingleSegmentSelector(identifier='red'))
 
         Return timespan.
@@ -315,7 +315,7 @@ class SegmentSpecification(Specification):
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
 
-            >>> request = segment.request_divisions('Voice 1')
+            >>> request = red_segment.request_divisions('Voice 1')
 
         ::
 
@@ -344,7 +344,7 @@ class SegmentSpecification(Specification):
 
         Example 1. Request division command active at start of segment::
 
-            >>> request = segment.request_division_command('Voice 1')
+            >>> request = red_segment.request_division_command('Voice 1')
 
         ::
 
@@ -361,7 +361,7 @@ class SegmentSpecification(Specification):
 
         Example 2. Request division command active halfway through segment::
 
-            >>> request = segment.request_division_command('Voice 1', multiplier=Fraction(1, 2))
+            >>> request = red_segment.request_division_command('Voice 1', multiplier=Fraction(1, 2))
 
         ::
 
@@ -380,12 +380,12 @@ class SegmentSpecification(Specification):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> selector = segment.select_background_measure(8)
+            >>> selector = red_segment.select_background_measure(8)
             >>> offset = durationtools.Offset(1, 4)
 
         ::
 
-            >>> request = segment.request_division_command('Voice 1', selector=selector, offset=offset)
+            >>> request = red_segment.request_division_command('Voice 1', selector=selector, offset=offset)
 
         ::
 
@@ -427,7 +427,7 @@ class SegmentSpecification(Specification):
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment naive beats in `voice`::
 
-            >>> request = segment.request_naive_beats('Voice 1')
+            >>> request = red_segment.request_naive_beats('Voice 1')
 
         ::
 
@@ -466,7 +466,7 @@ class SegmentSpecification(Specification):
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
 
-            >>> request = segment.request_rhythm('Voice 1')
+            >>> request = red_segment.request_rhythm('Voice 1')
 
         ::
 
@@ -493,7 +493,7 @@ class SegmentSpecification(Specification):
 
         Example. Request rhythm command active at start of segment::
 
-            >>> request = segment.request_rhythm_command('Voice 1')
+            >>> request = red_segment.request_rhythm_command('Voice 1')
 
         ::
 
@@ -525,7 +525,7 @@ class SegmentSpecification(Specification):
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signatures in `context`::
 
-            >>> request = segment.request_time_signatures()
+            >>> request = red_segment.request_time_signatures()
 
         ::
 
@@ -552,7 +552,7 @@ class SegmentSpecification(Specification):
 
         Example. Request time signature command active at start of segment::
 
-            >>> request = segment.request_time_signature_command()
+            >>> request = red_segment.request_time_signature_command()
 
         ::
 
@@ -582,7 +582,7 @@ class SegmentSpecification(Specification):
     def select_background_measure(self, n, time_relation=None, voice=None):
         '''Select segment background measure ``0``::
 
-            >>> selector = segment.select_background_measure(0)
+            >>> selector = red_segment.select_background_measure(0)
 
         ::
 
@@ -614,7 +614,7 @@ class SegmentSpecification(Specification):
     def select_background_measures(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five segment background measures::
 
-            >>> selector = segment.select_background_measures(stop=5)
+            >>> selector = red_segment.select_background_measures(stop=5)
 
         ::
 
@@ -649,7 +649,7 @@ class SegmentSpecification(Specification):
         Example 1. Select the first third of segment background measures 
         calculated according to count of segment background measures::
 
-            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
+            >>> selector = red_segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
 
         ::
 
@@ -672,7 +672,7 @@ class SegmentSpecification(Specification):
         Example 2. Select the first third of segment background measures calculated
         according to duration of segment background measures::
 
-            >>> selector = segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
+            >>> selector = red_segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
 
         ::
 
@@ -694,7 +694,7 @@ class SegmentSpecification(Specification):
 
         Example 3. When ``part=None`` return one selector per part::
 
-            >>> selectors = segment.select_background_measures_ratio_part((1, 1, 1), is_count=True)
+            >>> selectors = red_segment.select_background_measures_ratio_part((1, 1, 1), is_count=True)
 
         ::
 
@@ -760,7 +760,7 @@ class SegmentSpecification(Specification):
     def select_division(self, n, time_relation=None, voice=None):
         '''Select segment division ``0``::
 
-            >>> selector = segment.select_division(0)
+            >>> selector = red_segment.select_division(0)
 
         ::
             
@@ -792,7 +792,7 @@ class SegmentSpecification(Specification):
     def select_divisions(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five divisions that start during segment::
 
-            >>> selector = segment.select_divisions(stop=5)
+            >>> selector = red_segment.select_divisions(stop=5)
 
         ::
             
@@ -823,7 +823,7 @@ class SegmentSpecification(Specification):
     def select_divisions_ratio_part(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment divisions::
 
-            >>> selector = segment.select_divisions_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_divisions_ratio_part((1, 1, 1), 0)
 
         ::
 
@@ -853,7 +853,7 @@ class SegmentSpecification(Specification):
     def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
-            >>> selector = segment.select_leaves(stop=40)
+            >>> selector = red_segment.select_leaves(stop=40)
 
         ::
 
@@ -886,7 +886,7 @@ class SegmentSpecification(Specification):
     def select_leaves_ratio_part(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment leaves::
 
-            >>> selector = segment.select_leaves_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_leaves_ratio_part((1, 1, 1), 0)
 
         ::
 
@@ -917,7 +917,7 @@ class SegmentSpecification(Specification):
     def select_notes_and_chords(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment notes and chords::
 
-            >>> selector = segment.select_notes_and_chords(stop=40)
+            >>> selector = red_segment.select_notes_and_chords(stop=40)
 
         ::
 
@@ -954,7 +954,7 @@ class SegmentSpecification(Specification):
         self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment notes and chords::
 
-            >>> selector = segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
 
         ::
 
@@ -988,7 +988,7 @@ class SegmentSpecification(Specification):
     def select_segment(self):
         '''Select segment::
 
-            >>> selector = segment.select_segment()
+            >>> selector = red_segment.select_segment()
 
         ::
 
@@ -1004,7 +1004,7 @@ class SegmentSpecification(Specification):
     def select_segment_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
 
-            >>> selector = segment.select_segment_offsets(start=(1, 8), stop=(3, 8))
+            >>> selector = red_segment.select_segment_offsets(start=(1, 8), stop=(3, 8))
 
         ::
 
@@ -1027,7 +1027,7 @@ class SegmentSpecification(Specification):
     def select_segment_ratio_part(self, ratio, part=None):
         r'''Select the first third of segment::
 
-            >>> selector = segment.select_segment_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_segment_ratio_part((1, 1, 1), 0)
 
         ::
 
@@ -1091,7 +1091,7 @@ class SegmentSpecification(Specification):
         persist=True, truncate=None):
         r'''Set divisions of segment `contexts` to `source`::
 
-            >>> setting = segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
+            >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -1212,7 +1212,7 @@ class SegmentSpecification(Specification):
         persist=True):
         r'''Set rhythm of segment `contexts` to `source`.
 
-            >>> setting = segment.set_rhythm(library.sixteenths)
+            >>> setting = red_segment.set_rhythm(library.sixteenths)
 
         ::
 
@@ -1263,7 +1263,7 @@ class SegmentSpecification(Specification):
         persist=True):
         r'''Set time signatures according to `source` for segment `contexts`.
 
-            >>> setting = segment.set_time_signatures([(3, 8), (4, 8)])
+            >>> setting = red_segment.set_time_signatures([(3, 8), (4, 8)])
 
         ::
 
