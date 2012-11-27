@@ -79,7 +79,6 @@ class DivisionSelector(SliceSelector, TimeRelationSelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: eventually merge with CounttimeComponentSelector.get_offsets()
     def get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selecto when applied
         to `voice_name` in `score_specification`.

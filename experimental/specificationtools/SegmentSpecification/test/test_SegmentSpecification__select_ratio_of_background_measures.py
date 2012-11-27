@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_SegmentSpecification__select_background_measures_ratio_part_01():
+def test_SegmentSpecification__select_ratio_of_background_measures_01():
     '''Count ratio part.
     '''
     
@@ -10,7 +10,7 @@ def test_SegmentSpecification__select_background_measures_ratio_part_01():
     score_specification = specificationtools.ScoreSpecification(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    left, right = selector = red_segment.select_background_measures_ratio_part((1, 1))
+    left, right = selector = red_segment.select_ratio_of_background_measures((1, 1))
     red_segment.set_divisions([(3, 16)], selector=left, truncate=True)
     red_segment.set_divisions([(5, 16)], selector=right, truncate=True)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_background_measures_ratio_part_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measures_ratio_part_02():
+def test_SegmentSpecification__select_ratio_of_background_measures_02():
     '''Count ratio part.
     '''
 
@@ -29,7 +29,7 @@ def test_SegmentSpecification__select_background_measures_ratio_part_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    last_two_measures = red_segment.select_background_measures_ratio_part((1, 1), -1)
+    last_two_measures = red_segment.select_ratio_of_background_measures((1, 1), -1)
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -40,7 +40,7 @@ def test_SegmentSpecification__select_background_measures_ratio_part_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measures_ratio_part_03():
+def test_SegmentSpecification__select_ratio_of_background_measures_03():
     '''Time ratio part.
     '''
 
@@ -48,7 +48,7 @@ def test_SegmentSpecification__select_background_measures_ratio_part_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    last_measure = red_segment.select_background_measures_ratio_part((1, 1), -1, is_count=False)
+    last_measure = red_segment.select_ratio_of_background_measures((1, 1), -1, is_count=False)
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_measure)
     red_segment.set_rhythm(library.thirty_seconds)

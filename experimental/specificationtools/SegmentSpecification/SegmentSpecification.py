@@ -642,14 +642,14 @@ class SegmentSpecification(Specification):
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
     
-    def select_background_measures_ratio_part(self, 
+    def select_ratio_of_background_measures(self, 
         ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select background measures ratio part.
     
         Example 1. Select the first third of segment background measures 
         calculated according to count of segment background measures::
 
-            >>> selector = red_segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=True)
+            >>> selector = red_segment.select_ratio_of_background_measures((1, 1, 1), 0, is_count=True)
 
         ::
 
@@ -672,7 +672,7 @@ class SegmentSpecification(Specification):
         Example 2. Select the first third of segment background measures calculated
         according to duration of segment background measures::
 
-            >>> selector = red_segment.select_background_measures_ratio_part((1, 1, 1), 0, is_count=False)
+            >>> selector = red_segment.select_ratio_of_background_measures((1, 1, 1), 0, is_count=False)
 
         ::
 
@@ -694,7 +694,7 @@ class SegmentSpecification(Specification):
 
         Example 3. When ``part=None`` return one selector per part::
 
-            >>> selectors = red_segment.select_background_measures_ratio_part((1, 1, 1), is_count=True)
+            >>> selectors = red_segment.select_ratio_of_background_measures((1, 1, 1), is_count=True)
 
         ::
 
@@ -820,10 +820,10 @@ class SegmentSpecification(Specification):
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_divisions_ratio_part(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
+    def select_ratio_of_divisions(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment divisions::
 
-            >>> selector = red_segment.select_divisions_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_ratio_of_divisions((1, 1, 1), 0)
 
         ::
 
@@ -883,10 +883,10 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_leaves_ratio_part(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
+    def select_ratio_of_leaves(self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment leaves::
 
-            >>> selector = red_segment.select_leaves_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_ratio_of_leaves((1, 1, 1), 0)
 
         ::
 
@@ -950,11 +950,11 @@ class SegmentSpecification(Specification):
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
-    def select_notes_and_chords_ratio_part(
+    def select_ratio_of_notes_and_chords(
         self, ratio, part=None, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment notes and chords::
 
-            >>> selector = red_segment.select_notes_and_chords_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_ratio_of_notes_and_chords((1, 1, 1), 0)
 
         ::
 
@@ -1024,10 +1024,10 @@ class SegmentSpecification(Specification):
         selector = self.select_segment()
         return selectortools.OffsetSelector(selector, start_offset=start, stop_offset=stop)
 
-    def select_segment_ratio_part(self, ratio, part=None):
+    def select_segment_ratio(self, ratio, part=None):
         r'''Select the first third of segment::
 
-            >>> selector = red_segment.select_segment_ratio_part((1, 1, 1), 0)
+            >>> selector = red_segment.select_segment_ratio((1, 1, 1), 0)
 
         ::
 

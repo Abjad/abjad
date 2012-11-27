@@ -73,7 +73,7 @@ def test_multiple_segment_quartet_03():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     first_measure = red_segment.select_background_measures(stop=1)
     second_measure = red_segment.select_background_measures(start=-1)
-    first_half, second_half = red_segment.select_segment_ratio_part((1, 1))
+    first_half, second_half = red_segment.select_segment_ratio((1, 1))
     red_segment.set_divisions([(3, 16)], selector=first_measure, contexts=['Voice 1'], persist=False)
     red_segment.set_divisions([(5, 16)], selector=second_measure, contexts=['Voice 1'], persist=False)
     red_segment.set_divisions([(5, 16)], selector=first_measure, contexts=['Voice 2'], persist=False)

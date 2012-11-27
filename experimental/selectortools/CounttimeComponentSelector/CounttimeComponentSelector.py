@@ -128,7 +128,6 @@ class CounttimeComponentSelector(SliceSelector, TimeRelationSelector):
 
     ### PUBLIC METHODS ###
 
-    # TODO: eventually merge with DivisionSelector.get_offsets() ... or maybe not
     def get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
@@ -139,7 +138,6 @@ class CounttimeComponentSelector(SliceSelector, TimeRelationSelector):
         '''
         counttime_component_pairs = self.get_selected_objects(
             score_specification, voice_name, include_expression_start_offsets=True)
-        #self._debug(counttime_component_pairs, 'counttime component pairs')
         first_component, first_component_expression_offset = counttime_component_pairs[0]
         last_component, last_component_expression_offset = counttime_component_pairs[-1]
         start_offset = first_component_expression_offset + first_component.start_offset
