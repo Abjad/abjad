@@ -1,10 +1,10 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.TimeRelationSelector import TimeRelationSelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SegmentSelector(SliceSelector, InequalitySelector):
+class SegmentSelector(SliceSelector, TimeRelationSelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -117,7 +117,7 @@ class SegmentSelector(SliceSelector, InequalitySelector):
     def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None, voice_name=None):
         SliceSelector.__init__(
             self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
-        InequalitySelector.__init__(self, time_relation=time_relation)
+        TimeRelationSelector.__init__(self, time_relation=time_relation)
         self._klass = segmenttools.Segment
 
     ### READ-ONLY PUBLIC PROPERTIES ###

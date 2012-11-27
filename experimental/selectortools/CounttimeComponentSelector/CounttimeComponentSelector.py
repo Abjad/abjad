@@ -1,11 +1,11 @@
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from experimental import helpertools
-from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.TimeRelationSelector import TimeRelationSelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class CounttimeComponentSelector(SliceSelector, InequalitySelector):
+class CounttimeComponentSelector(SliceSelector, TimeRelationSelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components restricted according to keywords.
@@ -91,7 +91,7 @@ class CounttimeComponentSelector(SliceSelector, InequalitySelector):
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(
             self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
-        InequalitySelector.__init__(self, time_relation=time_relation)
+        TimeRelationSelector.__init__(self, time_relation=time_relation)
         self._selector = selector
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)

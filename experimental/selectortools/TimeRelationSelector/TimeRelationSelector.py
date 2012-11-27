@@ -3,7 +3,7 @@ from abjad.tools import timerelationtools
 from experimental.selectortools.Selector import Selector
 
 
-class InequalitySelector(Selector):
+class TimeRelationSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Inequality selector.

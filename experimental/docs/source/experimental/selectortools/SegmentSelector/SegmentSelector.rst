@@ -31,7 +31,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.time_relation
 
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`TimeRelationSelector.TimeRelationSelector <experimental.selectortools.TimeRelationSelector.TimeRelationSelector.TimeRelationSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.timespan
 

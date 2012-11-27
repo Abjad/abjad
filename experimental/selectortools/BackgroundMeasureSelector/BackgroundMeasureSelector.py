@@ -1,10 +1,10 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
-from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.TimeRelationSelector import TimeRelationSelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
+class BackgroundMeasureSelector(SliceSelector, TimeRelationSelector):
     r'''.. versionadded:: 1.0
 
     Select all measures in score::
@@ -118,7 +118,7 @@ class BackgroundMeasureSelector(SliceSelector, InequalitySelector):
     def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None, voice_name=None):
         SliceSelector.__init__(
             self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
-        InequalitySelector.__init__(self, time_relation=time_relation)
+        TimeRelationSelector.__init__(self, time_relation=time_relation)
         self._klass = measuretools.Measure
 
     ### READ-ONLY PUBLIC PROPERTIES ###

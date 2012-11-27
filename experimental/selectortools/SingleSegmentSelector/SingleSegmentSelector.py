@@ -1,10 +1,10 @@
 from abjad.tools import durationtools
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.selectortools.InequalitySelector import InequalitySelector
+from experimental.selectortools.TimeRelationSelector import TimeRelationSelector
 
 
-class SingleSegmentSelector(InequalitySelector):
+class SingleSegmentSelector(TimeRelationSelector):
     r'''.. versionadded:: 1.0
 
     Select segment ``3``::
@@ -27,7 +27,7 @@ class SingleSegmentSelector(InequalitySelector):
     ### INITIALIZER ###
 
     def __init__(self, time_relation=None, identifier=0):
-        InequalitySelector.__init__(self, time_relation=time_relation)
+        TimeRelationSelector.__init__(self, time_relation=time_relation)
         self._identifier = identifier
         self._klass = segmenttools.Segment
 

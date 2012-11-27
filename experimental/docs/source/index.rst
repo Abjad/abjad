@@ -178,10 +178,10 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/InequalitySelector/InequalitySelector
    experimental/selectortools/RatioPartSelector/RatioPartSelector
    experimental/selectortools/Selector/Selector
    experimental/selectortools/SliceSelector/SliceSelector
+   experimental/selectortools/TimeRelationSelector/TimeRelationSelector
 
 .. rubric:: concrete classes
 

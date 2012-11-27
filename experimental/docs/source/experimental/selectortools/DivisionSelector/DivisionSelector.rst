@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.start_segment_identifier
 
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`TimeRelationSelector.TimeRelationSelector <experimental.selectortools.TimeRelationSelector.TimeRelationSelector.TimeRelationSelector>`
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.stop_identifier
 
@@ -33,7 +33,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.time_relation
 
-    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`TimeRelationSelector.TimeRelationSelector <experimental.selectortools.TimeRelationSelector.TimeRelationSelector.TimeRelationSelector>`
 
 .. autoattribute:: experimental.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.timespan
 
