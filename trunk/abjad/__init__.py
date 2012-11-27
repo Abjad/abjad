@@ -5,6 +5,13 @@ if not _python_version.startswith('2.7'):
     print 'WARNING: Abjad no longer supports versions of Python less than 2.7!'
     print 'WARNING: Please upgrade your version of Python to 2.7!'
 
+import readline
+import rlcompleter
+if 'libedit' in readline.__doc__:
+    readline.parse_and_bind("bind ^I rl_complete")
+else:
+    readline.parse_and_bind("tab: complete")
+
 # setup .abjad directory and friends (if not already handled elsewhere)
 # configurationtools.setup_abjad_directory_silently()
 from abjad.tools.configurationtools import AbjadConfig
@@ -40,6 +47,8 @@ _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
 del os
 del platform
+del readline
+del rlcompleter
 del tools
 
 __version__ = '2.11'
