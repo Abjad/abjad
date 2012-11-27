@@ -81,15 +81,13 @@ def test_schematic_examples__X_series_03():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(6, 8), (3, 8)])
-    left_measure = red_segment.select_background_measures_ratio_part((1, 1), 0, is_count=True)
-    right_measure = red_segment.select_background_measures_ratio_part((1, 1), -1, is_count=True)
+    left_measure, right_measure = red_segment.select_background_measures_ratio_part((1, 1), is_count=True)
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], selector=left_measure)
     red_segment.set_divisions([(5, 16)], contexts=['Voice 1'], selector=right_measure)
     red_segment.set_divisions([(5, 16)], contexts=['Voice 2'], selector=left_measure)
     red_segment.set_divisions([(3, 16)], contexts=['Voice 2'], selector=right_measure)
 
-    left_half = red_segment.select_segment_ratio_part((1, 1), 0)
-    right_half = red_segment.select_segment_ratio_part((1, 1), -1)
+    left_half, right_half = red_segment.select_segment_ratio_part((1, 1))
 
     voice_1_left_division_command = red_segment.request_division_command('Voice 1', selector=left_measure)
     voice_1_right_division_command = red_segment.request_division_command('Voice 1', selector=right_measure)
@@ -322,9 +320,7 @@ def test_schematic_examples__X_series_08():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    first_measure = red_segment.select_background_measures_ratio_part((1, 1, 1), 0)
-    middle_measure = red_segment.select_background_measures_ratio_part((1, 1, 1), 1)
-    last_measure = red_segment.select_background_measures_ratio_part((1, 1, 1), -1)
+    first_measure, middle_measure, last_measure = red_segment.select_background_measures_ratio_part((1, 1, 1))
     red_segment.set_rhythm(library.even_runs(0), contexts=['Voice 1'], selector=first_measure)
     red_segment.set_rhythm(library.even_runs(1), contexts=['Voice 1'], selector=middle_measure)
     red_segment.set_rhythm(library.even_runs(2), contexts=['Voice 1'], selector=last_measure)

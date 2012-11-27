@@ -846,7 +846,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        assert isinstance(part, int)
+        assert isinstance(part, (int, type(None))), repr(part)
         selector = self.select_divisions(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
@@ -910,7 +910,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        assert isinstance(part, int)
+        assert isinstance(part, (int, type(None))), repr(part)
         selector = self.select_leaves(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
@@ -981,7 +981,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        assert isinstance(part, int), repr(part)
+        assert isinstance(part, (int, type(None))), repr(part)
         selector = self.select_notes_and_chords(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
@@ -1043,7 +1043,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        assert isinstance(part, int), repr(part)
+        assert isinstance(part, (int, type(None))), repr(part)
         selector = self.select_segment()
         return self._return_ratio_part_selectors(selector, ratio, part, is_count=False)
 

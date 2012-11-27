@@ -8,23 +8,16 @@ def test_SegmentSpecification__select_background_measures_ratio_part_01():
     
     template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-
-    selector = red_segment.select_background_measures_ratio_part((1, 1), 0)
-    red_segment.set_divisions([(3, 16)], selector=selector, truncate=True)
-
-    selector = red_segment.select_background_measures_ratio_part((1, 1), 1)
-    red_segment.set_divisions([(5, 16)], selector=selector, truncate=True)
-
+    left, right = selector = red_segment.select_background_measures_ratio_part((1, 1))
+    red_segment.set_divisions([(3, 16)], selector=left, truncate=True)
+    red_segment.set_divisions([(5, 16)], selector=right, truncate=True)
     red_segment.set_rhythm(library.thirty_seconds)
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
-
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
