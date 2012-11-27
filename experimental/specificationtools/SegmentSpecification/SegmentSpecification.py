@@ -14,7 +14,6 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> from abjad.tools import *
         >>> from experimental import *
 
     The examples below reference the following segment specification::
@@ -24,11 +23,11 @@ class SegmentSpecification(Specification):
         
     ::
     
-        >>> segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification.append_segment(name='red')
 
     ::
             
-        >>> segment
+        >>> red_segment
         SegmentSpecification(name='red')
 
     ``SegmentSpecification`` properties are read-only.

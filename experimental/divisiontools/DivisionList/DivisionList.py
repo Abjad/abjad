@@ -22,18 +22,18 @@ class DivisionList(AbjadObject):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> setting = segment.set_time_signatures([(4, 8), (3, 8)])
-        >>> setting = segment.set_divisions([(3, 16)], contexts=segment.v1)
-        >>> setting = segment.set_rhythm(library.thirty_seconds)
+        >>> setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> setting = red_segment.set_divisions([(3, 16)], contexts=red_segment.v1)
+        >>> setting = red_segment.set_rhythm(library.thirty_seconds)
 
     ::
 
-        >>> segment = score_specification.append_segment(name='blue')
-        >>> segment = score_specification.append_segment('green')
+        >>> blue_segment = score_specification.append_segment(name='blue')
+        >>> green_segment = score_specification.append_segment('green')
 
     ::
 

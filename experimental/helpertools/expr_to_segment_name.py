@@ -9,16 +9,16 @@ def expr_to_segment_name(expr):
     ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        >>> segment = specificationtools.SegmentSpecification(template, 'red')
+        >>> red_segment = specificationtools.SegmentSpecification(template, 'red')
 
     ::
 
-        >>> segment
+        >>> red_segment
         SegmentSpecification(name='red')
 
     ::
 
-        >>> helpertools.expr_to_segment_name(segment)
+        >>> helpertools.expr_to_segment_name(red_segment)
         'red'
 
     Leave string unchanged::

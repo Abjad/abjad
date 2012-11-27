@@ -16,11 +16,11 @@ class MaterialRequest(Request):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        >>> segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> request = segment.request_time_signatures()
+        >>> request = red_segment.request_time_signatures()
 
     ::
 

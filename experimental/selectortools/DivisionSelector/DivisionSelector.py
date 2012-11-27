@@ -19,8 +19,8 @@ class DivisionSelector(SliceSelector, InequalitySelector):
 
     Select all divisions that start during segment ``'red'``::
 
-        >>> segment = selectortools.SingleSegmentSelector(identifier='red')
-        >>> timespan = segment.timespan
+        >>> red_segment = selectortools.SingleSegmentSelector(identifier='red')
+        >>> timespan = red_segment.timespan
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::

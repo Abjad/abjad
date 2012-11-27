@@ -14,11 +14,11 @@ class CommandRequest(Request):
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
         ...     staff_count=1)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> selector = segment.select_background_measure(4)
+        >>> selector = red_segment.select_background_measure(4)
         >>> command_request = segment.request_division_command(
         ...     'Voice 1', selector=selector)
 

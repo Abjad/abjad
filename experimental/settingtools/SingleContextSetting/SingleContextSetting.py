@@ -15,16 +15,16 @@ class SingleContextSetting(Setting):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> multiple_context_setting = segment.set_time_signatures([(4, 8), (3, 8)])
+        >>> multiple_context_setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
 
     ::
 
         >>> contexts = ['Voice 1', 'Voice 3']
-        >>> multiple_context_setting = segment.set_divisions([(3, 16)], contexts=contexts)
+        >>> multiple_context_setting = red_segment.set_divisions([(3, 16)], contexts=contexts)
 
     ::
 

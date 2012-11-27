@@ -21,9 +21,9 @@ class ScoreSpecification(Specification):
 
     With three named segments::
 
-        >>> segment = score_specification.append_segment(name='red')
-        >>> segment = score_specification.append_segment('orange')
-        >>> segment = score_specification.append_segment('yellow')
+        >>> red_segment = score_specification.append_segment(name='red')
+        >>> orange_segment = score_specification.append_segment('orange')
+        >>> yellow_segment = score_specification.append_segment('yellow')
 
     All score specification properties are read-only.
     '''
