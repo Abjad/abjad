@@ -80,7 +80,7 @@ def test_multiple_segment_quartet_03():
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
     first_measure = segment.select_background_measures(stop=1)
@@ -101,7 +101,7 @@ def test_multiple_segment_quartet_03():
     segment.set_divisions([(3, 16)], selector=second_half, contexts=['Voice 4'], persist=False)
 
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

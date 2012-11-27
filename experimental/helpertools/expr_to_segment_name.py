@@ -14,7 +14,7 @@ def expr_to_segment_name(expr):
     ::
 
         >>> segment
-        SegmentSpecification('red')
+        SegmentSpecification(name='red')
 
     ::
 
@@ -23,7 +23,7 @@ def expr_to_segment_name(expr):
 
     Leave string unchanged::
 
-        >>> helpertools.expr_to_segment_name('red')
+        >>> helpertools.expr_to_segment_name(name='red')
         'red'
 
     Raise exception on nonsegment, nonstring input.

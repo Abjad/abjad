@@ -9,11 +9,11 @@ def test_multiple_segment_solo_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -29,11 +29,11 @@ def test_multiple_segment_solo_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
@@ -47,11 +47,11 @@ def test_multiple_segment_solo_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(14, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -67,11 +67,11 @@ def test_multiple_segment_solo_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(14, 16)], contexts=segment.v1, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -86,11 +86,11 @@ def test_multiple_segment_solo_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(20, 16)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -106,11 +106,11 @@ def test_multiple_segment_solo_06():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(20, 16)], contexts=segment.v1, truncate=True)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     score = score_specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
@@ -125,11 +125,11 @@ def test_multiple_segment_solo_07():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions([(15, 8)], contexts=segment.v1)
     segment.set_rhythm(library.thirty_seconds)
-    segment = score_specification.append_segment('blue')
+    segment = score_specification.append_segment(name='blue')
     segment = score_specification.append_segment('green')
     score = score_specification.interpret()
     

@@ -24,12 +24,12 @@ class SegmentSpecification(Specification):
         
     ::
     
-        >>> segment = score_specification.append_segment('red')
+        >>> segment = score_specification.append_segment(name='red')
 
     ::
             
         >>> segment
-        SegmentSpecification('red')
+        SegmentSpecification(name='red')
 
     ``SegmentSpecification`` properties are read-only.
     '''

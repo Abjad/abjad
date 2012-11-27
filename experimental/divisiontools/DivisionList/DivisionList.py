@@ -22,7 +22,7 @@ class DivisionList(AbjadObject):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
-        >>> segment = score_specification.append_segment('red')
+        >>> segment = score_specification.append_segment(name='red')
 
     ::
 
@@ -32,7 +32,7 @@ class DivisionList(AbjadObject):
 
     ::
 
-        >>> segment = score_specification.append_segment('blue')
+        >>> segment = score_specification.append_segment(name='blue')
         >>> segment = score_specification.append_segment('green')
 
     ::

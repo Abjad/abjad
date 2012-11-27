@@ -8,7 +8,7 @@ def test_SegmentSpecification__select_background_measure_01():
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = segment.select_background_measure(-1)
     segment.set_divisions([(2, 32)])
@@ -27,7 +27,7 @@ def test_SegmentSpecification__select_background_measure_02():
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = segment.select_background_measure(1)
     segment.set_divisions([(2, 32)])

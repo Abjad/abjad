@@ -21,7 +21,7 @@ class ScoreSpecification(Specification):
 
     With three named segments::
 
-        >>> segment = score_specification.append_segment('red')
+        >>> segment = score_specification.append_segment(name='red')
         >>> segment = score_specification.append_segment('orange')
         >>> segment = score_specification.append_segment('yellow')
 
@@ -275,7 +275,7 @@ class ScoreSpecification(Specification):
             >>> for segment_specification in score_specification.segment_specifications:
             ...     segment_specification
             ... 
-            SegmentSpecification('red')
+            SegmentSpecification(name='red')
             SegmentSpecification('orange')
             SegmentSpecification('yellow')
 
@@ -658,7 +658,7 @@ class ScoreSpecification(Specification):
     def segment_name_to_segment_index(self, segment_name):
         r'''Segment name to segment index::
 
-            >>> score_specification.segment_name_to_segment_index('red')
+            >>> score_specification.segment_name_to_segment_index(name='red')
             0
 
         Return nonnegative integer.
@@ -669,7 +669,7 @@ class ScoreSpecification(Specification):
     def segment_name_to_segment_offsets(self, segment_name, segment_count=1):
         r'''Segment name to segment offsets::
 
-            >>> score_specification.segment_name_to_segment_offsets('red')
+            >>> score_specification.segment_name_to_segment_offsets(name='red')
             (Offset(0, 1), Offset(0, 1))
 
         Return pair of start- and stop-offsets.

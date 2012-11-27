@@ -8,7 +8,7 @@ def test_ScoreSpecification_single_context_settings_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
     assert not score_specification.single_context_settings
 
-    segment = score_specification.append_segment('red')
+    segment = score_specification.append_segment(name='red')
     assert not score_specification.single_context_settings
     assert not segment.single_context_settings
 
