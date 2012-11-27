@@ -8,7 +8,7 @@ from abjad.tools.rhythmmakertools.OutputIncisedRhythmMaker import OutputIncisedR
 class OutputIncisedRestRhythmMaker(OutputIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Output-incised rest-filled rhythm-maker.
+    Output-incised rest rhythm-maker.
 
     Configure the rhythm-maker on initialization::
 

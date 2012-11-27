@@ -132,7 +132,7 @@ def test_schematic_examples__X_series_04():
     Staff 2 rhythm equal to staff 1 rhythm regions rotated -1.
     Staff 3 rhythm equal to staff 1 rhythm regions rotated -2.
     Staff 4 divisions equal to naive time signature divisions.
-    Staff 4 rhythm equal to note-filled tokens.
+    Staff 4 rhythm equal to division-durated notes.
     Segment 2 time signatures preserve segment 1 time signatures.
     Segment 2 otherwise equal to segment 1 flipped about the y axis.
     '''

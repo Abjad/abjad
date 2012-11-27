@@ -94,7 +94,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             }
         }
 
-    Output is a list (eventually a selection) of lists of depth-2 note-filled containers.
+    Output is a list (eventually a selection) of lists of depth-2 note-bearing containers .
 
     .. note:: doesn't yet work with non-power-of-two divisions.
 

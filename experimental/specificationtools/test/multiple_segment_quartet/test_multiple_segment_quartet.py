@@ -8,7 +8,7 @@ def test_multiple_segment_quartet_01():
     Set red 1 & 2 divisions equal to a repeating pattern of [(3, 16)].
     Set red 1 & 2 rhythm equal to running 32nd notes.
     Set red 3 & 4 divisions equal to red time signatures.
-    Set red 3 & 4 rhythm equal to note-filled tokens.
+    Set red 3 & 4 rhythm equal to division-durated notes.
 
     Set blue time signatures equal to the last 2 time signatures of red.
     Let all other red specifications continue to blue.

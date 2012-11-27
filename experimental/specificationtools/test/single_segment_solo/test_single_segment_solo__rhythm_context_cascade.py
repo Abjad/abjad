@@ -23,7 +23,7 @@ def test_single_segment_solo__rhythm_context_cascade_01():
 
 def test_single_segment_solo__rhythm_context_cascade_02():
     '''Thirty-seconds override sixteenths.
-    Then note-filled tokens override thirty-seconds.
+    Then division-durated notes override thirty-seconds.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -43,8 +43,8 @@ def test_single_segment_solo__rhythm_context_cascade_02():
 
 def test_single_segment_solo__rhythm_context_cascade_03():
     '''Thirty-seconds override sixteenths.
-    Then note-filled tokens override thirty-seconds.
-    Then rest-filled tokens override note-filled tokens.
+    Then division-durated notes override thirty-seconds.
+    Then division-durated rests override division-durated notes.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

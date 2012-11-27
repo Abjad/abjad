@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRhythmMaker import DivisionInci
 class DivisionIncisedNoteRhythmMaker(DivisionIncisedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Division-incised note-filled rhythm-maker::
+    Division-incised note rhythm-maker::
 
         >>> prefix_talea, prefix_lengths = [-8], [0, 1]
         >>> suffix_talea, suffix_lengths = [-1], [1]

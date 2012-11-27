@@ -6,7 +6,7 @@ from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import BurnishedRhythmMak
 class DivisionBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Division-burnished talea-filled rhythm-maker.
+    Division-burnished talea rhythm-maker.
 
     Configure the rhythm-maker at instantiation::
 

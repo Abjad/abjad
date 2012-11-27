@@ -7,7 +7,7 @@ import fractions
 class SkipRhythmMaker(RhythmMaker):
     r'''.. versionadded:: 2.10
 
-    Skip-filled rhythm-maker::
+    Skip rhythm-maker::
 
         >>> maker = rhythmmakertools.SkipRhythmMaker()
 

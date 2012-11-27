@@ -4,7 +4,7 @@ from abjad.tools.rhythmmakertools.DivisionIncisedRestRhythmMaker import Division
 class RestRhythmMaker(DivisionIncisedRestRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Rest-filled rhythm-maker::
+    Rest rhythm-maker::
 
         >>> maker = rhythmmakertools.RestRhythmMaker()
 

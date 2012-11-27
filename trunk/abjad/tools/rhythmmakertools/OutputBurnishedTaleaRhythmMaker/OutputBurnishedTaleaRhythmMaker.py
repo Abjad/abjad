@@ -6,7 +6,7 @@ from abjad.tools.rhythmmakertools.BurnishedRhythmMaker import BurnishedRhythmMak
 class OutputBurnishedTaleaRhythmMaker(BurnishedRhythmMaker):
     r'''.. versionadded:: 2.8
 
-    Output-burnished talea-filled rhythm-maker.
+    Output-burnished talea rhythm-maker.
 
     Configure the rhythm-maker at initialization::
 
