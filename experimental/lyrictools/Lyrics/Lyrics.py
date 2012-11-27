@@ -8,8 +8,7 @@ class Lyrics(Context):
 
         >>> from experimental import lyrictools
         >>> lyrics = lyrictools.Lyrics()
-        >>> lyrics.append('foo')
-        >>> show(lyrics)
+        >>> show(lyrics) # doctest: +SKIP
 
     Return `Lyrics` instance.
     '''
