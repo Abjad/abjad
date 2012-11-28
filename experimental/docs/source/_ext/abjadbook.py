@@ -46,16 +46,30 @@ def collect_literal_block_pairs(doctree):
     return None
 
 
+def get_image_prefix(docname, transform_path):
+    image_prefix = docname.partition(transform_path)[-1]
+    if image_prefix.startswith('/'):
+        image_prefix = image_prefix[1:]
+    parts = image_prefix.split('/')
+    unique_parts = [parts[0]]
+    for part in parts[1:]:
+        if part != unique_parts[-1]:
+            unique_parts.append(part)
+        else:
+            break
+    image_prefix = '__'.join(unique_parts)
+    return image_prefix
+
+
 def process_doctree(app, doctree, docname):
 
-    #print ''
-    #print docname
-    abs_imgpath = os.path.join(app.builder.outdir, '_images')
-    rel_imgpath = relative_uri(app.builder.get_target_uri(docname), '_images')
-    #print abs_imgpath
-    #print rel_imgpath
+    print ''
+    print docname
 
-    #docname = doctree['source'].partition(app.srcdir)[-1][1:-4]
+    abs_imgpath = os.path.join(app.builder.outdir, '_images', 'api')
+    rel_imgpath = relative_uri(app.builder.get_target_uri(docname),
+        os.path.join('_images', 'api'))
+
     if not (app.config.abjadbook_should_process and \
         docname.startswith(app.config.abjadbook_transform_path)):
         return
@@ -64,14 +78,13 @@ def process_doctree(app, doctree, docname):
     if pairs is None:
         return
 
-    #print ''
-
     # setup
-    docname_parts = docname.split('/')
-    doctree_directory = os.path.join(*([app.srcdir] + docname_parts[:-1]))
+    if not os.path.exists(abs_imgpath):
+        os.mkdir(abs_imgpath)
     tmp_directory = app.builder._abjadbook_tempdir
     literal_block_images = {}
-    image_prefix = docname_parts[-1]
+
+    image_prefix = get_image_prefix(docname, app.config.abjadbook_transform_path)
     image_count = 0
 
     assert os.path.exists(tmp_directory)
