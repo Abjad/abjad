@@ -33,7 +33,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'abjad.docs.source._ext.inheritance_diagram',
     'abjad.docs.source._ext.autodoc',
-    'experimental.docs.source._ext.abjadbook',
+    'abjad.docs.source._ext.abjadbook',
 ]
 
 # abjad book settings

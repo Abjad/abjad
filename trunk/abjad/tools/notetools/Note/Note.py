@@ -13,6 +13,10 @@ class Note(Leaf):
         >>> Note("cs''8.")
         Note("cs''8.")
 
+    ::
+
+        >>> show(Note("cs''8."))
+
     Notes are immutable.
     '''
 

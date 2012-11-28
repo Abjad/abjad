@@ -26,7 +26,8 @@ def builder_inited(app):
 
 
 def build_finished(app, exc):
-    shutil.rmtree(app.builder._abjadbook_tempdir)
+    pass
+    #shutil.rmtree(app.builder._abjadbook_tempdir)
 
 
 def collect_literal_block_pairs(doctree):
@@ -63,9 +64,6 @@ def get_image_prefix(docname, transform_path):
 
 def process_doctree(app, doctree, docname):
 
-    print ''
-    print docname
-
     abs_imgpath = os.path.join(app.builder.outdir, '_images', 'api')
     rel_imgpath = relative_uri(app.builder.get_target_uri(docname),
         os.path.join('_images', 'api'))
@@ -98,7 +96,14 @@ def process_doctree(app, doctree, docname):
                 if line.startswith('show('):
                     image_count += 1
                     file_name = '{}-{}'.format(image_prefix, image_count)
-                    object_name = line.partition(')')[0][5:]
+
+                    object_name = line[5:]
+                    object_name = object_name.rpartition(')')[0]
+                    if ')' in object_name:
+                        object_name = object_name.rpartition(')')[0] + ')'
+                    elif ',' in object_name:
+                        object_name = object_name.rpartition(',')[0]
+
                     command = "iotools.write_expr_to_ly({}, {!r}, docs=True)".format(
                         object_name, os.path.join(tmp_directory, file_name))
                     f.write(command + '\n')

@@ -34,7 +34,12 @@ extensions = [
     #'sphinx.ext.viewcode',
     'abjad.docs.source._ext.inheritance_diagram',
     'abjad.docs.source._ext.autodoc',
+    'abjad.docs.source._ext.abjadbook',
 ]
+
+# abjad book settings
+abjadbook_should_process = True
+abjadbook_transform_path = 'api/tools/'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
