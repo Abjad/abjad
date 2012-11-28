@@ -94,12 +94,23 @@ def process_doctree(app, doctree):
             lilypond_file_name = os.path.join(tmp_directory, file_name + '.ly')
             tmp_png_file_name = os.path.join(tmp_directory, file_name + '.png')
             final_png_file_name = os.path.join(png_directory, file_name + '.png')
+
+            # create png
             command = 'lilypond --png -dresolution=300 -o {} {}'.format(
                 os.path.join(tmp_directory, file_name), lilypond_file_name)
             subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # crop png
             command = 'convert {} -trim -resample 40%% {}'.format(
-                tmp_png_file_name, final_png_file_name)
+                tmp_png_file_name, tmp_png_file_name)
             subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            # only move to images/ if no original exists, or if it differs
+            if not os.path.exists(final_png_file_name) or \
+                not documentationtools.compare_images(tmp_png_file_name, final_png_file_name):
+                os.rename(tmp_png_file_name, final_png_file_name)
+                print 'OVERWRITING:', tmp_png_file_name, final_png_file_name
+
             uri = '/'.join(docname_parts[:-1] + ['images', file_name + '.png'])
             #print 'URI:', uri
             #print 'FILENAME:', file_name
