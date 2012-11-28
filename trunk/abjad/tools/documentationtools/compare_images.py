@@ -8,7 +8,7 @@ def compare_images(image_one, image_two):
     '''Compare `image_one` against `image_two` using ImageMagick's `compare`
     commandline tool.
 
-    Return number of pixels different between both images.
+    Return `True` if images are the same, otherwise `False`.
     '''
 
     assert os.path.exists(image_one)
@@ -24,7 +24,12 @@ def compare_images(image_one, image_two):
         stderr=subprocess.PIPE
         )
 
-    result = int(process.stderr.read().split('\n')[0].split()[0])
-    shutil.rmtree(tempdir)
+    stderr = process.stderr.read()
+    result = True
+    if stderr.startswith('compare: image widths or heights differ'):
+        result = False
+    else:
+        result = int(stderr.split('\n')[0].split()[0]) is 0
 
+    shutil.rmtree(tempdir)
     return result
