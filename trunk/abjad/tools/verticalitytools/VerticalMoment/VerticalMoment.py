@@ -224,7 +224,7 @@ class VerticalMoment(Selection):
         return result
 
     @property
-    def prev_vertical_moment(self):
+    def previous_vertical_moment(self):
         '''Read-only reference to prev vertical moment backward in time.'''
         from abjad.tools import verticalitytools
         if self.prolated_offset == 0:
@@ -243,21 +243,21 @@ class VerticalMoment(Selection):
             else:
                 #print 'found leaf starting on this moment ...'
                 try:
-                    prev_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
-                    start = prev_leaf.start_offset
-                    #print prev_leaf, start
+                    previous_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
+                    start = previous_leaf.start_offset
+                    #print previous_leaf, start
                     if most_recent_start_offset <= start:
                         most_recent_start_offset = start
-                        token_leaf = prev_leaf
+                        token_leaf = previous_leaf
                 except IndexError:
                     pass
         #print 'token_leaf is %s ...' % token_leaf
         if token_leaf is None:
             token_leaf = leaf
             #print 'token_leaf is %s ...' % token_leaf
-        prev_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
+        previous_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
             token_leaf)
-        return prev_vertical_moment
+        return previous_vertical_moment
 
     @property
     def prolated_offset(self):

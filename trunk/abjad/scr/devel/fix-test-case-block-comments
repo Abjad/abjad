@@ -25,11 +25,11 @@ def _fix_test_case_block_comments():
          new_lines = [ ]
          lines = fp.readlines()
          new_lines = [ ]
-         prev_line = ''
+         previous_line = ''
          for line in lines:
             open_match = open_comment_re.match(line)
             close_match = close_comment_re.match(line)
-            if prev_line.startswith('def '):
+            if previous_line.startswith('def '):
                new_lines.append(line)
             elif open_match:
                total_broken_comments += 1
@@ -48,7 +48,7 @@ def _fix_test_case_block_comments():
                new_lines.append(new_line)
             else:
                new_lines.append(line)
-            prev_line = line
+            previous_line = line
          fp.close() 
          if contained_broken_comment:
             total_broken_modules += 1

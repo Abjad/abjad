@@ -67,20 +67,20 @@ def partition_integer_into_canonic_parts(n, decrease_parts_monotonically=True):
         return (0, )
 
     result = []
-    prev_empty = True
+    previous_empty = True
     binary_n = mathtools.integer_to_binary_string(abs(n))
     binary_length = len(binary_n)
 
     for i, x in enumerate(binary_n):
         if x == '1':
             place_value = 2 ** (binary_length - i - 1)
-            if prev_empty:
+            if previous_empty:
                 result.append(place_value)
             else:
                 result[-1] += place_value
-            prev_empty = False
+            previous_empty = False
         else:
-            prev_empty = True
+            previous_empty = True
 
     sign_n = mathtools.sign(n)
     if mathtools.sign(n) == -1:

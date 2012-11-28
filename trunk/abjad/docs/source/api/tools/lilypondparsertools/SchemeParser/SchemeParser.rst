@@ -88,6 +88,8 @@ Methods
 
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_number__DECIMAL
 
+.. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_number__HEXADECIMAL
+
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_number__INTEGER
 
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.p_program__forms
@@ -105,6 +107,8 @@ Methods
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_DECIMAL
 
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_HASH
+
+.. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_HEXADECIMAL
 
 .. automethod:: abjad.tools.lilypondparsertools.SchemeParser.SchemeParser.SchemeParser.t_IDENTIFIER
 

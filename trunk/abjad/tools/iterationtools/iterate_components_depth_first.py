@@ -43,7 +43,7 @@ def _next_node_depth_first(component, total):
         else:
             return None, None
 
-def _prev_node_depth_first(component, total=0):
+def _previous_node_depth_first(component, total=0):
     '''If client has unvisited music, return prev unvisited node in client's music.
 
     If client has no univisited music and has a parent, return client's parent.
@@ -76,7 +76,7 @@ def _advance_node_depth_first(node, rank, direction):
     if direction in ('left', Left):
         node, rank = _next_node_depth_first(node, rank)
     else:
-        node, rank = _prev_node_depth_first(node, rank)
+        node, rank = _previous_node_depth_first(node, rank)
     return node, rank
 
 def _is_node_forbidden(node, forbid):

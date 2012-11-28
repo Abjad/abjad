@@ -131,32 +131,32 @@ class ComplexBeamSpanner(BeamSpanner):
         Four cases total for beamability of surrounding leaves.'''
         from abjad.tools import beamtools
         from abjad.tools import leaftools
-        prev_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
-        prev_written = prev_leaf.written_duration
+        previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
+        previous_written = previous_leaf.written_duration
         current_written = leaf.written_duration
         next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
         next_written = next_leaf.written_duration
-        prev_flag_count = prev_written.flag_count
+        previous_flag_count = previous_written.flag_count
         current_flag_count = current_written.flag_count
         next_flag_count = next_written.flag_count
         # [unbeamable leaf beamable]
-        if not beamtools.is_beamable_component(prev_leaf) and \
+        if not beamtools.is_beamable_component(previous_leaf) and \
             beamtools.is_beamable_component(next_leaf):
             left = current_flag_count
             right = min(current_flag_count, next_flag_count)
         # [beamable leaf unbeamable]
-        if beamtools.is_beamable_component(prev_leaf) and \
+        if beamtools.is_beamable_component(previous_leaf) and \
             not beamtools.is_beamable_component(next_leaf):
-            left = min(current_flag_count, prev_flag_count)
+            left = min(current_flag_count, previous_flag_count)
             right = current_flag_count
         # [unbeamable leaf unbeamable]
-        elif not beamtools.is_beamable_component(prev_leaf) and \
+        elif not beamtools.is_beamable_component(previous_leaf) and \
             not beamtools.is_beamable_component(next_leaf):
             left = current_flag_count
             right = current_flag_count
         # [beamable leaf beamable]
         else:
-            left = min(current_flag_count, prev_flag_count)
+            left = min(current_flag_count, previous_flag_count)
             right = min(current_flag_count, next_flag_count)
             if left != current_flag_count and right != current_flag_count:
                 left = current_flag_count

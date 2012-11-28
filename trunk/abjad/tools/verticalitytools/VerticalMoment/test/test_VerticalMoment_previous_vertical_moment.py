@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_VerticalMoment_prev_vertical_moment_01():
+def test_VerticalMoment_previous_vertical_moment_01():
 
     score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
@@ -41,17 +41,17 @@ def test_VerticalMoment_prev_vertical_moment_01():
     vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(last_leaf)
     assert vertical_moment.prolated_offset == Offset(3, 8)
 
-    vertical_moment = vertical_moment.prev_vertical_moment
+    vertical_moment = vertical_moment.previous_vertical_moment
     assert vertical_moment.prolated_offset == Offset(1, 3)
 
-    vertical_moment = vertical_moment.prev_vertical_moment
+    vertical_moment = vertical_moment.previous_vertical_moment
     assert vertical_moment.prolated_offset == Offset(1, 4)
 
-    vertical_moment = vertical_moment.prev_vertical_moment
+    vertical_moment = vertical_moment.previous_vertical_moment
     assert vertical_moment.prolated_offset == Offset(1, 6)
 
-    vertical_moment = vertical_moment.prev_vertical_moment
+    vertical_moment = vertical_moment.previous_vertical_moment
     assert vertical_moment.prolated_offset == Offset(1, 8)
 
-    vertical_moment = vertical_moment.prev_vertical_moment
+    vertical_moment = vertical_moment.previous_vertical_moment
     assert vertical_moment.prolated_offset == Offset(0)

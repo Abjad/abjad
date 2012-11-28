@@ -151,9 +151,9 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
         next_line_global_index = new_lines.index(next_line)
         new_lines.insert(next_line_global_index, new_line)
     else:
-        prev_line = package_lines[new_line_idx - 1]
-        prev_line_global_index = new_lines.index(prev_line)
-        new_line_global_index = prev_line_global_index + 1
+        previous_line = package_lines[new_line_idx - 1]
+        previous_line_global_index = new_lines.index(previous_line)
+        new_line_global_index = previous_line_global_index + 1
         new_lines.insert(new_line_global_index, new_line)
     revised_toc_string = ''.join(new_lines)
     api_toc_file = file(api_toc_file_name, 'w')

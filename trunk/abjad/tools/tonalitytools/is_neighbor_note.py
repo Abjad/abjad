@@ -26,11 +26,11 @@ def is_neighbor_note(note):
         raise TypeError('must be note: %s' % note)
 
     try:
-        prev_note = componenttools.get_nth_namesake_from_component(note, -1)
+        previous_note = componenttools.get_nth_namesake_from_component(note, -1)
         next_note = componenttools.get_nth_namesake_from_component(note, 1)
     except IndexError:
         return False
 
-    notes = [prev_note, note, next_note]
+    notes = [previous_note, note, next_note]
 
     return tonalitytools.are_stepwise_notes(notes) and not tonalitytools.are_scalar_notes(notes)

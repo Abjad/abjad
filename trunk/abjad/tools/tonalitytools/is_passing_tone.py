@@ -24,10 +24,10 @@ def is_passing_tone(note):
     if not isinstance(note, notetools.Note):
         raise TypeError('must be note: {!r}'.format(note))
 
-    prev_note = componenttools.get_nth_namesake_from_component(note, -1)
+    previous_note = componenttools.get_nth_namesake_from_component(note, -1)
     next_note = componenttools.get_nth_namesake_from_component(note, 1)
 
-    if prev_note is None or next_note is None:
+    if previous_note is None or next_note is None:
         return False
 
-    return tonalitytools.are_scalar_notes(prev_note, note, next_note)
+    return tonalitytools.are_scalar_notes(previous_note, note, next_note)

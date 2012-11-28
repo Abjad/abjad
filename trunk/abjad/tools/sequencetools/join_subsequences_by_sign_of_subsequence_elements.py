@@ -36,9 +36,9 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
 
     for sublist in sequence:
         try:
-            prev_sublist = result[-1]
-            if get_shared_numeric_sign(prev_sublist) == get_shared_numeric_sign(sublist):
-                prev_sublist.extend(sublist)
+            previous_sublist = result[-1]
+            if get_shared_numeric_sign(previous_sublist) == get_shared_numeric_sign(sublist):
+                previous_sublist.extend(sublist)
             else:
                 result.append(sublist[:])
         except IndexError:

@@ -61,9 +61,9 @@ def yield_components_grouped_by_preprolated_duration(components):
     for component in components:
         if current_group:
             previous_component = current_group[-1]
-            prev_duration = previous_component.preprolated_duration
+            previous_duration = previous_component.preprolated_duration
             current_duration = component.preprolated_duration
-            if current_duration == prev_duration:
+            if current_duration == previous_duration:
                 current_group.append(component)
             else:
                 yield tuple(current_group)

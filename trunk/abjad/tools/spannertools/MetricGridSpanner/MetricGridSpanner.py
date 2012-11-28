@@ -134,13 +134,13 @@ class MetricGridSpanner(Spanner):
             '''
             i = 0
             moffset = 0
-            prev_time_signature = None
+            previous_time_signature = None
             #while moffset < self.duration:
             while moffset < self.prolated_duration:
                 m = self._time_signatures[i % len(self._time_signatures)]
                 m = contexttools.TimeSignatureMark(m)
                 # new attribute
-                if prev_time_signature and prev_time_signature == m:
+                if previous_time_signature and previous_time_signature == m:
                     #m.hide = True
                     #m._temp_hide = True
                     temp_hide = True
@@ -150,7 +150,7 @@ class MetricGridSpanner(Spanner):
                 yield m, moffset, temp_hide
                 moffset += m.duration
                 i += 1
-                prev_time_signature = m
+                previous_time_signature = m
         def fset(self, time_signatures):
             assert isinstance(time_signatures, list)
             self._time_signatures = time_signatures

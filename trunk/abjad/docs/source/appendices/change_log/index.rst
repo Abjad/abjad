@@ -603,7 +603,7 @@ Changes to the ``measuretools`` package:
 
 - Renamed::
 
-    measuretools.get_prev_measure_from_component()
+    measuretools.get_previous_measure_from_component()
 
   ::
 

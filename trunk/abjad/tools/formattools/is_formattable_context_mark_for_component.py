@@ -15,14 +15,14 @@ def is_formattable_context_mark_for_component(mark, component):
             elif component.always_format_time_signature:
                 return True
             else:
-                prev_measure = measuretools.get_previous_measure_from_component(
+                previous_measure = measuretools.get_previous_measure_from_component(
                     mark.start_component)
-                if prev_measure is not None:
-                    prev_effective_time_signature = \
-                        contexttools.get_effective_time_signature(prev_measure)
+                if previous_measure is not None:
+                    previous_effective_time_signature = \
+                        contexttools.get_effective_time_signature(previous_measure)
                 else:
-                    prev_effective_time_signature = None
-                if not mark == prev_effective_time_signature:
+                    previous_effective_time_signature = None
+                if not mark == previous_effective_time_signature:
                     return True
 
     elif mark._format_slot == 'right':
