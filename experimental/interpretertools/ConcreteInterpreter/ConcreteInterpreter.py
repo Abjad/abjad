@@ -551,6 +551,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(len(self.score_specification.all_rhythm_quintuples), 'quintuple count')
         while self.score_specification.all_rhythm_quintuples:
             #self._debug(len(self.score_specification.all_rhythm_quintuples), 'len')
+            previous_all_rhythm_quintuples = self.score_specification.all_rhythm_quintuples[:]
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 rhythm_quadruple = rhythm_quintuple[1:]
@@ -575,6 +576,8 @@ class ConcreteInterpreter(Interpreter):
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].append(
                         rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()
+            if self.score_specification.all_rhythm_quintuples == previous_all_rhythm_quintuples:
+                raise exceptions.CyclicSpecificationError('cyclic rhythm specification')
 
     def make_skip_filled_rhythm_command(self, voice_name, start_offset, stop_offset):
         return settingtools.RhythmCommand(
