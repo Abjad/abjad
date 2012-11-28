@@ -40,6 +40,7 @@ class SchemeParser(abctools.Parser):
     N               = r'[0-9]'
     DIGIT           = r'{}'.format(N)
     UNSIGNED        = r'{}+'.format(N)
+    HEX             = r'(X|x)[A-Fa-f0-9]+'
     INT             = r'(-?{})'.format(UNSIGNED)
     REAL            = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
     INITIAL         = r'({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)'.format(A)
@@ -64,6 +65,7 @@ class SchemeParser(abctools.Parser):
         'EQUALS',
         'EXCLAMATION',
         'HASH',
+        'HEXADECIMAL',
         'IDENTIFIER',
         'INTEGER',
         'L_CARAT',
@@ -100,6 +102,13 @@ class SchemeParser(abctools.Parser):
             t.value = True
         else:
             t.value = False
+        return t
+
+    @lex.TOKEN(HEX)
+    def t_HEXADECIMAL(self, t):
+        self.cursor += len(t.value)
+        t.cursor_end = self.cursor
+        t.value = int(t.value[2:], 16)
         return t
 
     @lex.TOKEN(REAL)
@@ -478,6 +487,11 @@ class SchemeParser(abctools.Parser):
 
     def p_number__DECIMAL(self, p):
         '''number : DECIMAL'''
+        p.slice[0].cursor_end = p.slice[-1].cursor_end
+        p[0] = p[1]
+
+    def p_number__HEXADECIMAL(self, p):
+        '''number : HEXADECIMAL'''
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 

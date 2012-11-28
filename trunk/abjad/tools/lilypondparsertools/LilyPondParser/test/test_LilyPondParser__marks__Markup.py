@@ -76,3 +76,10 @@ def test_LilyPondParser__marks__Markup_04():
 
     assert isinstance(result, markuptools.Markup)
     assert result.lilypond_format == markup.lilypond_format
+
+
+def test_LilyPondParser__marks__Markup_05():
+    command = r'\markup { \char ##x03EE }'
+    parser = LilyPondParser()
+    result = parser(command)
+    assert result.lilypond_format == '\\markup { \\char #1006 }'
