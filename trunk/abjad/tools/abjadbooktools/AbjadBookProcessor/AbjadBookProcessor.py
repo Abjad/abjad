@@ -105,7 +105,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
                 source = os.path.join(tmp_directory, x)
                 target = os.path.join(image_directory, x)
                 if not os.path.exists(target) or \
-                    0 < documentationtools.compare_images(source, target):
+                    not documentationtools.compare_images(source, target):
                     os.rename(source, target)
                     print '\tMoving {}.'.format(x)
                 else:
