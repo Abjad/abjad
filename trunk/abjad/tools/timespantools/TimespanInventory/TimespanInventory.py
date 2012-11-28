@@ -9,7 +9,7 @@ class TimespanInventory(ObjectInventory):
 
     Timespan inventory::
 
-        >>> timespan_inventory = timerelationtools.TimespanInventory()
+        >>> timespan_inventory = timespantools.TimespanInventory()
 
     ::
 
@@ -20,7 +20,7 @@ class TimespanInventory(ObjectInventory):
     ::
 
         >>> z(timespan_inventory)
-        timerelationtools.TimespanInventory([
+        timespantools.TimespanInventory([
             timespantools.LiteralTimespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(3, 1)

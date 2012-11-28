@@ -1788,7 +1788,6 @@ Composition packages
    :maxdepth: 1
 
    tools/timerelationtools/OffsetTimespanTimeRelation/OffsetTimespanTimeRelation
-   tools/timerelationtools/TimespanInventory/TimespanInventory
    tools/timerelationtools/TimespanTimespanTimeRelation/TimespanTimespanTimeRelation
 
 .. rubric:: functions
@@ -1859,6 +1858,7 @@ Composition packages
    :maxdepth: 1
 
    tools/timespantools/LiteralTimespan/LiteralTimespan
+   tools/timespantools/TimespanInventory/TimespanInventory
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

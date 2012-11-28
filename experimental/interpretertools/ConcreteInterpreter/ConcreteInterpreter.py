@@ -114,7 +114,7 @@ class ConcreteInterpreter(Interpreter):
         requested_segment_identifier = division_command_request.symbolic_offset.start_segment_identifier
         requested_offset = division_command_request.symbolic_offset.get_score_offset(
             self.score_specification, voice_name)
-        timespan_inventory = timerelationtools.TimespanInventory()
+        timespan_inventory = timespantools.TimespanInventory()
         #self._debug_values(self.score_specification.all_division_region_commands, 'all div region commands')
         for division_region_command in self.score_specification.all_division_region_commands:
             if not division_region_command.request == division_command_request:
@@ -150,14 +150,14 @@ class ConcreteInterpreter(Interpreter):
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
             timespan_time_relation)
-        division_region_expressions = timerelationtools.TimespanInventory(division_region_expressions)
+        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
         #self._debug(division_region_expressions, 'drx')
         if not division_region_expressions:
             return
         if not division_region_expressions.all_are_contiguous:
             return
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
-        trimmed_division_region_expressions = timerelationtools.TimespanInventory(
+        trimmed_division_region_expressions = timespantools.TimespanInventory(
             trimmed_division_region_expressions)
         keep_timespan = timespantools.LiteralTimespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
@@ -361,10 +361,10 @@ class ConcreteInterpreter(Interpreter):
 
     def initialize_region_expression_inventories(self, attribute):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
-            timespan_inventory = timerelationtools.TimespanInventory()
+            timespan_inventory = timespantools.TimespanInventory()
             region_commands = '{}_region_commands'.format(attribute)
             self.score_specification.contexts[voice.name][region_commands] = timespan_inventory
-            timespan_inventory = timerelationtools.TimespanInventory()
+            timespan_inventory = timespantools.TimespanInventory()
             region_expressions = '{}_region_expressions'.format(attribute)
             self.score_specification.contexts[voice.name][region_expressions] = timespan_inventory
 
@@ -710,7 +710,7 @@ class ConcreteInterpreter(Interpreter):
         requested_offset = rhythm_command_request.symbolic_offset.get_score_offset(
             self.score_specification, voice_name)
         #self._debug(requested_offset, 'offset')
-        timespan_inventory = timerelationtools.TimespanInventory()
+        timespan_inventory = timespantools.TimespanInventory()
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
             #if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
             if True:
@@ -754,7 +754,7 @@ class ConcreteInterpreter(Interpreter):
         if not rhythm_region_expressions:
             return
         rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
-        rhythm_region_expressions = timerelationtools.TimespanInventory(rhythm_region_expressions)
+        rhythm_region_expressions = timespantools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         #self._debug(source_timespan, 'source timespan', blank=True)
