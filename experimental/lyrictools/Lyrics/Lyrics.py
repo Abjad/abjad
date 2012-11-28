@@ -8,7 +8,22 @@ class Lyrics(Context):
 
         >>> from experimental import lyrictools
         >>> lyrics = lyrictools.Lyrics()
-        >>> show(lyrics) # doctest: +SKIP
+
+    ::
+
+        >>> note = Note("c'4")
+
+    ::
+
+        >>> show(note) # doctest: +SKIP
+
+    ::
+
+        >>> note.written_duration = (1, 2)
+
+    ::
+
+        >>> show(note) # doctest: +SKIP
 
     Return `Lyrics` instance.
     '''
