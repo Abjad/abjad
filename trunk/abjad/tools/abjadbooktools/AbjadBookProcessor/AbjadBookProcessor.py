@@ -92,6 +92,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
         image_directory = os.path.join(directory, 'images')
         if not os.path.isdir(image_directory):
             os.mkdir(image_directory)
+        # remove old images
         for x in os.listdir(image_directory):
             if x.startswith('{}-'.format(image_prefix)) and x.endswith(image_format):
                 # this should handle both 'index-1.png' and 'index-1-page3.png'
@@ -100,10 +101,20 @@ class AbjadBookProcessor(abctools.AbjadObject):
                 if image_count < number:
                     os.remove(os.path.join(image_directory, x))
         for x in os.listdir(tmp_directory):
-            if x.endswith(('.pdf', '.png')):
-                old = os.path.join(tmp_directory, x)
-                new = os.path.join(image_directory, x)
-                os.rename(old, new)
+            if x.endswith('.png'):
+                source = os.path.join(tmp_directory, x)
+                target = os.path.join(image_directory, x)
+                if not os.path.exists(target) or \
+                    0 < documentationtools.compare_images(source, target):
+                    os.rename(source, target)
+                    print '\tMoving {}.'.format(x)
+                else:
+                    print '\tKeeping old {}.'.format(x)
+            elif x.endswith('.pdf'):
+                source = os.path.join(tmp_directory, x)
+                target = os.path.join(image_directory, x)
+                os.rename(source, target)
+                print '\tMoving {}.'.format(x)
 
     def _cleanup_pipe(self, pipe):
         #print 'CLEANUP PIPE'
