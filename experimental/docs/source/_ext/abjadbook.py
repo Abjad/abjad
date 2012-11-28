@@ -105,12 +105,12 @@ def process_doctree(app, doctree, docname):
             final_png_file_name = os.path.join(abs_imgpath, file_name + '.png')
             command = 'lilypond --png -dresolution=300 -o {} {}'.format(
                 os.path.join(tmp_directory, file_name), lilypond_file_name)
-            #subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            subprocess.call(command, shell=True)
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            #subprocess.call(command, shell=True)
             command = 'convert {} -trim -resample 40%% {}'.format(
                 tmp_png_file_name, tmp_png_file_name)
-            #subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            subprocess.call(command, shell=True)
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            #subprocess.call(command, shell=True)
             os.rename(tmp_png_file_name, final_png_file_name)
             uri = os.path.join(rel_imgpath, file_name + '.png')
             add_image_block(literal_block, uri)
