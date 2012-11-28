@@ -47,6 +47,7 @@ def expr_to_timespan(expr):
     Otherwise raise type error.
     '''
     from abjad.tools import timerelationtools
+    from abjad.tools import timespantools
 
     #if isinstance(expr, symbolictimetools.SymbolicTimespan):
     #    return expr
@@ -55,11 +56,11 @@ def expr_to_timespan(expr):
     elif hasattr(expr, 'timespan'):
         return expr.timespan
     elif hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
-        return timerelationtools.LiteralTimespan(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
+        return timespantools.LiteralTimespan(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
     elif isinstance(expr, numbers.Number):
-        return timerelationtools.LiteralTimespan(start_offset=expr, stop_offset=expr)
+        return timespantools.LiteralTimespan(start_offset=expr, stop_offset=expr)
     elif sequencetools.is_pair(expr):
         start_offset, stop_offset = expr
-        return timerelationtools.LiteralTimespan(start_offset=start_offset, stop_offset=stop_offset)
+        return timespantools.LiteralTimespan(start_offset=start_offset, stop_offset=stop_offset)
     else:
         raise TypeError('can not change {!r} to timespan.'.format(expr))

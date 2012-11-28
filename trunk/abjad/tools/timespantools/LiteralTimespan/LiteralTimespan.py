@@ -8,7 +8,7 @@ class LiteralTimespan(AbjadObject):
 
     Literal timespan ``[1/2, 3/2)``::
 
-        >>> timespan_constant = timerelationtools.LiteralTimespan((1, 2), (3, 2)) 
+        >>> timespan_constant = timespantools.LiteralTimespan((1, 2), (3, 2)) 
 
     ::
 
@@ -18,7 +18,7 @@ class LiteralTimespan(AbjadObject):
     ::
     
         >>> z(timespan_constant)
-        timerelationtools.LiteralTimespan(
+        timespantools.LiteralTimespan(
             start_offset=durationtools.Offset(1, 2),
             stop_offset=durationtools.Offset(3, 2)
             )

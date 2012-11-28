@@ -145,7 +145,7 @@ class ConcreteInterpreter(Interpreter):
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
         #self._debug(division_region_expressions, 'drx')
-        source_timespan = timerelationtools.LiteralTimespan(start_offset, stop_offset)
+        source_timespan = timespantools.LiteralTimespan(start_offset, stop_offset)
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
@@ -159,7 +159,7 @@ class ConcreteInterpreter(Interpreter):
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
         trimmed_division_region_expressions = timerelationtools.TimespanInventory(
             trimmed_division_region_expressions)
-        keep_timespan = timerelationtools.LiteralTimespan(start_offset, stop_offset)
+        keep_timespan = timespantools.LiteralTimespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         #self._debug(trimmed_division_region_expressions, 'trimmed')
         # TODO: eventually encapsulate in a single call
@@ -741,7 +741,7 @@ class ConcreteInterpreter(Interpreter):
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_offsets(
             self.score_specification, rhythm_request.context_name)
-        source_timespan = timerelationtools.LiteralTimespan(*source_score_offsets)
+        source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']

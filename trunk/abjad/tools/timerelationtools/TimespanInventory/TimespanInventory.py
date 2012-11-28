@@ -13,23 +13,23 @@ class TimespanInventory(ObjectInventory):
 
     ::
 
-        >>> timespan_inventory.append(timerelationtools.LiteralTimespan(0, 3))
-        >>> timespan_inventory.append(timerelationtools.LiteralTimespan(3, 6))
-        >>> timespan_inventory.append(timerelationtools.LiteralTimespan(6, 10))
+        >>> timespan_inventory.append(timespantools.LiteralTimespan(0, 3))
+        >>> timespan_inventory.append(timespantools.LiteralTimespan(3, 6))
+        >>> timespan_inventory.append(timespantools.LiteralTimespan(6, 10))
 
     ::
 
         >>> z(timespan_inventory)
         timerelationtools.TimespanInventory([
-            timerelationtools.LiteralTimespan(
+            timespantools.LiteralTimespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(3, 1)
                 ),
-            timerelationtools.LiteralTimespan(
+            timespantools.LiteralTimespan(
                 start_offset=durationtools.Offset(3, 1),
                 stop_offset=durationtools.Offset(6, 1)
                 ),
-            timerelationtools.LiteralTimespan(
+            timespantools.LiteralTimespan(
                 start_offset=durationtools.Offset(6, 1),
                 stop_offset=durationtools.Offset(10, 1)
                 )
@@ -315,17 +315,17 @@ class TimespanInventory(ObjectInventory):
     def trim_to_start_offset(self, start_offset):
         '''Operate in place and return none.
         '''
-        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
         start_offset = durationtools.Offset(start_offset)
         assert self.start_offset <= start_offset
-        delete_timespan = timerelationtools.LiteralTimespan(self.start_offset, start_offset)
+        delete_timespan = timespantools.LiteralTimespan(self.start_offset, start_offset)
         self.delete_material_that_intersects_timespan(delete_timespan)
 
     def trim_to_stop_offset(self, stop_offset):
         '''Operate in place and return none.
         '''
-        from abjad.tools import timerelationtools
+        from abjad.tools import timespantools
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.stop_offset
-        delete_timespan = timerelationtools.LiteralTimespan(stop_offset, self.stop_offset)
+        delete_timespan = timespantools.LiteralTimespan(stop_offset, self.stop_offset)
         self.delete_material_that_intersects_timespan(delete_timespan)

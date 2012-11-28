@@ -62,7 +62,7 @@
 
 19. Maybe change request_*() methods to copy_*() methods.
 
-20. Implement selections pervasively before renaing (score tree-mutating) componenttools functions.
+20. Implement selections pervasively before renaming (score tree-mutating) componenttools functions.
     The reason is because selection implementation may clarify the names of certain operations.
 
 21. Remove 'series' from 'X series 7' and the like to produce just 'X 7'.

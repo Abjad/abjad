@@ -174,7 +174,7 @@ class Command(AbjadObject):
 
         Return timespan.
         '''
-        return timerelationtools.LiteralTimespan(
+        return timespantools.LiteralTimespan(
             start_offset=self.start_offset, stop_offset=self.stop_offset)
 
     @property

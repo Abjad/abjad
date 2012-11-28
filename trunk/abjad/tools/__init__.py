@@ -58,6 +58,7 @@ from abjad.tools import tietools
 from abjad.tools import timeintervaltools
 from abjad.tools import timesignaturetools
 from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from abjad.tools import tonalitytools
 from abjad.tools import tuplettools
 from abjad.tools import verticalitytools
