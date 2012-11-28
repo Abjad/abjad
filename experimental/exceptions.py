@@ -1,3 +1,9 @@
+class CyclicSpecificationError(Exception):
+    '''Cyclic specification found.
+    '''
+    pass
+
+
 class ExtraContextSettingError(Exception):
     '''More than one setting found.
     '''

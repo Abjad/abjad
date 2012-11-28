@@ -1,6 +1,7 @@
 import copy
 from abjad.tools import *
 from experimental import divisiontools
+from experimental import exceptions
 from experimental import helpertools
 from experimental import library
 from experimental import requesttools
@@ -406,12 +407,15 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_expressions(self):
         redo = True
+        previous_commands = None
         while redo:
+            current_commands = {}
             redo = False
             for voice in iterationtools.iterate_voices_in_expr(self.score):
+                #self._debug(voice, 'voice')
                 division_region_commands = \
                     self.score_specification.contexts[voice.name]['division_region_commands']
-                #self._debug(division_region_commands, 'division region commands')
+                current_commands[voice] = division_region_commands[:]
                 division_region_commands_to_reattempt = []
                 for division_region_command in division_region_commands:
                     #self._debug(voice.name, 'voice')
@@ -438,6 +442,11 @@ class ConcreteInterpreter(Interpreter):
                     division_region_commands_to_reattempt[:]
                 # sort may have to happen as each expression adds in, above
                 self.score_specification.contexts[voice.name]['division_region_expressions'].sort()
+            # check to see if we made absolutely no intepretive progress in this iteration through loop
+            if current_commands == previous_commands:
+                raise exceptions.CyclicSpecificationError
+            else:
+                previous_commands = current_commands
 
     def make_naive_time_signature_beat_division_command(self, voice, start_offset, stop_offset):
         divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
@@ -935,6 +944,7 @@ class ConcreteInterpreter(Interpreter):
             material_request.context_name]
         single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         absolute_request = single_context_setting.request
-        assert isinstance(absolute_request, requesttools.AbsoluteRequest)
+        if not isinstance(absolute_request, requesttools.AbsoluteRequest):
+            raise exceptions.CyclicSpecificationError(absolute_request)
         time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
         return time_signatures
