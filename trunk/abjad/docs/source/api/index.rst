@@ -99,7 +99,6 @@ Composition packages
    tools/componenttools/copy_components_and_remove_spanners
    tools/componenttools/copy_governed_component_subtree_by_leaf_range
    tools/componenttools/copy_governed_component_subtree_from_offset_to
-   tools/componenttools/cut_component_at_prolated_duration
    tools/componenttools/extend_in_parent_of_component
    tools/componenttools/extend_left_in_parent_of_component
    tools/componenttools/get_component_in_expr_with_name
@@ -143,6 +142,7 @@ Composition packages
    tools/componenttools/partition_components_by_durations_le
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/replace_components_with_children_of_components
+   tools/componenttools/shorten_component_by_prolated_duration
    tools/componenttools/split_component_at_offset
    tools/componenttools/split_components_at_offsets
    tools/componenttools/sum_duration_of_components_in_seconds
