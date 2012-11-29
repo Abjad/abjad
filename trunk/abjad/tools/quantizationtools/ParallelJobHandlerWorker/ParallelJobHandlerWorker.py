@@ -25,15 +25,15 @@ class ParallelJobHandlerWorker(multiprocessing.Process, AbjadObject):
     def run(self):
         proc_name = self.name
         while True:
-            job = self.job_queue.get( )
+            job = self.job_queue.get()
             if job is None:
                 # poison pill causes worker shutdown
                 #print '{}: Exiting'.format(proc_name)
-                self.job_queue.task_done( )
+                self.job_queue.task_done()
                 break
             #print '{}: {!r}'.format(proc_name, job)
             job = pickle.loads(job)
             job()
-            self.job_queue.task_done( )
+            self.job_queue.task_done()
             self.result_queue.put(pickle.dumps(job, protocol=0))
         return

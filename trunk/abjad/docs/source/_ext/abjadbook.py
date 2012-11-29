@@ -1,16 +1,55 @@
 import docutils
+import multiprocessing
 import os
 import posixpath
 import shutil
 import subprocess
 import tempfile
 from abjad.tools import documentationtools
+from abjad.tools import sequencetools
 from sphinx.util.osutil import relative_uri
 
-# app.env.images is a dict:
-# {u'appendices/history/images/index-5.png': (set(['appendices/history/index']), u'index-5.png')}
-# etc.
 
+class Worker(multiprocessing.Process):
+
+    def __init__(self, job_queue, tmp_directory, img_directory):
+        multiprocessing.Process.__init__(self)
+        self.job_queue = job_queue
+        self.tmp_directory = tmp_directory
+        self.img_directory = img_directory
+
+    def run(self):
+        while True:
+            job = self.job_queue.get()
+            if job is None:
+                self.job_queue.task_done()
+                break
+            else:
+                self.process_job(job)
+                self.job_queue.task_done()
+        return
+
+    def process_job(self, job):
+        script_path, all_images = job
+        process = subprocess.Popen(['python', script_path],
+            stderr=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            )
+        stderr = process.stderr.read()
+        if stderr:
+            print stderr
+            return
+        for file_name in all_images: 
+            lilypond_file_name = os.path.join(self.tmp_directory, file_name + '.ly')
+            tmp_png_file_name = os.path.join(self.tmp_directory, file_name + '.png')
+            img_png_file_name = os.path.join(self.img_directory, file_name + '.png')
+            command = 'lilypond --png -dresolution=300 -o {} {}'.format(
+                os.path.join(self.tmp_directory, file_name), lilypond_file_name)
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            command = 'convert {} -trim -resample 40%% {}'.format(
+                tmp_png_file_name, tmp_png_file_name)
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            os.rename(tmp_png_file_name, img_png_file_name)
 
 def add_image_block(literal_block, uri):
     image = docutils.nodes.image(
@@ -22,12 +61,28 @@ def add_image_block(literal_block, uri):
 
 def builder_inited(app):
     tmp_directory = os.path.abspath(tempfile.mkdtemp(dir=app.builder.outdir))
+    img_directory = os.path.join(app.builder.outdir, '_images', 'api')
+    if not os.path.exists(img_directory):
+        os.makedirs(img_directory)
     app.builder._abjadbook_tempdir = tmp_directory
+    queue = app.builder._abjadbook_queue = multiprocessing.JoinableQueue()
+    workers = app.builder._abjadbook_workers = [
+        Worker(queue, tmp_directory, img_directory) 
+        for _ in range(multiprocessing.cpu_count() * 2)]
+    for worker in workers:
+        worker.start()
 
 
 def build_finished(app, exc):
-    pass
-    #shutil.rmtree(app.builder._abjadbook_tempdir)
+    workers = app.builder._abjadbook_workers
+    queue = app.builder._abjadbook_queue
+    for worker in workers:
+        queue.put(None)
+    queue.join()
+    queue.close()
+    for worker in workers:
+        worker.join()
+    shutil.rmtree(app.builder._abjadbook_tempdir)
 
 
 def collect_literal_block_pairs(doctree):
@@ -112,24 +167,13 @@ def process_doctree(app, doctree, docname):
                     literal_block_images[literal_block].append(file_name)
                 else:
                     f.write(line + '\n')
-    command = 'python {}'.format(script_path)
-    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    all_images = tuple(sequencetools.flatten_sequence(literal_block_images.values()))
+    app.builder._abjadbook_queue.put((script_path, all_images))
 
     # run LilyPond on generated .ly files, move 
     for literal_block, file_names in literal_block_images.items():
         for file_name in sorted(file_names):
-            lilypond_file_name = os.path.join(tmp_directory, file_name + '.ly')
-            tmp_png_file_name = os.path.join(tmp_directory, file_name + '.png')
-            final_png_file_name = os.path.join(abs_imgpath, file_name + '.png')
-            command = 'lilypond --png -dresolution=300 -o {} {}'.format(
-                os.path.join(tmp_directory, file_name), lilypond_file_name)
-            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            #subprocess.call(command, shell=True)
-            command = 'convert {} -trim -resample 40%% {}'.format(
-                tmp_png_file_name, tmp_png_file_name)
-            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            #subprocess.call(command, shell=True)
-            os.rename(tmp_png_file_name, final_png_file_name)
             uri = os.path.join(rel_imgpath, file_name + '.png')
             add_image_block(literal_block, uri)
 
