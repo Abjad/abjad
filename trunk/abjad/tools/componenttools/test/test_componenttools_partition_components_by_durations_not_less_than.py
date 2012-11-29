@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_by_durations_ge_01():
+def test_componenttools_partition_components_by_durations_not_less_than_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(staff)
@@ -31,7 +31,7 @@ def test_componenttools_partition_components_by_durations_ge_01():
     }
     '''
 
-    parts = componenttools.partition_components_by_durations_ge(
+    parts = componenttools.partition_components_by_durations_not_less_than(
         staff.leaves, [Duration(3, 16), Duration(1, 16)], cyclic=True, in_seconds=False, overhang=True)
 
     "[[Note(c', 8), Note(d', 8)], "

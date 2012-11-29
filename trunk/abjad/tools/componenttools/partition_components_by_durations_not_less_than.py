@@ -1,4 +1,4 @@
-def partition_components_by_durations_ge(components, durations,     
+def partition_components_by_durations_not_less_than(components, durations,     
     cyclic=False, in_seconds=False, overhang=False):
     r'''.. versionadded:: 1.1
 
@@ -34,7 +34,7 @@ def partition_components_by_durations_ge(components, durations,
 
     ::
 
-        >>> parts = componenttools.partition_components_by_durations_ge(
+        >>> parts = componenttools.partition_components_by_durations_not_less_than(
         ...     staff.leaves, [Duration(3, 16), Duration(1, 16)], cyclic=True, overhang=True)
 
     ::

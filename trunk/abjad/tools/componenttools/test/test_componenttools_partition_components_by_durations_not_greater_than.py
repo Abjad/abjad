@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_componenttools_partition_components_by_durations_le_01():
+def test_componenttools_partition_components_by_durations_not_greater_than_01():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -26,7 +26,7 @@ def test_componenttools_partition_components_by_durations_le_01():
     }
     '''
 
-    parts = componenttools.partition_components_by_durations_le(
+    parts = componenttools.partition_components_by_durations_not_greater_than(
         t.leaves, [0.75], cyclic=True, in_seconds=True, overhang=False)
 
     "[[Note(c', 8)], [Note(d', 8)], [Note(e', 8)], [Note(f', 8)], [Note(g', 8)], [Note(a', 8)], [Note(b', 8)]]"
@@ -41,7 +41,7 @@ def test_componenttools_partition_components_by_durations_le_01():
     assert parts[6] == list(t.leaves[6:7])
 
 
-def test_componenttools_partition_components_by_durations_le_02():
+def test_componenttools_partition_components_by_durations_not_greater_than_02():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -63,7 +63,7 @@ def test_componenttools_partition_components_by_durations_le_02():
     }
     '''
 
-    parts = componenttools.partition_components_by_durations_le(
+    parts = componenttools.partition_components_by_durations_not_greater_than(
         t.leaves, [Duration(3, 16)], cyclic=True, in_seconds=False, overhang=False)
 
     "[[Note(c', 8)], [Note(d', 8)], [Note(e', 8)], [Note(f', 8)], "
@@ -79,7 +79,7 @@ def test_componenttools_partition_components_by_durations_le_02():
     assert parts[6] == list(t.leaves[6:7])
 
 
-def test_componenttools_partition_components_by_durations_le_03():
+def test_componenttools_partition_components_by_durations_not_greater_than_03():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -104,7 +104,7 @@ def test_componenttools_partition_components_by_durations_le_03():
     }
     '''
 
-    parts = componenttools.partition_components_by_durations_le(
+    parts = componenttools.partition_components_by_durations_not_greater_than(
             t.leaves, [0.75], cyclic=False, in_seconds=True, overhang=False)
 
     "[[Note(c', 8)]]"
@@ -113,7 +113,7 @@ def test_componenttools_partition_components_by_durations_le_03():
     assert parts[0] == list(t.leaves[:1])
 
 
-def test_componenttools_partition_components_by_durations_le_04():
+def test_componenttools_partition_components_by_durations_not_greater_than_04():
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_tie_chains_in_expr(t)
@@ -135,7 +135,7 @@ def test_componenttools_partition_components_by_durations_le_04():
     }
     '''
 
-    parts = componenttools.partition_components_by_durations_le(
+    parts = componenttools.partition_components_by_durations_not_greater_than(
         t.leaves, [Duration(3, 16)], cyclic=False, in_seconds=False, overhang=False)
 
     "[[Note(c', 8)]]"

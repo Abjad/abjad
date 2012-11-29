@@ -1,4 +1,4 @@
-def partition_components_by_durations_le(components, durations,     
+def partition_components_by_durations_not_greater_than(components, durations,     
     cyclic=False, in_seconds=False, overhang=False):
     r'''.. versionadded:: 1.1
     '''

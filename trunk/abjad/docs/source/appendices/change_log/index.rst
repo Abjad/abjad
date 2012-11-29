@@ -414,8 +414,8 @@ Changes to the ``componenttools`` package:
   ::
 
     componenttools.partition_components_by_durations_exactly()
-    componenttools.partition_components_by_durations_ge()
-    componenttools.partition_components_by_durations_le()
+    componenttools.partition_components_by_durations_not_less_than()
+    componenttools.partition_components_by_durations_not_greater_than()
 
 - Renamed::
 

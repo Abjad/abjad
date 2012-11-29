@@ -132,8 +132,8 @@ Composition packages
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/partition_components_by_durations_exactly
-   tools/componenttools/partition_components_by_durations_ge
-   tools/componenttools/partition_components_by_durations_le
+   tools/componenttools/partition_components_by_durations_not_greater_than
+   tools/componenttools/partition_components_by_durations_not_less_than
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/replace_components_with_children_of_components
    tools/componenttools/shorten_component_by_duration
