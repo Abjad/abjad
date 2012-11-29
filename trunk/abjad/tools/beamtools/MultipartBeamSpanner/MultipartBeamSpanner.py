@@ -10,6 +10,10 @@ class MultipartBeamSpanner(BeamSpanner):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.MultipartBeamSpanner(staff[:])
         MultipartBeamSpanner(c'8, d'8, e'4, f'8, g'8, r4)
 
@@ -24,6 +28,10 @@ class MultipartBeamSpanner(BeamSpanner):
             g'8 ]
             r4
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Avoid rests.
 

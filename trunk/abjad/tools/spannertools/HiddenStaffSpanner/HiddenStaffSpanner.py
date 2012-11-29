@@ -23,6 +23,10 @@ class HiddenStaffSpanner(Spanner):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Hide staff behind leaves in spanner.
 
     Return hidden staff spanner.

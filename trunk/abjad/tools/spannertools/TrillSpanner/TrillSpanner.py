@@ -22,6 +22,10 @@ class TrillSpanner(Spanner):
             f'8 \stopTrillSpan
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Override LilyPond TrillSpanner grob.
 
     Return trill spanner.

@@ -4,18 +4,24 @@ from abjad.tools import sequencetools
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
-    r'''Abjad durated complex beam spanner::
-
-        staff = Staff("c'16 d'16 e'16 f'16")
+    r'''Abjad durated complex beam spanner:
 
     ::
 
-        durations = [Duration(1, 8), Duration(1, 8)]
-        beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+        >>> staff = Staff("c'16 d'16 e'16 f'16")
 
     ::
 
-        f(staff)
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> durations = [Duration(1, 8), Duration(1, 8)]
+        >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+
+    ::
+
+        >>> f(staff)
         \new Staff {
             \set stemLeftBeamCount = #0
             \set stemRightBeamCount = #2
@@ -30,6 +36,10 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             \set stemRightBeamCount = #0
             f'16 ]
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Beam all beamable leaves in spanner explicitly.
 

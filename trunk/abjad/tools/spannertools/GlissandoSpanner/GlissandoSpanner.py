@@ -23,6 +23,10 @@ class GlissandoSpanner(Spanner):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Format nonlast leaves in spanner with LilyPond glissando command.
 
     Return glissando spanner.

@@ -22,6 +22,10 @@ class OctavationSpanner(Spanner):
             \ottava #0
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return octavation spanner.
     '''
 

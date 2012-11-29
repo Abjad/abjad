@@ -37,6 +37,10 @@ class TextSpanner(Spanner):
             \revert TextSpanner #'dash-fraction
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Override LilyPond TextSpanner grob.
 
     Return text spanner.

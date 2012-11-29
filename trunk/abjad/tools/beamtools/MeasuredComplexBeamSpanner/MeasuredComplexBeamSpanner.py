@@ -9,6 +9,10 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.MeasuredComplexBeamSpanner(staff.leaves)
         MeasuredComplexBeamSpanner(c'16, d'16, e'16, f'16)
 
@@ -34,6 +38,10 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 f'16 ]
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Beam leaves in spanner explicitly.
 

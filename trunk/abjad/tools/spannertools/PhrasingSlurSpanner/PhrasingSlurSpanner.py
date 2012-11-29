@@ -22,6 +22,10 @@ class PhrasingSlurSpanner(DirectedSpanner):
             f'8 \)
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return phrasing slur spanner.
     '''
 

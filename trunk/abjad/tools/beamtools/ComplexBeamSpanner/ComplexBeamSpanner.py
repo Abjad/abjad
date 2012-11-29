@@ -20,6 +20,10 @@ class ComplexBeamSpanner(BeamSpanner):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.ComplexBeamSpanner(staff[:4])
         ComplexBeamSpanner(c'16, e'16, r16, f'16)
 
@@ -39,6 +43,10 @@ class ComplexBeamSpanner(BeamSpanner):
             f'16 [ ]
             g'2
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return complex beam spanner.
     '''

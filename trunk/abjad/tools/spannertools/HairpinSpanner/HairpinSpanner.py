@@ -39,6 +39,10 @@ class HairpinSpanner(DirectedSpanner):
             r4 \f
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Abjad hairpin spanner that does not include rests::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -71,6 +75,10 @@ class HairpinSpanner(DirectedSpanner):
             f'8 \f
             r4
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return hairpin spanner.
     '''

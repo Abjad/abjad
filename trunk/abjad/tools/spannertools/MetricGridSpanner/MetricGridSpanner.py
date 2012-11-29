@@ -38,6 +38,10 @@ class MetricGridSpanner(Spanner):
             c'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Format leaves in spanner cyclically with `time_signatures`.
 
     Return metric grid spanner.

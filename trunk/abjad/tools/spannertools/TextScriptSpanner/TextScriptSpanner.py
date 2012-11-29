@@ -28,6 +28,10 @@ class TextScriptSpanner(Spanner):
             \revert TextScript #'color
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Override LilyPond TextScript grob.
 
     Return text script spanner.

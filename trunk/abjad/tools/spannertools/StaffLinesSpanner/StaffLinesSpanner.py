@@ -28,6 +28,10 @@ class StaffLinesSpanner(Spanner):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Staff lines spanner handles changing either the line-count
     or the line-positions property of the StaffSymbol grob,
     as well as automatically stopping and restarting the staff

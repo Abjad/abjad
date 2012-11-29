@@ -30,6 +30,10 @@ class HorizontalBracketSpanner(Spanner):
             f'4 \stopGroup
         }
 
+    ::
+
+        >>> show(voice) # doctest: +SKIP
+
     Return horizontal bracket spanner.
     '''
 

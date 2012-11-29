@@ -21,6 +21,10 @@ class DynamicTextSpanner(Spanner):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Format dynamic `mark` at first leaf in spanner.
 
     Return dynamic text spanner.

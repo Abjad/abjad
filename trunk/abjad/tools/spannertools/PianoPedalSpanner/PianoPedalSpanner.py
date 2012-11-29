@@ -2,25 +2,31 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class PianoPedalSpanner(Spanner):
-    r'''Abjad piano pedal spanner::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+    r'''Abjad piano pedal spanner:
 
     ::
 
-            >>> spannertools.PianoPedalSpanner(staff[:])
-            PianoPedalSpanner(c'8, d'8, e'8, f'8)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-            >>> f(staff)
-            \new Staff {
-                \set Staff.pedalSustainStyle = #'mixed
-                c'8 \sustainOn
-                d'8
-                e'8
-                f'8 \sustainOff
-            }
+        >>> spannertools.PianoPedalSpanner(staff[:])
+        PianoPedalSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
+        >>> f(staff)
+        \new Staff {
+            \set Staff.pedalSustainStyle = #'mixed
+            c'8 \sustainOn
+            d'8
+            e'8
+            f'8 \sustainOff
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return piano pedal spanner.
     '''

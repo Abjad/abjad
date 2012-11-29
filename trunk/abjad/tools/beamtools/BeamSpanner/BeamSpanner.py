@@ -19,6 +19,10 @@ class BeamSpanner(DirectedSpanner):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.BeamSpanner(staff[:4])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
@@ -32,6 +36,10 @@ class BeamSpanner(DirectedSpanner):
             f'8 ]
             g'2
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return beam spanner.
     '''

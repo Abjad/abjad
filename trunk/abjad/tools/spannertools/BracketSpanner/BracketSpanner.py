@@ -41,6 +41,10 @@ class BracketSpanner(TextSpanner):
             \revert TextSpanner #'thickness
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Render 1.5-unit thick solid red spanner.
 
     Draw nibs at beginning and end of spanner.

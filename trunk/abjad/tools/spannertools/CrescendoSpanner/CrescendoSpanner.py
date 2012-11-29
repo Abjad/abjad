@@ -35,6 +35,10 @@ class CrescendoSpanner(HairpinSpanner):
             r4 \!
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Abjad crescendo spanner that does not include rests::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -67,6 +71,10 @@ class CrescendoSpanner(HairpinSpanner):
             f'8 \!
             r4
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return crescendo spanner.
     '''
