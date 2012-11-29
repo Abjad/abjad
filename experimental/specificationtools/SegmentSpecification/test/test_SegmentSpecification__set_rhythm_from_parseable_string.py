@@ -43,7 +43,8 @@ def test_SegmentSpecification__set_rhythm_from_parseable_string_03():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 8), (3, 8)])
-    red_segment.set_rhythm("{ c'16 [ ( c'8 c'8. ] ) }", rotation=-1)
+    rotation = settingtools.RotationIndicator(-1, fracture_spanners=False)
+    red_segment.set_rhythm("{ c'16 [ ( c'8 c'8. ] ) }", rotation=rotation)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

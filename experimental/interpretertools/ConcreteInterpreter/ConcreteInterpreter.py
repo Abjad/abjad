@@ -50,7 +50,7 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
-    def apply_source_transforms_to_target(self, source, target, fracture_spanners=None):
+    def apply_source_transforms_to_target(self, source, target):
         if getattr(source, 'index', None):
             raise NotImplementedError
         if getattr(source, 'count', None):
@@ -58,10 +58,7 @@ class ConcreteInterpreter(Interpreter):
         if getattr(source, 'reverse', False):
             target.reverse()
         if getattr(source, 'rotation', None):
-            if fracture_spanners is not None:
-                target.rotate(source.rotation, fracture_spanners=fracture_spanners)
-            else:
-                target.rotate(source.rotation)
+            target.rotate(source.rotation)
         if getattr(source, 'callback', None):
             source.callback(target)
 
@@ -541,8 +538,7 @@ class ConcreteInterpreter(Interpreter):
             music=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             start_offset=start_offset)
-        self.apply_source_transforms_to_target(
-            rhythm_command, rhythm_region_expression, fracture_spanners=False)
+        self.apply_source_transforms_to_target(rhythm_command, rhythm_region_expression)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
         if rhythm_region_expression.stop_offset < stop_offset:
@@ -770,8 +766,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
         self.apply_source_transforms_to_target(rhythm_request, result)
-        # decide whehter fracture_spanners=True or fracture_spanners=False
-        # probably fracture_spanners=False
         self.apply_source_transforms_to_target(rhythm_command, result)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)

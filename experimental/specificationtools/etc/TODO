@@ -19,59 +19,57 @@
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
 
-5.  Set all rotation to fracture_spanners=False by default in interpreter.
-
-6.  Reimplement rhythm rotation to pay attention to the differences beteween
+5.  Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
 
-7.  Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
+6.  Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
     Establish metrical hierarchy after division specification and change divisions where necessary.
     Reestablish metrical hierarchy after rhythm specification but leave divisions in tact.
 
-8.  Write E series schematic examples to all focus on different uses of the metrical hierarchy.
+7.  Write E series schematic examples to all focus on different uses of the metrical hierarchy.
     Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
     Make selections equal to different levels of the metrical hierarchy.
 
-9.  Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
+8.  Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
     Right now it's added onto the side of already-initialized
     rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
 
-10. Write reverse() tests for all rhythm-makers.
+9.  Write reverse() tests for all rhythm-makers.
 
-11. Write rotate() tests for all rhythm-makers.
+10. Write rotate() tests for all rhythm-makers.
 
-12. Finish timerelationtools class docstrings before 2.11 build.
+11. Finish timerelationtools class docstrings before 2.11 build.
 
-13. Change DivisionSelector.get_selected_objects() to return a Selection object.
+12. Change DivisionSelector.get_selected_objects() to return a Selection object.
     Change CounttimeComponentSelector.get_selected_objects() to return a Selection object.
     Change other selectors' get_selected_objects() to return a Selection object.
 
-14. Author tests to show selecting leaves that don't yet exist.
+13. Author tests to show selecting leaves that don't yet exist.
     Make sure the command is ignored at first and then interpreted correctly in a later pass.
 
-15. Audit to get rid of string-based keys everywhere in interpreter.
+14. Audit to get rid of string-based keys everywhere in interpreter.
 
-16. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+15. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-17. Maybe change request_*() methods to copy_*() methods.
+16. Maybe change request_*() methods to copy_*() methods.
 
-18. Implement selections pervasively before renaming (score tree-mutating) componenttools functions.
+17. Implement selections pervasively before renaming (score tree-mutating) componenttools functions.
     The reason is because selection implementation may clarify the names of certain operations.
 
-19. Remove 'series' from 'X series 7' and the like to produce just 'X 7'.
+18. Remove 'series' from 'X series 7' and the like to produce just 'X 7'.
     Even better will be to extend helpertools.write_test_output() to write 'X7 'instead of 'X 7'.
     Also remove 'series' from test file name.
 
-20. Unskip all experimental tests before 2.11 build.
+19. Unskip all experimental tests before 2.11 build.
 
-21. Grep for 'Return fraction' in both mainline and experimental.
+20. Grep for 'Return fraction' in both mainline and experimental.
     When found see if a multiplier is meant instead.
 
-22. Implement a TreatmentSpecifier class.
+21. Implement a TreatmentSpecifier class.
     This will clean up some classes and make treatment-to-treatment comparison cleaner.
 
-23. Remove these select methods:
+22. Remove these select methods:
         SegmentSpecification.select_ratio_of_background_measures()
         SegmentSpecification.select_ratio_of_divisions()
         SegmentSpecification.select_ratio_of_leaves()
@@ -81,23 +79,23 @@
         SegmentSpecification.select_count_ratio_part()
         SegmentSpecification.select_time_ratio_part()
 
-24. Write voice-anchored selector tests.
+23. Write voice-anchored selector tests.
 
-25. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
+24. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
     Right now prefix_talea, prefix_lengths, suffix_talea, suffix_lengths and
     talea_denominator are all mandatory. Cleaner is all are optional
     and the class defaults to unincised note-making behavior.
 
-26. Globally change 'mandatory_arg(ument)s' to 'positional_arg(ument)s'.
+25. Globally change 'mandatory_arg(ument)s' to 'positional_arg(ument)s'.
 
-27. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
+26. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
     Might look like rotation=settingtools.RotationIndicator((-1, 3)).
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-28. Update rhythm library to remove 'filled' from rhythm-maker names.
+27. Update rhythm library to remove 'filled' from rhythm-maker names.
 
-29. Reinstate SegmentSpecification request method 'selector' keyword.
+28. Reinstate SegmentSpecification request method 'selector' keyword.
     This will enable red_segment.request_rhythm('Voice 1', selector=selector).
     Some sort of collision strategy will have to be determined in the case
     that selector specifies time outside segment bounds.
@@ -106,7 +104,7 @@
     That way red_segment.request_rhythm() can functions exactly as
     score_specification.request_rhythm() when the composer desires.
 
-30. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+29. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
@@ -125,7 +123,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-31. Maybe remove singular-named select methods in favor of plural-named select methods.
+30. Maybe remove singular-named select methods in favor of plural-named select methods.
     So the following two methods will be removed:
         SegmentSpecification.select_background_measure()
         SegmentSpecification.select_division()
@@ -133,7 +131,7 @@
         SegmentSpecification.select_background_measures()
         SegmentSpecification.select_divisions()
 
-32. Maybe remove ratio part select method 'part' keywords altogether.
+31. Maybe remove ratio part select method 'part' keywords altogether.
     Just always return all parts of a ratio.
     Use SegmentSpecification.select_ratio_of_background_measures((1, 1, 1))[-1]
     instead of SegmentSpecification.select_ratio_of_background_measures((1, 1, 1), -1).
