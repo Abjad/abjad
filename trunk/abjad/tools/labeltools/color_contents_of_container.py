@@ -35,6 +35,10 @@ def color_contents_of_container(container, color):
             \revert TupletNumber #'color
         }
 
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
     Return none.
 
     .. versionchanged:: 2.0

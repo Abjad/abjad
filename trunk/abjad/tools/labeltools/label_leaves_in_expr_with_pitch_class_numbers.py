@@ -10,9 +10,9 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
 
     Label leaves in `expr` with pitch-class numbers::
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(t)
-        >>> print t.lilypond_format
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff)
+        >>> print staff.lilypond_format
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 2 }
@@ -20,12 +20,16 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
             f'8 _ \markup { \small 5 }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     When ``color=True`` call 
     :func:`~abjad.tools.labeltools.color_note_head_by_numbered_chromatic_pitch_class_color_map`::
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(t, color=True, number=False)
-        >>> print t.lilypond_format
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff, color=True, number=False)
+        >>> print staff.lilypond_format
         \new Staff {
             \once \override NoteHead #'color = #(x11-color 'red)
             c'8
@@ -36,6 +40,10 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False
             \once \override NoteHead #'color = #(x11-color 'MediumOrchid)
             f'8
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     You can set `number` and `color` at the same time.
 

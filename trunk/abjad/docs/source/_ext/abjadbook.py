@@ -43,13 +43,17 @@ class Worker(multiprocessing.Process):
             lilypond_file_name = os.path.join(self.tmp_directory, file_name + '.ly')
             tmp_png_file_name = os.path.join(self.tmp_directory, file_name + '.png')
             img_png_file_name = os.path.join(self.img_directory, file_name + '.png')
+
             command = 'lilypond --png -dresolution=300 -o {} {}'.format(
                 os.path.join(self.tmp_directory, file_name), lilypond_file_name)
             subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
             command = 'convert {} -trim -resample 40%% {}'.format(
                 tmp_png_file_name, tmp_png_file_name)
             subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            os.rename(tmp_png_file_name, img_png_file_name)
+
+            if os.path.exists(tmp_png_file_name):
+                os.rename(tmp_png_file_name, img_png_file_name)
 
 def add_image_block(literal_block, uri):
     image = docutils.nodes.image(

@@ -30,6 +30,10 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
     """
 

@@ -32,6 +32,10 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(ex
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
     """
 

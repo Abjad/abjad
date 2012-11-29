@@ -12,6 +12,10 @@ def label_leaves_in_expr_with_leaf_durations(expr, markup_direction=Down):
             e'8 _ \markup { \column { \small 1/8 \small 1/12 } }
         }
 
+    ::
+
+        >>> show(tuplet) # doctest: +SKIP
+
     Label both written duration and prolated duration.
 
     Return none.

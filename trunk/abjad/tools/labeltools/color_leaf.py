@@ -23,6 +23,10 @@ def color_leaf(leaf, color):
         \once \override NoteHead #'color = #red
         c'4
 
+    ::
+
+        >>> show(note) # doctest: +SKIP
+
     Color rest::
 
         >>> rest = Rest('r4')
@@ -38,6 +42,10 @@ def color_leaf(leaf, color):
         \once \override Dots #'color = #red
         \once \override Rest #'color = #red
         r4
+
+    ::
+
+        >>> show(rest) # doctest: +SKIP
 
     Color chord::
 
@@ -55,6 +63,10 @@ def color_leaf(leaf, color):
         \once \override Dots #'color = #red
         \once \override NoteHead #'color = #red
         <c' e' bf'>4
+
+    ::
+
+        >>> show(chord) # doctest: +SKIP
 
     Return `leaf`.
     '''

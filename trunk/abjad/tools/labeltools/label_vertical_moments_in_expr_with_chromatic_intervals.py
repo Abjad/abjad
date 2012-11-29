@@ -75,6 +75,10 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
             }
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Return none.
     '''
 

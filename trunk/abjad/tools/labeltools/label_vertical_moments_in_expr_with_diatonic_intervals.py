@@ -74,6 +74,10 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
             }
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Return none.
     '''
 

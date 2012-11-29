@@ -74,6 +74,10 @@ def label_vertical_moments_in_expr_with_counterpoint_intervals(expr, markup_dire
             }
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Return none.
     '''
 

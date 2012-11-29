@@ -27,6 +27,10 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction=Down):
             c''8 _ \markup { \small 4 }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
     '''
 

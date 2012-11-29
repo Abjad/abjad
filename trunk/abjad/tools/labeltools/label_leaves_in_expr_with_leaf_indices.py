@@ -17,6 +17,10 @@ def label_leaves_in_expr_with_leaf_indices(expr, markup_direction=Down):
             f'8 _ \markup { \small 3 }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
     '''
 

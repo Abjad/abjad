@@ -31,6 +31,10 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> labeltools.color_measures_with_non_power_of_two_denominators_in_expr(staff, 'red')
         [Measure(3/12, [c'8., d'8.])]
 
@@ -61,6 +65,10 @@ def color_measures_with_non_power_of_two_denominators_in_expr(expr, color='red')
                 \revert Stem #'color
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return list of measures colored.
 

@@ -24,6 +24,10 @@ def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direct
             c'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
     '''
     from abjad.tools.labeltools._label_leaves_in_expr_with_leaf_durations import \

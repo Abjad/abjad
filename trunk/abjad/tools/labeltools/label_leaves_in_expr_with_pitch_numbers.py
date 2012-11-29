@@ -18,6 +18,10 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
             r4
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
 
     .. versionchanged:: 2.0

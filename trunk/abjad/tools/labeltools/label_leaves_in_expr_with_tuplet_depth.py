@@ -23,6 +23,10 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction=Down):
             }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
 
     .. versionchanged:: 2.0

@@ -57,6 +57,10 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
             }
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Return none.
     '''
 

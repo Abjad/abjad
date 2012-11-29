@@ -31,6 +31,10 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return none.
     """
 

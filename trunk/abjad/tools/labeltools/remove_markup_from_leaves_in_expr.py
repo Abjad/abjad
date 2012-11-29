@@ -19,6 +19,10 @@ def remove_markup_from_leaves_in_expr(expr):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> labeltools.remove_markup_from_leaves_in_expr(staff)
         >>> f(staff)
         \new Staff {
@@ -27,6 +31,10 @@ def remove_markup_from_leaves_in_expr(expr):
             e'8
             f'8
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return none.
 

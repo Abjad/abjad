@@ -77,6 +77,10 @@ def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction=Dow
             }
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Return none.
     '''
 

@@ -20,6 +20,10 @@ def color_leaves_in_expr(expr, color):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> labeltools.color_leaves_in_expr(staff, 'red')
 
     ::
@@ -39,6 +43,10 @@ def color_leaves_in_expr(expr, color):
             \once \override NoteHead #'color = #red
             <c' cs' a'>8. ]
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return none.
     """

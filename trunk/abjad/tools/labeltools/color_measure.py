@@ -19,6 +19,10 @@ def color_measure(measure, color='red'):
 
     ::
 
+        >>> show(measure) # doctest: +SKIP
+
+    ::
+
         >>> labeltools.color_measure(measure, 'red')
         Measure(2/8, [c'8, d'8])
 
@@ -40,6 +44,10 @@ def color_measure(measure, color='red'):
             \revert Staff.TimeSignature #'color
             \revert Stem #'color
         }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
 
     Return colored `measure`.
 

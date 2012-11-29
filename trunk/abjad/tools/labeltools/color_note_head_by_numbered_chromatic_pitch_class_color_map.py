@@ -18,6 +18,10 @@ def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
         \once \override NoteHead #'color = #(x11-color 'red)
         c'4
 
+    ::
+
+        >>> show(note) # doctest: +SKIP
+
     Numbered chromatic pitch-class color map::
 
         0: red

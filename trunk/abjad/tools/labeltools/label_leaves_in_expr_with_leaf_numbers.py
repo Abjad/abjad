@@ -17,6 +17,10 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
             f'8 _ \markup { \small 4 }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Number leaves starting from ``1``.
 
     .. versionchanged:: 2.0
