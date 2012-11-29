@@ -7,9 +7,18 @@ class Rest(Leaf):
 
     ::
 
-        >>> Rest((3, 16))
+        >>> rest = Rest((3, 16))
+
+    ::
+
+        >>> rest
         Rest('r8.')
 
+    ::
+
+        >>> show(rest)
+
+    Return Rest instance.
     '''
 
     ### CLASS ATTRIBUTES ###

@@ -25,7 +25,7 @@ class Score(Context):
             }
         >>
 
-    Return score object.
+    Return Score instance.
     '''
 
     ### CLASS ATTRIBUTES ###

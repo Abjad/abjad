@@ -15,7 +15,7 @@ class Staff(Context):
             f'8
         }
 
-    Return staff object.
+    Return Staff instance.
     '''
 
     ### CLASS ATTRIBUTES ###

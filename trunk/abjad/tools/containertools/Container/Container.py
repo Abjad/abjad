@@ -18,7 +18,7 @@ class Container(Component):
             f'8
         }
 
-    Return container object.
+    Return Container instance.
     '''
 
     ### CLASS ATTRIBUTES ###

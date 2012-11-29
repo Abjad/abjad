@@ -15,14 +15,27 @@ class ClefMark(ContextMark):
 
     ::
 
+        >>> clef = contexttools.ClefMark('alto')(staff[1])
+        >>> clef = contexttools.ClefMark('bass')(staff[2])
+        >>> clef = contexttools.ClefMark('treble^8')(staff[3])
+
+    ::
+
         >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8
+            \clef "alto"
             d'8
+            \clef "bass"
             e'8
+            \clef "treble^8"
             f'8
         }
+
+    ::
+
+        >>> show(staff)
 
     Clef marks target the staff context by default.
     '''

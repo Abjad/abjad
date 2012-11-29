@@ -8,10 +8,18 @@ class Chord(Leaf):
 
     ::
 
-        >>> Chord([4, 13, 17], (1, 4))
+        >>> chord = Chord([4, 13, 17], (1, 4))
+
+    ::
+
+        >>> chord
         Chord("<e' cs'' f''>4")
 
-    Return chord instance.
+    ::
+
+        >>> show(chord)
+
+    Return Chord instance.
     '''
 
     ### CLASS ATTRIBUTES ###

@@ -10,14 +10,18 @@ class Note(Leaf):
 
     ::
 
-        >>> Note("cs''8.")
+        >>> note = Note("cs''8.")
+
+    ::
+
+        >>> note
         Note("cs''8.")
 
     ::
 
-        >>> show(Note("cs''8."))
+        >>> show(note)
 
-    Notes are immutable.
+    Return Note instance.
     '''
 
     ### CLASS ATTRIBUTES ###
