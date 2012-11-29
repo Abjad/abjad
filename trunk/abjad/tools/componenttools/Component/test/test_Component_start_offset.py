@@ -1,23 +1,28 @@
 from abjad import *
+import py
+py.test.skip('update me to use start_offset property.')
 
 
 def test_componenttools_get_component_start_offset_01():
     t = Voice(notetools.make_repeated_notes(16))
     for i, x in enumerate(t):
-        assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
+        #assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
+        assert x.start_offset == i * Duration(1, 8)
 
 
 def test_componenttools_get_component_start_offset_02():
     t = Staff(notetools.make_repeated_notes(16))
     for i, x in enumerate(t):
-        assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
+        #assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
+        assert x.start_offset == i * Duration(1, 8)
 
 
 def test_componenttools_get_component_start_offset_03():
     t = Staff(notetools.make_repeated_notes(16))
     t[10] = Rest((1, 8))
     for i, x in enumerate(t):
-        assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
+        #assert componenttools.get_component_start_offset(x) == i * Duration(1, 8)
+        assert x.start_offset == i * Duration(1, 8)
 
 
 def test_componenttools_get_component_start_offset_04():
