@@ -380,7 +380,7 @@ class SegmentSpecification(Specification):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> selector = red_segment.select_background_measure(8)
+            >>> selector = red_segment.select_background_measures(8, 9)
             >>> offset = durationtools.Offset(1, 4)
 
         ::
@@ -579,37 +579,37 @@ class SegmentSpecification(Specification):
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measure(self, n, time_relation=None, voice=None):
-        '''Select segment background measure ``0``::
-
-            >>> selector = red_segment.select_background_measure(0)
-
-        ::
-
-            >>> z(selector)
-            selectortools.BackgroundMeasureSelector(
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
-                            identifier='red'
-                            )
-                        )
-                    ),
-                start_identifier=0,
-                stop_identifier=1
-                )
-
-        Return selector.
-        '''
-        assert isinstance(n, int), repr(n)
-        if time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-        time_relation = time_relation(self.timespan)
-        start, stop = n, n + 1
-        selector = selectortools.BackgroundMeasureSelector(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
-        return selector
+#    def select_background_measure(self, n, time_relation=None, voice=None):
+#        '''Select segment background measure ``0``::
+#
+#            >>> selector = red_segment.select_background_measure(0)
+#
+#        ::
+#
+#            >>> z(selector)
+#            selectortools.BackgroundMeasureSelector(
+#                time_relation=timerelationtools.TimespanTimespanTimeRelation(
+#                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
+#                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
+#                        selector=selectortools.SingleSegmentSelector(
+#                            identifier='red'
+#                            )
+#                        )
+#                    ),
+#                start_identifier=0,
+#                stop_identifier=1
+#                )
+#
+#        Return selector.
+#        '''
+#        assert isinstance(n, int), repr(n)
+#        if time_relation is None:
+#            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
+#        time_relation = time_relation(self.timespan)
+#        start, stop = n, n + 1
+#        selector = selectortools.BackgroundMeasureSelector(
+#            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
+#        return selector
 
     def select_background_measures(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five segment background measures::

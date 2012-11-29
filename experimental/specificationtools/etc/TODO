@@ -118,15 +118,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-28. Maybe remove singular-named select methods in favor of plural-named select methods.
-    So the following two methods will be removed:
-        SegmentSpecification.select_background_measure()
-        SegmentSpecification.select_division()
-    Use these instead:
-        SegmentSpecification.select_background_measures()
-        SegmentSpecification.select_divisions()
-
-29. Maybe remove ratio part select method 'part' keywords altogether.
+28. Maybe remove ratio part select method 'part' keywords altogether.
     Just always return all parts of a ratio.
     Use SegmentSpecification.select_ratio_of_background_measures((1, 1, 1))[-1]
     instead of SegmentSpecification.select_ratio_of_background_measures((1, 1, 1), -1).
