@@ -19,7 +19,7 @@ class Note(Leaf):
 
     ::
 
-        >>> show(note)
+        >>> show(note) # doctest: +SKIP
 
     Return Note instance.
     '''

@@ -16,7 +16,7 @@ class Rest(Leaf):
 
     ::
 
-        >>> show(rest)
+        >>> show(rest) # doctest: +SKIP
 
     Return Rest instance.
     '''

@@ -6,18 +6,22 @@ class ClefMark(ContextMark):
 
     Abjad model of a clef::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 
     ::
 
         >>> contexttools.ClefMark('treble')(staff)
-        ClefMark('treble')(Staff{4})
+        ClefMark('treble')(Staff{8})
 
     ::
 
         >>> clef = contexttools.ClefMark('alto')(staff[1])
         >>> clef = contexttools.ClefMark('bass')(staff[2])
         >>> clef = contexttools.ClefMark('treble^8')(staff[3])
+        >>> clef = contexttools.ClefMark('bass_8')(staff[4])
+        >>> clef = contexttools.ClefMark('tenor')(staff[5])
+        >>> clef = contexttools.ClefMark('bass^15')(staff[6])
+        >>> clef = contexttools.ClefMark('percussion')(staff[7])
 
     ::
 
@@ -31,11 +35,19 @@ class ClefMark(ContextMark):
             e'8
             \clef "treble^8"
             f'8
+            \clef "bass_8"
+            g'8
+            \clef "tenor"
+            a'8
+            \clef "bass^15"
+            b'8
+            \clef "percussion"
+            c''8            
         }
 
     ::
 
-        >>> show(staff)
+        >>> show(staff) # doctest: +SKIP
 
     Clef marks target the staff context by default.
     '''

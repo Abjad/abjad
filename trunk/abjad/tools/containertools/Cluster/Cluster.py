@@ -24,7 +24,7 @@ class Cluster(Container):
 
     ::
 
-        >>> show(cluster)
+        >>> show(cluster) # doctest: +SKIP
 
     Return cluster object.
     '''

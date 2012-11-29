@@ -17,7 +17,7 @@ class Chord(Leaf):
 
     ::
 
-        >>> show(chord)
+        >>> show(chord) # doctest: +SKIP
 
     Return Chord instance.
     '''
