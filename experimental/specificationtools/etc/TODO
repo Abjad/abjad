@@ -63,13 +63,10 @@
 
 19. Unskip all experimental tests before 2.11 build.
 
-20. Grep for 'Return fraction' in both mainline and experimental.
-    When found see if a multiplier is meant instead.
-
-21. Implement a TreatmentSpecifier class.
+20. Implement a TreatmentSpecifier class.
     This will clean up some classes and make treatment-to-treatment comparison cleaner.
 
-22. Remove these select methods:
+21. Remove these select methods:
         SegmentSpecification.select_ratio_of_background_measures()
         SegmentSpecification.select_ratio_of_divisions()
         SegmentSpecification.select_ratio_of_leaves()
@@ -79,23 +76,23 @@
         SegmentSpecification.select_count_ratio_part()
         SegmentSpecification.select_time_ratio_part()
 
-23. Write voice-anchored selector tests.
+22. Write voice-anchored selector tests.
 
-24. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
+23. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
     Right now prefix_talea, prefix_lengths, suffix_talea, suffix_lengths and
     talea_denominator are all mandatory. Cleaner is all are optional
     and the class defaults to unincised note-making behavior.
 
-25. Globally change 'mandatory_arg(ument)s' to 'positional_arg(ument)s'.
+24. Globally change 'mandatory_arg(ument)s' to 'positional_arg(ument)s'.
 
-26. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
+25. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
     Might look like rotation=settingtools.RotationIndicator((-1, 3)).
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-27. Update rhythm library to remove 'filled' from rhythm-maker names.
+26. Update rhythm library to remove 'filled' from rhythm-maker names.
 
-28. Reinstate SegmentSpecification request method 'selector' keyword.
+27. Reinstate SegmentSpecification request method 'selector' keyword.
     This will enable red_segment.request_rhythm('Voice 1', selector=selector).
     Some sort of collision strategy will have to be determined in the case
     that selector specifies time outside segment bounds.
@@ -104,7 +101,7 @@
     That way red_segment.request_rhythm() can functions exactly as
     score_specification.request_rhythm() when the composer desires.
 
-29. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+28. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
@@ -123,7 +120,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-30. Maybe remove singular-named select methods in favor of plural-named select methods.
+29. Maybe remove singular-named select methods in favor of plural-named select methods.
     So the following two methods will be removed:
         SegmentSpecification.select_background_measure()
         SegmentSpecification.select_division()
@@ -131,7 +128,7 @@
         SegmentSpecification.select_background_measures()
         SegmentSpecification.select_divisions()
 
-31. Maybe remove ratio part select method 'part' keywords altogether.
+30. Maybe remove ratio part select method 'part' keywords altogether.
     Just always return all parts of a ratio.
     Use SegmentSpecification.select_ratio_of_background_measures((1, 1, 1))[-1]
     instead of SegmentSpecification.select_ratio_of_background_measures((1, 1, 1), -1).

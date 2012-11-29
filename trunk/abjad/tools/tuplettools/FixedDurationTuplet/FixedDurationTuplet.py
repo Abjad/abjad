@@ -68,7 +68,7 @@ class FixedDurationTuplet(Tuplet):
                 >>> tuplet.multiplier
                 Multiplier(2, 3)
 
-            Return fraction.
+            Return multiplier.
             '''
             if 0 < len(self):
                 return durationtools.Multiplier(self.target_duration / self.contents_duration)
