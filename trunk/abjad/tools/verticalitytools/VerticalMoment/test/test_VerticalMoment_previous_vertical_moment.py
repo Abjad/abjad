@@ -39,19 +39,19 @@ def test_VerticalMoment_previous_vertical_moment_01():
 
     last_leaf = score.leaves[-1]
     vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(last_leaf)
-    assert vertical_moment.prolated_offset == Offset(3, 8)
+    assert vertical_moment.offset == Offset(3, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.prolated_offset == Offset(1, 3)
+    assert vertical_moment.offset == Offset(1, 3)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.prolated_offset == Offset(1, 4)
+    assert vertical_moment.offset == Offset(1, 4)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.prolated_offset == Offset(1, 6)
+    assert vertical_moment.offset == Offset(1, 6)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.prolated_offset == Offset(1, 8)
+    assert vertical_moment.offset == Offset(1, 8)
 
     vertical_moment = vertical_moment.previous_vertical_moment
-    assert vertical_moment.prolated_offset == Offset(0)
+    assert vertical_moment.offset == Offset(0)

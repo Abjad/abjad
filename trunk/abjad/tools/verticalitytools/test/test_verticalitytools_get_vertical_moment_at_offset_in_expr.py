@@ -37,9 +37,9 @@ def test_verticalitytools_get_vertical_moment_at_offset_in_expr_01():
     >>
     '''
 
-    def piano_staff_moment(prolated_offset):
+    def piano_staff_moment(offset):
         return verticalitytools.get_vertical_moment_at_offset_in_expr(
-            piano_staff, prolated_offset)
+            piano_staff, offset)
 
     vm = piano_staff_moment(Offset(0, 8))
     assert vm.leaves == (piano_staff[0][0], piano_staff[1][0])
@@ -93,9 +93,9 @@ def test_verticalitytools_get_vertical_moment_at_offset_in_expr_02():
     >>
     '''
 
-    def scorewide_vertical_moment(prolated_offset):
+    def scorewide_vertical_moment(offset):
         return verticalitytools.get_vertical_moment_at_offset_in_expr(
-            score, prolated_offset)
+            score, offset)
 
     vm = scorewide_vertical_moment(Offset(0, 8))
     assert vm.leaves == (score[0][0][0], piano_staff[0][0], piano_staff[1][0])

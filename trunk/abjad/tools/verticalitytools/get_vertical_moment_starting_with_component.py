@@ -64,9 +64,9 @@ def get_vertical_moment_starting_with_component(component, governor=None):
     '''
     from abjad.tools import verticalitytools
 
-    prolated_offset = component.start_offset
+    offset = component.start_offset
 
     if governor is None:
         governor = component.parentage.root
 
-    return verticalitytools.get_vertical_moment_at_offset_in_expr(governor, prolated_offset)
+    return verticalitytools.get_vertical_moment_at_offset_in_expr(governor, offset)

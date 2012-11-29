@@ -55,15 +55,15 @@ class VerticalMoment(Selection):
 
     ### CLASS ATTRIBUTES ###
     
-    __slots__ = ('_components', '_governors', '_prolated_offset')
+    __slots__ = ('_components', '_governors', '_offset')
 
     ### INITIALIZER ###
 
-    def __init__(self, prolated_offset, governors, components):
-        prolated_offset = durationtools.Offset(prolated_offset)
+    def __init__(self, offset, governors, components):
+        offset = durationtools.Offset(offset)
         assert isinstance(governors, tuple)
         assert isinstance(components, tuple)
-        object.__setattr__(self, '_prolated_offset', prolated_offset)
+        object.__setattr__(self, '_offset', offset)
         object.__setattr__(self, '_governors', tuple(governors))
         components = list(components)
         components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
@@ -83,7 +83,7 @@ class VerticalMoment(Selection):
 
     def __hash__(self):
         result = []
-        result.append(str(self.prolated_offset))
+        result.append(str(self.offset))
         result.extend([str(id(x)) for x in self.governors])
         result = '+'.join(result)
         return hash(repr(result))
@@ -95,7 +95,7 @@ class VerticalMoment(Selection):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%s, <<%s>>)' % (type(self).__name__, self.prolated_offset, len(self.leaves))
+        return '%s(%s, <<%s>>)' % (type(self).__name__, self.offset, len(self.leaves))
 
     ### PRIVATE PROPERTIES ###
 
@@ -194,7 +194,7 @@ class VerticalMoment(Selection):
         starting before vertical moment, ordered by score index.'''
         result = []
         for component in self.components:
-            if component.start < self.prolated_offset:
+            if component.start < self.offset:
                 result.append(component)
         result = tuple(result)
         return result
@@ -227,7 +227,7 @@ class VerticalMoment(Selection):
     def previous_vertical_moment(self):
         '''Read-only reference to prev vertical moment backward in time.'''
         from abjad.tools import verticalitytools
-        if self.prolated_offset == 0:
+        if self.offset == 0:
             raise IndexError
         most_recent_start_offset = durationtools.Offset(0)
         token_leaf = None
@@ -235,7 +235,7 @@ class VerticalMoment(Selection):
             #print ''
             #print leaf
             leaf_start = leaf.start_offset
-            if leaf_start < self.prolated_offset:
+            if leaf_start < self.offset:
                 #print 'found leaf starting before this moment ...'
                 if most_recent_start_offset <= leaf_start:
                     most_recent_start_offset = leaf_start
@@ -260,10 +260,10 @@ class VerticalMoment(Selection):
         return previous_vertical_moment
 
     @property
-    def prolated_offset(self):
+    def offset(self):
         '''Read-only rational-valued score offset
         at which vertical moment is evaluated.'''
-        return self._prolated_offset
+        return self._offset
 
     @property
     def start_components(self):
@@ -271,7 +271,7 @@ class VerticalMoment(Selection):
         starting with at vertical moment, ordered by score index.'''
         result = []
         for component in self.components:
-            if component.start_offset == self.prolated_offset:
+            if component.start_offset == self.offset:
                 result.append(component)
         result = tuple(result)
         return result

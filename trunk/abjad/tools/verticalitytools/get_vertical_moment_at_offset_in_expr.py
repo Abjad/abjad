@@ -3,10 +3,10 @@ from abjad.tools import durationtools
 
 
 # TODO: optimize without full-component traversal.
-def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
+def get_vertical_moment_at_offset_in_expr(expr, offset):
     r'''.. versionadded:: 2.0
 
-    Get vertical moment at `prolated_offset` in `expr`::
+    Get vertical moment at `offset` in `expr`::
 
         >>> score = Score([])
         >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
@@ -94,7 +94,7 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
                     result.extend(recurse(child, offset))
         return result
 
-    prolated_offset = durationtools.Offset(prolated_offset)
+    offset = durationtools.Offset(offset)
 
     governors = []
     message = 'must be Abjad component or list or tuple of Abjad components.'
@@ -113,10 +113,10 @@ def get_vertical_moment_at_offset_in_expr(expr, prolated_offset):
 
     components = []
     for governor in governors:
-        components.extend(recurse(governor, prolated_offset))
+        components.extend(recurse(governor, offset))
     components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
     components = tuple(components)
 
-    vertical_moment = verticalitytools.VerticalMoment(prolated_offset, governors, components)
+    vertical_moment = verticalitytools.VerticalMoment(offset, governors, components)
 
     return vertical_moment

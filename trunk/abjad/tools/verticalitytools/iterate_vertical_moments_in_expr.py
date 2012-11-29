@@ -101,9 +101,9 @@ def iterate_vertical_moments_in_expr(expr, reverse=False):
     else:
         moments_in_governor = []
         for component in iterationtools.iterate_components_in_expr(expr):
-            prolated_offset = component.start_offset
-            if prolated_offset not in moments_in_governor:
-                moments_in_governor.append(prolated_offset)
+            offset = component.start_offset
+            if offset not in moments_in_governor:
+                moments_in_governor.append(offset)
         moments_in_governor.sort()
         for moment_in_governor in reversed(moments_in_governor):
             yield verticalitytools.get_vertical_moment_at_offset_in_expr(expr, moment_in_governor)
