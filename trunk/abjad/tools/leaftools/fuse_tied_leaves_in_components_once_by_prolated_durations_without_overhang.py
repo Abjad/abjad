@@ -1,11 +1,10 @@
 from abjad.tools import componenttools
 
 
-def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
-    components, prolated_durations):
+def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(components, durations):
     r'''.. versionadded:: 1.1
 
-    Fuse tied leaves in `components` once by `prolated_durations` without overhang::
+    Fuse tied leaves in `components` once by prolated `durations` without overhang::
 
         >>> staff = Staff(notetools.make_repeated_notes(8))
         >>> tietools.TieSpanner(staff.leaves)
@@ -50,13 +49,11 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
     from abjad.tools import tietools
 
     # get duration groups
-    groups = \
-        componenttools.partition_components_by_durations_exactly(
-        components, prolated_durations, cyclic=False, in_seconds=False, overhang=False)
+    groups = componenttools.partition_components_by_durations_exactly(
+        components, durations, cyclic=False, in_seconds=False, overhang=False)
 
     for group in groups:
         # get tie chains intersecting this group
         tie_chains = tietools.get_nontrivial_tie_chains_masked_by_components(group)
-
         for tie_chain in tie_chains:
             leaftools.fuse_leaves_in_tie_chain_by_immediate_parent(tie_chain)

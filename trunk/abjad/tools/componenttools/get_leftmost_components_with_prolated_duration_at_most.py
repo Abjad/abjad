@@ -1,11 +1,11 @@
 from abjad.tools import durationtools
 
 
-def get_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
+def get_leftmost_components_with_prolated_duration_at_most(components, duration):
     '''.. versionadded:: 2.0
 
     Get leftmost components in `component` with prolated duration 
-    at most `prolated_duration`.
+    at most `duration`.
 
     Return tuple of ``components[:i]`` together with the 
     prolated duration of ``components[:i]``::
@@ -16,7 +16,7 @@ def get_leftmost_components_with_prolated_duration_at_most(components, prolated_
         ([Note("c'8"), Note("d'8")], Duration(1, 4))
 
     Maximize ``i`` such that the prolated duration of
-    ``components[:i]`` is no greater than `prolated_duration`.
+    ``components[:i]`` is no greater than `duration`.
 
     Input `components` must be thread-contiguous.
 
@@ -45,7 +45,7 @@ def get_leftmost_components_with_prolated_duration_at_most(components, prolated_
     result = []
     for component in components:
         current_duration = component.prolated_duration
-        if total_duration + current_duration <= prolated_duration:
+        if total_duration + current_duration <= duration:
             result.append(component)
             total_duration += current_duration
         else:
