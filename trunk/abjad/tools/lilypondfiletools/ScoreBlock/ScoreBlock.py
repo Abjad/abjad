@@ -36,3 +36,28 @@ class ScoreBlock(NonattributedBlock):
         NonattributedBlock.__init__(self)
         self._escaped_name = r'\score'
         self._is_formatted_when_empty = False
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_pieces(self):
+        from abjad.tools import leaftools
+        result = []
+        if not len(self):
+            if self._is_formatted_when_empty:
+                result.append(r'%s {}' % self._escaped_name)
+        else:
+            result.append(r'%s {' % self._escaped_name)
+            if len(self) == 1 and isinstance(self[0], leaftools.Leaf):
+                result.append('\t{')
+                result.extend(['\t\t' + piece for piece in self[0]._format_pieces])
+                result.append('\t}')
+            else:
+                for x in self:
+                    if hasattr(x, '_format_pieces'):
+                        result.extend(['\t' + piece for piece in x._format_pieces])
+                    elif isinstance(x, str):
+                        result.append('\t%s' % x)
+            result.append('}')
+        return result
+
