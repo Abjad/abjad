@@ -757,38 +757,6 @@ class SegmentSpecification(Specification):
         selector = self.select_background_measures(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, part, is_count=is_count)
 
-    def select_division(self, n, time_relation=None, voice=None):
-        '''Select segment division ``0``::
-
-            >>> selector = red_segment.select_division(0)
-
-        ::
-            
-            >>> z(selector)
-            selectortools.DivisionSelector(
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
-                            identifier='red'
-                            )
-                        )
-                    ),
-                start_identifier=0,
-                stop_identifier=1
-                )
-
-        Return selector.
-        '''
-        assert isinstance(n, int), repr(n)
-        if time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-        time_relation = time_relation(self.timespan)
-        start, stop = n, n + 1
-        selector = selectortools.DivisionSelector(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
-        return selector
-
     def select_divisions(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five divisions that start during segment::
 
