@@ -65,27 +65,29 @@ def extend_left_in_parent_of_component(component, new_components, grow_spanners=
     from abjad.tools import componenttools
     from abjad.tools import spannertools
 
-    assert componenttools.all_are_components(new_components)
+#    assert componenttools.all_are_components(new_components)
+#
+#    if grow_spanners:
+#        offset = component.start_offset
+#        receipt = spannertools.get_spanners_that_dominate_components([component])
+#        for spanner, x in receipt:
+#            index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)
+#            for new_component in reversed(new_components):
+#                spanner._insert(index, new_component)
+#                new_component._spanners.add(spanner)
+#
+#    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
+#
+#    if parent is not None:
+#        if grow_spanners:
+#            for new_component in reversed(new_components):
+#                new_component._switch(parent)
+#                parent._music.insert(start, new_component)
+#        else:
+#            # to avoid slice assignment pychecker errors
+#            #parent[start:start] = new_components
+#            parent.__setitem__(slice(start, start), new_components)
+#
+#    return new_components + [component]
 
-    if grow_spanners:
-        offset = component.start_offset
-        receipt = spannertools.get_spanners_that_dominate_components([component])
-        for spanner, x in receipt:
-            index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)
-            for new_component in reversed(new_components):
-                spanner._insert(index, new_component)
-                new_component._spanners.add(spanner)
-
-    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
-
-    if parent is not None:
-        if grow_spanners:
-            for new_component in reversed(new_components):
-                new_component._switch(parent)
-                parent._music.insert(start, new_component)
-        else:
-            # to avoid slice assignment pychecker errors
-            #parent[start:start] = new_components
-            parent.__setitem__(slice(start, start), new_components)
-
-    return new_components + [component]
+    return componenttools.extend_in_parent_of_component(component, new_components, left=True, grow_spanners=grow_spanners)
