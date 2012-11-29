@@ -7,15 +7,20 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components=None):
 
     Span `components` with text spanner.
     Position spanner above staff and configure with `left_text`,
-    solid line and downward-pointing nib at right. ::
+    solid line and downward-pointing nib at right:
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.make_solid_text_spanner_above_with_nib_at_right('foo', t[:])
+    ::
+
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+
+    ::
+
+        >>> spannertools.make_solid_text_spanner_above_with_nib_at_right('foo', staff[:])
         TextSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        >>> f(t)
+        >>> f(staff)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }
             \override TextSpanner #'bound-details #'right #'text = \markup { 
@@ -33,6 +38,10 @@ def make_solid_text_spanner_above_with_nib_at_right(left_text, components=None):
             \revert TextSpanner #'dash-fraction
             \revert TextSpanner #'direction
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     .. versionchanged:: 2.0
         renamed ``spanners.solid_text_spanner_above_with_nib_at_right()`` to

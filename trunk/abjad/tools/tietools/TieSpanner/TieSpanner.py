@@ -19,6 +19,10 @@ class TieSpanner(DirectedSpanner):
             c'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return tie spanner.
     '''
 

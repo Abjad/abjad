@@ -7,12 +7,20 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
 
     Span `components` with text spanner.
     Position spanner below staff and configure with `dynamic_text`,
-    solid line and upward-pointing nib at right. ::
+    solid line and upward-pointing nib at right:
 
-        >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> spannertools.make_dynamic_spanner_below_with_nib_at_right('mp', t[:])
+    ::
+
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+
+    ::
+
+        >>> spannertools.make_dynamic_spanner_below_with_nib_at_right('mp', staff[:])
         TextSpanner(c'8, d'8, e'8, f'8)
-        >>> f(t)
+
+    ::
+
+        >>> f(staff)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { \dynamic { mp } }
             \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . 1) }
@@ -29,6 +37,10 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
             \revert TextSpanner #'dash-fraction
             \revert TextSpanner #'direction
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     .. versionchanged:: 2.0
         renamed ``spanners.dynamic_spanner_below_with_nib_at_right()`` to
