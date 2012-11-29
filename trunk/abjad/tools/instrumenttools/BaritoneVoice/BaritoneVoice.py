@@ -28,6 +28,10 @@ class BaritoneVoice(_Voice):
             f8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The baritone voice targets staff context by default.
     '''
 

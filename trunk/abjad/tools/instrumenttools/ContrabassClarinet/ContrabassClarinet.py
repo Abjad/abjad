@@ -28,6 +28,10 @@ class ContrabassClarinet(_Clarinet):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The contrabass clarinet targets staff context by default.
     '''
 

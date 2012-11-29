@@ -31,6 +31,10 @@ class Contrabass(_StringInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The contrabass targets staff context by default.
     '''
 

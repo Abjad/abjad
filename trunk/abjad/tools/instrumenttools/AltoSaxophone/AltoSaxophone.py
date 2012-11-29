@@ -28,6 +28,10 @@ class AltoSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The alto saxophone is pitched in E-flat.
 
     The alto saxophone targets staff context by default.

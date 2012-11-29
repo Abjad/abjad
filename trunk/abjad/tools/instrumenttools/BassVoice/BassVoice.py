@@ -28,6 +28,10 @@ class BassVoice(_Voice):
             f8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The bass voice targets staff context by default.
     '''
 

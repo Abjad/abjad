@@ -31,6 +31,10 @@ class Cello(_StringInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The cello targets staff context by default.
     '''
 

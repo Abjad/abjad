@@ -28,6 +28,10 @@ class SopranoSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The soprano saxophone is pitched in B-flat.
 
     The soprano saxophone targets staff context by default.

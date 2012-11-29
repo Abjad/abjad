@@ -35,6 +35,10 @@ class Harpsichord(_KeyboardInstrument):
             }
         >>
 
+    ::
+
+        >>> show(piano_staff) # doctest: +SKIP
+
     The harpsichord targets piano staff context by default.
 
     Return instrument.

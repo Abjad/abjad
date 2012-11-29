@@ -33,6 +33,10 @@ class TempoMark(ContextMark):
             }
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Tempo marks target **score** context by default.
 
     Initialization allows many different types of input argument structure.

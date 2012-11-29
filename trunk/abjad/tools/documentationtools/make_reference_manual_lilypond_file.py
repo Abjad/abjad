@@ -35,6 +35,10 @@ def make_reference_manual_lilypond_file(music=None):
             }
         }
 
+        \paper {
+            left-margin = 1.0\in
+        }
+
         \score {
             \new Score <<
                 \new Staff {
@@ -55,6 +59,8 @@ def make_reference_manual_lilypond_file(music=None):
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
+
+    lilypond_file.paper_block.left_margin = lilypondfiletools.LilyPondDimension(1, 'in')
 
     context_block = lilypondfiletools.ContextBlock()
     lilypond_file.layout_block.context_blocks.append(context_block)

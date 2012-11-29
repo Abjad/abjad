@@ -28,6 +28,10 @@ class TenorSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The tenor saxophone is pitched in B-flat.
 
     The tenor saxophone targets staff context by default.

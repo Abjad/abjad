@@ -28,6 +28,10 @@ class Marimba(_PercussionInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The marimba targets staff context by default.
     '''
 

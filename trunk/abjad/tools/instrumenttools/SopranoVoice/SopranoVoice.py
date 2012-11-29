@@ -28,6 +28,10 @@ class SopranoVoice(_Voice):
             f''8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The soprano voice targets staff context by default.
     '''
 

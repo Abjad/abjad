@@ -2,7 +2,27 @@ from abjad.tools.stafftools.Staff import Staff
 
 
 class RhythmicStaff(Staff):
-    '''Abjad model of a rhythmic staff.
+    r'''Abjad model of a rhythmic staff:
+
+    ::
+
+        >>> staff = stafftools.RhythmicStaff("c'8 d'8 e'8 f'8")
+
+    ::
+
+        >>> f(staff)
+        \new RhythmicStaff {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Return RhythmicStaff instance.
     '''
 
     ### CLASS ATTRIBUTES ###

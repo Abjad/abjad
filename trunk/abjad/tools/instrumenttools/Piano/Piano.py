@@ -36,6 +36,10 @@ class Piano(_KeyboardInstrument):
             }
         >>
 
+    ::
+
+        >>> show(piano_staff) # doctest: +SKIP
+
     The piano targets piano staff context by default.
     '''
 

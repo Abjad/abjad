@@ -28,6 +28,10 @@ class BassClarinet(_Clarinet):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The bass clarinet targets staff context by default.
     '''
 

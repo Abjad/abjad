@@ -28,6 +28,10 @@ class EFlatClarinet(_Clarinet):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The E-flat clarinet targets staff context by default.
     '''
 

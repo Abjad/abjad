@@ -28,6 +28,10 @@ class Flute(_WindInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The flute targets staff context by default.
     '''
 

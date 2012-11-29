@@ -23,6 +23,10 @@ class DynamicMark(ContextMark):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Dynamic marks target the staff context by default.
     '''
 

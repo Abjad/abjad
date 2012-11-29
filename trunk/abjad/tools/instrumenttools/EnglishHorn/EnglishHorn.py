@@ -28,6 +28,10 @@ class EnglishHorn(Oboe):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The English horn targets staff context by default.
     '''
 

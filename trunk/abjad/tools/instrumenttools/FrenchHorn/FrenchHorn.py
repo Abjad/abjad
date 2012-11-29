@@ -29,6 +29,10 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The French horn targets staff context by default.
     '''
 

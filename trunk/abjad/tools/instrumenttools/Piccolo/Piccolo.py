@@ -27,6 +27,10 @@ class Piccolo(Flute):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The piccolo targets staff context by default.
     '''
 

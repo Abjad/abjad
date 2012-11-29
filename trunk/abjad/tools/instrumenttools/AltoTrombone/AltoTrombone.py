@@ -31,6 +31,10 @@ class AltoTrombone(_Trombone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The tenor trombone targets staff context by default.
     '''
 

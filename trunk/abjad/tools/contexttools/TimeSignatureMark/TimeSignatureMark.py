@@ -26,6 +26,10 @@ class TimeSignatureMark(ContextMark):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Abjad time signature marks target **staff context** by default.
 
     Initialize time signature marks to **score context** like this::

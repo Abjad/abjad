@@ -28,6 +28,10 @@ class BassSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The bass saxophone is pitched in B-flat.
 
     The bass saxophone targets staff context by default.

@@ -28,6 +28,10 @@ class ContrabassSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The contrabass saxophone is pitched in E-flat.
 
     The contrabass saxophone targets staff context by default.

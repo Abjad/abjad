@@ -31,6 +31,10 @@ class Bassoon(_DoubleReedInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The bassoon targets staff context by default.
     '''
 

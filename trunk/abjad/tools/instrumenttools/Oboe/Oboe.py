@@ -28,6 +28,10 @@ class Oboe(_DoubleReedInstrument):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The oboe targets staff context by default.
     '''
 

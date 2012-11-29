@@ -28,6 +28,10 @@ class ClarinetInA(_Clarinet):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The clarinet in A targets staff context by default.
     '''
 

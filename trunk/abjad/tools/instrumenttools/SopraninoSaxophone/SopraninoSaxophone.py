@@ -28,6 +28,10 @@ class SopraninoSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The sopranino saxophone is pitched in E-flat.
 
     The sopranino saxophone targets staff context by default.

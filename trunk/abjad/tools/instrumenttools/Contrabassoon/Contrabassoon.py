@@ -31,6 +31,10 @@ class Contrabassoon(Bassoon):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The contrabassoon targets staff context by default.
     '''
 

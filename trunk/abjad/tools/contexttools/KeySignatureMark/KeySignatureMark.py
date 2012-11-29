@@ -24,6 +24,10 @@ class KeySignatureMark(ContextMark):
             a'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Key signature marks target staff context by default.
     '''
 

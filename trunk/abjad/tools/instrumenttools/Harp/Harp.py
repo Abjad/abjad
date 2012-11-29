@@ -35,6 +35,10 @@ class Harp(_StringInstrument):
             }
         >>
 
+    ::
+
+        >>> show(piano_staff) # doctest: +SKIP
+
     The harp targets piano staff context by default.
     '''
 

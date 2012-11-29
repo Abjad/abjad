@@ -35,6 +35,10 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
             }
         >>
 
+    ::
+
+        >>> show(piano_staff) # doctest: +SKIP
+
     The accordion targets piano staff context by default.
     '''
 

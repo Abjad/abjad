@@ -28,6 +28,10 @@ class ContraltoVoice(_Voice):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The contralto voice targets staff context by default.
     '''
 

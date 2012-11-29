@@ -7,6 +7,9 @@ class Staff(Context):
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
+
+    ::
+
         >>> f(staff)
         \new Staff {
             c'8
@@ -14,6 +17,11 @@ class Staff(Context):
             e'8
             f'8
         }
+
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return Staff instance.
     '''

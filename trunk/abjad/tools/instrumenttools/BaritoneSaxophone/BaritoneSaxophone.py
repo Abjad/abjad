@@ -28,6 +28,10 @@ class BaritoneSaxophone(_Saxophone):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     The baritone saxophone is pitched in E-flat.
 
     The baritone saxophone targets staff context by default.

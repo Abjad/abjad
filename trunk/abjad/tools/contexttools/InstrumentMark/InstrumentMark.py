@@ -34,6 +34,10 @@ class InstrumentMark(ContextMark):
             f'8
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Instrument marks target staff context by default.
     '''
 
