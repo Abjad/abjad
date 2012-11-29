@@ -50,6 +50,21 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
+    def apply_source_transforms_to_target(self, source, target, fracture_spanners=None):
+        if getattr(source, 'index', None):
+            raise NotImplementedError
+        if getattr(source, 'count', None):
+            raise NotImplementedError
+        if getattr(source, 'reverse', False):
+            target.reverse()
+        if getattr(source, 'rotation', None):
+            if fracture_spanners is not None:
+                target.rotate(source.rotation, fracture_spanners=fracture_spanners)
+            else:
+                target.rotate(source.rotation)
+        if getattr(source, 'callback', None):
+            source.callback(target)
+
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
             return settingtools.DivisionCommand
@@ -162,11 +177,7 @@ class ConcreteInterpreter(Interpreter):
         keep_timespan = timespantools.LiteralTimespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         #self._debug(trimmed_division_region_expressions, 'trimmed')
-        # TODO: eventually encapsulate in a single call
-        if division_material_request.reverse:
-            trimmed_division_region_expressions.reverse()
-        if division_material_request.rotation:
-            trimmed_division_region_expressions.rotate(division_material_request.rotation)
+        self.apply_source_transforms_to_target(division_material_request, trimmed_division_region_expressions)
         return trimmed_division_region_expressions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
@@ -213,10 +224,7 @@ class ConcreteInterpreter(Interpreter):
                 division_region_expression._voice_name = voice_name
             addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
             division_region_expressions.translate_timespans(addendum)
-            if division_region_command.reverse:
-                division_region_expressions.reverse()
-            if division_region_command.rotation:
-                division_region_expressions.rotate(division_region_command.rotation)
+            self.apply_source_transforms_to_target(division_region_command, division_region_expressions)
             division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
             return division_region_expressions
         elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
@@ -533,12 +541,8 @@ class ConcreteInterpreter(Interpreter):
             music=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             start_offset=start_offset)
-        # TODO: eventually encapsulate in a single call
-        # TODO: eventually implement 'index' and 'count' handling
-        if rhythm_command.reverse:
-            rhythm_region_expression.reverse()
-        if rhythm_command.rotation:
-            rhythm_region_expression.rotate(rhythm_command.rotation, fracture_spanners=False)
+        self.apply_source_transforms_to_target(
+            rhythm_command, rhythm_region_expression, fracture_spanners=False)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
         if rhythm_region_expression.stop_offset < stop_offset:
@@ -765,18 +769,10 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
-        # TODO: encapsulate all of the following in a single call
-        if rhythm_request.reverse:
-            result.reverse()
-        if rhythm_request.rotation:
-            result.rotate(rhythm_request.rotation)    
-        if rhythm_command.reverse:
-            result.reverse()
-        # TODO: Decide whether fracture_spanners=True or fracture_spanners=False
-        #       Probably fracture_spanners=False.
-        if rhythm_command.rotation:
-            #result.rotate(rhythm_command.rotation, fracture_spanners=False)
-            result.rotate(rhythm_command.rotation, fracture_spanners=True)
+        self.apply_source_transforms_to_target(rhythm_request, result)
+        # decide whehter fracture_spanners=True or fracture_spanners=False
+        # probably fracture_spanners=False
+        self.apply_source_transforms_to_target(rhythm_command, result)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
