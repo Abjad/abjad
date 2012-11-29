@@ -86,7 +86,7 @@ def shorten_component_by_prolated_duration(component, duration):
     duration = durationtools.Duration(duration)
 
     if component.prolated_duration <= duration:
-        raise NegativeDurationError('component durations must be positive.')
+        raise Exception('component durations must be positive.')
 
     if isinstance(component, leaftools.Leaf):
         new_prolated_duration = component.prolated_duration - duration

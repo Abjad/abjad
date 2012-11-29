@@ -2218,7 +2218,6 @@ Internal packages
    tools/exceptiontools/MissingSpannerError
    tools/exceptiontools/MissingTempoError
    tools/exceptiontools/MusicContentsError
-   tools/exceptiontools/NegativeDurationError
    tools/exceptiontools/NoteHeadError
    tools/exceptiontools/OverfullContainerError
    tools/exceptiontools/ParallelError
