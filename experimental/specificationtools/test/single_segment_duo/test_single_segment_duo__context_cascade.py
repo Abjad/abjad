@@ -12,7 +12,7 @@ def test_single_segment_duo__context_cascade_01():
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-    red_segment.set_rhythm(library.note_filled_tokens, contexts=['Voice 2'])
+    red_segment.set_rhythm(library.note_tokens, contexts=['Voice 2'])
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

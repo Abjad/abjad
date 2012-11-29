@@ -33,7 +33,7 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     red_segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], selector=left_half)
     red_segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], selector=right_half)
 
-    red_segment.set_rhythm(library.note_filled_tokens)
+    red_segment.set_rhythm(library.note_tokens)
 
     blue_segment = score_specification.append_segment(name='blue')
 

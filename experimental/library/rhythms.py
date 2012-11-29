@@ -41,9 +41,9 @@ halves.name = 'halves'
 __all__.append(halves.name)
 
 
-note_filled_tokens = rhythmmakertools.NoteRhythmMaker()
-note_filled_tokens.name = 'note_filled_tokens'
-__all__.append(note_filled_tokens.name)
+note_tokens = rhythmmakertools.NoteRhythmMaker()
+note_tokens.name = 'note_tokens'
+__all__.append(note_tokens.name)
 
 
 quarters = rhythmmakertools.TaleaRhythmMaker([1], 4, beam_cells_together=False)
@@ -51,9 +51,9 @@ quarters.name = 'quarters'
 __all__.append(quarters.name)
 
 
-rest_filled_tokens = rhythmmakertools.RestRhythmMaker()
-rest_filled_tokens.name = 'rest_filled_tokens'
-__all__.append(rest_filled_tokens.name)
+rest_tokens = rhythmmakertools.RestRhythmMaker()
+rest_tokens.name = 'rest_tokens'
+__all__.append(rest_tokens.name)
 
 
 sixteenths = rhythmmakertools.TaleaRhythmMaker([1], 16, beam_cells_together=True)
@@ -66,9 +66,9 @@ sixty_fourths.name = 'sixty_fourths'
 __all__.append(sixty_fourths.name)
 
 
-skip_filled_tokens = rhythmmakertools.SkipRhythmMaker()
-skip_filled_tokens.name = 'skip_filled_tokens'
-__all__.append(skip_filled_tokens.name)
+skip_tokens = rhythmmakertools.SkipRhythmMaker()
+skip_tokens.name = 'skip_tokens'
+__all__.append(skip_tokens.name)
 
 
 thirty_seconds = rhythmmakertools.TaleaRhythmMaker([1], 32, beam_cells_together=True)

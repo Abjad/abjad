@@ -72,7 +72,7 @@ def test_schematic_examples__X_series_03():
     Second staff 1:1 of meaures then [5/16, 3/16] divisions.
     Third staff 1:1 of total time then [3/16, 5/16] divisions from staff 1.
     Fourth staff 1:1 of total time then [5/16, 3/16] divisions from staff 2.
-    Note-filled tokens scorewide.
+    Note tokens scorewide.
     Second segment equal to first segment flipped about the y axis in all respects.
     ''' 
 
@@ -101,7 +101,7 @@ def test_schematic_examples__X_series_03():
     red_segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], selector=left_half)
     red_segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], selector=right_half)
 
-    red_segment.set_rhythm(library.note_filled_tokens)
+    red_segment.set_rhythm(library.note_tokens)
 
     blue_segment = score_specification.append_segment(name='blue')
     
@@ -156,7 +156,7 @@ def test_schematic_examples__X_series_04():
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=indicator)
     naive_beats = red_segment.request_naive_beats()
     red_segment.set_divisions(naive_beats, contexts=['Voice 4'])
-    red_segment.set_rhythm(library.note_filled_tokens)
+    red_segment.set_rhythm(library.note_tokens)
     blue_segment = score_specification.append_segment(name='blue')
     red_voice_1_rhythm = red_segment.request_rhythm('Voice 1')
     red_voice_2_rhythm = red_segment.request_rhythm('Voice 2')

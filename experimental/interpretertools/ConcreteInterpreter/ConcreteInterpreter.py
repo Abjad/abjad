@@ -406,7 +406,7 @@ class ConcreteInterpreter(Interpreter):
         if attribute == 'divisions':
             return self.make_time_signature_division_command(voice_name, start_offset, stop_offset)
         elif attribute == 'rhythm':
-            return self.make_skip_filled_rhythm_command(voice_name, start_offset, stop_offset)
+            return self.make_skip_token_rhythm_command(voice_name, start_offset, stop_offset)
         else:
             raise ValueError(attribute)
 
@@ -579,9 +579,9 @@ class ConcreteInterpreter(Interpreter):
             if self.score_specification.all_rhythm_quintuples == previous_all_rhythm_quintuples:
                 raise exceptions.CyclicSpecificationError('cyclic rhythm specification')
 
-    def make_skip_filled_rhythm_command(self, voice_name, start_offset, stop_offset):
+    def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
         return settingtools.RhythmCommand(
-            requesttools.AbsoluteRequest(library.skip_filled_tokens),
+            requesttools.AbsoluteRequest(library.skip_tokens),
             voice_name, 
             start_offset,
             stop_offset,
