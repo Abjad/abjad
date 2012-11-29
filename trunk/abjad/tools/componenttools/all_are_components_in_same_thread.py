@@ -35,14 +35,14 @@ def all_are_components_in_same_thread(expr, klasses=None, allow_orphans=True):
         return False
 
     orphan_components = True
-    if not componenttools.is_orphan_component(first):
+    if not first.parentage.is_orphan:
         orphan_components = False
 
     same_thread = True
 
     first_signature = first.parentage.containment_signature
     for component in expr[1:]:
-        if not componenttools.is_orphan_component(component):
+        if not component.parentage.is_orphan:
             orphan_components = False
         if component.parentage.containment_signature != first_signature:
             same_thread = False

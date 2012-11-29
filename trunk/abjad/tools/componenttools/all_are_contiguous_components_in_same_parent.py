@@ -49,7 +49,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
-        if not componenttools.is_orphan_component(cur):
+        if not cur.parentage.is_orphan:
             orphan_components = False
         if not cur._parent is first_parent:
             same_parent = False

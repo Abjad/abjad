@@ -133,6 +133,24 @@ class Parentage(Selection):
         return len(self[1:])
 
     @property
+    def is_orphan(self):
+        '''True when component has no parent.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return self.parent is None
+
+    @property
+    def parent(self):
+        '''Parent of component or none when component is orphan.
+        
+        Return component or none.
+        '''
+        if 1 < len(self):
+            return self[1]
+
+    @property
     def parentage_signature(self):
         r'''.. versionadded:: 1.1
 

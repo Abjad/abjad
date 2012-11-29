@@ -52,7 +52,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
         return False
 
     orphan_components = True
-    if not componenttools.is_orphan_component(first):
+    if not first.parentage.is_orphan:
         orphan_components = False
 
     same_thread = True
@@ -63,7 +63,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
-        if not componenttools.is_orphan_component(cur):
+        if not cur.parentage.is_orphan:
             orphan_components = False
         if not cur.parentage.containment_signature == first_thread:
             same_thread = False

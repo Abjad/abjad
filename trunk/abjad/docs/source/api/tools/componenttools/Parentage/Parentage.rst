@@ -15,9 +15,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.depth
 
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.is_orphan
+
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.music
 
     Inherited from :py:class:`abctools.Selection <abjad.tools.abctools.Selection.Selection.Selection>`
+
+.. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.parent
 
 .. autoattribute:: abjad.tools.componenttools.Parentage.Parentage.Parentage.parentage_signature
 

@@ -77,7 +77,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     from abjad.tools import componenttools
 
     # swap positions in parent
-    if not componenttools.is_orphan_component(component):
+    if not component.parentage.is_orphan:
         parent = component._parent
         parent_index = parent.index(component)
         try:

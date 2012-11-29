@@ -129,7 +129,6 @@ Composition packages
    tools/componenttools/get_proper_descendents_of_component
    tools/componenttools/get_proper_parentage_of_component
    tools/componenttools/is_immediate_temporal_successor_of_component
-   tools/componenttools/is_orphan_component
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/partition_components_by_durations_exactly
