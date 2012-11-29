@@ -304,7 +304,7 @@ def split_components_at_offsets(components, offsets,
     offsets = [durationtools.Offset(offset) for offset in offsets]
 
     # calculate total component duration
-    total_component_duration = componenttools.sum_prolated_duration_of_components(components)
+    total_component_duration = componenttools.sum_duration_of_components(components)
     total_offset_duration = sum(offsets)
 
     # calculate offsets

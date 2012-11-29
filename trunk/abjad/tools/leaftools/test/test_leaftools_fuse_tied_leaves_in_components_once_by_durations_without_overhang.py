@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_01():
+def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_overhang_01():
     '''Tied leaves inside containers can be fused.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tie = tietools.TieSpanner(t.leaves)
-    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Duration(1, 4)])
+    leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(t.leaves, [Duration(1, 4)])
 
     r'''
     \new Voice {
@@ -29,13 +29,13 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t.lilypond_format == "\\new Voice {\n\tc'4 ~\n\tc'8 ~\n\tc'8\n}"
 
 
-def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_02():
+def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_overhang_02():
     '''Tied leaves inside containers can be fused.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tie = tietools.TieSpanner(t.leaves[1:])
-    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Duration(1, 4)])
+    leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(t.leaves, [Duration(1, 4)])
 
     r'''
     \new Voice {
@@ -60,14 +60,14 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t.lilypond_format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
-def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_03():
+def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_overhang_03():
     '''multiple ties inside the same duration span are independently fused.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
     tie1 = tietools.TieSpanner(t.leaves[0:2])
     tie2 = tietools.TieSpanner(t.leaves[2:])
-    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves, [Duration(1, 4)] * 2)
+    leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(t.leaves, [Duration(1, 4)] * 2)
 
     r'''
     \new Voice {
@@ -86,7 +86,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t.lilypond_format == "\\new Voice {\n\tc'4\n\tc'4\n}"
 
 
-def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_04():
+def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_overhang_04():
     '''multiple ties inside the same duration span are independently fused.
     '''
 
@@ -107,7 +107,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     }
     '''
 
-    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(t.leaves[1:-1], [Duration(1, 4)] * 3)
+    leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(t.leaves[1:-1], [Duration(1, 4)] * 3)
 
     r'''
     \new Voice {
@@ -123,7 +123,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'4 ~\n\tc'8\n\tc'8 ~\n\tc'4 ~\n\tc'8\n}"
 
 
-def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang_05():
+def test_leaftools_fuse_tied_leaves_in_components_once_by_durations_without_overhang_05():
     '''Steve Lehman's "Rai" slicing example.
     '''
     
@@ -170,7 +170,7 @@ def test_leaftools_fuse_tied_leaves_in_components_once_by_prolated_durations_wit
     }
     '''
 
-    leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
+    leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(
         t.leaves, time_signatures)
 
     wellformednesstools.is_well_formed_component(t)

@@ -194,7 +194,7 @@ All labeling functions are now housed in the new ``labeltools`` package:
     leaftools.label_leaves_in_expr_with_melodic_diatonic_intervals()
     leaftools.label_leaves_in_expr_with_pitch_class_numbers()
     leaftools.label_leaves_in_expr_with_pitch_numbers()
-    leaftools.label_leaves_in_expr_with_prolated_leaf_duration()
+    leaftools.label_leaves_in_expr_with_leaf_duration()
     leaftools.label_leaves_in_expr_with_tuplet_depth()
     leaftools.label_leaves_in_expr_with_written_leaf_duration()
 
@@ -215,7 +215,7 @@ All labeling functions are now housed in the new ``labeltools`` package:
     labeltools.label_leaves_in_expr_with_melodic_diatonic_intervals()
     labeltools.label_leaves_in_expr_with_pitch_class_numbers()
     labeltools.label_leaves_in_expr_with_pitch_numbers()
-    labeltools.label_leaves_in_expr_with_prolated_leaf_duration()
+    labeltools.label_leaves_in_expr_with_leaf_duration()
     labeltools.label_leaves_in_expr_with_tuplet_depth()
     labeltools.label_leaves_in_expr_with_written_leaf_duration()
 
@@ -249,13 +249,13 @@ All labeling functions are now housed in the new ``labeltools`` package:
 
 - Renamed::
 
-    tietools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    tietools.label_tie_chains_in_expr_with_tie_chain_duration()
     tietools.label_tie_chains_in_expr_with_tie_chain_durations()
     tietools.label_tie_chains_in_expr_with_written_tie_chain_duration()
 
   ::
 
-    labeltools.label_tie_chains_in_expr_with_prolated_tie_chain_duration()
+    labeltools.label_tie_chains_in_expr_with_tie_chain_duration()
     labeltools.label_tie_chains_in_expr_with_tie_chain_durations()
     labeltools.label_tie_chains_in_expr_with_written_tie_chain_duration()
 

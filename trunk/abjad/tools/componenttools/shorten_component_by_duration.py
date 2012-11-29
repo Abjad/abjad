@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 
 # TODO: implement related function to shorten from right edge.
 # TODO: allow large values of `prolated_duration` to empty container contents.
-def shorten_component_by_prolated_duration(component, duration):
+def shorten_component_by_duration(component, duration):
     r'''.. versionadded:: 2.0
 
     Shorten `component` by prolated `duration`.
@@ -14,7 +14,7 @@ def shorten_component_by_prolated_duration(component, duration):
 
     ::
 
-        >>> componenttools.shorten_component_by_prolated_duration(staff, Duration(1, 32))
+        >>> componenttools.shorten_component_by_duration(staff, Duration(1, 32))
 
     ::
 
@@ -36,7 +36,7 @@ def shorten_component_by_prolated_duration(component, duration):
 
     ::
 
-        >>> componenttools.shorten_component_by_prolated_duration(staff, Duration(3, 64))
+        >>> componenttools.shorten_component_by_duration(staff, Duration(3, 64))
 
     ::
 
@@ -59,7 +59,7 @@ def shorten_component_by_prolated_duration(component, duration):
 
     ::
 
-        >>> componenttools.shorten_component_by_prolated_duration(staff, Duration(1, 24))
+        >>> componenttools.shorten_component_by_duration(staff, Duration(1, 24))
 
     ::
 
@@ -96,7 +96,7 @@ def shorten_component_by_prolated_duration(component, duration):
     else:
         container = component
         components, accumulated_duration = \
-            componenttools.get_leftmost_components_with_prolated_duration_at_most(container[:], duration)
+            componenttools.get_leftmost_components_with_total_duration_at_most(container[:], duration)
         del(container[:len(components)])
         remaining_subtrahend_duration = duration - accumulated_duration
-        componenttools.shorten_component_by_prolated_duration(container[0], remaining_subtrahend_duration)
+        componenttools.shorten_component_by_duration(container[0], remaining_subtrahend_duration)

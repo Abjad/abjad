@@ -120,7 +120,7 @@ Composition packages
    tools/componenttools/get_improper_parentage_of_component
    tools/componenttools/get_improper_parentage_of_component_that_start_with_component
    tools/componenttools/get_improper_parentage_of_component_that_stop_with_component
-   tools/componenttools/get_leftmost_components_with_prolated_duration_at_most
+   tools/componenttools/get_leftmost_components_with_total_duration_at_most
    tools/componenttools/get_lineage_of_component
    tools/componenttools/get_lineage_of_component_that_start_with_component
    tools/componenttools/get_lineage_of_component_that_stop_with_component
@@ -142,14 +142,14 @@ Composition packages
    tools/componenttools/partition_components_by_durations_le
    tools/componenttools/remove_component_subtree_from_score_and_spanners
    tools/componenttools/replace_components_with_children_of_components
-   tools/componenttools/shorten_component_by_prolated_duration
+   tools/componenttools/shorten_component_by_duration
    tools/componenttools/split_component_at_offset
    tools/componenttools/split_components_at_offsets
+   tools/componenttools/sum_duration_of_components
    tools/componenttools/sum_duration_of_components_in_seconds
    tools/componenttools/sum_preprolated_duration_of_components
-   tools/componenttools/sum_prolated_duration_of_components
+   tools/componenttools/yield_components_grouped_by_duration
    tools/componenttools/yield_components_grouped_by_preprolated_duration
-   tools/componenttools/yield_components_grouped_by_prolated_duration
    tools/componenttools/yield_groups_of_mixed_klasses_in_sequence
    tools/componenttools/yield_topmost_components_grouped_by_type
    tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
@@ -462,6 +462,7 @@ Composition packages
    tools/labeltools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/labeltools/label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes
    tools/labeltools/label_leaves_in_expr_with_leaf_depth
+   tools/labeltools/label_leaves_in_expr_with_leaf_duration
    tools/labeltools/label_leaves_in_expr_with_leaf_durations
    tools/labeltools/label_leaves_in_expr_with_leaf_indices
    tools/labeltools/label_leaves_in_expr_with_leaf_numbers
@@ -473,11 +474,10 @@ Composition packages
    tools/labeltools/label_leaves_in_expr_with_melodic_diatonic_intervals
    tools/labeltools/label_leaves_in_expr_with_pitch_class_numbers
    tools/labeltools/label_leaves_in_expr_with_pitch_numbers
-   tools/labeltools/label_leaves_in_expr_with_prolated_leaf_duration
    tools/labeltools/label_leaves_in_expr_with_tuplet_depth
    tools/labeltools/label_leaves_in_expr_with_written_leaf_duration
    tools/labeltools/label_notes_in_expr_with_note_indices
-   tools/labeltools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
+   tools/labeltools/label_tie_chains_in_expr_with_tie_chain_duration
    tools/labeltools/label_tie_chains_in_expr_with_tie_chain_durations
    tools/labeltools/label_tie_chains_in_expr_with_written_tie_chain_duration
    tools/labeltools/label_vertical_moments_in_expr_with_chromatic_interval_classes
@@ -532,16 +532,16 @@ Composition packages
    tools/leaftools/fuse_leaves
    tools/leaftools/fuse_leaves_in_container_once_by_counts
    tools/leaftools/fuse_leaves_in_tie_chain_by_immediate_parent
-   tools/leaftools/fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang
+   tools/leaftools/fuse_tied_leaves_in_components_once_by_durations_without_overhang
    tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
    tools/leaftools/get_composite_offset_series_from_leaves_in_expr
    tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
-   tools/leaftools/get_leaf_in_expr_with_maximum_prolated_duration
-   tools/leaftools/get_leaf_in_expr_with_minimum_prolated_duration
+   tools/leaftools/get_leaf_in_expr_with_maximum_duration
+   tools/leaftools/get_leaf_in_expr_with_minimum_duration
    tools/leaftools/get_nth_leaf_in_expr
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
-   tools/leaftools/list_prolated_durations_of_leaves_in_expr
+   tools/leaftools/list_durations_of_leaves_in_expr
    tools/leaftools/list_written_durations_of_leaves_in_expr
    tools/leaftools/make_leaves
    tools/leaftools/make_leaves_from_talea

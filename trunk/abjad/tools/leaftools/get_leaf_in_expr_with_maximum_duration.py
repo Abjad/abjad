@@ -1,4 +1,4 @@
-def get_leaf_in_expr_with_maximum_prolated_duration(expr):
+def get_leaf_in_expr_with_maximum_duration(expr):
     r'''.. versionadded:: 2.5
 
     Get leaf in `expr` with maximum prolated duration::
@@ -7,7 +7,7 @@ def get_leaf_in_expr_with_maximum_prolated_duration(expr):
 
     ::
 
-        >>> leaftools.get_leaf_in_expr_with_maximum_prolated_duration(staff)
+        >>> leaftools.get_leaf_in_expr_with_maximum_duration(staff)
         Note("c'4..")
 
     When two leaves in `expr` are both of equally maximal prolated duration,
@@ -15,7 +15,7 @@ def get_leaf_in_expr_with_maximum_prolated_duration(expr):
 
     Return none when `expr` contains no leaves::
  
-        >>> leaftools.get_leaf_in_expr_with_maximum_prolated_duration([]) is None
+        >>> leaftools.get_leaf_in_expr_with_maximum_duration([]) is None
         True
 
     Return leaf.

@@ -1,7 +1,7 @@
 from abjad.tools import componenttools
 
 
-def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(components, durations):
+def fuse_tied_leaves_in_components_once_by_durations_without_overhang(components, durations):
     r'''.. versionadded:: 1.1
 
     Fuse tied leaves in `components` once by prolated `durations` without overhang::
@@ -26,7 +26,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(c
 
     ::
 
-        >>> leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
+        >>> leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(
         ... staff, [Duration(3, 8), Duration(3, 8)])
 
     ::
@@ -43,7 +43,7 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(c
 
     .. versionchanged:: 2.0
         renamed ``fuse.tied_leaves_by_prolated_durations()`` to
-        ``leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang()``.
+        ``leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang()``.
     '''
     from abjad.tools import leaftools
     from abjad.tools import tietools

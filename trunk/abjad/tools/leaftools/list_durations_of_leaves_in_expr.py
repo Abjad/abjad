@@ -1,4 +1,4 @@
-def list_prolated_durations_of_leaves_in_expr(expr):
+def list_durations_of_leaves_in_expr(expr):
     '''.. versionadded:: 2.0
 
     List prolated durations of leaves in `expr`::
@@ -7,7 +7,7 @@ def list_prolated_durations_of_leaves_in_expr(expr):
 
     ::
 
-        >>> for duration in leaftools.list_prolated_durations_of_leaves_in_expr(staff):
+        >>> for duration in leaftools.list_durations_of_leaves_in_expr(staff):
         ...     duration
         ...
         Duration(1, 12)

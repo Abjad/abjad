@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 
 
-def get_leftmost_components_with_prolated_duration_at_most(components, duration):
+def get_leftmost_components_with_total_duration_at_most(components, duration):
     '''.. versionadded:: 2.0
 
     Get leftmost components in `component` with prolated duration 
@@ -11,7 +11,7 @@ def get_leftmost_components_with_prolated_duration_at_most(components, duration)
     prolated duration of ``components[:i]``::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> componenttools.get_leftmost_components_with_prolated_duration_at_most(
+        >>> componenttools.get_leftmost_components_with_total_duration_at_most(
         ...     voice[:], Duration(1, 4))
         ([Note("c'8"), Note("d'8")], Duration(1, 4))
 
@@ -31,11 +31,11 @@ def get_leftmost_components_with_prolated_duration_at_most(components, duration)
 
     .. versionchanged:: 2.0
         renamed ``componenttools.get_le_duration_prolated()`` to
-        ``componenttools.get_leftmost_components_with_prolated_duration_at_most()``.
+        ``componenttools.get_leftmost_components_with_total_duration_at_most()``.
 
     .. versionchanged:: 2.9
         renamed ``componenttools.list_leftmost_components_with_prolated_duration_at_most()`` to
-        ``componenttools.get_leftmost_components_with_prolated_duration_at_most()``.
+        ``componenttools.get_leftmost_components_with_total_duration_at_most()``.
     '''
     from abjad.tools import componenttools
 

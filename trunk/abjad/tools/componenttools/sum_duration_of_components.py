@@ -1,4 +1,4 @@
-def sum_prolated_duration_of_components(components):
+def sum_duration_of_components(components):
     r'''.. versionadded:: 1.1
 
     Sum prolated duration of `components`::
@@ -10,12 +10,12 @@ def sum_prolated_duration_of_components(components):
             d'8
             e'8
         }
-        >>> componenttools.sum_prolated_duration_of_components(tuplet[:])
+        >>> componenttools.sum_duration_of_components(tuplet[:])
         Duration(1, 4)
 
     .. versionchanged:: 2.0
         renamed ``durationtools.sum_prolated()`` to
-        ``componenttools.sum_prolated_duration_of_components()``.
+        ``componenttools.sum_duration_of_components()``.
     '''
 
     return sum([component.prolated_duration for component in components])
