@@ -1343,7 +1343,7 @@ Composition packages
 :py:mod:`selectiontools <abjad.tools.selectiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abstract classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1

@@ -1,25 +1,28 @@
-import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Selection(AbjadObject):
     '''.. versionadded:: 2.9
 
-    Abstract base class from which selection classes inherit.
+    Selection taken from a single score.
 
-    Score selections are immutable and never change after instantiation.
+    Selection objects will eventually pervade the system and model all user selections.
+
+    This means that selection objects will eventually serve as input
+    to most functions in the API. Selection objects will also
+    eventually be returned as output from most functions in the API.
+
+    Selections are immutable and never change after instantiation.
     '''
 
     ### CLASS ATTRIBUTES ###
 
-    __metaclass__ = abc.ABCMeta
     __slots__ = ('_music',)
 
     _default_mandatory_input_arguments = ([], )
 
     ### INITIALIZER ###
 
-    @abc.abstractmethod
     def __init__(self, music):
         if music is None:
             music = ()
