@@ -448,8 +448,10 @@ class ScoreSpecification(Specification):
     #       Also add index, count, reverse, rotation, callback keywords.
     #       Use this interface for all score specification material request methods.
     def request_divisions(self, voice, start_segment_identifier, segment_count=1):
-        r'''Request `voice` divisions starting in `start_segment_identifier`
-        for a total of `segment_count` segments.
+        r'''Request divisions.
+
+        Example 1. When `voice` is a string, request `voice` divisions starting 
+        in `start_segment_identifier` for a total of `segment_count` segments::
 
             >>> request = score_specification.request_divisions('Voice 1', 'red', segment_count=3)
 
@@ -465,14 +467,21 @@ class ScoreSpecification(Specification):
                 context_name='Voice 1'
                 )
 
-        Return attribute request.
+        Example 2. When `voice` is a list of strings, request divisions starting 
+        in `start_segment_identifier` for a total of `segment_count` segments
+        for all of the different voices listed in `voice`.
+
+        .. note:: implement and add example.
+
+        Return material request.
         '''
         start_segment_name = helpertools.expr_to_segment_name(start_segment_identifier)
         voice_name = helpertools.expr_to_component_name(voice)
         expression = '{!r} + {}'.format(start_segment_name, segment_count)
         held_expression = helpertools.SegmentIdentifierExpression(expression)
-        start, stop = start_segment_name, held_expression
-        selector = selectortools.SegmentSelector(start_identifier=start, stop_identifier=stop)
+        start_identifier, stop_identifier = start_segment_name, held_expression
+        selector = selectortools.SegmentSelector(
+            start_identifier=start_identifier, stop_identifier=stop_identifier)
         request = requesttools.MaterialRequest('divisions', selector, context_name=voice_name)
         return request
 

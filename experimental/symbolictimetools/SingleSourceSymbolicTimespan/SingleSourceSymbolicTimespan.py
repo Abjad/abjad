@@ -106,10 +106,9 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     ### INITIALIZER ###
 
-    # TODO: maybe merge back to experimental?
     def __init__(self, selector=None, multiplier=None, left_offset=None, right_offset=None):
-        #from experimental import selectortools
-        #assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
+        from experimental import selectortools
+        assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
         SymbolicTimespan.__init__(self)
         self._selector = selector
         self._multiplier = multiplier

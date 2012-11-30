@@ -10,6 +10,10 @@ class Setting(AbjadObject):
     Abstract setting class from which concrete settings inherit.
     '''
 
+    ### CLASS ATTRIBUTES ##
+
+    __metaclass__ = abc.ABCMeta
+
     ### INITIALIZER ###
 
     @abc.abstractmethod

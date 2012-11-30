@@ -1,22 +1,25 @@
+import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
 
 
-# TODO: make abstract (again)
 class Request(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Base class from which other request classes inherit.
 
-    The purpose a request is to function as the source of a setting.
+    Requests function as setting sources.
     '''
 
     ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = abc.ABCMeta
 
     attributes = helpertools.AttributeNameEnumeration()
 
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
