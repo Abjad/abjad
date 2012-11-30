@@ -19,7 +19,7 @@ def remove_tie_spanners_from_components_in_expr(expr):
     ::
 
         >>> tietools.remove_tie_spanners_from_components_in_expr(staff[:])
-        [Note("c'4"), Note("c'16"), Note("d'4"), Note("d'16")]
+        Selection(Note("c'4"), Note("c'16"), Note("d'4"), Note("d'16"))
 
     ::
 

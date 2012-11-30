@@ -36,7 +36,7 @@ def fracture_spanners_that_cross_components(components):
             }   }
 
         >>> spannertools.fracture_spanners_that_cross_components(t[1:2])
-        [{e'8, f'8}]
+        Selection({e'8, f'8},)
    
         >>> f(t)
         \new Staff {

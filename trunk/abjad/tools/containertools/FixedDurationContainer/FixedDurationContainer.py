@@ -45,7 +45,7 @@ class FixedDurationContainer(Container):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '{}({!r}, {})'.format(self._class_name, self.target_duration, self[:])
+        return '{}({!r}, {})'.format(self._class_name, self.target_duration, list(self[:]))
 
     ### PRIVATE METHODS ###
 
