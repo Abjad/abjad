@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import selectiontools
 
 
 def all_are_components_scalable_by_multiplier(components, multiplier):

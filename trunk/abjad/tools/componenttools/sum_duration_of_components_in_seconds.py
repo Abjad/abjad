@@ -34,6 +34,7 @@ def sum_duration_of_components_in_seconds(components):
         renamed ``durationtools.sum_seconds()`` to
         ``componenttools.sum_duration_of_components_in_seconds()``.
     '''
+    from abjad.tools import componenttools
 
-    assert isinstance(components, list)
+    assert componenttools.all_are_components(components)
     return sum([component.duration_in_seconds for component in components])

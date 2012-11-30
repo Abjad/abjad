@@ -17,13 +17,16 @@ class TieChain(Selection):
     ::
 
         >>> tietools.get_tie_chain(staff[2])
-        TieChain((Note("e'4"), Note("e'4")))
+        TieChain(Note("e'4"), Note("e'4"))
 
     Tie chains are immutable score selections.
     '''
 
     def __init__(self, music):
-        Selection.__init__(self, music)
+        if isinstance(music, Selection):
+            Selection.__init__(self, music.music)
+        else:
+            Selection.__init__(self, music)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

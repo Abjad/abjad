@@ -22,6 +22,8 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__add__
+
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__contains__
 
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__eq__
@@ -48,6 +50,6 @@ Special Methods
 
 .. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__ne__
 
-.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__repr__
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__radd__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+.. automethod:: abjad.tools.selectiontools.Selection.Selection.Selection.__repr__

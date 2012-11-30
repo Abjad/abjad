@@ -8,7 +8,7 @@ def test_RhythmTreeNode___call___01():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, list)
+    assert isinstance(result, (list, selectiontools.Selection))
     assert len(result) == 4
     assert all([isinstance(x, Note) for x in result])
     assert all([x.written_duration == Duration(1, 16) for x in result])
@@ -20,7 +20,7 @@ def test_RhythmTreeNode___call___02():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, list)
+    assert isinstance(result, (list, selectiontools.Selection))
     assert len(result) == 1
     assert isinstance(result[0], tuplettools.FixedDurationTuplet)
     assert result[0].lilypond_format == "\\times 4/5 {\n\tc'16\n\t\\times 2/3 {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n\tc'8\n}"

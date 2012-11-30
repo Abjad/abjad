@@ -18,7 +18,7 @@ def remove_nonfirst_leaves_in_tie_chain(tie_chain):
     ::
 
         >>> tietools.remove_nonfirst_leaves_in_tie_chain(tietools.get_tie_chain(staff[0]))
-        TieChain((Note("c'4"),))
+        TieChain(Note("c'4"),)
 
     ::
 

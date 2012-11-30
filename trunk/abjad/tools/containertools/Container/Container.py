@@ -1,6 +1,7 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import formattools
+from abjad.tools import selectiontools
 from abjad.tools.componenttools.Component import Component
 
 
@@ -84,6 +85,8 @@ class Container(Component):
         components = self[i]
         if not isinstance(components, list):
             components = [components]
+        #if not isinstance(components, selectiontools.Selection):
+        #    components = selectiontools.Selection([components])
         _withdraw_components_in_expr_from_crossing_spanners(components)
         _switch_components_to_parent(components, None)
 
@@ -91,8 +94,13 @@ class Container(Component):
         '''Return component at index i in container.
         Shallow traversal of container for numeric indices only.
         '''
-        if isinstance(i, (int, slice)):
+        #if isinstance(i, (int, slice)):
+        #    return self._music[i]
+        if isinstance(i, int):
             return self._music[i]
+        elif isinstance(i, slice):
+            return self._music[i]
+            #return selectiontools.Selection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
                 raise MissingNamedComponentError

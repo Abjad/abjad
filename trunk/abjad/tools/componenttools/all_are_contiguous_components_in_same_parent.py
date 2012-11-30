@@ -1,4 +1,5 @@
 import types
+from abjad.tools import selectiontools
 
 
 def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orphans=True):
@@ -22,7 +23,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
     '''
     from abjad.tools import componenttools
 
-    if not isinstance(expr, (list, tuple, types.GeneratorType)):
+    if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
         return False
 
     if klasses is None:

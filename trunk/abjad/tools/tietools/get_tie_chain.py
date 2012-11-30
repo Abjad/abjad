@@ -20,7 +20,7 @@ def get_tie_chain(component):
     ::
 
         >>> tietools.get_tie_chain(staff[0])
-        TieChain((Note("c'8"), Note("c'8")))
+        TieChain(Note("c'8"), Note("c'8"))
 
     Return tie chain.
     '''

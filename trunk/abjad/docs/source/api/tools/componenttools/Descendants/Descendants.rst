@@ -30,6 +30,10 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.__add__
+
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.__contains__
 
     Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
@@ -66,6 +70,10 @@ Special Methods
 
     Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
 
+.. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.__radd__
+
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 .. automethod:: abjad.tools.componenttools.Descendants.Descendants.Descendants.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`

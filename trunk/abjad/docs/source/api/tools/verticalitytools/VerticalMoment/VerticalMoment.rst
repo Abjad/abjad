@@ -60,6 +60,10 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__add__
+
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__contains__
 
     Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
@@ -91,5 +95,9 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__ne__
+
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__radd__
+
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__repr__

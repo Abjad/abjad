@@ -48,6 +48,10 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__add__
+
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__contains__
 
     Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
@@ -84,6 +88,10 @@ Special Methods
 
     Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
 
+.. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__radd__
+
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`
+
 .. automethod:: abjad.tools.tietools.TieChain.TieChain.TieChain.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`selectiontools.Selection <abjad.tools.selectiontools.Selection.Selection.Selection>`

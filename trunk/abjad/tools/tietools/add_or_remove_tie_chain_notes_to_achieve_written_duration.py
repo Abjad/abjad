@@ -24,7 +24,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
         >>> tie_chain = tietools.get_tie_chain(staff[0])
         >>> tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(
         ...     tie_chain, Duration(5, 32))
-        TieChain((Note("c'8"), Note("c'32")))
+        TieChain(Note("c'8"), Note("c'32"))
 
     ::
 

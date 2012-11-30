@@ -1,4 +1,5 @@
 import types
+from abjad.tools import selectiontools
 
 
 def all_are_components(expr, klasses=None):
@@ -28,7 +29,8 @@ def all_are_components(expr, klasses=None):
     '''
     from abjad.tools import componenttools
 
-    if not isinstance(expr, (list, tuple, types.GeneratorType)):
+    #if not isinstance(expr, (list, tuple, types.GeneratorType)):
+    if not isinstance(expr, (list, tuple, types.GeneratorType, selectiontools.Selection)):
         return False
 
     if klasses is None:

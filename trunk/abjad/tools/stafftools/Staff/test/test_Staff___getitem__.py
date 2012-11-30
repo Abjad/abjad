@@ -130,7 +130,7 @@ def test_Staff___getitem___08():
     assert wellformednesstools.is_well_formed_component(t)
     slice = t[:]
     assert len(slice) == 5
-    assert isinstance(slice, list)
+    assert isinstance(slice, (list, selectiontools.Selection))
     assert isinstance(slice[0], Note)
     assert isinstance(slice[1], Rest)
     assert isinstance(slice[2], Chord)

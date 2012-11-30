@@ -21,12 +21,12 @@ def get_nontrivial_tie_chains_masked_by_components(components):
     Return only nontrivial tie chains::
 
         >>> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves)
-        [TieChain((Note("c'8"), Note("c'4"))), TieChain((Note("d'8"), Note("d'4")))]
+        [TieChain(Note("c'8"), Note("c'4")), TieChain(Note("d'8"), Note("d'4"))]
 
     Return 'masked' tie chains when only some notes of a tie chain are passed in::
 
         >>> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves[1:2])
-        [TieChain((Note("c'4"),))]
+        [TieChain(Note("c'4"),)]
 
 
     Return list of zero or more (possibly masked) tie chains.

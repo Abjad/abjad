@@ -1,5 +1,6 @@
 from abjad.tools import containertools
 from abjad.tools import leaftools
+from abjad.tools import selectiontools
 from abjad.tools import spannertools
 
 
@@ -33,12 +34,11 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
         >>> for x in tietools.iterate_topmost_tie_chains_and_components_in_expr(staff):
         ...     x
         ...
-        TieChain((Note("c'8"), Note("c'32")))
-        TieChain((Note("d'8"), Note("d'32")))
+        TieChain(Note("c'8"), Note("c'32"))
+        TieChain(Note("d'8"), Note("d'32"))
         Tuplet(2/3, [e'8, f'8, g'8])
-        TieChain((Note("a'8"), Note("a'32")))
-        TieChain((Note("b'8"), Note("b'32")))
-
+        TieChain(Note("a'8"), Note("a'32"))
+        TieChain(Note("b'8"), Note("b'32"))
 
     Raise tie chain error on overlapping tie chains.
 
@@ -55,7 +55,7 @@ def iterate_topmost_tie_chains_and_components_in_expr(expr):
             yield tietools.get_tie_chain(expr)
         else:
             raise TieChainError('can not have only one leaf in tie chain.')
-    elif isinstance(expr, (list, containertools.Container)):
+    elif isinstance(expr, (list, containertools.Container, selectiontools.Selection)):
         for component in expr:
             if isinstance(component, leaftools.Leaf):
                 tie_spanners = spannertools.get_spanners_attached_to_component(

@@ -29,27 +29,27 @@ def get_tie_chains_masked_by_components(components):
         >>> for tie_chain in tietools.get_tie_chains_masked_by_components(staff.leaves):
         ...     tie_chain
         ... 
-        TieChain((Note("c'4"),))
-        TieChain((Note("d'4"), Note("d'4")))
-        TieChain((Note("e'4"), Note("e'4")))
-        TieChain((Note("f'4"),))
+        TieChain(Note("c'4"),)
+        TieChain(Note("d'4"), Note("d'4"))
+        TieChain(Note("e'4"), Note("e'4"))
+        TieChain(Note("f'4"),)
 
     ::
 
         >>> for tie_chain in tietools.get_tie_chains_masked_by_components(staff[1].leaves):
         ...     tie_chain
         ... 
-        TieChain((Note("d'4"),))
-        TieChain((Note("e'4"),))
+        TieChain(Note("d'4"),)
+        TieChain(Note("e'4"),)
 
     ::
 
         >>> for tie_chain in tietools.get_tie_chains_masked_by_components(staff[1:]):
         ...     tie_chain
         ... 
-        TieChain((Note("d'4"),))
-        TieChain((Note("e'4"), Note("e'4")))
-        TieChain((Note("f'4"),))
+        TieChain(Note("d'4"),)
+        TieChain(Note("e'4"), Note("e'4"))
+        TieChain(Note("f'4"),)
 
     Return list of zero or more (possibly masked) tie chains.
     '''
