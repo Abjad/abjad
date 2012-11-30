@@ -17,6 +17,10 @@ class Articulation(DirectedMark):
         >>> f(note)
         c'4 -\staccato
 
+    ::
+
+        >>> show(note) # doctest: +SKIP
+
     Articulations implement ``__slots__``.
     '''
 

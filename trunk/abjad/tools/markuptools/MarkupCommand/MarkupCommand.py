@@ -48,6 +48,9 @@ class MarkupCommand(AbjadObject):
                         ##f
                 }
 
+    ::
+
+        >>> show(note) # doctest: +SKIP
 
     Markup commands are immutable.
     '''

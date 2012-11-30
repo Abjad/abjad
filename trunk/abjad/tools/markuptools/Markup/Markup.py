@@ -7,7 +7,9 @@ from abjad.tools.marktools.DirectedMark.DirectedMark import DirectedMark
 class Markup(DirectedMark):
     r'''Abjad model of LilyPond markup.
 
-    Initialize from string::
+    Initialize from string:
+
+    ::
 
         >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
 
@@ -21,7 +23,13 @@ class Markup(DirectedMark):
         >>> f(markup)
         \markup { \bold { "This is markup text." } }
 
-    Initialize any markup from existing markup::
+    ::
+
+        >>> show(markup) # doctest: +SKIP
+
+    Initialize any markup from existing markup:
+
+    ::
 
         >>> markup_1 = markuptools.Markup('foo', direction=Up)
         >>> markup_2 = markuptools.Markup(markup_1, direction=Down)
@@ -36,23 +44,29 @@ class Markup(DirectedMark):
         >>> f(markup_2) # doctest: +SKIP
         _ \markup { foo }
 
-    Attach markup to score components like this::
+    Attach markup to score components like this:
+
+    ::
 
         >>> note = Note("c'4")
 
     ::
 
-        >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+        >>> markup = markuptools.Markup(r'\italic { "This is also markup text." }', direction=Up)
 
     ::
 
         >>> markup(note)
-        Markup((MarkupCommand('bold', ['This is markup text.']),))(c'4)
+        Markup((MarkupCommand('italic', ['This is also markup text.']),), direction=Up)(c'4)
 
     ::
 
         >>> f(note)
-        c'4 - \markup { \bold { "This is markup text." } }
+        c'4 ^ \markup { \italic { "This is also markup text." } }
+
+    ::
+
+        >>> show(note) # doctest: +SKIP
 
     Set `direction` to ``Up``, ``Down``, ``'neutral'``, 
     ``'^'``, ``'_'``, ``'-'`` or None.

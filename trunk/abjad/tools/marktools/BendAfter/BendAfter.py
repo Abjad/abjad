@@ -16,6 +16,10 @@ class BendAfter(Mark):
         >>> f(note)
         c'4 - \bendAfter #'-4.0
 
+    ::
+
+        >>> show(note) # doctest: +SKIP
+
     BendAfter implements ``__slots__``.
     '''
 

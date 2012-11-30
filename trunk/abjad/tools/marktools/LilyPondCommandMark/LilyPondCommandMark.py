@@ -26,6 +26,10 @@ class LilyPondCommandMark(Mark):
             f'8 )
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Initialize LilyPond command marks from command name; or from command name
     with format slot; or from another LilyPond command mark; or from another LilyPond
     command mark with format slot.

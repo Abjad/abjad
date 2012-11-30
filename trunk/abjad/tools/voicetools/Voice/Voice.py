@@ -7,6 +7,14 @@ class Voice(Context):
     ::
 
         >>> voice = Voice("c'8 d'8 e'8 f'8")
+
+    ::
+
+        >>> voice
+        Voice{4}
+
+    ::
+
         >>> f(voice)
         \new Voice {
             c'8
@@ -15,7 +23,11 @@ class Voice(Context):
             f'8
         }
 
-    Return voice object.
+    ::
+
+        >>> show(voice) # doctest: +SKIP  
+
+    Return voice instance.
     '''
 
     ### CLASS ATTRIBUTES ###

@@ -28,6 +28,10 @@ class BarLine(LilyPondCommandMark):
             \bar "|."
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return bar line.
     '''
 

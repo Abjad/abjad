@@ -3,12 +3,44 @@ from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
 
 
 class FixedDurationTuplet(Tuplet):
-    '''Abjad tuplet of fixed duration and variable multiplier:
+    r'''Abjad tuplet of fixed duration and variable multiplier:
 
     ::
 
-        >>> tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
+        >>> tuplet = tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
+
+    ::
+
+        >>> tuplet
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
+
+    ::
+
+        >>> f(tuplet)
+        \times 2/3 {
+            c'8
+            d'8
+            e'8
+        }
+
+    ::
+
+        >>> show(tuplet) # doctest: +SKIP
+
+    ::
+
+        >>> tuplet.append("fs'4")
+        >>> f(tuplet)
+        \times 2/5 {
+            c'8
+            d'8
+            e'8
+            fs'4
+        }
+
+    ::
+
+        >>> show(tuplet) # doctest: +SKIP
 
     Return fixed-duration tuplet.
     '''

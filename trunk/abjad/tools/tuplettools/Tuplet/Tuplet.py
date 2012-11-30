@@ -10,13 +10,79 @@ class Tuplet(Container):
 
     ::
 
-        >>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+        >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
+
+    ::
+
+        >>> tuplet
+        Tuplet(2/3, [c'8, d'8, e'8])
+
+    ::
+
         >>> f(tuplet)
         \times 2/3 {
             c'8
             d'8
             e'8
         }
+
+    ::
+
+        >>> show(tuplet) # doctest: +SKIP
+
+    Tuplets, like any counttime container, may nest arbitrarily:
+
+    ::
+
+        >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
+        >>> tuplet.insert(1, second_tuplet)
+
+    ::
+
+        >>> f(tuplet)
+        \times 2/3 {
+            c'8
+            \times 4/7 {
+                g'4. (
+                a'16 )
+            }
+            d'8
+            e'8
+        }
+
+
+    ::
+
+        >>> show(tuplet) # doctest: +SKIP
+
+    ::
+
+        >>> third_tuplet = Tuplet((4, 5), "e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
+        >>> second_tuplet.insert(1, third_tuplet)
+
+    ::
+
+        >>> f(tuplet)
+        \times 2/3 {
+            c'8
+            \times 4/7 {
+                g'4. (
+                \times 4/5 {
+                    e''32 [
+                    ef''32
+                    d''32
+                    cs''32
+                    cqs''32 ]
+                }
+                a'16 )
+            }
+            d'8
+            e'8
+        }
+
+    ::
+
+        >>> show(tuplet) # doctest: +SKIP
 
     Return tuplet object.
     '''

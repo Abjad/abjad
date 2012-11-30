@@ -20,6 +20,10 @@ class StemTremolo(Mark):
         >>> f(note)
         c'4 :16
 
+    ::
+
+        >>> show(note) # doctest: +SKIP
+
     Stem tremolos implement ``__slots__``.
     '''
 
