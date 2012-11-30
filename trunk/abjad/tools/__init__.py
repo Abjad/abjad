@@ -47,6 +47,7 @@ from abjad.tools import rhythmtreetools
 from abjad.tools import schemetools
 from abjad.tools import scoretemplatetools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import sievetools
 from abjad.tools import skiptools

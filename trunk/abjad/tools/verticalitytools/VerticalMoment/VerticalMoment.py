@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import measuretools
 from abjad.tools import notetools
-from abjad.tools.abctools import Selection
+from abjad.tools.selectiontools import Selection
 
 
 class VerticalMoment(Selection):

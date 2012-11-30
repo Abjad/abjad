@@ -4,7 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools.abctools.Selection import Selection
+from abjad.tools.selectiontools.Selection import Selection
 
 
 class TieChain(Selection):

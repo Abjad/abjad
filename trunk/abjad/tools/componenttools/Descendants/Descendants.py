@@ -1,4 +1,4 @@
-from abjad.tools.abctools.Selection import Selection
+from abjad.tools.selectiontools.Selection import Selection
 
 
 class Descendants(Selection):

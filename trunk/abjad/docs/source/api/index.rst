@@ -1340,6 +1340,16 @@ Composition packages
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
 
+:py:mod:`selectiontools <abjad.tools.selectiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/selectiontools/Selection/Selection
+
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2028,7 +2038,6 @@ Internal packages
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
    tools/abctools/Parser/Parser
-   tools/abctools/Selection/Selection
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`
