@@ -1,3 +1,6 @@
+from abjad.tools import componenttools
+
+
 def make_basic_lilypond_file(music=None):
     r'''.. versionadded:: 2.0
 
@@ -57,6 +60,7 @@ def make_basic_lilypond_file(music=None):
 
     if music is not None:
         score_block.append(music)
-        music.lilypond_file = lilypond_file
+        if isinstance(music, componenttools.Component):
+            music.lilypond_file = lilypond_file
 
     return lilypond_file

@@ -54,7 +54,9 @@ class ScoreBlock(NonattributedBlock):
                 result.append('\t}')
             else:
                 for x in self:
-                    if hasattr(x, '_format_pieces'):
+                    if hasattr(x, '_get_format_pieces'):
+                        result.extend(['\t' + piece for piece in x._get_format_pieces()])
+                    elif hasattr(x, '_format_pieces'):
                         result.extend(['\t' + piece for piece in x._format_pieces])
                     elif isinstance(x, str):
                         result.append('\t%s' % x)
