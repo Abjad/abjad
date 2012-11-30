@@ -4,7 +4,9 @@ from abjad.tools import spannertools
 def get_beam_spanner_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
-    Get the only beam spanner attached to `component`::
+    Get the only beam spanner attached to `component`:
+
+    ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> beam = beamtools.BeamSpanner(staff.leaves)
@@ -21,12 +23,17 @@ def get_beam_spanner_attached_to_component(component):
 
     ::
 
-        >>> beamtools.get_beam_spanner_attached_to_component(staff[0])
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> spanner = beamtools.get_beam_spanner_attached_to_component(staff[0])
+        >>> spanner
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        >>> _ is beam
+        >>> spanner is beam
         True
 
     Return beam spanner.

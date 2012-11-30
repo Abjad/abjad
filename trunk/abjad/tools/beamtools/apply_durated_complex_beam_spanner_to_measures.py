@@ -26,6 +26,10 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> measures = staff[:]
         >>> beamtools.apply_durated_complex_beam_spanner_to_measures(measures)
         DuratedComplexBeamSpanner(|2/8(2)|, |2/8(2)|)
@@ -52,6 +56,10 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
                 f'8 ]
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Set beam spanner durations to preprolated measure durations.
 

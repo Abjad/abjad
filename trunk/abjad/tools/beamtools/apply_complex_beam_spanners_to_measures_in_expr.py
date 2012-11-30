@@ -26,6 +26,10 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.apply_complex_beam_spanners_to_measures_in_expr(staff)
         [ComplexBeamSpanner(|2/8(2)|), ComplexBeamSpanner(|2/8(2)|)]
 
@@ -52,6 +56,10 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
             }
         }
 
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return list of beams created.
 

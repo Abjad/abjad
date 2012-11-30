@@ -22,6 +22,10 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
 
@@ -39,6 +43,10 @@ def apply_beam_spanners_to_measures_in_expr(expr):
                 f'8 ]
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return list of beams created.
 

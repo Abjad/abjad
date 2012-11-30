@@ -30,6 +30,10 @@ def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(staff)
 
     ::
@@ -52,6 +56,10 @@ def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
                 e'8 ]
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return none.
 
