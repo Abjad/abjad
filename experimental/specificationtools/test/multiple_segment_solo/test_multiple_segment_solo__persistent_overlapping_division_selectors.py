@@ -33,7 +33,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=True)
-    middle_two_measures = red_segment.select_ratio_of_background_measures((1, 2, 1), 1)
+    middle_two_measures = red_segment.select_ratio_of_background_measures((1, 2, 1))[1]
     red_segment.set_divisions([(2, 16)], selector=middle_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
@@ -75,7 +75,7 @@ def test_multiple_segment_solo__persistent_overlapping_division_selectors_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=True)
-    middle_two_measures = red_segment.select_segment_ratio((1, 2, 1), 1)
+    middle_two_measures = red_segment.select_segment_ratio((1, 2, 1))[1]
     red_segment.set_divisions([(2, 16)], selector=middle_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')

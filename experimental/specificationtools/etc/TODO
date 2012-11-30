@@ -117,8 +117,3 @@
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.
-
-28. Maybe remove ratio part select method 'part' keywords altogether.
-    Just always return all parts of a ratio.
-    Use SegmentSpecification.select_ratio_of_background_measures((1, 1, 1))[-1]
-    instead of SegmentSpecification.select_ratio_of_background_measures((1, 1, 1), -1).

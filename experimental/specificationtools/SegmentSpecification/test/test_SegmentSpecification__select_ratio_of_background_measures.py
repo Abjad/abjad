@@ -29,7 +29,7 @@ def test_SegmentSpecification__select_ratio_of_background_measures_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    last_two_measures = red_segment.select_ratio_of_background_measures((1, 1), -1)
+    last_two_measures = red_segment.select_ratio_of_background_measures((1, 1))[-1]
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -48,7 +48,7 @@ def test_SegmentSpecification__select_ratio_of_background_measures_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    last_measure = red_segment.select_ratio_of_background_measures((1, 1), -1, is_count=False)
+    last_measure = red_segment.select_ratio_of_background_measures((1, 1), is_count=False)[-1]
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_measure)
     red_segment.set_rhythm(library.thirty_seconds)

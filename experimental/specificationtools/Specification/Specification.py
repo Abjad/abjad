@@ -73,15 +73,12 @@ class Specification(AbjadObject):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
 
-    def _return_ratio_part_selectors(self, selector, ratio, part, is_count=True):
-        if part is not None:
-            return self._wrap_selector_with_ratio_part_selector(selector, ratio, part, is_count=is_count)
-        else:
-            result = []
-            for part in range(len(ratio)):
-                result.append(self._wrap_selector_with_ratio_part_selector(
-                    selector, ratio, part, is_count=is_count))
-            return tuple(result)
+    def _return_ratio_part_selectors(self, selector, ratio, is_count=True):
+        result = []
+        for part in range(len(ratio)):
+            result.append(self._wrap_selector_with_ratio_part_selector(
+                selector, ratio, part, is_count=is_count))
+        return tuple(result)
 
     def _wrap_selector_with_ratio_part_selector(self, selector, ratio, part, is_count=True):
         if is_count:
