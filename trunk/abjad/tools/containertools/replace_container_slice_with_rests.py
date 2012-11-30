@@ -70,7 +70,7 @@ def replace_container_slice_with_rests(container, start=None, stop=None, decreas
     if elements_to_replace:
 
         # find preprolated duration of elements to replace
-        duration = componenttools.sum_preprolated_duration_of_components(elements_to_replace)
+        duration = componenttools.sum_duration_of_components(elements_to_replace, preprolated=True)
 
         # construct rests equal in preprolated duration to replace
         rests = resttools.make_rests(duration, decrease_durations_monotonically=decrease_durations_monotonically)

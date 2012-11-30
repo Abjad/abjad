@@ -4,7 +4,7 @@ import py
 py.test.skip('update me to use start_offset_in_seconds property.')
 
 
-def test_componenttools_get_component_start_offset_in_seconds_01():
+def test_Component_start_offset_in_seconds_01():
     '''Offset seconds can not calculate without excplit tempo indication.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
@@ -24,7 +24,7 @@ def test_componenttools_get_component_start_offset_in_seconds_01():
         'componenttools.get_component_stop_offset_in_seconds(t[0])')
 
 
-def test_componenttools_get_component_start_offset_in_seconds_02():
+def test_Component_start_offset_in_seconds_02():
     '''Offset seconds work with explicit tempo indication.'''
 
     t = Staff("c'8 d'8 e'8 f'8")

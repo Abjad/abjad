@@ -140,8 +140,6 @@ Composition packages
    tools/componenttools/split_component_at_offset
    tools/componenttools/split_components_at_offsets
    tools/componenttools/sum_duration_of_components
-   tools/componenttools/sum_duration_of_components_in_seconds
-   tools/componenttools/sum_preprolated_duration_of_components
    tools/componenttools/yield_components_grouped_by_duration
    tools/componenttools/yield_components_grouped_by_preprolated_duration
    tools/componenttools/yield_groups_of_mixed_klasses_in_sequence

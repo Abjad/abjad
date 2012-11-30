@@ -26,7 +26,7 @@ class Selection(AbjadObject):
     def __init__(self, music):
         if music is None:
             music = ()
-        elif isinstance(music, (tuple, list)):
+        elif isinstance(music, (tuple, list, type(self))):
             music = tuple(music)
         else:
             music = (music, )
