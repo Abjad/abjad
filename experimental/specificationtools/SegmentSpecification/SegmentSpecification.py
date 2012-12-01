@@ -462,7 +462,7 @@ class SegmentSpecification(Specification):
         request.ratio = ratio
         return request
 
-    def request_rhythm(self, voice,
+    def request_rhythm(self, voice, selector=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
 
@@ -481,7 +481,8 @@ class SegmentSpecification(Specification):
 
         Return rhythm request.        
         '''
-        selector = self.select_segment()
+        if selector is None:
+            selector = self.select_segment()
         return requesttools.MaterialRequest(
             'rhythm', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

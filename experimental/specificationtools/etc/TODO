@@ -88,30 +88,21 @@
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-25. Reinstate SegmentSpecification request method 'selector' keyword.
-    This will enable red_segment.request_rhythm('Voice 1', selector=selector).
-    Some sort of collision strategy will have to be determined in the case
-    that selector specifies time outside segment bounds.
-    Perhaps the best strategy is to be as permissible as possible and to
-    therefore allow selector to specify time completely outside segment bounds.
-    That way red_segment.request_rhythm() can functions exactly as
-    score_specification.request_rhythm() when the composer desires.
-
 26. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
-        rhythm = score_specification.request_rhythm('Voice 1', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
-        rhythm = score_specification.request_rhythm('Voice 2', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 2', selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 2'])
-        rhythm = score_specification.request_rhythm('Voice 3', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 3', selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 3'])
-        rhythm = score_specification.request_rhythm('Voice 4', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 4', selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
     ... when it might be possible to use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         selected_voices = ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-        rhythm = score_specification.request_rhythm(selected_voices, selector=selector)
+        rhythm = red_segment.request_rhythm(selected_voices, selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.

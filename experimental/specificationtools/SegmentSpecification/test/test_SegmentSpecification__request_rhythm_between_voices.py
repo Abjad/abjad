@@ -97,7 +97,7 @@ def test_SegmentSpecification__request_rhythm_between_voices_05():
     first_measure = red_segment.select_background_measures(0, 1)
     second_measure = red_segment.select_background_measures(1, 2)
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'], selector=first_measure)
-    cell = score_specification.request_rhythm('Voice 1', selector=first_measure)
+    cell = red_segment.request_rhythm('Voice 1', selector=first_measure)
     red_segment.set_rhythm(cell, contexts=['Voice 1'], selector=second_measure, rotation=Duration(-1, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 2'], selector=first_measure, rotation=Duration(-2, 32))
     red_segment.set_rhythm(cell, contexts=['Voice 2'], selector=second_measure, rotation=Duration(-3, 32))
