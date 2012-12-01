@@ -1,62 +1,57 @@
-from abjad import *
+from abjad.tools import *
 from experimental import *
-import py
 
 
-def test_SegmentSpecification__select_divisions_01():
-    '''Divisions are interpreted for the entire score duration of a voice.
-    Divisions are not interpreted segment by segment for a voice.
+def test_SegmentSpecification__select_background_measure_timespan_01():
+    '''Negative start.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    blue_segment = score_specification.append_segment(name='blue')
-    red_segment.set_time_signatures(2 * [(3, 8)])
-    red_segment.set_divisions([(4, 8)])
-    divisions_that_start_during_red = red_segment.select_divisions()
-    divisions_that_start_during_blue = blue_segment.select_divisions()
-    red_segment.set_rhythm(library.sixteenths, selector=divisions_that_start_during_red)
-    blue_segment.set_rhythm(library.eighths, selector=divisions_that_start_during_blue)
-    score = score_specification.interpret()
-
-    current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
-
-
-def test_SegmentSpecification__select_divisions_02():
-    '''Overlapping division selectors work across segment boundary.
-    '''
-
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures(2 * [(3, 8)])
-    red_segment.set_divisions([(4, 8)])
-    divisions_that_start_during_red = red_segment.select_divisions()
-    red_segment.set_rhythm(library.sixteenths, selector=divisions_that_start_during_red)
-    blue_segment = score_specification.append_segment(name='blue')
-    blue_segment.set_rhythm(library.eighths)
-    score = score_specification.interpret()
-
-    current_function_name = introspectiontools.get_current_function_name()
-    helpertools.write_test_output(score, __file__, current_function_name)
-    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
-
-
-def test_SegmentSpecification__select_divisions_03():
-    '''Negative index.
-    '''
-
-    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = specificationtools.ScoreSpecification(score_template)
-    red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures(4 * [(2, 8)])
-    red_segment.set_divisions([(3, 16)])
+    red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+    last_two_measures = red_segment.select_background_measure_timespan(start=-2)
+    red_segment.set_divisions([(2, 32)])
+    red_segment.set_divisions([(3, 32)], selector=last_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
-    antepenultimate_division = red_segment.select_divisions(-3, -2)
-    red_segment.set_rhythm(library.sixteenths, selector=antepenultimate_division)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_background_measure_timespan_02():
+    '''Negative stop.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+    first_two_measures = red_segment.select_background_measure_timespan(stop=-1)
+    red_segment.set_divisions([(2, 32)])
+    red_segment.set_divisions([(3, 32)], selector=first_two_measures)
+    red_segment.set_rhythm(library.thirty_seconds)
+    score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
+
+
+def test_SegmentSpecification__select_background_measure_timespan_03():
+    '''Negative start and stop.
+    '''
+
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    red_segment = score_specification.append_segment(name='red')
+    red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+    middle_measure = red_segment.select_background_measure_timespan(start=1, stop=-1)
+    red_segment.set_divisions([(2, 32)])
+    red_segment.set_divisions([(3, 32)], selector=middle_measure)
+    red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

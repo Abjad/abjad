@@ -50,9 +50,9 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_03():
     left, right = red_segment.select_segment_ratio((1, 1))
     red_segment.set_divisions([(3, 16)], selector=left)
     red_segment.set_divisions([(2, 16)], selector=right)
-    selector = red_segment.select_divisions(stop=2)
+    selector = red_segment.select_division_timespan(stop=2)
     red_segment.set_rhythm(library.sixteenths, selector=selector)
-    selector = red_segment.select_divisions(start=2)
+    selector = red_segment.select_division_timespan(start=2)
     red_segment.set_rhythm(library.thirty_seconds, selector=selector)
     score = score_specification.interpret()
 

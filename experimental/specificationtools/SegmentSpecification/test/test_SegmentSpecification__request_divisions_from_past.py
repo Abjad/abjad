@@ -104,8 +104,8 @@ def test_SegmentSpecification__request_divisions_from_past_05():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8)])
-    left = red_segment.select_background_measures(0, 1)
-    right = red_segment.select_background_measures(-1)
+    left = red_segment.select_background_measure_timespan(0, 1)
+    right = red_segment.select_background_measure_timespan(-1)
     red_segment.set_divisions([(2, 16)], selector=left)
     red_segment.set_divisions([(3, 16)], selector=right)
     red_segment.set_rhythm(library.sixteenths)

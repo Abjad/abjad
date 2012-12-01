@@ -112,9 +112,9 @@
     It's possible that it makes sense to preserve the term else in the (non-composer-visible)
     part(s) of the system, though.
     This will change the following method names:
-        SegmentSpecification.select_background_measures() ==>
+        SegmentSpecification.select_background_measure_timespan() ==>
         SegmentSpecification.select_background_measure_timespan();
-        SegmentSpecification.select_divisions() ==>
+        SegmentSpecification.select_division_timespan() ==>
         SegmentSpecification.select_division_timespan();
         SegmentSpecification.select_leaves() ==>
         SegmentSpecification.select_leaef_timespan();

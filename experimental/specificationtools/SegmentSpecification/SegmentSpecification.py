@@ -382,7 +382,7 @@ class SegmentSpecification(Specification):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> selector = red_segment.select_background_measures(8, 9)
+            >>> selector = red_segment.select_background_measure_timespan(8, 9)
             >>> offset = durationtools.Offset(1, 4)
 
         ::
@@ -590,10 +590,10 @@ class SegmentSpecification(Specification):
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measures(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_background_measure_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five segment background measures::
 
-            >>> selector = red_segment.select_background_measures(stop=5)
+            >>> selector = red_segment.select_background_measure_timespan(stop=5)
 
         ::
 
@@ -731,13 +731,13 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_background_measures(time_relation=time_relation, voice=voice)
+        selector = self.select_background_measure_timespan(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
-    def select_divisions(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_division_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five divisions that start during segment::
 
-            >>> selector = red_segment.select_divisions(stop=5)
+            >>> selector = red_segment.select_division_timespan(stop=5)
 
         ::
             
@@ -791,7 +791,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_divisions(time_relation=time_relation, voice=voice)
+        selector = self.select_division_timespan(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
     def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
