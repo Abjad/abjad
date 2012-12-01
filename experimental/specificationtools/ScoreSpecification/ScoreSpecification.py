@@ -444,11 +444,7 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    # TODO: Refactor as self.request_divisions(voice, selector=None).
-    #       Also add index, count, reverse, rotation, callback keywords.
-    #       Use this interface for all score specification material request methods.
     # TODO: simplify by inheriting from Specification.
-    #def request_divisions(self, voice, start_segment_identifier, segment_count=1):
     def request_divisions(self, voice, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request divisions.
@@ -474,17 +470,7 @@ class ScoreSpecification(Specification):
 
         Return material request.
         '''
-#        start_segment_name = helpertools.expr_to_segment_name(start_segment_identifier)
-#        voice_name = helpertools.expr_to_component_name(voice)
-#        expression = '{!r} + {}'.format(start_segment_name, segment_count)
-#        held_expression = helpertools.SegmentIdentifierExpression(expression)
-#        start_identifier, stop_identifier = start_segment_name, held_expression
-#        selector = selectortools.SegmentSelector(
-#            start_identifier=start_identifier, stop_identifier=stop_identifier)
-#        request = requesttools.MaterialRequest('divisions', selector, context_name=voice_name)
-#        return request
-        if selector is None:
-            selector = self.select_score()
+        selector = selector or self.select_score()
         return requesttools.MaterialRequest(
             'divisions', selector, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -525,8 +511,7 @@ class ScoreSpecification(Specification):
 
         Return rhythm request.
         '''
-        if selector is None:
-            selector = self.select_score()
+        selector = selector or self.select_score()
         return requesttools.MaterialRequest(
             'rhythm', selector, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -561,7 +546,7 @@ class ScoreSpecification(Specification):
 
         Return material request.
         '''
-        selector = self.select_score()
+        selector = selector or self.select_score()
         return requesttools.MaterialRequest(
             'time_signatures', selector, context_name=context,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

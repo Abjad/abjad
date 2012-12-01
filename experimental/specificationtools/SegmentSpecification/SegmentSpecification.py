@@ -331,8 +331,7 @@ class SegmentSpecification(Specification):
 
         Return material request.        
         '''
-        if selector is None:
-            selector = self.select_segment()
+        selector = selector or self.select_segment()
         return requesttools.MaterialRequest(
             'divisions', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -446,8 +445,7 @@ class SegmentSpecification(Specification):
 
         Return material request.        
         '''
-        if selector is None:
-            selector = self.select_segment()
+        selector = selector or self.select_segment()
         return requesttools.MaterialRequest(
             'naive_beats', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -462,8 +460,7 @@ class SegmentSpecification(Specification):
 
         Return material request.
         '''
-        if selector is None:
-            selector = self.select_segment()
+        selector = selector or self.select_segment()
         request = requesttools.MaterialRequest(
             'partitioned_time', selector, context_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -490,15 +487,14 @@ class SegmentSpecification(Specification):
 
         Return rhythm request.        
         '''
-        if selector is None:
-            selector = self.select_segment()
+        selector = selector or self.select_segment()
         return requesttools.MaterialRequest(
             'rhythm', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: replace 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
-    def request_rhythm_command(self, voice,
-        edge=None, multiplier=None, offset=None, 
+    # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
+    def request_rhythm_command(self, voice, 
+        selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm command active at offset in `voice`.
 
@@ -525,7 +521,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = self.select_segment()
+        selector = selector or self.select_segment()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
@@ -551,17 +547,16 @@ class SegmentSpecification(Specification):
 
         Return material request.
         '''
-        if selector is None:
-            selector = self.select_segment()
+        selector = selector or self.select_segment()
         return requesttools.MaterialRequest(
             'time_signatures', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: add voice=None keyword?
-    # TODO: replace 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
+    # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, 
-        edge=None, multiplier=None, offset=None, 
+        selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at offset
         in `context`.
@@ -588,7 +583,7 @@ class SegmentSpecification(Specification):
 
         Return command request.
         '''
-        selector = self.select_segment()
+        selector = selector or self.select_segment()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, offset=offset)
         return requesttools.CommandRequest(
