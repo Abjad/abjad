@@ -85,7 +85,7 @@ def test_SegmentSpecification__set_rhythm_transform_keywords_05():
     first_measure = red_segment.select_background_measures(0, 1)
     second_measure = red_segment.select_background_measures(1, 2)
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 c'8. ] }", selector=first_measure)
-    rhythm = red_segment.request_rhythm('Voice 1', selector=first_measure)
+    rhythm = red_segment.request_rhythm('Voice 1', timespan=first_measure)
     red_segment.set_rhythm(rhythm, selector=second_measure, rotation=-1)
     score = score_specification.interpret()
 

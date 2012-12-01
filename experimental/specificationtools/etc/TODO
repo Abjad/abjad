@@ -129,11 +129,20 @@
         
 27. Make all score and segment request methods inherit from Specification.
     The complete list of methods is these:
-        SegmentSpecification.request_divisions()
-        SegmentSpecification.request_naive_beats()
-        SegmentSpecification.request_partitioned_total_time()
-        SegmentSpecification.request_rhythm()
-        SegmentSpecification.request_time_signatures()
+        Specification.request_divisions()
+        Specification.request_naive_beats()
+        Specification.request_partitioned_total_time()
+        Specification.request_rhythm()
+        Specification.request_time_signatures()
 
 28. Figure out where the read-only selector 'klass' property should be hoisted up to.
     Grep and find out where it occurs. Then eliminate code duplication.
+
+29. Maybe extend all segment and score specification request methods with time_relation=None keyword.
+    The methods in question are:
+        Specification.request_divisions()
+        Specification.request_naive_beats()
+        Specification.request_partitioned_total_time()
+        Specification.request_rhythm()
+        Specification.request_time_signatures()
+    This would make request methods parallel select methods.

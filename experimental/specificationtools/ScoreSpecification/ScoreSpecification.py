@@ -445,7 +445,7 @@ class ScoreSpecification(Specification):
         return interpreter(self)
 
     # TODO: simplify by inheriting from Specification.
-    def request_divisions(self, voice, selector=None,
+    def request_divisions(self, voice, timespan=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request divisions.
 
@@ -470,9 +470,9 @@ class ScoreSpecification(Specification):
 
         Return material request.
         '''
-        selector = selector or self.select_score()
+        timespan = timespan or self.select_score()
         return requesttools.MaterialRequest(
-            'divisions', selector, context_name=voice,
+            'divisions', timespan, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: remove 'selector', 'edge', 'multiplier' keywords and replace with (symbolic) 'offset' keyword.
@@ -500,9 +500,9 @@ class ScoreSpecification(Specification):
     # TODO: implement something like self.request_partitioned_time() by inheriting from Specification.
 
     # TODO: simplify by inheriting from Specification.
-    def request_rhythm(self, voice, selector=None,
+    def request_rhythm(self, voice, timespan=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request `voice` rhythm during `selector`.
+        r'''Request `voice` rhythm during `timespan`.
 
         Apply any of `index`, `count`, `reverse`, `rotation`, `callback`
         that are not none.
@@ -511,9 +511,9 @@ class ScoreSpecification(Specification):
 
         Return rhythm request.
         '''
-        selector = selector or self.select_score()
+        timespan = timespan or self.select_score()
         return requesttools.MaterialRequest(
-            'rhythm', selector, context_name=voice,
+            'rhythm', timespan, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
@@ -535,9 +535,9 @@ class ScoreSpecification(Specification):
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: simplify by inheriting from Specification.
-    def request_time_signatures(self, context, selector=None,
+    def request_time_signatures(self, context, timespan=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request time signatures that govern `context` and that are selected by `selector`.
+        r'''Request time signatures that govern `context` and that are selected by `timespan`.
 
         Apply any of `index`, `count`, `reverse`, `rotation`, `callback`
         that are not none.
@@ -546,9 +546,9 @@ class ScoreSpecification(Specification):
 
         Return material request.
         '''
-        selector = selector or self.select_score()
+        timespan = timespan or self.select_score()
         return requesttools.MaterialRequest(
-            'time_signatures', selector, context_name=context,
+            'time_signatures', timespan, context_name=context,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: make voice=None by default?
