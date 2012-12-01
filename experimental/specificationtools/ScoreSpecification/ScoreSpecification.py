@@ -478,7 +478,7 @@ class ScoreSpecification(Specification):
     # TODO: remove 'selector', 'edge', 'multiplier' keywords and replace with (symbolic) 'offset' keyword.
     # TODO: simplify by inheriting from Specification.
     def request_division_command(self, voice,
-        selector=None, edge=None, multiplier=None, offset=None,
+        selector=None, edge=None, multiplier=None, addendum=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request division command active at offset in `voice`.
 
@@ -489,7 +489,7 @@ class ScoreSpecification(Specification):
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'divisions', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -518,7 +518,7 @@ class ScoreSpecification(Specification):
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     def request_rhythm_command(self, voice,
-        selector=None, edge=None, multiplier=None, offset=None,
+        selector=None, edge=None, multiplier=None, addendum=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request rhythm command active at offset in `voice`.
 
@@ -529,7 +529,7 @@ class ScoreSpecification(Specification):
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythms', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -555,7 +555,7 @@ class ScoreSpecification(Specification):
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword?
     # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, voice,
-        selector=None, edge=None, multiplier=None, offset=None,
+        selector=None, edge=None, multiplier=None, addendum=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request time signature command active at offset in `voice`.
 
@@ -566,7 +566,7 @@ class ScoreSpecification(Specification):
         context_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.select_score()
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

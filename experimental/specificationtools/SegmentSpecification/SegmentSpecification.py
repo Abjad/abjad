@@ -339,7 +339,7 @@ class SegmentSpecification(Specification):
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
     # TODO: simplify by inheriting from Specification. 
     def request_division_command(self, voice, selector=None, 
-        edge=None, multiplier=None, offset=None, 
+        edge=None, multiplier=None, addendum=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment division command active at offset
         in `voice`.
@@ -387,7 +387,7 @@ class SegmentSpecification(Specification):
 
         ::
 
-            >>> request = red_segment.request_division_command('Voice 1', selector=selector, offset=offset)
+            >>> request = red_segment.request_division_command('Voice 1', selector=selector, addendum=offset)
 
         ::
 
@@ -407,7 +407,7 @@ class SegmentSpecification(Specification):
                         start_identifier=8,
                         stop_identifier=9
                         ),
-                    offset=durationtools.Offset(1, 4)
+                    addendum=durationtools.Offset(1, 4)
                     ),
                 context_name='Voice 1'
                 )
@@ -420,7 +420,7 @@ class SegmentSpecification(Specification):
         '''
         selector = selector or self.select_segment()
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'divisions', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -494,7 +494,7 @@ class SegmentSpecification(Specification):
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
     def request_rhythm_command(self, voice, 
-        selector=None, edge=None, multiplier=None, offset=None, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm command active at offset in `voice`.
 
@@ -523,7 +523,7 @@ class SegmentSpecification(Specification):
         '''
         selector = selector or self.select_segment()
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythm', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -556,7 +556,7 @@ class SegmentSpecification(Specification):
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, 
-        selector=None, edge=None, multiplier=None, offset=None, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at offset
         in `context`.
@@ -585,7 +585,7 @@ class SegmentSpecification(Specification):
         '''
         selector = selector or self.select_segment()
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, offset=offset)
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

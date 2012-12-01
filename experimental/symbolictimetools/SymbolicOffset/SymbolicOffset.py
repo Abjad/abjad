@@ -19,8 +19,8 @@ class SymbolicOffset(AbjadObject):
 
     Symbolic offset ``1/8`` of a whole note into score::
 
-        >>> symbolictimetools.SymbolicOffset(offset=durationtools.Offset(1, 8))
-        SymbolicOffset(offset=Offset(1, 8))
+        >>> symbolictimetools.SymbolicOffset(addendum=durationtools.Offset(1, 8))
+        SymbolicOffset(addendum=Offset(1, 8))
 
     Symbolic offset one third of the way into score::
 
@@ -29,8 +29,8 @@ class SymbolicOffset(AbjadObject):
 
     Symbolic offset ``1/8`` of a whole note after the first third of score::
 
-        >>> symbolictimetools.SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3), offset=durationtools.Offset(1, 8))
-        SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3), offset=Offset(1, 8))
+        >>> symbolictimetools.SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
+        SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
 
     Symbolic offset indicating the left edge of segment ``'red'``::
 
@@ -49,8 +49,8 @@ class SymbolicOffset(AbjadObject):
     Symbolic offset indicating ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(selector=segment_selector, offset=durationtools.Offset(1, 8))
-        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), offset=Offset(1, 8))
+        >>> symbolictimetools.SymbolicOffset(selector=segment_selector, addendum=durationtools.Offset(1, 8))
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), addendum=Offset(1, 8))
 
     Symbolic offset indicating one third of the way into segment ``'red'``::
 
@@ -61,8 +61,8 @@ class SymbolicOffset(AbjadObject):
     first third of segment ``'red'``::
     
         >>> symbolictimetools.SymbolicOffset(selector=segment_selector, edge=Right, 
-        ... multiplier=Multiplier(1, 3), offset=durationtools.Offset(1, 8))
-        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Multiplier(1, 3), offset=Offset(1, 8))
+        ... multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
+        SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
 
     Symbolic offset indicating the left edge of note ``10`` that starts
     during segment ``'red'``::
@@ -151,7 +151,7 @@ class SymbolicOffset(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, selector=None, edge=None, multiplier=None, offset=None): 
+    def __init__(self, selector=None, edge=None, multiplier=None, addendum=None): 
         from experimental import selectortools 
         from experimental import symbolictimetools
  
@@ -160,19 +160,18 @@ class SymbolicOffset(AbjadObject):
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
             multiplier = durationtools.Multiplier(multiplier)
-        if offset is not None:
-            offset = durationtools.Offset(offset)
-        assert isinstance(offset, (durationtools.Offset, type(None))), repr(offset)
+        if addendum is not None:
+            addendum = durationtools.Offset(addendum)
         self._selector = selector
         self._multiplier = multiplier
         self._edge = edge
-        self._offset = offset
+        self._addendum = addendum
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         '''True when `other` is a offset with score object indicator,
-        edge and offset all indicating those of `self`.
+        edge and addendum all indicating those of `self`.
         
         Otherwise false.
 
@@ -186,7 +185,7 @@ class SymbolicOffset(AbjadObject):
             return False
         elif not self.multiplier == other.multiplier:
             return False
-        elif not self.offset == other.offset:
+        elif not self.addendum == other.addendum:
             return False
         else:
             return True
@@ -194,17 +193,17 @@ class SymbolicOffset(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def offset(self):
-        '''Symbolic offset offset specified by user.
+    def addendum(self):
+        '''Symbolic offset addendum specified by user.
 
-            >>> offset.offset is None
+            >>> offset.addendum is None
             True
 
         Value of none is interpreted as ``Offset(0)``.
             
         Return offset or none.
         '''
-        return self._offset
+        return self._addendum
 
     @property
     def edge(self):
@@ -288,6 +287,6 @@ class SymbolicOffset(AbjadObject):
             score_offset = stop_offset
         multiplier = self.multiplier or durationtools.Multiplier(1)
         score_offset = multiplier * score_offset
-        offset = self.offset or durationtools.Offset(0)
+        offset = self.addendum or durationtools.Offset(0)
         score_offset = score_offset + offset
         return score_offset

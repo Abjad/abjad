@@ -135,8 +135,5 @@
         SegmentSpecification.request_rhythm()
         SegmentSpecification.request_time_signatures()
 
-28. Rename SymbolicOffset.offset something else.
-    Or better yet remove in some sort of structural way.
-
-29. Figure out where the read-only selector 'klass' property should be hoisted up to.
+28. Figure out where the read-only selector 'klass' property should be hoisted up to.
     Grep and find out where it occurs. Then eliminate code duplication.
