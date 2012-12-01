@@ -88,7 +88,7 @@
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-26. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+25. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
@@ -106,3 +106,27 @@
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.
+
+26. Maybe change selector=None keyword to timespan=None keyword in specification request methods?
+    The term 'selector' is moderately unclear in the composer interface.
+    It's possible that it makes sense to preserve the term else in the (non-composer-visible)
+    part(s) of the system, though.
+    This will change the following method names:
+        SegmentSpecification.select_background_measures() ==>
+        SegmentSpecification.select_background_measure_timespan();
+        SegmentSpecification.select_divisions() ==>
+        SegmentSpecification.select_division_timespan();
+        SegmentSpecification.select_leaves() ==>
+        SegmentSpecification.select_leaef_timespan();
+        SegmentSpecification.select_notes_and_chords() ==>
+        SegmentSpecification.select_note_and_chord_timespan();
+        SegmentSpecification.select_segment() ==>
+        SegmentSpecification.select_segment_timespan();
+        
+27. Make all score and segment request methods inherit from Specification.
+    The complete list of methods is these:
+        SegmentSpecification.request_divisions()
+        SegmentSpecification.request_naive_beats()
+        SegmentSpecification.request_partitioned_total_time()
+        SegmentSpecification.request_rhythm()
+        SegmentSpecification.request_time_signatures()

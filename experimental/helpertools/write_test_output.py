@@ -8,7 +8,8 @@ def write_test_output(score, full_file_name, test_function_name,
     '''
     from experimental import helpertools
     if go: cache_ly = cache_pdf = render_pdf = True
-    if not any([cache_ly, cache_pdf, render_pdf]): return
+    if not any([cache_ly, cache_pdf, render_pdf]):
+        return
     lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
     helpertools.configure_multiple_voice_rhythmic_staves(lilypond_file)
     title_lines = test_function_name_to_title_lines(test_function_name)

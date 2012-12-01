@@ -311,6 +311,7 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
+    # TODO: simplify by inheriting from Specification.
     def request_divisions(self, voice,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
@@ -335,7 +336,8 @@ class SegmentSpecification(Specification):
             'divisions', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: remove 'selector' and always work relative to timespan of segment
+    # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
+    # TODO: simplify by inheriting from Specification. 
     def request_division_command(self, voice,
         selector=None, edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
@@ -423,7 +425,8 @@ class SegmentSpecification(Specification):
             'divisions', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_naive_beats(self, context=None,
+    # TODO: simplify by inheriting from Specification. 
+    def request_naive_beats(self, context=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment naive beats in `voice`::
 
@@ -442,12 +445,15 @@ class SegmentSpecification(Specification):
 
         Return material request.        
         '''
-        selector = self.select_segment()
+        if selector is None:
+            selector = self.select_segment()
         return requesttools.MaterialRequest(
             'naive_beats', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_partitioned_total_time(self, ratio,
+    # TODO: could this be done with a TimeRatioPartSelector instead?
+    # TODO: simplify by inheriting from Specification. 
+    def request_partitioned_time(self, ratio, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment partitioned total time according to `ratio`.
 
@@ -455,13 +461,15 @@ class SegmentSpecification(Specification):
 
         Return material request.
         '''
-        selector = self.select_segment()
+        if selector is None:
+            selector = self.select_segment()
         request = requesttools.MaterialRequest(
-            'partitioned_total_time', selector, context_name=None, 
+            'partitioned_time', selector, context_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         request.ratio = ratio
         return request
 
+    # TODO: simplify by inheriting from Specification. 
     def request_rhythm(self, voice, selector=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
@@ -487,6 +495,7 @@ class SegmentSpecification(Specification):
             'rhythm', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
+    # TODO: replace 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
     def request_rhythm_command(self, voice,
         edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
@@ -522,7 +531,8 @@ class SegmentSpecification(Specification):
             'rhythm', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, context=None, 
+    # TODO: simplify by inheriting from Specification.
+    def request_time_signatures(self, context=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signatures in `context`::
 
@@ -540,11 +550,15 @@ class SegmentSpecification(Specification):
 
         Return material request.
         '''
-        selector = self.select_segment()
+        if selector is None:
+            selector = self.select_segment()
         return requesttools.MaterialRequest(
             'time_signatures', selector, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
+    # TODO: add voice=None keyword?
+    # TODO: replace 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
+    # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, 
         edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
@@ -571,7 +585,7 @@ class SegmentSpecification(Specification):
 
         Postprocess command with any of `index`, `count`, `reverse`, `callback`.
 
-        Return command request.        
+        Return command request.
         '''
         selector = self.select_segment()
         symbolic_offset = symbolictimetools.SymbolicOffset(
@@ -579,38 +593,6 @@ class SegmentSpecification(Specification):
         return requesttools.CommandRequest(
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
-#    def select_background_measure(self, n, time_relation=None, voice=None):
-#        '''Select segment background measure ``0``::
-#
-#            >>> selector = red_segment.select_background_measure(0)
-#
-#        ::
-#
-#            >>> z(selector)
-#            selectortools.BackgroundMeasureSelector(
-#                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-#                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-#                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-#                        selector=selectortools.SingleSegmentSelector(
-#                            identifier='red'
-#                            )
-#                        )
-#                    ),
-#                start_identifier=0,
-#                stop_identifier=1
-#                )
-#
-#        Return selector.
-#        '''
-#        assert isinstance(n, int), repr(n)
-#        if time_relation is None:
-#            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-#        time_relation = time_relation(self.timespan)
-#        start, stop = n, n + 1
-#        selector = selectortools.BackgroundMeasureSelector(
-#            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
-#        return selector
 
     def select_background_measures(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five segment background measures::
@@ -964,6 +946,7 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SingleSegmentSelector(identifier=self.segment_name)
 
+    # TODO: merge into self.select_segment() and then remove.
     def select_segment_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
 
