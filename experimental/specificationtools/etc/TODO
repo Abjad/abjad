@@ -122,6 +122,10 @@
         SegmentSpecification.select_note_and_chord_timespan();
         SegmentSpecification.select_segment() ==>
         SegmentSpecification.select_segment_timespan();
+    Maybe this also means renaming selector classes to symbolic timespan classes?
+        So BackgroundMeasureSelector ==> BackgroundMeasureSymbolicTimespan
+    Maybe this also means migrating all selectortools classes into symbolictimetools?
+    This would remove the selectortools package altogether.
         
 27. Make all score and segment request methods inherit from Specification.
     The complete list of methods is these:
@@ -130,3 +134,5 @@
         SegmentSpecification.request_partitioned_total_time()
         SegmentSpecification.request_rhythm()
         SegmentSpecification.request_time_signatures()
+
+28. Rename SymbolicOffset.offset something else.

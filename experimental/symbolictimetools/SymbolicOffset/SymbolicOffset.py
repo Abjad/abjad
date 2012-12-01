@@ -1,4 +1,3 @@
-import fractions
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -159,7 +158,8 @@ class SymbolicOffset(AbjadObject):
         assert isinstance(selector, (selectortools.Selector, 
             symbolictimetools.SingleSourceSymbolicTimespan, type(None))), repr(selector)
         assert edge in (Left, Right, None), repr(edge)
-        assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
+        if multiplier is not None:
+            multiplier = durationtools.Multiplier(multiplier)
         if offset is not None:
             offset = durationtools.Offset(offset)
         assert isinstance(offset, (durationtools.Offset, type(None))), repr(offset)
@@ -226,9 +226,9 @@ class SymbolicOffset(AbjadObject):
             >>> offset.multiplier is None
             True
 
-        Value of none is interpreted as ``Fraction(1)``.
+        Value of none is interpreted as ``Multiplier(1)``.
 
-        Return fraction or none.
+        Return multiplier or none.
         '''
         return self._multiplier
 
@@ -286,7 +286,7 @@ class SymbolicOffset(AbjadObject):
             score_offset = start_offset
         else:
             score_offset = stop_offset
-        multiplier = self.multiplier or fractions.Fraction(1)
+        multiplier = self.multiplier or durationtools.Multiplier(1)
         score_offset = multiplier * score_offset
         offset = self.offset or durationtools.Offset(0)
         score_offset = score_offset + offset

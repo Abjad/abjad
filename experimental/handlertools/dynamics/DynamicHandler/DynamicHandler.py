@@ -1,6 +1,5 @@
 import abc
 from abjad.tools import durationtools
-from fractions import Fraction
 from experimental.handlertools.Handler import Handler
 
 
@@ -33,4 +32,5 @@ class DynamicHandler(Handler):
                 self._minimum_prolated_duration = minimum_prolated_duration
             else:
                 duration = durationtools.duration_token_to_duration_pair(minimum_prolated_duration)
-                self._minimum_prolated_duration = Fraction(*duration)
+                #self._minimum_prolated_duration = durationtools.Duration(*duration)
+                self._minimum_prolated_duration = durationtools.Duration(duration)

@@ -73,7 +73,7 @@ class SegmentSelector(SliceSelector, TimeRelationSelector):
 
     Select all segments starting during the first third of the score:
 
-        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
+        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
@@ -87,7 +87,7 @@ class SegmentSelector(SliceSelector, TimeRelationSelector):
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                    multiplier=Fraction(1, 3)
+                    multiplier=durationtools.Multiplier(1, 3)
                     )
                 )
             )
@@ -103,7 +103,7 @@ class SegmentSelector(SliceSelector, TimeRelationSelector):
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                    multiplier=Fraction(1, 3)
+                    multiplier=durationtools.Multiplier(1, 3)
                     )
                 ),
             start_identifier=-2

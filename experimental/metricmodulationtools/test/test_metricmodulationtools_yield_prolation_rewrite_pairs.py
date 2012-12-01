@@ -4,44 +4,44 @@ from experimental import *
 
 def test_metricmodulationtools_yield_prolation_rewrite_pairs_01():
 
-    pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Fraction(1, 8))
+    pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(1, 8))
 
     assert pairs == (
-        (Fraction(1, 1), Fraction(1, 8)),
-        (Fraction(2, 3), Fraction(3, 16)),
-        (Fraction(4, 3), Fraction(3, 32)),
-        (Fraction(4, 7), Fraction(7, 32)),
-        (Fraction(8, 7), Fraction(7, 64)),
-        (Fraction(8, 15), Fraction(15, 64)),
-        (Fraction(16, 15), Fraction(15, 128)),
-        (Fraction(16, 31), Fraction(31, 128)))
+        (Multiplier(1, 1), Duration(1, 8)),
+        (Multiplier(2, 3), Duration(3, 16)),
+        (Multiplier(4, 3), Duration(3, 32)),
+        (Multiplier(4, 7), Duration(7, 32)),
+        (Multiplier(8, 7), Duration(7, 64)),
+        (Multiplier(8, 15), Duration(15, 64)),
+        (Multiplier(16, 15), Duration(15, 128)),
+        (Multiplier(16, 31), Duration(31, 128)))
 
 
 def test_metricmodulationtools_yield_prolation_rewrite_pairs_02():
 
 
-    pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Fraction(1, 12))
+    pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(1, 12))
 
     assert pairs == (
-        (Fraction(2, 3), Fraction(1, 8)),
-        (Fraction(4, 3), Fraction(1, 16)),
-        (Fraction(8, 9), Fraction(3, 32)),
-        (Fraction(16, 9), Fraction(3, 64)),
-        (Fraction(16, 21), Fraction(7, 64)),
-        (Fraction(32, 21), Fraction(7, 128)),
-        (Fraction(32, 45), Fraction(15, 128)))
+        (Multiplier(2, 3), Duration(1, 8)),
+        (Multiplier(4, 3), Duration(1, 16)),
+        (Multiplier(8, 9), Duration(3, 32)),
+        (Multiplier(16, 9), Duration(3, 64)),
+        (Multiplier(16, 21), Duration(7, 64)),
+        (Multiplier(32, 21), Duration(7, 128)),
+        (Multiplier(32, 45), Duration(15, 128)))
 
 
 def test_metricmodulationtools_yield_prolation_rewrite_pairs_03():
 
 
-    pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Fraction(5, 48))
+    pairs = metricmodulationtools.yield_prolation_rewrite_pairs(Duration(5, 48))
 
     assert pairs == (
-        (Fraction(5, 6), Fraction(1, 8)),
-        (Fraction(5, 3), Fraction(1, 16)),
-        (Fraction(5, 9), Fraction(3, 16)),
-        (Fraction(10, 9), Fraction(3, 32)),
-        (Fraction(20, 21), Fraction(7, 64)),
-        (Fraction(40, 21), Fraction(7, 128)),
-        (Fraction(8, 9), Fraction(15, 128)))
+        (Multiplier(5, 6), Duration(1, 8)),
+        (Multiplier(5, 3), Duration(1, 16)),
+        (Multiplier(5, 9), Duration(3, 16)),
+        (Multiplier(10, 9), Duration(3, 32)),
+        (Multiplier(20, 21), Duration(7, 64)),
+        (Multiplier(40, 21), Duration(7, 128)),
+        (Multiplier(8, 9), Duration(15, 128)))

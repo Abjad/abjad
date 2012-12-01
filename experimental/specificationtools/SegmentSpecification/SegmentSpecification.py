@@ -363,7 +363,7 @@ class SegmentSpecification(Specification):
 
         Example 2. Request division command active halfway through segment::
 
-            >>> request = red_segment.request_division_command('Voice 1', multiplier=Fraction(1, 2))
+            >>> request = red_segment.request_division_command('Voice 1', multiplier=Multiplier(1, 2))
 
         ::
 
@@ -374,7 +374,7 @@ class SegmentSpecification(Specification):
                     selector=selectortools.SingleSegmentSelector(
                         identifier='red'
                         ),
-                    multiplier=Fraction(1, 2)
+                    multiplier=durationtools.Multiplier(1, 2)
                     ),
                 context_name='Voice 1' 
                 )

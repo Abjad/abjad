@@ -17,18 +17,18 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of the first third of the score::
 
-        >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
-        SingleSourceSymbolicTimespan(multiplier=Fraction(1, 3))
+        >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
+        SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
 
     SymbolicTimespan of the first ``1/8`` of a whole note in score::
 
-        >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=durationtools.Offset(1, 8))
-        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), right_offset=Offset(1, 8))
+        >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), right_offset=Offset(1, 8))
+        SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), right_offset=Offset(1, 8))
 
     SymbolicTimespan of the last ``1/8`` of a whole note in score::
 
-        >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=durationtools.Offset(-1, 8))
-        SingleSourceSymbolicTimespan(multiplier=Fraction(0, 1), left_offset=Offset(-1, 8))
+        >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), left_offset=Offset(-1, 8))
+        SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), left_offset=Offset(-1, 8))
 
     SymbolicTimespan of the segment with name ``'red'``::
 
@@ -144,7 +144,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     def multiplier(self):
         '''Multiplier of symbolic timespan specified by user.
 
-        Return fraction or none.
+        Return multiplier or none.
         '''
         return self._multiplier
     

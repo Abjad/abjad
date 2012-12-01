@@ -1,11 +1,11 @@
 import copy
-import fractions
+from abjad import *
 from experimental import *
 
 
 def test_SingleSourceSymbolicTimespan___copy___01():
 
-    timespan_1 = symbolictimetools.SingleSourceSymbolicTimespan(multiplier=fractions.Fraction(1, 3))
+    timespan_1 = symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
     timespan_2 = copy.deepcopy(timespan_1)
 
     assert isinstance(timespan_1, symbolictimetools.SingleSourceSymbolicTimespan)
