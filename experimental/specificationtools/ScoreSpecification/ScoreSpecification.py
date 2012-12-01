@@ -459,7 +459,7 @@ class ScoreSpecification(Specification):
             >>> z(request)
             requesttools.MaterialRequest(
                 'divisions',
-                selectortools.ScoreSelector(),
+                selectortools.ScoreTimespanSelector(),
                 context_name='Voice 1'
                 )
 
@@ -714,9 +714,9 @@ class ScoreSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.ScoreSelector()
+            selectortools.ScoreTimespanSelector()
 
         Return selector.
         '''
-        return selectortools.ScoreSelector()
+        return selectortools.ScoreTimespanSelector()
 

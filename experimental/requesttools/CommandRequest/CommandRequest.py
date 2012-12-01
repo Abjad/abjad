@@ -28,11 +28,11 @@ class CommandRequest(Request):
         requesttools.CommandRequest(
             'divisions',
             symbolictimetools.SymbolicOffset(
-                selector=selectortools.BackgroundMeasureSelector(
+                selector=selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -105,11 +105,11 @@ class CommandRequest(Request):
 
             >>> z(command_request.symbolic_offset)
             symbolictimetools.SymbolicOffset(
-                selector=selectortools.BackgroundMeasureSelector(
+                selector=selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )

@@ -207,7 +207,7 @@ class SegmentSpecification(Specification):
         '''Segment specification selector::
 
             >>> red_segment.selector
-            SingleSegmentSelector(identifier='red')
+            SingleSegmentTimespanSelector(identifier='red')
 
         Return single-segment selector.
         '''
@@ -251,7 +251,7 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic start offset::
 
             >>> red_segment.symbolic_start_offset
-            SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Left)
+            SymbolicOffset(selector=SingleSegmentTimespanSelector(identifier='red'), edge=Left)
 
         Return symbolic offset.
         '''
@@ -263,7 +263,7 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic stop offset::
 
             >>> red_segment.symbolic_stop_offset
-            SymbolicOffset(selector=SingleSegmentSelector(identifier='red'), edge=Right)
+            SymbolicOffset(selector=SingleSegmentTimespanSelector(identifier='red'), edge=Right)
 
         Return symbolic offset.
         '''
@@ -302,7 +302,7 @@ class SegmentSpecification(Specification):
         '''Segment specification timespan.
 
             >>> red_segment.timespan
-            SingleSourceSymbolicTimespan(selector=SingleSegmentSelector(identifier='red'))
+            SingleSourceSymbolicTimespan(selector=SingleSegmentTimespanSelector(identifier='red'))
 
         Return timespan.
         '''
@@ -323,7 +323,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.MaterialRequest(
                 'divisions',
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 context_name='Voice 1'
@@ -354,7 +354,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentTimespanSelector(
                         identifier='red'
                         )
                     ),
@@ -371,7 +371,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentTimespanSelector(
                         identifier='red'
                         ),
                     multiplier=durationtools.Multiplier(1, 2)
@@ -395,11 +395,11 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.BackgroundMeasureSelector(
+                    selector=selectortools.BackgroundMeasureTimespanSelector(
                         time_relation=timerelationtools.TimespanTimespanTimeRelation(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
                             timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                                selector=selectortools.SingleSegmentSelector(
+                                selector=selectortools.SingleSegmentTimespanSelector(
                                     identifier='red'
                                     )
                                 )
@@ -437,7 +437,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.MaterialRequest(
                 'naive_beats',
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 context_name='Voice 1'
@@ -450,7 +450,7 @@ class SegmentSpecification(Specification):
             'naive_beats', timespan, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: could this be done with a TimeRatioPartSelector instead?
+    # TODO: could this be done with a TimeRatioPartTimespanSelector instead?
     # TODO: simplify by inheriting from Specification. 
     def request_partitioned_time(self, ratio, timespan=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
@@ -479,7 +479,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.MaterialRequest(
                 'rhythm',
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 context_name='Voice 1'
@@ -508,7 +508,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'rhythm',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentTimespanSelector(
                         identifier='red'
                         )
                     ),
@@ -540,7 +540,7 @@ class SegmentSpecification(Specification):
             >>> z(request)
             requesttools.MaterialRequest(
                 'time_signatures',
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     )
                 )
@@ -571,7 +571,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'time_signatures',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentSelector(
+                    selector=selectortools.SingleSegmentTimespanSelector(
                         identifier='red'
                         )
                     )
@@ -598,11 +598,11 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.BackgroundMeasureSelector(
+            selectortools.BackgroundMeasureTimespanSelector(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
+                        selector=selectortools.SingleSegmentTimespanSelector(
                             identifier='red'
                             )
                         )
@@ -617,7 +617,7 @@ class SegmentSpecification(Specification):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.BackgroundMeasureSelector(
+        selector = selectortools.BackgroundMeasureTimespanSelector(
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
     
@@ -632,12 +632,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.BackgroundMeasureSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -655,12 +655,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.TimeRatioPartSelector(
-                selectortools.BackgroundMeasureSelector(
+            selectortools.TimeRatioPartTimespanSelector(
+                selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -677,12 +677,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selectors[0])
-            selectortools.CountRatioPartSelector(
-                selectortools.BackgroundMeasureSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -695,12 +695,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selectors[1])
-            selectortools.CountRatioPartSelector(
-                selectortools.BackgroundMeasureSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -713,12 +713,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selectors[2])
-            selectortools.CountRatioPartSelector(
-                selectortools.BackgroundMeasureSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.BackgroundMeasureTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -742,11 +742,11 @@ class SegmentSpecification(Specification):
         ::
             
             >>> z(selector)
-            selectortools.DivisionSelector(
+            selectortools.DivisionTimespanSelector(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
+                        selector=selectortools.SingleSegmentTimespanSelector(
                             identifier='red'
                             )
                         )
@@ -761,7 +761,7 @@ class SegmentSpecification(Specification):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.DivisionSelector(
+        selector = selectortools.DivisionTimespanSelector(
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
@@ -773,12 +773,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.DivisionSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.DivisionTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -802,11 +802,11 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentTimespanSelector(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
+                        selector=selectortools.SingleSegmentTimespanSelector(
                             identifier='red'
                             )
                         )
@@ -822,7 +822,7 @@ class SegmentSpecification(Specification):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.CounttimeComponentSelector(
+        selector = selectortools.CounttimeComponentTimespanSelector(
             time_relation=time_relation, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
@@ -835,12 +835,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.CounttimeComponentSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.CounttimeComponentTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -865,11 +865,11 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentTimespanSelector(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
+                        selector=selectortools.SingleSegmentTimespanSelector(
                             identifier='red'
                             )
                         )
@@ -888,7 +888,7 @@ class SegmentSpecification(Specification):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.CounttimeComponentSelector(
+        selector = selectortools.CounttimeComponentTimespanSelector(
             time_relation=time_relation, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
@@ -901,12 +901,12 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartSelector(
-                selectortools.CounttimeComponentSelector(
+            selectortools.CountRatioPartTimespanSelector(
+                selectortools.CounttimeComponentTimespanSelector(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentSelector(
+                            selector=selectortools.SingleSegmentTimespanSelector(
                                 identifier='red'
                                 )
                             )
@@ -934,13 +934,13 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.SingleSegmentSelector(
+            selectortools.SingleSegmentTimespanSelector(
                 identifier='red'
                 )
 
         Return selector.
         '''
-        return selectortools.SingleSegmentSelector(identifier=self.segment_name)
+        return selectortools.SingleSegmentTimespanSelector(identifier=self.segment_name)
 
     # TODO: merge into self.select_segment() and then remove.
     def select_segment_offsets(self, start=None, stop=None):
@@ -951,8 +951,8 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.OffsetSelector(
-                selectortools.SingleSegmentSelector(
+            selectortools.OffsetTimespanSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 start_offset=durationtools.Offset(1, 8),
@@ -964,7 +964,7 @@ class SegmentSpecification(Specification):
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
         selector = self.select_segment()
-        return selectortools.OffsetSelector(selector, start_offset=start, stop_offset=stop)
+        return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
 
     def select_segment_ratio(self, ratio):
         r'''Select the first third of segment::
@@ -974,8 +974,8 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.TimeRatioPartSelector(
-                selectortools.SingleSegmentSelector(
+            selectortools.TimeRatioPartTimespanSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 mathtools.Ratio(1, 1, 1),
@@ -1042,7 +1042,7 @@ class SegmentSpecification(Specification):
                 requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 context_names=['Voice 1', 'Voice 3'],
@@ -1171,7 +1171,7 @@ class SegmentSpecification(Specification):
                         tie_split_notes=False
                         )
                     ),
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 context_names=['Grouped Rhythmic Staves Score'],
@@ -1214,7 +1214,7 @@ class SegmentSpecification(Specification):
                 requesttools.AbsoluteRequest(
                     [(3, 8), (4, 8)]
                     ),
-                selectortools.SingleSegmentSelector(
+                selectortools.SingleSegmentTimespanSelector(
                     identifier='red'
                     ),
                 context_names=['Grouped Rhythmic Staves Score'],

@@ -28,7 +28,7 @@ class MultipleContextSetting(Setting):
             requesttools.AbsoluteRequest(
                 [(4, 8), (3, 8)]
                 ),
-            selectortools.SingleSegmentSelector(
+            selectortools.SingleSegmentTimespanSelector(
                 identifier='red'
                 ),
             context_names=['Grouped Rhythmic Staves Score'],

@@ -41,8 +41,8 @@
 
 11. Finish timerelationtools class docstrings before 2.11 build.
 
-12. Change DivisionSelector.get_selected_objects() to return a Selection object.
-    Change CounttimeComponentSelector.get_selected_objects() to return a Selection object.
+12. Change DivisionTimespanSelector.get_selected_objects() to return a Selection object.
+    Change CounttimeComponentTimespanSelector.get_selected_objects() to return a Selection object.
     Change other selectors' get_selected_objects() to return a Selection object.
 
 13. Author tests to show selecting leaves that don't yet exist.
@@ -123,7 +123,7 @@
         SegmentSpecification.select_segment() ==>
         SegmentSpecification.select_segment_timespan();
     Maybe this also means renaming selector classes to symbolic timespan classes?
-        So BackgroundMeasureSelector ==> BackgroundMeasureSymbolicTimespan
+        So BackgroundMeasureTimespanSelector ==> BackgroundMeasureSymbolicTimespan
     Maybe this also means migrating all selectortools classes into symbolictimetools?
     This would remove the selectortools package altogether.
         

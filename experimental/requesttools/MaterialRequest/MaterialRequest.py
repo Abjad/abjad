@@ -27,7 +27,7 @@ class MaterialRequest(Request):
         >>> z(request)
         requesttools.MaterialRequest(
             'time_signatures',
-            selectortools.SingleSegmentSelector(
+            selectortools.SingleSegmentTimespanSelector(
                 identifier='red'
                 )
             )
@@ -40,7 +40,7 @@ class MaterialRequest(Request):
     def __init__(self, attribute, selector, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str)
-        assert isinstance(selector, selectortools.Selector)
+        assert isinstance(selector, selectortools.TimespanSelector)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

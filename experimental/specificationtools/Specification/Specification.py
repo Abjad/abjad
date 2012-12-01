@@ -82,9 +82,9 @@ class Specification(AbjadObject):
 
     def _wrap_selector_with_ratio_part_selector(self, selector, ratio, part, is_count=True):
         if is_count:
-            return selectortools.CountRatioPartSelector(selector, ratio, part)
+            return selectortools.CountRatioPartTimespanSelector(selector, ratio, part)
         else:
-            return selectortools.TimeRatioPartSelector(selector, ratio, part)
+            return selectortools.TimeRatioPartTimespanSelector(selector, ratio, part)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

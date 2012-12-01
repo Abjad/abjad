@@ -184,25 +184,25 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/RatioPartSelector/RatioPartSelector
-   experimental/selectortools/Selector/Selector
-   experimental/selectortools/SliceSelector/SliceSelector
-   experimental/selectortools/TimeRelationSelector/TimeRelationSelector
+   experimental/selectortools/RatioPartTimespanSelector/RatioPartTimespanSelector
+   experimental/selectortools/SliceTimespanSelector/SliceTimespanSelector
+   experimental/selectortools/TimeRelationTimespanSelector/TimeRelationTimespanSelector
+   experimental/selectortools/TimespanSelector/TimespanSelector
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
-   experimental/selectortools/CountRatioPartSelector/CountRatioPartSelector
-   experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
-   experimental/selectortools/DivisionSelector/DivisionSelector
-   experimental/selectortools/OffsetSelector/OffsetSelector
-   experimental/selectortools/ScoreSelector/ScoreSelector
-   experimental/selectortools/SegmentSelector/SegmentSelector
-   experimental/selectortools/SingleSegmentSelector/SingleSegmentSelector
-   experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector
+   experimental/selectortools/BackgroundMeasureTimespanSelector/BackgroundMeasureTimespanSelector
+   experimental/selectortools/CountRatioPartTimespanSelector/CountRatioPartTimespanSelector
+   experimental/selectortools/CounttimeComponentTimespanSelector/CounttimeComponentTimespanSelector
+   experimental/selectortools/DivisionTimespanSelector/DivisionTimespanSelector
+   experimental/selectortools/OffsetTimespanSelector/OffsetTimespanSelector
+   experimental/selectortools/ScoreTimespanSelector/ScoreTimespanSelector
+   experimental/selectortools/SegmentTimespanSelector/SegmentTimespanSelector
+   experimental/selectortools/SingleSegmentTimespanSelector/SingleSegmentTimespanSelector
+   experimental/selectortools/TimeRatioPartTimespanSelector/TimeRatioPartTimespanSelector
 
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

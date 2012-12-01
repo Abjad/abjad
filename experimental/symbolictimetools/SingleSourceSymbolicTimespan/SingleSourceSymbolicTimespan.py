@@ -32,17 +32,17 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of the segment with name ``'red'``::
 
-        >>> segment_selector = selectortools.SingleSegmentSelector(identifier='red')
+        >>> segment_selector = selectortools.SingleSegmentTimespanSelector(identifier='red')
 
     ::
 
         >>> symbolictimetools.SingleSourceSymbolicTimespan(selector=segment_selector)
-        SingleSourceSymbolicTimespan(selector=SingleSegmentSelector(identifier='red'))
+        SingleSourceSymbolicTimespan(selector=SingleSegmentTimespanSelector(identifier='red'))
 
     SymbolicTimespan of the first measure that starts during segment ``'red'``::
 
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureSelector(time_relation=time_relation, stop_identifier=1)
+        >>> measure_selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation, stop_identifier=1)
 
     ::
 
@@ -52,11 +52,11 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
         >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
-            selector=selectortools.BackgroundMeasureSelector(
+            selector=selectortools.BackgroundMeasureTimespanSelector(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
+                        selector=selectortools.SingleSegmentTimespanSelector(
                             identifier='red'
                             )
                         )
@@ -67,7 +67,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     SymbolicTimespan of division ``0`` starting during segment ``'red'``::
 
-        >>> division_selector = selectortools.DivisionSelector(time_relation=time_relation, stop_identifier=1)
+        >>> division_selector = selectortools.DivisionTimespanSelector(time_relation=time_relation, stop_identifier=1)
 
     ::
 
@@ -77,11 +77,11 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
        >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
-            selector=selectortools.DivisionSelector(
+            selector=selectortools.DivisionTimespanSelector(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentSelector(
+                        selector=selectortools.SingleSegmentTimespanSelector(
                             identifier='red'
                             )
                         )
@@ -94,12 +94,12 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segment_slice_selector = selectortools.SegmentSelector(start_identifier='red', stop_identifier=stop)
+        >>> segment_slice_selector = selectortools.SegmentTimespanSelector(start_identifier='red', stop_identifier=stop)
 
     ::
 
         >>> symbolictimetools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
-        SingleSourceSymbolicTimespan(selector=SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
+        SingleSourceSymbolicTimespan(selector=SegmentTimespanSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.
     '''
@@ -108,7 +108,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     def __init__(self, selector=None, multiplier=None, left_offset=None, right_offset=None):
         from experimental import selectortools
-        assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
+        assert isinstance(selector, (selectortools.TimespanSelector, type(None))), repr(selector)
         SymbolicTimespan.__init__(self)
         self._selector = selector
         self._multiplier = multiplier
@@ -158,7 +158,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     @property
     def selector(self):
-        '''Selector of symbolic timespan specified by user.
+        '''TimespanSelector of symbolic timespan specified by user.
 
         Return selector or none.
         '''
