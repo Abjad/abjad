@@ -184,7 +184,7 @@ class ScoreSpecification(Specification):
 
         Only available after time signature interpretation completes.
 
-        Return pair.
+        Return offset pair.
         '''
         return self.start_offset, self.stop_offset
 
@@ -448,43 +448,46 @@ class ScoreSpecification(Specification):
     #       Also add index, count, reverse, rotation, callback keywords.
     #       Use this interface for all score specification material request methods.
     # TODO: simplify by inheriting from Specification.
-    def request_divisions(self, voice, start_segment_identifier, segment_count=1):
+    #def request_divisions(self, voice, start_segment_identifier, segment_count=1):
+    def request_divisions(self, voice, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request divisions.
 
-        Example 1. When `voice` is a string, request `voice` divisions starting 
-        in `start_segment_identifier` for a total of `segment_count` segments::
+        Example 1. When `voice` is a string, request `voice` divisions
+        starting in score::
 
-            >>> request = score_specification.request_divisions('Voice 1', 'red', segment_count=3)
+            >>> request = score_specification.request_divisions('Voice 1')
 
         ::
 
             >>> z(request)
             requesttools.MaterialRequest(
                 'divisions',
-                selectortools.SegmentSelector(
-                    start_identifier='red',
-                    stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                    ),
+                selectortools.ScoreSelector(),
                 context_name='Voice 1'
                 )
 
-        Example 2. When `voice` is a list of strings, request divisions starting 
-        in `start_segment_identifier` for a total of `segment_count` segments
-        for all of the different voices listed in `voice`.
+        Example 2. When `voice` is a list of strings, request divisions 
+        starting in score for all voices listed in `voice`.
 
         .. note:: implement and add example.
 
         Return material request.
         '''
-        start_segment_name = helpertools.expr_to_segment_name(start_segment_identifier)
-        voice_name = helpertools.expr_to_component_name(voice)
-        expression = '{!r} + {}'.format(start_segment_name, segment_count)
-        held_expression = helpertools.SegmentIdentifierExpression(expression)
-        start_identifier, stop_identifier = start_segment_name, held_expression
-        selector = selectortools.SegmentSelector(
-            start_identifier=start_identifier, stop_identifier=stop_identifier)
-        request = requesttools.MaterialRequest('divisions', selector, context_name=voice_name)
-        return request
+#        start_segment_name = helpertools.expr_to_segment_name(start_segment_identifier)
+#        voice_name = helpertools.expr_to_component_name(voice)
+#        expression = '{!r} + {}'.format(start_segment_name, segment_count)
+#        held_expression = helpertools.SegmentIdentifierExpression(expression)
+#        start_identifier, stop_identifier = start_segment_name, held_expression
+#        selector = selectortools.SegmentSelector(
+#            start_identifier=start_identifier, stop_identifier=stop_identifier)
+#        request = requesttools.MaterialRequest('divisions', selector, context_name=voice_name)
+#        return request
+        if selector is None:
+            selector = self.select_score()
+        return requesttools.MaterialRequest(
+            'divisions', selector, context_name=voice,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: remove 'selector', 'edge', 'multiplier' keywords and replace with (symbolic) 'offset' keyword.
     # TODO: simplify by inheriting from Specification.
@@ -582,6 +585,20 @@ class ScoreSpecification(Specification):
         return requesttools.CommandRequest(
             'time_signatures', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def score_offset_to_segment_identifier(self, score_offset):
+        r'''Change `score_offset` to segment_identifier.
+
+        This is the same as finding the name of the segment
+        in which `score_offset` falls.
+        '''
+        segment_start_offset, segment_stop_offset = durationtools.Offset(0), None
+        for segment in self.segment_specifications:
+            segment_stop_offset = segment_start_offset + segment.duration
+            if segment_start_offset <= score_offset < segment_stop_offset:
+                return segment.segment_name
+            segment_start_offset = segment_stop_offset
+        raise Exception('score offset {!r} is beyond score duration.'.format(score_offset))
 
     def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
         raise NotImplementedError('implement this at some point.')
@@ -704,16 +721,17 @@ class ScoreSpecification(Specification):
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
 
-    def score_offset_to_segment_identifier(self, score_offset):
-        r'''Change `score_offset` to segment_identifier.
+    def select_score(self):
+        '''Select score::
 
-        This is the same as finding the name of the segment
-        in which `score_offset` falls.
+            >>> selector = score_specification.select_score()
+
+        ::
+
+            >>> z(selector)
+            selectortools.ScoreSelector()
+
+        Return selector.
         '''
-        segment_start_offset, segment_stop_offset = durationtools.Offset(0), None
-        for segment in self.segment_specifications:
-            segment_stop_offset = segment_start_offset + segment.duration
-            if segment_start_offset <= score_offset < segment_stop_offset:
-                return segment.segment_name
-            segment_start_offset = segment_stop_offset
-        raise Exception('score offset {!r} is beyond score duration.'.format(score_offset))
+        return selectortools.ScoreSelector()
+

@@ -312,7 +312,7 @@ class SegmentSpecification(Specification):
     ### PUBLIC METHODS ###
 
     # TODO: simplify by inheriting from Specification.
-    def request_divisions(self, voice,
+    def request_divisions(self, voice, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
 
@@ -331,15 +331,16 @@ class SegmentSpecification(Specification):
 
         Return material request.        
         '''
-        selector = self.select_segment()
+        if selector is None:
+            selector = self.select_segment()
         return requesttools.MaterialRequest(
             'divisions', selector, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
     # TODO: simplify by inheriting from Specification. 
-    def request_division_command(self, voice,
-        selector=None, edge=None, multiplier=None, offset=None, 
+    def request_division_command(self, voice, selector=None, 
+        edge=None, multiplier=None, offset=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment division command active at offset
         in `voice`.

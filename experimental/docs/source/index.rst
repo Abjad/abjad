@@ -199,6 +199,7 @@ Unstable packages (load manually)
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
    experimental/selectortools/OffsetSelector/OffsetSelector
+   experimental/selectortools/ScoreSelector/ScoreSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SingleSegmentSelector/SingleSegmentSelector
    experimental/selectortools/TimeRatioPartSelector/TimeRatioPartSelector

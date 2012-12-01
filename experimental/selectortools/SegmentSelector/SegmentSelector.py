@@ -109,7 +109,7 @@ class SegmentSelector(SliceSelector, TimeRelationSelector):
             start_identifier=-2
             )
 
-    All segment slice selector properties are read-only.
+    All segment selector properties are read-only.
     '''
 
     ### INITIALIZER ###

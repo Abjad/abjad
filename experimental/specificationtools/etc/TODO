@@ -136,3 +136,13 @@
         SegmentSpecification.request_time_signatures()
 
 28. Rename SymbolicOffset.offset something else.
+    Or better yet remove in some sort of structural way.
+
+29. Globally replace all unqualified 
+        importtools.import_structured_package(__path__[0], globals(), 'experimental')
+    ... with qualified ...
+        importtools.import_structured_package(__path__[0], globals(), package_root_name='experimental')
+    ... to avoid problems when moving things between experimental and mainline.
+
+30. Figure out where the read-only selector 'klass' property should be hoisted up to.
+    Grep and find out where it occurs. Then eliminate code duplication.
