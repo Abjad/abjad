@@ -144,3 +144,6 @@
     will in future take both a 'timespan' keyword and a 'time_relation' keyword;
     and it should be all (and only) the request() and set() methods that take
     both a 'timespan' keyword and a 'time_relation' keyword.
+    This should also mean that the selectortools package truly could be eliminated.
+    Why? Because each class in selectortools would represent a pure symbolic timespan.
+    All such classes should then migrate into symoblictimetools.
