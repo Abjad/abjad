@@ -62,7 +62,7 @@ class SegmentSpecification(Specification):
         persist=True, truncate=None):
         request = requesttools.expr_to_request(source)
         context_names = self._context_token_to_context_names(contexts)
-        selector = selector or self.select_segment()
+        selector = selector or self.select_segment_timespan()
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
@@ -211,7 +211,7 @@ class SegmentSpecification(Specification):
 
         Return single-segment selector.
         '''
-        return self.select_segment()
+        return self.select_segment_timespan()
 
     @property
     def single_context_settings(self):
@@ -255,7 +255,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        selector = self.select_segment()
+        selector = self.select_segment_timespan()
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Left)
 
     @property
@@ -267,7 +267,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        selector = self.select_segment()
+        selector = self.select_segment_timespan()
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Right)
 
     @property
@@ -306,7 +306,7 @@ class SegmentSpecification(Specification):
 
         Return timespan.
         '''
-        selector = self.select_segment()
+        selector = self.select_segment_timespan()
         return symbolictimetools.SingleSourceSymbolicTimespan(selector=selector)
 
     ### PUBLIC METHODS ###
@@ -331,7 +331,7 @@ class SegmentSpecification(Specification):
 
         Return material request.        
         '''
-        timespan = timespan or self.select_segment()
+        timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
             'divisions', timespan, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -418,7 +418,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = selector or self.select_segment()
+        selector = selector or self.select_segment_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -445,7 +445,7 @@ class SegmentSpecification(Specification):
 
         Return material request.        
         '''
-        timespan = timespan or self.select_segment()
+        timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
             'naive_beats', timespan, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -460,7 +460,7 @@ class SegmentSpecification(Specification):
 
         Return material request.
         '''
-        timespan = timespan or self.select_segment()
+        timespan = timespan or self.select_segment_timespan()
         request = requesttools.MaterialRequest(
             'partitioned_time', timespan, context_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -487,7 +487,7 @@ class SegmentSpecification(Specification):
 
         Return rhythm request.        
         '''
-        timespan = timespan or self.select_segment()
+        timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
             'rhythm', timespan, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -521,7 +521,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = selector or self.select_segment()
+        selector = selector or self.select_segment_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -547,7 +547,7 @@ class SegmentSpecification(Specification):
 
         Return material request.
         '''
-        timespan = timespan or self.select_segment()
+        timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
             'time_signatures', timespan, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -583,7 +583,7 @@ class SegmentSpecification(Specification):
 
         Return command request.
         '''
-        selector = selector or self.select_segment()
+        selector = selector or self.select_segment_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -794,10 +794,10 @@ class SegmentSpecification(Specification):
         selector = self.select_division_timespan(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
-    def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
-            >>> selector = red_segment.select_leaves(stop=40)
+            >>> selector = red_segment.select_leaf_timespan(stop=40)
 
         ::
 
@@ -854,13 +854,13 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_leaves(time_relation=time_relation, voice=voice)
+        selector = self.select_leaf_timespan(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
-    def select_notes_and_chords(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_note_and_chord_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment notes and chords::
 
-            >>> selector = red_segment.select_notes_and_chords(stop=40)
+            >>> selector = red_segment.select_note_and_chord_timespan(stop=40)
 
         ::
 
@@ -923,13 +923,13 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_notes_and_chords(time_relation=time_relation, voice=voice)
+        selector = self.select_note_and_chord_timespan(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
-    def select_segment(self):
+    def select_segment_timespan(self):
         '''Select segment::
 
-            >>> selector = red_segment.select_segment()
+            >>> selector = red_segment.select_segment_timespan()
 
         ::
 
@@ -942,7 +942,7 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SingleSegmentTimespanSelector(identifier=self.segment_name)
 
-    # TODO: merge into self.select_segment() and then remove.
+    # TODO: merge into self.select_segment_timespan() and then remove.
     def select_segment_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
 
@@ -963,7 +963,7 @@ class SegmentSpecification(Specification):
         '''
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        selector = self.select_segment()
+        selector = self.select_segment_timespan()
         return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
 
     def select_segment_ratio(self, ratio):
@@ -985,7 +985,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_segment()
+        selector = self.select_segment_timespan()
         return self._return_ratio_part_selectors(selector, ratio, is_count=False)
 
     def set_aggregate(self, source, contexts=None, selector=None,

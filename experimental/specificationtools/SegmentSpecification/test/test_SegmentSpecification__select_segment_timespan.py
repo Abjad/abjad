@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSpecification__select_segment_01():
+def test_SegmentSpecification__select_segment_timespan_01():
     '''Trivial test to ensure selection of entire segment works.
 
     This is default behavior for the case where selector is left unspecified.
@@ -12,7 +12,7 @@ def test_SegmentSpecification__select_segment_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    selector = red_segment.select_segment()
+    selector = red_segment.select_segment_timespan()
     red_segment.set_divisions([(3, 16)], selector=selector)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()

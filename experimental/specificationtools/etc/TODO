@@ -111,17 +111,6 @@
     The term 'selector' is moderately unclear in the composer interface.
     It's possible that it makes sense to preserve the term else in the (non-composer-visible)
     part(s) of the system, though.
-    This will change the following method names:
-        SegmentSpecification.select_background_measure_timespan() ==>
-        SegmentSpecification.select_background_measure_timespan();
-        SegmentSpecification.select_division_timespan() ==>
-        SegmentSpecification.select_division_timespan();
-        SegmentSpecification.select_leaves() ==>
-        SegmentSpecification.select_leaef_timespan();
-        SegmentSpecification.select_notes_and_chords() ==>
-        SegmentSpecification.select_note_and_chord_timespan();
-        SegmentSpecification.select_segment() ==>
-        SegmentSpecification.select_segment_timespan();
     Maybe this also means renaming selector classes to symbolic timespan classes?
         So BackgroundMeasureTimespanSelector ==> BackgroundMeasureSymbolicTimespan
     Maybe this also means migrating all selectortools classes into symbolictimetools?
@@ -146,3 +135,12 @@
         Specification.request_rhythm()
         Specification.request_time_signatures()
     This would make request methods parallel select methods.
+
+30. Maybe the above action items point to removing the concept of the selector from the system.
+    A selector is a (timespan, time_relation) pair.
+    Maybe it's better to pass timespans and time_relations around independently.
+    That will mean that every select method (without exception) will return a pure timespan.
+    This will also mean that every method that currently takes a 'selector' keyword
+    will in future take both a 'timespan' keyword and a 'time_relation' keyword;
+    and it should be all (and only) the request() and set() methods that take
+    both a 'timespan' keyword and a 'time_relation' keyword.

@@ -470,7 +470,7 @@ class ScoreSpecification(Specification):
 
         Return material request.
         '''
-        timespan = timespan or self.select_score()
+        timespan = timespan or self.select_score_timespan()
         return requesttools.MaterialRequest(
             'divisions', timespan, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -487,7 +487,7 @@ class ScoreSpecification(Specification):
         Return command request.
         '''
         context_name = helpertools.expr_to_component_name(voice)
-        selector = selector or self.select_score()
+        selector = selector or self.select_score_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -511,7 +511,7 @@ class ScoreSpecification(Specification):
 
         Return rhythm request.
         '''
-        timespan = timespan or self.select_score()
+        timespan = timespan or self.select_score_timespan()
         return requesttools.MaterialRequest(
             'rhythm', timespan, context_name=voice,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -527,7 +527,7 @@ class ScoreSpecification(Specification):
         Return command request.
         '''
         context_name = helpertools.expr_to_component_name(voice)
-        selector = selector or self.select_score()
+        selector = selector or self.select_score_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -546,7 +546,7 @@ class ScoreSpecification(Specification):
 
         Return material request.
         '''
-        timespan = timespan or self.select_score()
+        timespan = timespan or self.select_score_timespan()
         return requesttools.MaterialRequest(
             'time_signatures', timespan, context_name=context,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -564,7 +564,7 @@ class ScoreSpecification(Specification):
         Return command request.
         '''
         context_name = helpertools.expr_to_component_name(voice)
-        selector = selector or self.select_score()
+        selector = selector or self.select_score_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -706,10 +706,10 @@ class ScoreSpecification(Specification):
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
 
-    def select_score(self):
+    def select_score_timespan(self):
         '''Select score::
 
-            >>> selector = score_specification.select_score()
+            >>> selector = score_specification.select_score_timespan()
 
         ::
 
