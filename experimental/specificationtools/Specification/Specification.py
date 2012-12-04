@@ -1,4 +1,5 @@
 import abc
+import numbers
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
@@ -287,6 +288,30 @@ class Specification(AbjadObject):
         selector = selectortools.BackgroundMeasureTimespanSelector(
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
+
+    # TODO: merge into self.select_timespan() and then remove
+    def select_offsets(self, start=None, stop=None):
+        r'''Select segment from ``1/8`` to ``3/8``::
+
+            >>> selector = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
+
+        ::
+
+            >>> z(selector)
+            selectortools.OffsetTimespanSelector(
+                selectortools.SingleSegmentTimespanSelector(
+                    identifier='red'
+                    ),
+                start_offset=durationtools.Offset(1, 8),
+                stop_offset=durationtools.Offset(3, 8)
+                )
+
+        Return selector.
+        '''
+        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
+        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
+        selector = self.select_timespan()
+        return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
 
     def select_ratio_of_background_measures(self, ratio, is_count=True, time_relation=None, voice=None):
         r'''Select ratio of background measures.

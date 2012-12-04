@@ -490,31 +490,6 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SingleSegmentTimespanSelector(identifier=self.segment_name)
 
-    # TODO: merge into self.select_timespan() and then remove.
-    # TODO: change name to self.select_timespan_offsets() and allow ScoreSpecification to have same-named method
-    def select_offsets(self, start=None, stop=None):
-        r'''Select segment from ``1/8`` to ``3/8``::
-
-            >>> selector = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
-
-        ::
-
-            >>> z(selector)
-            selectortools.OffsetTimespanSelector(
-                selectortools.SingleSegmentTimespanSelector(
-                    identifier='red'
-                    ),
-                start_offset=durationtools.Offset(1, 8),
-                stop_offset=durationtools.Offset(3, 8)
-                )
-
-        Return selector.
-        '''
-        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
-        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        selector = self.select_timespan()
-        return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
-
     def select_segment_ratio(self, ratio):
         r'''Select the first third of segment::
 
