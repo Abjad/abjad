@@ -86,3 +86,11 @@ def test_sequencetools_partition_sequence_by_counts_09():
     assert parts[1].lilypond_format == Container("d'8 e'8").lilypond_format
     assert parts[1][0] is not container[1]
     assert parts[1][1] is not container[2]
+
+
+def test_sequencetools_partition_sequence_by_counts_10():
+    '''Partition list of arbitrary objects instead of just integers.
+    '''
+    
+    parts = sequencetools.partition_sequence_by_counts('this is text', [1, 3], cyclic=True, overhang=True)
+    assert parts == ['t', 'his', ' ', 'is ', 't', 'ext']

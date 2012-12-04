@@ -57,8 +57,6 @@ def partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=False,
     '''
     from abjad.tools import sequencetools
 
-    assert sequencetools.all_are_nonnegative_integers(counts)
-
     result = []
 
     if cyclic:
