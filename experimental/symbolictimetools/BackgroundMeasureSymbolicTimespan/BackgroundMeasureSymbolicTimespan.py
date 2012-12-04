@@ -4,7 +4,7 @@ from experimental.selectortools.TimeRelationTimespanSelector import TimeRelation
 from experimental.selectortools.SliceTimespanSelector import SliceTimespanSelector
 
 
-class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimespanSelector):
+class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimespanSelector):
     r'''.. versionadded:: 1.0
 
     Select all measures in score::
@@ -13,23 +13,23 @@ class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimes
 
     ::
 
-        >>> selectortools.BackgroundMeasureTimespanSelector()
-        BackgroundMeasureTimespanSelector()
+        >>> symbolictimetools.BackgroundMeasureSymbolicTimespan()
+        BackgroundMeasureSymbolicTimespan()
 
     Select measures from ``3`` forward::
 
-        >>> selectortools.BackgroundMeasureTimespanSelector(start_identifier=3)
-        BackgroundMeasureTimespanSelector(start_identifier=3)
+        >>> symbolictimetools.BackgroundMeasureSymbolicTimespan(start_identifier=3)
+        BackgroundMeasureSymbolicTimespan(start_identifier=3)
 
     Select measures up to but not including ``6``::
 
-        >>> selectortools.BackgroundMeasureTimespanSelector(stop_identifier=6)
-        BackgroundMeasureTimespanSelector(stop_identifier=6)
+        >>> symbolictimetools.BackgroundMeasureSymbolicTimespan(stop_identifier=6)
+        BackgroundMeasureSymbolicTimespan(stop_identifier=6)
 
     Select measures from ``3`` up to but not including ``6``::
 
-        >>> selectortools.BackgroundMeasureTimespanSelector(start_identifier=3, stop_identifier=6)
-        BackgroundMeasureTimespanSelector(start_identifier=3, stop_identifier=6)
+        >>> symbolictimetools.BackgroundMeasureSymbolicTimespan(start_identifier=3, stop_identifier=6)
+        BackgroundMeasureSymbolicTimespan(start_identifier=3, stop_identifier=6)
 
     Select all measures starting during segment ``'red'``::
 
@@ -38,12 +38,12 @@ class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimes
 
     ::
 
-        >>> selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation)
+        >>> selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundMeasureTimespanSelector(
+        symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SingleSegmentTimespanSelector(
@@ -54,12 +54,12 @@ class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimes
 
     Select the last two measures during segment ``'red'``::
 
-        >>> selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation, start_identifier=-2)
+        >>> selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, start_identifier=-2)
 
     ::
     
         >>> z(selector)
-        selectortools.BackgroundMeasureTimespanSelector(
+        symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SingleSegmentTimespanSelector(
@@ -77,12 +77,12 @@ class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimes
 
     ::
     
-        >>> selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation)
+        >>> selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundMeasureTimespanSelector(
+        symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SegmentTimespanSelector(
@@ -94,12 +94,12 @@ class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimes
 
     Select the last two measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation, start_identifier=-2)
+        >>> selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, start_identifier=-2)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundMeasureTimespanSelector(
+        symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=selectortools.SegmentTimespanSelector(

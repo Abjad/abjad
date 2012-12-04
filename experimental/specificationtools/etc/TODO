@@ -115,7 +115,7 @@
     This will simplify the X9 composer interface.
 
 25. Maybe rename selector classes to symbolic timespan classes?
-        So BackgroundMeasureTimespanSelector ==> BackgroundMeasureSymbolicTimespan
+        So BackgroundMeasureSymbolicTimespan ==> BackgroundMeasureSymbolicTimespan
     Maybe this also means migrating all selectortools classes into symbolictimetools?
     This would remove the selectortools package altogether.
         

@@ -13,14 +13,14 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
         >>> segment_selector = selectortools.SingleSegmentTimespanSelector(identifier='red')
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation, start_identifier=-1)
+        >>> measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, start_identifier=-1)
         >>> start_offset = symbolictimetools.SymbolicOffset(selector=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SingleSegmentTimespanSelector(identifier='blue')
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation, stop_identifier=1)
+        >>> measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, stop_identifier=1)
         >>> stop_offset = symbolictimetools.SymbolicOffset(selector=measure_selector, edge=Right)
         
     ::
@@ -33,7 +33,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> z(timespan)
         symbolictimetools.MixedSourceSymbolicTimespan(
             start_offset=symbolictimetools.SymbolicOffset(
-                selector=selectortools.BackgroundMeasureTimespanSelector(
+                selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -46,7 +46,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     )
                 ),
             stop_offset=symbolictimetools.SymbolicOffset(
-                selector=selectortools.BackgroundMeasureTimespanSelector(
+                selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(

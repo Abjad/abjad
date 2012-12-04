@@ -16,7 +16,7 @@ class CountRatioPartTimespanSelector(RatioPartTimespanSelector):
 
         >>> segment_selector = selectortools.SingleSegmentTimespanSelector(identifier='red')
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> background_measure_selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation)
+        >>> background_measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation)
 
     ::
 
@@ -27,7 +27,7 @@ class CountRatioPartTimespanSelector(RatioPartTimespanSelector):
 
         >>> z(count_ratio_part_selector)
         selectortools.CountRatioPartTimespanSelector(
-            selectortools.BackgroundMeasureTimespanSelector(
+            symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(

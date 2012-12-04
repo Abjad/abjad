@@ -42,7 +42,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     SymbolicTimespan of the first measure that starts during segment ``'red'``::
 
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureTimespanSelector(time_relation=time_relation, stop_identifier=1)
+        >>> measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, stop_identifier=1)
 
     ::
 
@@ -52,7 +52,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
         >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
-            selector=selectortools.BackgroundMeasureTimespanSelector(
+            selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(

@@ -194,7 +194,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/BackgroundMeasureTimespanSelector/BackgroundMeasureTimespanSelector
    experimental/selectortools/CountRatioPartTimespanSelector/CountRatioPartTimespanSelector
    experimental/selectortools/CounttimeComponentTimespanSelector/CounttimeComponentTimespanSelector
    experimental/selectortools/DivisionTimespanSelector/DivisionTimespanSelector
@@ -277,6 +276,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/symbolictimetools/BackgroundMeasureSymbolicTimespan/BackgroundMeasureSymbolicTimespan
    experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
    experimental/symbolictimetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
    experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
