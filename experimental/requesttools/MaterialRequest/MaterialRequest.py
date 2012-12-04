@@ -38,7 +38,7 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, selector, time_relation=None, context_name=None, 
+    def __init__(self, attribute, selector, start_segment_name=None, time_relation=None, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
@@ -51,6 +51,7 @@ class MaterialRequest(Request):
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._selector = selector
+        self._start_segment_name = start_segment_name
         self._time_relation = time_relation
         self._context_name = context_name
 
@@ -79,6 +80,10 @@ class MaterialRequest(Request):
         '''Delegate to ``self.selector.start_segment_identifier``.
         '''
         return self.selector.start_segment_identifier
+
+    @property
+    def start_segment_name(self):
+        return self._start_segment_name
 
     @property
     def time_relation(self):

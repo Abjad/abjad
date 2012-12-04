@@ -53,13 +53,16 @@ class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name, start_segment_name=None):
         r'''Evaluate start and stop offsets of selector when applied
         to `context_name` in `score_specification`.
 
         Return offset.
         '''
-        segment_specification = score_specification.get_start_segment_specification(self)
+        if start_segment_name is None:
+            segment_specification = score_specification.get_start_segment_specification(self)
+        else:
+            segment_specification = score_specification.get_start_segment_specification(start_segment_name)
         segment_name = segment_specification.segment_name
         time_signatures = segment_specification.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)

@@ -56,7 +56,7 @@ class SingleSegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name, start_segment_name=None):
         '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.
 

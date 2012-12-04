@@ -739,7 +739,8 @@ class ConcreteInterpreter(Interpreter):
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.context_name
         source_score_offsets = rhythm_request.selector.get_offsets(
-            self.score_specification, rhythm_request.context_name)
+            self.score_specification, rhythm_request.context_name, 
+            start_segment_name=rhythm_request.start_segment_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
@@ -786,7 +787,7 @@ class ConcreteInterpreter(Interpreter):
         assert single_context_setting.start_segment_name == segment_specification.segment_name
         #self._debug(single_context_setting.selector, 'selector')
         start_offset, stop_offset = single_context_setting.selector.get_offsets(
-            self.score_specification, voice_name)
+            self.score_specification, voice_name, start_segment_name=single_context_setting.start_segment_name)
         #self._debug((start_offset, stop_offset), 'selector offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(

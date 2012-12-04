@@ -120,7 +120,7 @@ class CounttimeComponentSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymb
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, voice_name):
+    def get_offsets(self, score_specification, voice_name, start_segment_name=None):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
 

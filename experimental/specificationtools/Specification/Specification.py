@@ -221,6 +221,7 @@ class Specification(AbjadObject):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
+                start_segment_name='red',
                 context_name='Voice 1'
                 )
 
@@ -228,10 +229,9 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.select_timespan()
         #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
-        #if timespan.time_relation is not None:
-        #    time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
-            'rhythm', timespan, time_relation=time_relation, context_name=voice, 
+            'rhythm', timespan, start_segment_name=getattr(self, 'segment_name', None),
+            time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_time_signatures(self, context=None, timespan=None, time_relation=None,

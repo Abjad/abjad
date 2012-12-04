@@ -130,7 +130,7 @@ class SegmentSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespa
 
     ### PUBLIC PROPERTIES ###
 
-    def get_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name, start_segment_name=None):
         '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.
 

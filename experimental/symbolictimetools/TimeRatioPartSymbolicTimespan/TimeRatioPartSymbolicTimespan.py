@@ -51,7 +51,7 @@ class TimeRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name, start_segment_name=None):
         r'''Evaluate start and stop offsets of selector when applied
         to `context_name` in `score_specification`.
 
