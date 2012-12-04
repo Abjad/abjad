@@ -490,28 +490,6 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SingleSegmentTimespanSelector(identifier=self.segment_name)
 
-    def select_segment_ratio(self, ratio):
-        r'''Select the first third of segment::
-
-            >>> selector = red_segment.select_segment_ratio((1, 1, 1))[0]
-
-        ::
-
-            >>> z(selector)
-            selectortools.TimeRatioPartTimespanSelector(
-                selectortools.SingleSegmentTimespanSelector(
-                    identifier='red'
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        ratio = mathtools.Ratio(ratio)
-        selector = self.select_timespan()
-        return self._return_ratio_part_selectors(selector, ratio, is_count=False)
-
     def set_aggregate(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True):

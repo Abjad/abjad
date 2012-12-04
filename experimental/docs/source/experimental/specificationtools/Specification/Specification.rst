@@ -50,6 +50,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_offsets
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_background_measures
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_divisions

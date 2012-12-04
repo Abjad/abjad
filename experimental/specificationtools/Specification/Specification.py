@@ -313,6 +313,28 @@ class Specification(AbjadObject):
         selector = self.select_timespan()
         return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
 
+    def select_ratio(self, ratio):
+        r'''Select the first third of segment::
+
+            >>> selector = red_segment.select_ratio((1, 1, 1))[0]
+
+        ::
+
+            >>> z(selector)
+            selectortools.TimeRatioPartTimespanSelector(
+                selectortools.SingleSegmentTimespanSelector(
+                    identifier='red'
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                0
+                )
+
+        Return selector.
+        '''
+        ratio = mathtools.Ratio(ratio)
+        selector = self.select_timespan()
+        return self._return_ratio_part_selectors(selector, ratio, is_count=False)
+
     def select_ratio_of_background_measures(self, ratio, is_count=True, time_relation=None, voice=None):
         r'''Select ratio of background measures.
     
