@@ -289,6 +289,15 @@ class Specification(AbjadObject):
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
+    def select_background_measure_symbolic_timespan(self, start=None, stop=None, voice=None):
+        '''Return background measure symbolic timespan without time relation.
+        '''
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            start_identifier=start, stop_identifier=stop, voice_name=voice)
+        return selector
+
     # TODO: merge into self.select_timespan() and then remove
     def select_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::

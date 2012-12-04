@@ -45,6 +45,7 @@ class SingleContextSetting(Setting):
             symbolictimetools.SingleSegmentSymbolicTimespan(
                 identifier='red'
                 ),
+            start_segment_name='red',
             context_name='Voice 1',
             fresh=True,
             persist=True
@@ -60,10 +61,13 @@ class SingleContextSetting(Setting):
     ### INITIALIZER ###
 
     def __init__(self, 
-        attribute, request, selector, context_name=None, 
+        attribute, request, selector, 
+        start_segment_name=None,
+        context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=True, persist=True, truncate=None):
         Setting.__init__(self, attribute, request, selector, 
+            start_segment_name=start_segment_name,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
@@ -92,6 +96,7 @@ class SingleContextSetting(Setting):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
+                start_segment_name='red',
                 context_name='Voice 1',
                 fresh=True,
                 persist=True

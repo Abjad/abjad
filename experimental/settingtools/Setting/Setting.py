@@ -18,17 +18,20 @@ class Setting(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, attribute, request, selector, 
+        start_segment_name=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(selector, (symbolictimetools.TimespanSymbolicTimespan, type(None)))
+        assert isinstance(start_segment_name, (str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))
         self._attribute = attribute
         self._request = request
         self._selector = selector
+        self._start_segment_name = start_segment_name
         self._index = index
         self._count = count
         self._reverse = reverse
@@ -134,6 +137,14 @@ class Setting(AbjadObject):
         Return selector or none.
         '''
         return self._selector
+
+    @property
+    def start_segment_name(self):
+        '''Temporary property during migration.
+        
+        Return string.
+        '''
+        return self._start_segment_name
 
     @property
     def truncate(self):

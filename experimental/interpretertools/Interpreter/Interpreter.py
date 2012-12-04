@@ -51,6 +51,9 @@ class Interpreter(AbjadObject):
         single_context_setting = copy.deepcopy(single_context_setting)
         selector = single_context_setting.selector
         segment_specification = self.get_start_segment_specification(selector)
+        if segment_specification is None:
+            start_segment_name = single_context_setting.start_segment_name
+            segment_specification = self.get_start_segment_specification(start_segment_name)
         context_name = single_context_setting.context_name
         if context_name is None:
             context_name = segment_specification.single_context_settings_by_context.score_name

@@ -66,6 +66,7 @@ class SegmentSpecification(Specification):
             attribute, 
             request, 
             selector,
+            start_segment_name=self.segment_name,
             context_names=context_names, 
             index=index,
             count=count,
@@ -546,6 +547,7 @@ class SegmentSpecification(Specification):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
+                start_segment_name='red',
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True
                 )
@@ -675,6 +677,7 @@ class SegmentSpecification(Specification):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
+                start_segment_name='red',
                 context_names=['Grouped Rhythmic Staves Score'],
                 persist=True
                 )
@@ -718,6 +721,7 @@ class SegmentSpecification(Specification):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
+                start_segment_name='red',
                 context_names=['Grouped Rhythmic Staves Score'],
                 persist=True
                 )
