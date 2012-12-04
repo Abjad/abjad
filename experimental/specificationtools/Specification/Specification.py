@@ -158,7 +158,7 @@ class Specification(AbjadObject):
 
         Return material request.        
         '''
-        timespan = timespan or self.select_segment_timespan()
+        timespan = timespan or self.select_timespan()
         #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'divisions', timespan, time_relation=time_relation, context_name=voice, 
@@ -183,7 +183,7 @@ class Specification(AbjadObject):
 
         Return material request.        
         '''
-        timespan = timespan or self.select_segment_timespan()
+        timespan = timespan or self.select_timespan()
         #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'naive_beats', timespan, time_relation=time_relation, context_name=context, 
@@ -198,7 +198,7 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        timespan = timespan or self.select_segment_timespan()
+        timespan = timespan or self.select_timespan()
         #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         request = requesttools.MaterialRequest(
             'partitioned_time', timespan, time_relation=time_relation, context_name=None, 
@@ -225,7 +225,7 @@ class Specification(AbjadObject):
 
         Return rhythm request.        
         '''
-        timespan = timespan or self.select_segment_timespan()
+        timespan = timespan or self.select_timespan()
         #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         #if timespan.time_relation is not None:
         #    time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
@@ -251,7 +251,7 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        timespan = timespan or self.select_segment_timespan()
+        timespan = timespan or self.select_timespan()
         #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'time_signatures', timespan, time_relation=time_relation, context_name=context, 
@@ -592,3 +592,7 @@ class Specification(AbjadObject):
         ratio = mathtools.Ratio(ratio)
         selector = self.select_note_and_chord_timespan(time_relation=time_relation, voice=voice)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
+
+    @abc.abstractmethod
+    def select_timespan(self):
+        pass

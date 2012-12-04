@@ -62,7 +62,7 @@ class SegmentSpecification(Specification):
         persist=True, truncate=None):
         request = requesttools.expr_to_request(source)
         context_names = self._context_token_to_context_names(contexts)
-        selector = selector or self.select_segment_timespan()
+        selector = selector or self.select_timespan()
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
@@ -211,7 +211,7 @@ class SegmentSpecification(Specification):
 
         Return single-segment selector.
         '''
-        return self.select_segment_timespan()
+        return self.select_timespan()
 
     @property
     def single_context_settings(self):
@@ -255,7 +255,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        selector = self.select_segment_timespan()
+        selector = self.select_timespan()
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Left)
 
     @property
@@ -267,7 +267,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        selector = self.select_segment_timespan()
+        selector = self.select_timespan()
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Right)
 
     @property
@@ -306,7 +306,7 @@ class SegmentSpecification(Specification):
 
         Return timespan.
         '''
-        selector = self.select_segment_timespan()
+        selector = self.select_timespan()
         return symbolictimetools.SingleSourceSymbolicTimespan(selector=selector)
 
     ### PUBLIC METHODS ###
@@ -393,7 +393,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = selector or self.select_segment_timespan()
+        selector = selector or self.select_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -429,7 +429,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = selector or self.select_segment_timespan()
+        selector = selector or self.select_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -467,18 +467,17 @@ class SegmentSpecification(Specification):
 
         Return command request.
         '''
-        selector = selector or self.select_segment_timespan()
+        selector = selector or self.select_timespan()
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: change name to self.select_timespan() and allow ScoreSpecification to have same-named method
-    def select_segment_timespan(self):
+    def select_timespan(self):
         '''Select segment::
 
-            >>> selector = red_segment.select_segment_timespan()
+            >>> selector = red_segment.select_timespan()
 
         ::
 
@@ -491,7 +490,7 @@ class SegmentSpecification(Specification):
         '''
         return selectortools.SingleSegmentTimespanSelector(identifier=self.segment_name)
 
-    # TODO: merge into self.select_segment_timespan() and then remove.
+    # TODO: merge into self.select_timespan() and then remove.
     # TODO: change name to self.select_timespan_offsets() and allow ScoreSpecification to have same-named method
     def select_segment_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
@@ -513,7 +512,7 @@ class SegmentSpecification(Specification):
         '''
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        selector = self.select_segment_timespan()
+        selector = self.select_timespan()
         return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
 
     def select_segment_ratio(self, ratio):
@@ -535,7 +534,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_segment_timespan()
+        selector = self.select_timespan()
         return self._return_ratio_part_selectors(selector, ratio, is_count=False)
 
     def set_aggregate(self, source, contexts=None, selector=None,

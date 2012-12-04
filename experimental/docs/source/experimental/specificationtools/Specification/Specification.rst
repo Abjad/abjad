@@ -56,6 +56,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_notes_and_chords
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_timespan
+
 Special Methods
 ---------------
 
