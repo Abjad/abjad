@@ -114,11 +114,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-25. Maybe change selector=None keyword to timespan=None keyword in specification request methods?
-    The term 'selector' is moderately unclear in the composer interface.
-    It's possible that it makes sense to preserve the term else in the (non-composer-visible)
-    part(s) of the system, though.
-    Maybe this also means renaming selector classes to symbolic timespan classes?
+25. Maybe rename selector classes to symbolic timespan classes?
         So BackgroundMeasureTimespanSelector ==> BackgroundMeasureSymbolicTimespan
     Maybe this also means migrating all selectortools classes into symbolictimetools?
     This would remove the selectortools package altogether.
@@ -155,3 +151,6 @@
     So an incremental way to approach item immediately above is to work this item first.
     What will that mean?
     It will mean changing MaterialRequest to feature independent timespan and time_relation properties.
+
+29. Why are specification select() methods implemented almost entirely on SegmentSpecification?
+    Shouldn't they implement on Specification instead?
