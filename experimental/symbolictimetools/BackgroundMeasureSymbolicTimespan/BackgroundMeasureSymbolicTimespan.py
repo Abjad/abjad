@@ -1,10 +1,10 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
-from experimental.selectortools.TimeRelationTimespanSelector import TimeRelationTimespanSelector
-from experimental.selectortools.SliceTimespanSelector import SliceTimespanSelector
+from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
 
 
-class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimespanSelector):
+class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Select all measures in score::
@@ -33,7 +33,7 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
 
     Select all measures starting during segment ``'red'``::
 
-        >>> timespan = selectortools.SingleSegmentTimespanSelector(identifier='red')
+        >>> timespan = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
 
     ::
@@ -46,7 +46,7 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
         symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=selectortools.SingleSegmentTimespanSelector(
+                timespan_1=symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     )
                 )
@@ -62,7 +62,7 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
         symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=selectortools.SingleSegmentTimespanSelector(
+                timespan_1=symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     )
                 ),
@@ -72,7 +72,7 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
     Select all the measures that start during the three contiguous segments starting with ``'red'``::
 
         >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
-        >>> selector = selectortools.SegmentTimespanSelector(start_identifier='red', stop_identifier=expr)
+        >>> selector = symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=expr)
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=selector)
 
     ::
@@ -85,7 +85,7 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
         symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=selectortools.SegmentTimespanSelector(
+                timespan_1=symbolictimetools.SegmentSymbolicTimespan(
                     start_identifier='red',
                     stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                     )
@@ -102,7 +102,7 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
         symbolictimetools.BackgroundMeasureSymbolicTimespan(
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=selectortools.SegmentTimespanSelector(
+                timespan_1=symbolictimetools.SegmentSymbolicTimespan(
                     start_identifier='red',
                     stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                     )
@@ -116,9 +116,9 @@ class BackgroundMeasureSymbolicTimespan(SliceTimespanSelector, TimeRelationTimes
     ### INITIALIZER ###
 
     def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None, voice_name=None):
-        SliceTimespanSelector.__init__(
+        SliceSymbolicTimespan.__init__(
             self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
-        TimeRelationTimespanSelector.__init__(self, time_relation=time_relation)
+        TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
         self._klass = measuretools.Measure
 
     ### PUBLIC METHODS ###

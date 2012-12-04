@@ -5,7 +5,6 @@ from experimental import exceptions
 from experimental import helpertools
 from experimental import library
 from experimental import requesttools
-from experimental import selectortools
 from experimental import settingtools
 from experimental import specificationtools
 from abjad.tools import timerelationtools

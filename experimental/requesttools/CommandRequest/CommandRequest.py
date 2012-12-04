@@ -32,7 +32,7 @@ class CommandRequest(Request):
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -109,7 +109,7 @@ class CommandRequest(Request):
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )

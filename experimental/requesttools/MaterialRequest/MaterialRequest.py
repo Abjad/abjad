@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
-from experimental import selectortools
+from experimental import symbolictimetools
 from experimental.requesttools.Request import Request
 
 
@@ -28,7 +28,7 @@ class MaterialRequest(Request):
         >>> z(request)
         requesttools.MaterialRequest(
             'time_signatures',
-            selectortools.SingleSegmentTimespanSelector(
+            symbolictimetools.SingleSegmentSymbolicTimespan(
                 identifier='red'
                 )
             )
@@ -41,7 +41,7 @@ class MaterialRequest(Request):
     def __init__(self, attribute, selector, time_relation=None, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
-        assert isinstance(selector, selectortools.TimespanSelector), repr(selector)
+        assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
 #        # temporary assert while migrating:

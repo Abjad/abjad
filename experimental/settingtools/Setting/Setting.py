@@ -1,7 +1,7 @@
 import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import requesttools
-from experimental import selectortools
+from experimental import symbolictimetools
 
 
 class Setting(AbjadObject):
@@ -22,7 +22,7 @@ class Setting(AbjadObject):
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, requesttools.Request), repr(request)
-        assert isinstance(selector, (selectortools.TimespanSelector, type(None)))
+        assert isinstance(selector, (symbolictimetools.TimespanSymbolicTimespan, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))

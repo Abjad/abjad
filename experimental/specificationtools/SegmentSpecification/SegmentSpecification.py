@@ -3,7 +3,6 @@ from abjad.tools import *
 from experimental.exceptions import *
 from experimental import helpertools
 from experimental import requesttools
-from experimental import selectortools
 from experimental import settingtools
 from experimental import symbolictimetools
 from experimental.specificationtools.Specification import Specification
@@ -207,7 +206,7 @@ class SegmentSpecification(Specification):
         '''Segment specification selector::
 
             >>> red_segment.selector
-            SingleSegmentTimespanSelector(identifier='red')
+            SingleSegmentSymbolicTimespan(identifier='red')
 
         Return single-segment selector.
         '''
@@ -251,7 +250,7 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic start offset::
 
             >>> red_segment.symbolic_start_offset
-            SymbolicOffset(selector=SingleSegmentTimespanSelector(identifier='red'), edge=Left)
+            SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Left)
 
         Return symbolic offset.
         '''
@@ -263,7 +262,7 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic stop offset::
 
             >>> red_segment.symbolic_stop_offset
-            SymbolicOffset(selector=SingleSegmentTimespanSelector(identifier='red'), edge=Right)
+            SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right)
 
         Return symbolic offset.
         '''
@@ -302,7 +301,7 @@ class SegmentSpecification(Specification):
         '''Segment specification timespan.
 
             >>> red_segment.timespan
-            SingleSourceSymbolicTimespan(selector=SingleSegmentTimespanSelector(identifier='red'))
+            SingleSourceSymbolicTimespan(selector=SingleSegmentSymbolicTimespan(identifier='red'))
 
         Return timespan.
         '''
@@ -329,7 +328,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentTimespanSelector(
+                    selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                         identifier='red'
                         )
                     ),
@@ -346,7 +345,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'divisions',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentTimespanSelector(
+                    selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                         identifier='red'
                         ),
                     multiplier=durationtools.Multiplier(1, 2)
@@ -374,7 +373,7 @@ class SegmentSpecification(Specification):
                         time_relation=timerelationtools.TimespanTimespanTimeRelation(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
                             timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                                selector=selectortools.SingleSegmentTimespanSelector(
+                                selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                     identifier='red'
                                     )
                                 )
@@ -416,7 +415,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'rhythm',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentTimespanSelector(
+                    selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                         identifier='red'
                         )
                     ),
@@ -455,7 +454,7 @@ class SegmentSpecification(Specification):
             requesttools.CommandRequest(
                 'time_signatures',
                 symbolictimetools.SymbolicOffset(
-                    selector=selectortools.SingleSegmentTimespanSelector(
+                    selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                         identifier='red'
                         )
                     )
@@ -482,13 +481,13 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.SingleSegmentTimespanSelector(
+            symbolictimetools.SingleSegmentSymbolicTimespan(
                 identifier='red'
                 )
 
         Return selector.
         '''
-        return selectortools.SingleSegmentTimespanSelector(identifier=self.segment_name)
+        return symbolictimetools.SingleSegmentSymbolicTimespan(identifier=self.segment_name)
 
     def set_aggregate(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
@@ -544,7 +543,7 @@ class SegmentSpecification(Specification):
                 requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_names=['Voice 1', 'Voice 3'],
@@ -673,7 +672,7 @@ class SegmentSpecification(Specification):
                         tie_split_notes=False
                         )
                     ),
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_names=['Grouped Rhythmic Staves Score'],
@@ -716,7 +715,7 @@ class SegmentSpecification(Specification):
                 requesttools.AbsoluteRequest(
                     [(3, 8), (4, 8)]
                     ),
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_names=['Grouped Rhythmic Staves Score'],

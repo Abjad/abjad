@@ -2,7 +2,7 @@ import re
 from abjad.tools import *
 from experimental import helpertools
 from experimental import requesttools
-from experimental import selectortools
+from experimental import symbolictimetools
 from abjad.tools import timerelationtools
 from experimental.specificationtools.Specification import Specification
 
@@ -644,8 +644,8 @@ class ScoreSpecification(Specification):
         ::
 
             >>> z(selector)
-            selectortools.ScoreTimespanSelector()
+            symbolictimetools.ScoreSymbolicTimespan()
 
         Return selector.
         '''
-        return selectortools.ScoreTimespanSelector()
+        return symbolictimetools.ScoreSymbolicTimespan()

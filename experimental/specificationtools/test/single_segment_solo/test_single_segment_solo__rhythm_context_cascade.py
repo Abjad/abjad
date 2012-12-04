@@ -85,7 +85,7 @@ def test_single_segment_solo__rhythm_context_cascade_04():
 
 
 def test_single_segment_solo__rhythm_context_cascade_05():
-    '''TimespanSelector and contexts work together.
+    '''TimespanSymbolicTimespan and contexts work together.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

@@ -41,8 +41,8 @@
 
 11. Finish timerelationtools class docstrings before 2.11 build.
 
-12. Change DivisionTimespanSelector.get_selected_objects() to return a Selection object.
-    Change CounttimeComponentTimespanSelector.get_selected_objects() to return a Selection object.
+12. Change DivisionSymbolicTimespan.get_selected_objects() to return a Selection object.
+    Change CounttimeComponentSymbolicTimespan.get_selected_objects() to return a Selection object.
     Change other selectors' get_selected_objects() to return a Selection object.
 
 13. Author tests to show selecting leaves that don't yet exist.

@@ -42,7 +42,7 @@ class SingleContextSetting(Setting):
             requesttools.AbsoluteRequest(
                 [(3, 16)]
                 ),
-            selectortools.SingleSegmentTimespanSelector(
+            symbolictimetools.SingleSegmentSymbolicTimespan(
                 identifier='red'
                 ),
             context_name='Voice 1',
@@ -89,7 +89,7 @@ class SingleContextSetting(Setting):
                 requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_name='Voice 1',

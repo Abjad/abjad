@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.identifiers
 
-    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.klass
 
-    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.start_identifier
 
-    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.start_segment_identifier
 
-    Inherited from :py:class:`TimeRelationTimespanSelector.TimeRelationTimespanSelector <experimental.selectortools.TimeRelationTimespanSelector.TimeRelationTimespanSelector.TimeRelationTimespanSelector>`
+    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.stop_identifier
 
-    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.storage_format
 
@@ -35,22 +35,22 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.time_relation
 
-    Inherited from :py:class:`TimeRelationTimespanSelector.TimeRelationTimespanSelector <experimental.selectortools.TimeRelationTimespanSelector.TimeRelationTimespanSelector.TimeRelationTimespanSelector>`
+    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.timespan
 
-    Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.voice_name
 
-    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 Methods
 -------
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.get_duration
 
-    Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.get_offsets
 
@@ -63,7 +63,7 @@ Special Methods
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.__eq__
 
-    Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.__ge__
 

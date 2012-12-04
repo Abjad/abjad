@@ -1,5 +1,5 @@
 from experimental.requesttools.AbsoluteRequest import AbsoluteRequest
-from experimental.selectortools.SingleSegmentTimespanSelector import SingleSegmentTimespanSelector
+from experimental.symbolictimetools.SingleSegmentSymbolicTimespan import SingleSegmentSymbolicTimespan
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.symbolictimetools.SymbolicOffset import SymbolicOffset
 from experimental.symbolictimetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
@@ -9,7 +9,7 @@ def test_SingleContextSetting___repr___01():
     '''Repr is evaluable.
     '''
 
-    selector = SingleSegmentTimespanSelector(identifier='red')
+    selector = SingleSegmentSymbolicTimespan(identifier='red')
     setting_1 = SingleContextSetting('time_signatures', AbsoluteRequest([(4, 8), (3, 8)]), selector, fresh=False)
     setting_2 = eval(repr(setting_1))
 

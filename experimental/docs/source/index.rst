@@ -176,33 +176,6 @@ Unstable packages (load manually)
 
    experimental/segmenttools/Segment/Segment
 
-:py:mod:`selectortools <experimental.selectortools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/selectortools/RatioPartTimespanSelector/RatioPartTimespanSelector
-   experimental/selectortools/SliceTimespanSelector/SliceTimespanSelector
-   experimental/selectortools/TimeRelationTimespanSelector/TimeRelationTimespanSelector
-   experimental/selectortools/TimespanSelector/TimespanSelector
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/selectortools/CountRatioPartTimespanSelector/CountRatioPartTimespanSelector
-   experimental/selectortools/CounttimeComponentTimespanSelector/CounttimeComponentTimespanSelector
-   experimental/selectortools/DivisionTimespanSelector/DivisionTimespanSelector
-   experimental/selectortools/OffsetTimespanSelector/OffsetTimespanSelector
-   experimental/selectortools/ScoreTimespanSelector/ScoreTimespanSelector
-   experimental/selectortools/SegmentTimespanSelector/SegmentTimespanSelector
-   experimental/selectortools/SingleSegmentTimespanSelector/SingleSegmentTimespanSelector
-   experimental/selectortools/TimeRatioPartTimespanSelector/TimeRatioPartTimespanSelector
-
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -269,7 +242,11 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/symbolictimetools/RatioPartSymbolicTimespan/RatioPartSymbolicTimespan
+   experimental/symbolictimetools/SliceSymbolicTimespan/SliceSymbolicTimespan
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
+   experimental/symbolictimetools/TimeRelationSymbolicTimespan/TimeRelationSymbolicTimespan
+   experimental/symbolictimetools/TimespanSymbolicTimespan/TimespanSymbolicTimespan
 
 .. rubric:: concrete classes
 
@@ -277,6 +254,14 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/symbolictimetools/BackgroundMeasureSymbolicTimespan/BackgroundMeasureSymbolicTimespan
+   experimental/symbolictimetools/CountRatioPartSymbolicTimespan/CountRatioPartSymbolicTimespan
+   experimental/symbolictimetools/CounttimeComponentSymbolicTimespan/CounttimeComponentSymbolicTimespan
+   experimental/symbolictimetools/DivisionSymbolicTimespan/DivisionSymbolicTimespan
    experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   experimental/symbolictimetools/OffsetSymbolicTimespan/OffsetSymbolicTimespan
+   experimental/symbolictimetools/ScoreSymbolicTimespan/ScoreSymbolicTimespan
+   experimental/symbolictimetools/SegmentSymbolicTimespan/SegmentSymbolicTimespan
+   experimental/symbolictimetools/SingleSegmentSymbolicTimespan/SingleSegmentSymbolicTimespan
    experimental/symbolictimetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
    experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
+   experimental/symbolictimetools/TimeRatioPartSymbolicTimespan/TimeRatioPartSymbolicTimespan

@@ -4,7 +4,6 @@ from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
 from experimental import requesttools
-from experimental import selectortools
 from experimental import settingtools
 from experimental import symbolictimetools
 
@@ -105,9 +104,9 @@ class Specification(AbjadObject):
 
     def _wrap_selector_with_ratio_part_selector(self, selector, ratio, part, is_count=True):
         if is_count:
-            return selectortools.CountRatioPartTimespanSelector(selector, ratio, part)
+            return symbolictimetools.CountRatioPartSymbolicTimespan(selector, ratio, part)
         else:
-            return selectortools.TimeRatioPartTimespanSelector(selector, ratio, part)
+            return symbolictimetools.TimeRatioPartSymbolicTimespan(selector, ratio, part)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -152,7 +151,7 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'divisions',
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_name='Voice 1'
@@ -177,7 +176,7 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'naive_beats',
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_name='Voice 1'
@@ -191,7 +190,7 @@ class Specification(AbjadObject):
             'naive_beats', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: could this be done with a TimeRatioPartTimespanSelector instead?
+    # TODO: could this be done with a TimeRatioPartSymbolicTimespan instead?
     def request_partitioned_time(self, ratio, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment partitioned total time according to `ratio`.
@@ -219,7 +218,7 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'rhythm',
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 context_name='Voice 1'
@@ -246,7 +245,7 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'time_signatures',
-                selectortools.SingleSegmentTimespanSelector(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     )
                 )
@@ -271,7 +270,7 @@ class Specification(AbjadObject):
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentTimespanSelector(
+                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                             identifier='red'
                             )
                         )
@@ -299,8 +298,8 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.OffsetTimespanSelector(
-                selectortools.SingleSegmentTimespanSelector(
+            symbolictimetools.OffsetSymbolicTimespan(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 start_offset=durationtools.Offset(1, 8),
@@ -312,7 +311,7 @@ class Specification(AbjadObject):
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
         selector = self.select_timespan()
-        return selectortools.OffsetTimespanSelector(selector, start_offset=start, stop_offset=stop)
+        return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)
 
     def select_ratio(self, ratio):
         r'''Select the first third of segment::
@@ -322,8 +321,8 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.TimeRatioPartTimespanSelector(
-                selectortools.SingleSegmentTimespanSelector(
+            symbolictimetools.TimeRatioPartSymbolicTimespan(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
                 mathtools.Ratio(1, 1, 1),
@@ -347,12 +346,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -370,12 +369,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.TimeRatioPartTimespanSelector(
+            symbolictimetools.TimeRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -392,12 +391,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selectors[0])
-            selectortools.CountRatioPartTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -410,12 +409,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selectors[1])
-            selectortools.CountRatioPartTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -428,12 +427,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selectors[2])
-            selectortools.CountRatioPartTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -457,11 +456,11 @@ class Specification(AbjadObject):
         ::
             
             >>> z(selector)
-            selectortools.DivisionTimespanSelector(
+            symbolictimetools.DivisionSymbolicTimespan(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentTimespanSelector(
+                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                             identifier='red'
                             )
                         )
@@ -476,7 +475,7 @@ class Specification(AbjadObject):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.DivisionTimespanSelector(
+        selector = symbolictimetools.DivisionSymbolicTimespan(
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
@@ -488,12 +487,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartTimespanSelector(
-                selectortools.DivisionTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
+                symbolictimetools.DivisionSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -517,11 +516,11 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.CounttimeComponentTimespanSelector(
+            symbolictimetools.CounttimeComponentSymbolicTimespan(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentTimespanSelector(
+                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                             identifier='red'
                             )
                         )
@@ -537,7 +536,7 @@ class Specification(AbjadObject):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.CounttimeComponentTimespanSelector(
+        selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
             time_relation=time_relation, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
@@ -550,12 +549,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartTimespanSelector(
-                selectortools.CounttimeComponentTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
+                symbolictimetools.CounttimeComponentSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
@@ -580,11 +579,11 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.CounttimeComponentTimespanSelector(
+            symbolictimetools.CounttimeComponentSymbolicTimespan(
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=selectortools.SingleSegmentTimespanSelector(
+                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                             identifier='red'
                             )
                         )
@@ -603,7 +602,7 @@ class Specification(AbjadObject):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
-        selector = selectortools.CounttimeComponentTimespanSelector(
+        selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
             time_relation=time_relation, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
@@ -616,12 +615,12 @@ class Specification(AbjadObject):
         ::
 
             >>> z(selector)
-            selectortools.CountRatioPartTimespanSelector(
-                selectortools.CounttimeComponentTimespanSelector(
+            symbolictimetools.CountRatioPartSymbolicTimespan(
+                symbolictimetools.CounttimeComponentSymbolicTimespan(
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=selectortools.SingleSegmentTimespanSelector(
+                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                                 identifier='red'
                                 )
                             )
