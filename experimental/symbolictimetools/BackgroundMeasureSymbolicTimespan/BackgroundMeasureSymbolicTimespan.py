@@ -123,7 +123,7 @@ class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbo
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    def get_offsets(self, score_specification, context_name, start_segment_name=None):
         r'''Evaluate start and stop offsets when selector is applied
         to `score_specification`.
 
@@ -131,7 +131,10 @@ class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbo
 
         Return pair.
         '''
-        segment_specification = score_specification.get_start_segment_specification(self)
+        if start_segment_name is None:
+            segment_specification = score_specification.get_start_segment_specification(self)
+        else:
+            segment_specification = score_specification.get_start_segment_specification(start_segment_name)
         segment_name = segment_specification.segment_name
         start, stop = self.identifiers
         start = start or 0

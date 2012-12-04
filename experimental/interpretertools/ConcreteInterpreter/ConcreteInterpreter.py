@@ -783,7 +783,7 @@ class ConcreteInterpreter(Interpreter):
 
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
-        assert single_context_setting.selector.start_segment_identifier == segment_specification.segment_name
+        assert single_context_setting.start_segment_name == segment_specification.segment_name
         #self._debug(single_context_setting.selector, 'selector')
         start_offset, stop_offset = single_context_setting.selector.get_offsets(
             self.score_specification, voice_name)

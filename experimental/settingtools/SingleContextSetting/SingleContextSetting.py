@@ -121,4 +121,5 @@ class SingleContextSetting(Setting):
         new_setting._fresh = False
         segment_name = helpertools.expr_to_segment_name(segment)
         new_setting.selector.set_segment_identifier(segment_name)
+        new_setting._start_segment_name = segment_name
         return new_setting
