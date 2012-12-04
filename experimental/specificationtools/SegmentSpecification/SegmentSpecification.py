@@ -492,10 +492,10 @@ class SegmentSpecification(Specification):
 
     # TODO: merge into self.select_timespan() and then remove.
     # TODO: change name to self.select_timespan_offsets() and allow ScoreSpecification to have same-named method
-    def select_segment_offsets(self, start=None, stop=None):
+    def select_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
 
-            >>> selector = red_segment.select_segment_offsets(start=(1, 8), stop=(3, 8))
+            >>> selector = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
 
         ::
 

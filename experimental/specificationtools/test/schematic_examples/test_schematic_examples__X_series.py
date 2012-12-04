@@ -373,7 +373,7 @@ def test_schematic_examples__X_series_09():
     # See the TODO file for an example of what the interface might look like.
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures([(3, 16)])
-    timespan = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+    timespan = red_segment.select_offsets(Offset(3, 16), Offset(6, 16))
     rhythm = red_segment.request_rhythm('Voice 1', timespan=timespan)
     blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
     rhythm = red_segment.request_rhythm('Voice 2', timespan=timespan)

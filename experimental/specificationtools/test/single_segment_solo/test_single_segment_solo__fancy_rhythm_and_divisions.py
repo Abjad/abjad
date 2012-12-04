@@ -10,7 +10,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
-    selector = red_segment.select_segment_offsets(start=(10, 16), stop=(13, 16))
+    selector = red_segment.select_offsets(start=(10, 16), stop=(13, 16))
     red_segment.set_divisions([(2, 32)], selector=selector)
     red_segment.set_rhythm(library.thirty_seconds, selector=selector)
     score = score_specification.interpret()
@@ -28,7 +28,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
-    selector = red_segment.select_segment_offsets(start=(10, 16), stop=(13, 16))
+    selector = red_segment.select_offsets(start=(10, 16), stop=(13, 16))
     red_segment.set_divisions([(2, 32)], selector=selector)
     selector = red_segment.select_segment_ratio((1, 2))[-1]
     red_segment.set_rhythm(library.thirty_seconds, selector=selector)

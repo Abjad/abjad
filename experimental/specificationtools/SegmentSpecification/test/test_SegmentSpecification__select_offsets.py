@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSpecification__select_segment_offsets_01():
+def test_SegmentSpecification__select_offsets_01():
     '''Explicit offsets.
     '''
 
@@ -10,7 +10,7 @@ def test_SegmentSpecification__select_segment_offsets_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    middle_part_of_segment = red_segment.select_segment_offsets(start=(1, 8), stop=(4, 8))
+    middle_part_of_segment = red_segment.select_offsets(start=(1, 8), stop=(4, 8))
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=middle_part_of_segment)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_segment_offsets_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_segment_offsets_02():
+def test_SegmentSpecification__select_offsets_02():
     '''Implicit start-offset.
     '''
 
@@ -29,7 +29,7 @@ def test_SegmentSpecification__select_segment_offsets_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    middle_part_of_segment = red_segment.select_segment_offsets(stop=(4, 8))
+    middle_part_of_segment = red_segment.select_offsets(stop=(4, 8))
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=middle_part_of_segment)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -40,7 +40,7 @@ def test_SegmentSpecification__select_segment_offsets_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_segment_offsets_03():
+def test_SegmentSpecification__select_offsets_03():
     '''Implicit stop-offset.
     '''
 
@@ -48,7 +48,7 @@ def test_SegmentSpecification__select_segment_offsets_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    middle_part_of_segment = red_segment.select_segment_offsets(start=(2, 8))
+    middle_part_of_segment = red_segment.select_offsets(start=(2, 8))
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=middle_part_of_segment)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -59,7 +59,7 @@ def test_SegmentSpecification__select_segment_offsets_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_segment_offsets_04():
+def test_SegmentSpecification__select_offsets_04():
     '''Implicit start- and stop-offsets.
     '''
 
@@ -67,7 +67,7 @@ def test_SegmentSpecification__select_segment_offsets_04():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    whole_segment = red_segment.select_segment_offsets()
+    whole_segment = red_segment.select_offsets()
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=whole_segment)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -78,7 +78,7 @@ def test_SegmentSpecification__select_segment_offsets_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_segment_offsets_05():
+def test_SegmentSpecification__select_offsets_05():
     '''Negative start-offset.
     '''
 
@@ -86,7 +86,7 @@ def test_SegmentSpecification__select_segment_offsets_05():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    whole_segment = red_segment.select_segment_offsets(start=(-4, 8))
+    whole_segment = red_segment.select_offsets(start=(-4, 8))
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=whole_segment)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -97,7 +97,7 @@ def test_SegmentSpecification__select_segment_offsets_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_segment_offsets_06():
+def test_SegmentSpecification__select_offsets_06():
     '''Negative stop-offset.
     '''
 
@@ -105,7 +105,7 @@ def test_SegmentSpecification__select_segment_offsets_06():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    whole_segment = red_segment.select_segment_offsets(stop=(-2, 8))
+    whole_segment = red_segment.select_offsets(stop=(-2, 8))
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=whole_segment)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -116,7 +116,7 @@ def test_SegmentSpecification__select_segment_offsets_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_segment_offsets_07():
+def test_SegmentSpecification__select_offsets_07():
     '''Negative start and stop-offsets.
     '''
 
@@ -124,7 +124,7 @@ def test_SegmentSpecification__select_segment_offsets_07():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    whole_segment = red_segment.select_segment_offsets(start=(-4, 8), stop=(-2, 8))
+    whole_segment = red_segment.select_offsets(start=(-4, 8), stop=(-2, 8))
     red_segment.set_divisions([(2, 16)])
     red_segment.set_divisions([(3, 16)], selector=whole_segment)
     red_segment.set_rhythm(library.thirty_seconds)

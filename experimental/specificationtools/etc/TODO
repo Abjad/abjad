@@ -97,7 +97,7 @@
 
 24. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
-        selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+        selector = red_segment.select_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
         rhythm = red_segment.request_rhythm('Voice 2', selector=selector)
@@ -107,7 +107,7 @@
         rhythm = red_segment.request_rhythm('Voice 4', selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
     ... when it might be possible to use ...
-        selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
+        selector = red_segment.select_offsets(Offset(3, 16), Offset(6, 16))
         selected_voices = ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
         rhythm = red_segment.request_rhythm(selected_voices, selector=selector)
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)

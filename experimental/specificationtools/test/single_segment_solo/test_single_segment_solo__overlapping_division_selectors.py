@@ -179,7 +179,7 @@ def test_single_segment_solo__overlapping_division_selectors_09():
     red_segment.set_divisions([(3, 16)])
     middle_measure = red_segment.select_background_measure_timespan(1, 2)
     red_segment.set_divisions([(2, 16)], selector=middle_measure)
-    arbitrary_chunk = red_segment.select_segment_offsets((5, 8), (6, 8))
+    arbitrary_chunk = red_segment.select_offsets((5, 8), (6, 8))
     red_segment.set_divisions([(1, 16)], selector=arbitrary_chunk)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
