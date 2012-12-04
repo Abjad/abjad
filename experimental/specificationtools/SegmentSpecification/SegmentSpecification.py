@@ -311,31 +311,6 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    # TODO: simplify by inheriting from Specification.
-    def request_divisions(self, voice, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment divisions in `voice`::
-
-            >>> request = red_segment.request_divisions('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'divisions',
-                selectortools.SingleSegmentTimespanSelector(
-                    identifier='red'
-                    ),
-                context_name='Voice 1'
-                )
-
-        Return material request.        
-        '''
-        timespan = timespan or self.select_segment_timespan()
-        return requesttools.MaterialRequest(
-            'divisions', timespan, context_name=voice, 
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
     # TODO: simplify by inheriting from Specification. 
     def request_division_command(self, voice, selector=None, 
@@ -425,73 +400,6 @@ class SegmentSpecification(Specification):
             'divisions', context_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: simplify by inheriting from Specification. 
-    def request_naive_beats(self, context=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment naive beats in `voice`::
-
-            >>> request = red_segment.request_naive_beats('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'naive_beats',
-                selectortools.SingleSegmentTimespanSelector(
-                    identifier='red'
-                    ),
-                context_name='Voice 1'
-                )
-
-        Return material request.        
-        '''
-        timespan = timespan or self.select_segment_timespan()
-        return requesttools.MaterialRequest(
-            'naive_beats', timespan, context_name=context, 
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
-    # TODO: could this be done with a TimeRatioPartTimespanSelector instead?
-    # TODO: simplify by inheriting from Specification. 
-    def request_partitioned_time(self, ratio, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment partitioned total time according to `ratio`.
-
-        .. note:: add example.
-
-        Return material request.
-        '''
-        timespan = timespan or self.select_segment_timespan()
-        request = requesttools.MaterialRequest(
-            'partitioned_time', timespan, context_name=None, 
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-        request.ratio = ratio
-        return request
-
-    # TODO: simplify by inheriting from Specification. 
-    def request_rhythm(self, voice, timespan=None, 
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment rhythm in `voice`::
-
-            >>> request = red_segment.request_rhythm('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'rhythm',
-                selectortools.SingleSegmentTimespanSelector(
-                    identifier='red'
-                    ),
-                context_name='Voice 1'
-                )
-
-        Return rhythm request.        
-        '''
-        timespan = timespan or self.select_segment_timespan()
-        return requesttools.MaterialRequest(
-            'rhythm', timespan, context_name=voice, 
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
     def request_rhythm_command(self, voice, 
         selector=None, edge=None, multiplier=None, addendum=None, 
@@ -526,30 +434,6 @@ class SegmentSpecification(Specification):
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythm', context_name=voice, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
-    # TODO: simplify by inheriting from Specification.
-    def request_time_signatures(self, context=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment time signatures in `context`::
-
-            >>> request = red_segment.request_time_signatures()
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'time_signatures',
-                selectortools.SingleSegmentTimespanSelector(
-                    identifier='red'
-                    )
-                )
-
-        Return material request.
-        '''
-        timespan = timespan or self.select_segment_timespan()
-        return requesttools.MaterialRequest(
-            'time_signatures', timespan, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: add voice=None keyword?

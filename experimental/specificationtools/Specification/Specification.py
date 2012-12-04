@@ -2,12 +2,17 @@ import abc
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
+from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 
 
 class Specification(AbjadObject):
     r'''.. versionadded:: 1.0
+
+    ::
+
+        >>> from experimental import *
 
     Abstract base class from which concrete specification classes inherit.
 
@@ -18,6 +23,22 @@ class Specification(AbjadObject):
     Interpreter code interprets score and segment specifications.
 
     Abjad score object results from interpretation.
+
+    The examples below reference the following segment specification::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        
+    ::
+    
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    ::
+            
+        >>> red_segment
+        SegmentSpecification('red')
+
+    Return specification instance.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -115,3 +136,116 @@ class Specification(AbjadObject):
     @property
     def single_context_settings_by_context(self):
         return self._single_context_settings_by_context
+
+    ### PUBLIC METHODS ###
+
+    def request_divisions(self, voice, timespan=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment divisions in `voice`::
+
+            >>> request = red_segment.request_divisions('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'divisions',
+                selectortools.SingleSegmentTimespanSelector(
+                    identifier='red'
+                    ),
+                context_name='Voice 1'
+                )
+
+        Return material request.        
+        '''
+        timespan = timespan or self.select_segment_timespan()
+        return requesttools.MaterialRequest(
+            'divisions', timespan, context_name=voice, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def request_naive_beats(self, context=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment naive beats in `voice`::
+
+            >>> request = red_segment.request_naive_beats('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'naive_beats',
+                selectortools.SingleSegmentTimespanSelector(
+                    identifier='red'
+                    ),
+                context_name='Voice 1'
+                )
+
+        Return material request.        
+        '''
+        timespan = timespan or self.select_segment_timespan()
+        return requesttools.MaterialRequest(
+            'naive_beats', timespan, context_name=context, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    # TODO: could this be done with a TimeRatioPartTimespanSelector instead?
+    def request_partitioned_time(self, ratio, timespan=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment partitioned total time according to `ratio`.
+
+        .. note:: add example.
+
+        Return material request.
+        '''
+        timespan = timespan or self.select_segment_timespan()
+        request = requesttools.MaterialRequest(
+            'partitioned_time', timespan, context_name=None, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+        request.ratio = ratio
+        return request
+
+    def request_rhythm(self, voice, timespan=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment rhythm in `voice`::
+
+            >>> request = red_segment.request_rhythm('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'rhythm',
+                selectortools.SingleSegmentTimespanSelector(
+                    identifier='red'
+                    ),
+                context_name='Voice 1'
+                )
+
+        Return rhythm request.        
+        '''
+        timespan = timespan or self.select_segment_timespan()
+        return requesttools.MaterialRequest(
+            'rhythm', timespan, context_name=voice, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    def request_time_signatures(self, context=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment time signatures in `context`::
+
+            >>> request = red_segment.request_time_signatures()
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'time_signatures',
+                selectortools.SingleSegmentTimespanSelector(
+                    identifier='red'
+                    )
+                )
+
+        Return material request.
+        '''
+        timespan = timespan or self.select_segment_timespan()
+        return requesttools.MaterialRequest(
+            'time_signatures', timespan, context_name=context, 
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

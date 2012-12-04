@@ -27,6 +27,19 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_divisions
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_naive_beats
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_partitioned_time
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_rhythm
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_time_signatures
+
 Special Methods
 ---------------
 

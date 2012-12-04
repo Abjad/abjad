@@ -444,37 +444,6 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    # TODO: simplify by inheriting from Specification.
-    def request_divisions(self, voice, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request divisions.
-
-        Example 1. When `voice` is a string, request `voice` divisions
-        starting in score::
-
-            >>> request = score_specification.request_divisions('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'divisions',
-                selectortools.ScoreTimespanSelector(),
-                context_name='Voice 1'
-                )
-
-        Example 2. When `voice` is a list of strings, request divisions 
-        starting in score for all voices listed in `voice`.
-
-        .. note:: implement and add example.
-
-        Return material request.
-        '''
-        timespan = timespan or self.select_score_timespan()
-        return requesttools.MaterialRequest(
-            'divisions', timespan, context_name=voice,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
     # TODO: remove 'selector', 'edge', 'multiplier' keywords and replace with (symbolic) 'offset' keyword.
     # TODO: simplify by inheriting from Specification.
     def request_division_command(self, voice,
@@ -494,28 +463,6 @@ class ScoreSpecification(Specification):
             'divisions', context_name=context_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-
-    # TODO: implement self.request_naive_beats() by inheriting from Specification.
-
-    # TODO: implement something like self.request_partitioned_time() by inheriting from Specification.
-
-    # TODO: simplify by inheriting from Specification.
-    def request_rhythm(self, voice, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request `voice` rhythm during `timespan`.
-
-        Apply any of `index`, `count`, `reverse`, `rotation`, `callback`
-        that are not none.
-
-        .. note:: not yet tested.
-
-        Return rhythm request.
-        '''
-        timespan = timespan or self.select_score_timespan()
-        return requesttools.MaterialRequest(
-            'rhythm', timespan, context_name=voice,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     def request_rhythm_command(self, voice,
         selector=None, edge=None, multiplier=None, addendum=None,
@@ -532,23 +479,6 @@ class ScoreSpecification(Specification):
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythms', context_name=context_name, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
-    # TODO: simplify by inheriting from Specification.
-    def request_time_signatures(self, context, timespan=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request time signatures that govern `context` and that are selected by `timespan`.
-
-        Apply any of `index`, `count`, `reverse`, `rotation`, `callback`
-        that are not none.
-
-        .. note:: not yet tested.
-
-        Return material request.
-        '''
-        timespan = timespan or self.select_score_timespan()
-        return requesttools.MaterialRequest(
-            'time_signatures', timespan, context_name=context,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: make voice=None by default?
