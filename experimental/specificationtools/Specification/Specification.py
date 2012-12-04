@@ -139,7 +139,7 @@ class Specification(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def request_divisions(self, voice, timespan=None,
+    def request_divisions(self, voice, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
 
@@ -160,10 +160,10 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
-            'divisions', timespan, context_name=voice, 
+            'divisions', timespan, time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_naive_beats(self, context=None, timespan=None,
+    def request_naive_beats(self, context=None, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment naive beats in `voice`::
 
@@ -184,11 +184,11 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
-            'naive_beats', timespan, context_name=context, 
+            'naive_beats', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: could this be done with a TimeRatioPartTimespanSelector instead?
-    def request_partitioned_time(self, ratio, timespan=None,
+    def request_partitioned_time(self, ratio, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment partitioned total time according to `ratio`.
 
@@ -198,12 +198,12 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.select_segment_timespan()
         request = requesttools.MaterialRequest(
-            'partitioned_time', timespan, context_name=None, 
+            'partitioned_time', timespan, time_relation=time_relation, context_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         request.ratio = ratio
         return request
 
-    def request_rhythm(self, voice, timespan=None, 
+    def request_rhythm(self, voice, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
 
@@ -224,10 +224,10 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
-            'rhythm', timespan, context_name=voice, 
+            'rhythm', timespan, time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, context=None, timespan=None,
+    def request_time_signatures(self, context=None, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signatures in `context`::
 
@@ -247,5 +247,5 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.select_segment_timespan()
         return requesttools.MaterialRequest(
-            'time_signatures', timespan, context_name=context, 
+            'time_signatures', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

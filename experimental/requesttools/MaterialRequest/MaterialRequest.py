@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import timerelationtools
 from experimental import selectortools
 from experimental.requesttools.Request import Request
 
@@ -37,15 +38,17 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, selector, context_name=None, 
+    def __init__(self, attribute, selector, time_relation=None, context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        assert isinstance(attribute, str)
-        assert isinstance(selector, selectortools.TimespanSelector)
+        assert isinstance(attribute, str), repr(attribute)
+        assert isinstance(selector, selectortools.TimespanSelector), repr(selector)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._selector = selector
+        self._time_relation = time_relation
         self._context_name = context_name
 
     ### PRIVATE METHODS ###
@@ -73,6 +76,10 @@ class MaterialRequest(Request):
         '''Delegate to ``self.selector.start_segment_identifier``.
         '''
         return self.selector.start_segment_identifier
+
+    @property
+    def time_relation(self):
+        return self._time_relation
 
     @property
     def voice_name(self):

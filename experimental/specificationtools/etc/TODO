@@ -131,6 +131,8 @@
         Specification.request_rhythm()
         Specification.request_time_signatures()
     This would make request methods parallel select methods.
+    And, actually, this might obviate the ned for select methods to carry a time_relation keyword.
+    If select methods always select (pure) timespans then selecto methods will need no time_relation keyword.
 
 27. Maybe the above action items point to removing the concept of the selector from the system.
     A selector is a (timespan, time_relation) pair.
