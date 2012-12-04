@@ -74,19 +74,35 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_background_measure_timespan
 
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_division_timespan
+
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_leaf_timespan
 
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_note_and_chord_timespan
+
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_background_measures
 
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_divisions
+
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_leaves
 
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_notes_and_chords
+
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_segment_offsets
 
