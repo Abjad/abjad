@@ -116,10 +116,7 @@
     Maybe this also means migrating all selectortools classes into symbolictimetools?
     This would remove the selectortools package altogether.
         
-27. Figure out where the read-only selector 'klass' property should be hoisted up to.
-    Grep and find out where it occurs. Then eliminate code duplication.
-
-28. Maybe extend all segment and score specification request methods with time_relation=None keyword.
+27. Maybe extend all segment and score specification request methods with time_relation=None keyword.
     The methods in question are:
         Specification.request_divisions()
         Specification.request_naive_beats()
@@ -128,7 +125,7 @@
         Specification.request_time_signatures()
     This would make request methods parallel select methods.
 
-29. Maybe the above action items point to removing the concept of the selector from the system.
+28. Maybe the above action items point to removing the concept of the selector from the system.
     A selector is a (timespan, time_relation) pair.
     Maybe it's better to pass timespans and time_relations around independently.
     That will mean that every select method (without exception) will return a pure timespan.
@@ -140,12 +137,12 @@
     Why? Because each class in selectortools would represent a pure symbolic timespan.
     All such classes should then migrate into symoblictimetools.
 
-30. Why doesn't MaterialRequest feature a time_relation property?
+29. Why doesn't MaterialRequest feature a time_relation property?
     Should MaterialRequest('divisions', timespan, context_name=voice)
     be MaterialRequest('division', timespan, time_relation, context_name=voice) instead?
     Probably because timespan is currently a selector.
     Selector is currently a (timespan, time_relation).
     See item above to unbundle selector and carry around timespans and time relations independently.
-    So an incremental way to approach #29 above is to work this #30 first.
+    So an incremental way to approach item immediately above is to work this item first.
     What will that mean?
     It will mean changing MaterialRequest to feature independent timespan and time_relation properties.

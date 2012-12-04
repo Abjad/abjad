@@ -101,14 +101,6 @@ class CounttimeComponentTimespanSelector(SliceTimespanSelector, TimeRelationTime
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
-    def klass(self):
-        '''Class of counttime component selector specified by user.
-
-        Return counttime component class or none.
-        '''
-        return self._klass
-
-    @property
     def predicate(self):
         '''Predicate of counttime component selector specified by user.
 

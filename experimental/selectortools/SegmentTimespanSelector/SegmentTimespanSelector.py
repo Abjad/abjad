@@ -123,10 +123,6 @@ class SegmentTimespanSelector(SliceTimespanSelector, TimeRelationTimespanSelecto
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def klass(self):
-        return self._klass
-
-    @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.
         '''

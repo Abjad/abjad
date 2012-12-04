@@ -13,6 +13,10 @@ Read-only Properties
 
     Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
 
+.. autoattribute:: experimental.selectortools.ScoreTimespanSelector.ScoreTimespanSelector.ScoreTimespanSelector.klass
+
+    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+
 .. autoattribute:: experimental.selectortools.ScoreTimespanSelector.ScoreTimespanSelector.ScoreTimespanSelector.start_identifier
 
     Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`

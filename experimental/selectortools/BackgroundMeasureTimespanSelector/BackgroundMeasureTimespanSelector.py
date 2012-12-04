@@ -121,12 +121,6 @@ class BackgroundMeasureTimespanSelector(SliceTimespanSelector, TimeRelationTimes
         TimeRelationTimespanSelector.__init__(self, time_relation=time_relation)
         self._klass = measuretools.Measure
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def klass(self):
-        return self._klass
-
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name):

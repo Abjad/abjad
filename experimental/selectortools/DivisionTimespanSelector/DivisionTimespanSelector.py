@@ -71,12 +71,6 @@ class DivisionTimespanSelector(SliceTimespanSelector, TimeRelationTimespanSelect
         TimeRelationTimespanSelector.__init__(self, time_relation=time_relation)
         self._klass = divisiontools.Division
 
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def klass(self):
-        return self._klass
-
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, voice_name):

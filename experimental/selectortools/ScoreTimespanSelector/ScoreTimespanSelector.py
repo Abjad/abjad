@@ -27,7 +27,7 @@ class ScoreTimespanSelector(SliceTimespanSelector, TimeRelationTimespanSelector)
         TimeRelationTimespanSelector.__init__(self, time_relation=time_relation)
         self._klass = specificationtools.ScoreSpecification
 
-    ### PUBLIC PROPERTIES ###
+    ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name):
         '''Evaluate start and stop offsets of selector when applied

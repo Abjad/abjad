@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector.identifiers
 
+.. autoattribute:: experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector.klass
+
 .. autoattribute:: experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector.start_identifier
 
 .. autoattribute:: experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector.start_segment_identifier

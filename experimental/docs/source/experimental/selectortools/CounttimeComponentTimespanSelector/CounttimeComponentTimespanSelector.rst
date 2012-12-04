@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentTimespanSelector.CounttimeComponentTimespanSelector.CounttimeComponentTimespanSelector.klass
 
+    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+
 .. autoattribute:: experimental.selectortools.CounttimeComponentTimespanSelector.CounttimeComponentTimespanSelector.CounttimeComponentTimespanSelector.predicate
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentTimespanSelector.CounttimeComponentTimespanSelector.CounttimeComponentTimespanSelector.selector

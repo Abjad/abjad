@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.DivisionTimespanSelector.DivisionTimespanSelector.DivisionTimespanSelector.klass
 
+    Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
+
 .. autoattribute:: experimental.selectortools.DivisionTimespanSelector.DivisionTimespanSelector.DivisionTimespanSelector.start_identifier
 
     Inherited from :py:class:`SliceTimespanSelector.SliceTimespanSelector <experimental.selectortools.SliceTimespanSelector.SliceTimespanSelector.SliceTimespanSelector>`
