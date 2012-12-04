@@ -26,7 +26,7 @@ class Rest(Leaf):
     # TODO: add vertical positioning pitch only as needed #
     __slots__ = ('_vertical_positioning_pitch', )
 
-    _default_mandatory_input_arguments = (repr('r4'), )
+    _default_positional_input_arguments = (repr('r4'), )
 
     ### INITIALIZER ###
 

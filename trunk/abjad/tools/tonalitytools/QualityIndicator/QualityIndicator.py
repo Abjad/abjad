@@ -14,7 +14,7 @@ class QualityIndicator(AbjadObject):
 
     __slots__ = ('_quality_string')
 
-    _default_mandatory_input_arguments = (repr('dominant'), )
+    _default_positional_input_arguments = (repr('dominant'), )
 
     ### INITIALIZER ###
 

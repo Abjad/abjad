@@ -207,7 +207,7 @@ class Duration(ImmutableAbjadObject, Fraction):
         return ()
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         result = []
         result.append(self.numerator)
         result.append(self.denominator)

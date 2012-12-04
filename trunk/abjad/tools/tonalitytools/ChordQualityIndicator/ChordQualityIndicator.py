@@ -10,7 +10,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = (repr('major'), )
+    _default_positional_input_arguments = (repr('major'), )
 
     ### INITIALIZER ###
 

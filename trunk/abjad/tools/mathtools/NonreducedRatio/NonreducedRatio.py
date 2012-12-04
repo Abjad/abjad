@@ -44,7 +44,7 @@ class NonreducedRatio(ImmutableAbjadObject, tuple):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return tuple(self)
 
     ### PRIVATE METHODS ###

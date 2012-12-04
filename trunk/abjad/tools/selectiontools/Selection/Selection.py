@@ -19,7 +19,7 @@ class Selection(AbjadObject):
 
     __slots__ = ('_music',)
 
-    _default_mandatory_input_arguments = ([], )
+    _default_positional_input_arguments = ([], )
 
     ### INITIALIZER ###
 

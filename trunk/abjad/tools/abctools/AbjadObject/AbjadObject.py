@@ -72,7 +72,7 @@ class AbjadObject(object):
 
     def __repr__(self):
         '''Interpreter representation of Abjad object defaulting to 
-        class name, mandatory arguments, keyword arguments.
+        class name, positional arguments, keyword arguments.
 
         Return string.
         '''
@@ -87,9 +87,9 @@ class AbjadObject(object):
     @property
     def _contents_repr_string(self):
         result = []
-        mandatory_argument_repr_string = self._mandatory_argument_repr_string
-        if mandatory_argument_repr_string:
-            result.append(mandatory_argument_repr_string)
+        positional_argument_repr_string = self._positional_argument_repr_string
+        if positional_argument_repr_string:
+            result.append(positional_argument_repr_string)
         keyword_argument_repr_string = ', '.join(self._keyword_argument_name_value_strings)
         if keyword_argument_repr_string:
             result.append(keyword_argument_repr_string)
@@ -124,7 +124,7 @@ class AbjadObject(object):
         return result
 
     @property
-    def _mandatory_argument_names(self):
+    def _positional_argument_names(self):
         if hasattr(self.__init__, '__func__'):
             initializer = type(self).__init__.__func__
             if initializer.func_defaults:
@@ -132,21 +132,21 @@ class AbjadObject(object):
             else:
                 keyword_argument_count = 0
             initializer_code = initializer.func_code
-            mandatory_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
-            start_index, stop_index = 1, 1 + mandatory_argument_count
+            positional_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
+            start_index, stop_index = 1, 1 + positional_argument_count
             return initializer_code.co_varnames[start_index:stop_index]
         return ()
 
     @property
-    def _mandatory_argument_repr_string(self):
-        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
-        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
-        return mandatory_argument_repr_string
+    def _positional_argument_repr_string(self):
+        positional_argument_repr_string = [repr(x) for x in self._positional_argument_values]
+        positional_argument_repr_string = ', '.join(positional_argument_repr_string)
+        return positional_argument_repr_string
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         result = []
-        for name in self._mandatory_argument_names:
+        for name in self._positional_argument_names:
             result.append(getattr(self, name))
         return tuple(result)
 
@@ -214,9 +214,9 @@ class AbjadObject(object):
             if initializer.func_defaults:
                 keyword_argument_count = len(initializer.func_defaults)
                 initializer_code = initializer.func_code
-                mandatory_argument_count = (
+                positional_argument_count = (
                     initializer_code.co_argcount - keyword_argument_count - 1)
-                start_index = 1 + mandatory_argument_count
+                start_index = 1 + positional_argument_count
                 stop_index = start_index + keyword_argument_count
                 return initializer_code.co_varnames[start_index:stop_index]
             else:
@@ -259,14 +259,14 @@ class AbjadObject(object):
                         result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
         return result
 
-    def _get_tools_package_qualified_mandatory_argument_repr_pieces(self, is_indented=True):
+    def _get_tools_package_qualified_positional_argument_repr_pieces(self, is_indented=True):
         from abjad.tools import introspectiontools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        for value in self._mandatory_argument_values:
+        for value in self._positional_argument_values:
             # if value is a (noninstantiated) class
             if type(value) == abc.ABCMeta:
                 value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
@@ -286,7 +286,7 @@ class AbjadObject(object):
         result = []
         argument_repr_pieces = []
         argument_repr_pieces.extend(
-            self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented))
+            self._get_tools_package_qualified_positional_argument_repr_pieces(is_indented=is_indented))
         argument_repr_pieces.extend(
             self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented))
         if argument_repr_pieces:

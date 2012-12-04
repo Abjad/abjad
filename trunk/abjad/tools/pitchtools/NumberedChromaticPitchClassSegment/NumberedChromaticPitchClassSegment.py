@@ -17,7 +17,7 @@ class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
 
     __slots__ = ()
     
-    _default_mandatory_input_arguments = ([-2, -1.5, 6, 7, -1.5, 7], )
+    _default_positional_input_arguments = ([-2, -1.5, 6, 7, -1.5, 7], )
 
     ### INITIALIZER ###
 

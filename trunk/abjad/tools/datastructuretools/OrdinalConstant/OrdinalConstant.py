@@ -91,7 +91,7 @@ class OrdinalConstant(ImmutableAbjadObject):
         return self._value >= expr._value
 
     def __getnewargs__(self):
-        return self._mandatory_argument_values
+        return self._positional_argument_values
 
     def __gt__(self, expr):
         self._check_comparator(expr)
@@ -111,7 +111,7 @@ class OrdinalConstant(ImmutableAbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return (
             self._dimension,
             self._value,

@@ -16,7 +16,7 @@ class NamedDiatonicPitchClass(DiatonicPitchClassObject):
 
     __slots__ = ('_diatonic_pitch_class_name', )
 
-    _default_mandatory_input_arguments = (repr('c'), )
+    _default_positional_input_arguments = (repr('c'), )
 
     ### INITIALIZER ###
 

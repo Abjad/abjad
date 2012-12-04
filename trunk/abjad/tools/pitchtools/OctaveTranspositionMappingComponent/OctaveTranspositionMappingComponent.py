@@ -23,7 +23,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = (
+    _default_positional_input_arguments = (
         repr('[A0, C8]'),
         15,
         )
@@ -79,7 +79,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
             self.target_octave_start_pitch)
     
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         result = []
         result.append(self.source_pitch_range)
         result.append(self.target_octave_start_pitch)

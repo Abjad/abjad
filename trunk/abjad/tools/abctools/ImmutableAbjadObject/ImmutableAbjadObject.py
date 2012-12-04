@@ -26,15 +26,15 @@ class ImmutableAbjadObject(AbjadObject):
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
     @property
-    def _mandatory_argument_names(self):
+    def _positional_argument_names(self):
         initializer = type(self).__new__
         if initializer.func_defaults:
             keyword_argument_count = len(initializer.func_defaults)
         else:
             keyword_argument_count = 0
         initializer_code = initializer.func_code
-        mandatory_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
-        start_index, stop_index = 1, 1 + mandatory_argument_count
+        positional_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
+        start_index, stop_index = 1, 1 + positional_argument_count
         return initializer_code.co_varnames[start_index:stop_index]
 
     ### PRIVATE METHODS ###
@@ -46,9 +46,9 @@ class ImmutableAbjadObject(AbjadObject):
             if initializer.func_defaults:
                 keyword_argument_count = len(initializer.func_defaults)
                 initializer_code = initializer.func_code
-                mandatory_argument_count = (
+                positional_argument_count = (
                     initializer_code.co_argcount - keyword_argument_count - 1)
-                start_index = 1 + mandatory_argument_count
+                start_index = 1 + positional_argument_count
                 stop_index = start_index + keyword_argument_count
                 return initializer_code.co_varnames[start_index:stop_index]
             else:

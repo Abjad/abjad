@@ -53,7 +53,7 @@ class Command(AbjadObject):
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             for my_value, expr_value in zip(
-                self._mandatory_argument_values, expr._mandatory_argument_values):
+                self._positional_argument_values, expr._positional_argument_values):
                 if not my_value == expr_value:
                     return False
             else:
@@ -183,7 +183,7 @@ class Command(AbjadObject):
 
         Return tuple.
         '''
-        return self._mandatory_argument_values
+        return self._positional_argument_values
 
     ### PUBLIC METHODS ###
 

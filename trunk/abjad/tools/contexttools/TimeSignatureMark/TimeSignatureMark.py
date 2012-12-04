@@ -48,7 +48,7 @@ class TimeSignatureMark(ContextMark):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = ((4, 8), )
+    _default_positional_input_arguments = ((4, 8), )
 
     _format_slot = 'opening'
 
@@ -181,7 +181,7 @@ class TimeSignatureMark(ContextMark):
             )
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return (self.pair, )
 
     ### READ-ONLY PUBLIC PROPERTIES ###

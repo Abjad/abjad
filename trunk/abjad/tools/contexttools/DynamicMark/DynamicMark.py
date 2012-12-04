@@ -32,7 +32,7 @@ class DynamicMark(ContextMark):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = (repr('f'), )
+    _default_positional_input_arguments = (repr('f'), )
 
     _format_slot = 'right'
 

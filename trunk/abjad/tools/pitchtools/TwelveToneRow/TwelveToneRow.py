@@ -20,7 +20,7 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = ([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8], ) 
+    _default_positional_input_arguments = ([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8], ) 
 
     ### INITALIZER ###
 

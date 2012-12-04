@@ -86,7 +86,7 @@ class QEventProxy(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _mandatory_argument_names(self):
+    def _positional_argument_names(self):
         return ('q_event', 'offset')
 
     ### READ-ONLY PUBLIC PROPERTIES ###

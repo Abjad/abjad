@@ -28,7 +28,7 @@ class Note(Leaf):
 
     __slots__ = ('_note_head', '_pitch', )
 
-    _default_mandatory_input_arguments = (repr("c'4"), )
+    _default_positional_input_arguments = (repr("c'4"), )
 
     _repr_is_evaluable = True
 

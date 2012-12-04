@@ -14,7 +14,7 @@ class ScaleDegree(AbjadObject):
 
     __slots__ = ('_accidental', '_number')
 
-    _default_mandatory_input_arguments = (3, )
+    _default_positional_input_arguments = (3, )
 
     ### INITIALIZER ###
 

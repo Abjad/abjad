@@ -46,7 +46,7 @@ class TempoMark(ContextMark):
 
     _format_slot = 'opening'
 
-    _default_mandatory_input_arguments = (
+    _default_positional_input_arguments = (
         (1, 8),
         68,
         )
@@ -186,7 +186,7 @@ class TempoMark(ContextMark):
         return self.lilypond_format.lstrip(r'\tempo ')
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         result = []
         if self.textual_indication:
             result.append(self.textual_indication)

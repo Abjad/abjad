@@ -63,6 +63,15 @@
 
 19. Implement a TreatmentSpecifier class.
     This will clean up some classes and make treatment-to-treatment comparison cleaner.
+    This will also clean up the initializers of all request classes:
+        requesttools.AbsoluteRequest
+        requesttools.CommandRequest
+        requesttools.HandlerRequest
+        requesttools.MaterialRequest
+        requesttools.StatalServerRequest
+    This will also clean up the API entries of all request classes.
+    Note that this will leave the five independent keywords in the request *methods*.
+    (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
 
 20. Remove these select methods:
         SegmentSpecification.select_ratio_of_background_measures()
@@ -81,14 +90,12 @@
     talea_denominator are all mandatory. Cleaner is all are optional
     and the class defaults to unincised note-making behavior.
 
-23. Globally change 'mandatory_arg(ument)s' to 'positional_arg(ument)s'.
-
-24. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
+23. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
     Might look like rotation=settingtools.RotationIndicator((-1, 3)).
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-25. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+24. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
@@ -107,7 +114,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-26. Maybe change selector=None keyword to timespan=None keyword in specification request methods?
+25. Maybe change selector=None keyword to timespan=None keyword in specification request methods?
     The term 'selector' is moderately unclear in the composer interface.
     It's possible that it makes sense to preserve the term else in the (non-composer-visible)
     part(s) of the system, though.
@@ -116,7 +123,7 @@
     Maybe this also means migrating all selectortools classes into symbolictimetools?
     This would remove the selectortools package altogether.
         
-27. Maybe extend all segment and score specification request methods with time_relation=None keyword.
+26. Maybe extend all segment and score specification request methods with time_relation=None keyword.
     The methods in question are:
         Specification.request_divisions()
         Specification.request_naive_beats()
@@ -125,7 +132,7 @@
         Specification.request_time_signatures()
     This would make request methods parallel select methods.
 
-28. Maybe the above action items point to removing the concept of the selector from the system.
+27. Maybe the above action items point to removing the concept of the selector from the system.
     A selector is a (timespan, time_relation) pair.
     Maybe it's better to pass timespans and time_relations around independently.
     That will mean that every select method (without exception) will return a pure timespan.
@@ -137,7 +144,7 @@
     Why? Because each class in selectortools would represent a pure symbolic timespan.
     All such classes should then migrate into symoblictimetools.
 
-29. Why doesn't MaterialRequest feature a time_relation property?
+28. Why doesn't MaterialRequest feature a time_relation property?
     Should MaterialRequest('divisions', timespan, context_name=voice)
     be MaterialRequest('division', timespan, time_relation, context_name=voice) instead?
     Probably because timespan is currently a selector.

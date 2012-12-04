@@ -14,7 +14,7 @@ class ExtentIndicator(AbjadObject):
 
     __slots__ = ('_number', )
 
-    _default_mandatory_input_arguments = (7, )
+    _default_positional_input_arguments = (7, )
 
     ### INITIALIZER ###
 

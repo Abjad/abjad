@@ -18,7 +18,7 @@ class Handler(abctools.AbjadObject):
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            if self._mandatory_argument_values == other._mandatory_argument_values:
+            if self._positional_argument_values == other._positional_argument_values:
                 if self._keyword_argument_values == other._keyword_argument_values:
                     return True
         return False

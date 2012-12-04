@@ -78,7 +78,7 @@ class Markup(DirectedMark):
 
     __slots__ = ('_contents', '_direction', '_format_slot', '_markup_name')
 
-    _default_mandatory_input_arguments = (repr(r'\bold { "This is markup text." }'), )
+    _default_positional_input_arguments = (repr(r'\bold { "This is markup text." }'), )
 
     ### INITIALIZER ###
 
@@ -148,7 +148,7 @@ class Markup(DirectedMark):
         return self._get_format_pieces(is_indented=False)
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return (
             self.contents,
             )

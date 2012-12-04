@@ -26,7 +26,7 @@ class Container(Component):
 
     __slots__ = ('_formatter', '_music', '_named_children', '_parallel', )
 
-    _default_mandatory_input_arguments = ([], )
+    _default_positional_input_arguments = ([], )
 
     ### INITIALIZER ###
 

@@ -35,7 +35,7 @@ class SpacingIndication(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = (
+    _default_positional_input_arguments = (
         ((1, 8), 44), 
         (1, 68),
         )
@@ -76,7 +76,7 @@ class SpacingIndication(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _mandatory_argument_names(self):
+    def _positional_argument_names(self):
         return ('_tempo_indication', '_proportional_notation_duration')
 
     ### READ-ONLY PUBLIC PROPERTIES ###

@@ -62,5 +62,5 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
         return ()
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return ()

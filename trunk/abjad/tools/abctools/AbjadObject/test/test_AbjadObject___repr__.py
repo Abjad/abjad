@@ -14,7 +14,7 @@ def test_AbjadObject___repr___01():
         def _keyword_argument_names(self):
             return ('flavor', )
         @property
-        def _mandatory_argument_values(self):
+        def _positional_argument_values(self):
             return (self.x, self.y)
 
     assert repr(Foo(7, 8)) == 'Foo(7, 8)'

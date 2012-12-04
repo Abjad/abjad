@@ -49,7 +49,7 @@ class FixedDurationTuplet(Tuplet):
 
     __slots__ = ('_target_duration', )
 
-    _default_mandatory_input_arguments = (
+    _default_positional_input_arguments = (
         (1, 4),
         repr("c'8 d'8 e'8"),
         )

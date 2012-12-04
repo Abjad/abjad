@@ -17,7 +17,7 @@ class Skip(Leaf):
 
     __slots__ = ()
 
-    _default_mandatory_input_arguments = (repr('s4'), )
+    _default_positional_input_arguments = (repr('s4'), )
 
     ### INITIALIZER ###
 

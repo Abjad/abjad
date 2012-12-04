@@ -24,7 +24,7 @@ class NamedChromaticPitchVector(ObjectVector):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = (["c''", "c''", "cs''", "cs''", "cs''"], )
+    _default_positional_input_arguments = (["c''", "c''", "cs''", "cs''", "cs''"], )
 
     ### INITIALIZER ###
 

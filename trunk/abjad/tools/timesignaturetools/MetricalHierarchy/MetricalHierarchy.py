@@ -240,7 +240,7 @@ class MetricalHierarchy(AbjadObject):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return ((self.numerator, self.denominator),)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

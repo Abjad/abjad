@@ -15,7 +15,7 @@ class Mode(AbjadObject):
 
     __slots__ = ('_melodic_diatonic_interval_segment', '_mode_name')
 
-    _default_mandatory_input_arguments = (repr('dorian'), )
+    _default_positional_input_arguments = (repr('dorian'), )
 
     ### INITIALIZER ###
 

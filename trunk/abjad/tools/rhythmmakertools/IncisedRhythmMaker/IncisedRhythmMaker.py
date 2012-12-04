@@ -24,7 +24,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     __metaclass__ = abc.ABCMeta
 
-    _default_mandatory_input_arguments = (
+    _default_positional_input_arguments = (
         [8],
         [1, 2, 3, 4],
         [1],

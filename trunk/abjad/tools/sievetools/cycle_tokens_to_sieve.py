@@ -9,7 +9,7 @@ def cycle_tokens_to_sieve(*cycle_tokens):
         {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5) | 
          ResidueClass(10, 6) | ResidueClass(10, 7) | ResidueClass(10, 8)}
 
-    Cycle token comprises mandatory `modulo`, mandatory `residues` and optional `offset`.
+    Cycle token comprises `modulo`, `residues` and optional `offset`.
     '''
     from abjad.tools import sievetools
     from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve

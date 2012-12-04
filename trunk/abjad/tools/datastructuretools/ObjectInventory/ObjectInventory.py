@@ -59,14 +59,14 @@ class ObjectInventory(list, AbjadObject):
         return result
 
     @property
-    def _mandatory_argument_repr_string(self):
-        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
-        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
-        mandatory_argument_repr_string = '[{}]'.format(mandatory_argument_repr_string)
-        return mandatory_argument_repr_string
+    def _positional_argument_repr_string(self):
+        positional_argument_repr_string = [repr(x) for x in self._positional_argument_values]
+        positional_argument_repr_string = ', '.join(positional_argument_repr_string)
+        positional_argument_repr_string = '[{}]'.format(positional_argument_repr_string)
+        return positional_argument_repr_string
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return tuple(self)
 
     ### READ / WRITE PUBLIC PROPERTIES ###
@@ -90,7 +90,7 @@ class ObjectInventory(list, AbjadObject):
             prefix = '\t'
         else:
             prefix = ''
-        mandatories = self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented)
+        mandatories = self._get_tools_package_qualified_positional_argument_repr_pieces(is_indented=is_indented)
         keywords = self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented)
         if not mandatories and not keywords:
             result.append('{}([])'.format(self._tools_package_qualified_class_name))

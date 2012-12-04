@@ -20,7 +20,7 @@ class NumberedChromaticPitchClassVector(ObjectVector):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = ([13, 13, 14.5, 14.5, 14.5, 6, 6, 6], )
+    _default_positional_input_arguments = ([13, 13, 14.5, 14.5, 14.5, 6, 6, 6], )
 
     ### INITIALIZER ###
 

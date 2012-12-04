@@ -67,7 +67,7 @@ class InheritanceGraph(ImmutableDictionary):
     __slots__ = ('_root_class')
 
     # TODO: what default should this take?
-    #_default_mandatory_input_arguments = ()
+    #_default_positional_input_arguments = ()
 
     ### INITIALIZER ###
 

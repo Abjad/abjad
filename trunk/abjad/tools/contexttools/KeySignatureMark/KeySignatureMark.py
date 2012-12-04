@@ -35,7 +35,7 @@ class KeySignatureMark(ContextMark):
 
     #__slots__ = ('_tonic', '_mode')
 
-    _default_mandatory_input_arguments = (
+    _default_positional_input_arguments = (
         repr('c'),
         repr('major'),
         )

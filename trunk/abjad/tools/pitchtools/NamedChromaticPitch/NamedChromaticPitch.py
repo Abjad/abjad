@@ -206,7 +206,7 @@ class NamedChromaticPitch(PitchObject):
             )
 
     @property
-    def _mandatory_argument_values(self):
+    def _positional_argument_values(self):
         return (
             self.chromatic_pitch_name,
             )

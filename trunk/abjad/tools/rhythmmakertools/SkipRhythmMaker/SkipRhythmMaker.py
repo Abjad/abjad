@@ -38,7 +38,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### CLASS ATTRIBUTES ###
 
-    _default_mandatory_input_arguments = ()
+    _default_positional_input_arguments = ()
 
     ### INITIALIZER ###
 

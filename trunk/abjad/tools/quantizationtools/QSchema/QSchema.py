@@ -126,7 +126,7 @@ class QSchema(AbjadObject):
         raise NotImplemented
 
     @property
-    def _mandatory_argument_names(self):
+    def _positional_argument_names(self):
         return ('items',)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

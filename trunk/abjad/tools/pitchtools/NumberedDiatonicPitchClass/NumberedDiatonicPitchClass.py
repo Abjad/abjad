@@ -18,7 +18,7 @@ class NumberedDiatonicPitchClass(NumberedPitchClassObject, DiatonicPitchClassObj
     __slots__ = ('_comparison_attribute', '_diatonic_pitch_class_number', '_format_string',
         '_number')
     
-    _default_mandatory_input_arguments = (0, )
+    _default_positional_input_arguments = (0, )
 
     ### INITIALIZER ###
 
