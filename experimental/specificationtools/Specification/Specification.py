@@ -466,6 +466,7 @@ class Specification(AbjadObject):
             
             >>> z(selector)
             symbolictimetools.DivisionSymbolicTimespan(
+                stop_identifier=5,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -473,8 +474,7 @@ class Specification(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                stop_identifier=5
+                    )
                 )
 
         Return selector.
@@ -526,6 +526,8 @@ class Specification(AbjadObject):
 
             >>> z(selector)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
+                klass=leaftools.Leaf,
+                stop_identifier=40,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -533,9 +535,7 @@ class Specification(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                klass=leaftools.Leaf,
-                stop_identifier=40
+                    )
                 )
 
         Return selector.
@@ -560,6 +560,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.CounttimeComponentSymbolicTimespan(
+                    klass=leaftools.Leaf,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -567,8 +568,7 @@ class Specification(AbjadObject):
                                 identifier='red'
                                 )
                             )
-                        ),
-                    klass=leaftools.Leaf
+                        )
                     ),
                 mathtools.Ratio(1, 1, 1),
                 0
@@ -589,6 +589,11 @@ class Specification(AbjadObject):
 
             >>> z(selector)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
+                klass=helpertools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
+                stop_identifier=40,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -596,12 +601,7 @@ class Specification(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                klass=helpertools.KlassInventory([
-                    notetools.Note,
-                    chordtools.Chord
-                    ]),
-                stop_identifier=40
+                    )
                 )
 
         Return selector.
@@ -626,6 +626,10 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.CounttimeComponentSymbolicTimespan(
+                    klass=helpertools.KlassInventory([
+                        notetools.Note,
+                        chordtools.Chord
+                        ]),
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -633,11 +637,7 @@ class Specification(AbjadObject):
                                 identifier='red'
                                 )
                             )
-                        ),
-                    klass=helpertools.KlassInventory([
-                        notetools.Note,
-                        chordtools.Chord
-                        ])
+                        )
                     ),
                 mathtools.Ratio(1, 1, 1),
                 0

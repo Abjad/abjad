@@ -78,6 +78,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
        >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
             selector=symbolictimetools.DivisionSymbolicTimespan(
+                stop_identifier=1,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -85,8 +86,7 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
                             identifier='red'
                             )
                         )
-                    ),
-                stop_identifier=1
+                    )
                 )
             )
 

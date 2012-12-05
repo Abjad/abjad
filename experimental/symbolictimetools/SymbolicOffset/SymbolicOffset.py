@@ -81,6 +81,9 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                klass=notetools.Note,
+                start_identifier=10,
+                stop_identifier=11,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -88,10 +91,7 @@ class SymbolicOffset(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11
+                    )
                 )
             )
 
@@ -131,6 +131,9 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                klass=notetools.Note,
+                start_identifier=10,
+                stop_identifier=11,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -138,10 +141,7 @@ class SymbolicOffset(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11
+                    )
                 ),
             edge=Right
             )
@@ -236,6 +236,9 @@ class SymbolicOffset(AbjadObject):
         
             >>> z(offset.selector)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
+                klass=notetools.Note,
+                start_identifier=10,
+                stop_identifier=11,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -243,10 +246,7 @@ class SymbolicOffset(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11
+                    )
                 )
 
         Value of none is taken equal the entire score.

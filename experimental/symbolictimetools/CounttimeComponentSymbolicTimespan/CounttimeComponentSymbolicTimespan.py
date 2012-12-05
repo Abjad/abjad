@@ -60,6 +60,9 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
             selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
                 klass=tuplettools.Tuplet,
                 selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                    klass=measuretools.Measure,
+                    start_identifier=3,
+                    stop_identifier=4,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -67,10 +70,7 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
                                 identifier='red'
                                 )
                             )
-                        ),
-                    klass=measuretools.Measure,
-                    start_identifier=3,
-                    stop_identifier=4
+                        )
                     ),
                 start_identifier=-1
                 ),
@@ -82,8 +82,8 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, time_relation=None, klass=None, predicate=None, selector=None,
-        start_identifier=None, stop_identifier=None, voice_name=None):
+    def __init__(self, klass=None, predicate=None, selector=None,
+        start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)

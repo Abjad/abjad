@@ -99,13 +99,13 @@ class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
         >>> z(selector)
         symbolictimetools.SegmentSymbolicTimespan(
+            start_identifier=-2,
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
                     multiplier=durationtools.Multiplier(1, 3)
                     )
-                ),
-            start_identifier=-2
+                )
             )
 
     All segment selector properties are read-only.
@@ -113,11 +113,10 @@ class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None):
+    def __init__(self, start_identifier=None, stop_identifier=None, time_relation=None):
         from experimental import specificationtools
         TimeRelationSymbolicTimespan.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
-        #self._klass = segmenttools.Segment
         self._klass = specificationtools.SegmentSpecification
 
     ### READ-ONLY PUBLIC PROPERTIES ###

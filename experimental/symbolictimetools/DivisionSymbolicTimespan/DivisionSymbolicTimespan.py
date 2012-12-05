@@ -48,6 +48,7 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
 
         >>> z(division_selector)
         symbolictimetools.DivisionSymbolicTimespan(
+            start_identifier=-2,
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -55,8 +56,7 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
                         identifier='red'
                         )
                     )
-                ),
-            start_identifier=-2
+                )
             )
 
     Division selectors are immutable.
@@ -64,7 +64,7 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None, voice_name=None):
+    def __init__(self, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
         TimeRelationSymbolicTimespan.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name,
             time_relation=time_relation)
