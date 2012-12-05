@@ -247,6 +247,16 @@ class SegmentSpecification(Specification):
         return Specification.single_context_settings_by_context.fget(self)
 
     @property
+    def specification_name(self):
+        '''Generalized way of refering to both score and segment specifications.
+
+        Specification name of segment specification is same as segment name.
+
+        Return string.
+        '''
+        return self.segment_name
+
+    @property
     def symbolic_start_offset(self):
         '''Segment specification symbolic start offset::
 

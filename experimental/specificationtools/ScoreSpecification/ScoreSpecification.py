@@ -360,6 +360,16 @@ class ScoreSpecification(Specification):
         return Specification.storage_format.fget(self)
 
     @property
+    def specification_name(self):
+        '''Generalized way of refering to both score and segment specifications.
+        
+        Specification name of score is always none.
+
+        Return none.
+        '''
+        return
+
+    @property
     def time_signatures(self):
         r'''Score specification time signatures::
 

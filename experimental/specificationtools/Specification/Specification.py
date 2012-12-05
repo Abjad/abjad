@@ -259,7 +259,7 @@ class Specification(AbjadObject):
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measure_timespan(self, start=None, stop=None, time_relation=None):
-        '''Select the first five segment background measures::
+        '''Select the first five background measures anchored that start during segment 'red'::
 
             >>> selector = red_segment.select_background_measure_timespan(stop=5)
 
@@ -278,7 +278,7 @@ class Specification(AbjadObject):
                     )
                 )
 
-        Return selector.
+        Return background measure symbolic timespan.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
@@ -290,7 +290,10 @@ class Specification(AbjadObject):
         return selector
 
     def select_background_measure_symbolic_timespan(self, start=None, stop=None):
-        '''Return background measure symbolic timespan without time relation.
+        '''Select background measures anchored to segment and related
+        to segment according to `time_relation`.
+
+        Return background measure symbolic timespan.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)

@@ -114,11 +114,20 @@ class BackgroundMeasureSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_identifier=None, stop_identifier=None, time_relation=None):
+    # TODO: eventually make anchor positional to enforce pervasion ... then make keyword again for data display
+    def __init__(self, anchor=None, start_identifier=None, stop_identifier=None, time_relation=None):
         TimeRelationSymbolicTimespan.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
+        self._anchor = anchor
         self._klass = measuretools.Measure
 
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    # TODO: eventually move up to TimeRelationSymbolicTimespan
+    @property
+    def anchor(self):
+        return self._anchor
+    
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
