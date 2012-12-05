@@ -169,3 +169,5 @@
 
 31. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
     Is it possible to remove SliceSymbolicTimespan altogether?
+    Maybe not because it might make sense for SegmentSymbolicTimespan to inherit
+    from SliceSymbolicTimespan instead of from TimeRelationSymbolicTimespan.

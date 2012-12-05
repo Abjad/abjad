@@ -9,41 +9,15 @@ symbolictimetools.ScoreSymbolicTimespan
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.identifiers
-
-    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
-
-.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.klass
-
-    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
-
-.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.start_identifier
-
-    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.start_segment_identifier
-
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
-
-.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.stop_identifier
-
-    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.time_relation
-
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.timespan
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
-
-.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.voice_name
-
-    Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`
 
 Methods
 -------

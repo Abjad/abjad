@@ -1,9 +1,9 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
 
 
-class ScoreSymbolicTimespan(TimeRelationSymbolicTimespan):
+class ScoreSymbolicTimespan(TimespanSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -20,10 +20,20 @@ class ScoreSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, time_relation=None, voice_name=None):
+    def __init__(self):
         from experimental import specificationtools
-        TimeRelationSymbolicTimespan.__init__(self, voice_name=voice_name, time_relation=time_relation)
+        TimespanSymbolicTimespan.__init__(self)
         self._klass = specificationtools.ScoreSpecification
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def start_segment_identifier(self):
+        '''Start segment identifer of none means score-anchoring.
+        
+        Return none.
+        '''
+        return
 
     ### PUBLIC METHODS ###
 
