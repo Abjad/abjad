@@ -163,3 +163,8 @@
     Such an unanchored symbolic timespan could be anchored repeatedly to different anchors.
     "Select the first three divisions ... first of segment red ... now of segment blue."
     If this turns out to be required then a dedicated method should implement in the composer interface.
+
+30. Suppose that all symbolic timespans that feature a time relation property continue to do so.
+    (Ie, suppose that the recent work on unbundling comes to mean something somewhat different.)
+    Would it then be possible remove the multiple inheritance that such symbolic timespan classes feature?
+    That is, could TimeRelationSymbolicTimespan inherit from SliceSymbolicTimespan?

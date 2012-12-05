@@ -1,17 +1,17 @@
 from abjad.tools import durationtools
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
 
 
-class SingleSegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
+class SingleSegmentSymbolicTimespan(TimespanSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
-    Select segment ``3``::
+    ::
 
         >>> from experimental import *
 
-    ::
+    Select segment ``3``::
 
         >>> symbolictimetools.SingleSegmentSymbolicTimespan(identifier=3)
         SingleSegmentSymbolicTimespan(identifier=3)
@@ -26,8 +26,8 @@ class SingleSegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, time_relation=None, identifier=0):
-        TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
+    def __init__(self, identifier=0):
+        TimespanSymbolicTimespan.__init__(self)
         self._identifier = identifier
         self._klass = segmenttools.Segment
 
