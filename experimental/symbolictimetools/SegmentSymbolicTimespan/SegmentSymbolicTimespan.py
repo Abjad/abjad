@@ -122,6 +122,14 @@ class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def anchor(self):
+        '''Always anchored to timespan of score.
+
+        Return none.
+        ''' 
+        return
+
+    @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.
         '''

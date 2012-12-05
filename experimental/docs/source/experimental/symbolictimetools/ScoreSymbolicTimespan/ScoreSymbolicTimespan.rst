@@ -9,6 +9,8 @@ symbolictimetools.ScoreSymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.anchor
+
 .. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.storage_format

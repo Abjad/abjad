@@ -28,6 +28,10 @@ class ScoreSymbolicTimespan(TimespanSymbolicTimespan):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def anchor(self):
+        return
+
+    @property
     def start_segment_identifier(self):
         '''Start segment identifer of none means score-anchoring.
         

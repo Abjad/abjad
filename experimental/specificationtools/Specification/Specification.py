@@ -477,6 +477,7 @@ class Specification(AbjadObject):
             
             >>> z(selector)
             symbolictimetools.DivisionSymbolicTimespan(
+                anchor='red',
                 stop_identifier=5,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -496,6 +497,7 @@ class Specification(AbjadObject):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = symbolictimetools.DivisionSymbolicTimespan(
+            anchor=self.specification_name,
             time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
 
@@ -509,6 +511,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.DivisionSymbolicTimespan(
+                    anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -537,6 +540,7 @@ class Specification(AbjadObject):
 
             >>> z(selector)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
+                anchor='red',
                 klass=leaftools.Leaf,
                 stop_identifier=40,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
@@ -557,6 +561,7 @@ class Specification(AbjadObject):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=self.specification_name,
             time_relation=time_relation, klass=leaftools.Leaf, 
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
@@ -571,6 +576,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.CounttimeComponentSymbolicTimespan(
+                    anchor='red',
                     klass=leaftools.Leaf,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -600,6 +606,7 @@ class Specification(AbjadObject):
 
             >>> z(selector)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
+                anchor='red',
                 klass=helpertools.KlassInventory([
                     notetools.Note,
                     chordtools.Chord
@@ -623,6 +630,7 @@ class Specification(AbjadObject):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=self.specification_name,
             time_relation=time_relation, klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, stop_identifier=stop, voice_name=voice)
         return selector
@@ -637,6 +645,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.CounttimeComponentSymbolicTimespan(
+                    anchor='red',
                     klass=helpertools.KlassInventory([
                         notetools.Note,
                         chordtools.Chord

@@ -82,7 +82,7 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, klass=None, predicate=None, selector=None,
+    def __init__(self, anchor=None, klass=None, predicate=None, selector=None,
         start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
@@ -90,13 +90,19 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
         TimeRelationSymbolicTimespan.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name,
             time_relation=time_relation)
-        self._selector = selector
+        self._anchor = anchor
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass
         self._predicate = predicate
+        self._selector = selector
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
+
+    # TODO: move up to superclass
+    @property
+    def anchor(self):
+        return self._anchor
 
     @property
     def predicate(self):

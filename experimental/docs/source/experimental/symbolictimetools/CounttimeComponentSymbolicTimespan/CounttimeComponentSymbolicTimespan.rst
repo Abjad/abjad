@@ -9,6 +9,8 @@ symbolictimetools.CounttimeComponentSymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.anchor
+
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.identifiers
 
     Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`

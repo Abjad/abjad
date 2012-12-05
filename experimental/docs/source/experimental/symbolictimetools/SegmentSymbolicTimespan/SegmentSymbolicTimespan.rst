@@ -9,6 +9,8 @@ symbolictimetools.SegmentSymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.SegmentSymbolicTimespan.SegmentSymbolicTimespan.SegmentSymbolicTimespan.anchor
+
 .. autoattribute:: experimental.symbolictimetools.SegmentSymbolicTimespan.SegmentSymbolicTimespan.SegmentSymbolicTimespan.identifiers
 
     Inherited from :py:class:`SliceSymbolicTimespan.SliceSymbolicTimespan <experimental.symbolictimetools.SliceSymbolicTimespan.SliceSymbolicTimespan.SliceSymbolicTimespan>`

@@ -10,6 +10,7 @@ class OffsetSymbolicTimespan(TimespanSymbolicTimespan):
 
     ### INITIALIZER ##
     
+    # TODO: rename 'selector' to 'anchor'
     def __init__(self, selector, start_offset=None, stop_offset=None):
         assert isinstance(selector, TimespanSymbolicTimespan)
         start_offset = self._initialize_offset(start_offset)

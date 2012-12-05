@@ -168,3 +168,6 @@
     Is it possible to remove SliceSymbolicTimespan altogether?
     Looks like the answer to this one is that the two classes can in fact compress into one.
     But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
+
+31. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
+    Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.

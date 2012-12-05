@@ -64,11 +64,20 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
+    def __init__(self, anchor=None, 
+        start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
         TimeRelationSymbolicTimespan.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name,
             time_relation=time_relation)
+        self._anchor = anchor
         self._klass = divisiontools.Division
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    # TODO: eventually move to superclass
+    @property
+    def anchor(self):
+        return self._anchor
 
     ### PUBLIC METHODS ###
 
