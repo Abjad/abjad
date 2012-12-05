@@ -151,3 +151,15 @@
     So an incremental way to approach item immediately above is to work this item first.
     What will that mean?
     It will mean changing MaterialRequest to feature independent timespan and time_relation properties.
+
+29. The notion of "start segment" is incompletely worked out in the current impelementation.
+    What is that part of the model trying to point to?
+    I think it's pointing to the idea that every symbolic timespans is "anchored" to something.
+    To what does a symbolic timespan anchor? Either a (named) segment or else to the entire score.
+    This is born out by looking at the examples given in the symbolic timespan doc strings;
+    the examples all say "... in segment 'red'" or '... in the score'.
+    Should symbolic timespans model independently of such an anchor? 
+    I suppose that's a possibility. But it seems highly unlikely to improve the object model.
+    Such an unanchored symbolic timespan could be anchored repeatedly to different anchors.
+    "Select the first three divisions ... first of segment red ... now of segment blue."
+    If this turns out to be required then a dedicated method should implement in the composer interface.

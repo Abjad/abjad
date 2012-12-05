@@ -258,7 +258,7 @@ class Specification(AbjadObject):
             'time_signatures', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measure_timespan(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_background_measure_timespan(self, start=None, stop=None, time_relation=None):
         '''Select the first five segment background measures::
 
             >>> selector = red_segment.select_background_measure_timespan(stop=5)
@@ -286,16 +286,16 @@ class Specification(AbjadObject):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
+            time_relation=time_relation, start_identifier=start, stop_identifier=stop)
         return selector
 
-    def select_background_measure_symbolic_timespan(self, start=None, stop=None, voice=None):
+    def select_background_measure_symbolic_timespan(self, start=None, stop=None):
         '''Return background measure symbolic timespan without time relation.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
-            start_identifier=start, stop_identifier=stop, voice_name=voice)
+            start_identifier=start, stop_identifier=stop)
         return selector
 
     # TODO: merge into self.select_timespan() and then remove
@@ -344,7 +344,7 @@ class Specification(AbjadObject):
         selector = self.select_timespan()
         return self._return_ratio_part_selectors(selector, ratio, is_count=False)
 
-    def select_ratio_of_background_measures(self, ratio, is_count=True, time_relation=None, voice=None):
+    def select_ratio_of_background_measures(self, ratio, is_count=True, time_relation=None):
         r'''Select ratio of background measures.
     
         Example 1. Select the first third of segment background measures 
@@ -454,7 +454,7 @@ class Specification(AbjadObject):
         Return selector.
         '''
         ratio = mathtools.Ratio(ratio)
-        selector = self.select_background_measure_timespan(time_relation=time_relation, voice=voice)
+        selector = self.select_background_measure_timespan(time_relation=time_relation)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
     def select_division_timespan(self, start=None, stop=None, time_relation=None, voice=None):
