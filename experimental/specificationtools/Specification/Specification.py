@@ -160,7 +160,6 @@ class Specification(AbjadObject):
         Return material request.        
         '''
         timespan = timespan or self.select_timespan()
-        #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'divisions', timespan, time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -185,7 +184,6 @@ class Specification(AbjadObject):
         Return material request.        
         '''
         timespan = timespan or self.select_timespan()
-        #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'naive_beats', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -200,7 +198,6 @@ class Specification(AbjadObject):
         Return material request.
         '''
         timespan = timespan or self.select_timespan()
-        #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         request = requesttools.MaterialRequest(
             'partitioned_time', timespan, time_relation=time_relation, context_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -228,7 +225,6 @@ class Specification(AbjadObject):
         Return rhythm request.        
         '''
         timespan = timespan or self.select_timespan()
-        #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'rhythm', timespan, start_segment_name=getattr(self, 'segment_name', None),
             time_relation=time_relation, context_name=voice, 
@@ -253,7 +249,6 @@ class Specification(AbjadObject):
         Return material request.
         '''
         timespan = timespan or self.select_timespan()
-        #time_relation = time_relation or timerelationtools.timespan_2_starts_during_timespan_1()
         return requesttools.MaterialRequest(
             'time_signatures', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -459,37 +454,29 @@ class Specification(AbjadObject):
     def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
-            >>> selector = red_segment.select_leaf_timespan(stop=40)
+            >>> timespan = red_segment.select_leaf_timespan(stop=40)
 
         ::
 
-            >>> z(selector)
+            >>> z(timespan)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
                 anchor='red',
                 klass=leaftools.Leaf,
-                stop_identifier=40,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
-                    )
+                stop_identifier=40
                 )
 
-        Return selector.
+        Return timespan.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        if time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-        time_relation = time_relation(self.timespan)
-        selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        timespan = symbolictimetools.CounttimeComponentSymbolicTimespan(
             anchor=self.specification_name,
-            time_relation=time_relation, klass=leaftools.Leaf, 
-            start_identifier=start, stop_identifier=stop, voice_name=voice)
-        return selector
+            time_relation=time_relation, 
+            klass=leaftools.Leaf, 
+            start_identifier=start, 
+            stop_identifier=stop, 
+            voice_name=voice)
+        return timespan
 
     def select_ratio_of_leaves(self, ratio, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment leaves::
@@ -502,15 +489,7 @@ class Specification(AbjadObject):
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.CounttimeComponentSymbolicTimespan(
                     anchor='red',
-                    klass=leaftools.Leaf,
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
-                        )
+                    klass=leaftools.Leaf
                     ),
                 mathtools.Ratio(1, 1, 1),
                 0
@@ -525,40 +504,32 @@ class Specification(AbjadObject):
     def select_note_and_chord_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment notes and chords::
 
-            >>> selector = red_segment.select_note_and_chord_timespan(stop=40)
+            >>> timespan = red_segment.select_note_and_chord_timespan(stop=40)
 
         ::
 
-            >>> z(selector)
+            >>> z(timespan)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
                 anchor='red',
                 klass=helpertools.KlassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),
-                stop_identifier=40,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
-                    )
+                stop_identifier=40
                 )
 
-        Return selector.
+        Return timespan.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        if time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-        time_relation = time_relation(self.timespan)
-        selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        timespan = symbolictimetools.CounttimeComponentSymbolicTimespan(
             anchor=self.specification_name,
-            time_relation=time_relation, klass=(notetools.Note, chordtools.Chord),
-            start_identifier=start, stop_identifier=stop, voice_name=voice)
-        return selector
+            time_relation=time_relation, 
+            klass=(notetools.Note, chordtools.Chord),
+            start_identifier=start, 
+            stop_identifier=stop, 
+            voice_name=voice)
+        return timespan
 
     def select_ratio_of_notes_and_chords(self, ratio, is_count=True, time_relation=None, voice=None):
         r'''Select the first third of segment notes and chords::
@@ -574,15 +545,7 @@ class Specification(AbjadObject):
                     klass=helpertools.KlassInventory([
                         notetools.Note,
                         chordtools.Chord
-                        ]),
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
-                        )
+                        ])
                     ),
                 mathtools.Ratio(1, 1, 1),
                 0

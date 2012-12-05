@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
+from abjad.tools import timerelationtools
 from experimental import helpertools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
 
@@ -171,6 +172,13 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
         counttime_components = []
         total_counttime_components = 0
         previous_rhythm_region_expression = None
+        segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        timespan_1 = segment_specification.timespan
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
+        else:
+            time_relation = self.time_relation
+            time_relation._timespan_1 = timespan_1
         for current_rhythm_region_expression in rhythm_region_expressions:
             if previous_rhythm_region_expression is not None:
                 if not previous_rhythm_region_expression.stop_offset == \
@@ -178,8 +186,7 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
                     return
             for counttime_component in iterationtools.iterate_components_in_expr(
                 current_rhythm_region_expression.music, klass=self.klass):
-                if self.time_relation is None or self.time_relation(
-                    timespan_2=counttime_component,
+                if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
                     if include_expression_start_offsets:

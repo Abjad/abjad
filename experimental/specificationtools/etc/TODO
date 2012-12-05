@@ -114,12 +114,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-25. Maybe rename selector classes to symbolic timespan classes?
-        So BackgroundMeasureSymbolicTimespan ==> BackgroundMeasureSymbolicTimespan
-    Maybe this also means migrating all selectortools classes into symbolictimetools?
-    This would remove the selectortools package altogether.
-        
-26. Maybe extend all segment and score specification request methods with time_relation=None keyword.
+25. Maybe extend all segment and score specification request methods with time_relation=None keyword.
     The methods in question are:
         Specification.request_divisions()
         Specification.request_naive_beats()
@@ -127,10 +122,8 @@
         Specification.request_rhythm()
         Specification.request_time_signatures()
     This would make request methods parallel select methods.
-    And, actually, this might obviate the ned for select methods to carry a time_relation keyword.
-    If select methods always select (pure) timespans then selecto methods will need no time_relation keyword.
 
-27. Maybe the above action items point to removing the concept of the selector from the system.
+26. Maybe the above action items point to removing the concept of the selector from the system.
     A selector is a (timespan, time_relation) pair.
     Maybe it's better to pass timespans and time_relations around independently.
     That will mean that every select method (without exception) will return a pure timespan.
@@ -138,11 +131,8 @@
     will in future take both a 'timespan' keyword and a 'time_relation' keyword;
     and it should be all (and only) the request() and set() methods that take
     both a 'timespan' keyword and a 'time_relation' keyword.
-    This should also mean that the selectortools package truly could be eliminated.
-    Why? Because each class in selectortools would represent a pure symbolic timespan.
-    All such classes should then migrate into symoblictimetools.
 
-28. Why doesn't MaterialRequest feature a time_relation property?
+27. Why doesn't MaterialRequest feature a time_relation property?
     Should MaterialRequest('divisions', timespan, context_name=voice)
     be MaterialRequest('division', timespan, time_relation, context_name=voice) instead?
     Probably because timespan is currently a selector.
@@ -152,7 +142,7 @@
     What will that mean?
     It will mean changing MaterialRequest to feature independent timespan and time_relation properties.
 
-29. The notion of "start segment" is incompletely worked out in the current impelementation.
+28. The notion of "start segment" is incompletely worked out in the current impelementation.
     What is that part of the model trying to point to?
     I think it's pointing to the idea that every symbolic timespans is "anchored" to something.
     To what does a symbolic timespan anchor? Either a (named) segment or else to the entire score.
@@ -164,15 +154,15 @@
     "Select the first three divisions ... first of segment red ... now of segment blue."
     If this turns out to be required then a dedicated method should implement in the composer interface.
 
-30. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
+29. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
     Is it possible to remove SliceSymbolicTimespan altogether?
     Looks like the answer to this one is that the two classes can in fact compress into one.
     But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
 
-31. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
+30. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
     Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
 
-32. Change ...
+31. Change ...
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red'

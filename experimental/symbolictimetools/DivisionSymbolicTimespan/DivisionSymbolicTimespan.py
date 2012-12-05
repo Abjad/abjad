@@ -11,52 +11,32 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
 
         >>> from experimental import *
 
-    Select all divisions::
+    Select all divisions that start during score::
 
         >>> symbolictimetools.DivisionSymbolicTimespan()
         DivisionSymbolicTimespan()
 
     Select all divisions that start during segment ``'red'``::
 
-        >>> red_segment = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
-        >>> timespan = red_segment.timespan
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
-
-    ::
-
-        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(time_relation=time_relation)
+        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(anchor='red')
 
     ::
 
         >>> z(division_selector)
         symbolictimetools.DivisionSymbolicTimespan(
-            time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                    selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                        identifier='red'
-                        )
-                    )
-                )
+            anchor='red'
             )
 
     Select the last two divisions that start during segment ``'red'``::
 
-        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(time_relation=time_relation, start_identifier=-2)
+        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(anchor='red', start_identifier=-2)
 
     ::
 
         >>> z(division_selector)
         symbolictimetools.DivisionSymbolicTimespan(
-            start_identifier=-2,
-            time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                    selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                        identifier='red'
-                        )
-                    )
-                )
+            anchor='red',
+            start_identifier=-2
             )
 
     Division selectors are immutable.
