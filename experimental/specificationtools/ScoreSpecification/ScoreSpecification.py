@@ -413,7 +413,11 @@ class ScoreSpecification(Specification):
 
         Return segment specification or raise key error when none is found.
         '''
-        start_segment_identifier = getattr(expr, 'start_segment_identifier', expr)
+        if isinstance(expr, (int, str)):
+            start_segment_identifier = expr
+        else:
+            start_segment_identifier = getattr(expr, 'start_segment_identifier', None)
+        assert isinstance(start_segment_identifier, (int, str)), repr(start_segment_identifier)
         return self.segment_specifications[start_segment_identifier]
 
     def interpret(self):
