@@ -1,12 +1,12 @@
 import abc
 from abjad.tools import timerelationtools
-from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
+from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
 
 
-class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
+class TimeRelationSymbolicTimespan(SliceSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
-    Inequality selector.
+    Time relation symbolic timespan.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -16,9 +16,10 @@ class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
     ### INTIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, time_relation=None):
+    def __init__(self, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
+        SliceSymbolicTimespan.__init__(
+            self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
-        TimespanSymbolicTimespan.__init__(self)
         self._time_relation = time_relation
 
     ### READ-ONLY PUBLIC PROPERTIES ###

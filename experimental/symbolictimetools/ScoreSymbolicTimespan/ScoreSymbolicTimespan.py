@@ -1,10 +1,9 @@
 from experimental import helpertools
 from experimental import segmenttools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
-from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
 
 
-class ScoreSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan):
+class ScoreSymbolicTimespan(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -23,8 +22,7 @@ class ScoreSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan)
 
     def __init__(self, time_relation=None, voice_name=None):
         from experimental import specificationtools
-        SliceSymbolicTimespan.__init__(self, voice_name=voice_name)
-        TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
+        TimeRelationSymbolicTimespan.__init__(self, voice_name=voice_name, time_relation=time_relation)
         self._klass = specificationtools.ScoreSpecification
 
     ### PUBLIC METHODS ###

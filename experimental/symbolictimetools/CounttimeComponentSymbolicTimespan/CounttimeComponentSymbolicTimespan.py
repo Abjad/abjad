@@ -2,10 +2,9 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from experimental import helpertools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
-from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
 
 
-class CounttimeComponentSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan):
+class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components.
@@ -86,12 +85,11 @@ class CounttimeComponentSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymb
     def __init__(self, time_relation=None, klass=None, predicate=None, selector=None,
         start_identifier=None, stop_identifier=None, voice_name=None):
         from experimental import symbolictimetools
-        assert isinstance(selector, (symbolictimetools.SliceSymbolicTimespan, type(None))), repr(selector)
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        SliceSymbolicTimespan.__init__(
-            self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
-        TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
+        TimeRelationSymbolicTimespan.__init__(self, 
+            start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name,
+            time_relation=time_relation)
         self._selector = selector
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)

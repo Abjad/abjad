@@ -1,10 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
-from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
 
 
-class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan):
+class BackgroundMeasureSymbolicTimespan(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Select all measures in score::
@@ -110,14 +109,14 @@ class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbo
                 )
             )
 
-    Measure slice selectors are immutable.
+    Background measure symbolic timespans are immutable.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, start_identifier=None, stop_identifier=None, time_relation=None):
-        SliceSymbolicTimespan.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
-        TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
+        TimeRelationSymbolicTimespan.__init__(self, 
+            start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
         self._klass = measuretools.Measure
 
     ### PUBLIC METHODS ###

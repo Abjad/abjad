@@ -2,10 +2,9 @@ from abjad.tools import durationtools
 from experimental import divisiontools
 from abjad.tools import timerelationtools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
-from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
 
 
-class DivisionSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan):
+class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -66,9 +65,9 @@ class DivisionSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimesp
     ### INITIALIZER ###
 
     def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None, voice_name=None):
-        SliceSymbolicTimespan.__init__(
-            self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
-        TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
+        TimeRelationSymbolicTimespan.__init__(self, 
+            start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name,
+            time_relation=time_relation)
         self._klass = divisiontools.Division
 
     ### PUBLIC METHODS ###
