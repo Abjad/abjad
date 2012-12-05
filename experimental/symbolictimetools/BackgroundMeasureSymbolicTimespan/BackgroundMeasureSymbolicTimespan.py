@@ -170,4 +170,9 @@ class BackgroundMeasureSymbolicTimespan(TimeRelationSymbolicTimespan):
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.time_relation.set_segment_identifier()``.
         '''
-        self.time_relation.set_segment_identifier(segment_identifier)
+        assert isinstance(segment_identifier, str)
+        if getattr(self.time_relation, 'timespan_1', None) is None:
+            self._anchor = segment_identifier
+        # TODO: remove this branch after anchor integration
+        else:
+            self.time_relation.set_segment_identifier(segment_identifier)

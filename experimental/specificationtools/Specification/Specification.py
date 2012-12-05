@@ -286,6 +286,8 @@ class Specification(AbjadObject):
         if time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
+        #if time_relation is None:
+        #    time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
         selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
             anchor=self.specification_name,
             start_identifier=start, stop_identifier=stop, time_relation=time_relation)

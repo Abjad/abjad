@@ -417,6 +417,8 @@ class ScoreSpecification(Specification):
             start_segment_identifier = expr
         else:
             start_segment_identifier = getattr(expr, 'start_segment_identifier', None)
+        if start_segment_identifier is None:
+            start_segment_identifier = getattr(expr, 'anchor', None)
         assert isinstance(start_segment_identifier, (int, str)), repr(start_segment_identifier)
         return self.segment_specifications[start_segment_identifier]
 
