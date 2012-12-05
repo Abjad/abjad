@@ -99,7 +99,7 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
-    # TODO: move up to superclass
+    # TODO: eventually move up to superclass
     @property
     def anchor(self):
         return self._anchor

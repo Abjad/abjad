@@ -270,12 +270,7 @@ class Specification(AbjadObject):
                 anchor='red',
                 stop_identifier=5,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
+                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
                     )
                 )
 
@@ -284,10 +279,7 @@ class Specification(AbjadObject):
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         if time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-        time_relation = time_relation(self.timespan)
-        #if time_relation is None:
-        #    time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
+            time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
         selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
             anchor=self.specification_name,
             start_identifier=start, stop_identifier=stop, time_relation=time_relation)
@@ -367,12 +359,7 @@ class Specification(AbjadObject):
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
@@ -391,12 +378,7 @@ class Specification(AbjadObject):
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
@@ -414,12 +396,7 @@ class Specification(AbjadObject):
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
@@ -433,17 +410,13 @@ class Specification(AbjadObject):
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),
                 1
                 )
+
 
         ::
 
@@ -452,12 +425,7 @@ class Specification(AbjadObject):
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     ),
                 mathtools.Ratio(1, 1, 1),

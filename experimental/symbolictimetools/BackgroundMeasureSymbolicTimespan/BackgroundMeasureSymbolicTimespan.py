@@ -128,6 +128,11 @@ class BackgroundMeasureSymbolicTimespan(TimeRelationSymbolicTimespan):
     def anchor(self):
         return self._anchor
     
+    # TODO: eventually remove in favor of TimeRelationSymbolicTimespan.start_segment_identifier
+    @property
+    def start_segment_identifier(self):
+        return self.anchor
+
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):

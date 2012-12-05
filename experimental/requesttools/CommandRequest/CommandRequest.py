@@ -33,16 +33,11 @@ class CommandRequest(Request):
                     start_identifier=4,
                     stop_identifier=5,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     )
                 ),
-                context_name='Voice 1'
+            context_name='Voice 1'
             )
 
     Command requested is canonically assumed to be a list or other iterable.
@@ -111,12 +106,7 @@ class CommandRequest(Request):
                     start_identifier=4,
                     stop_identifier=5,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
+                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
                         )
                     )
                 )

@@ -38,4 +38,5 @@ class TimeRelationSymbolicTimespan(SliceSymbolicTimespan):
 
         Return string or none.
         '''
-        return self.time_relation.start_segment_identifier
+        print self.time_relation
+        result = self.time_relation.start_segment_identifier
