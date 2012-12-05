@@ -463,7 +463,7 @@ class Spanner(AbjadObject):
         '''
         if self._contiguity_constraint == 'thread':
             components = self[-1:] + [component]
-            assert componenttools.all_are_thread_contiguous_components(components)
+            assert componenttools.all_are_thread_contiguous_components(components), repr(components)
         component._spanners.add(self)
         self._components.append(component)
 
