@@ -8,7 +8,7 @@ from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTi
 class CounttimeComponentSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
-    Select zero or more counttime components restricted according to keywords.
+    Select zero or more counttime components.
 
         >>> from experimental import *
 

@@ -267,6 +267,7 @@ class Specification(AbjadObject):
 
             >>> z(selector)
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                stop_identifier=5,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
                     timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -274,8 +275,7 @@ class Specification(AbjadObject):
                             identifier='red'
                             )
                         )
-                    ),
-                stop_identifier=5
+                    )
                 )
 
         Return selector.
@@ -286,7 +286,7 @@ class Specification(AbjadObject):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop)
+            start_identifier=start, stop_identifier=stop, time_relation=time_relation)
         return selector
 
     def select_background_measure_symbolic_timespan(self, start=None, stop=None):

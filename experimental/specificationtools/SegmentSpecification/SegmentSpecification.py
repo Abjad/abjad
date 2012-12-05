@@ -371,6 +371,8 @@ class SegmentSpecification(Specification):
                 'divisions',
                 symbolictimetools.SymbolicOffset(
                     selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                        start_identifier=8,
+                        stop_identifier=9,
                         time_relation=timerelationtools.TimespanTimespanTimeRelation(
                             'timespan_1.start <= timespan_2.start < timespan_1.stop',
                             timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -378,9 +380,7 @@ class SegmentSpecification(Specification):
                                     identifier='red'
                                     )
                                 )
-                            ),
-                        start_identifier=8,
-                        stop_identifier=9
+                            )
                         ),
                     addendum=durationtools.Offset(1, 4)
                     ),

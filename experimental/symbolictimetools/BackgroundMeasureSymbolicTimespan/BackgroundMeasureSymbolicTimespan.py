@@ -60,13 +60,13 @@ class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbo
     
         >>> z(selector)
         symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            start_identifier=-2,
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     )
-                ),
-            start_identifier=-2
+                )
             )
 
     Select all the measures that start during the three contiguous segments starting with ``'red'``::
@@ -100,14 +100,14 @@ class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbo
 
         >>> z(selector)
         symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            start_identifier=-2,
             time_relation=timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
                 timespan_1=symbolictimetools.SegmentSymbolicTimespan(
                     start_identifier='red',
                     stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                     )
-                ),
-            start_identifier=-2
+                )
             )
 
     Measure slice selectors are immutable.
@@ -115,7 +115,7 @@ class BackgroundMeasureSymbolicTimespan(SliceSymbolicTimespan, TimeRelationSymbo
 
     ### INITIALIZER ###
 
-    def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None):
+    def __init__(self, start_identifier=None, stop_identifier=None, time_relation=None):
         SliceSymbolicTimespan.__init__(self, start_identifier=start_identifier, stop_identifier=stop_identifier)
         TimeRelationSymbolicTimespan.__init__(self, time_relation=time_relation)
         self._klass = measuretools.Measure

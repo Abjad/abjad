@@ -34,6 +34,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         symbolictimetools.MixedSourceSymbolicTimespan(
             start_offset=symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    start_identifier=-1,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -41,12 +42,12 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                                 identifier='red'
                                 )
                             )
-                        ),
-                    start_identifier=-1
+                        )
                     )
                 ),
             stop_offset=symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    stop_identifier=1,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -54,8 +55,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                                 identifier='blue'
                                 )
                             )
-                        ),
-                    stop_identifier=1
+                        )
                     ),
                 edge=Right
                 )
