@@ -1,11 +1,9 @@
 from experimental import helpertools
 from experimental import segmenttools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
-#from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
 
 
 class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
-#class SegmentSymbolicTimespan(TimespanSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -115,16 +113,12 @@ class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     ### INITIALIZER ###
 
-    # TODO: get rid of time_relation parameter by inheriting from SliceSymbolicTimespan directly
-    #def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None, voice_name=None):
     def __init__(self, time_relation=None, start_identifier=None, stop_identifier=None):
-        #TimeRelationSymbolicTimespan.__init__(self, 
-        #    start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name,
-        #    time_relation=time_relation)
+        from experimental import specificationtools
         TimeRelationSymbolicTimespan.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
-        # TODO: change class to SegmentSpecification
-        self._klass = segmenttools.Segment
+        #self._klass = segmenttools.Segment
+        self._klass = specificationtools.SegmentSpecification
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

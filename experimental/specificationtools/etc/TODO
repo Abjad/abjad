@@ -164,10 +164,7 @@
     "Select the first three divisions ... first of segment red ... now of segment blue."
     If this turns out to be required then a dedicated method should implement in the composer interface.
 
-30. ScoreSymbolicTimespan doesn't need to inherit from anything except TimespanSymbolicTimespan.
-    SegmentSymbolicTimespan doesn't need to inherit from anything except TimespanSymbolicTimespan.
-
-31. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
+30. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
     Is it possible to remove SliceSymbolicTimespan altogether?
-    Maybe not because it might make sense for SegmentSymbolicTimespan to inherit
-    from SliceSymbolicTimespan instead of from TimeRelationSymbolicTimespan.
+    Looks like the answer to this one is that the two classes can in fact compress into one.
+    But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
