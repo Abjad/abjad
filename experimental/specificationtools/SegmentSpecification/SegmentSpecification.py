@@ -381,6 +381,7 @@ class SegmentSpecification(Specification):
                 'divisions',
                 symbolictimetools.SymbolicOffset(
                     selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                        anchor='red',
                         start_identifier=8,
                         stop_identifier=9,
                         time_relation=timerelationtools.TimespanTimespanTimeRelation(

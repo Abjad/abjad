@@ -29,6 +29,7 @@ class CommandRequest(Request):
             'divisions',
             symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     start_identifier=4,
                     stop_identifier=5,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
@@ -106,6 +107,7 @@ class CommandRequest(Request):
             >>> z(command_request.symbolic_offset)
             symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     start_identifier=4,
                     stop_identifier=5,
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(

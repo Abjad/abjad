@@ -267,6 +267,7 @@ class Specification(AbjadObject):
 
             >>> z(selector)
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor='red',
                 stop_identifier=5,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
                     'timespan_1.start <= timespan_2.start < timespan_1.stop',
@@ -286,10 +287,11 @@ class Specification(AbjadObject):
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1
         time_relation = time_relation(self.timespan)
         selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            anchor=self.specification_name,
             start_identifier=start, stop_identifier=stop, time_relation=time_relation)
         return selector
 
-    def select_background_measure_symbolic_timespan(self, start=None, stop=None):
+    def select_background_measure_symbolic_timespan(self, start=None, stop=None, time_relation=None):
         '''Select background measures anchored to segment and related
         to segment according to `time_relation`.
 
@@ -297,9 +299,10 @@ class Specification(AbjadObject):
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
-            start_identifier=start, stop_identifier=stop)
-        return selector
+        timespan = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            anchor=self.specification_name, 
+            start_identifier=start, stop_identifier=stop, time_relation=time_relation)
+        return timespan
 
     # TODO: merge into self.select_timespan() and then remove
     def select_offsets(self, start=None, stop=None):
@@ -360,6 +363,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -383,6 +387,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.TimeRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -405,6 +410,7 @@ class Specification(AbjadObject):
             >>> z(selectors[0])
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -423,6 +429,7 @@ class Specification(AbjadObject):
             >>> z(selectors[1])
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
@@ -441,6 +448,7 @@ class Specification(AbjadObject):
             >>> z(selectors[2])
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor='red',
                     time_relation=timerelationtools.TimespanTimespanTimeRelation(
                         'timespan_1.start <= timespan_2.start < timespan_1.stop',
                         timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
