@@ -24,6 +24,10 @@ def add_double_bar_to_end_of_score(score):
             \bar "|."
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return double bar.
     '''
     from abjad.tools import marktools

@@ -37,6 +37,10 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> componenttools.split_components_at_offsets(
         ...     staff.leaves, [Duration(3, 32)], cyclic=True)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
@@ -60,6 +64,10 @@ def split_components_at_offsets(components, offsets,
                 f'32 ] )
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Example 2. Split components cyclically and fracture spanners::
 
@@ -91,6 +99,10 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> result = componenttools.split_components_at_offsets(
         ... staff.leaves, [Duration(3, 32)], cyclic=True, fracture_spanners=True)
 
@@ -119,6 +131,10 @@ def split_components_at_offsets(components, offsets,
             }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Example 3. Split components once and do not fracture crossing spanners::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -146,6 +162,10 @@ def split_components_at_offsets(components, offsets,
                 f'8 ] )
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
@@ -179,6 +199,10 @@ def split_components_at_offsets(components, offsets,
             }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Example 4. Split components once and fracture crossing spanners::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -209,6 +233,10 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> offsets = [Duration(1, 32), Duration(3, 32), Duration(5, 32)]
         >>> shards = componenttools.split_components_at_offsets(
         ... staff[:1], offsets, cyclic=False, fracture_spanners=True, tie_split_notes=False)
@@ -235,6 +263,10 @@ def split_components_at_offsets(components, offsets,
                 f'8 ] )
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Example 5. Split tupletted components once and fracture crossing spanners::
 
@@ -267,6 +299,10 @@ def split_components_at_offsets(components, offsets,
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> offsets = [(1, 8)]
         >>> shards = componenttools.split_components_at_offsets(
         ... staff.leaves, offsets, cyclic=False, fracture_spanners=True, tie_split_notes=True)
@@ -287,6 +323,10 @@ def split_components_at_offsets(components, offsets,
                 a'8 ] )
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return list of newly split shards.
 

@@ -47,6 +47,10 @@ def add_markup_to_end_of_score(score, markup, extra_offset=None):
                 }
         }
 
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
     Return `markup`.
     '''
     from abjad.tools import markuptools

@@ -39,6 +39,10 @@ def split_component_at_offset(component, offset,
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> halves = componenttools.split_component_at_offset(
         ... staff.leaves[0], (1, 32), fracture_spanners=False, tie_split_notes=False)
 
@@ -57,6 +61,10 @@ def split_component_at_offset(component, offset,
                 f'8 ] )
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Example 2. Split component at offset at fracture crossing spanners::
 
@@ -89,6 +97,10 @@ def split_component_at_offset(component, offset,
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> halves = componenttools.split_component_at_offset(
         ... staff.leaves[0], (1, 32), fracture_spanners=True, tie_split_notes=False)
 
@@ -107,6 +119,10 @@ def split_component_at_offset(component, offset,
                 f'8 ] )
             }
         }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
 
     Return pair of left and right part-lists.
     '''

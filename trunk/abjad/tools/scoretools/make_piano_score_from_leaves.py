@@ -35,6 +35,10 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):
             >>
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     When ``lowest_treble_pitch=None`` set to B3.
 
     Return score, treble staff, bass staff.

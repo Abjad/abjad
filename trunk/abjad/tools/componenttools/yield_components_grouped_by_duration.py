@@ -24,6 +24,10 @@ def yield_components_grouped_by_duration(components):
 
     ::
 
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
         >>> for x in componenttools.yield_components_grouped_by_duration(staff):
         ...     x
         ...

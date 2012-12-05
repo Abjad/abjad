@@ -47,6 +47,10 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
             >>
         >>
 
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     When ``lowest_treble_pitch=None`` set to B3.
 
     Make time signatures and bar numbers transparent.
