@@ -105,11 +105,20 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
         '''
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []
+        segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        timespan_1 = segment_specification.timespan
+        if self.time_relation is None:
+            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
+        else:
+            time_relation = self.time_relation
+            time_relation._timespan_1 = timespan_1
         for division in voice_division_list:
-            if self.time_relation is None or self.time_relation(timespan_2=division, 
-                score_specification=score_specification, context_name=voice_name):
+            if time_relation(timespan_2=division, 
+                score_specification=score_specification, 
+                context_name=voice_name):
                 divisions.append(division)
         divisions = divisions[self.start_identifier:self.stop_identifier]
+        #self._debug(divisions, 'divisions')
         return divisions
     
     def set_segment_identifier(self, segment_identifier):

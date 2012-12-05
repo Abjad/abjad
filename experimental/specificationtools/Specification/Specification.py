@@ -261,11 +261,11 @@ class Specification(AbjadObject):
     def select_background_measure_timespan(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures anchored that start during segment 'red'::
 
-            >>> selector = red_segment.select_background_measure_timespan(stop=5)
+            >>> timespan = red_segment.select_background_measure_timespan(stop=5)
 
         ::
 
-            >>> z(selector)
+            >>> z(timespan)
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red',
                 stop_identifier=5
@@ -275,24 +275,38 @@ class Specification(AbjadObject):
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        #if time_relation is None:
-        #    time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
-        selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        timespan = symbolictimetools.BackgroundMeasureSymbolicTimespan(
             anchor=self.specification_name,
-            start_identifier=start, stop_identifier=stop, time_relation=time_relation)
-        return selector
+            start_identifier=start, 
+            stop_identifier=stop, 
+            time_relation=time_relation)
+        return timespan
 
-    def select_background_measure_symbolic_timespan(self, start=None, stop=None, time_relation=None):
-        '''Select background measures anchored to segment and related
-        to segment according to `time_relation`.
+    def select_division_timespan(self, start=None, stop=None, time_relation=None, voice=None):
+        '''Select the first five divisions that start during segment 'red'::
 
-        Return background measure symbolic timespan.
+            >>> timespan = red_segment.select_division_timespan(stop=5)
+
+        ::
+            
+            >>> z(timespan)
+            symbolictimetools.DivisionSymbolicTimespan(
+                anchor='red',
+                stop_identifier=5
+                )
+
+        Return timespan.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        timespan = symbolictimetools.BackgroundMeasureSymbolicTimespan(
-            anchor=self.specification_name, 
-            start_identifier=start, stop_identifier=stop, time_relation=time_relation)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        timespan = symbolictimetools.DivisionSymbolicTimespan(
+            anchor=self.specification_name,
+            start_identifier=start, 
+            stop_identifier=stop, 
+            voice_name=voice,
+            time_relation=time_relation)
         return timespan
 
     # TODO: merge into self.select_timespan() and then remove
@@ -420,41 +434,8 @@ class Specification(AbjadObject):
         selector = self.select_background_measure_timespan(time_relation=time_relation)
         return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
-    def select_division_timespan(self, start=None, stop=None, time_relation=None, voice=None):
-        '''Select the first five divisions that start during segment::
-
-            >>> selector = red_segment.select_division_timespan(stop=5)
-
-        ::
-            
-            >>> z(selector)
-            symbolictimetools.DivisionSymbolicTimespan(
-                anchor='red',
-                stop_identifier=5,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
-                    )
-                )
-
-        Return selector.
-        '''
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        if time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1
-        time_relation = time_relation(self.timespan)
-        selector = symbolictimetools.DivisionSymbolicTimespan(
-            anchor=self.specification_name,
-            time_relation=time_relation, start_identifier=start, stop_identifier=stop, voice_name=voice)
-        return selector
-
     def select_ratio_of_divisions(self, ratio, is_count=True, time_relation=None, voice=None):
-        r'''Select the first third of segment divisions::
+        r'''Select the first third divisions that start during segment 'red'::
 
             >>> selector = red_segment.select_ratio_of_divisions((1, 1, 1))[0]
 
@@ -463,15 +444,7 @@ class Specification(AbjadObject):
             >>> z(selector)
             symbolictimetools.CountRatioPartSymbolicTimespan(
                 symbolictimetools.DivisionSymbolicTimespan(
-                    anchor='red',
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
-                        )
+                    anchor='red'
                     ),
                 mathtools.Ratio(1, 1, 1),
                 0
