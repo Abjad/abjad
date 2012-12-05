@@ -122,6 +122,11 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
         '''
         return self._selector
 
+    # TODO: eventually remove in favor of TimeRelationSymbolicTimespan.start_segment_identifier
+    @property
+    def start_segment_identifier(self):
+        return self.anchor
+
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, voice_name, start_segment_name=None):

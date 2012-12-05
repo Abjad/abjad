@@ -71,6 +71,9 @@ class SymbolicOffset(AbjadObject):
         >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
         >>> counttime_component_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
         ... time_relation=time_relation, klass=Note, start_identifier=10, stop_identifier=11)
+        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
+        >>> counttime_component_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        ... anchor='red', klass=Note, start_identifier=10, stop_identifier=11, time_relation=time_relation)
 
     ::
 
@@ -81,16 +84,12 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
                 stop_identifier=11,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
+                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
                     )
                 )
             )
@@ -131,16 +130,12 @@ class SymbolicOffset(AbjadObject):
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
             selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
                 stop_identifier=11,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
+                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
                     )
                 ),
             edge=Right
@@ -236,16 +231,12 @@ class SymbolicOffset(AbjadObject):
         
             >>> z(offset.selector)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
+                anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
                 stop_identifier=11,
                 time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
+                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
                     )
                 )
 
