@@ -31,10 +31,7 @@ class CommandRequest(Request):
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
-                    stop_identifier=5,
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
-                        )
+                    stop_identifier=5
                     )
                 ),
             context_name='Voice 1'
@@ -104,10 +101,7 @@ class CommandRequest(Request):
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
-                    stop_identifier=5,
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop'
-                        )
+                    stop_identifier=5
                     )
                 )
 

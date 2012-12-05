@@ -171,3 +171,21 @@
 
 31. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
     Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
+
+32. Change ...
+        symbolictimetools.CountRatioPartSymbolicTimespan(
+            symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor='red'
+                ),
+            mathtools.Ratio(1, 1, 1),
+            2
+            )
+    ... to ...
+        symbolictimetools.CountRatioPartSymbolicTimespan(
+            anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor='red'
+                ),
+            mathtools.Ratio(1, 1, 1),
+            2
+            )
+    ... to show that ratio part symbolic timespans have an anchor.
