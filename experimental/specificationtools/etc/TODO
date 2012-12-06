@@ -74,7 +74,6 @@
     (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
 
 20. Remove these select methods:
-        Specification.select_ratio_of_background_measures()
         Specification.select_ratio_of_divisions()
         Specification.select_ratio_of_leaves()
         Specification.select_ratio_of_notes_and_chords()
