@@ -95,6 +95,8 @@ class Specification(AbjadObject):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
 
+    # TODO: externalize this as a package function; need to implement on Specification
+    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
     def _return_ratio_part_selectors(self, selector, ratio, is_count=True):
         result = []
         for part in range(len(ratio)):
@@ -102,6 +104,8 @@ class Specification(AbjadObject):
                 selector, ratio, part, is_count=is_count))
         return tuple(result)
 
+    # TODO: externalize this as a package function; need to implement on Specification
+    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
     def _wrap_selector_with_ratio_part_selector(self, selector, ratio, part, is_count=True):
         if is_count:
             return symbolictimetools.CountRatioPartSymbolicTimespan(selector, ratio, part)
@@ -327,6 +331,16 @@ class Specification(AbjadObject):
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
         selector = self.select_timespan()
         return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)
+
+    # TODO: externalize this as a package function; need to implement on Specification
+    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
+    def select_count_ratio_parts(self, selector, ratio):
+        return self._return_ratio_part_selectors(selector, ratio, is_count=True)
+
+    # TODO: externalize this as a package function; need to implement on Specification
+    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
+    def select_time_ratio_parts(self, selector, ratio):
+        return self._return_ratio_part_selectors(selector, ratio, is_count=False)
 
     def select_ratio(self, ratio):
         r'''Select the first third of segment::

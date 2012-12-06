@@ -42,6 +42,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_background_measure_timespan
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_count_ratio_parts
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_division_timespan
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_leaf_timespan
@@ -52,13 +54,13 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_background_measures
-
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_divisions
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_leaves
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_ratio_of_notes_and_chords
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_time_ratio_parts
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_timespan
 

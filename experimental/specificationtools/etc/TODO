@@ -74,16 +74,17 @@
     (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
 
 20. Remove these select methods:
-        SegmentSpecification.select_ratio_of_background_measures()
-        SegmentSpecification.select_ratio_of_divisions()
-        SegmentSpecification.select_ratio_of_leaves()
-        SegmentSpecification.select_ratio_of_notes_and_chords()
-        SegmentSpecification.select_segment_ratio()
+        Specification.select_ratio_of_background_measures()
+        Specification.select_ratio_of_divisions()
+        Specification.select_ratio_of_leaves()
+        Specification.select_ratio_of_notes_and_chords()
+        Specification.select_segment_ratio()
     Add these select methods:
-        SegmentSpecification.select_count_ratio_part()
-        SegmentSpecification.select_time_ratio_part()
+        Specification.select_count_ratio_part()
+        Specification.select_time_ratio_part()
 
 21. Write voice-anchored selector tests.
+    Maybe all selectors should be voice anchored. (Except background measures, etc.)
 
 22. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
     Right now prefix_talea, prefix_lengths, suffix_talea, suffix_lengths and
@@ -179,3 +180,6 @@
             2
             )
     ... to show that ratio part symbolic timespans have an anchor.
+
+32. It's probably fine for self.select_background_measure_timespan()
+    to be simply self.select_background_measures() instead.
