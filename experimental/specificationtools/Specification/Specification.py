@@ -125,6 +125,10 @@ class Specification(AbjadObject):
     def single_context_settings_by_context(self):
         return self._single_context_settings_by_context
 
+    @abc.abstractproperty
+    def timespan(self):
+        pass
+    
     ### PUBLIC METHODS ###
 
     def request_divisions(self, voice, timespan=None, time_relation=None,

@@ -309,15 +309,16 @@ class SegmentSpecification(Specification):
 
     @property
     def timespan(self):
-        '''Segment specification timespan.
+        '''Segment specification symbolic timespan.
 
-            >>> red_segment.timespan
-            SingleSourceSymbolicTimespan(selector=SingleSegmentSymbolicTimespan(identifier='red'))
+            >>> z(red_segment.timespan)
+            symbolictimetools.SingleSegmentSymbolicTimespan(
+                identifier='red'
+            )
 
-        Return timespan.
+        Return symbolic timespan.
         '''
-        selector = self.select_timespan()
-        return symbolictimetools.SingleSourceSymbolicTimespan(selector=selector)
+        return symbolictimetools.SingleSegmentSymbolicTimespan(identifier=self.segment_name)
 
     ### PUBLIC METHODS ###
 

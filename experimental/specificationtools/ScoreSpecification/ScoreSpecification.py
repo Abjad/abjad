@@ -383,6 +383,17 @@ class ScoreSpecification(Specification):
             result.extend(segment_specification.time_signatures)
         return result
 
+    @property
+    def timespan(self):
+        '''Score specification symbolic timespan.
+
+            >>> z(score_specification.timespan)
+            symbolictimetools.ScoreSymbolicTimespan()
+
+        Return symbolic timespan.
+        '''
+        return symbolictimetools.ScoreSymbolicTimespan()
+
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
