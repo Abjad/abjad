@@ -105,55 +105,33 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-24. Maybe extend all segment and score specification request methods with time_relation=None keyword.
+24. Extend all specification request methods with time_relation=None keyword.
     The methods in question are:
         Specification.request_divisions()
         Specification.request_naive_beats()
         Specification.request_partitioned_total_time()
         Specification.request_rhythm()
         Specification.request_time_signatures()
-    This would make request methods parallel select methods.
+    This is the right thing to do because all requests are made against an (anchor) timespan.
+    The default relation to that (anchor) timespan is assumed to be "happens during anchor".
+    The time_relation=None lets the composer specify the time relation of request to anchor.
 
-25. Maybe the above action items point to removing the concept of the selector from the system.
-    A selector is a (timespan, time_relation) pair.
-    Maybe it's better to pass timespans and time_relations around independently.
-    That will mean that every select method (without exception) will return a pure timespan.
-    This will also mean that every method that currently takes a 'selector' keyword
-    will in future take both a 'timespan' keyword and a 'time_relation' keyword;
-    and it should be all (and only) the request() and set() methods that take
-    both a 'timespan' keyword and a 'time_relation' keyword.
+25. I think it's quite like that selection and request-making are going to turn out to be the same thing.
+    What does it fundamentally mean to select something?
+    We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
+    Any time we reference the timespan of something we need to afford a time_relation=None keyword.
+    This happens the exact same way in both select() and request() methods.
+    So this action item probably means to remove all requet() methods in favor of select() methods.
 
-26. Why doesn't MaterialRequest feature a time_relation property?
-    Should MaterialRequest('divisions', timespan, context_name=voice)
-    be MaterialRequest('division', timespan, time_relation, context_name=voice) instead?
-    Probably because timespan is currently a selector.
-    Selector is currently a (timespan, time_relation).
-    See item above to unbundle selector and carry around timespans and time relations independently.
-    So an incremental way to approach item immediately above is to work this item first.
-    What will that mean?
-    It will mean changing MaterialRequest to feature independent timespan and time_relation properties.
-
-27. The notion of "start segment" is incompletely worked out in the current impelementation.
-    What is that part of the model trying to point to?
-    I think it's pointing to the idea that every symbolic timespans is "anchored" to something.
-    To what does a symbolic timespan anchor? Either a (named) segment or else to the entire score.
-    This is born out by looking at the examples given in the symbolic timespan doc strings;
-    the examples all say "... in segment 'red'" or '... in the score'.
-    Should symbolic timespans model independently of such an anchor? 
-    I suppose that's a possibility. But it seems highly unlikely to improve the object model.
-    Such an unanchored symbolic timespan could be anchored repeatedly to different anchors.
-    "Select the first three divisions ... first of segment red ... now of segment blue."
-    If this turns out to be required then a dedicated method should implement in the composer interface.
-
-28. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
+26. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
     Is it possible to remove SliceSymbolicTimespan altogether?
     Looks like the answer to this one is that the two classes can in fact compress into one.
     But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
 
-29. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
+27. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
     Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
 
-30. Change ...
+28. Change ...
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red'
@@ -171,5 +149,12 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-31. It's probably fine for self.select_background_measure_timespan()
+29. It's probably fine for self.select_background_measure_timespan()
     to be simply self.select_background_measures() instead.
+
+30. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+    Replace these with methods bound to Request that return annotated request.
+    This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
+    This will also mean that any number of arbitrary transforms may be applied to a request in any order.
+    This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
+    This will probably also eliminate the action item to implement a Treatment class.

@@ -44,9 +44,6 @@ class MaterialRequest(Request):
         assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-#        # temporary assert while migrating:
-#        if selector.time_relation is not None:
-#            assert selector.time_relation == time_relation
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute

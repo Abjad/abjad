@@ -150,7 +150,7 @@ class Specification(AbjadObject):
 
         Return material request.        
         '''
-        timespan = timespan or self.select_timespan()
+        timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'divisions', timespan, time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -174,7 +174,7 @@ class Specification(AbjadObject):
 
         Return material request.        
         '''
-        timespan = timespan or self.select_timespan()
+        timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'naive_beats', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -188,7 +188,7 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        timespan = timespan or self.select_timespan()
+        timespan = timespan or self.timespan
         request = requesttools.MaterialRequest(
             'partitioned_time', timespan, time_relation=time_relation, context_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -215,7 +215,7 @@ class Specification(AbjadObject):
 
         Return rhythm request.        
         '''
-        timespan = timespan or self.select_timespan()
+        timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'rhythm', timespan, start_segment_name=getattr(self, 'segment_name', None),
             time_relation=time_relation, context_name=voice, 
@@ -239,13 +239,13 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        timespan = timespan or self.select_timespan()
+        timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'time_signatures', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measure_timespan(self, start=None, stop=None, time_relation=None):
-        '''Select the first five background measures anchored that start during segment 'red'::
+        '''Select the first five background measures that start during segment 'red'::
 
             >>> timespan = red_segment.select_background_measure_timespan(stop=5)
 
@@ -295,7 +295,6 @@ class Specification(AbjadObject):
             time_relation=time_relation)
         return timespan
 
-    # TODO: merge into self.select_timespan() and then remove
     def select_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
 
@@ -316,7 +315,7 @@ class Specification(AbjadObject):
         '''
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        selector = self.select_timespan()
+        selector = self.timespan
         return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)
 
     def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
@@ -375,8 +374,3 @@ class Specification(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
-
-    # TODO: maybe replace this with read-only self.timespan property?
-    @abc.abstractmethod
-    def select_timespan(self):
-        pass

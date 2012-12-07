@@ -61,7 +61,7 @@ class SegmentSpecification(Specification):
         persist=True, truncate=None):
         request = requesttools.expr_to_request(source)
         context_names = self._context_token_to_context_names(contexts)
-        selector = selector or self.select_timespan()
+        selector = selector or self.timespan
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
@@ -211,7 +211,7 @@ class SegmentSpecification(Specification):
 
         Return single-segment selector.
         '''
-        return self.select_timespan()
+        return self.timespan
 
     @property
     def single_context_settings(self):
@@ -265,7 +265,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        selector = self.select_timespan()
+        selector = self.timespan
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Left)
 
     @property
@@ -277,7 +277,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        selector = self.select_timespan()
+        selector = self.timespan
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Right)
 
     @property
@@ -397,7 +397,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = selector or self.select_timespan()
+        selector = selector or self.timespan
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -433,7 +433,7 @@ class SegmentSpecification(Specification):
 
         Return command request.        
         '''
-        selector = selector or self.select_timespan()
+        selector = selector or self.timespan
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
@@ -471,28 +471,12 @@ class SegmentSpecification(Specification):
 
         Return command request.
         '''
-        selector = selector or self.select_timespan()
+        selector = selector or self.timespan
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
-    def select_timespan(self):
-        '''Select segment::
-
-            >>> selector = red_segment.select_timespan()
-
-        ::
-
-            >>> z(selector)
-            symbolictimetools.SingleSegmentSymbolicTimespan(
-                identifier='red'
-                )
-
-        Return selector.
-        '''
-        return symbolictimetools.SingleSegmentSymbolicTimespan(identifier=self.segment_name)
 
     def set_aggregate(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,

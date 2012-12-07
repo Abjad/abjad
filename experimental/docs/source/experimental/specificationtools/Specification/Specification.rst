@@ -52,8 +52,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_offsets
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_timespan
-
 Special Methods
 ---------------
 
