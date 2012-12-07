@@ -364,28 +364,6 @@ class Specification(AbjadObject):
         selector = self.select_timespan()
         return self._return_ratio_part_selectors(selector, ratio, is_count=False)
 
-    def select_ratio_of_divisions(self, ratio, is_count=True, time_relation=None, voice=None):
-        r'''Select the first third divisions that start during segment 'red'::
-
-            >>> selector = red_segment.select_ratio_of_divisions((1, 1, 1))[0]
-
-        ::
-
-            >>> z(selector)
-            symbolictimetools.CountRatioPartSymbolicTimespan(
-                symbolictimetools.DivisionSymbolicTimespan(
-                    anchor='red'
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        ratio = mathtools.Ratio(ratio)
-        selector = self.select_division_timespan(time_relation=time_relation, voice=voice)
-        return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
-
     def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
@@ -412,29 +390,6 @@ class Specification(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
-
-    def select_ratio_of_leaves(self, ratio, is_count=True, time_relation=None, voice=None):
-        r'''Select the first third of segment leaves::
-
-            >>> selector = red_segment.select_ratio_of_leaves((1, 1, 1))[0]
-
-        ::
-
-            >>> z(selector)
-            symbolictimetools.CountRatioPartSymbolicTimespan(
-                symbolictimetools.CounttimeComponentSymbolicTimespan(
-                    anchor='red',
-                    klass=leaftools.Leaf
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        ratio = mathtools.Ratio(ratio)
-        selector = self.select_leaf_timespan(time_relation=time_relation, voice=voice)
-        return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
     def select_note_and_chord_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment notes and chords::
@@ -465,32 +420,6 @@ class Specification(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
-
-    def select_ratio_of_notes_and_chords(self, ratio, is_count=True, time_relation=None, voice=None):
-        r'''Select the first third of segment notes and chords::
-
-            >>> selector = red_segment.select_ratio_of_notes_and_chords((1, 1, 1))[0]
-
-        ::
-
-            >>> z(selector)
-            symbolictimetools.CountRatioPartSymbolicTimespan(
-                symbolictimetools.CounttimeComponentSymbolicTimespan(
-                    anchor='red',
-                    klass=helpertools.KlassInventory([
-                        notetools.Note,
-                        chordtools.Chord
-                        ])
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        ratio = mathtools.Ratio(ratio)
-        selector = self.select_note_and_chord_timespan(time_relation=time_relation, voice=voice)
-        return self._return_ratio_part_selectors(selector, ratio, is_count=is_count)
 
     @abc.abstractmethod
     def select_timespan(self):

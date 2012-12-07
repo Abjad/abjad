@@ -102,18 +102,6 @@ Methods
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_divisions
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_leaves
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_notes_and_chords
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_time_ratio_parts
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
