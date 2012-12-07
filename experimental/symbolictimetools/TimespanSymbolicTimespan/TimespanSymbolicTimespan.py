@@ -78,7 +78,28 @@ class TimespanSymbolicTimespan(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def divide_by_ratio(self, ratio):
+        ''''Divide self by `ratio`.
+
+        Method is mirrors ``mathtools.divide_number_by_ratio()``.
+
+        Return tuple of timespans.
+        '''
+        from experimental import symbolictimetools
+        result = []
+        for part in range(len(ratio)):
+            # TODO: eventually create custom class different from TimeRatioPartSymbolicTimespan
+            result.append(symbolictimetools.TimeRatioPartSymbolicTimespan(self, ratio, part))
+        return tuple(result)
+
     def partition_by_ratio(self, ratio, is_count=True):
+        '''Partition self by `ratio`.
+
+        Method mirrors ``sequencetools.partition_sequence_by_ratio_of_lengths()``.
+        Method also mirrors ``sequencetools.partition_sequence_by_ratio_of_weights()``.
+
+        Return tuple timespans.
+        '''
         from experimental import symbolictimetools
         result = []
         for part in range(len(ratio)):

@@ -112,10 +112,6 @@ Methods
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_count_ratio_parts
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_division_timespan
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
@@ -129,14 +125,6 @@ Methods
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_offsets
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_ratio
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_time_ratio_parts
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 

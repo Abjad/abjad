@@ -95,23 +95,6 @@ class Specification(AbjadObject):
             if hasattr(context, 'name'):
                 self._context_names.append(context.name)
 
-    # TODO: externalize this as a package function; need to implement on Specification
-    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
-    def _return_ratio_part_selectors(self, selector, ratio, is_count=True):
-        result = []
-        for part in range(len(ratio)):
-            result.append(self._wrap_selector_with_ratio_part_selector(
-                selector, ratio, part, is_count=is_count))
-        return tuple(result)
-
-    # TODO: externalize this as a package function; need to implement on Specification
-    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
-    def _wrap_selector_with_ratio_part_selector(self, selector, ratio, part, is_count=True):
-        if is_count:
-            return symbolictimetools.CountRatioPartSymbolicTimespan(selector, ratio, part)
-        else:
-            return symbolictimetools.TimeRatioPartSymbolicTimespan(selector, ratio, part)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -332,38 +315,6 @@ class Specification(AbjadObject):
         selector = self.select_timespan()
         return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)
 
-    # TODO: externalize this as a package function; need to implement on Specification
-    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
-    def select_count_ratio_parts(self, selector, ratio):
-        return self._return_ratio_part_selectors(selector, ratio, is_count=True)
-
-    # TODO: externalize this as a package function; need to implement on Specification
-    # TODO: could implement as a SymbolicTimespan method that returns new symbolic timespan
-    def select_time_ratio_parts(self, selector, ratio):
-        return self._return_ratio_part_selectors(selector, ratio, is_count=False)
-
-    def select_ratio(self, ratio):
-        r'''Select the first third of segment::
-
-            >>> selector = red_segment.select_ratio((1, 1, 1))[0]
-
-        ::
-
-            >>> z(selector)
-            symbolictimetools.TimeRatioPartSymbolicTimespan(
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
-                mathtools.Ratio(1, 1, 1),
-                0
-                )
-
-        Return selector.
-        '''
-        ratio = mathtools.Ratio(ratio)
-        selector = self.select_timespan()
-        return self._return_ratio_part_selectors(selector, ratio, is_count=False)
-
     def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
@@ -421,6 +372,7 @@ class Specification(AbjadObject):
             voice_name=voice)
         return timespan
 
+    # TODO: maybe replace this with read-only self.timespan property?
     @abc.abstractmethod
     def select_timespan(self):
         pass

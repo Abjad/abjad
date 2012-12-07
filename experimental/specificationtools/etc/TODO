@@ -73,29 +73,20 @@
     Note that this will leave the five independent keywords in the request *methods*.
     (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
 
-20. Remove these select methods:
-        Specification.select_ratio_of_divisions()
-        Specification.select_ratio_of_leaves()
-        Specification.select_ratio_of_notes_and_chords()
-        Specification.select_segment_ratio()
-    Add these select methods:
-        Specification.select_count_ratio_part()
-        Specification.select_time_ratio_part()
-
-21. Write voice-anchored selector tests.
+20. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. (Except background measures, etc.)
 
-22. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
+21. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
     Right now prefix_talea, prefix_lengths, suffix_talea, suffix_lengths and
     talea_denominator are all mandatory. Cleaner is all are optional
     and the class defaults to unincised note-making behavior.
 
-23. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
+22. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
     Might look like rotation=settingtools.RotationIndicator((-1, 3)).
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-24. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+23. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
@@ -114,7 +105,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-25. Maybe extend all segment and score specification request methods with time_relation=None keyword.
+24. Maybe extend all segment and score specification request methods with time_relation=None keyword.
     The methods in question are:
         Specification.request_divisions()
         Specification.request_naive_beats()
@@ -123,7 +114,7 @@
         Specification.request_time_signatures()
     This would make request methods parallel select methods.
 
-26. Maybe the above action items point to removing the concept of the selector from the system.
+25. Maybe the above action items point to removing the concept of the selector from the system.
     A selector is a (timespan, time_relation) pair.
     Maybe it's better to pass timespans and time_relations around independently.
     That will mean that every select method (without exception) will return a pure timespan.
@@ -132,7 +123,7 @@
     and it should be all (and only) the request() and set() methods that take
     both a 'timespan' keyword and a 'time_relation' keyword.
 
-27. Why doesn't MaterialRequest feature a time_relation property?
+26. Why doesn't MaterialRequest feature a time_relation property?
     Should MaterialRequest('divisions', timespan, context_name=voice)
     be MaterialRequest('division', timespan, time_relation, context_name=voice) instead?
     Probably because timespan is currently a selector.
@@ -142,7 +133,7 @@
     What will that mean?
     It will mean changing MaterialRequest to feature independent timespan and time_relation properties.
 
-28. The notion of "start segment" is incompletely worked out in the current impelementation.
+27. The notion of "start segment" is incompletely worked out in the current impelementation.
     What is that part of the model trying to point to?
     I think it's pointing to the idea that every symbolic timespans is "anchored" to something.
     To what does a symbolic timespan anchor? Either a (named) segment or else to the entire score.
@@ -154,15 +145,15 @@
     "Select the first three divisions ... first of segment red ... now of segment blue."
     If this turns out to be required then a dedicated method should implement in the composer interface.
 
-29. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
+28. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
     Is it possible to remove SliceSymbolicTimespan altogether?
     Looks like the answer to this one is that the two classes can in fact compress into one.
     But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
 
-30. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
+29. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
     Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
 
-31. Change ...
+30. Change ...
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red'
@@ -180,5 +171,5 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-32. It's probably fine for self.select_background_measure_timespan()
+31. It's probably fine for self.select_background_measure_timespan()
     to be simply self.select_background_measures() instead.

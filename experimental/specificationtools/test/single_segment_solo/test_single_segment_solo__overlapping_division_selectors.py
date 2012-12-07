@@ -116,7 +116,8 @@ def test_single_segment_solo__overlapping_division_selectors_06():
     score_specification = specificationtools.ScoreSpecification(score_template) 
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    middle_measure = red_segment.select_ratio((4, 3, 2))[1]
+    timespan = red_segment.select_timespan()
+    middle_measure = timespan.divide_by_ratio((4, 3, 2))[1]
     red_segment.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)], selector=middle_measure)
     red_segment.set_rhythm(library.thirty_seconds)
