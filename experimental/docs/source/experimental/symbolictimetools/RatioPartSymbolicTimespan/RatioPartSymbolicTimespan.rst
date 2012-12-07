@@ -38,6 +38,10 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.partition_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.set_segment_identifier
 
 Special Methods

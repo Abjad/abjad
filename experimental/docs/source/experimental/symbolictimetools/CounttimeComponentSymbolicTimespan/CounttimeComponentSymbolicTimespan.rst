@@ -60,6 +60,10 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.partition_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 Special Methods
 ---------------
 

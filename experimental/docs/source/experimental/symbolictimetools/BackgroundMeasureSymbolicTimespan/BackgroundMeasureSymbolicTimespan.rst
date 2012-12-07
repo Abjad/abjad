@@ -56,6 +56,10 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.partition_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.set_segment_identifier
 
 Special Methods

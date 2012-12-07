@@ -27,7 +27,7 @@ class TimespanSymbolicTimespan(AbjadObject):
         if not self._positional_argument_values == expr._positional_argument_values:
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
-        
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -75,3 +75,15 @@ class TimespanSymbolicTimespan(AbjadObject):
         Return object or list of objects.
         '''
         pass        
+
+    ### PUBLIC METHODS ###
+
+    def partition_by_ratio(self, ratio, is_count=True):
+        from experimental import symbolictimetools
+        result = []
+        for part in range(len(ratio)):
+            if is_count:
+                result.append(symbolictimetools.CountRatioPartSymbolicTimespan(self, ratio, part))
+            else:
+                result.append(symbolictimetools.TimeRatioPartSymbolicTimespan(self, ratio, part))
+        return tuple(result)

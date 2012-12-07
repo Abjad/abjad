@@ -46,6 +46,10 @@ Methods
 
     Inherited from :py:class:`RatioPartSymbolicTimespan.RatioPartSymbolicTimespan <experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan>`
 
+.. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.partition_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.set_segment_identifier
 
     Inherited from :py:class:`RatioPartSymbolicTimespan.RatioPartSymbolicTimespan <experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan>`

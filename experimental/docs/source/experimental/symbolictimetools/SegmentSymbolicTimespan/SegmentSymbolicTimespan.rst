@@ -56,6 +56,10 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SegmentSymbolicTimespan.SegmentSymbolicTimespan.SegmentSymbolicTimespan.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.SegmentSymbolicTimespan.SegmentSymbolicTimespan.SegmentSymbolicTimespan.partition_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 Special Methods
 ---------------
 

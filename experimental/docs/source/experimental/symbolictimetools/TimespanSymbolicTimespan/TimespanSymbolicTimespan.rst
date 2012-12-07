@@ -26,6 +26,8 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.partition_by_ratio
+
 Special Methods
 ---------------
 
