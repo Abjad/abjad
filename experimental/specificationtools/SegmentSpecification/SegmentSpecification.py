@@ -442,7 +442,7 @@ class SegmentSpecification(Specification):
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     # TODO: simplify by inheriting from Specification.
-    def request_time_signature_command(self, 
+    def request_time_signature_command(self, voice,
         selector=None, edge=None, multiplier=None, addendum=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment time signature command active at offset
@@ -450,7 +450,7 @@ class SegmentSpecification(Specification):
 
         Example. Request time signature command active at start of segment::
 
-            >>> request = red_segment.request_time_signature_command()
+            >>> request = red_segment.request_time_signature_command('Voice 1')
 
         ::
 
@@ -461,7 +461,8 @@ class SegmentSpecification(Specification):
                     selector=symbolictimetools.SingleSegmentSymbolicTimespan(
                         identifier='red'
                         )
-                    )
+                    ),
+                voice_name='Voice 1'
                 )
 
         Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
@@ -474,7 +475,7 @@ class SegmentSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'time_signatures', voice_name=None, symbolic_offset=symbolic_offset,
+            'time_signatures', voice_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def set_aggregate(self, source, contexts=None, selector=None,

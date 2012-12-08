@@ -13,7 +13,7 @@ def test_SegmentSpecification__request_time_signature_command_from_past_01():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
 
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.request_time_signature_command()
+    red_time_signature_command = red_segment.request_time_signature_command('Voice 1')
     blue_segment.set_time_signatures(red_time_signature_command)
 
     score = score_specification.interpret()
@@ -34,7 +34,7 @@ def test_SegmentSpecification__request_time_signature_command_from_past_02():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
 
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.request_time_signature_command(reverse=True)
+    red_time_signature_command = red_segment.request_time_signature_command('Voice 1', reverse=True)
     blue_segment.set_time_signatures(red_time_signature_command)
 
     score = score_specification.interpret()
@@ -55,7 +55,7 @@ def test_SegmentSpecification__request_time_signature_command_from_past_03():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
 
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.request_time_signature_command()
+    red_time_signature_command = red_segment.request_time_signature_command('Voice 1')
     blue_segment.set_time_signatures(red_time_signature_command, reverse=True)
 
     score = score_specification.interpret()
@@ -76,7 +76,7 @@ def test_SegmentSpecification__request_time_signature_command_from_past_04():
     red_segment.set_time_signatures([(3, 8), (4, 8)])
 
     blue_segment = score_specification.append_segment(name='blue')
-    red_time_signature_command = red_segment.request_time_signature_command(reverse=True)
+    red_time_signature_command = red_segment.request_time_signature_command('Voice 1', reverse=True)
     blue_segment.set_time_signatures(red_time_signature_command, reverse=True)
 
     score = score_specification.interpret()

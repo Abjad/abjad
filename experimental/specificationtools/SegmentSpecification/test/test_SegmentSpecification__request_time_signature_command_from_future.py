@@ -12,7 +12,7 @@ def test_SegmentSpecification__request_time_signature_command_from_future_01():
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
 
-    blue_time_signature_command = blue_segment.request_time_signature_command()
+    blue_time_signature_command = blue_segment.request_time_signature_command('Voice 1')
     red_segment.set_time_signatures(blue_time_signature_command)
 
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -36,7 +36,7 @@ def test_SegmentSpecification__request_time_signature_command_from_future_02():
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
 
-    blue_time_signature_command = blue_segment.request_time_signature_command(reverse=True)
+    blue_time_signature_command = blue_segment.request_time_signature_command('Voice 1', reverse=True)
     red_segment.set_time_signatures(blue_time_signature_command)
 
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -60,7 +60,7 @@ def test_SegmentSpecification__request_time_signature_command_from_future_03():
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
 
-    blue_time_signature_command = blue_segment.request_time_signature_command()
+    blue_time_signature_command = blue_segment.request_time_signature_command('Voice 1')
     red_segment.set_time_signatures(blue_time_signature_command, reverse=True)
 
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -84,7 +84,7 @@ def test_SegmentSpecification__request_time_signature_command_from_future_04():
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
 
-    blue_time_signature_command = blue_segment.request_time_signature_command(reverse=True)
+    blue_time_signature_command = blue_segment.request_time_signature_command('Voice 1', reverse=True)
     red_segment.set_time_signatures(blue_time_signature_command, reverse=True)
 
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
