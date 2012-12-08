@@ -149,7 +149,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
         #self._debug(division_material_request, 'dmr')
-        selector = division_material_request.selector
+        selector = division_material_request.anchor
         voice_name = division_material_request.voice_name
         start_offset, stop_offset = selector.get_offsets(self.score_specification, voice_name)
         #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
@@ -732,7 +732,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_request.voice_name
-        source_score_offsets = rhythm_request.selector.get_offsets(
+        source_score_offsets = rhythm_request.anchor.get_offsets(
             self.score_specification, rhythm_request.voice_name, 
             start_segment_name=rhythm_request.start_segment_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)

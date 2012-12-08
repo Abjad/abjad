@@ -11,7 +11,7 @@ class MaterialRequest(Request):
 
         >>> from experimental import *
 
-    Request `attribute` for `selector` in `voice_name`.
+    Request `attribute` for `anchor` in `voice_name`.
 
     Apply any of `index`, `count`, `reverse`, `rotation`, `callback` that are not none::
 
@@ -39,17 +39,17 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, voice_name, selector, start_segment_name=None, time_relation=None,
+    def __init__(self, attribute, voice_name, anchor, start_segment_name=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
-        assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
+        assert isinstance(anchor, symbolictimetools.TimespanSymbolicTimespan), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._voice_name = voice_name
-        self._selector = selector
+        self._anchor = anchor
         self._start_segment_name = start_segment_name
         self._time_relation = time_relation
 
@@ -62,18 +62,18 @@ class MaterialRequest(Request):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def anchor(self):
+        return self._anchor
+
+    @property
     def attribute(self):
         return self._attribute
 
     @property
-    def selector(self):
-        return self._selector
-
-    @property
     def start_segment_identifier(self):
-        '''Delegate to ``self.selector.start_segment_identifier``.
+        '''Delegate to ``self.anchor.start_segment_identifier``.
         '''
-        return self.selector.start_segment_identifier
+        return self.anchor.start_segment_identifier
 
     @property
     def start_segment_name(self):
