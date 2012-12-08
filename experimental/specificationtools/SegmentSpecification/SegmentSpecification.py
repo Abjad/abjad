@@ -344,7 +344,7 @@ class SegmentSpecification(Specification):
                         identifier='red'
                         )
                     ),
-                context_name='Voice 1'
+                voice_name='Voice 1'
                 )
 
         Example 2. Request division command active halfway through segment::
@@ -362,7 +362,7 @@ class SegmentSpecification(Specification):
                         ),
                     multiplier=durationtools.Multiplier(1, 2)
                     ),
-                context_name='Voice 1' 
+                voice_name='Voice 1' 
                 )
 
         Example 3. Request division command active at ``1/4`` 
@@ -388,7 +388,7 @@ class SegmentSpecification(Specification):
                         ),
                     addendum=durationtools.Offset(1, 4)
                     ),
-                context_name='Voice 1'
+                voice_name='Voice 1'
                 )
 
         Specify symbolic offset with `selector`, `edge`, `multiplier`, `offset`.
@@ -401,7 +401,7 @@ class SegmentSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'divisions', context_name=voice, symbolic_offset=symbolic_offset,
+            'divisions', voice_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
@@ -424,7 +424,7 @@ class SegmentSpecification(Specification):
                         identifier='red'
                         )
                     ),
-                context_name='Voice 1'
+                voice_name='Voice 1'
                 )
 
         Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
@@ -437,10 +437,9 @@ class SegmentSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'rhythm', context_name=voice, symbolic_offset=symbolic_offset,
+            'rhythm', voice_name=voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: add voice=None keyword?
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, 
@@ -475,7 +474,7 @@ class SegmentSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'time_signatures', context_name=None, symbolic_offset=symbolic_offset,
+            'time_signatures', voice_name=None, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def set_aggregate(self, source, contexts=None, selector=None,

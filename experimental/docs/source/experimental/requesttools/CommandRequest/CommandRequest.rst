@@ -15,8 +15,6 @@ Read-only Properties
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
 
-.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.context_name
-
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.count
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
@@ -40,6 +38,8 @@ Read-only Properties
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.symbolic_offset
+
+.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.voice_name
 
 Special Methods
 ---------------

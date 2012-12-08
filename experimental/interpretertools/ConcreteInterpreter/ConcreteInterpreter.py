@@ -136,7 +136,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
         source_command = self.select_first_element_in_expr_by_parentage(
-            candidate_commands, segment_specification, division_command_request.context_name, 
+            candidate_commands, segment_specification, division_command_request.voice_name, 
             include_improper_parentage=True)
         assert source_command is not None
         #self._debug(source_command, 'source_command')
@@ -262,7 +262,7 @@ class ConcreteInterpreter(Interpreter):
                 result.append((rhythm_command.request.payload, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.CommandRequest):
                 rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
-                    rhythm_command.request, rhythm_command.request.context_name)
+                    rhythm_command.request, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
@@ -720,7 +720,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
         source_command = self.select_first_element_in_expr_by_parentage(
-            candidate_commands, segment_specification, rhythm_command_request.context_name, 
+            candidate_commands, segment_specification, rhythm_command_request.voice_name, 
             include_improper_parentage=True)
         assert source_command is not None
         #self._debug(source_command, 'source_command')

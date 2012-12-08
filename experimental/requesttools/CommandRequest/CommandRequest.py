@@ -5,7 +5,7 @@ from experimental.requesttools.Request import Request
 class CommandRequest(Request):
     r'''.. versionadded:: 1.0
 
-    Request `attribute` command active at `symbolic_offset` in `context_name`::
+    Request `attribute` command active at `symbolic_offset` in `voice_name`::
 
         >>> from experimental import *
 
@@ -34,7 +34,7 @@ class CommandRequest(Request):
                     stop_identifier=5
                     )
                 ),
-            context_name='Voice 1'
+            voice_name='Voice 1'
             )
 
     Command requested is canonically assumed to be a list or other iterable.
@@ -47,15 +47,15 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, symbolic_offset, context_name=None, 
+    def __init__(self, attribute, symbolic_offset, voice_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._symbolic_offset = symbolic_offset
-        self._context_name = context_name
+        self._voice_name = voice_name
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -69,17 +69,6 @@ class CommandRequest(Request):
         Return string.
         '''
         return self._attribute
-
-    @property
-    def context_name(self):
-        '''Command request context name specified by user.
-
-            >>> command_request.context_name
-            'Voice 1'
-
-        Return string.
-        '''
-        return self._context_name
 
     @property
     def start_segment_identifier(self):
@@ -108,3 +97,14 @@ class CommandRequest(Request):
         Return symbolic_offset.
         '''
         return self._symbolic_offset
+
+    @property
+    def voice_name(self):
+        '''Command request voice name specified by user.
+
+            >>> command_request.voice_name
+            'Voice 1'
+
+        Return string.
+        '''
+        return self._voice_name

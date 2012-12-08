@@ -66,10 +66,6 @@ class MaterialRequest(Request):
         return self._attribute
 
     @property
-    def voice_name(self):
-        return self._voice_name
-
-    @property
     def selector(self):
         return self._selector
 
@@ -87,8 +83,6 @@ class MaterialRequest(Request):
     def time_relation(self):
         return self._time_relation
 
-#    @property
-#    def voice_name(self):
-#        '''Aliased to ``self.context_name``.
-#        '''
-#        return self.context_name
+    @property
+    def voice_name(self):
+        return self._voice_name

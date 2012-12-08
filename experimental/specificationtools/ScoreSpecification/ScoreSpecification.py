@@ -482,12 +482,12 @@ class ScoreSpecification(Specification):
 
         Return command request.
         '''
-        context_name = helpertools.expr_to_component_name(voice)
+        voice_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.timespan
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'divisions', context_name=context_name, symbolic_offset=symbolic_offset,
+            'divisions', voice_name=voice_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
@@ -500,15 +500,14 @@ class ScoreSpecification(Specification):
 
         Return command request.
         '''
-        context_name = helpertools.expr_to_component_name(voice)
+        voice_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.timespan
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'rhythms', context_name=context_name, symbolic_offset=symbolic_offset,
+            'rhythms', voice_name=voice_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: make voice=None by default?
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword?
     # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, voice,
@@ -520,12 +519,12 @@ class ScoreSpecification(Specification):
 
         Return command request.
         '''
-        context_name = helpertools.expr_to_component_name(voice)
+        voice_name = helpertools.expr_to_component_name(voice)
         selector = selector or self.timespan
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'time_signatures', context_name=context_name, symbolic_offset=symbolic_offset,
+            'time_signatures', voice_name=voice_name, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def score_offset_to_segment_identifier(self, score_offset):
