@@ -21,26 +21,25 @@ def establish_metrical_hierarchy(components, metrical_hierarchy, maximum_dot_cou
 
     first_offset = components[0].start_offset
     prolation = components[0].prolation
-    depthwise_offset_inventory = metrical_hierarchy.depthwise_offset_inventory
 
-    #print 'OFFSETS'
-    for depth, offsets in depthwise_offset_inventory.iteritems():
+    offset_inventory= []
+    for offsets in metrical_hierarchy.depthwise_offset_inventory:
         offsets = [(x * prolation) + first_offset for x in offsets]
-        #print '\t', depth, offsets
-        depthwise_offset_inventory[depth] = tuple(offsets)
-    #print ''
+        offset_inventory.append(tuple(offsets))
+    boundary_offsets = offset_inventory[-1]
 
     def get_offsets_at_depth(depth):
-        if depth in depthwise_offset_inventory:
-            return depthwise_offset_inventory[depth]
-        new_offsets = []
-        old_offsets = depthwise_offset_inventory[depth - 1]
-        for first, second in sequencetools.iterate_sequence_pairwise_strict(old_offsets):
-            new_offsets.append(first)
-            new_offsets.append((first + second) / 2)
-        new_offsets.append(old_offsets[-1])
-        depthwise_offset_inventory[depth] = new_offsets
-        return tuple(new_offsets)
+        if depth < len(offset_inventory):
+            return offset_inventory[depth]
+        while len(offset_inventory) <= depth: 
+            new_offsets = []
+            old_offsets = offset_inventory[-1]
+            for first, second in sequencetools.iterate_sequence_pairwise_strict(old_offsets):
+                new_offsets.append(first)
+                new_offsets.append((first + second) / 2)
+            new_offsets.append(old_offsets[-1])
+            offset_inventory.append(tuple(new_offsets))
+        return offset_inventory[depth]
 
     def is_acceptable_tie_chain(tie_chain, offsets):
         if tie_chain.preprolated_duration.is_assignable:

@@ -311,7 +311,7 @@ class MetricalHierarchy(AbjadObject):
     def depthwise_offset_inventory(self):
         '''Depthwise inventory of offsets at each grouping level::
 
-            >>> for depth, offsets in metrical_hierarchy.depthwise_offset_inventory.items():
+            >>> for depth, offsets in enumerate(metrical_hierarchy.depthwise_offset_inventory):
             ...     print depth, offsets
             0 (Offset(0, 1), Offset(5, 4))
             1 (Offset(0, 1), Offset(3, 4), Offset(5, 4))
@@ -319,14 +319,14 @@ class MetricalHierarchy(AbjadObject):
 
         Return dictionary.
         '''
-        inventory = {}
-        for depth, nodes in self.root_node.depthwise_inventory.items():
+        inventory = []
+        for depth, nodes in sorted(self.root_node.depthwise_inventory.items()):
             offsets = []
             for node in nodes:
                 offsets.append(durationtools.Offset(node.start_offset))
             offsets.append(durationtools.Offset(self.numerator, self.denominator))
-            inventory[depth] = tuple(offsets)
-        return inventory
+            inventory.append(tuple(offsets))
+        return tuple(inventory)
 
     @property
     def duration(self):
@@ -477,7 +477,7 @@ class MetricalHierarchy(AbjadObject):
         assert mathtools.is_positive_integer_power_of_two(
             denominator / self.denominator)
 
-        inventory = [value for key, value in sorted(self.depthwise_offset_inventory.items())]
+        inventory = list(self.depthwise_offset_inventory)
         old_flag_count = durationtools.Duration(1, self.denominator).flag_count
         new_flag_count = durationtools.Duration(1, denominator).flag_count
         extra_depth = new_flag_count - old_flag_count
