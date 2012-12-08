@@ -42,7 +42,7 @@ class MaterialRequest(Request):
     def __init__(self, attribute, voice_name, selector, start_segment_name=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
-        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
+        assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         Request.__init__(
