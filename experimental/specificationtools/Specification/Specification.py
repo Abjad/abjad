@@ -222,6 +222,40 @@ class Specification(AbjadObject):
             time_relation=time_relation, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
+    # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
+    def request_rhythm_command(self, voice, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment rhythm command active at offset in `voice`.
+
+        Example. Request rhythm command active at start of segment::
+
+            >>> request = red_segment.request_rhythm_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'rhythm',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    selector='red'
+                    )
+                )
+
+        Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
+
+        Postprocess command with any of `index`, `count`, `reverse`, `callback`.
+
+        Return command request.        
+        '''
+        selector = selector or self.specification_name
+        symbolic_offset = symbolictimetools.SymbolicOffset(
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
+        return requesttools.CommandRequest(
+            'rhythm', voice, symbolic_offset=symbolic_offset,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, voice,

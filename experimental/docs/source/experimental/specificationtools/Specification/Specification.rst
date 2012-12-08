@@ -40,6 +40,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_rhythm
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_rhythm_command
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_time_signature_command
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_time_signatures

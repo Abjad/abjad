@@ -490,24 +490,6 @@ class ScoreSpecification(Specification):
             'divisions', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
-    def request_rhythm_command(self, voice,
-        selector=None, edge=None, multiplier=None, addendum=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request rhythm command active at offset in `voice`.
-
-        .. note:: not yet tested.
-
-        Return command request.
-        '''
-        voice_name = helpertools.expr_to_component_name(voice)
-        selector = selector or self.timespan
-        symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
-        return requesttools.CommandRequest(
-            'rhythms', voice, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
     def score_offset_to_segment_identifier(self, score_offset):
         r'''Change `score_offset` to segment_identifier.
 
