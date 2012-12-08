@@ -131,6 +131,84 @@ class Specification(AbjadObject):
     
     ### PUBLIC METHODS ###
 
+    # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
+    # TODO: simplify by inheriting from Specification. 
+    def request_division_command(self, voice, selector=None, 
+        edge=None, multiplier=None, addendum=None, 
+        index=None, count=None, reverse=None, rotation=None, callback=None):
+        r'''Request segment division command active at offset
+        in `voice`.
+
+        Example 1. Request division command active at start of segment::
+
+            >>> request = red_segment.request_division_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    selector='red'
+                    )
+                )
+
+        Example 2. Request division command active halfway through segment::
+
+            >>> request = red_segment.request_division_command('Voice 1', multiplier=Multiplier(1, 2))
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    selector='red',
+                    multiplier=durationtools.Multiplier(1, 2)
+                    )
+                )
+
+        Example 3. Request division command active at ``1/4`` 
+        after start of measure ``8``::
+
+            >>> selector = red_segment.select_background_measures(8, 9)
+            >>> offset = durationtools.Offset(1, 4)
+
+        ::
+
+            >>> request = red_segment.request_division_command('Voice 1', selector=selector, addendum=offset)
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                        anchor='red',
+                        start_identifier=8,
+                        stop_identifier=9
+                        ),
+                    addendum=durationtools.Offset(1, 4)
+                    )
+                )
+
+        Specify symbolic offset with `selector`, `edge`, `multiplier`, `offset`.
+
+        Postprocess command with any of `index`, `count`, `reverse`, `callback`.
+
+        Return command request.        
+        '''
+        selector = selector or self.specification_name
+        symbolic_offset = symbolictimetools.SymbolicOffset(
+            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
+        return requesttools.CommandRequest(
+            'divisions', voice, symbolic_offset=symbolic_offset,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
     def request_divisions(self, voice, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::

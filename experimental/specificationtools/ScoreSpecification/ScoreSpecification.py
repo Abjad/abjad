@@ -471,25 +471,6 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    # TODO: remove 'selector', 'edge', 'multiplier' keywords and replace with (symbolic) 'offset' keyword.
-    # TODO: simplify by inheriting from Specification.
-    def request_division_command(self, voice,
-        selector=None, edge=None, multiplier=None, addendum=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request division command active at offset in `voice`.
-
-        .. note:: not yet tested.
-
-        Return command request.
-        '''
-        voice_name = helpertools.expr_to_component_name(voice)
-        selector = selector or self.timespan
-        symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
-        return requesttools.CommandRequest(
-            'divisions', voice, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-
     def score_offset_to_segment_identifier(self, score_offset):
         r'''Change `score_offset` to segment_identifier.
 

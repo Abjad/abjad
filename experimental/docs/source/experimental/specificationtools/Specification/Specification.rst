@@ -32,6 +32,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_division_command
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_divisions
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_naive_beats
