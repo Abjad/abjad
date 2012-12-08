@@ -487,7 +487,7 @@ class ScoreSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'divisions', voice_name=voice_name, symbolic_offset=symbolic_offset,
+            'divisions', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
@@ -505,7 +505,7 @@ class ScoreSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'rhythms', voice_name=voice_name, symbolic_offset=symbolic_offset,
+            'rhythms', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword?
@@ -524,7 +524,7 @@ class ScoreSpecification(Specification):
         symbolic_offset = symbolictimetools.SymbolicOffset(
             selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
-            'time_signatures', voice_name=voice_name, symbolic_offset=symbolic_offset,
+            'time_signatures', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def score_offset_to_segment_identifier(self, score_offset):

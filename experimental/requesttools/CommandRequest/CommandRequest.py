@@ -27,14 +27,14 @@ class CommandRequest(Request):
         >>> z(command_request)
         requesttools.CommandRequest(
             'divisions',
+            'Voice 1',
             symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
                     stop_identifier=5
                     )
-                ),
-            voice_name='Voice 1'
+                )
             )
 
     Command requested is canonically assumed to be a list or other iterable.
@@ -47,15 +47,15 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, symbolic_offset, voice_name=None, 
+    def __init__(self, attribute, voice_name, symbolic_offset, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
+        assert isinstance(voice_name, str), repr(voice_name)
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
-        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
-        self._symbolic_offset = symbolic_offset
         self._voice_name = voice_name
+        self._symbolic_offset = symbolic_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
