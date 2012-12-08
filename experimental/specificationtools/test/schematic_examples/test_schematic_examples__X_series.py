@@ -155,7 +155,7 @@ def test_schematic_examples__X_series_04():
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 2'], rotation=indicator)
     indicator = settingtools.RotationIndicator(-2, 1)
     red_segment.set_rhythm(voice_1_rhythm, contexts=['Voice 3'], rotation=indicator)
-    naive_beats = red_segment.request_naive_beats()
+    naive_beats = red_segment.request_naive_beats('Voice 1')
     red_segment.set_divisions(naive_beats, contexts=['Voice 4'])
     red_segment.set_rhythm(library.note_tokens)
     blue_segment = score_specification.append_segment(name='blue')

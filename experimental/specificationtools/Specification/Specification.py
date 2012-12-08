@@ -155,7 +155,7 @@ class Specification(AbjadObject):
             'divisions', timespan, time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_naive_beats(self, context=None, timespan=None, time_relation=None,
+    def request_naive_beats(self, voice, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment naive beats in `voice`::
 
@@ -174,9 +174,10 @@ class Specification(AbjadObject):
 
         Return material request.        
         '''
+        assert isinstance(voice, str)
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'naive_beats', timespan, time_relation=time_relation, context_name=context, 
+            'naive_beats', timespan, time_relation=time_relation, context_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: could this be done with a TimeRatioPartSymbolicTimespan instead?
@@ -239,6 +240,7 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
+        assert context is None
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'time_signatures', timespan, time_relation=time_relation, context_name=context, 
@@ -296,9 +298,9 @@ class Specification(AbjadObject):
         return timespan
 
     def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
-        '''Select the first ``40`` segment leaves::
+        '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
 
-            >>> timespan = red_segment.select_leaves(stop=40)
+            >>> timespan = red_segment.select_leaves(voice='Voice 1', stop=40)
 
         ::
 
@@ -306,11 +308,13 @@ class Specification(AbjadObject):
             symbolictimetools.CounttimeComponentSymbolicTimespan(
                 anchor='red',
                 klass=leaftools.Leaf,
-                stop_identifier=40
+                stop_identifier=40,
+                voice_name='Voice 1'
                 )
 
         Return timespan.
         '''
+        assert isinstance(voice, (str, type(None)))
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         timespan = symbolictimetools.CounttimeComponentSymbolicTimespan(

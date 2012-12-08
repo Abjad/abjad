@@ -138,3 +138,6 @@
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
+
+23. Change MaterialRequest.context_name to MaterialRequest.voice_name.
+    Because materials exist only within a single voice.
