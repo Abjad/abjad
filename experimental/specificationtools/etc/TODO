@@ -1,92 +1,57 @@
-1.  Author tests to make sure that persistent overlapping division selectors 
-    can be overwritten in a subsequent segment.
-    See test_multiple_segment_solo__persistent_overlapping_division_selectors_05().
+1. Remove 'series' from 'X series 7' and the like to produce just 'X 7'.
+    Even better will be to extend helpertools.write_test_output() to write 'X7 'instead of 'X 7'.
+    Also remove 'series' from test file name.
 
-2.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
-    It means truncate last division in section. It also means restart divisions at
-    beginning of following section. Implement a SegmentSpecification.set_divisions()
-    boolean 'restart' keyword to separate these functions. When restart=True
-    then truncate will always effectively be interpreted as true.
-
-3.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
-    The keyword will specify the score-tree level at which rotation should happen.
-    The keyword will be an attribute of the RotationIndicator class.
-
-4.  Afford rhythm command request of parseable string. This will make ...
+2.  Afford rhythm command request of parseable string. This will make ...
         red_segment.set_rhythm("c'32 [ c'16 c'16. ]", contexts=['Voice 1'])
         voice_1_rhythm_command = red_segment.request_rhythm_command('Voice 1')
         red_segment.set_rhythm(voice_1_rhythm_command, contexts=['Voice 2'])
     ... interpret correctly.
     Then make X5 work with rhythm command request instead of rhythm request.
 
-5.  Reimplement rhythm rotation to pay attention to the differences beteween
+3.  Author tests to make sure that persistent overlapping division selectors 
+    can be overwritten in a subsequent segment.
+    See test_multiple_segment_solo__persistent_overlapping_division_selectors_05().
+
+4.  Notice that the SegmentSpecification.set_divisions() 'truncate' keyword means two things.
+    It means truncate last division in section. It also means restart divisions at
+    beginning of following section. Implement a SegmentSpecification.set_divisions()
+    boolean 'restart' keyword to separate these functions. When restart=True
+    then truncate will always effectively be interpreted as true.
+
+### ROTATION ###
+
+5.  Extend OffsetPositionedRhythmExpression.rotate() with a new 'level=-1' keyword.
+    The keyword will specify the score-tree level at which rotation should happen.
+    The keyword will be an attribute of the RotationIndicator class.
+
+6.  Reimplement rhythm rotation to pay attention to the differences beteween
     spanners that cover components and spanners that dominate components.
     Fill in missing spannertools docstrings before doing this.
 
-6.  Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
-    Establish metrical hierarchy after division specification and change divisions where necessary.
-    Reestablish metrical hierarchy after rhythm specification but leave divisions in tact.
-
-7.  Write E series schematic examples to all focus on different uses of the metrical hierarchy.
-    Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
-    Make selections equal to different levels of the metrical hierarchy.
-
-8.  Find a way to make beam_cells_together a rhythm-maker initializer keyword. 
-    Right now it's added onto the side of already-initialized
-    rhythm-makers in the rhythm library. Better to add to the rhythm-maker initializer signature.
-
-9.  Write reverse() tests for all rhythm-makers.
-
-10. Write rotate() tests for all rhythm-makers.
-
-11. Finish timerelationtools class docstrings before 2.11 build.
-
-12. Change DivisionSymbolicTimespan.get_selected_objects() to return a Selection object.
-    Change CounttimeComponentSymbolicTimespan.get_selected_objects() to return a Selection object.
-    Change other selectors' get_selected_objects() to return a Selection object.
-
-13. Author tests to show selecting leaves that don't yet exist.
-    Make sure the command is ignored at first and then interpreted correctly in a later pass.
-
-14. Audit to get rid of string-based keys everywhere in interpreter.
-
-15. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
-
-16. Implement selections pervasively before renaming (score tree-mutating) componenttools functions.
-    The reason is because selection implementation may clarify the names of certain operations.
-
-17. Remove 'series' from 'X series 7' and the like to produce just 'X 7'.
-    Even better will be to extend helpertools.write_test_output() to write 'X7 'instead of 'X 7'.
-    Also remove 'series' from test file name.
-
-18. Unskip all experimental tests before 2.11 build.
-
-19. Implement a TreatmentSpecifier class.
-    This will clean up some classes and make treatment-to-treatment comparison cleaner.
-    This will also clean up the initializers of all request classes:
-        requesttools.AbsoluteRequest
-        requesttools.CommandRequest
-        requesttools.HandlerRequest
-        requesttools.MaterialRequest
-        requesttools.StatalServerRequest
-    This will also clean up the API entries of all request classes.
-    Note that this will leave the five independent keywords in the request *methods*.
-    (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
-
-20. Write voice-anchored selector tests.
-    Maybe all selectors should be voice anchored. (Except background measures, etc.)
-
-21. Make most DivisionIncisedNoteRhythmMaker initializer parameters optional.
-    Right now prefix_talea, prefix_lengths, suffix_talea, suffix_lengths and
-    talea_denominator are all mandatory. Cleaner is all are optional
-    and the class defaults to unincised note-making behavior.
-
-22. Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
+7.  Extend RotationIndicator to allow for symoblic rotation by portion of total duration.
     Might look like rotation=settingtools.RotationIndicator((-1, 3)).
     Or like rotation=(-1, 3), rotation=(-2, 2), rotation(-3, 1).
     This also suggests a companion procedure that rotates based on ratio of total count of elements.
 
-23. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+### MORE ###
+
+8.  Finish timerelationtools class docstrings before 2.11 build.
+
+9.  Change DivisionSymbolicTimespan.get_selected_objects() to return a Selection object.
+    Change CounttimeComponentSymbolicTimespan.get_selected_objects() to return a Selection object.
+    Change other selectors' get_selected_objects() to return a Selection object.
+
+10. Author tests to show selecting leaves that don't yet exist.
+    Make sure the command is ignored at first and then interpreted correctly in a later pass.
+
+11. Audit to get rid of string-based keys everywhere in interpreter.
+
+12. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+
+13. Unskip all experimental tests before 2.11 build.
+
+14. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
@@ -105,33 +70,15 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-24. Extend all specification request methods with time_relation=None keyword.
-    The methods in question are:
-        Specification.request_divisions()
-        Specification.request_naive_beats()
-        Specification.request_partitioned_total_time()
-        Specification.request_rhythm()
-        Specification.request_time_signatures()
-    This is the right thing to do because all requests are made against an (anchor) timespan.
-    The default relation to that (anchor) timespan is assumed to be "happens during anchor".
-    The time_relation=None lets the composer specify the time relation of request to anchor.
-
-25. I think it's quite like that selection and request-making are going to turn out to be the same thing.
-    What does it fundamentally mean to select something?
-    We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
-    Any time we reference the timespan of something we need to afford a time_relation=None keyword.
-    This happens the exact same way in both select() and request() methods.
-    So this action item probably means to remove all requet() methods in favor of select() methods.
-
-26. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
+15. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
     Is it possible to remove SliceSymbolicTimespan altogether?
     Looks like the answer to this one is that the two classes can in fact compress into one.
     But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
 
-27. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
+16. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
     Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
 
-28. Change ...
+17. Change ...
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red'
@@ -149,9 +96,45 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-29. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+18. Implement a TreatmentSpecifier class.
+    This will clean up some classes and make treatment-to-treatment comparison cleaner.
+    This will also clean up the initializers of all request classes:
+        requesttools.AbsoluteRequest
+        requesttools.CommandRequest
+        requesttools.HandlerRequest
+        requesttools.MaterialRequest
+        requesttools.StatalServerRequest
+    This will also clean up the API entries of all request classes.
+    Note that this will leave the five independent keywords in the request *methods*.
+    (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
+    This action item may be obviated by the introduction of methods bound to the Request class.
+
+19. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
     This will probably also eliminate the action item to implement a Treatment class.
+
+20. Write voice-anchored selector tests.
+    Maybe all selectors should be voice anchored. 
+    (Except background measures, etc.)
+
+21. Extend all specification request methods with time_relation=None keyword.
+    The methods in question are:
+        Specification.request_divisions()
+        Specification.request_naive_beats()
+        Specification.request_partitioned_total_time()
+        Specification.request_rhythm()
+        Specification.request_time_signatures()
+    This is the right thing to do because all requests are made against an (anchor) timespan.
+    The default relation to that (anchor) timespan is assumed to be "happens during anchor".
+    The time_relation=None lets the composer specify the time relation of request to anchor.
+    This action item may be obviated if request methods are removed in favor of select methods.
+
+22. I think it's quite like that selection and request-making are going to turn out to be the same thing.
+    What does it fundamentally mean to select something?
+    We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
+    Any time we reference the timespan of something we need to afford a time_relation=None keyword.
+    This happens the exact same way in both select() and request() methods.
+    So this action item probably means to remove all request() methods in favor of select() methods.

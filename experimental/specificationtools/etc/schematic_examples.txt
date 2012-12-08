@@ -1,0 +1,7 @@
+Write D series schematic examples to (re)establish metrical hierarhcy at two different points.
+Establish metrical hierarchy after division specification and change divisions where necessary.
+Reestablish metrical hierarchy after rhythm specification but leave divisions in tact.
+
+Write E series schematic examples to all focus on different uses of the metrical hierarchy.
+Set divisions equal to different levels of the metrical hierarchy (beat, next level down, etc.).
+Make selections equal to different levels of the metrical hierarchy.
