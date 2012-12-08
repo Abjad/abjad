@@ -148,14 +148,17 @@ class ConcreteInterpreter(Interpreter):
     def division_material_request_to_division_region_expressions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
-        #self._debug(division_material_request, 'dmr')
+        #self._debug(division_material_request, 'division material request')
         selector = division_material_request.anchor
         voice_name = division_material_request.voice_name
-        start_offset, stop_offset = selector.get_offsets(self.score_specification, voice_name)
+        if isinstance(selector, str):
+            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(selector)
+        else:
+            start_offset, stop_offset = selector.get_offsets(self.score_specification, voice_name)
         #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
-        #self._debug(division_region_expressions, 'drx')
+        #self._debug(division_region_expressions, 'division region expressions')
         source_timespan = timespantools.LiteralTimespan(start_offset, stop_offset)
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
@@ -732,9 +735,13 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(rhythm_material_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_material_request.voice_name
-        source_score_offsets = rhythm_material_request.anchor.get_offsets(
-            self.score_specification, rhythm_material_request.voice_name, 
-            start_segment_name=rhythm_material_request.start_segment_name)
+        if isinstance(rhythm_material_request.anchor, str):
+            source_score_offsets = self.score_specification.segment_identifier_expression_to_offsets(
+                rhythm_material_request.anchor)
+        else:
+            source_score_offsets = rhythm_material_request.anchor.get_offsets(
+                self.score_specification, rhythm_material_request.voice_name, 
+                start_segment_name=rhythm_material_request.start_segment_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \

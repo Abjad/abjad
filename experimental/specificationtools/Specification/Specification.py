@@ -132,9 +132,8 @@ class Specification(AbjadObject):
     ### PUBLIC METHODS ###
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
-    # TODO: simplify by inheriting from Specification. 
-    def request_division_command(self, voice, selector=None, 
-        edge=None, multiplier=None, addendum=None, 
+    def request_division_command(self, voice, 
+        selector=None, edge=None, multiplier=None, addendum=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment division command active at offset
         in `voice`.
@@ -209,7 +208,8 @@ class Specification(AbjadObject):
             'divisions', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_divisions(self, voice, timespan=None, time_relation=None,
+    # TODO: remove anchor=None keyword and use self.select_background_measures().request_divisions() instead?
+    def request_divisions(self, voice, anchor=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
 
@@ -221,19 +221,17 @@ class Specification(AbjadObject):
             requesttools.MaterialRequest(
                 'divisions',
                 'Voice 1',
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    )
+                'red'
                 )
 
         Return material request.        
         '''
-        timespan = timespan or self.timespan
+        anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
-            'divisions', voice, timespan, time_relation=time_relation,
+            'divisions', voice, anchor, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_naive_beats(self, voice, timespan=None, time_relation=None,
+    def request_naive_beats(self, voice, anchor=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment naive beats in `voice`::
 
@@ -245,20 +243,18 @@ class Specification(AbjadObject):
             requesttools.MaterialRequest(
                 'naive_beats',
                 'Voice 1',
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    )
+                'red'
                 )
 
         Return material request.        
         '''
         assert isinstance(voice, str)
-        timespan = timespan or self.timespan
+        anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
-            'naive_beats', voice, timespan, time_relation=time_relation,
+            'naive_beats', voice, anchor, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_rhythm(self, voice, timespan=None, time_relation=None,
+    def request_rhythm(self, voice, anchor=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
 
@@ -270,17 +266,15 @@ class Specification(AbjadObject):
             requesttools.MaterialRequest(
                 'rhythm',
                 'Voice 1',
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
+                'red',
                 start_segment_name='red'
                 )
 
         Return rhythm request.        
         '''
-        timespan = timespan or self.timespan
+        anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
-            'rhythm', voice, timespan, start_segment_name=getattr(self, 'segment_name', None),
+            'rhythm', voice, anchor, start_segment_name=getattr(self, 'segment_name', None),
             time_relation=time_relation, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
@@ -319,7 +313,6 @@ class Specification(AbjadObject):
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
-    # TODO: simplify by inheriting from Specification.
     def request_time_signature_command(self, voice,
         selector=None, edge=None, multiplier=None, addendum=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
@@ -354,7 +347,7 @@ class Specification(AbjadObject):
             'time_signatures', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, voice, timespan=None, time_relation=None,
+    def request_time_signatures(self, voice, anchor=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 
@@ -366,17 +359,15 @@ class Specification(AbjadObject):
             requesttools.MaterialRequest(
                 'time_signatures',
                 'Voice 1',
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    )
+                'red'
                 )
 
         Return material request.
         '''
         assert isinstance(voice, str)
-        timespan = timespan or self.timespan
+        anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
-            'time_signatures', voice, timespan, time_relation=time_relation,
+            'time_signatures', voice, anchor, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):

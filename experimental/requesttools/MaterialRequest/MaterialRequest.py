@@ -29,9 +29,7 @@ class MaterialRequest(Request):
         requesttools.MaterialRequest(
             'time_signatures',
             'Voice 1',
-            symbolictimetools.SingleSegmentSymbolicTimespan(
-                identifier='red'
-                )
+            'red'
             )
 
     The purpose of a material request is to function as the source of a setting.
@@ -43,7 +41,7 @@ class MaterialRequest(Request):
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
-        assert isinstance(anchor, symbolictimetools.TimespanSymbolicTimespan), repr(anchor)
+        assert isinstance(anchor, (symbolictimetools.TimespanSymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -73,7 +71,10 @@ class MaterialRequest(Request):
     def start_segment_identifier(self):
         '''Delegate to ``self.anchor.start_segment_identifier``.
         '''
-        return self.anchor.start_segment_identifier
+        if isinstance(self.anchor, str):
+                return self.anchor
+        else:
+            return self.anchor.start_segment_identifier
 
     @property
     def start_segment_name(self):
