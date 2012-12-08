@@ -6,6 +6,7 @@ from abjad.tools import tietools
 
 def establish_metrical_hierarchy(components, metrical_hierarchy,
     maximum_dot_count=None,
+    show_boundaries=True,
     ):
     r'''.. versionadded:: 2.11
 
@@ -43,46 +44,58 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             offset_inventory.append(tuple(new_offsets))
         return offset_inventory[depth]
 
-    def is_acceptable_tie_chain(tie_chain, offsets):
-        duration = tie_chain.preprolated_duration
-        start_offset, stop_offset = tie_chain.start_offset, tie_chain.stop_offset
-        if not duration.is_assignable:
+    def is_acceptable_tie_chain(tie_chain_duration, 
+        tie_chain_starts_in_offsets,
+        tie_chain_stops_in_offsets):
+        if not tie_chain_duration.is_assignable:
             return False
         if maximum_dot_count is not None and \
-            maximum_dot_count < duration.dot_count:
+            maximum_dot_count < tie_chain_duration.dot_count:
             return False
-        if start_offset not in offsets and stop_offset not in offsets:
+        if not tie_chain_starts_in_offsets and not tie_chain_stops_in_offsets:
             return False
         return True
+
+    def is_boundary_crossing_tie_chain(tie_chain_start_offset, tie_chain_stop_offset):
+        if show_boundaries and any(tie_chain_start_offset < x < tie_chain_stop_offset \
+            for x in boundary_offsets):
+            if not tie_chain_start_offset in boundary_offsets and \
+                tie_chain_stop_offset in boundary_offsets:
+                return True
+        return False
 
     def recurse(tie_chain, depth=0):
         offsets = get_offsets_at_depth(depth)
         #print 'DEPTH:', depth
 
-        if is_acceptable_tie_chain(tie_chain, offsets):
-            #print 'ACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
-            #print '\t', ' '.join([str(x) for x in offsets])
-            #print ''
-            leaftools.fuse_leaves(tie_chain[:])
+        tie_chain_duration = tie_chain.preprolated_duration
+        tie_chain_start_offset = tie_chain.start_offset
+        tie_chain_stop_offset = tie_chain.stop_offset
+        tie_chain_starts_in_offsets = tie_chain_start_offset in offsets
+        tie_chain_stops_in_offsets = tie_chain_stop_offset in offsets     
 
-        else:
+        if not is_acceptable_tie_chain(
+            tie_chain_duration,
+            tie_chain_starts_in_offsets, 
+            tie_chain_stops_in_offsets):
+
             #print 'UNACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             split_offset = None
             offsets = get_offsets_at_depth(depth)
 
             # if the tie chain's start aligns, take the latest possible offset
-            if tie_chain.start_offset in offsets:
+            if tie_chain_starts_in_offsets:
                 offsets = reversed(offsets)
 
             for offset in offsets:
-                if tie_chain.start_offset < offset < tie_chain.stop_offset:
+                if tie_chain_start_offset < offset < tie_chain_stop_offset:
                     split_offset = offset
                     break
 
             #print '\tABS:', split_offset
             if split_offset is not None:
-                split_offset -= tie_chain.start_offset
+                split_offset -= tie_chain_start_offset
                 #print '\tREL:', split_offset
                 #print ''
                 tie_chains = [tietools.TieChain(shard) for shard in
@@ -93,6 +106,19 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             else:
                 #print ''
                 recurse(tie_chain, depth=depth+1)
+
+        #elif is_boundary_crossing_tie_chain(
+        #    tie_chain_start_offset,
+        #    tie_chain_stop_offset):
+        #    #print 'BOUNDARY CROSSING'
+
+
+        else:
+            #print 'ACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
+            #print '\t', ' '.join([str(x) for x in offsets])
+            #print ''
+            leaftools.fuse_leaves(tie_chain[:])
+
 
     # cache results of iterator, as we'll be mutating the underlying collection
     items = tuple(tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(components))
