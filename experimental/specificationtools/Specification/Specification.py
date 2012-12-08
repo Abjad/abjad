@@ -222,7 +222,7 @@ class Specification(AbjadObject):
             time_relation=time_relation, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, voice=None, timespan=None, time_relation=None,
+    def request_time_signatures(self, voice, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 
@@ -241,7 +241,7 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        assert isinstance(voice, (str, type(None)))
+        assert isinstance(voice, str)
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'time_signatures', voice, timespan, time_relation=time_relation,

@@ -27,7 +27,7 @@ def test_multiple_segment_quartet_01():
     lower = [red_segment.v3, red_segment.v4]
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
-    source = score_specification['red'].request_time_signatures()
+    source = score_specification['red'].request_time_signatures('Voice 1')
     blue_segment.set_time_signatures(source, index=-2, count=2)
     score = score_specification.interpret()
 
@@ -53,7 +53,7 @@ def test_multiple_segment_quartet_02():
     red_segment.set_divisions([(4, 16), (3, 16)], contexts=lower)
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
-    source = score_specification['red'].request_time_signatures()
+    source = score_specification['red'].request_time_signatures('Voice 1')
     blue_segment.set_time_signatures(source, index=-2, count=2)
     score = score_specification.interpret()
 

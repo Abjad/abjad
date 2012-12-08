@@ -126,7 +126,7 @@
         Specification.request_naive_beats()
         Specification.request_partitioned_total_time()
         Specification.request_rhythm()
-        Specification.request_time_signatures()
+        Specification.request_time_signatures('Voice 1')
     This is the right thing to do because all requests are made against an (anchor) timespan.
     The default relation to that (anchor) timespan is assumed to be "happens during anchor".
     The time_relation=None lets the composer specify the time relation of request to anchor.
