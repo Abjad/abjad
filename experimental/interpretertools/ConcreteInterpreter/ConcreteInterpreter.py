@@ -737,9 +737,9 @@ class ConcreteInterpreter(Interpreter):
         assert rhythm_request.attribute == 'rhythm'
         #self._debug(rhythm_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
-        voice_name = rhythm_request.context_name
+        voice_name = rhythm_request.voice_name
         source_score_offsets = rhythm_request.selector.get_offsets(
-            self.score_specification, rhythm_request.context_name, 
+            self.score_specification, rhythm_request.voice_name, 
             start_segment_name=rhythm_request.start_segment_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
@@ -934,7 +934,7 @@ class ConcreteInterpreter(Interpreter):
         segment_specification = self.get_start_segment_specification(
             material_request.start_segment_identifier)
         context_proxy = segment_specification.single_context_settings_by_context[
-            material_request.context_name]
+            material_request.voice_name]
         single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):

@@ -145,14 +145,14 @@ class Specification(AbjadObject):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
-                context_name='Voice 1'
+                voice_name='Voice 1'
                 )
 
         Return material request.        
         '''
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'divisions', timespan, time_relation=time_relation, context_name=voice, 
+            'divisions', timespan, time_relation=time_relation, voice_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_naive_beats(self, voice, timespan=None, time_relation=None,
@@ -169,7 +169,7 @@ class Specification(AbjadObject):
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
-                context_name='Voice 1'
+                voice_name='Voice 1'
                 )
 
         Return material request.        
@@ -177,7 +177,7 @@ class Specification(AbjadObject):
         assert isinstance(voice, str)
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'naive_beats', timespan, time_relation=time_relation, context_name=voice, 
+            'naive_beats', timespan, time_relation=time_relation, voice_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     # TODO: could this be done with a TimeRatioPartSymbolicTimespan instead?
@@ -191,7 +191,7 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.timespan
         request = requesttools.MaterialRequest(
-            'partitioned_time', timespan, time_relation=time_relation, context_name=None, 
+            'partitioned_time', timespan, time_relation=time_relation, voice_name=None, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         request.ratio = ratio
         return request
@@ -211,7 +211,7 @@ class Specification(AbjadObject):
                     identifier='red'
                     ),
                 start_segment_name='red',
-                context_name='Voice 1'
+                voice_name='Voice 1'
                 )
 
         Return rhythm request.        
@@ -219,12 +219,12 @@ class Specification(AbjadObject):
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'rhythm', timespan, start_segment_name=getattr(self, 'segment_name', None),
-            time_relation=time_relation, context_name=voice, 
+            time_relation=time_relation, voice_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def request_time_signatures(self, context=None, timespan=None, time_relation=None,
+    def request_time_signatures(self, voice=None, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment time signatures in `context`::
+        r'''Request `voice` time signatures that start during segment ``'red'``::
 
             >>> request = red_segment.request_time_signatures()
 
@@ -240,10 +240,10 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        assert context is None
+        assert voice is None
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'time_signatures', timespan, time_relation=time_relation, context_name=context, 
+            'time_signatures', timespan, time_relation=time_relation, voice_name=voice, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):

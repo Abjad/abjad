@@ -11,7 +11,7 @@ class MaterialRequest(Request):
 
         >>> from experimental import *
 
-    Request `attribute` for `selector` in `context_name`.
+    Request `attribute` for `selector` in `voice_name`.
 
     Apply any of `index`, `count`, `reverse`, `rotation`, `callback` that are not none::
 
@@ -38,19 +38,19 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, selector, start_segment_name=None, time_relation=None, context_name=None, 
+    def __init__(self, attribute, selector, start_segment_name=None, time_relation=None, voice_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
         self._selector = selector
         self._start_segment_name = start_segment_name
         self._time_relation = time_relation
-        self._context_name = context_name
+        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 
@@ -65,8 +65,8 @@ class MaterialRequest(Request):
         return self._attribute
 
     @property
-    def context_name(self):
-        return self._context_name
+    def voice_name(self):
+        return self._voice_name
 
     @property
     def selector(self):
@@ -86,8 +86,8 @@ class MaterialRequest(Request):
     def time_relation(self):
         return self._time_relation
 
-    @property
-    def voice_name(self):
-        '''Aliased to ``self.context_name``.
-        '''
-        return self.context_name
+#    @property
+#    def voice_name(self):
+#        '''Aliased to ``self.context_name``.
+#        '''
+#        return self.context_name

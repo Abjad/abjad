@@ -15,8 +15,6 @@ Read-only Properties
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
 
-.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.context_name
-
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.count
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
