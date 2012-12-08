@@ -269,10 +269,10 @@ class Specification(AbjadObject):
             time_relation=time_relation)
         return timespan
 
-    def select_division_timespan(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_divisions(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first five divisions that start during segment 'red'::
 
-            >>> timespan = red_segment.select_division_timespan(stop=5)
+            >>> timespan = red_segment.select_divisions(stop=5)
 
         ::
             

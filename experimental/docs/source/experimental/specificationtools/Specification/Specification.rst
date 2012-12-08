@@ -44,7 +44,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_background_measures
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_division_timespan
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_divisions
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_leaf_timespan
 
