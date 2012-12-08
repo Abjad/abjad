@@ -148,9 +148,11 @@ class SymbolicOffset(AbjadObject):
 
     def __init__(self, selector=None, edge=None, multiplier=None, addendum=None): 
         from experimental import symbolictimetools
- 
-        assert isinstance(selector, (symbolictimetools.TimespanSymbolicTimespan, 
-            symbolictimetools.SingleSourceSymbolicTimespan, type(None))), repr(selector)
+        assert isinstance(selector, (
+            symbolictimetools.TimespanSymbolicTimespan, 
+            symbolictimetools.SingleSourceSymbolicTimespan, 
+            type(None),
+            str)), repr(selector)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
             multiplier = durationtools.Multiplier(multiplier)
@@ -257,7 +259,10 @@ class SymbolicOffset(AbjadObject):
 
         Return string or none.
         '''
-        return self.selector.start_segment_identifier
+        if isinstance(self.selector, str):
+            return self.selector
+        else:
+            return self.selector.start_segment_identifier
 
     ### PUBLIC METHODS ###
 

@@ -70,6 +70,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_time_signature_command
 
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_time_signatures
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
