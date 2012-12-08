@@ -933,9 +933,11 @@ class ConcreteInterpreter(Interpreter):
         assert material_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(
             material_request.start_segment_identifier)
-        context_proxy = segment_specification.single_context_settings_by_context[
-            material_request.voice_name]
-        single_context_setting = context_proxy.get_setting(attribute=material_request.attribute)
+        single_context_settings = self.get_single_context_settings_that_start_during_segment(
+            segment_specification, material_request.voice_name, material_request.attribute, 
+            include_improper_parentage=True)
+        assert len(single_context_settings) == 1
+        single_context_setting = single_context_settings[0]
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
             raise exceptions.CyclicSpecificationError(absolute_request)

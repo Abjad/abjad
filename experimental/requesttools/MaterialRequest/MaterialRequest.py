@@ -21,14 +21,14 @@ class MaterialRequest(Request):
 
     ::
 
-        >>> request = red_segment.request_time_signatures()
+        >>> request = red_segment.request_time_signatures('Voice 1')
 
     ::
 
         >>> z(request)
         requesttools.MaterialRequest(
             'time_signatures',
-            None,
+            'Voice 1',
             symbolictimetools.SingleSegmentSymbolicTimespan(
                 identifier='red'
                 )

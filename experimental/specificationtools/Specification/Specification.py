@@ -224,16 +224,16 @@ class Specification(AbjadObject):
 
     def request_time_signatures(self, voice=None, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request `voice` time signatures that start during segment ``'red'``::
+        r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 
-            >>> request = red_segment.request_time_signatures()
+            >>> request = red_segment.request_time_signatures('Voice 1')
 
         ::
 
             >>> z(request)
             requesttools.MaterialRequest(
                 'time_signatures',
-                None,
+                'Voice 1',
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     )
@@ -241,7 +241,7 @@ class Specification(AbjadObject):
 
         Return material request.
         '''
-        assert voice is None
+        assert isinstance(voice, (str, type(None)))
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
             'time_signatures', voice, timespan, time_relation=time_relation,
