@@ -4,7 +4,9 @@ from abjad.tools import sequencetools
 from abjad.tools import tietools
 
 
-def establish_metrical_hierarchy(components, metrical_hierarchy, maximum_dot_count=None):
+def establish_metrical_hierarchy(components, metrical_hierarchy,
+    maximum_dot_count=None,
+    ):
     r'''.. versionadded:: 2.11
 
     Operate in place and return none.
@@ -42,15 +44,16 @@ def establish_metrical_hierarchy(components, metrical_hierarchy, maximum_dot_cou
         return offset_inventory[depth]
 
     def is_acceptable_tie_chain(tie_chain, offsets):
-        if tie_chain.preprolated_duration.is_assignable:
-            if maximum_dot_count is not None and \
-                maximum_dot_count < tie_chain.preprolated_duration.dot_count:
-                return False
-            if tie_chain.start_offset in offsets:
-                return True
-            if tie_chain.stop_offset in offsets:
-                return True
-        return False
+        duration = tie_chain.preprolated_duration
+        start_offset, stop_offset = tie_chain.start_offset, tie_chain.stop_offset
+        if not duration.is_assignable:
+            return False
+        if maximum_dot_count is not None and \
+            maximum_dot_count < duration.dot_count:
+            return False
+        if start_offset not in offsets and stop_offset not in offsets:
+            return False
+        return True
 
     def recurse(tie_chain, depth=0):
         offsets = get_offsets_at_depth(depth)
