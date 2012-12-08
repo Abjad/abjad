@@ -149,10 +149,7 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-29. It's probably fine for self.select_background_measures()
-    to be simply self.select_background_measures() instead.
-
-30. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+29. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.

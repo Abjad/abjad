@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSpecification__select_leaf_timespan_01():
+def test_SegmentSpecification__select_leaves_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -19,7 +19,7 @@ def test_SegmentSpecification__select_leaf_timespan_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_leaf_timespan_02():
+def test_SegmentSpecification__select_leaves_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -42,7 +42,7 @@ def test_SegmentSpecification__select_leaf_timespan_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_leaf_timespan_03():
+def test_SegmentSpecification__select_leaves_03():
     '''Leaves select correctly across offset-positioned rhythm expression boundaries.
     '''
 
