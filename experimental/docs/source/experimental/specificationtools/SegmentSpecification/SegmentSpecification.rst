@@ -82,7 +82,7 @@ Methods
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_leaf_timespan
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_leaves
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 

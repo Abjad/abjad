@@ -295,10 +295,10 @@ class Specification(AbjadObject):
             time_relation=time_relation)
         return timespan
 
-    def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
-            >>> timespan = red_segment.select_leaf_timespan(stop=40)
+            >>> timespan = red_segment.select_leaves(stop=40)
 
         ::
 
