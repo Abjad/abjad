@@ -556,7 +556,7 @@ class ConcreteInterpreter(Interpreter):
                 elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
-                    rhythm_region_expression = self.rhythm_request_to_rhythm_region_expression(
+                    rhythm_region_expression = self.rhythm_material_request_to_rhythm_region_expression(
                         *rhythm_quadruple)
                 else:
                     raise TypeError(rhythm_quadruple[0])
@@ -725,16 +725,16 @@ class ConcreteInterpreter(Interpreter):
         rhythm_maker = requesttools.apply_request_transforms(rhythm_command_request, rhythm_maker)
         return rhythm_maker
 
-    def rhythm_request_to_rhythm_region_expression(
-        self, rhythm_request, start_offset, stop_offset, rhythm_command):
-        assert isinstance(rhythm_request, requesttools.MaterialRequest)
-        assert rhythm_request.attribute == 'rhythm'
-        #self._debug(rhythm_request, 'rhythm request')
+    def rhythm_material_request_to_rhythm_region_expression(
+        self, rhythm_material_request, start_offset, stop_offset, rhythm_command):
+        assert isinstance(rhythm_material_request, requesttools.MaterialRequest)
+        assert rhythm_material_request.attribute == 'rhythm'
+        #self._debug(rhythm_material_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
-        voice_name = rhythm_request.voice_name
-        source_score_offsets = rhythm_request.anchor.get_offsets(
-            self.score_specification, rhythm_request.voice_name, 
-            start_segment_name=rhythm_request.start_segment_name)
+        voice_name = rhythm_material_request.voice_name
+        source_score_offsets = rhythm_material_request.anchor.get_offsets(
+            self.score_specification, rhythm_material_request.voice_name, 
+            start_segment_name=rhythm_material_request.start_segment_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
@@ -759,7 +759,7 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
-        self.apply_source_transforms_to_target(rhythm_request, result)
+        self.apply_source_transforms_to_target(rhythm_material_request, result)
         self.apply_source_transforms_to_target(rhythm_command, result)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)

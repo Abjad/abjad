@@ -9,6 +9,8 @@ requesttools.MaterialRequest
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.anchor
+
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.attribute
 
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.callback
@@ -30,8 +32,6 @@ Read-only Properties
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.rotation
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
-
-.. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.selector
 
 .. autoattribute:: experimental.requesttools.MaterialRequest.MaterialRequest.MaterialRequest.start_segment_identifier
 
