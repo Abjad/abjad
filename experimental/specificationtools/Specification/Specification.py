@@ -142,17 +142,17 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'divisions',
+                'Voice 1',
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
-                    ),
-                voice_name='Voice 1'
+                    )
                 )
 
         Return material request.        
         '''
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'divisions', timespan, time_relation=time_relation, voice_name=voice, 
+            'divisions', voice, timespan, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_naive_beats(self, voice, timespan=None, time_relation=None,
@@ -166,10 +166,10 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'naive_beats',
+                'Voice 1',
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
-                    ),
-                voice_name='Voice 1'
+                    )
                 )
 
         Return material request.        
@@ -177,10 +177,10 @@ class Specification(AbjadObject):
         assert isinstance(voice, str)
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'naive_beats', timespan, time_relation=time_relation, voice_name=voice, 
+            'naive_beats', voice, timespan, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: could this be done with a TimeRatioPartSymbolicTimespan instead?
+    # TODO: could this be done with self.timespan.divide_by_ratio() instead?
     def request_partitioned_time(self, ratio, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment partitioned total time according to `ratio`.
@@ -191,7 +191,7 @@ class Specification(AbjadObject):
         '''
         timespan = timespan or self.timespan
         request = requesttools.MaterialRequest(
-            'partitioned_time', timespan, time_relation=time_relation, voice_name=None, 
+            'partitioned_time', None, timespan, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         request.ratio = ratio
         return request
@@ -207,19 +207,19 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'rhythm',
+                'Voice 1',
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     ),
-                start_segment_name='red',
-                voice_name='Voice 1'
+                start_segment_name='red'
                 )
 
         Return rhythm request.        
         '''
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'rhythm', timespan, start_segment_name=getattr(self, 'segment_name', None),
-            time_relation=time_relation, voice_name=voice, 
+            'rhythm', voice, timespan, start_segment_name=getattr(self, 'segment_name', None),
+            time_relation=time_relation, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def request_time_signatures(self, voice=None, timespan=None, time_relation=None,
@@ -233,6 +233,7 @@ class Specification(AbjadObject):
             >>> z(request)
             requesttools.MaterialRequest(
                 'time_signatures',
+                None,
                 symbolictimetools.SingleSegmentSymbolicTimespan(
                     identifier='red'
                     )
@@ -243,7 +244,7 @@ class Specification(AbjadObject):
         assert voice is None
         timespan = timespan or self.timespan
         return requesttools.MaterialRequest(
-            'time_signatures', timespan, time_relation=time_relation, voice_name=voice, 
+            'time_signatures', voice, timespan, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):

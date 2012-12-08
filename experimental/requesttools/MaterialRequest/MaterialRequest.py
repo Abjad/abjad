@@ -28,6 +28,7 @@ class MaterialRequest(Request):
         >>> z(request)
         requesttools.MaterialRequest(
             'time_signatures',
+            None,
             symbolictimetools.SingleSegmentSymbolicTimespan(
                 identifier='red'
                 )
@@ -38,19 +39,19 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, selector, start_segment_name=None, time_relation=None, voice_name=None, 
+    def __init__(self, attribute, voice_name, selector, start_segment_name=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         assert isinstance(attribute, str), repr(attribute)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(selector, symbolictimetools.TimespanSymbolicTimespan), repr(selector)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
+        self._voice_name = voice_name
         self._selector = selector
         self._start_segment_name = start_segment_name
         self._time_relation = time_relation
-        self._voice_name = voice_name
 
     ### PRIVATE METHODS ###
 
