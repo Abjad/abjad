@@ -38,8 +38,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_naive_beats
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_partitioned_time
-
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_rhythm
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_rhythm_command

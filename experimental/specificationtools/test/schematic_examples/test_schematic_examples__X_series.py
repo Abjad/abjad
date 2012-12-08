@@ -142,7 +142,7 @@ def test_schematic_examples__X_series_04():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    divisions = red_segment.request_partitioned_time('Voice 1', [1, 1, 1])
+    divisions = red_segment.timespan.divide_by_ratio([1, 1, 1])
     red_segment.set_divisions(divisions)
     left = red_segment.select_divisions(0, 1)
     middle = red_segment.select_divisions(1, 2)

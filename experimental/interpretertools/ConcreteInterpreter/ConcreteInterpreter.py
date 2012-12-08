@@ -7,7 +7,7 @@ from experimental import library
 from experimental import requesttools
 from experimental import settingtools
 from experimental import specificationtools
-from abjad.tools import timerelationtools
+from experimental import symbolictimetools
 from experimental.interpretertools.Interpreter import Interpreter
 
 
@@ -185,8 +185,12 @@ class ConcreteInterpreter(Interpreter):
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
         elif isinstance(division_region_command.request, requesttools.AbsoluteRequest):
             request = division_region_command.request
-            divisions = requesttools.apply_request_transforms(request, request.payload)
+            payload = request.payload
+            #self._debug(payload, 'payload')
+            divisions = self.symbolic_timespans_to_durations(payload)
+            divisions = requesttools.apply_request_transforms(request, divisions)
             divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
+            #self._debug(divisions, 'divisions')
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
@@ -223,16 +227,6 @@ class ConcreteInterpreter(Interpreter):
             self.apply_source_transforms_to_target(division_region_command, division_region_expressions)
             division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
             return division_region_expressions
-        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
-            division_region_command.request.attribute == 'partitioned_time':    
-            segment_specification = self.get_start_segment_specification(division_region_command.request)
-            segment_duration = segment_specification.duration
-            ratio = division_region_command.request.ratio
-            divisions = mathtools.divide_number_by_ratio(segment_duration, ratio)
-            divisions = [divisiontools.Division(x) for x in divisions]
-            region_duration = division_region_command.duration
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
         elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
             division_region_command.request.attribute == 'time_signatures':    
             time_signatures = self.time_signature_material_request_to_time_signatures(
@@ -919,6 +913,19 @@ class ConcreteInterpreter(Interpreter):
                 result.append(region_command)
         result.append(right_region_command)
         return result
+
+    def symbolic_timespans_to_durations(self, expr):
+        assert isinstance(expr, (tuple, list))
+        result = []
+        for element in expr:
+            if isinstance(element, symbolictimetools.TimespanSymbolicTimespan):
+                context_name = None
+                duration = element.get_duration(self.score_specification, context_name)
+                result.append(duration)
+            else:
+                result.append(element)
+        return result
+
 
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)

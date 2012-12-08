@@ -258,29 +258,6 @@ class Specification(AbjadObject):
             'naive_beats', voice, timespan, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: could this be done with self.timespan.divide_by_ratio() instead?
-    def request_partitioned_time(self, voice, ratio, timespan=None, time_relation=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
-        r'''Request segment partitioned total time according to `ratio`.
-
-            >>> z(red_segment.request_partitioned_time('Voice 1', (1, 1, 1)))
-            requesttools.MaterialRequest(
-                'partitioned_time',
-                'Voice 1',
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    )
-                )
-
-        Return material request.
-        '''
-        timespan = timespan or self.timespan
-        request = requesttools.MaterialRequest(
-            'partitioned_time', voice, timespan, time_relation=time_relation,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
-        request.ratio = ratio
-        return request
-
     def request_rhythm(self, voice, timespan=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment rhythm in `voice`::
