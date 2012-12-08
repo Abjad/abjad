@@ -244,10 +244,10 @@ class Specification(AbjadObject):
             'time_signatures', timespan, time_relation=time_relation, context_name=context, 
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measure_timespan(self, start=None, stop=None, time_relation=None):
+    def select_background_measures(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment 'red'::
 
-            >>> timespan = red_segment.select_background_measure_timespan(stop=5)
+            >>> timespan = red_segment.select_background_measures(stop=5)
 
         ::
 

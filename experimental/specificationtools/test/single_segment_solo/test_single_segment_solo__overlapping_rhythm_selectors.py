@@ -30,7 +30,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_02():
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
-    first_two_measures = red_segment.select_background_measure_timespan(stop=2)
+    first_two_measures = red_segment.select_background_measures(stop=2)
     red_segment.set_rhythm(library.sixteenths, selector=first_two_measures)
     score = score_specification.interpret()
 
@@ -49,7 +49,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_03():
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
-    first_two_measures = red_segment.select_background_measure_timespan(start=-2)
+    first_two_measures = red_segment.select_background_measures(start=-2)
     red_segment.set_rhythm(library.sixteenths, selector=first_two_measures)
     score = score_specification.interpret()
 
@@ -68,7 +68,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_04():
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
-    first_two_measures = red_segment.select_background_measure_timespan(1, 2)
+    first_two_measures = red_segment.select_background_measures(1, 2)
     red_segment.set_rhythm(library.sixteenths, selector=first_two_measures)
     score = score_specification.interpret()
 
@@ -86,9 +86,9 @@ def test_single_segment_solo__overlapping_rhythm_selectors_05():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(3, 8), (4, 8), (3, 8)])
     red_segment.set_rhythm("{ c'4 }")
-    first_measure = red_segment.select_background_measure_timespan(0, 1)
+    first_measure = red_segment.select_background_measures(0, 1)
     rhythmic_cell = red_segment.request_rhythm('Voice 1', timespan=first_measure)
-    last_measure = red_segment.select_background_measure_timespan(-1)
+    last_measure = red_segment.select_background_measures(-1)
     red_segment.set_rhythm(rhythmic_cell, selector=last_measure)
     score = score_specification.interpret()
 

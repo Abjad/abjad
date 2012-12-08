@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_SegmentSpecification__select_background_measure_timespan_01():
+def test_SegmentSpecification__select_background_measures_01():
     '''Negative start.
     '''
 
@@ -10,7 +10,7 @@ def test_SegmentSpecification__select_background_measure_timespan_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    last_two_measures = red_segment.select_background_measure_timespan(start=-2)
+    last_two_measures = red_segment.select_background_measures(start=-2)
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -21,7 +21,7 @@ def test_SegmentSpecification__select_background_measure_timespan_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measure_timespan_02():
+def test_SegmentSpecification__select_background_measures_02():
     '''Negative stop.
     '''
 
@@ -29,7 +29,7 @@ def test_SegmentSpecification__select_background_measure_timespan_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    first_two_measures = red_segment.select_background_measure_timespan(stop=-1)
+    first_two_measures = red_segment.select_background_measures(stop=-1)
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=first_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -40,7 +40,7 @@ def test_SegmentSpecification__select_background_measure_timespan_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSpecification__select_background_measure_timespan_03():
+def test_SegmentSpecification__select_background_measures_03():
     '''Negative start and stop.
     '''
 
@@ -48,7 +48,7 @@ def test_SegmentSpecification__select_background_measure_timespan_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
-    middle_measure = red_segment.select_background_measure_timespan(start=1, stop=-1)
+    middle_measure = red_segment.select_background_measures(start=1, stop=-1)
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=middle_measure)
     red_segment.set_rhythm(library.thirty_seconds)

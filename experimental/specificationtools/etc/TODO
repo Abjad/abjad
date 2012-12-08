@@ -149,7 +149,7 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-29. It's probably fine for self.select_background_measure_timespan()
+29. It's probably fine for self.select_background_measures()
     to be simply self.select_background_measures() instead.
 
 30. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.

@@ -368,7 +368,7 @@ class SegmentSpecification(Specification):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> selector = red_segment.select_background_measure_timespan(8, 9)
+            >>> selector = red_segment.select_background_measures(8, 9)
             >>> offset = durationtools.Offset(1, 4)
 
         ::

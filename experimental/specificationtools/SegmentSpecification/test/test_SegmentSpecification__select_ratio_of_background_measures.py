@@ -10,7 +10,7 @@ def test_SegmentSpecification__select_ratio_of_background_measures_01():
     score_specification = specificationtools.ScoreSpecification(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    measures = red_segment.select_background_measure_timespan()
+    measures = red_segment.select_background_measures()
     left, right = measures.partition_by_ratio((1, 1))
     red_segment.set_divisions([(3, 16)], selector=left, truncate=True)
     red_segment.set_divisions([(5, 16)], selector=right, truncate=True)
@@ -30,7 +30,7 @@ def test_SegmentSpecification__select_ratio_of_background_measures_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    measures = red_segment.select_background_measure_timespan()
+    measures = red_segment.select_background_measures()
     last_two_measures = measures.partition_by_ratio((1, 1))[-1]
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_two_measures)
@@ -50,7 +50,7 @@ def test_SegmentSpecification__select_ratio_of_background_measures_03():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    measures = red_segment.select_background_measure_timespan()
+    measures = red_segment.select_background_measures()
     last_measure = measures.partition_by_ratio((1, 1), is_count=False)[-1]
     red_segment.set_divisions([(2, 32)])
     red_segment.set_divisions([(3, 32)], selector=last_measure)
