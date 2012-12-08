@@ -257,6 +257,22 @@ class SegmentSpecification(Specification):
         return self.segment_name
 
     @property
+    def storage_format(self):
+        r'''Segment specification storage format::
+
+            >>> z(red_segment)
+            specificationtools.SegmentSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=4
+                    ),
+                'red'
+                )
+        
+        Return string.
+        '''
+        return Specification.storage_format.fget(self)
+
+    @property
     def symbolic_start_offset(self):
         '''Segment specification symbolic start offset::
 
@@ -279,22 +295,6 @@ class SegmentSpecification(Specification):
         '''
         selector = self.timespan
         return symbolictimetools.SymbolicOffset(selector=selector, edge=Right)
-
-    @property
-    def storage_format(self):
-        r'''Segment specification storage format::
-
-            >>> z(red_segment)
-            specificationtools.SegmentSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=4
-                    ),
-                'red'
-                )
-        
-        Return string.
-        '''
-        return Specification.storage_format.fget(self)
 
     @property
     def time_signatures(self):
@@ -587,19 +587,6 @@ class SegmentSpecification(Specification):
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist)
 
-    def set_pitch_classes(self, source, contexts=None, selector=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None,
-        persist=True):
-        r'''Set pitch-classes of segment `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'pitch_classes'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
-            persist=persist)
-
     def set_pitch_class_application(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True):
@@ -621,6 +608,19 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_transform'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, selector=selector,
+            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
+            persist=persist)
+
+    def set_pitch_classes(self, source, contexts=None, selector=None,
+        index=None, count=None, reverse=None, rotation=None, callback=None,
+        persist=True):
+        r'''Set pitch-classes of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'pitch_classes'
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, selector=selector,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,

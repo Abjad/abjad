@@ -317,6 +317,16 @@ class ScoreSpecification(Specification):
         return Specification.single_context_settings_by_context.fget(self)
 
     @property
+    def specification_name(self):
+        '''Generalized way of refering to both score and segment specifications.
+        
+        Specification name of score is always none.
+
+        Return none.
+        '''
+        return
+
+    @property
     def start_offset(self):
         r'''Score specification start offset.
 
@@ -358,16 +368,6 @@ class ScoreSpecification(Specification):
         Return string.
         '''
         return Specification.storage_format.fget(self)
-
-    @property
-    def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications.
-        
-        Specification name of score is always none.
-
-        Return none.
-        '''
-        return
 
     @property
     def time_signatures(self):
@@ -545,38 +545,6 @@ class ScoreSpecification(Specification):
     def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
         raise NotImplementedError('implement this at some point.')
 
-    def segment_offset_to_score_offset(self, segment_name, segment_offset):
-        r'''Change `segment_name` and `segment_offset` to score offset.
-
-        If segment offset ``(7, 8)`` is in segment ``'blue'``, how far from the
-        beginning of the entire score is this point?
-
-        .. note:: Add example.
-        '''
-        segment_start_offset, segment_stop_offset = self.segment_name_to_segment_offsets(segment_name)
-        score_offset = segment_start_offset + segment_offset
-        return score_offset
-
-    def segment_offsets_to_score_offsets(self,
-        segment_identifier, segment_start_offset=None, segment_stop_offset=None):
-        '''Change `segment_start_offset` and `segment_stop_offset`
-        to start offset and stop offset.
-
-        .. note:: Add example.
-
-        Return pair.
-        '''
-        if segment_start_offset is not None:
-            start_offset = self.segment_offset_to_score_offset(segment_identifier, segment_start_offset)
-        else:
-            start_offset = None
-        if segment_stop_offset is not None:
-            stop_offset = self.segment_offset_to_score_offset(
-                segment_identifier, segment_stop_offset)
-        else:
-            stop_offset = None
-        return start_offset, stop_offset
-
     def segment_identifier_expression_to_offsets(self, segment_identifier_expression):
         '''Change `segment_identifier_expression` to start offset and stop offset.
 
@@ -662,3 +630,35 @@ class ScoreSpecification(Specification):
             start_offset_pair = self.segment_offset_pairs[start_segment_index]
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
+
+    def segment_offset_to_score_offset(self, segment_name, segment_offset):
+        r'''Change `segment_name` and `segment_offset` to score offset.
+
+        If segment offset ``(7, 8)`` is in segment ``'blue'``, how far from the
+        beginning of the entire score is this point?
+
+        .. note:: Add example.
+        '''
+        segment_start_offset, segment_stop_offset = self.segment_name_to_segment_offsets(segment_name)
+        score_offset = segment_start_offset + segment_offset
+        return score_offset
+
+    def segment_offsets_to_score_offsets(self,
+        segment_identifier, segment_start_offset=None, segment_stop_offset=None):
+        '''Change `segment_start_offset` and `segment_stop_offset`
+        to start offset and stop offset.
+
+        .. note:: Add example.
+
+        Return pair.
+        '''
+        if segment_start_offset is not None:
+            start_offset = self.segment_offset_to_score_offset(segment_identifier, segment_start_offset)
+        else:
+            start_offset = None
+        if segment_stop_offset is not None:
+            stop_offset = self.segment_offset_to_score_offset(
+                segment_identifier, segment_stop_offset)
+        else:
+            stop_offset = None
+        return start_offset, stop_offset

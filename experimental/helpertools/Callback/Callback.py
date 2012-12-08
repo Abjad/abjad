@@ -15,14 +15,14 @@ class Callback(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __call__(self, expr):
+        return self.callback(expr)
+
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.string == expr.string:
                 return True
         return False
-
-    def __call__(self, expr):
-        return self.callback(expr)
 
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.string)

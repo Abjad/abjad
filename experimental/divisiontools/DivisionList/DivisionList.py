@@ -180,16 +180,16 @@ class DivisionList(AbjadObject):
         return self[0].is_left_open
 
     @property
+    def is_open(self):
+        return not self.is_left_closed and not self.is_right_closed
+
+    @property
     def is_right_closed(self):
         return self[-1].is_right_closed
 
     @property
     def is_right_open(self):
         return self[-1].is_right_open
-
-    @property
-    def is_open(self):
-        return not self.is_left_closed and not self.is_right_closed
 
     @property
     def is_well_formed(self):

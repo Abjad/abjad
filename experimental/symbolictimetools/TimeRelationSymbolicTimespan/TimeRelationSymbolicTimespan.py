@@ -25,17 +25,17 @@ class TimeRelationSymbolicTimespan(SliceSymbolicTimespan):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def time_relation(self):
-        '''Inequality of selector.
-        
-        Return time_relation or none.
-        '''
-        return self._time_relation
-
-    @property
     def start_segment_identifier(self):
         '''Delegate to ``self.time_relation.start_segment_identifier``.
 
         Return string or none.
         '''
         result = self.time_relation.start_segment_identifier
+
+    @property
+    def time_relation(self):
+        '''Inequality of selector.
+        
+        Return time_relation or none.
+        '''
+        return self._time_relation

@@ -295,29 +295,6 @@ class Specification(AbjadObject):
             time_relation=time_relation)
         return timespan
 
-    def select_offsets(self, start=None, stop=None):
-        r'''Select segment from ``1/8`` to ``3/8``::
-
-            >>> selector = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
-
-        ::
-
-            >>> z(selector)
-            symbolictimetools.OffsetSymbolicTimespan(
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
-                start_offset=durationtools.Offset(1, 8),
-                stop_offset=durationtools.Offset(3, 8)
-                )
-
-        Return selector.
-        '''
-        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
-        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        selector = self.timespan
-        return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)
-
     def select_leaf_timespan(self, start=None, stop=None, time_relation=None, voice=None):
         '''Select the first ``40`` segment leaves::
 
@@ -374,3 +351,26 @@ class Specification(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
+
+    def select_offsets(self, start=None, stop=None):
+        r'''Select segment from ``1/8`` to ``3/8``::
+
+            >>> selector = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
+
+        ::
+
+            >>> z(selector)
+            symbolictimetools.OffsetSymbolicTimespan(
+                symbolictimetools.SingleSegmentSymbolicTimespan(
+                    identifier='red'
+                    ),
+                start_offset=durationtools.Offset(1, 8),
+                stop_offset=durationtools.Offset(3, 8)
+                )
+
+        Return selector.
+        '''
+        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
+        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
+        selector = self.timespan
+        return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)

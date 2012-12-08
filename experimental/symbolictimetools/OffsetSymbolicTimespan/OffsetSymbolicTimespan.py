@@ -36,12 +36,6 @@ class OffsetSymbolicTimespan(TimespanSymbolicTimespan):
         return self._selector
 
     @property
-    def start_segment_identifier(self):
-        '''Delegate to ``self.selector.start_segment_identifier``.
-        '''
-        return self.selector.start_segment_identifier
-
-    @property
     def start_offset(self):
         '''Offset selector start offset.
 
@@ -58,6 +52,12 @@ class OffsetSymbolicTimespan(TimespanSymbolicTimespan):
         if self.start_offset is None:
             return durationtools.Offset(0)
         return self.start_offset
+
+    @property
+    def start_segment_identifier(self):
+        '''Delegate to ``self.selector.start_segment_identifier``.
+        '''
+        return self.selector.start_segment_identifier
 
     @property
     def stop_offset(self):
