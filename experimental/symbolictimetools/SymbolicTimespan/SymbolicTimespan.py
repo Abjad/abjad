@@ -47,9 +47,10 @@ class SymbolicTimespan(AbjadObject):
         '''
         from experimental import symbolictimetools
         result = []
+        anchor = getattr(self, 'specification_name', self)
         for part in range(len(ratio)):
             # TODO: eventually create custom class different from TimeRatioOperator
-            result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
+            result.append(symbolictimetools.TimeRatioOperator(anchor, ratio, part))
         return tuple(result)
 
     def get_duration(self, score_specification, context_name):

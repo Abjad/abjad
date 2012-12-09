@@ -54,7 +54,11 @@ class TimeRatioOperator(RatioOperator):
 
         Return offset.
         '''
-        anchor_duration = self.anchor.get_duration(score_specification, context_name)
+        if isinstance(self.anchor, str):
+            start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
+            anchor_duration = stop_offset - start_offset
+        else:
+            anchor_duration = self.anchor.get_duration(score_specification, context_name)
         parts = mathtools.divide_number_by_ratio(anchor_duration, self.ratio)
         parts_before = parts[:self.part]
         duration_before = sum(parts_before)

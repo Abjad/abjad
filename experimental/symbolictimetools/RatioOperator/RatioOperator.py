@@ -17,7 +17,7 @@ class RatioOperator(SymbolicTimespan):
 
     @abc.abstractmethod
     def __init__(self, anchor, ratio, part):
-        assert isinstance(anchor, SymbolicTimespan)
+        assert isinstance(anchor, (SymbolicTimespan, str, type(None)))
         assert isinstance(part, int)
         ratio = mathtools.Ratio(ratio)
         self._anchor = anchor
@@ -59,4 +59,8 @@ class RatioOperator(SymbolicTimespan):
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.anchor.set_segment_identifier()``.
         '''
-        self.anchor.set_segment_identifier(segment_identifier)
+        assert isinstance(segment_identifier, str)
+        if isinstance(self.anchor, str):
+            self._anchor = segment_identifier
+        else:
+            self.anchor.set_segment_identifier(segment_identifier)
