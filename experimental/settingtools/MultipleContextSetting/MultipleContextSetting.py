@@ -28,9 +28,7 @@ class MultipleContextSetting(Setting):
             requesttools.AbsoluteRequest(
                 [(4, 8), (3, 8)]
                 ),
-            symbolictimetools.SingleSegmentSymbolicTimespan(
-                identifier='red'
-                ),
+            'red',
             start_segment_name='red',
             context_names=['Grouped Rhythmic Staves Score'],
             persist=True
@@ -38,7 +36,7 @@ class MultipleContextSetting(Setting):
 
     Composers create multiple-context settings at specification-time.
 
-    Composers create mutliple-context settings with ``SegmentSpecification`` setter methods.
+    Composers create multiple-context settings with ``SegmentSpecification`` setter methods.
 
     Multiple-context settings capture composers' musical intent.
     '''

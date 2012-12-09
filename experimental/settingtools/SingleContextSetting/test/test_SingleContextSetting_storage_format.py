@@ -7,9 +7,8 @@ from abjad.tools import timerelationtools
 
 def test_SingleContextSetting_storage_format_01():
 
-    selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
     setting = settingtools.SingleContextSetting(
-        'time_signatures', requesttools.AbsoluteRequest([(4, 8), (3, 8)]), selector, 
+        'time_signatures', requesttools.AbsoluteRequest([(4, 8), (3, 8)]), 'red', 
         context_name='Voice 1', fresh=False)
 
     r'''
@@ -18,13 +17,11 @@ def test_SingleContextSetting_storage_format_01():
         requesttools.AbsoluteRequest(
             [(4, 8), (3, 8)]
             ),
-        symbolictimetools.SingleSegmentSymbolicTimespan(
-            identifier='red'
-            ),
+        'red',
         context_name='Voice 1',
         fresh=False,
         persist=True
         )
     '''
 
-    assert setting.storage_format == "settingtools.SingleContextSetting(\n\t'time_signatures',\n\trequesttools.AbsoluteRequest(\n\t\t[(4, 8), (3, 8)]\n\t\t),\n\tsymbolictimetools.SingleSegmentSymbolicTimespan(\n\t\tidentifier='red'\n\t\t),\n\tcontext_name='Voice 1',\n\tfresh=False,\n\tpersist=True\n\t)"
+    assert setting.storage_format == "settingtools.SingleContextSetting(\n\t'time_signatures',\n\trequesttools.AbsoluteRequest(\n\t\t[(4, 8), (3, 8)]\n\t\t),\n\t'red',\n\tcontext_name='Voice 1',\n\tfresh=False,\n\tpersist=True\n\t)"

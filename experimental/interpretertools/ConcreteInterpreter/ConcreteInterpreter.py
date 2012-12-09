@@ -787,8 +787,12 @@ class ConcreteInterpreter(Interpreter):
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         assert single_context_setting.start_segment_name == segment_specification.segment_name
         #self._debug(single_context_setting.selector, 'selector')
-        start_offset, stop_offset = single_context_setting.selector.get_offsets(
-            self.score_specification, voice_name, start_segment_name=single_context_setting.start_segment_name)
+        if isinstance(single_context_setting.selector, str):
+            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
+                single_context_setting.selector)
+        else:
+            start_offset, stop_offset = single_context_setting.selector.get_offsets(
+                self.score_specification, voice_name, start_segment_name=single_context_setting.start_segment_name)
         #self._debug((start_offset, stop_offset), 'selector offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(

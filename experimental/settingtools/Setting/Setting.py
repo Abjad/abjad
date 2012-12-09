@@ -23,7 +23,8 @@ class Setting(AbjadObject):
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, requesttools.Request), repr(request)
-        assert isinstance(selector, (symbolictimetools.Selector, type(None)))
+        #assert isinstance(selector, (symbolictimetools.Selector, type(None)))
+        assert isinstance(selector, (symbolictimetools.Selector, str, type(None)))
         assert isinstance(start_segment_name, (str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)

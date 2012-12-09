@@ -9,8 +9,7 @@ def test_SingleContextSetting___init___01():
     '''Initialize by hand.
     '''
 
-    selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
     setting = settingtools.SingleContextSetting(
-        'time_signatures', requesttools.AbsoluteRequest([(4, 8), (3, 8)]), selector, context_name='Voice 1')
+        'time_signatures', requesttools.AbsoluteRequest([(4, 8), (3, 8)]), 'red', context_name='Voice 1')
 
     assert isinstance(setting, settingtools.SingleContextSetting)

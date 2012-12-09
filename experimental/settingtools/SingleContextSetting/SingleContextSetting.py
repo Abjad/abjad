@@ -42,9 +42,7 @@ class SingleContextSetting(Setting):
             requesttools.AbsoluteRequest(
                 [(3, 16)]
                 ),
-            symbolictimetools.SingleSegmentSymbolicTimespan(
-                identifier='red'
-                ),
+            'red',
             start_segment_name='red',
             context_name='Voice 1',
             fresh=True,
@@ -93,9 +91,7 @@ class SingleContextSetting(Setting):
                 requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
+                'red',
                 start_segment_name='red',
                 context_name='Voice 1',
                 fresh=True,
@@ -120,6 +116,9 @@ class SingleContextSetting(Setting):
         new_setting = copy.deepcopy(self)
         new_setting._fresh = False
         segment_name = helpertools.expr_to_segment_name(segment)
-        new_setting.selector.set_segment_identifier(segment_name)
+        if isinstance(new_setting.selector, str):
+            new_setting._selector = segment_name 
+        else:
+            new_setting.selector.set_segment_identifier(segment_name)
         new_setting._start_segment_name = segment_name
         return new_setting

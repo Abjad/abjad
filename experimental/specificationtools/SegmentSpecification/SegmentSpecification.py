@@ -61,7 +61,8 @@ class SegmentSpecification(Specification):
         persist=True, truncate=None):
         request = requesttools.expr_to_request(source)
         context_names = self._context_token_to_context_names(contexts)
-        selector = selector or self.timespan
+        #selector = selector or self.timespan
+        selector = selector or self.specification_name
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
@@ -367,9 +368,7 @@ class SegmentSpecification(Specification):
                 requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
+                'red',
                 start_segment_name='red',
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True
@@ -497,9 +496,7 @@ class SegmentSpecification(Specification):
                         tie_split_notes=False
                         )
                     ),
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
+                'red',
                 start_segment_name='red',
                 context_names=['Grouped Rhythmic Staves Score'],
                 persist=True
@@ -541,9 +538,7 @@ class SegmentSpecification(Specification):
                 requesttools.AbsoluteRequest(
                     [(3, 8), (4, 8)]
                     ),
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
+                'red',
                 start_segment_name='red',
                 context_names=['Grouped Rhythmic Staves Score'],
                 persist=True
