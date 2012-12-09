@@ -35,56 +35,43 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
     Select counttime measure ``3`` to starting during segment ``'red'``.
     Then select the last three leaves in tuplet ``-1`` in this measure::
 
-        >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
+        >>> measures = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        ... anchor='red', klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
-        >>> measure_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
-        ... time_relation=time_relation, klass=Measure, start_identifier=3, stop_identifier=4)
+        >>> tuplet = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        ... anchor=measures, klass=Tuplet, start_identifier=-1)
 
     ::
 
-        >>> tuplet_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
-        ... selector=measure_selector, klass=Tuplet, start_identifier=-1)
+        >>> leaves = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        ... anchor=tuplet, klass=leaftools.Leaf, start_identifier=-3)
 
     ::
 
-        >>> leaf_slice_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
-        ... selector=tuplet_selector, klass=leaftools.Leaf, start_identifier=-3)
-
-    ::
-
-        >>> z(leaf_slice_selector)
+        >>> z(leaves)
         symbolictimetools.CounttimeComponentSymbolicTimespan(
-            klass=leaftools.Leaf,
-            selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
-                klass=tuplettools.Tuplet,
-                selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
+                    anchor='red',
                     klass=measuretools.Measure,
                     start_identifier=3,
-                    stop_identifier=4,
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
-                        )
+                    stop_identifier=4
                     ),
+                klass=tuplettools.Tuplet,
                 start_identifier=-1
                 ),
+            klass=leaftools.Leaf,
             start_identifier=-3
             )
 
-    Counttime component slice selectors are immutable.
+    Counttime component symbolic timespans are immutable.
     '''
 
     ### INITIALIZER ###
 
-    # TODO: replace 'selector' with 'anchor'
-    def __init__(self, anchor=None, klass=None, predicate=None, selector=None,
+    def __init__(self, anchor=None, klass=None, predicate=None, 
         start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
@@ -96,7 +83,6 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass
         self._predicate = predicate
-        self._selector = selector
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -110,31 +96,16 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     @property
     def predicate(self):
-        '''Predicate of counttime component selector specified by user.
+        '''Predicate of counttime component symbolic timespan specified by user.
 
         Return callback or none.
         '''
         return self._predicate
 
-    @property
-    def selector(self):
-        '''Counttime component slice selector selector.
-
-        To allow selectors to select recursively.
-
-        Return slice selector.
-        '''
-        return self._selector
-
-    # TODO: eventually remove in favor of TimeRelationSymbolicTimespan.start_segment_identifier
-    @property
-    def start_segment_identifier(self):
-        return self.anchor
-
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, voice_name, start_segment_name=None):
-        '''Evaluate start and stop offsets of selector when applied
+        '''Evaluate start and stop offsets of symbolic timespan when applied
         to `voice_name` in `score_specification`.
 
         .. note:: add example.
@@ -151,12 +122,12 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     # TODO: eventually return selection
     def get_selected_objects(self, score_specification, voice_name, include_expression_start_offsets=False):
-        '''Get counttime components selected when selector is applied
+        '''Get counttime components selected when symbolic timespan is applied
         to `voice_name` in `score_specification`.
 
         .. note:: add example.
 
-        Return value of none means that selector can not yet interpret `score_specification`.
+        Return value of none means that symbolic timespan can not yet interpret `score_specification`.
 
         Return list of object references or none.
 
@@ -164,7 +135,7 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
         .. note:: add examle with ``include_expression_start_offsets=True``.
         '''
-        # allow user-specification selector voice name to override passed-in voice name
+        # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name
         rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
