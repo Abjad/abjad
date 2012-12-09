@@ -79,6 +79,7 @@ class SegmentSelector(Selector):
         from experimental import specificationtools
         Selector.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
+        # TODO: remove klass
         self._klass = specificationtools.SegmentSpecification
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -118,3 +119,8 @@ class SegmentSelector(Selector):
         Return list of segments.
         '''
         raise NotImplementedError
+
+    def set_segment_identifier(self, segment_identifier):
+        # assume selector selects only one segment
+        self._start_identifier = segment_identifier
+        self._stop_idenetifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(segment_identifier))

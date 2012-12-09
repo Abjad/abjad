@@ -304,13 +304,16 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic timespan.
 
             >>> z(red_segment.timespan)
-            symbolictimetools.SingleSegmentSymbolicTimespan(
-                identifier='red'
-            )
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1")
+                )
 
         Return symbolic timespan.
         '''
-        return symbolictimetools.SingleSegmentSymbolicTimespan(identifier=self.segment_name)
+        stop_identifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.specification_name))
+        return symbolictimetools.SegmentSelector(
+            start_identifier=self.specification_name, stop_identifier=stop_identifier)
 
     ### PUBLIC METHODS ###
 
