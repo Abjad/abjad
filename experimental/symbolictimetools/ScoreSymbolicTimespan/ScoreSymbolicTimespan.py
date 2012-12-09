@@ -1,28 +1,28 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.Selector import Selector
+from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class ScoreSymbolicTimespan(Selector):
+class ScoreSymbolicTimespan(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
 
         >>> from experimental import *
 
-    Select score::
+    Score symbolic timespan::
 
         >>> symbolictimetools.ScoreSymbolicTimespan()
         ScoreSymbolicTimespan()
     
-    All score selector properties are read-only.
+    All score symbolic timespan properties are read-only.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self):
         from experimental import specificationtools
-        Selector.__init__(self)
+        SymbolicTimespan.__init__(self)
         self._klass = specificationtools.ScoreSpecification
 
     ### READ-ONLY PUBLIC PROPERTIES ###

@@ -36,10 +36,6 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.get_selected_objects
 
-.. automethod:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.partition_by_ratio
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 Special Methods
 ---------------
 
