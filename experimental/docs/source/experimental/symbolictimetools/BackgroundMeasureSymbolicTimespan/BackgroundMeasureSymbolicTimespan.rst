@@ -46,11 +46,11 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.adjust_offsets
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.divide_by_ratio
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.get_duration
 

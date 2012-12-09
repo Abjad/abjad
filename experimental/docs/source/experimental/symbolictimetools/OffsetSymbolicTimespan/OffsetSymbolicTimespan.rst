@@ -30,11 +30,11 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.adjust_offsets
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.divide_by_ratio
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.get_duration
 

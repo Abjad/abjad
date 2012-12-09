@@ -22,11 +22,11 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.adjust_offsets
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.divide_by_ratio
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.get_duration
 

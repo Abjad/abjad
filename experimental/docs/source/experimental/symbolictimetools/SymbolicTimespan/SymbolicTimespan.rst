@@ -16,6 +16,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.adjust_offsets
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_by_ratio
+
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_duration
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_offsets

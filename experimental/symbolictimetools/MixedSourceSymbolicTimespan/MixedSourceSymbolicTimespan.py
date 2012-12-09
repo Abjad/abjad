@@ -1,10 +1,8 @@
 from abjad.tools import abctools
 from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
-#from experimental.symbolictimetools.Selector import Selector
 
 
 class MixedSourceSymbolicTimespan(SymbolicTimespan):
-#class MixedSourceSymbolicTimespan(Selector):
     r'''.. versionadded:: 1.0
 
     Mixed-source timespan.
@@ -58,7 +56,6 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         assert isinstance(start_offset, (symbolictimetools.SymbolicOffset, type(None))), repr(start_offset)
         assert isinstance(stop_offset, (symbolictimetools.SymbolicOffset, type(None))), repr(stop_offset)
         SymbolicTimespan.__init__(self)
-        #Selector.__init__(self)
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 
