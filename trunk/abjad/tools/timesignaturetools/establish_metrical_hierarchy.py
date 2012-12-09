@@ -5,8 +5,8 @@ from abjad.tools import tietools
 
 
 def establish_metrical_hierarchy(components, metrical_hierarchy,
+    boundary_depth=None,
     maximum_dot_count=None,
-    show_boundaries=False,
     ):
     r'''.. versionadded:: 2.11
 
@@ -14,22 +14,6 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     '''
 
     from abjad.tools import timesignaturetools
-
-    assert componenttools.all_are_thread_contiguous_components(components)
-    metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
-    assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.duration
-    if maximum_dot_count is not None:
-        maximum_dot_count = int(maximum_dot_count)
-        assert 0 <= maximum_dot_count
-
-    first_offset = components[0].start_offset
-    prolation = components[0].prolation
-
-    offset_inventory= []
-    for offsets in metrical_hierarchy.depthwise_offset_inventory:
-        offsets = [(x * prolation) + first_offset for x in offsets]
-        offset_inventory.append(tuple(offsets))
-    boundary_offsets = offset_inventory[-1]
 
     def get_offsets_at_depth(depth):
         if depth < len(offset_inventory):
@@ -59,7 +43,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     def is_boundary_crossing_tie_chain(tie_chain_start_offset, tie_chain_stop_offset):
         #print '\tTESTING BOUNDARY CROSSINGS'
-        if not show_boundaries:
+        if boundary_depth is None:
             return False
         if not any(tie_chain_start_offset < x < tie_chain_stop_offset for x in boundary_offsets):
             return False
@@ -138,11 +122,31 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             #print ''
             leaftools.fuse_leaves(tie_chain[:])
 
+    # check arguments
+    assert componenttools.all_are_thread_contiguous_components(components)
+    metrical_hierarchy = timesignaturetools.MetricalHierarchy(metrical_hierarchy)
+    assert sum([x.preprolated_duration for x in components]) == metrical_hierarchy.duration
+    if boundary_depth is not None:
+        boundary_depth = int(boundary_depth)
+    if maximum_dot_count is not None:
+        maximum_dot_count = int(maximum_dot_count)
+        assert 0 <= maximum_dot_count
+
+    # build offset inventory, adjusted for initial offset and prolation
+    first_offset = components[0].start_offset
+    prolation = components[0].prolation
+    offset_inventory= []
+    for offsets in metrical_hierarchy.depthwise_offset_inventory:
+        offsets = [(x * prolation) + first_offset for x in offsets]
+        offset_inventory.append(tuple(offsets))
+
+    # build boundary offset inventory, if applicable
+    if boundary_depth is not None:
+        boundary_offsets = offset_inventory[boundary_depth]
 
     # cache results of iterator, as we'll be mutating the underlying collection
     items = tuple(tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(components))
     for item in items:
-        ##print ''
         if isinstance(item, tietools.TieChain):
             #print 'RECURSING:', item
             recurse(item, depth=0)
@@ -150,4 +154,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             #print 'DESCENDING:', item
             duration = sum([x.preprolated_duration for x in item])
             sub_metrical_hierarchy = timesignaturetools.MetricalHierarchy(duration)
-            establish_metrical_hierarchy(item[:], sub_metrical_hierarchy)
+            sub_boundary_depth = 1
+            if boundary_depth is None:
+                sub_boundary_depth = None
+            establish_metrical_hierarchy(item[:], sub_metrical_hierarchy,
+                boundary_depth=sub_boundary_depth)

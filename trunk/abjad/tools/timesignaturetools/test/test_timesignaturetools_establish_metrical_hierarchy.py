@@ -47,7 +47,7 @@ def test_timesignaturetools_establish_metrical_hierarchy_05():
         # with boundary enforcement
         notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
-        timesignaturetools.establish_metrical_hierarchy(measure[:], metrical_hierarchy, show_boundaries=True)
+        timesignaturetools.establish_metrical_hierarchy(measure[:], metrical_hierarchy, boundary_depth=-1)
 
 
 def test_timesignaturetools_establish_metrical_hierarchy_06():
