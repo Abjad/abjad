@@ -5,57 +5,52 @@ from experimental.symbolictimetools.RatioPartSymbolicTimespan import RatioPartSy
 
 class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
     r'''.. versionadded:: 1.0
-    
-    Partition `selector` by `ratio` of counts. Then select exactly one part.
+
+    ::
 
         >>> from experimental import *
-
+    
     Select all background measures starting during segment ``'red'`` in ``'Voice 1'``.
     Then partition these measures ``1:1`` by their count.
     Then select part ``0`` of this partition::
 
-        >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> background_measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation)
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
 
     ::
 
-        >>> count_ratio_part_selector = symbolictimetools.CountRatioPartSymbolicTimespan(
-        ... background_measure_selector, (1, 1), 0)
+        >>> measures = red_segment.select_background_measures()
 
     ::
 
-        >>> z(count_ratio_part_selector)
+        >>> timespan = symbolictimetools.CountRatioPartSymbolicTimespan(measures, (1, 1), 0)
+
+    ::
+
+        >>> z(timespan)
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
-                    )
+                anchor='red'
                 ),
             mathtools.Ratio(1, 1),
             0
             )
 
-    All count ratio item selector properties are read-only.
+    All count ratio part symbolic timespan properties are read-only.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, selector, ratio, part):
+    def __init__(self, anchor, ratio, part):
         from experimental import symbolictimetools
-        #assert isinstance(selector, symbolictimetools.SliceSymbolicTimespan)
-        assert isinstance(selector, symbolictimetools.TimeRelationSymbolicTimespan)
-        RatioPartSymbolicTimespan.__init__(self, selector, ratio, part)
+        assert isinstance(anchor, (symbolictimetools.TimeRelationSymbolicTimespan, str))
+        RatioPartSymbolicTimespan.__init__(self, anchor, ratio, part)
 
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
-        r'''Evaluate start and stop offsets of selector when applied
+        r'''Evaluate start and stop offsets of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
         Return offset.

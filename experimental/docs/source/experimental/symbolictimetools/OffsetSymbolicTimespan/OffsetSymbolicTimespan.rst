@@ -9,7 +9,7 @@ symbolictimetools.OffsetSymbolicTimespan
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.selector
+.. autoattribute:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.anchor
 
 .. autoattribute:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.start_offset
 

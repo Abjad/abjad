@@ -9,15 +9,15 @@ symbolictimetools.CountRatioPartSymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.anchor
+
+    Inherited from :py:class:`RatioPartSymbolicTimespan.RatioPartSymbolicTimespan <experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.part
 
     Inherited from :py:class:`RatioPartSymbolicTimespan.RatioPartSymbolicTimespan <experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.ratio
-
-    Inherited from :py:class:`RatioPartSymbolicTimespan.RatioPartSymbolicTimespan <experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan>`
-
-.. autoattribute:: experimental.symbolictimetools.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.CountRatioPartSymbolicTimespan.selector
 
     Inherited from :py:class:`RatioPartSymbolicTimespan.RatioPartSymbolicTimespan <experimental.symbolictimetools.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan.RatioPartSymbolicTimespan>`
 

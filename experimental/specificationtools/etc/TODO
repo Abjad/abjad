@@ -70,42 +70,24 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-15. Change ...
-        symbolictimetools.CountRatioPartSymbolicTimespan(
-            symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                anchor='red'
-                ),
-            mathtools.Ratio(1, 1, 1),
-            2
-            )
-    ... to ...
-        symbolictimetools.CountRatioPartSymbolicTimespan(
-            anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                anchor='red'
-                ),
-            mathtools.Ratio(1, 1, 1),
-            2
-            )
-    ... to show that ratio part symbolic timespans have an anchor.
-
-16. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+15. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
 
-17. Write voice-anchored selector tests.
+16. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. 
     (Except background measures, etc.)
 
-18. I think it's quite like that selection and request-making are going to turn out to be the same thing.
+17. I think it's quite like that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-19. Remove these symbolictimetools classes:
+18. Remove these symbolictimetools classes:
         symbolictimetools.CountRatioPartSymbolicTimespan
         symbolictimetools.OffsetSymbolicTimespan
         symbolictimetools.RatioPartSymbolicTimespan
