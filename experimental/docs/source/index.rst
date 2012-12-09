@@ -243,7 +243,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/symbolictimetools/RatioPartSymbolicTimespan/RatioPartSymbolicTimespan
-   experimental/symbolictimetools/SliceSymbolicTimespan/SliceSymbolicTimespan
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
    experimental/symbolictimetools/TimeRelationSymbolicTimespan/TimeRelationSymbolicTimespan
    experimental/symbolictimetools/TimespanSymbolicTimespan/TimespanSymbolicTimespan

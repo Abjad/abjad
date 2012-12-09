@@ -70,15 +70,10 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-15. TimeRelationSymbolicTimespan now inherits from SliceSymbolicTimespan.
-    Is it possible to remove SliceSymbolicTimespan altogether?
-    Looks like the answer to this one is that the two classes can in fact compress into one.
-    But leave both classes in the system for a bit to see if other symbolic timespan changes change this.
-
-16. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
+15. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
     Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
 
-17. Change ...
+16. Change ...
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red'
@@ -96,17 +91,17 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-18. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+17. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
 
-19. Write voice-anchored selector tests.
+18. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. 
     (Except background measures, etc.)
 
-20. I think it's quite like that selection and request-making are going to turn out to be the same thing.
+19. I think it's quite like that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
