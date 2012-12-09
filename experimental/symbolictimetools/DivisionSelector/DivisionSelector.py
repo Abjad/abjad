@@ -2,10 +2,10 @@ from abjad.tools import durationtools
 from experimental import divisiontools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
-from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class DivisionSelector(TimeRelationSymbolicTimespan):
+class DivisionSelector(Selector):
     r'''.. versionadded:: 1.0
 
     ::

@@ -13,17 +13,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.identifiers
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.start_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stop_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
 
@@ -31,11 +31,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.time_relation
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.voice_name
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 Methods
 -------

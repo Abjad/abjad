@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.anchor
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.identifiers
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.start_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.start_segment_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stop_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.storage_format
 
@@ -35,11 +35,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.time_relation
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.voice_name
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 Methods
 -------

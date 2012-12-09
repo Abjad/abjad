@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.anchor
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.identifiers
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.klass
 
@@ -23,15 +23,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.start_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.start_segment_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.stop_identifier
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.storage_format
 
@@ -39,11 +39,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.time_relation
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.voice_name
 
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 Methods
 -------

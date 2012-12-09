@@ -45,7 +45,7 @@ class CountRatioOperator(RatioOperator):
 
     def __init__(self, anchor, ratio, part):
         from experimental import symbolictimetools
-        assert isinstance(anchor, (symbolictimetools.TimeRelationSymbolicTimespan, str))
+        assert isinstance(anchor, (symbolictimetools.Selector, str))
         RatioOperator.__init__(self, anchor, ratio, part)
 
     ### PUBLIC METHODS ###

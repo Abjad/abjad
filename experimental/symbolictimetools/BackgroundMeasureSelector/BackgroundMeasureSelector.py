@@ -1,9 +1,9 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
-from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class BackgroundMeasureSelector(TimeRelationSymbolicTimespan):
+class BackgroundMeasureSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select all measures in score::

@@ -1,9 +1,9 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class SegmentSelector(TimeRelationSymbolicTimespan):
+class SegmentSelector(Selector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -77,7 +77,7 @@ class SegmentSelector(TimeRelationSymbolicTimespan):
 
     def __init__(self, start_identifier=None, stop_identifier=None, time_relation=None):
         from experimental import specificationtools
-        TimeRelationSymbolicTimespan.__init__(self, 
+        Selector.__init__(self, 
             start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
         self._klass = specificationtools.SegmentSpecification
 

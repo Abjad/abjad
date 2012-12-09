@@ -9,11 +9,23 @@ symbolictimetools.Selector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.anchor
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.identifiers
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_identifier
+
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_segment_identifier
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.stop_identifier
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.time_relation
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.voice_name
 
 Methods
 -------

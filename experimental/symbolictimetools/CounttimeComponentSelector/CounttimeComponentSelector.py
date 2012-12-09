@@ -3,10 +3,10 @@ from abjad.tools import iterationtools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from experimental import helpertools
-from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class CounttimeComponentSelector(TimeRelationSymbolicTimespan):
+class CounttimeComponentSelector(Selector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -77,7 +77,7 @@ class CounttimeComponentSelector(TimeRelationSymbolicTimespan):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        TimeRelationSymbolicTimespan.__init__(self, 
+        Selector.__init__(self, 
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             voice_name=voice_name, time_relation=time_relation)
         if isinstance(klass, tuple):
