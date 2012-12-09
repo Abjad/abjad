@@ -2,7 +2,6 @@ from experimental.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.symbolictimetools.SingleSegmentSymbolicTimespan import SingleSegmentSymbolicTimespan
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.symbolictimetools.SymbolicOffset import SymbolicOffset
-from experimental.symbolictimetools.SingleSourceSymbolicTimespan import SingleSourceSymbolicTimespan
 
 
 def test_SingleContextSetting___repr___01():

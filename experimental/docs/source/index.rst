@@ -261,6 +261,5 @@ Unstable packages (load manually)
    experimental/symbolictimetools/ScoreSymbolicTimespan/ScoreSymbolicTimespan
    experimental/symbolictimetools/SegmentSymbolicTimespan/SegmentSymbolicTimespan
    experimental/symbolictimetools/SingleSegmentSymbolicTimespan/SingleSegmentSymbolicTimespan
-   experimental/symbolictimetools/SingleSourceSymbolicTimespan/SingleSourceSymbolicTimespan
    experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
    experimental/symbolictimetools/TimeRatioPartSymbolicTimespan/TimeRatioPartSymbolicTimespan

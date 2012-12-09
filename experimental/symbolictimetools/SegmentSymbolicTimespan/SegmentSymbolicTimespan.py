@@ -70,44 +70,6 @@ class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
         >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
         SegmentSymbolicTimespan(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
 
-    Select all segments starting during the first third of the score:
-
-        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan)
-
-    ::
-
-        >>> selector = symbolictimetools.SegmentSymbolicTimespan(time_relation=time_relation)
-
-    ::
-
-        >>> z(selector)
-        symbolictimetools.SegmentSymbolicTimespan(
-            time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                    multiplier=durationtools.Multiplier(1, 3)
-                    )
-                )
-            )
-
-    Select the last two segments starting during the first third of the score::
-
-        >>> selector = symbolictimetools.SegmentSymbolicTimespan(time_relation=time_relation, start_identifier=-2)
-
-    ::
-
-        >>> z(selector)
-        symbolictimetools.SegmentSymbolicTimespan(
-            start_identifier=-2,
-            time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                    multiplier=durationtools.Multiplier(1, 3)
-                    )
-                )
-            )
-
     All segment selector properties are read-only.
     '''
 

@@ -138,7 +138,6 @@ class SymbolicOffset(AbjadObject):
         from experimental import symbolictimetools
         assert isinstance(anchor, (
             symbolictimetools.TimespanSymbolicTimespan, 
-            symbolictimetools.SingleSourceSymbolicTimespan, 
             type(None), str)), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
