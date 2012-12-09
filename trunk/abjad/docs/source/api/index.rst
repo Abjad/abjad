@@ -2178,6 +2178,7 @@ Internal packages
    tools/documentationtools/make_ligeti_example_lilypond_file
    tools/documentationtools/make_reference_manual_lilypond_file
    tools/documentationtools/make_text_alignment_example_lilypond_file
+   tools/documentationtools/write_expr_to_md5_hashed_ly
 
 :py:mod:`exceptiontools <abjad.tools.exceptiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
