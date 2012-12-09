@@ -70,10 +70,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-15. Rename OffsetSymbolicTimespan 'selector' property to 'anchor'.
-    Eventually rename CounttimeComponentSymbolicTimespan 'selector' property 'anchor'.
-
-16. Change ...
+15. Change ...
         symbolictimetools.CountRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red'
@@ -91,19 +88,31 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-17. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+16. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
 
-18. Write voice-anchored selector tests.
+17. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. 
     (Except background measures, etc.)
 
-19. I think it's quite like that selection and request-making are going to turn out to be the same thing.
+18. I think it's quite like that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
+
+19. Remove these symbolictimetools classes:
+        symbolictimetools.CountRatioPartSymbolicTimespan
+        symbolictimetools.OffsetSymbolicTimespan
+        symbolictimetools.RatioPartSymbolicTimespan
+        symbolictimetools.TimeRatioPartSymbolicTimespan
+    Replace with these bound methods:
+        timespan.partition_by_ratio(is_time=True)
+        timespan.start_offset = start_offset
+        timespan.stop_offset = stop_offset
+        timespan.offsets = start_offset, stop_offset
+    Methods must be preserved as strings (as timespan attribute) to delay evaluation.
