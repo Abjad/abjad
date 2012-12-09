@@ -34,35 +34,31 @@ class SymbolicOffset(AbjadObject):
 
     Symbolic offset indicating the left edge of segment ``'red'``::
 
-        >>> segment = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
-
-    ::
-
-        >>> symbolictimetools.SymbolicOffset(anchor=segment)
-        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'))
+        >>> symbolictimetools.SymbolicOffset(anchor='red')
+        SymbolicOffset(anchor='red')
 
     Symbolic offset indicating the right edge of segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(anchor=segment, edge=Right)
-        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right)
+        >>> symbolictimetools.SymbolicOffset(anchor='red', edge=Right)
+        SymbolicOffset(anchor='red', edge=Right)
 
     Symbolic offset indicating ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(anchor=segment, addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), addendum=Offset(1, 8))
+        >>> symbolictimetools.SymbolicOffset(anchor='red', addendum=durationtools.Offset(1, 8))
+        SymbolicOffset(anchor='red', addendum=Offset(1, 8))
 
     Symbolic offset indicating one third of the way into segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(anchor=segment, edge=Right, multiplier=Multiplier(1, 3))
-        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3))
+        >>> symbolictimetools.SymbolicOffset(anchor='red', edge=Right, multiplier=Multiplier(1, 3))
+        SymbolicOffset(anchor='red', edge=Right, multiplier=Multiplier(1, 3))
 
     Symbolic offset indicating ``1/8`` of a whole note after the right edge of the 
     first third of segment ``'red'``::
     
-        >>> symbolictimetools.SymbolicOffset(anchor=segment, edge=Right, 
+        >>> symbolictimetools.SymbolicOffset(anchor='red', edge=Right, 
         ... multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
+        SymbolicOffset(anchor='red', edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
 
     Symbolic offset indicating the left edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
