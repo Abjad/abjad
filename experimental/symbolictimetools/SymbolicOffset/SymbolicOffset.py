@@ -34,35 +34,35 @@ class SymbolicOffset(AbjadObject):
 
     Symbolic offset indicating the left edge of segment ``'red'``::
 
-        >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
+        >>> segment = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
 
     ::
 
-        >>> symbolictimetools.SymbolicOffset(selector=segment_selector)
-        SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'))
+        >>> symbolictimetools.SymbolicOffset(anchor=segment)
+        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'))
 
     Symbolic offset indicating the right edge of segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(selector=segment_selector, edge=Right)
-        SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right)
+        >>> symbolictimetools.SymbolicOffset(anchor=segment, edge=Right)
+        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right)
 
     Symbolic offset indicating ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(selector=segment_selector, addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), addendum=Offset(1, 8))
+        >>> symbolictimetools.SymbolicOffset(anchor=segment, addendum=durationtools.Offset(1, 8))
+        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), addendum=Offset(1, 8))
 
     Symbolic offset indicating one third of the way into segment ``'red'``::
 
-        >>> symbolictimetools.SymbolicOffset(selector=segment_selector, edge=Right, multiplier=Multiplier(1, 3))
-        SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3))
+        >>> symbolictimetools.SymbolicOffset(anchor=segment, edge=Right, multiplier=Multiplier(1, 3))
+        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3))
 
     Symbolic offset indicating ``1/8`` of a whole note after the right edge of the 
     first third of segment ``'red'``::
     
-        >>> symbolictimetools.SymbolicOffset(selector=segment_selector, edge=Right, 
+        >>> symbolictimetools.SymbolicOffset(anchor=segment, edge=Right, 
         ... multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
+        SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
 
     Symbolic offset indicating the left edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
@@ -72,13 +72,13 @@ class SymbolicOffset(AbjadObject):
 
     ::
 
-        >>> offset = symbolictimetools.SymbolicOffset(selector=note)
+        >>> offset = symbolictimetools.SymbolicOffset(anchor=note)
 
     ::
 
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
                 anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
@@ -87,7 +87,7 @@ class SymbolicOffset(AbjadObject):
                 )
             )
 
-    Timepoint selectors can be arbitrary timespans. This allows recursion into the model.
+    Timepoint anchors can be arbitrary timespans. This allows recursion into the model.
 
     Symbolic offset one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
@@ -96,13 +96,13 @@ class SymbolicOffset(AbjadObject):
 
     ::
     
-        >>> offset = symbolictimetools.SymbolicOffset(selector=segments, edge=Right, multiplier=Multiplier(1, 3))
+        >>> offset = symbolictimetools.SymbolicOffset(anchor=segments, edge=Right, multiplier=Multiplier(1, 3))
 
     ::
     
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            selector=symbolictimetools.SegmentSymbolicTimespan(
+            anchor=symbolictimetools.SegmentSymbolicTimespan(
                 start_identifier='red',
                 stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
                 ),
@@ -113,13 +113,13 @@ class SymbolicOffset(AbjadObject):
     Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
 
-        >>> offset = symbolictimetools.SymbolicOffset(selector=note, edge=Right)
+        >>> offset = symbolictimetools.SymbolicOffset(anchor=note, edge=Right)
 
     ::
 
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            selector=symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
                 anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
@@ -134,18 +134,18 @@ class SymbolicOffset(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, selector=None, edge=None, multiplier=None, addendum=None): 
+    def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental import symbolictimetools
-        assert isinstance(selector, (
+        assert isinstance(anchor, (
             symbolictimetools.TimespanSymbolicTimespan, 
             symbolictimetools.SingleSourceSymbolicTimespan, 
-            type(None), str)), repr(selector)
+            type(None), str)), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
             multiplier = durationtools.Multiplier(multiplier)
         if addendum is not None:
             addendum = durationtools.Offset(addendum)
-        self._selector = selector
+        self._anchor = anchor
         self._multiplier = multiplier
         self._edge = edge
         self._addendum = addendum
@@ -162,7 +162,7 @@ class SymbolicOffset(AbjadObject):
         '''
         if not isinstance(other, type(self)):
             return False
-        elif not self.selector == other.selector:
+        elif not self.anchor == other.anchor:
             return False
         elif not self.edge == other.edge:
             return False
@@ -215,10 +215,10 @@ class SymbolicOffset(AbjadObject):
         return self._multiplier
 
     @property
-    def selector(self):
-        '''Symbolic offset selector specified by user.
+    def anchor(self):
+        '''Symbolic offset anchor specified by user.
         
-            >>> z(offset.selector)
+            >>> z(offset.anchor)
             symbolictimetools.CounttimeComponentSymbolicTimespan(
                 anchor='red',
                 klass=notetools.Note,
@@ -229,9 +229,9 @@ class SymbolicOffset(AbjadObject):
 
         Value of none is taken equal the entire score.
 
-        Return selector or none.
+        Return anchor or none.
         '''
-        return self._selector
+        return self._anchor
 
     @property
     def start_segment_identifier(self):
@@ -240,14 +240,14 @@ class SymbolicOffset(AbjadObject):
             >>> offset.start_segment_identifier
             'red'
 
-        Delegate to ``self.selector.start_segment_identifier``.
+        Delegate to ``self.anchor.start_segment_identifier``.
 
         Return string or none.
         '''
-        if isinstance(self.selector, str):
-            return self.selector
+        if isinstance(self.anchor, str):
+            return self.anchor
         else:
-            return self.selector.start_segment_identifier
+            return self.anchor.start_segment_identifier
 
     ### PUBLIC METHODS ###
 
@@ -260,10 +260,10 @@ class SymbolicOffset(AbjadObject):
         Return offset.
         '''
         edge = self.edge or Left
-        if isinstance(self.selector, str):
-            start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.selector)
+        if isinstance(self.anchor, str):
+            start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
         else:
-            start_offset, stop_offset = self.selector.get_offsets(score_specification, context_name)
+            start_offset, stop_offset = self.anchor.get_offsets(score_specification, context_name)
         if edge == Left:
             score_offset = start_offset
         else:

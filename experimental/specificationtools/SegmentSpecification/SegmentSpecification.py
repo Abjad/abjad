@@ -277,24 +277,24 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic start offset::
 
             >>> red_segment.symbolic_start_offset
-            SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Left)
+            SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Left)
 
         Return symbolic offset.
         '''
         selector = self.timespan
-        return symbolictimetools.SymbolicOffset(selector=selector, edge=Left)
+        return symbolictimetools.SymbolicOffset(anchor=selector, edge=Left)
 
     @property
     def symbolic_stop_offset(self):
         '''Segment specification symbolic stop offset::
 
             >>> red_segment.symbolic_stop_offset
-            SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right)
+            SymbolicOffset(anchor=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right)
 
         Return symbolic offset.
         '''
         selector = self.timespan
-        return symbolictimetools.SymbolicOffset(selector=selector, edge=Right)
+        return symbolictimetools.SymbolicOffset(anchor=selector, edge=Right)
 
     @property
     def time_signatures(self):

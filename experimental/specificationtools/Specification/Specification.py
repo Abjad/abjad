@@ -149,7 +149,7 @@ class Specification(AbjadObject):
                 'divisions',
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
-                    selector='red'
+                    anchor='red'
                     )
                 )
 
@@ -164,7 +164,7 @@ class Specification(AbjadObject):
                 'divisions',
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
-                    selector='red',
+                    anchor='red',
                     multiplier=durationtools.Multiplier(1, 2)
                     )
                 )
@@ -186,7 +186,7 @@ class Specification(AbjadObject):
                 'divisions',
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
-                    selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                         anchor='red',
                         start_identifier=8,
                         stop_identifier=9,
@@ -204,7 +204,7 @@ class Specification(AbjadObject):
         '''
         selector = selector or self.specification_name
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
+            anchor=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'divisions', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -295,7 +295,7 @@ class Specification(AbjadObject):
                 'rhythm',
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
-                    selector='red'
+                    anchor='red'
                     )
                 )
 
@@ -307,7 +307,7 @@ class Specification(AbjadObject):
         '''
         selector = selector or self.specification_name
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
+            anchor=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythm', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
@@ -330,7 +330,7 @@ class Specification(AbjadObject):
                 'time_signatures',
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
-                    selector='red'
+                    anchor='red'
                     )
                 )
 
@@ -342,7 +342,7 @@ class Specification(AbjadObject):
         '''
         selector = selector or self.specification_name
         symbolic_offset = symbolictimetools.SymbolicOffset(
-            selector=selector, edge=edge, multiplier=multiplier, addendum=addendum)
+            anchor=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)

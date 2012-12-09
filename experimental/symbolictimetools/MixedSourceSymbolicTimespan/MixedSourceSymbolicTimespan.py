@@ -14,13 +14,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
         >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(
         ... anchor='red', start_identifier=-1)
-        >>> start_offset = symbolictimetools.SymbolicOffset(selector=measure)
+        >>> start_offset = symbolictimetools.SymbolicOffset(anchor=measure)
 
     ::
 
         >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(
         ... anchor='blue', stop_identifier=1)
-        >>> stop_offset = symbolictimetools.SymbolicOffset(selector=measure, edge=Right)
+        >>> stop_offset = symbolictimetools.SymbolicOffset(anchor=measure, edge=Right)
         
     ::
 
@@ -32,13 +32,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> z(timespan)
         symbolictimetools.MixedSourceSymbolicTimespan(
             start_offset=symbolictimetools.SymbolicOffset(
-                selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=-1
                     )
                 ),
             stop_offset=symbolictimetools.SymbolicOffset(
-                selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='blue',
                     stop_identifier=1
                     ),

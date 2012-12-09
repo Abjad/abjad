@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.addendum
 
+.. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.anchor
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.edge
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.multiplier
-
-.. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.selector
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.start_segment_identifier
 

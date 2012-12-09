@@ -29,7 +29,7 @@ class CommandRequest(Request):
             'divisions',
             'Voice 1',
             symbolictimetools.SymbolicOffset(
-                selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
                     stop_identifier=5,
@@ -88,7 +88,7 @@ class CommandRequest(Request):
 
             >>> z(command_request.symbolic_offset)
             symbolictimetools.SymbolicOffset(
-                selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
                     stop_identifier=5,
