@@ -6,14 +6,12 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class TimespanSymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Abstract base class from which all selectors inherit.
+    Abstract base class from which concrete symbolic timespans inherit.
     '''
 
-    ### INITIALIZER ###
+    ### CLASS ATTRIBUTES ###
 
-    @abc.abstractmethod
-    def __init__(self):
-        pass
+    __metaclass__ = abc.ABCMeta
 
     ### SPECIAL METHODS ###
 
@@ -42,7 +40,7 @@ class TimespanSymbolicTimespan(AbjadObject):
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):
-        r'''Evaluate duration of selector when applied
+        r'''Evaluate duration of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
         Return duration.
@@ -52,7 +50,7 @@ class TimespanSymbolicTimespan(AbjadObject):
 
     @abc.abstractmethod
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
-        r'''Get start offset and stop offset of selector when applied
+        r'''Get start offset and stop offset of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
         Return pair.
@@ -61,7 +59,7 @@ class TimespanSymbolicTimespan(AbjadObject):
     
     @abc.abstractmethod
     def get_selected_objects(self, score_specification, context_name):
-        '''Get selected objects of selector when applied
+        '''Get selected objects of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
         Return object or list of objects.

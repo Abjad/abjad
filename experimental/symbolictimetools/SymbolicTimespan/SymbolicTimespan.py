@@ -5,19 +5,12 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class SymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Base symbolic timespan class from which concrete 
-    symbolic timespan classes inherit.
+    Base symbolic timespan class from which conrete symbolic timespans inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-
-    ### INITIALIZER ###
-
-    @abc.abstractmethod
-    def __init__(self):
-        pass
 
     ### PUBLIC METHODS ###
 
@@ -39,8 +32,8 @@ class SymbolicTimespan(AbjadObject):
         '''
         pass
 
-    @abc.abstractmethod
-    def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.selector.set_segment_identifier()``.
-        '''
-        pass
+#    @abc.abstractmethod
+#    def set_segment_identifier(self, segment_identifier):
+#        '''Delegate to ``self.selector.set_segment_identifier()``.
+#        '''
+#        pass

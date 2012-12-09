@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_offset
 
+.. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_segment_identifier
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.stop_offset
 
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.storage_format
@@ -20,11 +24,27 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.adjust_offsets
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.divide_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_duration
 
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_offsets
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.get_selected_objects
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.partition_by_ratio
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_segment_identifier
 
