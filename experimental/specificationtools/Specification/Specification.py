@@ -420,10 +420,10 @@ class Specification(AbjadObject):
             time_relation=time_relation)
         return timespan
 
-    def select_leaves(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_leaves(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
 
-            >>> timespan = red_segment.select_leaves(voice='Voice 1', stop=40)
+            >>> timespan = red_segment.select_leaves('Voice 1', stop=40)
 
         ::
 
@@ -449,10 +449,11 @@ class Specification(AbjadObject):
             voice_name=voice)
         return timespan
 
-    def select_note_and_chord_timespan(self, start=None, stop=None, time_relation=None, voice=None):
-        '''Select the first ``40`` segment notes and chords::
+    def select_notes_and_chords(self, voice, start=None, stop=None, time_relation=None):
+        '''Select the first ``40`` voice ``1`` notes and chords 
+        that start during segment ``'red'``::
 
-            >>> timespan = red_segment.select_note_and_chord_timespan(stop=40)
+            >>> timespan = red_segment.select_notes_and_chords('Voice 1', stop=40)
 
         ::
 
@@ -463,7 +464,8 @@ class Specification(AbjadObject):
                     notetools.Note,
                     chordtools.Chord
                     ]),
-                stop_identifier=40
+                stop_identifier=40,
+                voice_name='Voice 1'
                 )
 
         Return timespan.
