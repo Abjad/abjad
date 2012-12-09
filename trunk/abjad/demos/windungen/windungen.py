@@ -31,7 +31,7 @@ def mirror_base_list_of_rotation_tuples(rotations):
 	rotations.extend( back )
 	return rotations
 
-def make_mirorred_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, compressedReflections):
+def make_mirrored_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, compressedReflections):
 	rotations = make_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, compressedReflections)
 	rotations = mirror_base_list_of_rotation_tuples(rotations)
 	return rotations
@@ -39,7 +39,7 @@ def make_mirorred_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBa
 def make_cyclic_matrix_for_rotation_by_bandwidth(staffIndexBoundsTuple, rotationBandwidth, compressedReflections = True):
 	#generalized to any number of staffs and any bandwidth of rotation.
 	#if compression is true, range is 0 to 7; then pop off first and last.
-	rotations = make_mirorred_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, compressedReflections)
+	rotations = make_mirrored_base_list_of_rotation_tuples(staffIndexBoundsTuple, rotationBandwidth, compressedReflections)
 	matrix = sequencetools.CyclicMatrix(rotations)
 	return matrix
 	#Each cyclic tuple in the matrix indicates which staffs to place music on.
@@ -113,16 +113,9 @@ def beam_and_fuse_beats_in_score_by_durations(score, durations, cyclic=False):
 		beats = componenttools.split_components_at_offsets(staff.leaves, durations, cyclic=cyclic)
 		apply_beam_spanner_to_non_rest_beats(beats)
 
-def list_components_of_duration_in_expr(expr, duration):
-	theList = [ ]
-	for component in expr:
-		if component.written_duration == duration:
-			theList.append(component)
-	return theList
-
 def fuse_consecutive_rests_of_duration_by_duration_threshold(run, duration, durationThreshold):
 	toFuse = [x for x in run[:] if x.written_duration == duration]
-	runDuration = componenttools.sum_prolated_duration_of_components(run[:])
+	runDuration = componenttools.sum_duration_of_components(run[:])
 	if durationThreshold <= runDuration:
 		leaftools.fuse_leaves(toFuse)
 
@@ -168,6 +161,7 @@ def make_empty_cello_score(numStaffs):
 	return score
 
 score = make_empty_cello_score(12)
-staff = make_staff_with_random_pitches([-3, -1, 1], 64)	
-rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(staff, (0,6), 3, [Duration(1,16)], compressedReflections=True, cyclic=True)
+pitches = sequencetools.repeat_sequence_to_length([-11, -10, -8], 32)
+rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(
+    pitches, (0, 12), 4, [Duration(1, 16)], compressedReflections=True, cyclic=True)
 show(score)
