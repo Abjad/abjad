@@ -35,7 +35,8 @@ class SymbolicTimespan(AbjadObject):
         from experimental import symbolictimetools
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        return symbolictimetools.OffsetOperator(self, start_offset=start, stop_offset=stop)
+        anchor = getattr(self, 'specification_name', self)
+        return symbolictimetools.OffsetOperator(anchor, start_offset=start, stop_offset=stop)
 
     def divide_by_ratio(self, ratio):
         ''''Divide self by `ratio`.
