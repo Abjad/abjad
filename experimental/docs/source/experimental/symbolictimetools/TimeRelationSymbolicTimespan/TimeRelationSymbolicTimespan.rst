@@ -9,6 +9,10 @@ symbolictimetools.TimeRelationSymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.anchor
+
+.. autoattribute:: experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.get_offsets
+
 .. autoattribute:: experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.identifiers
 
 .. autoattribute:: experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.klass
@@ -39,10 +43,6 @@ Methods
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.get_duration
-
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
-
-.. automethod:: experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.get_offsets
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 

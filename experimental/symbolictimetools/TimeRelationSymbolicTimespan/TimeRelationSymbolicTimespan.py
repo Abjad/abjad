@@ -15,16 +15,23 @@ class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
 
     ### INTIALIZER ###
 
-    @abc.abstractmethod
-    def __init__(self, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
+    def __init__(self, 
+        anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
+        from experimental import symbolictimetools
+        assert isinstance(anchor, (symbolictimetools.TimespanSymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
+        self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier
         self._voice_name = voice_name
         self._time_relation = time_relation
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def anchor(self):
+        return self._anchor
 
     @property
     def identifiers(self):
@@ -52,11 +59,16 @@ class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
 
     @property
     def start_segment_identifier(self):
-        '''Delegate to ``self.time_relation.start_segment_identifier``.
+        '''Return anchor when anchor is a string.
+
+        Otherwise delegate to ``self.time_relation.start_segment_identifier``.
 
         Return string or none.
         '''
-        result = self.time_relation.start_segment_identifier
+        if isinstance(self.anchor, str):
+            return self.anchor
+        else:
+            return self.anchor.start_segment_identifier
 
     @property
     def stop_identifier(self):
@@ -89,3 +101,9 @@ class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
         Return string or none.
         '''
         return self._voice_name
+
+    ### PUBLIC METHODS ###
+
+    @abc.abstractproperty
+    def get_offsets(self):
+        pass
