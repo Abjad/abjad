@@ -394,17 +394,18 @@ class Specification(AbjadObject):
             time_relation=time_relation)
         return timespan
 
-    def select_divisions(self, start=None, stop=None, time_relation=None, voice=None):
+    def select_divisions(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first five divisions that start during segment 'red'::
 
-            >>> timespan = red_segment.select_divisions(stop=5)
+            >>> timespan = red_segment.select_divisions('Voice 1', stop=5)
 
         ::
             
             >>> z(timespan)
             symbolictimetools.DivisionSymbolicTimespan(
                 anchor='red',
-                stop_identifier=5
+                stop_identifier=5,
+                voice_name='Voice 1'
                 )
 
         Return timespan.
