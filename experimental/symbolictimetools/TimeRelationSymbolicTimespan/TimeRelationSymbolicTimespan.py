@@ -18,7 +18,7 @@ class TimeRelationSymbolicTimespan(Selector):
     def __init__(self, 
         anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
         from experimental import symbolictimetools
-        assert isinstance(anchor, (symbolictimetools.Selector, str, type(None))), repr(anchor)
+        assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
         self._anchor = anchor

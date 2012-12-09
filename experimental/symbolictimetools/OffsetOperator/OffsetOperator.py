@@ -1,8 +1,8 @@
 from abjad.tools import durationtools
-from experimental.symbolictimetools.Selector import Selector
+from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class OffsetOperator(Selector):
+class OffsetOperator(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Offset symbolic timespan. 
@@ -11,7 +11,7 @@ class OffsetOperator(Selector):
     ### INITIALIZER ##
     
     def __init__(self, anchor, start_offset=None, stop_offset=None):
-        assert isinstance(anchor, (Selector, str, type(None)))
+        assert isinstance(anchor, (SymbolicTimespan, str, type(None)))
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
         self._anchor = anchor

@@ -113,3 +113,5 @@
 19. TimeRelationSymbolicTimespan inherits from Selector.
     Do we need the two classes? Or should the two classes compress?
     This would remove TimeRelationSymbolicTimespan in favor of Selector.
+
+20. Should Setting.selector be Setting.anchor instead?

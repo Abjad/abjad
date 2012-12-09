@@ -1,12 +1,12 @@
 import abc
 from abjad.tools import mathtools
-from experimental.symbolictimetools.Selector import Selector
+from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class RatioOperator(Selector):
+class RatioOperator(SymbolicTimespan):
     r'''.. versionadded:: 1.0
     
-    Abstract ratio-part symbolic timespan class from which concrete ratio-part symbolic timespans inherit.
+    Abstract ratio-part operator from which concrete ratio-part operators inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -17,7 +17,7 @@ class RatioOperator(Selector):
 
     @abc.abstractmethod
     def __init__(self, anchor, ratio, part):
-        assert isinstance(anchor, Selector)
+        assert isinstance(anchor, SymbolicTimespan)
         assert isinstance(part, int)
         ratio = mathtools.Ratio(ratio)
         self._anchor = anchor
@@ -55,14 +55,6 @@ class RatioOperator(Selector):
         return self.anchor.start_segment_identifier
 
     ### PUBLIC METHODS ###
-
-    def get_selected_objects(self, score_specification, context_name):
-        '''Get ratio parts when symbolic timespan is applied
-        to `context_name` in `score_specification`.
-
-        Return list.
-        '''
-        raise NotImplementedError
 
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.anchor.set_segment_identifier()``.

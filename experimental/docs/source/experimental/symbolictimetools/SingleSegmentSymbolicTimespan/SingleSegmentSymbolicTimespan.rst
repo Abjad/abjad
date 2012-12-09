@@ -36,10 +36,6 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.get_selected_objects
 
-.. automethod:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.partition_by_ratio
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.set_segment_identifier
 
 Special Methods

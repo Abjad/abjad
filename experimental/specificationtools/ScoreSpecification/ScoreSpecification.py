@@ -388,11 +388,11 @@ class ScoreSpecification(Specification):
         '''Score specification symbolic timespan.
 
             >>> z(score_specification.timespan)
-            symbolictimetools.ScoreSymbolicTimespan()
+            symbolictimetools.ScoreSelector()
 
         Return symbolic timespan.
         '''
-        return symbolictimetools.ScoreSymbolicTimespan()
+        return symbolictimetools.ScoreSelector()
 
     ### PUBLIC METHODS ###
 

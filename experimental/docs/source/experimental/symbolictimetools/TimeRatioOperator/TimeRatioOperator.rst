@@ -46,14 +46,6 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.get_offsets
 
-.. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.get_selected_objects
-
-    Inherited from :py:class:`RatioOperator.RatioOperator <experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator>`
-
-.. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.partition_by_ratio
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.set_segment_identifier
 
     Inherited from :py:class:`RatioOperator.RatioOperator <experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator>`

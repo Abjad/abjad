@@ -3,7 +3,7 @@ from experimental import segmenttools
 from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class ScoreSymbolicTimespan(SymbolicTimespan):
+class ScoreSelector(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -12,8 +12,8 @@ class ScoreSymbolicTimespan(SymbolicTimespan):
 
     Score symbolic timespan::
 
-        >>> symbolictimetools.ScoreSymbolicTimespan()
-        ScoreSymbolicTimespan()
+        >>> symbolictimetools.ScoreSelector()
+        ScoreSelector()
     
     All score symbolic timespan properties are read-only.
     '''

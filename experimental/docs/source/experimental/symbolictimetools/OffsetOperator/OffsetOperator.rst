@@ -44,10 +44,6 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.get_selected_objects
 
-.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.partition_by_ratio
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.set_segment_identifier
 
 Special Methods

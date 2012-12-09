@@ -40,12 +40,6 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.get_selected_objects
-
-.. automethod:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.partition_by_ratio
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.set_segment_identifier
 
 Special Methods

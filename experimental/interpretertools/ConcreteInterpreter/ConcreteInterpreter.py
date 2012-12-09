@@ -929,7 +929,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(expr, (tuple, list))
         result = []
         for element in expr:
-            if isinstance(element, symbolictimetools.Selector):
+            if isinstance(element, symbolictimetools.SymbolicTimespan):
                 context_name = None
                 duration = element.get_duration(self.score_specification, context_name)
                 result.append(duration)
