@@ -172,7 +172,7 @@ class Specification(AbjadObject):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> selector = red_segment.select_background_measures(8, 9)
+            >>> selector = red_segment.select_background_measures('Voice 1', 8, 9)
             >>> offset = durationtools.Offset(1, 4)
 
         ::
@@ -189,7 +189,8 @@ class Specification(AbjadObject):
                     selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                         anchor='red',
                         start_identifier=8,
-                        stop_identifier=9
+                        stop_identifier=9,
+                        voice_name='Voice 1'
                         ),
                     addendum=durationtools.Offset(1, 4)
                     )
@@ -369,17 +370,18 @@ class Specification(AbjadObject):
             'time_signatures', voice, anchor, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    def select_background_measures(self, start=None, stop=None, time_relation=None):
+    def select_background_measures(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment 'red'::
 
-            >>> timespan = red_segment.select_background_measures(stop=5)
+            >>> timespan = red_segment.select_background_measures('Voice 1', stop=5)
 
         ::
 
             >>> z(timespan)
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
                 anchor='red',
-                stop_identifier=5
+                stop_identifier=5,
+                voice_name='Voice 1'
                 )
 
         Return background measure symbolic timespan.
@@ -391,7 +393,8 @@ class Specification(AbjadObject):
             anchor=self.specification_name,
             start_identifier=start, 
             stop_identifier=stop, 
-            time_relation=time_relation)
+            time_relation=time_relation,
+            voice_name=voice)
         return timespan
 
     def select_divisions(self, voice, start=None, stop=None, time_relation=None):

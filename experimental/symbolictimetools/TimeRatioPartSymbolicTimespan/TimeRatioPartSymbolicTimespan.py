@@ -20,7 +20,7 @@ class TimeRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
     ::
 
-        >>> measures = red_segment.select_background_measures()
+        >>> measures = red_segment.select_background_measures('Voice 1', )
 
     ::
 
@@ -31,7 +31,8 @@ class TimeRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
         >>> z(timespan)
         symbolictimetools.TimeRatioPartSymbolicTimespan(
             symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                anchor='red'
+                anchor='red',
+                voice_name='Voice 1'
                 ),
             mathtools.Ratio(1, 1),
             0

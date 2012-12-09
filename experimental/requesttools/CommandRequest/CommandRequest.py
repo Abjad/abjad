@@ -18,7 +18,7 @@ class CommandRequest(Request):
 
     ::
 
-        >>> selector = red_segment.select_background_measures(4, 5)
+        >>> selector = red_segment.select_background_measures('Voice 1', 4, 5)
         >>> command_request = red_segment.request_division_command(
         ...     'Voice 1', selector=selector)
 
@@ -32,7 +32,8 @@ class CommandRequest(Request):
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
-                    stop_identifier=5
+                    stop_identifier=5,
+                    voice_name='Voice 1'
                     )
                 )
             )
@@ -90,7 +91,8 @@ class CommandRequest(Request):
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
                     anchor='red',
                     start_identifier=4,
-                    stop_identifier=5
+                    stop_identifier=5,
+                    voice_name='Voice 1'
                     )
                 )
 
