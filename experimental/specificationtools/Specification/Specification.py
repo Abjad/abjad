@@ -208,7 +208,6 @@ class Specification(AbjadObject):
             'divisions', voice, symbolic_offset=symbolic_offset,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
 
-    # TODO: remove anchor=None keyword and use self.select_background_measures().request_divisions() instead?
     def request_divisions(self, voice, anchor=None, time_relation=None,
         index=None, count=None, reverse=None, rotation=None, callback=None):
         r'''Request segment divisions in `voice`::
@@ -480,25 +479,24 @@ class Specification(AbjadObject):
             voice_name=voice)
         return timespan
 
+    # TODO: remove this method and use self.timespan.offsets = start_offset, stop_offset instead.
     def select_offsets(self, start=None, stop=None):
         r'''Select segment from ``1/8`` to ``3/8``::
 
-            >>> selector = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
+            >>> timespan = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
 
         ::
 
-            >>> z(selector)
+            >>> z(timespan)
             symbolictimetools.OffsetSymbolicTimespan(
-                symbolictimetools.SingleSegmentSymbolicTimespan(
-                    identifier='red'
-                    ),
+                'red',
                 start_offset=durationtools.Offset(1, 8),
                 stop_offset=durationtools.Offset(3, 8)
                 )
 
-        Return selector.
+        Return symbolic timespan.
         '''
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        selector = self.timespan
-        return symbolictimetools.OffsetSymbolicTimespan(selector, start_offset=start, stop_offset=stop)
+        anchor = self.specification_name
+        return symbolictimetools.OffsetSymbolicTimespan(anchor, start_offset=start, stop_offset=stop)

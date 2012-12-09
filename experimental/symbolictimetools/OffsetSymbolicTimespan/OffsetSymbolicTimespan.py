@@ -10,9 +10,8 @@ class OffsetSymbolicTimespan(TimespanSymbolicTimespan):
 
     ### INITIALIZER ##
     
-    # TODO: rename 'anchor' to 'anchor'
     def __init__(self, anchor, start_offset=None, stop_offset=None):
-        assert isinstance(anchor, TimespanSymbolicTimespan)
+        assert isinstance(anchor, (TimespanSymbolicTimespan, str, type(None)))
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
         self._anchor = anchor
@@ -88,16 +87,25 @@ class OffsetSymbolicTimespan(TimespanSymbolicTimespan):
         if self.start_offset is None:
             start_offset = durationtools.Offset(0)
         elif self.start_offset < 0:
-            start_offset = self.anchor.get_duration(score_specification, context_name) + self.start_offset
+            if isinstance(self.anchor, str):
+                start_offset = score_specification.segment_specifications[self.anchor].duration + self.start_offset
+            else:
+                start_offset = self.anchor.get_duration(score_specification, context_name) + self.start_offset
         else:
             start_offset = self.start_offset
         segment_specification = score_specification.get_start_segment_specification(self)
         segment_name = segment_specification.segment_name
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
         if self.stop_offset is None:
-            stop_offset = durationtools.Offset(self.anchor.get_duration(score_specification, context_name))
+            if isinstance(self.anchor, str):
+                stop_offset = score_specification.segment_specifications[self.anchor].duration
+            else:
+                stop_offset = durationtools.Offset(self.anchor.get_duration(score_specification, context_name))
         elif self.stop_offset < 0:
-            stop_offset = self.anchor.get_duration(score_specification, context_name) + self.stop_offset
+            if isinstance(self.anchor, str):
+                stop_offset = score_specification.segment_specifications[self.anchor].duration + self.stop_offset
+            else:
+                stop_offset = self.anchor.get_duration(score_specification, context_name) + self.stop_offset
         else:
             stop_offset = self.stop_offset
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
@@ -111,4 +119,7 @@ class OffsetSymbolicTimespan(TimespanSymbolicTimespan):
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.anchor.set_segment_identifier()``.
         '''
-        return self.anchor.set_segment_identifier(segment_identifier)
+        if isinstance(self.anchor, str):
+            self._anchor = segment_identifier
+        else:
+            return self.anchor.set_segment_identifier(segment_identifier)

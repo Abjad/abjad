@@ -70,24 +70,11 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-15. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
-    Replace these with methods bound to Request that return annotated request.
-    This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
-    This will also mean that any number of arbitrary transforms may be applied to a request in any order.
-    This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
-
-16. Write voice-anchored selector tests.
+15. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. 
     (Except background measures, etc.)
 
-17. I think it's quite like that selection and request-making are going to turn out to be the same thing.
-    What does it fundamentally mean to select something?
-    We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
-    Any time we reference the timespan of something we need to afford a time_relation=None keyword.
-    This happens the exact same way in both select() and request() methods.
-    So this action item probably means to remove all request() methods in favor of select() methods.
-
-18. Remove these symbolictimetools classes:
+16. Remove these symbolictimetools classes:
         symbolictimetools.CountRatioPartSymbolicTimespan
         symbolictimetools.OffsetSymbolicTimespan
         symbolictimetools.RatioPartSymbolicTimespan
@@ -98,3 +85,28 @@
         timespan.stop_offset = stop_offset
         timespan.offsets = start_offset, stop_offset
     Methods must be preserved as strings (as timespan attribute) to delay evaluation.
+
+17. Remove the three command request methods:
+        Specification.request_division_command()
+        Specification.request_rhythm_command()
+        Specification.request_time_signature_command()
+    The commands currently take selector=None, edge=None, multiplier=None, addendum=None keywords.
+    Better to implement a small number of methods as necessary in the system.
+    These methods will enable composers to create exactly the correct symbolic offset.
+    Then implement these symbolic offset bound methods:
+        SymbolicOffset.request_division_command(voice)
+        SymbolicOffset.request_rhythm_command(voice)
+        SymbolicOffset.request_time_signature_command(voice)
+
+18. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+    Replace these with methods bound to Request that return annotated request.
+    This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
+    This will also mean that any number of arbitrary transforms may be applied to a request in any order.
+    This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
+
+19. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
+    What does it fundamentally mean to select something?
+    We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
+    Any time we reference the timespan of something we need to afford a time_relation=None keyword.
+    This happens the exact same way in both select() and request() methods.
+    So this action item probably means to remove all request() methods in favor of select() methods.
