@@ -1,9 +1,9 @@
 import abc
 from abjad.tools import mathtools
-from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class RatioPartSymbolicTimespan(TimespanSymbolicTimespan):
+class RatioPartSymbolicTimespan(Selector):
     r'''.. versionadded:: 1.0
     
     Abstract ratio-part symbolic timespan class from which concrete ratio-part symbolic timespans inherit.
@@ -17,7 +17,7 @@ class RatioPartSymbolicTimespan(TimespanSymbolicTimespan):
 
     @abc.abstractmethod
     def __init__(self, anchor, ratio, part):
-        assert isinstance(anchor, TimespanSymbolicTimespan)
+        assert isinstance(anchor, Selector)
         assert isinstance(part, int)
         ratio = mathtools.Ratio(ratio)
         self._anchor = anchor

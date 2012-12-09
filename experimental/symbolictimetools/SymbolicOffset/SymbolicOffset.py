@@ -137,7 +137,7 @@ class SymbolicOffset(AbjadObject):
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental import symbolictimetools
         assert isinstance(anchor, (
-            symbolictimetools.TimespanSymbolicTimespan, 
+            symbolictimetools.Selector, 
             type(None), str)), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:

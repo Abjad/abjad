@@ -4,8 +4,8 @@ import numbers
 from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-#class TimespanSymbolicTimespan(AbjadObject):
-class TimespanSymbolicTimespan(SymbolicTimespan):
+#class Selector(AbjadObject):
+class Selector(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Abstract base class from which concrete timespan symbolic timespans inherit.
@@ -19,7 +19,7 @@ class TimespanSymbolicTimespan(SymbolicTimespan):
 
     @abc.abstractproperty
     def start_segment_identifier(self):
-        '''TimespanSymbolicTimespan start segment identifier.
+        '''Selector start segment identifier.
 
         Raise exception when no start segment identifier can be found.
         '''

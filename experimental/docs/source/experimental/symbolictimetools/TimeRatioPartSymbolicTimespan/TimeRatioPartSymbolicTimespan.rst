@@ -34,11 +34,11 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.adjust_offsets
 
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.divide_by_ratio
 
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.get_duration
 
@@ -52,7 +52,7 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.partition_by_ratio
 
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.TimeRatioPartSymbolicTimespan.set_segment_identifier
 

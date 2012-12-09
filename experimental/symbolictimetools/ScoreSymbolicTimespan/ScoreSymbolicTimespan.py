@@ -1,9 +1,9 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class ScoreSymbolicTimespan(TimespanSymbolicTimespan):
+class ScoreSymbolicTimespan(Selector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -22,7 +22,7 @@ class ScoreSymbolicTimespan(TimespanSymbolicTimespan):
 
     def __init__(self):
         from experimental import specificationtools
-        TimespanSymbolicTimespan.__init__(self)
+        Selector.__init__(self)
         self._klass = specificationtools.ScoreSpecification
 
     ### READ-ONLY PUBLIC PROPERTIES ###

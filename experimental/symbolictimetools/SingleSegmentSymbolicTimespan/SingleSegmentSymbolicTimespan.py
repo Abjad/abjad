@@ -1,10 +1,10 @@
 from abjad.tools import durationtools
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class SingleSegmentSymbolicTimespan(TimespanSymbolicTimespan):
+class SingleSegmentSymbolicTimespan(Selector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -27,7 +27,7 @@ class SingleSegmentSymbolicTimespan(TimespanSymbolicTimespan):
     ### INITIALIZER ###
 
     def __init__(self, identifier=0):
-        TimespanSymbolicTimespan.__init__(self)
+        Selector.__init__(self)
         self._identifier = identifier
 
     ### SPECIAL METHODS ###
