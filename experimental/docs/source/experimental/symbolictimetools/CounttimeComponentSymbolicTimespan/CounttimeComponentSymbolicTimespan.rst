@@ -52,6 +52,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.adjust_offsets
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.divide_by_ratio
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
@@ -65,10 +69,6 @@ Methods
 .. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.get_selected_objects
 
 .. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.partition_by_ratio
-
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
-
-.. automethod:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.select_offsets
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 

@@ -20,6 +20,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.adjust_offsets
+
 .. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.divide_by_ratio
 
 .. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.get_duration
@@ -29,8 +31,6 @@ Methods
 .. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.get_selected_objects
 
 .. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.partition_by_ratio
-
-.. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.select_offsets
 
 Special Methods
 ---------------

@@ -32,6 +32,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.adjust_offsets
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.divide_by_ratio
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
@@ -45,10 +49,6 @@ Methods
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.get_selected_objects
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.partition_by_ratio
-
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
-
-.. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.select_offsets
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 

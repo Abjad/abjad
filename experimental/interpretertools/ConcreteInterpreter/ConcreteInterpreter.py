@@ -135,7 +135,7 @@ class ConcreteInterpreter(Interpreter):
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
-        source_command = self.select_first_element_in_expr_by_parentage(
+        source_command = self.get_first_element_in_expr_by_parentage(
             candidate_commands, segment_specification, division_command_request.voice_name, 
             include_improper_parentage=True)
         assert source_command is not None
@@ -297,6 +297,17 @@ class ConcreteInterpreter(Interpreter):
             else:
                 result.append(copy.deepcopy(region_command))
         return result
+
+    def get_first_element_in_expr_by_parentage(self, expr, segment_specification, context_name, 
+        include_improper_parentage=False):
+        context_names = [context_name]
+        if include_improper_parentage:
+            context_names = self.context_name_to_parentage_names(
+                segment_specification, context_name, proper=False)
+        for context_name in context_names:
+            for element in expr:
+                if element.context_name == context_name:
+                    return element
 
     # TODO: combine with self.get_time_signature_slice()
     def get_naive_time_signature_beat_slice(self, start_offset, stop_offset):
@@ -716,7 +727,7 @@ class ConcreteInterpreter(Interpreter):
         candidate_commands = timespan_inventory.get_timespans_that_satisfy_time_relation(timespan_time_relation)
         #self._debug_values(candidate_commands, 'candidates')
         segment_specification = self.get_start_segment_specification(requested_segment_identifier)
-        source_command = self.select_first_element_in_expr_by_parentage(
+        source_command = self.get_first_element_in_expr_by_parentage(
             candidate_commands, segment_specification, rhythm_command_request.voice_name, 
             include_improper_parentage=True)
         assert source_command is not None
@@ -771,17 +782,6 @@ class ConcreteInterpreter(Interpreter):
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
-
-    def select_first_element_in_expr_by_parentage(self, expr, segment_specification, context_name, 
-        include_improper_parentage=False):
-        context_names = [context_name]
-        if include_improper_parentage:
-            context_names = self.context_name_to_parentage_names(
-                segment_specification, context_name, proper=False)
-        for context_name in context_names:
-            for element in expr:
-                if element.context_name == context_name:
-                    return element
 
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):

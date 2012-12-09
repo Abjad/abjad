@@ -27,6 +27,12 @@ class RatioPartSymbolicTimespan(TimespanSymbolicTimespan):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def anchor(self):
+        '''Ratio-part symbolic timespan anchor.
+        '''
+        return self._anchor
+
+    @property
     def part(self):
         '''Ratio-part symbolic timespan part.
 
@@ -41,12 +47,6 @@ class RatioPartSymbolicTimespan(TimespanSymbolicTimespan):
         Return ratio.
         '''
         return self._ratio
-
-    @property
-    def anchor(self):
-        '''Ratio-part symbolic timespan anchor.
-        '''
-        return self._anchor
 
     @property
     def start_segment_identifier(self):
