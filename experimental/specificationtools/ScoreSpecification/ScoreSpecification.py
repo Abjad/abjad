@@ -412,6 +412,10 @@ class ScoreSpecification(Specification):
         self.segment_specifications.append(segment_specification)
         return segment_specification
 
+    def get_offsets(self, score_specification, context_name):
+        assert score_specification is self # is this right?
+        return self.offsets
+
     def get_start_segment_specification(self, expr):
         r'''Get start segment specification from `expr`.
 

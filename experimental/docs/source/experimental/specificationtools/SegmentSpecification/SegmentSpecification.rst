@@ -46,6 +46,20 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.adjust_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.divide_by_ratio
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_duration
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_offsets
+
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.request_division_command
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
@@ -123,7 +137,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__ge__
 

@@ -32,6 +32,22 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.adjust_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.divide_by_ratio
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.get_duration
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.get_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_division_command
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_divisions
@@ -59,7 +75,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__ge__
 

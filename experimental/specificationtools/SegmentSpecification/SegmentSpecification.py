@@ -317,6 +317,9 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
+    def get_offsets(self, score_specification, context_name=None):
+        return self.offsets
+
     def set_aggregate(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True):

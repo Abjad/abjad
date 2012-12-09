@@ -1,14 +1,14 @@
 import abc
 import numbers
 from abjad.tools import *
-from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
 from experimental import requesttools
 from experimental import settingtools
 from experimental import symbolictimetools
+from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class Specification(AbjadObject):
+class Specification(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
