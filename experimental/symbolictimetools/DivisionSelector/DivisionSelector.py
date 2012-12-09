@@ -5,7 +5,7 @@ from abjad.tools import timerelationtools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
 
 
-class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
+class DivisionSelector(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -14,28 +14,28 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     Select all divisions that start during score::
 
-        >>> symbolictimetools.DivisionSymbolicTimespan()
-        DivisionSymbolicTimespan()
+        >>> symbolictimetools.DivisionSelector()
+        DivisionSelector()
 
     Select all divisions that start during segment ``'red'``::
 
-        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(anchor='red')
+        >>> division_selector = symbolictimetools.DivisionSelector(anchor='red')
 
     ::
 
         >>> z(division_selector)
-        symbolictimetools.DivisionSymbolicTimespan(
+        symbolictimetools.DivisionSelector(
             anchor='red'
             )
 
     Select the last two divisions that start during segment ``'red'``::
 
-        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(anchor='red', start_identifier=-2)
+        >>> division_selector = symbolictimetools.DivisionSelector(anchor='red', start_identifier=-2)
 
     ::
 
         >>> z(division_selector)
-        symbolictimetools.DivisionSymbolicTimespan(
+        symbolictimetools.DivisionSelector(
             anchor='red',
             start_identifier=-2
             )

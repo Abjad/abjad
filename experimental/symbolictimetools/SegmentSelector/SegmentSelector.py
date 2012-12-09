@@ -3,7 +3,7 @@ from experimental import segmenttools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
 
 
-class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
+class SegmentSelector(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -12,63 +12,63 @@ class SegmentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     Select all segments in score::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan()
-        SegmentSymbolicTimespan()
+        >>> symbolictimetools.SegmentSelector()
+        SegmentSelector()
 
     Select segments from ``3`` forward::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier=3)
-        SegmentSymbolicTimespan(start_identifier=3)
+        >>> symbolictimetools.SegmentSelector(start_identifier=3)
+        SegmentSelector(start_identifier=3)
 
     Select segments up to but not including ``6``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(stop_identifier=6)
-        SegmentSymbolicTimespan(stop_identifier=6)
+        >>> symbolictimetools.SegmentSelector(stop_identifier=6)
+        SegmentSelector(stop_identifier=6)
 
     Select segments up to and including ``6``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(stop_identifier=6+1)
-        SegmentSymbolicTimespan(stop_identifier=7)
+        >>> symbolictimetools.SegmentSelector(stop_identifier=6+1)
+        SegmentSelector(stop_identifier=7)
 
     Select segments from ``3`` up to but not including ``6``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier=3, stop_identifier=6)
-        SegmentSymbolicTimespan(start_identifier=3, stop_identifier=6)
+        >>> symbolictimetools.SegmentSelector(start_identifier=3, stop_identifier=6)
+        SegmentSelector(start_identifier=3, stop_identifier=6)
 
     Select segments from ``3`` up to and including ``6``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier=3, stop_identifier=6+1)
-        SegmentSymbolicTimespan(start_identifier=3, stop_identifier=7)
+        >>> symbolictimetools.SegmentSelector(start_identifier=3, stop_identifier=6+1)
+        SegmentSelector(start_identifier=3, stop_identifier=7)
 
     Select segments from ``'red'`` forward::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier='red')
-        SegmentSymbolicTimespan(start_identifier='red')
+        >>> symbolictimetools.SegmentSelector(start_identifier='red')
+        SegmentSelector(start_identifier='red')
 
     Select segments up to but not including ``'blue'``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(stop_identifier='blue')
-        SegmentSymbolicTimespan(stop_identifier='blue')
+        >>> symbolictimetools.SegmentSelector(stop_identifier='blue')
+        SegmentSelector(stop_identifier='blue')
 
     Select segments up to and including ``'blue'``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
-        SegmentSymbolicTimespan(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
+        >>> symbolictimetools.SegmentSelector(stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        SegmentSelector(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select segments from ``'red'`` up to but not including ``'blue'``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier='blue')
-        SegmentSymbolicTimespan(start_identifier='red', stop_identifier='blue')
+        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier='blue')
+        SegmentSelector(start_identifier='red', stop_identifier='blue')
 
     Select segments from ``'red'`` up to and including ``'blue'``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
-        SegmentSymbolicTimespan(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
+        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select three segments from ``'red'``::
 
-        >>> symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
-        SegmentSymbolicTimespan(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
+        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
+        SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
 
     All segment selector properties are read-only.
     '''

@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_SegmentSymbolicTimespan__divide_by_ratio_01():
+def test_SegmentSelector__divide_by_ratio_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -19,7 +19,7 @@ def test_SegmentSymbolicTimespan__divide_by_ratio_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSymbolicTimespan__divide_by_ratio_02():
+def test_SegmentSelector__divide_by_ratio_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -36,7 +36,7 @@ def test_SegmentSymbolicTimespan__divide_by_ratio_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSymbolicTimespan__divide_by_ratio_03():
+def test_SegmentSelector__divide_by_ratio_03():
     '''One-segment score.
     '''
 
@@ -54,7 +54,7 @@ def test_SegmentSymbolicTimespan__divide_by_ratio_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_SegmentSymbolicTimespan__divide_by_ratio_04():
+def test_SegmentSelector__divide_by_ratio_04():
     '''Two-segment score.
     '''
 

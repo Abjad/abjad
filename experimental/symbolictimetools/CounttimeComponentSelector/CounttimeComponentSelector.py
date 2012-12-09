@@ -6,7 +6,7 @@ from experimental import helpertools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
 
 
-class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
+class CounttimeComponentSelector(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -15,46 +15,46 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
 
     Select the first five counttime components::
 
-        >>> symbolictimetools.CounttimeComponentSymbolicTimespan(stop_identifier=5)
-        CounttimeComponentSymbolicTimespan(stop_identifier=5)
+        >>> symbolictimetools.CounttimeComponentSelector(stop_identifier=5)
+        CounttimeComponentSelector(stop_identifier=5)
 
     Select the last five counttime components::
 
-        >>> symbolictimetools.CounttimeComponentSymbolicTimespan(start_identifier=-5)
-        CounttimeComponentSymbolicTimespan(start_identifier=-5)
+        >>> symbolictimetools.CounttimeComponentSelector(start_identifier=-5)
+        CounttimeComponentSelector(start_identifier=-5)
 
     Select counttime components from ``5`` up to but not including ``-5``::
 
-        >>> symbolictimetools.CounttimeComponentSymbolicTimespan(start_identifier=5, stop_identifier=-5)
-        CounttimeComponentSymbolicTimespan(start_identifier=5, stop_identifier=-5)
+        >>> symbolictimetools.CounttimeComponentSelector(start_identifier=5, stop_identifier=-5)
+        CounttimeComponentSelector(start_identifier=5, stop_identifier=-5)
 
     Select all counttime components::
 
-        >>> symbolictimetools.CounttimeComponentSymbolicTimespan()
-        CounttimeComponentSymbolicTimespan()
+        >>> symbolictimetools.CounttimeComponentSelector()
+        CounttimeComponentSelector()
 
     Select counttime measure ``3`` to starting during segment ``'red'``.
     Then select the last three leaves in tuplet ``-1`` in this measure::
 
-        >>> measures = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        >>> measures = symbolictimetools.CounttimeComponentSelector(
         ... anchor='red', klass=Measure, start_identifier=3, stop_identifier=4)
 
     ::
 
-        >>> tuplet = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        >>> tuplet = symbolictimetools.CounttimeComponentSelector(
         ... anchor=measures, klass=Tuplet, start_identifier=-1)
 
     ::
 
-        >>> leaves = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        >>> leaves = symbolictimetools.CounttimeComponentSelector(
         ... anchor=tuplet, klass=leaftools.Leaf, start_identifier=-3)
 
     ::
 
         >>> z(leaves)
-        symbolictimetools.CounttimeComponentSymbolicTimespan(
-            anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
-                anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
+        symbolictimetools.CounttimeComponentSelector(
+            anchor=symbolictimetools.CounttimeComponentSelector(
+                anchor=symbolictimetools.CounttimeComponentSelector(
                     anchor='red',
                     klass=measuretools.Measure,
                     start_identifier=3,

@@ -186,7 +186,7 @@ class Specification(AbjadObject):
                 'divisions',
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
-                    anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                    anchor=symbolictimetools.BackgroundMeasureSelector(
                         anchor='red',
                         start_identifier=8,
                         stop_identifier=9,
@@ -378,7 +378,7 @@ class Specification(AbjadObject):
         ::
 
             >>> z(timespan)
-            symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
                 stop_identifier=5,
                 voice_name='Voice 1'
@@ -389,7 +389,7 @@ class Specification(AbjadObject):
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        timespan = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+        timespan = symbolictimetools.BackgroundMeasureSelector(
             anchor=self.specification_name,
             start_identifier=start, 
             stop_identifier=stop, 
@@ -405,7 +405,7 @@ class Specification(AbjadObject):
         ::
             
             >>> z(timespan)
-            symbolictimetools.DivisionSymbolicTimespan(
+            symbolictimetools.DivisionSelector(
                 anchor='red',
                 stop_identifier=5,
                 voice_name='Voice 1'
@@ -416,7 +416,7 @@ class Specification(AbjadObject):
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        timespan = symbolictimetools.DivisionSymbolicTimespan(
+        timespan = symbolictimetools.DivisionSelector(
             anchor=self.specification_name,
             start_identifier=start, 
             stop_identifier=stop, 
@@ -432,7 +432,7 @@ class Specification(AbjadObject):
         ::
 
             >>> z(timespan)
-            symbolictimetools.CounttimeComponentSymbolicTimespan(
+            symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=leaftools.Leaf,
                 stop_identifier=40,
@@ -444,7 +444,7 @@ class Specification(AbjadObject):
         assert isinstance(voice, (str, type(None)))
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        timespan = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        timespan = symbolictimetools.CounttimeComponentSelector(
             anchor=self.specification_name,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
@@ -462,7 +462,7 @@ class Specification(AbjadObject):
         ::
 
             >>> z(timespan)
-            symbolictimetools.CounttimeComponentSymbolicTimespan(
+            symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=helpertools.KlassInventory([
                     notetools.Note,
@@ -476,7 +476,7 @@ class Specification(AbjadObject):
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
-        timespan = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        timespan = symbolictimetools.CounttimeComponentSelector(
             anchor=self.specification_name,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),

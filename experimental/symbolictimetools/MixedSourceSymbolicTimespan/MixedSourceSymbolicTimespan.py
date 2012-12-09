@@ -12,13 +12,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     and stoppding at the right edge of the first measure 
     that starts during segment ``'blue'``::
 
-        >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+        >>> measure = symbolictimetools.BackgroundMeasureSelector(
         ... anchor='red', start_identifier=-1)
         >>> start_offset = symbolictimetools.SymbolicOffset(anchor=measure)
 
     ::
 
-        >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+        >>> measure = symbolictimetools.BackgroundMeasureSelector(
         ... anchor='blue', stop_identifier=1)
         >>> stop_offset = symbolictimetools.SymbolicOffset(anchor=measure, edge=Right)
         
@@ -32,13 +32,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         >>> z(timespan)
         symbolictimetools.MixedSourceSymbolicTimespan(
             start_offset=symbolictimetools.SymbolicOffset(
-                anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     start_identifier=-1
                     )
                 ),
             stop_offset=symbolictimetools.SymbolicOffset(
-                anchor=symbolictimetools.BackgroundMeasureSymbolicTimespan(
+                anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='blue',
                     stop_identifier=1
                     ),

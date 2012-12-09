@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import *
 
 
-def test_BackgroundMeasureSymbolicTimespan__partition_by_ratio_01():
+def test_BackgroundMeasureSelector__partition_by_ratio_01():
     '''Count ratio part.
     '''
     
@@ -22,7 +22,7 @@ def test_BackgroundMeasureSymbolicTimespan__partition_by_ratio_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSymbolicTimespan__partition_by_ratio_02():
+def test_BackgroundMeasureSelector__partition_by_ratio_02():
     '''Count ratio part.
     '''
 
@@ -42,7 +42,7 @@ def test_BackgroundMeasureSymbolicTimespan__partition_by_ratio_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSymbolicTimespan__partition_by_ratio_03():
+def test_BackgroundMeasureSelector__partition_by_ratio_03():
     '''Time ratio part.
     '''
 

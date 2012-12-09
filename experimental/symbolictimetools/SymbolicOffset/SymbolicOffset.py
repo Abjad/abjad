@@ -63,7 +63,7 @@ class SymbolicOffset(AbjadObject):
     Symbolic offset indicating the left edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
 
-        >>> note = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        >>> note = symbolictimetools.CounttimeComponentSelector(
         ... anchor='red', klass=Note, start_identifier=10, stop_identifier=11, voice_name='Voice 1')
 
     ::
@@ -74,7 +74,7 @@ class SymbolicOffset(AbjadObject):
 
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
@@ -88,7 +88,7 @@ class SymbolicOffset(AbjadObject):
     Symbolic offset one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segments = symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=stop)
+        >>> segments = symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=stop)
 
     ::
     
@@ -98,7 +98,7 @@ class SymbolicOffset(AbjadObject):
     
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            anchor=symbolictimetools.SegmentSymbolicTimespan(
+            anchor=symbolictimetools.SegmentSelector(
                 start_identifier='red',
                 stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
                 ),
@@ -115,7 +115,7 @@ class SymbolicOffset(AbjadObject):
 
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            anchor=symbolictimetools.CounttimeComponentSymbolicTimespan(
+            anchor=symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,
@@ -214,7 +214,7 @@ class SymbolicOffset(AbjadObject):
         '''Symbolic offset anchor specified by user.
         
             >>> z(offset.anchor)
-            symbolictimetools.CounttimeComponentSymbolicTimespan(
+            symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=notetools.Note,
                 start_identifier=10,

@@ -30,7 +30,7 @@ class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
         >>> z(timespan)
         symbolictimetools.CountRatioPartSymbolicTimespan(
-            symbolictimetools.BackgroundMeasureSymbolicTimespan(
+            symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
                 voice_name='Voice 1'
                 ),
