@@ -259,6 +259,5 @@ Unstable packages (load manually)
    experimental/symbolictimetools/OffsetOperator/OffsetOperator
    experimental/symbolictimetools/ScoreSelector/ScoreSelector
    experimental/symbolictimetools/SegmentSelector/SegmentSelector
-   experimental/symbolictimetools/SingleSegmentSymbolicTimespan/SingleSegmentSymbolicTimespan
    experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
    experimental/symbolictimetools/TimeRatioOperator/TimeRatioOperator

@@ -103,15 +103,11 @@
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-18. Should keyword TimeRelationSymbolicTimespan(..., voice_name=None) 
-    be positional TimeRelationSymbolicTimespan(voice_name, ...) instead?
+18. Should keyword Selector(..., voice_name=None) 
+    be positional Selector(voice_name, ...) instead?
     How to make this decision?
-    Depends on the tuning the meaning of it is that TimeRelationSymbolicTimespan models.
+    Depends on the tuning the meaning of it is that Selector models.
     If voice_name is made positional then this parallels mandatory voice_name in all select method calls.
     If voice_name remains keyword then something slightly other is being modeled.
 
-19. TimeRelationSymbolicTimespan inherits from Selector.
-    Do we need the two classes? Or should the two classes compress?
-    This would remove TimeRelationSymbolicTimespan in favor of Selector.
-
-20. Should Setting.selector be Setting.anchor instead?
+19. Should Setting.selector be Setting.anchor instead?
