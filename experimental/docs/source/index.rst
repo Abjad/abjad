@@ -245,7 +245,6 @@ Unstable packages (load manually)
    experimental/symbolictimetools/RatioOperator/RatioOperator
    experimental/symbolictimetools/Selector/Selector
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
-   experimental/symbolictimetools/TimeRelationSymbolicTimespan/TimeRelationSymbolicTimespan
 
 .. rubric:: concrete classes
 
