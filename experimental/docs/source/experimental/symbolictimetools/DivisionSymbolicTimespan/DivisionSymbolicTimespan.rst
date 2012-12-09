@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSymbolicTimespan.DivisionSymbolicTimespan.DivisionSymbolicTimespan.anchor
 
+    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.DivisionSymbolicTimespan.DivisionSymbolicTimespan.DivisionSymbolicTimespan.identifiers
 
     Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
