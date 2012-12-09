@@ -242,7 +242,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
    experimental/symbolictimetools/RatioPartSymbolicTimespan/RatioPartSymbolicTimespan
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
    experimental/symbolictimetools/TimeRelationSymbolicTimespan/TimeRelationSymbolicTimespan
@@ -257,6 +256,7 @@ Unstable packages (load manually)
    experimental/symbolictimetools/CountRatioPartSymbolicTimespan/CountRatioPartSymbolicTimespan
    experimental/symbolictimetools/CounttimeComponentSymbolicTimespan/CounttimeComponentSymbolicTimespan
    experimental/symbolictimetools/DivisionSymbolicTimespan/DivisionSymbolicTimespan
+   experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
    experimental/symbolictimetools/OffsetSymbolicTimespan/OffsetSymbolicTimespan
    experimental/symbolictimetools/ScoreSymbolicTimespan/ScoreSymbolicTimespan
    experimental/symbolictimetools/SegmentSymbolicTimespan/SegmentSymbolicTimespan

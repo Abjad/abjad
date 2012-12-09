@@ -38,7 +38,7 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.get_duration
 
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.get_offsets
 
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.__eq__
 
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.__ge__
 

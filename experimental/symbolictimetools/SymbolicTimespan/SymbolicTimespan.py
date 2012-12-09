@@ -5,12 +5,26 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class SymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Base symbolic timespan class from which conrete symbolic timespans inherit.
+    Abstract base class from which conrete symbolic timespans inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when mandatory and keyword arguments compare equal.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(expr, type(self)):
+            return False
+        if not self._positional_argument_values == expr._positional_argument_values:
+            return False
+        return self._keyword_argument_values == expr._keyword_argument_values
 
     ### PUBLIC METHODS ###
 

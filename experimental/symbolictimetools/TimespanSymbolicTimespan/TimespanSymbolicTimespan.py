@@ -1,31 +1,19 @@
 import abc
 import numbers
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class TimespanSymbolicTimespan(AbjadObject):
+#class TimespanSymbolicTimespan(AbjadObject):
+class TimespanSymbolicTimespan(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
-    Abstract base class from which concrete symbolic timespans inherit.
+    Abstract base class from which concrete timespan symbolic timespans inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = abc.ABCMeta
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        '''True when mandatory and keyword arguments compare equal.
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if not isinstance(expr, type(self)):
-            return False
-        if not self._positional_argument_values == expr._positional_argument_values:
-            return False
-        return self._keyword_argument_values == expr._keyword_argument_values
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -39,24 +27,6 @@ class TimespanSymbolicTimespan(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get_duration(self, score_specification, context_name):
-        r'''Evaluate duration of symbolic timespan when applied
-        to `context_name` in `score_specification`.
-
-        Return duration.
-        '''
-        start_offset, stop_offset = self.get_offsets(score_specification, context_name)
-        return stop_offset - start_offset
-
-    @abc.abstractmethod
-    def get_offsets(self, score_specification, context_name, start_segment_name=None):
-        r'''Get start offset and stop offset of symbolic timespan when applied
-        to `context_name` in `score_specification`.
-
-        Return pair.
-        '''
-        pass
-    
     @abc.abstractmethod
     def get_selected_objects(self, score_specification, context_name):
         '''Get selected objects of symbolic timespan when applied
