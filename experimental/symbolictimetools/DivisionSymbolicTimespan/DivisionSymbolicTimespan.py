@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
 from experimental import divisiontools
+from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
 
@@ -57,7 +58,6 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
         stop_offset = divisions[-1].stop_offset
         return start_offset, stop_offset
         
-    # TODO: eventually return selection
     def get_selected_objects(self, score_specification, voice_name):
         '''Get divisions selected when selector is applied
         to `voice_name` in `score_specification`.
@@ -82,7 +82,7 @@ class DivisionSymbolicTimespan(TimeRelationSymbolicTimespan):
                 divisions.append(division)
         divisions = divisions[self.start_identifier:self.stop_identifier]
         #self._debug(divisions, 'divisions')
-        return divisions
+        return selectiontools.Selection(divisions)
     
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.time_relation.set_segment_identifier()``.

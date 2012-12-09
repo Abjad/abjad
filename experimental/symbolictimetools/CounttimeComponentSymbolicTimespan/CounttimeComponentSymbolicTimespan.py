@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
+from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from experimental import helpertools
 from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRelationSymbolicTimespan
@@ -8,7 +9,7 @@ from experimental.symbolictimetools.TimeRelationSymbolicTimespan import TimeRela
 class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
-    Select zero or more counttime components.
+    ::
 
         >>> from experimental import *
 
@@ -120,7 +121,6 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
         stop_offset = last_component_expression_offset + last_component.stop_offset
         return start_offset, stop_offset
 
-    # TODO: eventually return selection
     def get_selected_objects(self, score_specification, voice_name, include_expression_start_offsets=False):
         '''Get counttime components selected when symbolic timespan is applied
         to `voice_name` in `score_specification`.
@@ -140,9 +140,9 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
         rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         if not rhythm_region_expressions:
-            return
+            return selectiontools.Selection()
         if not rhythm_region_expressions[0].start_offset == durationtools.Offset(0):
-            return
+            return selectiontools.Selection()
         counttime_components = []
         total_counttime_components = 0
         previous_rhythm_region_expression = None
@@ -157,7 +157,7 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
             if previous_rhythm_region_expression is not None:
                 if not previous_rhythm_region_expression.stop_offset == \
                     current_rhythm_region_expression.start_offset:
-                    return
+                    return selectiontools.Selection()
             for counttime_component in iterationtools.iterate_components_in_expr(
                 current_rhythm_region_expression.music, klass=self.klass):
                 if time_relation(timespan_2=counttime_component,
@@ -174,4 +174,4 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
             if total_counttime_components == self.stop_identifier:
                 break
         counttime_components = counttime_components[self.start_identifier:self.stop_identifier]
-        return counttime_components
+        return selectiontools.Selection(counttime_components)
