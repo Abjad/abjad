@@ -1,7 +1,7 @@
 import hashlib
 import os
-from abjad.tools import componenttools
 from abjad.tools import lilypondfiletools
+from abjad.tools import markuptools
 
 
 def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True):
@@ -14,9 +14,8 @@ def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True):
     This ensures that expressions with equivalent notational realizations will
     result in identically named files.
 
-    Return the written file name.
+    Return the MD5 hash.
     '''
-    assert isinstance(expr, (lilypondfiletools.LilyPondFile, componenttools.Component))
     if not isinstance(expr, lilypondfiletools.LilyPondFile):
         expr = lilypondfiletools.make_basic_lilypond_file(expr)
     directory = os.path.expanduser(directory)
@@ -25,6 +24,7 @@ def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True):
     # remove unique tokens
     tokens = expr.file_initial_system_comments[:]
     expr.file_initial_system_comments[:] = []
+    expr.header_block.tagline = markuptools.Markup('""')
 
     md5 = hashlib.md5(expr.lilypond_format).hexdigest()
     path = os.path.join(directory, md5 + '.ly')
@@ -36,4 +36,4 @@ def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True):
     # reinstate unique tokens
     expr.file_initial_system_comments[:] = tokens
 
-    return path
+    return md5
