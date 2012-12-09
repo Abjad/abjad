@@ -1,62 +1,35 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
+from experimental.symbolictimetools.Selector import Selector
 
 
-class ScoreSelector(SymbolicTimespan):
+class ScoreSelector(Selector):
     r'''.. versionadded:: 1.0
 
     ::
 
         >>> from experimental import *
 
-    Score symbolic timespan::
+    Score selector::
 
         >>> symbolictimetools.ScoreSelector()
         ScoreSelector()
     
-    All score symbolic timespan properties are read-only.
+    All score selector properties are read-only.
     '''
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        from experimental import specificationtools
-        SymbolicTimespan.__init__(self)
-        self._klass = specificationtools.ScoreSpecification
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def anchor(self):
-        return
-
-    @property
-    def start_segment_identifier(self):
-        '''Start segment identifer of none means score-anchoring.
-        
-        Return none.
-        '''
-        return
 
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
-        '''Evaluate start and stop offsets of selector when applied
-        to `score_specification`.
+        '''Return `score_specification` start and stop offsets.
     
-        Maybe ignore `context_name`.
-
-        Return offset pair.
+        Ignore `context_name` and `start_segment_name`.
         '''
         return score_specification.offsets
 
     def get_selected_objects(self, score_specification, context_name):
-        '''Get segments selected when selector is applied
-        to `score_specification`.
+        '''Return `score_specification` unchanged.
 
         Ignore `context_name`.
-
-        Return list of segments.
         '''
-        raise NotImplementedError
+        return selectiontools.Selection([score_specification])

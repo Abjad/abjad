@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.anchor
 
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.identifiers
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`

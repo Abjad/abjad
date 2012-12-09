@@ -73,25 +73,6 @@ class SegmentSelector(Selector):
     All segment selector properties are read-only.
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(self, start_identifier=None, stop_identifier=None, time_relation=None):
-        from experimental import specificationtools
-        Selector.__init__(self, 
-            start_identifier=start_identifier, stop_identifier=stop_identifier, time_relation=time_relation)
-        # TODO: remove klass
-        self._klass = specificationtools.SegmentSpecification
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def anchor(self):
-        '''Always anchored to timespan of score.
-
-        Return none.
-        ''' 
-        return
-
     @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.

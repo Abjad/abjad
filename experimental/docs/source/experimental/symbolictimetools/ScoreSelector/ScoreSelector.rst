@@ -11,11 +11,35 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.anchor
 
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.identifiers
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_identifier
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_segment_identifier
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stop_identifier
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.time_relation
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.voice_name
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 Methods
 -------
@@ -35,6 +59,10 @@ Methods
 .. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.get_offsets
 
 .. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.get_selected_objects
+
+.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.partition_by_ratio
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------
