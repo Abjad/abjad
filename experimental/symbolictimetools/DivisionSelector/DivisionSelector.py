@@ -2,6 +2,7 @@ from abjad.tools import durationtools
 from experimental import divisiontools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from experimental.symbolictimetools.Selector import Selector
 
 
@@ -69,7 +70,9 @@ class DivisionSelector(Selector):
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
-        timespan_1 = segment_specification.timespan
+        start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
+            segment_specification.specification_name)
+        timespan_1 = timespantools.LiteralTimespan(start_offset, stop_offset)
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:

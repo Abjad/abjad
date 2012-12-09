@@ -125,10 +125,6 @@ class Specification(SymbolicTimespan):
     def single_context_settings_by_context(self):
         return self._single_context_settings_by_context
 
-    @abc.abstractproperty
-    def timespan(self):
-        pass
-    
     ### PUBLIC METHODS ###
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.

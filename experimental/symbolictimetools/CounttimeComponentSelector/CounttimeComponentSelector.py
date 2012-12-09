@@ -2,6 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
+from abjad.tools import timespantools
 from experimental import helpertools
 from experimental.symbolictimetools.Selector import Selector
 
@@ -146,8 +147,10 @@ class CounttimeComponentSelector(Selector):
         counttime_components = []
         total_counttime_components = 0
         previous_rhythm_region_expression = None
-        segment_specification = score_specification.get_start_segment_specification(self.anchor)
-        timespan_1 = segment_specification.timespan
+        #segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        #timespan_1 = segment_specification.timespan
+        start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
+        timespan_1 = timespantools.LiteralTimespan(start_offset, stop_offset)
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:

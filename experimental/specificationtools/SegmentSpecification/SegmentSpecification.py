@@ -299,22 +299,6 @@ class SegmentSpecification(Specification):
         '''
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
-    @property
-    def timespan(self):
-        '''Segment specification symbolic timespan.
-
-            >>> z(red_segment.timespan)
-            symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1")
-                )
-
-        Return symbolic timespan.
-        '''
-        stop_identifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.specification_name))
-        return symbolictimetools.SegmentSelector(
-            start_identifier=self.specification_name, stop_identifier=stop_identifier)
-
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name=None):
