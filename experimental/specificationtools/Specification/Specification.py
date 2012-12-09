@@ -110,6 +110,14 @@ class Specification(SymbolicTimespan):
         return self._contexts
 
     @property
+    def moniker(self):
+        '''Form of symbolic timespan suitable for writing to disk.
+        
+        Specifications alias this property to specification name.
+        '''
+        return self.specification_name
+
+    @property
     def score_name(self):
         return self._score_name
 

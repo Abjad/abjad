@@ -34,6 +34,13 @@ class SymbolicTimespan(AbjadObject):
         if not self._positional_argument_values == expr._positional_argument_values:
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
+    
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    def moniker(self):
+        '''Form of symbolic timespan suitable for writing to disk.
+        '''
+        return self
 
     ### PUBLIC METHODS ###
 
@@ -43,8 +50,7 @@ class SymbolicTimespan(AbjadObject):
         from experimental import symbolictimetools
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        anchor = getattr(self, 'specification_name', self)
-        return symbolictimetools.OffsetOperator(anchor, start_offset=start, stop_offset=stop)
+        return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
 
     def divide_by_ratio(self, ratio):
         ''''Divide self by `ratio`.
@@ -55,10 +61,9 @@ class SymbolicTimespan(AbjadObject):
         '''
         from experimental import symbolictimetools
         result = []
-        anchor = getattr(self, 'specification_name', self)
         for part in range(len(ratio)):
             # TODO: eventually create custom class different from TimeRatioOperator
-            result.append(symbolictimetools.TimeRatioOperator(anchor, ratio, part))
+            result.append(symbolictimetools.TimeRatioOperator(self.moniker, ratio, part))
         return tuple(result)
 
     def get_duration(self, score_specification, context_name):
@@ -112,7 +117,7 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
-            anchor=self.specification_name,
+            anchor=self.moniker,
             start_identifier=start, 
             stop_identifier=stop, 
             time_relation=time_relation,
@@ -140,7 +145,7 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.DivisionSelector(
-            anchor=self.specification_name,
+            anchor=self.moniker,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice,
@@ -169,7 +174,7 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(stop, (int, type(None))), repr(stop)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            anchor=self.specification_name,
+            anchor=self.moniker,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
             start_identifier=start, 
@@ -202,7 +207,7 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(stop, (int, type(None))), repr(stop)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            anchor=self.specification_name,
+            anchor=self.moniker,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, 

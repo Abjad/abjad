@@ -46,6 +46,10 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.get_offsets
 
+.. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.moniker
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.select_background_measures
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
