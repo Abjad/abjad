@@ -10,7 +10,7 @@ class MultipleContextSetting(Setting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `request` for multiple-context `selector`:: 
+    Set `attribute` to `request` for multiple-context `anchor`:: 
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -43,10 +43,10 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute, request, selector, start_segment_name=None, context_names=None, 
+    def __init__(self, attribute, request, anchor, start_segment_name=None, context_names=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True, truncate=None):
-        Setting.__init__(self, attribute, request, selector, 
+        Setting.__init__(self, attribute, request, anchor, 
             start_segment_name=start_segment_name,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             persist=persist, truncate=truncate)
@@ -69,11 +69,11 @@ class MultipleContextSetting(Setting):
         from experimental import settingtools
         single_context_settings = []
         for context_name in self.context_names:
-            selector = copy.deepcopy(self.selector)
+            anchor = copy.deepcopy(self.anchor)
             single_context_setting = settingtools.SingleContextSetting(
                 self.attribute, 
                 self.request, 
-                selector,
+                anchor,
                 start_segment_name=self.start_segment_name,
                 context_name=context_name,
                 index=self.index,

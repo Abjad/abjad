@@ -49,8 +49,8 @@ class Interpreter(AbjadObject):
         If setting persists then store setting by context in score, too.
         '''
         single_context_setting = copy.deepcopy(single_context_setting)
-        selector = single_context_setting.selector
-        segment_specification = self.get_start_segment_specification(selector)
+        anchor = single_context_setting.anchor
+        segment_specification = self.get_start_segment_specification(anchor)
         if segment_specification is None:
             start_segment_name = single_context_setting.start_segment_name
             segment_specification = self.get_start_segment_specification(start_segment_name)

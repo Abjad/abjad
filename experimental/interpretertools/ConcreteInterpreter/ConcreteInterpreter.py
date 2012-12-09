@@ -149,12 +149,12 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
         #self._debug(division_material_request, 'division material request')
-        selector = division_material_request.anchor
+        anchor = division_material_request.anchor
         voice_name = division_material_request.voice_name
-        if isinstance(selector, str):
-            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(selector)
+        if isinstance(anchor, str):
+            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(anchor)
         else:
-            start_offset, stop_offset = selector.get_offsets(self.score_specification, voice_name)
+            start_offset, stop_offset = anchor.get_offsets(self.score_specification, voice_name)
         #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
@@ -630,7 +630,7 @@ class ConcreteInterpreter(Interpreter):
             raise TypeError(time_signature_setting.request)
         if time_signatures:
             time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
-            segment_specification = self.get_start_segment_specification(time_signature_setting.selector)
+            segment_specification = self.get_start_segment_specification(time_signature_setting.anchor)
             segment_specification._time_signatures = time_signatures[:]
             self.score_specification.all_time_signature_commands.remove(time_signature_setting)
 
@@ -786,14 +786,14 @@ class ConcreteInterpreter(Interpreter):
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         assert single_context_setting.start_segment_name == segment_specification.segment_name
-        #self._debug(single_context_setting.selector, 'selector')
-        if isinstance(single_context_setting.selector, str):
+        #self._debug(single_context_setting.anchor, 'anchor')
+        if isinstance(single_context_setting.anchor, str):
             start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
-                single_context_setting.selector)
+                single_context_setting.anchor)
         else:
-            start_offset, stop_offset = single_context_setting.selector.get_offsets(
+            start_offset, stop_offset = single_context_setting.anchor.get_offsets(
                 self.score_specification, voice_name, start_segment_name=single_context_setting.start_segment_name)
-        #self._debug((start_offset, stop_offset), 'selector offsets')
+        #self._debug((start_offset, stop_offset), 'anchor offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 

@@ -9,6 +9,8 @@ settingtools.Setting
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.anchor
+
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.attribute
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.callback
@@ -26,8 +28,6 @@ Read-only Properties
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.reverse
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.rotation
-
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.selector
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.start_segment_name
 

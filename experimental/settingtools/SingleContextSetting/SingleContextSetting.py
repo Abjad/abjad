@@ -11,7 +11,7 @@ class SingleContextSetting(Setting):
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Set `attribute` to `request` for single-context `selector`::
+    Set `attribute` to `request` for single-context `anchor`::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -59,12 +59,12 @@ class SingleContextSetting(Setting):
     ### INITIALIZER ###
 
     def __init__(self, 
-        attribute, request, selector, 
+        attribute, request, anchor, 
         start_segment_name=None,
         context_name=None, 
         index=None, count=None, reverse=None, rotation=None, callback=None,
         fresh=True, persist=True, truncate=None):
-        Setting.__init__(self, attribute, request, selector, 
+        Setting.__init__(self, attribute, request, anchor, 
             start_segment_name=start_segment_name,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback,
             fresh=fresh, persist=persist, truncate=truncate)
@@ -109,16 +109,16 @@ class SingleContextSetting(Setting):
 
         Set new setting `fresh` to false.
 
-        Set new setting selector to `segment`.
+        Set new setting anchor to `segment`.
 
         Return new setting.
         '''
         new_setting = copy.deepcopy(self)
         new_setting._fresh = False
         segment_name = helpertools.expr_to_segment_name(segment)
-        if isinstance(new_setting.selector, str):
-            new_setting._selector = segment_name 
+        if isinstance(new_setting.anchor, str):
+            new_setting._anchor = segment_name 
         else:
-            new_setting.selector.set_segment_identifier(segment_name)
+            new_setting.anchor.set_segment_identifier(segment_name)
         new_setting._start_segment_name = segment_name
         return new_setting

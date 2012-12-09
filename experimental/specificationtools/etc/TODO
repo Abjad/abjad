@@ -109,5 +109,3 @@
     Depends on the tuning the meaning of it is that Selector models.
     If voice_name is made positional then this parallels mandatory voice_name in all select method calls.
     If voice_name remains keyword then something slightly other is being modeled.
-
-19. Should Setting.selector be Setting.anchor instead?
