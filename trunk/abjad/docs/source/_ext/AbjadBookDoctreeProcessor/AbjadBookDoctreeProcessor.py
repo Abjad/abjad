@@ -1,5 +1,8 @@
 import docutils
+import multiprocessing
 import os
+import subprocess
+import time
 from abjad.tools.abctools import AbjadObject
 
 
@@ -23,30 +26,42 @@ class AbjadBookDoctreeProcessor(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
+        #print ''
 
+        start_time = time.time()
         pairs = self._collect_stripped_code()
         if pairs is None:
             return
+        stop_time = time.time()
+        #print '\tCODE:', stop_time - start_time
 
+        start_time = time.time()
         environment = {'__builtins__': __builtins__}
         exec('from abjad import *\n', environment) 
-            
+        stop_time = time.time()
+        #print '\tIMP: ', stop_time - start_time
+
+        start_time = time.time()
         all_md5hashes = set([])
         for literal_block, stripped_code in pairs:
             md5hashes = self._exec_code_block(stripped_code, environment)
-
             for md5hash in md5hashes:
                 relative_uri = self._get_relative_image_uri(md5hash)
                 self._add_image_block(literal_block, relative_uri)
                 all_md5hashes.add(md5hash)
+        stop_time = time.time()
+        #print '\tEXEC:', stop_time - start_time
 
-        for md5hash in all_md5hashes:
-            ly_file_name = os.path.join(self.tmp_directory, md5hash + '.ly')
-            self.task_queue.put(ly_file_name)
-            
-        result = []
-        for _ in xrange(len(all_md5hashes)):
-            result.append(self.done_queue.get())
+        #ly_file_names = []
+        #for md5hash in all_md5hashes:
+        #    ly_file_name = os.path.join(self.tmp_directory, md5hash + '.ly')
+        #    ly_file_names.append(ly_file_name)
+        #    #self.task_queue.put(ly_file_name)
+        #self.task_queue.put(tuple(all_md5hashes))
+        #result = []
+        #while not self.done_queue.empty():
+        #    result.append(self.done_queue.get())
+        self._process_md5hashes(list(all_md5hashes))
 
     ### PRIVATE METHODS ###
 
@@ -91,6 +106,37 @@ class AbjadBookDoctreeProcessor(AbjadObject):
         return sphinx.util.osutil.relative_uri(
             self.builder.get_target_uri(self.docname),
             os.path.join('_images', 'api', md5hash + '.png'))
+
+    def _process_md5hashes(self, all_md5hashes):
+        old_directory = os.curdir
+        os.chdir(self.tmp_directory)
+        for md5hash in all_md5hashes[:]:
+            if os.path.exists(os.path.join(self.img_directory, md5hash + '.png')):
+                all_md5hashes.remove(md5hash)
+        if not len(all_md5hashes):
+            return
+
+        all_ly_file_names = [x + '.ly' for x in all_md5hashes]
+
+        start_time = time.time()
+        command = 'lilypond --png -dresolution=300 -djob-count={} {}'.format(
+            #multiprocessing.cpu_count(), 
+            len(all_ly_file_names),
+            ' '.join(all_ly_file_names))
+        subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        stop_time = time.time()
+        #print '\tLILY:', stop_time - start_time
+
+        start_time = time.time()
+        command = 'mogrify {} -trim -resample 40%% *.png'
+        subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        for md5hash in all_md5hashes:
+            tmp_png_file_name = os.path.join(self.tmp_directory, md5hash + '.png')
+            img_png_file_name = os.path.join(self.img_directory, md5hash + '.png')
+            os.rename(tmp_png_file_name, img_png_file_name)
+        os.chdir(old_directory)
+        stop_time = time.time()
+        #print '\tIMG: ', stop_time - start_time
 
     def _rewrite_line(self, line):
         if line.startswith('show('):

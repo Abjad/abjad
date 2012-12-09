@@ -25,21 +25,44 @@ class AbjadBookWorker(multiprocessing.Process, AbjadObject):
                 self.task_queue.task_done()
         return
 
-    def process_job(self, ly_file_name):
-        name, extension = os.path.splitext(os.path.basename(ly_file_name))
+    def process_job(self, all_md5hashes):
 
-        tmp_png_file_name = os.path.join(self.tmp_directory, name + '.png')
-        img_png_file_name = os.path.join(self.img_directory, name + '.png')
+        old_directory = os.curdir
+        os.chdir(self.tmp_directory)
 
-        # don't repeat image generation
-        if not os.path.exists(img_png_file_name):
-            command = 'lilypond --png -dresolution=300 -o {} {}'.format(
-                tmp_png_file_name[:-4], ly_file_name)
-            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        for md5hash in all_md5hashes[:]:
+            if os.path.exists(os.path.join(self.img_directory, md5hash + '.png')):
+                all_md5hashes.remove(md5hash)
+
+        all_ly_file_names = [x + '.ly' for x in all_md5hashes]
+        command = 'lilypond --png -dresolution=300 -djob-count={} {}'.format(
+            multiprocessing.cpu_count(), ' '.join(all_ly_file_names))
+        subprocess.call(command, shell=True)
+
+        for md5hash in all_md5hashes:
+            tmp_png_file_name = os.path.join(self.tmp_directory, md5hash + '.png')
+            img_png_file_name = os.path.join(self.img_directory, md5hash + '.png')
             command = 'convert {} -trim -resample 40%% {}'.format(
                 tmp_png_file_name, tmp_png_file_name)
-            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            if os.path.exists(tmp_png_file_name):
-                os.rename(tmp_png_file_name, img_png_file_name)
+            subprocess.call(command, shell=True)
+            os.rename(tmp_png_file_name, img_png_file_name)
+
+        #name, extension = os.path.splitext(os.path.basename(ly_file_name))
+        #tmp_png_file_name = os.path.join(self.tmp_directory, name + '.png')
+        #img_png_file_name = os.path.join(self.img_directory, name + '.png')
+        # don't repeat image generation
+        #if not os.path.exists(img_png_file_name):
+        #    command = 'lilypond --png -dresolution=300 -o {} {}'.format(
+        #        tmp_png_file_name[:-4], ly_file_name)
+        #    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #    command = 'convert {} -trim -resample 40%% {}'.format(
+        #        tmp_png_file_name, tmp_png_file_name)
+        #    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #    if os.path.exists(tmp_png_file_name):
+        #        os.rename(tmp_png_file_name, img_png_file_name)
+
+        os.chdir(old_directory)
+
+        print '\t...returning'
 
         return True
