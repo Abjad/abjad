@@ -203,17 +203,6 @@ class SegmentSpecification(Specification):
         return self._segment_name
 
     @property
-    def selector(self):
-        '''Segment specification selector::
-
-            >>> red_segment.selector
-            SingleSegmentSymbolicTimespan(identifier='red')
-
-        Return single-segment selector.
-        '''
-        return self.timespan
-
-    @property
     def single_context_settings(self):
         r'''Segment specification single-context settings::
 
