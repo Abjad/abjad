@@ -1,9 +1,9 @@
 import abc
 from abjad.tools import timerelationtools
-from experimental.symbolictimetools.SliceSymbolicTimespan import SliceSymbolicTimespan
+from experimental.symbolictimetools.TimespanSymbolicTimespan import TimespanSymbolicTimespan
 
 
-class TimeRelationSymbolicTimespan(SliceSymbolicTimespan):
+class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
     r'''.. versionadded:: 1.0
 
     Time relation symbolic timespan.
@@ -17,12 +17,38 @@ class TimeRelationSymbolicTimespan(SliceSymbolicTimespan):
 
     @abc.abstractmethod
     def __init__(self, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
-        SliceSymbolicTimespan.__init__(
-            self, start_identifier=start_identifier, stop_identifier=stop_identifier, voice_name=voice_name)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
+        self._start_identifier = start_identifier
+        self._stop_identifier = stop_identifier
+        self._voice_name = voice_name
         self._time_relation = time_relation
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def identifiers(self):
+        '''Slice selector start- and stop-identifiers.
+
+        Return pair.
+        '''
+        return self.start_identifier, self.stop_identifier
+
+    @property
+    def klass(self):
+        '''Klass of slice selector.
+
+        Return class or none.
+        '''
+        return self._klass
+
+    @property
+    def start_identifier(self):
+        '''Slice selector start identifier.
+
+        Return integer, string, held expression or none.
+        '''
+        return self._start_identifier
 
     @property
     def start_segment_identifier(self):
@@ -33,9 +59,33 @@ class TimeRelationSymbolicTimespan(SliceSymbolicTimespan):
         result = self.time_relation.start_segment_identifier
 
     @property
+    def stop_identifier(self):
+        '''Slice selector stop identifier.
+
+        Return integer, string, held expression or none.
+        '''
+        return self._stop_identifier
+
+    @property
     def time_relation(self):
         '''Inequality of selector.
         
         Return time_relation or none.
         '''
         return self._time_relation
+
+    @property
+    def voice_name(self):
+        '''Slice selector voice name.
+
+        If voice name is set then slice selector is "anchored" to a particular voice.
+
+        If voice name is none then then slice selector is effectively "free floating"
+        and is not anchored to a particular voice.
+
+        Some documentation somewhere will eventually have to explain what it means
+        for a selector to be "anchored" or "free floating".
+
+        Return string or none.
+        '''
+        return self._voice_name

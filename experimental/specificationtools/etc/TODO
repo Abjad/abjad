@@ -96,43 +96,17 @@
             )
     ... to show that ratio part symbolic timespans have an anchor.
 
-18. Implement a TreatmentSpecifier class.
-    This will clean up some classes and make treatment-to-treatment comparison cleaner.
-    This will also clean up the initializers of all request classes:
-        requesttools.AbsoluteRequest
-        requesttools.CommandRequest
-        requesttools.HandlerRequest
-        requesttools.MaterialRequest
-        requesttools.StatalServerRequest
-    This will also clean up the API entries of all request classes.
-    Note that this will leave the five independent keywords in the request *methods*.
-    (So this item cleans up request classes and leaves flexibility in composer specification *methods*.)
-    This action item may be obviated by the introduction of methods bound to the Request class.
-
-19. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+18. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
-    This will probably also eliminate the action item to implement a Treatment class.
 
-20. Write voice-anchored selector tests.
+19. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. 
     (Except background measures, etc.)
 
-21. Extend all specification request methods with time_relation=None keyword.
-    The methods in question are:
-        Specification.request_divisions()
-        Specification.request_naive_beats()
-        Specification.request_partitioned_total_time()
-        Specification.request_rhythm()
-        Specification.request_time_signatures('Voice 1')
-    This is the right thing to do because all requests are made against an (anchor) timespan.
-    The default relation to that (anchor) timespan is assumed to be "happens during anchor".
-    The time_relation=None lets the composer specify the time relation of request to anchor.
-    This action item may be obviated if request methods are removed in favor of select methods.
-
-22. I think it's quite like that selection and request-making are going to turn out to be the same thing.
+20. I think it's quite like that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.

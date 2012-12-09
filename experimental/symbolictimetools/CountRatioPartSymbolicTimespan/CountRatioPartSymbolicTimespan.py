@@ -48,7 +48,8 @@ class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
     def __init__(self, selector, ratio, part):
         from experimental import symbolictimetools
-        assert isinstance(selector, symbolictimetools.SliceSymbolicTimespan)
+        #assert isinstance(selector, symbolictimetools.SliceSymbolicTimespan)
+        assert isinstance(selector, symbolictimetools.TimeRelationSymbolicTimespan)
         RatioPartSymbolicTimespan.__init__(self, selector, ratio, part)
 
     ### PUBLIC METHODS ###
