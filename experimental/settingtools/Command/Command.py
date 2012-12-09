@@ -169,15 +169,6 @@ class Command(AbjadObject):
         return self._stop_offset
 
     @property
-    def timespan(self):
-        '''Command timespan from (score) start offset to (score) stop offset.
-
-        Return timespan.
-        '''
-        return timespantools.LiteralTimespan(
-            start_offset=self.start_offset, stop_offset=self.stop_offset)
-
-    @property
     def vector(self):
         '''Command mandatory argument values.
 
