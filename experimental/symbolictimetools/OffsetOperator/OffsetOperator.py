@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from experimental.symbolictimetools.Selector import Selector
 
 
-class OffsetSymbolicTimespan(Selector):
+class OffsetOperator(Selector):
     r'''.. versionadded:: 1.0
 
     Offset symbolic timespan. 

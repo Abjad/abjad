@@ -1,17 +1,17 @@
 from abjad.tools import durationtools
-from abjad.tools import sequencetools
-from experimental.symbolictimetools.RatioPartSymbolicTimespan import RatioPartSymbolicTimespan
+from abjad.tools import mathtools
+from experimental.symbolictimetools.RatioOperator import RatioOperator
 
 
-class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
+class TimeRatioOperator(RatioOperator):
     r'''.. versionadded:: 1.0
 
     ::
 
         >>> from experimental import *
-    
+
     Select all background measures starting during segment ``'red'`` in ``'Voice 1'``.
-    Then partition these measures ``1:1`` by their count.
+    Then partition these measures ``1:1`` by their duration.
     Then select part ``0`` of this partition::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
@@ -24,12 +24,12 @@ class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
     ::
 
-        >>> timespan = symbolictimetools.CountRatioPartSymbolicTimespan(measures, (1, 1), 0)
+        >>> timespan = symbolictimetools.TimeRatioOperator(measures, (1, 1), 0)
 
     ::
 
         >>> z(timespan)
-        symbolictimetools.CountRatioPartSymbolicTimespan(
+        symbolictimetools.TimeRatioOperator(
             symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
                 voice_name='Voice 1'
@@ -38,15 +38,13 @@ class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
             0
             )
 
-    All count ratio part symbolic timespan properties are read-only.
+    All time ratio part symbolic timespan properties are read-only.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, anchor, ratio, part):
-        from experimental import symbolictimetools
-        assert isinstance(anchor, (symbolictimetools.TimeRelationSymbolicTimespan, str))
-        RatioPartSymbolicTimespan.__init__(self, anchor, ratio, part)
+        RatioOperator.__init__(self, anchor, ratio, part)
 
     ### PUBLIC METHODS ###
 
@@ -56,22 +54,16 @@ class CountRatioPartSymbolicTimespan(RatioPartSymbolicTimespan):
 
         Return offset.
         '''
-        if start_segment_name is None:
-            segment_specification = score_specification.get_start_segment_specification(self)
-        else:
-            segment_specification = score_specification.get_start_segment_specification(start_segment_name)
-        segment_name = segment_specification.segment_name
-        time_signatures = segment_specification.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, self.ratio)
+        anchor_duration = self.anchor.get_duration(score_specification, context_name)
+        parts = mathtools.divide_number_by_ratio(anchor_duration, self.ratio)
         parts_before = parts[:self.part]
-        durations_before = [
-            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
-        duration_before = sum(durations_before)
-        start_offset = durationtools.Offset(duration_before)
+        duration_before = sum(parts_before)
+        start_offset = durationtools.Offset(duration_before) 
+        segment_specification = score_specification.get_start_segment_specification(self)
+        segment_name = segment_specification.segment_name
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
         part = parts[self.part]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = durationtools.Duration(sum(durations))
+        duration = part
         stop_offset = duration_before + duration
         stop_offset = durationtools.Offset(stop_offset)
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)

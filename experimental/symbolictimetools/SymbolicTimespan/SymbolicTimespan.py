@@ -35,7 +35,7 @@ class SymbolicTimespan(AbjadObject):
         from experimental import symbolictimetools
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        return symbolictimetools.OffsetSymbolicTimespan(self, start_offset=start, stop_offset=stop)
+        return symbolictimetools.OffsetOperator(self, start_offset=start, stop_offset=stop)
 
     def divide_by_ratio(self, ratio):
         ''''Divide self by `ratio`.
@@ -47,8 +47,8 @@ class SymbolicTimespan(AbjadObject):
         from experimental import symbolictimetools
         result = []
         for part in range(len(ratio)):
-            # TODO: eventually create custom class different from TimeRatioPartSymbolicTimespan
-            result.append(symbolictimetools.TimeRatioPartSymbolicTimespan(self, ratio, part))
+            # TODO: eventually create custom class different from TimeRatioOperator
+            result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
         return tuple(result)
 
     def get_duration(self, score_specification, context_name):

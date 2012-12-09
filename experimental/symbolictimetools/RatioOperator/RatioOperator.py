@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 from experimental.symbolictimetools.Selector import Selector
 
 
-class RatioPartSymbolicTimespan(Selector):
+class RatioOperator(Selector):
     r'''.. versionadded:: 1.0
     
     Abstract ratio-part symbolic timespan class from which concrete ratio-part symbolic timespans inherit.

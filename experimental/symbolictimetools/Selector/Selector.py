@@ -47,7 +47,7 @@ class Selector(SymbolicTimespan):
         result = []
         for part in range(len(ratio)):
             if is_count:
-                result.append(symbolictimetools.CountRatioPartSymbolicTimespan(self, ratio, part))
+                result.append(symbolictimetools.CountRatioOperator(self, ratio, part))
             else:
-                result.append(symbolictimetools.TimeRatioPartSymbolicTimespan(self, ratio, part))
+                result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
         return tuple(result)

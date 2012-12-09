@@ -67,10 +67,10 @@
     This will simplify the X9 composer interface.
 
 14. Remove these symbolictimetools classes:
-        symbolictimetools.CountRatioPartSymbolicTimespan
-        symbolictimetools.OffsetSymbolicTimespan
-        symbolictimetools.RatioPartSymbolicTimespan
-        symbolictimetools.TimeRatioPartSymbolicTimespan
+        symbolictimetools.CountRatioOperator
+        symbolictimetools.OffsetOperator
+        symbolictimetools.RatioOperator
+        symbolictimetools.TimeRatioOperator
     Replace with these bound methods:
         timespan.partition_by_ratio(is_time=True)
         timespan.start_offset = start_offset
