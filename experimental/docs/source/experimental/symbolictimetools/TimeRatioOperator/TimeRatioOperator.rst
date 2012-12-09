@@ -13,6 +13,14 @@ Read-only Properties
 
     Inherited from :py:class:`RatioOperator.RatioOperator <experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator>`
 
+.. autoattribute:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. autoattribute:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.moniker
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.part
 
     Inherited from :py:class:`RatioOperator.RatioOperator <experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator>`
@@ -45,10 +53,6 @@ Methods
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.get_offsets
-
-.. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.moniker
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.select_background_measures
 

@@ -9,6 +9,10 @@ symbolictimetools.SymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.modifications
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.moniker
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -23,8 +27,6 @@ Methods
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_duration
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_offsets
-
-.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.moniker
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_background_measures
 

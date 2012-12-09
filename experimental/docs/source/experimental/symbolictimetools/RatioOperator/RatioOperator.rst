@@ -11,6 +11,14 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.anchor
 
+.. autoattribute:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. autoattribute:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.moniker
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.part
 
 .. autoattribute:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.ratio
@@ -37,10 +45,6 @@ Methods
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.get_offsets
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
-.. automethod:: experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator.moniker
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

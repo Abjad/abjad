@@ -13,6 +13,14 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.identifiers
 
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.moniker
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_identifier
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_segment_identifier
@@ -47,10 +55,6 @@ Methods
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.get_selected_objects
-
-.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.moniker
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.partition_by_ratio
 

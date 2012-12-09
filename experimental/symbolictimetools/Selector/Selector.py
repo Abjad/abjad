@@ -21,6 +21,7 @@ class Selector(SymbolicTimespan):
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
+        SymbolicTimespan.__init__(self)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier

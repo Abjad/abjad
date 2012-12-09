@@ -21,6 +21,11 @@ class SymbolicTimespan(AbjadObject):
 
     __metaclass__ = abc.ABCMeta
 
+    ### INITIALIZER ###
+
+    def __init__(self):
+        self._modifications = []
+
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
@@ -37,6 +42,16 @@ class SymbolicTimespan(AbjadObject):
     
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    @property
+    def modifications(self):
+        '''Read-only list of modifications to be applied 
+        to symbolic timespan during evaluation.
+
+        Return list.
+        '''
+        return self._modifications
+
+    @property
     def moniker(self):
         '''Form of symbolic timespan suitable for writing to disk.
         '''

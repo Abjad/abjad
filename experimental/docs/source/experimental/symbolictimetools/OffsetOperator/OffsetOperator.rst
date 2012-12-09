@@ -11,6 +11,14 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.anchor
 
+.. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.moniker
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.start_offset
 
 .. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.start_offset_value
@@ -43,10 +51,6 @@ Methods
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.get_offsets
 
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.get_selected_objects
-
-.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.moniker
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.select_background_measures
 
