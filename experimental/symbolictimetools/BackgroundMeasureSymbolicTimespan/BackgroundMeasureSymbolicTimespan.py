@@ -124,12 +124,7 @@ class BackgroundMeasureSymbolicTimespan(TimeRelationSymbolicTimespan):
 
         Return pair.
         '''
-        if start_segment_name is None:
-            segment_specification = score_specification.get_start_segment_specification(self)
-        else:
-            segment_specification = score_specification.get_start_segment_specification(start_segment_name)
-        # TODO: find out when this call fails to produce the same result as the four lines above
-        #segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        segment_specification = score_specification.get_start_segment_specification(self.anchor)
         segment_name = segment_specification.segment_name
         start, stop = self.identifiers
         start = start or 0
@@ -156,11 +151,8 @@ class BackgroundMeasureSymbolicTimespan(TimeRelationSymbolicTimespan):
         raise NotImplementedError
 
     def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.time_relation.set_segment_identifier()``.
+        '''Set anchor to `segment_identifier`.
         '''
         assert isinstance(segment_identifier, str)
-        if getattr(self.time_relation, 'timespan_1', None) is None:
-            self._anchor = segment_identifier
-        # TODO: remove this branch after anchor integration
-        else:
-            self.time_relation.set_segment_identifier(segment_identifier)
+        assert not hasattr(self.time_relation, 'timespan_1')
+        self._anchor = segment_identifier

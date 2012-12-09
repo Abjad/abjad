@@ -38,20 +38,16 @@
 
 8.  Finish timerelationtools class docstrings before 2.11 build.
 
-9.  Change DivisionSymbolicTimespan.get_selected_objects() to return a Selection object.
-    Change CounttimeComponentSymbolicTimespan.get_selected_objects() to return a Selection object.
-    Change other selectors' get_selected_objects() to return a Selection object.
-
-10. Author tests to show selecting leaves that don't yet exist.
+9.  Author tests to show selecting leaves that don't yet exist.
     Make sure the command is ignored at first and then interpreted correctly in a later pass.
 
-11. Audit to get rid of string-based keys everywhere in interpreter.
+10. Audit to get rid of string-based keys everywhere in interpreter.
 
-12. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+11. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-13. Unskip all experimental tests before 2.11 build.
+12. Unskip all experimental tests before 2.11 build.
 
-14. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+13. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
@@ -70,11 +66,11 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-15. Write voice-anchored selector tests.
+14. Write voice-anchored selector tests.
     Maybe all selectors should be voice anchored. 
     (Except background measures, etc.)
 
-16. Remove these symbolictimetools classes:
+15. Remove these symbolictimetools classes:
         symbolictimetools.CountRatioPartSymbolicTimespan
         symbolictimetools.OffsetSymbolicTimespan
         symbolictimetools.RatioPartSymbolicTimespan
@@ -86,7 +82,7 @@
         timespan.offsets = start_offset, stop_offset
     Methods must be preserved as strings (as timespan attribute) to delay evaluation.
 
-17. Remove the three command request methods:
+16. Remove the three command request methods:
         Specification.request_division_command()
         Specification.request_rhythm_command()
         Specification.request_time_signature_command()
@@ -98,13 +94,13 @@
         SymbolicOffset.request_rhythm_command(voice)
         SymbolicOffset.request_time_signature_command(voice)
 
-18. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+17. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
 
-19. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
+18. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
