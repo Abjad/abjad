@@ -6,7 +6,7 @@ from abjad.tools import tietools
 
 def establish_metrical_hierarchy(components, metrical_hierarchy,
     maximum_dot_count=None,
-    show_boundaries=True,
+    show_boundaries=False,
     ):
     r'''.. versionadded:: 2.11
 
@@ -47,6 +47,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     def is_acceptable_tie_chain(tie_chain_duration, 
         tie_chain_starts_in_offsets,
         tie_chain_stops_in_offsets):
+        #print '\tTESTING ACCEPTABILITY'
         if not tie_chain_duration.is_assignable:
             return False
         if maximum_dot_count is not None and \
@@ -57,12 +58,14 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         return True
 
     def is_boundary_crossing_tie_chain(tie_chain_start_offset, tie_chain_stop_offset):
-        if show_boundaries and any(tie_chain_start_offset < x < tie_chain_stop_offset \
-            for x in boundary_offsets):
-            if not tie_chain_start_offset in boundary_offsets and \
-                tie_chain_stop_offset in boundary_offsets:
-                return True
-        return False
+        #print '\tTESTING BOUNDARY CROSSINGS'
+        if not show_boundaries:
+            return False
+        if not any(tie_chain_start_offset < x < tie_chain_stop_offset for x in boundary_offsets):
+            return False
+        if tie_chain_start_offset in boundary_offsets and tie_chain_stop_offset in boundary_offsets:
+            return False
+        return True
 
     def recurse(tie_chain, depth=0):
         offsets = get_offsets_at_depth(depth)
@@ -79,7 +82,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             tie_chain_starts_in_offsets, 
             tie_chain_stops_in_offsets):
 
-            #print 'UNACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
+            #print 'UNACCEPTABLE:', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             split_offset = None
             offsets = get_offsets_at_depth(depth)
@@ -102,19 +105,35 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                     componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
                 for tie_chain in tie_chains:
                     recurse(tie_chain, depth=depth)
-
             else:
                 #print ''
                 recurse(tie_chain, depth=depth+1)
 
-        #elif is_boundary_crossing_tie_chain(
-        #    tie_chain_start_offset,
-        #    tie_chain_stop_offset):
-        #    #print 'BOUNDARY CROSSING'
+        elif is_boundary_crossing_tie_chain(
+            tie_chain_start_offset,
+            tie_chain_stop_offset):
 
+            #print 'BOUNDARY CROSSING', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
+            offsets = boundary_offsets
+            if tie_chain_start_offset in boundary_offsets:
+                offsets = reversed(boundary_offsets)
+            split_offset = None
+            for offset in offsets:
+                if tie_chain_start_offset < offset < tie_chain_stop_offset:
+                    split_offset = offset
+                    break
+            assert split_offset is not None 
+            #print '\tABS:', split_offset
+            split_offset -= tie_chain_start_offset
+            #print '\tREL:', split_offset
+            #print ''
+            tie_chains = [tietools.TieChain(shard) for shard in
+                componenttools.split_components_at_offsets(tie_chain[:], [split_offset])]
+            for tie_chain in tie_chains:
+                recurse(tie_chain, depth=depth)
 
         else:
-            #print 'ACCEPTABLE:', tie_chain, tie_chain.start_offset, tie_chain.stop_offset
+            #print 'ACCEPTABLE:', tie_chain, tie_chain_start_offset, tie_chain_stop_offset
             #print '\t', ' '.join([str(x) for x in offsets])
             #print ''
             leaftools.fuse_leaves(tie_chain[:])
@@ -123,7 +142,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     # cache results of iterator, as we'll be mutating the underlying collection
     items = tuple(tietools.iterate_topmost_masked_tie_chains_and_containers_in_expr(components))
     for item in items:
-        #print ''
+        ##print ''
         if isinstance(item, tietools.TieChain):
             #print 'RECURSING:', item
             recurse(item, depth=0)

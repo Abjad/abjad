@@ -30,8 +30,8 @@ def test_timesignaturetools_establish_metrical_hierarchy_03():
 
 
 def test_timesignaturetools_establish_metrical_hierarchy_04():
-    source = p('abj: | 4/4 8. 4.. 4. |')
-    target = p('abj: | 4/4 8. 16 ~ 4. 4. |')
+    source = p("abj: | 4/4 c'8. d'4.. e'4. |")
+    target = p("abj: | 4/4 c'8. d'16 ~ d'4. e'4. |")
     metrical_hierarchy = timesignaturetools.MetricalHierarchy(source)
     timesignaturetools.establish_metrical_hierarchy(source[:], metrical_hierarchy)
     assert source.lilypond_format == target.lilypond_format
@@ -40,9 +40,14 @@ def test_timesignaturetools_establish_metrical_hierarchy_04():
 def test_timesignaturetools_establish_metrical_hierarchy_05():
     metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
     for rhythm_number in range(8):
+        # without boundary enforcement
         notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
         measure = Measure((4, 4), notes)
         timesignaturetools.establish_metrical_hierarchy(measure[:], metrical_hierarchy)
+        # with boundary enforcement
+        notes = timesignaturetools.make_gridded_test_rhythm(4, rhythm_number, denominator=4)
+        measure = Measure((4, 4), notes)
+        timesignaturetools.establish_metrical_hierarchy(measure[:], metrical_hierarchy, show_boundaries=True)
 
 
 def test_timesignaturetools_establish_metrical_hierarchy_06():
