@@ -30,6 +30,8 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.partition_by_ratio
 
+.. automethod:: experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan.select_offsets
+
 Special Methods
 ---------------
 

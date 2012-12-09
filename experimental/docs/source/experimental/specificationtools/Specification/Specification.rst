@@ -54,8 +54,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_note_and_chord_timespan
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_offsets
-
 Special Methods
 ---------------
 

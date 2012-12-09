@@ -40,6 +40,10 @@ Methods
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
+.. automethod:: experimental.symbolictimetools.ScoreSymbolicTimespan.ScoreSymbolicTimespan.ScoreSymbolicTimespan.select_offsets
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 Special Methods
 ---------------
 

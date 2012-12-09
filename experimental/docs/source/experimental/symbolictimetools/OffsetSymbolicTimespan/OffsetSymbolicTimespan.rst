@@ -48,6 +48,10 @@ Methods
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
+.. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.select_offsets
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.OffsetSymbolicTimespan.OffsetSymbolicTimespan.OffsetSymbolicTimespan.set_segment_identifier
 
 Special Methods

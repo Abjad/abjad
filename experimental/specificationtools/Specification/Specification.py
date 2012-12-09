@@ -478,25 +478,3 @@ class Specification(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
-
-    # TODO: remove this method and use self.timespan.offsets = start_offset, stop_offset instead.
-    def select_offsets(self, start=None, stop=None):
-        r'''Select segment from ``1/8`` to ``3/8``::
-
-            >>> timespan = red_segment.select_offsets(start=(1, 8), stop=(3, 8))
-
-        ::
-
-            >>> z(timespan)
-            symbolictimetools.OffsetSymbolicTimespan(
-                'red',
-                start_offset=durationtools.Offset(1, 8),
-                stop_offset=durationtools.Offset(3, 8)
-                )
-
-        Return symbolic timespan.
-        '''
-        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
-        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        anchor = self.specification_name
-        return symbolictimetools.OffsetSymbolicTimespan(anchor, start_offset=start, stop_offset=stop)

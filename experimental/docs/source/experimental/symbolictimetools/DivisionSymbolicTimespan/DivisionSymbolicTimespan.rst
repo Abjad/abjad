@@ -64,6 +64,10 @@ Methods
 
     Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
 
+.. automethod:: experimental.symbolictimetools.DivisionSymbolicTimespan.DivisionSymbolicTimespan.DivisionSymbolicTimespan.select_offsets
+
+    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.DivisionSymbolicTimespan.DivisionSymbolicTimespan.DivisionSymbolicTimespan.set_segment_identifier
 
 Special Methods
