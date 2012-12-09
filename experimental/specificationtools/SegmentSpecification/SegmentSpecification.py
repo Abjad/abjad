@@ -61,7 +61,6 @@ class SegmentSpecification(Specification):
         persist=True, truncate=None):
         request = requesttools.expr_to_request(source)
         context_names = self._context_token_to_context_names(contexts)
-        #selector = selector or self.timespan
         selector = selector or self.specification_name
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 

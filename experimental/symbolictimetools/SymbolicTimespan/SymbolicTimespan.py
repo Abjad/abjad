@@ -1,10 +1,18 @@
 import abc
 import numbers
+from abjad.tools import chordtools
+from abjad.tools import leaftools
+from abjad.tools import notetools
+from abjad.tools import timerelationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
+
+    ::
+
+        >>> from experimental import *
 
     Abstract base class from which conrete symbolic timespans inherit.
     '''
@@ -76,3 +84,128 @@ class SymbolicTimespan(AbjadObject):
 #        '''Delegate to ``self.selector.set_segment_identifier()``.
 #        '''
 #        pass
+
+    def select_background_measures(self, voice, start=None, stop=None, time_relation=None):
+        '''Select the first five background measures that start during segment 'red'::
+
+            >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+            >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+            >>> red_segment = score_specification.append_segment(name='red')
+
+        ::
+
+            >>> timespan = red_segment.select_background_measures('Voice 1', stop=5)
+
+        ::
+
+            >>> z(timespan)
+            symbolictimetools.BackgroundMeasureSelector(
+                anchor='red',
+                stop_identifier=5,
+                voice_name='Voice 1'
+                )
+
+        Return background measure symbolic timespan.
+        '''
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        from experimental import symbolictimetools
+        timespan = symbolictimetools.BackgroundMeasureSelector(
+            anchor=self.specification_name,
+            start_identifier=start, 
+            stop_identifier=stop, 
+            time_relation=time_relation,
+            voice_name=voice)
+        return timespan
+
+    def select_divisions(self, voice, start=None, stop=None, time_relation=None):
+        '''Select the first five divisions that start during segment 'red'::
+
+            >>> timespan = red_segment.select_divisions('Voice 1', stop=5)
+
+        ::
+            
+            >>> z(timespan)
+            symbolictimetools.DivisionSelector(
+                anchor='red',
+                stop_identifier=5,
+                voice_name='Voice 1'
+                )
+
+        Return timespan.
+        '''
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        from experimental import symbolictimetools
+        timespan = symbolictimetools.DivisionSelector(
+            anchor=self.specification_name,
+            start_identifier=start, 
+            stop_identifier=stop, 
+            voice_name=voice,
+            time_relation=time_relation)
+        return timespan
+
+    def select_leaves(self, voice, start=None, stop=None, time_relation=None):
+        '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
+
+            >>> timespan = red_segment.select_leaves('Voice 1', stop=40)
+
+        ::
+
+            >>> z(timespan)
+            symbolictimetools.CounttimeComponentSelector(
+                anchor='red',
+                klass=leaftools.Leaf,
+                stop_identifier=40,
+                voice_name='Voice 1'
+                )
+
+        Return timespan.
+        '''
+        assert isinstance(voice, (str, type(None)))
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        from experimental import symbolictimetools
+        timespan = symbolictimetools.CounttimeComponentSelector(
+            anchor=self.specification_name,
+            time_relation=time_relation, 
+            klass=leaftools.Leaf, 
+            start_identifier=start, 
+            stop_identifier=stop, 
+            voice_name=voice)
+        return timespan
+
+    def select_notes_and_chords(self, voice, start=None, stop=None, time_relation=None):
+        '''Select the first ``40`` voice ``1`` notes and chords 
+        that start during segment ``'red'``::
+
+            >>> timespan = red_segment.select_notes_and_chords('Voice 1', stop=40)
+
+        ::
+
+            >>> z(timespan)
+            symbolictimetools.CounttimeComponentSelector(
+                anchor='red',
+                klass=helpertools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
+                stop_identifier=40,
+                voice_name='Voice 1'
+                )
+
+        Return timespan.
+        '''
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        from experimental import symbolictimetools
+        timespan = symbolictimetools.CounttimeComponentSelector(
+            anchor=self.specification_name,
+            time_relation=time_relation, 
+            klass=(notetools.Note, chordtools.Chord),
+            start_identifier=start, 
+            stop_identifier=stop, 
+            voice_name=voice)
+        return timespan

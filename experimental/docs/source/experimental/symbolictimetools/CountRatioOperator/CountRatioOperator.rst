@@ -46,6 +46,22 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.CountRatioOperator.CountRatioOperator.CountRatioOperator.get_offsets
 
+.. automethod:: experimental.symbolictimetools.CountRatioOperator.CountRatioOperator.CountRatioOperator.select_background_measures
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.CountRatioOperator.CountRatioOperator.CountRatioOperator.select_divisions
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.CountRatioOperator.CountRatioOperator.CountRatioOperator.select_leaves
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.CountRatioOperator.CountRatioOperator.CountRatioOperator.select_notes_and_chords
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.CountRatioOperator.CountRatioOperator.CountRatioOperator.set_segment_identifier
 
     Inherited from :py:class:`RatioOperator.RatioOperator <experimental.symbolictimetools.RatioOperator.RatioOperator.RatioOperator>`

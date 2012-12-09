@@ -44,6 +44,22 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.select_background_measures
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.select_divisions
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.select_leaves
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.select_notes_and_chords
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.set_segment_identifier
 
 Special Methods
