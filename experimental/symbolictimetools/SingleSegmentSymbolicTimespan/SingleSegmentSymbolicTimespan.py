@@ -29,15 +29,13 @@ class SingleSegmentSymbolicTimespan(TimespanSymbolicTimespan):
     def __init__(self, identifier=0):
         TimespanSymbolicTimespan.__init__(self)
         self._identifier = identifier
-        self._klass = segmenttools.Segment
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.klass == expr.klass:
-                if self.identifier == expr.identifier:
-                    return True
+            if self.identifier == expr.identifier:
+                return True
         return False
 
     ### READ-ONLY PROPERTIES ###
@@ -45,10 +43,6 @@ class SingleSegmentSymbolicTimespan(TimespanSymbolicTimespan):
     @property
     def identifier(self):
         return self._identifier
-
-    @property
-    def klass(self):
-        return self._klass
 
     @property
     def start_segment_identifier(self):

@@ -101,6 +101,14 @@ class CounttimeComponentSymbolicTimespan(TimeRelationSymbolicTimespan):
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
+    def klass(self):
+        '''Class(es) of counttime component symbolic timespan.
+
+        Return class, class inventory or none.
+        '''
+        return self._klass
+
+    @property
     def predicate(self):
         '''Predicate of counttime component selector specified by user.
 

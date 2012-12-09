@@ -11,8 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.identifier
 
-.. autoattribute:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.klass
-
 .. autoattribute:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.SingleSegmentSymbolicTimespan.storage_format

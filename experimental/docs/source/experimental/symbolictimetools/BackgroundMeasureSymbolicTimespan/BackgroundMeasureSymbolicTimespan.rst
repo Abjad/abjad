@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.klass
-
-    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.BackgroundMeasureSymbolicTimespan.start_identifier
 
     Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`

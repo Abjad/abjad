@@ -42,14 +42,6 @@ class TimeRelationSymbolicTimespan(TimespanSymbolicTimespan):
         return self.start_identifier, self.stop_identifier
 
     @property
-    def klass(self):
-        '''Klass of slice selector.
-
-        Return class or none.
-        '''
-        return self._klass
-
-    @property
     def start_identifier(self):
         '''Slice selector start identifier.
 
