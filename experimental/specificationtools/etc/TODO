@@ -102,3 +102,18 @@
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
+
+18. Change SymbolicOffset.selector to SymbolicOffset.anchor.
+
+19. Should keyword TimeRelationSymbolicTimespan(..., voice_name=None) 
+    be positional TimeRelationSymbolicTimespan(voice_name, ...) instead?
+    How to make this decision?
+    Depends on the tuning the meaning of it is that TimeRelationSymbolicTimespan models.
+    If voice_name is made positional then this parallels mandatory voice_name in all select method calls.
+    If voice_name remains keyword then something slightly other is being modeled.
+
+20. Change SingleSourceSymbolicTimespan.selector to SingleSourceSymbolicTimespan.anchor.
+
+21. Should SingleSourceSymbolicTimespan be removed?
+    It seems like MultipleSourceSymbolicTimespan models something complex enough that is
+    not repeated elsewhere in the system. But is SingleSourceSymbolicTimespan essentially redundant?

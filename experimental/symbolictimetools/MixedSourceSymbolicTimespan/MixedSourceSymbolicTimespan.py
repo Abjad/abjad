@@ -7,21 +7,20 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
     Mixed-source timespan.
 
-    Mixed-source timespan starting at the left edge of the last measure in the segment 
-    with name ``'red'`` and stopping at the right edge of the first measure in the segment 
-    with name ``'blue'``::
+    Mixed-source timespan starting at the left edge of the last measure
+    that starts during segment ``'red'``
+    and stoppding at the right edge of the first measure 
+    that starts during segment ``'blue'``::
 
-        >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, start_identifier=-1)
-        >>> start_offset = symbolictimetools.SymbolicOffset(selector=measure_selector)
+        >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+        ... anchor='red', start_identifier=-1)
+        >>> start_offset = symbolictimetools.SymbolicOffset(selector=measure)
 
     ::
 
-        >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='blue')
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, stop_identifier=1)
-        >>> stop_offset = symbolictimetools.SymbolicOffset(selector=measure_selector, edge=Right)
+        >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(
+        ... anchor='blue', stop_identifier=1)
+        >>> stop_offset = symbolictimetools.SymbolicOffset(selector=measure, edge=Right)
         
     ::
 
@@ -34,34 +33,20 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         symbolictimetools.MixedSourceSymbolicTimespan(
             start_offset=symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                    start_identifier=-1,
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='red'
-                                )
-                            )
-                        )
+                    anchor='red',
+                    start_identifier=-1
                     )
                 ),
             stop_offset=symbolictimetools.SymbolicOffset(
                 selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                    stop_identifier=1,
-                    time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                        'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                        timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                            selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                                identifier='blue'
-                                )
-                            )
-                        )
+                    anchor='blue',
+                    stop_identifier=1
                     ),
                 edge=Right
                 )
             )
 
-    Mixed-source timespan properties are read-only.
+    Mixed-source symbolic timespan properties are read-only.
     '''
 
     ### INITIALIZER ###

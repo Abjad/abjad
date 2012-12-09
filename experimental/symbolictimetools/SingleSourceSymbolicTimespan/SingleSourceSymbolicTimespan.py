@@ -6,31 +6,31 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
 
     Finite timespan defined in terms of a single source.
 
-    SymbolicTimespan objects highlight a contiguous blocks of time
+    Symbolic timespan objects highlight a contiguous blocks of time
     somewhere and say "everything within my bounds is selected
     for some upcoming operation."
 
-    SymbolicTimespan of the entire score::
+    Symbolic timespan of the entire score::
 
         >>> symbolictimetools.SingleSourceSymbolicTimespan()
         SingleSourceSymbolicTimespan()
 
-    SymbolicTimespan of the first third of the score::
+    Symbolic timespan of the first third of the score::
 
         >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
         SingleSourceSymbolicTimespan(multiplier=Multiplier(1, 3))
 
-    SymbolicTimespan of the first ``1/8`` of a whole note in score::
+    Symbolic timespan of the first ``1/8`` of a whole note in score::
 
         >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), right_offset=Offset(1, 8))
         SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), right_offset=Offset(1, 8))
 
-    SymbolicTimespan of the last ``1/8`` of a whole note in score::
+    Symbolic timespan of the last ``1/8`` of a whole note in score::
 
         >>> symbolictimetools.SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), left_offset=Offset(-1, 8))
         SingleSourceSymbolicTimespan(multiplier=Multiplier(0, 1), left_offset=Offset(-1, 8))
 
-    SymbolicTimespan of the segment with name ``'red'``::
+    Symbolic timespan of the segment with name ``'red'``::
 
         >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
 
@@ -39,54 +39,41 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
         >>> symbolictimetools.SingleSourceSymbolicTimespan(selector=segment_selector)
         SingleSourceSymbolicTimespan(selector=SingleSegmentSymbolicTimespan(identifier='red'))
 
-    SymbolicTimespan of the first measure that starts during segment ``'red'``::
+    Symbolic timespan of the first measure that starts during segment ``'red'``::
 
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> measure_selector = symbolictimetools.BackgroundMeasureSymbolicTimespan(time_relation=time_relation, stop_identifier=1)
+        >>> measure = symbolictimetools.BackgroundMeasureSymbolicTimespan(anchor='red', stop_identifier=1)
 
     ::
 
-        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(selector=measure_selector)
+        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(selector=measure)
 
     ::
 
         >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
             selector=symbolictimetools.BackgroundMeasureSymbolicTimespan(
-                stop_identifier=1,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
-                    )
+                anchor='red',
+                stop_identifier=1
                 )
             )
 
-    SymbolicTimespan of division ``0`` starting during segment ``'red'``::
+    Symbolic timespan of voice ``1`` division ``0`` that starts during segment ``'red'``::
 
-        >>> division_selector = symbolictimetools.DivisionSymbolicTimespan(time_relation=time_relation, stop_identifier=1)
+        >>> division = symbolictimetools.DivisionSymbolicTimespan(
+        ... anchor='red', stop_identifier=1, voice_name='Voice 1')
 
     ::
 
-        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(selector=division_selector)
+        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(selector=division)
 
     ::
 
        >>> z(timespan)
         symbolictimetools.SingleSourceSymbolicTimespan(
             selector=symbolictimetools.DivisionSymbolicTimespan(
+                anchor='red',
                 stop_identifier=1,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                    timespan_1=symbolictimetools.SingleSourceSymbolicTimespan(
-                        selector=symbolictimetools.SingleSegmentSymbolicTimespan(
-                            identifier='red'
-                            )
-                        )
-                    )
+                voice_name='Voice 1'
                 )
             )
 
@@ -94,11 +81,11 @@ class SingleSourceSymbolicTimespan(SymbolicTimespan):
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segment_slice_selector = symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=stop)
+        >>> segments = symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=stop)
 
     ::
 
-        >>> symbolictimetools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
+        >>> symbolictimetools.SingleSourceSymbolicTimespan(selector=segments)
         SingleSourceSymbolicTimespan(selector=SegmentSymbolicTimespan(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1")))
 
     Timespans are immutable.

@@ -39,15 +39,6 @@ class TimespanSymbolicTimespan(AbjadObject):
         '''
         pass
 
-    @property
-    def timespan(self):
-        '''SingleSourceSymbolicTimespan of selector.
-
-        Return timespan object.
-        '''
-        from experimental import symbolictimetools
-        return symbolictimetools.SingleSourceSymbolicTimespan(selector=self)
-
     ### PUBLIC METHODS ###
 
     def get_duration(self, score_specification, context_name):

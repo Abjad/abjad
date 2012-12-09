@@ -41,10 +41,6 @@ Read-only Properties
 
     Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.timespan
-
-    Inherited from :py:class:`TimespanSymbolicTimespan.TimespanSymbolicTimespan <experimental.symbolictimetools.TimespanSymbolicTimespan.TimespanSymbolicTimespan.TimespanSymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.voice_name
 
     Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`

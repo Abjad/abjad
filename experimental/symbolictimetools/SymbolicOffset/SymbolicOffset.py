@@ -64,20 +64,15 @@ class SymbolicOffset(AbjadObject):
         ... multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
         SymbolicOffset(selector=SingleSegmentSymbolicTimespan(identifier='red'), edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
 
-    Symbolic offset indicating the left edge of note ``10`` that starts
+    Symbolic offset indicating the left edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
 
-        >>> segment_selector = symbolictimetools.SingleSegmentSymbolicTimespan(identifier='red')
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=segment_selector.timespan)
-        >>> counttime_component_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
-        ... time_relation=time_relation, klass=Note, start_identifier=10, stop_identifier=11)
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
-        >>> counttime_component_selector = symbolictimetools.CounttimeComponentSymbolicTimespan(
-        ... anchor='red', klass=Note, start_identifier=10, stop_identifier=11, time_relation=time_relation)
+        >>> note = symbolictimetools.CounttimeComponentSymbolicTimespan(
+        ... anchor='red', klass=Note, start_identifier=10, stop_identifier=11, voice_name='Voice 1')
 
     ::
 
-        >>> offset = symbolictimetools.SymbolicOffset(selector=counttime_component_selector)
+        >>> offset = symbolictimetools.SymbolicOffset(selector=note)
 
     ::
 
@@ -88,9 +83,7 @@ class SymbolicOffset(AbjadObject):
                 klass=notetools.Note,
                 start_identifier=10,
                 stop_identifier=11,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
-                    )
+                voice_name='Voice 1'
                 )
             )
 
@@ -99,31 +92,28 @@ class SymbolicOffset(AbjadObject):
     Symbolic offset one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
         >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segment_slice_selector = symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=stop)
-        >>> timespan = symbolictimetools.SingleSourceSymbolicTimespan(selector=segment_slice_selector)
+        >>> segments = symbolictimetools.SegmentSymbolicTimespan(start_identifier='red', stop_identifier=stop)
 
     ::
     
-        >>> offset = symbolictimetools.SymbolicOffset(selector=timespan, edge=Right, multiplier=Multiplier(1, 3))
+        >>> offset = symbolictimetools.SymbolicOffset(selector=segments, edge=Right, multiplier=Multiplier(1, 3))
 
     ::
     
         >>> z(offset)
         symbolictimetools.SymbolicOffset(
-            selector=symbolictimetools.SingleSourceSymbolicTimespan(
-                selector=symbolictimetools.SegmentSymbolicTimespan(
-                    start_identifier='red',
-                    stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
-                    )
+            selector=symbolictimetools.SegmentSymbolicTimespan(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
                 ),
             edge=Right,
             multiplier=durationtools.Multiplier(1, 3)
             )
 
-    Symbolic offset indicating the right edge of note ``10`` that starts
+    Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
     during segment ``'red'``::
 
-        >>> offset = symbolictimetools.SymbolicOffset(selector=counttime_component_selector, edge=Right)
+        >>> offset = symbolictimetools.SymbolicOffset(selector=note, edge=Right)
 
     ::
 
@@ -134,9 +124,7 @@ class SymbolicOffset(AbjadObject):
                 klass=notetools.Note,
                 start_identifier=10,
                 stop_identifier=11,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
-                    )
+                voice_name='Voice 1'
                 ),
             edge=Right
             )
@@ -151,8 +139,7 @@ class SymbolicOffset(AbjadObject):
         assert isinstance(selector, (
             symbolictimetools.TimespanSymbolicTimespan, 
             symbolictimetools.SingleSourceSymbolicTimespan, 
-            type(None),
-            str)), repr(selector)
+            type(None), str)), repr(selector)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
             multiplier = durationtools.Multiplier(multiplier)
@@ -237,9 +224,7 @@ class SymbolicOffset(AbjadObject):
                 klass=notetools.Note,
                 start_identifier=10,
                 stop_identifier=11,
-                time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                    'timespan_1.start <= timespan_2.start < timespan_1.stop'
-                    )
+                voice_name='Voice 1'
                 )
 
         Value of none is taken equal the entire score.
