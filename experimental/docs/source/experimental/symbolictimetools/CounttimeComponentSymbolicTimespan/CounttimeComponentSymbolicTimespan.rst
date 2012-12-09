@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.anchor
 
+    Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.CounttimeComponentSymbolicTimespan.identifiers
 
     Inherited from :py:class:`TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan <experimental.symbolictimetools.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan.TimeRelationSymbolicTimespan>`
