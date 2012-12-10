@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.anchor
 
-.. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.modifications
+.. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.moniker
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.moniker
+.. autoattribute:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -37,6 +37,10 @@ Methods
 -------
 
 .. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.adjust_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.OffsetOperator.OffsetOperator.OffsetOperator.apply_offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

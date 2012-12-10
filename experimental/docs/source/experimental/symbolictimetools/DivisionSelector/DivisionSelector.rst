@@ -17,11 +17,11 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.modifications
+.. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.moniker
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.moniker
+.. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -53,6 +53,10 @@ Methods
 -------
 
 .. automethod:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.adjust_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.apply_offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

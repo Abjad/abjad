@@ -1,10 +1,12 @@
 import abc
 import numbers
 from abjad.tools import chordtools
+from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import helpertools
 
 
 class SymbolicTimespan(AbjadObject):
@@ -24,7 +26,7 @@ class SymbolicTimespan(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        self._modifications = []
+        self._offset_modifications = []
 
     ### SPECIAL METHODS ###
 
@@ -43,19 +45,19 @@ class SymbolicTimespan(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def modifications(self):
-        '''Read-only list of modifications to be applied 
-        to symbolic timespan during evaluation.
-
-        Return list.
-        '''
-        return self._modifications
-
-    @property
     def moniker(self):
         '''Form of symbolic timespan suitable for writing to disk.
         '''
         return self
+
+    @property
+    def offset_modifications(self):
+        '''Read-only list of offset_modifications to be applied 
+        to symbolic timespan during evaluation.
+
+        Return list.
+        '''
+        return self._offset_modifications
 
     ### PUBLIC METHODS ###
 
@@ -66,7 +68,28 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
         return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
+#        if self.moniker is None:
+#            result = symbolictimetools.ScoreSelector()
+#        elif isinstance(self.moniker, str):
+#            stop_identifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.specification_name))
+#            result = symbolictimetools.SegmentSelector(
+#                start_identifier=self.specification_name, stop_identifier=stop_identifier)
+#        else:
+#            result = copy.deepcopy(self)
+#        if start is not None:
+#            result.offset_modifications.append('({!r}, stop_offset)'.format(start))
+#        if stop is not None:
+#            result.offset_modifications.append('(start_offset, {!r})'.format(stop))
+#        return result
 
+    def apply_offset_modifications(self, offsets):
+        for offset_modification in self.offset_modifications:
+            start_offset, stop_offset = offsets
+            offset_modification = offset_modification.replace('start_offset', repr(start_offset))
+            offset_modification = offset_modification.replace('stop_offset', repr(stop_offset))
+            offsets = eval(offset_modification, {'Offset': durationtools.Offset})
+        return offsets
+        
     def divide_by_ratio(self, ratio):
         ''''Divide self by `ratio`.
 

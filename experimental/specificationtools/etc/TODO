@@ -109,3 +109,15 @@
     Depends on the tuning the meaning of it is that Selector models.
     If voice_name is made positional then this parallels mandatory voice_name in all select method calls.
     If voice_name remains keyword then something slightly other is being modeled.
+    Don't think this is right for ScoreSelector or SegmentSelector.
+    Maybe there's an intermediate VoiceSelector class?
+
+19. Change SymbolicTimespan.adjust_offsets() to SymbolicTimespan.set_offsets().
+
+20. Make SegmentSelection(stop_identifier=('red' + 1)) work.
+
+21. Make Specification on longer inherit from SymbolicTimespan.
+    Make Specification inherit from Abjad object instead.
+
+22. Implement Specification.select() to return ScoreSelector or SegmentSelector.
+    Implement ScoreSpecification.select_segments() to return SegmentSelector.

@@ -15,11 +15,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.contexts
 
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.modifications
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.moniker
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.moniker
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_name
 
@@ -37,6 +37,10 @@ Methods
 -------
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.adjust_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.apply_offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

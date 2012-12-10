@@ -13,11 +13,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.identifiers
 
-.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.modifications
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.moniker
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.moniker
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -39,6 +39,10 @@ Methods
 -------
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.adjust_offsets
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.apply_offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
