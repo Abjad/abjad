@@ -65,6 +65,7 @@ class SymbolicTimespan(AbjadObject):
             start_offset, stop_offset = offsets
             offset_modification = offset_modification.replace('start_offset', repr(start_offset))
             offset_modification = offset_modification.replace('stop_offset', repr(stop_offset))
+            #self._debug(offset_modification, 'offset modification')
             offsets = eval(offset_modification, {'Offset': durationtools.Offset})
         return offsets
         
@@ -231,22 +232,12 @@ class SymbolicTimespan(AbjadObject):
         from experimental import symbolictimetools
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
-#        if self.moniker is None:
-#            result = symbolictimetools.ScoreSelector()
-#        elif isinstance(self.moniker, str):
-#            result = symbolictimetools.SegmentSelector(
-#                start_identifier=self.specification_name, stop_identifier=(self.specification_name, 1))
-#        else:
-#            result = copy.deepcopy(self)
-#        if start is not None:
-#            result.offset_modifications.append('({!r}, stop_offset)'.format(start))
-#        if stop is not None:
-#            result.offset_modifications.append('(start_offset, {!r})'.format(stop))
-#        return result
-
-#    @abc.abstractmethod
-#    def set_segment_identifier(self, segment_identifier):
-#        '''Delegate to ``self.selector.set_segment_identifier()``.
-#        '''
-#        pass
+        #return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
+        if start is not None and durationtools.Offset(start) < 0:
+            self.offset_modifications.append('(stop_offset + Offset({!r}), stop_offset)'.format(start))
+        if stop is not None and durationtools.Offset(stop) < 0:
+            self.offset_modifications.append('(start_offset, stop_offset + Offset({!r}))'.format(stop))
+        if stop is not None and 0 <= durationtools.Offset(stop):
+            self.offset_modifications.append('(start_offset, start_offset + Offset({!r}))'.format(stop))
+        if start is not None and 0 <= durationtools.Offset(start):
+            self.offset_modifications.append('(start_offset + Offset({!r}), stop_offset)'.format(start))

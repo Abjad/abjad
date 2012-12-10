@@ -116,7 +116,9 @@ class SegmentSelector(Selector):
         Return offset.
         '''
         offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
+        #self._debug(offsets, 'offsets')
         offsets = self.apply_offset_modifications(offsets)
+        #self._debug(offsets, 'offsets', blank=True)
         return offsets
 
     def get_selected_objects(self, score_specification, context_name):
@@ -130,6 +132,7 @@ class SegmentSelector(Selector):
         raise NotImplementedError
 
     def set_segment_identifier(self, segment_identifier):
+        assert isinstance(segment_identifier, str)
         # assume selector selects only one segment
         self._start_identifier = segment_identifier
-        self._stop_idenetifier = self._make_identifier_expression(segment_identifier, 1)
+        self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)
