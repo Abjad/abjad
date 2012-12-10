@@ -24,7 +24,7 @@ class SymbolicTimespan(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, offset_modifications=None):
         self._offset_modifications = []
 
     ### SPECIAL METHODS ###
@@ -41,6 +41,16 @@ class SymbolicTimespan(AbjadObject):
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
+    ### PRIVAVET READ-ONLY PROPERTIES ###
+
+    @property
+    def _keyword_argument_name_value_strings(self):
+        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
+        if 'offset_modifications=[]' in result:
+            result = list(result)
+            result.remove('offset_modifications=[]')
+        return tuple(result)
+
     ### PRIVATE METHODS ###
 
     def _evaluate_adjust_offsets(self, offsets, start_adjustment, stop_adjustment):
@@ -55,7 +65,18 @@ class SymbolicTimespan(AbjadObject):
         elif stop_adjustment is not None and stop_adjustment < 0:
             new_stop_offset = original_stop_offset + stop_adjustment
         return new_start_offset, new_stop_offset
-    
+
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
+        '''Do not show empty offset modifications list.
+        '''
+        filtered_result = []
+        result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
+            self, is_indented=is_indented)
+        for string in result:
+            if not 'offset_modifications=[]' in string:
+                filtered_result.append(string)
+        return filtered_result
+        
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

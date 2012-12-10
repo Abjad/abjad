@@ -60,6 +60,8 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.new_partition_by_ratio
+
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.partition_by_ratio
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.select_background_measures

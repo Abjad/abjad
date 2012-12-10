@@ -1,4 +1,6 @@
 import abc
+import copy
+from abjad.tools import mathtools
 from abjad.tools import timerelationtools
 from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
@@ -16,17 +18,23 @@ class Selector(SymbolicTimespan):
     ### INTIALIZER ###
 
     def __init__(self,
-        anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
+        anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, 
+        time_relation=None, offset_modifications=None):
         from experimental import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
-        SymbolicTimespan.__init__(self)
+        SymbolicTimespan.__init__(self, offset_modifications=offset_modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier
         self._voice_name = voice_name
         self._time_relation = time_relation
+
+    ### PRIVATE METHODS ###
+
+    def _evaluate_new_partition_by_ratio(self, something, ratio):
+        raise NotImplemented('implement me')
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -131,4 +139,15 @@ class Selector(SymbolicTimespan):
                 result.append(symbolictimetools.CountRatioOperator(self, ratio, part))
             else:
                 result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
+        return tuple(result)
+
+    def new_partition_by_ratio(self, ratio):
+        result = []
+        ratio = mathtools.Ratio(ratio)
+        for part in range(len(ratio)):
+            selector = copy.deepcopy(self)
+            offset_modification = 'self._evaluate_new_partition_by_ratio(something, {!r}, {!r})'
+            offset_modification = offset_modification.format(ratio, part)
+            selector.offset_modifications.append(offset_modification)
+            result.append(selector)
         return tuple(result)

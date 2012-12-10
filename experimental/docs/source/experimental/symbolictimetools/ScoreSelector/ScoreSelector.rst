@@ -72,6 +72,10 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.get_selected_objects
 
+.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.new_partition_by_ratio
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.partition_by_ratio
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
