@@ -55,26 +55,6 @@
      (make-string indent #\space)
      "\"" k "\": " v ",\n"))
   
-  (define (format-interfaces h)
-    "formats the interfaces from ly:all-grob-interfaces as a Python dict"
-    (string-append
-     (fold (lambda (k p)
-             (string-append
-              p
-              (format-dict-entry 
-               (symbol->string k)
-               (format-string-list
-                (sort
-                 (map symbol->string
-                   (filter user-property?
-                           (list-ref (hashq-ref h k) 2)))
-                 string<)
-                4)
-               4)))
-       "interfaces = {\n"
-       (sort-symbol-list (hash-keys h)))
-     "}\n"))
-  
   (define (alist-keys alist)
     "returns the list of keys of the specified alist"
     (fold 
@@ -82,67 +62,4 @@
        (append p (list (car l))))
      '()
      alist))
-  
-  (define (format-grob-interfaces)
-    "writes out all grob interfaces as a Python dict"
-    (string-append
-     (fold (lambda (k p)
-             (string-append
-              p
-              (format-dict-entry
-               (symbol->string k)
-               (format-string-list
-                (sort
-                 (map symbol->string
-                   (assq-ref
-                    (assq-ref 
-                     (assq-ref all-grob-descriptions k)
-                     'meta)
-                    'interfaces))
-                 string<)
-                4)
-               4)))
-       "grobs = {\n"
-       (sort-symbol-list (alist-keys all-grob-descriptions)))
-     "}\n"))
-  
-  (define (format-context-properties)
-    "writes out the list of context (translation) properties"
-    (string-append
-     "context_properties = "
-     (format-string-list
-      (sort
-       (map symbol->string all-user-translation-properties)
-       string<)
-      0)
-     "\n"))
-  
-  (define (get-translator-names)
-    "returns the list of names of all engravers"
-    (map
-     (lambda (t)
-       (symbol->string
-        (ly:translator-name t)))
-     (ly:get-all-translators)))
-  
-  (define (format-translators)
-    "writes the list of engravers and performers"
-    (string-append
-     "engravers = "
-     (format-string-list
-      (sort (get-translator-names) string-ci<?)
-      0)
-     "\n"))
-
-  (define (format-musicglyphs)
-    "writes the list of music glyphs"
-    (string-append
-     "music_glyphs = "
-     (format-string-list
-      (sort
-       (delete ".notdef"
-         (ly:otf-glyph-list (ly:system-font-load "emmentaler-20")))
-       string<)
-      0)
-     "\n"))
   ) 
