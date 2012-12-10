@@ -113,10 +113,10 @@ class LilyPondParser(abctools.Parser):
 
         from abjad.tools import lilypondparsertools
 
-        from abjad.ly.py.current_module import current_module
-        from abjad.ly.py.language_pitch_names import language_pitch_names
-        from abjad.ly.py.markup_functions import markup_functions
-        from abjad.ly.py.markup_functions import markup_list_functions
+        from abjad.ly.current_module import current_module
+        from abjad.ly.language_pitch_names import language_pitch_names
+        from abjad.ly.markup_functions import markup_functions
+        from abjad.ly.markup_functions import markup_list_functions
 
         # LilyPond emulation data
         self._guile = lilypondparsertools.GuileProxy(self)
@@ -728,7 +728,7 @@ class LilyPondParser(abctools.Parser):
         Return None
         '''
 
-        from abjad.ly.py.markup_functions import markup_functions
+        from abjad.ly.markup_functions import markup_functions
 
         assert isinstance(name, str)
         assert all([not x.isspace() for x in name])

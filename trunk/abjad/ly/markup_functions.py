@@ -138,11 +138,11 @@ markup_functions = {
 }
 
 markup_list_functions = {
-    'override-lines': ['pair?', 'markup-list?'],
-    'table-of-contents': [ ],
     'wordwrap-lines': ['markup-list?'],
     'wordwrap-string-internal': ['boolean?', 'string?'],
+    'table-of-contents': [ ],
     'justified-lines': ['markup-list?'],
     'wordwrap-internal': ['boolean?', 'markup-list?'],
     'column-lines': ['markup-list?'],
+    'override-lines': ['pair?', 'markup-list?'],
 }
