@@ -61,27 +61,6 @@ class SymbolicTimespan(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def adjust_offsets(self, start=None, stop=None):
-        '''Set offsets on self.
-        '''
-        from experimental import symbolictimetools
-        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
-        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
-#        if self.moniker is None:
-#            result = symbolictimetools.ScoreSelector()
-#        elif isinstance(self.moniker, str):
-#            stop_identifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.specification_name))
-#            result = symbolictimetools.SegmentSelector(
-#                start_identifier=self.specification_name, stop_identifier=stop_identifier)
-#        else:
-#            result = copy.deepcopy(self)
-#        if start is not None:
-#            result.offset_modifications.append('({!r}, stop_offset)'.format(start))
-#        if stop is not None:
-#            result.offset_modifications.append('(start_offset, {!r})'.format(stop))
-#        return result
-
     def apply_offset_modifications(self, offsets):
         for offset_modification in self.offset_modifications:
             start_offset, stop_offset = offsets
@@ -121,12 +100,6 @@ class SymbolicTimespan(AbjadObject):
         Return pair.
         '''
         pass
-
-#    @abc.abstractmethod
-#    def set_segment_identifier(self, segment_identifier):
-#        '''Delegate to ``self.selector.set_segment_identifier()``.
-#        '''
-#        pass
 
     def select_background_measures(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment 'red'::
@@ -252,3 +225,30 @@ class SymbolicTimespan(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
+
+    def set_offsets(self, start=None, stop=None):
+        '''Set offsets on self.
+        '''
+        from experimental import symbolictimetools
+        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
+        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
+        return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
+#        if self.moniker is None:
+#            result = symbolictimetools.ScoreSelector()
+#        elif isinstance(self.moniker, str):
+#            stop_identifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.specification_name))
+#            result = symbolictimetools.SegmentSelector(
+#                start_identifier=self.specification_name, stop_identifier=stop_identifier)
+#        else:
+#            result = copy.deepcopy(self)
+#        if start is not None:
+#            result.offset_modifications.append('({!r}, stop_offset)'.format(start))
+#        if stop is not None:
+#            result.offset_modifications.append('(start_offset, {!r})'.format(stop))
+#        return result
+
+#    @abc.abstractmethod
+#    def set_segment_identifier(self, segment_identifier):
+#        '''Delegate to ``self.selector.set_segment_identifier()``.
+#        '''
+#        pass

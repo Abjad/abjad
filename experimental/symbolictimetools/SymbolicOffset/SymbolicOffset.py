@@ -184,6 +184,25 @@ class SymbolicOffset(AbjadObject):
         return self._addendum
 
     @property
+    def anchor(self):
+        '''Symbolic offset anchor specified by user.
+        
+            >>> z(offset.anchor)
+            symbolictimetools.CounttimeComponentSelector(
+                anchor='red',
+                klass=notetools.Note,
+                start_identifier=10,
+                stop_identifier=11,
+                voice_name='Voice 1'
+                )
+
+        Value of none is taken equal the entire score.
+
+        Return anchor or none.
+        '''
+        return self._anchor
+
+    @property
     def edge(self):
         '''Symbolic offset edge indicator specified by user.
         
@@ -208,25 +227,6 @@ class SymbolicOffset(AbjadObject):
         Return multiplier or none.
         '''
         return self._multiplier
-
-    @property
-    def anchor(self):
-        '''Symbolic offset anchor specified by user.
-        
-            >>> z(offset.anchor)
-            symbolictimetools.CounttimeComponentSelector(
-                anchor='red',
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11,
-                voice_name='Voice 1'
-                )
-
-        Value of none is taken equal the entire score.
-
-        Return anchor or none.
-        '''
-        return self._anchor
 
     @property
     def start_segment_identifier(self):

@@ -58,6 +58,14 @@ class Setting(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def anchor(self):
+        '''Setting anchor.
+
+        Return anchor or none.
+        '''
+        return self._anchor
+
+    @property
     def attribute(self):
         '''Setting attribute.
 
@@ -129,14 +137,6 @@ class Setting(AbjadObject):
         Return integer or none.
         '''
         return self._rotation
-
-    @property
-    def anchor(self):
-        '''Setting anchor.
-
-        Return anchor or none.
-        '''
-        return self._anchor
 
     @property
     def start_segment_name(self):
