@@ -249,5 +249,5 @@ class SymbolicTimespan(AbjadObject):
         if stop is not None:
             stop = durationtools.Offset(stop)
         if start is not None or stop is not None:
-            offset_modification = 'self._evaluate_set_offsets(original_offsets, {!r}, {!r})'.format(start, stop))
+            offset_modification = 'self._evaluate_set_offsets(original_offsets, {!r}, {!r})'.format(start, stop)
             self.offset_modifications.append(offset_modification)

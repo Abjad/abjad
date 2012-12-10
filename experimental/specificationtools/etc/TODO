@@ -68,15 +68,12 @@
 
 14. Remove these symbolictimetools classes:
         symbolictimetools.CountRatioOperator
-        symbolictimetools.OffsetOperator
-        symbolictimetools.RatioOperator
         symbolictimetools.TimeRatioOperator
-    Replace with these bound methods:
-        timespan.partition_by_ratio(is_time=True)
-        timespan.start_offset = start_offset
-        timespan.stop_offset = stop_offset
-        timespan.offsets = start_offset, stop_offset
-    Methods must be preserved as strings (as timespan attribute) to delay evaluation.
+    Replace with this bound methods:
+        selector.partition_by_ratio()
+        selector.partition_by_time_weighted_ratio()
+    Methods must be preserved as strings to delay evaluation.
+    Then remove symbolictimetools.RatioOperator.
 
 15. Remove the three command request methods:
         Specification.request_division_command()
@@ -103,16 +100,16 @@
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-18. Should keyword Selector(..., voice_name=None) 
-    be positional Selector(voice_name, ...) instead?
-    How to make this decision?
-    Depends on the tuning the meaning of it is that Selector models.
-    If voice_name is made positional then this parallels mandatory voice_name in all select method calls.
-    If voice_name remains keyword then something slightly other is being modeled.
-    Don't think this is right for ScoreSelector or SegmentSelector.
-    Maybe there's an intermediate VoiceSelector class?
+18. Should there be an intermedaite VoiceSelector class?
 
-19. Make Specification on longer inherit from SymbolicTimespan.
+19. Make Specification no longer inherit from SymbolicTimespan.
     Make Specification inherit from Abjad object instead.
 
 20. Change SymbolicTimespan.set_offsets() to SymbolicTimespan.adjust_offsets().
+
+21. Add some tets to show this:
+        middle_part = score_specification.select_segments('red', ('blue' + 1))
+        middle_part.adjust_offsets(start=(3, 4), stop=(-3, 4))
+        score_specification.set_divisions([(1, 16)])
+        score_specification.set_divisions([(3, 16)], selector=middle_part)
+    This will show anchoring to a segment selector that selects more than one segment.

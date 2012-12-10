@@ -256,7 +256,6 @@ Unstable packages (load manually)
    experimental/symbolictimetools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/symbolictimetools/DivisionSelector/DivisionSelector
    experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
-   experimental/symbolictimetools/OffsetOperator/OffsetOperator
    experimental/symbolictimetools/ScoreSelector/ScoreSelector
    experimental/symbolictimetools/SegmentSelector/SegmentSelector
    experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
