@@ -1,4 +1,4 @@
-lilypond_version = "2.15.23"
+lilypond_version = "2.16.1"
 
 markup_functions = {
     'abs-fontsize': ['number?', 'cheap-markup?'],
@@ -139,10 +139,10 @@ markup_functions = {
 
 markup_list_functions = {
     'override-lines': ['pair?', 'markup-list?'],
+    'table-of-contents': [ ],
+    'wordwrap-lines': ['markup-list?'],
+    'wordwrap-string-internal': ['boolean?', 'string?'],
+    'justified-lines': ['markup-list?'],
     'wordwrap-internal': ['boolean?', 'markup-list?'],
     'column-lines': ['markup-list?'],
-    'wordwrap-string-internal': ['boolean?', 'string?'],
-    'wordwrap-lines': ['markup-list?'],
-    'table-of-contents': [ ],
-    'justified-lines': ['markup-list?'],
 }

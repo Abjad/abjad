@@ -26,7 +26,7 @@
     ((func-name (car obj-pair))
     (music-func (cdr obj-pair))
     (func (ly:music-function-extract music-func))
-    (signature (object-property func 'music-function-signature))
+    (signature (ly:music-function-signature music-func)) 
     (car-signature-syms (list
       (if (pair? (car signature))
         (procedure-name (car (car signature)))
