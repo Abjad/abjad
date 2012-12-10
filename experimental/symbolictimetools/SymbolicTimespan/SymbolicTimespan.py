@@ -40,6 +40,21 @@ class SymbolicTimespan(AbjadObject):
         if not self._positional_argument_values == expr._positional_argument_values:
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
+
+    ### PRIVATE METHODS ###
+
+    def _evaluate_set_offsets(self, offsets, start_adjustment, stop_adjustment):
+        original_start_offset, original_stop_offset = offsets
+        new_start_offset, new_stop_offset = offsets
+        if start_adjustment is not None and 0 <= start_adjustment:
+            new_start_offset = original_start_offset + start_adjustment
+        elif start_adjustment is not None and start_adjustment < 0:
+            new_start_offset = original_stop_offset + start_adjustment
+        if stop_adjustment is not None and 0 <= stop_adjustment:
+            new_stop_offset = original_start_offset + stop_adjustment
+        elif stop_adjustment is not None and stop_adjustment < 0:
+            new_stop_offset = original_stop_offset + stop_adjustment
+        return new_start_offset, new_stop_offset
     
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -62,11 +77,9 @@ class SymbolicTimespan(AbjadObject):
 
     def apply_offset_modifications(self, offsets):
         for offset_modification in self.offset_modifications:
-            start_offset, stop_offset = offsets
-            offset_modification = offset_modification.replace('start_offset', repr(start_offset))
-            offset_modification = offset_modification.replace('stop_offset', repr(stop_offset))
-            #self._debug(offset_modification, 'offset modification')
-            offsets = eval(offset_modification, {'Offset': durationtools.Offset})
+            offset_modification = offset_modification.replace('original_offsets', repr(offsets))
+            self._debug(offset_modification, 'offset modification')
+            offsets = eval(offset_modification, {'Offset': durationtools.Offset, 'self': self})
         return offsets
         
     def divide_by_ratio(self, ratio):
@@ -227,17 +240,14 @@ class SymbolicTimespan(AbjadObject):
         return timespan
 
     def set_offsets(self, start=None, stop=None):
-        '''Set offsets on self.
+        '''Add delayed evaluation offset setting command to symbolic timespan.
         '''
-        from experimental import symbolictimetools
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        #return symbolictimetools.OffsetOperator(self.moniker, start_offset=start, stop_offset=stop)
-        if start is not None and durationtools.Offset(start) < 0:
-            self.offset_modifications.append('(stop_offset + Offset({!r}), stop_offset)'.format(start))
-        if stop is not None and durationtools.Offset(stop) < 0:
-            self.offset_modifications.append('(start_offset, stop_offset + Offset({!r}))'.format(stop))
-        if stop is not None and 0 <= durationtools.Offset(stop):
-            self.offset_modifications.append('(start_offset, start_offset + Offset({!r}))'.format(stop))
-        if start is not None and 0 <= durationtools.Offset(start):
-            self.offset_modifications.append('(start_offset + Offset({!r}), stop_offset)'.format(start))
+        if start is not None:
+            start = durationtools.Offset(start)
+        if stop is not None:
+            stop = durationtools.Offset(stop)
+        if start is not None or stop is not None:
+            offset_modification = 'self._evaluate_set_offsets(original_offsets, {!r}, {!r})'.format(start, stop))
+            self.offset_modifications.append(offset_modification)

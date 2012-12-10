@@ -114,3 +114,5 @@
 
 19. Make Specification on longer inherit from SymbolicTimespan.
     Make Specification inherit from Abjad object instead.
+
+20. Change SymbolicTimespan.set_offsets() to SymbolicTimespan.adjust_offsets().
