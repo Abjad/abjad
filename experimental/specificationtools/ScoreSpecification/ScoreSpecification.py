@@ -598,3 +598,13 @@ class ScoreSpecification(Specification):
         else:
             stop_offset = None
         return start_offset, stop_offset
+
+    def select(self):
+        '''Return score selector.
+        '''
+        return symbolictimetools.ScoreSelector()
+
+    def select_segments(self, start=None, stop=None):
+        '''Return segment selector.
+        '''
+        return symbolictimetools.SegmentSelector(start_identifier=start, stop_identifier=stop)

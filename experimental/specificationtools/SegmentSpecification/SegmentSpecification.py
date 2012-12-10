@@ -303,6 +303,12 @@ class SegmentSpecification(Specification):
     def get_offsets(self, score_specification, context_name=None):
         return self.offsets
 
+    def select(self):
+        '''Return segment selector.
+        '''
+        return symbolictimetools.SegmentSelector(
+            start_identifier=self.specification_name, stop_identifier=(self.specification_name, 1))
+
     def set_aggregate(self, source, contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
         persist=True):

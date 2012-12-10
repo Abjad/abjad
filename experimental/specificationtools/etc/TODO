@@ -114,6 +114,3 @@
 
 19. Make Specification on longer inherit from SymbolicTimespan.
     Make Specification inherit from Abjad object instead.
-
-20. Implement Specification.select() to return ScoreSelector or SegmentSelector.
-    Implement ScoreSpecification.select_segments() to return SegmentSelector.

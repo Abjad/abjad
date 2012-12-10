@@ -374,3 +374,7 @@ class Specification(SymbolicTimespan):
         return requesttools.MaterialRequest(
             'time_signatures', voice, anchor, time_relation=time_relation,
             index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+
+    @abc.abstractmethod
+    def select(self):
+        pass

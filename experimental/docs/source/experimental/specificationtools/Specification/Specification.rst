@@ -66,6 +66,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_time_signatures
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.select
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_background_measures
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
