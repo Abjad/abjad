@@ -43,7 +43,7 @@ class SymbolicTimespan(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_set_offsets(self, offsets, start_adjustment, stop_adjustment):
+    def _evaluate_adjust_offsets(self, offsets, start_adjustment, stop_adjustment):
         original_start_offset, original_stop_offset = offsets
         new_start_offset, new_stop_offset = offsets
         if start_adjustment is not None and 0 <= start_adjustment:
@@ -74,6 +74,19 @@ class SymbolicTimespan(AbjadObject):
         return self._offset_modifications
 
     ### PUBLIC METHODS ###
+
+    def adjust_offsets(self, start=None, stop=None):
+        '''Add delayed evaluation offset setting command to symbolic timespan.
+        '''
+        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
+        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
+        if start is not None:
+            start = durationtools.Offset(start)
+        if stop is not None:
+            stop = durationtools.Offset(stop)
+        if start is not None or stop is not None:
+            offset_modification = 'self._evaluate_adjust_offsets(original_offsets, {!r}, {!r})'.format(start, stop)
+            self.offset_modifications.append(offset_modification)
 
     def apply_offset_modifications(self, offsets):
         for offset_modification in self.offset_modifications:
@@ -238,16 +251,3 @@ class SymbolicTimespan(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
-
-    def set_offsets(self, start=None, stop=None):
-        '''Add delayed evaluation offset setting command to symbolic timespan.
-        '''
-        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
-        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        if start is not None:
-            start = durationtools.Offset(start)
-        if stop is not None:
-            stop = durationtools.Offset(stop)
-        if start is not None or stop is not None:
-            offset_modification = 'self._evaluate_set_offsets(original_offsets, {!r}, {!r})'.format(start, stop)
-            self.offset_modifications.append(offset_modification)

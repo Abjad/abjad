@@ -100,14 +100,12 @@
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-18. Should there be an intermedaite VoiceSelector class?
+18. Should there be an intermediate VoiceSelector class?
 
 19. Make Specification no longer inherit from SymbolicTimespan.
     Make Specification inherit from Abjad object instead.
 
-20. Change SymbolicTimespan.set_offsets() to SymbolicTimespan.adjust_offsets().
-
-21. Add some tets to show this:
+20. Add some tets to show this:
         middle_part = score_specification.select_segments('red', ('blue' + 1))
         middle_part.adjust_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
