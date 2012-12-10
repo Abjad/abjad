@@ -1,4 +1,4 @@
-from abjad.demos.windungen import WindungenScoreTemplate
+from abjad.demos.windungen.WindungenScoreTemplate import WindungenScoreTemplate
 
 
 

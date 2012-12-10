@@ -1,7 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.demos.windungen.WindungenScoreTemplate import WindungenScoreTemplate
 
 
 def make_windungen_score(
@@ -12,6 +11,8 @@ def make_windungen_score(
     pitches=('c', 'd', 'e'),
     staff_count=12,
     ):
+
+    from abjad.demos.windungen.WindungenScoreTemplate import WindungenScoreTemplate
 
     bandwidth = int(bandwidth)
     compress_reflections = bool(compress_reflections)
@@ -31,4 +32,4 @@ def make_windungen_score(
 
     all_pitches = sequencetools.repeat_sequence_to_length(length)
 
-    matrix = make_cyclic_matrix_for_rotation_by_bandwidth(
+    matrix = make_cyclic_matrix_for_rotation_by_bandwidth()
