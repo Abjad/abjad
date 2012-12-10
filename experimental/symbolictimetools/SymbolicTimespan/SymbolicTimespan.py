@@ -6,7 +6,6 @@ from abjad.tools import leaftools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental import helpertools
 
 
 class SymbolicTimespan(AbjadObject):
@@ -236,9 +235,8 @@ class SymbolicTimespan(AbjadObject):
 #        if self.moniker is None:
 #            result = symbolictimetools.ScoreSelector()
 #        elif isinstance(self.moniker, str):
-#            stop_identifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(self.specification_name))
 #            result = symbolictimetools.SegmentSelector(
-#                start_identifier=self.specification_name, stop_identifier=stop_identifier)
+#                start_identifier=self.specification_name, stop_identifier=(self.specification_name, 1))
 #        else:
 #            result = copy.deepcopy(self)
 #        if start is not None:

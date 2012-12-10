@@ -112,10 +112,8 @@
     Don't think this is right for ScoreSelector or SegmentSelector.
     Maybe there's an intermediate VoiceSelector class?
 
-19. Make SegmentSelection(stop_identifier=('red' + 1)) work.
-
-20. Make Specification on longer inherit from SymbolicTimespan.
+19. Make Specification on longer inherit from SymbolicTimespan.
     Make Specification inherit from Abjad object instead.
 
-21. Implement Specification.select() to return ScoreSelector or SegmentSelector.
+20. Implement Specification.select() to return ScoreSelector or SegmentSelector.
     Implement ScoreSpecification.select_segments() to return SegmentSelector.

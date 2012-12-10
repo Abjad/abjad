@@ -52,7 +52,7 @@ class SegmentSelector(Selector):
 
     Select segments up to and including ``'blue'``::
 
-        >>> symbolictimetools.SegmentSelector(stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        >>> symbolictimetools.SegmentSelector(stop_identifier=('blue', 1))
         SegmentSelector(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select segments from ``'red'`` up to but not including ``'blue'``::
@@ -62,16 +62,42 @@ class SegmentSelector(Selector):
 
     Select segments from ``'red'`` up to and including ``'blue'``::
 
-        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1"))
+        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=('blue', 1))
         SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
 
     Select three segments from ``'red'``::
 
-        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3"))
+        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=('red', 3))
         SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
 
     All segment selector properties are read-only.
     '''
+
+    ### INITIALIZER ###
+
+    def __init__(self,
+        anchor=None, start_identifier=None, stop_identifier=None, time_relation=None):
+        if isinstance(stop_identifier, tuple):
+            assert len(stop_identifier) == 2
+            stop_identifier = self._make_identifier_expression(*stop_identifier)
+        Selector.__init__(self, 
+            anchor=anchor,
+            start_identifier=start_identifier,
+            stop_identifier=stop_identifier,
+            voice_name=None,
+            time_relation=time_relation)
+
+    ### PRIVATE METHODS ###
+
+    def _make_identifier_expression(self, segment_name, addendum):
+        assert isinstance(segment_name, str)
+        assert isinstance(addendum, int)
+        if 0 < addendum:
+            return helpertools.SegmentIdentifierExpression('{!r} + {!r}'.format(segment_name, addendum))
+        else:
+            return helpertools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def start_segment_identifier(self):
@@ -79,7 +105,7 @@ class SegmentSelector(Selector):
         '''
         return self.start_identifier
 
-    ### PUBLIC PROPERTIES ###
+    ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
         '''Evaluate start and stop offsets of selector when applied
@@ -106,4 +132,4 @@ class SegmentSelector(Selector):
     def set_segment_identifier(self, segment_identifier):
         # assume selector selects only one segment
         self._start_identifier = segment_identifier
-        self._stop_idenetifier = helpertools.SegmentIdentifierExpression('{!r} + 1'.format(segment_identifier))
+        self._stop_idenetifier = self._make_identifier_expression(segment_identifier, 1)
