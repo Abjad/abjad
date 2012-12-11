@@ -88,6 +88,12 @@ class BackgroundMeasureSelector(Selector):
     Background measure symbolic timespans are immutable.
     '''
 
+    ### PRIVATE METHODS ###
+
+    def _evaluate_new_partition_by_counts(self, time_signatures, ratio, part):
+        raise NotImplementedError('implement me')
+        
+
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
@@ -105,6 +111,8 @@ class BackgroundMeasureSelector(Selector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
+        #time_signatures = segment_specification.time_signatures
+        #time_signatures = self.apply_flamingo_modifications(time_signatures)
         durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_before = durations[:start]
         duration_before = sum(durations_before)

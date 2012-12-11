@@ -30,6 +30,7 @@ class Selector(SymbolicTimespan):
         self._stop_identifier = stop_identifier
         self._voice_name = voice_name
         self._time_relation = time_relation
+        self._flamingo_modifications = []
 
     ### PRIVATE METHODS ###
 
@@ -124,6 +125,12 @@ class Selector(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
+    def apply_flamingo_modifications(self, stuff):
+        for flamingo_modification in self._flamingo_modifications:
+            flamingo_modification = flamingo_modification.replace('original_stuff', repr(stuff))
+            stuff = eval(flamingo_modification, {'Offset': durationtools.Offset, 'self': self})
+        return stuff
+
     def partition_by_ratio(self, ratio, is_count=True):
         '''Partition self by `ratio`.
 
@@ -146,8 +153,8 @@ class Selector(SymbolicTimespan):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            offset_modification = 'self._evaluate_new_partition_by_ratio(something, {!r}, {!r})'
-            offset_modification = offset_modification.format(ratio, part)
-            selector.offset_modifications.append(offset_modification)
+            flamingo_modification = 'self._evaluate_new_partition_by_ratio(something, {!r}, {!r})'
+            flamingo_modification = flamingo_modification.format(ratio, part)
+            selector._flamingo_modifications.append(flamingo_modification)
             result.append(selector)
         return tuple(result)
