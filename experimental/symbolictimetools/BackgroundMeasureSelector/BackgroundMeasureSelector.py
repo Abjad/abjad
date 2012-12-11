@@ -109,8 +109,10 @@ class BackgroundMeasureSelector(Selector):
 
         Return pair.
         '''
+        #self._debug(self.offset_modifications, 'offset modifications')
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         segment_name = segment_specification.segment_name
+        #self._debug(self.identifiers, 'identifiers')
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
@@ -123,6 +125,7 @@ class BackgroundMeasureSelector(Selector):
         duration_up_through = sum(durations_up_through)
         stop_offset = durationtools.Offset(duration_up_through)
         stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
+        #self._debug((start_offset, stop_offset), 'offsets')
         return start_offset, stop_offset
 
     def get_selected_objects(self, score_specification, context_name):
@@ -131,9 +134,16 @@ class BackgroundMeasureSelector(Selector):
     
         Ignore `context_name`.
 
-        Return list.
+        Return list of nonreduced fractions.
         '''
-        raise NotImplementedError
+        segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        segment_name = segment_specification.segment_name
+        start, stop = self.identifiers
+        start = start or 0
+        stop = stop or None
+        time_signatures = segment_specification.time_signatures
+        time_signatures = time_signatures[start:stop]
+        return time_signatures
 
     def set_segment_identifier(self, segment_identifier):
         '''Set anchor to `segment_identifier`.

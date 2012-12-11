@@ -105,8 +105,13 @@
 19. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
 
 20. Add some tets to show this:
-        middle_part = score_specification.select_segments('red', ('blue' + 1))
-        middle_part.adjust_offsets(start=(3, 4), stop=(-3, 4))
+        segments = score_specification.select_segments('red', ('blue' + 1))
+        middle_part = segments.adjust_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         score_specification.set_divisions([(3, 16)], selector=middle_part)
     This will show anchoring to a segment selector that selects more than one segment.
+
+21. Add some tests to show this:
+        segments = score_specification.select_segments('red', ('blue' + 1))
+        middle_measures = segments.select_background_measures(3, 6)
+    This will show selecting background measures from more than one segment.
