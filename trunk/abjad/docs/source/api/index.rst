@@ -2126,6 +2126,7 @@ Internal packages
 
    tools/developerscripttools/AbjDevScript/AbjDevScript
    tools/developerscripttools/AbjGrepScript/AbjGrepScript
+   tools/developerscripttools/AbjUpScript/AbjUpScript
    tools/developerscripttools/BuildApiScript/BuildApiScript
    tools/developerscripttools/CleanScript/CleanScript
    tools/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
