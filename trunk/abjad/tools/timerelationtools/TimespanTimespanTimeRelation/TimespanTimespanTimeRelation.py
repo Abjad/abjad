@@ -170,7 +170,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         if timespan_2 is None:
             timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
-            raise ValueError('time relation is not fully loaded.')
+            raise ValueError('time relation is not fully loaded: {!r}.'.format(self))
 
         timespan_1 = timerelationtools.expr_to_timespan(timespan_1)
         timespan_2 = timerelationtools.expr_to_timespan(timespan_2)
@@ -243,7 +243,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
         '''
         return self.timespan.stop_segment_identifier
 
-    # TODO: eventually remove in favor of timespan_1
+    # TODO: remove me
+    #       Use timespan_1 instead
     @property
     def timespan(self):
         '''SymbolicTimespan of time relation.
@@ -260,6 +261,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         '''
         return self.timespan_1.get_duration(score_specification, context_name)
 
+    # TODO: remove this
     def set_segment_identifier(self, segment_identifier):
         '''Delegate to ``self.timespan_1.set_segment_identifier()``.
         '''
