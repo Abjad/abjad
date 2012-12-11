@@ -5,6 +5,9 @@ def test_ly_environment_01():
     assert ly.context_properties is not None
     print ly.context_properties
 
+    assert ly.contexts is not None
+    print ly.contexts
+
     assert ly.current_module is not None
     print ly.current_module
 

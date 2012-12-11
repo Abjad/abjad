@@ -1,6 +1,4 @@
-\version "2.16.1"
-
-#(begin
+(begin
 
   (define (sort-symbol-list list)
     "sort a list of symbols"
@@ -53,7 +51,7 @@
     "format a string-list as a Python set"
     (string-append
       "set("
-      list
+      list 
       ")"))
 
   (define (format-dict-entry k v indent)

@@ -1,6 +1,6 @@
 \version "2.16.1"
 
-\include "helpers.ly"
+#(load "helpers.scm")
 
 #(begin
 

@@ -5,6 +5,9 @@ all: context_properties current_module engravers grob_interfaces interface_prope
 context_properties: context_properties.ly
 	lilypond -dno-print-pages context_properties.ly > ../context_properties.py
 
+contexts: contexts.ly
+	lilypond -dno-print-pages contexts.ly > ../contexts.py
+
 current_module: current_module.ly
 	lilypond -dno-print-pages current_module.ly > ../current_module.py
 
