@@ -262,7 +262,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/symbolictimetools/BackgroundMeasureSelector/BackgroundMeasureSelector
-   experimental/symbolictimetools/CountRatioOperator/CountRatioOperator
    experimental/symbolictimetools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/symbolictimetools/DivisionSelector/DivisionSelector
    experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan

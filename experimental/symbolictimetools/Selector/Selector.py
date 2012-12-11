@@ -158,12 +158,9 @@ class Selector(SymbolicTimespan):
         '''
         from experimental import symbolictimetools
         result = []
+        assert not is_count
         for part in range(len(ratio)):
-            if is_count:
-                raise Exception('deprecated')
-                result.append(symbolictimetools.CountRatioOperator(self, ratio, part))
-            else:
-                result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
+            result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
         return tuple(result)
 
     def new_partition_by_ratio(self, ratio):
