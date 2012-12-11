@@ -148,7 +148,7 @@ class SymbolicTimespan(AbjadObject):
         '''
         pass
 
-    def select_background_measures(self, voice, start=None, stop=None, time_relation=None):
+    def select_background_measures(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment 'red'::
 
             >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
@@ -157,15 +157,14 @@ class SymbolicTimespan(AbjadObject):
 
         ::
 
-            >>> timespan = red_segment.select_background_measures('Voice 1', stop=5)
+            >>> timespan = red_segment.select_background_measures(stop=5)
 
         ::
 
             >>> z(timespan)
             symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
-                stop_identifier=5,
-                voice_name='Voice 1'
+                stop_identifier=5
                 )
 
         Return background measure symbolic timespan.
@@ -178,8 +177,7 @@ class SymbolicTimespan(AbjadObject):
             anchor=self.moniker,
             start_identifier=start, 
             stop_identifier=stop, 
-            time_relation=time_relation,
-            voice_name=voice)
+            time_relation=time_relation)
         return timespan
 
     def select_divisions(self, voice, start=None, stop=None, time_relation=None):

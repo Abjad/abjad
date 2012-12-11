@@ -8,7 +8,7 @@ def test_BackgroundMeasureSelector__get_selected_objects_01():
     score_specification = specificationtools.ScoreSpecification(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    measures = red_segment.select_background_measures('Voice 1', )
+    measures = red_segment.select_background_measures()
     score = score_specification.interpret()
     
     result = measures.get_selected_objects(score_specification, 'Voice 1')

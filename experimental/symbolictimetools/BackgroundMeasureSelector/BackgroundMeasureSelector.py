@@ -18,8 +18,8 @@ class BackgroundMeasureSelector(Selector):
 
     Select all measures in score::
 
-        >>> score_specification.select_background_measures('Voice 1')
-        BackgroundMeasureSelector(voice_name='Voice 1')
+        >>> score_specification.select_background_measures()
+        BackgroundMeasureSelector()
 
     Select measures from ``3`` forward::
 

@@ -177,7 +177,7 @@ class Specification(SymbolicTimespan):
         Example 3. Request division command active at ``1/4`` 
         after start of measure ``8``::
 
-            >>> selector = red_segment.select_background_measures('Voice 1', 8, 9)
+            >>> selector = red_segment.select_background_measures(8, 9)
             >>> offset = durationtools.Offset(1, 4)
 
         ::
@@ -194,8 +194,7 @@ class Specification(SymbolicTimespan):
                     anchor=symbolictimetools.BackgroundMeasureSelector(
                         anchor='red',
                         start_identifier=8,
-                        stop_identifier=9,
-                        voice_name='Voice 1'
+                        stop_identifier=9
                         ),
                     addendum=durationtools.Offset(1, 4)
                     )

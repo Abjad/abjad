@@ -20,7 +20,7 @@ class CountRatioOperator(RatioOperator):
 
     ::
 
-        >>> measures = red_segment.select_background_measures('Voice 1', )
+        >>> measures = red_segment.select_background_measures()
 
     ::
 
@@ -31,8 +31,7 @@ class CountRatioOperator(RatioOperator):
         >>> z(timespan)
         symbolictimetools.CountRatioOperator(
             symbolictimetools.BackgroundMeasureSelector(
-                anchor='red',
-                voice_name='Voice 1'
+                anchor='red'
                 ),
             mathtools.Ratio(1, 1),
             0
@@ -54,7 +53,7 @@ class CountRatioOperator(RatioOperator):
         r'''Evaluate start and stop offsets of symbolic timespan when applied
         to `context_name` in `score_specification`.
 
-        Return offset.
+        Return offset pair.
         '''
         if start_segment_name is None:
             segment_specification = score_specification.get_start_segment_specification(self)

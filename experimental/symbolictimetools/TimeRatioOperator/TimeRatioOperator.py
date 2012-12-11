@@ -20,7 +20,7 @@ class TimeRatioOperator(RatioOperator):
 
     ::
 
-        >>> measures = red_segment.select_background_measures('Voice 1', )
+        >>> measures = red_segment.select_background_measures()
 
     ::
 
@@ -31,8 +31,7 @@ class TimeRatioOperator(RatioOperator):
         >>> z(timespan)
         symbolictimetools.TimeRatioOperator(
             symbolictimetools.BackgroundMeasureSelector(
-                anchor='red',
-                voice_name='Voice 1'
+                anchor='red'
                 ),
             mathtools.Ratio(1, 1),
             0
