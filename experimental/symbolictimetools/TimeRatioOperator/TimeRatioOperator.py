@@ -55,7 +55,8 @@ class TimeRatioOperator(RatioOperator):
         Return offset.
         '''
         if isinstance(self.anchor, str):
-            start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
+            start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
+                self.anchor)
             anchor_duration = stop_offset - start_offset
         else:
             anchor_duration = self.anchor.get_duration(score_specification, context_name)

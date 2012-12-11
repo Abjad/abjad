@@ -600,11 +600,21 @@ class ScoreSpecification(Specification):
         return start_offset, stop_offset
 
     def select(self):
-        '''Return score selector.
+        '''Select score::
+
+            >>> score_specification.select()
+            ScoreSelector()
+
+        Return score selector.
         '''
         return symbolictimetools.ScoreSelector()
 
     def select_segments(self, start=None, stop=None):
-        '''Return segment selector.
+        '''Select segments::
+
+            >>> score_specification.select_segments('red', ('red', 3))
+            SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
+
+        Return segment selector.
         '''
         return symbolictimetools.SegmentSelector(start_identifier=start, stop_identifier=stop)

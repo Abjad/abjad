@@ -101,6 +101,15 @@
     So this action item probably means to remove all request() methods in favor of select() methods.
 
 18. Should there be an intermediate VoiceSelector class?
+    It seems like these selectors should take a mandatory voice name:
+        CounttimeComponentSelector
+        DivisionSelector
+    Whereas it seems like these selectors should not take either a voice name or context name at all:
+        BackgroundMeasureSelector
+        ScoreSelector
+        SegmentSelector
+    So if there should be a VoiceSelector class then only CounttimeComponentSelector and DivisionSelector
+    should inherit from it.
 
 19. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
 
@@ -115,3 +124,17 @@
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_measures = segments.select_background_measures(3, 6)
     This will show selecting background measures from more than one segment.
+
+22. After removing CountRatioOperator class:
+    the signature self.get_offsets(score_specification, context_name, start_segment_name=None)
+    can change to self.get_offsets(score_specification, context_name) everywhere in the system.
+
+23. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
+
+24. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+    Also audit to make sure that all selector doc string examples are made with
+    reference to instantiated score and segment specifications (rather than initialized by hand).
+
+25. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
+    Then use this test to make sure that time relations passed into all selectors
+    everywhere in the system are fully unloaded.

@@ -6,14 +6,20 @@ from experimental.symbolictimetools.Selector import Selector
 class BackgroundMeasureSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Select all measures in score::
+    ::
 
         >>> from experimental import *
 
     ::
 
-        >>> symbolictimetools.BackgroundMeasureSelector()
-        BackgroundMeasureSelector()
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    Select all measures in score::
+
+        >>> score_specification.select_background_measures('Voice 1')
+        BackgroundMeasureSelector(voice_name='Voice 1')
 
     Select measures from ``3`` forward::
 
@@ -55,43 +61,35 @@ class BackgroundMeasureSelector(Selector):
 
     Select all the measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> expr = helpertools.SegmentIdentifierExpression("'red' + 3")
-        >>> selector = symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=expr)
-        >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=selector)
+        >>> segments = score_specification.select_segments('red', ('red', 3))
 
     ::
     
-        >>> selector = symbolictimetools.BackgroundMeasureSelector(time_relation=time_relation)
+        >>> selector = symbolictimetools.BackgroundMeasureSelector(anchor=segments)
 
     ::
 
         >>> z(selector)
         symbolictimetools.BackgroundMeasureSelector(
-            time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=symbolictimetools.SegmentSelector(
-                    start_identifier='red',
-                    stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                    )
+            anchor=symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                 )
             )
 
     Select the last two measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> selector = symbolictimetools.BackgroundMeasureSelector(time_relation=time_relation, start_identifier=-2)
+        >>> selector = symbolictimetools.BackgroundMeasureSelector(anchor=segments, start_identifier=-2)
 
     ::
 
         >>> z(selector)
         symbolictimetools.BackgroundMeasureSelector(
-            start_identifier=-2,
-            time_relation=timerelationtools.TimespanTimespanTimeRelation(
-                'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=symbolictimetools.SegmentSelector(
-                    start_identifier='red',
-                    stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                    )
-                )
+            anchor=symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
+                ),
+            start_identifier=-2
             )
 
     Background measure symbolic timespans are immutable.
@@ -109,10 +107,8 @@ class BackgroundMeasureSelector(Selector):
 
         Return pair.
         '''
-        #self._debug(self.offset_modifications, 'offset modifications')
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         segment_name = segment_specification.segment_name
-        #self._debug(self.identifiers, 'identifiers')
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None

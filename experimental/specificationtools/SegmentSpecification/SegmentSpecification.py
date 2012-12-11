@@ -304,7 +304,12 @@ class SegmentSpecification(Specification):
         return self.offsets
 
     def select(self):
-        '''Return segment selector.
+        '''Select segment::
+
+            >>> red_segment.select()
+            SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 1"))
+
+        Return segment selector.
         '''
         return symbolictimetools.SegmentSelector(
             start_identifier=self.specification_name, stop_identifier=(self.specification_name, 1))
