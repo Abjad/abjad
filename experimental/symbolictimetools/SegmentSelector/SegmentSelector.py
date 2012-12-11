@@ -107,7 +107,7 @@ class SegmentSelector(Selector):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name, start_segment_name=None):
+    def get_offsets(self, score_specification, context_name):
         '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.
 
@@ -116,9 +116,7 @@ class SegmentSelector(Selector):
         Return offset.
         '''
         offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
-        #self._debug(offsets, 'offsets')
         offsets = self.apply_offset_modifications(offsets)
-        #self._debug(offsets, 'offsets', blank=True)
         return offsets
 
     def get_selected_objects(self, score_specification, context_name):

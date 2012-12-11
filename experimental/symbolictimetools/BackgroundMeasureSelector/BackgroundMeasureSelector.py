@@ -91,7 +91,7 @@ class BackgroundMeasureSelector(Selector):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name, start_segment_name=None):
+    def get_offsets(self, score_specification, context_name):
         r'''Evaluate start and stop offsets when selector is applied
         to `score_specification`.
 
@@ -99,9 +99,6 @@ class BackgroundMeasureSelector(Selector):
 
         First slice according to self.start, self.stop if set.
         Then apply any modifications in flamingo modifications stack.
-
-        TODO: remove start_segment_name=None from signature after
-        CountRatioOperator class is removed from system.
 
         Return pair.
         '''

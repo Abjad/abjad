@@ -46,7 +46,7 @@ class DivisionSelector(Selector):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, voice_name, start_segment_name=None):
+    def get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selecto when applied
         to `voice_name` in `score_specification`.
 

@@ -47,7 +47,7 @@ class TimeRatioOperator(RatioOperator):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name, start_segment_name=None):
+    def get_offsets(self, score_specification, context_name):
         r'''Evaluate start and stop offsets of symbolic timespan when applied
         to `context_name` in `score_specification`.
 

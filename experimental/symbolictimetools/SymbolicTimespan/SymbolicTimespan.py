@@ -140,7 +140,7 @@ class SymbolicTimespan(AbjadObject):
         return stop_offset - start_offset
 
     @abc.abstractmethod
-    def get_offsets(self, score_specification, context_name, start_segment_name=None):
+    def get_offsets(self, score_specification, context_name):
         '''Get start offset and stop offset of symbolic timespan
         when applied to `context_name` in `score_specification`.
 

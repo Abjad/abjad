@@ -106,7 +106,7 @@ class CounttimeComponentSelector(Selector):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, voice_name, start_segment_name=None):
+    def get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of symbolic timespan when applied
         to `voice_name` in `score_specification`.
 

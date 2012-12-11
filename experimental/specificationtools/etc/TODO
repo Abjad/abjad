@@ -135,20 +135,16 @@
         measure = middle_third_of_measures.select(0, 1)
     This will show slice selection following after partition.
 
-25. After removing CountRatioOperator class:
-    the signature self.get_offsets(score_specification, context_name, start_segment_name=None)
-    can change to self.get_offsets(score_specification, context_name) everywhere in the system.
+25. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
 
-26. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
-
-27. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+26. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-28. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
+27. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
     Then use this test to make sure that time relations passed into all selectors
     everywhere in the system are fully unloaded.
 
-29. Remove BackgroundMeasureSelector.get_selected_objects().
+28. Remove BackgroundMeasureSelector.get_selected_objects().
     Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
     instead.

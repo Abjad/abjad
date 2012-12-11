@@ -751,8 +751,7 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_material_request.anchor)
         else:
             source_score_offsets = rhythm_material_request.anchor.get_offsets(
-                self.score_specification, rhythm_material_request.voice_name, 
-                start_segment_name=rhythm_material_request.start_segment_name)
+                self.score_specification, rhythm_material_request.voice_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
@@ -792,7 +791,7 @@ class ConcreteInterpreter(Interpreter):
                 single_context_setting.anchor)
         else:
             start_offset, stop_offset = single_context_setting.anchor.get_offsets(
-                self.score_specification, voice_name, start_segment_name=single_context_setting.start_segment_name)
+                self.score_specification, voice_name)
         #self._debug((start_offset, stop_offset), 'anchor offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
