@@ -74,11 +74,15 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.get_selected_objects
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.new_partition_by_ratio
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.partition_by_ratio
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.partition_by_ratio
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.partition_by_ratio_of_lengths
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.partition_by_ratio_of_weights
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
