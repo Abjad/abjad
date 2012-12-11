@@ -1,6 +1,6 @@
 lilypond_version = "2.16.1"
 
-engravers = [
+engravers = set([
     "Accidental_engraver",
     "Ambitus_engraver",
     "Arpeggio_engraver",
@@ -135,4 +135,4 @@ engravers = [
     "Vaticana_ligature_engraver",
     "Vertical_align_engraver",
     "Volta_engraver",
-]
+])

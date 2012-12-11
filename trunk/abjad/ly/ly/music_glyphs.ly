@@ -7,12 +7,13 @@
   (define (format-musicglyphs)
     (string-append
       "music_glyphs = "
-      (format-string-list
-        (sort
-          (delete ".notdef"
-            (ly:otf-glyph-list (ly:system-font-load "emmentaler-20")))
-          string<)
-        0)
+      (format-string-set
+        (format-string-list
+          (sort
+            (delete ".notdef"
+              (ly:otf-glyph-list (ly:system-font-load "emmentaler-20")))
+            string<)
+          0))
       "\n"))
 
   ;;; output

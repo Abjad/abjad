@@ -1,6 +1,6 @@
 lilypond_version = "2.16.1"
 
-music_glyphs = [
+music_glyphs = set([
     "accidentals.doublesharp",
     "accidentals.flat",
     "accidentals.flat.arrowboth",
@@ -563,4 +563,4 @@ music_glyphs = [
     "two",
     "z",
     "zero",
-]
+])

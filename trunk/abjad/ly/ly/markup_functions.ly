@@ -34,10 +34,10 @@
     (signature-syms (map (lambda (x) (procedure-name x)) signature))
     (signature-string
       (if (< 0 (length signature))
-        (format "[~A]" (string-join (map (lambda (x)
+        (format "(~A,)" (string-join (map (lambda (x)
           (format "'~A'" x))
           signature-syms) ", "))
-        "[ ]")))
+        "()")))
     (display (format "    '~A': ~A,\n" proc-name signature-string))))
 
 
@@ -48,7 +48,9 @@
         (hash-table->alist markup-functions-by-category))))))
 
 
-#(define all-markup-list-functions (map car (hash-table->alist markup-list-functions)))
+#(define all-markup-list-functions (sort-procedures
+  (map car 
+    (hash-table->alist markup-list-functions))))
 
 
 #(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))

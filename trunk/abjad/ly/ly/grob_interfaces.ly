@@ -23,7 +23,7 @@
                  string<)
                 4)
                4)))
-       "grob-interfaces = {\n"
+       "grob_interfaces = {\n"
        (sort-symbol-list (alist-keys all-grob-descriptions)))
      "}\n"))
 

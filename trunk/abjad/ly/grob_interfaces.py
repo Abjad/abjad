@@ -1,6 +1,6 @@
 lilypond_version = "2.16.1"
 
-grob-interfaces = {
+grob_interfaces = {
     "Accidental": [
         "accidental-interface",
         "font-interface",

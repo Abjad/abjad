@@ -31,7 +31,7 @@
         (memq prop all-user-grob-properties)))
   
   (define (format-string-list list indent)
-    "formats a list of strings as a python list"
+    "formats a list of strings as a Python list"
     (cond
      ((null? list) "[]")
      (else 
@@ -49,6 +49,13 @@
        (make-string indent #\space)
        "]"))))
   
+  (define (format-string-set list)
+    "format a string-list as a Python set"
+    (string-append
+      "set("
+      list
+      ")"))
+
   (define (format-dict-entry k v indent)
     "formats a dictionary entry: key and value are string"
     (string-append
