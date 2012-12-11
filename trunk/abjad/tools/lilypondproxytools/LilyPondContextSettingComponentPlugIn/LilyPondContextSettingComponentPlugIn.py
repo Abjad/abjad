@@ -8,14 +8,6 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
     LilyPond context setting namespace.
     '''
 
-    _known_lilypond_contexts = set([
-        'choir_staff', 'chord_names', 'cue_voice', 'devnull', 'drum_staff',
-        'drum_voice', 'dynamics', 'figured_bass', 'fret_boards', 'global',
-        'grand_staff', 'gregorian_transcription_staff', 'gregorian_transcription_voice',
-        'lyrics', 'mensural_staff', 'mensural_voice', 'note_names', 'piano_staff',
-        'rhythmic_staff', 'score', 'staff', 'staff_group', 'tab_staff',
-        'tab_voice', 'vaticana_staff', 'vaticana_voice', 'voice'])
-
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
@@ -25,7 +17,7 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
             except KeyError:
                 raise AttributeError('"%s" object has no attribute: "%s".' % (
                     self.__class__.__name__, name))
-        elif name in type(self)._known_lilypond_contexts:
+        elif name in self._get_known_lilypond_context_names():
             try:
                 return vars(self)['_' + name]
             except KeyError:

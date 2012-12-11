@@ -1,6 +1,7 @@
 lilypond_version = "2.16.1"
 
-contexts = {    "ChoirStaff": {
+contexts = {
+    "ChoirStaff": {
         "accepts": set([
             "Staff",
             "StaffGroup",

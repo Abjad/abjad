@@ -91,7 +91,7 @@
 #
   (display (string-append
     (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
-    "contexts = {"
+    "contexts = {\n"
     (all-contexts-doc)
     "}\n"))
 
