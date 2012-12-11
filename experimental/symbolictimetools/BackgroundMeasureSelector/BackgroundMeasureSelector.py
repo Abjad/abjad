@@ -16,60 +16,52 @@ class BackgroundMeasureSelector(Selector):
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Select all measures in score::
+    Select all measures that start during score::
 
         >>> score_specification.select_background_measures()
         BackgroundMeasureSelector()
 
-    Select measures from ``3`` forward::
+    Select measures that start during score from ``3`` forward::
 
-        >>> symbolictimetools.BackgroundMeasureSelector(start_identifier=3)
+        >>> score_specification.select_background_measures(start=3)
         BackgroundMeasureSelector(start_identifier=3)
 
-    Select measures up to but not including ``6``::
+    Select measures that start during score up to but not including ``6``::
 
-        >>> symbolictimetools.BackgroundMeasureSelector(stop_identifier=6)
+        >>> score_specification.select_background_measures(stop=6)
         BackgroundMeasureSelector(stop_identifier=6)
 
     Select measures from ``3`` up to but not including ``6``::
 
-        >>> symbolictimetools.BackgroundMeasureSelector(start_identifier=3, stop_identifier=6)
+        >>> score_specification.select_background_measures(start=3, stop=6)
         BackgroundMeasureSelector(start_identifier=3, stop_identifier=6)
 
     Select all measures starting during segment ``'red'``::
 
-        >>> selector = symbolictimetools.BackgroundMeasureSelector(anchor='red')
-
-    ::
-
-        >>> z(selector)
-        symbolictimetools.BackgroundMeasureSelector(
-            anchor='red'
-            )
+        >>> red_segment.select_background_measures()
+        BackgroundMeasureSelector(anchor='red')
 
     Select the last two measures during segment ``'red'``::
 
-        >>> selector = symbolictimetools.BackgroundMeasureSelector(anchor='red', start_identifier=-2)
+        >>> measures = red_segment.select_background_measures(start=-2)
 
     ::
     
-        >>> z(selector)
+        >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor='red',
             start_identifier=-2
             )
 
-    Select all the measures that start during the three contiguous segments starting with ``'red'``::
+    Select all the measures that start during the three contiguous segments 
+    starting with ``'red'``::
 
         >>> segments = score_specification.select_segments('red', ('red', 3))
-
-    ::
-    
-        >>> selector = symbolictimetools.BackgroundMeasureSelector(anchor=segments)
+        >>> measures = segments.select_background_measures()
 
     ::
 
-        >>> z(selector)
+        >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
                 start_identifier='red',
@@ -77,13 +69,14 @@ class BackgroundMeasureSelector(Selector):
                 )
             )
 
-    Select the last two measures that start during the three contiguous segments starting with ``'red'``::
+    Select the last two measures that start during the three contiguous segments 
+    starting with ``'red'``::
 
-        >>> selector = symbolictimetools.BackgroundMeasureSelector(anchor=segments, start_identifier=-2)
+        >>> measures = segments.select_background_measures(start=-2)
 
     ::
 
-        >>> z(selector)
+        >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
                 start_identifier='red',

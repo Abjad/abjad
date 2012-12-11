@@ -100,16 +100,10 @@
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-18. Should there be an intermediate VoiceSelector class?
-    It seems like these selectors should take a mandatory voice name:
+18. These two selectors should implement an initializer that forces a voice_name attribute:
         CounttimeComponentSelector
         DivisionSelector
-    Whereas it seems like these selectors should not take either a voice name or context name at all:
-        BackgroundMeasureSelector
-        ScoreSelector
-        SegmentSelector
-    So if there should be a VoiceSelector class then only CounttimeComponentSelector and DivisionSelector
-    should inherit from it.
+    The other selectors should implement initializers that do not allow a voice_name attribute at all.
 
 19. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
 
