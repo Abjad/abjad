@@ -102,8 +102,7 @@
 
 18. Should there be an intermediate VoiceSelector class?
 
-19. Make Specification no longer inherit from SymbolicTimespan.
-    Make Specification inherit from Abjad object instead.
+19. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
 
 20. Add some tets to show this:
         middle_part = score_specification.select_segments('red', ('blue' + 1))
