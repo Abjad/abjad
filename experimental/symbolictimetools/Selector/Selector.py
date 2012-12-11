@@ -172,24 +172,13 @@ class Selector(SymbolicTimespan):
             elements, start_offset = eval(flamingo_modification, evaluation_context)
         return elements, start_offset
 
-    def partition_by_ratio(self, ratio, is_count=True):
-        '''Partition by ratio.
-
-        Return tuple timespans.
-        '''
-        from experimental import symbolictimetools
-        result = []
-        assert not is_count
-        for part in range(len(ratio)):
-            result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
-        return tuple(result)
-
     def partition_by_ratio_of_lengths(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            flamingo_modification = 'self._evaluate_partition_by_ratio_of_lengths(elements, start_offset, {!r}, {!r})'
+            flamingo_modification = \
+                'self._evaluate_partition_by_ratio_of_lengths(elements, start_offset, {!r}, {!r})'
             flamingo_modification = flamingo_modification.format(ratio, part)
             selector._flamingo_modifications.append(flamingo_modification)
             result.append(selector)
