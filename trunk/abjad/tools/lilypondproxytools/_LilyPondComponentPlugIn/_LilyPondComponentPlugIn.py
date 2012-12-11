@@ -34,22 +34,3 @@ class _LilyPondComponentPlugIn(AbjadObject):
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
-    ### PRIVATE METHODS ###
-
-    def _get_known_lilypond_context_names(self):
-        from abjad import ly
-        return set([stringtools.uppercamelcase_to_underscore_delimited_lowercase(x)
-            for x in ly.contexts])
-
-    def _get_known_lilypond_grob_names(self):
-        from abjad import ly
-        return set([stringtools.uppercamelcase_to_underscore_delimited_lowercase(x)
-            for x in ly.grob_interfaces])
-
-    def _get_lilypond_grob_properties(self, grob_name):
-        from abjad import ly
-        grob_name = stringtools.underscore_delimited_lowercase_to_uppercamelcase(grob_name)
-        properties = []
-        for interface in ly.grob_interfaces[grob_name]:
-            properties.extend(ly.interface_properties[interface])
-        return set([x.replace('-', '_') for x in properties])

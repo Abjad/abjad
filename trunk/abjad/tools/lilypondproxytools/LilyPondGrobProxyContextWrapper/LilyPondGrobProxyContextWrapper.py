@@ -11,10 +11,11 @@ class LilyPondGrobProxyContextWrapper(object):
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
+        from abjad import ly
         try:
             return vars(self)[name]
         except KeyError:
-            if name in self._get_known_lilypond_grob_names():
+            if stringtools.underscore_delimited_lowercase_to_uppercamelcase(name) in ly.grob_interfaces:
                 vars(self)[name] = LilyPondGrobProxy()
                 return vars(self)[name]
             else:
@@ -23,11 +24,4 @@ class LilyPondGrobProxyContextWrapper(object):
 
     def __repr__(self):
         return '%s()' % self.__class__.__name__
-
-    ### PRIVATE METHODS ###
-
-    def _get_known_lilypond_grob_names(self):
-        from abjad import ly
-        return set([stringtools.uppercamelcase_to_underscore_delimited_lowercase(x)
-            for x in ly.grob_interfaces])
 

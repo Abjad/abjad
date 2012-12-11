@@ -1,3 +1,4 @@
+from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 from abjad.tools.lilypondproxytools.LilyPondGrobProxyContextWrapper import LilyPondGrobProxyContextWrapper
 from abjad.tools.lilypondproxytools._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
@@ -12,29 +13,30 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
+        from abjad import ly
         if name.startswith('_'):
             try:
                 return vars(self)[name]
             except KeyError:
                 raise AttributeError('"%s" object has no attribute: "%s".' % (
                     self.__class__.__name__, name))
-        #elif name in type(self)._known_lilypond_context_names:
-        elif name in self._get_known_lilypond_context_names():
-            try:
-                return vars(self)['_' + name]
-            except KeyError:
-                context = LilyPondGrobProxyContextWrapper()
-                vars(self)['_' + name] = context
-                return context
-        #elif name in type(self)._known_lilypond_grob_names:
-        elif name in self._get_known_lilypond_grob_names():
-            try:
-                return vars(self)[name]
-            except KeyError:
-                vars(self)[name] = LilyPondGrobProxy()
-                return vars(self)[name]
         else:
-            return vars(self)[name]
+            camel_name = stringtools.underscore_delimited_lowercase_to_uppercamelcase(name)
+            if camel_name in ly.contexts:
+                try:
+                    return vars(self)['_' + name]
+                except KeyError:
+                    context = LilyPondGrobProxyContextWrapper()
+                    vars(self)['_' + name] = context
+                    return context
+            elif camel_name in ly.grob_interfaces:
+                try:
+                    return vars(self)[name]
+                except KeyError:
+                    vars(self)[name] = LilyPondGrobProxy()
+                    return vars(self)[name]
+            else:
+                return vars(self)[name]
 
     def __repr__(self):
         body_string = ' '

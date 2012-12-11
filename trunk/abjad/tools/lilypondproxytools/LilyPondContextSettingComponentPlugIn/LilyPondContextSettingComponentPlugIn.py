@@ -1,3 +1,4 @@
+from abjad.tools import stringtools
 from abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy import LilyPondContextProxy
 from abjad.tools.lilypondproxytools._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 
@@ -11,13 +12,14 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
+        from abjad import ly
         if name.startswith('_'):
             try:
                 return vars(self)[name]
             except KeyError:
                 raise AttributeError('"%s" object has no attribute: "%s".' % (
                     self.__class__.__name__, name))
-        elif name in self._get_known_lilypond_context_names():
+        elif stringtools.underscore_delimited_lowercase_to_uppercamelcase(name) in ly.contexts:
             try:
                 return vars(self)['_' + name]
             except KeyError:
