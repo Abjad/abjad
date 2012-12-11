@@ -36,7 +36,7 @@ class Selector(SymbolicTimespan):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_partition_by_ratio_of_lengths(self, elements, original_start_offset, ratio, part):
+    def _evaluate_partition_by_ratio(self, elements, original_start_offset, ratio, part):
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
         selected_part = parts[part]
         parts_before = parts[:part]
@@ -172,13 +172,13 @@ class Selector(SymbolicTimespan):
             elements, start_offset = eval(flamingo_modification, evaluation_context)
         return elements, start_offset
 
-    def partition_by_ratio_of_lengths(self, ratio):
+    def partition_by_ratio(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             flamingo_modification = \
-                'self._evaluate_partition_by_ratio_of_lengths(elements, start_offset, {!r}, {!r})'
+                'self._evaluate_partition_by_ratio(elements, start_offset, {!r}, {!r})'
             flamingo_modification = flamingo_modification.format(ratio, part)
             selector._flamingo_modifications.append(flamingo_modification)
             result.append(selector)
