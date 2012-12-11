@@ -49,94 +49,100 @@ Abjad packaging checklist:
 
  4. Commit.
 
- 5. Change to the abjad root directory.
+ 5. Change to the abjad root directory, then to ly/ly and run `make all`.
+    This will update the parser's LilyPond environment scrape to the current
+    version of LilyPond in use in the packaging environment.
+    If any part of the scrape fails to compile, fix, commit and repeat this
+    step.
+
+ 6. Change to the abjad root directory.
     Run abj-rmpycs. Then run py.test.
     If any tests break, fix, commit and repeat this step.
     Record py.test test results in the packaging transcript.
 
- 6. Change to abjad/tools and run the following script:
+ 7. Change to abjad/tools and run the following script:
     run-doctest-on-all-modules-in-tree
     If any tests break, fix, commit and go back to (5.)
     Record doctest test results in the packaging transcript.
 
- 7. Start the Abjad interpreter to run one final sanity check.
+ 8. Start the Abjad interpreter to run one final sanity check.
     Run 'show(Note("c4"))'.
     Then run 'play(Note("c4"))'.
     Then call iotools.ly(), iotools.log(), iotools.pdf() and iotools.redo().
     If any test fails, fix, commit and go back to (5.)
     Record sanity check test results in the packaging transcript.
 
- 8. Change back to the abjad root directory and run "ajv api -M".
+ 9. Change back to the abjad root directory and run "ajv api -M".
     You will need Graphviz installed to build the API.
     OS X Graphviz downloads are available at http://www.graphviz.org/Download..php.
     Ubuntu Graphic installation is available with "sudo apt-get install graphviz".
     The HTML version of the API should build with no warnings and no errors.
     If Sphinx gives any warnings or errors, fix, commit and go back to (5.)
 
- 9. Change to the abjad/etc/optimization directory.
+10. Change to the abjad/etc/optimization directory.
     Create a v2.x optimization transcript by copying the most recent such file.
     Record memory usage and profiling test results in the optimization transcript.
 
-10. Run "svn info"
+11. Run "svn info"
     Note the current revision of the working copy you are packaging.
     Open docs/source/start_here/versions/index.rst again.
     Check the release date indicated there.
     Check the revision number indicated there.
     Make sure the revision number equals current revision + 1.
 
-11. Change to abjad/docs and run 'make clean'.
+12. Change to abjad/docs and run 'make clean'.
     This step is important because failing to 'make clean' before building
     the docs can cause the doc tarball made below to exceed 25 megs.
     PyPI rejects doc tarballs greater than 25 megs.
 
-12. Run "ajv api -M". If any errors occur, fix, commit and go back to (5.)
+13. Run "ajv api -M". If any errors occur, fix, commit and go back to (5.)
     Record HTML build results in the packaging transcript.
 
-13. Run 'make latex'. If any errors occur, fix, commit and go back to (5.)
+14. Run 'make latex'. If any errors occur, fix, commit and go back to (5.)
     Record the LaTeX build results in the packaging transcript.
 
-14. Change to docs/build/latex and run 'make all-pdf'.
+15. Change to docs/build/latex and run 'make all-pdf'.
     If any errors occur, fix, commit and go back to (5.)
     Open the docs/build/latex/Abjad.pdf file that results.
     Click around some to make sure everything looks OK.
     Record PDF build results in the packaging transcript.
 
-15. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
+16. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
     Do this with 'cp' and not with 'svn cp'.
 
-16. Add docs/pdf/Abajd-x-y.pdf to svn.
+17. Add docs/pdf/Abajd-x-y.pdf to svn.
 
-17. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
+18. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
 
-18. Commit.
+19. Commit.
     All tests have now passed in the packaging environment.
     All documentation has now built in the packaging environment.
 
-19. For each additional test environment, repeat the following steps:
+20. For each additional test environment, repeat the following steps:
     [2] documenting the test environment.
     [5], [6], [7] recording py.test, doctest and sanity check test results.
     [12], [13], [14] recording HTML, LaTeX & PDF build results.
 
-20. Complete all addition platform testing.
+21. Complete all addition platform testing.
     Close and save the packaging transcript.
     Commit.
 
-21. Change to abjad/trunk.
+22. Change to abjad/trunk.
     Upgrade setuptools with "sudo pip install --upgrade setuptools".
 
-22. Open setup.py and increment the version string found there.
+23. Open setup.py and increment the version string found there.
 
-23. Run 'python setup.py register sdist upload'
+24. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
     You must have Abjad package owner credentials for this step to work.
     If you need Abjad package owner credentials, talk to Trevor, Víctor or Josiah.
     PyPI should respond with "error: None"
 
-24. Remove 'dist' and 'Abjad.egg-info'.
+25. Remove 'dist' and 'Abjad.egg-info'.
     The directories are no longer needed after upload to PyPI.
     The directories should not be checked into the Abjad repository.
 
-25. Change to docs/build/html and archive all 17 or 18 files and subdirectories therein.
+26. Change to docs/build/html and archive all 17 or 18 files and subdirectories therein.
     You must create a single archive of all 17 or 18 files.
     Through the Finder on the Mac you can shift-click all 17 or 18 files,
     then control-click the selected files and choose "Compress 17 items"
@@ -146,47 +152,47 @@ Abjad packaging checklist:
     Check the size of the archive.
     The archive must be less than 25 megs.
 
-26. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
+27. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
     Talk to Trevor, Víctor or Josiah if you need Abjad owner credentials.
     Click on the Abjad link to edit PyPI's information about the package.
 
-27. At the bottom of the "Package 'Abjad' Editing" page, click on "Choose file"
+28. At the bottom of the "Package 'Abjad' Editing" page, click on "Choose file"
     and select docs/build/html/Archive.zip. Then click on "Upload Documentation".
     PyPI will redirect to http://packages.python.org/Abjad/.
     The newest version of the docs will appear.
     If it doesn't, debug and fix what went wrong.
 
-28. Click your browser's "back" button to return to the "Package 'Abjad' Editing" page.
+29. Click your browser's "back" button to return to the "Package 'Abjad' Editing" page.
     Then click on the "edit" link to the left of the entry for the new x.y version.
     This will take you to the "Submitting package information" page.
 
-29. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" in the "Author" field.
+30. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" in the "Author" field.
     (This is necessary because there's a bug in setup.py that fails on UNICODE metadata.
     So UNICODE characters must be added back in by hand on this page of the PyPI website
     rather than being more conveniently read from abjad/trunk/setup.py.)
-    ("Josiah Oberholtzer" transmits fine here and doesn't have to be tweaked.)
+    ("Josiah Wolf Oberholtzer" transmits fine here and doesn't have to be tweaked.)
 
-30. Manually restore the spaces after each of the keyword phrases in
+31. Manually restore the spaces after each of the keyword phrases in
     "music composition, music notation, formalized score control, lilypond"
     in the "Keywords" field. (Again, setup.py mangles these on upload to PyPI.)
 
-31. Click the "Add information" button at the bottom of the page to confirm.
+32. Click the "Add information" button at the bottom of the page to confirm.
     All PyPI editing and uploading is now complete.
 
-32. Click around PyPI to make sure everything looks correct.
+33. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-33. Return to your Abjad sources and remove docs/build/html/Archive.zip.
+34. Return to your Abjad sources and remove docs/build/html/Archive.zip.
     The archive should not be checked in to the Abjad repository.
 
-34. Edit abjad/__init__.py and increment '__version__' to the *next* minor number.
+35. Edit abjad/__init__.py and increment '__version__' to the *next* minor number.
 
-35. Edit tools/configurationtools/get_abjad_version_string.py and change the
+36. Edit tools/configurationtools/get_abjad_version_string.py and change the
     version number string given in the docstring.
 
-36. Commit.
+37. Commit.
 
-37. Author release announcement and mail to abjad-user@googlegroups.com.
+38. Author release announcement and mail to abjad-user@googlegroups.com.
     Release announcement should recapitulate version history.
     
 [2011-08-21, 2011-08-30, 2011-09-12, 2011-09-22, 
