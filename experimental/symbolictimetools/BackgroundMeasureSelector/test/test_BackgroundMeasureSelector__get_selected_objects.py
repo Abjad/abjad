@@ -1,5 +1,7 @@
 from abjad import *
 from experimental import *
+import py
+py.test.skip('deprecated.')
 
 
 def test_BackgroundMeasureSelector__get_selected_objects_01():

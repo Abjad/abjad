@@ -107,28 +107,48 @@
 
 19. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
 
-20. Add some tets to show this:
+20. Add some tests to show this:
+        measures = red_segment.select_background_measures(10, 20)
+        measures = measures.select(2, 4)
+    This will show the composition of multiple slice selections in a row.
+
+21. Add some tets to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_part = segments.adjust_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         score_specification.set_divisions([(3, 16)], selector=middle_part)
     This will show anchoring to a segment selector that selects more than one segment.
 
-21. Add some tests to show this:
+22. Add some tests to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_measures = segments.select_background_measures(3, 6)
     This will show selecting background measures from more than one segment.
 
-22. After removing CountRatioOperator class:
+23. Add some tests to show this:
+        measures = red_segment.select_background_measures(10, 20)
+        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
+    This will show partitioningonly part of a segment's measures.
+
+24. Add some tests to show this:
+        measures = red_segment.select_background_measures()
+        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
+        measure = middle_third_of_measures.select(0, 1)
+    This will show slice selection following after partition.
+
+25. After removing CountRatioOperator class:
     the signature self.get_offsets(score_specification, context_name, start_segment_name=None)
     can change to self.get_offsets(score_specification, context_name) everywhere in the system.
 
-23. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
+26. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
 
-24. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+27. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-25. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
+28. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
     Then use this test to make sure that time relations passed into all selectors
     everywhere in the system are fully unloaded.
+
+29. Remove BackgroundMeasureSelector.get_selected_objects().
+    Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
+    instead.

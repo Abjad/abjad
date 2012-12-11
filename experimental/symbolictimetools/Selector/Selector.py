@@ -1,6 +1,8 @@
 import abc
 import copy
+from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
@@ -34,8 +36,16 @@ class Selector(SymbolicTimespan):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_new_partition_by_ratio(self, something, ratio):
-        raise NotImplemented('implement me')
+    def _evaluate_new_partition_by_ratio(self, elements, original_start_offset, ratio, part):
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
+        selected_part = parts[part]
+        parts_before = parts[:part]
+        durations_before = [
+            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
+        duration_before = sum(durations_before)
+        start_offset = durationtools.Offset(duration_before)
+        new_start_offset = original_start_offset + start_offset
+        return selected_part, new_start_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -125,11 +135,18 @@ class Selector(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def apply_flamingo_modifications(self, stuff):
+    def apply_flamingo_modifications(self, elements, start_offset):
+        evaluation_context = {
+            'self': self, 
+            'Offset': durationtools.Offset, 
+            'NonreducedFraction': mathtools.NonreducedFraction,
+            'Ratio': mathtools.Ratio,
+            }
         for flamingo_modification in self._flamingo_modifications:
-            flamingo_modification = flamingo_modification.replace('original_stuff', repr(stuff))
-            stuff = eval(flamingo_modification, {'Offset': durationtools.Offset, 'self': self})
-        return stuff
+            flamingo_modification = flamingo_modification.replace('elements', repr(elements))
+            flamingo_modification = flamingo_modification.replace('start_offset', repr(start_offset))
+            elements, start_offset = eval(flamingo_modification, evaluation_context)
+        return elements, start_offset
 
     def partition_by_ratio(self, ratio, is_count=True):
         '''Partition self by `ratio`.
@@ -143,6 +160,7 @@ class Selector(SymbolicTimespan):
         result = []
         for part in range(len(ratio)):
             if is_count:
+                raise Exception('deprecated')
                 result.append(symbolictimetools.CountRatioOperator(self, ratio, part))
             else:
                 result.append(symbolictimetools.TimeRatioOperator(self, ratio, part))
@@ -153,7 +171,7 @@ class Selector(SymbolicTimespan):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            flamingo_modification = 'self._evaluate_new_partition_by_ratio(something, {!r}, {!r})'
+            flamingo_modification = 'self._evaluate_new_partition_by_ratio(elements, start_offset, {!r}, {!r})'
             flamingo_modification = flamingo_modification.format(ratio, part)
             selector._flamingo_modifications.append(flamingo_modification)
             result.append(selector)

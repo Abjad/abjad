@@ -1,5 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
+from abjad.tools import sequencetools
 from experimental.symbolictimetools.Selector import Selector
 
 
@@ -88,12 +89,6 @@ class BackgroundMeasureSelector(Selector):
     Background measure symbolic timespans are immutable.
     '''
 
-    ### PRIVATE METHODS ###
-
-    def _evaluate_new_partition_by_counts(self, time_signatures, ratio, part):
-        raise NotImplementedError('implement me')
-        
-
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name, start_segment_name=None):
@@ -102,7 +97,11 @@ class BackgroundMeasureSelector(Selector):
 
         Ignore `context_name`. 
 
-        Maybe eventually ignore start_segment_name and use anchor instead.
+        First slice according to self.start, self.stop if set.
+        Then apply any modifications in flamingo modifications stack.
+
+        TODO: remove start_segment_name=None from signature after
+        CountRatioOperator class is removed from system.
 
         Return pair.
         '''
@@ -111,18 +110,16 @@ class BackgroundMeasureSelector(Selector):
         start, stop = self.identifiers
         start = start or 0
         stop = stop or None
-        #time_signatures = segment_specification.time_signatures
-        #time_signatures = self.apply_flamingo_modifications(time_signatures)
+        time_signatures = segment_specification.time_signatures[start:stop]
         durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
         durations_before = durations[:start]
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        durations_up_through = durations[:stop]
-        duration_up_through = sum(durations_up_through)
-        stop_offset = durationtools.Offset(duration_up_through)
-        stop_offset = score_specification.segment_offset_to_score_offset(segment_name, stop_offset)
-        #self._debug((start_offset, stop_offset), 'offsets')
+        time_signatures, start_offset = self.apply_flamingo_modifications(time_signatures, start_offset)
+        durations = [durationtools.Duration(x) for x in time_signatures]
+        duration = sum(durations)
+        stop_offset = start_offset + duration
         return start_offset, stop_offset
 
     def get_selected_objects(self, score_specification, context_name):
@@ -130,6 +127,13 @@ class BackgroundMeasureSelector(Selector):
         to `score_specification`.
     
         Ignore `context_name`.
+
+        First apply any slicing implied by self.start, self.stop values.
+
+        Then apply flamingo modifications to partition result 
+        list of nonreduced fractions.
+
+        .. note:: deprecated.
 
         Return list of nonreduced fractions.
         '''
@@ -140,6 +144,7 @@ class BackgroundMeasureSelector(Selector):
         stop = stop or None
         time_signatures = segment_specification.time_signatures
         time_signatures = time_signatures[start:stop]
+        time_signatures = self.apply_flamingo_modifications(time_signatures)
         return time_signatures
 
     def set_segment_identifier(self, segment_identifier):
