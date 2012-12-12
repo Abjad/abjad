@@ -2,7 +2,7 @@ from abjad import *
 from experimental import *
 
 
-def test_BackgroundMeasureSelector__partition_by_ratio_of_durations_01():
+def test_BackgroundMeasureSelector__partition_objects_by_ratio_of_durations_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
