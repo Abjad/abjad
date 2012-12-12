@@ -269,7 +269,25 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     if those tie chains cross any offsets at that depth, but do not also both
     begin and end at any of those offsets.
 
-    Without specifying `boundary_depth`:
+    Consider the default metrical hierarchy for `9/8`:
+
+        >>> hierarchy = timesignaturetools.MetricalHierarchy((9, 8))
+        >>> print hierarchy.pretty_rtm_format
+        (9/8 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8)))
+
+    We can establish that hierarchy without specifying a `boundary_depth`:
 
     ::
 
