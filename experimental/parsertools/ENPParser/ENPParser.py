@@ -102,11 +102,6 @@ class ENPParser(Parser):
         self.string_accumulator += t.value
         pass
 
-    def t_quote_XXX(self, t):
-        r'\\"'
-        self.string_accumulator += t.value
-        pass
-
     def t_quote_443(self, t):
         r'[^\\""]+'
         self.string_accumulator += t.value
@@ -119,23 +114,34 @@ class ENPParser(Parser):
         t.value = self.string_accumulator
         return t
 
+    def t_quote_XXX(self, t):
+        r'\\"'
+        self.string_accumulator += t.value
+        pass
+
     ### YACC SETUP ###
 
     start = 'toplevel'
 
     ### YACC METHODS ###
 
+    def p_error(self, p):
+        if p:
+            print("Syntax error at '%s'" % p.value)
+        else:
+            print("Syntax error at EOF")
+
     def p_list__PAREN_L__list_body__PAREN_R(self, p):
         '''list : PAREN_L list_body PAREN_R'''
         p[0] = p[2]
 
-    def p_list_body__list_body_element(self, p):
-        '''list_body : list_body_element'''
-        p[0] = [p[1]]
-
     def p_list_body__list_body__list_body_element(self, p):
         '''list_body : list_body list_body_element'''
         p[0] = p[1] + [p[2]]
+
+    def p_list_body__list_body_element(self, p):
+        '''list_body : list_body_element'''
+        p[0] = [p[1]]
 
     def p_list_body_element__FLOAT(self, p):
         '''list_body_element : FLOAT'''
@@ -164,10 +170,3 @@ class ENPParser(Parser):
     def p_toplevel__list(self, p):
         '''toplevel : toplevel list'''
         p[0] = p[1] + [p[2]]
-
-    def p_error(self, p):
-        if p:
-            print("Syntax error at '%s'" % p.value)
-        else:
-            print("Syntax error at EOF")
-
