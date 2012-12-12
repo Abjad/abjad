@@ -21,6 +21,8 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.selector_modifications
+
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_identifier
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_segment_identifier

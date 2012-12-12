@@ -23,7 +23,7 @@ class SymbolicTimespan(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, offset_modifications=None):
-        self._offset_modifications = []
+        self._offset_modifications = offset_modifications or []
 
     ### SPECIAL METHODS ###
 
@@ -141,7 +141,7 @@ class SymbolicTimespan(AbjadObject):
             offset_modification = offset_modification.format(ratio, part)
             new_symbolic_timespan.offset_modifications.append(offset_modification)
             result.append(new_symbolic_timespan)
-        return result
+        return tuple(result)
 
     def get_duration(self, score_specification, context_name):
         '''Evaluate duration of symbolic timespan when applied

@@ -25,6 +25,10 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.selector_modifications
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.start_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`

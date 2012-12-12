@@ -21,7 +21,7 @@ class Selector(SymbolicTimespan):
 
     def __init__(self,
         anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, 
-        time_relation=None, offset_modifications=None):
+        time_relation=None, offset_modifications=None, selector_modifications=None):
         from experimental import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
@@ -32,7 +32,17 @@ class Selector(SymbolicTimespan):
         self._stop_identifier = stop_identifier
         self._voice_name = voice_name
         self._time_relation = time_relation
-        self._selector_modifications = []
+        self._selector_modifications = selector_modifications or []
+
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    @property
+    def _keyword_argument_name_value_strings(self):
+        result = SymbolicTimespan._keyword_argument_name_value_strings.fget(self)
+        if 'selector_modifications=[]' in result:
+            result = list(result)
+            result.remove('selector_modifications=[]')
+        return tuple(result)
 
     ### PRIVATE METHODS ###
 
@@ -49,6 +59,17 @@ class Selector(SymbolicTimespan):
             elements, start_offset = eval(selector_modification, evaluation_context)
         return elements, start_offset
 
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
+        '''Do not show empty selector modifications list.
+        '''
+        filtered_result = []
+        result = SymbolicTimespan._get_tools_package_qualified_keyword_argument_repr_pieces(
+            self, is_indented=is_indented)
+        for string in result:
+            if not 'selector_modifications=[]' in string:
+                filtered_result.append(string)
+        return filtered_result
+    
     def _partition_by_ratio(self, elements, original_start_offset, ratio, part):
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
         selected_part = parts[part]
@@ -97,6 +118,10 @@ class Selector(SymbolicTimespan):
         Return pair.
         '''
         return self.start_identifier, self.stop_identifier
+
+    @property
+    def selector_modifications(self):
+        return self._selector_modifications
 
     @property
     def start_identifier(self):
