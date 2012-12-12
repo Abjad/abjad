@@ -112,36 +112,11 @@ class CounttimeComponentSelector(Selector):
         '''Evaluate start and stop offsets of symbolic timespan when applied
         to `voice_name` in `score_specification`.
 
-        .. note:: add example.
-
-        Return pair.
-        '''
-        counttime_component_pairs = self.get_selected_objects(
-            score_specification, voice_name, include_expression_start_offsets=True)
-        first_component, first_component_expression_offset = counttime_component_pairs[0]
-        last_component, last_component_expression_offset = counttime_component_pairs[-1]
-        start_offset = first_component_expression_offset + first_component.start_offset
-        stop_offset = last_component_expression_offset + last_component.stop_offset
-        return start_offset, stop_offset
-
-    def get_selected_objects(self, score_specification, voice_name, include_expression_start_offsets=False):
-        '''Get counttime components selected when symbolic timespan is applied
-        to `voice_name` in `score_specification`.
-
-        .. note:: add example.
-
-        Return value of none means that symbolic timespan can not yet interpret `score_specification`.
-
-        Return list of object references or none.
-
-        When ``include_expression_start_offsets=True`` return list of start offset / object pairs.
-
-        .. note:: add examle with ``include_expression_start_offsets=True``.
+        Return offset pair.
         '''
         # allow user-specified voice name to override passed-in voice name
         voice_name = self.voice_name or voice_name
         rhythm_region_expressions = score_specification.contexts[voice_name]['rhythm_region_expressions']
-        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         if not rhythm_region_expressions:
             return selectiontools.Selection()
         if not rhythm_region_expressions[0].start_offset == durationtools.Offset(0):
@@ -149,8 +124,6 @@ class CounttimeComponentSelector(Selector):
         counttime_components = []
         total_counttime_components = 0
         previous_rhythm_region_expression = None
-        #segment_specification = score_specification.get_start_segment_specification(self.anchor)
-        #timespan_1 = segment_specification.timespan
         start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
         timespan_1 = timespantools.LiteralTimespan(start_offset, stop_offset)
         if self.time_relation is None:
@@ -168,15 +141,17 @@ class CounttimeComponentSelector(Selector):
                 if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
-                    if include_expression_start_offsets:
-                        counttime_components.append((
-                            counttime_component, current_rhythm_region_expression.start_offset))
-                    else:
-                        counttime_components.append(counttime_component)
+                    counttime_components.append((
+                        counttime_component, current_rhythm_region_expression.start_offset))
                     total_counttime_components += 1
                     if total_counttime_components == self.stop_identifier:
                         break
             if total_counttime_components == self.stop_identifier:
                 break
         counttime_components = counttime_components[self.start_identifier:self.stop_identifier]
-        return selectiontools.Selection(counttime_components)
+        counttime_component_pairs = counttime_components
+        first_component, first_component_expression_offset = counttime_component_pairs[0]
+        last_component, last_component_expression_offset = counttime_component_pairs[-1]
+        start_offset = first_component_expression_offset + first_component.start_offset
+        stop_offset = last_component_expression_offset + last_component.stop_offset
+        return start_offset, stop_offset

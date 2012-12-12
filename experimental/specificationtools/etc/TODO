@@ -136,11 +136,9 @@
 
 25. Audit all symbolic timespan docstrings and make sure everything is modern.
 
-26. Remove BackgroundMeasureSelector.get_selected_objects().
-    Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
-    instead.
-    Then audit all selectors, implement get_selected_objects, and write at least one test for each method.
-    Or else audit all selector and remove get_selected_objects() method for each selector.
+26. Extend BackgroundMeasureSelector.get_offsets() to return 
+    (start_offset, stop_offset, selected_objects) triple.
+    Then extend all selector get_offsets() methods and do the same.
 
 27. Store offset modifications in inventory class that indents in storage format.
 
