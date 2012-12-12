@@ -94,8 +94,6 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.set_start_segment_identifier
-
 Special Methods
 ---------------
 

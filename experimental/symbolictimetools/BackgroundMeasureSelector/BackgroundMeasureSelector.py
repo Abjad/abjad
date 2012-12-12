@@ -143,12 +143,3 @@ class BackgroundMeasureSelector(Selector):
         time_signatures = time_signatures[start:stop]
         time_signatures = self._apply_selector_modifications(time_signatures)
         return time_signatures
-
-    def set_start_segment_identifier(self, segment_identifier):
-        '''Set anchor start segment identifier to `segment_identifier`.
-        '''
-        assert isinstance(segment_identifier, str)
-        if isinstance(self.anchor, str):
-            self._anchor = segment_identifier
-        else:
-            self.anchor.set_start_segment_identifier(segment_identifier)

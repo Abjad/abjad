@@ -106,6 +106,13 @@ class Selector(SymbolicTimespan):
         new_start_offset = original_start_offset + duration_before
         return selected_part, new_start_offset
 
+    def _set_start_segment_identifier(self, segment_identifier):
+        assert isinstance(segment_identifier, str)
+        if isinstance(self.anchor, str):
+            self._anchor = segment_identifier
+        else:
+            self.anchor._set_start_segment_identifier(segment_identifier)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -187,8 +194,6 @@ class Selector(SymbolicTimespan):
         Return object or list of objects.
         '''
         pass        
-
-    ### PUBLIC METHODS ###
 
     def partition_by_ratio(self, ratio):
         result = []

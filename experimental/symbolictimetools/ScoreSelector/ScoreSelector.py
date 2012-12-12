@@ -18,6 +18,11 @@ class ScoreSelector(Selector):
     All score selector properties are read-only.
     '''
 
+    ### PRIVATE METHODS ###
+
+    def _set_start_segment_identifier(self, segment_identifier):
+        raise Exception('{!r} can not be reanchored.'.format(self))
+
     ### PUBLIC METHODS ###
 
     def get_offsets(self, score_specification, context_name):

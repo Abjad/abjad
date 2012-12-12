@@ -100,6 +100,12 @@ class SegmentSelector(Selector):
         else:
             return helpertools.SegmentIdentifierExpression('{!r} - {!r}'.format(segment_name, addendum))
 
+    # TODO: eventually extend method to work with segment selectors that select more than one segment
+    def _set_start_segment_identifier(self, segment_identifier):
+        assert isinstance(segment_identifier, str)
+        self._start_identifier = segment_identifier
+        self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -132,9 +138,3 @@ class SegmentSelector(Selector):
         Return list of segments.
         '''
         raise NotImplementedError
-
-    def set_start_segment_identifier(self, segment_identifier):
-        assert isinstance(segment_identifier, str)
-        # assume selector selects only one segment; this will eventually need to be extended
-        self._start_identifier = segment_identifier
-        self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)
