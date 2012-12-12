@@ -109,7 +109,7 @@ class SymbolicTimespan(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def moniker(self):
+    def _moniker(self):
         '''Form of symbolic timespan suitable for writing to disk.
         '''
         return self
@@ -179,7 +179,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
-            anchor=self.moniker,
+            anchor=self._moniker,
             start_identifier=start, 
             stop_identifier=stop, 
             time_relation=time_relation)
@@ -207,7 +207,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.DivisionSelector(
-            anchor=self.moniker,
+            anchor=self._moniker,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice,
@@ -238,7 +238,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            anchor=self.moniker,
+            anchor=self._moniker,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
             start_identifier=start, 
@@ -273,7 +273,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            anchor=self.moniker,
+            anchor=self._moniker,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, 

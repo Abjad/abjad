@@ -150,6 +150,7 @@
 28. Eventually add something like offset modifications to SymbolicOffset class.
 
 29. Make it possible to say red_segment.adjust_timespan_offsets() and red_segment.divide_timespan_by_ratio().
+    This will involve timespan modification methods (like adjust) copying moniker instead of specification.
 
 30. Add the following timespan modification methods:
         timespan.scale_timespan(multiplier)
@@ -164,5 +165,3 @@
     That implies a SymbolicTimespan.get_start_segment_identifier() method (or property).
     What is the set-side of the management of this property?
     It seems like "reanchoring" should be all that is ever necessary to manage the set-side. 
-
-32. Make moniker private. Or replace with structural solution.
