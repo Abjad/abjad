@@ -48,15 +48,15 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.divide_by_ratio
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.get_duration
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.get_offsets
+
+.. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.new_divide_by_ratio
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.TimeRatioOperator.TimeRatioOperator.TimeRatioOperator.select_background_measures
 

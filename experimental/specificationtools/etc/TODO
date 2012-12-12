@@ -148,3 +148,6 @@
 28. Remove BackgroundMeasureSelector.get_selected_objects().
     Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
     instead.
+
+29. Make SegmentSelector repr and storage format show offset_modifications list.
+    Probably SegmentSelector overrides repr and this override needs extension.

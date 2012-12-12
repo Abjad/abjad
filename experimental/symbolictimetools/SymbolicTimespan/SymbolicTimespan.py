@@ -1,8 +1,10 @@
 import abc
+import copy
 import numbers
 from abjad.tools import chordtools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
+from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -66,6 +68,17 @@ class SymbolicTimespan(AbjadObject):
             new_stop_offset = original_stop_offset + stop_adjustment
         return new_start_offset, new_stop_offset
 
+    def _evaluate_divide_by_ratio(self, offsets, ratio, the_part):
+        original_start_offset, original_stop_offset = offsets
+        original_duration = original_stop_offset - original_start_offset
+        duration_shards = mathtools.divide_number_by_ratio(original_duration, ratio)
+        duration_shards_before = duration_shards[:the_part]
+        duration_before = sum(duration_shards_before)
+        selected_duration_shard = duration_shards[the_part]
+        new_start_offset = original_start_offset + duration_before
+        new_stop_offset = new_start_offset + selected_duration_shard
+        return new_start_offset, new_stop_offset
+
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty offset modifications list.
         '''
@@ -116,19 +129,29 @@ class SymbolicTimespan(AbjadObject):
             offsets = eval(offset_modification, {'Offset': durationtools.Offset, 'self': self})
         return offsets
         
-    def divide_by_ratio(self, ratio):
-        ''''Divide self by `ratio`.
+#    def divide_by_ratio(self, ratio):
+#        ''''Divide self by `ratio`.
+#
+#        Method is mirrors ``mathtools.divide_number_by_ratio()``.
+#
+#        Return tuple of timespans.
+#        '''
+#        from experimental import symbolictimetools
+#        result = []
+#        for part in range(len(ratio)):
+#            # TODO: eventually create custom class different from TimeRatioOperator
+#            result.append(symbolictimetools.TimeRatioOperator(self.moniker, ratio, part))
+#        return tuple(result)
 
-        Method is mirrors ``mathtools.divide_number_by_ratio()``.
-
-        Return tuple of timespans.
-        '''
-        from experimental import symbolictimetools
+    def new_divide_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
-            # TODO: eventually create custom class different from TimeRatioOperator
-            result.append(symbolictimetools.TimeRatioOperator(self.moniker, ratio, part))
-        return tuple(result)
+            new_symbolic_timespan = copy.deepcopy(self)
+            offset_modification = 'self._evaluate_divide_by_ratio(original_offsets, {!r}, {!r})'
+            offset_modification = offset_modification.format(ratio, part)
+            new_symbolic_timespan.offset_modifications.append(offset_modification)
+            result.append(new_symbolic_timespan)
+        return result
 
     def get_duration(self, score_specification, context_name):
         '''Evaluate duration of symbolic timespan when applied
