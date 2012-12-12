@@ -285,7 +285,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             (3/8 (
                 1/8
                 1/8
-                1/8)))
+                1/8))))
 
     We can establish that hierarchy without specifying a `boundary_depth`:
 
