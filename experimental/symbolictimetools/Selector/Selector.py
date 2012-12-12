@@ -71,7 +71,7 @@ class Selector(SymbolicTimespan):
                 filtered_result.append(string)
         return filtered_result
     
-    def _partition_by_ratio(self, elements, original_start_offset, ratio, part):
+    def _partition_objects_by_ratio(self, elements, original_start_offset, ratio, part):
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
         selected_part = parts[part]
         parts_before = parts[:part]
@@ -82,7 +82,7 @@ class Selector(SymbolicTimespan):
         new_start_offset = original_start_offset + start_offset
         return selected_part, new_start_offset
 
-    def _partition_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
+    def _partition_objects_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
         def duration_helper(x):
             if hasattr(x, 'prolated_duration'):
                 return x.prolated_duration
@@ -186,25 +186,25 @@ class Selector(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def partition_by_ratio(self, ratio):
+    def partition_objects_by_ratio(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             selector_modification = \
-                'self._partition_by_ratio(elements, start_offset, {!r}, {!r})'
+                'self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector._selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
 
-    def partition_by_ratio_of_durations(self, ratio):
+    def partition_objects_by_ratio_of_durations(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             selector_modification = \
-                'self._partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
+                'self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector._selector_modifications.append(selector_modification)
             result.append(selector)

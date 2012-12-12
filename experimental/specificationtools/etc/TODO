@@ -95,6 +95,11 @@
         CounttimeComponentSelector
         DivisionSelector
     The other selectors should implement initializers that do not allow a voice_name attribute at all.
+    That is, remove voice_name property from these selectors:
+        BackgroundMeasureSelector
+        ScoreSelector
+        SegmentSelector
+    That will correct the object model for those three selectors.
 
 18. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
@@ -115,12 +120,12 @@
 
 21. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
-        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
+        middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
     This will show partitioningonly part of a segment's measures.
 
 22. Add some tests to show this:
         measures = red_segment.select_background_measures()
-        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
+        middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures.select(0, 1)
     This will show slice selection following after partition.
 
@@ -161,6 +166,3 @@
     It seems like "reanchoring" should be all that is ever necessary to manage the set-side. 
 
 32. Make moniker private. Or replace with structural solution.
-
-33. Change Selector.partition_by_ratio() to Selector.partition_objects_by_ratio().
-    Change Selector.partition_by_ratio_of_durations() to Selector.partition_objects_by_ratio_of_durations().
