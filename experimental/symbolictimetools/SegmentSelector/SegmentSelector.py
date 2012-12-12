@@ -117,7 +117,8 @@ class SegmentSelector(Selector):
         Return offset.
         '''
         offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
-        offsets = self._apply_offset_modifications(offsets)
+        start_offset, stop_offset = offsets
+        offsets = self._apply_offset_modifications(start_offset, stop_offset)
         return offsets
 
     def get_selected_objects(self, score_specification, context_name):

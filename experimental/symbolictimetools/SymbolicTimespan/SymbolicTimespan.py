@@ -51,9 +51,9 @@ class SymbolicTimespan(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _adjust_offsets(self, offsets, start_adjustment, stop_adjustment):
-        original_start_offset, original_stop_offset = offsets
-        new_start_offset, new_stop_offset = offsets
+    def _adjust_offsets(self, start_offset, stop_offset, start_adjustment, stop_adjustment):
+        original_start_offset, original_stop_offset = start_offset, stop_offset
+        new_start_offset, new_stop_offset = start_offset, stop_offset
         if start_adjustment is not None and 0 <= start_adjustment:
             new_start_offset = original_start_offset + start_adjustment
         elif start_adjustment is not None and start_adjustment < 0:
@@ -64,14 +64,19 @@ class SymbolicTimespan(AbjadObject):
             new_stop_offset = original_stop_offset + stop_adjustment
         return new_start_offset, new_stop_offset
 
-    def _apply_offset_modifications(self, offsets):
+    def _apply_offset_modifications(self, start_offset, stop_offset):
+        evaluation_context = {
+            'self': self,
+            'Offset': durationtools.Offset,
+            }
         for offset_modification in self.offset_modifications:
-            offset_modification = offset_modification.replace('original_offsets', repr(offsets))
-            offsets = eval(offset_modification, {'Offset': durationtools.Offset, 'self': self})
-        return offsets
+            offset_modification = offset_modification.replace('start_offset', repr(start_offset))
+            offset_modification = offset_modification.replace('stop_offset', repr(stop_offset))
+            start_offset, stop_offset = eval(offset_modification, evaluation_context)
+        return start_offset, stop_offset
         
-    def _divide_by_ratio(self, offsets, ratio, the_part):
-        original_start_offset, original_stop_offset = offsets
+    def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
+        original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
         duration_shards = mathtools.divide_number_by_ratio(original_duration, ratio)
         duration_shards_before = duration_shards[:the_part]
@@ -122,7 +127,7 @@ class SymbolicTimespan(AbjadObject):
             start = durationtools.Offset(start)
         if stop is not None:
             stop = durationtools.Offset(stop)
-        offset_modification = 'self._adjust_offsets(original_offsets, {!r}, {!r})'
+        offset_modification = 'self._adjust_offsets(start_offset, stop_offset, {!r}, {!r})'
         offset_modification = offset_modification.format(start, stop)
         result = copy.deepcopy(self)
         result.offset_modifications.append(offset_modification)
@@ -132,7 +137,7 @@ class SymbolicTimespan(AbjadObject):
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = copy.deepcopy(self)
-            offset_modification = 'self._divide_by_ratio(original_offsets, {!r}, {!r})'
+            offset_modification = 'self._divide_by_ratio(start_offset, stop_offset, {!r}, {!r})'
             offset_modification = offset_modification.format(ratio, part)
             new_symbolic_timespan.offset_modifications.append(offset_modification)
             result.append(new_symbolic_timespan)
