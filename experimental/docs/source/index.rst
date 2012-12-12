@@ -252,7 +252,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/symbolictimetools/RatioOperator/RatioOperator
    experimental/symbolictimetools/Selector/Selector
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
 
