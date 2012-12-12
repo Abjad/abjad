@@ -26,6 +26,7 @@ class Selector(SymbolicTimespan):
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
+        assert time_relation is None or time_relation.is_fully_unloaded
         SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
@@ -135,7 +136,7 @@ class Selector(SymbolicTimespan):
     def start_segment_identifier(self):
         '''Return anchor when anchor is a string.
 
-        Otherwise delegate to ``self.time_relation.start_segment_identifier``.
+        Otherwise delegate to ``self.anchor.start_segment_identifier``.
 
         Return string or none.
         '''

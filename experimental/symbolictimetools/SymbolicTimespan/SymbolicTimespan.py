@@ -185,6 +185,7 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
             anchor=self.moniker,
@@ -212,6 +213,7 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.DivisionSelector(
             anchor=self.moniker,
@@ -241,6 +243,8 @@ class SymbolicTimespan(AbjadObject):
         assert isinstance(voice, (str, type(None)))
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
             anchor=self.moniker,
@@ -274,6 +278,8 @@ class SymbolicTimespan(AbjadObject):
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
             anchor=self.moniker,

@@ -148,5 +148,5 @@ class BackgroundMeasureSelector(Selector):
         '''Set anchor to `segment_identifier`.
         '''
         assert isinstance(segment_identifier, str)
-        assert not hasattr(self.time_relation, 'timespan_1')
+        assert self.time_relation is None or self.time_relation.is_fully_unloaded
         self._anchor = segment_identifier

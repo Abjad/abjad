@@ -43,6 +43,7 @@ class MaterialRequest(Request):
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         Request.__init__(
             self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
         self._attribute = attribute
