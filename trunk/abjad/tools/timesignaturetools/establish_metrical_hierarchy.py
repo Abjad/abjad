@@ -197,7 +197,7 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     maximum_dot_count = 2)
+        ...     maximum_dot_count=2)
         >>> f(measure)
         {
             \time 3/4
@@ -216,9 +216,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     Constraining the `maximum_dot_count` to `1`:
 
+    ::
+
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     maximum_dot_count = 1)
+        ...     maximum_dot_count=1)
         >>> f(measure)
         {
             \time 3/4
@@ -238,9 +240,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     Constraining the `maximum_dot_count` to `0`:
 
+    ::
+
         >>> measure = p(parseable)
         >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
-        ...     maximum_dot_count = 0)
+        ...     maximum_dot_count=0)
         >>> f(measure)
         {
             \time 3/4
