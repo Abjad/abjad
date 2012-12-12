@@ -103,7 +103,7 @@
 
 19. Add some tets to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
-        middle_part = segments.adjust_offsets(start=(3, 4), stop=(-3, 4))
+        middle_part = segments.adjust_timespan_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         score_specification.set_divisions([(3, 16)], selector=middle_part)
     This will show anchoring to a segment selector that selects more than one segment.
@@ -146,4 +146,12 @@
 
 29. Eventually add something like offset modifications to SymbolicOffset class.
 
-30. Make it possible to say red_segment.adjust_offsets() and red_segment.divide_by_ratio().
+30. Make it possible to say red_segment.adjust_timespan_offsets() and red_segment.divide_timespan_by_ratio().
+
+31. Add the following timespan modification methods:
+        timespan.scale(multiplier)
+        timespan.set_duration(duration)
+        timespan.set_start_offset(offset)
+        timespan.set_stop_offset(offset)
+        timespan.translate(duration)
+    These may be enough to make the timespan modification inventory complete for first release.

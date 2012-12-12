@@ -10,7 +10,7 @@ def test_SegmentSpecification__set_rhythm_with_rotation_indicator_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment = red_segment.select()
-    divisions = segment.divide_by_ratio([1, 1, 1])
+    divisions = segment.divide_timespan_by_ratio([1, 1, 1])
     red_segment.set_divisions(divisions)
     first_division = red_segment.select_divisions('Voice 1', 0, 1)
     second_division = red_segment.select_divisions('Voice 1', 1, 2)

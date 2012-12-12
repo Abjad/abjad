@@ -54,11 +54,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.adjust_offsets
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.adjust_timespan_offsets
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.divide_by_ratio
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.divide_timespan_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

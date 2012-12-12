@@ -36,11 +36,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.adjust_offsets
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.adjust_timespan_offsets
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.divide_by_ratio
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.divide_timespan_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

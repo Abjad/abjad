@@ -51,7 +51,7 @@ class SymbolicTimespan(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _adjust_offsets(self, start_offset, stop_offset, start_adjustment, stop_adjustment):
+    def _adjust_timespan_offsets(self, start_offset, stop_offset, start_adjustment, stop_adjustment):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         new_start_offset, new_stop_offset = start_offset, stop_offset
         if start_adjustment is not None and 0 <= start_adjustment:
@@ -75,7 +75,7 @@ class SymbolicTimespan(AbjadObject):
             start_offset, stop_offset = eval(timespan_modification, evaluation_context)
         return start_offset, stop_offset
         
-    def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
+    def _divide_timespan_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
         duration_shards = mathtools.divide_number_by_ratio(original_duration, ratio)
@@ -116,7 +116,7 @@ class SymbolicTimespan(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def adjust_offsets(self, start=None, stop=None):
+    def adjust_timespan_offsets(self, start=None, stop=None):
         '''Add delayed evaluation offset setting command to symbolic timespan.
         
         Return symbolic timespan copy with offset modification.
@@ -127,17 +127,17 @@ class SymbolicTimespan(AbjadObject):
             start = durationtools.Offset(start)
         if stop is not None:
             stop = durationtools.Offset(stop)
-        timespan_modification = 'self._adjust_offsets(start_offset, stop_offset, {!r}, {!r})'
+        timespan_modification = 'self._adjust_timespan_offsets(start_offset, stop_offset, {!r}, {!r})'
         timespan_modification = timespan_modification.format(start, stop)
         result = copy.deepcopy(self)
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def divide_by_ratio(self, ratio):
+    def divide_timespan_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = copy.deepcopy(self)
-            timespan_modification = 'self._divide_by_ratio(start_offset, stop_offset, {!r}, {!r})'
+            timespan_modification = 'self._divide_timespan_by_ratio(start_offset, stop_offset, {!r}, {!r})'
             timespan_modification = timespan_modification.format(ratio, part)
             new_symbolic_timespan.timespan_modifications.append(timespan_modification)
             result.append(new_symbolic_timespan)

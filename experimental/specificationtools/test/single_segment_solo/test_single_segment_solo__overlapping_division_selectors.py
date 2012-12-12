@@ -117,7 +117,7 @@ def test_single_segment_solo__overlapping_division_selectors_06():
     red_segment = score_specification.append_segment(name='red') 
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment = red_segment.select()
-    middle_measure = segment.divide_by_ratio((4, 3, 2))[1]
+    middle_measure = segment.divide_timespan_by_ratio((4, 3, 2))[1]
     red_segment.set_divisions([(3, 16)])
     red_segment.set_divisions([(1, 16)], selector=middle_measure)
     red_segment.set_rhythm(library.thirty_seconds)
@@ -181,7 +181,7 @@ def test_single_segment_solo__overlapping_division_selectors_09():
     middle_measure = red_segment.select_background_measures(1, 2)
     red_segment.set_divisions([(2, 16)], selector=middle_measure)
     segment = red_segment.select()
-    arbitrary_chunk = segment.adjust_offsets((5, 8), (6, 8))
+    arbitrary_chunk = segment.adjust_timespan_offsets((5, 8), (6, 8))
     red_segment.set_divisions([(1, 16)], selector=arbitrary_chunk)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()

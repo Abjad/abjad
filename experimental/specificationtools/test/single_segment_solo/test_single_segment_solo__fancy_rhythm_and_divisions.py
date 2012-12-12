@@ -11,7 +11,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_01():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
     segment = red_segment.select()
-    selector = segment.adjust_offsets(start=(10, 16), stop=(13, 16))
+    selector = segment.adjust_timespan_offsets(start=(10, 16), stop=(13, 16))
     red_segment.set_divisions([(2, 32)], selector=selector)
     red_segment.set_rhythm(library.thirty_seconds, selector=selector)
     score = score_specification.interpret()
@@ -30,10 +30,10 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_02():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
     segment = red_segment.select()
-    selector = segment.adjust_offsets(start=(10, 16), stop=(13, 16))
+    selector = segment.adjust_timespan_offsets(start=(10, 16), stop=(13, 16))
     red_segment.set_divisions([(2, 32)], selector=selector)
     segment = red_segment.select()
-    selector = segment.divide_by_ratio((1, 2))[-1]
+    selector = segment.divide_timespan_by_ratio((1, 2))[-1]
     red_segment.set_rhythm(library.thirty_seconds, selector=selector)
     score = score_specification.interpret()
 
@@ -51,7 +51,7 @@ def test_single_segment_solo__fancy_rhythm_and_divisions_03():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     segment = red_segment.select()
-    left, right = segment.divide_by_ratio((1, 1))
+    left, right = segment.divide_timespan_by_ratio((1, 1))
     red_segment.set_divisions([(3, 16)], selector=left)
     red_segment.set_divisions([(2, 16)], selector=right)
     selector = red_segment.select_divisions('Voice 1', stop=2)

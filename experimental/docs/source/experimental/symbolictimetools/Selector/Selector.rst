@@ -40,11 +40,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.adjust_offsets
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.adjust_timespan_offsets
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.divide_by_ratio
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.divide_timespan_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
