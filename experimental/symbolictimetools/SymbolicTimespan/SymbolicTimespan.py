@@ -49,6 +49,12 @@ class SymbolicTimespan(AbjadObject):
             result.remove('timespan_modifications=[]')
         return tuple(result)
 
+    @property
+    def _moniker(self):
+        '''Form of symbolic timespan suitable for writing to disk.
+        '''
+        return self
+
     ### PRIVATE METHODS ###
 
     def _adjust_timespan_offsets(self, start_offset, stop_offset, start_adjustment, stop_adjustment):
@@ -75,6 +81,9 @@ class SymbolicTimespan(AbjadObject):
             start_offset, stop_offset = eval(timespan_modification, evaluation_context)
         return start_offset, stop_offset
         
+    def _clone(self):
+        return copy.deepcopy(self)
+
     def _divide_timespan_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -109,12 +118,6 @@ class SymbolicTimespan(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def _moniker(self):
-        '''Form of symbolic timespan suitable for writing to disk.
-        '''
-        return self
-
-    @property
     def timespan_modifications(self):
         '''Read-only list of timespan_modifications to be applied 
         to symbolic timespan during evaluation.
@@ -138,14 +141,16 @@ class SymbolicTimespan(AbjadObject):
             stop = durationtools.Offset(stop)
         timespan_modification = 'self._adjust_timespan_offsets(start_offset, stop_offset, {!r}, {!r})'
         timespan_modification = timespan_modification.format(start, stop)
-        result = copy.deepcopy(self)
+        #result = copy.deepcopy(self)
+        result = self._clone()
         result.timespan_modifications.append(timespan_modification)
         return result
 
     def divide_timespan_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
-            new_symbolic_timespan = copy.deepcopy(self)
+            #new_symbolic_timespan = copy.deepcopy(self)
+            new_symbolic_timespan = self._clone()
             timespan_modification = 'self._divide_timespan_by_ratio(start_offset, stop_offset, {!r}, {!r})'
             timespan_modification = timespan_modification.format(ratio, part)
             new_symbolic_timespan.timespan_modifications.append(timespan_modification)

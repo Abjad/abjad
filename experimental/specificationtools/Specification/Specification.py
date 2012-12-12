@@ -65,6 +65,9 @@ class Specification(SymbolicTimespan):
 
     ### PRIVATE METHODS ###
 
+    def _clone(self):
+        return self.select()
+
     def _context_token_to_context_names(self, context_token):
         if context_token is None:
             context_names = [self.score_name] 
