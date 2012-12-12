@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timespantools.LiteralTimespan.LiteralTimespan.LiteralTimespan.is_well_formed
 
+.. autoattribute:: abjad.tools.timespantools.LiteralTimespan.LiteralTimespan.LiteralTimespan.offsets
+
 .. autoattribute:: abjad.tools.timespantools.LiteralTimespan.LiteralTimespan.LiteralTimespan.start_offset
 
 .. autoattribute:: abjad.tools.timespantools.LiteralTimespan.LiteralTimespan.LiteralTimespan.stop_offset

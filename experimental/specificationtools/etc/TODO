@@ -149,9 +149,9 @@
 30. Make it possible to say red_segment.adjust_timespan_offsets() and red_segment.divide_timespan_by_ratio().
 
 31. Add the following timespan modification methods:
-        timespan.scale(multiplier)
-        timespan.set_duration(duration)
-        timespan.set_start_offset(offset)
-        timespan.set_stop_offset(offset)
-        timespan.translate(duration)
+        timespan.scale_timespan(multiplier)
+        timespan.set_timespan_duration(duration)
+        timespan.set_timespan_start_offset(offset)
+        timespan.set_timespan_stop_offset(offset)
+        timespan.translate_timespan(duration)
     These may be enough to make the timespan modification inventory complete for first release.

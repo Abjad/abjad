@@ -43,42 +43,50 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
     Example functions calls using the score above::
 
-        >>> timerelationtools.timespan_2_happens_during_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_happens_during_timespan_1(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timerelationtools.timespan_2_intersects_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_intersects_timespan_1(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         True
 
     ::
 
-        >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         True
 
     ::
 
-        >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     ::
 
-        >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(timespan_1=last_tuplet, timespan_2=long_note)
+        >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(
+        ... timespan_1=last_tuplet, timespan_2=long_note)
         False
 
     Timespan / timespan time relations are immutable.
@@ -164,27 +172,23 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Otherwise return boolean.
         '''
         from abjad.tools import timerelationtools
-
         if timespan_1 is None:
             timespan_1 = self.timespan_1
         if timespan_2 is None:
             timespan_2 = self.timespan_2
         if timespan_1 is None or timespan_2 is None:
             raise ValueError('time relation is not fully loaded: {!r}.'.format(self))
-
         timespan_1 = timerelationtools.expr_to_timespan(timespan_1)
         timespan_2 = timerelationtools.expr_to_timespan(timespan_2)
         timespan_1_start, timespan_1_stop = self._get_expr_offsets(
             timespan_1, score_specification=score_specification, context_name=context_name)
         timespan_2_start, timespan_2_stop = self._get_expr_offsets(
             timespan_2, score_specification=score_specification, context_name=context_name)
-
         command = self.template
         command = command.replace('timespan_1.start', repr(timespan_1_start))
         command = command.replace('timespan_1.stop', repr(timespan_1_stop))
         command = command.replace('timespan_2.start', repr(timespan_2_start))
         command = command.replace('timespan_2.stop', repr(timespan_2_stop))
-        #self._debug(command, 'command')
         result = eval(command, {'Offset': durationtools.Offset})
         return result
     
@@ -226,39 +230,3 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Return boolean.
         '''
         return self.timespan_1 is not None and self.timespan_2 is not None
-
-    @property
-    def start_segment_identifier(self):
-        '''Delegate to ``self.timespan.start_segment_identifier``.
-        '''
-        return self.timespan.start_segment_identifier
-
-    @property
-    def stop_segment_identifier(self):
-        '''Delegate to ``self.timespan.stop_segment_identifier``.
-        '''
-        return self.timespan.stop_segment_identifier
-
-    # TODO: remove me
-    #       Use timespan_1 instead
-    @property
-    def timespan(self):
-        '''SymbolicTimespan of time relation.
-
-        Return timespan object.
-        '''
-        #return self._timespan
-        return self._timespan_1
-
-    ### PUBLIC METHODS ###
-
-    def get_duration(self, score_specification, context_name):
-        '''Delegate to ``self.timespan_1.get_duration()``.
-        '''
-        return self.timespan_1.get_duration(score_specification, context_name)
-
-    # TODO: remove this
-    def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.timespan_1.set_segment_identifier()``.
-        '''
-        self.timespan_1.set_segment_identifier(segment_identifier)
