@@ -89,9 +89,9 @@ class BackgroundMeasureSelector(Selector):
     Background measure symbolic timespans are immutable.
     '''
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    def _get_offsets(self, score_specification, context_name):
         r'''Evaluate start and stop offsets when selector is applied
         to `score_specification`.
 

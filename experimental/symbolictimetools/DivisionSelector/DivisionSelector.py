@@ -44,9 +44,9 @@ class DivisionSelector(Selector):
     Division selectors are immutable.
     '''
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def get_offsets(self, score_specification, voice_name):
+    def _get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selecto when applied
         to `voice_name` in `score_specification`.
 

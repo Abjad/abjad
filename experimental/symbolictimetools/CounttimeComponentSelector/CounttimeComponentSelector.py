@@ -88,27 +88,9 @@ class CounttimeComponentSelector(Selector):
         self._klass = klass
         self._predicate = predicate
 
-    ### READ-ONLY PUBLIC ATTRIBUTES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def klass(self):
-        '''Class(es) of counttime component symbolic timespan.
-
-        Return class, class inventory or none.
-        '''
-        return self._klass
-
-    @property
-    def predicate(self):
-        '''Predicate of counttime component symbolic timespan specified by user.
-
-        Return callback or none.
-        '''
-        return self._predicate
-
-    ### PUBLIC METHODS ###
-
-    def get_offsets(self, score_specification, voice_name):
+    def _get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of symbolic timespan when applied
         to `voice_name` in `score_specification`.
 
@@ -155,3 +137,21 @@ class CounttimeComponentSelector(Selector):
         start_offset = first_component_expression_offset + first_component.start_offset
         stop_offset = last_component_expression_offset + last_component.stop_offset
         return start_offset, stop_offset
+
+    ### READ-ONLY PUBLIC ATTRIBUTES ###
+
+    @property
+    def klass(self):
+        '''Class(es) of counttime component symbolic timespan.
+
+        Return class, class inventory or none.
+        '''
+        return self._klass
+
+    @property
+    def predicate(self):
+        '''Predicate of counttime component symbolic timespan specified by user.
+
+        Return callback or none.
+        '''
+        return self._predicate

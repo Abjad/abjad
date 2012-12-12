@@ -55,6 +55,9 @@ class SegmentSpecification(Specification):
 
     ### PRIVATE METHODS ###
 
+    def _get_offsets(self, score_specification, context_name=None):
+        return self.offsets
+
     def _store_multiple_context_setting(self, attribute, source,
         contexts=None, selector=None,
         index=None, count=None, reverse=None, rotation=None, callback=None,
@@ -299,9 +302,6 @@ class SegmentSpecification(Specification):
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
     ### PUBLIC METHODS ###
-
-    def get_offsets(self, score_specification, context_name=None):
-        return self.offsets
 
     def select(self):
         '''Select segment::

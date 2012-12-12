@@ -116,7 +116,7 @@ class SegmentSelector(Selector):
 
     ### PUBLIC METHODS ###
 
-    def get_offsets(self, score_specification, context_name):
+    def _get_offsets(self, score_specification, context_name):
         '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.
 

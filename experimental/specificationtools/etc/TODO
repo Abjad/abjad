@@ -136,9 +136,9 @@
 
 25. Audit all symbolic timespan docstrings and make sure everything is modern.
 
-26. Extend BackgroundMeasureSelector.get_offsets() to return 
+26. Extend BackgroundMeasureSelector._get_offsets() to return 
     (start_offset, stop_offset, selected_objects) triple.
-    Then extend all selector get_offsets() methods and do the same.
+    Then extend all selector _get_offsets() methods and do the same.
 
 27. Store offset modifications in inventory class that indents in storage format.
 
@@ -164,5 +164,3 @@
 
 33. Change Selector.partition_by_ratio() to Selector.partition_objects_by_ratio().
     Change Selector.partition_by_ratio_of_durations() to Selector.partition_objects_by_ratio_of_durations().
-
-34. Change SymbolicTimespan.get_offsets() to private SymbolicTimespan._get_offsets().

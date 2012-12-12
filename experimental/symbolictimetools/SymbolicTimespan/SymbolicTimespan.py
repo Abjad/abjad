@@ -86,6 +86,15 @@ class SymbolicTimespan(AbjadObject):
         new_stop_offset = new_start_offset + selected_duration_shard
         return new_start_offset, new_stop_offset
 
+    @abc.abstractmethod
+    def _get_offsets(self, score_specification, context_name):
+        '''Get start offset and stop offset of symbolic timespan
+        when applied to `context_name` in `score_specification`.
+
+        Return pair.
+        '''
+        pass
+
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty offset modifications list.
         '''
@@ -142,15 +151,6 @@ class SymbolicTimespan(AbjadObject):
             new_symbolic_timespan.timespan_modifications.append(timespan_modification)
             result.append(new_symbolic_timespan)
         return tuple(result)
-
-    @abc.abstractmethod
-    def get_offsets(self, score_specification, context_name):
-        '''Get start offset and stop offset of symbolic timespan
-        when applied to `context_name` in `score_specification`.
-
-        Return pair.
-        '''
-        pass
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment 'red'::

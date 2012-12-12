@@ -154,7 +154,7 @@ class ConcreteInterpreter(Interpreter):
         if isinstance(anchor, str):
             start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(anchor)
         else:
-            start_offset, stop_offset = anchor.get_offsets(self.score_specification, voice_name)
+            start_offset, stop_offset = anchor._get_offsets(self.score_specification, voice_name)
         #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
@@ -749,7 +749,7 @@ class ConcreteInterpreter(Interpreter):
             source_score_offsets = self.score_specification.segment_identifier_expression_to_offsets(
                 rhythm_material_request.anchor)
         else:
-            source_score_offsets = rhythm_material_request.anchor.get_offsets(
+            source_score_offsets = rhythm_material_request.anchor._get_offsets(
                 self.score_specification, rhythm_material_request.voice_name)
         source_timespan = timespantools.LiteralTimespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
@@ -789,7 +789,7 @@ class ConcreteInterpreter(Interpreter):
             start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
                 single_context_setting.anchor)
         else:
-            start_offset, stop_offset = single_context_setting.anchor.get_offsets(
+            start_offset, stop_offset = single_context_setting.anchor._get_offsets(
                 self.score_specification, voice_name)
         #self._debug((start_offset, stop_offset), 'anchor offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
@@ -929,7 +929,7 @@ class ConcreteInterpreter(Interpreter):
         for element in expr:
             if isinstance(element, symbolictimetools.SymbolicTimespan):
                 context_name = None
-                start_offset, stop_offset = element.get_offsets(self.score_specification, context_name)
+                start_offset, stop_offset = element._get_offsets(self.score_specification, context_name)
                 duration = stop_offset - start_offset
                 result.append(duration)
             else:
