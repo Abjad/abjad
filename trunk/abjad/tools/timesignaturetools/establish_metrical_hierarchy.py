@@ -10,6 +10,340 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
     ):
     r'''.. versionadded:: 2.11
 
+    Rewrite the contents of tie chains in an expression to match a metrical
+    hierarchy.
+
+    Example 1. Rewrite the contents of a measure in a staff using the default metrical
+    hierarchy for that measure's time signature:
+
+    ::
+
+        >>> parseable = "abj: | 2/4 c'2 ~ || 4/4 c'32 d'2.. ~ d'16 e'32 ~ || 2/4 e'2 |"
+
+    ::
+
+        >>> staff = Staff(parseable)
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/4
+                c'2 ~
+            }
+            {
+                \time 4/4
+                c'32
+                d'2.. ~
+                d'16
+                e'32 ~
+            }
+            {
+                \time 2/4
+                e'2
+            }
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+        >>> print hierarchy.pretty_rtm_format
+        (4/4 (
+            1/4
+            1/4
+            1/4
+            1/4))
+
+    ::
+
+        >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/4
+                c'2 ~
+            }
+            {
+                \time 4/4
+                c'32
+                d'8.. ~
+                d'2 ~
+                d'8..
+                e'32 ~
+            }
+            {
+                \time 2/4
+                e'2
+            }
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Example 2. Rewrite the contents of a measure in a staff using a custom
+    metrical hierarchy:
+
+    ::
+
+        >>> staff = Staff(parseable)
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/4
+                c'2 ~
+            }
+            {
+                \time 4/4
+                c'32
+                d'2.. ~
+                d'16
+                e'32 ~
+            }
+            {
+                \time 2/4
+                e'2
+            }
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    ::
+
+        >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+        >>> hierarchy = timesignaturetools.MetricalHierarchy(rtm)
+        >>> print hierarchy.pretty_rtm_format
+        (4/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+    ::
+
+        >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+        >>> f(staff)
+        \new Staff {
+            {
+                \time 2/4
+                c'2 ~
+            }
+            {
+                \time 4/4
+                c'32
+                d'4... ~
+                d'4...
+                e'32 ~
+            }
+            {
+                \time 2/4
+                e'2
+            }
+        }
+
+    ::
+
+        >>> show(staff) # doctest: +SKIP
+
+    Example 3. Limit the maximum number of dots per leaf using
+    `maximum_dot_count`:
+
+    ::
+
+        >>> parseable = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
+        >>> measure = p(parseable)
+        >>> f(measure)
+        {
+            \time 3/4
+            c'32
+            d'8
+            e'8
+            fs'4...
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    Without constraining the `maximum_dot_count`:
+
+    ::
+
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+        >>> f(measure)
+        {
+            \time 3/4
+            c'32
+            d'16. ~
+            d'32
+            e'16. ~
+            e'32
+            fs'4...
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+        
+    Constraining the `maximum_dot_count` to `2`:
+
+    ::
+
+        >>> measure = p(parseable)
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+        ...     maximum_dot_count = 2)
+        >>> f(measure)
+        {
+            \time 3/4
+            c'32
+            d'16. ~
+            d'32
+            e'16. ~
+            e'32
+            fs'8.. ~
+            fs'4
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    Constraining the `maximum_dot_count` to `1`:
+
+        >>> measure = p(parseable)
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+        ...     maximum_dot_count = 1)
+        >>> f(measure)
+        {
+            \time 3/4
+            c'32
+            d'16. ~
+            d'32
+            e'16. ~
+            e'32
+            fs'16. ~
+            fs'8 ~
+            fs'4
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    Constraining the `maximum_dot_count` to `0`:
+
+        >>> measure = p(parseable)
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+        ...     maximum_dot_count = 0)
+        >>> f(measure)
+        {
+            \time 3/4
+            c'32
+            d'32 ~
+            d'16 ~
+            d'32
+            e'32 ~
+            e'16 ~
+            e'32
+            fs'32 ~
+            fs'16 ~
+            fs'8 ~
+            fs'4
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    Example 4: Split tie chains at different depths of the `MetricalHierarchy`,
+    if those tie chains cross any offsets at that depth, but do not also both
+    begin and end at any of those offsets.
+
+    Without specifying `boundary_depth`:
+
+    ::
+
+        >>> parseable = "abj: | 9/8 c'2 d'2 e'8 |"
+        >>> measure = p(parseable)
+        >>> f(measure)
+        {
+            \time 9/8
+            c'2
+            d'2
+            e'8
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    ::
+
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+        >>> f(measure)
+        {
+            \time 9/8
+            c'2
+            d'4 ~
+            d'4
+            e'8
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    With a `boundary_depth` of `1`, tie chains which cross any offsets created
+    by nodes with a depth of `1` in this MetricalHierarchy's rhythm tree - i.e.
+    `0/8`, `3/8`, `6/8` and `9/8` - which do not also begin and end at any of those
+    offsets, will be split:
+
+    ::
+
+        >>> measure = p(parseable)
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+        ...     boundary_depth=1)
+        >>> f(measure)
+        {
+            \time 9/8
+            c'4. ~
+            c'8
+            d'4 ~
+            d'4
+            e'8
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    For this `9/8` hierarchy, and this input notation, A `boundary_depth` of `2`
+    causes no change, as all tie chains already align to multiples of `1/8`:
+
+    ::
+
+        >>> measure = p(parseable)
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+        ...     boundary_depth=2)
+        >>> f(measure)
+        {
+            \time 9/8
+            c'2
+            d'4 ~
+            d'4
+            e'8
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
     Operate in place and return none.
     '''
 
