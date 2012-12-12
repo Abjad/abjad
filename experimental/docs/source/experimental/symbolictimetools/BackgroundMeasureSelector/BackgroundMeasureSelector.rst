@@ -64,6 +64,10 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.divide_by_ratio
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_duration
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -71,10 +75,6 @@ Methods
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_offsets
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_selected_objects
-
-.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.new_divide_by_ratio
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.partition_by_ratio
 

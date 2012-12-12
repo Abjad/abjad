@@ -24,11 +24,11 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.apply_offset_modifications
 
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_by_ratio
+
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_duration
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.get_offsets
-
-.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.new_divide_by_ratio
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_background_measures
 

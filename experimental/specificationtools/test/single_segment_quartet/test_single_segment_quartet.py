@@ -26,7 +26,7 @@ def test_single_segment_quartet_01():
     red_segment.set_divisions([(3, 16)], contexts=['Voice 2'], selector=right_measure)
 
     segment = red_segment.select()
-    left_half, right_half = segment.new_divide_by_ratio((1, 1))
+    left_half, right_half = segment.divide_by_ratio((1, 1))
 
     voice_1_left_division_command = red_segment.request_division_command('Voice 1', selector=left_measure)
     voice_1_right_division_command = red_segment.request_division_command('Voice 1', selector=right_measure)

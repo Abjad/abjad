@@ -12,7 +12,7 @@ def test_multiple_segment_solo__reset_division_selectors_01():
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=True)
     segment = red_segment.select()
-    middle_two_measures = segment.new_divide_by_ratio((1, 2, 1))[1]
+    middle_two_measures = segment.divide_by_ratio((1, 2, 1))[1]
     red_segment.set_divisions([(2, 16)], selector=middle_two_measures, persist=True)
     red_segment.set_rhythm(library.thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
@@ -35,7 +35,7 @@ def test_multiple_segment_solo__reset_division_selectors_02():
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=False)
     segment = red_segment.select()
-    middle_two_measures = segment.new_divide_by_ratio((1, 2, 1))[1]
+    middle_two_measures = segment.divide_by_ratio((1, 2, 1))[1]
     red_segment.set_divisions([(2, 16)], selector=middle_two_measures, persist=True)
     red_segment.set_rhythm(library.thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')

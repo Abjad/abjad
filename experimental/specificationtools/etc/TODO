@@ -66,16 +66,7 @@
     ... instead.
     This will simplify the X9 composer interface.
 
-14. Remove these symbolictimetools classes:
-        symbolictimetools.CountRatioOperator
-        symbolictimetools.TimeRatioOperator
-    Replace with this bound methods:
-        selector.partition_by_ratio()
-        selector.partition_by_time_weighted_ratio()
-    Methods must be preserved as strings to delay evaluation.
-    Then remove symbolictimetools.RatioOperator.
-
-15. Remove the three command request methods:
+14. Remove the three command request methods:
         Specification.request_division_command()
         Specification.request_rhythm_command()
         Specification.request_time_signature_command()
@@ -87,67 +78,67 @@
         SymbolicOffset.request_rhythm_command(voice)
         SymbolicOffset.request_time_signature_command(voice)
 
-16. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+15. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.
     This will probably also eliminate the two-stage setting (and interpretation) of request treatments.
 
-17. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
+16. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-18. These two selectors should implement an initializer that forces a voice_name attribute:
+17. These two selectors should implement an initializer that forces a voice_name attribute:
         CounttimeComponentSelector
         DivisionSelector
     The other selectors should implement initializers that do not allow a voice_name attribute at all.
 
-19. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
+18. Change in-place segment.adjust_offsets() to return a modified copy of segment instead.
 
-20. Add some tests to show this:
+19. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
         measures = measures.select(2, 4)
     This will show the composition of multiple slice selections in a row.
 
-21. Add some tets to show this:
+20. Add some tets to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_part = segments.adjust_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         score_specification.set_divisions([(3, 16)], selector=middle_part)
     This will show anchoring to a segment selector that selects more than one segment.
 
-22. Add some tests to show this:
+21. Add some tests to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_measures = segments.select_background_measures(3, 6)
     This will show selecting background measures from more than one segment.
 
-23. Add some tests to show this:
+22. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioningonly part of a segment's measures.
 
-24. Add some tests to show this:
+23. Add some tests to show this:
         measures = red_segment.select_background_measures()
         middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures.select(0, 1)
     This will show slice selection following after partition.
 
-25. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
+24. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
 
-26. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+25. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-27. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
+26. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
     Then use this test to make sure that time relations passed into all selectors
     everywhere in the system are fully unloaded.
 
-28. Remove BackgroundMeasureSelector.get_selected_objects().
+27. Remove BackgroundMeasureSelector.get_selected_objects().
     Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
     instead.
 
-29. Make SegmentSelector repr and storage format show offset_modifications list.
+28. Make SegmentSelector repr and storage format show offset_modifications list.
     Probably SegmentSelector overrides repr and this override needs extension.
