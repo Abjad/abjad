@@ -119,6 +119,6 @@ class SingleContextSetting(Setting):
         if isinstance(new_setting.anchor, str):
             new_setting._anchor = segment_name 
         else:
-            new_setting.anchor.set_segment_identifier(segment_name)
+            new_setting.anchor.set_start_segment_identifier(segment_name)
         new_setting._start_segment_name = segment_name
         return new_setting

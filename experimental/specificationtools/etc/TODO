@@ -124,27 +124,25 @@
         measure = middle_third_of_measures.select(0, 1)
     This will show slice selection following after partition.
 
-23. Can start_segment_identifier properties eventually be completely removed from model?
-
-24. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+23. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-25. Audit all symbolic timespan docstrings and make sure everything is modern.
+24. Audit all symbolic timespan docstrings and make sure everything is modern.
 
-26. Remove BackgroundMeasureSelector.get_selected_objects().
+25. Remove BackgroundMeasureSelector.get_selected_objects().
     Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
     instead.
     Then audit all selectors, implement get_selected_objects, and write at least one test for each method.
     Or else audit all selector and remove get_selected_objects() method for each selector.
 
-27. Store offset modifications in inventory class that indents in storage format.
+26. Store offset modifications in inventory class that indents in storage format.
 
-28. Eventually add something like offset modifications to SymbolicOffset class.
+27. Eventually add something like offset modifications to SymbolicOffset class.
 
-29. Make it possible to say red_segment.adjust_timespan_offsets() and red_segment.divide_timespan_by_ratio().
+28. Make it possible to say red_segment.adjust_timespan_offsets() and red_segment.divide_timespan_by_ratio().
 
-30. Add the following timespan modification methods:
+29. Add the following timespan modification methods:
         timespan.scale_timespan(multiplier)
         timespan.set_timespan_duration(duration)
         timespan.set_timespan_start_offset(offset)
@@ -152,4 +150,6 @@
         timespan.translate_timespan(duration)
     These may be enough to make the timespan modification inventory complete for first release.
 
-31. Can set_segment_identifier() be removed in the four places where it is currently implemented?
+30. Can start_segment_identifier properties eventually be completely removed from model?
+
+31. Can set_start_segment_identifier() be removed in the four places where it is currently implemented?

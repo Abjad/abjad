@@ -87,7 +87,7 @@ class DivisionSelector(Selector):
         #self._debug(divisions, 'divisions')
         return selectiontools.Selection(divisions)
     
-    def set_segment_identifier(self, segment_identifier):
-        '''Delegate to ``self.time_relation.set_segment_identifier()``.
+    def set_start_segment_identifier(self, segment_identifier):
+        '''Delegate to ``self.time_relation.set_start_segment_identifier()``.
         '''
-        self.time_relation.set_segment_identifier(segment_identifier)
+        self.time_relation.set_start_segment_identifier(segment_identifier)

@@ -58,7 +58,7 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_segment_identifier
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_start_segment_identifier
 
 Special Methods
 ---------------

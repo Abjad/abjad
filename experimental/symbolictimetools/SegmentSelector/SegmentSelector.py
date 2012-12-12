@@ -133,7 +133,7 @@ class SegmentSelector(Selector):
         '''
         raise NotImplementedError
 
-    def set_segment_identifier(self, segment_identifier):
+    def set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
         # assume selector selects only one segment
         self._start_identifier = segment_identifier
