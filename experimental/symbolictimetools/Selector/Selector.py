@@ -186,15 +186,6 @@ class Selector(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    @abc.abstractmethod
-    def get_selected_objects(self, score_specification, context_name):
-        '''Get selected objects of symbolic timespan when applied
-        to `context_name` in `score_specification`.
-
-        Return object or list of objects.
-        '''
-        pass        
-
     def partition_by_ratio(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)

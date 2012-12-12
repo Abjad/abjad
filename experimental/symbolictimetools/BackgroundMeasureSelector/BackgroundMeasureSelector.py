@@ -118,28 +118,3 @@ class BackgroundMeasureSelector(Selector):
         duration = sum(durations)
         stop_offset = start_offset + duration
         return start_offset, stop_offset
-
-    def get_selected_objects(self, score_specification, context_name):
-        '''Get background measures selected when selector is applied
-        to `score_specification`.
-    
-        Ignore `context_name`.
-
-        First apply any slicing implied by self.start, self.stop values.
-
-        Then apply selector modifications to partition result 
-        list of nonreduced fractions.
-
-        .. note:: deprecated.
-
-        Return list of nonreduced fractions.
-        '''
-        segment_specification = score_specification.get_start_segment_specification(self.anchor)
-        segment_name = segment_specification.segment_name
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        time_signatures = segment_specification.time_signatures
-        time_signatures = time_signatures[start:stop]
-        time_signatures = self._apply_selector_modifications(time_signatures)
-        return time_signatures

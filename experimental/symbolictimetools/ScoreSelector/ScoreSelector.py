@@ -31,10 +31,3 @@ class ScoreSelector(Selector):
         Ignore `context_name` and `start_segment_name`.
         '''
         return score_specification.offsets
-
-    def get_selected_objects(self, score_specification, context_name):
-        '''Return `score_specification` unchanged.
-
-        Ignore `context_name`.
-        '''
-        return selectiontools.Selection([score_specification])

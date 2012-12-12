@@ -54,19 +54,6 @@ class DivisionSelector(Selector):
 
         Return pair.
         '''
-        divisions = self.get_selected_objects(score_specification, voice_name)
-        start_offset = divisions[0].start_offset
-        stop_offset = divisions[-1].stop_offset
-        return start_offset, stop_offset
-        
-    def get_selected_objects(self, score_specification, voice_name):
-        '''Get divisions selected when selector is applied
-        to `voice_name` in `score_specification`.
-
-        .. note:: add example.
-        
-        Return list of zero or more offset-positioned divisions.
-        '''
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
@@ -84,5 +71,6 @@ class DivisionSelector(Selector):
                 context_name=voice_name):
                 divisions.append(division)
         divisions = divisions[self.start_identifier:self.stop_identifier]
-        #self._debug(divisions, 'divisions')
-        return selectiontools.Selection(divisions)
+        start_offset = divisions[0].start_offset
+        stop_offset = divisions[-1].stop_offset
+        return start_offset, stop_offset

@@ -128,13 +128,3 @@ class SegmentSelector(Selector):
         start_offset, stop_offset = offsets
         offsets = self._apply_timespan_modifications(start_offset, stop_offset)
         return offsets
-
-    def get_selected_objects(self, score_specification, context_name):
-        '''Get segments selected when selector is applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return list of segments.
-        '''
-        raise NotImplementedError

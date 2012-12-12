@@ -719,7 +719,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(requested_offset, 'offset')
         timespan_inventory = timespantools.TimespanInventory()
         for rhythm_region_command in self.score_specification.all_rhythm_region_commands:
-            #if rhythm_region_command.start_segment_identifier == requested_segment_identifier:
             if True:
                 if not rhythm_region_command.request == rhythm_command_request:
                     timespan_inventory.append(rhythm_region_command)
