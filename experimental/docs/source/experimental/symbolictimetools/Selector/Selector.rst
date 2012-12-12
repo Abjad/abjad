@@ -42,11 +42,11 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.apply_flamingo_modifications
-
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.apply_offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.apply_selector_modifications
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.divide_by_ratio
 

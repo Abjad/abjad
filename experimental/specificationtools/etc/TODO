@@ -144,9 +144,7 @@
 
 28. Store offset modifications in inventory class that indents in storage format.
 
-29. Replace temporary flamingo naming.
+29. Make apply_offset_modifications method private.
+    Make apply_selector_modifications method private.
 
-30. Make apply_offset_modifications method private.
-    Make apply_flamingo_modifications method private.
-
-31. Eventually add something like offset modifications to SymbolicOffset class.
+30. Eventually add something like offset modifications to SymbolicOffset class.

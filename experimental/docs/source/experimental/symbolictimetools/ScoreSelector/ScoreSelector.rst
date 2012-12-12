@@ -56,13 +56,13 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.apply_flamingo_modifications
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.apply_offset_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.apply_selector_modifications
+
+    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.divide_by_ratio
 

@@ -32,7 +32,7 @@ class Selector(SymbolicTimespan):
         self._stop_identifier = stop_identifier
         self._voice_name = voice_name
         self._time_relation = time_relation
-        self._flamingo_modifications = []
+        self._selector_modifications = []
 
     ### PRIVATE METHODS ###
 
@@ -151,17 +151,17 @@ class Selector(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def apply_flamingo_modifications(self, elements, start_offset):
+    def apply_selector_modifications(self, elements, start_offset):
         evaluation_context = {
             'self': self, 
             'Offset': durationtools.Offset, 
             'NonreducedFraction': mathtools.NonreducedFraction,
             'Ratio': mathtools.Ratio,
             }
-        for flamingo_modification in self._flamingo_modifications:
-            flamingo_modification = flamingo_modification.replace('elements', repr(elements))
-            flamingo_modification = flamingo_modification.replace('start_offset', repr(start_offset))
-            elements, start_offset = eval(flamingo_modification, evaluation_context)
+        for selector_modification in self._selector_modifications:
+            selector_modification = selector_modification.replace('elements', repr(elements))
+            selector_modification = selector_modification.replace('start_offset', repr(start_offset))
+            elements, start_offset = eval(selector_modification, evaluation_context)
         return elements, start_offset
 
     def partition_by_ratio(self, ratio):
@@ -169,10 +169,10 @@ class Selector(SymbolicTimespan):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            flamingo_modification = \
+            selector_modification = \
                 'self._evaluate_partition_by_ratio(elements, start_offset, {!r}, {!r})'
-            flamingo_modification = flamingo_modification.format(ratio, part)
-            selector._flamingo_modifications.append(flamingo_modification)
+            selector_modification = selector_modification.format(ratio, part)
+            selector._selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
 
@@ -181,9 +181,9 @@ class Selector(SymbolicTimespan):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            flamingo_modification = \
+            selector_modification = \
                 'self._evaluate_partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
-            flamingo_modification = flamingo_modification.format(ratio, part)
-            selector._flamingo_modifications.append(flamingo_modification)
+            selector_modification = selector_modification.format(ratio, part)
+            selector._selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)

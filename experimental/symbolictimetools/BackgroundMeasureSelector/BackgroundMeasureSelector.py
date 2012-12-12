@@ -98,7 +98,7 @@ class BackgroundMeasureSelector(Selector):
         Ignore `context_name`. 
 
         First slice according to self.start, self.stop if set.
-        Then apply any modifications in flamingo modifications stack.
+        Then apply any modifications in selector modifications stack.
 
         Return pair.
         '''
@@ -113,7 +113,7 @@ class BackgroundMeasureSelector(Selector):
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        time_signatures, start_offset = self.apply_flamingo_modifications(time_signatures, start_offset)
+        time_signatures, start_offset = self.apply_selector_modifications(time_signatures, start_offset)
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)
         stop_offset = start_offset + duration
@@ -127,7 +127,7 @@ class BackgroundMeasureSelector(Selector):
 
         First apply any slicing implied by self.start, self.stop values.
 
-        Then apply flamingo modifications to partition result 
+        Then apply selector modifications to partition result 
         list of nonreduced fractions.
 
         .. note:: deprecated.
@@ -141,7 +141,7 @@ class BackgroundMeasureSelector(Selector):
         stop = stop or None
         time_signatures = segment_specification.time_signatures
         time_signatures = time_signatures[start:stop]
-        time_signatures = self.apply_flamingo_modifications(time_signatures)
+        time_signatures = self.apply_selector_modifications(time_signatures)
         return time_signatures
 
     def set_segment_identifier(self, segment_identifier):
