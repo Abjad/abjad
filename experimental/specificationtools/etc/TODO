@@ -130,21 +130,20 @@
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-25. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
+25. Audit all symbolic timespan docstrings and make sure everything is modern.
+
+26. Implement a TimeRelation predicate to test whether the time relation is fully *unloaded*.
     Then use this test to make sure that time relations passed into all selectors
     everywhere in the system are fully unloaded.
 
-26. Remove BackgroundMeasureSelector.get_selected_objects().
+27. Remove BackgroundMeasureSelector.get_selected_objects().
     Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
     instead.
     Then audit all selectors, implement get_selected_objects, and write at least one test for each method.
     Or else audit all selector and remove get_selected_objects() method for each selector.
 
-27. Get rid of 'original_offsets' as dummy variable name visible in offset modifications list repr.
+28. Get rid of 'original_offsets' as dummy variable name visible in offset modifications list repr.
 
-28. Store offset modifications in inventory class that indents in storage format.
-
-29. Make apply_offset_modifications method private.
-    Make apply_selector_modifications method private.
+29. Store offset modifications in inventory class that indents in storage format.
 
 30. Eventually add something like offset modifications to SymbolicOffset class.

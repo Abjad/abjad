@@ -113,7 +113,7 @@ class BackgroundMeasureSelector(Selector):
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        time_signatures, start_offset = self.apply_selector_modifications(time_signatures, start_offset)
+        time_signatures, start_offset = self._apply_selector_modifications(time_signatures, start_offset)
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)
         stop_offset = start_offset + duration
@@ -141,7 +141,7 @@ class BackgroundMeasureSelector(Selector):
         stop = stop or None
         time_signatures = segment_specification.time_signatures
         time_signatures = time_signatures[start:stop]
-        time_signatures = self.apply_selector_modifications(time_signatures)
+        time_signatures = self._apply_selector_modifications(time_signatures)
         return time_signatures
 
     def set_segment_identifier(self, segment_identifier):

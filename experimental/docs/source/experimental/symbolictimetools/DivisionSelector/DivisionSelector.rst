@@ -56,14 +56,6 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.apply_offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
-.. automethod:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.apply_selector_modifications
-
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
-
 .. automethod:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.divide_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

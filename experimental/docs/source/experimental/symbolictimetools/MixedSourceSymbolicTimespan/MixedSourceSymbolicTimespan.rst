@@ -32,10 +32,6 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.apply_offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.divide_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

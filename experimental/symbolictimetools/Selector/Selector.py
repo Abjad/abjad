@@ -36,7 +36,20 @@ class Selector(SymbolicTimespan):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_partition_by_ratio(self, elements, original_start_offset, ratio, part):
+    def _apply_selector_modifications(self, elements, start_offset):
+        evaluation_context = {
+            'self': self, 
+            'Offset': durationtools.Offset, 
+            'NonreducedFraction': mathtools.NonreducedFraction,
+            'Ratio': mathtools.Ratio,
+            }
+        for selector_modification in self._selector_modifications:
+            selector_modification = selector_modification.replace('elements', repr(elements))
+            selector_modification = selector_modification.replace('start_offset', repr(start_offset))
+            elements, start_offset = eval(selector_modification, evaluation_context)
+        return elements, start_offset
+
+    def _partition_by_ratio(self, elements, original_start_offset, ratio, part):
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
         selected_part = parts[part]
         parts_before = parts[:part]
@@ -47,7 +60,7 @@ class Selector(SymbolicTimespan):
         new_start_offset = original_start_offset + start_offset
         return selected_part, new_start_offset
 
-    def _evaluate_partition_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
+    def _partition_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
         def duration_helper(x):
             if hasattr(x, 'prolated_duration'):
                 return x.prolated_duration
@@ -151,26 +164,13 @@ class Selector(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    def apply_selector_modifications(self, elements, start_offset):
-        evaluation_context = {
-            'self': self, 
-            'Offset': durationtools.Offset, 
-            'NonreducedFraction': mathtools.NonreducedFraction,
-            'Ratio': mathtools.Ratio,
-            }
-        for selector_modification in self._selector_modifications:
-            selector_modification = selector_modification.replace('elements', repr(elements))
-            selector_modification = selector_modification.replace('start_offset', repr(start_offset))
-            elements, start_offset = eval(selector_modification, evaluation_context)
-        return elements, start_offset
-
     def partition_by_ratio(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             selector_modification = \
-                'self._evaluate_partition_by_ratio(elements, start_offset, {!r}, {!r})'
+                'self._partition_by_ratio(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector._selector_modifications.append(selector_modification)
             result.append(selector)
@@ -182,7 +182,7 @@ class Selector(SymbolicTimespan):
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             selector_modification = \
-                'self._evaluate_partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
+                'self._partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector._selector_modifications.append(selector_modification)
             result.append(selector)

@@ -51,7 +51,7 @@ class SymbolicTimespan(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _evaluate_adjust_offsets(self, offsets, start_adjustment, stop_adjustment):
+    def _adjust_offsets(self, offsets, start_adjustment, stop_adjustment):
         original_start_offset, original_stop_offset = offsets
         new_start_offset, new_stop_offset = offsets
         if start_adjustment is not None and 0 <= start_adjustment:
@@ -64,7 +64,13 @@ class SymbolicTimespan(AbjadObject):
             new_stop_offset = original_stop_offset + stop_adjustment
         return new_start_offset, new_stop_offset
 
-    def _evaluate_divide_by_ratio(self, offsets, ratio, the_part):
+    def _apply_offset_modifications(self, offsets):
+        for offset_modification in self.offset_modifications:
+            offset_modification = offset_modification.replace('original_offsets', repr(offsets))
+            offsets = eval(offset_modification, {'Offset': durationtools.Offset, 'self': self})
+        return offsets
+        
+    def _divide_by_ratio(self, offsets, ratio, the_part):
         original_start_offset, original_stop_offset = offsets
         original_duration = original_stop_offset - original_start_offset
         duration_shards = mathtools.divide_number_by_ratio(original_duration, ratio)
@@ -116,23 +122,17 @@ class SymbolicTimespan(AbjadObject):
             start = durationtools.Offset(start)
         if stop is not None:
             stop = durationtools.Offset(stop)
-        offset_modification = 'self._evaluate_adjust_offsets(original_offsets, {!r}, {!r})'
+        offset_modification = 'self._adjust_offsets(original_offsets, {!r}, {!r})'
         offset_modification = offset_modification.format(start, stop)
         result = copy.deepcopy(self)
         result.offset_modifications.append(offset_modification)
         return result
 
-    def apply_offset_modifications(self, offsets):
-        for offset_modification in self.offset_modifications:
-            offset_modification = offset_modification.replace('original_offsets', repr(offsets))
-            offsets = eval(offset_modification, {'Offset': durationtools.Offset, 'self': self})
-        return offsets
-        
     def divide_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = copy.deepcopy(self)
-            offset_modification = 'self._evaluate_divide_by_ratio(original_offsets, {!r}, {!r})'
+            offset_modification = 'self._divide_by_ratio(original_offsets, {!r}, {!r})'
             offset_modification = offset_modification.format(ratio, part)
             new_symbolic_timespan.offset_modifications.append(offset_modification)
             result.append(new_symbolic_timespan)
