@@ -75,8 +75,8 @@ class SegmentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self,
-        anchor=None, start_identifier=None, stop_identifier=None, time_relation=None):
+    def __init__(self, anchor=None, 
+        start_identifier=None, stop_identifier=None, time_relation=None, offset_modifications=None):
         if isinstance(stop_identifier, tuple):
             assert len(stop_identifier) == 2
             stop_identifier = self._make_identifier_expression(*stop_identifier)
@@ -85,7 +85,8 @@ class SegmentSelector(Selector):
             start_identifier=start_identifier,
             stop_identifier=stop_identifier,
             voice_name=None,
-            time_relation=time_relation)
+            time_relation=time_relation,
+            offset_modifications=offset_modifications)
 
     ### PRIVATE METHODS ###
 

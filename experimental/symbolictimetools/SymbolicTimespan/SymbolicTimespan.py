@@ -13,10 +13,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class SymbolicTimespan(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    ::
-
-        >>> from experimental import *
-
     Abstract base class from which conrete symbolic timespans inherit.
     '''
 
@@ -43,7 +39,7 @@ class SymbolicTimespan(AbjadObject):
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
-    ### PRIVAVET READ-ONLY PROPERTIES ###
+    ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
     def _keyword_argument_name_value_strings(self):

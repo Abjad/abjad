@@ -74,13 +74,14 @@ class CounttimeComponentSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, klass=None, predicate=None, 
-        start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None):
+        start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None,
+        offset_modifications=None):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         Selector.__init__(self, 
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
-            voice_name=voice_name, time_relation=time_relation)
+            voice_name=voice_name, time_relation=time_relation, offset_modifications=offset_modifications)
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass

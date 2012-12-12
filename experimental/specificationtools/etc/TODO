@@ -124,7 +124,7 @@
         measure = middle_third_of_measures.select(0, 1)
     This will show slice selection following after partition.
 
-23. Audit all selectors, implement get_selected_objects, and write at least one test for each method.
+23. Can start_segment_identifier properties eventually be completely removed from model?
 
 24. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
@@ -137,6 +137,16 @@
 26. Remove BackgroundMeasureSelector.get_selected_objects().
     Extend BackgroundMeasureSelector.get_offsets() to return (start_offset, stop_offset, selected_objects)
     instead.
+    Then audit all selectors, implement get_selected_objects, and write at least one test for each method.
+    Or else audit all selector and remove get_selected_objects() method for each selector.
 
-27. Make SegmentSelector repr and storage format show offset_modifications list.
-    Probably SegmentSelector overrides repr and this override needs extension.
+27. Get rid of 'original_offsets' as dummy variable name visible in offset modifications list repr.
+
+28. Store offset modifications in inventory class that indents in storage format.
+
+29. Replace temporary flamingo naming.
+
+30. Make apply_offset_modifications method private.
+    Make apply_flamingo_modifications method private.
+
+31. Eventually add something like offset modifications to SymbolicOffset class.

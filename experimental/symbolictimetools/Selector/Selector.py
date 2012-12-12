@@ -93,14 +93,6 @@ class Selector(SymbolicTimespan):
         '''
         return self._start_identifier
 
-#    @abc.abstractproperty
-#    def start_segment_identifier(self):
-#        '''Selector start segment identifier.
-#
-#        Raise exception when no start segment identifier can be found.
-#        '''
-#        pass
-
     @property
     def start_segment_identifier(self):
         '''Return anchor when anchor is a string.
