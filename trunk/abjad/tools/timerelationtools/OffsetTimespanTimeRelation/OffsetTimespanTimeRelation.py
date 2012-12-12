@@ -60,7 +60,21 @@ class OffsetTimespanTimeRelation(TimeRelation):
 
     @property
     def is_fully_loaded(self):
+        '''True when `timespan` and `offset` are both not none.
+        Otherwise false.
+
+        Return boolean.
+        '''
         return self.timespan is not None and self.offset is not None
+
+    @property
+    def is_fully_unloaded(self):
+        '''True when `timespan` and `offset` are both none.
+        Otherwise false.
+
+        Return boolean.
+        '''
+        return self.timespan is None and self.offset is None
 
     @property
     def offset(self):

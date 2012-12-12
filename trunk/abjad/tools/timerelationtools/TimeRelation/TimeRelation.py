@@ -35,6 +35,10 @@ class TimeRelation(AbjadObject):
     def is_fully_loaded(self):
         pass
 
+    @abc.abstractproperty
+    def is_fully_unloaded(self):
+        pass
+
     @property
     def template(self):
         '''Time relation template.

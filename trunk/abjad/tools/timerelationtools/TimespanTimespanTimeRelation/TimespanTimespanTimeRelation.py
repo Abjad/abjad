@@ -230,3 +230,19 @@ class TimespanTimespanTimeRelation(TimeRelation):
         Return boolean.
         '''
         return self.timespan_1 is not None and self.timespan_2 is not None
+
+    @property
+    def is_fully_unloaded(self):
+        '''True when `timespan_1` and `timespan_2` are both none.
+        Otherwise false.
+
+            >>> time_relation = timerelationtools.timespan_2_starts_during_timespan_1()
+
+        ::
+    
+            >>> time_relation.is_fully_unloaded
+            True
+
+        Return boolean.
+        '''
+        return self.timespan_1 is None and self.timespan_2 is None
