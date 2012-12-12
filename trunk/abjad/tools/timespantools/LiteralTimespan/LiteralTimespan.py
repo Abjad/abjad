@@ -60,6 +60,14 @@ class LiteralTimespan(AbjadObject):
         return self.start_offset < self.stop_offset
 
     @property
+    def offsets(self):
+        '''Start offset and stop offset of literal timespan.
+
+        Return offset pair.
+        '''
+        return self.start_offset, self.stop_offset
+
+    @property
     def start_offset(self):
         '''Start offset of timespan constant specified by user.
 

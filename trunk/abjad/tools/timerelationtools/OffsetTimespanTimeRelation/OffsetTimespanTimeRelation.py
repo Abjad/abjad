@@ -34,8 +34,9 @@ class OffsetTimespanTimeRelation(TimeRelation):
             raise ValueError('time relation is not fully loaded.')
         timespan = timerelationtools.expr_to_timespan(timespan)
         offset = durationtools.Offset(offset)
-        timespan_start = self._get_expr_start(timespan)
-        timespan_stop = self._get_expr_stop(timespan)
+        #timespan_start = self._get_expr_start(timespan)
+        #timespan_stop = self._get_expr_stop(timespan)
+        timespan_start, timespan_stop = self._get_expr_offsets(timespan)
         command = self.template
         command = command.replace('timespan.start', repr(timespan_start))
         command = command.replace('timespan.stop', repr(timespan_stop))

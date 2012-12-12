@@ -174,13 +174,9 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         timespan_1 = timerelationtools.expr_to_timespan(timespan_1)
         timespan_2 = timerelationtools.expr_to_timespan(timespan_2)
-        timespan_1_start = self._get_expr_start(
+        timespan_1_start, timespan_1_stop = self._get_expr_offsets(
             timespan_1, score_specification=score_specification, context_name=context_name)
-        timespan_1_stop = self._get_expr_stop(
-            timespan_1, score_specification=score_specification, context_name=context_name)
-        timespan_2_start = self._get_expr_start(
-            timespan_2, score_specification=score_specification, context_name=context_name)
-        timespan_2_stop = self._get_expr_stop(
+        timespan_2_start, timespan_2_stop = self._get_expr_offsets(
             timespan_2, score_specification=score_specification, context_name=context_name)
 
         command = self.template

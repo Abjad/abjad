@@ -21,27 +21,13 @@ class TimeRelation(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    # TODO: maybe replace with self._get_expr_offsets()
-    def _get_expr_start(self, expr, score_specification=None, context_name=None):
-        if hasattr(expr, 'start_offset'):
-            return expr.start_offset
-        #elif hasattr(expr, 'get_start_offset'):
-        #    return expr.get_start_offset(score_specification, context_name)
+    def _get_expr_offsets(self, expr, score_specification=None, context_name=None):
+        if hasattr(expr, 'offsets'):
+            return expr.offsets
         elif hasattr(expr, 'get_offsets'):
-            return expr.get_offsets(score_specification, context_name)[0]
+            return expr.get_offsets(score_specification, context_name)
         else:
-            raise ValueError
-
-    # TODO: maybe replace with self._get_expr_offsets()
-    def _get_expr_stop(self, expr, score_specification=None, context_name=None):
-        if hasattr(expr, 'stop_offset'):
-            return expr.stop_offset
-        #elif hasattr(expr, 'get_stop_offset'):
-        #    return expr.get_stop_offset(score_specification, context_name)
-        elif hasattr(expr, 'get_offsets'):
-            return expr.get_offsets(score_specification, context_name)[-1]
-        else:
-            raise ValueError
+            raise ValueError('{!r} has neither offsets property nor get_offsets() method.'.format(expr))
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
