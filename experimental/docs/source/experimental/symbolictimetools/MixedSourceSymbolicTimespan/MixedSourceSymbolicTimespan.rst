@@ -13,10 +13,6 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_offset
 
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.stop_offset
@@ -24,6 +20,10 @@ Read-only Properties
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.timespan_modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 Methods
 -------

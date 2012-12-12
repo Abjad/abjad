@@ -29,10 +29,6 @@ Read-only Properties
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
-.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.offsets
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_duration
@@ -64,6 +60,10 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.storage_format
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.time_signatures
+
+.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan_modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 Methods
 -------

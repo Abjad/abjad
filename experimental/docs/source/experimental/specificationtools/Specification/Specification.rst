@@ -17,10 +17,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.moniker
 
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_name
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_template
@@ -32,6 +28,10 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.timespan_modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 Methods
 -------

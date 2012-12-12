@@ -23,10 +23,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_settings
 
-.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_model
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_name
@@ -48,6 +44,10 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.symbolic_stop_offset
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.time_signatures
+
+.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.timespan_modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 Methods
 -------

@@ -21,12 +21,12 @@ class Selector(SymbolicTimespan):
 
     def __init__(self,
         anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, 
-        time_relation=None, offset_modifications=None, selector_modifications=None):
+        time_relation=None, timespan_modifications=None, selector_modifications=None):
         from experimental import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
-        SymbolicTimespan.__init__(self, offset_modifications=offset_modifications)
+        SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier

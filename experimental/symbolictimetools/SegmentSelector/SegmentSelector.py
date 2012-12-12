@@ -77,7 +77,7 @@ class SegmentSelector(Selector):
 
     def __init__(self, anchor=None, 
         start_identifier=None, stop_identifier=None, time_relation=None, 
-        offset_modifications=None, selector_modifications=None):
+        timespan_modifications=None, selector_modifications=None):
         if isinstance(stop_identifier, tuple):
             assert len(stop_identifier) == 2
             stop_identifier = self._make_identifier_expression(*stop_identifier)
@@ -87,7 +87,7 @@ class SegmentSelector(Selector):
             stop_identifier=stop_identifier,
             voice_name=None,
             time_relation=time_relation,
-            offset_modifications=offset_modifications,
+            timespan_modifications=timespan_modifications,
             selector_modifications=selector_modifications)
 
     ### PRIVATE METHODS ###
@@ -120,7 +120,7 @@ class SegmentSelector(Selector):
         '''
         offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
         start_offset, stop_offset = offsets
-        offsets = self._apply_offset_modifications(start_offset, stop_offset)
+        offsets = self._apply_timespan_modifications(start_offset, stop_offset)
         return offsets
 
     def get_selected_objects(self, score_specification, context_name):

@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.selector_modifications
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_identifier
@@ -34,6 +30,10 @@ Read-only Properties
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.time_relation
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.timespan_modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.voice_name
 

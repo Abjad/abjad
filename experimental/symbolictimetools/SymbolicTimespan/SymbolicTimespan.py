@@ -22,8 +22,8 @@ class SymbolicTimespan(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset_modifications=None):
-        self._offset_modifications = offset_modifications or []
+    def __init__(self, timespan_modifications=None):
+        self._timespan_modifications = timespan_modifications or []
 
     ### SPECIAL METHODS ###
 
@@ -44,9 +44,9 @@ class SymbolicTimespan(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'offset_modifications=[]' in result:
+        if 'timespan_modifications=[]' in result:
             result = list(result)
-            result.remove('offset_modifications=[]')
+            result.remove('timespan_modifications=[]')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -64,15 +64,15 @@ class SymbolicTimespan(AbjadObject):
             new_stop_offset = original_stop_offset + stop_adjustment
         return new_start_offset, new_stop_offset
 
-    def _apply_offset_modifications(self, start_offset, stop_offset):
+    def _apply_timespan_modifications(self, start_offset, stop_offset):
         evaluation_context = {
             'self': self,
             'Offset': durationtools.Offset,
             }
-        for offset_modification in self.offset_modifications:
-            offset_modification = offset_modification.replace('start_offset', repr(start_offset))
-            offset_modification = offset_modification.replace('stop_offset', repr(stop_offset))
-            start_offset, stop_offset = eval(offset_modification, evaluation_context)
+        for timespan_modification in self.timespan_modifications:
+            timespan_modification = timespan_modification.replace('start_offset', repr(start_offset))
+            timespan_modification = timespan_modification.replace('stop_offset', repr(stop_offset))
+            start_offset, stop_offset = eval(timespan_modification, evaluation_context)
         return start_offset, stop_offset
         
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
@@ -93,7 +93,7 @@ class SymbolicTimespan(AbjadObject):
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'offset_modifications=[]' in string:
+            if not 'timespan_modifications=[]' in string:
                 filtered_result.append(string)
         return filtered_result
         
@@ -106,13 +106,13 @@ class SymbolicTimespan(AbjadObject):
         return self
 
     @property
-    def offset_modifications(self):
-        '''Read-only list of offset_modifications to be applied 
+    def timespan_modifications(self):
+        '''Read-only list of timespan_modifications to be applied 
         to symbolic timespan during evaluation.
 
         Return list.
         '''
-        return self._offset_modifications
+        return self._timespan_modifications
 
     ### PUBLIC METHODS ###
 
@@ -127,19 +127,19 @@ class SymbolicTimespan(AbjadObject):
             start = durationtools.Offset(start)
         if stop is not None:
             stop = durationtools.Offset(stop)
-        offset_modification = 'self._adjust_offsets(start_offset, stop_offset, {!r}, {!r})'
-        offset_modification = offset_modification.format(start, stop)
+        timespan_modification = 'self._adjust_offsets(start_offset, stop_offset, {!r}, {!r})'
+        timespan_modification = timespan_modification.format(start, stop)
         result = copy.deepcopy(self)
-        result.offset_modifications.append(offset_modification)
+        result.timespan_modifications.append(timespan_modification)
         return result
 
     def divide_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = copy.deepcopy(self)
-            offset_modification = 'self._divide_by_ratio(start_offset, stop_offset, {!r}, {!r})'
-            offset_modification = offset_modification.format(ratio, part)
-            new_symbolic_timespan.offset_modifications.append(offset_modification)
+            timespan_modification = 'self._divide_by_ratio(start_offset, stop_offset, {!r}, {!r})'
+            timespan_modification = timespan_modification.format(ratio, part)
+            new_symbolic_timespan.timespan_modifications.append(timespan_modification)
             result.append(new_symbolic_timespan)
         return tuple(result)
 

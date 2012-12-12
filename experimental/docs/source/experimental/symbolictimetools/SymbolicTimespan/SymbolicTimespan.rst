@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.moniker
 
-.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.offset_modifications
-
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.timespan_modifications
 
 Methods
 -------

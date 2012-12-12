@@ -21,10 +21,6 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.offset_modifications
-
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.selector_modifications
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
@@ -48,6 +44,10 @@ Read-only Properties
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.time_relation
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.timespan_modifications
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. autoattribute:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.voice_name
 
