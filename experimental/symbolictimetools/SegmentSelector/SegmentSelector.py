@@ -135,6 +135,6 @@ class SegmentSelector(Selector):
 
     def set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
-        # assume selector selects only one segment
+        # assume selector selects only one segment; this will eventually need to be extended
         self._start_identifier = segment_identifier
         self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)

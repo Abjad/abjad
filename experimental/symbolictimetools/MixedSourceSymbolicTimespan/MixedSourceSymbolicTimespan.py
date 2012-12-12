@@ -101,8 +101,3 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         Return pair.
         '''
         raise NotImplementedError
-
-    def set_start_segment_identifier(self, segment_identifier):
-        '''.. note:: not yet implemented.
-        '''
-        raise NotImplementedError

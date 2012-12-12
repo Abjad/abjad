@@ -145,8 +145,10 @@ class BackgroundMeasureSelector(Selector):
         return time_signatures
 
     def set_start_segment_identifier(self, segment_identifier):
-        '''Set anchor to `segment_identifier`.
+        '''Set anchor start segment identifier to `segment_identifier`.
         '''
         assert isinstance(segment_identifier, str)
-        assert self.time_relation is None or self.time_relation.is_fully_unloaded
-        self._anchor = segment_identifier
+        if isinstance(self.anchor, str):
+            self._anchor = segment_identifier
+        else:
+            self.anchor.set_start_segment_identifier(segment_identifier)
