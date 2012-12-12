@@ -166,5 +166,3 @@
     Change Selector.partition_by_ratio_of_durations() to Selector.partition_objects_by_ratio_of_durations().
 
 34. Change SymbolicTimespan.get_offsets() to private SymbolicTimespan._get_offsets().
-    Change SymbolicTimespan.get_duration() to private SymbolicTimespan._get_duration().
-    Or remove SymbolicTimespan.get_duration() altogether.

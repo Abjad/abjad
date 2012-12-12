@@ -143,15 +143,6 @@ class SymbolicTimespan(AbjadObject):
             result.append(new_symbolic_timespan)
         return tuple(result)
 
-    def get_duration(self, score_specification, context_name):
-        '''Evaluate duration of symbolic timespan when applied
-        to `context_name` in `score_specification`.
-
-        Return duration.
-        '''
-        start_offset, stop_offset = self.get_offsets(score_specification, context_name)
-        return stop_offset - start_offset
-
     @abc.abstractmethod
     def get_offsets(self, score_specification, context_name):
         '''Get start offset and stop offset of symbolic timespan

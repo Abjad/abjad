@@ -929,7 +929,8 @@ class ConcreteInterpreter(Interpreter):
         for element in expr:
             if isinstance(element, symbolictimetools.SymbolicTimespan):
                 context_name = None
-                duration = element.get_duration(self.score_specification, context_name)
+                start_offset, stop_offset = element.get_offsets(self.score_specification, context_name)
+                duration = stop_offset - start_offset
                 result.append(duration)
             else:
                 result.append(element)
