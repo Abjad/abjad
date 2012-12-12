@@ -111,6 +111,8 @@ class SymbolicTimespan(AbjadObject):
 
     def adjust_offsets(self, start=None, stop=None):
         '''Add delayed evaluation offset setting command to symbolic timespan.
+        
+        Return symbolic timespan copy with offset modification.
         '''
         assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
         assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
@@ -118,10 +120,11 @@ class SymbolicTimespan(AbjadObject):
             start = durationtools.Offset(start)
         if stop is not None:
             stop = durationtools.Offset(stop)
-        if start is not None or stop is not None:
-            offset_modification = 'self._evaluate_adjust_offsets(original_offsets, {!r}, {!r})'
-            offset_modification = offset_modification.format(start, stop)
-            self.offset_modifications.append(offset_modification)
+        offset_modification = 'self._evaluate_adjust_offsets(original_offsets, {!r}, {!r})'
+        offset_modification = offset_modification.format(start, stop)
+        result = copy.deepcopy(self)
+        result.offset_modifications.append(offset_modification)
+        return result
 
     def apply_offset_modifications(self, offsets):
         for offset_modification in self.offset_modifications:
