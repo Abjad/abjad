@@ -84,13 +84,13 @@ class Context(Container):
 
     def _format_engraver_consists(self):
         result = []
-        for engraver in sorted(self.engraver_consists):
+        for engraver in self.engraver_consists:
             result.append(r'\consists %s' % engraver)
         return result
 
     def _format_engraver_removals(self):
         result = []
-        for engraver in sorted(self.engraver_removals):
+        for engraver in self.engraver_removals:
             result.append(r'\remove %s' % engraver)
         return result
 
