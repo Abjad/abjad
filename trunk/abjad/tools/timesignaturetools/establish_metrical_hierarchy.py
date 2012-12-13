@@ -5,10 +5,8 @@ from abjad.tools import tietools
 
 
 def establish_metrical_hierarchy(components, metrical_hierarchy,
-    boundary_depth=None,
-    maximum_dot_count=None,
-    ):
-    r'''.. versionadded:: 2.11
+    boundary_depth=None, maximum_dot_count=None):
+    r'''.. versionadded:: 2.11 
 
     Rewrite the contents of tie chains in an expression to match a metrical
     hierarchy.
@@ -373,9 +371,28 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. || 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
         >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. || 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
         >>> score = Score([Staff(triple), Staff(duples)])
+
+    In order to see the different time signatures on each staff, we need to
+    move some engravers from the Score context to the Staff context:
+
+    ::
+
+        >>> engravers = ['Timing_translator', 'Time_signature_engraver',
+        ...     'Default_bar_line_engraver']
+        >>> score.engraver_removals.extend(engravers)
+        >>> score[0].engraver_consists.extend(engravers)
+        >>> score[1].engraver_consists.extend(engravers)
         >>> f(score)
-        \new Score <<
-            \new Staff {
+        \new Score \with {
+            \remove Timing_translator
+            \remove Time_signature_engraver
+            \remove Default_bar_line_engraver
+        } <<
+            \new Staff \with {
+                \consists Timing_translator
+                \consists Time_signature_engraver
+                \consists Default_bar_line_engraver
+            } {
                 {
                     \time 3/4
                     c'2
@@ -400,7 +417,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                     c'2
                 }
             }
-            \new Staff {
+            \new Staff \with {
+                \consists Timing_translator
+                \consists Time_signature_engraver
+                \consists Default_bar_line_engraver
+            } {
                 {
                     \time 6/8
                     c'2
@@ -438,8 +459,16 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
         >>> for measure in iterationtools.iterate_measures_in_expr(score):
         ...     timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
         >>> f(score)
-        \new Score <<
-            \new Staff {
+        \new Score \with {
+            \remove Timing_translator
+            \remove Time_signature_engraver
+            \remove Default_bar_line_engraver
+        } <<
+            \new Staff \with {
+                \consists Timing_translator
+                \consists Time_signature_engraver
+                \consists Default_bar_line_engraver
+            } {
                 {
                     \time 3/4
                     c'2
@@ -464,7 +493,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                     c'2
                 }
             }
-            \new Staff {
+            \new Staff \with {
+                \consists Timing_translator
+                \consists Time_signature_engraver
+                \consists Default_bar_line_engraver
+            } {
                 {
                     \time 6/8
                     c'2
@@ -495,19 +528,25 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> show(score) # doctest: +SKIP
 
-    Here we recreate the previous score and establish metrical hierarchy at a
-    boundary depth of `1`:
+    Here we re-establish metrical hierarchy at a boundary depth of `1`:
 
     ::
 
-        >>> score = Score([Staff(triple), Staff(duples)])
         >>> for measure in iterationtools.iterate_measures_in_expr(score):
         ...     timesignaturetools.establish_metrical_hierarchy(
         ...         measure[:], measure, boundary_depth=1)
         ...
         >>> f(score)
-        \new Score <<
-            \new Staff {
+        \new Score \with {
+            \remove Timing_translator
+            \remove Time_signature_engraver
+            \remove Default_bar_line_engraver
+        } <<
+            \new Staff \with {
+                \consists Timing_translator
+                \consists Time_signature_engraver
+                \consists Default_bar_line_engraver
+            } {
                 {
                     \time 3/4
                     c'2
@@ -534,7 +573,11 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
                     c'2
                 }
             }
-            \new Staff {
+            \new Staff \with {
+                \consists Timing_translator
+                \consists Time_signature_engraver
+                \consists Default_bar_line_engraver
+            } {
                 {
                     \time 6/8
                     c'4. ~
