@@ -11,10 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.attribute
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.callback
-
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.context_name
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`

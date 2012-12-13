@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
-.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.callback
-
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
-
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.context_names
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.count

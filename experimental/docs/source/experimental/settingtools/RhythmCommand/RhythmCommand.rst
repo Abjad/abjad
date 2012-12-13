@@ -11,10 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.attribute
 
-.. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.callback
-
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.context_name
 
     Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`

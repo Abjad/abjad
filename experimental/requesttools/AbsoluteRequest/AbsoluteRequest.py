@@ -27,14 +27,14 @@ class AbsoluteRequest(Request):
 
     Request `payload`.
 
-    Later, apply any of `index`, `count`, `reverse`, `rotation`, `callback`
+    Later, apply any of `index`, `count`, `reverse`, `rotation`
     that are not none.
     '''
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, index=None, count=None, reverse=None, rotation=None, callback=None):
-        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+    def __init__(self, payload, index=None, count=None, reverse=None, rotation=None):
+        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation)
         self._payload = payload
 
     ### READ-ONLY PROPERTIES ###

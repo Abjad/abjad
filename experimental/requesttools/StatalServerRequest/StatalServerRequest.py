@@ -11,17 +11,17 @@ class StatalServerRequest(Request):
 
     Request `statal_server`.
 
-    Apply any of `index`, `count`, `reverse`, `rotation`, `callback` that are not none.
+    Apply any of `index`, `count`, `reverse`, `rotation`, that are not none.
 
     The purpose of a statal server request is to function as the source of a setting.
     '''
 
     ### INITIALIZER ###
     
-    def __init__(self, statal_server, index=None, count=None, reverse=None, rotation=None, callback=None):
+    def __init__(self, statal_server, index=None, count=None, reverse=None, rotation=None):
         assert isinstance(server, statalservertools.StatalServer)
         Request.__init__(
-            self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            self, index=index, count=count, reverse=reverse, rotation=rotation)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

@@ -142,7 +142,7 @@ class Specification(SymbolicTimespan):
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
     def request_division_command(self, voice, 
         selector=None, edge=None, multiplier=None, addendum=None, 
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request segment division command active at offset
         in `voice`.
 
@@ -205,7 +205,7 @@ class Specification(SymbolicTimespan):
 
         Specify symbolic offset with `selector`, `edge`, `multiplier`, `offset`.
 
-        Postprocess command with any of `index`, `count`, `reverse`, `callback`.
+        Postprocess command with any of `index`, `count`, `reverse`.
 
         Return command request.        
         '''
@@ -214,10 +214,10 @@ class Specification(SymbolicTimespan):
             anchor=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'divisions', voice, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     def request_divisions(self, voice, anchor=None, time_relation=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request segment divisions in `voice`::
 
             >>> request = red_segment.request_divisions('Voice 1')
@@ -236,10 +236,10 @@ class Specification(SymbolicTimespan):
         anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
             'divisions', voice, anchor, time_relation=time_relation,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     def request_naive_beats(self, voice, anchor=None, time_relation=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request segment naive beats in `voice`::
 
             >>> request = red_segment.request_naive_beats('Voice 1')
@@ -259,10 +259,10 @@ class Specification(SymbolicTimespan):
         anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
             'naive_beats', voice, anchor, time_relation=time_relation,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     def request_rhythm(self, voice, anchor=None, time_relation=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request segment rhythm in `voice`::
 
             >>> request = red_segment.request_rhythm('Voice 1')
@@ -283,12 +283,12 @@ class Specification(SymbolicTimespan):
         return requesttools.MaterialRequest(
             'rhythm', voice, anchor, start_segment_name=getattr(self, 'segment_name', None),
             time_relation=time_relation, 
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
     def request_rhythm_command(self, voice, 
         selector=None, edge=None, multiplier=None, addendum=None, 
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request segment rhythm command active at offset in `voice`.
 
         Example. Request rhythm command active at start of segment::
@@ -308,7 +308,7 @@ class Specification(SymbolicTimespan):
 
         Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
 
-        Postprocess command with any of `index`, `count`, `reverse`, `callback`.
+        Postprocess command with any of `index`, `count`, `reverse`.
 
         Return command request.        
         '''
@@ -317,12 +317,12 @@ class Specification(SymbolicTimespan):
             anchor=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'rhythm', voice, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     # TODO: replace 'selector', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
     def request_time_signature_command(self, voice,
         selector=None, edge=None, multiplier=None, addendum=None, 
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request segment time signature command active at offset
         in `context`.
 
@@ -343,7 +343,7 @@ class Specification(SymbolicTimespan):
 
         Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
 
-        Postprocess command with any of `index`, `count`, `reverse`, `callback`.
+        Postprocess command with any of `index`, `count`, `reverse`.
 
         Return command request.
         '''
@@ -352,10 +352,10 @@ class Specification(SymbolicTimespan):
             anchor=selector, edge=edge, multiplier=multiplier, addendum=addendum)
         return requesttools.CommandRequest(
             'time_signatures', voice, symbolic_offset=symbolic_offset,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     def request_time_signatures(self, voice, anchor=None, time_relation=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 
             >>> request = red_segment.request_time_signatures('Voice 1')
@@ -375,7 +375,7 @@ class Specification(SymbolicTimespan):
         anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
             'time_signatures', voice, anchor, time_relation=time_relation,
-            index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+            index=index, count=count, reverse=reverse, rotation=rotation)
 
     @abc.abstractmethod
     def select(self):

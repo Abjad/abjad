@@ -78,7 +78,7 @@
         SymbolicOffset.request_rhythm_command(voice)
         SymbolicOffset.request_time_signature_command(voice)
 
-15. Remove Request index=None, count=None, reverse=None, rotation=None, callback=None treatment keywords.
+15. Remove Request index=None, count=None, reverse=None, rotation=None treatment keywords.
     Replace these with methods bound to Request that return annotated request.
     This will parallel the methods bound to symbolic timespans that return wrapped symbolic timespans.
     This will also mean that any number of arbitrary transforms may be applied to a request in any order.

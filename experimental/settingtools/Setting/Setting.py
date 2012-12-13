@@ -19,7 +19,7 @@ class Setting(AbjadObject):
     @abc.abstractmethod
     def __init__(self, attribute, request, anchor, 
         start_segment_name=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None,
+        index=None, count=None, reverse=None, rotation=None, 
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, requesttools.Request), repr(request)
@@ -36,7 +36,6 @@ class Setting(AbjadObject):
         self._count = count
         self._reverse = reverse
         self._rotation = rotation
-        self._callback = callback
         self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
@@ -72,14 +71,6 @@ class Setting(AbjadObject):
         Return string.
         '''
         return self._attribute
-
-    @property
-    def callback(self):
-        '''Setting callback.
-
-        Return callback or none
-        '''
-        return self._callback
 
     @property
     def count(self):

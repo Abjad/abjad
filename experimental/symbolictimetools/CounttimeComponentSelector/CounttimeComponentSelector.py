@@ -152,6 +152,6 @@ class CounttimeComponentSelector(Selector):
     def predicate(self):
         '''Predicate of counttime component symbolic timespan specified by user.
 
-        Return callback or none.
+        Return predicate or none.
         '''
         return self._predicate

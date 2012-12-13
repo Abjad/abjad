@@ -24,8 +24,7 @@ class Command(AbjadObject):
 
     def __init__(self, request, context_name, 
         start_offset, stop_offset, 
-        index=None, count=None, reverse=None, rotation=None, callback=None,
-        fresh=None):
+        index=None, count=None, reverse=None, rotation=None, fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
@@ -34,8 +33,6 @@ class Command(AbjadObject):
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(reverse, (bool, type(None))), repr(reverse)
-        #assert isinstance(rotation, (int, type(None))), repr(rotation)
-        assert isinstance(callback, (helpertools.Callback, type(None))), repr(callback)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request
         self._context_name = context_name
@@ -45,7 +42,6 @@ class Command(AbjadObject):
         self._count = count
         self._reverse = reverse
         self._rotation = rotation
-        self._callback = callback
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -72,14 +68,6 @@ class Command(AbjadObject):
         Return string.
         '''
         pass
-
-    @property
-    def callback(self):
-        '''Command callback.
-
-        Return callback or none
-        '''
-        return self._callback
 
     @property
     def context_name(self):

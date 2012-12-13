@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.attribute
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.callback
-
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.count
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.fresh

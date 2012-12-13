@@ -11,10 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.attribute
 
-.. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.callback
-
-    Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.requesttools.CommandRequest.CommandRequest.CommandRequest.count
 
     Inherited from :py:class:`Request.Request <experimental.requesttools.Request.Request.Request>`

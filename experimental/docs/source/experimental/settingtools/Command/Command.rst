@@ -11,8 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.attribute
 
-.. autoattribute:: experimental.settingtools.Command.Command.Command.callback
-
 .. autoattribute:: experimental.settingtools.Command.Command.Command.context_name
 
 .. autoattribute:: experimental.settingtools.Command.Command.Command.count

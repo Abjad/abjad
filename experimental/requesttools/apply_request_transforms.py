@@ -16,8 +16,6 @@ def apply_request_transforms(request, payload):
 
     Then apply nonnone ``request.rotation`` to `payload`.
     
-    Then apply nonnone ``request.callback`` to `payload`.
-
     Return `payload`.
     '''
     from experimental import interpretertools
@@ -61,8 +59,5 @@ def apply_request_transforms(request, payload):
         original_payload_type = type(payload)
         payload = sequencetools.rotate_sequence(payload, request.rotation)
         payload = original_payload_type(payload)
-
-    if request.callback:
-        payload = request.callback(payload)
 
     return payload 

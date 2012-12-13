@@ -13,7 +13,7 @@ class MaterialRequest(Request):
 
     Request `attribute` for `anchor` in `voice_name`.
 
-    Apply any of `index`, `count`, `reverse`, `rotation`, `callback` that are not none::
+    Apply any of `index`, `count`, `reverse`, `rotation` that are not none::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
@@ -38,14 +38,13 @@ class MaterialRequest(Request):
     ### INITIALIZER ###
 
     def __init__(self, attribute, voice_name, anchor, start_segment_name=None, time_relation=None,
-        index=None, count=None, reverse=None, rotation=None, callback=None):
+        index=None, count=None, reverse=None, rotation=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__(
-            self, index=index, count=count, reverse=reverse, rotation=rotation, callback=callback)
+        Request.__init__( self, index=index, count=count, reverse=reverse, rotation=rotation)
         self._attribute = attribute
         self._voice_name = voice_name
         self._anchor = anchor

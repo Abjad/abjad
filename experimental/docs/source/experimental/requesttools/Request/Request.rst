@@ -9,8 +9,6 @@ requesttools.Request
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.requesttools.Request.Request.Request.callback
-
 .. autoattribute:: experimental.requesttools.Request.Request.Request.count
 
 .. autoattribute:: experimental.requesttools.Request.Request.Request.index

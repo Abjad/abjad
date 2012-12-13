@@ -58,8 +58,6 @@ class ConcreteInterpreter(Interpreter):
             target.reverse()
         if getattr(source, 'rotation', None):
             target.rotate(source.rotation)
-        if getattr(source, 'callback', None):
-            source.callback(target)
 
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
@@ -702,7 +700,7 @@ class ConcreteInterpreter(Interpreter):
             return False
         # TODO: implement one-line statement for command treatment comparison
         # fuse only if current and previous commands treat material equally
-        for attribute in ('index', 'count', 'reverse', 'rotation', 'callback'):
+        for attribute in ('index', 'count', 'reverse', 'rotation'):
             if getattr(current_rhythm_command, attribute, None) != \
                 getattr(previous_rhythm_command, attribute, None):
                 return False
@@ -802,7 +800,6 @@ class ConcreteInterpreter(Interpreter):
             count=single_context_setting.count,
             reverse=single_context_setting.reverse,
             rotation=single_context_setting.rotation,
-            callback=single_context_setting.callback,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':
