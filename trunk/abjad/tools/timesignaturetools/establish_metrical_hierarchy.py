@@ -366,6 +366,207 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> show(measure) # doctest: +SKIP
 
+    Example 5. Comparison of `3/4` and `6/8`, at `boundary_depths` of 0 and 1:
+
+    ::
+
+        >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. || 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
+        >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. || 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
+        >>> score = Score([Staff(triple), Staff(duples)])
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                {
+                    \time 3/4
+                    c'2
+                    c'4
+                }
+                {
+                    c'4
+                    c'2
+                }
+                {
+                    c'4.
+                    c'4.
+                }
+                {
+                    c'2 ~
+                    c'8
+                    c'8
+                }
+                {
+                    c'8
+                    c'8 ~
+                    c'2
+                }
+            }
+            \new Staff {
+                {
+                    \time 6/8
+                    c'2
+                    c'4
+                }
+                {
+                    c'4
+                    c'2
+                }
+                {
+                    c'4.
+                    c'4.
+                }
+                {
+                    c'2 ~
+                    c'8
+                    c'8
+                }
+                {
+                    c'8
+                    c'8 ~
+                    c'2
+                }
+            }
+        >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
+    Here we establish a metrical hierarchy without specifying and boundary depth:
+
+    ::
+
+        >>> for measure in iterationtools.iterate_measures_in_expr(score):
+        ...     timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                {
+                    \time 3/4
+                    c'2
+                    c'4
+                }
+                {
+                    c'4
+                    c'2
+                }
+                {
+                    c'4.
+                    c'4.
+                }
+                {
+                    c'2 ~
+                    c'8
+                    c'8
+                }
+                {
+                    c'8
+                    c'8 ~
+                    c'2
+                }
+            }
+            \new Staff {
+                {
+                    \time 6/8
+                    c'2
+                    c'4
+                }
+                {
+                    c'4
+                    c'2
+                }
+                {
+                    c'4.
+                    c'4.
+                }
+                {
+                    c'4. ~
+                    c'4
+                    c'8
+                }
+                {
+                    c'8
+                    c'4 ~
+                    c'4.
+                }
+            }
+        >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
+    Here we recreate the previous score and establish metrical hierarchy at a
+    boundary depth of `1`:
+
+    ::
+
+        >>> score = Score([Staff(triple), Staff(duples)])
+        >>> for measure in iterationtools.iterate_measures_in_expr(score):
+        ...     timesignaturetools.establish_metrical_hierarchy(
+        ...         measure[:], measure, boundary_depth=1)
+        ...
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                {
+                    \time 3/4
+                    c'2
+                    c'4
+                }
+                {
+                    c'4
+                    c'2
+                }
+                {
+                    c'4 ~
+                    c'8
+                    c'8 ~
+                    c'4
+                }
+                {
+                    c'2 ~
+                    c'8
+                    c'8
+                }
+                {
+                    c'8
+                    c'8 ~
+                    c'2
+                }
+            }
+            \new Staff {
+                {
+                    \time 6/8
+                    c'4. ~
+                    c'8
+                    c'4
+                }
+                {
+                    c'4
+                    c'8 ~
+                    c'4.
+                }
+                {
+                    c'4.
+                    c'4.
+                }
+                {
+                    c'4. ~
+                    c'4
+                    c'8
+                }
+                {
+                    c'8
+                    c'4 ~
+                    c'4.
+                }
+            }
+        >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
+
     Operate in place and return none.
     '''
 
