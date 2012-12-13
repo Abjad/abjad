@@ -566,18 +566,36 @@ class Spanner(AbjadObject):
 
         ::
 
+            >>> f(voice)
+            \new Voice {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+            }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
+
+        ::
+
             >>> beam.fracture(1, direction=Left)
             (BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8))
 
         ::
 
-            >>> print voice.lilypond_format
+            >>> f(voice)
             \new Voice {
                 c'8 [ ]
                 d'8 [
                 e'8
                 f'8 ]
             }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
 
         Set `direction=None` to fracture on both left and right sides.
 
@@ -658,12 +676,28 @@ class Spanner(AbjadObject):
             raise IndexError
 
     def pop(self):
-        '''Remove and return rightmost component in spanner::
+        r'''Remove and return rightmost component in spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:])
+            >>> spanner = spannertools.SlurSpanner(voice[:])
             >>> spanner
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ::
+
+            >>> f(voice)
+            \new Voice {
+                c'8 (
+                d'8
+                e'8
+                f'8 )
+            }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
@@ -673,7 +707,21 @@ class Spanner(AbjadObject):
         ::
 
             >>> spanner
-            BeamSpanner(c'8, d'8, e'8)
+            SlurSpanner(c'8, d'8, e'8)
+
+        ::
+
+            >>> f(voice)
+            \new Voice {
+                c'8 (
+                d'8
+                e'8 )
+                f'8
+            }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
 
         Return component.
         '''
@@ -682,12 +730,28 @@ class Spanner(AbjadObject):
         return component
 
     def pop_left(self):
-        '''Remove and return leftmost component in spanner::
+        r'''Remove and return leftmost component in spanner:
+
+        ::
 
             >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> spanner = beamtools.BeamSpanner(voice[:])
+            >>> spanner = spannertools.SlurSpanner(voice[:])
             >>> spanner
-            BeamSpanner(c'8, d'8, e'8, f'8)
+            SlurSpanner(c'8, d'8, e'8, f'8)
+
+        ::
+
+            >>> f(voice)
+            \new Voice {
+                c'8 (
+                d'8
+                e'8
+                f'8 )
+            }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
 
         ::
 
@@ -697,7 +761,21 @@ class Spanner(AbjadObject):
         ::
 
             >>> spanner
-            BeamSpanner(d'8, e'8, f'8)
+            SlurSpanner(d'8, e'8, f'8)
+
+        ::
+
+            >>> f(voice)
+            \new Voice {
+                c'8
+                d'8 (
+                e'8
+                f'8 )
+            }
+
+        ::
+
+            >>> show(voice) # doctest: +SKIP
 
         Return component.
         '''

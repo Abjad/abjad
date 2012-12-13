@@ -10,6 +10,8 @@ class Context(Container):
 
     Abjad model of a horizontal layer of music.
 
+    ::
+
         >>> context = contexttools.Context(
         ... name='MeterVoice', context_name='TimeSignatureContext')
 
@@ -179,7 +181,9 @@ class Context(Container):
 
         Unordered set of LilyPond engravers to include in context definition.
 
-        Manage with add, update, other standard set commands. ::
+        Manage with add, update, other standard set commands:
+
+        ::
 
             >>> staff = Staff([])
             >>> staff.engraver_consists.append('Horizontal_bracket_engraver')
@@ -219,7 +223,9 @@ class Context(Container):
     @apply
     def is_nonsemantic():
         def fget(self):
-            r'''Set indicator of nonsemantic voice::
+            r'''Set indicator of nonsemantic voice:
+
+            ::
 
                 >>> measures = measuretools.make_measures_with_full_measure_spacer_skips(
                 ...     [(1, 8), (5, 16), (5, 16)])
@@ -252,7 +258,9 @@ class Context(Container):
                 >>> voice.is_nonsemantic
                 True
 
-            Get indicator of nonsemantic voice::
+            Get indicator of nonsemantic voice:
+
+            ::
 
                 >>> voice = Voice([])
 

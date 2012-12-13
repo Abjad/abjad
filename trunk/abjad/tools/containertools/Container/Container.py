@@ -357,6 +357,10 @@ class Container(Component):
 
             ::
 
+                >>> show(container) # doctest: +SKIP
+
+            ::
+
                 >>> container.is_parallel
                 False
 
@@ -379,6 +383,10 @@ class Container(Component):
                         g4.
                     }
                 >>
+
+            ::
+
+                >>> show(container) # doctest: +SKIP
 
             Return none.
             '''
@@ -501,6 +509,10 @@ class Container(Component):
 
         ::
 
+            >>> show(container) # doctest: +SKIP
+
+        ::
+
             >>> container.append(Note("f'8"))
 
         ::
@@ -512,6 +524,10 @@ class Container(Component):
                 e'8 ]
                 f'8
             }
+
+        ::
+
+            >>> show(container) # doctest: +SKIP
 
         Return none.
         '''
@@ -536,6 +552,10 @@ class Container(Component):
 
         ::
 
+            >>> show(container) # doctest: +SKIP
+
+        ::
+
             >>> container.extend([Note("cs'8"), Note("ds'8"), Note("es'8")])
 
         ::
@@ -549,6 +569,10 @@ class Container(Component):
                 ds'8
                 es'8
             }
+
+        ::
+
+            >>> show(container) # doctest: +SKIP
 
         Return none.
 
@@ -601,6 +625,10 @@ class Container(Component):
 
         ::
 
+            >>> show(container) # doctest: +SKIP
+
+        ::
+
             >>> container.insert(1, Note("cs'8"))
 
         ::
@@ -612,6 +640,10 @@ class Container(Component):
                 d'8
                 e'8 ]
             }
+
+        ::
+
+            >>> show(container) # doctest: +SKIP
 
         Return none.
         '''
@@ -636,6 +668,10 @@ class Container(Component):
 
         ::
 
+            >>> show(container) # doctest: +SKIP
+
+        ::
+
             >>> container.pop(-1)
             Note("e'8")
 
@@ -646,6 +682,10 @@ class Container(Component):
                 c'8 [
                 d'8 ]
             }
+
+        ::
+
+            >>> show(container) # doctest: +SKIP
 
         Return component.
         '''
@@ -670,6 +710,10 @@ class Container(Component):
 
         ::
 
+            >>> show(container) # doctest: +SKIP
+
+        ::
+
             >>> note = container[-1]
             >>> note
             Note("e'8")
@@ -685,6 +729,10 @@ class Container(Component):
                 c'8 [
                 d'8 ]
             }
+
+        ::
+
+            >>> show(container) # doctest: +SKIP
 
         Return none.
         '''

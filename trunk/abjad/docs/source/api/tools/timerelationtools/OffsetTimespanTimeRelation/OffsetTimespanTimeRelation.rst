@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.is_fully_loaded
 
+.. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.is_fully_unloaded
+
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.offset
 
 .. autoattribute:: abjad.tools.timerelationtools.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.OffsetTimespanTimeRelation.storage_format

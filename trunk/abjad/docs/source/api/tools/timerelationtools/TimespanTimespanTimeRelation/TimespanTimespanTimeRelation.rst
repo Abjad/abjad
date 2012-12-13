@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.is_fully_loaded
 
+.. autoattribute:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.is_fully_unloaded
+
 .. autoattribute:: abjad.tools.timerelationtools.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.TimespanTimespanTimeRelation.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
