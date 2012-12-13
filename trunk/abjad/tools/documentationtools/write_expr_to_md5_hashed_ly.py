@@ -4,7 +4,7 @@ from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 
 
-def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True):
+def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True, docs=True):
     '''Write `expr` to a file in `directory`, whose name is the MD5 hash of the
     LilyPond format of that `expr`.
 
@@ -16,7 +16,11 @@ def write_expr_to_md5_hashed_ly(expr, directory, overwrite=True):
 
     Return the MD5 hash.
     '''
-    if not isinstance(expr, lilypondfiletools.LilyPondFile):
+    from abjad.tools import documentationtools
+
+    if docs:
+        expr = documentationtools.make_reference_manual_lilypond_file(expr)
+    elif not isinstance(expr, lilypondfiletools.LilyPondFile):
         expr = lilypondfiletools.make_basic_lilypond_file(expr)
     directory = os.path.expanduser(directory)
     assert os.path.exists(directory) and os.path.isdir(directory)
