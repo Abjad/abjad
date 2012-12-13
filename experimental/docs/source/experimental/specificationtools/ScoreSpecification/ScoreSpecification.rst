@@ -146,6 +146,62 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_segments
 
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_aggregate
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_articulations
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_chord_treatment
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_divisions
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_dynamics
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_marks
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_markup
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_pitch_class_application
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_pitch_class_transform
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_pitch_classes
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_registration
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_rhythm
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_tempo
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_time_signatures
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_timespan_duration
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

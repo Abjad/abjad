@@ -52,6 +52,62 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_aggregate
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_articulations
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_chord_treatment
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_divisions
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_dynamics
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_marks
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_markup
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_pitch_class_application
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_pitch_class_transform
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_pitch_classes
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_registration
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_rhythm
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_tempo
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_time_signatures
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.set_timespan_duration
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

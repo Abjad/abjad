@@ -138,6 +138,31 @@ class SymbolicTimespan(AbjadObject):
     def _set_timespan_stop_offset(self, start_offset, stop_offset, new_stop_offset):
         return start_offset, new_stop_offset
 
+    def _store_multiple_context_setting(self, attribute, source,
+        contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True, truncate=None):
+        from experimental import requesttools
+        from experimental import settingtools
+        request = requesttools.expr_to_request(source)
+        context_names = self._context_token_to_context_names(contexts)
+        timespan = timespan or self.specification_name
+        multiple_context_setting = settingtools.MultipleContextSetting(
+            attribute, 
+            request, 
+            timespan,
+            start_segment_name=self.segment_name,
+            context_names=context_names, 
+            index=index,
+            count=count,
+            reverse=reverse,
+            rotation=rotation,
+            persist=persist, 
+            truncate=truncate
+            )
+        self.multiple_context_settings.append(multiple_context_setting)
+        return multiple_context_setting
+
     def _translate_timespan(self, start_offset, stop_offset, duration):
         start_offset += duration
         stop_offset += duration
@@ -334,6 +359,244 @@ class SymbolicTimespan(AbjadObject):
             stop_identifier=stop, 
             voice_name=voice)
         return timespan
+
+    def set_aggregate(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set aggregate of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'aggregate'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_articulations(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set articulations of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'articulations'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_chord_treatment(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set chord treatment of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'chord_treatment'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_divisions(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True, truncate=None):
+        r'''Set divisions of segment `contexts` to `source`::
+
+            >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
+
+        ::
+
+            >>> z(setting)
+            settingtools.MultipleContextSetting(
+                'divisions',
+                requesttools.AbsoluteRequest(
+                    [(3, 16)]
+                    ),
+                'red',
+                start_segment_name='red',
+                context_names=['Voice 1', 'Voice 3'],
+                persist=True
+                )
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'divisions'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            truncate=truncate, persist=persist)
+
+    def set_dynamics(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set dynamics of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'dynamics'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_marks(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set marks of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'marks'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_markup(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set markup of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'markup'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_pitch_class_application(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set pitch-class application of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'pitch_class_application'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_pitch_class_transform(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set pitch-class transform of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'pitch_class_transform'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_pitch_classes(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set pitch-classes of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'pitch_classes'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_registration(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set registration of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'registration'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_rhythm(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set rhythm of segment `contexts` to `source`.
+
+            >>> setting = red_segment.set_rhythm(library.sixteenths)
+
+        ::
+
+            >>> z(setting)
+            settingtools.MultipleContextSetting(
+                'rhythm',
+                requesttools.AbsoluteRequest(
+                    rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        )
+                    ),
+                'red',
+                start_segment_name='red',
+                context_names=['Grouped Rhythmic Staves Score'],
+                persist=True
+                )
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'rhythm'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_tempo(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set tempo of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'tempo'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
+
+    def set_time_signatures(self, source, contexts=None, timespan=None,
+        index=None, count=None, reverse=None, rotation=None,
+        persist=True):
+        r'''Set time signatures according to `source` for segment `contexts`.
+
+            >>> setting = red_segment.set_time_signatures([(3, 8), (4, 8)])
+
+        ::
+
+            >>> z(setting)
+            settingtools.MultipleContextSetting(
+                'time_signatures',
+                requesttools.AbsoluteRequest(
+                    [(3, 8), (4, 8)]
+                    ),
+                'red',
+                start_segment_name='red',
+                context_names=['Grouped Rhythmic Staves Score'],
+                persist=True
+                )
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'time_signatures'
+        return self._store_multiple_context_setting(attribute, source, 
+            contexts=contexts, timespan=timespan,
+            index=index, count=count, reverse=reverse, rotation=rotation,
+            persist=persist)
 
     def set_timespan_duration(self, duration):
         '''Set timespan duration to `duration`.

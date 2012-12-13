@@ -32,6 +32,34 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_notes_and_chords
 
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_aggregate
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_articulations
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_chord_treatment
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_divisions
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_dynamics
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_marks
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_markup
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_pitch_class_application
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_pitch_class_transform
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_pitch_classes
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_registration
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_rhythm
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_tempo
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_time_signatures
+
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_timespan_duration
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_timespan_start_offset
