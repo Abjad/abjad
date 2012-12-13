@@ -2,6 +2,7 @@ import abc
 import copy
 import numbers
 from abjad.tools import chordtools
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
@@ -23,7 +24,8 @@ class SymbolicTimespan(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, timespan_modifications=None):
-        self._timespan_modifications = timespan_modifications or []
+        timespan_modifications = timespan_modifications or []
+        self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
 
     ### SPECIAL METHODS ###
 
@@ -44,9 +46,9 @@ class SymbolicTimespan(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifications=[]' in result:
+        if 'timespan_modifications=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifications=[]')
+            result.remove('timespan_modifications=ObjectInventory([])')
         return tuple(result)
 
     @property
@@ -114,7 +116,7 @@ class SymbolicTimespan(AbjadObject):
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifications=[]' in string:
+            if not 'timespan_modifications=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 

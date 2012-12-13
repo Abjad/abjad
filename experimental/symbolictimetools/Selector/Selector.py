@@ -1,5 +1,6 @@
 import abc
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -24,25 +25,24 @@ class Selector(SymbolicTimespan):
         time_relation=None, timespan_modifications=None, selector_modifications=None):
         from experimental import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
-        #assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
         assert time_relation is None or time_relation.is_fully_unloaded
         SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier
-        #self._voice_name = voice_name
         self._time_relation = time_relation
-        self._selector_modifications = selector_modifications or []
+        selector_modifications = selector_modifications or []
+        self._selector_modifications = datastructuretools.ObjectInventory(selector_modifications)
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
     def _keyword_argument_name_value_strings(self):
         result = SymbolicTimespan._keyword_argument_name_value_strings.fget(self)
-        if 'selector_modifications=[]' in result:
+        if 'selector_modifications=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('selector_modifications=[]')
+            result.remove('selector_modifications=ObjectInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -67,7 +67,7 @@ class Selector(SymbolicTimespan):
         result = SymbolicTimespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'selector_modifications=[]' in string:
+            if not 'selector_modifications=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     
