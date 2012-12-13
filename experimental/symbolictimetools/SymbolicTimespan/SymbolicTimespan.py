@@ -78,9 +78,10 @@ class SymbolicTimespan(AbjadObject):
             'Offset': durationtools.Offset,
             }
         for timespan_modification in self.timespan_modifications:
-            timespan_modification = timespan_modification.replace('start_offset', repr(start_offset))
-            timespan_modification = timespan_modification.replace('stop_offset', repr(stop_offset))
+            timespan_modification = timespan_modification.replace('original_start_offset', repr(start_offset))
+            timespan_modification = timespan_modification.replace('original_stop_offset', repr(stop_offset))
             start_offset, stop_offset = eval(timespan_modification, evaluation_context)
+            assert start_offset <= stop_offset
         return start_offset, stop_offset
         
     def _clone(self):
@@ -119,7 +120,9 @@ class SymbolicTimespan(AbjadObject):
 
     def _scale_timespan(self, start_offset, stop_offset, multiplier):
         assert 0 < multiplier
-        new_stop_offset = multiplier * stop_offset
+        duration = stop_offset - start_offset
+        new_duration = multiplier * duration
+        new_stop_offset = start_offset + new_duration
         return start_offset, new_stop_offset
 
     def _set_timespan_duration(self, start_offset, stop_offset, duration):
@@ -137,6 +140,14 @@ class SymbolicTimespan(AbjadObject):
         start_offset += duration
         stop_offset += duration
         return start_offset, stop_offset
+
+    def _translate_timespan_start_offset(self, start_offset, stop_offset, duration):
+        new_start_offset = start_offset + duration
+        return new_start_offset, stop_offset
+
+    def _translate_timespan_stop_offset(self, start_offset, stop_offset, duration):
+        new_stop_offset = stop_offset + duration
+        return start_offset, new_stop_offset
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -162,7 +173,8 @@ class SymbolicTimespan(AbjadObject):
             start = durationtools.Offset(start)
         if stop is not None:
             stop = durationtools.Offset(stop)
-        timespan_modification = 'self._adjust_timespan_offsets(start_offset, stop_offset, {!r}, {!r})'
+        timespan_modification = \
+            'self._adjust_timespan_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         timespan_modification = timespan_modification.format(start, stop)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
@@ -172,7 +184,8 @@ class SymbolicTimespan(AbjadObject):
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = self._clone()
-            timespan_modification = 'self._divide_timespan_by_ratio(start_offset, stop_offset, {!r}, {!r})'
+            timespan_modification = \
+                'self._divide_timespan_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
             timespan_modification = timespan_modification.format(ratio, part)
             new_symbolic_timespan.timespan_modifications.append(timespan_modification)
             result.append(new_symbolic_timespan)
@@ -184,7 +197,8 @@ class SymbolicTimespan(AbjadObject):
         Return copy of timespan with appended modification.
         '''
         multiplier = durationtools.Multiplier(multiplier)
-        timespan_modification = 'self._scale_timespan(start_offset, stop_offset, {!r})'
+        timespan_modification = \
+            'self._scale_timespan(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(multiplier)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
@@ -325,7 +339,8 @@ class SymbolicTimespan(AbjadObject):
         Return copy of timespan with appended modification.
         '''
         duration = durationtools.Duration(duration)
-        timespan_modification = 'self._set_timespan_duration(start_offset, stop_offset, {!r})'
+        timespan_modification = \
+            'self._set_timespan_duration(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(duration)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
@@ -337,7 +352,8 @@ class SymbolicTimespan(AbjadObject):
         Return copy of timespan with appended modification.
         '''
         start_offset = durationtools.Offset(start_offset)
-        timespan_modification = 'self._set_timespan_start_offset(start_offset, stop_offset, {!r})'
+        timespan_modification = \
+            'self._set_timespan_start_offset(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(start_offset)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
@@ -349,7 +365,8 @@ class SymbolicTimespan(AbjadObject):
         Return copy of timespan with appended modification.
         '''
         stop_offset = durationtools.Offset(stop_offset)
-        timespan_modification = 'self._set_timespan_stop_offset(stop_offset, stop_offset, {!r})'
+        timespan_modification = \
+            'self._set_timespan_stop_offset(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(stop_offset)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
@@ -361,7 +378,34 @@ class SymbolicTimespan(AbjadObject):
         Return copy of timespan with appended modification.
         '''
         duration = durationtools.Duration(duration)
-        timespan_modification = 'self._translate_timespan(start_offset, stop_offset, {!r})'
+        timespan_modification = \
+            'self._translate_timespan(original_start_offset, original_stop_offset, {!r})'
+        timespan_modification = timespan_modification.format(duration)
+        result = self._clone()
+        result.timespan_modifications.append(timespan_modification)
+        return result
+
+    def translate_timespan_start_offset(self, duration):
+        '''Translate timespan start offset by `duration`.
+
+        Return copy of timespan with appended modification.
+        '''
+        duration = durationtools.Duration(duration)
+        timespan_modification = \
+            'self._translate_timespan_start_offset(original_start_offset, original_stop_offset, {!r})'
+        timespan_modification = timespan_modification.format(duration)
+        result = self._clone()
+        result.timespan_modifications.append(timespan_modification)
+        return result
+
+    def translate_timespan_stop_offset(self, duration):
+        '''Translate timespan stop offset by `duration`.
+
+        Return copy of timespan with appended modification.
+        '''
+        duration = durationtools.Duration(duration)
+        timespan_modification = \
+            'self._translate_timespan_stop_offset(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(duration)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
