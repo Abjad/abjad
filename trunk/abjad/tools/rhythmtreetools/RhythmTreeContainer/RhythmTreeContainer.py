@@ -512,6 +512,29 @@ class RhythmTreeContainer(RhythmTreeNode):
         return sum([x.duration for x in self])
 
     @property
+    def graphviz_format(self):
+        node_map = {}
+        nodes = []
+        edges = []
+        for node in self.nodes:
+            node_id = 'id_' + '_'.join(str(x) for x in node.graph_order)
+            node_label = '"{}"'.format(node.duration)
+            if isinstance(node, type(self)):
+                node_shape = 'triangle'
+            else:
+                node_shape = 'box'
+            nodes.append('{} [label={}, shape={}];'.format(
+                node_id, node_label, node_shape))
+            node_map[node] = node_id
+            if node.parent is not None:
+                edges.append('{} -> {};'.format(node_map[node.parent], node_map[node]))
+        graph = 'digraph G {{\n{}\n{}\n}}'.format(
+            '\t' + '\n\t'.join(nodes),
+            '\t' + '\n\t'.join(edges)
+            )
+        return graph
+
+    @property
     def nodes(self):
         '''The collection of `RhythmTreeNodes` produced by iterating a node
         depth-first:

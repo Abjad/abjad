@@ -340,6 +340,57 @@ class MetricalHierarchy(AbjadObject):
         return durationtools.Duration(self.numerator, self.denominator)
 
     @property
+    def graphviz_format(self):
+        '''Graphviz format of hierarchy's root node:
+
+        ::
+
+            >>> print metrical_hierarchy.graphviz_format
+            digraph G {
+                id_ [label="5/4", shape=triangle];
+                id_0 [label="3/4", shape=triangle];
+                id_0_0 [label="1/4", shape=box];
+                id_0_1 [label="1/4", shape=box];
+                id_0_2 [label="1/4", shape=box];
+                id_1 [label="2/4", shape=triangle];
+                id_1_0 [label="1/4", shape=box];
+                id_1_1 [label="1/4", shape=box];
+                id_ -> id_0;
+                id_0 -> id_0_0;
+                id_0 -> id_0_1;
+                id_0 -> id_0_2;
+                id_ -> id_1;
+                id_1 -> id_1_0;
+                id_1 -> id_1_1;
+            }
+
+        Which looks like this:
+
+        .. graphviz:
+
+            digraph G {
+                id_ [label="5/4", shape=triangle];
+                id_0 [label="3/4", shape=triangle];
+                id_0_0 [label="1/4", shape=box];
+                id_0_1 [label="1/4", shape=box];
+                id_0_2 [label="1/4", shape=box];
+                id_1 [label="2/4", shape=triangle];
+                id_1_0 [label="1/4", shape=box];
+                id_1_1 [label="1/4", shape=box];
+                id_ -> id_0;
+                id_0 -> id_0_0;
+                id_0 -> id_0_1;
+                id_0 -> id_0_2;
+                id_ -> id_1;
+                id_1 -> id_1_0;
+                id_1 -> id_1_1;
+            }
+
+        Return string.
+        '''
+        return self.root_node.graphviz_format
+
+    @property
     def numerator(self):
         r'''Beat hierarchy numerator::
 

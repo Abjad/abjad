@@ -189,6 +189,14 @@ class RhythmTreeNode(AbjadObject):
         return inventory
 
     @property
+    def graph_order(self):
+        order = []
+        for parent, child in sequencetools.iterate_sequence_pairwise_strict(
+            reversed(self.improper_parentage)):
+            order.append(parent.index(child))
+        return tuple(order)
+
+    @property
     def improper_parentage(self):
         '''The improper parentage of a node in a rhythm-tree, being the 
         sequence of node beginning with itself and ending with the root node

@@ -390,6 +390,7 @@ Composition packages
    tools/iotools/f
    tools/iotools/get_last_output_file_name
    tools/iotools/get_next_output_file_name
+   tools/iotools/graph
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/p

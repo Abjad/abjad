@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.depthwise_inventory
 
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.graph_order
+
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.improper_parentage
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.parent

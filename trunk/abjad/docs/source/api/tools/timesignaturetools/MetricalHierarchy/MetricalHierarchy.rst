@@ -17,6 +17,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.duration
 
+.. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.graphviz_format
+
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.numerator
 
 .. autoattribute:: abjad.tools.timesignaturetools.MetricalHierarchy.MetricalHierarchy.MetricalHierarchy.pretty_rtm_format

@@ -25,6 +25,14 @@ Read-only Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graph_order
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graphviz_format
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.improper_parentage
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
