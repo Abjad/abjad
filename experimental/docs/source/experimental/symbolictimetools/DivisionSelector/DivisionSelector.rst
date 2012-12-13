@@ -47,7 +47,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.voice_name
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`VoiceSelector.VoiceSelector <experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector>`
 
 Methods
 -------

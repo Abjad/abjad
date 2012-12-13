@@ -31,8 +31,6 @@ Read-only Properties
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.voice_name
-
 Methods
 -------
 

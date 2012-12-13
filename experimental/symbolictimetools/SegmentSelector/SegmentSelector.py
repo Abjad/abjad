@@ -85,7 +85,6 @@ class SegmentSelector(Selector):
             anchor=anchor,
             start_identifier=start_identifier,
             stop_identifier=stop_identifier,
-            voice_name=None,
             time_relation=time_relation,
             timespan_modifications=timespan_modifications,
             selector_modifications=selector_modifications)

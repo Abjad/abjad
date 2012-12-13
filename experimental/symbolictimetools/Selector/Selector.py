@@ -20,18 +20,18 @@ class Selector(SymbolicTimespan):
     ### INTIALIZER ###
 
     def __init__(self,
-        anchor=None, start_identifier=None, stop_identifier=None, voice_name=None, 
+        anchor=None, start_identifier=None, stop_identifier=None, 
         time_relation=None, timespan_modifications=None, selector_modifications=None):
         from experimental import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
-        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
+        #assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
         assert time_relation is None or time_relation.is_fully_unloaded
         SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier
-        self._voice_name = voice_name
+        #self._voice_name = voice_name
         self._time_relation = time_relation
         self._selector_modifications = selector_modifications or []
 
@@ -167,22 +167,6 @@ class Selector(SymbolicTimespan):
         Return time_relation or none.
         '''
         return self._time_relation
-
-    @property
-    def voice_name(self):
-        '''Slice selector voice name.
-
-        If voice name is set then slice selector is "anchored" to a particular voice.
-
-        If voice name is none then then slice selector is effectively "free floating"
-        and is not anchored to a particular voice.
-
-        Some documentation somewhere will eventually have to explain what it means
-        for a selector to be "anchored" or "free floating".
-
-        Return string or none.
-        '''
-        return self._voice_name
 
     ### PUBLIC METHODS ###
 

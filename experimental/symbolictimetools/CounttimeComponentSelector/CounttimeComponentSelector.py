@@ -4,10 +4,10 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from experimental import helpertools
-from experimental.symbolictimetools.Selector import Selector
+from experimental.symbolictimetools.VoiceSelector import VoiceSelector
 
 
-class CounttimeComponentSelector(Selector):
+class CounttimeComponentSelector(VoiceSelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -79,7 +79,7 @@ class CounttimeComponentSelector(Selector):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        Selector.__init__(self, 
+        VoiceSelector.__init__(self, 
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             voice_name=voice_name, time_relation=time_relation, 
             timespan_modifications=timespan_modifications, selector_modifications=selector_modifications)

@@ -1,112 +1,114 @@
-symbolictimetools.ScoreSelector
+symbolictimetools.VoiceSelector
 ===============================
 
-.. inheritance-diagram:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector
+.. inheritance-diagram:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector
    :private-bases:
 
-.. autoclass:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector
+.. autoclass:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.anchor
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.anchor
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.identifiers
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.identifiers
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.selector_modifications
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.selector_modifications
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_identifier
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.start_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_segment_identifier
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.start_segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stop_identifier
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.stop_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.storage_format
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.time_relation
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.time_relation
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.timespan_modifications
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.timespan_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.voice_name
 
 Methods
 -------
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.adjust_timespan_offsets
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.adjust_timespan_offsets
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.divide_timespan_by_ratio
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.divide_timespan_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.partition_objects_by_ratio
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.partition_objects_by_ratio
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.partition_objects_by_ratio_of_durations
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.partition_objects_by_ratio_of_durations
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.select_background_measures
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.select_background_measures
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.select_divisions
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.select_divisions
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.select_leaves
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.select_leaves
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.select_notes_and_chords
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.select_notes_and_chords
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__eq__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__eq__
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__ge__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__gt__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__le__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__lt__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__ne__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__repr__
+.. automethod:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

@@ -254,6 +254,7 @@ Unstable packages (load manually)
 
    experimental/symbolictimetools/Selector/Selector
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
+   experimental/symbolictimetools/VoiceSelector/VoiceSelector
 
 .. rubric:: concrete classes
 

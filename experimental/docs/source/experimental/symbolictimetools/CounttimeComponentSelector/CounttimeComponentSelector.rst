@@ -51,7 +51,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.voice_name
 
-    Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`VoiceSelector.VoiceSelector <experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector>`
 
 Methods
 -------

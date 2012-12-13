@@ -91,68 +91,55 @@
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
 
-17. These two selectors should implement an initializer that forces a voice_name attribute:
-        CounttimeComponentSelector
-        DivisionSelector
-    The other selectors should implement initializers that do not allow a voice_name attribute at all.
-    That is, remove voice_name property from these selectors:
-        BackgroundMeasureSelector
-        ScoreSelector
-        SegmentSelector
-    That will correct the object model for those three selectors.
-
-18. Add some tests to show this:
+17. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
         measures = measures.select(2, 4)
     This will show the composition of multiple slice selections in a row.
 
-19. Add some tets to show this:
+18. Add some tests to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_part = segments.adjust_timespan_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         score_specification.set_divisions([(3, 16)], selector=middle_part)
     This will show anchoring to a segment selector that selects more than one segment.
 
-20. Add some tests to show this:
+19. Add some tests to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_measures = segments.select_background_measures(3, 6)
     This will show selecting background measures from more than one segment.
 
-21. Add some tests to show this:
+20. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
     This will show partitioningonly part of a segment's measures.
 
-22. Add some tests to show this:
+21. Add some tests to show this:
         measures = red_segment.select_background_measures()
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures.select(0, 1)
     This will show slice selection following after partition.
 
-23. Add some tests to show this:
+22. Add some tests to show this:
         segment = red_segment.select()
         first_half_of_red_segment = segment.divide_timespan_by_ratio((1, 1))[0]
         measures = score_specification.select_background_measures(anchor=first_half_of_red_segment)
     This will show measures that start during the first half of a segment.
 
-24. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+23. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-25. Audit all symbolic timespan docstrings and make sure everything is modern.
+24. Audit all symbolic timespan docstrings and make sure everything is modern.
 
-26. Extend BackgroundMeasureSelector._get_offsets() to return 
+25. Extend BackgroundMeasureSelector._get_offsets() to return 
     (start_offset, stop_offset, selected_objects) triple.
     Then extend all selector _get_offsets() methods and do the same.
 
-27. Store offset modifications in inventory class that indents in storage format.
+26. Store offset modifications in inventory class that indents in storage format.
 
-28. Eventually add something like offset modifications to SymbolicOffset class.
+27. Eventually add something like offset modifications to SymbolicOffset class.
 
-29. Make it possible to say red_segment.adjust_timespan_offsets() and red_segment.divide_timespan_by_ratio().
-    This will involve timespan modification methods (like adjust) copying moniker instead of specification.
-
-30. Add the following timespan modification methods:
+28. Add the following timespan modification methods:
         timespan.scale_timespan(multiplier)
         timespan.set_timespan_duration(duration)
         timespan.set_timespan_start_offset(offset)
@@ -160,7 +147,7 @@
         timespan.translate_timespan(duration)
     These may be enough to make the timespan modification inventory complete for first release.
 
-31. Can start_segment_identifier properties eventually be completely removed from model?
+29. Can start_segment_identifier properties eventually be completely removed from model?
     What should be possible is for code to look at any symbolic timespan and get the start segment identifier.
     That implies a SymbolicTimespan.get_start_segment_identifier() method (or property).
     What is the set-side of the management of this property?

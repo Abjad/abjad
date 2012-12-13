@@ -88,8 +88,7 @@ def test_schematic_examples__X_series_03():
     red_segment.set_divisions([(5, 16)], contexts=['Voice 2'], selector=left_measure)
     red_segment.set_divisions([(3, 16)], contexts=['Voice 2'], selector=right_measure)
 
-    segment = red_segment.select()
-    left_half, right_half = segment.divide_timespan_by_ratio((1, 1))
+    left_half, right_half = red_segment.divide_timespan_by_ratio((1, 1))
 
     voice_1_left_division_command = red_segment.request_division_command('Voice 1', selector=left_measure)
     voice_1_right_division_command = red_segment.request_division_command('Voice 1', selector=right_measure)
@@ -143,8 +142,7 @@ def test_schematic_examples__X_series_04():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    segment = red_segment.select()
-    divisions = segment.divide_timespan_by_ratio([1, 1, 1])
+    divisions = red_segment.divide_timespan_by_ratio([1, 1, 1])
     red_segment.set_divisions(divisions)
     left = red_segment.select_divisions('Voice 1', 0, 1)
     middle = red_segment.select_divisions('Voice 1', 1, 2)
