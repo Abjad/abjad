@@ -673,6 +673,7 @@ Composition packages
    tools/markuptools/Markup/Markup
    tools/markuptools/MarkupCommand/MarkupCommand
    tools/markuptools/MarkupInventory/MarkupInventory
+   tools/markuptools/MusicGlyph/MusicGlyph
 
 .. rubric:: functions
 
