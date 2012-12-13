@@ -6,9 +6,11 @@ from experimental.settingtools.Setting import Setting
 class SingleContextSetting(Setting):
     r'''.. versionadded:: 1.0
 
-    Single-context setting::
+    ::
 
         >>> from experimental import *
+
+    Single-context setting.
 
     Set `attribute` to `request` for single-context `anchor`::
 
@@ -42,7 +44,6 @@ class SingleContextSetting(Setting):
                 [(3, 16)]
                 ),
             'red',
-            start_segment_name='red',
             context_name='Voice 1',
             fresh=True,
             persist=True
@@ -59,12 +60,10 @@ class SingleContextSetting(Setting):
 
     def __init__(self, 
         attribute, request, anchor, 
-        start_segment_name=None,
         context_name=None, 
         index=None, count=None, reverse=None, rotation=None,
         fresh=True, persist=True, truncate=None):
         Setting.__init__(self, attribute, request, anchor, 
-            start_segment_name=start_segment_name,
             index=index, count=count, reverse=reverse, rotation=rotation, 
             fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
@@ -91,7 +90,6 @@ class SingleContextSetting(Setting):
                     [(3, 16)]
                     ),
                 'red',
-                start_segment_name='red',
                 context_name='Voice 1',
                 fresh=True,
                 persist=True
@@ -119,5 +117,4 @@ class SingleContextSetting(Setting):
             new_setting._anchor = segment_name 
         else:
             new_setting.anchor._set_start_segment_identifier(segment_name)
-        new_setting._start_segment_name = segment_name
         return new_setting

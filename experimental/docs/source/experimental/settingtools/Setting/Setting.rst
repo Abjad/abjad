@@ -27,8 +27,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.rotation
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.start_segment_name
-
 .. autoattribute:: experimental.settingtools.Setting.Setting.Setting.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

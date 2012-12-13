@@ -29,7 +29,6 @@ class MultipleContextSetting(Setting):
                 [(4, 8), (3, 8)]
                 ),
             'red',
-            start_segment_name='red',
             context_names=['Grouped Rhythmic Staves Score'],
             persist=True
             )
@@ -43,11 +42,10 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute, request, anchor, start_segment_name=None, context_names=None, 
+    def __init__(self, attribute, request, anchor, context_names=None, 
         index=None, count=None, reverse=None, rotation=None, 
         persist=True, truncate=None):
         Setting.__init__(self, attribute, request, anchor, 
-            start_segment_name=start_segment_name,
             index=index, count=count, reverse=reverse, rotation=rotation, 
             persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
@@ -74,7 +72,6 @@ class MultipleContextSetting(Setting):
                 self.attribute, 
                 self.request, 
                 anchor,
-                start_segment_name=self.start_segment_name,
                 context_name=context_name,
                 index=self.index,
                 count=self.count,

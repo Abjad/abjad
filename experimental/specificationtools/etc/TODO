@@ -147,10 +147,9 @@
 27. Eventually add something like offset modifications to SymbolicOffset class.
 
 28. Can start_segment_identifier properties eventually be completely removed from model?
-    What should be possible is for code to look at any symbolic timespan and get start segment identifier.
-    That implies a SymbolicTimespan.get_start_segment_identifier() method (or property).
-    What is the set-side of the management of this property?
-    It seems like "reanchoring" should be all that is ever necessary to manage the set-side. 
+    What should be possible is for code to look at any symbolic timespan and get start segment specification.
+    There is in fact an Interpreter.get_start_segment_specification() method right now.
+    How does this relate to the "reanchoring" of settings during interpretation?
 
 29. Remove this noncommand request method in favor of an existing select methods:
         Specification.request_divisions() ==> Specification.select_divisions()

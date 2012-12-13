@@ -47,10 +47,6 @@ Read-only Properties
 
     Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
-.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.start_segment_name
-
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
-
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

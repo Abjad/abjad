@@ -151,7 +151,6 @@ class SymbolicTimespan(AbjadObject):
             attribute, 
             request, 
             timespan,
-            start_segment_name=self.segment_name,
             context_names=context_names, 
             index=index,
             count=count,
@@ -415,7 +414,6 @@ class SymbolicTimespan(AbjadObject):
                     [(3, 16)]
                     ),
                 'red',
-                start_segment_name='red',
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True
                 )
@@ -543,7 +541,6 @@ class SymbolicTimespan(AbjadObject):
                         )
                     ),
                 'red',
-                start_segment_name='red',
                 context_names=['Grouped Rhythmic Staves Score'],
                 persist=True
                 )
@@ -585,7 +582,6 @@ class SymbolicTimespan(AbjadObject):
                     [(3, 8), (4, 8)]
                     ),
                 'red',
-                start_segment_name='red',
                 context_names=['Grouped Rhythmic Staves Score'],
                 persist=True
                 )

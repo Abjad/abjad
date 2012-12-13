@@ -781,15 +781,12 @@ class ConcreteInterpreter(Interpreter):
 
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
-        assert single_context_setting.start_segment_name == segment_specification.segment_name
-        #self._debug(single_context_setting.anchor, 'anchor')
         if isinstance(single_context_setting.anchor, str):
             start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
                 single_context_setting.anchor)
         else:
             start_offset, stop_offset = single_context_setting.anchor._get_offsets(
                 self.score_specification, voice_name)
-        #self._debug((start_offset, stop_offset), 'anchor offsets')
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
