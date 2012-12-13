@@ -610,6 +610,68 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
         >>> show(score) # doctest: +SKIP
 
+    Note that the two time signatures are much more clearly disambiguated above.
+
+    Example 6. Establishing metrical hierarchy recursively in measures with
+    nested tuplets:
+
+    ::
+
+        >>> measure = p("abj: | 4/4 c'16 ~ c'4 d'8. ~ 2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } f'4 |")
+        >>> f(measure)
+        {
+            \time 4/4
+            c'16 ~
+            c'4
+            d'8. ~
+            \times 2/3 {
+                d'8. ~
+                \fraction \times 3/5 {
+                    d'16
+                    e'8.
+                    f'16 ~
+                }
+            }
+            f'4
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP
+
+    When establishing a metrical hierarchy on a selection of components which
+    contain containers, like `Tuplets` or `Containers`,
+    `timesignaturetools.establish_metrical_hierarchy()` will recurse into
+    those containers, treating them as measures whose time signature is derived
+    from the preprolated duration of the container's contents:
+
+    ::
+
+        >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+        ...     boundary_depth=1)
+        >>> f(measure)
+        {
+            \time 4/4
+            c'4 ~
+            c'16
+            d'8. ~
+            \times 2/3 {
+                d'8 ~
+                d'16 ~
+                \fraction \times 3/5 {
+                    d'16
+                    e'8 ~
+                    e'16
+                    f'16 ~
+                }
+            }
+            f'4
+        }
+
+    ::
+
+        >>> show(measure) # doctest: +SKIP    
+
     Operate in place and return none.
     '''
 
@@ -758,4 +820,4 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             if boundary_depth is None:
                 sub_boundary_depth = None
             establish_metrical_hierarchy(item[:], sub_metrical_hierarchy,
-                boundary_depth=sub_boundary_depth)
+                boundary_depth=sub_boundary_depth, maximum_dot_count=maximum_dot_count)
