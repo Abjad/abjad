@@ -64,6 +64,10 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.scale_timespan
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.select_background_measures
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -77,6 +81,22 @@ Methods
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.select_notes_and_chords
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.set_timespan_duration
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.set_timespan_start_offset
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.set_timespan_stop_offset
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.translate_timespan
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

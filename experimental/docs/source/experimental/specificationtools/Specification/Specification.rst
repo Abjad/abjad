@@ -56,6 +56,10 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_time_signatures
 
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.scale_timespan
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_background_measures
@@ -71,6 +75,22 @@ Methods
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.select_notes_and_chords
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.set_timespan_duration
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.set_timespan_start_offset
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.set_timespan_stop_offset
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.translate_timespan
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

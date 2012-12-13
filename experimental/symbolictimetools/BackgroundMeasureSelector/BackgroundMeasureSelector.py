@@ -117,4 +117,5 @@ class BackgroundMeasureSelector(Selector):
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)
         stop_offset = start_offset + duration
+        start_offset, stop_offset = self._apply_timespan_modifications(start_offset, stop_offset)
         return start_offset, stop_offset

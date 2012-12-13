@@ -125,30 +125,40 @@
         measures = score_specification.select_background_measures(anchor=first_half_of_red_segment)
     This will show measures that start during the first half of a segment.
 
-23. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
+23. Implement set() methods on SymbolicTimespan directly. 
+    (Right now set methods implement on SegmentSpecification only.)
+    This will enable ...
+        timespan = red_segment.select()
+        timespan = timespan.translate_timespan(Duration(1, 8)) 
+        timespan.set_rhythm(library.sixteenths)
+    ... and will eliminate the timespan=None keyword 
+    currently present in all SegmentSpecification set methods.
+
+24. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
     reference to instantiated score and segment specifications (rather than initialized by hand).
 
-24. Audit all symbolic timespan docstrings and make sure everything is modern.
+25. Audit all symbolic timespan docstrings and make sure everything is modern.
 
-25. Extend BackgroundMeasureSelector._get_offsets() to return 
+26. Extend BackgroundMeasureSelector._get_offsets() to return 
     (start_offset, stop_offset, selected_objects) triple.
     Then extend all selector _get_offsets() methods and do the same.
 
-26. Store offset modifications in inventory class that indents in storage format.
+27. Store offset modifications in inventory class that indents in storage format.
 
-27. Eventually add something like offset modifications to SymbolicOffset class.
-
-28. Add the following timespan modification methods:
-        timespan.scale_timespan(multiplier)
-        timespan.set_timespan_duration(duration)
-        timespan.set_timespan_start_offset(offset)
-        timespan.set_timespan_stop_offset(offset)
-        timespan.translate_timespan(duration)
-    These may be enough to make the timespan modification inventory complete for first release.
+28. Eventually add something like offset modifications to SymbolicOffset class.
 
 29. Can start_segment_identifier properties eventually be completely removed from model?
-    What should be possible is for code to look at any symbolic timespan and get the start segment identifier.
+    What should be possible is for code to look at any symbolic timespan and get start segment identifier.
     That implies a SymbolicTimespan.get_start_segment_identifier() method (or property).
     What is the set-side of the management of this property?
     It seems like "reanchoring" should be all that is ever necessary to manage the set-side. 
+
+30. Remove this noncommand request method in favor of an existing select methods:
+        Specification.request_divisions() ==> Specification.select_divisions()
+    Port over these noncommand request methods as new select methods:
+        Specification.request_naive_beats() ==> Specification.select_naive_beats()
+        Specification.request_rhythm() ==> Specification.select_rhythm()
+        Specification.request_time_signatures() ==> Specification.select_time_signatures()
+
+31. Change all set(selector=None) to set(timespan=None) instead.

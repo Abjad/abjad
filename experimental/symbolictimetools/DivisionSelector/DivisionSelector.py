@@ -73,4 +73,5 @@ class DivisionSelector(VoiceSelector):
         divisions = divisions[self.start_identifier:self.stop_identifier]
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
+        start_offset, stop_offset = self._apply_timespan_modifications(start_offset, stop_offset)
         return start_offset, stop_offset

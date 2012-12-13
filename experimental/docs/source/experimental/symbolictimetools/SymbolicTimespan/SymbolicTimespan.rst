@@ -22,6 +22,8 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_timespan_by_ratio
 
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.scale_timespan
+
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_background_measures
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_divisions
@@ -29,6 +31,14 @@ Methods
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_leaves
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_notes_and_chords
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_timespan_duration
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_timespan_start_offset
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_timespan_stop_offset
+
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.translate_timespan
 
 Special Methods
 ---------------
