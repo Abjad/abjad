@@ -59,16 +59,16 @@ class SegmentSpecification(Specification):
         return self.offsets
 
     def _store_multiple_context_setting(self, attribute, source,
-        contexts=None, selector=None,
+        contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True, truncate=None):
         request = requesttools.expr_to_request(source)
         context_names = self._context_token_to_context_names(contexts)
-        selector = selector or self.specification_name
+        timespan = timespan or self.specification_name
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
-            selector,
+            timespan,
             start_segment_name=self.segment_name,
             context_names=context_names, 
             index=index,
@@ -273,8 +273,6 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        #selector = self.timespan
-        #return symbolictimetools.SymbolicOffset(anchor=selector, edge=Left)
         return symbolictimetools.SymbolicOffset(anchor=self.specification_name, edge=Left)
 
     @property
@@ -286,8 +284,6 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        #selector = self.timespan
-        #return symbolictimetools.SymbolicOffset(anchor=selector, edge=Right)
         return symbolictimetools.SymbolicOffset(anchor=self.specification_name, edge=Right)
 
     @property
@@ -314,7 +310,7 @@ class SegmentSpecification(Specification):
         return symbolictimetools.SegmentSelector(
             start_identifier=self.specification_name, stop_identifier=(self.specification_name, 1))
 
-    def set_aggregate(self, source, contexts=None, selector=None,
+    def set_aggregate(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set aggregate of segment `contexts` to `source`.
@@ -323,11 +319,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'aggregate'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_articulations(self, source, contexts=None, selector=None,
+    def set_articulations(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set articulations of segment `contexts` to `source`.
@@ -336,11 +332,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'articulations'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_chord_treatment(self, source, contexts=None, selector=None,
+    def set_chord_treatment(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set chord treatment of segment `contexts` to `source`.
@@ -349,11 +345,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'chord_treatment'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_divisions(self, source, contexts=None, selector=None,
+    def set_divisions(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True, truncate=None):
         r'''Set divisions of segment `contexts` to `source`::
@@ -378,11 +374,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'divisions'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             truncate=truncate, persist=persist)
 
-    def set_dynamics(self, source, contexts=None, selector=None,
+    def set_dynamics(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set dynamics of segment `contexts` to `source`.
@@ -391,11 +387,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'dynamics'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_marks(self, source, contexts=None, selector=None,
+    def set_marks(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set marks of segment `contexts` to `source`.
@@ -404,11 +400,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'marks'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_markup(self, source, contexts=None, selector=None,
+    def set_markup(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set markup of segment `contexts` to `source`.
@@ -417,11 +413,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'markup'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_pitch_class_application(self, source, contexts=None, selector=None,
+    def set_pitch_class_application(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set pitch-class application of segment `contexts` to `source`.
@@ -430,11 +426,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'pitch_class_application'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_pitch_class_transform(self, source, contexts=None, selector=None,
+    def set_pitch_class_transform(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set pitch-class transform of segment `contexts` to `source`.
@@ -443,11 +439,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'pitch_class_transform'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_pitch_classes(self, source, contexts=None, selector=None,
+    def set_pitch_classes(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set pitch-classes of segment `contexts` to `source`.
@@ -456,11 +452,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'pitch_classes'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_registration(self, source, contexts=None, selector=None,
+    def set_registration(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set registration of segment `contexts` to `source`.
@@ -469,11 +465,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'registration'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_rhythm(self, source, contexts=None, selector=None,
+    def set_rhythm(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set rhythm of segment `contexts` to `source`.
@@ -506,11 +502,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'rhythm'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_tempo(self, source, contexts=None, selector=None,
+    def set_tempo(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set tempo of segment `contexts` to `source`.
@@ -519,11 +515,11 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'tempo'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_time_signatures(self, source, contexts=None, selector=None,
+    def set_time_signatures(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True):
         r'''Set time signatures according to `source` for segment `contexts`.
@@ -548,6 +544,6 @@ class SegmentSpecification(Specification):
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, selector=selector,
+            contexts=contexts, timespan=timespan,
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)

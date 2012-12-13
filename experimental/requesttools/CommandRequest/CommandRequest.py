@@ -20,7 +20,7 @@ class CommandRequest(Request):
 
         >>> selector = red_segment.select_background_measures(4, 5)
         >>> command_request = red_segment.request_division_command(
-        ...     'Voice 1', selector=selector)
+        ...     'Voice 1', timespan=selector)
 
     ::
 

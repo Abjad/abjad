@@ -31,7 +31,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_02():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     first_two_measures = red_segment.select_background_measures(stop=2)
-    red_segment.set_rhythm(library.sixteenths, selector=first_two_measures)
+    red_segment.set_rhythm(library.sixteenths, timespan=first_two_measures)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -50,7 +50,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_03():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     first_two_measures = red_segment.select_background_measures(start=-2)
-    red_segment.set_rhythm(library.sixteenths, selector=first_two_measures)
+    red_segment.set_rhythm(library.sixteenths, timespan=first_two_measures)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -69,7 +69,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_04():
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     first_two_measures = red_segment.select_background_measures(1, 2)
-    red_segment.set_rhythm(library.sixteenths, selector=first_two_measures)
+    red_segment.set_rhythm(library.sixteenths, timespan=first_two_measures)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -89,7 +89,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_05():
     first_measure = red_segment.select_background_measures(0, 1)
     rhythmic_cell = red_segment.request_rhythm('Voice 1', anchor=first_measure)
     last_measure = red_segment.select_background_measures(-1)
-    red_segment.set_rhythm(rhythmic_cell, selector=last_measure)
+    red_segment.set_rhythm(rhythmic_cell, timespan=last_measure)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

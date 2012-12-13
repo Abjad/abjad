@@ -50,18 +50,18 @@
 13. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
-        rhythm = red_segment.request_rhythm('Voice 1', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 1', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
-        rhythm = red_segment.request_rhythm('Voice 2', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 2', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 2'])
-        rhythm = red_segment.request_rhythm('Voice 3', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 3', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 3'])
-        rhythm = red_segment.request_rhythm('Voice 4', selector=selector)
+        rhythm = red_segment.request_rhythm('Voice 4', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
     ... when it might be possible to use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         selected_voices = ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-        rhythm = red_segment.request_rhythm(selected_voices, selector=selector)
+        rhythm = red_segment.request_rhythm(selected_voices, timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.
@@ -70,7 +70,7 @@
         Specification.request_division_command()
         Specification.request_rhythm_command()
         Specification.request_time_signature_command()
-    The commands currently take selector=None, edge=None, multiplier=None, addendum=None keywords.
+    The commands currently take timespan=None, edge=None, multiplier=None, addendum=None keywords.
     Better to implement a small number of methods as necessary in the system.
     These methods will enable composers to create exactly the correct symbolic offset.
     Then implement these symbolic offset bound methods:
@@ -100,7 +100,7 @@
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_part = segments.adjust_timespan_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
-        score_specification.set_divisions([(3, 16)], selector=middle_part)
+        score_specification.set_divisions([(3, 16)], timespan=middle_part)
     This will show anchoring to a segment selector that selects more than one segment.
 
 19. Add some tests to show this:
@@ -158,5 +158,3 @@
         Specification.request_naive_beats() ==> Specification.select_naive_beats()
         Specification.request_rhythm() ==> Specification.select_rhythm()
         Specification.request_time_signatures() ==> Specification.select_time_signatures()
-
-30. Change all set(selector=None) to set(timespan=None) instead.

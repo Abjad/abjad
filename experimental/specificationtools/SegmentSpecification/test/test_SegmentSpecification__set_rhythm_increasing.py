@@ -15,24 +15,24 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     red_segment.set_time_signatures([(6, 8), (3, 8)])
     measures = red_segment.select_background_measures()
     left_measure, right_measure = measures.partition_objects_by_ratio((1, 1))
-    red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], selector=left_measure)
-    red_segment.set_divisions([(5, 16)], contexts=['Voice 1'], selector=right_measure)
-    red_segment.set_divisions([(5, 16)], contexts=['Voice 2'], selector=left_measure)
-    red_segment.set_divisions([(3, 16)], contexts=['Voice 2'], selector=right_measure)
+    red_segment.set_divisions([(3, 16)], contexts=['Voice 1'], timespan=left_measure)
+    red_segment.set_divisions([(5, 16)], contexts=['Voice 1'], timespan=right_measure)
+    red_segment.set_divisions([(5, 16)], contexts=['Voice 2'], timespan=left_measure)
+    red_segment.set_divisions([(3, 16)], contexts=['Voice 2'], timespan=right_measure)
 
     left_half, right_half = red_segment.divide_timespan_by_ratio((1, 1))
 
-    voice_1_left_division_command = red_segment.request_division_command('Voice 1', selector=left_measure)
-    voice_1_right_division_command = red_segment.request_division_command('Voice 1', selector=right_measure)
+    voice_1_left_division_command = red_segment.request_division_command('Voice 1', timespan=left_measure)
+    voice_1_right_division_command = red_segment.request_division_command('Voice 1', timespan=right_measure)
 
-    red_segment.set_divisions(voice_1_left_division_command, contexts=['Voice 3'], selector=left_half)
-    red_segment.set_divisions(voice_1_right_division_command, contexts=['Voice 3'], selector=right_half)
+    red_segment.set_divisions(voice_1_left_division_command, contexts=['Voice 3'], timespan=left_half)
+    red_segment.set_divisions(voice_1_right_division_command, contexts=['Voice 3'], timespan=right_half)
 
-    voice_2_left_division_command = red_segment.request_division_command('Voice 2', selector=left_measure)
-    voice_2_right_division_command = red_segment.request_division_command('Voice 2', selector=right_measure)
+    voice_2_left_division_command = red_segment.request_division_command('Voice 2', timespan=left_measure)
+    voice_2_right_division_command = red_segment.request_division_command('Voice 2', timespan=right_measure)
 
-    red_segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], selector=left_half)
-    red_segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], selector=right_half)
+    red_segment.set_divisions(voice_2_left_division_command, contexts=['Voice 4'], timespan=left_half)
+    red_segment.set_divisions(voice_2_right_division_command, contexts=['Voice 4'], timespan=right_half)
 
     red_segment.set_rhythm(library.note_tokens)
 

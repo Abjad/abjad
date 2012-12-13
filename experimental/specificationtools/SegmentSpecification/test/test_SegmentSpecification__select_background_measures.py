@@ -12,7 +12,7 @@ def test_SegmentSpecification__select_background_measures_01():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_two_measures = red_segment.select_background_measures(start=-2)
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], selector=last_two_measures)
+    red_segment.set_divisions([(3, 32)], timespan=last_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -31,7 +31,7 @@ def test_SegmentSpecification__select_background_measures_02():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     first_two_measures = red_segment.select_background_measures(stop=-1)
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], selector=first_two_measures)
+    red_segment.set_divisions([(3, 32)], timespan=first_two_measures)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -50,7 +50,7 @@ def test_SegmentSpecification__select_background_measures_03():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     middle_measure = red_segment.select_background_measures(start=1, stop=-1)
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], selector=middle_measure)
+    red_segment.set_divisions([(3, 32)], timespan=middle_measure)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -69,7 +69,7 @@ def test_SegmentSpecification__select_background_measures_04():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = red_segment.select_background_measures(-1)
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], selector=last_measure)
+    red_segment.set_divisions([(3, 32)], timespan=last_measure)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -88,7 +88,7 @@ def test_SegmentSpecification__select_background_measures_05():
     red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
     last_measure = red_segment.select_background_measures(1, 2)
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], selector=last_measure)
+    red_segment.set_divisions([(3, 32)], timespan=last_measure)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
