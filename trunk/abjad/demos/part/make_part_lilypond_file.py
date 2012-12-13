@@ -5,6 +5,7 @@ from abjad.demos.part.add_string_music_to_score import add_string_music_to_score
 from abjad.demos.part.apply_bowing_marks import apply_bowing_marks
 from abjad.demos.part.apply_dynamic_marks import apply_dynamic_marks
 from abjad.demos.part.apply_expressive_marks import apply_expressive_marks
+from abjad.demos.part.apply_final_bar_lines import apply_final_bar_lines
 from abjad.demos.part.apply_page_breaks import apply_page_breaks
 from abjad.demos.part.apply_rehearsal_marks import apply_rehearsal_marks
 from abjad.demos.part.configure_lilypond_file import configure_lilypond_file
@@ -24,6 +25,7 @@ def make_part_lilypond_file():
     apply_expressive_marks(score)
     apply_page_breaks(score)
     apply_rehearsal_marks(score)
+    apply_final_bar_lines(score)
 
     configure_score(score)
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)

@@ -45,25 +45,66 @@ The edits
 The marks
 ---------
 
+Now we'll apply various kinds of marks, including dynamics, articulations,
+bowing indications, expressive instructures, page breaks and rehearsal marks.
+
+We'll start with the bowing marks.  This involves creating a piece of custom
+markup to indicate rebowing.  We accomplish this by aggregating together
+some `schemetools.Scheme` and `markuptools.MarkupCommand` objects.  The completed
+`markuptools.Markup` object is then copied and attached at the correct locations
+in the score:
+
 <abjadextract abjad.demos.part.apply_bowing_marks.apply_bowing_marks \>[strip_prompt=true]
+
+Applying dynamics is easy.  Just instantiate and attach:
+
 <abjadextract abjad.demos.part.apply_dynamic_marks.apply_dynamic_marks \>[strip_prompt=true]
+
+We apply expressive marks the same way we applied our dynamics:
+
 <abjadextract abjad.demos.part.apply_expressive_marks.apply_expressive_marks \>[strip_prompt=true]
+
+We use the `marktools.LilyPondCommandClass` to create LilyPond system breaks,
+and attach them to measures in the percussion part.  After this, our score will
+break in the exact same places as the original:
+
 <abjadextract abjad.demos.part.apply_page_breaks.apply_page_breaks \>[strip_prompt=true]
+
+We'll make the rehearsal marks the exact same way we made our line
+breaks:
+
 <abjadextract abjad.demos.part.apply_rehearsal_marks.apply_rehearsal_marks \>[strip_prompt=true]
+
+And then we add our final bar lines.  `marktools.BarLine` objects inherit from
+`marktools.Mark`, so you can probably guess by now how we add them to the
+score... instantiate and attach:
+
+<abjadextract abjad.demos.part.apply_final_bar_lines.apply_final_bar_lines \>[strip_prompt=true]
 
 The LilyPond file
 -----------------
 
+Finally, we create some functions to apply formatting directives to our `Score`
+object, then wrap it into a `LilyPondFile` and apply some more formatting:
+
 <abjadextract abjad.demos.part.configure_score.configure_score \>[strip_prompt=true]
 <abjadextract abjad.demos.part.configure_lilypond_file.configure_lilypond_file \>[strip_prompt=true]
+
+Let's run our original toplevel function to build the complete score:
 
 <abjad>
 lilypond_file = make_part_lilypond_file()
 </abjad>
 
+And here we show it:
+
 <abjad>
 show(lilypond_file) <page 1-2
 </abjad>
+
+.. note:
+
+   We only show the first two pages as the *Cantus* is still under copyright.
 
 
 
