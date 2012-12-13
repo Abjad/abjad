@@ -37,7 +37,7 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, voice_name, anchor, start_segment_name=None, time_relation=None,
+    def __init__(self, attribute, voice_name, anchor, time_relation=None,
         index=None, count=None, reverse=None, rotation=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
@@ -48,7 +48,6 @@ class MaterialRequest(Request):
         self._attribute = attribute
         self._voice_name = voice_name
         self._anchor = anchor
-        self._start_segment_name = start_segment_name
         self._time_relation = time_relation
 
     ### PRIVATE METHODS ###
@@ -75,10 +74,6 @@ class MaterialRequest(Request):
                 return self.anchor
         else:
             return self.anchor.start_segment_identifier
-
-    @property
-    def start_segment_name(self):
-        return self._start_segment_name
 
     @property
     def time_relation(self):

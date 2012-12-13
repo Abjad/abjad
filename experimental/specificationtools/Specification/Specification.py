@@ -273,15 +273,14 @@ class Specification(SymbolicTimespan):
             requesttools.MaterialRequest(
                 'rhythm',
                 'Voice 1',
-                'red',
-                start_segment_name='red'
+                'red'
                 )
 
         Return rhythm request.        
         '''
         anchor = anchor or self.specification_name
         return requesttools.MaterialRequest(
-            'rhythm', voice, anchor, start_segment_name=getattr(self, 'segment_name', None),
+            'rhythm', voice, anchor, 
             time_relation=time_relation, 
             index=index, count=count, reverse=reverse, rotation=rotation)
 

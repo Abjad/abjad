@@ -23,7 +23,7 @@ class ScoreSelector(Selector):
     def _get_offsets(self, score_specification, context_name):
         '''Return `score_specification` start and stop offsets.
     
-        Ignore `context_name` and `start_segment_name`.
+        Ignore `context_name`.
         '''
         return score_specification.offsets
 

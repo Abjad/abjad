@@ -50,7 +50,7 @@ class SingleContextSetting(Setting):
 
     Composers do not create single-context settings.
 
-    Single-context settings are a byprodct of interpretation.
+    Single-context settings are a byproduct of interpretation.
 
     Multiple-context settings unpack to produce single-context settings.
     '''
