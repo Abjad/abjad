@@ -127,6 +127,10 @@ class Specification(SymbolicTimespan):
     def score_name(self):
         return self._score_name
 
+    @abc.abstractproperty
+    def score_specification(self):
+        pass
+
     @property
     def score_template(self):
         return self._score_template

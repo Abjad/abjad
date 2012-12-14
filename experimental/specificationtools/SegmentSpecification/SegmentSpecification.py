@@ -34,9 +34,11 @@ class SegmentSpecification(Specification):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_template, segment_name):
+    def __init__(self, score_specification, score_template, segment_name):
         assert isinstance(segment_name, str), segment_name
+        # TODO: make score_specification a Specification initializer value
         Specification.__init__(self, score_template)
+        self._score_specification = score_specification
         self._score_model = self.score_template()
         self._segment_name = segment_name
         self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
@@ -160,6 +162,14 @@ class SegmentSpecification(Specification):
         return Specification.score_name.fget(self)
 
     @property
+    def score_specification(self):
+        '''Read-only reference to score against which segment specification is defined.
+
+        Return score specification.
+        '''
+        return self._score_specification
+
+    @property
     def score_template(self):
         r'''Segment specification score template::
 
@@ -230,6 +240,11 @@ class SegmentSpecification(Specification):
 
             >>> z(red_segment)
             specificationtools.SegmentSpecification(
+                specificationtools.ScoreSpecification(
+                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                        staff_count=4
+                        )
+                    ),
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=4
                     ),

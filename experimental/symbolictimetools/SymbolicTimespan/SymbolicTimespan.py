@@ -142,7 +142,6 @@ class SymbolicTimespan(AbjadObject):
         return start_offset, new_stop_offset
 
     # TODO: remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
-    # TODO: rename SymbolicTimespan._timespan_abbreviation to something self-descriptive.
     def _store_multiple_context_setting(self, attribute, source,
         contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,

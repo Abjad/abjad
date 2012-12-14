@@ -214,6 +214,17 @@ class ScoreSpecification(Specification):
         Return string.
         '''
         return Specification.score_name.fget(self)
+
+    @property
+    def score_specification(self):
+        '''Read-only reference to self.
+
+            >>> score_specification.score_specification
+            ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red'), SegmentSpecification('orange'), SegmentSpecification('yellow')]))
+
+        Return self.
+        '''
+        return self
         
     @property
     def score_template(self):
@@ -401,7 +412,7 @@ class ScoreSpecification(Specification):
         '''
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
-        segment_specification = self.segment_specification_class(self.score_template, name)
+        segment_specification = self.segment_specification_class(self, self.score_template, name)
         self.segment_specifications.append(segment_specification)
         return segment_specification
 

@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_specification
 
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_template
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.single_context_settings
