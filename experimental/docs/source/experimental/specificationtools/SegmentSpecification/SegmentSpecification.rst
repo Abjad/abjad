@@ -23,6 +23,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_name
 
+.. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_specification
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_template
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.segment_name

@@ -21,13 +21,15 @@ class Selector(SymbolicTimespan):
     ### INTIALIZER ###
 
     def __init__(self,
+        score_specification=None,
         anchor=None, start_identifier=None, stop_identifier=None, 
         time_relation=None, timespan_modifications=None, selector_modifications=None):
         from experimental import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
         assert time_relation is None or time_relation.is_fully_unloaded
-        SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
+        SymbolicTimespan.__init__(self, 
+            score_specification=score_specification, timespan_modifications=timespan_modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier

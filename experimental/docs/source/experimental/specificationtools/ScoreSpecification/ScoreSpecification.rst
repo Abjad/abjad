@@ -31,6 +31,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
 
+.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_specification
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_template
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_durations

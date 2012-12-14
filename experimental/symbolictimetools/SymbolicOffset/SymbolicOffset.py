@@ -130,8 +130,10 @@ class SymbolicOffset(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
+    def __init__(self, score_specification=None, anchor=None, edge=None, multiplier=None, addendum=None): 
+        from experimental import specificationtools
         from experimental import symbolictimetools
+        assert isinstance(score_specification, (specificationtools.ScoreSpecification, type(None)))
         assert isinstance(anchor, (
             symbolictimetools.SymbolicTimespan, 
             type(None), str)), repr(anchor)
@@ -140,6 +142,7 @@ class SymbolicOffset(AbjadObject):
             multiplier = durationtools.Multiplier(multiplier)
         if addendum is not None:
             addendum = durationtools.Offset(addendum)
+        self._score_specification = score_specification
         self._anchor = anchor
         self._multiplier = multiplier
         self._edge = edge
@@ -227,6 +230,14 @@ class SymbolicOffset(AbjadObject):
         Return multiplier or none.
         '''
         return self._multiplier
+
+    @property
+    def score_specification(self):
+        '''Read-only reference to score specification against which symbolic offset is defined.
+
+        Return score specification or none.
+        '''
+        return self._score_specification
 
     @property
     def start_segment_identifier(self):

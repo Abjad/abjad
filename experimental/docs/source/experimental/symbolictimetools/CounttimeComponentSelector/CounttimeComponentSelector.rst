@@ -21,6 +21,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.predicate
 
+.. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.score_specification
+
+    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. autoattribute:: experimental.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.selector_modifications
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`

@@ -23,7 +23,10 @@ class SymbolicTimespan(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, timespan_modifications=None):
+    def __init__(self, score_specification=None, timespan_modifications=None):
+        from experimental import specificationtools
+        assert isinstance(score_specification, (specificationtools.ScoreSpecification, type(None)))
+        self._score_specification = score_specification
         timespan_modifications = timespan_modifications or []
         self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
 
@@ -138,6 +141,8 @@ class SymbolicTimespan(AbjadObject):
     def _set_timespan_stop_offset(self, start_offset, stop_offset, new_stop_offset):
         return start_offset, new_stop_offset
 
+    # TODO: remove timespan=None here and always store SymbolicTimespan._moniker instead.
+    # TODO: rename SymbolicTimespan._moniker to something self-descriptive.
     def _store_multiple_context_setting(self, attribute, source,
         contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
@@ -145,12 +150,15 @@ class SymbolicTimespan(AbjadObject):
         from experimental import requesttools
         from experimental import settingtools
         request = requesttools.expr_to_request(source)
+        # TODO: Supply all SymbolicTimespan intances with a 'score' reference.
+        #       Then access self.score._context_token_to_context_names in the line below.
         context_names = self._context_token_to_context_names(contexts)
-        timespan = timespan or self.specification_name
+        #timespan = timespan or self.specification_name
+        timespan = timespan or self._moniker
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
-            timespan,
+            timespan, # eventually this should be self._moniker instead
             context_names=context_names, 
             index=index,
             count=count,
@@ -159,6 +167,8 @@ class SymbolicTimespan(AbjadObject):
             persist=persist, 
             truncate=truncate
             )
+        # TODO: Supply all SymbolicTimespan intances with a 'score' reference.
+        #       Then access self.score.multiple_context_settings in the line below.
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
@@ -176,6 +186,14 @@ class SymbolicTimespan(AbjadObject):
         return start_offset, new_stop_offset
         
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_specification(self):
+        '''Read-only reference to score specification against which symbolic timespan is defined.
+
+        Return score specification or none.
+        '''
+        return self._score_specification
 
     @property
     def timespan_modifications(self):

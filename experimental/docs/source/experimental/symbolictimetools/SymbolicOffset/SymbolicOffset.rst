@@ -17,6 +17,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.multiplier
 
+.. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.score_specification
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.storage_format
