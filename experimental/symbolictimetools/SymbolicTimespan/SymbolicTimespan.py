@@ -32,6 +32,14 @@ class SymbolicTimespan(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+#    def __deepcopy__(self, memo):
+#        score_specification = self.score_specification 
+#        self._score_specification = None
+#        result = copy.deepcopy(self)
+#        self._score_specification = score_specification
+#        result._score_specification = score_specification
+#        return result
+
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
@@ -89,8 +97,15 @@ class SymbolicTimespan(AbjadObject):
             assert start_offset <= stop_offset
         return start_offset, stop_offset
         
+    # TODO: maybe override __deepcopy__?
     def _clone(self):
         return copy.deepcopy(self)
+        #score_specification = self.score_specification 
+        #self._score_specification = None
+        #result = copy.deepcopy(self)
+        #self._score_specification = score_specification
+        #result._score_specification = score_specification
+        #return result
 
     def _divide_timespan_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
@@ -151,8 +166,10 @@ class SymbolicTimespan(AbjadObject):
         request = requesttools.expr_to_request(source)
         # TODO: Supply all SymbolicTimespan intances with a 'score' reference.
         #       Then access self.score._context_token_to_context_names in the line below.
-        context_names = self._context_token_to_context_names(contexts)
-        #timespan = timespan or self.specification_name
+        if hasattr(self, '_context_token_to_context_names'):
+            context_names = self._context_token_to_context_names(contexts)
+        else:
+            context_names = self.score_specification._context_token_to_context_names(contexts)
         timespan = timespan or self._timespan_abbreviation
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
@@ -167,8 +184,12 @@ class SymbolicTimespan(AbjadObject):
             truncate=truncate
             )
         # TODO: Supply all SymbolicTimespan intances with a 'score' reference.
-        #       Then access self.score.multiple_context_settings in the line below.
-        self.multiple_context_settings.append(multiple_context_setting)
+        #       Then supply ScoreSpecification with a multiple_context_settings attribute.
+        #       Then access self.score.multiple_context_settings below.
+        if hasattr(self, 'multiple_context_settings'):
+            self.multiple_context_settings.append(multiple_context_setting)
+        else:
+            self.score_specification.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
     def _translate_timespan(self, start_offset, stop_offset, duration):
@@ -262,6 +283,11 @@ class SymbolicTimespan(AbjadObject):
 
             >>> z(timespan)
             symbolictimetools.BackgroundMeasureSelector(
+                score_specification=specificationtools.ScoreSpecification(
+                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                        staff_count=4
+                        )
+                    ),
                 anchor='red',
                 stop_identifier=5
                 )
@@ -274,6 +300,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
+            score_specification=self.score_specification,
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
@@ -318,6 +345,11 @@ class SymbolicTimespan(AbjadObject):
 
             >>> z(timespan)
             symbolictimetools.CounttimeComponentSelector(
+                score_specification=specificationtools.ScoreSpecification(
+                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                        staff_count=4
+                        )
+                    ),
                 anchor='red',
                 klass=leaftools.Leaf,
                 stop_identifier=40,
@@ -333,6 +365,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
+            score_specification=self.score_specification,
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 

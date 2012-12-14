@@ -26,7 +26,8 @@ def expr_to_request(expr):
     from experimental import requesttools
     from experimental import statalservertools
 
-    expr = copy.deepcopy(expr)
+    # TODO: maybe this line is safe to remove
+    #expr = copy.deepcopy(expr)
 
     if isinstance(expr, requesttools.Request):
         return expr

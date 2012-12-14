@@ -20,27 +20,27 @@ class BackgroundMeasureSelector(Selector):
     Select all measures that start during score::
 
         >>> score_specification.select_background_measures()
-        BackgroundMeasureSelector()
+        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])))
 
     Select measures that start during score from ``3`` forward::
 
         >>> score_specification.select_background_measures(start=3)
-        BackgroundMeasureSelector(start_identifier=3)
+        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), start_identifier=3)
 
     Select measures that start during score up to but not including ``6``::
 
         >>> score_specification.select_background_measures(stop=6)
-        BackgroundMeasureSelector(stop_identifier=6)
+        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), stop_identifier=6)
 
     Select measures from ``3`` up to but not including ``6``::
 
         >>> score_specification.select_background_measures(start=3, stop=6)
-        BackgroundMeasureSelector(start_identifier=3, stop_identifier=6)
+        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), start_identifier=3, stop_identifier=6)
 
     Select all measures starting during segment ``'red'``::
 
         >>> red_segment.select_background_measures()
-        BackgroundMeasureSelector(anchor='red')
+        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), anchor='red')
 
     Select the last two measures during segment ``'red'``::
 
@@ -50,6 +50,11 @@ class BackgroundMeasureSelector(Selector):
     
         >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
+            score_specification=specificationtools.ScoreSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=4
+                    )
+                ),
             anchor='red',
             start_identifier=-2
             )
@@ -88,6 +93,18 @@ class BackgroundMeasureSelector(Selector):
 
     Background measure symbolic timespans are immutable.
     '''
+
+    ### SPECIAL METHODS ###
+
+    def __deepcopy__(self, memo):
+        result = type(self)(
+            anchor=self.anchor, 
+            start_identifier=self.start_identifier, stop_identifier=self.stop_identifier,
+            time_relation=self.time_relation,
+            timespan_modifications=self.timespan_modifications,
+            selector_modifications=self.selector_modifications)
+        result._score_specification = self.score_specification
+        return result
 
     ### PRIVATE METHODS ###
 
