@@ -55,7 +55,7 @@ class SymbolicTimespan(AbjadObject):
         return tuple(result)
 
     @property
-    def _moniker(self):
+    def _timespan_abbreviation(self):
         '''Form of symbolic timespan suitable for writing to disk.
         '''
         return self
@@ -141,8 +141,8 @@ class SymbolicTimespan(AbjadObject):
     def _set_timespan_stop_offset(self, start_offset, stop_offset, new_stop_offset):
         return start_offset, new_stop_offset
 
-    # TODO: remove timespan=None here and always store SymbolicTimespan._moniker instead.
-    # TODO: rename SymbolicTimespan._moniker to something self-descriptive.
+    # TODO: remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
+    # TODO: rename SymbolicTimespan._timespan_abbreviation to something self-descriptive.
     def _store_multiple_context_setting(self, attribute, source,
         contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
@@ -154,11 +154,11 @@ class SymbolicTimespan(AbjadObject):
         #       Then access self.score._context_token_to_context_names in the line below.
         context_names = self._context_token_to_context_names(contexts)
         #timespan = timespan or self.specification_name
-        timespan = timespan or self._moniker
+        timespan = timespan or self._timespan_abbreviation
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
-            timespan, # eventually this should be self._moniker instead
+            timespan, # eventually this should be self._timespan_abbreviation instead
             context_names=context_names, 
             index=index,
             count=count,
@@ -275,7 +275,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
-            anchor=self._moniker,
+            anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             time_relation=time_relation)
@@ -303,7 +303,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.DivisionSelector(
-            anchor=self._moniker,
+            anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice,
@@ -334,7 +334,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            anchor=self._moniker,
+            anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
             start_identifier=start, 
@@ -369,7 +369,7 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            anchor=self._moniker,
+            anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, 

@@ -63,6 +63,16 @@ class Specification(SymbolicTimespan):
         self._contexts = specificationtools.ContextProxyDictionary(self.score_template())
         self._single_context_settings = settingtools.SingleContextSettingInventory()
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _timespan_abbreviation(self):
+        '''Form of symbolic timespan suitable for writing to disk.
+        
+        Specifications alias this property to specification name.
+        '''
+        return self.specification_name
+
     ### PRIVATE METHODS ###
 
     def _clone(self):
@@ -112,14 +122,6 @@ class Specification(SymbolicTimespan):
     @property
     def contexts(self):
         return self._contexts
-
-    @property
-    def _moniker(self):
-        '''Form of symbolic timespan suitable for writing to disk.
-        
-        Specifications alias this property to specification name.
-        '''
-        return self.specification_name
 
     @property
     def score_name(self):
