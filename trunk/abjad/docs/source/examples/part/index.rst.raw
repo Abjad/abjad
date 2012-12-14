@@ -27,11 +27,54 @@ The bell music
 The string music
 ----------------
 
+Creating the music for the strings is a bit more involved, but conceptually falls into two steps.
+First, we'll procedurally generate basic pitches and rhythms for all string voices.  Then, we'll
+make edits to the generated material by hand.  The entire process is encapsulated in the following
+function:
+
 <abjadextract abjad.demos.part.add_string_music_to_score.add_string_music_to_score \>[strip_prompt=true]
 
+The pitch material is the same for all of the strings: a descending a-minor scale, generally
+decorated with diads.  But, each instrument uses a different overall range, with the lower
+instrument playing slower and slower than the higher instruments, creating a sort of mensuration
+canon.  For each instrument, the descending scale is fragmented into what we'll call "descents".
+The first descent uses only the first note of that instrument's scale, while the second descent
+adds the second note, and the third another.  We'll generate as many descents per instruments
+as there are pitches in its overall scale:
+
 <abjadextract abjad.demos.part.create_pitch_contour_reservoir.create_pitch_contour_reservoir \>[strip_prompt=true]
+
+Here's what the first 10 descents for the first violin look like:
+
+<abjad>
+reservoir = create_pitch_contour_reservoir()
+for i in range(10):
+    descent = reservoir['First Violin'][i]
+    print ' '.join(str(x) for x in descent)
+
+</abjad>
+
+Next we add diads to all of the descents, except for the viola's.  We'll use a dictionary
+as a lookup table, to tell us what interval to add below a given pitch class:
+
 <abjadextract abjad.demos.part.shadow_pitch_contour_reservoir.shadow_pitch_contour_reservoir \>[strip_prompt=true]
+
+Finally, we'll add rhythms to the pitch contours we've been constructing.  Each
+string instrument plays twice as slow as the string instrument above it in the
+score.  Additionally, all the strings start with some rests, and use a "long-short"
+pattern for their rhythms:
+
 <abjadextract abjad.demos.part.durate_pitch_contour_reservoir.durate_pitch_contour_reservoir \>[strip_prompt=true]
+
+Let's see what a few of those look like for the first violins, again:
+
+<abjad>
+reservoir = shadow_pitch_contour_reservoir()
+reservoir = durate_pitch_contour_reservoir()
+descents = reservoir['First Violin'][:4]
+staff = Staff(sequencetools.flatten_sequence(descents))
+show(staff)
+</abjad>
 
 The edits
 ---------
@@ -50,13 +93,16 @@ bowing indications, expressive instructures, page breaks and rehearsal marks.
 
 We'll start with the bowing marks.  This involves creating a piece of custom
 markup to indicate rebowing.  We accomplish this by aggregating together
-some `schemetools.Scheme` and `markuptools.MarkupCommand` objects.  The completed
-`markuptools.Markup` object is then copied and attached at the correct locations
-in the score:
+some `markuptools.MarkupCommand` and `markuptools.MusicGlyph` objects.  The
+completed `markuptools.Markup` object is then copied and attached at the correct
+locations in the score.  Why copy it?  A `Mark` can only be attached to a single
+`Component`.  If we attached the original piece of markup to each of our target
+components in turn, only the last would actually receive the markup, as it would
+have be detached from the preceding components.  Let's look:
 
 <abjadextract abjad.demos.part.apply_bowing_marks.apply_bowing_marks \>[strip_prompt=true]
 
-Applying dynamics is easy.  Just instantiate and attach:
+After dealing with custom markup, applying dynamics is easy.  Just instantiate and attach:
 
 <abjadextract abjad.demos.part.apply_dynamic_marks.apply_dynamic_marks \>[strip_prompt=true]
 
