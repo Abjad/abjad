@@ -28,6 +28,7 @@ Let's make some imports:
        apply_expressive_marks(score)
        apply_page_breaks(score)
        apply_rehearsal_marks(score)
+       apply_final_bar_lines(score)
    
        configure_score(score)
        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
@@ -153,6 +154,11 @@ The bell music
 The string music
 ----------------
 
+Creating the music for the strings is a bit more involved, but conceptually falls into two steps.
+First, we'll procedurally generate basic pitches and rhythms for all string voices.  Then, we'll
+make edits to the generated material by hand.  The entire process is encapsulated in the following
+function:
+
 ::
 
    def add_string_music_to_score(score):
@@ -185,6 +191,16 @@ The string music
                measuretools.Measure((6, 4), shard)
 
 
+The pitch material is the same for all of the strings: a descending a-minor scale, generally
+decorated with diads.  But, each instrument uses a different overall range, with the lower
+instrument playing slower and slower than the higher instruments, creating a sort of mensuration
+canon.
+
+For each instrument, the descending scale is fragmented into what we'll call "descents".
+The first descent uses only the first note of that instrument's scale, while the second descent
+adds the second note, and the third another.  We'll generate as many descents per instruments
+as there are pitches in its overall scale:
+
 ::
 
    def create_pitch_contour_reservoir():
@@ -210,6 +226,30 @@ The string music
    
        return reservoir
 
+
+Here's what the first 10 descents for the first violin look like:
+
+::
+
+   >>> reservoir = create_pitch_contour_reservoir()
+   >>> for i in range(10):
+   ...     descent = reservoir['First Violin'][i]
+   ...     print ' '.join(str(x) for x in descent)
+   ... 
+   a'''
+   a''' g'''
+   a''' g''' f'''
+   a''' g''' f''' e'''
+   a''' g''' f''' e''' d'''
+   a''' g''' f''' e''' d''' c'''
+   a''' g''' f''' e''' d''' c''' b''
+   a''' g''' f''' e''' d''' c''' b'' a''
+   a''' g''' f''' e''' d''' c''' b'' a'' g''
+   a''' g''' f''' e''' d''' c''' b'' a'' g'' f''
+
+
+Next we add diads to all of the descents, except for the viola's.  We'll use a dictionary
+as a lookup table, to tell us what interval to add below a given pitch class:
 
 ::
 
@@ -259,6 +299,11 @@ The string music
        return shadowed_reservoir
 
 
+Finally, we'll add rhythms to the pitch contours we've been constructing.  Each
+string instrument plays twice as slow as the string instrument above it in the
+score.  Additionally, all the strings start with some rests, and use a "long-short"
+pattern for their rhythms:
+
 ::
 
    def durate_pitch_contour_reservoir(pitch_contour_reservoir):
@@ -274,12 +319,14 @@ The string music
        durated_reservoir = {}
    
        for i, instrument_name in enumerate(instrument_names):
-           long_duration = Fraction(1, 2) * pow(2, i)
+           long_duration = Duration(1, 2) * pow(2, i)
            short_duration = long_duration / 2
-           rest_duration = long_duration * Fraction(3, 2)
-           div, mod = divmod(rest_duration, Fraction(3, 2))
-           
-                   initial_rest = resttools.MultiMeasureRest((3, 2)) * div
+           rest_duration = long_duration * Multiplier(3, 2)
+   
+           div = rest_duration // Duration(3, 2)
+           mod = rest_duration % Duration(3, 2)
+   
+           initial_rest = resttools.MultiMeasureRest((3, 2)) * div
            if mod:
                initial_rest += resttools.make_rests(mod)
    
@@ -299,6 +346,69 @@ The string music
    
        return durated_reservoir
 
+
+Let's see what a few of those look like for the first violins.  We'll build the entire
+reservoir from scratch, so you can see the process:
+
+::
+
+   >>> pitch_contour_reservoir = create_pitch_contour_reservoir()
+   >>> shadowed_contour_reservoir = shadow_pitch_contour_reservoir(pitch_contour_reservoir)
+   >>> durated_reservoir = durate_pitch_contour_reservoir(shadowed_contour_reservoir)
+
+
+Then we'll grab the sub-reservoir for the first violins, throw it in a staff
+and give it a 6/4 time signature, just so it lines up properly.  We'll also
+label the descents so you can clearly see where they start:
+
+::
+
+   >>> descents = durated_reservoir['First Violin'][:10]
+   >>> for i, descent in enumerate(descents[1:], 1):
+   ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+   ... 
+   >>> staff = Staff(sequencetools.flatten_sequence(descents))
+   >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+   >>> show(staff)
+
+.. image:: images/index-1.png
+
+
+Let's look at the second violins too:
+
+::
+
+   >>> descents = durated_reservoir['Second Violin'][:10]
+   >>> for i, descent in enumerate(descents[1:], 1):
+   ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+   ... 
+   >>> staff = Staff(sequencetools.flatten_sequence(descents))
+   >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+   >>> show(staff)
+
+.. image:: images/index-2.png
+
+
+And, last we'll take a peek at the violas.  They have some longer notes,
+so we'll split their music cyclically every 3 half notes, just so nothing
+crosses the bar lines accidentally:
+
+::
+
+   >>> descents = durated_reservoir['Viola'][:10]
+   >>> for i, descent in enumerate(descents[1:], 1):
+   ...     markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+   ... 
+   >>> staff = Staff(sequencetools.flatten_sequence(descents))
+   >>> shards = componenttools.split_components_at_offsets(staff[:], [(3, 2)], cyclic=True)
+   >>> time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+   >>> show(staff)
+
+.. image:: images/index-3.png
+
+
+You can see how each part is twice as slow as the previous, and starts a
+little bit later too.
 
 The edits
 ---------
@@ -415,6 +525,22 @@ The edits
 The marks
 ---------
 
+Now we'll apply various kinds of marks, including dynamics, articulations,
+bowing indications, expressive instructures, page breaks and rehearsal marks.
+
+We'll start with the bowing marks.  This involves creating a piece of custom
+markup to indicate rebowing.  We accomplish this by aggregating together
+some `markuptools.MarkupCommand` and `markuptools.MusicGlyph` objects.  The
+completed `markuptools.Markup` object is then copied and attached at the correct
+locations in the score.
+
+Why copy it?  A `Mark` can only be attached to a single
+`Component`.  If we attached the original piece of markup to each of our target
+components in turn, only the last would actually receive the markup, as it would
+have be detached from the preceding components.
+
+Let's take a look:
+
 ::
 
    def apply_bowing_marks(score):
@@ -432,29 +558,16 @@ The marks
        rebow_markup = markuptools.Markup(
            markuptools.MarkupCommand(
                'concat', [
-               markuptools.MarkupCommand(
-                   'musicglyph',
-                   schemetools.Scheme(
-                       'scripts.downbow',
-                       force_quotes=True,
-                       ),
-                   ),
-               markuptools.MarkupCommand(
-                   'hspace',
-                   1,
-                   ),
-               markuptools.MarkupCommand(
-                   'musicglyph',
-                   schemetools.Scheme(
-                       'scripts.upbow',
-                       force_quotes=True,
-                       ),
-                   ),
+                   markuptools.MusicGlyph('scripts.downbow'),
+                   markuptools.MarkupCommand('hspace', 1),
+                   markuptools.MusicGlyph('scripts.upbow'),
                ]))
        copy.copy(rebow_markup)(score['First Violin Voice'][64][0]) 
        copy.copy(rebow_markup)(score['Second Violin Voice'][75][0]) 
        copy.copy(rebow_markup)(score['Viola Voice'][86][0]) 
 
+
+After dealing with custom markup, applying dynamics is easy.  Just instantiate and attach:
 
 ::
 
@@ -519,6 +632,8 @@ The marks
        contexttools.DynamicMark('fff')(voice[62][0])
 
 
+We apply expressive marks the same way we applied our dynamics:
+
 ::
 
    def apply_expressive_marks(score):
@@ -557,6 +672,10 @@ The marks
            markuptools.Markup(r'\italic { (non dim.) }', Down)(voice[102][0])
 
 
+We use the `marktools.LilyPondCommandClass` to create LilyPond system breaks,
+and attach them to measures in the percussion part.  After this, our score will
+break in the exact same places as the original:
+
 ::
 
    def apply_page_breaks(score):
@@ -572,6 +691,9 @@ The marks
                'after'
                )(bell_voice[measure_index])
 
+
+We'll make the rehearsal marks the exact same way we made our line
+breaks:
 
 ::
 
@@ -589,8 +711,35 @@ The marks
                )(bell_voice[measure_index])
 
 
+And then we add our final bar lines.  `marktools.BarLine` objects inherit from
+`marktools.Mark`, so you can probably guess by now how we add them to the
+score... instantiate and attach:
+
+::
+
+   def apply_final_bar_lines(score):
+   
+       for voice in iterationtools.iterate_voices_in_expr(score):
+           marktools.BarLine('|.')(voice[-1])
+
+
 The LilyPond file
 -----------------
+
+Finally, we create some functions to apply formatting directives to our `Score`
+object, then wrap it into a `LilyPondFile` and apply some more formatting.
+
+In our `configure_score()` functions, we use `layouttools.make_spacing_vector()`
+to create the correct Scheme construct to tell LilyPond how to handle vertical
+space for its staves and staff groups. You should consult LilyPond's vertical
+spacing documentation for a complete explanation of what this Scheme code means:
+
+::
+
+   >>> spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
+   >>> f(spacing_vector)
+   #'((basic_distance . 0) (minimum_distance . 0) (padding . 8) (stretchability . 0))
+
 
 ::
 
@@ -602,6 +751,10 @@ The LilyPond file
        score.override.staff_symbol.thickness = 0.5
        score.set.mark_formatter = schemetools.Scheme('format-mark-box-numbers')
 
+
+In our `configure_lilypond_file()` function, we need to construct a ContextBlock
+definition in order to tell LilyPond to hide empty staves, and additionally to
+hide empty staves if they appear in the first system:
 
 ::
 
@@ -626,19 +779,27 @@ The LilyPond file
        lilypond_file.header_block.title = markuptools.Markup('Cantus in Memory of Benjamin Britten (1980)')
 
 
+Let's run our original toplevel function to build the complete score:
+
 ::
 
    >>> lilypond_file = make_part_lilypond_file()
 
 
+And here we show it:
+
 ::
 
    >>> show(lilypond_file) 
 
-.. image:: images/index-1-page1.png
+.. image:: images/index-4-page1.png
 
-.. image:: images/index-1-page2.png
+.. image:: images/index-4-page2.png
 
+
+.. note:
+
+   We only show the first two pages as the *Cantus* is still under copyright.
 
 
 

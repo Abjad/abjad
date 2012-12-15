@@ -37,7 +37,9 @@ function:
 The pitch material is the same for all of the strings: a descending a-minor scale, generally
 decorated with diads.  But, each instrument uses a different overall range, with the lower
 instrument playing slower and slower than the higher instruments, creating a sort of mensuration
-canon.  For each instrument, the descending scale is fragmented into what we'll call "descents".
+canon.
+
+For each instrument, the descending scale is fragmented into what we'll call "descents".
 The first descent uses only the first note of that instrument's scale, while the second descent
 adds the second note, and the third another.  We'll generate as many descents per instruments
 as there are pitches in its overall scale:
@@ -51,7 +53,6 @@ reservoir = create_pitch_contour_reservoir()
 for i in range(10):
     descent = reservoir['First Violin'][i]
     print ' '.join(str(x) for x in descent)
-
 </abjad>
 
 Next we add diads to all of the descents, except for the viola's.  We'll use a dictionary
@@ -66,15 +67,59 @@ pattern for their rhythms:
 
 <abjadextract abjad.demos.part.durate_pitch_contour_reservoir.durate_pitch_contour_reservoir \>[strip_prompt=true]
 
-Let's see what a few of those look like for the first violins, again:
+Let's see what a few of those look like.  First, we'll build the entire
+reservoir from scratch, so you can see the process:
 
 <abjad>
-reservoir = shadow_pitch_contour_reservoir()
-reservoir = durate_pitch_contour_reservoir()
-descents = reservoir['First Violin'][:4]
+pitch_contour_reservoir = create_pitch_contour_reservoir()
+shadowed_contour_reservoir = shadow_pitch_contour_reservoir(pitch_contour_reservoir)
+durated_reservoir = durate_pitch_contour_reservoir(shadowed_contour_reservoir)
+</abjad>
+
+Then we'll grab the sub-reservoir for the first violins, taking the first ten
+descents (which includes the silences we've been adding as well).  We'll label 
+each descent with some markup, to distinguish them, throw them into a
+Staff and give them a 6/4 time signature, just so they line up properly.
+
+<abjad>
+descents = durated_reservoir['First Violin'][:10]
+for i, descent in enumerate(descents[1:], 1):
+    markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+
 staff = Staff(sequencetools.flatten_sequence(descents))
+time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
 show(staff)
 </abjad>
+
+Let's look at the second violins too:
+
+<abjad>
+descents = durated_reservoir['Second Violin'][:10]
+for i, descent in enumerate(descents[1:], 1):
+    markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+
+staff = Staff(sequencetools.flatten_sequence(descents))
+time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+show(staff)
+</abjad>
+
+And, last we'll take a peek at the violas.  They have some longer notes,
+so we'll split their music cyclically every 3 half notes, just so nothing
+crosses the bar lines accidentally:
+
+<abjad>
+descents = durated_reservoir['Viola'][:10]
+for i, descent in enumerate(descents[1:], 1):
+    markup = markuptools.Markup(r'\rounded-box \bold {}'.format(i), Up)(descent[0])
+
+staff = Staff(sequencetools.flatten_sequence(descents))
+shards = componenttools.split_components_at_offsets(staff[:], [(3, 2)], cyclic=True)
+time_signature = contexttools.TimeSignatureMark((6, 4))(staff)
+show(staff)
+</abjad>
+
+You can see how each part is twice as slow as the previous, and starts a
+little bit later too.
 
 The edits
 ---------
@@ -95,10 +140,14 @@ We'll start with the bowing marks.  This involves creating a piece of custom
 markup to indicate rebowing.  We accomplish this by aggregating together
 some `markuptools.MarkupCommand` and `markuptools.MusicGlyph` objects.  The
 completed `markuptools.Markup` object is then copied and attached at the correct
-locations in the score.  Why copy it?  A `Mark` can only be attached to a single
+locations in the score.
+
+Why copy it?  A `Mark` can only be attached to a single
 `Component`.  If we attached the original piece of markup to each of our target
 components in turn, only the last would actually receive the markup, as it would
-have be detached from the preceding components.  Let's look:
+have be detached from the preceding components.
+
+Let's take a look:
 
 <abjadextract abjad.demos.part.apply_bowing_marks.apply_bowing_marks \>[strip_prompt=true]
 
@@ -131,9 +180,24 @@ The LilyPond file
 -----------------
 
 Finally, we create some functions to apply formatting directives to our `Score`
-object, then wrap it into a `LilyPondFile` and apply some more formatting:
+object, then wrap it into a `LilyPondFile` and apply some more formatting.
+
+In our `configure_score()` functions, we use `layouttools.make_spacing_vector()`
+to create the correct Scheme construct to tell LilyPond how to handle vertical
+space for its staves and staff groups. You should consult LilyPond's vertical
+spacing documentation for a complete explanation of what this Scheme code means:
+
+<abjad>
+spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
+f(spacing_vector)
+</abjad>
 
 <abjadextract abjad.demos.part.configure_score.configure_score \>[strip_prompt=true]
+
+In our `configure_lilypond_file()` function, we need to construct a ContextBlock
+definition in order to tell LilyPond to hide empty staves, and additionally to
+hide empty staves if they appear in the first system:
+
 <abjadextract abjad.demos.part.configure_lilypond_file.configure_lilypond_file \>[strip_prompt=true]
 
 Let's run our original toplevel function to build the complete score:
