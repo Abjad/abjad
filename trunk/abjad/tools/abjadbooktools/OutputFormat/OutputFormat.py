@@ -21,7 +21,8 @@ class OutputFormat(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, code_block, image_filenames):
+    def __call__(self, code_block, image_dict):
+
         reformatted = []
         for result in code_block.processed_results:
             if isinstance(result, tuple):
@@ -29,22 +30,24 @@ class OutputFormat(abctools.AbjadObject):
                     self.code_block_opening +
                     '\n'.join([(' ' * self.code_indent) + x for x in result]) +
                     self.code_block_closing)
+
             elif isinstance(result, dict):
                 file_name = result['file_name']
+                image_count = result['image_count']
+                image_prefix = result['image_prefix']
                 page_range = result['page_range']
-                image_filenames = [x for x in image_filenames if x.startswith(file_name)]
+
                 if page_range is None:
-                    for image_filename in image_filenames:
-                        image_filename = image_filename.rpartition('.')[0]
-                        reformatted.append(self.image_block.format(image_filename))
+                    image_file_names = [v for k, v in sorted(image_dict[image_count].items())]
+                    for image_file_name in image_file_names:
+                        image_file_name = image_file_name.rpartition('.')[0]
+                        reformatted.append(self.image_block.format(image_file_name))
+
                 else:
-                    for image_filename in image_filenames:
-                        page_number = image_filename.partition(file_name)[-1]
-                        page_number = page_number.partition('.')[0]
-                        page_number = page_number.partition('page')[-1]
-                        if (page_number and int(page_number) in page_range) or not page_number:
-                            image_filename = image_filename.rpartition('.')[0]
-                            reformatted.append(self.image_block.format(image_filename))
+                    image_file_names = [v for k, v in sorted(image_dict[image_count].items)
+                        if k in page_range]
+                    for image_file_name in image_file_names:
+                        reformatted.append(self.image_block.format(image_file_name))
                             
         return tuple(reformatted)
 

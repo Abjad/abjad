@@ -111,6 +111,8 @@ class CodeBlock(abctools.AbjadObject):
 
                 image_dict = {
                     'file_name': file_name,
+                    'image_count': image_count,
+                    'image_prefix': image_prefix,
                     'page_range': page_range,
                 }
                 grouped_results.append(image_dict)

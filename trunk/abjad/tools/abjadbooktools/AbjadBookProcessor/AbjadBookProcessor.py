@@ -60,7 +60,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
         os.chdir(self.directory)
         self._cleanup_image_files(self.directory, tmp_directory, image_count, self.image_prefix,
             self.output_format.image_format)
-        #self._cleanup_tmp_directory(tmp_directory)
+        self._cleanup_tmp_directory(tmp_directory)
 
         return result
 
@@ -200,18 +200,34 @@ class AbjadBookProcessor(abctools.AbjadObject):
         return file_names
 
     def _interleave_source_with_code_blocks(self, tmp_directory, lines, code_blocks, output_format):
+
         #print 'INTERLEAVE SOURCE WITH CODE BLOCKS'
-        image_file_names = sorted([x for x in os.listdir(tmp_directory)
+        image_file_names = [x for x in os.listdir(tmp_directory)
             if (x.endswith(output_format.image_format) and
-               x.startswith(self.image_prefix))])
+               x.startswith(self.image_prefix))]
+
+        image_dict = {}
+        for image_filename in image_file_names:
+            suffix = os.path.splitext(image_filename.partition('-')[2])[0]
+            index, part, page = suffix.partition('-')
+            index = int(index)
+            if page:
+                page = int(page.strip('page'))
+            else:
+                page = 0
+            if index not in image_dict:
+                image_dict[index] = {}
+            image_dict[index][page] = image_filename
+
         interleaved = []
         interleaved.append('\n'.join(lines[:code_blocks[0].starting_line_number]))
         for pair in sequencetools.iterate_sequence_pairwise_strict(code_blocks):
             first_block, second_block = pair
-            interleaved.extend(output_format(first_block, image_file_names))
+            interleaved.extend(output_format(first_block, image_dict))
             interleaved.append('\n'.join(lines[
                 first_block.ending_line_number + 1:second_block.starting_line_number]))
-        interleaved.extend(output_format(code_blocks[-1], image_file_names))
+
+        interleaved.extend(output_format(code_blocks[-1], image_dict))
         interleaved.append('\n'.join(lines[code_blocks[-1].ending_line_number + 1:]))
         return '\n'.join(interleaved)
 
