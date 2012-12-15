@@ -31,7 +31,13 @@ The improper parentage of the first note in score begins with the note itself:
 
 ::
 
-   >>> componenttools.get_improper_parentage_of_component(note)
+   >>> note.parentage
+   Parentage(Note("c'4"), Tuplet(2/3, [c'4, d'4, e'4]), Staff{2}, Score<<1>>)
+
+
+::
+
+   >>> note.parentage[:]
    (Note("c'4"), Tuplet(2/3, [c'4, d'4, e'4]), Staff{2}, Score<<1>>)
 
 
@@ -42,7 +48,7 @@ The proper parentage of the note begins with only the immediate parent of the no
 
 ::
 
-   >>> componenttools.get_proper_parentage_of_component(note)
+   >>> note.parentage[1:]
    (Tuplet(2/3, [c'4, d'4, e'4]), Staff{2}, Score<<1>>)
 
 
@@ -52,11 +58,11 @@ The proper parentage of the note begins with only the immediate parent of the no
 Parentage attributes
 --------------------
 
-Use component tools to find score depth:
+Use Parentage to find score depth:
 
 ::
 
-   >>> componenttools.component_to_score_depth(note)
+   >>> note.parentage.depth
    3
 
 
@@ -64,7 +70,7 @@ Or score root:
 
 ::
 
-   >>> componenttools.component_to_score_root(note)
+   >>> note.parentage.root
    Score<<1>>
 
 
@@ -72,6 +78,6 @@ Or to find whether a component has no (proper) parentage at all:
 
 ::
 
-   >>> componenttools.is_orphan_component(note)
+   >>> note.parentage.is_orphan
    False
 

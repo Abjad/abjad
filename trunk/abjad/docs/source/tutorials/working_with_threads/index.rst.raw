@@ -110,19 +110,19 @@ Observe the behavior of the
 iterator on the `staff`:
 
 <abjad>
-vA_thread_signature = componenttools.component_to_containment_signature(vA)
+vA_thread_signature = vA.parentage.containment_signature
 notes = iterationtools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-vB_thread_signature = componenttools.component_to_containment_signature(vB)
+vB_thread_signature = vB.parentage.containment_signature
 notes = iterationtools.iterate_thread_in_expr(staff, Note, vB_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-vC_thread_signature = componenttools.component_to_containment_signature(vC)
+vC_thread_signature = vC.parentage.containment_signature
 notes = iterationtools.iterate_thread_in_expr(staff, Note, vC_thread_signature)
 print list(notes)
 </abjad>
@@ -135,17 +135,17 @@ We can see that the thread signature of each voice is indeed different
 by printing it:
 
 <abjad>
-vA_thread_signature = componenttools.component_to_containment_signature(vA)
+vA_thread_signature = vA.parentage.containment_signature
 vA_thread_signature
 </abjad>
 
 <abjad>
-vB_thread_signature = componenttools.component_to_containment_signature(vB)
+vB_thread_signature = vB.parentage.containment_signature
 vB_thread_signature
 </abjad>
 
 <abjad>
-vC_thread_signature = componenttools.component_to_containment_signature(vC)
+vC_thread_signature = vC.parentage.containment_signature
 vC_thread_signature
 </abjad>
 
@@ -175,17 +175,17 @@ vA_thread_signature == vB_thread_signature
 Note how the thread signatures have changed:
 
 <abjad>
-vA_thread_signature = componenttools.component_to_containment_signature(vA)
+vA_thread_signature = vA.parentage.containment_signature
 print vA_thread_signature
 </abjad>
 
 <abjad>
-vB_thread_signature = componenttools.component_to_containment_signature(vB)
+vB_thread_signature = vB.parentage.containment_signature
 print vB_thread_signature
 </abjad>
 
 <abjad>
-vC_thread_signature = componenttools.component_to_containment_signature(vC)
+vC_thread_signature = vC.parentage.containment_signature
 print vC_thread_signature
 </abjad>
 

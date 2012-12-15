@@ -25,7 +25,11 @@ note = score.leaves[0]
 </abjad>
 
 <abjad>
-componenttools.get_improper_parentage_of_component(note)
+note.parentage
+</abjad>
+
+<abjad>
+note.parentage[:]
 </abjad>
 
 Proper parentage
@@ -34,7 +38,7 @@ Proper parentage
 The proper parentage of the note begins with only the immediate parent of the note:
 
 <abjad>
-componenttools.get_proper_parentage_of_component(note)
+note.parentage[1:]
 </abjad>
 
 .. note:: the length of the improper parentage of any component equals
@@ -43,20 +47,20 @@ componenttools.get_proper_parentage_of_component(note)
 Parentage attributes
 --------------------
 
-Use component tools to find score depth:
+Use Parentage to find score depth:
 
 <abjad>
-componenttools.component_to_score_depth(note)
+note.parentage.depth
 </abjad>
 
 Or score root:
 
 <abjad>
-componenttools.component_to_score_root(note)
+note.parentage.root
 </abjad>
 
 Or to find whether a component has no (proper) parentage at all:
 
 <abjad>
-componenttools.is_orphan_component(note)
+note.parentage.is_orphan
 </abjad>

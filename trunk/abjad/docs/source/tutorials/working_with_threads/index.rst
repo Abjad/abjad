@@ -152,774 +152,13 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vB])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 31, in __init__
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 35, in __init__
        DirectedSpanner.__init__(self, components, direction)
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 10, in __init__
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
        Spanner.__init__(self, components)
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 42, in __init__
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 44, in __init__
        self._initialize_components(components)
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 213, in _initialize_components
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 219, in _initialize_components
        assert componenttools.all_are_thread_contiguous_components(leaves)
    AssertionError
 
@@ -931,13 +170,13 @@ To attach the slur spanner to the voices we could try either:
    >>> spannertools.SlurSpanner([vA, vC])
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 31, in __init__
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/SlurSpanner/SlurSpanner.py", line 35, in __init__
        DirectedSpanner.__init__(self, components, direction)
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 10, in __init__
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/DirectedSpanner/DirectedSpanner.py", line 13, in __init__
        Spanner.__init__(self, components)
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 42, in __init__
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 44, in __init__
        self._initialize_components(components)
-     File "/Users/josiah/Documents/Projects/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 213, in _initialize_components
+     File "/media/Work/dev/scores/abjad/trunk/abjad/tools/spannertools/Spanner/Spanner.py", line 219, in _initialize_components
        assert componenttools.all_are_thread_contiguous_components(leaves)
    AssertionError
 
@@ -951,7 +190,7 @@ iterator on the `staff`:
 
 ::
 
-   >>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
+   >>> vA_thread_signature = vA.parentage.containment_signature
    >>> notes = iterationtools.iterate_thread_in_expr(staff, Note, vA_thread_signature)
    >>> print list(notes)
    [Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
@@ -959,7 +198,7 @@ iterator on the `staff`:
 
 ::
 
-   >>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
+   >>> vB_thread_signature = vB.parentage.containment_signature
    >>> notes = iterationtools.iterate_thread_in_expr(staff, Note, vB_thread_signature)
    >>> print list(notes)
    [Note("c''8"), Note("b'8"), Note("a'4")]
@@ -967,7 +206,7 @@ iterator on the `staff`:
 
 ::
 
-   >>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
+   >>> vC_thread_signature = vC.parentage.containment_signature
    >>> notes = iterationtools.iterate_thread_in_expr(staff, Note, vC_thread_signature)
    >>> print list(notes)
    [Note("c''4"), Note("c''4")]
@@ -982,23 +221,23 @@ by printing it:
 
 ::
 
-   >>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
+   >>> vA_thread_signature = vA.parentage.containment_signature
    >>> vA_thread_signature
-   ContainmentSignature(Voice-25493808, Voice-25493808, Staff-25494192)
+   ContainmentSignature(Voice-166691500, Voice-166691500, Staff-166692140)
 
 
 ::
 
-   >>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
+   >>> vB_thread_signature = vB.parentage.containment_signature
    >>> vB_thread_signature
-   ContainmentSignature(Voice-25493936, Voice-25493936, Staff-25494192)
+   ContainmentSignature(Voice-166691628, Voice-166691628, Staff-166692140)
 
 
 ::
 
-   >>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
+   >>> vC_thread_signature = vC.parentage.containment_signature
    >>> vC_thread_signature
-   ContainmentSignature(Voice-25494064, Voice-25494064, Staff-25494192)
+   ContainmentSignature(Voice-166691884, Voice-166691884, Staff-166692140)
 
 
 And by comparing them with the binary equality operator:
@@ -1035,29 +274,29 @@ Note how the thread signatures have changed:
 
 ::
 
-   >>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
+   >>> vA_thread_signature = vA.parentage.containment_signature
    >>> print vA_thread_signature
-        staff: Staff-25494192
+        staff: Staff-166692140
         voice: Voice-'piccolo'
          self: Voice-'piccolo'
 
 
 ::
 
-   >>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
+   >>> vB_thread_signature = vB.parentage.containment_signature
    >>> print vB_thread_signature
-        staff: Staff-25494192
+        staff: Staff-166692140
         voice: Voice-'piccolo'
          self: Voice-'piccolo'
 
 
 ::
 
-   >>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
+   >>> vC_thread_signature = vC.parentage.containment_signature
    >>> print vC_thread_signature
-        staff: Staff-25494192
-        voice: Voice-25494064
-         self: Voice-25494064
+        staff: Staff-166692140
+        voice: Voice-166691884
+         self: Voice-166691884
 
 
 And how the ``iterationtools.iterate_thread_in_expr()`` function returns

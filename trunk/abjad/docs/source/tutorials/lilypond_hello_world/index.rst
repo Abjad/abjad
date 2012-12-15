@@ -31,11 +31,10 @@ and download the current version of LilyPond for your operating system.
 If your computer doesn't know where LilyPond is installed
 then you'll have to tell your computer where LilyPond is.
 Doing this depends on your operating system.
-If you're running MacOS X then you need to make sure that the
+If you're running MacOS X or Linux then you need to make sure that the
 location of the LilyPond binary is present in your ``PATH``
 environment variable.
-If you don't know how to add things to your path you should Google
-for the instructions that are right for your computer or ask a friend.
+If you don't know how to add things to your path you should Google or ask a friend.
 
 
 Writing the file
@@ -58,7 +57,7 @@ Save ``hello_world.ly`` and quit your text editor when you're done.
 Note the following::
 
     1. You can use either spaces or tabs while you type.
-    2. The version string you type must match the LilyPond version your found above.
+    2. The version string you type must match the LilyPond version you found above.
     3. The English language command tells LilyPond to use English note names.
     4. The score block tells LilyPond that you're entering actual music.
     5. The expression c'4 tells LilyPond to create a quarter note middle C.
@@ -88,7 +87,7 @@ LilyPond reads ``hello_world.ly`` as input and creates ``hello_world.pdf`` as ou
 Open the ``hello_world.pdf`` file LilyPond creates.
 
 You can do this by clicking on the file.
-Or you can use the terminal to open the file from the command line.
+Or you can open the file from the command line.
 
 If you're using MacOS X you can open ``hello_world.pdf`` like this::
 
@@ -97,13 +96,13 @@ If you're using MacOS X you can open ``hello_world.pdf`` like this::
 .. image:: images/index-1.png
 
 
-Your operating system shows you the score you created.
+Your operating system shows the score you created.
 
 
 Repeating the process
 ---------------------
 
-Working with LilyPond means that you do these things::
+Working with LilyPond means doing these things::
 
     1. edit a LilyPond input file
     2. interpet the input file
