@@ -188,7 +188,6 @@ r = stafftools.RhythmicStaff([m1, m2, m3])
 
 <abjad>
 show(r)
-iotools.write_expr_to_ly(r, 'midi-1') <hide
 </abjad>
 
 Written note pitch vs. MIDI note-on
@@ -206,7 +205,6 @@ r = Staff([m1, m2])
 
 <abjad>
 show(r)
-iotools.write_expr_to_ly(r, 'midi-2') <hide
 </abjad>
 
 Conclusion
@@ -257,7 +255,6 @@ staff.override.tuplet_bracket.padding = 1.6
 
 <abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'lilypond-1', docs=True) <hide
 </abjad>
 
 LilyPond's tuplet input syntax works the same as any other recursive construct.
@@ -288,7 +285,6 @@ staff = stafftools.RhythmicStaff([measure])
 
 <abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'lilypond-2', docs=True) <hide
 </abjad>
 
 Nonbinary meters work out of the box
@@ -316,7 +312,6 @@ staff = stafftools.RhythmicStaff([t, u, v])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'lilypond-3') <hide
 </abjad>
 
 The time signatures ``4/28`` and ``3/28`` here have a denominator not 

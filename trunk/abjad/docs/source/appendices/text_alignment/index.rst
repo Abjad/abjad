@@ -10,25 +10,27 @@ LilyPond left-aligns markup relative to the left edge of note heads by default.
 
 ::
 
-	>>> from abjad.tools import documentationtools
+   >>> from abjad.tools import documentationtools
 
 
 ::
 
-	>>> staff = stafftools.RhythmicStaff('c')
+   >>> staff = stafftools.RhythmicStaff('c')
 
 
 ::
 
-	>>> markuptools.Markup('XX', Up)(staff[0])
+   >>> markuptools.Markup('XX', Up)(staff[0])
+   Markup(('XX',), direction=Up)(c4)
 
 
 ::
 
-	>>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
-	>>> show(lilypond_file)
+   >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
+   >>> show(lilypond_file)
 
-.. image:: images/default-alignment.png
+.. image:: images/index-1.png
+
 
 
 ``TextScript #'self-alignment-X``
@@ -42,25 +44,29 @@ that markup positioning is by default relative to the left edge of note heads.
 
 ::
 
-	>>> staff = stafftools.RhythmicStaff('c c c')
+   >>> staff = stafftools.RhythmicStaff('c c c')
 
 
 ::
 
-	>>> markuptools.Markup('XX', Up)(staff[0])
-	>>> staff[0].override.text_script.self_alignment_X = 'left'
-	>>> markuptools.Markup('XX', Up)(staff[1])
-	>>> staff[1].override.text_script.self_alignment_X = 'center'
-	>>> markuptools.Markup('XX', Up)(staff[2])
-	>>> staff[2].override.text_script.self_alignment_X = 'right'
+   >>> markuptools.Markup('XX', Up)(staff[0])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[0].override.text_script.self_alignment_X = 'left'
+   >>> markuptools.Markup('XX', Up)(staff[1])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[1].override.text_script.self_alignment_X = 'center'
+   >>> markuptools.Markup('XX', Up)(staff[2])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[2].override.text_script.self_alignment_X = 'right'
 
 
 ::
 
-	>>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
-	>>> show(lilypond_file)
+   >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
+   >>> show(lilypond_file)
 
-.. image:: images/self-alignment-x-alone.png
+.. image:: images/index-2.png
+
 
 
 ``TextScript #'X-offset``
@@ -76,24 +82,29 @@ that markup positioning is by default relative to the left edge of note heads.
 
 ::
 
-	>>> staff = stafftools.RhythmicStaff('c c c c')
+   >>> staff = stafftools.RhythmicStaff('c c c c')
 
 
 ::
 
-	>>> markuptools.Markup('XX', Up)(staff[0])
-	>>> staff[0].override.text_script.X_offset = 0
-	>>> markuptools.Markup('XX', Up)(staff[1])
-	>>> staff[1].override.text_script.X_offset = 2
-	>>> markuptools.Markup('XX', Up)(staff[2])
-	>>> staff[2].override.text_script.X_offset = 4
-	>>> markuptools.Markup('XX', Up)(staff[3])
-	>>> staff[3].override.text_script.X_offset = 6
+   >>> markuptools.Markup('XX', Up)(staff[0])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[0].override.text_script.X_offset = 0
+   >>> markuptools.Markup('XX', Up)(staff[1])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[1].override.text_script.X_offset = 2
+   >>> markuptools.Markup('XX', Up)(staff[2])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[2].override.text_script.X_offset = 4
+   >>> markuptools.Markup('XX', Up)(staff[3])
+   Markup(('XX',), direction=Up)(c4)
+   >>> staff[3].override.text_script.X_offset = 6
 
 
 ::
 
-	>>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
-	>>> show(staff)
+   >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
+   >>> show(staff)
 
-.. image:: images/x-offset-alone.png
+.. image:: images/index-3.png
+
