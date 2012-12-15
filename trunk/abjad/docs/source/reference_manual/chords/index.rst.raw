@@ -12,8 +12,6 @@ chord = Chord("<c' d' bf'>4")
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-1', docs=True) <hide
 </abjad>
 
 Making chords from chromatic pitch numbers and duration
@@ -27,8 +25,6 @@ chord = Chord([0, 2, 10], Duration(1, 4))
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-2', docs=True) <hide
 </abjad>
 
 Getting all the written pitches of a chord at once
@@ -38,7 +34,6 @@ You can get all the written pitches of a chord at one time:
 
 <abjad>
 chord.written_pitches
-print repr(chord.written_pitches) <hide
 </abjad>
 
 Abjad returns a read-only tuple of named chromatic pitches.
@@ -50,7 +45,6 @@ You can get the written pitches of a chord one at a time:
 
 <abjad>
 chord.written_pitches[0]
-print repr(chord.written_pitches[0]) <hide
 </abjad>
 
 Chords index the pitch they contain starting from ``0`` (just like tuples and lists).
@@ -68,8 +62,6 @@ chord.append(9)
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-3', docs=True) <hide
 </abjad>
 
 Or you can add a pitch to a chord with a chromatic pitch name:
@@ -80,8 +72,6 @@ chord.append("df''")
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-4', docs=True) <hide
 </abjad>
 
 Chords sort their pitches every time you add a new one.
@@ -101,8 +91,6 @@ chord.extend([3, 4, 14])
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-5', docs=True) <hide
 </abjad>
 
 Or you can chromatic pitch names:
@@ -113,8 +101,6 @@ chord.extend(["g''", "af''"])
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-6', docs=True) <hide
 </abjad>
 
 Deleting pitches from a chord
@@ -128,8 +114,6 @@ del(chord[0])
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-7', docs=True) <hide
 </abjad>
 
 <abjad>
@@ -138,8 +122,6 @@ del(chord[0])
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-8', docs=True) <hide
 </abjad>
 
 Negative indices work too:
@@ -150,8 +132,6 @@ del(chord[-1])
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-8', docs=True) <hide
 </abjad>
 
 Formatting chords
@@ -160,8 +140,7 @@ Formatting chords
 Get the LilyPond input format of any Abjad object with ``format``:
 
 <abjad>
-chord.format
-print chord.format <hide
+chord.lilypond_format
 </abjad>
 
 Use ``f()`` as a short-cut to print the LilyPond input format of any Abjad object:
@@ -178,7 +157,6 @@ But you can get the note heads of a chord, too:
 
 <abjad>
 chord.note_heads
-print repr(chord.note_heads) <hide
 </abjad>
 
 This is useful when you want to apply LilyPond overrides to note heads in a chord one at a time:
@@ -195,8 +173,6 @@ f(chord)
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-9', docs=True) <hide
 </abjad>
 
 
@@ -207,7 +183,6 @@ Abjad allows empty chords:
 
 <abjad>
 chord = Chord([], Duration(1, 4))
-print repr(chord) <hide
 </abjad>
 
 Abjad formats empty chords, too:
@@ -228,6 +203,4 @@ chord.extend(["gf'", "df''", "g''"])
 
 <abjad>
 show(chord, docs=True)
-measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-10', docs=True) <hide
 </abjad>

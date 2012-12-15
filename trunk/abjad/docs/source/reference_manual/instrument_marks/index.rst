@@ -10,13 +10,13 @@ Use ``contexttools`` to create instrument marks:
 
 ::
 
-	>>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
+   >>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
 
 
 ::
 
-	>>> instrument_mark
-	InstrumentMark('Violin ', 'Vn. ')
+   >>> instrument_mark
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
 
 
 Attaching instrument marks to a component
@@ -27,19 +27,21 @@ component:
 
 ::
 
-	>>> staff = Staff("c'4 d'4 e'4 f'4")
+   >>> staff = Staff("c'4 d'4 e'4 f'4")
 
 
 ::
 
-	>>> instrument_mark.attach(staff)
+   >>> instrument_mark.attach(staff)
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
 
 ::
 
-	>>> show(staff)
+   >>> show(staff)
 
-.. image:: images/instrument-marks-1.png
+.. image:: images/index-1.png
+
 
 
 Getting the instrument mark attached to a component
@@ -49,8 +51,8 @@ Use ``contexttools`` to get the instrument mark attached to a component:
 
 ::
 
-	>>> contexttools.get_instrument_mark_attached_to_component(staff)
-	InstrumentMark('Violin ', 'Vn. ')(Staff{4})
+   >>> contexttools.get_instrument_mark_attached_to_component(staff)
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
 
 
@@ -61,8 +63,8 @@ Or to get the instrument currently in effect for a component:
 
 ::
 
-	>>> contexttools.get_effective_instrument(staff[1])
-	InstrumentMark('Violin ', 'Vn. ')(Staff{4})
+   >>> contexttools.get_effective_instrument(staff[1])
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
 
 
@@ -74,20 +76,22 @@ instrument marks from a component one at a time:
 
 ::
 
-	>>> instrument_mark.detach()
+   >>> instrument_mark.detach()
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
 
 
 ::
 
-	>>> instrument_mark
-	InstrumentMark('Violin ', 'Vn. ')
+   >>> instrument_mark
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
 
 
 ::
 
-	>>> show(staff)
+   >>> show(staff)
 
-.. image:: images/instrument-marks-2.png
+.. image:: images/index-2.png
+
 
 
 Detaching all instrument marks attached to a component at once
@@ -97,38 +101,42 @@ Or use ``contexttools`` to detach instrument marks all at once:
 
 ::
 
-	>>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-	>>> instrument_mark.attach(staff)
+   >>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
+   >>> instrument_mark.attach(staff)
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
 
 ::
 
-	>>> instrument_mark
-	InstrumentMark('Violin ', 'Vn. ')(Staff{4})
+   >>> instrument_mark
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
 
 ::
 
-	>>> show(staff)
+   >>> show(staff)
 
-.. image:: images/instrument-marks-3.png
-
-::
-
-	>>> contexttools.detach_instrument_marks_attached_to_component(staff)
+.. image:: images/index-3.png
 
 
 ::
 
-	>>> instrument_mark
-	InstrumentMark('Violin ', 'Vn. ')
+   >>> contexttools.detach_instrument_marks_attached_to_component(staff)
+   (InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. '),)
 
 
 ::
 
-	>>> show(staff)
+   >>> instrument_mark
+   InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')
 
-.. image:: images/instrument-marks-4.png
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-4.png
+
 
 
 Inspecting the component to which an instrument mark is attached
@@ -139,20 +147,22 @@ to inspect the component to which an instrument mark is attached:
 
 ::
 
-	>>> instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
-	>>> instrument_mark.attach(staff)
+   >>> instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
+   >>> instrument_mark.attach(staff)
+   InstrumentMark(instrument_name='Flute ', short_instrument_name='Fl. ')(Staff{4})
 
 
 ::
 
-	>>> show(staff)
+   >>> show(staff)
 
-.. image:: images/instrument-marks-5.png
+.. image:: images/index-5.png
+
 
 ::
 
-	>>> instrument_mark.start_component
-	Staff{4}
+   >>> instrument_mark.start_component
+   Staff{4}
 
 
 
@@ -164,8 +174,8 @@ get the instrument name of any instrument mark:
 
 ::
 
-	>>> instrument_mark.instrument_name_markup
-	Markup('Flute ')
+   >>> instrument_mark.instrument_name_markup
+   Markup(('Flute',))
 
 
 
@@ -177,5 +187,6 @@ to get the short instrument name of any instrument mark:
 
 ::
 
-	>>> instrument_mark.short_instrument_name_markup
-	Markup('Fl. ')
+   >>> instrument_mark.short_instrument_name_markup
+   Markup(('Fl.',))
+

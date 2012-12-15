@@ -17,7 +17,6 @@ annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitc
 
 <abjad>
 annotation
-print repr(annotation) <hide
 </abjad>
 
 
@@ -33,7 +32,6 @@ annotation.attach(note)
 
 <abjad>
 annotation
-print repr(annotation) <hide
 </abjad>
 
 <abjad>
@@ -43,7 +41,6 @@ another_annotation.attach(note)
 
 <abjad>
 another_annotation
-print another_annotation <hide
 </abjad>
 
 
@@ -54,7 +51,6 @@ Use mark tools to get all the annotations attached to a component:
 
 <abjad>
 marktools.get_annotations_attached_to_component(note)
-print repr(marktools.get_annotations_attached_to_component(note)) <hide
 </abjad>
 
 
@@ -69,7 +65,6 @@ annotation.detach()
 
 <abjad>
 annotation
-print repr(annotation) <hide
 </abjad>
 
 
@@ -84,7 +79,6 @@ print marktools.detach_annotations_attached_to_component(note)
 
 <abjad>
 marktools.get_annotations_attached_to_component(note)
-print repr(marktools.get_annotations_attached_to_component(note)) <hide
 </abjad>
 
 
@@ -99,7 +93,6 @@ annotation.attach(note)
 
 <abjad>
 annotation.start_component
-print repr(annotation.start_component) <hide
 </abjad>
 
 
@@ -110,7 +103,6 @@ Use ``name`` to get the name of any annotation:
 
 <abjad>
 annotation.name
-print repr(annotation.name) <hide
 </abjad>
 
 
@@ -121,5 +113,4 @@ And use ``value`` to get the value of any annotation:
 
 <abjad>
 annotation.value
-print repr(annotation.value) <hide
 </abjad>

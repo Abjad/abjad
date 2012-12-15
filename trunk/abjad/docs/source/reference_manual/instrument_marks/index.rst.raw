@@ -14,7 +14,6 @@ instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
 
 <abjad>
 instrument_mark
-print repr(instrument_mark) <hide
 </abjad>
 
 Attaching instrument marks to a component
@@ -33,7 +32,6 @@ instrument_mark.attach(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-1') <hide
 </abjad>
 
 
@@ -44,7 +42,6 @@ Use ``contexttools`` to get the instrument mark attached to a component:
 
 <abjad>
 contexttools.get_instrument_mark_attached_to_component(staff)
-print repr(contexttools.get_instrument_mark_attached_to_component(staff)) <hide
 </abjad>
 
 
@@ -55,7 +52,6 @@ Or to get the instrument currently in effect for a component:
 
 <abjad>
 contexttools.get_effective_instrument(staff[1])
-print repr(contexttools.get_effective_instrument(staff[1])) <hide
 </abjad>
 
 
@@ -71,12 +67,10 @@ instrument_mark.detach()
 
 <abjad>
 instrument_mark
-print repr(instrument_mark) <hide
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-2') <hide
 </abjad>
 
 
@@ -92,12 +86,10 @@ instrument_mark.attach(staff)
 
 <abjad>
 instrument_mark
-print repr(instrument_mark) <hide
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-3') <hide
 </abjad>
 
 <abjad>
@@ -106,12 +98,10 @@ contexttools.detach_instrument_marks_attached_to_component(staff)
 
 <abjad>
 instrument_mark
-print repr(instrument_mark) <hide
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-4') <hide
 </abjad>
 
 
@@ -128,12 +118,10 @@ instrument_mark.attach(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-5') <hide
 </abjad>
 
 <abjad>
 instrument_mark.start_component
-print repr(instrument_mark.start_component) <hide
 </abjad>
 
 
@@ -145,7 +133,6 @@ get the instrument name of any instrument mark:
 
 <abjad>
 instrument_mark.instrument_name_markup
-print repr(instrument_mark.instrument_name_markup) <hide
 </abjad>
 
 
@@ -157,5 +144,4 @@ to get the short instrument name of any instrument mark:
 
 <abjad>
 instrument_mark.short_instrument_name_markup
-print repr(instrument_mark.short_instrument_name_markup) <hide
 </abjad>

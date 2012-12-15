@@ -9,7 +9,6 @@ note = Note("cs''8")
 
 <abjad>
 note.written_pitch
-print repr(note.written_pitch) <hide
 </abjad>
 
 
@@ -24,7 +23,6 @@ named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
 
 <abjad>
 named_chromatic_pitch
-print repr(named_chromatic_pitch) <hide
 </abjad>
 
 
@@ -35,7 +33,6 @@ Use ``str()`` to get the name of named chromatic pitches:
 
 <abjad>
 str(named_chromatic_pitch)
-print str(named_chromatic_pitch) <hide
 </abjad>
 
 
@@ -46,7 +43,6 @@ Get the octave number of named chromatic pitches with ``octave_number``:
 
 <abjad>
 named_chromatic_pitch.octave_number
-print named_chromatic_pitch.octave_number <hide
 </abjad>
 
 
@@ -63,7 +59,6 @@ staff = Staff([note_1, note_2])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'pitch-deviation-1') <hide
 </abjad>
 
 <abjad>
@@ -74,14 +69,12 @@ The pitch of the the first note is greater than the pitch of the second:
 
 <abjad>
 note_1.written_pitch > note_2.written_pitch
-print repr(note_1.written_pitch > note_2.written_pitch) <hide
 </abjad>
 
 Use markup to include indications of pitch deviation in your score:
 
 <abjad>
 markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
-iotools.write_expr_to_ly(staff, 'pitch-deviation-2') <hide
 </abjad>
 
 
@@ -93,7 +86,6 @@ in that order:
 
 <abjad>
 pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
-print repr(pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')) <hide
 </abjad>
 
 
@@ -109,32 +101,26 @@ named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
 
 <abjad>
 named_chromatic_pitch_1 == named_chromatic_pitch_2
-print repr(named_chromatic_pitch_1 == named_chromatic_pitch_2) <hide
 </abjad>
 
 <abjad>
 named_chromatic_pitch_1 != named_chromatic_pitch_2
-print repr(named_chromatic_pitch_1 != named_chromatic_pitch_2) <hide
 </abjad>
 
 <abjad>
 named_chromatic_pitch_1 > named_chromatic_pitch_2
-print repr(named_chromatic_pitch_1 > named_chromatic_pitch_2) <hide
 </abjad>
 
 <abjad>
 named_chromatic_pitch_1 < named_chromatic_pitch_2
-print repr(named_chromatic_pitch_1 < named_chromatic_pitch_2) <hide
 </abjad>
 
 <abjad>
 named_chromatic_pitch_1 >= named_chromatic_pitch_2
-print repr(named_chromatic_pitch_1 >= named_chromatic_pitch_2) <hide
 </abjad>
 
 <abjad>
 named_chromatic_pitch_1 <= named_chromatic_pitch_2
-print repr(named_chromatic_pitch_1 <= named_chromatic_pitch_2) <hide
 </abjad>
 
 
@@ -145,21 +131,18 @@ Convert any named chromatic pitch to a named diatonic pitch:
 
 <abjad>
 named_chromatic_pitch.named_diatonic_pitch
-print repr(named_chromatic_pitch.named_diatonic_pitch) <hide
 </abjad>
 
 To a numbered chromatic pitch:
 
 <abjad>
 named_chromatic_pitch.numbered_chromatic_pitch
-print repr(named_chromatic_pitch.numbered_chromatic_pitch) <hide
 </abjad>
 
 Or to a numbered diatonic pitch:
 
 <abjad>
 named_chromatic_pitch.numbered_diatonic_pitch
-print repr(named_chromatic_pitch.numbered_diatonic_pitch) <hide
 </abjad>
 
 
@@ -170,28 +153,24 @@ Convert any named chromatic pitch to a named chromatic pitch-class:
 
 <abjad>
 named_chromatic_pitch.named_chromatic_pitch_class
-print repr(named_chromatic_pitch.named_chromatic_pitch_class) <hide
 </abjad>
 
 To a named diatonic pitch-class:
 
 <abjad>
 named_chromatic_pitch.named_diatonic_pitch_class
-print repr(named_chromatic_pitch.named_diatonic_pitch_class) <hide
 </abjad>
 
 To a numbered chromatic pitch-class:
 
 <abjad>
 named_chromatic_pitch.numbered_chromatic_pitch_class
-print repr(named_chromatic_pitch.numbered_chromatic_pitch_class) <hide
 </abjad>
 
 Or to a numbered diatonic pitch-class:
 
 <abjad>
 named_chromatic_pitch.numbered_diatonic_pitch_class
-print repr(named_chromatic_pitch.numbered_diatonic_pitch_class) <hide
 </abjad>
 
 
@@ -206,7 +185,6 @@ import copy
 
 <abjad>
 copy.copy(named_chromatic_pitch)
-print repr(copy.copy(named_chromatic_pitch)) <hide
 </abjad>
 
 Or use ``copy.deepcopy()`` to do the same thing.
@@ -356,7 +334,6 @@ according to the following table:
 <abjad>
 staff = Staff([Note(n, (1, 8)) for n in range(12)])
 show(staff)
-iotools.write_expr_to_ly(staff, 'pitch-conventions-1') <hide
 </abjad>
 
 Use pitch tools to respell with sharps:
@@ -364,7 +341,6 @@ Use pitch tools to respell with sharps:
 <abjad>
 pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
 show(staff)
-iotools.write_expr_to_ly(staff, 'pitch-conventions-2') <hide
 </abjad>
 
 Or flats:
@@ -372,5 +348,4 @@ Or flats:
 <abjad>
 pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
 show(staff)
-iotools.write_expr_to_ly(staff, 'pitch-conventions-3') <hide
 </abjad>

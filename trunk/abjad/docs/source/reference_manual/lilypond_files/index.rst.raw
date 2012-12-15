@@ -4,11 +4,11 @@ LilyPond files
 Making LilyPond files
 ---------------------
 
-Make a basic LilyPond input file with the ``lilyfiletools`` package:
+Make a basic LilyPond input file with the ``lilypondfiletools`` package:
 
 <abjad>
 staff = Staff("c'8 d'8 e'8 f'8")
-lilypond_file = lilyfiletools.make_basic_lilypond_file(staff)
+lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
 </abjad>
 
 ::

@@ -45,7 +45,7 @@ Tuplets, measures, voices, staves and the other containers carry duration attrib
 ::
 
    >>> tuplet.multiplier
-   Fraction(3, 5)
+   Multiplier(3, 5)
 
 
 The next chapters document core duration concepts in Abjad.

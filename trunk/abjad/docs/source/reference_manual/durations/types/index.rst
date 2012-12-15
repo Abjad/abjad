@@ -189,7 +189,7 @@ The first two notes below carry leaf mulitipliers equal to ``2/1``:
 ::
 
    >>> note.duration_multiplier
-   Fraction(2, 1)
+   Multiplier(2, 1)
 
 
 ::

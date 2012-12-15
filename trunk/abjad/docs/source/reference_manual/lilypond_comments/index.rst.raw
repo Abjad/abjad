@@ -16,7 +16,6 @@ comment_1 = marktools.LilyPondComment('This is a LilyPond comment before a note.
 
 <abjad>
 comment_1
-print repr(comment_1) <hide
 </abjad>
 
 
@@ -30,7 +29,6 @@ note = Note("cs''4")
 </abjad>
 
 <abjad>
-iotools.write_expr_to_ly(note, 'lilypond-comments-1', docs=True) <hide
 show(note, docs=True)
 </abjad>
 
@@ -55,7 +53,6 @@ staff = Staff("c'8 d'8 e'8 f'8")
 </abjad>
 
 <abjad>
-iotools.write_expr_to_ly(staff, 'lilypond-comments-2', docs=True) <hide
 show(staff, docs=True)
 </abjad>
 
@@ -89,7 +86,6 @@ Use ``marktools`` to get all the LilyPond comments attached to a component:
 
 <abjad>
 marktools.get_lilypond_comments_attached_to_component(note)
-print repr(marktools.get_lilypond_comments_attached_to_component(note)) <hide
 </abjad>
 
 Abjad returns a tuple of zero or more LilyPond comments.
@@ -106,7 +102,6 @@ comment_1 = marktools.get_lilypond_comments_attached_to_component(note)[0]
 
 <abjad>
 comment_1.detach()
-print repr(comment_1.detach()) <hide
 </abjad>
 
 <abjad>
@@ -143,7 +138,6 @@ comment_1.attach(note)
 
 <abjad>
 comment_1.start_component
-print repr(comment_1.start_component) <hide
 </abjad>
 
 
@@ -154,5 +148,4 @@ Use ``contents_string`` to inspect the written contents of a LiliyPond comment:
 
 <abjad>
 comment_1.contents_string
-print repr(comment_1.contents_string) <hide
 </abjad>

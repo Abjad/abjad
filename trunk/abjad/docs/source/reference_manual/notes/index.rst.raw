@@ -12,8 +12,6 @@ note = Note("c'4")
 
 <abjad>
 show(note, docs=True)
-measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'notes-1', docs=True) <hide
 </abjad>
 
 Making notes from chromatic pitch number and duration
@@ -27,8 +25,6 @@ note = Note(0, Duration(1, 4))
 
 <abjad>
 show(note, docs=True)
-measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'notes-2', docs=True) <hide
 </abjad>
 
 (You even use ``Note("c'4")`` to create notes with numbers alone.)
@@ -40,7 +36,6 @@ You can get the written pitch of notes:
 
 <abjad>
 note.written_pitch
-print repr(note.written_pitch) <hide
 </abjad>
 
 Changing the written pitch of notes
@@ -50,7 +45,6 @@ And you can change the written pitch of notes:
 
 <abjad>
 note.written_pitch = "cs'"
-iotools.write_expr_to_ly(measure, 'notes-3', docs=True) <hide
 </abjad>
 
 (You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
@@ -62,21 +56,18 @@ Get the written duration of notes like this:
 
 <abjad>
 note.written_duration
-print repr(note.written_duration) <hide
 </abjad>
 
 Which is usually the same as preprolated duration:
 
 <abjad>
 note.preprolated_duration
-print repr(note.preprolated_duration) <hide
 </abjad>
 
 And prolated duration:
 
 <abjad>
 note.prolated_duration
-print repr(note.prolated_duration) <hide
 </abjad>
 
 Except for notes inside a tuplet:
@@ -87,8 +78,6 @@ tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 
 <abjad>
 show(tuplet, docs=True)
-measure = measuretools.AnonymousMeasure([tuplet]) <hide
-iotools.write_expr_to_ly(measure, 'notes-4', docs=True) <hide
 </abjad>
 
 <abjad>
@@ -99,21 +88,18 @@ Tupletted notes carry written duration:
 
 <abjad>
 note.written_duration
-print repr(note.written_duration) <hide
 </abjad>
 
 Prolation:
 
 <abjad>
 note.prolation
-print repr(note.prolation) <hide
 </abjad>
 
 And prolated duration that is the product of the two:
 
 <abjad>
 note.prolated_duration
-print repr(note.prolated_duration) <hide
 </abjad>
 
 Changing the written duration of notes
@@ -125,12 +111,10 @@ You can change the written duration of notes:
 tuplet[0].written_duration = Duration(1, 8)
 tuplet[1].written_duration = Duration(1, 8)
 tuplet[2].written_duration = Duration(1, 8)
-beamtools.BeamSpanner(tuplet) <hide
 </abjad>
 
 <abjad>
 show(tuplet, docs=True)
-iotools.write_expr_to_ly(measure, 'notes-5', docs=True) <hide
 </abjad>
 
 Other duration attributes are read-only.
@@ -153,7 +137,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'notes-6') <hide
 </abjad>
 
 But you can override LilyPond grobs to change the look of notes, rests and chords:
@@ -169,7 +152,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'notes-7') <hide
 </abjad>
 
 Removing note overrides
@@ -187,5 +169,4 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'notes-8') <hide
 </abjad>

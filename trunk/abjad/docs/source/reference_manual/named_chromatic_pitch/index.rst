@@ -5,13 +5,13 @@ Named chromatic pitches are the everyday pitches attached to notes and chords:
 
 ::
 
-	>>> note = Note("cs''8")
+   >>> note = Note("cs''8")
 
 
 ::
 
-	>>> note.written_pitch
-	NamedChromaticPitch("cs''")
+   >>> note.written_pitch
+   NamedChromaticPitch("cs''")
 
 
 
@@ -22,13 +22,13 @@ Use pitch tools to create named chromatic pitches:
 
 ::
 
-	>>> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+   >>> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
 
 
 ::
 
-	>>> named_chromatic_pitch
-	NamedChromaticPitch("cs''")
+   >>> named_chromatic_pitch
+   NamedChromaticPitch("cs''")
 
 
 
@@ -39,8 +39,8 @@ Use ``str()`` to get the name of named chromatic pitches:
 
 ::
 
-	>>> str(named_chromatic_pitch)
-	cs''
+   >>> str(named_chromatic_pitch)
+   "cs''"
 
 
 
@@ -51,8 +51,8 @@ Get the octave number of named chromatic pitches with ``octave_number``:
 
 ::
 
-	>>> named_chromatic_pitch.octave_number
-	5
+   >>> named_chromatic_pitch.octave_number
+   5
 
 
 
@@ -63,39 +63,38 @@ Use deviation to model the fact that two pitches differ by a fraction of a semit
 
 ::
 
-	>>> note_1 = Note(24, (1, 2))
-	>>> note_2 = Note(24, (1, 2))
-	>>> staff = Staff([note_1, note_2])
+   >>> note_1 = Note(24, (1, 2))
+   >>> note_2 = Note(24, (1, 2))
+   >>> staff = Staff([note_1, note_2])
 
 
 ::
 
-	>>> show(staff)
-	LilyPond file written to 'pitch-deviation-1.ly' ...
+   >>> show(staff)
 
-.. image:: images/pitch-deviation-1.png
+.. image:: images/index-1.png
+
 
 ::
 
-	>>> note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+   >>> note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
 
 
 The pitch of the the first note is greater than the pitch of the second:
 
 ::
 
-	>>> note_1.written_pitch > note_2.written_pitch
-	False
+   >>> note_1.written_pitch > note_2.written_pitch
+   False
 
 
 Use markup to include indications of pitch deviation in your score:
 
 ::
 
-	>>> markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
-	LilyPond file written to 'pitch-deviation-2.ly' ...
+   >>> markuptools.Markup(note_2.written_pitch.deviation_in_cents, Up)(note_2)
+   Markup(None, direction=Up)(c'''2)
 
-.. image:: images/pitch-deviation-2.png
 
 
 Sorting pitches
@@ -106,8 +105,8 @@ in that order:
 
 ::
 
-	>>> pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
-	True
+   >>> pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
+   True
 
 
 
@@ -118,44 +117,44 @@ Compare named chromatic pitches to each other:
 
 ::
 
-	>>> named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("c''")
-	>>> named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
+   >>> named_chromatic_pitch_1 = pitchtools.NamedChromaticPitch("c''")
+   >>> named_chromatic_pitch_2 = pitchtools.NamedChromaticPitch("d''")
 
 
 ::
 
-	>>> named_chromatic_pitch_1 == named_chromatic_pitch_2
-	False
+   >>> named_chromatic_pitch_1 == named_chromatic_pitch_2
+   False
 
 
 ::
 
-	>>> named_chromatic_pitch_1 != named_chromatic_pitch_2
-	True
+   >>> named_chromatic_pitch_1 != named_chromatic_pitch_2
+   True
 
 
 ::
 
-	>>> named_chromatic_pitch_1 > named_chromatic_pitch_2
-	False
+   >>> named_chromatic_pitch_1 > named_chromatic_pitch_2
+   False
 
 
 ::
 
-	>>> named_chromatic_pitch_1 < named_chromatic_pitch_2
-	True
+   >>> named_chromatic_pitch_1 < named_chromatic_pitch_2
+   True
 
 
 ::
 
-	>>> named_chromatic_pitch_1 >= named_chromatic_pitch_2
-	False
+   >>> named_chromatic_pitch_1 >= named_chromatic_pitch_2
+   False
 
 
 ::
 
-	>>> named_chromatic_pitch_1 <= named_chromatic_pitch_2
-	True
+   >>> named_chromatic_pitch_1 <= named_chromatic_pitch_2
+   True
 
 
 
@@ -166,24 +165,24 @@ Convert any named chromatic pitch to a named diatonic pitch:
 
 ::
 
-	>>> named_chromatic_pitch.named_diatonic_pitch
-	NamedDiatonicPitch("c''")
+   >>> named_chromatic_pitch.named_diatonic_pitch
+   NamedDiatonicPitch("c''")
 
 
 To a numbered chromatic pitch:
 
 ::
 
-	>>> named_chromatic_pitch.numbered_chromatic_pitch
-	NumberedChromaticPitch(13)
+   >>> named_chromatic_pitch.numbered_chromatic_pitch
+   NumberedChromaticPitch(13)
 
 
 Or to a numbered diatonic pitch:
 
 ::
 
-	>>> named_chromatic_pitch.numbered_diatonic_pitch
-	NumberedDiatonicPitch(7)
+   >>> named_chromatic_pitch.numbered_diatonic_pitch
+   NumberedDiatonicPitch(7)
 
 
 
@@ -194,32 +193,32 @@ Convert any named chromatic pitch to a named chromatic pitch-class:
 
 ::
 
-	>>> named_chromatic_pitch.named_chromatic_pitch_class
-	NamedChromaticPitchClass('cs')
+   >>> named_chromatic_pitch.named_chromatic_pitch_class
+   NamedChromaticPitchClass('cs')
 
 
 To a named diatonic pitch-class:
 
 ::
 
-	>>> named_chromatic_pitch.named_diatonic_pitch_class
-	NamedDiatonicPitchClass('c')
+   >>> named_chromatic_pitch.named_diatonic_pitch_class
+   NamedDiatonicPitchClass('c')
 
 
 To a numbered chromatic pitch-class:
 
 ::
 
-	>>> named_chromatic_pitch.numbered_chromatic_pitch_class
-	NumberedChromaticPitchClass(1)
+   >>> named_chromatic_pitch.numbered_chromatic_pitch_class
+   NumberedChromaticPitchClass(1)
 
 
 Or to a numbered diatonic pitch-class:
 
 ::
 
-	>>> named_chromatic_pitch.numbered_diatonic_pitch_class
-	NumberedDiatonicPitchClass(0)
+   >>> named_chromatic_pitch.numbered_diatonic_pitch_class
+   NumberedDiatonicPitchClass(0)
 
 
 
@@ -230,13 +229,13 @@ Use ``copy.copy()`` to copy named chromatic pitches:
 
 ::
 
-	>>> import copy
+   >>> import copy
 
 
 ::
 
-	>>> copy.copy(named_chromatic_pitch)
-	NamedChromaticPitch("cs''")
+   >>> copy.copy(named_chromatic_pitch)
+   NamedChromaticPitch("cs''")
 
 
 Or use ``copy.deepcopy()`` to do the same thing.
@@ -385,28 +384,28 @@ according to the following table:
 
 ::
 
-	>>> staff = Staff([Note(n, (1, 8)) for n in range(12)])
-	>>> show(staff)
-	LilyPond file written to 'pitch-conventions-1.ly' ...
+   >>> staff = Staff([Note(n, (1, 8)) for n in range(12)])
+   >>> show(staff)
 
-.. image:: images/pitch-conventions-1.png
+.. image:: images/index-2.png
+
 
 Use pitch tools to respell with sharps:
 
 ::
 
-	>>> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
-	>>> show(staff)
-	LilyPond file written to 'pitch-conventions-2.ly' ...
+   >>> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
+   >>> show(staff)
 
-.. image:: images/pitch-conventions-2.png
+.. image:: images/index-3.png
+
 
 Or flats:
 
 ::
 
-	>>> pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
-	>>> show(staff)
-	LilyPond file written to 'pitch-conventions-3.ly' ...
+   >>> pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
+   >>> show(staff)
 
-.. image:: images/pitch-conventions-3.png
+.. image:: images/index-4.png
+

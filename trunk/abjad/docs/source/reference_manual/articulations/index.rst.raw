@@ -16,7 +16,6 @@ articulation = marktools.Articulation('turn')
 
 <abjad>
 articulation
-print repr(articulation) <hide
 </abjad>
 
 
@@ -43,7 +42,6 @@ articulation.attach(staff[5])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-1') <hide
 </abjad>
 
 (The example is based on Haydn's piano sonata number 42, Hob. XVI/27.)
@@ -60,7 +58,6 @@ marktools.attach_articulations_to_notes_and_chords_in_expr(staff[:6], ['.'])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-2') <hide
 </abjad>
 
 
@@ -71,7 +68,6 @@ Use ``marktools`` to get the articulations attached to a leaf:
 
 <abjad>
 marktools.get_articulations_attached_to_component(staff[5])
-print marktools.get_articulations_attached_to_component(staff[5]) <hide
 </abjad>
 
 
@@ -86,12 +82,10 @@ articulation.detach()
 
 <abjad>
 articulation
-print articulation <hide
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-3') <hide
 </abjad>
 
 
@@ -102,7 +96,6 @@ Use ``marktools`` to detach all articulations attached to a leaf at once:
 
 <abjad>
 staff[0]
-print repr(staff[0]) <hide
 </abjad>
 
 <abjad>
@@ -111,7 +104,6 @@ marktools.detach_articulations_attached_to_component(staff[0])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-4') <hide
 </abjad>
 
 
@@ -127,12 +119,10 @@ articulation.attach(staff[-1])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-5') <hide
 </abjad>
 
 <abjad>
 articulation.start_component
-print repr(articulation.start_component) <hide
 </abjad>
 
 
@@ -158,7 +148,7 @@ print repr(articulation)
 If you set the direction string of the articulation then that will appear, too:
 
 <abjad>
-articulation.direction_string = '^'
+articulation.direction = '^'
 </abjad>
 
 <abjad>
@@ -184,7 +174,6 @@ print repr(articulation)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-6') <hide
 </abjad>
 
 ``Articulation`` tells you the articulation's class.
@@ -199,12 +188,11 @@ If you set the direction string of the articulation to none then the direction
 will no longer appear:
 
 <abjad>
-articulation.direction_string = None
+articulation.direction = None
 </abjad>
 
 <abjad>
 articulation
-print repr(articulation) <hide
 </abjad>
 
 
@@ -215,7 +203,6 @@ The string representation of an articulation comprises two parts:
 
 <abjad>
 str(articulation)
-print repr(str(articulation)) <hide
 </abjad>
 
 ``-`` tells you the articulation's direction string.
@@ -229,8 +216,7 @@ Inspecting the LilyPond format of an articulation
 Get the LilyPond input format of an articulation with ``format``:
 
 <abjad>
-articulation.format
-print repr(articulation.format) <hide
+articulation.lilypond_format
 </abjad>
 
 Use ``f()`` as a short-cut to print the LilyPond format of an articulation:
@@ -243,40 +229,37 @@ f(articulation)
 Controlling whether an articulation appears above or below the staff
 --------------------------------------------------------------------
 
-Set ``direction_string`` to ``'^'`` to force an articulation to appear
+Set ``direction`` to ``'^'`` to force an articulation to appear
 above the staff:
 
 <abjad>
-articulation.direction_string = '^'
+articulation.direction = '^'
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-7') <hide
 </abjad>
 
-Set ``direction_string`` to ``'_'`` to force an articulation to appear
+Set ``direction`` to ``'_'`` to force an articulation to appear
 above the staff:
 
 <abjad>
-articulation.direction_string = '_'
+articulation.direction = '_'
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-8') <hide
 </abjad>
 
-Set ``direction_string`` to none to allow LilyPond to position
+Set ``direction`` to none to allow LilyPond to position
 an articulation automatically:
 
 <abjad>
-articulation.direction_string = None
+articulation.direction = None
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-9') <hide
 </abjad>
 
 
@@ -291,7 +274,6 @@ articulation.name = 'staccatissimo'
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-10') <hide
 </abjad>
 
 
@@ -310,7 +292,6 @@ articulation_copy_1 = copy.copy(articulation)
 
 <abjad>
 articulation_copy_1
-print repr(articulation_copy_1) <hide
 </abjad>
 
 <abjad>
@@ -319,7 +300,6 @@ articulation_copy_1.attach(staff[1])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-11') <hide
 </abjad>
 
 Or use ``copy.deepcopy()`` to do the same thing.
@@ -332,21 +312,16 @@ Articulations compare equal with equal direction names and direction strings:
 
 <abjad>
 articulation.name
-print repr(articulation.name) <hide
-articulation.direction_string
-print repr(articulation.direction_string) <hide
+articulation.direction
 </abjad>
 
 <abjad>
 articulation_copy_1.name
-print repr(articulation_copy_1.name) <hide
-articulation_copy_1.direction_string
-print repr(articulation_copy_1.direction_string) <hide
+articulation_copy_1.direction
 </abjad>
 
 <abjad>
 articulation == articulation_copy_1
-print repr(articulation == articulation_copy_1) <hide
 </abjad>
 
 Otherwise articulations do not compare equal.
@@ -367,7 +342,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'articulations-12') <hide
 </abjad>
 
 See the LilyPond documentation for a list of script grob attributes available.

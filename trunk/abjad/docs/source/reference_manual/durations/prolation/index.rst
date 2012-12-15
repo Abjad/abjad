@@ -37,7 +37,7 @@ Tuplets prolate their contents:
 ::
 
    >>> note.prolation
-   Fraction(5, 4)
+   Multiplier(5, 4)
 
 
 ::
@@ -83,7 +83,7 @@ Such nonbinary meters rhythmically diminish the contents of the measures they go
 
    >>> note = staff.leaves[0]
    >>> note.prolation
-   Fraction(4, 5)
+   Multiplier(4, 5)
 
 
 ::
@@ -95,7 +95,7 @@ Such nonbinary meters rhythmically diminish the contents of the measures they go
 ::
 
    >>> note.prolation
-   Fraction(4, 5)
+   Multiplier(4, 5)
 
 
 ::
@@ -145,15 +145,15 @@ All durated components carry a prolation chain:
 
 ::
 
-   >>> measure.multiplier
-   Fraction(4, 5)
+   >>> measure.prolation
+   Fraction(1, 1)
 
 
 ::
 
    >>> note = measure.leaves[0]
    >>> note.prolation
-   Fraction(32, 35)
+   Multiplier(32, 35)
 
 
 ::

@@ -6,30 +6,33 @@ Durated Abjad classes initialize duration from arguments in the form `(n, d)` wi
 
 ::
 
-	>>> note = Note("c'8.")
+   >>> note = Note("c'8.")
 
 
 ::
 
-	>>> show(note, docs=True)
+   >>> show(note, docs=True)
 
-.. image:: images/duration-initialization-1.png
+.. image:: images/index-1.png
+
 
 
 Durated classes include notes, rests, chords, skips, tuplets and measures.
 
 ::
 
-	>>> tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
-	>>> beamtools.BeamSpanner(tuplet)
-	>>> staff = stafftools.RhythmicStaff([tuplet])
+   >>> tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
+   >>> beamtools.BeamSpanner(tuplet)
+   BeamSpanner({c'8, c'8, c'8})
+   >>> staff = stafftools.RhythmicStaff([tuplet])
 
 
 ::
 
-	>>> show(staff, docs=True)
+   >>> show(staff, docs=True)
 
-.. image:: images/duration-initialization-2.png
+.. image:: images/index-2.png
+
 
 
 Abjad restricts notes, rests, chords and skips to durations like ``3/16`` that can be written 
@@ -38,44 +41,48 @@ Abjad allows arbitrary positive durations like ``5/8`` for tuplets and measures.
 
 ::
 
-	>>> tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
-	>>> beamtools.BeamSpanner(tuplet)
-	>>> staff = stafftools.RhythmicStaff([tuplet])
+   >>> tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
+   >>> beamtools.BeamSpanner(tuplet)
+   BeamSpanner({c'8, c'8, c'8, c'8})
+   >>> staff = stafftools.RhythmicStaff([tuplet])
 
 
 ::
 
-	>>> show(staff, docs=True)
+   >>> show(staff, docs=True)
 
-.. image:: images/duration-initialization-3.png
+.. image:: images/index-3.png
+
 
 
 Abjad supports breves.
 
 ::
 
-	>>> note = Note(0, (2, 1))
+   >>> note = Note(0, (2, 1))
 
 
 ::
 
-	>>> show(note, docs=True)
+   >>> show(note, docs=True)
 
-.. image:: images/duration-initialization-4.png
+.. image:: images/index-4.png
+
 
 
 And longas.
 
 ::
 
-	>>> note = Note(0, (4, 1))
+   >>> note = Note(0, (4, 1))
 
 
 ::
 
-	>>> show(note, docs=True)
+   >>> show(note, docs=True)
 
-.. image:: images/duration-initialization-5.png
+.. image:: images/index-5.png
+
 
 
 .. note::

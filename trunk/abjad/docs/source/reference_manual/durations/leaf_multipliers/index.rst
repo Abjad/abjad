@@ -13,16 +13,16 @@ attribute of notes, rests and chords.
 
 ::
 
-	>>> note = Note("c'4")
-	>>> note.duration_multiplier = Fraction(1, 2)
-	>>> note.duration_multiplier
-	Fraction(1, 2)
+   >>> note = Note("c'4")
+   >>> note.duration_multiplier = Fraction(1, 2)
+   >>> note.duration_multiplier
+   Multiplier(1, 2)
 
 
 ::
 
-	>>> f(note)
-	c'4 * 1/2
+   >>> f(note)
+   c'4 * 1/2
 
 
 Abjad also implements a `duration.multiplied` attribute to examine the
@@ -30,28 +30,29 @@ duration of a note, rest or chord as affected by the multiplier.
 
 ::
 
-	>>> note.multiplied_duration
-	Duration(1, 8)
+   >>> note.multiplied_duration
+   Duration(1, 8)
 
 
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
 
 ::
 
-	>>> notes = Note("c'4") * 4
-	>>> multiplied_note = Note(0, (1, 2))
-	>>> multiplied_note.duration_multiplier = Fraction(1, 2)
-	>>> multiplied_notes = multiplied_note * 4
-	>>> top = stafftools.RhythmicStaff(notes)
-	>>> bottom = stafftools.RhythmicStaff(multiplied_notes)
-	>>> staves = scoretools.StaffGroup([top, bottom])
+   >>> notes = Note("c'4") * 4
+   >>> multiplied_note = Note(0, (1, 2))
+   >>> multiplied_note.duration_multiplier = Fraction(1, 2)
+   >>> multiplied_notes = multiplied_note * 4
+   >>> top = stafftools.RhythmicStaff(notes)
+   >>> bottom = stafftools.RhythmicStaff(multiplied_notes)
+   >>> staves = scoretools.StaffGroup([top, bottom])
 
 
 ::
 
-	>>> show(staves)
+   >>> show(staves)
 
-.. image:: images/leaf-multipliers-1.png
+.. image:: images/index-1.png
+
 
 .. note::
 

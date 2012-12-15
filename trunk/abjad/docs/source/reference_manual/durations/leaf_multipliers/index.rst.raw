@@ -15,7 +15,6 @@ attribute of notes, rests and chords.
 note = Note("c'4")
 note.duration_multiplier = Fraction(1, 2)
 note.duration_multiplier
-print repr(note.duration_multiplier) <hide
 </abjad>
 
 <abjad>
@@ -27,7 +26,6 @@ duration of a note, rest or chord as affected by the multiplier.
 
 <abjad>
 note.multiplied_duration
-print repr(note.multiplied_duration) <hide
 </abjad>
 
 LilyPond multipliers give the half notes here multiplied durations equal to a quarter note.
@@ -44,7 +42,6 @@ staves = scoretools.StaffGroup([top, bottom])
 
 <abjad>
 show(staves)
-iotools.write_expr_to_ly(staves, 'leaf-multipliers-1', docs=True) <hide
 </abjad>
 
 .. note::

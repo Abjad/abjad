@@ -19,7 +19,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'spanners-1') <hide
 </abjad>
 
 But you can override LilyPond grobs to change the look of spanners:
@@ -35,7 +34,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'spanners-2') <hide
 </abjad>
 
 Overriding the components to which spanners attach
@@ -55,7 +53,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'spanners-3') <hide
 </abjad>
 
 Removing spanner overrides
@@ -74,5 +71,4 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'spanners-4') <hide
 </abjad>

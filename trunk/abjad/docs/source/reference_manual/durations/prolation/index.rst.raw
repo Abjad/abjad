@@ -117,7 +117,7 @@ show(staff, docs=True)
 </abjad>
 
 <abjad>
-measure.multiplier
+measure.prolation
 </abjad>
 
 <abjad>
