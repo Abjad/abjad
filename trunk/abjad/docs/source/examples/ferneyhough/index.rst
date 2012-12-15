@@ -1,6 +1,9 @@
 Ferneyhough: *Unsichtbare Farben*
 =================================
 
+.. note::  Explore the `abjad/demos/ferneyhough/` directory for the complete code to this example,
+   or import it into your Python session directly with `from abjad.demos import ferneyhough`.
+
 Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in
 `The OM Composer's Book 2`.
 
