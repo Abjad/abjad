@@ -36,7 +36,8 @@ class CodeBlock(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pipe, image_count=0, directory=None, image_prefix='image', verbose=False):
+    def __call__(self, processor, pipe, image_count=0, directory=None,
+        image_prefix='image', verbose=False):
 
         assert isinstance(pipe, documentationtools.Pipe)
 
@@ -55,9 +56,11 @@ class CodeBlock(abctools.AbjadObject):
 
         for line in self.lines:
 
+            processor.update_status(line)
+
             hide = self.hide
 
-            if not previous_line_was_empty:
+            if not self.strip_prompt or not previous_line_was_empty:
                 current = self.read(pipe)
 
             if line.endswith('<hide'):
@@ -117,14 +120,20 @@ class CodeBlock(abctools.AbjadObject):
                 previous_line_was_empty = False
 
             else:
-                #print '  LINE?', line
-                if len(line.strip()):
-                    #print '  PIPE:', line
+                if not self.strip_prompt or len(line.strip()):
                     pipe.write(line)
                     pipe.write('\n')
                     previous_line_was_empty = False
                 else:
                     previous_line_was_empty = True
+                #print '  LINE?', line
+                #if len(line.strip()):
+                #    #print '  PIPE:', line
+                #    pipe.write(line)
+                #    pipe.write('\n')
+                #    previous_line_was_empty = False
+                #else:
+                #    previous_line_was_empty = True
 
         result.extend(self.read(pipe))
         if result[-1] == '>>> ':

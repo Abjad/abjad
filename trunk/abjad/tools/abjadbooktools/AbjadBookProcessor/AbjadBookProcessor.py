@@ -18,6 +18,8 @@ class AbjadBookProcessor(abctools.AbjadObject):
     def __init__(self, directory, lines, output_format, skip_rendering=False, 
         image_prefix='image', verbose=False):
         assert isinstance(output_format, OutputFormat)
+        self._current_code_line = 0
+        self._total_code_lines = 0
         self._directory = os.path.abspath(directory)
         self._image_prefix = image_prefix
         self._lines = tuple(lines)
@@ -31,6 +33,8 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
         # Verify input, and extract code blocks
         code_blocks = self._extract_code_blocks(self.lines)        
+        for code_block in code_blocks:
+            self._total_code_lines += len(code_block.lines)
 
         # Create a temporary directory, and step into it.
         tmp_directory = self._setup_tmp_directory(self.directory)
@@ -45,17 +49,19 @@ class AbjadBookProcessor(abctools.AbjadObject):
         if not self.skip_rendering:
             self._render_ly_files(ly_file_names, self.output_format, verbose)
 
+        # Interleave newly reformatted code with the old, and return.
+        if code_blocks:
+            result = self._interleave_source_with_code_blocks(
+                tmp_directory, self.lines, code_blocks, self.output_format)
+        else:
+            result = '\n'.join(self.lines)
+
         # Step out of the tmp directory, back to the original, and cleanup.
         os.chdir(self.directory)
         self._cleanup_image_files(self.directory, tmp_directory, image_count, self.image_prefix,
             self.output_format.image_format)
-        self._cleanup_tmp_directory(tmp_directory)
+        #self._cleanup_tmp_directory(tmp_directory)
 
-        # Interleave newly reformatted code with the old, and return.
-        if code_blocks:
-            result = self._interleave_source_with_code_blocks(self.lines, code_blocks, self.output_format)
-        else:
-            result = '\n'.join(self.lines)
         return result
 
     ### PUBLIC READ-ONLY PROPERTIES ###
@@ -93,13 +99,13 @@ class AbjadBookProcessor(abctools.AbjadObject):
         if not os.path.isdir(image_directory):
             os.mkdir(image_directory)
         # remove old images
-        for x in os.listdir(image_directory):
-            if x.startswith('{}-'.format(image_prefix)) and x.endswith(image_format):
-                # this should handle both 'index-1.png' and 'index-1-page3.png'
-                name = os.path.splitext(x)[0]
-                number = int(name.split('-')[1])
-                if image_count < number:
-                    os.remove(os.path.join(image_directory, x))
+        #for x in os.listdir(image_directory):
+        #    if x.startswith('{}-'.format(image_prefix)) and x.endswith(image_format):
+        #        # this should handle both 'index-1.png' and 'index-1-page3.png'
+        #        name = os.path.splitext(x)[0]
+        #        number = int(name.split('-')[1])
+        #        if image_count < number:
+        #            os.remove(os.path.join(image_directory, x))
         for x in os.listdir(tmp_directory):
             if x.endswith('.png'):
                 source = os.path.join(tmp_directory, x)
@@ -193,12 +199,11 @@ class AbjadBookProcessor(abctools.AbjadObject):
                     file_names.append(result['file_name'])
         return file_names
 
-    def _interleave_source_with_code_blocks(self, lines, code_blocks, output_format):
+    def _interleave_source_with_code_blocks(self, tmp_directory, lines, code_blocks, output_format):
         #print 'INTERLEAVE SOURCE WITH CODE BLOCKS'
-        image_directory = os.path.join(self.directory, 'images')
-        image_file_names = [x for x in os.listdir(image_directory)
+        image_file_names = sorted([x for x in os.listdir(tmp_directory)
             if (x.endswith(output_format.image_format) and
-               x.startswith(self.image_prefix))]
+               x.startswith(self.image_prefix))])
         interleaved = []
         interleaved.append('\n'.join(lines[:code_blocks[0].starting_line_number]))
         for pair in sequencetools.iterate_sequence_pairwise_strict(code_blocks):
@@ -215,8 +220,39 @@ class AbjadBookProcessor(abctools.AbjadObject):
         image_count = 0
         for i, code_block in enumerate(code_blocks):
             #print '\tCODE BLOCK', i
-            image_count = code_block(pipe, image_count, directory, image_prefix, verbose=self.verbose)
+            image_count = code_block(self, pipe, image_count, directory, image_prefix, verbose=self.verbose)
         return image_count
+
+    def _render_ly_files(self, file_names, output_format, verbose):
+        #print 'RENDER LY FILES'
+        for file_name in file_names:
+            print '\tRendering {}.ly...'.format(file_name)
+            try:
+                if output_format.image_format == 'pdf':
+                    command = 'lilypond {}.ly'.format(file_name)
+                    print '\t\t{}'.format(command)
+                    self._run_command(command, verbose)
+                    command = 'pdfcrop {}.pdf {}.pdf'.format(file_name, file_name)
+                    print '\t\t{}'.format(command)
+                    self._run_command(command, verbose)
+                elif output_format.image_format == 'png':
+                    command = 'lilypond --png -dresolution=300 {}.ly'.format(file_name)
+                    print '\t\t{}'.format(command)
+                    assert os.path.exists('{}.ly'.format(file_name))
+                    self._run_command(command, verbose)
+                    for file in os.listdir('.'):
+                        if file.startswith(file_name) and file.endswith('.png'):
+                            command = 'convert {} -trim -resample 40%% {}'.format(file, file)
+                            print '\t\t{}'.format(command)
+                            self._run_command(command, verbose)
+            except AssertionError, e:
+                print e
+
+    def _run_command(self, command, verbose):
+        if verbose:
+            subprocess.call(command, shell=True)
+        else:
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def _setup_pipe(self):
         #print 'SETUP PIPE'
@@ -231,31 +267,12 @@ class AbjadBookProcessor(abctools.AbjadObject):
         tmp_directory = os.path.abspath(tempfile.mkdtemp(dir=directory))
         return tmp_directory
 
-    def _render_ly_files(self, file_names, output_format, verbose):
-        #print 'RENDER LY FILES'
-        for file_name in file_names:
-            print '\tRendering {}.ly...'.format(file_name)
-            if output_format.image_format == 'pdf':
-                command = 'lilypond {}.ly'.format(file_name)
-                print '\t\t{}'.format(command)
-                self._run_command(command, verbose)
-                command = 'pdfcrop {}.pdf {}.pdf'.format(file_name, file_name)
-                print '\t\t{}'.format(command)
-                self._run_command(command, verbose)
-            elif output_format.image_format == 'png':
-                command = 'lilypond --png -dresolution=300 {}.ly'.format(file_name)
-                print '\t\t{}'.format(command)
-                assert os.path.exists('{}.ly'.format(file_name))
-                self._run_command(command, verbose)
-                for file in os.listdir('.'):
-                    if file.startswith(file_name) and file.endswith('.png'):
-                        command = 'convert {} -trim -resample 40%% {}'.format(file, file)
-                        print '\t\t{}'.format(command)
-                        self._run_command(command, verbose)
+    ### PUBLIC METHODS ###
 
-    def _run_command(self, command, verbose):
-        if verbose:
-            subprocess.call(command, shell=True)
-        else:
-            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    def update_status(self, line):
+        self._current_code_line += 1
+        percentage = float(self._current_code_line) / self._total_code_lines
+        message = '[{:4.0%}] {}'.format(percentage, line)
+        print message
+
 
