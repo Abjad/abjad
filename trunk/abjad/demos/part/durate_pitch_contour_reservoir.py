@@ -1,4 +1,5 @@
-from fractions import Fraction
+from abjad import Duration
+from abjad import Multiplier
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import resttools
@@ -17,11 +18,13 @@ def durate_pitch_contour_reservoir(pitch_contour_reservoir):
     durated_reservoir = {}
 
     for i, instrument_name in enumerate(instrument_names):
-        long_duration = Fraction(1, 2) * pow(2, i)
+        long_duration = Duration(1, 2) * pow(2, i)
         short_duration = long_duration / 2
-        rest_duration = long_duration * Fraction(3, 2)
-        div, mod = divmod(rest_duration, Fraction(3, 2))
-        
+        rest_duration = long_duration * Multiplier(3, 2)
+
+        div = rest_duration // Duration(3, 2)
+        mod = rest_duration % Duration(3, 2)
+
         initial_rest = resttools.MultiMeasureRest((3, 2)) * div
         if mod:
             initial_rest += resttools.make_rests(mod)
