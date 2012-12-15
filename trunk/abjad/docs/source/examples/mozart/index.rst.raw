@@ -1,6 +1,9 @@
 Mozart: *Musikalisches Würfelspiel*
 ===================================
 
+.. note:: Explore the `abjad/demos/mozart/` directory for the complete code to this example,
+   or import it into your Python session directly with `from abjad.demos import mozart`.
+
 Mozart's dice game is a method for aleatorically generating sixteen-measure-long minuets.  For each measure, two six-sided dice are rolled, and the sum of 
 the dice used to look up a measure number in one of two tables (one for each half of the minuet).  The measure number then locates a single measure from a 
 collection of musical fragments.  The fragments are concatenated together, and "music" results.
