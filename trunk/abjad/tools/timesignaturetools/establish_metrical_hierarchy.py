@@ -368,10 +368,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |" \
-        ...     "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
-        >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |" \
-        ...     "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
+        >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |"
+        >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
+        >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |"
+        >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
         >>> score = Score([Staff(triple), Staff(duples)])
 
     In order to see the different time signatures on each staff, we need to

@@ -56,12 +56,13 @@ Abjad packaging checklist:
     step.
 
  6. Change to the abjad root directory.
-    Run abj-rmpycs. Then run py.test.
+    Run "ajv clean ."
+    Then run "py.test"
     If any tests break, fix, commit and repeat this step.
     Record py.test test results in the packaging transcript.
 
  7. Change to abjad/tools and run the following script:
-    run-doctest-on-all-modules-in-tree
+    "ajv doctest"
     If any tests break, fix, commit and go back to (5.)
     Record doctest test results in the packaging transcript.
 
@@ -98,7 +99,7 @@ Abjad packaging checklist:
 13. Run "ajv api -M". If any errors occur, fix, commit and go back to (5.)
     Record HTML build results in the packaging transcript.
 
-14. Run 'make latex'. If any errors occur, fix, commit and go back to (5.)
+14. Run "make latex". If any errors occur, fix, commit and go back to (5.)
     Record the LaTeX build results in the packaging transcript.
 
 15. Change to docs/build/latex and run 'make all-pdf'.
