@@ -33,7 +33,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_02():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
-    timespan = timespan.set_timespan_duration(Duration(2, 8))
+    timespan = timespan.set_duration(Duration(2, 8))
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()
 
@@ -53,7 +53,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_03():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
-    timespan = timespan.set_timespan_start_offset(Offset(1, 8))
+    timespan = timespan.set_offsets(start_offset=Offset(1, 8))
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()
 
@@ -73,7 +73,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_04():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
-    timespan = timespan.set_timespan_stop_offset(Offset(2, 8))
+    timespan = timespan.set_offsets(stop_offset=Offset(2, 8))
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()
 
@@ -93,7 +93,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_05():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
-    timespan = timespan.translate_timespan(Duration(1, 8)) 
+    timespan = timespan.translate_offsets(Duration(1, 8), Duration(1, 8)) 
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()
 
@@ -113,7 +113,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_06():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
-    timespan = timespan.translate_timespan_start_offset(Duration(1, 8)) 
+    timespan = timespan.translate_offsets(start_offset_translation=Duration(1, 8)) 
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()
 
@@ -133,7 +133,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_07():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
-    timespan = timespan.translate_timespan_stop_offset(Duration(-1, 8)) 
+    timespan = timespan.translate_offsets(stop_offset_translation=Duration(-1, 8)) 
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()
 
@@ -153,7 +153,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_08():
     red_segment.set_divisions([(1, 8)])
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
-    timespan = timespan.translate_timespan_start_offset(Duration(1, 8))
+    timespan = timespan.translate_offsets(start_offset_translation=Duration(1, 8))
     timespan = timespan.scale_timespan(Multiplier(2))
     red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
     score = score_specification.interpret()

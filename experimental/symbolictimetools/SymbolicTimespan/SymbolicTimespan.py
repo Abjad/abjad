@@ -31,15 +31,6 @@ class SymbolicTimespan(SymbolicTimeObject):
 
     ### SPECIAL METHODS ###
 
-    # TODO: implement generalized SymbolicTimespan.__deepcopy__ based on __getnewargs__
-#    def __deepcopy__(self, memo):
-#        score_specification = self.score_specification 
-#        self._score_specification = None
-#        result = copy.deepcopy(self)
-#        self._score_specification = score_specification
-#        result._score_specification = score_specification
-#        return result
-
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
@@ -100,6 +91,7 @@ class SymbolicTimespan(SymbolicTimeObject):
     def _clone(self):
         return copy.deepcopy(self)
 
+    # TODO: rename to self._divide_timespan() and accept integer (in addition to ratio)
     def _divide_timespan_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -138,16 +130,22 @@ class SymbolicTimespan(SymbolicTimeObject):
         new_stop_offset = start_offset + new_duration
         return start_offset, new_stop_offset
 
-    def _set_timespan_duration(self, start_offset, stop_offset, duration):
+    def _set_duration(self, original_start_offset, original_stop_offset, duration):
         assert 0 < duration
-        new_stop_offset = start_offset + duration
-        return start_offset, new_stop_offset
+        new_stop_offset = original_start_offset + duration
+        return original_start_offset, new_stop_offset
 
-    def _set_timespan_start_offset(self, start_offset, stop_offset, new_start_offset):
-        return new_start_offset, stop_offset
-    
-    def _set_timespan_stop_offset(self, start_offset, stop_offset, new_stop_offset):
-        return start_offset, new_stop_offset
+    def _set_offsets(self, original_start_offset, original_stop_offset, 
+        candidate_start_offset, candidate_stop_offset):
+        if candidate_start_offset is not None:
+            new_start_offset = candidate_start_offset
+        else:
+            new_start_offset = original_start_offset
+        if candidate_stop_offset is not None:
+            new_stop_offset = candidate_stop_offset
+        else:
+            new_stop_offset = original_stop_offset
+        return new_start_offset, new_stop_offset
 
     # TODO: Remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
     #       This means that one fewer parameter will be passed into this method.
@@ -184,28 +182,13 @@ class SymbolicTimespan(SymbolicTimeObject):
             self.score_specification.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
-    def _translate_timespan(self, start_offset, stop_offset, duration):
-        start_offset += duration
-        stop_offset += duration
-        return start_offset, stop_offset
+    def _translate_offsets(self, original_start_offset, original_stop_offset, 
+        start_offset_translation, stop_offset_translation):
+        new_start_offset = original_start_offset + start_offset_translation
+        new_stop_offset = original_stop_offset + stop_offset_translation
+        return new_start_offset, new_stop_offset
 
-    def _translate_timespan_start_offset(self, start_offset, stop_offset, duration):
-        new_start_offset = start_offset + duration
-        return new_start_offset, stop_offset
-
-    def _translate_timespan_stop_offset(self, start_offset, stop_offset, duration):
-        new_stop_offset = stop_offset + duration
-        return start_offset, new_stop_offset
-        
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-#    @property
-#    def score_specification(self):
-#        '''Read-only reference to score specification against which symbolic timespan is defined.
-#
-#        Return score specification or none.
-#        '''
-#        return self._score_specification
 
     @property
     def timespan_modifications(self):
@@ -218,6 +201,7 @@ class SymbolicTimespan(SymbolicTimeObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: eventually generalize self.set_offsets() to handle negative values; then remove this method.
     def adjust_timespan_offsets(self, start=None, stop=None):
         '''Add delayed evaluation offset setting command to symbolic timespan.
         
@@ -236,6 +220,7 @@ class SymbolicTimespan(SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
+    # TODO: rename to self.divide_timespan() and accept integer (in addition to ratio)
     def divide_timespan_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
@@ -448,6 +433,19 @@ class SymbolicTimespan(SymbolicTimeObject):
             index=index, count=count, reverse=reverse, rotation=rotation,
             truncate=truncate, persist=persist)
 
+    def set_duration(self, duration):
+        '''Set timespan duration to `duration`.
+
+        Return copy of timespan with appended modification.
+        '''
+        duration = durationtools.Duration(duration)
+        timespan_modification = \
+            'self._set_duration(original_start_offset, original_stop_offset, {!r})'
+        timespan_modification = timespan_modification.format(duration)
+        result = self._clone()
+        result.timespan_modifications.append(timespan_modification)
+        return result
+
     def set_dynamics(self, source, contexts=None, timespan=None, persist=True):
         r'''Set dynamics of segment `contexts` to `source`.
 
@@ -474,6 +472,25 @@ class SymbolicTimespan(SymbolicTimeObject):
         attribute = 'markup'
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, timespan=timespan, persist=persist)
+
+    def set_offsets(self, start_offset=None, stop_offset=None):
+        '''Set timespan start offset to `start_offset`
+        and stop offset to `stop_offset`.
+
+        Return copy of timespan with appended modification.
+        '''
+        if start_offset is not None:
+            start_offset = durationtools.Offset(start_offset)
+        if stop_offset is not None:
+            stop_offset = durationtools.Offset(stop_offset) 
+        assert start_offset is None or 0 <= start_offset
+        assert stop_offset is None or 0 <= stop_offset
+        timespan_modification = \
+            'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
+        timespan_modification = timespan_modification.format(start_offset, stop_offset)
+        result = self._clone()
+        result.timespan_modifications.append(timespan_modification)
+        return result
 
     def set_pitch_class_application(self, source, contexts=None, timespan=None, persist=True):
         r'''Set pitch-class application of segment `contexts` to `source`.
@@ -584,80 +601,19 @@ class SymbolicTimespan(SymbolicTimeObject):
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_timespan_duration(self, duration):
-        '''Set timespan duration to `duration`.
+    def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
+        '''Translate timespan start offset by `start_offset_translation`
+        and stop offset by `stop_offset_translation`.
 
         Return copy of timespan with appended modification.
         '''
-        duration = durationtools.Duration(duration)
+        start_offset_translation = start_offset_translation or 0
+        stop_offset_translation = stop_offset_translation or 0
+        start_offset_translation = durationtools.Duration(start_offset_translation)
+        stop_offset_translation = durationtools.Duration(stop_offset_translation)
         timespan_modification = \
-            'self._set_timespan_duration(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(duration)
-        result = self._clone()
-        result.timespan_modifications.append(timespan_modification)
-        return result
-
-    def set_timespan_start_offset(self, start_offset):
-        '''Set timespan start offset to `start_offset`.
-
-        Return copy of timespan with appended modification.
-        '''
-        start_offset = durationtools.Offset(start_offset)
-        timespan_modification = \
-            'self._set_timespan_start_offset(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(start_offset)
-        result = self._clone()
-        result.timespan_modifications.append(timespan_modification)
-        return result
-
-    def set_timespan_stop_offset(self, stop_offset):
-        '''Set timespan stop offset to `stop_offset`.
-
-        Return copy of timespan with appended modification.
-        '''
-        stop_offset = durationtools.Offset(stop_offset)
-        timespan_modification = \
-            'self._set_timespan_stop_offset(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(stop_offset)
-        result = self._clone()
-        result.timespan_modifications.append(timespan_modification)
-        return result
-
-    def translate_timespan(self, duration):
-        '''Translate timespan by `duration`.
-
-        Return copy of timespan with appended modification.
-        '''
-        duration = durationtools.Duration(duration)
-        timespan_modification = \
-            'self._translate_timespan(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(duration)
-        result = self._clone()
-        result.timespan_modifications.append(timespan_modification)
-        return result
-
-    def translate_timespan_start_offset(self, duration):
-        '''Translate timespan start offset by `duration`.
-
-        Return copy of timespan with appended modification.
-        '''
-        duration = durationtools.Duration(duration)
-        timespan_modification = \
-            'self._translate_timespan_start_offset(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(duration)
-        result = self._clone()
-        result.timespan_modifications.append(timespan_modification)
-        return result
-
-    def translate_timespan_stop_offset(self, duration):
-        '''Translate timespan stop offset by `duration`.
-
-        Return copy of timespan with appended modification.
-        '''
-        duration = durationtools.Duration(duration)
-        timespan_modification = \
-            'self._translate_timespan_stop_offset(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(duration)
+            'self._translate_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
+        timespan_modification = timespan_modification.format(start_offset_translation, stop_offset_translation)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)
         return result
