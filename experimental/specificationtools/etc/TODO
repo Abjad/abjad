@@ -160,7 +160,9 @@
 
 30. Consolidate timespan modification interface according to message in commit history.
 
-31. Strip unused specification set methods of index=None, count=Non, reverse=None, rotation=None keywords.
+31. Implement timespan modification interface on timespantools.LiteralTimespan.
+    Possibly have SymbolicTimepan inherit from LiteralTimespan.
+    Or implement a superclass from which both LiteralTimespan and SymbolicTimespan can inherit.
 
 32. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
     and BackgroundMeasureSelector.

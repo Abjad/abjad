@@ -46,7 +46,7 @@ class DivisionSelector(VoiceSelector):
     
     ### SPECIAL METHODS ###
 
-    # TODO: simplify
+    # TODO: maybe move up to VoiceSelector?
     def __deepcopy__(self, memo):
         result = type(self)(
             anchor=self.anchor, 

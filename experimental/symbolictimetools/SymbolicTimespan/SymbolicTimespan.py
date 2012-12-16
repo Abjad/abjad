@@ -269,17 +269,17 @@ class SymbolicTimespan(SymbolicTimeObject):
 
         ::
 
-            >>> timespan = red_segment.select_background_measures(stop=5)
+            >>> selector = red_segment.select_background_measures(stop=5)
 
         ::
 
-            >>> z(timespan)
+            >>> z(selector)
             symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
                 stop_identifier=5
                 )
 
-        Return background measure symbolic timespan.
+        Return background measure selector.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
@@ -297,18 +297,18 @@ class SymbolicTimespan(SymbolicTimeObject):
     def select_divisions(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first five divisions that start during segment 'red'::
 
-            >>> timespan = red_segment.select_divisions('Voice 1', stop=5)
+            >>> selector = red_segment.select_divisions('Voice 1', stop=5)
 
         ::
             
-            >>> z(timespan)
+            >>> z(selector)
             symbolictimetools.DivisionSelector(
                 anchor='red',
                 stop_identifier=5,
                 voice_name='Voice 1'
                 )
 
-        Return timespan.
+        Return division selector.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
@@ -327,11 +327,11 @@ class SymbolicTimespan(SymbolicTimeObject):
     def select_leaves(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
 
-            >>> timespan = red_segment.select_leaves('Voice 1', stop=40)
+            >>> selector = red_segment.select_leaves('Voice 1', stop=40)
 
         ::
 
-            >>> z(timespan)
+            >>> z(selector)
             symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=leaftools.Leaf,
@@ -339,7 +339,7 @@ class SymbolicTimespan(SymbolicTimeObject):
                 voice_name='Voice 1'
                 )
 
-        Return timespan.
+        Return counttime component selector.
         '''
         assert isinstance(voice, (str, type(None)))
         assert isinstance(start, (int, type(None))), repr(start)
@@ -376,7 +376,7 @@ class SymbolicTimespan(SymbolicTimeObject):
                 voice_name='Voice 1'
                 )
 
-        Return timespan.
+        Return counttime component selector.
         '''
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
@@ -393,44 +393,32 @@ class SymbolicTimespan(SymbolicTimeObject):
         timespan._score_specification = self.score_specification
         return timespan
 
-    def set_aggregate(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_aggregate(self, source, contexts=None, timespan=None, persist=True):
         r'''Set aggregate of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'aggregate'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_articulations(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_articulations(self, source, contexts=None, timespan=None, persist=True):
         r'''Set articulations of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'articulations'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_chord_treatment(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_chord_treatment(self, source, contexts=None, timespan=None, persist=True):
         r'''Set chord treatment of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'chord_treatment'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
     def set_divisions(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
@@ -460,96 +448,68 @@ class SymbolicTimespan(SymbolicTimeObject):
             index=index, count=count, reverse=reverse, rotation=rotation,
             truncate=truncate, persist=persist)
 
-    def set_dynamics(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_dynamics(self, source, contexts=None, timespan=None, persist=True):
         r'''Set dynamics of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'dynamics'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_marks(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_marks(self, source, contexts=None, timespan=None, persist=True):
         r'''Set marks of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'marks'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_markup(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_markup(self, source, contexts=None, timespan=None, persist=True):
         r'''Set markup of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'markup'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_pitch_class_application(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_pitch_class_application(self, source, contexts=None, timespan=None, persist=True):
         r'''Set pitch-class application of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_application'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_pitch_class_transform(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_pitch_class_transform(self, source, contexts=None, timespan=None, persist=True):
         r'''Set pitch-class transform of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_transform'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_pitch_classes(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_pitch_classes(self, source, contexts=None, timespan=None, persist=True):
         r'''Set pitch-classes of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_classes'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
-    def set_registration(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_registration(self, source, contexts=None, timespan=None, persist=True):
         r'''Set registration of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'registration'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
     def set_rhythm(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
@@ -587,18 +547,14 @@ class SymbolicTimespan(SymbolicTimeObject):
             index=index, count=count, reverse=reverse, rotation=rotation,
             persist=persist)
 
-    def set_tempo(self, source, contexts=None, timespan=None,
-        index=None, count=None, reverse=None, rotation=None,
-        persist=True):
+    def set_tempo(self, source, contexts=None, timespan=None, persist=True):
         r'''Set tempo of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'tempo'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, timespan=timespan,
-            index=index, count=count, reverse=reverse, rotation=rotation,
-            persist=persist)
+            contexts=contexts, timespan=timespan, persist=persist)
 
     def set_time_signatures(self, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
