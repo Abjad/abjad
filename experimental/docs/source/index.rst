@@ -1,6 +1,33 @@
 Abjad Experimental API
 ======================
 
+Additional packages (load manually)
+-----------------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+:py:mod:`demos <experimental.demos>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/demos/windungen/WindungenScoreTemplate/WindungenScoreTemplate
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/demos/windungen/make_base_list_of_compressed_rotation_tuples
+   experimental/demos/windungen/make_base_list_of_rotation_tuples
+   experimental/demos/windungen/make_base_list_of_uncompressed_rotation_tuples
+   experimental/demos/windungen/make_windungen_score
+   experimental/demos/windungen/mirror_base_list_of_rotation_tuples
+
 Unstable packages (load manually)
 ---------------------------------
 

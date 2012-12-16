@@ -162,6 +162,6 @@ def make_empty_cello_score(numStaffs):
 
 score = make_empty_cello_score(12)
 pitches = sequencetools.repeat_sequence_to_length([-11, -10, -8], 32)
-rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(
-    pitches, (0, 12), 4, [Duration(1, 16)], compressedReflections=True, cyclic=True)
-show(score)
+#rotate_expression_through_adjacent_staffs_at_bandwidth_by_durations(
+#    pitches, (0, 12), 4, [Duration(1, 16)], compressedReflections=True, cyclic=True)
+#show(score)
