@@ -12,7 +12,7 @@ def make_windungen_score(
     staff_count=12,
     ):
 
-    from abjad.demos.windungen.WindungenScoreTemplate import WindungenScoreTemplate
+    from experimental.demos.windungen.WindungenScoreTemplate import WindungenScoreTemplate
 
     bandwidth = int(bandwidth)
     compress_reflections = bool(compress_reflections)

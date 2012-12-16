@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.demos.bach.chorale import es_ist_genug
+from experimental.demos.bach.chorale import es_ist_genug
 
 
 def build_chorale():

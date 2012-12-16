@@ -1,4 +1,4 @@
-from abjad.demos.bach import helpers
+from experimental.demos.bach import helpers
 
 
 def test_demos_bach_01():
