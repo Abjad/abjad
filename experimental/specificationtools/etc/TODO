@@ -160,9 +160,8 @@
 
 30. Consolidate timespan modification interface according to message in commit history.
 
-31. Implement timespan modification interface on timespantools.LiteralTimespan.
-    Possibly have SymbolicTimepan inherit from LiteralTimespan.
-    Or implement a superclass from which both LiteralTimespan and SymbolicTimespan can inherit.
+31. Implement timespan modification interface on timespantools.Timespan.
+    Possibly have SymbolicTimepan inherit from Timespan.
 
 32. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
     and BackgroundMeasureSelector.

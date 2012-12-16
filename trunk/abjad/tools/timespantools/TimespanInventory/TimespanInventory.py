@@ -13,23 +13,23 @@ class TimespanInventory(ObjectInventory):
 
     ::
 
-        >>> timespan_inventory.append(timespantools.LiteralTimespan(0, 3))
-        >>> timespan_inventory.append(timespantools.LiteralTimespan(3, 6))
-        >>> timespan_inventory.append(timespantools.LiteralTimespan(6, 10))
+        >>> timespan_inventory.append(timespantools.Timespan(0, 3))
+        >>> timespan_inventory.append(timespantools.Timespan(3, 6))
+        >>> timespan_inventory.append(timespantools.Timespan(6, 10))
 
     ::
 
         >>> z(timespan_inventory)
         timespantools.TimespanInventory([
-            timespantools.LiteralTimespan(
+            timespantools.Timespan(
                 start_offset=durationtools.Offset(0, 1),
                 stop_offset=durationtools.Offset(3, 1)
                 ),
-            timespantools.LiteralTimespan(
+            timespantools.Timespan(
                 start_offset=durationtools.Offset(3, 1),
                 stop_offset=durationtools.Offset(6, 1)
                 ),
-            timespantools.LiteralTimespan(
+            timespantools.Timespan(
                 start_offset=durationtools.Offset(6, 1),
                 stop_offset=durationtools.Offset(10, 1)
                 )
@@ -133,7 +133,7 @@ class TimespanInventory(ObjectInventory):
         ::
 
             >>> timespan_inventory.get_timespan_that_satisfies_time_relation(time_relation)
-            LiteralTimespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
+            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
 
         Return timespan when timespan inventory contains exactly one timespan
         that satisfies `time_relation`.
@@ -167,8 +167,8 @@ class TimespanInventory(ObjectInventory):
 
             >>> for timespan in timespans:
             ...     timespan
-            LiteralTimespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
-            LiteralTimespan(start_offset=Offset(6, 1), stop_offset=Offset(10, 1))
+            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(6, 1))
+            Timespan(start_offset=Offset(6, 1), stop_offset=Offset(10, 1))
 
         Return list of ``0`` or more timespans.
         '''
@@ -318,7 +318,7 @@ class TimespanInventory(ObjectInventory):
         from abjad.tools import timespantools
         start_offset = durationtools.Offset(start_offset)
         assert self.start_offset <= start_offset
-        delete_timespan = timespantools.LiteralTimespan(self.start_offset, start_offset)
+        delete_timespan = timespantools.Timespan(self.start_offset, start_offset)
         self.delete_material_that_intersects_timespan(delete_timespan)
 
     def trim_to_stop_offset(self, stop_offset):
@@ -327,5 +327,5 @@ class TimespanInventory(ObjectInventory):
         from abjad.tools import timespantools
         stop_offset = durationtools.Offset(stop_offset)
         assert stop_offset <= self.stop_offset
-        delete_timespan = timespantools.LiteralTimespan(stop_offset, self.stop_offset)
+        delete_timespan = timespantools.Timespan(stop_offset, self.stop_offset)
         self.delete_material_that_intersects_timespan(delete_timespan)

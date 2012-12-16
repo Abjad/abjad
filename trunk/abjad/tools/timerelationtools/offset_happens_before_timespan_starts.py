@@ -37,7 +37,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
-            timespan=timespantools.LiteralTimespan(
+            timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
                 )
@@ -54,7 +54,7 @@ def offset_happens_before_timespan_starts(timespan=None, offset=None, hold=False
         >>> z(time_relation)
         timerelationtools.OffsetTimespanTimeRelation(
             'offset < timespan.start',
-            timespan=timespantools.LiteralTimespan(
+            timespan=timespantools.Timespan(
                 start_offset=durationtools.Offset(2, 1),
                 stop_offset=durationtools.Offset(8, 1)
                 ),

@@ -1860,7 +1860,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/timespantools/LiteralTimespan/LiteralTimespan
+   tools/timespantools/Timespan/Timespan
    tools/timespantools/TimespanInventory/TimespanInventory
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`

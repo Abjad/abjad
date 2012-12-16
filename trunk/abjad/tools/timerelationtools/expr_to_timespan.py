@@ -27,22 +27,22 @@ def expr_to_timespan(expr):
     ::
 
         >>> timerelationtools.expr_to_timespan(staff[1])
-        LiteralTimespan(start_offset=Offset(1, 8), stop_offset=Offset(1, 4))
+        Timespan(start_offset=Offset(1, 8), stop_offset=Offset(1, 4))
 
     Return timespan constant when `expr` is a number::
 
         >>> timerelationtools.expr_to_timespan(Fraction(7, 8))
-        LiteralTimespan(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
+        Timespan(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
 
     Return timespan constant when `expr` is an offset::
 
         >>> timerelationtools.expr_to_timespan(durationtools.Offset(7, 8))
-        LiteralTimespan(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
+        Timespan(start_offset=Offset(7, 8), stop_offset=Offset(7, 8))
 
     Return timespan constant when `expr` is a pair::
 
         >>> timerelationtools.expr_to_timespan(((1, 2), (3, 2)))
-        LiteralTimespan(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
+        Timespan(start_offset=Offset(1, 2), stop_offset=Offset(3, 2))
 
     Otherwise raise type error.
     '''
@@ -56,11 +56,11 @@ def expr_to_timespan(expr):
     elif hasattr(expr, 'timespan'):
         return expr.timespan
     elif hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
-        return timespantools.LiteralTimespan(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
+        return timespantools.Timespan(start_offset=expr.start_offset, stop_offset=expr.stop_offset)
     elif isinstance(expr, numbers.Number):
-        return timespantools.LiteralTimespan(start_offset=expr, stop_offset=expr)
+        return timespantools.Timespan(start_offset=expr, stop_offset=expr)
     elif sequencetools.is_pair(expr):
         start_offset, stop_offset = expr
-        return timespantools.LiteralTimespan(start_offset=start_offset, stop_offset=stop_offset)
+        return timespantools.Timespan(start_offset=start_offset, stop_offset=stop_offset)
     else:
         raise TypeError('can not change {!r} to timespan.'.format(expr))

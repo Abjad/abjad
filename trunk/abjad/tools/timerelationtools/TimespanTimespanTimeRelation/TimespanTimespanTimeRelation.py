@@ -106,8 +106,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
 
         Example 1. Evaluate time relation without substitution::
 
-            >>> timespan_1 = timespantools.LiteralTimespan(5, 15)
-            >>> timespan_2 = timespantools.LiteralTimespan(10, 20)
+            >>> timespan_1 = timespantools.Timespan(5, 15)
+            >>> timespan_2 = timespantools.Timespan(10, 20)
 
         ::
 
@@ -119,11 +119,11 @@ class TimespanTimespanTimeRelation(TimeRelation):
             >>> z(time_relation)
             timerelationtools.TimespanTimespanTimeRelation(
                 'timespan_1.start <= timespan_2.start < timespan_1.stop',
-                timespan_1=timespantools.LiteralTimespan(
+                timespan_1=timespantools.Timespan(
                     start_offset=durationtools.Offset(5, 1),
                     stop_offset=durationtools.Offset(15, 1)
                     ),
-                timespan_2=timespantools.LiteralTimespan(
+                timespan_2=timespantools.Timespan(
                     start_offset=durationtools.Offset(10, 1),
                     stop_offset=durationtools.Offset(20, 1)
                     )
@@ -141,7 +141,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> new_timespan_1
-            LiteralTimespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
 
         ::
 
@@ -155,7 +155,7 @@ class TimespanTimespanTimeRelation(TimeRelation):
         ::
 
             >>> new_timespan_2
-            LiteralTimespan(start_offset=Offset(2, 1), stop_offset=Offset(12, 1))
+            Timespan(start_offset=Offset(2, 1), stop_offset=Offset(12, 1))
 
         ::
 

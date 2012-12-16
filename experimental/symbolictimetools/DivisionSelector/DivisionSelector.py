@@ -72,7 +72,7 @@ class DivisionSelector(VoiceSelector):
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(
             segment_specification.specification_name)
-        timespan_1 = timespantools.LiteralTimespan(start_offset, stop_offset)
+        timespan_1 = timespantools.Timespan(start_offset, stop_offset)
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:
