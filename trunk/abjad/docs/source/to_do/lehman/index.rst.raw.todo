@@ -17,7 +17,6 @@ durations = zip(durations, [16] * len(durations))
 
 <abjad>
 durations
-print repr(durations) <hide
 </abjad>
 
 Notes
@@ -37,7 +36,6 @@ staff = stafftools.make_rhythmic_sketch_staff(notes)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-1') <hide
 </abjad>
 
 Measure-as-background
@@ -53,7 +51,6 @@ spannertools.MetricGridSpanner(staff, [(4, 4), (4, 4), (4, 4), (11, 16)])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-2') <hide
 </abjad>
 
 Notice how some notes span more than one measure and cross barlines.
@@ -82,7 +79,6 @@ leaftools.fuse_tied_leaves_in_components_once_by_durations_without_overhang(staf
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-3') <hide
 </abjad>
 
 Which gives our score.

@@ -163,18 +163,27 @@ The LilyPond parser even understands certain aspects of LilyPond file layouts, l
 ::
 
    >>> f(result)
-   % Abjad revision 7627
-   % 2012-10-08 15:16
+   % Abjad revision 8302:8306
+   % 2012-12-15 16:23
    
-   \version "2.17.3"
+   \version "2.16.1"
    \language "english"
-   \include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
+   \include "/media/Work/dev/scores/abjad/trunk/abjad/cfg/abjad.scm"
    
    \header {
-       composer = \markup { by \bold "Foo von Bar" }
+       composer = \markup {
+           by
+           \bold
+               "Foo von Bar"
+           }
        name = #"Foo von Bar"
        tagline = \markup {  }
-       title = \markup { The ballad of "Foo von Bar" }
+       title = \markup {
+           The
+           ballad
+           of
+           "Foo von Bar"
+           }
    }
    
    \score {
@@ -263,32 +272,32 @@ being converted into Abjad score object:
    RhythmTreeContainer(
        children=(
            RhythmTreeLeaf(
-               duration=1,
+               duration=durationtools.Duration(1, 1),
                is_pitched=True,
                ),
            RhythmTreeContainer(
                children=(
                    RhythmTreeLeaf(
-                       duration=1,
+                       duration=durationtools.Duration(1, 1),
                        is_pitched=True,
                        ),
                    RhythmTreeLeaf(
-                       duration=1,
+                       duration=durationtools.Duration(1, 1),
                        is_pitched=True,
                        ),
                    RhythmTreeLeaf(
-                       duration=1,
+                       duration=durationtools.Duration(1, 1),
                        is_pitched=True,
                        ),
                ),
-               duration=2
+               duration=Duration(2, 1)
                ),
            RhythmTreeLeaf(
-               duration=2,
+               duration=durationtools.Duration(2, 1),
                is_pitched=True,
                ),
        ),
-       duration=1
+       duration=Duration(1, 1)
        )
 
 

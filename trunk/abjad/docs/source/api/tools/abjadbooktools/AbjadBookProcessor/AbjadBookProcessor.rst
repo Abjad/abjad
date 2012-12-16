@@ -25,6 +25,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.verbose
 
+Methods
+-------
+
+.. automethod:: abjad.tools.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.update_status
+
 Special Methods
 ---------------
 
