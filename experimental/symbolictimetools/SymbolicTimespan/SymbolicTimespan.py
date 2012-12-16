@@ -149,7 +149,8 @@ class SymbolicTimespan(SymbolicTimeObject):
     def _set_timespan_stop_offset(self, start_offset, stop_offset, new_stop_offset):
         return start_offset, new_stop_offset
 
-    # TODO: remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
+    # TODO: Remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
+    #       This means that one fewer parameter will be passed into this method.
     def _store_multiple_context_setting(self, attribute, source,
         contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
@@ -157,8 +158,7 @@ class SymbolicTimespan(SymbolicTimeObject):
         from experimental import requesttools
         from experimental import settingtools
         request = requesttools.expr_to_request(source)
-        # TODO: Supply all SymbolicTimespan intances with a 'score' reference.
-        #       Then access self.score._context_token_to_context_names in the line below.
+        #assert self.score_specification is not None
         if hasattr(self, '_context_token_to_context_names'):
             context_names = self._context_token_to_context_names(contexts)
         else:
@@ -176,9 +176,7 @@ class SymbolicTimespan(SymbolicTimeObject):
             persist=persist, 
             truncate=truncate
             )
-        # TODO: Supply all SymbolicTimespan intances with a 'score' reference.
-        #       Then supply ScoreSpecification with a multiple_context_settings attribute.
-        #       Then access self.score.multiple_context_settings below.
+        #asert self.score_specification is not None
         if hasattr(self, 'multiple_context_settings'):
             self.multiple_context_settings.append(multiple_context_setting)
         else:
@@ -323,6 +321,7 @@ class SymbolicTimespan(SymbolicTimeObject):
             stop_identifier=stop, 
             voice_name=voice,
             time_relation=time_relation)
+        timespan._score_specification = self.score_specification
         return timespan
 
     def select_leaves(self, voice, start=None, stop=None, time_relation=None):
@@ -391,6 +390,7 @@ class SymbolicTimespan(SymbolicTimeObject):
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice)
+        timespan._score_specification = self.score_specification
         return timespan
 
     def set_aggregate(self, source, contexts=None, timespan=None,
