@@ -1,6 +1,9 @@
 Pärt: *Cantus in Memory of Benjamin Britten*
 ============================================
 
+.. note:: Explore the `abjad/demos/part/` directory for the complete code to this example,
+   or import it into your Python session directly with `from abjad.demos import part`.
+
 Here is the original score's first page:
 
 .. image:: images/original.png
@@ -347,7 +350,7 @@ pattern for their rhythms:
        return durated_reservoir
 
 
-Let's see what a few of those look like for the first violins.  We'll build the entire
+Let's see what a few of those look like.  First, we'll build the entire
 reservoir from scratch, so you can see the process:
 
 ::
@@ -357,9 +360,10 @@ reservoir from scratch, so you can see the process:
    >>> durated_reservoir = durate_pitch_contour_reservoir(shadowed_contour_reservoir)
 
 
-Then we'll grab the sub-reservoir for the first violins, throw it in a staff
-and give it a 6/4 time signature, just so it lines up properly.  We'll also
-label the descents so you can clearly see where they start:
+Then we'll grab the sub-reservoir for the first violins, taking the first ten
+descents (which includes the silences we've been adding as well).  We'll label 
+each descent with some markup, to distinguish them, throw them into a
+Staff and give them a 6/4 time signature, just so they line up properly.
 
 ::
 
