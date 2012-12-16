@@ -51,13 +51,12 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_specification=None, start_offset=None, stop_offset=None, timespan_modifications=None):
+    def __init__(self, start_offset=None, stop_offset=None, timespan_modifications=None):
         from experimental import specificationtools
         from experimental import symbolictimetools
         assert isinstance(start_offset, (symbolictimetools.SymbolicOffset, type(None))), repr(start_offset)
         assert isinstance(stop_offset, (symbolictimetools.SymbolicOffset, type(None))), repr(stop_offset)
-        SymbolicTimespan.__init__(self, 
-            score_specification=score_specification, timespan_modifications=timespan_modifications)
+        SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 

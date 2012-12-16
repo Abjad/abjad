@@ -201,11 +201,6 @@ class Specification(SymbolicTimespan):
                 'Voice 1',
                 symbolictimetools.SymbolicOffset(
                     anchor=symbolictimetools.BackgroundMeasureSelector(
-                        score_specification=specificationtools.ScoreSpecification(
-                            scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                                staff_count=4
-                                )
-                            ),
                         anchor='red',
                         start_identifier=8,
                         stop_identifier=9

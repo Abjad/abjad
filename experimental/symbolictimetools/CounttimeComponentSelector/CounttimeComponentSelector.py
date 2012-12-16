@@ -73,14 +73,13 @@ class CounttimeComponentSelector(VoiceSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_specification=None, anchor=None, klass=None, predicate=None, 
+    def __init__(self, anchor=None, klass=None, predicate=None, 
         start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None,
         timespan_modifications=None, selector_modifications=None):
         from experimental import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         VoiceSelector.__init__(self, 
-            score_specification=score_specification,
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             voice_name=voice_name, time_relation=time_relation, 
             timespan_modifications=timespan_modifications, selector_modifications=selector_modifications)
@@ -91,6 +90,7 @@ class CounttimeComponentSelector(VoiceSelector):
     
     ### SPECIAL METHODS ###
 
+    # TODO: streamline with __getnewargs__ or equivalent
     def __deepcopy__(self, memo):
         result = type(self)(
             anchor=self.anchor, klass=self.klass, predicate=self.predicate,

@@ -30,11 +30,6 @@ class CommandRequest(Request):
             'Voice 1',
             symbolictimetools.SymbolicOffset(
                 anchor=symbolictimetools.BackgroundMeasureSelector(
-                    score_specification=specificationtools.ScoreSpecification(
-                        scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                            staff_count=1
-                            )
-                        ),
                     anchor='red',
                     start_identifier=4,
                     stop_identifier=5
@@ -93,11 +88,6 @@ class CommandRequest(Request):
             >>> z(command_request.symbolic_offset)
             symbolictimetools.SymbolicOffset(
                 anchor=symbolictimetools.BackgroundMeasureSelector(
-                    score_specification=specificationtools.ScoreSpecification(
-                        scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                            staff_count=1
-                            )
-                        ),
                     anchor='red',
                     start_identifier=4,
                     stop_identifier=5

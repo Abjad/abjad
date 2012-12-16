@@ -23,15 +23,14 @@ class SymbolicTimespan(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_specification=None, timespan_modifications=None):
+    def __init__(self, timespan_modifications=None):
         from experimental import specificationtools
-        assert isinstance(score_specification, (specificationtools.ScoreSpecification, type(None)))
-        self._score_specification = score_specification
         timespan_modifications = timespan_modifications or []
         self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
 
     ### SPECIAL METHODS ###
 
+    # TODO: implement generalized SymbolicTimespan.__deepcopy__ based on __getnewargs__
 #    def __deepcopy__(self, memo):
 #        score_specification = self.score_specification 
 #        self._score_specification = None
@@ -100,12 +99,6 @@ class SymbolicTimespan(AbjadObject):
     # TODO: maybe override __deepcopy__?
     def _clone(self):
         return copy.deepcopy(self)
-        #score_specification = self.score_specification 
-        #self._score_specification = None
-        #result = copy.deepcopy(self)
-        #self._score_specification = score_specification
-        #result._score_specification = score_specification
-        #return result
 
     def _divide_timespan_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
@@ -189,6 +182,7 @@ class SymbolicTimespan(AbjadObject):
         if hasattr(self, 'multiple_context_settings'):
             self.multiple_context_settings.append(multiple_context_setting)
         else:
+            assert self.score_specification is not None
             self.score_specification.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
@@ -283,11 +277,6 @@ class SymbolicTimespan(AbjadObject):
 
             >>> z(timespan)
             symbolictimetools.BackgroundMeasureSelector(
-                score_specification=specificationtools.ScoreSpecification(
-                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                        staff_count=4
-                        )
-                    ),
                 anchor='red',
                 stop_identifier=5
                 )
@@ -300,11 +289,11 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
-            score_specification=self.score_specification,
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             time_relation=time_relation)
+        timespan._score_specification = self.score_specification
         return timespan
 
     def select_divisions(self, voice, start=None, stop=None, time_relation=None):
@@ -345,11 +334,6 @@ class SymbolicTimespan(AbjadObject):
 
             >>> z(timespan)
             symbolictimetools.CounttimeComponentSelector(
-                score_specification=specificationtools.ScoreSpecification(
-                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                        staff_count=4
-                        )
-                    ),
                 anchor='red',
                 klass=leaftools.Leaf,
                 stop_identifier=40,
@@ -365,13 +349,13 @@ class SymbolicTimespan(AbjadObject):
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
-            score_specification=self.score_specification,
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice)
+        timespan._score_specification = self.score_specification
         return timespan
 
     def select_notes_and_chords(self, voice, start=None, stop=None, time_relation=None):

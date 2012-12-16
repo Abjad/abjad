@@ -160,6 +160,3 @@
 
 30. A SymbolicTimeObject class could superclass both SymbolicTimespan and SymbolicOffset.
     This would allow a single initialization point for the score_specification property that both now hold.
-
-31. Make SymbolicTimespan reprs suppress score_specification.
-    Make SymbolicTimespan storage formats suppress score_specification.

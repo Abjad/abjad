@@ -416,7 +416,7 @@ class ScoreSpecification(Specification):
     def append_segment(self, name=None):
         r'''Append segment specification to score specification::
 
-            >>> score_specification.append_segment('green')
+            >>> score_specification.append_segment(name='green')
             SegmentSpecification('green')
 
         Assign segment `name` or first unused segment number to segment.
@@ -426,6 +426,7 @@ class ScoreSpecification(Specification):
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
         segment_specification = self.segment_specification_class(self, self.score_template, name)
+        segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
         return segment_specification
 
@@ -631,7 +632,9 @@ class ScoreSpecification(Specification):
 
         Return score selector.
         '''
-        return symbolictimetools.ScoreSelector()
+        selector = symbolictimetools.ScoreSelector()
+        selector._score_specification = self
+        return selector
 
     def select_segments(self, start=None, stop=None):
         '''Select segments::
@@ -641,4 +644,6 @@ class ScoreSpecification(Specification):
 
         Return segment selector.
         '''
-        return symbolictimetools.SegmentSelector(start_identifier=start, stop_identifier=stop)
+        selector = symbolictimetools.SegmentSelector(start_identifier=start, stop_identifier=stop)
+        selector._score_specification = self
+        return selector

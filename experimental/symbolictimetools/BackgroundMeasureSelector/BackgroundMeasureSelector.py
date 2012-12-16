@@ -20,27 +20,27 @@ class BackgroundMeasureSelector(Selector):
     Select all measures that start during score::
 
         >>> score_specification.select_background_measures()
-        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])))
+        BackgroundMeasureSelector()
 
     Select measures that start during score from ``3`` forward::
 
         >>> score_specification.select_background_measures(start=3)
-        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), start_identifier=3)
+        BackgroundMeasureSelector(start_identifier=3)
 
     Select measures that start during score up to but not including ``6``::
 
         >>> score_specification.select_background_measures(stop=6)
-        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), stop_identifier=6)
+        BackgroundMeasureSelector(stop_identifier=6)
 
     Select measures from ``3`` up to but not including ``6``::
 
         >>> score_specification.select_background_measures(start=3, stop=6)
-        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), start_identifier=3, stop_identifier=6)
+        BackgroundMeasureSelector(start_identifier=3, stop_identifier=6)
 
     Select all measures starting during segment ``'red'``::
 
         >>> red_segment.select_background_measures()
-        BackgroundMeasureSelector(score_specification=ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red')])), anchor='red')
+        BackgroundMeasureSelector(anchor='red')
 
     Select the last two measures during segment ``'red'``::
 
@@ -50,11 +50,6 @@ class BackgroundMeasureSelector(Selector):
     
         >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
-            score_specification=specificationtools.ScoreSpecification(
-                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=4
-                    )
-                ),
             anchor='red',
             start_identifier=-2
             )
@@ -96,6 +91,7 @@ class BackgroundMeasureSelector(Selector):
 
     ### SPECIAL METHODS ###
 
+    # TODO: streamline with __getnewargs__ or equivalent
     def __deepcopy__(self, memo):
         result = type(self)(
             anchor=self.anchor, 
