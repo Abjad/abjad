@@ -44,10 +44,12 @@ class OutputFormat(abctools.AbjadObject):
                         reformatted.append(self.image_block.format(image_file_name))
 
                 else:
-                    image_file_names = [v for k, v in sorted(image_dict[image_count].items)
-                        if k in page_range]
-                    for image_file_name in image_file_names:
-                        reformatted.append(self.image_block.format(image_file_name))
+                    for page_number, image_file_name in sorted(image_dict[image_count].items()):
+                        if page_number in page_range:
+                            image_file_name = image_file_name.rpartition('.')[0]
+                            reformatted.append(self.image_block.format(image_file_name))
+                        else:
+                            os.remove(image_file_name)
                             
         return tuple(reformatted)
 
