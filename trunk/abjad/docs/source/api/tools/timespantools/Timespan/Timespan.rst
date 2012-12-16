@@ -23,6 +23,19 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.divide_by_ratio
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.scale
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.set_duration
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.set_offsets
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.translate_offsets
+
 Special Methods
 ---------------
 
