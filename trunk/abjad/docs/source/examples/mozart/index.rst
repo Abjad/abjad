@@ -2,7 +2,10 @@ Mozart: *Musikalisches Würfelspiel*
 ===================================
 
 .. note:: Explore the `abjad/demos/mozart/` directory for the complete code to this example,
-   or import it into your Python session directly with `from abjad.demos import mozart`.
+    or import it into your Python session directly with:
+
+    * `from abjad.demos import mozart`
+
 
 Mozart's dice game is a method for aleatorically generating sixteen-measure-long minuets.  For each measure, two six-sided dice are rolled, and the sum of 
 the dice used to look up a measure number in one of two tables (one for each half of the minuet).  The measure number then locates a single measure from a 
@@ -351,7 +354,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
    >>> my_list = [1, 'b', 3]
    >>> my_result = [random.choice(my_list) for i in range(20)]
    >>> my_result
-   [1, 'b', 1, 3, 3, 1, 3, 1, 3, 'b', 'b', 'b', 'b', 3, 3, 1, 1, 'b', 1, 1]
+   [3, 3, 'b', 1, 'b', 'b', 3, 1, 'b', 'b', 3, 'b', 1, 3, 'b', 1, 3, 3, 3, 3]
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -387,22 +390,22 @@ The result will be a *seventeen*-item-long list of measure definitions:
    >>> for i, measure in enumerate(choices):
    ...     print i, measure
    ... 
-   0 {'b': '<c e>4 r8', 't': "e''16 c''16 g''16 e''16 c'''16 g''16"}
-   1 {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"}
-   2 {'b': 'g,4 r8', 't': "b'16 c''16 d''16 b'16 a'16 g'16"}
-   3 {'b': '<e g>4 r8', 't': "c''16 b'16 c''16 g'16 e'16 c'16"}
+   0 {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"}
+   1 {'b': '<c e>4 r8', 't': "c''8 g'8 e''8"}
+   2 {'b': 'b,4 r8', 't': "d''8 ( b'8 g'8 )"}
+   3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g'8"}
    4 {'b': 'c4 r8', 't': "d''16 cs''16 d''16 fs''16 a''16 fs''16"}
-   5 {'b': '<b, d>8 <b, d>8 <b, d>8', 't': "g''16 fs''16 g''16 b''16 d''8"}
-   6 {'b': 'c8 d8 d,8', 't': "e''16 c''16 b'16 g'16 a'16 fs'16"}
+   5 {'b': '<b, d>4 r8', 't': "g''8 b''16 g''16 d''16 b'16"}
+   6 {'b': 'c8 d8 d,8', 't': "a'16 e''16 d''16 g''16 fs''16 a''16"}
    7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
    8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-   9 {'b': '<d fs>4 r8', 't': "d''16 a'16 d''8 fs''8"}
-   10 {'b': 'b,4 r8', 't': "g''16 b''16 g''16 b''16 d''8"}
-   11 {'b': 'e4 e16 c16', 't': "c''16 g'16 c''16 e''16 g''16 <c'' e''>16"}
-   12 {'b': '<g, g>4 g8', 't': "d''16 b'16 g'8 r8"}
-   13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g'8 c''8 e''8"}
-   14 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
-   15 {'b': 'f4 g8', 't': "d''16 ( cs''16 ) d''16 f''16 g'16 b'16"}
+   9 {'b': '<d fs>4 <c fs>8', 't': "a''8 ( fs''8 d''8 )"}
+   10 {'b': 'b,4 r8', 't': "g''8 b''16 d'''16 d''8"}
+   11 {'b': '<c g>4 <c e>8', 't': "e''8 ( g''8 c'''8 )"}
+   12 {'b': 'g8 g,8 r8', 't': "g''16 e''16 d''16 b'16 g'8"}
+   13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"}
+   14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 e''8 c''8"}
+   15 {'b': 'f4 g8', 't': "f''16 d''16 a'8 b'8"}
    16 {'b': 'c4 c,8', 't': "c''8 c'8 r8"}
 
 
