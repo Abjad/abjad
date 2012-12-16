@@ -1,13 +1,11 @@
 import abc
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class BoundedObject(ImmutableAbjadObject):
+class BoundedObject(AbjadObject):
     r'''.. versionadded:: 2.10
 
     Bounded object mix-in.
-
-    Bounded objects are immutable.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -17,7 +15,7 @@ class BoundedObject(ImmutableAbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __new__(self):
+    def __init__(self):
         pass
 
     ### READ-ONLY PUBLIC PROPERTIES ###

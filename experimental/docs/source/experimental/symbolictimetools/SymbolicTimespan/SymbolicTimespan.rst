@@ -13,6 +13,22 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_half_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_half_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_well_formed
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -38,6 +54,25 @@ Read-only Properties
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.timespan_modifications
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_left_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_left_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_right_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_right_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------

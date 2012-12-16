@@ -19,6 +19,22 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_half_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_half_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_well_formed
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -52,6 +68,25 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.timespan_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_left_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_left_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_right_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_right_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------

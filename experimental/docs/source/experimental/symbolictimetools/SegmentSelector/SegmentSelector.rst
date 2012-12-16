@@ -21,6 +21,22 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_half_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_half_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_well_formed
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -66,6 +82,25 @@ Read-only Properties
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.timespan_modifications
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_left_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_left_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_right_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_right_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------

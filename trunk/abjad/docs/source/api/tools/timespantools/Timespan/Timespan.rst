@@ -11,6 +11,22 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.duration
 
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_half_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_half_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_well_formed
 
 .. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.offsets
@@ -22,6 +38,25 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_left_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_left_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_right_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
+.. autoattribute:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_right_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------

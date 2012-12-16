@@ -1,10 +1,10 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.mathtools.BoundedObject import BoundedObject
 
 
-class Timespan(AbjadObject):
+class Timespan(BoundedObject):
     r'''.. versionadded:: 2.11
 
     Timespan ``[1/2, 3/2)``::
@@ -32,6 +32,7 @@ class Timespan(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, start_offset=None, stop_offset=None):
+        BoundedObject.__init__(self)
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
         self._start_offset = start_offset
