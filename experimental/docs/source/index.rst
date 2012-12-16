@@ -274,6 +274,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/symbolictimetools/Selector/Selector
+   experimental/symbolictimetools/SymbolicTimeObject/SymbolicTimeObject
    experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
    experimental/symbolictimetools/VoiceSelector/VoiceSelector
 

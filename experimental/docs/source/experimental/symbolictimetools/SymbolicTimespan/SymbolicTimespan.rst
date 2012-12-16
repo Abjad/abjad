@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.score_specification
 
+    Inherited from :py:class:`SymbolicTimeObject.SymbolicTimeObject <experimental.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

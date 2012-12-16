@@ -19,6 +19,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.score_specification
 
+    Inherited from :py:class:`SymbolicTimeObject.SymbolicTimeObject <experimental.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.storage_format

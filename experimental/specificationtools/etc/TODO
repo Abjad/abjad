@@ -157,6 +157,3 @@
         Specification.request_naive_beats() ==> Specification.select_naive_beats()
         Specification.request_rhythm() ==> Specification.select_rhythm()
         Specification.request_time_signatures() ==> Specification.select_time_signatures()
-
-30. A SymbolicTimeObject class could superclass both SymbolicTimespan and SymbolicOffset.
-    This would allow a single initialization point for the score_specification property that both now hold.

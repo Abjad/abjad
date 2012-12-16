@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.score_specification
 
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`SymbolicTimeObject.SymbolicTimeObject <experimental.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
 
 .. autoattribute:: experimental.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.selector_modifications
 

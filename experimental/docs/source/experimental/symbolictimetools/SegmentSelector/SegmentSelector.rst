@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.score_specification
 
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`SymbolicTimeObject.SymbolicTimeObject <experimental.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.selector_modifications
 

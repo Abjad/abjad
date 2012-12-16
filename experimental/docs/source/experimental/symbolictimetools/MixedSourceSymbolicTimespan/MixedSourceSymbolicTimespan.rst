@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.score_specification
 
-    Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`SymbolicTimeObject.SymbolicTimeObject <experimental.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
 
 .. autoattribute:: experimental.symbolictimetools.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.MixedSourceSymbolicTimespan.start_offset
 

@@ -8,10 +8,10 @@ from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
 
 
-class SymbolicTimespan(AbjadObject):
+class SymbolicTimespan(SymbolicTimeObject):
     r'''.. versionadded:: 1.0
 
     Abstract base class from which conrete symbolic timespans inherit.
@@ -25,6 +25,7 @@ class SymbolicTimespan(AbjadObject):
 
     def __init__(self, timespan_modifications=None):
         from experimental import specificationtools
+        SymbolicTimeObject.__init__(self)
         timespan_modifications = timespan_modifications or []
         self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
 
@@ -55,7 +56,7 @@ class SymbolicTimespan(AbjadObject):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
+        result = SymbolicTimeObject._keyword_argument_name_value_strings.fget(self)
         if 'timespan_modifications=ObjectInventory([])' in result:
             result = list(result)
             result.remove('timespan_modifications=ObjectInventory([])')
@@ -96,7 +97,6 @@ class SymbolicTimespan(AbjadObject):
             assert start_offset <= stop_offset
         return start_offset, stop_offset
         
-    # TODO: maybe override __deepcopy__?
     def _clone(self):
         return copy.deepcopy(self)
 
@@ -124,7 +124,7 @@ class SymbolicTimespan(AbjadObject):
         '''Do not show empty offset modifications list.
         '''
         filtered_result = []
-        result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = SymbolicTimeObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'timespan_modifications=datastructuretools.ObjectInventory([])' in string:
@@ -201,13 +201,13 @@ class SymbolicTimespan(AbjadObject):
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @property
-    def score_specification(self):
-        '''Read-only reference to score specification against which symbolic timespan is defined.
-
-        Return score specification or none.
-        '''
-        return self._score_specification
+#    @property
+#    def score_specification(self):
+#        '''Read-only reference to score specification against which symbolic timespan is defined.
+#
+#        Return score specification or none.
+#        '''
+#        return self._score_specification
 
     @property
     def timespan_modifications(self):
