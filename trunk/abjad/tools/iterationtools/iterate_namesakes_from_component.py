@@ -59,7 +59,8 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
 
     ::
 
-        >>> for staff in iterationtools.iterate_namesakes_from_component(score[-1][0], reverse=True):
+        >>> for staff in iterationtools.iterate_namesakes_from_component(
+        ...     score[-1][0], reverse=True):
         ...     print staff.lilypond_format
         ...
         \context Staff = "staff 1" {
@@ -76,7 +77,8 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
     from abjad.tools import iterationtools
 
     def _forward_helper(component):
-        next_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
+        next_component = componenttools.get_nth_component_in_time_order_from_component(
+            component, 1)
         if next_component is None:
             return
         dfs = iterationtools.iterate_components_depth_first(next_component, capped=False)
@@ -89,7 +91,8 @@ def iterate_namesakes_from_component(component, reverse=False, start=0, stop=Non
         prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if prev is None:
             return
-        dfs = iterationtools.iterate_components_depth_first(prev, capped=False, direction=Right)
+        dfs = iterationtools.iterate_components_depth_first(
+            prev, capped=False, direction=Right)
         for node in dfs:
             if type(node) == type(component) and \
                 node.parentage.parentage_signature == \

@@ -40,7 +40,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        ('left', 'ADDLYRICS'),
         ('nonassoc', 'DEFAULT'),
         ('nonassoc', 'FUNCTION_ARGLIST'),
-        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),
+        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH',
+            'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),
         ('nonassoc', 'NUMBER_IDENTIFIER', '/'),
         ('left', '+', '-'),
 #        ('left', 'UNARY_MINUS')

@@ -368,8 +368,10 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. || 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
-        >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. || 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
+        >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |" \
+        ...     "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
+        >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |" \
+        ...     "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
         >>> score = Score([Staff(triple), Staff(duples)])
 
     In order to see the different time signatures on each staff, we need to
@@ -617,7 +619,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
 
     ::
 
-        >>> measure = p("abj: | 4/4 c'16 ~ c'4 d'8. ~ 2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } f'4 |")
+        >>> measure = p("abj: | 4/4 c'16 ~ c'4 d'8. ~ " \
+        ...     "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } f'4 |")
         >>> f(measure)
         {
             \time 4/4
@@ -709,7 +712,8 @@ def establish_metrical_hierarchy(components, metrical_hierarchy,
             return False
         if not any(tie_chain_start_offset < x < tie_chain_stop_offset for x in boundary_offsets):
             return False
-        if tie_chain_start_offset in boundary_offsets and tie_chain_stop_offset in boundary_offsets:
+        if tie_chain_start_offset in boundary_offsets and \
+            tie_chain_stop_offset in boundary_offsets:
             return False
         return True
 

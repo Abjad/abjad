@@ -25,7 +25,8 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], tie_split_notes=True)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], 
+        ...     tie_split_notes=True)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -52,7 +53,8 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=True)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True, 
+        ...     tie_split_notes=True)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
@@ -79,7 +81,8 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], tie_split_notes=False)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], 
+        ...     tie_split_notes=False)
         [[Note("c'4.")], [Note("c'2"), Note("c'8")]]
 
     ::
@@ -106,7 +109,8 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True, tie_split_notes=False)
+        >>> leaftools.split_leaf_at_offsets(staff[0], [(3, 8)], cyclic=True, 
+        ...     tie_split_notes=False)
         [[Note("c'4.")], [Note("c'4.")], [Note("c'4")]]
 
     ::
@@ -136,7 +140,8 @@ def split_leaf_at_offsets(leaf, offsets, cyclic=False,
 
     ::
 
-        >>> leaftools.split_leaf_at_offsets(staff.leaves[1], [(1, 6)], cyclic=False, tie_split_notes=True)
+        >>> leaftools.split_leaf_at_offsets(staff.leaves[1], [(1, 6)], cyclic=False, 
+        ...     tie_split_notes=True)
         [[Note("d'4")], [Note("d'4")]]
 
     ::

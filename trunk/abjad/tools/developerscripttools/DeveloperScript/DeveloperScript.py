@@ -8,11 +8,14 @@ from abjad.tools import stringtools
 class DeveloperScript(abctools.AbjadObject):
     '''Abjad object-oriented model of a developer script.
 
-    `DeveloperScript` is the abstract parent from which concrete developer scripts inherit.
+    `DeveloperScript` is the abstract parent from which concrete developer
+    scripts inherit.
 
-    Developer scripts can be called from the command line, generally via the `ajv` command.
+    Developer scripts can be called from the command line, generally via the
+    `ajv` command.
 
-    Developer scripts can be instantiated by other developer scripts in order to share functionality. 
+    Developer scripts can be instantiated by other developer scripts in order
+    to share functionality. 
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -91,7 +94,8 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abc.abstractproperty
     def short_description(self):
-        '''The short description of the script, printed before arguments explanations.
+        '''The short description of the script, printed before arguments
+        explanations.
 
         Also used as a summary in other contexts.
         '''

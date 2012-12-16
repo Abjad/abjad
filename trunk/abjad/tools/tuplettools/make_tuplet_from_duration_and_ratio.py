@@ -29,7 +29,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
     Interpret nonassignable `proportions` according to `decrease_durations_monotonically`::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=True, decrease_durations_monotonically=False, is_diminution=False)
+        ... Duration(3, 16), [5, -1, 5], avoid_dots=True, decrease_durations_monotonically=False,
+        ...     is_diminution=False)
         {@ 11:12 c'64, c'16, r64, c'64, c'16 @}
 
     Example set 2. Make augmented tuplet from `duration` and `proportions` and encourage dots::
@@ -41,7 +42,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
     Interpret nonassignable `proportions` according to `decrease_durations_monotonically`::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=False, decrease_durations_monotonically=False, is_diminution=False)
+        ... Duration(3, 16), [5, -1, 5], avoid_dots=False, decrease_durations_monotonically=False,
+        ...     is_diminution=False)
         FixedDurationTuplet(3/16, [c'32..., r128., c'32...])
 
     Example set 3. Make diminished tuplet from `duration` and nonzero integer `proportions`.
@@ -61,7 +63,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
     Interpret nonassignable `proportions` according to `decrease_durations_monotonically`::
 
         >>> print tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=True, decrease_durations_monotonically=False, is_diminution=True)
+        ... Duration(3, 16), [5, -1, 5], avoid_dots=True, decrease_durations_monotonically=False, 
+        ...     is_diminution=True)
         {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
 
     Example set 4. Make diminished tuplet from `duration` and `proportions` and encourage dots::
@@ -73,7 +76,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
     Interpret nonassignable `proportions` according to `direction`::
 
         >>> tuplettools.make_tuplet_from_duration_and_ratio(
-        ... Duration(3, 16), [5, -1, 5], avoid_dots=False, decrease_durations_monotonically=False, is_diminution=True)
+        ... Duration(3, 16), [5, -1, 5], avoid_dots=False, decrease_durations_monotonically=False, 
+        ...     is_diminution=True)
         FixedDurationTuplet(3/16, [c'16..., r64., c'16...])
 
     Reduce `proportions` relative to each other.
@@ -111,7 +115,8 @@ def make_tuplet_from_duration_and_ratio(duration, proportions,
         note_durations = [durationtools.Duration(x, denominator) for x in proportions]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
-        notes = leaftools.make_leaves(pitches, leaf_durations, decrease_durations_monotonically=decrease_durations_monotonically)
+        notes = leaftools.make_leaves(pitches, leaf_durations, 
+            decrease_durations_monotonically=decrease_durations_monotonically)
 
     # make tuplet
     tuplet = tuplettools.FixedDurationTuplet(duration, notes)

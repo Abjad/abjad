@@ -4,9 +4,12 @@ from abjad.tools import pitchtools
 
 
 # TODO: This be replaced in favor of leaftools.split_leaf_at_offsets().
-#       The precondition is that leaftools.split_leaf_at_offsets() must be extended to handle graces.
-#       Also important to migrate over the (large-ish) set of tests for this function.
-def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=True, tie_split_rests=False):
+#       The precondition is that leaftools.split_leaf_at_offsets() must be
+#       extended to handle graces.
+#       Also important to migrate over the (large-ish) set of tests for this i
+#       function.
+def split_leaf_at_offset(leaf, offset, fracture_spanners=False,
+    tie_split_notes=True, tie_split_rests=False):
     r'''Split `leaf` at `offset`.
 
     Example 1. Split note at assignable offset. Two notes result. Do not tie notes::
@@ -36,7 +39,8 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
 
     ::
 
-        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32), tie_split_notes=False)
+        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32),
+        ...     tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
     ::
@@ -89,7 +93,8 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
 
     ::
 
-        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32), tie_split_notes=False)
+        >>> leaftools.split_leaf_at_offset(staff.leaves[0], (1, 32),
+        ...     tie_split_notes=False)
         ([Note("c'32")], [Note("c'16.")])
 
     ::
@@ -152,13 +157,15 @@ def split_leaf_at_offset(leaf, offset, fracture_spanners=False, tie_split_notes=
 
     left_leaf_list = leaftools.set_preprolated_leaf_duration(leaf, preprolated_duration)
     right_preprolated_duration = leaf_multiplied_duration - preprolated_duration
-    right_leaf_list = leaftools.set_preprolated_leaf_duration(new_leaf, right_preprolated_duration)
+    right_leaf_list = leaftools.set_preprolated_leaf_duration(new_leaf,
+        right_preprolated_duration)
 
     leaf_left_of_split = left_leaf_list[-1]
     leaf_right_of_split = right_leaf_list[0]
 
     if fracture_spanners:
-        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction=Right)
+        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, 
+        direction=Right)
 
     # tie split notes, rests and chords as specified
     if  (pitchtools.is_pitch_carrier(leaf) and tie_split_notes) or \

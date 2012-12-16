@@ -3,10 +3,12 @@ from abjad.tools import durationtools
 from abjad.tools import resttools
 
 
-def replace_container_slice_with_rests(container, start=None, stop=None, decrease_durations_monotonically=True):
+def replace_container_slice_with_rests(container, start=None, stop=None,
+    decrease_durations_monotonically=True):
     r'''.. versionadded:: 2.10
 
-    Replace `container` slice from `start` to `stop` with rests that decrease durations monotonically.
+    Replace `container` slice from `start` to `stop` with rests that decrease
+    durations monotonically.
 
     Example 1. Replace all container elements::
 
@@ -70,10 +72,12 @@ def replace_container_slice_with_rests(container, start=None, stop=None, decreas
     if elements_to_replace:
 
         # find preprolated duration of elements to replace
-        duration = componenttools.sum_duration_of_components(elements_to_replace, preprolated=True)
+        duration = componenttools.sum_duration_of_components(
+            elements_to_replace, preprolated=True)
 
         # construct rests equal in preprolated duration to replace
-        rests = resttools.make_rests(duration, decrease_durations_monotonically=decrease_durations_monotonically)
+        rests = resttools.make_rests(duration,
+            decrease_durations_monotonically=decrease_durations_monotonically)
 
         # replace container elements with rests
         container[start:stop] = rests

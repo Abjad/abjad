@@ -8,9 +8,9 @@ class QuantizationJob(AbjadObject):
 
     ::
 
-        >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1, 4])
+        >>> q_event_a = quantizationtools.PitchedQEvent(250, [0, 1])
         >>> q_event_b = quantizationtools.SilentQEvent(500)
-        >>> q_event_c = quantizationtools.PitchedQEvent(750, [2, 3, 7])
+        >>> q_event_c = quantizationtools.PitchedQEvent(750, [3, 7])
         >>> proxy_a = quantizationtools.QEventProxy(q_event_a, 0.25)
         >>> proxy_b = quantizationtools.QEventProxy(q_event_b, 0.5)
         >>> proxy_c = quantizationtools.QEventProxy(q_event_c, 0.75)
@@ -132,7 +132,7 @@ class QuantizationJob(AbjadObject):
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
                     durationtools.Offset(250, 1),
-                    (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"), NamedChromaticPitch("e'")),
+                    (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'")),
                     attachments=()
                     ),
                 durationtools.Offset(1, 4)
@@ -147,7 +147,7 @@ class QuantizationJob(AbjadObject):
             quantizationtools.QEventProxy(
                 quantizationtools.PitchedQEvent(
                     durationtools.Offset(750, 1),
-                    (NamedChromaticPitch("d'"), NamedChromaticPitch("ef'"), NamedChromaticPitch("g'")),
+                    (NamedChromaticPitch("ef'"), NamedChromaticPitch("g'")),
                     attachments=()
                     ),
                 durationtools.Offset(3, 4)

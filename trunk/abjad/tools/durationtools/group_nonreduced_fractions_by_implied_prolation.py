@@ -11,8 +11,11 @@ def group_nonreduced_fractions_by_implied_prolation(durations):
 
     ::
 
-        >>> durationtools.group_nonreduced_fractions_by_implied_prolation(durations)
-        [[NonreducedFraction(1, 4), NonreducedFraction(1, 8)], [NonreducedFraction(1, 3), NonreducedFraction(1, 6)], [NonreducedFraction(1, 4)]]
+        >>> for group in durationtools.group_nonreduced_fractions_by_implied_prolation(durations):
+        ...     group
+        [NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+        [NonreducedFraction(1, 3), NonreducedFraction(1, 6)]
+        [NonreducedFraction(1, 4)]
 
     Return list of duration lists.
     '''

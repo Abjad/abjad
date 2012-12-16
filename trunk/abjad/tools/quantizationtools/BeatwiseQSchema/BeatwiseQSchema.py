@@ -37,8 +37,8 @@ class BeatwiseQSchema(QSchema):
         * ``search_tree``
         * ``tempo``
 
-    These settings can be applied as global defaults for the schema via keyword arguments, which persist
-    until overridden:
+    These settings can be applied as global defaults for the schema via keyword arguments,
+    which persist until overridden:
 
     ::
 
@@ -77,9 +77,10 @@ class BeatwiseQSchema(QSchema):
 
     Per-time-step settings can be applied in a variety of ways.
 
-    Instantiating the schema via ``*args`` with a series of either ``BeatwiseQSchemaItem`` instances,
-    or dictionaries which could be used to instantiate ``BeatwiseQSchemaItem`` instances,
-    will apply those settings sequentially, starting from time-step ``0``:
+    Instantiating the schema via ``*args`` with a series of either
+    ``BeatwiseQSchemaItem`` instances, or dictionaries which could be used to
+    instantiate ``BeatwiseQSchemaItem`` instances, will apply those settings 
+    sequentially, starting from time-step ``0``:
 
     ::
 
@@ -111,9 +112,10 @@ class BeatwiseQSchema(QSchema):
         >>> q_schema[3]['beatspan']
         Duration(1, 8)
 
-    Similarly, instantiating the schema from a single dictionary, consisting of integer:specification
-    pairs, or a sequence via ``*args`` of (integer, specification) pairs, allows for applying settings to 
-    non-sequential time-steps:
+    Similarly, instantiating the schema from a single dictionary, consisting of
+    integer:specification pairs, or a sequence via ``*args`` of (integer,
+    specification) pairs, allows for applying settings to  non-sequential
+    time-steps:
 
     ::
 

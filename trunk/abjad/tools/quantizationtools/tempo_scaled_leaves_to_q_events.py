@@ -15,7 +15,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
     ::
 
-        >>> source = Staff("c'4 r4. e'8 <g' b' d'' fs''>2")
+        >>> source = Staff("c'4 r4. e'8 <g' b' d''>2")
         >>> source_tempo = contexttools.TempoMark((1, 4), 55)
         >>> for x in quantizationtools.tempo_scaled_leaves_to_q_events(
         ...     source[:], tempo=source_tempo): x
@@ -36,7 +36,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
             )
         quantizationtools.PitchedQEvent(
             durationtools.Offset(36000, 11),
-            (NamedChromaticPitch("g'"), NamedChromaticPitch("b'"), NamedChromaticPitch("d''"), NamedChromaticPitch("fs''")),
+            (NamedChromaticPitch("g'"), NamedChromaticPitch("b'"), NamedChromaticPitch("d''")),
             attachments=()
             )
         quantizationtools.TerminalQEvent(
@@ -55,7 +55,9 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
     # sort by silence and tied leaves
     groups = []
-    for rvalue, rgroup in itertools.groupby(leaves, lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
+    for rvalue, rgroup in itertools.groupby(
+        leaves, 
+        lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
         if rvalue:
             groups.append(list(rgroup))
         else:
@@ -69,7 +71,8 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
 
         # get millisecond cumulative duration
         if tempo is not None:
-            duration = sum([quantizationtools.tempo_scaled_duration_to_milliseconds(x.prolated_duration, tempo)
+            duration = sum([quantizationtools.tempo_scaled_duration_to_milliseconds(
+                x.prolated_duration, tempo)
                 for x in group])
         else:
             duration = sum([quantizationtools.tempo_scaled_duration_to_milliseconds(x.prolated_duration,

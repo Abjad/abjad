@@ -62,9 +62,11 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
         >>> leaftools.make_leaves([14], [(1, 12), (1, 12), (1, 12)])
         [Tuplet(2/3, [d''8, d''8, d''8])]
 
-    Set ``decrease_durations_monotonically=False`` to return tied leaf durations from least to greatest::
+    Set ``decrease_durations_monotonically=False`` to return tied leaf
+    durations from least to greatest::
 
-        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)], decrease_durations_monotonically=False))
+        >>> staff = Staff(leaftools.make_leaves([15], [(13, 16)],
+        ...     decrease_durations_monotonically=False))
         >>> f(staff)
         \new Staff {
             ef''16 ~
@@ -102,7 +104,8 @@ def make_leaves(pitches, durations, decrease_durations_monotonically=True, tie_r
                 decrease_durations_monotonically=decrease_durations_monotonically)
         elif pitch is None:
             leaves = resttools.make_tied_rest(duration, 
-                decrease_durations_monotonically=decrease_durations_monotonically, tie_parts=tie_rests)
+                decrease_durations_monotonically=decrease_durations_monotonically,
+                tie_parts=tie_rests)
         else:
             raise ValueError('Unknown pitch {!r}.'.format(pitch))
         return leaves

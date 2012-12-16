@@ -73,7 +73,8 @@ class MetricalHierarchy(AbjadObject):
 
     ::
 
-        >>> print timesignaturetools.MetricalHierarchy((5, 4), decrease_durations_monotonically=False).pretty_rtm_format
+        >>> print timesignaturetools.MetricalHierarchy((5, 4),
+        ...     decrease_durations_monotonically=False).pretty_rtm_format
         (5/4 (
             (2/4 (
                 1/4
@@ -230,8 +231,10 @@ class MetricalHierarchy(AbjadObject):
             return result
         result = recurse(self.root_node)
         for x in result:
-            start_offset = mathtools.NonreducedFraction(x.start_offset).with_denominator(self.denominator)
-            stop_offset = mathtools.NonreducedFraction(x.stop_offset).with_denominator(self.denominator)
+            start_offset = mathtools.NonreducedFraction(x.start_offset
+                ).with_denominator(self.denominator)
+            stop_offset = mathtools.NonreducedFraction(x.stop_offset
+                ).with_denominator(self.denominator)
             yield start_offset, stop_offset
 
     def __repr__(self):
@@ -252,7 +255,8 @@ class MetricalHierarchy(AbjadObject):
 
         Example 1. Metrical hiearchy with durations that increase monotonically::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), decrease_durations_monotonically=False)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4),
+            ...     decrease_durations_monotonically=False)
 
         ::
 
@@ -273,7 +277,8 @@ class MetricalHierarchy(AbjadObject):
 
         Example 2. Metrical hierarchy with durations that decrease monotonically::
 
-            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4), decrease_durations_monotonically=True)
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((5, 4),
+            ...     decrease_durations_monotonically=True)
 
         ::
 

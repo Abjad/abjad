@@ -98,9 +98,10 @@ class MeasurewiseQSchema(QSchema):
 
     Per-time-step settings can be applied in a variety of ways.
 
-    Instantiating the schema via ``*args`` with a series of either ``MeasurewiseQSchemaItem`` instances,
-    or dictionaries which could be used to instantiate ``MeasurewiseQSchemaItem`` instances,
-    will apply those settings sequentially, starting from time-step ``0``:
+    Instantiating the schema via ``*args`` with a series of either 
+    ``MeasurewiseQSchemaItem`` instances, or dictionaries which could be used
+    to instantiate ``MeasurewiseQSchemaItem`` instances, will apply those
+    settings sequentially, starting from time-step ``0``:
 
     ::
 
@@ -140,9 +141,10 @@ class MeasurewiseQSchema(QSchema):
             definition={   5: None}
             )
 
-    Similarly, instantiating the schema from a single dictionary, consisting of integer:specification
-    pairs, or a sequence via ``*args`` of (integer, specification) pairs, allows for applying settings to 
-    non-sequential time-steps:
+    Similarly, instantiating the schema from a single dictionary, consisting of
+    integer:specification pairs, or a sequence via ``*args`` of (integer,
+    specification) pairs, allows for applying settings to non-sequential
+    time-steps:
 
     ::
 
@@ -217,7 +219,8 @@ class MeasurewiseQSchema(QSchema):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_items', '_lookups', '_search_tree', '_tempo', '_time_signature', '_use_full_measure')
+    __slots__ = ('_items', '_lookups', '_search_tree', '_tempo',
+        '_time_signature', '_use_full_measure')
 
     ### INITIALIZER ###
 

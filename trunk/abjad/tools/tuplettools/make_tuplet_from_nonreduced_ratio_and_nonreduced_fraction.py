@@ -13,32 +13,38 @@ def make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(proportions, (n, d
 
     Return container when no prolation is necessary::
 
-        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
+        ...     [1], (7, 16))
         {c'4..}
 
     Return fixed-duration tuplet when prolation is necessary::
 
-        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
+        ...     [1, 2], (7, 16))
         FixedDurationTuplet(7/16, [c'8, c'4])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
+        ...     [1, 2, 4], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4, 1], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
+        ...     [1, 2, 4, 1], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4, 1, 2], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
+        ...     [1, 2, 4, 1, 2], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8])
 
     ::
 
-        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction([1, 2, 4, 1, 2, 4], (7, 16))
+        >>> tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction(
+        ...     [1, 2, 4, 1, 2, 4], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8, c'4])
 
     .. note:: function interprets `d` as tuplet denominator.
