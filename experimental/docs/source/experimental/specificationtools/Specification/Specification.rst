@@ -15,6 +15,18 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.contexts
 
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.duration
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.is_well_formed
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.offsets
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_name
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_specification
@@ -24,6 +36,14 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.single_context_settings
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.single_context_settings_by_context
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.start_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.stop_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.storage_format
 
@@ -40,7 +60,7 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.divide_timespan_by_ratio
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.divide_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -58,7 +78,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.request_time_signatures
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.scale_timespan
+.. automethod:: experimental.specificationtools.Specification.Specification.Specification.scale
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

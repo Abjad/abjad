@@ -9,9 +9,29 @@ symbolictimetools.SymbolicTimespan
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.duration
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_well_formed
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.offsets
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.score_specification
 
     Inherited from :py:class:`SymbolicTimeObject.SymbolicTimeObject <experimental.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.start_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.stop_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.storage_format
 
@@ -24,9 +44,9 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.adjust_timespan_offsets
 
-.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_timespan_by_ratio
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_by_ratio
 
-.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.scale_timespan
+.. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.scale
 
 .. automethod:: experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_background_measures
 

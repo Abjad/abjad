@@ -121,7 +121,7 @@
 
 22. Add some tests to show this:
         segment = red_segment.select()
-        first_half_of_red_segment = segment.divide_timespan_by_ratio((1, 1))[0]
+        first_half_of_red_segment = segment.divide_by_ratio((1, 1))[0]
         measures = score_specification.select_background_measures(anchor=first_half_of_red_segment)
     This will show measures that start during the first half of a segment.
 
@@ -158,10 +158,5 @@
         Specification.request_rhythm() ==> Specification.select_rhythm()
         Specification.request_time_signatures() ==> Specification.select_time_signatures()
 
-30. Consolidate timespan modification interface according to message in commit history.
-
-31. Implement timespan modification interface on timespantools.Timespan.
-    Possibly have SymbolicTimepan inherit from Timespan.
-
-32. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
+30. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
     and BackgroundMeasureSelector.

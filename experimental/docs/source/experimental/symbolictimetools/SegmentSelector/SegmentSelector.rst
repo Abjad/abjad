@@ -13,9 +13,21 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.duration
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.identifiers
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_well_formed
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.offsets
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.score_specification
 
@@ -29,11 +41,19 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.start_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stop_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stop_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
 
@@ -54,7 +74,7 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.divide_timespan_by_ratio
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.divide_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -66,7 +86,7 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.scale_timespan
+.. automethod:: experimental.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.scale
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

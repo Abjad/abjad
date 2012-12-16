@@ -8,10 +8,11 @@ from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
+from abjad.tools.timespantools.Timespan import Timespan
 from experimental.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
 
 
-class SymbolicTimespan(SymbolicTimeObject):
+class SymbolicTimespan(Timespan, SymbolicTimeObject):
     r'''.. versionadded:: 1.0
 
     Abstract base class from which conrete symbolic timespans inherit.
@@ -25,6 +26,7 @@ class SymbolicTimespan(SymbolicTimeObject):
 
     def __init__(self, timespan_modifications=None):
         from experimental import specificationtools
+        Timespan.__init__(self)
         SymbolicTimeObject.__init__(self)
         timespan_modifications = timespan_modifications or []
         self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
@@ -92,7 +94,7 @@ class SymbolicTimespan(SymbolicTimeObject):
         return copy.deepcopy(self)
 
     # TODO: rename to self._divide_timespan() and accept integer (in addition to ratio)
-    def _divide_timespan_by_ratio(self, start_offset, stop_offset, ratio, the_part):
+    def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
         duration_shards = mathtools.divide_number_by_ratio(original_duration, ratio)
@@ -123,7 +125,7 @@ class SymbolicTimespan(SymbolicTimeObject):
                 filtered_result.append(string)
         return filtered_result
 
-    def _scale_timespan(self, start_offset, stop_offset, multiplier):
+    def _scale(self, start_offset, stop_offset, multiplier):
         assert 0 < multiplier
         duration = stop_offset - start_offset
         new_duration = multiplier * duration
@@ -221,25 +223,25 @@ class SymbolicTimespan(SymbolicTimeObject):
         return result
 
     # TODO: rename to self.divide_timespan() and accept integer (in addition to ratio)
-    def divide_timespan_by_ratio(self, ratio):
+    def divide_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = self._clone()
             timespan_modification = \
-                'self._divide_timespan_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
+                'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
             timespan_modification = timespan_modification.format(ratio, part)
             new_symbolic_timespan.timespan_modifications.append(timespan_modification)
             result.append(new_symbolic_timespan)
         return tuple(result)
 
-    def scale_timespan(self, multiplier):
+    def scale(self, multiplier):
         '''Scale timespan duration by `multiplier`.
 
         Return copy of timespan with appended modification.
         '''
         multiplier = durationtools.Multiplier(multiplier)
         timespan_modification = \
-            'self._scale_timespan(original_start_offset, original_stop_offset, {!r})'
+            'self._scale(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(multiplier)
         result = self._clone()
         result.timespan_modifications.append(timespan_modification)

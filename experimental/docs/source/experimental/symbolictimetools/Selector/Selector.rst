@@ -11,7 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.anchor
 
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.duration
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.identifiers
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.is_well_formed
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.offsets
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.score_specification
 
@@ -21,9 +33,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_identifier
 
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.start_segment_identifier
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.stop_identifier
+
+.. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.stop_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.Selector.Selector.Selector.storage_format
 
@@ -42,7 +62,7 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.divide_timespan_by_ratio
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.divide_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -50,7 +70,7 @@ Methods
 
 .. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.partition_objects_by_ratio_of_durations
 
-.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.scale_timespan
+.. automethod:: experimental.symbolictimetools.Selector.Selector.Selector.scale
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

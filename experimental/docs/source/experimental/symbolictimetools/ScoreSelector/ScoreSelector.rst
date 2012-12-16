@@ -13,9 +13,21 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.duration
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.identifiers
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.is_well_formed
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.offsets
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.score_specification
 
@@ -29,6 +41,10 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_segment_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
@@ -36,6 +52,10 @@ Read-only Properties
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stop_identifier
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stop_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.storage_format
 
@@ -56,7 +76,7 @@ Methods
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.divide_timespan_by_ratio
+.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.divide_by_ratio
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
@@ -68,7 +88,7 @@ Methods
 
     Inherited from :py:class:`Selector.Selector <experimental.symbolictimetools.Selector.Selector.Selector>`
 
-.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.scale_timespan
+.. automethod:: experimental.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.scale
 
     Inherited from :py:class:`SymbolicTimespan.SymbolicTimespan <experimental.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
