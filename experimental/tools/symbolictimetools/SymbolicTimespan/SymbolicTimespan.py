@@ -9,7 +9,7 @@ from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
 from abjad.tools.timespantools.Timespan import Timespan
-from experimental.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
+from experimental.tools.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
 
 
 class SymbolicTimespan(Timespan, SymbolicTimeObject):

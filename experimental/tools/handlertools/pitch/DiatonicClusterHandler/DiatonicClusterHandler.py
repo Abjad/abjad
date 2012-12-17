@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import iterationtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from experimental.handlertools.pitch.PitchHandler import PitchHandler
+from experimental.tools.handlertools.pitch.PitchHandler import PitchHandler
 
 
 class DiatonicClusterHandler(PitchHandler):

@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
-from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
 class Selector(SymbolicTimespan):

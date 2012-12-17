@@ -1,8 +1,8 @@
 from abjad.tools import *
 from experimental import *
-from experimental.settingtools.SingleContextSetting import SingleContextSetting
-from experimental.settingtools.SingleContextSettingInventory import SingleContextSettingInventory
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.tools.settingtools.SingleContextSetting import SingleContextSetting
+from experimental.tools.settingtools.SingleContextSettingInventory import SingleContextSettingInventory
+from experimental.tools.specificationtools.ScoreSpecification import ScoreSpecification
 
 
 def test_SingleContextSettingInventory___repr___01():

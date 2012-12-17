@@ -7,7 +7,7 @@ class Domain(AbjadObject):
 
     ::
 
-        >>> from experimental.constrainttools import Domain
+        >>> from experimental.tools.constrainttools import Domain
     
     May be instantiated from a non-empty sequence of non-empty sequences.
 

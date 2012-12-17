@@ -5,7 +5,7 @@ from experimental import helpertools
 from experimental import requesttools
 from experimental import settingtools
 from experimental import symbolictimetools
-from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
 class Specification(SymbolicTimespan):

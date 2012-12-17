@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import iterationtools
 from abjad.tools import marktools
-from experimental.handlertools.dynamics.DynamicHandler import DynamicHandler
+from experimental.tools.handlertools.dynamics.DynamicHandler import DynamicHandler
 
 
 class ReiteratedDynamicHandler(DynamicHandler):

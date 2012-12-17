@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
 from experimental import symbolictimetools
-from experimental.requesttools.Request import Request
+from experimental.tools.requesttools.Request import Request
 
 
 class MaterialRequest(Request):

@@ -4,7 +4,7 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from experimental import helpertools
-from experimental.symbolictimetools.VoiceSelector import VoiceSelector
+from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
 class CounttimeComponentSelector(VoiceSelector):

@@ -8,7 +8,7 @@ from experimental import requesttools
 from experimental import settingtools
 from experimental import specificationtools
 from experimental import symbolictimetools
-from experimental.interpretertools.Interpreter import Interpreter
+from experimental.tools.interpretertools.Interpreter import Interpreter
 
 
 class ConcreteInterpreter(Interpreter):

@@ -7,7 +7,7 @@ from abjad.tools import iterationtools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools import wellformednesstools
-from experimental.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
+from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
 
 class OffsetPositionedRhythmExpression(OffsetPositionedExpression):

@@ -3,7 +3,7 @@ from experimental import divisiontools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental.symbolictimetools.VoiceSelector import VoiceSelector
+from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
 class DivisionSelector(VoiceSelector):

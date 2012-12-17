@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import sequencetools
-from experimental.handlertools.articulations.ArticulationHandler import ArticulationHandler
+from experimental.tools.handlertools.articulations.ArticulationHandler import ArticulationHandler
 
 
 class StemTremoloHandler(ArticulationHandler):

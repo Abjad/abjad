@@ -1,9 +1,9 @@
 from abjad.tools import *
 from experimental import *
-from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
-from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.symbolictimetools.SymbolicOffset import SymbolicOffset
+from experimental.tools.settingtools.MultipleContextSetting import MultipleContextSetting
+from experimental.tools.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
+from experimental.tools.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.tools.symbolictimetools.SymbolicOffset import SymbolicOffset
 
 
 def test_MultipleContextSettingInventory_storage_format_01():

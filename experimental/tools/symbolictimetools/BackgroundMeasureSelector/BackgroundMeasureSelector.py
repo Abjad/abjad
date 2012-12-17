@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-from experimental.symbolictimetools.Selector import Selector
+from experimental.tools.symbolictimetools.Selector import Selector
 
 
 class BackgroundMeasureSelector(Selector):

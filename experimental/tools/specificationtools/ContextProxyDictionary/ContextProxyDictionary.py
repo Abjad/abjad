@@ -3,7 +3,7 @@ from abjad.tools import iterationtools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import settingtools
-from experimental.specificationtools.ContextProxy import ContextProxy
+from experimental.tools.specificationtools.ContextProxy import ContextProxy
 
 
 class ContextProxyDictionary(AbjadObject, OrderedDict):

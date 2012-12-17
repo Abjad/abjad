@@ -1,11 +1,11 @@
 import numbers
 from abjad.tools import *
-from experimental.exceptions import *
+from experimental.tools.exceptions import *
 from experimental import helpertools
 from experimental import requesttools
 from experimental import settingtools
 from experimental import symbolictimetools
-from experimental.specificationtools.Specification import Specification
+from experimental.tools.specificationtools.Specification import Specification
 
 
 class SegmentSpecification(Specification):

@@ -1,4 +1,4 @@
-from experimental.constrainttools._Constraint._Constraint import _Constraint
+from experimental.tools.constrainttools._Constraint._Constraint import _Constraint
 
 
 class _AbsoluteConstraint(_Constraint):

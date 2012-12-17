@@ -1,9 +1,9 @@
 import random
 
-from experimental.constrainttools.Domain import Domain
-from experimental.constrainttools._Constraint._Constraint import _Constraint
-from experimental.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
-from experimental.constrainttools._Solver._Solver import _Solver
+from experimental.tools.constrainttools.Domain import Domain
+from experimental.tools.constrainttools._Constraint._Constraint import _Constraint
+from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
+from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 
 class VariableLengthStreamSolver(_Solver):
@@ -21,7 +21,7 @@ class VariableLengthStreamSolver(_Solver):
 
     ::
 
-        >>> from experimental.constrainttools import *
+        >>> from experimental.tools.constrainttools import *
         >>> domain = Domain([1, 2, 3, 4], 1)
         >>> target_sum = GlobalConstraint(lambda x: sum(x) == 5)
         >>> boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)

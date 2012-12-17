@@ -1,6 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental import helpertools
-from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
+from experimental.tools.settingtools.MultipleContextSetting import MultipleContextSetting
 
 
 class MultipleContextSettingInventory(ObjectInventory):

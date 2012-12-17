@@ -1,4 +1,4 @@
-from experimental.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
+from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
 
 
 class GlobalReferenceConstraint(_GlobalConstraint):
@@ -6,7 +6,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
 
     ::
 
-        >>> from experimental.constrainttools import GlobalReferenceConstraint
+        >>> from experimental.tools.constrainttools import GlobalReferenceConstraint
     
     Its predicate function should accept two arguments, the first being the
     current solution, and the second for the external reference provided at

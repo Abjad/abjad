@@ -1,5 +1,5 @@
 import copy
-from experimental.settingtools.Command import Command
+from experimental.tools.settingtools.Command import Command
 
 
 class RhythmCommand(Command):

@@ -1,5 +1,5 @@
 from abjad.tools import abctools
-from experimental.symbolictimetools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
 class MixedSourceSymbolicTimespan(SymbolicTimespan):

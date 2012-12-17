@@ -1,5 +1,5 @@
 from experimental import statalservertools
-from experimental.requesttools.Request import Request
+from experimental.tools.requesttools.Request import Request
 
 
 class StatalServerRequest(Request):

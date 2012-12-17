@@ -1,4 +1,4 @@
-from experimental.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
+from experimental.tools.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
 
 
 class GlobalConstraint(_GlobalConstraint):
@@ -6,7 +6,7 @@ class GlobalConstraint(_GlobalConstraint):
 
     ::
 
-        >>> from experimental.constrainttools import GlobalConstraint
+        >>> from experimental.tools.constrainttools import GlobalConstraint
 
     Instantiated from a function which takes a single argument, representing an
     entire solution.

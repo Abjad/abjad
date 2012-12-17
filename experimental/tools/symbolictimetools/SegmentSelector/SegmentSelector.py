@@ -1,6 +1,6 @@
 from experimental import helpertools
 from experimental import segmenttools
-from experimental.symbolictimetools.Selector import Selector
+from experimental.tools.symbolictimetools.Selector import Selector
 
 
 class SegmentSelector(Selector):

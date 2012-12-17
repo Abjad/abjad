@@ -1,5 +1,5 @@
 from experimental import symbolictimetools
-from experimental.requesttools.Request import Request
+from experimental.tools.requesttools.Request import Request
 
 
 class CommandRequest(Request):

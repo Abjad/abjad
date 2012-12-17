@@ -1,9 +1,9 @@
 import random
 
-from experimental.constrainttools.Domain import Domain
-from experimental.constrainttools._Constraint._Constraint import _Constraint
-from experimental.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
-from experimental.constrainttools._Solver._Solver import _Solver
+from experimental.tools.constrainttools.Domain import Domain
+from experimental.tools.constrainttools._Constraint._Constraint import _Constraint
+from experimental.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
+from experimental.tools.constrainttools._Solver._Solver import _Solver
 
 
 class FixedLengthStreamSolver(_Solver):
@@ -11,10 +11,10 @@ class FixedLengthStreamSolver(_Solver):
 
     ::
 
-        >>> from experimental.constrainttools import FixedLengthStreamSolver
-        >>> from experimental.constrainttools import Domain
-        >>> from experimental.constrainttools import GlobalCountsConstraint
-        >>> from experimental.constrainttools import RelativeIndexConstraint
+        >>> from experimental.tools.constrainttools import FixedLengthStreamSolver
+        >>> from experimental.tools.constrainttools import Domain
+        >>> from experimental.tools.constrainttools import GlobalCountsConstraint
+        >>> from experimental.tools.constrainttools import RelativeIndexConstraint
 
     Instantiates from a ``Domain``, and a sequence of ``Constraints``.
 

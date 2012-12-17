@@ -5,7 +5,7 @@ from experimental import requesttools
 from experimental import settingtools
 from experimental import symbolictimetools
 from abjad.tools import timerelationtools
-from experimental.specificationtools.Specification import Specification
+from experimental.tools.specificationtools.Specification import Specification
 
 
 class ScoreSpecification(Specification):

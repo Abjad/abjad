@@ -1,4 +1,4 @@
-from experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint import _AbsoluteConstraint
+from experimental.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint import _AbsoluteConstraint
 
 
 class AbsoluteIndexConstraint(_AbsoluteConstraint):
@@ -7,7 +7,7 @@ class AbsoluteIndexConstraint(_AbsoluteConstraint):
 
     ::
 
-        >>> from experimental.constrainttools import AbsoluteIndexConstraint
+        >>> from experimental.tools.constrainttools import AbsoluteIndexConstraint
 
     Instantiated from an index, or sequence of indices, and a function which
     takes as many arguments as indices were given:

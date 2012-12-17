@@ -1,5 +1,5 @@
 import copy
-from experimental.settingtools.Setting import Setting
+from experimental.tools.settingtools.Setting import Setting
 
 
 class MultipleContextSetting(Setting):

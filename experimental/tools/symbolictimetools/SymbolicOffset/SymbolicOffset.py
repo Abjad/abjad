@@ -1,5 +1,5 @@
 from abjad.tools import durationtools
-from experimental.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
+from experimental.tools.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
 
 
 class SymbolicOffset(SymbolicTimeObject):
