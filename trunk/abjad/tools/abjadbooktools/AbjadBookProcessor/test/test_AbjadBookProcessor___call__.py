@@ -3,6 +3,7 @@ import shutil
 import py.test
 from abjad.tools import *
 
+
 @py.test.skip('Test runs incredibly slow.')
 def test_AbjadBookProcessor___call___01():
 

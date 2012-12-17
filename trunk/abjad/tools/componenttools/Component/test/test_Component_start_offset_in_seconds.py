@@ -1,11 +1,12 @@
 from abjad import *
 import py.test
-import py
-py.test.skip('update me to use start_offset_in_seconds property.')
+#import py
+#py.test.skip('update me to use start_offset_in_seconds property.')
 
 
 def test_Component_start_offset_in_seconds_01():
-    '''Offset seconds can not calculate without excplit tempo indication.'''
+    '''Offset seconds can not calculate without excplit tempo indication.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
 
@@ -18,17 +19,16 @@ def test_Component_start_offset_in_seconds_01():
     }
     '''
 
-    assert py.test.raises(MissingTempoError,
-        'componenttools.get_component_start_offset_in_seconds(t[0])')
-    assert py.test.raises(MissingTempoError,
-        'componenttools.get_component_stop_offset_in_seconds(t[0])')
+    assert py.test.raises(MissingTempoError, 't[0].start_offset_in_seconds')
+    assert py.test.raises(MissingTempoError, 't[0].start_offset_in_seconds')
 
 
 def test_Component_start_offset_in_seconds_02():
-    '''Offset seconds work with explicit tempo indication.'''
+    '''Offset seconds work with explicit tempo indication.
+    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    contexttools.TempoMark(Duration(1, 8), 48, target_context = Staff)(t)
+    contexttools.TempoMark(Duration(1, 8), 48, target_context=Staff)(t)
 
     r'''
     \new Staff {
@@ -40,5 +40,5 @@ def test_Component_start_offset_in_seconds_02():
     }
     '''
 
-    assert componenttools.get_component_start_offset_in_seconds(t[0]) == Duration(0)
-    assert componenttools.get_component_start_offset_in_seconds(t[1]) == Duration(5, 4)
+    assert t[0].start_offset_in_seconds == Duration(0)
+    assert t[1].start_offset_in_seconds == Duration(5, 4)
