@@ -1,8 +1,8 @@
 Abjad Experimental API
 ======================
 
-Core composition packages
--------------------------
+Demos and example packages
+--------------------------
 
 .. toctree::
    :maxdepth: 1
