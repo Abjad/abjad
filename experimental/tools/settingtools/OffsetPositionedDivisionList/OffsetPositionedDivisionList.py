@@ -8,6 +8,10 @@ from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPos
 class OffsetPositionedDivisionList(OffsetPositionedExpression):
     r'''.. versionadded:: 1.0
 
+    ::
+
+        >>> from experimental.tools import *
+
     Offset-positioned division expression.
 
     Composers do not create offset-positioned division expressions

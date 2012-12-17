@@ -1,6 +1,10 @@
 def yield_prolation_rewrite_pairs(prolated_duration, minimum_written_duration=None):
     r'''.. versionadded:: 2.0
 
+    ::
+
+        >>> from experimental.tools import *
+
     Yield all prolation rewrite pairs of `prolated_duration` in Cantor diagonalized order.
 
     Ensure written duration never less than `minimum_written_duration`.

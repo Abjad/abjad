@@ -5,6 +5,10 @@ from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimesp
 class MixedSourceSymbolicTimespan(SymbolicTimespan):
     r'''.. versionadded:: 1.0
 
+    ::
+
+        >>> from experimental.tools import *
+
     Mixed-source timespan.
 
     Mixed-source timespan starting at the left edge of the last measure

@@ -278,7 +278,7 @@ class ScoreSpecification(Specification):
         r'''Segment specification class of score specification::
 
             >>> score_specification.segment_specification_class
-            <class 'experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
+            <class 'experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
         
         Return segment specification class.
         '''

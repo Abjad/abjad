@@ -5,6 +5,10 @@ from experimental.tools.symbolictimetools.SymbolicTimeObject import SymbolicTime
 class SymbolicOffset(SymbolicTimeObject):
     r'''.. versionadded:: 1.0
 
+    ::
+
+        >>> from experimental.tools import *
+
     Infinitely thin vertical line coincident with an arbitrary object-relative offset in score.
 
     Symbolic offset indicating the left edge of score::

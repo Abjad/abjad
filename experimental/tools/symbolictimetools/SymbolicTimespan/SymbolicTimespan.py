@@ -15,6 +15,10 @@ from experimental.tools.symbolictimetools.SymbolicTimeObject import SymbolicTime
 class SymbolicTimespan(Timespan, SymbolicTimeObject):
     r'''.. versionadded:: 1.0
 
+    ::
+        
+        >>> from experimental.tools import *
+
     Abstract base class from which conrete symbolic timespans inherit.
     '''
 
