@@ -1,4 +1,4 @@
-from experimental import handlertools
+from experimental.tools import handlertools
 from experimental.tools.requesttools.Request import Request
 
 
@@ -7,7 +7,7 @@ class HandlerRequest(Request):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Request `handler`.
 

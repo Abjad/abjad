@@ -12,7 +12,7 @@ class Division(NonreducedFraction, BoundedObject):
 
     Initialize from string::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 

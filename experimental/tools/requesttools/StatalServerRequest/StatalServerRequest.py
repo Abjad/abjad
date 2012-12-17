@@ -1,4 +1,4 @@
-from experimental import statalservertools
+from experimental.tools import statalservertools
 from experimental.tools.requesttools.Request import Request
 
 
@@ -7,7 +7,7 @@ class StatalServerRequest(Request):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Request `statal_server`.
 

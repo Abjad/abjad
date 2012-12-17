@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental import *
+from experimental.tools import *
 from experimental.tools.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.tools.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.tools.specificationtools.ScoreSpecification import ScoreSpecification

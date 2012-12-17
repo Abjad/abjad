@@ -1,9 +1,9 @@
 import re
 from abjad.tools import *
-from experimental import helpertools
-from experimental import requesttools
-from experimental import settingtools
-from experimental import symbolictimetools
+from experimental.tools import helpertools
+from experimental.tools import requesttools
+from experimental.tools import settingtools
+from experimental.tools import symbolictimetools
 from abjad.tools import timerelationtools
 from experimental.tools.specificationtools.Specification import Specification
 
@@ -13,7 +13,7 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Score specification::
 
@@ -32,7 +32,7 @@ class ScoreSpecification(Specification):
     ### INITIALIZER ###
 
     def __init__(self, score_template):
-        from experimental import specificationtools
+        from experimental.tools import specificationtools
         Specification.__init__(self, self, score_template)
         self._all_division_region_commands = []
         self._all_rhythm_quintuples = []
@@ -472,7 +472,7 @@ class ScoreSpecification(Specification):
 
         Return Abjad score object.
         '''
-        from experimental import interpretertools
+        from experimental.tools import interpretertools
 
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)

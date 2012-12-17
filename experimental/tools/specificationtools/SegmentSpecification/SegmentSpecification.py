@@ -1,10 +1,10 @@
 import numbers
 from abjad.tools import *
 from experimental.tools.exceptions import *
-from experimental import helpertools
-from experimental import requesttools
-from experimental import settingtools
-from experimental import symbolictimetools
+from experimental.tools import helpertools
+from experimental.tools import requesttools
+from experimental.tools import settingtools
+from experimental.tools import symbolictimetools
 from experimental.tools.specificationtools.Specification import Specification
 
 
@@ -13,7 +13,7 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     The examples below reference the following segment specification::
 

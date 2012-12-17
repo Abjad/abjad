@@ -1,5 +1,5 @@
 from abjad.tools import durationtools
-from experimental import divisiontools
+from experimental.tools import divisiontools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
@@ -11,7 +11,7 @@ class DivisionSelector(VoiceSelector):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Select all divisions that start during score::
 

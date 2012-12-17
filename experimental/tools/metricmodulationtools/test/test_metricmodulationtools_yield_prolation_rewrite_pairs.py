@@ -1,5 +1,5 @@
 from abjad import *
-from experimental import *
+from experimental.tools import *
 
 
 def test_metricmodulationtools_yield_prolation_rewrite_pairs_01():

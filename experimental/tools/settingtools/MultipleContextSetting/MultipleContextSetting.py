@@ -8,7 +8,7 @@ class MultipleContextSetting(Setting):
     Multiple-context setting::
     
         >>> from abjad.tools import *
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Set `attribute` to `request` for multiple-context `anchor`:: 
 
@@ -64,7 +64,7 @@ class MultipleContextSetting(Setting):
     ### PUBLIC METHODS ###
 
     def unpack(self):
-        from experimental import settingtools
+        from experimental.tools import settingtools
         single_context_settings = []
         for context_name in self.context_names:
             anchor = copy.deepcopy(self.anchor)

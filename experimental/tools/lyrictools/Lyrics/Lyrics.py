@@ -6,7 +6,7 @@ class Lyrics(Context):
 
     ::
 
-        >>> from experimental import lyrictools
+        >>> from experimental.tools import lyrictools
         >>> lyrics = lyrictools.Lyrics()
 
     ::

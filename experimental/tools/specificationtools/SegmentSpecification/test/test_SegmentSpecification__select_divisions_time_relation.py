@@ -1,5 +1,5 @@
 from abjad import *
-from experimental import *
+from experimental.tools import *
 
 
 def test_SegmentSpecification__select_divisions_time_relation_01():

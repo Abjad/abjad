@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental import specificationtools
+from experimental.tools import specificationtools
 
 
 def test_ScoreSpecification_single_context_settings_01():

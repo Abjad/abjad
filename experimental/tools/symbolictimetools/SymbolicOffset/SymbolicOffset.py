@@ -131,8 +131,8 @@ class SymbolicOffset(SymbolicTimeObject):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
-        from experimental import specificationtools
-        from experimental import symbolictimetools
+        from experimental.tools import specificationtools
+        from experimental.tools import symbolictimetools
         SymbolicTimeObject.__init__(self)
         assert isinstance(anchor, (
             symbolictimetools.SymbolicTimespan, 

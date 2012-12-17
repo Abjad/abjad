@@ -1,5 +1,5 @@
 import copy
-from experimental import helpertools
+from experimental.tools import helpertools
 from experimental.tools.settingtools.Setting import Setting
 
 
@@ -8,7 +8,7 @@ class SingleContextSetting(Setting):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Single-context setting.
 

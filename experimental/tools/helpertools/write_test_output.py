@@ -6,7 +6,7 @@ def write_test_output(score, full_file_name, test_function_name,
     cache_ly=False, cache_pdf=False, go=False, render_pdf=False):
     r'''.. versionadded:: 1.0
     '''
-    from experimental import helpertools
+    from experimental.tools import helpertools
     if go: cache_ly = cache_pdf = render_pdf = True
     if not any([cache_ly, cache_pdf, render_pdf]):
         return

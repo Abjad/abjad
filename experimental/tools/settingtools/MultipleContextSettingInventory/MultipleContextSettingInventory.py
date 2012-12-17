@@ -1,5 +1,5 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental import helpertools
+from experimental.tools import helpertools
 from experimental.tools.settingtools.MultipleContextSetting import MultipleContextSetting
 
 

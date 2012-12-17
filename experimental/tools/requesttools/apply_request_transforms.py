@@ -18,9 +18,9 @@ def apply_request_transforms(request, payload):
     
     Return `payload`.
     '''
-    from experimental import interpretertools
-    from experimental import requesttools
-    from experimental import settingtools
+    from experimental.tools import interpretertools
+    from experimental.tools import requesttools
+    from experimental.tools import settingtools
 
     request_klasses = (
         requesttools.Request, 

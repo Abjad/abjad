@@ -25,7 +25,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
     ### INITIALIZER ###
 
     def __init__(self, timespan_modifications=None):
-        from experimental import specificationtools
+        from experimental.tools import specificationtools
         Timespan.__init__(self)
         SymbolicTimeObject.__init__(self)
         timespan_modifications = timespan_modifications or []
@@ -155,8 +155,8 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True, truncate=None):
-        from experimental import requesttools
-        from experimental import settingtools
+        from experimental.tools import requesttools
+        from experimental.tools import settingtools
         request = requesttools.expr_to_request(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
@@ -264,7 +264,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        from experimental import symbolictimetools
+        from experimental.tools import symbolictimetools
         timespan = symbolictimetools.BackgroundMeasureSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
@@ -293,7 +293,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        from experimental import symbolictimetools
+        from experimental.tools import symbolictimetools
         timespan = symbolictimetools.DivisionSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
@@ -325,7 +325,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        from experimental import symbolictimetools
+        from experimental.tools import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
@@ -361,7 +361,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        from experimental import symbolictimetools
+        from experimental.tools import symbolictimetools
         timespan = symbolictimetools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 

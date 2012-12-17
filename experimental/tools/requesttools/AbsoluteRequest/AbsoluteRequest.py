@@ -6,7 +6,7 @@ class AbsoluteRequest(Request):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Absolute request::
 

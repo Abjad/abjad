@@ -3,7 +3,7 @@ def expr_to_segment_name(expr):
     
     Change segment specification to segment name::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 
@@ -31,7 +31,7 @@ def expr_to_segment_name(expr):
 
     Return string.
     '''
-    from experimental import specificationtools
+    from experimental.tools import specificationtools
     if isinstance(expr, specificationtools.SegmentSpecification):
         return expr.segment_name
     elif isinstance(expr, str):

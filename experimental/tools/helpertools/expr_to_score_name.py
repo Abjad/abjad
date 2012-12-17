@@ -3,7 +3,7 @@ def expr_to_score_name(expr):
     
     Change score specification to score specification name::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 
@@ -34,7 +34,7 @@ def expr_to_score_name(expr):
     Return string.
     '''
     from abjad.tools import scoretools
-    from experimental import specificationtools
+    from experimental.tools import specificationtools
 
     if isinstance(expr, specificationtools.ScoreSpecification):
         return expr.score_name

@@ -3,7 +3,7 @@ from abjad.tools import iterationtools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
-from experimental import helpertools
+from experimental.tools import helpertools
 from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
@@ -12,7 +12,7 @@ class CounttimeComponentSelector(VoiceSelector):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Select the first five counttime components::
 
@@ -76,7 +76,7 @@ class CounttimeComponentSelector(VoiceSelector):
     def __init__(self, anchor=None, klass=None, predicate=None, 
         start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None,
         timespan_modifications=None, selector_modifications=None):
-        from experimental import symbolictimetools
+        from experimental.tools import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         VoiceSelector.__init__(self, 

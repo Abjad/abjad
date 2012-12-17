@@ -1,4 +1,4 @@
-from experimental import helpertools
+from experimental.tools import helpertools
 
 
 def set_transforms_on_request(request, index=None, count=None, reverse=None, rotation=None):
@@ -8,7 +8,7 @@ def set_transforms_on_request(request, index=None, count=None, reverse=None, rot
 
     Return `request`.
     '''
-    from experimental import requesttools
+    from experimental.tools import requesttools
 
     # check input
     assert isinstance(request, requesttools.Request)

@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental import helpertools
+from experimental.tools import helpertools
 
 
 class DivisionList(AbjadObject):
@@ -16,7 +16,7 @@ class DivisionList(AbjadObject):
     The best way to show this is with an example::
 
         >>> from abjad import *
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 
@@ -73,7 +73,7 @@ class DivisionList(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, divisions, voice_name=None):
-        from experimental import divisiontools
+        from experimental.tools import divisiontools
         assert isinstance(divisions, list), repr(divisions)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._divisions = [divisiontools.Division(x) for x in divisions]

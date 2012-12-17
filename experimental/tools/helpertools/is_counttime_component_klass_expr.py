@@ -13,7 +13,7 @@ def is_counttime_component_klass_expr(expr):
 
     True when `expr` is a tuple of one or more of these.
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 

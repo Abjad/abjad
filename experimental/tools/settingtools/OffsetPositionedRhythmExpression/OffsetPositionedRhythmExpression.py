@@ -119,7 +119,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
         Operate in place and return none.
         '''
-        from experimental import settingtools
+        from experimental.tools import settingtools
         if isinstance(n, int):
             leaves = sequencetools.CyclicTuple(self.music.leaves)
             if 0 < n:

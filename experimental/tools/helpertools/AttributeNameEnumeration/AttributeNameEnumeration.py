@@ -6,7 +6,7 @@ class AttributeNameEnumeration(OrderedDict):
 
     The allowable attribute names known to the ``specificationtools`` classes::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 

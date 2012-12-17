@@ -1,7 +1,7 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import sequencetools
-from experimental import divisiontools
+from experimental.tools import divisiontools
 from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPositionedExpression
 
 

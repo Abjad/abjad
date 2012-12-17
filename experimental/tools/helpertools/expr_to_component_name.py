@@ -3,7 +3,7 @@ def expr_to_component_name(expr):
     
     Change component to component name::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     ::
 

@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
-from experimental import symbolictimetools
+from experimental.tools import symbolictimetools
 from experimental.tools.requesttools.Request import Request
 
 
@@ -9,7 +9,7 @@ class MaterialRequest(Request):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Request `attribute` for `anchor` in `voice_name`.
 

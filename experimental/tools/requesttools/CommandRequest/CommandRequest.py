@@ -1,4 +1,4 @@
-from experimental import symbolictimetools
+from experimental.tools import symbolictimetools
 from experimental.tools.requesttools.Request import Request
 
 
@@ -7,7 +7,7 @@ class CommandRequest(Request):
 
     Request `attribute` command active at `symbolic_offset` in `voice_name`::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Example. Request division command active at start of measure 4 in ``'Voice 1'``::
 

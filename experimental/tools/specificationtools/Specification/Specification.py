@@ -1,10 +1,10 @@
 import abc
 import numbers
 from abjad.tools import *
-from experimental import helpertools
-from experimental import requesttools
-from experimental import settingtools
-from experimental import symbolictimetools
+from experimental.tools import helpertools
+from experimental.tools import requesttools
+from experimental.tools import settingtools
+from experimental.tools import symbolictimetools
 from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
@@ -13,7 +13,7 @@ class Specification(SymbolicTimespan):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Abstract base class from which concrete specification classes inherit.
 
@@ -52,7 +52,7 @@ class Specification(SymbolicTimespan):
 
     @abc.abstractmethod
     def __init__(self, score_specification, score_template):
-        from experimental import specificationtools
+        from experimental.tools import specificationtools
         SymbolicTimespan.__init__(self)
         self._score_specification = score_specification
         self._score_template = score_template

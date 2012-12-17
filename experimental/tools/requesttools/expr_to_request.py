@@ -22,9 +22,9 @@ def expr_to_request(expr):
 
     ... as output.
     '''
-    from experimental import handlertools
-    from experimental import requesttools
-    from experimental import statalservertools
+    from experimental.tools import handlertools
+    from experimental.tools import requesttools
+    from experimental.tools import statalservertools
 
     # TODO: maybe this line is safe to remove
     #expr = copy.deepcopy(expr)

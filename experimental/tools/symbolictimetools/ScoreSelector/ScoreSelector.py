@@ -1,5 +1,5 @@
-from experimental import helpertools
-from experimental import segmenttools
+from experimental.tools import helpertools
+from experimental.tools import segmenttools
 from experimental.tools.symbolictimetools.Selector import Selector
 
 
@@ -8,7 +8,7 @@ class ScoreSelector(Selector):
 
     ::
 
-        >>> from experimental import *
+        >>> from experimental.tools import *
 
     Score selector::
 
