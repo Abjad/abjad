@@ -1,3 +1,23 @@
+Abjad 2.11
+    Date of package: 2012-12-17
+    Revision of Abjad repository: r8366
+
+    Packaging environment:
+        1. uname -v:
+        2. svn --version:
+        3. python --version:
+        4. pip --version:
+        5. py.test --version:
+        6. sphinx-build --version
+        7. lilypond --version
+        8. py.test test results:
+        9. doctest test results:
+       10. sanity check test results: 
+       11. HTML build results:
+       12. LaTeX build results:
+       13. PDF build results:
+
+
 Abjad 2.10
     Date of package: 2012-10-05
     Revision of Abjad repository: r7615
