@@ -37,14 +37,17 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, voice_name, anchor, time_relation=None,
+    def __init__(self, attribute, voice_name, anchor, 
+        modifications=None,
+        time_relation=None,
         index=None, count=None, reverse=None, rotation=None):
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__( self, index=index, count=count, reverse=reverse, rotation=rotation)
+        Request.__init__(self, modifications=modifications, 
+            index=index, count=count, reverse=reverse, rotation=rotation)
         self._attribute = attribute
         self._voice_name = voice_name
         self._anchor = anchor

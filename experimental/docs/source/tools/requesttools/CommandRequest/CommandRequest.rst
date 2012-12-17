@@ -19,6 +19,10 @@ Read-only Properties
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
+.. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.modifications
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.reverse
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
@@ -36,6 +40,13 @@ Read-only Properties
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.symbolic_offset
 
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.voice_name
+
+Methods
+-------
+
+.. automethod:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.rotate
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 Special Methods
 ---------------
