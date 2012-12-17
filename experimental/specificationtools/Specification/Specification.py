@@ -51,9 +51,10 @@ class Specification(SymbolicTimespan):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, score_template):
+    def __init__(self, score_specification, score_template):
         from experimental import specificationtools
         SymbolicTimespan.__init__(self)
+        self._score_specification = score_specification
         self._score_template = score_template
         self._abbreviated_context_names = []
         self._context_names = []

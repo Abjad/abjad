@@ -23,8 +23,8 @@ class ScoreSpecification(Specification):
     With three named segments::
 
         >>> red_segment = score_specification.append_segment(name='red')
-        >>> orange_segment = score_specification.append_segment('orange')
-        >>> yellow_segment = score_specification.append_segment('yellow')
+        >>> orange_segment = score_specification.append_segment(name='orange')
+        >>> yellow_segment = score_specification.append_segment(name='yellow')
 
     All score specification properties are read-only.
     '''
@@ -33,7 +33,7 @@ class ScoreSpecification(Specification):
 
     def __init__(self, score_template):
         from experimental import specificationtools
-        Specification.__init__(self, score_template)
+        Specification.__init__(self, self, score_template)
         self._all_division_region_commands = []
         self._all_rhythm_quintuples = []
         self._all_rhythm_region_commands = []

@@ -36,9 +36,7 @@ class SegmentSpecification(Specification):
 
     def __init__(self, score_specification, score_template, segment_name):
         assert isinstance(segment_name, str), segment_name
-        # TODO: make score_specification a Specification initializer value
-        Specification.__init__(self, score_template)
-        self._score_specification = score_specification
+        Specification.__init__(self, score_specification, score_template)
         self._score_model = self.score_template()
         self._segment_name = segment_name
         self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
@@ -298,5 +296,8 @@ class SegmentSpecification(Specification):
 
         Return segment selector.
         '''
-        return symbolictimetools.SegmentSelector(
-            start_identifier=self.specification_name, stop_identifier=(self.specification_name, 1))
+        selector = symbolictimetools.SegmentSelector(
+            start_identifier=self.specification_name, 
+            stop_identifier=(self.specification_name, 1))
+        selector._score_specification = self.score_specification
+        return selector

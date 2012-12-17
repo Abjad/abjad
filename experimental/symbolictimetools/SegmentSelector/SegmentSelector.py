@@ -91,6 +91,19 @@ class SegmentSelector(Selector):
 
     ### PRIVATE METHODS ###
 
+    def _get_offsets(self, score_specification, context_name):
+        '''Evaluate start and stop offsets of selector when applied
+        to `score_specification`.
+
+        Ignore `context_name`.
+
+        Return offset.
+        '''
+        offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
+        start_offset, stop_offset = offsets
+        offsets = self._apply_timespan_modifications(start_offset, stop_offset)
+        return offsets
+
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)
         assert isinstance(addendum, int)
@@ -112,18 +125,3 @@ class SegmentSelector(Selector):
         '''Temporary hack. Generalize later.
         '''
         return self.start_identifier
-
-    ### PUBLIC METHODS ###
-
-    def _get_offsets(self, score_specification, context_name):
-        '''Evaluate start and stop offsets of selector when applied
-        to `score_specification`.
-
-        Ignore `context_name`.
-
-        Return offset.
-        '''
-        offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
-        start_offset, stop_offset = offsets
-        offsets = self._apply_timespan_modifications(start_offset, stop_offset)
-        return offsets

@@ -10,7 +10,8 @@ def test_SegmentSelector__divide_by_ratio_01():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     second_half_of_segment = red_segment.divide_by_ratio((1, 1))[-1]
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=second_half_of_segment)
+    #red_segment.set_divisions([(3, 16)], timespan=second_half_of_segment)
+    second_half_of_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 

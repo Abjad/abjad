@@ -35,6 +35,19 @@ class Selector(SymbolicTimespan):
         selector_modifications = selector_modifications or []
         self._selector_modifications = datastructuretools.ObjectInventory(selector_modifications)
 
+    ### SPECIAL METHODS ###
+
+    def __deepcopy__(self, memo):
+        result = type(self)(
+            anchor=self.anchor,
+            start_identifier=self.start_identifier,
+            stop_identifier=self.stop_identifier,
+            time_relation=self.time_relation,
+            timespan_modifications=self.timespan_modifications,
+            selector_modifications=self.selector_modifications)
+        result._score_specification = self.score_specification
+        return result
+
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
