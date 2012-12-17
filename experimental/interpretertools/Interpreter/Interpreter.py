@@ -81,18 +81,8 @@ class Interpreter(AbjadObject):
                     single_context_setting, clear_persistent_first=False)
 
     def unpack_multiple_context_settings_for_score(self):
-        # this branch is the older branch ... can it eventually be removed?
-        for segment_specification in self.score_specification.segment_specifications:
-            settings = self.unpack_multiple_context_settings_for_segment(segment_specification)
-            self.score_specification.single_context_settings.extend(settings)
-        # this branch is shiny and new
         for multiple_context_setting in self.score_specification.multiple_context_settings:
             segment_specification = self.get_start_segment_specification(multiple_context_setting.anchor)
             single_context_settings = multiple_context_setting.unpack()
             segment_specification.single_context_settings.extend(single_context_settings)
             self.score_specification.single_context_settings.extend(single_context_settings)
-        
-    def unpack_multiple_context_settings_for_segment(self, segment_specification):
-        for multiple_context_setting in segment_specification.multiple_context_settings:
-            segment_specification.single_context_settings.extend(multiple_context_setting.unpack())
-        return segment_specification.single_context_settings

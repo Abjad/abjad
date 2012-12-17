@@ -138,10 +138,6 @@ Methods
 
     Inherited from :py:class:`Interpreter.Interpreter <experimental.interpretertools.Interpreter.Interpreter.Interpreter>`
 
-.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.unpack_multiple_context_settings_for_segment
-
-    Inherited from :py:class:`Interpreter.Interpreter <experimental.interpretertools.Interpreter.Interpreter.Interpreter>`
-
 Special Methods
 ---------------
 

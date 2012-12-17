@@ -150,7 +150,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return new_start_offset, new_stop_offset
 
     # TODO: Remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
-    #       This means that one fewer parameter will be passed into this method.
+    #       This means that one fewer parameters will be passed into this method.
     def _store_multiple_context_setting(self, attribute, source,
         contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
@@ -158,11 +158,8 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         from experimental import requesttools
         from experimental import settingtools
         request = requesttools.expr_to_request(source)
-        #assert self.score_specification is not None
-        if hasattr(self, '_context_token_to_context_names'):
-            context_names = self._context_token_to_context_names(contexts)
-        else:
-            context_names = self.score_specification._context_token_to_context_names(contexts)
+        assert self.score_specification is not None
+        context_names = self.score_specification._context_token_to_context_names(contexts)
         timespan = timespan or self._timespan_abbreviation
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
@@ -176,12 +173,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             persist=persist, 
             truncate=truncate
             )
-        #asert self.score_specification is not None
-        if hasattr(self, 'multiple_context_settings'):
-            self.multiple_context_settings.append(multiple_context_setting)
-        else:
-            assert self.score_specification is not None
-            self.score_specification.multiple_context_settings.append(multiple_context_setting)
+        self.score_specification.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
 
     def _translate_offsets(self, original_start_offset, original_stop_offset, 
