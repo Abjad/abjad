@@ -1,292 +1,298 @@
 Abjad Experimental API
 ======================
 
+Core composition packages
+-------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+:py:mod:`windungen <('abjad.tools.', 'abjad.demos.')windungen>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/windungen/WindungenScoreTemplate/WindungenScoreTemplate
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/windungen/make_base_list_of_compressed_rotation_tuples
+   demos/windungen/make_base_list_of_rotation_tuples
+   demos/windungen/make_base_list_of_uncompressed_rotation_tuples
+   demos/windungen/make_windungen_score
+   demos/windungen/mirror_base_list_of_rotation_tuples
+
 Unstable packages (load manually)
 ---------------------------------
 
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`constrainttools <experimental.constrainttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`constrainttools <('abjad.tools.', 'abjad.demos.')constrainttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-   experimental/constrainttools/Domain/Domain
-   experimental/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-   experimental/constrainttools/GlobalConstraint/GlobalConstraint
-   experimental/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-   experimental/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-   experimental/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-   experimental/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-   experimental/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
+   tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+   tools/constrainttools/Domain/Domain
+   tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+   tools/constrainttools/GlobalConstraint/GlobalConstraint
+   tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+   tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+   tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+   tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+   tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-:py:mod:`demos <experimental.demos>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`divisiontools <('abjad.tools.', 'abjad.demos.')divisiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/demos/windungen/WindungenScoreTemplate/WindungenScoreTemplate
+   tools/divisiontools/Division/Division
+   tools/divisiontools/DivisionList/DivisionList
+
+:py:mod:`handlertools <('abjad.tools.', 'abjad.demos.')handlertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/handlertools/Handler/Handler
+   tools/handlertools/articulations/ArticulationHandler/ArticulationHandler
+   tools/handlertools/dynamics/DynamicHandler/DynamicHandler
+   tools/handlertools/pitch/PitchHandler/PitchHandler
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
+   tools/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
+   tools/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
+   tools/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
+   tools/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
+   tools/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+   tools/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
+   tools/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
+   tools/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
+   tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
+   tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
+
+:py:mod:`helpertools <('abjad.tools.', 'abjad.demos.')helpertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
+   tools/helpertools/Callback/Callback
+   tools/helpertools/KlassInventory/KlassInventory
+   tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/demos/windungen/make_base_list_of_compressed_rotation_tuples
-   experimental/demos/windungen/make_base_list_of_rotation_tuples
-   experimental/demos/windungen/make_base_list_of_uncompressed_rotation_tuples
-   experimental/demos/windungen/make_windungen_score
-   experimental/demos/windungen/mirror_base_list_of_rotation_tuples
+   tools/helpertools/configure_multiple_voice_rhythmic_staves
+   tools/helpertools/expr_to_component_name
+   tools/helpertools/expr_to_score_name
+   tools/helpertools/expr_to_segment_name
+   tools/helpertools/index_to_slice_pair
+   tools/helpertools/is_background_element_klass
+   tools/helpertools/is_counttime_component_klass_expr
+   tools/helpertools/read_test_output
+   tools/helpertools/write_test_output
 
-:py:mod:`divisiontools <experimental.divisiontools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/divisiontools/Division/Division
-   experimental/divisiontools/DivisionList/DivisionList
-
-:py:mod:`handlertools <experimental.handlertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`interpretertools <('abjad.tools.', 'abjad.demos.')interpretertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/handlertools/Handler/Handler
-   experimental/handlertools/articulations/ArticulationHandler/ArticulationHandler
-   experimental/handlertools/dynamics/DynamicHandler/DynamicHandler
-   experimental/handlertools/pitch/PitchHandler/PitchHandler
+   tools/interpretertools/Interpreter/Interpreter
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
-   experimental/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
-   experimental/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
-   experimental/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
-   experimental/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
-   experimental/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-   experimental/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
-   experimental/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
-   experimental/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
-   experimental/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
-   experimental/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
+   tools/interpretertools/ConcreteInterpreter/ConcreteInterpreter
 
-:py:mod:`helpertools <experimental.helpertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`lyrictools <('abjad.tools.', 'abjad.demos.')lyrictools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
-   experimental/helpertools/Callback/Callback
-   experimental/helpertools/KlassInventory/KlassInventory
-   experimental/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
+   tools/lyrictools/AddLyrics/AddLyrics
+   tools/lyrictools/LyricExtender/LyricExtender
+   tools/lyrictools/LyricHyphen/LyricHyphen
+   tools/lyrictools/LyricSpace/LyricSpace
+   tools/lyrictools/LyricText/LyricText
+   tools/lyrictools/Lyrics/Lyrics
+
+:py:mod:`metricmodulationtools <('abjad.tools.', 'abjad.demos.')metricmodulationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/helpertools/configure_multiple_voice_rhythmic_staves
-   experimental/helpertools/expr_to_component_name
-   experimental/helpertools/expr_to_score_name
-   experimental/helpertools/expr_to_segment_name
-   experimental/helpertools/index_to_slice_pair
-   experimental/helpertools/is_background_element_klass
-   experimental/helpertools/is_counttime_component_klass_expr
-   experimental/helpertools/read_test_output
-   experimental/helpertools/write_test_output
+   tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
-:py:mod:`interpretertools <experimental.interpretertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`parsertools <('abjad.tools.', 'abjad.demos.')parsertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/parsertools/ENPParser/ENPParser
+
+:py:mod:`requesttools <('abjad.tools.', 'abjad.demos.')requesttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/Interpreter/Interpreter
+   tools/requesttools/Request/Request
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
-
-:py:mod:`lyrictools <experimental.lyrictools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/lyrictools/AddLyrics/AddLyrics
-   experimental/lyrictools/LyricExtender/LyricExtender
-   experimental/lyrictools/LyricHyphen/LyricHyphen
-   experimental/lyrictools/LyricSpace/LyricSpace
-   experimental/lyrictools/LyricText/LyricText
-   experimental/lyrictools/Lyrics/Lyrics
-
-:py:mod:`metricmodulationtools <experimental.metricmodulationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   tools/requesttools/AbsoluteRequest/AbsoluteRequest
+   tools/requesttools/CommandRequest/CommandRequest
+   tools/requesttools/HandlerRequest/HandlerRequest
+   tools/requesttools/MaterialRequest/MaterialRequest
+   tools/requesttools/StatalServerRequest/StatalServerRequest
 
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/metricmodulationtools/yield_prolation_rewrite_pairs
+   tools/requesttools/apply_request_transforms
+   tools/requesttools/expr_to_request
+   tools/requesttools/set_transforms_on_request
 
-:py:mod:`parsertools <experimental.parsertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/parsertools/ENPParser/ENPParser
-
-:py:mod:`requesttools <experimental.requesttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`segmenttools <('abjad.tools.', 'abjad.demos.')segmenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/requesttools/Request/Request
+   tools/segmenttools/Segment/Segment
 
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/requesttools/AbsoluteRequest/AbsoluteRequest
-   experimental/requesttools/CommandRequest/CommandRequest
-   experimental/requesttools/HandlerRequest/HandlerRequest
-   experimental/requesttools/MaterialRequest/MaterialRequest
-   experimental/requesttools/StatalServerRequest/StatalServerRequest
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/requesttools/apply_request_transforms
-   experimental/requesttools/expr_to_request
-   experimental/requesttools/set_transforms_on_request
-
-:py:mod:`segmenttools <experimental.segmenttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`settingtools <('abjad.tools.', 'abjad.demos.')settingtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/segmenttools/Segment/Segment
+   tools/settingtools/Command/Command
+   tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
+   tools/settingtools/Setting/Setting
 
-:py:mod:`settingtools <experimental.settingtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/settingtools/DivisionCommand/DivisionCommand
+   tools/settingtools/MultipleContextSetting/MultipleContextSetting
+   tools/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
+   tools/settingtools/OffsetPositionedDivisionList/OffsetPositionedDivisionList
+   tools/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
+   tools/settingtools/RhythmCommand/RhythmCommand
+   tools/settingtools/RotationIndicator/RotationIndicator
+   tools/settingtools/SingleContextSetting/SingleContextSetting
+   tools/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
+
+:py:mod:`specificationtools <('abjad.tools.', 'abjad.demos.')specificationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/settingtools/Command/Command
-   experimental/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
-   experimental/settingtools/Setting/Setting
+   tools/specificationtools/Specification/Specification
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/settingtools/DivisionCommand/DivisionCommand
-   experimental/settingtools/MultipleContextSetting/MultipleContextSetting
-   experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
-   experimental/settingtools/OffsetPositionedDivisionList/OffsetPositionedDivisionList
-   experimental/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
-   experimental/settingtools/RhythmCommand/RhythmCommand
-   experimental/settingtools/RotationIndicator/RotationIndicator
-   experimental/settingtools/SingleContextSetting/SingleContextSetting
-   experimental/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
+   tools/specificationtools/ContextProxy/ContextProxy
+   tools/specificationtools/ContextProxyDictionary/ContextProxyDictionary
+   tools/specificationtools/ScoreSpecification/ScoreSpecification
+   tools/specificationtools/SegmentSpecification/SegmentSpecification
+   tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
 
-:py:mod:`specificationtools <experimental.specificationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`statalservertools <('abjad.tools.', 'abjad.demos.')statalservertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/statalservertools/StatalServer/StatalServer
+
+:py:mod:`symbolictimetools <('abjad.tools.', 'abjad.demos.')symbolictimetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/Specification/Specification
+   tools/symbolictimetools/Selector/Selector
+   tools/symbolictimetools/SymbolicTimeObject/SymbolicTimeObject
+   tools/symbolictimetools/SymbolicTimespan/SymbolicTimespan
+   tools/symbolictimetools/VoiceSelector/VoiceSelector
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/ContextProxy/ContextProxy
-   experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
-   experimental/specificationtools/ScoreSpecification/ScoreSpecification
-   experimental/specificationtools/SegmentSpecification/SegmentSpecification
-   experimental/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
-
-:py:mod:`statalservertools <experimental.statalservertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/statalservertools/StatalServer/StatalServer
-
-:py:mod:`symbolictimetools <experimental.symbolictimetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/symbolictimetools/Selector/Selector
-   experimental/symbolictimetools/SymbolicTimeObject/SymbolicTimeObject
-   experimental/symbolictimetools/SymbolicTimespan/SymbolicTimespan
-   experimental/symbolictimetools/VoiceSelector/VoiceSelector
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/symbolictimetools/BackgroundMeasureSelector/BackgroundMeasureSelector
-   experimental/symbolictimetools/CounttimeComponentSelector/CounttimeComponentSelector
-   experimental/symbolictimetools/DivisionSelector/DivisionSelector
-   experimental/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
-   experimental/symbolictimetools/ScoreSelector/ScoreSelector
-   experimental/symbolictimetools/SegmentSelector/SegmentSelector
-   experimental/symbolictimetools/SymbolicOffset/SymbolicOffset
+   tools/symbolictimetools/BackgroundMeasureSelector/BackgroundMeasureSelector
+   tools/symbolictimetools/CounttimeComponentSelector/CounttimeComponentSelector
+   tools/symbolictimetools/DivisionSelector/DivisionSelector
+   tools/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   tools/symbolictimetools/ScoreSelector/ScoreSelector
+   tools/symbolictimetools/SegmentSelector/SegmentSelector
+   tools/symbolictimetools/SymbolicOffset/SymbolicOffset

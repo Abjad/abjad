@@ -1,108 +1,108 @@
 settingtools.DivisionCommand
 ============================
 
-.. inheritance-diagram:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand
+.. inheritance-diagram:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand
    :private-bases:
 
-.. autoclass:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand
+.. autoclass:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.attribute
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.attribute
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.context_name
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.context_name
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.count
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.count
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.duration
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.duration
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fresh
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fresh
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.index
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.index
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.offsets
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.offsets
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.request
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.request
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.reverse
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.reverse
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.rotation
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.rotation
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.start_offset
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.start_offset
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stop_offset
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.stop_offset
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.storage_format
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.truncate
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.truncate
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.vector
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.vector
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.voice_name
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.voice_name
 
 Methods
 -------
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.can_fuse
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.can_fuse
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fuse
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.fuse
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__eq__
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__eq__
 
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__ge__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__gt__
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__le__
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__lt__
-
-    Inherited from :py:class:`Command.Command <experimental.settingtools.Command.Command.Command>`
-
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__ne__
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__repr__
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__lt__
+
+    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

@@ -1,63 +1,63 @@
 constrainttools.RelativeCountsConstraint
 ========================================
 
-.. inheritance-diagram:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
+.. inheritance-diagram:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
    :private-bases:
 
-.. autoclass:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
+.. autoclass:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.index_span
+.. autoattribute:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.index_span
 
-    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.indices
+.. autoattribute:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.indices
 
-    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.kind
+.. autoattribute:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.kind
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.predicate
+.. autoattribute:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.predicate
 
-    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.storage_format
+.. autoattribute:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__call__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__call__
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__ge__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__gt__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__le__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__lt__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__ne__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__repr__
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__ne__
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__repr__
+
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`

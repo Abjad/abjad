@@ -1,74 +1,74 @@
 constrainttools.FixedLengthStreamSolver
 =======================================
 
-.. inheritance-diagram:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
+.. inheritance-diagram:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
    :private-bases:
 
-.. autoclass:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
+.. autoclass:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.constraints
+.. autoattribute:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.constraints
 
-    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
 
-.. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.domain
+.. autoattribute:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.domain
 
-    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
 
-.. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.iterator
+.. autoattribute:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.iterator
 
-    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
 
-.. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.randomized
+.. autoattribute:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.randomized
 
-    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
 
-.. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.solutions
+.. autoattribute:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.solutions
 
-    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
 
-.. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.storage_format
+.. autoattribute:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Methods
 -------
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.get_le_n_solutions
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.get_le_n_solutions
 
-    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`constrainttools._Solver <experimental.tools.constrainttools._Solver._Solver._Solver>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__eq__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__ge__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__gt__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__iter__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__iter__
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__le__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__lt__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__ne__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__repr__
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

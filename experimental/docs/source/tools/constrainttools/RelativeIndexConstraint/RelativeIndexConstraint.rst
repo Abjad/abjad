@@ -1,63 +1,63 @@
 constrainttools.RelativeIndexConstraint
 =======================================
 
-.. inheritance-diagram:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
+.. inheritance-diagram:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
    :private-bases:
 
-.. autoclass:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
+.. autoclass:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.index_span
+.. autoattribute:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.index_span
 
-    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.indices
+.. autoattribute:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.indices
 
-    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.kind
+.. autoattribute:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.kind
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.predicate
+.. autoattribute:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.predicate
 
-    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.tools.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
-.. autoattribute:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.storage_format
+.. autoattribute:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__call__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__call__
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__ge__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__gt__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__le__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__lt__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__ne__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__repr__
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__ne__
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.constrainttools.RelativeIndexConstraint.RelativeIndexConstraint.RelativeIndexConstraint.__repr__
+
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`

@@ -1,63 +1,63 @@
 settingtools.Setting
 ====================
 
-.. inheritance-diagram:: experimental.settingtools.Setting.Setting.Setting
+.. inheritance-diagram:: experimental.tools.settingtools.Setting.Setting.Setting
    :private-bases:
 
-.. autoclass:: experimental.settingtools.Setting.Setting.Setting
+.. autoclass:: experimental.tools.settingtools.Setting.Setting.Setting
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.anchor
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.anchor
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.attribute
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.attribute
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.count
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.count
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.fresh
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.fresh
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.index
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.index
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.persist
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.persist
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.request
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.request
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.reverse
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.reverse
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.rotation
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.rotation
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.storage_format
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.settingtools.Setting.Setting.Setting.truncate
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.truncate
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__eq__
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__eq__
 
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__ge__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__gt__
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__le__
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__lt__
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__ne__
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.settingtools.Setting.Setting.Setting.__repr__
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.settingtools.Setting.Setting.Setting.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

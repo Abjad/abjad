@@ -1,5 +1,5 @@
-demos.windungen.WindungenScoreTemplate
-======================================
+windungen.WindungenScoreTemplate
+================================
 
 .. inheritance-diagram:: experimental.demos.windungen.WindungenScoreTemplate.WindungenScoreTemplate.WindungenScoreTemplate
    :private-bases:

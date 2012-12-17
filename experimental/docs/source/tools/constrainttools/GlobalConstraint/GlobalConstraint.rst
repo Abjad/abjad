@@ -1,55 +1,55 @@
 constrainttools.GlobalConstraint
 ================================
 
-.. inheritance-diagram:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
+.. inheritance-diagram:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
    :private-bases:
 
-.. autoclass:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
+.. autoclass:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.kind
+.. autoattribute:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.kind
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`
 
-.. autoattribute:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.predicate
+.. autoattribute:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.predicate
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`
 
-.. autoattribute:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.storage_format
+.. autoattribute:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__call__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__call__
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__ge__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__gt__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__le__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__lt__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__ne__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__repr__
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__ne__
 
-    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__repr__
+
+    Inherited from :py:class:`constrainttools._Constraint <experimental.tools.constrainttools._Constraint._Constraint._Constraint>`

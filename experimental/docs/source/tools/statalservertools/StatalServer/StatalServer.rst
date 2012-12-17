@@ -1,49 +1,49 @@
 statalservertools.StatalServer
 ==============================
 
-.. inheritance-diagram:: experimental.statalservertools.StatalServer.StatalServer.StatalServer
+.. inheritance-diagram:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer
    :private-bases:
 
-.. autoclass:: experimental.statalservertools.StatalServer.StatalServer.StatalServer
+.. autoclass:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.last_node
+.. autoattribute:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.last_node
 
-.. autoattribute:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.storage_format
+.. autoattribute:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__call__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__call__
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__ge__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__gt__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__le__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__lt__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__ne__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.statalservertools.StatalServer.StatalServer.StatalServer.__repr__
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.statalservertools.StatalServer.StatalServer.StatalServer.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
