@@ -128,11 +128,11 @@ class AbjadBookDoctreeProcessor(AbjadObject):
         #print '\tLILY:', stop_time - start_time
 
         start_time = time.time()
-        command = 'mogrify {} -trim -resample 40%% *.png'
-        subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         for md5hash in all_md5hashes:
             tmp_png_file_name = os.path.join(self.tmp_directory, md5hash + '.png')
             img_png_file_name = os.path.join(self.img_directory, md5hash + '.png')
+            command = 'convert -trim -resample 40%% {} {}'.format(tmp_png_file_name, tmp_png_file_name)
+            subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             os.rename(tmp_png_file_name, img_png_file_name)
         os.chdir(old_directory)
         stop_time = time.time()
