@@ -1,14 +1,14 @@
 Abjad API
 =========
 
-Composition packages
---------------------
+Core composition packages
+-------------------------
 
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`beamtools <abjad.tools.beamtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`beamtools <('abjad.tools.', 'abjad.demos.')beamtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -34,8 +34,8 @@ Composition packages
    tools/beamtools/is_beamable_component
    tools/beamtools/is_component_with_beam_spanner_attached
 
-:py:mod:`chordtools <abjad.tools.chordtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`chordtools <('abjad.tools.', 'abjad.demos.')chordtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -60,8 +60,8 @@ Composition packages
    tools/chordtools/yield_all_subchords_of_chord
    tools/chordtools/yield_groups_of_chords_in_sequence
 
-:py:mod:`componenttools <abjad.tools.componenttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`componenttools <('abjad.tools.', 'abjad.demos.')componenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -146,8 +146,8 @@ Composition packages
    tools/componenttools/yield_topmost_components_grouped_by_type
    tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
 
-:py:mod:`containertools <abjad.tools.containertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`containertools <('abjad.tools.', 'abjad.demos.')containertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -192,8 +192,8 @@ Composition packages
    tools/containertools/split_container_at_index
    tools/containertools/split_container_by_counts
 
-:py:mod:`contexttools <abjad.tools.contexttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`contexttools <('abjad.tools.', 'abjad.demos.')contexttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -262,8 +262,8 @@ Composition packages
    tools/contexttools/list_clef_names
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
-:py:mod:`durationtools <abjad.tools.durationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`durationtools <('abjad.tools.', 'abjad.demos.')durationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -285,8 +285,8 @@ Composition packages
    tools/durationtools/numeric_seconds_to_clock_string
    tools/durationtools/yield_durations
 
-:py:mod:`gracetools <abjad.tools.gracetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`gracetools <('abjad.tools.', 'abjad.demos.')gracetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -305,8 +305,8 @@ Composition packages
    tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
    tools/gracetools/get_grace_containers_attached_to_leaf
 
-:py:mod:`instrumenttools <abjad.tools.instrumenttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`instrumenttools <('abjad.tools.', 'abjad.demos.')instrumenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -378,8 +378,8 @@ Composition packages
    tools/instrumenttools/transpose_from_fingered_pitch_to_sounding_pitch
    tools/instrumenttools/transpose_from_sounding_pitch_to_fingered_pitch
 
-:py:mod:`iotools <abjad.tools.iotools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`iotools <('abjad.tools.', 'abjad.demos.')iotools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -406,8 +406,8 @@ Composition packages
    tools/iotools/write_expr_to_pdf
    tools/iotools/z
 
-:py:mod:`iterationtools <abjad.tools.iterationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`iterationtools <('abjad.tools.', 'abjad.demos.')iterationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -438,8 +438,8 @@ Composition packages
    tools/iterationtools/iterate_tuplets_in_expr
    tools/iterationtools/iterate_voices_in_expr
 
-:py:mod:`labeltools <abjad.tools.labeltools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`labeltools <('abjad.tools.', 'abjad.demos.')labeltools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -482,8 +482,8 @@ Composition packages
    tools/labeltools/label_vertical_moments_in_expr_with_pitch_numbers
    tools/labeltools/remove_markup_from_leaves_in_expr
 
-:py:mod:`layouttools <abjad.tools.layouttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`layouttools <('abjad.tools.', 'abjad.demos.')layouttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -501,8 +501,8 @@ Composition packages
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
-:py:mod:`leaftools <abjad.tools.leaftools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`leaftools <('abjad.tools.', 'abjad.demos.')leaftools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -555,8 +555,8 @@ Composition packages
    tools/leaftools/split_leaf_at_offsets
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
-:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`lilypondfiletools <('abjad.tools.', 'abjad.demos.')lilypondfiletools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -595,8 +595,8 @@ Composition packages
    tools/lilypondfiletools/make_floating_time_signature_lilypond_file
    tools/lilypondfiletools/make_time_signature_context_block
 
-:py:mod:`marktools <abjad.tools.marktools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`marktools <('abjad.tools.', 'abjad.demos.')marktools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -662,8 +662,8 @@ Composition packages
    tools/marktools/is_component_with_stem_tremolo_attached
    tools/marktools/move_marks
 
-:py:mod:`markuptools <abjad.tools.markuptools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`markuptools <('abjad.tools.', 'abjad.demos.')markuptools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -691,8 +691,8 @@ Composition packages
    tools/markuptools/make_vertically_adjusted_composer_markup
    tools/markuptools/remove_markup_attached_to_component
 
-:py:mod:`mathtools <abjad.tools.mathtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`mathtools <('abjad.tools.', 'abjad.demos.')mathtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -767,8 +767,8 @@ Composition packages
    tools/mathtools/yield_all_partitions_of_integer
    tools/mathtools/yield_nonreduced_fractions
 
-:py:mod:`measuretools <abjad.tools.measuretools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`measuretools <('abjad.tools.', 'abjad.demos.')measuretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -822,8 +822,8 @@ Composition packages
    tools/measuretools/set_always_format_time_signature_of_measures_in_expr
    tools/measuretools/set_measure_denominator_and_adjust_numerator
 
-:py:mod:`notetools <abjad.tools.notetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`notetools <('abjad.tools.', 'abjad.demos.')notetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -853,8 +853,8 @@ Composition packages
    tools/notetools/make_tied_note
    tools/notetools/yield_groups_of_notes_in_sequence
 
-:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`pitcharraytools <('abjad.tools.', 'abjad.demos.')pitcharraytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -880,8 +880,8 @@ Composition packages
    tools/pitcharraytools/pitch_array_row_to_measure
    tools/pitcharraytools/pitch_array_to_measures
 
-:py:mod:`pitchtools <abjad.tools.pitchtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`pitchtools <('abjad.tools.', 'abjad.demos.')pitchtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1114,8 +1114,8 @@ Composition packages
    tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
    tools/pitchtools/transpose_pitch_expr_into_pitch_range
 
-:py:mod:`quantizationtools <abjad.tools.quantizationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`quantizationtools <('abjad.tools.', 'abjad.demos.')quantizationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1179,8 +1179,8 @@ Composition packages
    tools/quantizationtools/tempo_scaled_durations_to_q_events
    tools/quantizationtools/tempo_scaled_leaves_to_q_events
 
-:py:mod:`resttools <abjad.tools.resttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`resttools <('abjad.tools.', 'abjad.demos.')resttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1205,8 +1205,8 @@ Composition packages
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
-:py:mod:`rhythmmakertools <abjad.tools.rhythmmakertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`rhythmmakertools <('abjad.tools.', 'abjad.demos.')rhythmmakertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1238,8 +1238,8 @@ Composition packages
    tools/rhythmmakertools/TaleaRhythmMaker/TaleaRhythmMaker
    tools/rhythmmakertools/TupletMonadRhythmMaker/TupletMonadRhythmMaker
 
-:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`rhythmtreetools <('abjad.tools.', 'abjad.demos.')rhythmtreetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1264,8 +1264,8 @@ Composition packages
 
    tools/rhythmtreetools/parse_rtm_syntax
 
-:py:mod:`schemetools <abjad.tools.schemetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`schemetools <('abjad.tools.', 'abjad.demos.')schemetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1287,8 +1287,8 @@ Composition packages
 
    tools/schemetools/format_scheme_value
 
-:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`scoretemplatetools <('abjad.tools.', 'abjad.demos.')scoretemplatetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1307,8 +1307,8 @@ Composition packages
    tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
    tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
 
-:py:mod:`scoretools <abjad.tools.scoretools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`scoretools <('abjad.tools.', 'abjad.demos.')scoretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1339,8 +1339,8 @@ Composition packages
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
 
-:py:mod:`selectiontools <abjad.tools.selectiontools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`selectiontools <('abjad.tools.', 'abjad.demos.')selectiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1349,8 +1349,8 @@ Composition packages
 
    tools/selectiontools/Selection/Selection
 
-:py:mod:`sequencetools <abjad.tools.sequencetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`sequencetools <('abjad.tools.', 'abjad.demos.')sequencetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1487,8 +1487,8 @@ Composition packages
    tools/sequencetools/zip_sequences_cyclically
    tools/sequencetools/zip_sequences_without_truncation
 
-:py:mod:`sievetools <abjad.tools.sievetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`sievetools <('abjad.tools.', 'abjad.demos.')sievetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1506,8 +1506,8 @@ Composition packages
    tools/sievetools/all_are_residue_class_expressions
    tools/sievetools/cycle_tokens_to_sieve
 
-:py:mod:`skiptools <abjad.tools.skiptools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`skiptools <('abjad.tools.', 'abjad.demos.')skiptools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1528,8 +1528,8 @@ Composition packages
    tools/skiptools/replace_leaves_in_expr_with_skips
    tools/skiptools/yield_groups_of_skips_in_sequence
 
-:py:mod:`spannertools <abjad.tools.spannertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`spannertools <('abjad.tools.', 'abjad.demos.')spannertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1603,8 +1603,8 @@ Composition packages
    tools/spannertools/report_spanner_format_contributions
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
-:py:mod:`stafftools <abjad.tools.stafftools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`stafftools <('abjad.tools.', 'abjad.demos.')stafftools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1624,8 +1624,8 @@ Composition packages
    tools/stafftools/get_first_staff_in_proper_parentage_of_component
    tools/stafftools/make_rhythmic_sketch_staff
 
-:py:mod:`stringtools <abjad.tools.stringtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`stringtools <('abjad.tools.', 'abjad.demos.')stringtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -1655,8 +1655,8 @@ Composition packages
    tools/stringtools/uppercamelcase_to_space_delimited_lowercase
    tools/stringtools/uppercamelcase_to_underscore_delimited_lowercase
 
-:py:mod:`tempotools <abjad.tools.tempotools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`tempotools <('abjad.tools.', 'abjad.demos.')tempotools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -1667,8 +1667,8 @@ Composition packages
    tools/tempotools/rewrite_duration_under_new_tempo
    tools/tempotools/rewrite_integer_tempo
 
-:py:mod:`tietools <abjad.tools.tietools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`tietools <('abjad.tools.', 'abjad.demos.')tietools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1701,8 +1701,8 @@ Composition packages
    tools/tietools/remove_tie_spanners_from_components_in_expr
    tools/tietools/tie_chain_to_tuplet_with_ratio
 
-:py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timeintervaltools <('abjad.tools.', 'abjad.demos.')timeintervaltools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1775,8 +1775,8 @@ Composition packages
    tools/timeintervaltools/shift_aggregate_offset_to_rational
    tools/timeintervaltools/split_intervals_at_rationals
 
-:py:mod:`timerelationtools <abjad.tools.timerelationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timerelationtools <('abjad.tools.', 'abjad.demos.')timerelationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -1833,8 +1833,8 @@ Composition packages
    tools/timerelationtools/timespan_2_stops_when_timespan_1_stops
    tools/timerelationtools/timespan_2_trisects_timespan_1
 
-:py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timesignaturetools <('abjad.tools.', 'abjad.demos.')timesignaturetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1852,8 +1852,8 @@ Composition packages
    tools/timesignaturetools/establish_metrical_hierarchy
    tools/timesignaturetools/make_gridded_test_rhythm
 
-:py:mod:`timespantools <abjad.tools.timespantools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timespantools <('abjad.tools.', 'abjad.demos.')timespantools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1863,8 +1863,8 @@ Composition packages
    tools/timespantools/Timespan/Timespan
    tools/timespantools/TimespanInventory/TimespanInventory
 
-:py:mod:`tonalitytools <abjad.tools.tonalitytools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`tonalitytools <('abjad.tools.', 'abjad.demos.')tonalitytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1906,8 +1906,8 @@ Composition packages
    tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
    tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
 
-:py:mod:`tuplettools <abjad.tools.tuplettools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`tuplettools <('abjad.tools.', 'abjad.demos.')tuplettools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1940,8 +1940,8 @@ Composition packages
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
    tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
 
-:py:mod:`verticalitytools <abjad.tools.verticalitytools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`verticalitytools <('abjad.tools.', 'abjad.demos.')verticalitytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1959,8 +1959,8 @@ Composition packages
    tools/verticalitytools/get_vertical_moment_starting_with_component
    tools/verticalitytools/iterate_vertical_moments_in_expr
 
-:py:mod:`voicetools <abjad.tools.voicetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`voicetools <('abjad.tools.', 'abjad.demos.')voicetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -1978,8 +1978,8 @@ Composition packages
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
 
-:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`wellformednesstools <('abjad.tools.', 'abjad.demos.')wellformednesstools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -2019,14 +2019,99 @@ Composition packages
    tools/wellformednesstools/list_checks
    tools/wellformednesstools/tabulate_well_formedness_violations_in_expr
 
-Internal packages
------------------
+Demos and example packages
+--------------------------
 
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`abctools <abjad.tools.abctools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`desordre <('abjad.tools.', 'abjad.demos.')desordre>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/desordre/make_desordre_cell
+   demos/desordre/make_desordre_lilypond_file
+   demos/desordre/make_desordre_measure
+   demos/desordre/make_desordre_pitches
+   demos/desordre/make_desordre_score
+   demos/desordre/make_desordre_staff
+
+:py:mod:`ferneyhough <('abjad.tools.', 'abjad.demos.')ferneyhough>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/ferneyhough/configure_lilypond_file
+   demos/ferneyhough/configure_score
+   demos/ferneyhough/make_lilypond_file
+   demos/ferneyhough/make_nested_tuplet
+   demos/ferneyhough/make_row_of_nested_tuplets
+   demos/ferneyhough/make_rows_of_nested_tuplets
+
+:py:mod:`mozart <('abjad.tools.', 'abjad.demos.')mozart>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/mozart/choose_mozart_measures
+   demos/mozart/make_mozart_lilypond_file
+   demos/mozart/make_mozart_measure
+   demos/mozart/make_mozart_measure_corpus
+   demos/mozart/make_mozart_score
+
+:py:mod:`part <('abjad.tools.', 'abjad.demos.')part>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/part/PartCantusScoreTemplate/PartCantusScoreTemplate
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/part/add_bell_music_to_score
+   demos/part/add_string_music_to_score
+   demos/part/apply_bowing_marks
+   demos/part/apply_dynamic_marks
+   demos/part/apply_expressive_marks
+   demos/part/apply_final_bar_lines
+   demos/part/apply_page_breaks
+   demos/part/apply_rehearsal_marks
+   demos/part/configure_lilypond_file
+   demos/part/configure_score
+   demos/part/create_pitch_contour_reservoir
+   demos/part/durate_pitch_contour_reservoir
+   demos/part/edit_bass_voice
+   demos/part/edit_cello_voice
+   demos/part/edit_first_violin_voice
+   demos/part/edit_second_violin_voice
+   demos/part/edit_viola_voice
+   demos/part/make_part_lilypond_file
+   demos/part/shadow_pitch_contour_reservoir
+
+Abjad internal packages
+-----------------------
+
+.. toctree::
+   :maxdepth: 1
+
+:py:mod:`abctools <('abjad.tools.', 'abjad.demos.')abctools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -2039,8 +2124,8 @@ Internal packages
    tools/abctools/Parser/Parser
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
-:py:mod:`abjadbooktools <abjad.tools.abjadbooktools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`abjadbooktools <('abjad.tools.', 'abjad.demos.')abjadbooktools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -2061,8 +2146,8 @@ Internal packages
    tools/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
    tools/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
 
-:py:mod:`configurationtools <abjad.tools.configurationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`configurationtools <('abjad.tools.', 'abjad.demos.')configurationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -2087,8 +2172,8 @@ Internal packages
    tools/configurationtools/list_package_dependency_versions
    tools/configurationtools/read_abjad_user_config_file
 
-:py:mod:`datastructuretools <abjad.tools.datastructuretools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`datastructuretools <('abjad.tools.', 'abjad.demos.')datastructuretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -2100,8 +2185,8 @@ Internal packages
    tools/datastructuretools/ObjectInventory/ObjectInventory
    tools/datastructuretools/OrdinalConstant/OrdinalConstant
 
-:py:mod:`decoratortools <abjad.tools.decoratortools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`decoratortools <('abjad.tools.', 'abjad.demos.')decoratortools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -2110,8 +2195,8 @@ Internal packages
 
    tools/decoratortools/requires
 
-:py:mod:`developerscripttools <abjad.tools.developerscripttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`developerscripttools <('abjad.tools.', 'abjad.demos.')developerscripttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
@@ -2152,8 +2237,8 @@ Internal packages
 
    tools/developerscripttools/get_developer_script_classes
 
-:py:mod:`documentationtools <abjad.tools.documentationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`documentationtools <('abjad.tools.', 'abjad.demos.')documentationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -2182,8 +2267,8 @@ Internal packages
    tools/documentationtools/make_text_alignment_example_lilypond_file
    tools/documentationtools/write_expr_to_md5_hashed_ly
 
-:py:mod:`exceptiontools <abjad.tools.exceptiontools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`exceptiontools <('abjad.tools.', 'abjad.demos.')exceptiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -2245,8 +2330,8 @@ Internal packages
    tools/exceptiontools/UnderfullContainerError
    tools/exceptiontools/VoiceContainmentError
 
-:py:mod:`formattools <abjad.tools.formattools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`formattools <('abjad.tools.', 'abjad.demos.')formattools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -2271,8 +2356,8 @@ Internal packages
    tools/formattools/report_component_format_contributions
    tools/formattools/report_spanner_format_contributions
 
-:py:mod:`importtools <abjad.tools.importtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`importtools <('abjad.tools.', 'abjad.demos.')importtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -2281,8 +2366,8 @@ Internal packages
 
    tools/importtools/import_structured_package
 
-:py:mod:`introspectiontools <abjad.tools.introspectiontools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`introspectiontools <('abjad.tools.', 'abjad.demos.')introspectiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 
@@ -2292,8 +2377,8 @@ Internal packages
    tools/introspectiontools/get_current_function_name
    tools/introspectiontools/klass_to_tools_package_qualified_klass_name
 
-:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`lilypondparsertools <('abjad.tools.', 'abjad.demos.')lilypondparsertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
@@ -2319,8 +2404,8 @@ Internal packages
    tools/lilypondparsertools/lilypond_enharmonic_transpose
    tools/lilypondparsertools/parse_reduced_ly_syntax
 
-:py:mod:`offsettools <abjad.tools.offsettools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`offsettools <('abjad.tools.', 'abjad.demos.')offsettools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: functions
 

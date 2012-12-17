@@ -58,20 +58,24 @@ class BuildApiScript(DeveloperScript):
             _api_title = 'Abjad Experimental API'
 
             @property
-            def code_tools_path(self):
-                return ABJCFG.ABJAD_EXPERIMENTAL_PATH
-
-            @property
             def docs_api_index_path(self):
                 return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'index.rst')
 
             @property
-            def docs_tools_path(self):
-                return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
-
-            @property
-            def package_prefix(self):
-                return 'experimental.'
+            def path_definitions(self):
+                from abjad import ABJCFG
+                return (
+                    (
+                        os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'tools'),
+                        os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'tools'),
+                        'experimental.tools.',
+                    ),
+                    (
+                        os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'demos'),
+                        os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'demos'),
+                        'experimental.demos.',
+                    ),
+                )
 
             @property
             def root_package(self):
@@ -79,7 +83,7 @@ class BuildApiScript(DeveloperScript):
 
             @property
             def tools_package_path_index(self):
-                return 1
+                return 2
 
         ExperimentalAPIGenerator()(verbose=True)
 

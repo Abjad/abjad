@@ -9,13 +9,11 @@ documentationtools.AbjadAPIGenerator
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.code_tools_path
-
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.docs_api_index_path
 
-.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.docs_tools_path
-
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.package_prefix
+
+.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.path_triples
 
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.root_package
 

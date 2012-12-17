@@ -21,17 +21,16 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _api_title = 'Abjad API'
 
-    _composition_packages_description = 'Composition packages'
-
-    _internals_packages_description = 'Internal packages'
-
-    _manual_packages_description = 'Additional packages (load manually)'
+    _package_descriptions = {
+        'core': 'Core composition packages',
+        'demos': 'Demos and example packages',
+        'internals': 'Abjad internal packages',
+        'unstable': 'Unstable packages (load manually)',
+    }
 
     _undocumented_packages = (
         'lilypondproxytools',
     )
-
-    _unstable_packages_description = 'Unstable packages (load manually)'
 
     ### INITIALIZER ###
 
@@ -41,19 +40,23 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, verbose=False):
-        assert os.path.exists(self.code_tools_path)
-        assert os.path.exists(self.docs_tools_path)
 
         if verbose:
             print 'Now making Sphinx TOCs ...'
 
         ignored_directories = ['.svn', 'test', '__pycache__']
         ignored_directories.extend(self._undocumented_packages)
-        tools_crawler = APICrawler(self.code_tools_path, self.docs_tools_path, self.root_package,
-            ignored_directories = ignored_directories, prefix=self.package_prefix)
-        visited_modules = tools_crawler()
 
-        composition, manual, unstable, internals = self._sort_modules(visited_modules)
+        all_visited_modules = []
+        for code_path, docs_path, package_prefix in self.path_definitions:
+            if not os.path.exists(code_path):
+                os.mkdir(code_path)
+            if not os.path.exists(docs_path):
+                os.mkdir(docs_path)
+            crawler = APICrawler(code_path, docs_path, self.root_package,
+                ignored_directories=ignored_directories, prefix=package_prefix)
+            all_visited_modules.extend(crawler())
+        package_dictionary = self._sort_modules(all_visited_modules)
 
         if verbose:
             print 'Now making API index ...'
@@ -62,29 +65,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         result.extend(self._create_heading(self._api_title))
 
-        # automatically loading composition packages
-        if composition:
-            result.extend(self._create_section_title(self._composition_packages_description))
-            for package_name in sorted(composition):
-                result.extend(self._create_package_toc(package_name, composition[package_name]))
-
-        # manually loading composition packages
-        if manual:
-            result.extend(self._create_section_title(self._manual_packages_description))
-            for package_name in sorted(manual):
-                result.extend(self._create_package_toc(package_name, manual[package_name]))
-
-        # unstable composition packages
-        if unstable:
-            result.extend(self._create_section_title(self._unstable_packages_description))
-            for package_name in sorted(unstable):
-                result.extend(self._create_package_toc(package_name, unstable[package_name]))
-
-        # internals packages
-        if internals:
-            result.extend(self._create_section_title(self._internals_packages_description))
-            for package_name in sorted(internals):
-                result.extend(self._create_package_toc(package_name, internals[package_name]))
+        for package_group, packages in sorted(package_dictionary.items()):
+            if packages:
+                result.extend(self._create_section_title(
+                    self._package_descriptions[package_group]))
+                for package_name, package in sorted(packages.items()):
+                    result.extend(self._create_package_toc(package_name, package))
 
         f = open(self.docs_api_index_path, 'w')
         f.write('\n'.join(result))
@@ -145,10 +131,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         return '   %s' % '/'.join(parts)
 
     def _sort_modules(self, objects):
-        composition = {}
-        internals = {}
-        manual = {}
-        unstable = {}
+
+        packages = {}
 
         for obj in sorted(objects, key=lambda x: x.module_name):
 
@@ -156,25 +140,13 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             tools_package_path = '.'.join(obj.module_name.split('.')[:self.tools_package_path_index + 1])
             tools_package_module = importlib.import_module(tools_package_path)
 
-            collection = manual
             if hasattr(tools_package_module, '_documentation_section'):
                 declared_documentation_section = getattr(tools_package_module, '_documentation_section')
-                if declared_documentation_section == 'core':
-                    collection = composition
-                elif declared_documentation_section == 'internals':
-                    collection = internals
-                elif declared_documentation_section == 'manual':
-                    collection = manual
-                elif declared_documentation_section == 'undocumented':
-                    continue
-                elif declared_documentation_section == 'unstable':
-                    collection = unstable
-                elif tools_package_name not in collection:
-                    print 'Tools package {} declares its _documentation_section improperly in its __init__.'.format(
-                        tools_package_name)
-            elif tools_package_name not in collection:
-                print 'Tools package {} does not declare a _documentation_section in its __init__.'.format(
-                    tools_package_name)
+                if declared_documentation_section not in packages:
+                    packages[declared_documentation_section] = {}
+                collection = packages[declared_documentation_section]
+            else:
+                continue
 
             if tools_package_name not in collection:
                 collection[tools_package_name] = {
@@ -191,16 +163,10 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             else:
                 collection[tools_package_name]['functions'].append(obj)
 
-        return composition, manual, unstable, internals
+        return packages
         
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def code_tools_path(self):
-        '''Path to Abjad tools package.'''
-        from abjad import ABJCFG
-        return os.path.join(ABJCFG.ABJAD_PATH, 'tools')
 
     @property
     def docs_api_index_path(self):
@@ -209,14 +175,25 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'index.rst')
 
     @property
-    def docs_tools_path(self):
-        '''Path to tools directory inside docs.'''
-        from abjad import ABJCFG
-        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools')
+    def package_prefix(self):
+        return ('abjad.tools.', 'abjad.demos.')
 
     @property
-    def package_prefix(self):
-        return 'abjad.tools.'
+    def path_definitions(self):
+        '''Code path / docs path / package prefix triples.'''
+        from abjad import ABJCFG
+        return (
+            (
+                os.path.join(ABJCFG.ABJAD_PATH, 'tools'),
+                os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools'),
+                'abjad.tools.',
+            ),
+            (
+                os.path.join(ABJCFG.ABJAD_PATH, 'demos'),
+                os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'demos'),
+                'abjad.demos.',
+            ),
+        )
 
     @property
     def root_package(self):
