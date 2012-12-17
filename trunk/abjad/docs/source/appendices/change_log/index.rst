@@ -1,6 +1,141 @@
 Change log
 ==========
 
+Changes from 2.10 to 2.11
+-------------------------
+
+Changed 'diminution' keyword to 'is_diminution' in three functions:
+
+    * tuplettools.leaf_to_tuplet_with_proportions()
+    * tuplettools.leaf_to_tuplet_with_n_notes_of_equal_written_duration()
+    * tietools.tie_chain_to_tuplet_with_proportions()
+
+
+Change ratio objects to reduce terms at initialization.
+
+Old behavior::
+
+    Ratio(2, 4, 2)
+
+New behavior::
+
+    >>> mathtools.Ratio(2, 4, 2)
+    Ratio(1, 2, 1)
+
+Renamed the four ratio-related API functions::
+
+    tietools.tie_chain_to_tuplet_with_proportions()
+    tuplettools.leaf_to_tuplet_with_proportions()
+    tuplettools.make_tuplet_from_duration_and_proportions()
+    tuplettools.make_tuplet_from_proportions_and_pair()
+
+::
+
+    tietools.tie_chain_to_tuplet_with_ratio()
+    tuplettools.leaf_to_tuplet_with_ratio()
+    tuplettools.make_tuplet_from_duration_and_ratio()
+    tuplettools.make_tuplet_from_nonreduced_ratio_and_nonreduced_fraction()
+
+
+Renamed ``timetokentools`` package. The new name is ``rhythmmakertools``.
+
+Renamed all rhythm maker classes.
+
+- Replaced 'TimeTokenMaker' with 'RhythmMaker' everywhere.
+
+- Replaced 'Token' with 'Division' everywhere.
+
+
+Renamed durationtools.yield_all_assignable_rationals().
+The new name is durationtools.yield_all_assignable_durations().
+
+Renamed durationtools.rewrite_rational_under_new_tempo().
+The new name is durationtools.rewrite_duration_under_new_tempo().
+
+Renamed durationtools.rewrite_duration_under_new_tempo().
+The new name is tempotools.rewrite_duration_under_new_tempo().
+
+Renamed tempotools.integer_tempo_to_tempo_multiplier_pairs().
+The new name is tempotools.rewrite_integer_tempo().
+
+Renamed tempotools.integer_tempo_to_tempo_multiplier_pairs_report().
+The new name is tempotools.report_integer_tempo_rewrite_pairs().
+
+Removed durationtools.numeric_seconds_to_escaped_clock_string().
+Use durationtools.numeric_seconds_to_clock_string(escape_ticks=True) instead.
+
+Removed durationtools.is_assignable_rational().
+Use Duration.is_assignable property instead.
+
+Removed durationtools.all_are_duration_tokens().
+No need to use anymore. Just coerce durations instead.
+
+Removed durationtools.duration_token_to_duration_pair().
+No need to use anymore. Just initialize duration objects instead.
+
+Removed durationtools.is_duration_token().
+Just initialize duration objects instead.
+Or use Duration.is_token() instead if true look-ahead is required.
+
+Removed durationtools.yield_all_positive_rationals_uniquely().
+Use durationtools.yield_all_positive_rationals(unique=True) instead.
+
+Removed durationtools.assignable_rational_to_dot_count property.
+Use Duration.dot_count instead.
+
+Removed durationtools.assignable_rational_to_lilypond_duration_string property.
+Use Duration.lilypond_duration_string instead.
+
+Removed durationtools.is_duration_pair().
+Do not use anymore. Just initialize duration objects instead.
+
+Removed durationtools.is_binary_rational().
+Use Duration.is_binary property instead.
+
+Removed durationtools.is_proper_tuplet_multiplier().
+Use Multiplier.is_proper_tuplet_multiplier property instead.
+
+Removed durationtools.duration_token_to_rational().
+Just initialize duration objects instead.
+
+Removed durationtools.duration_tokens_to_rationals().
+Just initialize duration objects instead.
+
+emoved durationtools.lilypond_duration_string_to_rational().
+Just initialize duration objects instead.
+
+Removed durationtools.lilypond_duration_string_to_rational_list().
+Function is no longer supported.
+
+Removed durationtools.rational_to_flag_count().
+Use the Duration.flag_count property instead.
+
+Removed durationtools.rational_to_fraction_string().
+Use str(Duration) instead.
+
+Removed durationtools.rational_to_prolation_string().
+Use the Duration.prolation_string property instead.
+
+Renamed durationtools.rational_to_proper_fraction().
+The new name is mathtools.fraction_to_proper_fraction().
+
+Removed durationtools.rational_to_duration_pair_with_specified_integer_denominator().
+Use NonreducedFraction.with_denominator() instead.
+
+Removed durationtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator().
+Use mathtools.NonreducedFraction.with_multiple_of_denominator() instead.
+
+Removed durationtools.duration_pair_to_prolation_string().
+Use the Duration.prolation_string property instead.
+
+Renamed durationtools.group_duration_tokens_by_implied_prolation().
+The new name is durationtools.group_nonreduced_fractions_by_implied_prolation().
+
+
+
+
+
+
 
 Changes from 2.9 to 2.10
 ------------------------

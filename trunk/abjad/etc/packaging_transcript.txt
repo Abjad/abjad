@@ -1,21 +1,22 @@
 Abjad 2.11
     Date of package: 2012-12-17
-    Revision of Abjad repository: r8366
+    Revision of Abjad repository: r8369
 
     Packaging environment:
-        1. uname -v:
-        2. svn --version:
-        3. python --version:
-        4. pip --version:
-        5. py.test --version:
-        6. sphinx-build --version
-        7. lilypond --version
-        8. py.test test results:
-        9. doctest test results:
-       10. sanity check test results: 
-       11. HTML build results:
-       12. LaTeX build results:
-       13. PDF build results:
+        1. uname -v: Darwin Kernel Version 11.4.2
+        2. svn --version: svn, version 1.6.17 (r1128011)
+        3. python --version: Python 2.7.3
+        4. pip --version:  pip 1.2.1
+        5. py.test --version: This is py.test version 2.3.4
+        6. sphinx-build --version: Sphinx v1.1.3
+        7. lilypond --version: GNU LilyPond 2.17.9
+        8. mogrify --version: [TBD]
+        9. py.test test results:
+       10. doctest test results:
+       11. sanity check test results: 
+       12. HTML build results:
+       13. LaTeX build results:
+       14. PDF build results:
 
 
 Abjad 2.10

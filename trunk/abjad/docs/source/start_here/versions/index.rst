@@ -9,6 +9,231 @@ Released 2012-12-17. Built from r8366.
 Implements 490 public classes and 1004 functions totalling 201,000 lines of code.
 
 
+A new two new time signature tools.
+
+    A new ``MetricalHierarhcy`` class is now available in the ``timesignaturetools`` package.
+
+        A rhythm tree-based model of nested time signature groupings.
+
+        The structure of the tree corresponds to the monotonically increasing sequence of 
+        factors of the time signature’s numerator.
+
+        Each deeper level of the tree divides the previous by the next factor in sequence.
+
+        Prime divisions greater than 3 are converted to sequences of 2 and 3 summing to that prime. 
+        Hence 5 becomes 3+2 and 7 becomes 3+2+2.
+
+        The metrical hierarchy models many parts of the common practice understanding of meter::
+
+            >>> metrical_hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+
+        ::
+
+            >>> metrical_hierarchy
+            MetricalHierarchy('(4/4 (1/4 1/4 1/4 1/4))')
+
+        ::
+
+            >>> print metrical_hierarchy.pretty_rtm_format
+            (4/4 (
+                1/4
+                1/4
+                1/4
+                1/4))
+
+
+        ::
+
+            >>> print timesignaturetools.MetricalHierarchy((3, 4)).pretty_rtm_format
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+
+        ::
+
+            >>> print timesignaturetools.MetricalHierarchy((6, 8)).pretty_rtm_format
+            (6/8 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+
+        ::
+
+            >>> print timesignaturetools.MetricalHierarchy((5, 4)).pretty_rtm_format
+            (5/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+        ::
+
+            >>> print timesignaturetools.MetricalHierarchy((5, 4),
+            ...     decrease_durations_monotonically=False).pretty_rtm_format
+            (5/4 (
+                (2/4 (
+                    1/4
+                    1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))))
+
+        ::
+
+            >>> print timesignaturetools.MetricalHierarchy((12, 8)).pretty_rtm_format
+            (12/8 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+
+
+Forced accidentals and cautionary accidentals are now available as properties::
+
+    >>> note = notetools.Note("c'4")
+    >>> note.note_head.is_forced = True
+    >>> f(note)
+    c'!4
+
+::
+
+    >>> note.note_head.is_cautionary = True
+    >>> f(note)
+    c'!?4
+
+
+Forced accidentals and cautionary accidentals are also now available at instantiation::
+
+    >>> note = Note("c'!?4")
+    >>> note
+    Note("c'!?4")
+
+::
+
+    >>> chord = Chord("<c'!? e'? g'! b'>4")
+    >>> chord
+    Chord("<c'!? e'? g'! b'>4")
+
+::
+
+    >>> Note(chord)
+    Note("c'!?4")
+
+::
+
+    >>> Chord(note)
+    Chord("<c'!?>4")
+
+
+New tutorials describe how to get started with Abjad::
+
+    1. Getting started
+    2. LilyPond “hello, world!”
+    3. Python “hello, world!” (at the interpreter)
+    4. Python “hello, world!” (in a file)
+    5. More about Python
+    6. Abjad “hello, world” (at the interpreter)
+    7. Abjad “hello, world!” (in a file)
+    8. More about Abjad
+
+
+Added a function to register custom markup globally with the LilyPondParser::
+
+    >>> from abjad.tools.lilypondparsertools import LilyPondParser
+
+::
+
+    >>> name = 'my-custom-markup-function'
+    >>> signature = ['markup?']
+    >>> LilyPondParser.register_markup_function(name, signature)
+
+::
+
+    >>> parser = LilyPondParser()
+    >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
+    >>> parser(string)
+    Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
+
+::
+
+    >>> f(_)
+    \markup { \my-custom-markup-function { foo bar baz } }
+
+
+Note that this once registered, the custom markup command is also recognized when instantiating
+parsed Markup objects::
+
+    >>> markuptools.Markup(r"\my-custom-markup-function { foo bar baz }")
+    Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
+
+
+The ``durationtools`` package now implements three related classes.
+All three classes are now available in the global namespace.
+Durations, multipliers and offsets are now distinguished everywhere in Abjad::
+
+    Duration
+    Multiplier
+    Offset
+
+
+Implemented new ``NonreducedRatio`` class. Compare with existing ``Ratio`` class::
+
+    >>> mathtools.NonreducedRatio(2, 4, 2)
+    NonreducedRatio(2, 4, 2)
+
+::
+
+    >>> mathtools.Ratio(2, 4, 2)
+    Ratio(1, 2, 1)
+
+
+Added new componenttools ScoreSelection subclasses. All selections are improper::
+
+    * componenttools.Descendants
+    * componenttools.Lineage
+    * componenttools.Parentage
+
+New score selection subclasses are also accessible via::
+
+    * Component.descendants
+    * Component.lineage
+    * Component.parentage
+
+
+
+Added lilypondfiletools.LilyPondDimension class::
+
+    >>> dimension = lilypondfiletools.LilyPondDimension(2, 'in')
+    >>> f(dimension)
+    2.0\in
+
+
+
+
+
+
 Abjad 2.10
 ----------
 
