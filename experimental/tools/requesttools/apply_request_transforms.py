@@ -28,8 +28,20 @@ def apply_request_transforms(request, payload):
         settingtools.Command,
         )
 
+    #print request
+    #print payload
+    #print ''
+
     assert isinstance(request, request_klasses), repr(request)
     assert isinstance(payload, (list, tuple, rhythmmakertools.RhythmMaker)), repr(payload)
+
+    #assert hasattr(request, 'modifications')
+    if hasattr(request, 'modifications'):
+        for modification in request.modifications:
+            assert 'target' in modification
+            target = payload
+            eval(modification)
+            payload = target
 
     if isinstance(payload, rhythmmakertools.RhythmMaker):
         if request.reverse:

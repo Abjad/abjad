@@ -26,6 +26,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.Request.Request.Request.REVERSE
+
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.rotate
 
 Special Methods

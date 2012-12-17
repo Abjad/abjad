@@ -98,6 +98,14 @@ class Request(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def REVERSE(self):
+        '''Return copy of request with appended modification.
+        '''
+        modification = 'target.reverse()'
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+
     def rotate(self, index):
         '''Return copy of request with appended modification.
         '''
