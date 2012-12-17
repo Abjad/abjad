@@ -49,7 +49,8 @@ class RunDoctestsScript(DirectoryScript):
     def process_args(self, args):
         globs = importlib.import_module('abjad').__dict__.copy()
         try:
-            globs.update(importlib.import_module('experimental').__dict__)
+            globs.update(importlib.import_module('experimental.tools').__dict__)
+            globs.update(importlib.import_module('experimental.demos').__dict__)
         except ImportError:
             pass
         iotools.clear_terminal()
