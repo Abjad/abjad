@@ -37,9 +37,7 @@ class SegmentSpecification(Specification):
     def __init__(self, score_specification, score_template, segment_name):
         assert isinstance(segment_name, str), segment_name
         Specification.__init__(self, score_specification, score_template)
-        self._score_model = self.score_template()
         self._segment_name = segment_name
-        self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
         self._time_signatures = []
 
     ### SPECIAL METHODS ###
@@ -125,28 +123,6 @@ class SegmentSpecification(Specification):
         Return duration.
         '''
         return durationtools.Duration(sum([durationtools.Duration(x) for x in self.time_signatures]))
-
-    @property
-    def multiple_context_settings(self):
-        '''Segment specification multiple-context settings.
-
-            >>> red_segment.multiple_context_settings
-            MultipleContextSettingInventory([])
-
-        Return multiple-context setting inventory.
-        '''
-        return self._multiple_context_settings
-
-    @property
-    def score_model(self):
-        '''Segment specification score model::
-
-            >>> red_segment.score_model
-            Score-"Grouped Rhythmic Staves Score"<<1>>
-
-        Return Abjad score object.
-        '''
-        return self._score_model
 
     @property
     def score_name(self):

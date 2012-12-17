@@ -47,9 +47,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.multiple_context_settings
 
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.offsets
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_duration
+
+.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_model
+
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
 

@@ -33,7 +33,7 @@ class DivisionList(AbjadObject):
     ::
 
         >>> blue_segment = score_specification.append_segment(name='blue')
-        >>> green_segment = score_specification.append_segment('green')
+        >>> green_segment = score_specification.append_segment(name='green')
 
     ::
 

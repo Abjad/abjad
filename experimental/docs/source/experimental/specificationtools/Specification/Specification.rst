@@ -39,9 +39,13 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.multiple_context_settings
+
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_model
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_name
 

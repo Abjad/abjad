@@ -130,7 +130,7 @@ def test_multiple_segment_solo_07():
     red_segment.set_divisions([(15, 8)], contexts=red_segment.v1)
     red_segment.set_rhythm(library.thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')
-    green_segment = score_specification.append_segment('green')
+    green_segment = score_specification.append_segment(name='green')
     score = score_specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()

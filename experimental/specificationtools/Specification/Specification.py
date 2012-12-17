@@ -56,12 +56,13 @@ class Specification(SymbolicTimespan):
         SymbolicTimespan.__init__(self)
         self._score_specification = score_specification
         self._score_template = score_template
+        self._score_model = score_template()
         self._abbreviated_context_names = []
         self._context_names = []
-        self._single_context_settings_by_context = \
-            specificationtools.ContextProxyDictionary(self.score_template())
+        self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
+        self._single_context_settings_by_context = specificationtools.ContextProxyDictionary(score_template())
         self._initialize_context_name_abbreviations()
-        self._contexts = specificationtools.ContextProxyDictionary(self.score_template())
+        self._contexts = specificationtools.ContextProxyDictionary(score_template())
         self._single_context_settings = settingtools.SingleContextSettingInventory()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -123,6 +124,22 @@ class Specification(SymbolicTimespan):
     @property
     def contexts(self):
         return self._contexts
+
+    @property
+    def multiple_context_settings(self):
+        '''Secification multiple-context settings.
+
+        Return multiple-context setting inventory.
+        '''
+        return self._multiple_context_settings
+
+    @property
+    def score_model(self):
+        '''Secification score model.
+
+        Return Abjad score object.
+        '''
+        return self._score_model
 
     @property
     def score_name(self):

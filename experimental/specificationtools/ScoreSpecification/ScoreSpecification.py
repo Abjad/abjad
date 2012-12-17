@@ -38,7 +38,6 @@ class ScoreSpecification(Specification):
         self._all_rhythm_quintuples = []
         self._all_rhythm_region_commands = []
         self._all_time_signature_commands = []
-        self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
 
@@ -177,17 +176,6 @@ class ScoreSpecification(Specification):
             if duration is not None:
                 result.append(duration)
         return durationtools.Duration(sum(result))
-
-    @property
-    def multiple_context_settings(self):
-        '''Segment specification multiple-context settings.
-
-            >>> red_segment.multiple_context_settings
-            MultipleContextSettingInventory([])
-
-        Return multiple-context setting inventory.
-        '''
-        return self._multiple_context_settings
 
     @property
     def offsets(self):
