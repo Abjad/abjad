@@ -58,6 +58,11 @@ class ConcreteInterpreter(Interpreter):
             target.reverse()
         if getattr(source, 'rotation', None):
             target.rotate(source.rotation)
+        #assert hasattr(source, 'modifications')
+        if hasattr(source, 'modifications'):
+            for modification in source.modifications:
+                assert 'target' in modification
+                eval(modification)
 
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
