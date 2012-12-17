@@ -155,8 +155,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
     # TODO: Remove timespan=None here and always store SymbolicTimespan._timespan_abbreviation instead.
     #       This means that one fewer parameters will be passed into this method.
-    def _store_multiple_context_setting(self, attribute, source,
-        contexts=None, timespan=None,
+    def _store_multiple_context_setting(self, attribute, source, contexts=None, timespan=None,
         index=None, count=None, reverse=None, rotation=None,
         persist=True, truncate=None):
         from experimental.tools import requesttools
@@ -164,12 +163,13 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         request = requesttools.expr_to_request(source)
         assert self.score_specification is not None
         context_names = self.score_specification._context_token_to_context_names(contexts)
+        assert timespan is None
         timespan = timespan or self._timespan_abbreviation
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute, 
             request, 
             timespan, # eventually this should be self._timespan_abbreviation instead
-            context_names=context_names, 
+            context_names=context_names,
             index=index,
             count=count,
             reverse=reverse,

@@ -14,7 +14,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_01():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
     timespan = timespan.scale(Multiplier(4))
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -34,7 +34,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_02():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
     timespan = timespan.set_duration(Duration(2, 8))
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -54,7 +54,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_03():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
     timespan = timespan.set_offsets(start_offset=Offset(1, 8))
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -74,7 +74,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_04():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
     timespan = timespan.set_offsets(stop_offset=Offset(2, 8))
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -94,7 +94,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_05():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 1)
     timespan = timespan.translate_offsets(Duration(1, 8), Duration(1, 8)) 
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -114,7 +114,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_06():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
     timespan = timespan.translate_offsets(start_offset_translation=Duration(1, 8)) 
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -134,7 +134,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_07():
     red_segment.set_rhythm(library.sixteenths)
     timespan = red_segment.select_background_measures(0, 2)
     timespan = timespan.translate_offsets(stop_offset_translation=Duration(-1, 8)) 
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -155,7 +155,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_08():
     timespan = red_segment.select_background_measures(0, 2)
     timespan = timespan.translate_offsets(start_offset_translation=Duration(1, 8))
     timespan = timespan.scale(Multiplier(2))
-    red_segment.set_rhythm(library.thirty_seconds, timespan=timespan)
+    timespan.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

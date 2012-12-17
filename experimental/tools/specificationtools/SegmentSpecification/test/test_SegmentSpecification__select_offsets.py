@@ -12,7 +12,7 @@ def test_SegmentSpecification__select_offsets_01():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_part_of_segment= red_segment.adjust_timespan_offsets(start=(1, 8), stop=(4, 8))
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=middle_part_of_segment)
+    middle_part_of_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -31,7 +31,7 @@ def test_SegmentSpecification__select_offsets_02():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_part_of_segment = red_segment.adjust_timespan_offsets(stop=(4, 8))
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=middle_part_of_segment)
+    middle_part_of_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -50,7 +50,7 @@ def test_SegmentSpecification__select_offsets_03():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     middle_part_of_segment = red_segment.adjust_timespan_offsets(start=(2, 8))
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=middle_part_of_segment)
+    middle_part_of_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -69,7 +69,7 @@ def test_SegmentSpecification__select_offsets_04():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = red_segment.select()
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=whole_segment)
+    whole_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -88,7 +88,7 @@ def test_SegmentSpecification__select_offsets_05():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = red_segment.adjust_timespan_offsets(start=(-4, 8))
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=whole_segment)
+    whole_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -107,7 +107,7 @@ def test_SegmentSpecification__select_offsets_06():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = red_segment.adjust_timespan_offsets(stop=(-2, 8))
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=whole_segment)
+    whole_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -126,7 +126,7 @@ def test_SegmentSpecification__select_offsets_07():
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
     whole_segment = red_segment.adjust_timespan_offsets(start=(-4, 8), stop=(-2, 8))
     red_segment.set_divisions([(2, 16)])
-    red_segment.set_divisions([(3, 16)], timespan=whole_segment)
+    whole_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 

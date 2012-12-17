@@ -12,8 +12,8 @@ def test_BackgroundMeasureSelector__partition_objects_by_ratio_01():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     measures = red_segment.select_background_measures()
     left, right = measures.partition_objects_by_ratio((1, 1))
-    red_segment.set_divisions([(3, 16)], timespan=left, truncate=True)
-    red_segment.set_divisions([(5, 16)], timespan=right, truncate=True)
+    left.set_divisions([(3, 16)], truncate=True)
+    right.set_divisions([(5, 16)], truncate=True)
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
@@ -33,7 +33,7 @@ def test_BackgroundMeasureSelector__partition_objects_by_ratio_02():
     measures = red_segment.select_background_measures()
     last_two_measures = measures.partition_objects_by_ratio((1, 1))[-1]
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], timespan=last_two_measures)
+    last_two_measures.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 

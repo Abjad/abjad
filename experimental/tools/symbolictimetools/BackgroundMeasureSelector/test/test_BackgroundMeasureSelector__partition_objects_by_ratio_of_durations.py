@@ -11,7 +11,7 @@ def test_BackgroundMeasureSelector__partition_objects_by_ratio_of_durations_01()
     measures = red_segment.select_background_measures()
     last_measure = measures.partition_objects_by_ratio_of_durations((1, 1))[-1]
     red_segment.set_divisions([(2, 32)])
-    red_segment.set_divisions([(3, 32)], timespan=last_measure)
+    last_measure.set_divisions([(3, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
