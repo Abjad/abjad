@@ -32,14 +32,16 @@ def test_SegmentSpecification__set_time_signatures_transform_keywords_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
+# TODO: remove me
 def test_SegmentSpecification__set_time_signatures_transform_keywords_03():
-    '''Time signature 'reverse' transform.
+    '''Time signature reverse transform.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
-    red_segment.set_time_signatures([(1, 8), (2, 8), (3, 8), (4, 8)], reverse=True)
+    time_signatures = [(1, 8), (2, 8), (3, 8), (4, 8)]
+    red_segment.set_time_signatures(list(reversed(time_signatures)))
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
