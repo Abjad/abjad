@@ -22,23 +22,32 @@ class Quantizer(AbjadObject):
     ::
 
         >>> result = quantizer(q_event_sequence)
-        >>> f(result)
-        \new Voice {
-            {
-                \time 4/4
-                %%% \tempo 4=60 %%%
-                c'4
-                cs'4
-                d'4
-                ef'4
+        >>> score = Score([Staff([result])])
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                \new Voice {
+                    {
+                        \time 4/4
+                        \tempo 4=60 
+                        c'4
+                        cs'4
+                        d'4
+                        ef'4
+                    }
+                    {
+                        e'4
+                        f'4
+                        fs'4
+                        g'4
+                    }
+                }
             }
-            {
-                e'4
-                f'4
-                fs'4
-                g'4
-            }
-        }
+        >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
 
     However, the behavior of the ``Quantizer`` can be modified at call-time.
     Passing a ``QSchema`` instance will alter the macro-structure of the
@@ -58,51 +67,60 @@ class Quantizer(AbjadObject):
     ::
 
         >>> result = quantizer(q_event_sequence, q_schema=measurewise_q_schema)
-        >>> f(result)
-        \new Voice {
-            {
-                \time 2/4
-                %%% \tempo 4=78 %%%
-                c'4 ~
-                \times 4/5 {
-                    c'16.
-                    cs'8.. ~
+        >>> score = Score([Staff([result])])
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                \new Voice {
+                    {
+                        \time 2/4
+                        \tempo 4=78
+                        c'4 ~
+                        \times 4/5 {
+                            c'16.
+                            cs'8.. ~
+                        }
+                    }
+                    {
+                        \time 5/4
+                        \tempo 8=57
+                        \times 4/7 {
+                            cs'16.
+                            d'8 ~
+                        }
+                        \times 4/5 {
+                            d'16
+                            ef'16. ~
+                        }
+                        \times 2/3 {
+                            ef'16
+                            e'8 ~
+                        }
+                        \times 4/7 {
+                            e'16
+                            f'8 ~
+                            f'32 ~
+                        }
+                        f'32
+                        fs'16. ~
+                        \times 4/5 {
+                            fs'32
+                            g'8 ~
+                        }
+                        \times 4/7 {
+                            g'32
+                            r4. ~
+                            r32 ~
+                        }
+                        r4
+                    }
                 }
             }
-            {
-                \time 5/4
-                %%% \tempo 8=57 %%%
-                \times 4/7 {
-                    cs'16.
-                    d'8 ~
-                }
-                \times 4/5 {
-                    d'16
-                    ef'16. ~
-                }
-                \times 2/3 {
-                    ef'16
-                    e'8 ~
-                }
-                \times 4/7 {
-                    e'16
-                    f'8 ~
-                    f'32 ~
-                }
-                f'32
-                fs'16. ~
-                \times 4/5 {
-                    fs'32
-                    g'8 ~
-                }
-                \times 4/7 {
-                    g'32
-                    r4. ~
-                    r32 ~
-                }
-                r4
-            }
-        }
+        >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
 
     Here we quantize using settings specified by a ``BeatwiseQSchema``, which
     keeps the output of the quantizer "flattened", without measures or explicit
@@ -121,32 +139,41 @@ class Quantizer(AbjadObject):
     ::
 
         >>> result = quantizer(q_event_sequence, q_schema=beatwise_q_schema)
-        >>> f(result)
-        \new Voice {
-            %%% \tempo 4=60 %%%
-            c'4
-            cs'4
-            %%% \tempo 4=120 %%%
-            d'2
-            ef'4 ~
-            %%% \tempo 4=90 %%%
-            ef'8.
-            e'4 ~
-            e'16 ~
-            \times 2/3 {
-                %%% \tempo 4=30 %%%
-                e'32
-                f'8.
-                fs'8 ~
-                fs'32 ~
+        >>> score = Score([Staff([result])])
+        >>> f(score)
+        \new Score <<
+            \new Staff {
+                \new Voice {
+                    \tempo 4=60 
+                    c'4
+                    cs'4
+                    \tempo 4=120 
+                    d'2
+                    ef'4 ~
+                    \tempo 4=90 
+                    ef'8.
+                    e'4 ~
+                    e'16 ~
+                    \times 2/3 {
+                        \tempo 4=30 
+                        e'32
+                        f'8.
+                        fs'8 ~
+                        fs'32 ~
+                    }
+                    \times 2/3 {
+                        fs'32
+                        g'8.
+                        r8 ~
+                        r32
+                    }
+                }
             }
-            \times 2/3 {
-                fs'32
-                g'8.
-                r8 ~
-                r32
-            }
-        }
+        >>
+
+    ::
+
+        >>> show(score) # doctest: +SKIP
 
     Note that ``TieChains`` are generally fused together in the above example, but
     break at tempo changes.
