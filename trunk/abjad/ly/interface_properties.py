@@ -1,9 +1,10 @@
-lilypond_version = "2.16.1"
+lilypond_version = "2.17.9"
 
 interface_properties = {
     "accidental-interface": [
         "alteration",
         "avoid-slur",
+        "glyph-name",
         "glyph-name-alist",
         "hide-tied-accidental-after-break",
         "parenthesized",
@@ -42,9 +43,9 @@ interface_properties = {
         "nonstaff-nonstaff-spacing",
         "nonstaff-relatedstaff-spacing",
         "nonstaff-unrelatedstaff-spacing",
+        "outside-staff-placement-directive",
         "staff-affinity",
         "staff-staff-spacing",
-        "vertical-skylines",
     ],
     "balloon-interface": [
         "annotation-balloon",
@@ -60,6 +61,7 @@ interface_properties = {
         "glyph-name",
         "hair-thickness",
         "kern",
+        "rounded",
         "thick-thickness",
         "thin-kern",
     ],
@@ -71,6 +73,7 @@ interface_properties = {
         "X-positions",
         "annotation",
         "auto-knee-gap",
+        "beam-gap",
         "beam-thickness",
         "beamed-stem-shorten",
         "beaming",
@@ -82,7 +85,6 @@ interface_properties = {
         "damping",
         "details",
         "direction",
-        "gap",
         "gap-count",
         "grow-direction",
         "inspect-quants",
@@ -163,7 +165,12 @@ interface_properties = {
         "thickness",
     ],
     "finger-interface": [],
+    "fingering-column-interface": [
+        "padding",
+        "positioning-done",
+    ],
     "flag-interface": [
+        "glyph-name",
         "stroke-style",
         "style",
     ],
@@ -209,11 +216,10 @@ interface_properties = {
         "before-line-breaking",
         "color",
         "cross-staff",
-        "extra-X-extent",
-        "extra-Y-extent",
         "extra-offset",
         "footnote-music",
         "forced-spacing",
+        "horizontal-skylines",
         "id",
         "layer",
         "minimum-X-extent",
@@ -222,9 +228,11 @@ interface_properties = {
         "outside-staff-padding",
         "outside-staff-priority",
         "rotation",
+        "skyline-horizontal-padding",
         "springs-and-rods",
         "stencil",
         "transparent",
+        "vertical-skylines",
         "whiteout",
     ],
     "hairpin-interface": [
@@ -262,9 +270,11 @@ interface_properties = {
     "key-signature-interface": [
         "alteration-alist",
         "c0-position",
+        "flat-positions",
         "glyph-name-alist",
         "padding",
         "padding-pairs",
+        "sharp-positions",
     ],
     "ledger-line-spanner-interface": [
         "gap",
@@ -320,6 +330,9 @@ interface_properties = {
     "lyric-interface": [],
     "lyric-syllable-interface": [],
     "mark-interface": [],
+    "measure-counter-interface": [
+        "count-from",
+    ],
     "measure-grouping-interface": [
         "height",
         "style",
@@ -371,6 +384,7 @@ interface_properties = {
         "space-to-barline",
         "stem-spacing-correction",
     ],
+    "octavate-eight-interface": [],
     "only-prebreak-interface": [],
     "ottava-bracket-interface": [
         "bracket-flare",
@@ -437,7 +451,6 @@ interface_properties = {
     ],
     "script-column-interface": [],
     "script-interface": [
-        "add-stem-support",
         "avoid-slur",
         "positioning-done",
         "script-priority",
@@ -470,6 +483,7 @@ interface_properties = {
         "skyline-vertical-padding",
     ],
     "side-position-interface": [
+        "add-stem-support",
         "direction",
         "minimum-space",
         "padding",
@@ -493,7 +507,6 @@ interface_properties = {
         "positions",
         "ratio",
         "thickness",
-        "vertical-skylines",
     ],
     "spaceable-grob-interface": [
         "allow-loose-spacing",
@@ -569,6 +582,7 @@ interface_properties = {
     "stem-tremolo-interface": [
         "beam-thickness",
         "beam-width",
+        "direction",
         "flag-count",
         "length-fraction",
         "slope",
@@ -580,7 +594,6 @@ interface_properties = {
     ],
     "system-interface": [
         "labels",
-        "skyline-horizontal-padding",
     ],
     "system-start-delimiter-interface": [
         "collapse-height",
@@ -604,7 +617,6 @@ interface_properties = {
         "word-space",
     ],
     "text-script-interface": [
-        "add-stem-support",
         "avoid-slur",
         "script-priority",
     ],
@@ -663,6 +675,7 @@ interface_properties = {
     ],
     "volta-bracket-interface": [
         "height",
+        "shorten-pair",
         "thickness",
     ],
     "volta-interface": [],

@@ -1,4 +1,4 @@
-lilypond_version = "2.16.1"
+lilypond_version = "2.17.9"
 
 markup_functions = {
     'abs-fontsize': ('number?', 'cheap-markup?',),
@@ -89,6 +89,8 @@ markup_functions = {
     'put-adjacent': ('integer?', 'ly:dir?', 'cheap-markup?', 'cheap-markup?',),
     'raise': ('number?', 'cheap-markup?',),
     'replace': ('list?', 'cheap-markup?',),
+    'rest-by-number': ('number?', 'number?',),
+    'rest': ('string?',),
     'right-align': ('cheap-markup?',),
     'right-brace': ('number?',),
     'right-column': ('markup-list?',),

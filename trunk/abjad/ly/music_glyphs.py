@@ -1,4 +1,4 @@
-lilypond_version = "2.16.1"
+lilypond_version = "2.17.9"
 
 music_glyphs = set([
     "accidentals.doublesharp",
@@ -59,6 +59,8 @@ music_glyphs = set([
     "clefs.F_change",
     "clefs.G",
     "clefs.G_change",
+    "clefs.blackmensural.c",
+    "clefs.blackmensural.c_change",
     "clefs.hufnagel.do",
     "clefs.hufnagel.do.fa",
     "clefs.hufnagel.do.fa_change",
@@ -509,6 +511,7 @@ music_glyphs = set([
     "scripts.stopped",
     "scripts.tenuto",
     "scripts.thumb",
+    "scripts.tickmark",
     "scripts.trilelement",
     "scripts.trill",
     "scripts.trill_element",

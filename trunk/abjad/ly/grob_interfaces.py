@@ -1,4 +1,4 @@
-lilypond_version = "2.16.1"
+lilypond_version = "2.17.9"
 
 grob_interfaces = {
     "Accidental": [
@@ -310,6 +310,11 @@ grob_interfaces = {
         "text-interface",
         "text-script-interface",
     ],
+    "FingeringColumn": [
+        "fingering-column-interface",
+        "grob-interface",
+        "item-interface",
+    ],
     "Flag": [
         "flag-interface",
         "font-interface",
@@ -469,6 +474,14 @@ grob_interfaces = {
         "self-alignment-interface",
         "text-interface",
     ],
+    "MeasureCounter": [
+        "font-interface",
+        "grob-interface",
+        "measure-counter-interface",
+        "self-alignment-interface",
+        "spanner-interface",
+        "text-interface",
+    ],
     "MeasureGrouping": [
         "grob-interface",
         "measure-grouping-interface",
@@ -576,6 +589,7 @@ grob_interfaces = {
         "font-interface",
         "grob-interface",
         "item-interface",
+        "octavate-eight-interface",
         "self-alignment-interface",
         "side-position-interface",
         "text-interface",

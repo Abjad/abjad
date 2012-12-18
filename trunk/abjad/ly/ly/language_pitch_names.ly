@@ -48,6 +48,7 @@
 %%% MAIN %%%
 
 #(begin
+  (display "# -*- encoding: utf-8 -*-\n\n")
   (display "from abjad.tools.pitchtools import NamedChromaticPitchClass\n\n\n")
   (display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
   (display "language_pitch_names = {")

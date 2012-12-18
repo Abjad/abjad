@@ -1,4 +1,4 @@
-lilypond_version = "2.16.1"
+lilypond_version = "2.17.9"
 
 context_properties = [
     "aDueText",
@@ -35,6 +35,8 @@ context_properties = [
     "chordRootNamer",
     "clefGlyph",
     "clefOctavation",
+    "clefOctavationFormatter",
+    "clefOctavationStyle",
     "clefPosition",
     "completionBusy",
     "completionUnit",
@@ -46,6 +48,8 @@ context_properties = [
     "crescendoText",
     "cueClefGlyph",
     "cueClefOctavation",
+    "cueClefOctavationFormatter",
+    "cueClefOctavationStyle",
     "cueClefPosition",
     "currentBarNumber",
     "decrescendoSpanner",
