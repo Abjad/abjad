@@ -126,7 +126,7 @@ def test_SegmentSpecification__request_time_signatures_from_past_06():
 
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
-    red_time_signatures = red_time_signatures.REVERSE()
+    red_time_signatures = red_time_signatures.reverse()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 
@@ -149,7 +149,7 @@ def test_SegmentSpecification__request_time_signatures_from_past_07():
 
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
-    red_time_signatures = red_time_signatures.REVERSE()
+    red_time_signatures = red_time_signatures.reverse()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 
@@ -172,8 +172,8 @@ def test_SegmentSpecification__request_time_signatures_from_past_08():
 
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
-    red_time_signatures = red_time_signatures.REVERSE()
-    red_time_signatures = red_time_signatures.REVERSE()
+    red_time_signatures = red_time_signatures.reverse()
+    red_time_signatures = red_time_signatures.reverse()
     blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 

@@ -40,7 +40,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.REVERSE
+.. automethod:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.reverse
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 

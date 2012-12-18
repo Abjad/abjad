@@ -39,19 +39,19 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     blue_segment = score_specification.append_segment(name='blue')
 
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
-    blue_segment.set_time_signatures(red_time_signatures.REVERSE())
+    blue_segment.set_time_signatures(red_time_signatures.reverse())
 
     red_voice_1_divisions = red_segment.request_divisions('Voice 1')
     red_voice_2_divisions = red_segment.request_divisions('Voice 2')
     red_voice_3_divisions = red_segment.request_divisions('Voice 3')
     red_voice_4_divisions = red_segment.request_divisions('Voice 4')
-    blue_segment.set_divisions(red_voice_1_divisions.REVERSE(), contexts=['Voice 1'])
-    blue_segment.set_divisions(red_voice_2_divisions.REVERSE(), contexts=['Voice 2'])
-    blue_segment.set_divisions(red_voice_3_divisions.REVERSE(), contexts=['Voice 3'])
-    blue_segment.set_divisions(red_voice_4_divisions.REVERSE(), contexts=['Voice 4'])
+    blue_segment.set_divisions(red_voice_1_divisions.reverse(), contexts=['Voice 1'])
+    blue_segment.set_divisions(red_voice_2_divisions.reverse(), contexts=['Voice 2'])
+    blue_segment.set_divisions(red_voice_3_divisions.reverse(), contexts=['Voice 3'])
+    blue_segment.set_divisions(red_voice_4_divisions.reverse(), contexts=['Voice 4'])
 
     red_rhythm_command = red_segment.request_rhythm_command('Voice 1')
-    blue_segment.set_rhythm(red_rhythm_command.REVERSE())
+    blue_segment.set_rhythm(red_rhythm_command.reverse())
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

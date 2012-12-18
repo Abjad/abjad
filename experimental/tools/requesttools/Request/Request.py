@@ -92,7 +92,7 @@ class Request(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def REVERSE(self):
+    def reverse(self):
         '''Return copy of request with appended modification.
         '''
         modification = 'result = target.reverse()'

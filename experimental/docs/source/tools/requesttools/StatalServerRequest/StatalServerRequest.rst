@@ -34,7 +34,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.REVERSE
+.. automethod:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.reverse
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
