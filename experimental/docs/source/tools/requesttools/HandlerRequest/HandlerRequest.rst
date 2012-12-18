@@ -23,10 +23,6 @@ Read-only Properties
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
-.. autoattribute:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.reverse
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.rotation
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`

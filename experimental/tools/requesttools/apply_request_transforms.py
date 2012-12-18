@@ -12,8 +12,6 @@ def apply_request_transforms(request, payload):
 
     Then apply nonnone ``request.count`` to `payload`.
 
-    Then apply nonnone ``request.reverse`` to `payload`.
-
     Then apply nonnone ``request.rotation`` to `payload`.
     
     Return `payload`.
@@ -46,11 +44,6 @@ def apply_request_transforms(request, payload):
             else:
                 payload = result
 
-    if isinstance(payload, rhythmmakertools.RhythmMaker):
-        if request.reverse:
-            payload = payload.reverse()
-        return payload
-
     if request.index is not None or request.count is not None:
         original_payload_type = type(payload)
         index = request.index or 0
@@ -62,11 +55,6 @@ def apply_request_transforms(request, payload):
             count = request.count
         payload = sequencetools.CyclicTuple(payload)
         payload = payload[index:index+count]
-        payload = original_payload_type(payload)
-
-    if request.reverse:
-        original_payload_type = type(payload)
-        payload = list(reversed(payload))
         payload = original_payload_type(payload)
 
     if request.rotation:

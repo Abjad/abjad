@@ -40,7 +40,7 @@ class CommandRequest(Request):
     Command requested is canonically assumed to be a list or other iterable.
 
     Because of this the request affords list-manipulation attributes.
-    These are `index`, `count`, `reverse`.
+    These are `index`, `count`.
 
     Purpose of a command request is to function as a setting source.
     '''
@@ -49,12 +49,12 @@ class CommandRequest(Request):
 
     def __init__(self, attribute, voice_name, symbolic_offset, 
         modifications=None,
-        index=None, count=None, reverse=None, rotation=None):
+        index=None, count=None, rotation=None):
         assert isinstance(voice_name, str), repr(voice_name)
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
         Request.__init__(self, modifications=modifications, 
-            index=index, count=count, reverse=reverse, rotation=rotation)
+            index=index, count=count, rotation=rotation)
         self._attribute = attribute
         self._voice_name = voice_name
         self._symbolic_offset = symbolic_offset
