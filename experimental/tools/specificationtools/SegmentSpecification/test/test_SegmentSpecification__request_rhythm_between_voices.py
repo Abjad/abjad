@@ -8,14 +8,12 @@ def test_SegmentSpecification__request_rhythm_between_voices_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm = red_segment.request_rhythm('Voice 2')
     red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -29,14 +27,13 @@ def test_SegmentSpecification__request_rhythm_between_voices_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    voice_2_rhythm = red_segment.request_rhythm('Voice 2', reverse=True)
+    voice_2_rhythm = red_segment.request_rhythm('Voice 2')
+    voice_2_rhythm = voice_2_rhythm.REVERSE()
     red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -50,14 +47,13 @@ def test_SegmentSpecification__request_rhythm_between_voices_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
     voice_2_rhythm = red_segment.request_rhythm('Voice 2')
-    red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'], reverse=True)
+    voice_2_rhythm = voice_2_rhythm.REVERSE()
+    red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -71,14 +67,14 @@ def test_SegmentSpecification__request_rhythm_between_voices_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(1, 8)])
-    voice_2_rhythm = red_segment.request_rhythm('Voice 2', reverse=True)
-    red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'], reverse=True)
+    voice_2_rhythm = red_segment.request_rhythm('Voice 2')
+    voice_2_rhythm = voice_2_rhythm.REVERSE()
+    voice_2_rhythm = voice_2_rhythm.REVERSE()
+    red_segment.set_rhythm(voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.dotted_sixteenths, contexts=['Voice 2'])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

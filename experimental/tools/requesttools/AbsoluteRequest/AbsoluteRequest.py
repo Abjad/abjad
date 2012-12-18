@@ -10,19 +10,18 @@ class AbsoluteRequest(Request):
 
     Absolute request::
 
-        >>> request = requesttools.AbsoluteRequest([(4, 16), (2, 16)], reverse=True)
+        >>> request = requesttools.AbsoluteRequest([(4, 16), (2, 16)])
 
     ::
 
         >>> request
-        AbsoluteRequest([(4, 16), (2, 16)], reverse=True)
+        AbsoluteRequest([(4, 16), (2, 16)])
 
     ::
 
         >>> z(request)
         requesttools.AbsoluteRequest(
-            [(4, 16), (2, 16)],
-            reverse=True
+            [(4, 16), (2, 16)]
             )
 
     Request `payload`.
