@@ -182,8 +182,10 @@ class ConcreteInterpreter(Interpreter):
             trimmed_division_region_expressions)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        #self._debug(trimmed_division_region_expressions, 'trimmed')
+        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
         self.apply_source_transforms_to_target(division_material_request, trimmed_division_region_expressions)
+        trimmed_division_region_expressions.sort() # new line
+        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
         return trimmed_division_region_expressions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
