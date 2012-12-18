@@ -15,7 +15,7 @@ you can use Abjad to make systematic changes to your music as you work.
 And because Abjad wraps the powerful LilyPond music notation package,
 you can use Abjad to control the typographic details of the symbols on the page.
 
-.. image:: examples/bartok/images/bartok-final.png
+.. image:: examples/ferneyhough/images/ferneyhough.png
 
 
 Start here
