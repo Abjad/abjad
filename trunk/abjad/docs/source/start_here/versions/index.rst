@@ -942,7 +942,7 @@ some of the rhythmtreetools.RhythmTreeNode subclasses, and even timesignaturetoo
     >>> hierarchy = timesignaturetools.MetricalHierarchy((7, 4))
     >>> iotools.graph(hierarchy)
 
-
+.. image:: images/graph.png
 
 Extended GroupedRhythmicStavesScoreTemplate with multiple voice initialization.
 Set staff_count to a list for staves with more than 1 voice::
