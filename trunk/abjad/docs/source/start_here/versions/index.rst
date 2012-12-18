@@ -8,10 +8,22 @@ Abjad 2.11
 Released 2012-12-17. Built from r8366.
 Implements 490 public classes and 1004 functions totalling 201,000 lines of code.
 
+Autocompletion is now available at the Abjad prompt.
 
-A new two new time signature tools.
+Music notation images now appear in the docstrings of many functions throughout the API.
 
-    A new ``MetricalHierarhcy`` class is now available in the ``timesignaturetools`` package.
+Added new ``iotools.graph()`` function to the ``iotools`` package.
+A small number of classes throughout the system have started to gain a `graphviz_format` attribute, 
+including datastructuretools.Digraph, documentationtools.InheritanceGraph, 
+some of the rhythmtreetools.RhythmTreeNode subclasses, and even timesignaturetools.MetricalHierarchy::
+
+    >>> hierarchy = timesignaturetools.MetricalHierarchy((7, 4))
+    >>> iotools.graph(hierarchy)
+
+
+Added two new time signature tools.
+
+    A new ``MetricalHierarchy`` class is now available in the ``timesignaturetools`` package.
 
         A rhythm tree-based model of nested time signature groupings.
 
@@ -40,7 +52,6 @@ A new two new time signature tools.
                 1/4
                 1/4
                 1/4))
-
 
         ::
 
@@ -108,6 +119,112 @@ A new two new time signature tools.
                     1/8
                     1/8
                     1/8))))
+
+    A new ``establish_metrical_hierarchy()`` function is now available in ``timesignaturetools``:
+
+        Rewrite the contents of tie chains in an expression to match a metrical
+        hierarchy.
+
+
+Added new time signature tool:
+
+    * timesignaturetools.establish_beat_hierarchy()
+
+This function attempts to rewrite tiechains in an expr to approximate a
+common-practice understanding of beat hierarchy:
+
+::
+
+    >>> source = p('abj: | 4/4 8. 4.. 4. |')
+    >>> f(source)
+    {
+        \time 4/4
+        c'8.
+        c'4..
+        c'4.
+    }
+
+::
+
+    >>> beat_hierarchy = timesignaturetools.BeatHierarchy(source)
+    >>> timesignaturetools.establish_beat_hierarchy(source[:], beat_hierarchy)
+    >>> f(source)
+    {
+        \time 4/4
+        c'8.
+        c'16 ~
+        c'4 ~
+        c'8
+        c'4.
+    }
+
+Also works on when tuplets are embedded in the expression:
+
+::
+
+    >>> source = p('abj: | 5/4 8 ~ 8 ~ 2/3 { 4 ~ 4 4 ~ } 4 ~ 4 |')
+    >>> f(source)
+    {
+        \time 5/4
+        c'8 ~
+        c'8 ~
+        \times 2/3 {
+            c'4 ~
+            c'4
+            c'4 ~
+        }
+        c'4 ~
+        c'4
+    }
+
+::
+
+    >>> beat_hierarchy = timesignaturetools.BeatHierarchy(source)
+    >>> timesignaturetools.establish_beat_hierarchy(source[:], beat_hierarchy)
+    >>> f(source)
+    {
+        \time 5/4
+        c'4 ~
+        \times 2/3 {
+            c'2
+            c'4 ~
+        }
+        c'2
+    }
+
+
+
+Extended GroupedRhythmicStavesScoreTemplate with multiple voice initialization.
+Set staff_count to a list for staves with more than 1 voice::
+
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=[2, 1, 2])
+        >>> score = template()
+
+::
+
+        >>> f(score)
+        \context Score = "Grouped Rhythmic Staves Score" <<
+            \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+                \context RhythmicStaff = "Staff 1" {
+                    \context Voice = "Voice 1-1" {
+                    }
+                    \context Voice = "Voice 1-2" {
+                    }
+                }
+                \context RhythmicStaff = "Staff 2" {
+                    \context Voice = "Voice 2" {
+                    }
+                }
+                \context RhythmicStaff = "Staff 3" {
+                    \context Voice = "Voice 3-1" {
+                    }
+                    \context Voice = "Voice 3-2" {
+                    }
+                }
+            >>
+        >>
+
+
 
 
 Forced accidentals and cautionary accidentals are now available as properties::
@@ -188,6 +305,22 @@ parsed Markup objects::
     >>> markuptools.Markup(r"\my-custom-markup-function { foo bar baz }")
     Markup((MarkupCommand('my-custom-markup-function', ['foo', 'bar', 'baz']),))
 
+Added new ``markuptools.MusicGlyph`` class.
+This is a subclass of markuptools.MarkupCommand, 
+and can therefore be used anywhere MarkupCommand can appear::
+It guarantees correct quoting around the glyph name 
+(which is easy to forget, or not always clear how to do for new users), 
+and also checks that the glyph name is recognized in LilyPond::
+
+    >>> markuptools.MusicGlyph('accidentals.sharp')
+    MusicGlyph('accidentals.sharp')
+
+::
+
+    >>> print _
+    \musicglyph #"accidentals.sharp"
+
+
 
 The ``durationtools`` package now implements three related classes.
 All three classes are now available in the global namespace.
@@ -207,6 +340,8 @@ Implemented new ``NonreducedRatio`` class. Compare with existing ``Ratio`` class
 
     >>> mathtools.Ratio(2, 4, 2)
     Ratio(1, 2, 1)
+
+
 
 
 Added new componenttools ScoreSelection subclasses. All selections are improper::
@@ -230,6 +365,206 @@ Added lilypondfiletools.LilyPondDimension class::
     2.0\in
 
 
+Added a new parseable tag to abjad-book: ``<abjadextract module \>[flags]``.
+This single-line tag imports the code found at `module`, and copies the
+actual code text itself into the abjad-book session, just as though it
+had been manually included between a pair of <abjad></abjad> tags.
+The intended use is in Abjad's literature examples.  Most of the examples
+are also written up in the demos/ directory.  It would be best if all of
+the code pertaining to each literature example was housed entirely in the
+demos/ directory, along with tests to guarantee their validity.  Then, 
+using the name <abjadextract \> tag, that code can simply be included into
+the documentation narrative.
+
+
+The abjad-book executable now handles multi-page PNG output.
+
+
+Implemented page selection in abjad-book.
+
+    Show an entire score::
+
+        <abjad>
+        show(foo)
+        </abjad>
+
+    Show page 1 of a single or multipage score::
+
+        <abjad>
+        show(foo) <page 1
+        </abjad>
+
+    Show pages 2 through 5 or a multipage score::
+
+        <abjad>
+        show(foo) <page 2-5
+        </abjad>
+
+A new ``timerelationtools`` package is now available.
+
+The new ``timerelationtools`` package features seven functions
+for using natural language to compare the in-time position
+on an offset relative to a reference timespan::
+
+    timerelationtools.offset_happens_after_timespan_starts
+    timerelationtools.offset_happens_after_timespan_stops
+    timerelationtools.offset_happens_before_timespan_starts
+    timerelationtools.offset_happens_before_timespan_stops
+    timerelationtools.offset_happens_during_timespan
+    timerelationtools.offset_happens_when_timespan_starts
+    timerelationtools.offset_happens_when_timespan_stops
+
+The new ``timerelationtools`` package contains 26 functions
+for using natural language to compare the in-time position
+of one timespan relative to another::
+
+    timerelationtools.timespan_2_contains_timespan_1_improperly
+    timerelationtools.timespan_2_curtails_timespan_1
+    timerelationtools.timespan_2_delays_timespan_1
+    timerelationtools.timespan_2_happens_during_timespan_1
+    timerelationtools.timespan_2_intersects_timespan_1
+    timerelationtools.timespan_2_is_congruent_to_timespan_1
+    timerelationtools.timespan_2_overlaps_all_of_timespan_1
+    timerelationtools.timespan_2_overlaps_only_start_of_timespan_1
+    timerelationtools.timespan_2_overlaps_only_stop_of_timespan_1
+    timerelationtools.timespan_2_overlaps_start_of_timespan_1
+    timerelationtools.timespan_2_overlaps_stop_of_timespan_1
+    timerelationtools.timespan_2_starts_after_timespan_1_starts
+    timerelationtools.timespan_2_starts_after_timespan_1_stops
+    timerelationtools.timespan_2_starts_before_timespan_1_starts
+    timerelationtools.timespan_2_starts_before_timespan_1_stops
+    timerelationtools.timespan_2_starts_during_timespan_1
+    timerelationtools.timespan_2_starts_when_timespan_1_starts
+    timerelationtools.timespan_2_starts_when_timespan_1_stops
+    timerelationtools.timespan_2_stops_after_timespan_1_starts
+    timerelationtools.timespan_2_stops_after_timespan_1_stops
+    timerelationtools.timespan_2_stops_before_timespan_1_starts
+    timerelationtools.timespan_2_stops_before_timespan_1_stops
+    timerelationtools.timespan_2_stops_during_timespan_1
+    timerelationtools.timespan_2_stops_when_timespan_1_starts
+    timerelationtools.timespan_2_stops_when_timespan_1_stops
+    timerelationtools.timespan_2_trisects_timespan_1
+
+Here's an example of some of the natural language comparison
+functions available in the ``timerelationtools`` package::
+
+    >>> staff_1 = Staff(r"\times 2/3 { c'4 d'4 e'4 } \times 2/3 { f'4 g'4 a'4 }")
+    >>> staff_2 = Staff("c'2. d'4")
+    >>> score = Score([staff_1, staff_2])
+
+::
+
+    >>> f(score)
+    \new Score <<
+        \new Staff {
+            \times 2/3 {
+                c'4
+                d'4
+                e'4
+            }
+            \times 2/3 {
+                f'4
+                g'4
+                a'4
+            }
+        }
+        \new Staff {
+            c'2.
+            d'4
+        }
+    >>
+
+::
+
+    >>> last_tuplet = staff_1[-1]
+    >>> long_note = staff_2[0]
+
+::
+
+    >>> timerelationtools.timespan_2_happens_during_timespan_1(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    False
+
+::
+
+    >>> timerelationtools.timespan_2_intersects_timespan_1(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    True
+
+::
+
+    >>> timerelationtools.timespan_2_is_congruent_to_timespan_1(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    False
+
+::
+
+    >>> timerelationtools.timespan_2_overlaps_all_of_timespan_1(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    False
+
+::
+
+    >>> timerelationtools.timespan_2_overlaps_start_of_timespan_1(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    True
+
+::
+
+    >>> timerelationtools.timespan_2_overlaps_stop_of_timespan_1(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    False
+
+::
+
+    >>> timerelationtools.timespan_2_starts_after_timespan_1_starts(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    False
+
+::
+
+    >>> timerelationtools.timespan_2_starts_after_timespan_1_stops(
+    ... timespan_1=last_tuplet, timespan_2=long_note)
+    False
+
+
+Added new EvenRunRhythmMaker class to the ``rhythmmakertools`` package.
+For each division on which the class is called, the class
+produces an even run of notes each equal in duration to 1/d
+with d equal to the division denominator::
+
+    >>> maker = rhythmmakertools.EvenRunRhythmMaker()
+
+::
+
+    >>> divisions = [(4, 16), (3, 8), (2, 8)]
+    >>> lists = maker(divisions)
+    >>> containers = sequencetools.flatten_sequence(lists)
+
+::
+
+    >>> staff = Staff(containers)
+
+::
+
+    >>> f(staff)
+    \new Staff {
+        {
+            c'16 [
+            c'16
+            c'16
+            c'16 ]
+        }
+        {
+            c'8 [
+            c'8
+            c'8 ]
+        }
+        {
+            c'8 [
+            c'8 ]
+        }
+    }
 
 
 
