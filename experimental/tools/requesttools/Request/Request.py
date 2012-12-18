@@ -103,7 +103,7 @@ class Request(AbjadObject):
     def rotate(self, index):
         '''Return copy of request with appended modification.
         '''
-        modification = 'target.rotate({!r})'.format(index)    
+        modification = 'result = target.rotate({!r})'.format(index)    
         result = self._clone()
         result.modifications.append(modification)
         return result

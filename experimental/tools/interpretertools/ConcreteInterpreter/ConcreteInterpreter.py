@@ -58,13 +58,17 @@ class ConcreteInterpreter(Interpreter):
             target.rotate(source.rotation)
         #assert hasattr(source, 'modifications')
         if hasattr(source, 'modifications'):
+            evaluation_context = {
+                'Duration': durationtools.Duration,
+                'RotationIndicator': settingtools.RotationIndicator,
+                'target': target,
+                }
             for modification in source.modifications:
                 assert 'target' in modification
                 if '=' in modification:
-                    exec(modification)
-                    assert result is None
+                    exec(modification, evaluation_context)
                 else:
-                    eval(modification)
+                    eval(modification, evaluation_context)
 
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
