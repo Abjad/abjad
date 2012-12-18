@@ -1,7 +1,7 @@
 from experimental.tools import helpertools
 
 
-def set_transforms_on_request(request, index=None, count=None, reverse=None, rotation=None):
+def set_transforms_on_request(request, index=None, count=None, rotation=None):
     r'''.. versionadded:: 1.0
 
     Set transforms on `request`.
@@ -14,7 +14,6 @@ def set_transforms_on_request(request, index=None, count=None, reverse=None, rot
     assert isinstance(request, requesttools.Request)
     assert isinstance(index, (int, type(None))), repr(index)
     assert isinstance(count, (int, type(None))), repr(count)
-    assert isinstance(reverse, (bool, type(None))), repr(count)
     assert isinstance(rotation, (int, type(None))), repr(count)
 
     # set transforms
@@ -22,8 +21,6 @@ def set_transforms_on_request(request, index=None, count=None, reverse=None, rot
         request._index = index
     if count is not None:
         request._count = count
-    if reverse is not None:
-        request._reverse = reverse
     if rotation is not None:
         request._rotation = rotation
 
