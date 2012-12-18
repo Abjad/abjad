@@ -125,6 +125,633 @@ Added two new time signature tools.
         Rewrite the contents of tie chains in an expression to match a metrical
         hierarchy.
 
+        Example 1. Rewrite the contents of a measure in a staff using the default metrical
+        hierarchy for that measure's time signature:
+
+        ::
+
+            >>> parseable = "abj: | 2/4 c'2 ~ || 4/4 c'32 d'2.. ~ d'16 e'32 ~ || 2/4 e'2 |"
+
+        ::
+
+            >>> staff = Staff(parseable)
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/4
+                    c'2 ~
+                }
+                {
+                    \time 4/4
+                    c'32
+                    d'2.. ~
+                    d'16
+                    e'32 ~
+                }
+                {
+                    \time 2/4
+                    e'2
+                }
+            }
+
+        .. image:: images/establish-1.png
+
+        ::
+
+            >>> hierarchy = timesignaturetools.MetricalHierarchy((4, 4))
+            >>> print hierarchy.pretty_rtm_format
+            (4/4 (
+                1/4
+                1/4
+                1/4
+                1/4))
+
+        ::
+
+            >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/4
+                    c'2 ~
+                }
+                {
+                    \time 4/4
+                    c'32
+                    d'8.. ~
+                    d'2 ~
+                    d'8..
+                    e'32 ~
+                }
+                {
+                    \time 2/4
+                    e'2
+                }
+            }
+
+        .. image:: images/establish-2.png
+
+        Example 2. Rewrite the contents of a measure in a staff using a custom
+        metrical hierarchy:
+
+        ::
+
+            >>> staff = Staff(parseable)
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/4
+                    c'2 ~
+                }
+                {
+                    \time 4/4
+                    c'32
+                    d'2.. ~
+                    d'16
+                    e'32 ~
+                }
+                {
+                    \time 2/4
+                    e'2
+                }
+            }
+
+        .. image:: images/establish-1.png
+
+        ::
+
+            >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+            >>> hierarchy = timesignaturetools.MetricalHierarchy(rtm)
+            >>> print hierarchy.pretty_rtm_format
+            (4/4 (
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+        ::
+
+            >>> timesignaturetools.establish_metrical_hierarchy(staff[1][:], hierarchy)
+            >>> f(staff)
+            \new Staff {
+                {
+                    \time 2/4
+                    c'2 ~
+                }
+                {
+                    \time 4/4
+                    c'32
+                    d'4... ~
+                    d'4...
+                    e'32 ~
+                }
+                {
+                    \time 2/4
+                    e'2
+                }
+            }
+
+        .. image:: images/establish-3.png
+
+        Example 3. Limit the maximum number of dots per leaf using
+        `maximum_dot_count`:
+
+        ::
+
+            >>> parseable = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
+            >>> measure = p(parseable)
+            >>> f(measure)
+            {
+                \time 3/4
+                c'32
+                d'8
+                e'8
+                fs'4...
+            }
+
+        .. image:: images/establish-4.png
+
+        Without constraining the `maximum_dot_count`:
+
+        ::
+
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+            >>> f(measure)
+            {
+                \time 3/4
+                c'32
+                d'16. ~
+                d'32
+                e'16. ~
+                e'32
+                fs'4...
+            }
+
+        .. image:: images/establish-5.png
+
+        Constraining the `maximum_dot_count` to `2`:
+
+        ::
+
+            >>> measure = p(parseable)
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+            ...     maximum_dot_count=2)
+            >>> f(measure)
+            {
+                \time 3/4
+                c'32
+                d'16. ~
+                d'32
+                e'16. ~
+                e'32
+                fs'8.. ~
+                fs'4
+            }
+
+        .. image:: images/establish-6.png
+
+        Constraining the `maximum_dot_count` to `1`:
+
+        ::
+
+            >>> measure = p(parseable)
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+            ...     maximum_dot_count=1)
+            >>> f(measure)
+            {
+                \time 3/4
+                c'32
+                d'16. ~
+                d'32
+                e'16. ~
+                e'32
+                fs'16. ~
+                fs'8 ~
+                fs'4
+            }
+
+        .. image:: images/establish-7.png
+
+        Constraining the `maximum_dot_count` to `0`:
+
+        ::
+
+            >>> measure = p(parseable)
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+            ...     maximum_dot_count=0)
+            >>> f(measure)
+            {
+                \time 3/4
+                c'32
+                d'32 ~
+                d'16 ~
+                d'32
+                e'32 ~
+                e'16 ~
+                e'32
+                fs'32 ~
+                fs'16 ~
+                fs'8 ~
+                fs'4
+            }
+
+        .. image:: images/establish-8.png
+
+        Example 4: Split tie chains at different depths of the `MetricalHierarchy`,
+        if those tie chains cross any offsets at that depth, but do not also both
+        begin and end at any of those offsets.
+
+        Consider the default metrical hierarchy for `9/8`:
+
+            >>> hierarchy = timesignaturetools.MetricalHierarchy((9, 8))
+            >>> print hierarchy.pretty_rtm_format
+            (9/8 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+
+        We can establish that hierarchy without specifying a `boundary_depth`:
+
+        ::
+
+            >>> parseable = "abj: | 9/8 c'2 d'2 e'8 |"
+            >>> measure = p(parseable)
+            >>> f(measure)
+            {
+                \time 9/8
+                c'2
+                d'2
+                e'8
+            }
+
+        .. image:: images/establish-9.png
+
+        ::
+
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+            >>> f(measure)
+            {
+                \time 9/8
+                c'2
+                d'4 ~
+                d'4
+                e'8
+            }
+
+        .. image:: images/establish-10.png
+
+        With a `boundary_depth` of `1`, tie chains which cross any offsets created
+        by nodes with a depth of `1` in this MetricalHierarchy's rhythm tree - i.e.
+        `0/8`, `3/8`, `6/8` and `9/8` - which do not also begin and end at any of those
+        offsets, will be split:
+
+        ::
+
+            >>> measure = p(parseable)
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+            ...     boundary_depth=1)
+            >>> f(measure)
+            {
+                \time 9/8
+                c'4. ~
+                c'8
+                d'4 ~
+                d'4
+                e'8
+            }
+
+        .. image:: images/establish-11.png
+
+        For this `9/8` hierarchy, and this input notation, A `boundary_depth` of `2`
+        causes no change, as all tie chains already align to multiples of `1/8`:
+
+        ::
+
+            >>> measure = p(parseable)
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+            ...     boundary_depth=2)
+            >>> f(measure)
+            {
+                \time 9/8
+                c'2
+                d'4 ~
+                d'4
+                e'8
+            }
+
+        .. image:: images/establish-12.png
+
+        Example 5. Comparison of `3/4` and `6/8`, at `boundary_depths` of 0 and 1:
+
+        ::
+
+            >>> triple = "abj: | 3/4 2 4 || 3/4 4 2 || 3/4 4. 4. |"
+            >>> triple += "| 3/4 2 ~ 8 8 || 3/4 8 8 ~ 2 |"
+            >>> duples = "abj: | 6/8 2 4 || 6/8 4 2 || 6/8 4. 4. |"
+            >>> duples += "| 6/8 2 ~ 8 8 || 6/8 8 8 ~ 2 |"
+            >>> score = Score([Staff(triple), Staff(duples)])
+
+        In order to see the different time signatures on each staff, we need to
+        move some engravers from the Score context to the Staff context:
+
+        ::
+
+            >>> engravers = ['Timing_translator', 'Time_signature_engraver',
+            ...     'Default_bar_line_engraver']
+            >>> score.engraver_removals.extend(engravers)
+            >>> score[0].engraver_consists.extend(engravers)
+            >>> score[1].engraver_consists.extend(engravers)
+            >>> f(score)
+            \new Score \with {
+                \remove Timing_translator
+                \remove Time_signature_engraver
+                \remove Default_bar_line_engraver
+            } <<
+                \new Staff \with {
+                    \consists Timing_translator
+                    \consists Time_signature_engraver
+                    \consists Default_bar_line_engraver
+                } {
+                    {
+                        \time 3/4
+                        c'2
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'2
+                    }
+                    {
+                        c'4.
+                        c'4.
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'8 ~
+                        c'2
+                    }
+                }
+                \new Staff \with {
+                    \consists Timing_translator
+                    \consists Time_signature_engraver
+                    \consists Default_bar_line_engraver
+                } {
+                    {
+                        \time 6/8
+                        c'2
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'2
+                    }
+                    {
+                        c'4.
+                        c'4.
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'8 ~
+                        c'2
+                    }
+                }
+            >>
+
+        .. image:: images/establish-13.png
+
+        Here we establish a metrical hierarchy without specifying and boundary depth:
+
+        ::
+
+            >>> for measure in iterationtools.iterate_measures_in_expr(score):
+            ...     timesignaturetools.establish_metrical_hierarchy(measure[:], measure)
+            >>> f(score)
+            \new Score \with {
+                \remove Timing_translator
+                \remove Time_signature_engraver
+                \remove Default_bar_line_engraver
+            } <<
+                \new Staff \with {
+                    \consists Timing_translator
+                    \consists Time_signature_engraver
+                    \consists Default_bar_line_engraver
+                } {
+                    {
+                        \time 3/4
+                        c'2
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'2
+                    }
+                    {
+                        c'4.
+                        c'4.
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'8 ~
+                        c'2
+                    }
+                }
+                \new Staff \with {
+                    \consists Timing_translator
+                    \consists Time_signature_engraver
+                    \consists Default_bar_line_engraver
+                } {
+                    {
+                        \time 6/8
+                        c'2
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'2
+                    }
+                    {
+                        c'4.
+                        c'4.
+                    }
+                    {
+                        c'4. ~
+                        c'4
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'4 ~
+                        c'4.
+                    }
+                }
+            >>
+
+        .. image:: images/establish-14.png
+
+        Here we re-establish metrical hierarchy at a boundary depth of `1`:
+
+        ::
+
+            >>> for measure in iterationtools.iterate_measures_in_expr(score):
+            ...     timesignaturetools.establish_metrical_hierarchy(
+            ...         measure[:], measure, boundary_depth=1)
+            ...
+            >>> f(score)
+            \new Score \with {
+                \remove Timing_translator
+                \remove Time_signature_engraver
+                \remove Default_bar_line_engraver
+            } <<
+                \new Staff \with {
+                    \consists Timing_translator
+                    \consists Time_signature_engraver
+                    \consists Default_bar_line_engraver
+                } {
+                    {
+                        \time 3/4
+                        c'2
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'2
+                    }
+                    {
+                        c'4 ~
+                        c'8
+                        c'8 ~
+                        c'4
+                    }
+                    {
+                        c'2 ~
+                        c'8
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'8 ~
+                        c'2
+                    }
+                }
+                \new Staff \with {
+                    \consists Timing_translator
+                    \consists Time_signature_engraver
+                    \consists Default_bar_line_engraver
+                } {
+                    {
+                        \time 6/8
+                        c'4. ~
+                        c'8
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'8 ~
+                        c'4.
+                    }
+                    {
+                        c'4.
+                        c'4.
+                    }
+                    {
+                        c'4. ~
+                        c'4
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'4 ~
+                        c'4.
+                    }
+                }
+            >>
+
+        .. image:: images/establish-15.png
+
+        Note that the two time signatures are much more clearly disambiguated above.
+
+        Example 6. Establishing metrical hierarchy recursively in measures with
+        nested tuplets:
+
+        ::
+
+            >>> measure = p("abj: | 4/4 c'16 ~ c'4 d'8. ~ " \
+            ...     "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } f'4 |")
+            >>> f(measure)
+            {
+                \time 4/4
+                c'16 ~
+                c'4
+                d'8. ~
+                \times 2/3 {
+                    d'8. ~
+                    \fraction \times 3/5 {
+                        d'16
+                        e'8.
+                        f'16 ~
+                    }
+                }
+                f'4
+            }
+
+        .. image:: images/establish-17.png
+
+        When establishing a metrical hierarchy on a selection of components which
+        contain containers, like `Tuplets` or `Containers`,
+        `timesignaturetools.establish_metrical_hierarchy()` will recurse into
+        those containers, treating them as measures whose time signature is derived
+        from the preprolated duration of the container's contents:
+
+        ::
+
+            >>> timesignaturetools.establish_metrical_hierarchy(measure[:], measure,
+            ...     boundary_depth=1)
+            >>> f(measure)
+            {
+                \time 4/4
+                c'4 ~
+                c'16
+                d'8. ~
+                \times 2/3 {
+                    d'8 ~
+                    d'16 ~
+                    \fraction \times 3/5 {
+                        d'16
+                        e'8 ~
+                        e'16
+                        f'16 ~
+                    }
+                }
+                f'4
+            }
+
+        .. image:: images/establish-18.png
 
 Added new time signature tool:
 
