@@ -62,7 +62,11 @@ class ConcreteInterpreter(Interpreter):
         if hasattr(source, 'modifications'):
             for modification in source.modifications:
                 assert 'target' in modification
-                eval(modification)
+                if '=' in modification:
+                    exec(modification)
+                    assert result is None
+                else:
+                    eval(modification)
 
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':

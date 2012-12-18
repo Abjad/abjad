@@ -48,11 +48,13 @@ class CommandRequest(Request):
     ### INITIALIZER ###
 
     def __init__(self, attribute, voice_name, symbolic_offset, 
+        modifications=None,
         index=None, count=None, reverse=None, rotation=None):
         assert isinstance(voice_name, str), repr(voice_name)
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
-        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation)
+        Request.__init__(self, modifications=modifications, 
+            index=index, count=count, reverse=reverse, rotation=rotation)
         self._attribute = attribute
         self._voice_name = voice_name
         self._symbolic_offset = symbolic_offset

@@ -18,10 +18,10 @@ class StatalServerRequest(Request):
 
     ### INITIALIZER ###
     
-    def __init__(self, statal_server, index=None, count=None, reverse=None, rotation=None):
+    def __init__(self, statal_server, modifications=None, index=None, count=None, reverse=None, rotation=None):
         assert isinstance(server, statalservertools.StatalServer)
-        Request.__init__(
-            self, index=index, count=count, reverse=reverse, rotation=rotation)
+        Request.__init__(self, modifications=modifications, 
+            index=index, count=count, reverse=reverse, rotation=rotation)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

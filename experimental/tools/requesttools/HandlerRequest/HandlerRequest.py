@@ -18,9 +18,10 @@ class HandlerRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, handler, index=None, count=None, reverse=None, rotation=None):
+    def __init__(self, handler, modifications=None, index=None, count=None, reverse=None, rotation=None):
         assert isinstance(handler, handlertools.Handler)
-        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation)
+        Request.__init__(self, modifications=modifications, 
+            index=index, count=count, reverse=reverse, rotation=rotation)
         self._handler = handler
 
     ### READ-ONLY PROPERTIES ###

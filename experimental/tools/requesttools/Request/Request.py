@@ -101,7 +101,7 @@ class Request(AbjadObject):
     def REVERSE(self):
         '''Return copy of request with appended modification.
         '''
-        modification = 'target.reverse()'
+        modification = 'result = target.reverse()'
         result = self._clone()
         result.modifications.append(modification)
         return result

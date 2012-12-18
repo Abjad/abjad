@@ -33,8 +33,9 @@ class AbsoluteRequest(Request):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, index=None, count=None, reverse=None, rotation=None):
-        Request.__init__(self, index=index, count=count, reverse=reverse, rotation=rotation)
+    def __init__(self, payload, modifications=None, index=None, count=None, reverse=None, rotation=None):
+        Request.__init__(self, modifications=modifications, 
+            index=index, count=count, reverse=reverse, rotation=rotation)
         self._payload = payload
 
     ### READ-ONLY PROPERTIES ###

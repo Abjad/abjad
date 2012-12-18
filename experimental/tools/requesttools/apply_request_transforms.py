@@ -40,8 +40,11 @@ def apply_request_transforms(request, payload):
         for modification in request.modifications:
             assert 'target' in modification
             target = copy.deepcopy(payload)
-            eval(modification)
-            payload = target
+            exec(modification)
+            if result is None:
+                payload = target
+            else:
+                payload = result
 
     if isinstance(payload, rhythmmakertools.RhythmMaker):
         if request.reverse:
