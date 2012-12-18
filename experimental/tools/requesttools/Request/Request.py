@@ -22,15 +22,13 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, modifications=None, index=None, count=None, rotation=None):
+    def __init__(self, modifications=None, index=None, count=None):
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
-        assert isinstance(rotation, (int, type(None))), repr(rotation)
         modifications = modifications or []
         self._modifications = datastructuretools.ObjectInventory(modifications)
         self._index = index
         self._count = count
-        self._rotation = rotation
 
     ### SPECIAL METHODS ###
 
@@ -85,10 +83,6 @@ class Request(AbjadObject):
     @property
     def modifications(self):
         return self._modifications
-
-    @property
-    def rotation(self):
-        return self._rotation
 
     ### PUBLIC METHODS ###
 

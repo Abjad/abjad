@@ -12,8 +12,6 @@ def apply_request_transforms(request, payload):
 
     Then apply nonnone ``request.count`` to `payload`.
 
-    Then apply nonnone ``request.rotation`` to `payload`.
-    
     Return `payload`.
     '''
     from experimental.tools import interpretertools
@@ -55,12 +53,6 @@ def apply_request_transforms(request, payload):
             count = request.count
         payload = sequencetools.CyclicTuple(payload)
         payload = payload[index:index+count]
-        payload = original_payload_type(payload)
-
-    if request.rotation:
-        assert isinstance(request.rotation, int)
-        original_payload_type = type(payload)
-        payload = sequencetools.rotate_sequence(payload, request.rotation)
         payload = original_payload_type(payload)
 
     return payload 

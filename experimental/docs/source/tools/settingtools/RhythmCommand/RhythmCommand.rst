@@ -39,10 +39,6 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.tools.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.rotation
-
-    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.start_offset
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`

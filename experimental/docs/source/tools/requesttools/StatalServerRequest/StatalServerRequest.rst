@@ -21,10 +21,6 @@ Read-only Properties
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.rotation
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.statal_server
 
 .. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.storage_format

@@ -23,10 +23,6 @@ Read-only Properties
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
-.. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.rotation
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.start_segment_identifier
 
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.storage_format

@@ -15,8 +15,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.requesttools.Request.Request.Request.modifications
 
-.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.rotation
-
 .. autoattribute:: experimental.tools.requesttools.Request.Request.Request.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

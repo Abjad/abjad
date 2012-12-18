@@ -24,7 +24,7 @@ class Command(AbjadObject):
 
     def __init__(self, request, context_name, 
         start_offset, stop_offset, 
-        index=None, count=None, rotation=None, fresh=None):
+        index=None, count=None, fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
@@ -39,7 +39,6 @@ class Command(AbjadObject):
         self._stop_offset = stop_offset
         self._index = index
         self._count = count
-        self._rotation = rotation
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -121,14 +120,6 @@ class Command(AbjadObject):
         Return request object.
         ''' 
         return self._request
-
-    @property
-    def rotation(self):
-        '''Command rotation indicator.
-
-        Return integer or none.
-        '''
-        return self._rotation
 
     @property
     def start_offset(self):

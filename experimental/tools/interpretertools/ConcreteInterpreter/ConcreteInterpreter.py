@@ -54,8 +54,6 @@ class ConcreteInterpreter(Interpreter):
             raise NotImplementedError
         if getattr(source, 'count', None):
             raise NotImplementedError
-        if getattr(source, 'rotation', None):
-            target.rotate(source.rotation)
         #assert hasattr(source, 'modifications')
         if hasattr(source, 'modifications'):
             evaluation_context = {
@@ -712,7 +710,7 @@ class ConcreteInterpreter(Interpreter):
         if not current_material_request == previous_material_request:
             return False
         # fuse only if current and previous commands treat material equally
-        for attribute in ('index', 'count', 'rotation'):
+        for attribute in ('index', 'count'):
             if getattr(current_rhythm_command, attribute, None) != \
                 getattr(previous_rhythm_command, attribute, None):
                 return False
@@ -807,7 +805,6 @@ class ConcreteInterpreter(Interpreter):
             stop_offset,
             index=single_context_setting.index,
             count=single_context_setting.count,
-            rotation=single_context_setting.rotation,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':

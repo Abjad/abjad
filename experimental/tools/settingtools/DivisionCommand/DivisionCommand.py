@@ -11,13 +11,10 @@ class DivisionCommand(Command):
 
     ### INITIALIZER ###
 
-    def __init__(self, request, context_name, 
-        start_offset, stop_offset, 
-        index=None, count=None, rotation=None, 
-        fresh=None, truncate=None):
+    def __init__(self, request, context_name, start_offset, stop_offset, 
+        index=None, count=None, fresh=None, truncate=None):
         Command.__init__(self, request, context_name, 
-            start_offset, stop_offset, 
-            index=index, count=count, rotation=rotation, 
+            start_offset, stop_offset, index=index, count=count, 
             fresh=fresh)
         assert isinstance(truncate, (bool, type(None))), repr(truncate)
         self._truncate = truncate
