@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import itertools
 from ply import lex
 from ply import yacc
@@ -174,9 +175,21 @@ class LilyPondParser(abctools.Parser):
 
             >>> from abjad.tools.lilypondparsertools import LilyPondParser
             >>> parser = LilyPondParser()
-            >>> parser.available_languages
-            ('catalan', 'deutsch', 'english', 'espanol', 'italiano', 'nederlands', 
-            'norsk', 'portugues', 'suomi', 'svenska', 'vlaams')
+            >>> for language in parser.available_languages:
+            ...     print language
+            catalan
+            deutsch
+            english
+            espanol
+            español
+            français
+            italiano
+            nederlands
+            norsk
+            portugues
+            suomi
+            svenska
+            vlaams
 
         Return tuple.
         '''

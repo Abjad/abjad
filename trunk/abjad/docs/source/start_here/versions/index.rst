@@ -6,7 +6,7 @@ Version history
 Abjad 2.11
 ----------
 
-Released 2012-12-17. Built from r8366.
+Released 2012-12-17. Built from r8379.
 Implements 490 public classes and 1004 functions totalling 201,000 lines of code.
 
 The ``MetricalHierarchy`` class
