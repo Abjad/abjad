@@ -8,17 +8,13 @@ def test_SegmentSpecification__request_time_signatures_from_future_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     blue_time_signatures = blue_segment.request_time_signatures('Voice 1')
     red_segment.set_time_signatures(blue_time_signatures)
-
     blue_segment.set_time_signatures([(3, 8), (3, 8)])
     blue_segment.set_divisions([(2, 16), (4, 16)])
     blue_segment.set_rhythm(library.sixteenths)
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -32,17 +28,14 @@ def test_SegmentSpecification__request_time_signatures_from_future_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
-    blue_time_signatures = blue_segment.request_time_signatures('Voice 1', reverse=True)
+    blue_time_signatures = blue_segment.request_time_signatures('Voice 1')
+    blue_time_signatures = blue_time_signatures.REVERSE()
     red_segment.set_time_signatures(blue_time_signatures)
-
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
     blue_segment.set_rhythm(library.sixteenths)
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -56,17 +49,14 @@ def test_SegmentSpecification__request_time_signatures_from_future_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     blue_time_signatures = blue_segment.request_time_signatures('Voice 1')
-    red_segment.set_time_signatures(blue_time_signatures, reverse=True)
-
+    blue_time_signatures = blue_time_signatures.REVERSE()
+    red_segment.set_time_signatures(blue_time_signatures)
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
     blue_segment.set_rhythm(library.sixteenths)
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -80,17 +70,15 @@ def test_SegmentSpecification__request_time_signatures_from_future_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     blue_segment.set_time_signatures([(3, 8), (4, 8)])
     blue_segment.set_divisions([(2, 16), (6, 16)])
     blue_segment.set_rhythm(library.sixteenths)
-
-    blue_time_signatures = blue_segment.request_time_signatures('Voice 1', reverse=True)
-    red_segment.set_time_signatures(blue_time_signatures, reverse=True)
-
+    blue_time_signatures = blue_segment.request_time_signatures('Voice 1')
+    blue_time_signatures = blue_time_signatures.REVERSE()
+    blue_time_signatures = blue_time_signatures.REVERSE()
+    red_segment.set_time_signatures(blue_time_signatures)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

@@ -8,19 +8,15 @@ def test_SegmentSpecification__request_rhythm_from_future_between_voices_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     red_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     red_segment.set_divisions([(2, 16), (5, 16)], contexts=['Voice 2'])
     blue_voice_2_rhythm = blue_segment.request_rhythm('Voice 2')
     red_segment.set_rhythm(blue_voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -34,19 +30,16 @@ def test_SegmentSpecification__request_rhythm_from_future_between_voices_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     red_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     red_segment.set_divisions([(2, 16), (5, 16)], contexts=['Voice 2'])
-    blue_voice_2_rhythm = blue_segment.request_rhythm('Voice 2', reverse=True)
+    blue_voice_2_rhythm = blue_segment.request_rhythm('Voice 2')
+    blue_voice_2_rhythm = blue_voice_2_rhythm.REVERSE()
     red_segment.set_rhythm(blue_voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -60,19 +53,16 @@ def test_SegmentSpecification__request_rhythm_from_future_between_voices_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     red_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     red_segment.set_divisions([(2, 16), (5, 16)], contexts=['Voice 2'])
     blue_voice_2_rhythm = blue_segment.request_rhythm('Voice 2')
-    red_segment.set_rhythm(blue_voice_2_rhythm, contexts=['Voice 1'], reverse=True)
+    blue_voice_2_rhythm = blue_voice_2_rhythm.REVERSE()
+    red_segment.set_rhythm(blue_voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -86,19 +76,17 @@ def test_SegmentSpecification__request_rhythm_from_future_between_voices_04():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     blue_segment = score_specification.append_segment(name='blue')
-
     red_segment.set_time_signatures([(3, 8), (3, 8)])
     red_segment.set_divisions([(2, 16), (3, 16)], contexts=['Voice 1'])
     red_segment.set_divisions([(2, 16), (5, 16)], contexts=['Voice 2'])
-    blue_voice_2_rhythm = blue_segment.request_rhythm('Voice 2', reverse=True)
-    red_segment.set_rhythm(blue_voice_2_rhythm, contexts=['Voice 1'], reverse=True)
+    blue_voice_2_rhythm = blue_segment.request_rhythm('Voice 2')
+    blue_voice_2_rhythm = blue_voice_2_rhythm.REVERSE()
+    blue_voice_2_rhythm = blue_voice_2_rhythm.REVERSE()
+    red_segment.set_rhythm(blue_voice_2_rhythm, contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment.set_time_signatures([(2, 8), (2, 8)])
-
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()

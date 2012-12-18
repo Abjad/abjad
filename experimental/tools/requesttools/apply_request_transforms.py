@@ -39,7 +39,7 @@ def apply_request_transforms(request, payload):
     if hasattr(request, 'modifications'):
         for modification in request.modifications:
             assert 'target' in modification
-            target = payload
+            target = copy.deepcopy(payload)
             eval(modification)
             payload = target
 
