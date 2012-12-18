@@ -154,7 +154,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return new_start_offset, new_stop_offset
 
     def _store_multiple_context_setting(self, attribute, source, contexts=None, 
-        index=None, count=None, reverse=None, rotation=None,
+        index=None, count=None, rotation=None,
         persist=True, truncate=None):
         from experimental.tools import requesttools
         from experimental.tools import settingtools
@@ -168,7 +168,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             context_names=context_names,
             index=index,
             count=count,
-            reverse=reverse,
             rotation=rotation,
             persist=persist, 
             truncate=truncate
@@ -400,7 +399,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_divisions(self, source, contexts=None, 
-        index=None, count=None, reverse=None, rotation=None,
+        index=None, count=None, rotation=None,
         persist=True, truncate=None):
         r'''Set divisions of segment `contexts` to `source`::
 
@@ -424,7 +423,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         attribute = 'divisions'
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, 
-            index=index, count=count, reverse=reverse, rotation=rotation,
+            index=index, count=count, rotation=rotation,
             truncate=truncate, persist=persist)
 
     def set_duration(self, duration):
@@ -523,7 +522,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_rhythm(self, source, contexts=None, 
-        index=None, count=None, reverse=None, rotation=None,
+        index=None, count=None, rotation=None,
         persist=True):
         r'''Set rhythm of segment `contexts` to `source`.
 
@@ -555,7 +554,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         attribute = 'rhythm'
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, 
-            index=index, count=count, reverse=reverse, rotation=rotation,
+            index=index, count=count, rotation=rotation,
             persist=persist)
 
     def set_tempo(self, source, contexts=None, persist=True):
@@ -568,7 +567,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_time_signatures(self, source, contexts=None, 
-        index=None, count=None, reverse=None, rotation=None,
+        index=None, count=None, rotation=None,
         persist=True):
         r'''Set time signatures according to `source` for segment `contexts`.
 
@@ -591,7 +590,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         '''
         attribute = 'time_signatures'
         return self._store_multiple_context_setting(attribute, source, contexts=contexts, 
-            index=index, count=count, reverse=reverse, rotation=rotation,
+            index=index, count=count, rotation=rotation,
             persist=persist)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):

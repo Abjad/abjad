@@ -39,10 +39,6 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.reverse
-
-    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.rotation
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`

@@ -25,8 +25,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.request
 
-.. autoattribute:: experimental.tools.settingtools.Command.Command.Command.reverse
-
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.rotation
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.start_offset

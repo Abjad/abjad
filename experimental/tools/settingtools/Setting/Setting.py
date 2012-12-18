@@ -18,7 +18,7 @@ class Setting(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, attribute, request, anchor, 
-        index=None, count=None, reverse=None, rotation=None, 
+        index=None, count=None, rotation=None, 
         fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, requesttools.Request), repr(request)
@@ -31,7 +31,6 @@ class Setting(AbjadObject):
         self._anchor = anchor
         self._index = index
         self._count = count
-        self._reverse = reverse
         self._rotation = rotation
         self._fresh = fresh
         self._persist = persist
@@ -109,14 +108,6 @@ class Setting(AbjadObject):
         Return request object.
         '''
         return self._request
-
-    @property
-    def reverse(self):
-        '''Setting reverse flag.
-
-        Return boolean or none.
-        '''
-        return self._reverse
 
     @property
     def rotation(self):

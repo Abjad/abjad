@@ -24,7 +24,7 @@ class Command(AbjadObject):
 
     def __init__(self, request, context_name, 
         start_offset, stop_offset, 
-        index=None, count=None, reverse=None, rotation=None, fresh=None):
+        index=None, count=None, rotation=None, fresh=None):
         assert isinstance(request, requesttools.Request), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
@@ -32,7 +32,6 @@ class Command(AbjadObject):
         assert start_offset <= stop_offset
         assert isinstance(index, (int, type(None))), repr(index)
         assert isinstance(count, (int, type(None))), repr(count)
-        assert isinstance(reverse, (bool, type(None))), repr(reverse)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request
         self._context_name = context_name
@@ -40,7 +39,6 @@ class Command(AbjadObject):
         self._stop_offset = stop_offset
         self._index = index
         self._count = count
-        self._reverse = reverse
         self._rotation = rotation
         self._fresh = fresh
 
@@ -123,14 +121,6 @@ class Command(AbjadObject):
         Return request object.
         ''' 
         return self._request
-
-    @property
-    def reverse(self):
-        '''Command reverse flag.
-
-        Return boolean or none.
-        '''
-        return self._reverse
 
     @property
     def rotation(self):
