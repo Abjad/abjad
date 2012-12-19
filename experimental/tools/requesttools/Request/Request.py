@@ -1,6 +1,9 @@
 import abc
 import copy
 from abjad.tools import datastructuretools
+from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools
 
@@ -44,6 +47,14 @@ class Request(AbjadObject):
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
+    def __getitem__(self, expr):
+        '''Return copy of request with appended modification.
+        '''
+        modification = 'result = target.__getitem__({!r})'.format(expr)
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
@@ -86,6 +97,15 @@ class Request(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def repeat_to_length(self, length):
+        '''Return copy of request with appended modification.
+        '''
+        assert mathtools.is_nonnegative_integer(length)
+        modification = 'result = sequencetools.repeat_sequence_to_length(target, {!r})'.format(length)
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+        
     def reverse(self):
         '''Return copy of request with appended modification.
         '''
@@ -97,7 +117,16 @@ class Request(AbjadObject):
     def rotate(self, index):
         '''Return copy of request with appended modification.
         '''
-        modification = 'result = target.rotate({!r})'.format(index)    
+        from experimental.tools import settingtools
+        assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
+        #modification = 'result = target.rotate({!r})'.format(index)    
+        modification = 'result = request._rotate(target, {!r})'.format(index)    
         result = self._clone()
         result.modifications.append(modification)
         return result
+
+    def _rotate(self, sequence, n):
+        if hasattr(sequence, 'rotate'):
+            return sequence.rotate(n)
+        else:
+            return sequencetools.rotate_sequence(sequence, n)

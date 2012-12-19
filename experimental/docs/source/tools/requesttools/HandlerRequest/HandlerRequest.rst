@@ -30,6 +30,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.repeat_to_length
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
 .. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.reverse
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
@@ -48,6 +52,10 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.__getitem__
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.__gt__
 

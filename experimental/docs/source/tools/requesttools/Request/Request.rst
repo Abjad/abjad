@@ -22,6 +22,8 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.Request.Request.Request.repeat_to_length
+
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.reverse
 
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.rotate
@@ -34,6 +36,8 @@ Special Methods
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.requesttools.Request.Request.Request.__getitem__
 
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.__gt__
 

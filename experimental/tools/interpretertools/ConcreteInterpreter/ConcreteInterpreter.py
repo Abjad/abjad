@@ -59,6 +59,7 @@ class ConcreteInterpreter(Interpreter):
             evaluation_context = {
                 'Duration': durationtools.Duration,
                 'RotationIndicator': settingtools.RotationIndicator,
+                'request': source,
                 'target': target,
                 }
             for modification in source.modifications:

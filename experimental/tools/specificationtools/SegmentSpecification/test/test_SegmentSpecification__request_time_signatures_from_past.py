@@ -8,12 +8,10 @@ def test_SegmentSpecification__request_time_signatures_from_past_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
     blue_segment.set_time_signatures(red_time_signatures)
@@ -30,12 +28,10 @@ def test_SegmentSpecification__request_time_signatures_from_past_02():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
     blue_segment.set_time_signatures(red_time_signatures, count=1)
@@ -52,12 +48,10 @@ def test_SegmentSpecification__request_time_signatures_from_past_03():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
     blue_segment.set_time_signatures(red_time_signatures, count=5)
@@ -69,20 +63,18 @@ def test_SegmentSpecification__request_time_signatures_from_past_03():
 
 
 def test_SegmentSpecification__request_time_signatures_from_past_04():
-    '''From-past time signature material request with set-time index.
+    '''From-past time signature material request with slicing.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
-    blue_segment.set_time_signatures(red_time_signatures, index=-1)
+    blue_segment.set_time_signatures(red_time_signatures[-1:])
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -96,15 +88,15 @@ def test_SegmentSpecification__request_time_signatures_from_past_05():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
-    blue_segment.set_time_signatures(red_time_signatures, count=5, index=-1)
+    red_time_signatures = red_time_signatures.rotate(1)
+    red_time_signatures = red_time_signatures.repeat_to_length(5)
+    blue_segment.set_time_signatures(red_time_signatures)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -118,12 +110,10 @@ def test_SegmentSpecification__request_time_signatures_from_past_06():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
     red_time_signatures = red_time_signatures.reverse()
@@ -141,12 +131,10 @@ def test_SegmentSpecification__request_time_signatures_from_past_07():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
     red_time_signatures = red_time_signatures.reverse()
@@ -164,12 +152,10 @@ def test_SegmentSpecification__request_time_signatures_from_past_08():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(score_template)
-
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])  
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-
     blue_segment = score_specification.append_segment(name='blue')
     red_time_signatures = red_segment.request_time_signatures('Voice 1')
     red_time_signatures = red_time_signatures.reverse()
