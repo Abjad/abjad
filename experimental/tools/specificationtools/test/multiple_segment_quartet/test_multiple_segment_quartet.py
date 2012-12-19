@@ -28,7 +28,9 @@ def test_multiple_segment_quartet_01():
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
     source = score_specification['red'].request_time_signatures('Voice 1')
-    blue_segment.set_time_signatures(source, index=-2, count=2)
+    source = source.rotate(-2)
+    source = source.repeat_to_length(2)
+    blue_segment.set_time_signatures(source)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -54,7 +56,9 @@ def test_multiple_segment_quartet_02():
     red_segment.set_rhythm(library.note_tokens, contexts=lower)
     blue_segment = score_specification.append_segment(name='blue')
     source = score_specification['red'].request_time_signatures('Voice 1')
-    blue_segment.set_time_signatures(source, index=-2, count=2)
+    source = source.rotate(-2)
+    source = source.repeat_to_length(2)
+    blue_segment.set_time_signatures(source)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
