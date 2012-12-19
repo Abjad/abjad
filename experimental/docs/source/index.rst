@@ -7,6 +7,16 @@ Demos and example packages
 .. toctree::
    :maxdepth: 1
 
+:py:mod:`microlanguage <('abjad.tools.', 'abjad.demos.')microlanguage>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   demos/microlanguage/ToyLanguageParser/ToyLanguageParser
+
 :py:mod:`windungen <('abjad.tools.', 'abjad.demos.')windungen>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
