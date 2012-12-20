@@ -191,47 +191,6 @@ class Specification(SymbolicTimespan):
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('divisions', voice, symbolic_offset=symbolic_offset)
 
-    # TODO: migrate to SymbolicTimespan
-    def request_divisions(self, voice, time_relation=None):
-        r'''Request segment divisions in `voice`::
-
-            >>> request = red_segment.request_divisions('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'divisions',
-                'Voice 1',
-                'red'
-                )
-
-        Return material request.        
-        '''
-        anchor = self.specification_name
-        return requesttools.MaterialRequest('divisions', voice, anchor, time_relation=time_relation)
-
-    # TODO: migrate to SymbolicTimespan
-    def request_naive_beats(self, voice, time_relation=None):
-        r'''Request segment naive beats in `voice`::
-
-            >>> request = red_segment.request_naive_beats('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'naive_beats',
-                'Voice 1',
-                'red'
-                )
-
-        Return material request.        
-        '''
-        assert isinstance(voice, str)
-        anchor = self.specification_name
-        return requesttools.MaterialRequest('naive_beats', voice, anchor, time_relation=time_relation)
-
     # TODO: migrate to SymbolicTimespan and remove anchor=None keyword
     def request_rhythm(self, voice, anchor=None, time_relation=None):
         r'''Request segment rhythm in `voice`::
@@ -310,27 +269,6 @@ class Specification(SymbolicTimespan):
         timespan = timespan or self.specification_name
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=symbolic_offset)
-
-    # TODO: migrate to SymbolicTimespan
-    def request_time_signatures(self, voice, time_relation=None):
-        r'''Request voice ``1`` time signatures that start during segment ``'red'``::
-
-            >>> request = red_segment.request_time_signatures('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'time_signatures',
-                'Voice 1',
-                'red'
-                )
-
-        Return material request.
-        '''
-        assert isinstance(voice, str)
-        anchor = self.specification_name
-        return requesttools.MaterialRequest('time_signatures', voice, anchor, time_relation=time_relation)
 
     @abc.abstractmethod
     def select(self):

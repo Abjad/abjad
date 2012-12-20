@@ -20,6 +20,12 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         >>> from experimental.tools import *
 
     Abstract base class from which conrete symbolic timespans inherit.
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    The examples below refer to the score and segment specifications defined above.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -233,14 +239,70 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def select_background_measures(self, start=None, stop=None, time_relation=None):
-        '''Select the first five background measures that start during segment 'red'::
+    def request_divisions(self, voice, time_relation=None):
+        r'''Request voice ``1`` divisions that start during segment ``'red'``::
 
-            >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-            >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-            >>> red_segment = score_specification.append_segment(name='red')
+            >>> request = red_segment.request_divisions('Voice 1')
 
         ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'divisions',
+                'Voice 1',
+                'red'
+                )
+
+        Return material request.        
+        '''
+        from experimental.tools import requesttools
+        anchor = self._timespan_abbreviation
+        return requesttools.MaterialRequest('divisions', voice, anchor, time_relation=time_relation)
+
+    def request_naive_beats(self, voice, time_relation=None):
+        r'''Request voice ``1`` naive beats that start during segment ``'red'``::
+
+            >>> request = red_segment.request_naive_beats('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'naive_beats',
+                'Voice 1',
+                'red'
+                )
+
+        Return material request.        
+        '''
+        from experimental.tools import requesttools
+        assert isinstance(voice, str)
+        anchor = self._timespan_abbreviation
+        return requesttools.MaterialRequest('naive_beats', voice, anchor, time_relation=time_relation)
+
+    def request_time_signatures(self, voice, time_relation=None):
+        r'''Request voice ``1`` time signatures that start during segment ``'red'``::
+
+            >>> request = red_segment.request_time_signatures('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.MaterialRequest(
+                'time_signatures',
+                'Voice 1',
+                'red'
+                )
+
+        Return material request.
+        '''
+        from experimental.tools import requesttools
+        assert isinstance(voice, str)
+        anchor = self._timespan_abbreviation
+        return requesttools.MaterialRequest('time_signatures', voice, anchor, time_relation=time_relation)
+
+    def select_background_measures(self, start=None, stop=None, time_relation=None):
+        '''Select the first five background measures that start during segment 'red'::
 
             >>> selector = red_segment.select_background_measures(stop=5)
 

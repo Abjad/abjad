@@ -105,6 +105,18 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.partition_objects_by_ratio_of_durations
 
+.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_divisions
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_naive_beats
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_time_signatures
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.scale
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

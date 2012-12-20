@@ -107,7 +107,11 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_divisions
 
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_naive_beats
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_rhythm
 
@@ -116,6 +120,8 @@ Methods
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_time_signature_command
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_time_signatures
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.scale
 
