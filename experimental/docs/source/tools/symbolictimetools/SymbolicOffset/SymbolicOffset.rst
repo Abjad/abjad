@@ -32,6 +32,8 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.get_score_offset
 
+.. automethod:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.request_rhythm_command
+
 .. automethod:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.request_time_signature_command
 
 Special Methods

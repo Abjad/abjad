@@ -281,6 +281,28 @@ class SymbolicOffset(SymbolicTimeObject):
         score_offset = score_offset + offset
         return score_offset
 
+    def request_rhythm_command(self, voice, timespan=None):
+        r'''Request voice ``1`` rhythm command 
+        active at start of segment ``'red'``::
+
+            >>> request = red_segment.start_offset.request_rhythm_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'rhythm',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    anchor='red'
+                    )
+                )
+
+        Return command request.        
+        '''
+        from experimental.tools import requesttools
+        return requesttools.CommandRequest('rhythm', voice, symbolic_offset=self)
+
     def request_time_signature_command(self, voice):
         r'''Request voice ``1`` time signature command
         active at start of segment ``'red'``::

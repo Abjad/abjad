@@ -50,7 +50,7 @@ def test_SegmentSpecification__set_rhythm_increasing_01():
     blue_segment.set_divisions(red_voice_3_divisions.reverse(), contexts=['Voice 3'])
     blue_segment.set_divisions(red_voice_4_divisions.reverse(), contexts=['Voice 4'])
 
-    red_rhythm_command = red_segment.request_rhythm_command('Voice 1')
+    red_rhythm_command = red_segment.start_offset.request_rhythm_command('Voice 1')
     blue_segment.set_rhythm(red_rhythm_command.reverse())
     score = score_specification.interpret()
 
