@@ -163,8 +163,8 @@ class Specification(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    # TODO: replace 'timespan', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword.
-    def request_division_command(self, voice, timespan=None, edge=None, multiplier=None, addendum=None):
+    # TODO: migrate method to SymbolicOffset
+    def request_division_command(self, voice, timespan=None):
         r'''Request segment division command active at offset
         in `voice`.
 
@@ -183,57 +183,12 @@ class Specification(SymbolicTimespan):
                     )
                 )
 
-        Example 2. Request division command active halfway through segment::
-
-            >>> request = red_segment.request_division_command('Voice 1', multiplier=Multiplier(1, 2))
-
-        ::
-
-            >>> z(request)
-            requesttools.CommandRequest(
-                'divisions',
-                'Voice 1',
-                symbolictimetools.SymbolicOffset(
-                    anchor='red',
-                    multiplier=durationtools.Multiplier(1, 2)
-                    )
-                )
-
-        Example 3. Request division command active at ``1/4`` 
-        after start of measure ``8``::
-
-            >>> timespan = red_segment.select_background_measures(8, 9)
-            >>> offset = durationtools.Offset(1, 4)
-
-        ::
-
-            >>> request = red_segment.request_division_command('Voice 1', timespan=timespan, addendum=offset)
-
-        ::
-
-            >>> z(request)
-            requesttools.CommandRequest(
-                'divisions',
-                'Voice 1',
-                symbolictimetools.SymbolicOffset(
-                    anchor=symbolictimetools.BackgroundMeasureSelector(
-                        anchor='red',
-                        start_identifier=8,
-                        stop_identifier=9
-                        ),
-                    addendum=durationtools.Offset(1, 4)
-                    )
-                )
-
-        Specify symbolic offset with `timespan`, `edge`, `multiplier`, `offset`.
-
-        Postprocess command with any of `index`, `count`.
+        Specify symbolic offset with `timespan`, `offset`.
 
         Return command request.        
         '''
         timespan = timespan or self.specification_name
-        symbolic_offset = symbolictimetools.SymbolicOffset(
-            anchor=timespan, edge=edge, multiplier=multiplier, addendum=addendum)
+        symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('divisions', voice, symbolic_offset=symbolic_offset)
 
     def request_divisions(self, voice, anchor=None, time_relation=None):
@@ -294,8 +249,8 @@ class Specification(SymbolicTimespan):
         anchor = anchor or self.specification_name
         return requesttools.MaterialRequest('rhythm', voice, anchor, time_relation=time_relation)
 
-    # TODO: replace 'timespan', 'edge', 'multiplier' keywords and with (symbolic) 'offset' keyword
-    def request_rhythm_command(self, voice, timespan=None, edge=None, multiplier=None, addendum=None):
+    # TODO: migrate method to SymbolicOffset
+    def request_rhythm_command(self, voice, timespan=None):
         r'''Request segment rhythm command active at offset in `voice`.
 
         Example. Request rhythm command active at start of segment::
@@ -313,19 +268,18 @@ class Specification(SymbolicTimespan):
                     )
                 )
 
-        Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
+        Specify symbolic offset with segment-relative `offset`.
 
         Postprocess command with any of `index`, `count`.
 
         Return command request.        
         '''
         timespan = timespan or self.specification_name
-        symbolic_offset = symbolictimetools.SymbolicOffset(
-            anchor=timespan, edge=edge, multiplier=multiplier, addendum=addendum)
+        symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('rhythm', voice, symbolic_offset=symbolic_offset)
 
-    # TODO: replace 'timespan', 'edge', 'multiplier' keywords with (symbolic) 'offset' keyword
-    def request_time_signature_command(self, voice, timespan=None, edge=None, multiplier=None, addendum=None):
+    # TODO: migrate method to SymbolicOffset
+    def request_time_signature_command(self, voice, timespan=None):
         r'''Request segment time signature command active at offset
         in `context`.
 
@@ -344,15 +298,14 @@ class Specification(SymbolicTimespan):
                     )
                 )
 
-        Specify symbolic offset with segment-relative `edge`, `multiplier`, `offset`.
+        Specify symbolic offset with segment-relative `offset`.
 
         Postprocess command with any of `index`, `count`.
 
         Return command request.
         '''
         timespan = timespan or self.specification_name
-        symbolic_offset = symbolictimetools.SymbolicOffset(
-            anchor=timespan, edge=edge, multiplier=multiplier, addendum=addendum)
+        symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=symbolic_offset)
 
     def request_time_signatures(self, voice, anchor=None, time_relation=None):
