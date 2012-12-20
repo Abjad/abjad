@@ -129,6 +129,10 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.request_rhythm
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.request_time_signatures
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

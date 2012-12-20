@@ -87,7 +87,7 @@ def test_single_segment_solo__overlapping_rhythm_selectors_05():
     red_segment.set_time_signatures([(3, 8), (4, 8), (3, 8)])
     red_segment.set_rhythm("{ c'4 }")
     first_measure = red_segment.select_background_measures(0, 1)
-    rhythmic_cell = red_segment.request_rhythm('Voice 1', anchor=first_measure)
+    rhythmic_cell = first_measure.request_rhythm('Voice 1')
     last_measure = red_segment.select_background_measures(-1)
     last_measure.set_rhythm(rhythmic_cell)
     score = score_specification.interpret()

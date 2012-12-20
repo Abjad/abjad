@@ -141,7 +141,7 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.request_rhythm
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.tools.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.request_rhythm_command
 

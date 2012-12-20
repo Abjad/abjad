@@ -85,6 +85,8 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.request_naive_beats
 
+.. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.request_rhythm
+
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.request_time_signatures
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.scale

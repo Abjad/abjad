@@ -191,26 +191,6 @@ class Specification(SymbolicTimespan):
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('divisions', voice, symbolic_offset=symbolic_offset)
 
-    # TODO: migrate to SymbolicTimespan and remove anchor=None keyword
-    def request_rhythm(self, voice, anchor=None, time_relation=None):
-        r'''Request segment rhythm in `voice`::
-
-            >>> request = red_segment.request_rhythm('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'rhythm',
-                'Voice 1',
-                'red'
-                )
-
-        Return rhythm request.        
-        '''
-        anchor = anchor or self.specification_name
-        return requesttools.MaterialRequest('rhythm', voice, anchor, time_relation=time_relation)
-
     # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
     def request_rhythm_command(self, voice, timespan=None):
         r'''Request segment rhythm command active at offset in `voice`.
@@ -231,8 +211,6 @@ class Specification(SymbolicTimespan):
                 )
 
         Specify symbolic offset with segment-relative `offset`.
-
-        Postprocess command with any of `index`, `count`.
 
         Return command request.        
         '''
@@ -261,8 +239,6 @@ class Specification(SymbolicTimespan):
                 )
 
         Specify symbolic offset with segment-relative `offset`.
-
-        Postprocess command with any of `index`, `count`.
 
         Return command request.
         '''
