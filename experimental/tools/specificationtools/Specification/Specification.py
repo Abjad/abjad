@@ -173,34 +173,6 @@ class Specification(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
-    def request_division_command(self, voice, timespan=None):
-        r'''Request segment division command active at offset
-        in `voice`.
-
-        Example 1. Request division command active at start of segment::
-
-            >>> request = red_segment.request_division_command('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.CommandRequest(
-                'divisions',
-                'Voice 1',
-                symbolictimetools.SymbolicOffset(
-                    anchor='red'
-                    )
-                )
-
-        Specify symbolic offset with `timespan`.
-
-        Return command request.        
-        '''
-        timespan = timespan or self.specification_name
-        symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
-        return requesttools.CommandRequest('divisions', voice, symbolic_offset=symbolic_offset)
-
     @abc.abstractmethod
     def select(self):
         pass

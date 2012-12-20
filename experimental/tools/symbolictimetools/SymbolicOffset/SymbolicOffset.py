@@ -281,7 +281,29 @@ class SymbolicOffset(SymbolicTimeObject):
         score_offset = score_offset + offset
         return score_offset
 
-    def request_rhythm_command(self, voice, timespan=None):
+    def request_division_command(self, voice):
+        r'''Request voice ``1`` division command
+        active at start of segment ``'red'``::
+
+            >>> request = red_segment.start_offset.request_division_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    anchor='red'
+                    )
+                )
+
+        Return command request.        
+        '''
+        from experimental.tools import requesttools
+        return requesttools.CommandRequest('divisions', voice, symbolic_offset=self)
+
+    def request_rhythm_command(self, voice):
         r'''Request voice ``1`` rhythm command 
         active at start of segment ``'red'``::
 
@@ -319,8 +341,6 @@ class SymbolicOffset(SymbolicTimeObject):
                     anchor='red'
                     )
                 )
-
-        Specify symbolic offset with segment-relative `offset`.
 
         Return command request.
         '''

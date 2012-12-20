@@ -153,6 +153,11 @@ class Selector(SymbolicTimespan):
         return self._start_identifier
 
     @property
+    def start_offset(self):
+        from experimental.tools import symbolictimetools
+        return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation)
+
+    @property
     def start_segment_identifier(self):
         '''Return anchor when anchor is a string.
 
@@ -172,6 +177,11 @@ class Selector(SymbolicTimespan):
         Return integer, string, held expression or none.
         '''
         return self._stop_identifier
+
+    @property
+    def stop_offset(self):
+        from experimental.tools import symbolictimetools
+        return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
 
     @property
     def time_relation(self):

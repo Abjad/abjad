@@ -68,14 +68,14 @@
 
 14. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
-        measures = measures.select(2, 4)
+        measures = measures[2:4]
     This will show the composition of multiple slice selections in a row.
 
 15. Add some tests to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
         middle_part = segments.adjust_timespan_offsets(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
-        score_specification.set_divisions([(3, 16)], timespan=middle_part)
+        middle_part.set_divisions([(3, 16)])
     This will show anchoring to a segment selector that selects more than one segment.
 
 16. Add some tests to show this:
@@ -86,19 +86,19 @@
 17. Add some tests to show this:
         measures = red_segment.select_background_measures(10, 20)
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
-    This will show partitioningonly part of a segment's measures.
+    This will show partitioning only part of a segment's measures.
 
 18. Add some tests to show this:
         measures = red_segment.select_background_measures()
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
-        measure = middle_third_of_measures.select(0, 1)
+        measure = middle_third_of_measures[:1]
     This will show slice selection following after partition.
 
 19. Add some tests to show this:
         segment = red_segment.select()
         first_half_of_red_segment = segment.divide_by_ratio((1, 1))[0]
-        measures = score_specification.select_background_measures(anchor=first_half_of_red_segment)
-    This will show measures that start during the first half of a segment.
+        measures = first_half_of_red_segment.select_background_measures()
+    This will show background measures that start during the first half of a segment.
 
 20. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
     Also audit to make sure that all selector doc string examples are made with
@@ -117,31 +117,19 @@
     There is in fact an Interpreter.get_start_segment_specification() method right now.
     How does this relate to the "reanchoring" of settings during interpretation?
 
-25. Remove this noncommand request method in favor of an existing select methods:
-        Specification.request_divisions() ==> Specification.select_divisions()
-    Port over these noncommand request methods as new select methods:
-        Specification.request_naive_beats() ==> Specification.select_naive_beats()
-        Specification.request_rhythm() ==> Specification.select_rhythm()
-        Specification.request_time_signatures() ==> Specification.select_time_signatures()
-
-26. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
+25. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
     and BackgroundMeasureSelector.
 
-27. Remove the three command request methods:
-        Specification.request_division_command()
-        Specification.request_rhythm_command()
-        Specification.request_time_signature_command()
-    The commands currently take timespan=None, edge=None, multiplier=None, addendum=None keywords.
-    Better to implement a small number of methods as necessary in the system.
-    These methods will enable composers to create exactly the correct symbolic offset.
-    Then implement these symbolic offset bound methods:
-        SymbolicOffset.request_division_command(voice)
-        SymbolicOffset.request_rhythm_command(voice)
-        SymbolicOffset.request_time_signature_command(voice)
-
-28. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
+26. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
     What does it fundamentally mean to select something?
     We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
     Any time we reference the timespan of something we need to afford a time_relation=None keyword.
     This happens the exact same way in both select() and request() methods.
     So this action item probably means to remove all request() methods in favor of select() methods.
+
+27. Remove this noncommand request method in favor of an existing select methods:
+        Specification.request_divisions() ==> Specification.select_divisions()
+    Port over these noncommand request methods as new select methods:
+        Specification.request_naive_beats() ==> Specification.select_naive_beats()
+        Specification.request_rhythm() ==> Specification.select_rhythm()
+        Specification.request_time_signatures() ==> Specification.select_time_signatures()

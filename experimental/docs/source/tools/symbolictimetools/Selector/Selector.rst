@@ -51,15 +51,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_offset
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_segment_identifier
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.stop_identifier
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.stop_offset
-
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.storage_format
 

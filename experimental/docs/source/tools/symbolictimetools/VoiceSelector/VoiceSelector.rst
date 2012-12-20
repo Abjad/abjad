@@ -59,7 +59,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.start_offset
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.start_segment_identifier
 
@@ -71,7 +71,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.stop_offset
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.storage_format
 
