@@ -11,16 +11,14 @@ class StatalServerRequest(Request):
 
     Request `statal_server`.
 
-    Apply any of `index`, `count` that are not none.
-
     The purpose of a statal server request is to function as the source of a setting.
     '''
 
     ### INITIALIZER ###
     
-    def __init__(self, statal_server, modifications=None, index=None, count=None):
+    def __init__(self, statal_server, modifications=None):
         assert isinstance(server, statalservertools.StatalServer)
-        Request.__init__(self, modifications=modifications, index=index, count=count)
+        Request.__init__(self, modifications=modifications)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

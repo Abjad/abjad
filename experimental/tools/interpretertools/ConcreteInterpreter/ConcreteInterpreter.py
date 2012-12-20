@@ -50,10 +50,6 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def apply_source_transforms_to_target(self, source, target):
-        if getattr(source, 'index', None):
-            raise NotImplementedError
-        if getattr(source, 'count', None):
-            raise NotImplementedError
         #assert hasattr(source, 'modifications')
         if hasattr(source, 'modifications'):
             evaluation_context = {
@@ -710,11 +706,6 @@ class ConcreteInterpreter(Interpreter):
         # fuse only if current and previous commands request same material
         if not current_material_request == previous_material_request:
             return False
-        # fuse only if current and previous commands treat material equally
-        for attribute in ('index', 'count'):
-            if getattr(current_rhythm_command, attribute, None) != \
-                getattr(previous_rhythm_command, attribute, None):
-                return False
         return True
 
     def rhythm_command_request_to_rhythm_maker(self, rhythm_command_request, voice_name):
@@ -804,8 +795,6 @@ class ConcreteInterpreter(Interpreter):
             single_context_setting.context_name,
             start_offset,
             stop_offset,
-            index=single_context_setting.index,
-            count=single_context_setting.count,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':

@@ -25,14 +25,12 @@ class AbsoluteRequest(Request):
             )
 
     Request `payload`.
-
-    Later, apply any of `index`, `count` that are not none.
     '''
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, modifications=None, index=None, count=None):
-        Request.__init__(self, modifications=modifications, index=index, count=count)
+    def __init__(self, payload, modifications=None):
+        Request.__init__(self, modifications=modifications)
         self._payload = payload
 
     ### READ-ONLY PROPERTIES ###

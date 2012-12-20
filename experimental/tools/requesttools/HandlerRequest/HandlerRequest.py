@@ -11,16 +11,14 @@ class HandlerRequest(Request):
 
     Request `handler`.
 
-    Apply any of `index`, `count` that are not none.
-
     The purpose of a handler request is to function as the source of a setting.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, handler, modifications=None, index=None, count=None):
+    def __init__(self, handler, modifications=None):
         assert isinstance(handler, handlertools.Handler)
-        Request.__init__(self, modifications=modifications, index=index, count=count)
+        Request.__init__(self, modifications=modifications)
         self._handler = handler
 
     ### READ-ONLY PROPERTIES ###

@@ -153,8 +153,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             new_stop_offset = original_stop_offset
         return new_start_offset, new_stop_offset
 
-    def _store_multiple_context_setting(self, attribute, source, contexts=None, 
-        index=None, count=None, persist=True, truncate=None):
+    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
         from experimental.tools import requesttools
         from experimental.tools import settingtools
         request = requesttools.expr_to_request(source)
@@ -165,8 +164,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             request, 
             self._timespan_abbreviation,
             context_names=context_names,
-            index=index,
-            count=count,
             persist=persist, 
             truncate=truncate
             )
@@ -396,8 +393,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, persist=persist)
 
-    def set_divisions(self, source, contexts=None, 
-        index=None, count=None, persist=True, truncate=None):
+    def set_divisions(self, source, contexts=None, persist=True, truncate=None):
         r'''Set divisions of segment `contexts` to `source`::
 
             >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
@@ -419,9 +415,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         '''
         attribute = 'divisions'
         return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, 
-            index=index, count=count, 
-            truncate=truncate, persist=persist)
+            contexts=contexts, truncate=truncate, persist=persist)
 
     def set_duration(self, duration):
         '''Set timespan duration to `duration`.
@@ -518,7 +512,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, persist=persist)
 
-    def set_rhythm(self, source, contexts=None, index=None, count=None, persist=True):
+    def set_rhythm(self, source, contexts=None, persist=True):
         r'''Set rhythm of segment `contexts` to `source`.
 
             >>> setting = red_segment.set_rhythm(library.sixteenths)
@@ -547,10 +541,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'rhythm'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, 
-            index=index, count=count, 
-            persist=persist)
+        return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
 
     def set_tempo(self, source, contexts=None, persist=True):
         r'''Set tempo of segment `contexts` to `source`.
@@ -561,9 +552,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return self._store_multiple_context_setting(attribute, source, 
             contexts=contexts, persist=persist)
 
-    def set_time_signatures(self, source, contexts=None, 
-        index=None, count=None, 
-        persist=True):
+    def set_time_signatures(self, source, contexts=None, persist=True):
         r'''Set time signatures according to `source` for segment `contexts`.
 
             >>> setting = red_segment.set_time_signatures([(3, 8), (4, 8)])
@@ -584,8 +573,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'time_signatures'
-        return self._store_multiple_context_setting(attribute, source, contexts=contexts, 
-            index=index, count=count, persist=persist)
+        return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation`

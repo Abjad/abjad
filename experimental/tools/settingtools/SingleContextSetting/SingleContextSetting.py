@@ -59,11 +59,8 @@ class SingleContextSetting(Setting):
     ### INITIALIZER ###
 
     def __init__(self, 
-        attribute, request, anchor, context_name=None, index=None, count=None, 
-        fresh=True, persist=True, truncate=None):
-        Setting.__init__(self, attribute, request, anchor, 
-            index=index, count=count, 
-            fresh=fresh, persist=persist, truncate=truncate)
+        attribute, request, anchor, context_name=None, fresh=True, persist=True, truncate=None):
+        Setting.__init__(self, attribute, request, anchor, fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         self._context_name = context_name
 
