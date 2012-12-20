@@ -129,6 +129,12 @@ class SymbolicOffset(SymbolicTimeObject):
             edge=Right
             )
 
+    Score and segment specification for examples below::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
     Symbolic offsets are immutable.
     '''
 
@@ -274,3 +280,27 @@ class SymbolicOffset(SymbolicTimeObject):
         offset = self.addendum or durationtools.Offset(0)
         score_offset = score_offset + offset
         return score_offset
+
+    def request_time_signature_command(self, voice):
+        r'''Request voice ``1`` time signature command
+        active at start of segment ``'red'``::
+
+            >>> request = red_segment.start_offset.request_time_signature_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'time_signatures',
+                'Voice 1',
+                symbolictimetools.SymbolicOffset(
+                    anchor='red'
+                    )
+                )
+
+        Specify symbolic offset with segment-relative `offset`.
+
+        Return command request.
+        '''
+        from experimental.tools import requesttools
+        return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=self)

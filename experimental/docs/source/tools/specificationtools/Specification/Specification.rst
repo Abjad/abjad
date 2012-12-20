@@ -59,11 +59,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.start_offset
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.stop_offset
-
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.storage_format
 
@@ -118,8 +114,6 @@ Methods
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_rhythm_command
-
-.. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_time_signature_command
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.request_time_signatures
 

@@ -161,6 +161,16 @@ class Specification(SymbolicTimespan):
     def single_context_settings_by_context(self):
         return self._single_context_settings_by_context
 
+    @property
+    def start_offset(self):
+        from experimental.tools import symbolictimetools
+        return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation)
+
+    @property
+    def stop_offset(self):
+        from experimental.tools import symbolictimetools
+        return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
+
     ### PUBLIC METHODS ###
 
     # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
@@ -217,34 +227,6 @@ class Specification(SymbolicTimespan):
         timespan = timespan or self.specification_name
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('rhythm', voice, symbolic_offset=symbolic_offset)
-
-    # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
-    def request_time_signature_command(self, voice, timespan=None):
-        r'''Request segment time signature command active at offset
-        in `context`.
-
-        Example. Request time signature command active at start of segment ``'red'``::
-
-            >>> request = red_segment.request_time_signature_command('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.CommandRequest(
-                'time_signatures',
-                'Voice 1',
-                symbolictimetools.SymbolicOffset(
-                    anchor='red'
-                    )
-                )
-
-        Specify symbolic offset with segment-relative `offset`.
-
-        Return command request.
-        '''
-        timespan = timespan or self.specification_name
-        symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
-        return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=symbolic_offset)
 
     @abc.abstractmethod
     def select(self):
