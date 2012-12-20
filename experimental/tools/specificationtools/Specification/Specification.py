@@ -163,7 +163,7 @@ class Specification(SymbolicTimespan):
 
     ### PUBLIC METHODS ###
 
-    # TODO: migrate method to SymbolicOffset
+    # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
     def request_division_command(self, voice, timespan=None):
         r'''Request segment division command active at offset
         in `voice`.
@@ -183,7 +183,7 @@ class Specification(SymbolicTimespan):
                     )
                 )
 
-        Specify symbolic offset with `timespan`, `offset`.
+        Specify symbolic offset with `timespan`.
 
         Return command request.        
         '''
@@ -191,7 +191,8 @@ class Specification(SymbolicTimespan):
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('divisions', voice, symbolic_offset=symbolic_offset)
 
-    def request_divisions(self, voice, anchor=None, time_relation=None):
+    # TODO: migrate to SymbolicTimespan
+    def request_divisions(self, voice, time_relation=None):
         r'''Request segment divisions in `voice`::
 
             >>> request = red_segment.request_divisions('Voice 1')
@@ -207,10 +208,11 @@ class Specification(SymbolicTimespan):
 
         Return material request.        
         '''
-        anchor = anchor or self.specification_name
+        anchor = self.specification_name
         return requesttools.MaterialRequest('divisions', voice, anchor, time_relation=time_relation)
 
-    def request_naive_beats(self, voice, anchor=None, time_relation=None):
+    # TODO: migrate to SymbolicTimespan
+    def request_naive_beats(self, voice, time_relation=None):
         r'''Request segment naive beats in `voice`::
 
             >>> request = red_segment.request_naive_beats('Voice 1')
@@ -227,9 +229,10 @@ class Specification(SymbolicTimespan):
         Return material request.        
         '''
         assert isinstance(voice, str)
-        anchor = anchor or self.specification_name
+        anchor = self.specification_name
         return requesttools.MaterialRequest('naive_beats', voice, anchor, time_relation=time_relation)
 
+    # TODO: migrate to SymbolicTimespan and remove anchor=None keyword
     def request_rhythm(self, voice, anchor=None, time_relation=None):
         r'''Request segment rhythm in `voice`::
 
@@ -249,7 +252,7 @@ class Specification(SymbolicTimespan):
         anchor = anchor or self.specification_name
         return requesttools.MaterialRequest('rhythm', voice, anchor, time_relation=time_relation)
 
-    # TODO: migrate method to SymbolicOffset
+    # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
     def request_rhythm_command(self, voice, timespan=None):
         r'''Request segment rhythm command active at offset in `voice`.
 
@@ -278,7 +281,7 @@ class Specification(SymbolicTimespan):
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('rhythm', voice, symbolic_offset=symbolic_offset)
 
-    # TODO: migrate method to SymbolicOffset
+    # TODO: migrate method to SymbolicOffset and remove timespan=None keyword
     def request_time_signature_command(self, voice, timespan=None):
         r'''Request segment time signature command active at offset
         in `context`.
@@ -308,7 +311,8 @@ class Specification(SymbolicTimespan):
         symbolic_offset = symbolictimetools.SymbolicOffset(anchor=timespan)
         return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=symbolic_offset)
 
-    def request_time_signatures(self, voice, anchor=None, time_relation=None):
+    # TODO: migrate to SymbolicTimespan
+    def request_time_signatures(self, voice, time_relation=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 
             >>> request = red_segment.request_time_signatures('Voice 1')
@@ -325,7 +329,7 @@ class Specification(SymbolicTimespan):
         Return material request.
         '''
         assert isinstance(voice, str)
-        anchor = anchor or self.specification_name
+        anchor = self.specification_name
         return requesttools.MaterialRequest('time_signatures', voice, anchor, time_relation=time_relation)
 
     @abc.abstractmethod
