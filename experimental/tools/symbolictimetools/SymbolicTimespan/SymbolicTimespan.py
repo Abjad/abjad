@@ -239,7 +239,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def request_rhythm(self, voice, time_relation=None):
+    def request_rhythm(self, voice_name, time_relation=None):
         r'''Request voice ``1`` rhythm events that start during segment ``'red'``::
 
             >>> request = red_segment.request_rhythm('Voice 1')
@@ -257,9 +257,9 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         '''
         from experimental.tools import requesttools
         anchor = self._timespan_abbreviation
-        return requesttools.MaterialRequest('rhythm', voice, anchor, time_relation=time_relation)
+        return requesttools.MaterialRequest('rhythm', voice_name, anchor, time_relation=time_relation)
 
-    def request_time_signatures(self, voice, time_relation=None):
+    def request_time_signatures(self, voice_name, time_relation=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 
             >>> request = red_segment.request_time_signatures('Voice 1')
@@ -276,9 +276,9 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         Return material request.
         '''
         from experimental.tools import requesttools
-        assert isinstance(voice, str)
+        assert isinstance(voice_name, str)
         anchor = self._timespan_abbreviation
-        return requesttools.MaterialRequest('time_signatures', voice, anchor, time_relation=time_relation)
+        return requesttools.MaterialRequest('time_signatures', voice_name, anchor, time_relation=time_relation)
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment ``'red'``::
@@ -308,7 +308,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         selector._score_specification = self.score_specification
         return selector
 
-    def select_beats(self, voice, start=None, stop=None, time_relation=None):
+    def select_beats(self, voice_name, start=None, stop=None, time_relation=None):
         '''Select the first five voice ``1`` beats 
         that start during segment ``'red'``::
 
@@ -334,12 +334,12 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
-            voice_name=voice,
+            voice_name=voice_name,
             time_relation=time_relation)
         selector._score_specification = self.score_specification
         return selector
 
-    def select_divisions(self, voice, start=None, stop=None, time_relation=None):
+    def select_divisions(self, voice_name, start=None, stop=None, time_relation=None):
         '''Select the first five voice ``1`` divisions 
         that start during segment ``'red'``::
 
@@ -365,12 +365,12 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
-            voice_name=voice,
+            voice_name=voice_name,
             time_relation=time_relation)
         selector._score_specification = self.score_specification
         return selector
 
-    def select_leaves(self, voice, start=None, stop=None, time_relation=None):
+    def select_leaves(self, voice_name, start=None, stop=None, time_relation=None):
         '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
 
             >>> selector = red_segment.select_leaves('Voice 1', stop=40)
@@ -387,7 +387,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         Return counttime component selector.
         '''
-        assert isinstance(voice, (str, type(None)))
+        assert isinstance(voice_name, (str, type(None)))
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
@@ -399,11 +399,11 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             klass=leaftools.Leaf, 
             start_identifier=start, 
             stop_identifier=stop, 
-            voice_name=voice)
+            voice_name=voice_name)
         selector._score_specification = self.score_specification
         return selector
 
-    def select_notes_and_chords(self, voice, start=None, stop=None, time_relation=None):
+    def select_notes_and_chords(self, voice_name, start=None, stop=None, time_relation=None):
         '''Select the first ``40`` voice ``1`` notes and chords 
         that start during segment ``'red'``::
 
@@ -435,7 +435,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, 
             stop_identifier=stop, 
-            voice_name=voice)
+            voice_name=voice_name)
         selector._score_specification = self.score_specification
         return selector
 

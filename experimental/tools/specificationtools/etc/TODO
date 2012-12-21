@@ -127,5 +127,5 @@
     There should be no reason for paired calls coming one after the other.
     There's got to be some way to completely centralize modifier application.
 
-27. Change select() method 'voice' input parameter name to 'voice_name' instead.
-    The parameter is positional and so won't create extra work in the composer interface.
+27. Remove SymbolicTimespan.adjust_timespan_offsets().
+    Teach SymbolicTimespan.set_timespan_offsets() to handle negative values instead.
