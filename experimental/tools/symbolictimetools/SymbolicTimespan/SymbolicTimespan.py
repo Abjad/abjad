@@ -258,6 +258,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         from experimental.tools import requesttools
         anchor = self._timespan_abbreviation
         return requesttools.MaterialRequest('rhythm', voice_name, anchor, time_relation=time_relation)
+        #return self.select_leaves(voice_name, time_relation=time_relation)
 
     def request_time_signatures(self, voice_name, time_relation=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::

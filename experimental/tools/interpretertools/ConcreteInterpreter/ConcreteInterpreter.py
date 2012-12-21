@@ -266,8 +266,22 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
                     rhythm_command.request, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
+            # TODO: eventually remove in favor of CounttimeComponentSelector
             elif isinstance(rhythm_command.request, requesttools.MaterialRequest):
                 assert rhythm_command.request.attribute == 'rhythm'
+                if result and self.rhythm_command_prolongs_expr(rhythm_command, result[-1][0]):
+                    last_start_offset = result.pop()[1]
+                    new_entry = (rhythm_command,
+                        last_start_offset,
+                        stop_offset,
+                        rhythm_command)
+                else:
+                    new_entry = (rhythm_command,
+                            rhythm_command.start_offset, 
+                            rhythm_command.stop_offset, 
+                            rhythm_command)
+                result.append(new_entry)
+            elif isinstance(rhythm_command.request, symbolictimetools.CounttimeComponentSelector):
                 if result and self.rhythm_command_prolongs_expr(rhythm_command, result[-1][0]):
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command,
@@ -563,8 +577,12 @@ class ConcreteInterpreter(Interpreter):
                         *rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
+                # TODO: eventually remove in favor of CounttimeComponentSelector
                 elif isinstance(rhythm_quadruple[0], requesttools.MaterialRequest):
                     rhythm_region_expression = self.rhythm_material_request_to_rhythm_region_expression(
+                        *rhythm_quadruple)
+                elif isinstance(rhythm_quadruple[0], symbolictimetools.CounttimeComponentSelector):
+                    rhythm_region_expression = self.counttime_component_selector_to_rhythm_region_expression(
                         *rhythm_quadruple)
                 else:
                     raise TypeError(rhythm_quadruple[0])
@@ -679,17 +697,20 @@ class ConcreteInterpreter(Interpreter):
         # check that current rhythm command bears a rhythm material request
         assert isinstance(current_rhythm_command, settingtools.RhythmCommand)
         current_material_request = current_rhythm_command.request
-        assert isinstance(current_material_request, requesttools.MaterialRequest)
-        assert current_material_request.attribute == 'rhythm'
+        assert (isinstance(current_material_request, requesttools.MaterialRequest) and
+                current_material_request.attribute == 'rhythm') or (
+                isinstance(current_material_request, symbolictimetools.CounttimeComponentSelector))
         # fuse only if expr is also a rhythm command that bears a rhythm material request
         if not isinstance(expr, settingtools.RhythmCommand):
             return False
         else:
             previous_rhythm_command = expr
         previous_material_request = getattr(previous_rhythm_command, 'request', None)
-        if not isinstance(previous_material_request, requesttools.MaterialRequest):
+        if not isinstance(previous_material_request, (
+            requesttools.MaterialRequest, symbolictimetools.CounttimeComponentSelector)):
             return False        
-        if not previous_material_request.attribute == 'rhythm':
+        if isinstance(previous_material_request, requesttools.MaterialRequest) and \
+            not previous_material_request.attribute == 'rhythm':
             return False
         # fuse only if current and previous commands request same material
         if not current_material_request == previous_material_request:
@@ -726,10 +747,53 @@ class ConcreteInterpreter(Interpreter):
         rhythm_maker = requesttools.apply_request_transforms(rhythm_command_request, rhythm_maker)
         return rhythm_maker
 
+    # TODO: eventually remove in favor of self.counttime_component_selector_to_rhythm_region_expression()
     def rhythm_material_request_to_rhythm_region_expression(
         self, rhythm_material_request, start_offset, stop_offset, rhythm_command):
         assert isinstance(rhythm_material_request, requesttools.MaterialRequest)
         assert rhythm_material_request.attribute == 'rhythm'
+        #self._debug(rhythm_material_request, 'rhythm request')
+        #self._debug((start_offset, stop_offset), 'offsets')
+        voice_name = rhythm_material_request.voice_name
+        if isinstance(rhythm_material_request.anchor, str):
+            source_score_offsets = self.score_specification.segment_identifier_expression_to_offsets(
+                rhythm_material_request.anchor)
+        else:
+            source_score_offsets = rhythm_material_request.anchor._get_offsets(
+                self.score_specification, rhythm_material_request.voice_name)
+        source_timespan = timespantools.Timespan(*source_score_offsets)
+        #self._debug(source_timespan, 'source timespan')
+        rhythm_region_expressions = \
+            self.score_specification.contexts[voice_name]['rhythm_region_expressions']
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
+        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=source_timespan)
+        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_time_relation(
+            timespan_time_relation)
+        #self._debug(rhythm_region_expressions, 'rhythm region expressions')
+        if not rhythm_region_expressions:
+            return
+        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
+        rhythm_region_expressions = timespantools.TimespanInventory(rhythm_region_expressions)
+        rhythm_region_expressions.sort()
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
+        #self._debug(source_timespan, 'source timespan', blank=True)
+        assert source_timespan.is_well_formed, repr(source_timespan)
+        rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
+        result = settingtools.OffsetPositionedRhythmExpression(voice_name=voice_name, start_offset=start_offset)
+        for rhythm_region_expression in rhythm_region_expressions:
+            result.music.extend(rhythm_region_expression.music)
+        #self._debug(result, 'result')
+        assert wellformednesstools.is_well_formed_component(result.music)
+        self.apply_source_transforms_to_target(rhythm_material_request, result)
+        self.apply_source_transforms_to_target(rhythm_command, result)
+        result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        result.repeat_to_stop_offset(stop_offset)
+        return result
+
+    def counttime_component_selector_to_rhythm_region_expression(
+        self, rhythm_material_request, start_offset, stop_offset, rhythm_command):
+        assert isinstance(rhythm_material_request, symbolictimetools.CounttimeComponentSelector)
         #self._debug(rhythm_material_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_material_request.voice_name
