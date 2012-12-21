@@ -57,7 +57,7 @@ class RenameModulesScript(DeveloperScript):
         if codebase == 'mainline':
             return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'source', 'api', 'tools')
         elif codebase == 'experimental':
-            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
+            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
@@ -65,7 +65,7 @@ class RenameModulesScript(DeveloperScript):
         if codebase == 'mainline':
             return os.path.join(ABJCFG.ABJAD_PATH, 'tools')
         elif codebase == 'experimental':
-            return ABJCFG.ABJAD_EXPERIMENTAL_PATH
+            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'tools')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _confirm_name_changes(self, kind, old_codebase, old_package_name, old_object_name,

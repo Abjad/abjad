@@ -503,7 +503,7 @@ class MetricalHierarchy(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def generate_offset_kernel_to_denominator(self, denominator):
+    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
         r'''Generate a dictionary of all offsets in a metrical hierarchy up
         to `denominator`, where the keys are the offsets and the values
         are the normalized weights of those offsets:
@@ -554,8 +554,9 @@ class MetricalHierarchy(AbjadObject):
                     kernel[offset] = 0
                 kernel[offset] += 1
                 total += 1
-            
-        for offset, response in kernel.iteritems():
-            kernel[offset] = durationtools.Multiplier(response, total)
+        
+        if normalize:    
+            for offset, response in kernel.iteritems():
+                kernel[offset] = durationtools.Multiplier(response, total)
         
         return kernel

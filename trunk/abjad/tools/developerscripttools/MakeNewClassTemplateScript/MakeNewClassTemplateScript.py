@@ -19,7 +19,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
         optional arguments:
           -h, --help          show this help message and exit
           --version           show program's version number and exit
-          -X, --abjad.tools  use the Abjad abjad.tools path
+          -X, --experimental  use the Abjad experimental tools path
           -M, --mainline      use the Abjad mainline tools path
 
     Return `MakeNewClassTemplateScript` instance.
@@ -58,10 +58,10 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def _get_class_text(self, class_name):
         return [
-            'from abjad.tools import abctools',
+            'from abjad.tools.abctools import AbjadObject',
             '',
             '',
-            'class {}(abctools.AbjadObject):'.format(class_name),
+            'class {}(AbjadObject):'.format(class_name),
             '    pass'
         ]
 
@@ -132,9 +132,9 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
+            const=os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'tools'),
             dest='path',
-            help='use the Abjad abjad.tools path',
+            help='use the Abjad experimental tools path',
             )
 
         path_group.add_argument('-M', '--mainline',

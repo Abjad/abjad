@@ -18,7 +18,7 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
         optional arguments:
           -h, --help          show this help message and exit
           --version           show program's version number and exit
-          -X, --abjad.tools  use the Abjad abjad.tools path
+          -X, --experimental  use the Abjad experimental path
           -M, --mainline      use the Abjad mainline tools path
 
     Return `MakeNewFunctionTemplateScript` instance.
@@ -106,9 +106,9 @@ class MakeNewFunctionTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
+            const=os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'tools'),
             dest='path',
-            help='use the Abjad abjad.tools path',
+            help='use the Abjad experimental tools path',
             )
 
         path_group.add_argument('-M', '--mainline',
