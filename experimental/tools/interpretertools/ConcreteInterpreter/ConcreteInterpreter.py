@@ -73,6 +73,23 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError(attribute)
 
+    def background_measure_selector_to_time_signatures(self, material_request):
+        assert isinstance(material_request, symbolictimetools.BackgroundMeasureSelector)
+        segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
+        #single_context_settings = self.get_single_context_settings_that_start_during_segment(
+        #    segment_specification, material_request.voice_name, material_request.attribute, 
+        #    include_improper_parentage=True)
+        # TODO: eventually extend BackgroundMeasureSelector with voice_name property
+        single_context_settings = self.get_single_context_settings_that_start_during_segment(
+            segment_specification, 'Voice 1', 'time_signatures', include_improper_parentage=True)
+        assert len(single_context_settings) == 1
+        single_context_setting = single_context_settings[0]
+        absolute_request = single_context_setting.request
+        if not isinstance(absolute_request, requesttools.AbsoluteRequest):
+            raise exceptions.CyclicSpecificationError(absolute_request)
+        time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
+        return time_signatures
+
     def calculate_score_and_segment_durations(self):
         '''Set ``'segment_durations'`` property on score specification.
 
@@ -246,6 +263,10 @@ class ConcreteInterpreter(Interpreter):
             division_region_command.request.attribute == 'time_signatures':    
             time_signatures = self.time_signature_material_request_to_time_signatures(
                 division_region_command.request)
+            divisions = [divisiontools.Division(x) for x in time_signatures]
+            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
+        elif isinstance(division_region_command.request, symbolictimetools.BackgroundMeasureSelector):
+            time_signatures = self.background_measure_selector_to_time_signatures(division_region_command.request)
             divisions = [divisiontools.Division(x) for x in time_signatures]
             divisions = requesttools.apply_request_transforms(division_region_command, divisions)
         else:
@@ -661,6 +682,9 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(time_signature_setting.request, requesttools.MaterialRequest):
             time_signatures = self.time_signature_material_request_to_time_signatures(
                 time_signature_setting.request)
+        elif isinstance(time_signature_setting.request, symbolictimetools.BackgroundMeasureSelector):
+            time_signatures = self.background_measure_selector_to_time_signatures(
+                time_signature_setting.request)
         else:
             raise TypeError(time_signature_setting.request)
         if time_signatures:
@@ -920,6 +944,7 @@ class ConcreteInterpreter(Interpreter):
         time_signatures = requesttools.apply_request_transforms(command_request, time_signatures)
         return time_signatures
 
+    # TODO: remove in favor of self.background_measure_selector_to_time_signatures()
     def time_signature_material_request_to_time_signatures(self, material_request):
         assert isinstance(material_request, requesttools.MaterialRequest), repr(material_request)
         assert material_request.attribute == 'time_signatures'

@@ -171,6 +171,10 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.select_time_signatures
+
+    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.set_aggregate
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -249,6 +253,10 @@ Special Methods
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.__getitem__
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.__gt__
 

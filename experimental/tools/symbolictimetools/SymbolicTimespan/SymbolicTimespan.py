@@ -259,6 +259,10 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(voice_name, str)
         anchor = self._timespan_abbreviation
         return requesttools.MaterialRequest('time_signatures', voice_name, anchor, time_relation=time_relation)
+        #return self.select_time_signatures(voice_name, time_relation=time_relation)
+
+    def select_time_signatures(self, voice_name, time_relation=None):
+        return self.select_background_measures(time_relation=time_relation)
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment ``'red'``::

@@ -48,6 +48,14 @@ class Selector(SymbolicTimespan):
         result._score_specification = self.score_specification
         return result
 
+    def __getitem__(self, expr):
+        '''Return copy of request with appended modification.
+        '''
+        modification = 'result = target.__getitem__({!r})'.format(expr)
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property

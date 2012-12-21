@@ -15,10 +15,12 @@ def apply_request_transforms(request, payload):
     from experimental.tools import settingtools
     from experimental.tools import symbolictimetools
 
+    # TODO: eventually make BackgroundMeasureSelector inherit from VoiceSelector
     request_klasses = (
         requesttools.Request, 
         settingtools.Setting, 
         settingtools.Command,
+        symbolictimetools.BackgroundMeasureSelector,
         symbolictimetools.VoiceSelector,
         )
 

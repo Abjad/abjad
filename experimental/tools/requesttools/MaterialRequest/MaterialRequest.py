@@ -6,28 +6,7 @@ from experimental.tools.requesttools.Request import Request
 class MaterialRequest(Request):
     r'''.. versionadded:: 1.0
 
-    ::
-
-        >>> from experimental.tools import *
-
-    Request `attribute` for `anchor` in `voice_name`::
-
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        >>> red_segment = score_specification.append_segment(name='red')
-
-    ::
-
-        >>> request = red_segment.request_time_signatures('Voice 1')
-
-    ::
-
-        >>> z(request)
-        requesttools.MaterialRequest(
-            'time_signatures',
-            'Voice 1',
-            'red'
-            )
+    .. note:: deprecated. Use selector classes instead.
 
     The purpose of a material request is to function as the source of a setting.
     '''

@@ -95,6 +95,8 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_notes_and_chords
 
+.. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_time_signatures
+
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_aggregate
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.set_articulations

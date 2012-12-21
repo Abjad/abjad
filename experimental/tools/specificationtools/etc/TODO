@@ -127,3 +127,10 @@
 
 27. Remove SymbolicTimespan.adjust_timespan_offsets().
     Teach SymbolicTimespan.set_timespan_offsets() to handle negative values instead.
+
+28. Add 'voice_name' positional parameter to SymbolicTimespan.select_background_measures().
+    This will mean making BackgroundMeasureSelector inherit from VoiceSelector.
+
+29. Perhaps Request and Selector need to inherit from a common superclass.
+    All such classes implement a certain set of (delayed evaluation) modifications.
+    So perhaps there's the idea of a ModificationCarrier somewhere in the object model.
