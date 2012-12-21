@@ -111,6 +111,7 @@
     Then extend all selector _get_offsets() methods and do the same.
 
 23. Eventually add something like offset modifications to SymbolicOffset class.
+    Modification methods include SymbolicOffset.translate() and possibly others.
 
 24. Can start_segment_identifier properties eventually be completely removed from model?
     What should be possible is for code to look at any symbolic timespan and get start segment specification.
@@ -120,15 +121,7 @@
 25. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
     and BackgroundMeasureSelector.
 
-26. I think it's quite likely that selection and request-making are going to turn out to be the same thing.
-    What does it fundamentally mean to select something?
-    We say "select <something> <that starts during> <(the timespan of) segment 'red'>".
-    Any time we reference the timespan of something we need to afford a time_relation=None keyword.
-    This happens the exact same way in both select() and request() methods.
-    So this action item probably means to remove all request() methods in favor of select() methods.
-
-27. Remove this noncommand request method in favor of an existing select methods:
-        Specification.request_divisions() ==> Specification.select_divisions()
+26. Remove all request() methods in favor of select() methods.
     Port over these noncommand request methods as new select methods:
         Specification.request_naive_beats() ==> Specification.select_naive_beats()
         Specification.request_rhythm() ==> Specification.select_rhythm()

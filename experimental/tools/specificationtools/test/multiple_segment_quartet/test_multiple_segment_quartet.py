@@ -104,7 +104,7 @@ def test_multiple_segment_quartet_04():
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)], contexts=['Voice 1'])
-    source = red_segment.request_divisions('Voice 1') 
+    source = red_segment.select_divisions('Voice 1') 
     red_segment.set_divisions(source.rotate(-1), contexts=['Voice 2'], truncate=True)
     red_segment.set_divisions(source.rotate(-2), contexts=['Voice 3'], truncate=True)
     red_segment.set_divisions(source.rotate(-3), contexts=['Voice 4'], truncate=True)
