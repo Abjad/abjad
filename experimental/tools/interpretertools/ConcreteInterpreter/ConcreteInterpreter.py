@@ -149,43 +149,6 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(absolute_request, absolute_request.payload)
         return divisions
 
-    # TODO: eventually remove in favor of self.division_selector_tO_division_region_expressions()
-    def division_material_request_to_division_region_expressions(self, division_material_request):
-        assert isinstance(division_material_request, requesttools.MaterialRequest)
-        assert division_material_request.attribute == 'divisions'
-        #self._debug(division_material_request, 'division material request')
-        anchor = division_material_request.anchor
-        voice_name = division_material_request.voice_name
-        if isinstance(anchor, str):
-            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(anchor)
-        else:
-            start_offset, stop_offset = anchor._get_offsets(self.score_specification, voice_name)
-        #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
-        division_region_expressions = \
-            self.score_specification.contexts[voice_name]['division_region_expressions']
-        #self._debug(division_region_expressions, 'division region expressions')
-        source_timespan = timespantools.Timespan(start_offset, stop_offset)
-        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
-            timespan_1=source_timespan)
-        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
-            timespan_time_relation)
-        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
-        #self._debug(division_region_expressions, 'drx')
-        if not division_region_expressions:
-            return
-        if not division_region_expressions.all_are_contiguous:
-            return
-        trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
-        trimmed_division_region_expressions = timespantools.TimespanInventory(
-            trimmed_division_region_expressions)
-        keep_timespan = timespantools.Timespan(start_offset, stop_offset)
-        trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
-        self.apply_source_transforms_to_target(division_material_request, trimmed_division_region_expressions)
-        trimmed_division_region_expressions.sort() 
-        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
-        return trimmed_division_region_expressions
-
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
         if isinstance(division_region_command.request, list):
             divisions = division_region_command.request
@@ -225,18 +188,9 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
-        # TODO: remove all division material request code
-        elif (isinstance(division_region_command.request, requesttools.MaterialRequest) and
-            division_region_command.request.attribute == 'divisions') or \
-            isinstance(division_region_command.request, symbolictimetools.DivisionSelector):
-            if isinstance(division_region_command.request, requesttools.MaterialRequest):
-                division_region_expressions = self.division_material_request_to_division_region_expressions(
-                    division_region_command.request)
-            elif isinstance(division_region_command.request, symbolictimetools.DivisionSelector):
-                division_region_expressions = self.division_selector_to_division_region_expressions(
-                    division_region_command.request) 
-            else:
-                raise TypeError
+        elif isinstance(division_region_command.request, symbolictimetools.DivisionSelector):
+            division_region_expressions = self.division_selector_to_division_region_expressions(
+                division_region_command.request) 
             if division_region_expressions is None:
                 return
             for division_region_expression in division_region_expressions:
@@ -860,7 +814,7 @@ class ConcreteInterpreter(Interpreter):
             for command_to_delay in commands_to_delay:
                 command_to_delay._start_offset = raw_command.stop_offset
                 command_was_delayed = True
-            # NEXT TODO: branch inside and implement a method to split while treating cyclic payload smartly.
+            # TODO: branch inside and implement a method to split while treating cyclic payload smartly.
             # or, alternatively, special-case for commands that cover the entire duration of score.
             for command_to_split in commands_to_split:
                 left_command = command_to_split
