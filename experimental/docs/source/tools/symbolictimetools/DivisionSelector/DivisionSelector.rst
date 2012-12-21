@@ -41,6 +41,10 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. autoattribute:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.modifications
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -127,6 +131,10 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.repeat_to_length
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.request_divisions
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -142,6 +150,14 @@ Methods
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.request_time_signatures
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.reverse
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.rotate
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.scale
 

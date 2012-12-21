@@ -15,10 +15,6 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.count
-
-    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.duration
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
@@ -27,7 +23,7 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.index
+.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.modifications
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 

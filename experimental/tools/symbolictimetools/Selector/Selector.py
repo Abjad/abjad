@@ -22,7 +22,8 @@ class Selector(SymbolicTimespan):
 
     def __init__(self,
         anchor=None, start_identifier=None, stop_identifier=None, 
-        time_relation=None, timespan_modifications=None, selector_modifications=None):
+        time_relation=None, 
+        timespan_modifications=None, selector_modifications=None, modifications=None):
         from experimental.tools import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimespanTimespanTimeRelation, type(None)))
@@ -34,6 +35,8 @@ class Selector(SymbolicTimespan):
         self._time_relation = time_relation
         selector_modifications = selector_modifications or []
         self._selector_modifications = datastructuretools.ObjectInventory(selector_modifications)
+        modifications = modifications or []
+        self._modifications = datastructuretools.ObjectInventory(modifications)
 
     ### SPECIAL METHODS ###
 
@@ -44,7 +47,8 @@ class Selector(SymbolicTimespan):
             stop_identifier=self.stop_identifier,
             time_relation=self.time_relation,
             timespan_modifications=self.timespan_modifications,
-            selector_modifications=self.selector_modifications)
+            selector_modifications=self.selector_modifications,
+            modifications=self.modifications)
         result._score_specification = self.score_specification
         return result
 
@@ -56,6 +60,9 @@ class Selector(SymbolicTimespan):
         if 'selector_modifications=ObjectInventory([])' in result:
             result = list(result)
             result.remove('selector_modifications=ObjectInventory([])')
+        if 'modifications=ObjectInventory([])' in result:
+            result = list(result)
+            result.remove('modifications=ObjectInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -80,7 +87,8 @@ class Selector(SymbolicTimespan):
         result = SymbolicTimespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'selector_modifications=datastructuretools.ObjectInventory([])' in string:
+            if not 'selector_modifications=datastructuretools.ObjectInventory([])' in string and \
+                not 'modifications=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     
@@ -139,6 +147,10 @@ class Selector(SymbolicTimespan):
         Return pair.
         '''
         return self.start_identifier, self.stop_identifier
+
+    @property
+    def modifications(self):
+        return self._modifications
 
     @property
     def selector_modifications(self):
@@ -216,3 +228,36 @@ class Selector(SymbolicTimespan):
             selector._selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
+
+    def repeat_to_length(self, length):
+        '''Return copy of request with appended modification.
+        '''
+        assert mathtools.is_nonnegative_integer(length)
+        modification = 'result = sequencetools.repeat_sequence_to_length(target, {!r})'.format(length)
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+
+    def reverse(self):
+        '''Return copy of request with appended modification.
+        '''
+        modification = 'result = target.reverse()'
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+
+    def rotate(self, index):
+        '''Return copy of request with appended modification.
+        '''
+        from experimental.tools import settingtools
+        assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
+        modification = 'result = request._rotate(target, {!r})'.format(index)
+        result = self._clone()
+        result.modifications.append(modification)
+        return result
+
+    def _rotate(self, sequence, n):
+        if hasattr(sequence, 'rotate'):
+            return sequence.rotate(n)
+        else:
+            return sequencetools.rotate_sequence(sequence, n)

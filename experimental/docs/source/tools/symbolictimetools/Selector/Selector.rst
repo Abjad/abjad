@@ -37,6 +37,8 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.modifications
+
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -101,6 +103,8 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.partition_objects_by_ratio_of_durations
 
+.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.repeat_to_length
+
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_divisions
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -116,6 +120,10 @@ Methods
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_time_signatures
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.reverse
+
+.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.rotate
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.scale
 

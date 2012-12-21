@@ -239,6 +239,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
+    # TODO: remove in favor of self.select_divisions()
     def request_divisions(self, voice, time_relation=None):
         r'''Request voice ``1`` divisions that start during segment ``'red'``::
 
@@ -247,17 +248,17 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         ::
 
             >>> z(request)
-            requesttools.MaterialRequest(
-                'divisions',
-                'Voice 1',
-                'red'
+            symbolictimetools.DivisionSelector(
+                anchor='red',
+                voice_name='Voice 1'
                 )
 
         Return material request.        
         '''
-        from experimental.tools import requesttools
-        anchor = self._timespan_abbreviation
-        return requesttools.MaterialRequest('divisions', voice, anchor, time_relation=time_relation)
+        #from experimental.tools import requesttools
+        #anchor = self._timespan_abbreviation
+        #return requesttools.MaterialRequest('divisions', voice, anchor, time_relation=time_relation)
+        return self.select_divisions(voice, time_relation=time_relation)
 
     def request_naive_beats(self, voice, time_relation=None):
         r'''Request voice ``1`` naive beats that start during segment ``'red'``::

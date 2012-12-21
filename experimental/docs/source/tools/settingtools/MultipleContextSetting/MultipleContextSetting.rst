@@ -19,15 +19,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.context_names
 
-.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.count
-
-    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
 .. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.fresh
 
     Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
-.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.index
+.. autoattribute:: experimental.tools.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.modifications
 
     Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 

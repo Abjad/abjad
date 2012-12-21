@@ -119,7 +119,6 @@ class Request(AbjadObject):
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        #modification = 'result = target.rotate({!r})'.format(index)    
         modification = 'result = request._rotate(target, {!r})'.format(index)    
         result = self._clone()
         result.modifications.append(modification)

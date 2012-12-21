@@ -6,13 +6,9 @@ from abjad.tools import rhythmmakertools
 def apply_request_transforms(request, payload):
     r'''.. versionadded:: 1.0 
     
-    In this order:
+    Apply `request` modifications to `payload`.
 
-    Apply nonnone ``request.index`` to `payload`.
-
-    Then apply nonnone ``request.count`` to `payload`.
-
-    Return `payload`.
+    Return modified `payload` copy.
     '''
     from experimental.tools import interpretertools
     from experimental.tools import requesttools
@@ -23,10 +19,6 @@ def apply_request_transforms(request, payload):
         settingtools.Setting, 
         settingtools.Command,
         )
-
-    #print request
-    #print payload
-    #print ''
 
     assert isinstance(request, request_klasses), repr(request)
     assert isinstance(payload, (list, tuple, rhythmmakertools.RhythmMaker)), repr(payload)
@@ -41,18 +33,5 @@ def apply_request_transforms(request, payload):
                 payload = target
             else:
                 payload = result
-
-    if request.index is not None or request.count is not None:
-        original_payload_type = type(payload)
-        index = request.index or 0
-        if index < 0:
-            index = len(payload) - -index
-        if request.count is None:
-            count = len(payload) - index 
-        else:
-            count = request.count
-        payload = sequencetools.CyclicTuple(payload)
-        payload = payload[index:index+count]
-        payload = original_payload_type(payload)
 
     return payload 

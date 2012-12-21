@@ -1,6 +1,5 @@
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools
-from experimental.tools import symbolictimetools
 from experimental.tools.requesttools.Request import Request
 
 
@@ -35,8 +34,8 @@ class MaterialRequest(Request):
     
     ### INITIALIZER ###
 
-    def __init__(self, attribute, voice_name, anchor, 
-        modifications=None, time_relation=None):
+    def __init__(self, attribute, voice_name, anchor, modifications=None, time_relation=None):
+        from experimental.tools import symbolictimetools
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)

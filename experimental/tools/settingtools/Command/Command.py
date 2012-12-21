@@ -1,5 +1,6 @@
 import abc
 import copy
+from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools 
@@ -22,23 +23,20 @@ class Command(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request, context_name, 
-        start_offset, stop_offset, 
-        index=None, count=None, fresh=None):
-        assert isinstance(request, requesttools.Request), repr(request)
+    def __init__(self, request, context_name, start_offset, stop_offset, modifications=None, fresh=None):
+        from experimental.tools import symbolictimetools
+        assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)
         assert start_offset <= stop_offset
-        assert isinstance(index, (int, type(None))), repr(index)
-        assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
         self._request = request
         self._context_name = context_name
         self._start_offset = start_offset
         self._stop_offset = stop_offset
-        self._index = index
-        self._count = count
+        modifications = modifications or []
+        self._modifications = datastructuretools.ObjectInventory(modifications)
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -55,6 +53,16 @@ class Command(AbjadObject):
 
     def __lt__(self, expr):
         return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
+
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    @property
+    def _keyword_argument_name_value_strings(self):
+        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
+        if 'modifications=ObjectInventory([])' in result:
+            result = list(result)
+            result.remove('modifications=ObjectInventory([])')
+        return tuple(result)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -75,14 +83,6 @@ class Command(AbjadObject):
         return self._context_name
 
     @property
-    def count(self):
-        '''Command count.
-
-        Return integer or none.
-        '''
-        return self._count
-
-    @property
     def duration(self):
         '''Command duration.
             
@@ -100,12 +100,8 @@ class Command(AbjadObject):
         return self._fresh
 
     @property
-    def index(self):
-        '''Command index.
-
-        Return integer or none.
-        '''
-        return self._index
+    def modifications(self):
+        return self._modifications
 
     @property
     def offsets(self):

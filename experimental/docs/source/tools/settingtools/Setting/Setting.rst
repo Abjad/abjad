@@ -13,11 +13,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.attribute
 
-.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.count
-
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.fresh
 
-.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.index
+.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.modifications
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.persist
 

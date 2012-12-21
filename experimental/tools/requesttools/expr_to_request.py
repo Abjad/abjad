@@ -22,9 +22,11 @@ def expr_to_request(expr):
 
     ... as output.
     '''
+    from abjad.tools import rhythmmakertools
     from experimental.tools import handlertools
     from experimental.tools import requesttools
     from experimental.tools import statalservertools
+    from experimental.tools import symbolictimetools
 
     # TODO: maybe this line is safe to remove
     #expr = copy.deepcopy(expr)
@@ -35,5 +37,9 @@ def expr_to_request(expr):
         return requesttools.StatalServerRequest(expr)
     elif isinstance(expr, handlertools.Handler):
         return requesttool.HandlerRequest(expr)
-    else:
+    elif isinstance(expr, (tuple, list, str, rhythmmakertools.RhythmMaker)):
         return requesttools.AbsoluteRequest(expr)
+    elif isinstance(expr, symbolictimetools.SymbolicTimespan):
+        return expr
+    else:
+        raise TypeError('do not know how to change {!r} to request object.'.format(expr))

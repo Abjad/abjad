@@ -41,6 +41,10 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. autoattribute:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.modifications
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -121,6 +125,10 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.repeat_to_length
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.request_divisions
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -136,6 +144,14 @@ Methods
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.request_time_signatures
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.reverse
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.rotate
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.scale
 

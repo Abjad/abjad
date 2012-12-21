@@ -13,13 +13,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.context_name
 
-.. autoattribute:: experimental.tools.settingtools.Command.Command.Command.count
-
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.duration
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.fresh
 
-.. autoattribute:: experimental.tools.settingtools.Command.Command.Command.index
+.. autoattribute:: experimental.tools.settingtools.Command.Command.Command.modifications
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.offsets
 

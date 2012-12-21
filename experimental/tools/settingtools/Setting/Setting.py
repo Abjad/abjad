@@ -1,4 +1,5 @@
 import abc
+from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import requesttools
 from experimental.tools import symbolictimetools
@@ -17,10 +18,9 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, request, anchor, 
-        index=None, count=None, fresh=True, persist=True, truncate=None):
+    def __init__(self, attribute, request, anchor, modifications=None, fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
-        assert isinstance(request, requesttools.Request), repr(request)
+        assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
@@ -28,8 +28,8 @@ class Setting(AbjadObject):
         self._attribute = attribute
         self._request = request
         self._anchor = anchor
-        self._index = index
-        self._count = count
+        modifications = modifications or []
+        self._modifications = datastructuretools.ObjectInventory(modifications)
         self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
@@ -67,14 +67,6 @@ class Setting(AbjadObject):
         return self._attribute
 
     @property
-    def count(self):
-        '''Setting count.
-
-        Return integer or none.
-        '''
-        return self._count
-
-    @property
     def fresh(self):
         '''True when setting results from explicit composer command.
         Otherwise false.
@@ -84,12 +76,8 @@ class Setting(AbjadObject):
         return self._fresh
 
     @property
-    def index(self):
-        '''Setting index.
-
-        Return integer or none.
-        '''
-        return self._index
+    def modifications(self):
+        return self._modifications
 
     @property
     def persist(self):

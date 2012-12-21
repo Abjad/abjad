@@ -2,7 +2,6 @@ import abc
 from experimental.tools.symbolictimetools.Selector import Selector
 
 
-
 class VoiceSelector(Selector):
     r'''.. versionadded:: 1.0
 
@@ -15,13 +14,13 @@ class VoiceSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self,
-        anchor=None, start_identifier=None, stop_identifier=None, voice_name=None,
-        time_relation=None, timespan_modifications=None, selector_modifications=None):
+    def __init__(self, anchor=None, start_identifier=None, stop_identifier=None, voice_name=None,
+        time_relation=None, 
+        timespan_modifications=None, selector_modifications=None, modifications=None):
         Selector.__init__(self,
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             time_relation=time_relation, timespan_modifications=timespan_modifications, 
-            selector_modifications=selector_modifications)
+            selector_modifications=selector_modifications, modifications=modifications)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._voice_name = voice_name
 

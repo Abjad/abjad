@@ -50,7 +50,7 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def apply_source_transforms_to_target(self, source, target):
-        #assert hasattr(source, 'modifications')
+        assert hasattr(source, 'modifications')
         if hasattr(source, 'modifications'):
             evaluation_context = {
                 'Duration': durationtools.Duration,
@@ -149,6 +149,7 @@ class ConcreteInterpreter(Interpreter):
         divisions = requesttools.apply_request_transforms(absolute_request, absolute_request.payload)
         return divisions
 
+    # TODO: eventually remove in favor of self.division_selector_tO_division_region_expressions()
     def division_material_request_to_division_region_expressions(self, division_material_request):
         assert isinstance(division_material_request, requesttools.MaterialRequest)
         assert division_material_request.attribute == 'divisions'
@@ -181,12 +182,13 @@ class ConcreteInterpreter(Interpreter):
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
         #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
         self.apply_source_transforms_to_target(division_material_request, trimmed_division_region_expressions)
-        trimmed_division_region_expressions.sort() # new line
+        trimmed_division_region_expressions.sort() 
         #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
         return trimmed_division_region_expressions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
-        #self._debug(division_region_command, 'command')
+        #self._debug(division_region_command, 'division region command', blank=True)
+        #self._debug(division_region_command.request, 'request')
         if isinstance(division_region_command.request, list):
             divisions = division_region_command.request
             divisions = [divisiontools.Division(x) for x in divisions]
@@ -223,10 +225,17 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
-        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
-            division_region_command.request.attribute == 'divisions':
-            division_region_expressions = self.division_material_request_to_division_region_expressions(
-                division_region_command.request)
+        elif (isinstance(division_region_command.request, requesttools.MaterialRequest) and
+            division_region_command.request.attribute == 'divisions') or \
+            isinstance(division_region_command.request, symbolictimetools.DivisionSelector):
+            if isinstance(division_region_command.request, requesttools.MaterialRequest):
+                division_region_expressions = self.division_material_request_to_division_region_expressions(
+                    division_region_command.request)
+            elif isinstance(division_region_command.request, symbolictimetools.DivisionSelector):
+                division_region_expressions = self.division_selector_to_division_region_expressions(
+                    division_region_command.request) 
+            else:
+                raise TypeError
             if division_region_expressions is None:
                 return
             for division_region_expression in division_region_expressions:
@@ -250,6 +259,41 @@ class ConcreteInterpreter(Interpreter):
             start_offset=division_region_command.start_offset,
             stop_offset=division_region_command.stop_offset
             )
+
+    def division_selector_to_division_region_expressions(self, division_selector):
+        assert isinstance(division_selector, symbolictimetools.DivisionSelector)
+        #self._debug(division_selector, 'division selector')
+        anchor = division_selector.anchor
+        voice_name = division_selector.voice_name
+        if isinstance(anchor, str):
+            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(anchor)
+        else:
+            start_offset, stop_offset = anchor._get_offsets(self.score_specification, voice_name)
+        #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
+        division_region_expressions = \
+            self.score_specification.contexts[voice_name]['division_region_expressions']
+        #self._debug(division_region_expressions, 'division region expressions')
+        source_timespan = timespantools.Timespan(start_offset, stop_offset)
+        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=source_timespan)
+        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
+            timespan_time_relation)
+        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
+        #self._debug(division_region_expressions, 'drx')
+        if not division_region_expressions:
+            return
+        if not division_region_expressions.all_are_contiguous:
+            return
+        trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
+        trimmed_division_region_expressions = timespantools.TimespanInventory(
+            trimmed_division_region_expressions)
+        keep_timespan = timespantools.Timespan(start_offset, stop_offset)
+        trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
+        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
+        self.apply_source_transforms_to_target(division_selector, trimmed_division_region_expressions)
+        trimmed_division_region_expressions.sort() 
+        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
+        return trimmed_division_region_expressions
 
     def dump_rhythm_region_expressions_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):
@@ -795,6 +839,7 @@ class ConcreteInterpreter(Interpreter):
             single_context_setting.context_name,
             start_offset,
             stop_offset,
+            modifications=single_context_setting.modifications,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':

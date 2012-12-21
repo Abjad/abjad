@@ -43,6 +43,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.klass
 
+.. autoattribute:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.modifications
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -131,6 +135,10 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
+.. automethod:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.repeat_to_length
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 .. automethod:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.request_divisions
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
@@ -146,6 +154,14 @@ Methods
 .. automethod:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.request_time_signatures
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.reverse
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
+.. automethod:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.rotate
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 .. automethod:: experimental.tools.symbolictimetools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.scale
 

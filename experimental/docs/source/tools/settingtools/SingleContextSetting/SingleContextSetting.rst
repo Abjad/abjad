@@ -19,15 +19,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.context_name
 
-.. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.count
-
-    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
 .. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.fresh
 
     Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
-.. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.index
+.. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.modifications
 
     Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
