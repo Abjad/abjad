@@ -239,27 +239,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def request_rhythm(self, voice_name, time_relation=None):
-        r'''Request voice ``1`` rhythm events that start during segment ``'red'``::
-
-            >>> request = red_segment.request_rhythm('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'rhythm',
-                'Voice 1',
-                'red'
-                )
-
-        Return rhythm request.        
-        '''
-        from experimental.tools import requesttools
-        anchor = self._timespan_abbreviation
-        return requesttools.MaterialRequest('rhythm', voice_name, anchor, time_relation=time_relation)
-        #return self.select_leaves(voice_name, time_relation=time_relation)
-
     def request_time_signatures(self, voice_name, time_relation=None):
         r'''Request voice ``1`` time signatures that start during segment ``'red'``::
 

@@ -14,7 +14,7 @@ def test_miscellaneous_01():
     first_measure = red_segment.select_background_measures(0, 1)
     second_measure = red_segment.select_background_measures(1, 2)
     first_measure.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
-    rhythm = first_measure.request_rhythm('Voice 1')
+    rhythm = first_measure.select_leaves('Voice 1')
     first_measure.set_rhythm(rhythm, contexts=['Voice 2'])
     second_measure.set_rhythm(rhythm, contexts=['Voice 2'])
     score = score_specification.interpret()

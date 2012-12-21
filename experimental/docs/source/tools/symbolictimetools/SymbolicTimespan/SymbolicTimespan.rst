@@ -81,8 +81,6 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_by_ratio
 
-.. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.request_rhythm
-
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.request_time_signatures
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.scale

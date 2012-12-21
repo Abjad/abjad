@@ -50,18 +50,18 @@
 13. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
-        rhythm = red_segment.request_rhythm('Voice 1', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 1', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 1'])
-        rhythm = red_segment.request_rhythm('Voice 2', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 2', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 2'])
-        rhythm = red_segment.request_rhythm('Voice 3', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 3', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 3'])
-        rhythm = red_segment.request_rhythm('Voice 4', timespan=selector)
+        rhythm = red_segment.select_leaves('Voice 4', timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=['Voice 4'])
     ... when it might be possible to use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         selected_voices = ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-        rhythm = red_segment.request_rhythm(selected_voices, timespan=selector)
+        rhythm = red_segment.select_leaves(selected_voices, timespan=selector)
         blue_segment.set_rhythm(rhythm, contexts=selected_voices)
     ... instead.
     This will simplify the X9 composer interface.
@@ -119,7 +119,6 @@
     How does this relate to the "reanchoring" of settings during interpretation?
 
 25. Remove all request() methods in favor of select() methods.
-        Specification.request_rhythm() ==> Specification.select_leaves()
         Specification.request_time_signatures() ==> Specification.select_background_measures()
 
 26. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
