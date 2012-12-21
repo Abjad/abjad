@@ -1,8 +1,8 @@
 from abjad.tools import durationtools
-from experimental.tools import divisiontools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
+from experimental.tools import divisiontools
 from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
@@ -61,12 +61,10 @@ class DivisionSelector(VoiceSelector):
     ### PRIVATE METHODS ###
 
     def _get_offsets(self, score_specification, voice_name):
-        '''Evaluate start and stop offsets of selecto when applied
+        '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
 
-        .. note:: add example.
-
-        Return pair.
+        Return offset pair.
         '''
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []

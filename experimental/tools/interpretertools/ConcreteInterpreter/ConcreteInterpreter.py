@@ -367,7 +367,6 @@ class ConcreteInterpreter(Interpreter):
         for time_signature in time_signatures:
             numerator, denominator = time_signature.pair
             naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
-        #self._debug(naive_beats, 'naive beats')
         slice_duration = stop_offset - start_offset
         weights = [start_offset, slice_duration]
         shards = sequencetools.split_sequence_by_weights(
