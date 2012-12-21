@@ -187,8 +187,6 @@ class ConcreteInterpreter(Interpreter):
         return trimmed_division_region_expressions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
-        #self._debug(division_region_command, 'division region command', blank=True)
-        #self._debug(division_region_command.request, 'request')
         if isinstance(division_region_command.request, list):
             divisions = division_region_command.request
             divisions = [divisiontools.Division(x) for x in divisions]
@@ -219,6 +217,9 @@ class ConcreteInterpreter(Interpreter):
             start_offset, stop_offset = division_region_command.offsets
             divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
             divisions = requesttools.apply_request_transforms(division_region_command.request, divisions)
+            # TODO: can't the following line be removed?
+            #       Is there really any reason for command to carry a modifications stack?
+            #       Shouldn't modifications stacks implement on selectors only?
             divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
@@ -359,7 +360,7 @@ class ConcreteInterpreter(Interpreter):
                 if element.context_name == context_name:
                     return element
 
-    # TODO: combine with self.get_time_signature_slice()
+    # TODO: migrate to ScoreSpecification? Or migrate to BeatSelector? Not clear yet.
     def get_naive_time_signature_beat_slice(self, start_offset, stop_offset):
         time_signatures = self.score_specification.time_signatures
         assert time_signatures
@@ -409,6 +410,7 @@ class ConcreteInterpreter(Interpreter):
     def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
 
+    # TODO: Migrate to ScoreSpecification? Or migrate to BackgroundMeasureSelector? Not clear yet.
     def get_time_signature_slice(self, start_offset, stop_offset):
         time_signatures = self.score_specification.time_signatures
         assert time_signatures
@@ -508,17 +510,6 @@ class ConcreteInterpreter(Interpreter):
                 raise exceptions.CyclicSpecificationError
             else:
                 previous_commands = current_commands
-
-    def make_naive_time_signature_beat_division_command(self, voice, start_offset, stop_offset):
-        divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
-        return settingtools.DivisionCommand(
-            requesttools.AbsoluteRequest(divisions),
-            voice.name, 
-            start_offset,
-            stop_offset,
-            fresh=True,
-            truncate=True
-            )
 
     def make_rhythm_quintuples_for_voice(self, voice, voice_division_list):
         #self._debug(voice, 'voice')

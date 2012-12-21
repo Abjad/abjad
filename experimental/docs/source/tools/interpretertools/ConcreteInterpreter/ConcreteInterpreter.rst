@@ -78,8 +78,6 @@ Methods
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_division_region_expressions
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_naive_time_signature_beat_division_command
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_quintuples_for_voice
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythm_region_expression

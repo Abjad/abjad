@@ -1,14 +1,29 @@
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
 class BeatSelector(VoiceSelector):
     '''.. versionadded:: 1.0
 
+    Beat selector.
+
     ::
 
         >>> from experimental.tools import *
 
-    Beat selector.
+    ::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    Example 1. Select the first five voice ``1`` beats that start during segment ``'red'``::
+
+        >>> red_segment.select_beats('Voice 1', stop=5)
+        BeatSelector(anchor='red', stop_identifier=5, voice_name='Voice 1')
+
+    Beat selectors are to be treated as immutable.
     '''
 
     ### PRIVATE METHODS ###

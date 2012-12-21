@@ -75,14 +75,16 @@ class CounttimeComponentSelector(VoiceSelector):
 
     def __init__(self, anchor=None, klass=None, predicate=None, 
         start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None,
-        timespan_modifications=None, selector_modifications=None):
+        timespan_modifications=None, selector_modifications=None, modifications=None):
         from experimental.tools import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         VoiceSelector.__init__(self, 
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             voice_name=voice_name, time_relation=time_relation, 
-            timespan_modifications=timespan_modifications, selector_modifications=selector_modifications)
+            timespan_modifications=timespan_modifications, 
+            selector_modifications=selector_modifications,
+            modifications=modifications)
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass
@@ -93,11 +95,16 @@ class CounttimeComponentSelector(VoiceSelector):
     # TODO: streamline with __getnewargs__ or equivalent
     def __deepcopy__(self, memo):
         result = type(self)(
-            anchor=self.anchor, klass=self.klass, predicate=self.predicate,
-            start_identifier=self.start_identifier, stop_identifier=self.stop_identifier, 
-            voice_name=self.voice_name, time_relation=self.time_relation, 
+            anchor=self.anchor, 
+            klass=self.klass, 
+            predicate=self.predicate,
+            start_identifier=self.start_identifier, 
+            stop_identifier=self.stop_identifier, 
+            voice_name=self.voice_name, 
+            time_relation=self.time_relation, 
             timespan_modifications=self.timespan_modifications, 
-            selector_modifications=self.selector_modifications)
+            selector_modifications=self.selector_modifications,
+            modifications=self.modifications)
         result._score_specification = self.score_specification
         return result
 

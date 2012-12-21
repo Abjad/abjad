@@ -15,14 +15,28 @@ class VoiceSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, start_identifier=None, stop_identifier=None, voice_name=None,
-        time_relation=None, 
-        timespan_modifications=None, selector_modifications=None, modifications=None):
+        time_relation=None, timespan_modifications=None, selector_modifications=None, modifications=None):
         Selector.__init__(self,
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             time_relation=time_relation, timespan_modifications=timespan_modifications, 
             selector_modifications=selector_modifications, modifications=modifications)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._voice_name = voice_name
+
+    ### SPECIAL METHODS ###
+
+    def __deepcopy__(self, memo):
+        result = type(self)(
+            anchor=self.anchor,
+            start_identifier=self.start_identifier, 
+            stop_identifier=self.stop_identifier,
+            voice_name=self.voice_name, 
+            time_relation=self.time_relation,
+            timespan_modifications=self.timespan_modifications,
+            selector_modifications=self.selector_modifications,
+            modifications=self.modifications)
+        result._score_specification = self.score_specification
+        return result
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 

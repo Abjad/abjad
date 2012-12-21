@@ -28,8 +28,8 @@ def expr_to_request(expr):
     from experimental.tools import statalservertools
     from experimental.tools import symbolictimetools
 
-    # TODO: maybe this line is safe to remove
-    #expr = copy.deepcopy(expr)
+    # probably precautionary: prune expr of any incoming references
+    expr = copy.deepcopy(expr)
 
     if isinstance(expr, requesttools.Request):
         return expr

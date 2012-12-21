@@ -281,7 +281,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return requesttools.MaterialRequest('time_signatures', voice, anchor, time_relation=time_relation)
 
     def select_background_measures(self, start=None, stop=None, time_relation=None):
-        '''Select the first five background measures that start during segment 'red'::
+        '''Select the first five background measures that start during segment ``'red'``::
 
             >>> selector = red_segment.select_background_measures(stop=5)
 
@@ -300,13 +300,13 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
-        timespan = symbolictimetools.BackgroundMeasureSelector(
+        selector = symbolictimetools.BackgroundMeasureSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             time_relation=time_relation)
-        timespan._score_specification = self.score_specification
-        return timespan
+        selector._score_specification = self.score_specification
+        return selector
 
     def select_beats(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first five voice ``1`` beats 
@@ -319,7 +319,8 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             >>> z(selector)
             symbolictimetools.BeatSelector(
                 anchor='red',
-                stop_identifier=5
+                stop_identifier=5,
+                voice_name='Voice 1'
                 )
 
         Return beat selector.
@@ -329,13 +330,14 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
-        timespan = symbolictimetools.BeatSelector(
+        selector = symbolictimetools.BeatSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
+            voice_name=voice,
             time_relation=time_relation)
-        timespan._score_specification = self.score_specification
-        return timespan
+        selector._score_specification = self.score_specification
+        return selector
 
     def select_divisions(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first five voice ``1`` divisions 
@@ -359,14 +361,14 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
-        timespan = symbolictimetools.DivisionSelector(
+        selector = symbolictimetools.DivisionSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice,
             time_relation=time_relation)
-        timespan._score_specification = self.score_specification
-        return timespan
+        selector._score_specification = self.score_specification
+        return selector
 
     def select_leaves(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
@@ -391,25 +393,25 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
-        timespan = symbolictimetools.CounttimeComponentSelector(
+        selector = symbolictimetools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice)
-        timespan._score_specification = self.score_specification
-        return timespan
+        selector._score_specification = self.score_specification
+        return selector
 
     def select_notes_and_chords(self, voice, start=None, stop=None, time_relation=None):
         '''Select the first ``40`` voice ``1`` notes and chords 
         that start during segment ``'red'``::
 
-            >>> timespan = red_segment.select_notes_and_chords('Voice 1', stop=40)
+            >>> selector = red_segment.select_notes_and_chords('Voice 1', stop=40)
 
         ::
 
-            >>> z(timespan)
+            >>> z(selector)
             symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=helpertools.KlassInventory([
@@ -427,18 +429,18 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
-        timespan = symbolictimetools.CounttimeComponentSelector(
+        selector = symbolictimetools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice)
-        timespan._score_specification = self.score_specification
-        return timespan
+        selector._score_specification = self.score_specification
+        return selector
 
     def set_aggregate(self, source, contexts=None, persist=True):
-        r'''Set aggregate of segment `contexts` to `source`.
+        r'''Set aggregate of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -447,7 +449,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_articulations(self, source, contexts=None, persist=True):
-        r'''Set articulations of segment `contexts` to `source`.
+        r'''Set articulations of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -456,7 +458,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_chord_treatment(self, source, contexts=None, persist=True):
-        r'''Set chord treatment of segment `contexts` to `source`.
+        r'''Set chord treatment of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -465,7 +467,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_divisions(self, source, contexts=None, persist=True, truncate=None):
-        r'''Set divisions of segment `contexts` to `source`::
+        r'''Set divisions `contexts` to `source`::
 
             >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
@@ -502,7 +504,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return result
 
     def set_dynamics(self, source, contexts=None, persist=True):
-        r'''Set dynamics of segment `contexts` to `source`.
+        r'''Set dynamics of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -511,7 +513,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_marks(self, source, contexts=None, persist=True):
-        r'''Set marks of segment `contexts` to `source`.
+        r'''Set marks of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -520,7 +522,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_markup(self, source, contexts=None, persist=True):
-        r'''Set markup of segment `contexts` to `source`.
+        r'''Set markup of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -548,7 +550,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return result
 
     def set_pitch_class_application(self, source, contexts=None, persist=True):
-        r'''Set pitch-class application of segment `contexts` to `source`.
+        r'''Set pitch-class application of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -557,7 +559,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_pitch_class_transform(self, source, contexts=None, persist=True):
-        r'''Set pitch-class transform of segment `contexts` to `source`.
+        r'''Set pitch-class transform of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -566,7 +568,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_pitch_classes(self, source, contexts=None, persist=True):
-        r'''Set pitch-classes of segment `contexts` to `source`.
+        r'''Set pitch-classes of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -575,7 +577,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_registration(self, source, contexts=None, persist=True):
-        r'''Set registration of segment `contexts` to `source`.
+        r'''Set registration of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -584,7 +586,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_rhythm(self, source, contexts=None, persist=True):
-        r'''Set rhythm of segment `contexts` to `source`.
+        r'''Set rhythm of `contexts` to `source`.
 
             >>> setting = red_segment.set_rhythm(library.sixteenths)
 
@@ -615,7 +617,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
 
     def set_tempo(self, source, contexts=None, persist=True):
-        r'''Set tempo of segment `contexts` to `source`.
+        r'''Set tempo of `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
@@ -624,7 +626,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             contexts=contexts, persist=persist)
 
     def set_time_signatures(self, source, contexts=None, persist=True):
-        r'''Set time signatures according to `source` for segment `contexts`.
+        r'''Set time signatures of `contexts` to `source`.
 
             >>> setting = red_segment.set_time_signatures([(3, 8), (4, 8)])
 
