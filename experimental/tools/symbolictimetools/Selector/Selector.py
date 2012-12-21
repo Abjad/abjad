@@ -41,14 +41,10 @@ class Selector(SymbolicTimespan):
     ### SPECIAL METHODS ###
 
     def __deepcopy__(self, memo):
-        result = type(self)(
-            anchor=self.anchor,
-            start_identifier=self.start_identifier,
-            stop_identifier=self.stop_identifier,
-            time_relation=self.time_relation,
-            timespan_modifications=self.timespan_modifications,
-            selector_modifications=self.selector_modifications,
-            modifications=self.modifications)
+        positional_argument_values = self._positional_argument_values
+        keyword_argument_values = tuple(self._keyword_argument_values)
+        input_argument_values = positional_argument_values + keyword_argument_values
+        result = type(self)(*input_argument_values)
         result._score_specification = self.score_specification
         return result
 

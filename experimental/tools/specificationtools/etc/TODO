@@ -118,17 +118,14 @@
     There is in fact an Interpreter.get_start_segment_specification() method right now.
     How does this relate to the "reanchoring" of settings during interpretation?
 
-25. Simplify __deepcopy__ implementation on DivisionSelector, CounttimeComponentSelector
-    and BackgroundMeasureSelector.
-
-26. Remove all request() methods in favor of select() methods.
+25. Remove all request() methods in favor of select() methods.
     Port over these noncommand request methods as new select methods:
         Specification.request_rhythm() ==> Specification.select_rhythm() or Specification.select_leaves()
         Specification.request_time_signatures() ==> Specification.select_time_signatures()
 
-27. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
+26. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
     There should be no reason for paired calls coming one after the other.
     There's got to be some way to completely centralize modifier application.
 
-28. Change select() method 'voice' input parameter name to 'voice_name' instead.
+27. Change select() method 'voice' input parameter name to 'voice_name' instead.
     The parameter is positional and so won't create extra work in the composer interface.

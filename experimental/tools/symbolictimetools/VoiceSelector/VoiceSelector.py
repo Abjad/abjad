@@ -23,21 +23,6 @@ class VoiceSelector(Selector):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._voice_name = voice_name
 
-    ### SPECIAL METHODS ###
-
-    def __deepcopy__(self, memo):
-        result = type(self)(
-            anchor=self.anchor,
-            start_identifier=self.start_identifier, 
-            stop_identifier=self.stop_identifier,
-            voice_name=self.voice_name, 
-            time_relation=self.time_relation,
-            timespan_modifications=self.timespan_modifications,
-            selector_modifications=self.selector_modifications,
-            modifications=self.modifications)
-        result._score_specification = self.score_specification
-        return result
-
     ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property

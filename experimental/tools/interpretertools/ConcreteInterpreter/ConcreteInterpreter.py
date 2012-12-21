@@ -917,7 +917,6 @@ class ConcreteInterpreter(Interpreter):
                 result.append(element)
         return result
 
-
     def time_signature_command_request_to_time_signatures(self, command_request):
         assert isinstance(command_request, requesttools.CommandRequest)
         assert command_request.attribute == 'time_signatures'
