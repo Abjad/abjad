@@ -8,12 +8,12 @@ class BeatSelector(VoiceSelector):
 
         >>> from experimental.tools import *
 
-    Beam selector.
+    Beat selector.
     '''
 
     ### PRIVATE METHODS ###
 
-    def _get_offset(self, score_specification, voice_name):
+    def _get_offsets(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
 

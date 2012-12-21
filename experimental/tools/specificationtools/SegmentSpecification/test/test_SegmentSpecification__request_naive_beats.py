@@ -11,7 +11,7 @@ def test_SegmentSpecification__request_naive_beats_01():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(2, 8), (2, 4)])
-    divisions = red_segment.request_naive_beats('Voice 1')
+    divisions = red_segment.select_beats('Voice 1')
     red_segment.set_divisions(divisions)
     red_segment.set_rhythm(library.sixteenths)
     blue_segment = score_specification.append_segment(name='blue')

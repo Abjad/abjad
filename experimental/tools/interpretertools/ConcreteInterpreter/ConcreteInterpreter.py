@@ -215,8 +215,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
-        elif isinstance(division_region_command.request, requesttools.MaterialRequest) and \
-            division_region_command.request.attribute == 'naive_beats':
+        elif isinstance(division_region_command.request, symbolictimetools.BeatSelector):
             start_offset, stop_offset = division_region_command.offsets
             divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
             divisions = requesttools.apply_request_transforms(division_region_command.request, divisions)
@@ -225,6 +224,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
+        # TODO: remove all division material request code
         elif (isinstance(division_region_command.request, requesttools.MaterialRequest) and
             division_region_command.request.attribute == 'divisions') or \
             isinstance(division_region_command.request, symbolictimetools.DivisionSelector):

@@ -239,27 +239,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def request_naive_beats(self, voice, time_relation=None):
-        r'''Request voice ``1`` naive beats that start during segment ``'red'``::
-
-            >>> request = red_segment.request_naive_beats('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'naive_beats',
-                'Voice 1',
-                'red'
-                )
-
-        Return material request.        
-        '''
-        from experimental.tools import requesttools
-        assert isinstance(voice, str)
-        anchor = self._timespan_abbreviation
-        return requesttools.MaterialRequest('naive_beats', voice, anchor, time_relation=time_relation)
-
     def request_rhythm(self, voice, time_relation=None):
         r'''Request voice ``1`` rhythm events that start during segment ``'red'``::
 
@@ -329,8 +308,38 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         timespan._score_specification = self.score_specification
         return timespan
 
+    def select_beats(self, voice, start=None, stop=None, time_relation=None):
+        '''Select the first five voice ``1`` beats 
+        that start during segment ``'red'``::
+
+            >>> selector = red_segment.select_beats('Voice 1', stop=5)
+
+        ::
+
+            >>> z(selector)
+            symbolictimetools.BeatSelector(
+                anchor='red',
+                stop_identifier=5
+                )
+
+        Return beat selector.
+        '''
+        assert isinstance(start, (int, type(None))), repr(start)
+        assert isinstance(stop, (int, type(None))), repr(stop)
+        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
+        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
+        from experimental.tools import symbolictimetools
+        timespan = symbolictimetools.BeatSelector(
+            anchor=self._timespan_abbreviation,
+            start_identifier=start, 
+            stop_identifier=stop, 
+            time_relation=time_relation)
+        timespan._score_specification = self.score_specification
+        return timespan
+
     def select_divisions(self, voice, start=None, stop=None, time_relation=None):
-        '''Select the first five divisions that start during segment 'red'::
+        '''Select the first five voice ``1`` divisions 
+        that start during segment ``'red'``::
 
             >>> selector = red_segment.select_divisions('Voice 1', stop=5)
 

@@ -123,6 +123,5 @@
 
 26. Remove all request() methods in favor of select() methods.
     Port over these noncommand request methods as new select methods:
-        Specification.request_naive_beats() ==> Specification.select_naive_beats()
-        Specification.request_rhythm() ==> Specification.select_rhythm()
+        Specification.request_rhythm() ==> Specification.select_rhythm() or Specification.select_leaves()
         Specification.request_time_signatures() ==> Specification.select_time_signatures()

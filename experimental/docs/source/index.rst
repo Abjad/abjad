@@ -300,6 +300,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/symbolictimetools/BackgroundMeasureSelector/BackgroundMeasureSelector
+   tools/symbolictimetools/BeatSelector/BeatSelector
    tools/symbolictimetools/CounttimeComponentSelector/CounttimeComponentSelector
    tools/symbolictimetools/DivisionSelector/DivisionSelector
    tools/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
