@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_SegmentSpecification__request_naive_beats_01():
+def test_SegmentSpecification__select_beats_01():
     '''Two-segment score.
     '''
 
