@@ -119,7 +119,7 @@
     How does this relate to the "reanchoring" of settings during interpretation?
 
 25. Remove all request() methods in favor of select() methods.
-        Specification.request_time_signatures() ==> Specification.select_background_measures()
+        Specification.select_time_signatures() ==> Specification.select_background_measures()
 
 26. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
     There should be no reason for paired calls coming one after the other.

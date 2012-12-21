@@ -239,31 +239,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def request_time_signatures(self, voice_name, time_relation=None):
-        r'''Request voice ``1`` time signatures that start during segment ``'red'``::
-
-            >>> request = red_segment.request_time_signatures('Voice 1')
-
-        ::
-
-            >>> z(request)
-            requesttools.MaterialRequest(
-                'time_signatures',
-                'Voice 1',
-                'red'
-                )
-
-        Return material request.
-        '''
-        from experimental.tools import requesttools
-        assert isinstance(voice_name, str)
-        anchor = self._timespan_abbreviation
-        return requesttools.MaterialRequest('time_signatures', voice_name, anchor, time_relation=time_relation)
-        #return self.select_time_signatures(voice_name, time_relation=time_relation)
-
-    def select_time_signatures(self, voice_name, time_relation=None):
-        return self.select_background_measures(time_relation=time_relation)
-
     def select_background_measures(self, start=None, stop=None, time_relation=None):
         '''Select the first five background measures that start during segment ``'red'``::
 
@@ -422,6 +397,10 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             voice_name=voice_name)
         selector._score_specification = self.score_specification
         return selector
+
+    # TODO: remove in favor of self.select_background_measures()
+    def select_time_signatures(self, voice_name, time_relation=None):
+        return self.select_background_measures(time_relation=time_relation)
 
     def set_aggregate(self, source, contexts=None, persist=True):
         r'''Set aggregate of `contexts` to `source`.

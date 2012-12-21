@@ -105,10 +105,6 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.repeat_to_length
 
-.. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_time_signatures
-
-    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.reverse
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.rotate
