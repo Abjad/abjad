@@ -90,27 +90,28 @@ class ObjectInventory(list, AbjadObject):
             prefix = '\t'
         else:
             prefix = ''
-        mandatories = self._get_tools_package_qualified_positional_argument_repr_pieces(is_indented=is_indented)
+        positionals = self._get_tools_package_qualified_positional_argument_repr_pieces(is_indented=is_indented)
         keywords = self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented)
-        if not mandatories and not keywords:
+        positionals, keywords = list(positionals), list(keywords)
+        if not positionals and not keywords:
             result.append('{}([])'.format(self._tools_package_qualified_class_name))
-        elif not mandatories and keywords:
+        elif not positionals and keywords:
             result.append('{}([],'.format(self._tools_package_qualified_class_name))
             keywords[-1] = keywords[-1].rstrip(' ')
             keywords[-1] = keywords[-1].rstrip(',')
             result.extend(keywords)
             result.append('{})'.format(prefix))
-        elif mandatories and not keywords:
+        elif positionals and not keywords:
             result.append('{}(['.format(self._tools_package_qualified_class_name))
-            mandatories[-1] = mandatories[-1].rstrip(' ')
-            mandatories[-1] = mandatories[-1].rstrip(',')
-            result.extend(mandatories)
+            positionals[-1] = positionals[-1].rstrip(' ')
+            positionals[-1] = positionals[-1].rstrip(',')
+            result.extend(positionals)
             result.append('{}])'.format(prefix))
-        elif mandatories and keywords:
+        elif positionals and keywords:
             result.append('{}(['.format(self._tools_package_qualified_class_name))
-            mandatories[-1] = mandatories[-1].rstrip(' ')
-            mandatories[-1] = mandatories[-1].rstrip(',')
-            result.extend(mandatories)
+            positionals[-1] = positionals[-1].rstrip(' ')
+            positionals[-1] = positionals[-1].rstrip(',')
+            result.extend(positionals)
             result.append('{}],'.format(prefix))
             keywords[-1] = keywords[-1].rstrip(' ')
             keywords[-1] = keywords[-1].rstrip(',')

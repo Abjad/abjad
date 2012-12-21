@@ -96,6 +96,10 @@ class AbjadObject(object):
         return ', '.join(result)
 
     @property
+    def _input_argument_values(self):
+        return self._positional_argument_values + self._keyword_argument_values
+
+    @property
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import introspectiontools
         result = []
@@ -121,7 +125,7 @@ class AbjadObject(object):
         result = []
         for name in self._keyword_argument_names:
             result.append(getattr(self, name))
-        return result
+        return tuple(result)
 
     @property
     def _positional_argument_names(self):
@@ -257,7 +261,7 @@ class AbjadObject(object):
                             prefix, name, value._tools_package_name, value, suffix))
                     else:
                         result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
-        return result
+        return tuple(result)
 
     def _get_tools_package_qualified_positional_argument_repr_pieces(self, is_indented=True):
         from abjad.tools import introspectiontools
@@ -280,7 +284,7 @@ class AbjadObject(object):
                 result.append('{}{}.{!r}{}'.format(prefix, value._tools_package_name, value, suffix))
             else:
                 result.append('{}{!r}{}'.format(prefix, value, suffix))
-        return result
+        return tuple(result)
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
@@ -301,7 +305,7 @@ class AbjadObject(object):
                 result.append('\t)')
             else:
                 result.append(')')
-        return result
+        return tuple(result)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
