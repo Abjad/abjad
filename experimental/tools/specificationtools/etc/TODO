@@ -118,19 +118,16 @@
     There is in fact an Interpreter.get_start_segment_specification() method right now.
     How does this relate to the "reanchoring" of settings during interpretation?
 
-25. Remove all request() methods in favor of select() methods.
-        Specification.select_time_signatures() ==> Specification.select_background_measures()
-
-26. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
+25. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
     There should be no reason for paired calls coming one after the other.
     There's got to be some way to completely centralize modifier application.
 
-27. Remove SymbolicTimespan.adjust_timespan_offsets().
+26. Remove SymbolicTimespan.adjust_timespan_offsets().
     Teach SymbolicTimespan.set_timespan_offsets() to handle negative values instead.
 
-28. Add 'voice_name' positional parameter to SymbolicTimespan.select_background_measures().
+27. Add 'voice_name' positional parameter to SymbolicTimespan.select_background_measures().
     This will mean making BackgroundMeasureSelector inherit from VoiceSelector.
 
-29. Perhaps Request and Selector need to inherit from a common superclass.
+28. Perhaps Request and Selector need to inherit from a common superclass.
     All such classes implement a certain set of (delayed evaluation) modifications.
     So perhaps there's the idea of a ModificationCarrier somewhere in the object model.

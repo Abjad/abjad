@@ -132,8 +132,6 @@ Methods
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.time_signature_command_request_to_time_signatures
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.time_signature_material_request_to_time_signatures
-
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.unpack_multiple_context_settings_for_score
 
     Inherited from :py:class:`interpretertools.Interpreter <experimental.tools.interpretertools.Interpreter.Interpreter.Interpreter>`
