@@ -83,6 +83,8 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def process_args(self, args):
 
+        from abjad import ABJCFG
+
         if args.name.count('.') != 1:
             print 'Error: {!r} not in tools_package.class_name format.'.format(args.name)
             return
@@ -103,10 +105,12 @@ class MakeNewClassTemplateScript(DeveloperScript):
         os.mkdir(package_path)
         os.mkdir(os.path.join(package_path, 'test'))
 
-        if args.path.endswith('experimental'):
+        if args.path == os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'tools'):
             package_root_name = 'experimental'
-        else:
+        elif args.path == os.path.join(ABJCFG.ABJAD_PATH, 'tools'):
             package_root_name = 'abjad'
+        else:
+            raise Exception
 
         module_path = os.path.join(package_path, '{}.py'.format(class_name))
         module_text = '\n'.join(self._get_class_text(class_name)) + '\n'
