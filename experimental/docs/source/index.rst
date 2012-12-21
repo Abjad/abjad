@@ -47,6 +47,14 @@ Unstable packages (load manually)
 :py:mod:`breakpointtools <('abjad.tools.', 'abjad.demos.')breakpointtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/breakpointtools/BreakPoint/BreakPoint
+   tools/breakpointtools/BreakPointFunctionSet/BreakPointFunctionSet
+
 .. rubric:: concrete classes
 
 .. toctree::
