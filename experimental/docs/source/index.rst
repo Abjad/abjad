@@ -219,7 +219,6 @@ Unstable packages (load manually)
    tools/requesttools/AbsoluteRequest/AbsoluteRequest
    tools/requesttools/CommandRequest/CommandRequest
    tools/requesttools/HandlerRequest/HandlerRequest
-   tools/requesttools/MaterialRequest/MaterialRequest
    tools/requesttools/StatalServerRequest/StatalServerRequest
 
 .. rubric:: functions
