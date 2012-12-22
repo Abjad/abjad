@@ -90,19 +90,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
     ### PRIVATE METHODS ###
 
-    def _adjust_timespan_offsets(self, start_offset, stop_offset, start_adjustment, stop_adjustment):
-        original_start_offset, original_stop_offset = start_offset, stop_offset
-        new_start_offset, new_stop_offset = start_offset, stop_offset
-        if start_adjustment is not None and 0 <= start_adjustment:
-            new_start_offset = original_start_offset + start_adjustment
-        elif start_adjustment is not None and start_adjustment < 0:
-            new_start_offset = original_stop_offset + start_adjustment
-        if stop_adjustment is not None and 0 <= stop_adjustment:
-            new_stop_offset = original_start_offset + stop_adjustment
-        elif stop_adjustment is not None and stop_adjustment < 0:
-            new_stop_offset = original_stop_offset + stop_adjustment
-        return new_start_offset, new_stop_offset
-
     def _apply_timespan_modifications(self, start_offset, stop_offset):
         evaluation_context = {
             'self': self,
@@ -165,12 +152,16 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
     def _set_offsets(self, original_start_offset, original_stop_offset, 
         candidate_start_offset, candidate_stop_offset):
-        if candidate_start_offset is not None:
+        if candidate_start_offset is not None and 0 <= candidate_start_offset:
             new_start_offset = candidate_start_offset
+        elif candidate_start_offset is not None and candidate_start_offset < 0:
+            new_start_offset = original_stop_offset + candidate_start_offset
         else:
             new_start_offset = original_start_offset
-        if candidate_stop_offset is not None:
+        if candidate_stop_offset is not None and 0 <= candidate_stop_offset:
             new_stop_offset = candidate_stop_offset
+        elif candidate_stop_offset is not None and candidate_stop_offset < 0:
+            new_stop_offset = original_stop_offset + candidate_stop_offset
         else:
             new_stop_offset = original_stop_offset
         return new_start_offset, new_stop_offset
@@ -213,25 +204,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return self._timespan_modifications
 
     ### PUBLIC METHODS ###
-
-    # TODO: eventually generalize self.set_offsets() to handle negative values; then remove this method.
-    def adjust_timespan_offsets(self, start=None, stop=None):
-        '''Add delayed evaluation offset setting command to symbolic timespan.
-        
-        Return symbolic timespan copy with offset modification.
-        '''
-        assert isinstance(start, (numbers.Number, tuple, type(None))), repr(start)
-        assert isinstance(stop, (numbers.Number, tuple, type(None))), repr(stop)
-        if start is not None:
-            start = durationtools.Offset(start)
-        if stop is not None:
-            stop = durationtools.Offset(stop)
-        timespan_modification = \
-            'self._adjust_timespan_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_modification = timespan_modification.format(start, stop)
-        result = self._clone()
-        result.timespan_modifications.append(timespan_modification)
-        return result
 
     def divide_by_ratio(self, ratio):
         '''Divide timespan by `ratio`::
@@ -580,8 +552,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             start_offset = durationtools.Offset(start_offset)
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset) 
-        assert start_offset is None or 0 <= start_offset
-        assert stop_offset is None or 0 <= stop_offset
         timespan_modification = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         timespan_modification = timespan_modification.format(start_offset, stop_offset)

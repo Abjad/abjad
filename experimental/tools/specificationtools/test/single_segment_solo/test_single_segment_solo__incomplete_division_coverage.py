@@ -147,7 +147,7 @@ def test_single_segment_solo__incomplete_division_coverage_08():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(3 * [(4, 8)])
-    selector = red_segment.adjust_timespan_offsets(start=(10, 16), stop=(13, 16))
+    selector = red_segment.set_offsets((10, 16), (13, 16))
     selector.set_divisions([(2, 32)])
     red_segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()

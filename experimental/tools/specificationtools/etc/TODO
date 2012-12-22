@@ -73,7 +73,7 @@
 
 15. Add some tests to show this:
         segments = score_specification.select_segments('red', ('blue' + 1))
-        middle_part = segments.adjust_timespan_offsets(start=(3, 4), stop=(-3, 4))
+        middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show anchoring to a segment selector that selects more than one segment.
@@ -122,18 +122,18 @@
     There should be no reason for paired calls coming one after the other.
     There's got to be some way to completely centralize modifier application.
 
-26. Remove SymbolicTimespan.adjust_timespan_offsets().
-    Teach SymbolicTimespan.set_timespan_offsets() to handle negative values instead.
-
-27. Perhaps Request and Selector need to inherit from a common superclass.
+26. Perhaps Request and Selector need to inherit from a common superclass.
     All such classes implement a certain set of (delayed evaluation) modifications.
     So perhaps there's the idea of a ModificationCarrier somewhere in the object model.
 
-28. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
+27. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
     to red_segment.select_background_measures('Voice 1')[:1] for consistency.
     This will mean removing start=None and stop=None keywords from select() methods.
 
-29. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+28. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
 
-30. Remove definitions of _clone() from system.
+29. Remove definitions of _clone() from system.
     Use correctly implemented deepcopy instead.
+
+30. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
+    Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.

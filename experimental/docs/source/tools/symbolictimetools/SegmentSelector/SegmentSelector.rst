@@ -109,10 +109,6 @@ Read/write Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.adjust_timespan_offsets
-
-    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.divide_by_ratio
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
