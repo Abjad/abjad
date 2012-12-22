@@ -75,9 +75,9 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError(attribute)
 
-    def background_measure_selector_to_time_signatures(self, material_request):
-        assert isinstance(material_request, symbolictimetools.BackgroundMeasureSelector)
-        segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
+    def background_measure_selector_to_time_signatures(self, selector):
+        assert isinstance(selector, symbolictimetools.BackgroundMeasureSelector)
+        segment_specification = self.get_start_segment_specification(selector.start_segment_identifier)
         # TODO: eventually extend BackgroundMeasureSelector with voice_name property
         single_context_settings = self.get_single_context_settings_that_start_during_segment(
             segment_specification, 'Voice 1', 'time_signatures', include_improper_parentage=True)
@@ -86,7 +86,7 @@ class ConcreteInterpreter(Interpreter):
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
             raise exceptions.CyclicSpecificationError(absolute_request)
-        time_signatures = requesttools.apply_request_transforms(material_request, absolute_request.payload)
+        time_signatures = requesttools.apply_request_transforms(selector, absolute_request.payload)
         return time_signatures
 
     def calculate_score_and_segment_durations(self):
@@ -203,7 +203,7 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(source_command, 'source_command')
         absolute_request = source_command.request
         assert isinstance(absolute_request, requesttools.AbsoluteRequest), repr(absolute_request)
-        divisions = requesttools.apply_request_transforms(absolute_request, absolute_request.payload)
+        divisions = absolute_request.payload
         return divisions
 
     def division_region_command_to_division_region_expression(self, division_region_command, voice_name):
@@ -215,10 +215,7 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, requesttools.AbsoluteRequest):
             request = division_region_command.request
             payload = request.payload
-            #self._debug(payload, 'payload')
             divisions = self.symbolic_timespans_to_durations(payload)
-            divisions = requesttools.apply_request_transforms(request, divisions)
-            #self._debug(divisions, 'divisions')
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
@@ -291,10 +288,8 @@ class ConcreteInterpreter(Interpreter):
             trimmed_division_region_expressions)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
         self.apply_source_transforms_to_target(division_selector, trimmed_division_region_expressions)
         trimmed_division_region_expressions.sort() 
-        #self._debug(trimmed_division_region_expressions, 'trimmed', blank=True)
         return trimmed_division_region_expressions
 
     def dump_rhythm_region_expressions_into_voices(self):
@@ -656,14 +651,11 @@ class ConcreteInterpreter(Interpreter):
     def make_time_signatures_for_time_signature_setting(self, time_signature_setting):
         if isinstance(time_signature_setting.request, requesttools.AbsoluteRequest):
             time_signatures = time_signature_setting.request.payload
-            time_signatures = requesttools.apply_request_transforms(
-                time_signature_setting.request, time_signatures)
         elif isinstance(time_signature_setting.request, requesttools.CommandRequest):
             time_signatures = self.time_signature_command_request_to_time_signatures(
                 time_signature_setting.request)
         elif isinstance(time_signature_setting.request, symbolictimetools.BackgroundMeasureSelector):
-            time_signatures = self.background_measure_selector_to_time_signatures(
-                time_signature_setting.request)
+            time_signatures = self.background_measure_selector_to_time_signatures(time_signature_setting.request)
         else:
             raise TypeError(time_signature_setting.request)
         if time_signatures:
