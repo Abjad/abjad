@@ -78,9 +78,6 @@ class ConcreteInterpreter(Interpreter):
     def background_measure_selector_to_time_signatures(self, material_request):
         assert isinstance(material_request, symbolictimetools.BackgroundMeasureSelector)
         segment_specification = self.get_start_segment_specification(material_request.start_segment_identifier)
-        #single_context_settings = self.get_single_context_settings_that_start_during_segment(
-        #    segment_specification, material_request.voice_name, material_request.attribute, 
-        #    include_improper_parentage=True)
         # TODO: eventually extend BackgroundMeasureSelector with voice_name property
         single_context_settings = self.get_single_context_settings_that_start_during_segment(
             segment_specification, 'Voice 1', 'time_signatures', include_improper_parentage=True)
@@ -221,7 +218,6 @@ class ConcreteInterpreter(Interpreter):
             #self._debug(payload, 'payload')
             divisions = self.symbolic_timespans_to_durations(payload)
             divisions = requesttools.apply_request_transforms(request, divisions)
-            divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
             #self._debug(divisions, 'divisions')
             divisions = [divisiontools.Division(x) for x in divisions]
             region_duration = division_region_command.duration
@@ -231,7 +227,6 @@ class ConcreteInterpreter(Interpreter):
             division_command_request = division_region_command.request
             divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
             divisions = requesttools.apply_request_transforms(division_command_request, divisions)
-            divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
@@ -240,10 +235,6 @@ class ConcreteInterpreter(Interpreter):
             start_offset, stop_offset = division_region_command.offsets
             divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
             divisions = requesttools.apply_request_transforms(division_region_command.request, divisions)
-            # TODO: can't the following line be removed?
-            #       Is there really any reason for command to carry a modifications stack?
-            #       Shouldn't modifications stacks implement on selectors only?
-            divisions = requesttools.apply_request_transforms(division_region_command, divisions) 
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
@@ -262,7 +253,6 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, symbolictimetools.BackgroundMeasureSelector):
             time_signatures = self.background_measure_selector_to_time_signatures(division_region_command.request)
             divisions = [divisiontools.Division(x) for x in time_signatures]
-            divisions = requesttools.apply_request_transforms(division_region_command, divisions)
         else:
             raise TypeError(division_region_command.request)
         return settingtools.OffsetPositionedDivisionList(
@@ -579,7 +569,6 @@ class ConcreteInterpreter(Interpreter):
     def make_rhythm_region_expression(
         self, rhythm_maker, rhythm_region_division_list, start_offset, rhythm_command):
         if rhythm_region_division_list:
-            rhythm_maker = requesttools.apply_request_transforms(rhythm_command, rhythm_maker)
             leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
             rhythm_containers = [containertools.Container(x) for x in leaf_lists]
             rhythm_region_expression = settingtools.OffsetPositionedRhythmExpression(
@@ -678,7 +667,6 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise TypeError(time_signature_setting.request)
         if time_signatures:
-            time_signatures = requesttools.apply_request_transforms(time_signature_setting, time_signatures)
             segment_specification = self.get_start_segment_specification(time_signature_setting.anchor)
             segment_specification._time_signatures = time_signatures[:]
             self.score_specification.all_time_signature_commands.remove(time_signature_setting)
