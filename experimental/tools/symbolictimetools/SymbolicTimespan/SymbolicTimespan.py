@@ -103,7 +103,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
     def _clone(self):
         return copy.deepcopy(self)
 
-    # TODO: rename to self._divide_timespan() and accept integer (in addition to ratio)
+    # TODO: extend to coerce ratio of 3 to (1, 1, 1) just like Timespan.divide_by_ratio()
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -214,7 +214,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    # TODO: rename to self.divide_timespan() and accept integer (in addition to ratio)
+    # TODO: extnd to interpret 3 as (1, 1, 1)
     def divide_by_ratio(self, ratio):
         result = []
         for part in range(len(ratio)):
@@ -239,17 +239,19 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def select_background_measures(self, start=None, stop=None, time_relation=None):
-        '''Select the first five background measures that start during segment ``'red'``::
+    def select_background_measures(self, voice_name, start=None, stop=None, time_relation=None):
+        '''Select the first five voice ``1`` background measures 
+        that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_background_measures(stop=5)
+            >>> selector = red_segment.select_background_measures('Voice 1', stop=5)
 
         ::
 
             >>> z(selector)
             symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
-                stop_identifier=5
+                stop_identifier=5,
+                voice_name='Voice 1'
                 )
 
         Return background measure selector.
@@ -263,6 +265,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
+            voice_name=voice_name,
             time_relation=time_relation)
         selector._score_specification = self.score_specification
         return selector
@@ -398,9 +401,9 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         selector._score_specification = self.score_specification
         return selector
 
-    # TODO: remove in favor of self.select_background_measures()
+    # TODO: remove in favor of self.select_background_measures('Voice 1')
     def select_time_signatures(self, voice_name, time_relation=None):
-        return self.select_background_measures(time_relation=time_relation)
+        return self.select_background_measures(voice_name, time_relation=time_relation)
 
     def set_aggregate(self, source, contexts=None, persist=True):
         r'''Set aggregate of `contexts` to `source`.

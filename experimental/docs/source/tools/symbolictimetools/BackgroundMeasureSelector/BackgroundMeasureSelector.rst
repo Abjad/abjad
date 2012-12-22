@@ -89,6 +89,10 @@ Read-only Properties
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. autoattribute:: experimental.tools.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.voice_name
+
+    Inherited from :py:class:`symbolictimetools.VoiceSelector <experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector>`
+
 Read/write Properties
 ---------------------
 

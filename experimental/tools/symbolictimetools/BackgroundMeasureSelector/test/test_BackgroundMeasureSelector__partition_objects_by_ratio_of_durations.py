@@ -8,7 +8,7 @@ def test_BackgroundMeasureSelector__partition_objects_by_ratio_of_durations_01()
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    measures = red_segment.select_background_measures()
+    measures = red_segment.select_background_measures('Voice 1')
     last_measure = measures.partition_objects_by_ratio_of_durations((1, 1))[-1]
     red_segment.set_divisions([(2, 32)])
     last_measure.set_divisions([(3, 32)])

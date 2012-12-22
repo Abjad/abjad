@@ -1,10 +1,11 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-from experimental.tools.symbolictimetools.Selector import Selector
+#from experimental.tools.symbolictimetools.Selector import Selector
+from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
-class BackgroundMeasureSelector(Selector):
+class BackgroundMeasureSelector(VoiceSelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -19,61 +20,47 @@ class BackgroundMeasureSelector(Selector):
 
     Select all measures that start during score::
 
-        >>> score_specification.select_background_measures()
-        BackgroundMeasureSelector()
+        >>> score_specification.select_background_measures('Voice 1')
+        BackgroundMeasureSelector(voice_name='Voice 1')
 
     Select measures that start during score from ``3`` forward::
 
-        >>> score_specification.select_background_measures(start=3)
-        BackgroundMeasureSelector(start_identifier=3)
+        >>> score_specification.select_background_measures('Voice 1', start=3)
+        BackgroundMeasureSelector(start_identifier=3, voice_name='Voice 1')
 
     Select measures that start during score up to but not including ``6``::
 
-        >>> score_specification.select_background_measures(stop=6)
-        BackgroundMeasureSelector(stop_identifier=6)
+        >>> score_specification.select_background_measures('Voice 1', stop=6)
+        BackgroundMeasureSelector(stop_identifier=6, voice_name='Voice 1')
 
     Select measures from ``3`` up to but not including ``6``::
 
-        >>> score_specification.select_background_measures(start=3, stop=6)
-        BackgroundMeasureSelector(start_identifier=3, stop_identifier=6)
+        >>> score_specification.select_background_measures('Voice 1', start=3, stop=6)
+        BackgroundMeasureSelector(start_identifier=3, stop_identifier=6, voice_name='Voice 1')
 
     Select all measures starting during segment ``'red'``::
 
-        >>> red_segment.select_background_measures()
-        BackgroundMeasureSelector(anchor='red')
+        >>> red_segment.select_background_measures('Voice 1')
+        BackgroundMeasureSelector(anchor='red', voice_name='Voice 1')
 
     Select the last two measures during segment ``'red'``::
 
-        >>> measures = red_segment.select_background_measures(start=-2)
+        >>> measures = red_segment.select_background_measures('Voice 1', start=-2)
 
     ::
     
         >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor='red',
-            start_identifier=-2
+            start_identifier=-2,
+            voice_name='Voice 1'
             )
 
     Select all the measures that start during the three contiguous segments 
     starting with ``'red'``::
 
         >>> segments = score_specification.select_segments('red', ('red', 3))
-        >>> measures = segments.select_background_measures()
-
-    ::
-
-        >>> z(measures)
-        symbolictimetools.BackgroundMeasureSelector(
-            anchor=symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
-                )
-            )
-
-    Select the last two measures that start during the three contiguous segments 
-    starting with ``'red'``::
-
-        >>> measures = segments.select_background_measures(start=-2)
+        >>> measures = segments.select_background_measures('Voice 1')
 
     ::
 
@@ -83,7 +70,24 @@ class BackgroundMeasureSelector(Selector):
                 start_identifier='red',
                 stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
                 ),
-            start_identifier=-2
+            voice_name='Voice 1'
+            )
+
+    Select the last two measures that start during the three contiguous segments 
+    starting with ``'red'``::
+
+        >>> measures = segments.select_background_measures('Voice 1', start=-2)
+
+    ::
+
+        >>> z(measures)
+        symbolictimetools.BackgroundMeasureSelector(
+            anchor=symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
+                ),
+            start_identifier=-2,
+            voice_name='Voice 1'
             )
 
     Background measure symbolic timespans are immutable.

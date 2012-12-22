@@ -10,7 +10,7 @@ def test_BackgroundMeasureSelector__partition_objects_by_ratio_01():
     score_specification = specificationtools.ScoreSpecification(template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    measures = red_segment.select_background_measures()
+    measures = red_segment.select_background_measures('Voice 1')
     left, right = measures.partition_objects_by_ratio((1, 1))
     left.set_divisions([(3, 16)], truncate=True)
     right.set_divisions([(5, 16)], truncate=True)
@@ -30,7 +30,7 @@ def test_BackgroundMeasureSelector__partition_objects_by_ratio_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(1, 8), (1, 8), (1, 8), (3, 8)])
-    measures = red_segment.select_background_measures()
+    measures = red_segment.select_background_measures('Voice 1')
     last_two_measures = measures.partition_objects_by_ratio((1, 1))[-1]
     red_segment.set_divisions([(2, 32)])
     last_two_measures.set_divisions([(3, 32)])

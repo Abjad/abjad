@@ -18,7 +18,7 @@ class CommandRequest(Request):
 
     ::
 
-        >>> measure = red_segment.select_background_measures(4, 5)
+        >>> measure = red_segment.select_background_measures('Voice 1', 4, 5)
         >>> command_request = measure.start_offset.request_division_command('Voice 1')
 
     ::
@@ -31,7 +31,8 @@ class CommandRequest(Request):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     start_identifier=4,
-                    stop_identifier=5
+                    stop_identifier=5,
+                    voice_name='Voice 1'
                     )
                 )
             )
@@ -88,7 +89,8 @@ class CommandRequest(Request):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     start_identifier=4,
-                    stop_identifier=5
+                    stop_identifier=5,
+                    voice_name='Voice 1'
                     )
                 )
 
