@@ -50,6 +50,8 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def apply_source_transforms_to_target(self, source, target):
+        if isinstance(source, settingtools.Command):
+            assert source.modifications == []
         assert hasattr(source, 'modifications')
         if hasattr(source, 'modifications'):
             evaluation_context = {
@@ -176,7 +178,6 @@ class ConcreteInterpreter(Interpreter):
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
         self.apply_source_transforms_to_target(rhythm_material_request, result)
-        self.apply_source_transforms_to_target(rhythm_command, result)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
@@ -256,7 +257,6 @@ class ConcreteInterpreter(Interpreter):
                 division_region_expression._voice_name = voice_name
             addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
             division_region_expressions.translate_timespans(addendum)
-            self.apply_source_transforms_to_target(division_region_command, division_region_expressions)
             division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
             return division_region_expressions
         elif isinstance(division_region_command.request, symbolictimetools.BackgroundMeasureSelector):
@@ -595,7 +595,6 @@ class ConcreteInterpreter(Interpreter):
             music=[component],
             voice_name=rhythm_region_division_list.voice_name, 
             start_offset=start_offset)
-        self.apply_source_transforms_to_target(rhythm_command, rhythm_region_expression)
         duration_needed = sum([durationtools.Duration(x) for x in rhythm_region_division_list])
         stop_offset = start_offset + duration_needed
         if rhythm_region_expression.stop_offset < stop_offset:
