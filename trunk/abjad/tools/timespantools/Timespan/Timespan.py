@@ -141,6 +141,10 @@ class Timespan(BoundedObject):
     def divide_by_ratio(self, ratio):
         '''Divide timespan by `ratio`::
 
+            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+
+        ::
+
             >>> for x in timespan.divide_by_ratio((1, 2, 1)):
             ...     x
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(3, 4))
@@ -162,6 +166,10 @@ class Timespan(BoundedObject):
     def scale(self, multiplier):
         '''Scale timespan by `multiplier`::
 
+            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+
+        ::
+
             >>> timespan.scale(Multiplier(1, 2))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
 
@@ -177,6 +185,10 @@ class Timespan(BoundedObject):
     def set_duration(self, duration):
         '''Set timespan duration to `duration`::
 
+            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+
+        ::
+
             >>> timespan.set_duration(Duration(3, 5))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(11, 10))
 
@@ -191,17 +203,35 @@ class Timespan(BoundedObject):
         '''Set timespan start offset to `start_offset` and
         stop offset to `stop_offset`::
 
+            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+
+        ::
+
             >>> timespan.set_offsets(stop_offset=Offset(7, 8))
             Timespan(start_offset=Offset(1, 2), stop_offset=Offset(7, 8))
 
+        Subtract negative `start_offset` from existing stop offset::
+
+            >>> timespan.set_offsets(start_offset=Offset(-1, 2))
+            Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 2))
+
+        Subtract negative `stop_offset` from existing stop offset::
+
+            >>> timespan.set_offsets(stop_offset=Offset(-1, 2))
+            Timespan(start_offset=Offset(1, 2), stop_offset=Offset(1, 1))
+
         Return newly constructed timespan.
         '''
-        if start_offset is not None:
+        if start_offset is not None and 0 <= start_offset:
             new_start_offset = start_offset
+        elif start_offset is not None and start_offset < 0:
+            new_start_offset = self.stop_offset + durationtools.Offset(start_offset)
         else:
             new_start_offset = self.start_offset
-        if stop_offset is not None:
+        if stop_offset is not None and 0 <= stop_offset:
             new_stop_offset = stop_offset
+        elif stop_offset is not None and stop_offset < 0:
+            new_stop_offset = self.stop_offset + durationtools.Offset(stop_offset)
         else:
             new_stop_offset = self.stop_offset
         result = type(self)(new_start_offset, new_stop_offset)
@@ -210,6 +240,10 @@ class Timespan(BoundedObject):
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation` and
         stop offset by `stop_offset_translation`::
+
+            >>> timespan = timespantools.Timespan((1, 2), (3, 2)) 
+
+        ::
 
             >>> timespan.translate_offsets(start_offset_translation=Duration(-1, 8))
             Timespan(start_offset=Offset(3, 8), stop_offset=Offset(3, 2))
