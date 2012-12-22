@@ -38,6 +38,40 @@ class Timespan(BoundedObject):
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        '''True when `expr` is a timespan with equivalent offsets::
+
+            >>> timespantools.Timespan(1, 3) == timespantools.Timespan(2/2, (3, 1))
+            True
+
+        Otherwise false::
+
+            >>> timespantools.Timespan(1, 3) == timespantools.Timespan(2, 3)
+            False
+
+        Return boolean.
+        '''
+        if isinstance(expr, type(self)):
+            return self.offsets == expr.offsets
+        return False
+
+    def __ne__(self, expr):
+        '''True when `expr` is not a timespan with equivalent offsets::
+
+            >>> timespantools.Timespan(1, 3) != timespantools.Timespan(2, 3)
+            True
+
+        Otherwise false::
+
+            >>> timespantools.Timespan(1, 3) != timespantools.Timespan(2/2, (3, 1))
+            False
+
+        Return boolean.
+        '''
+        return not self == expr
+
     ### PRIVATE METHODS ###
 
     def _initialize_offset(self, offset):

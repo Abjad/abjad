@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import formattools
 from abjad.tools import lilypondproxytools
 from abjad.tools import mathtools
+from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -174,6 +175,19 @@ class Component(AbjadObject):
         '''Read-only stop offset of component in seconds.
         '''
         return self.start_offset_in_seconds + self.duration_in_seconds
+
+    @property
+    def timespan(self):
+        '''Read-only timespan of component.
+        '''
+        return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
+
+    @property
+    def timespan_in_seconds(self):
+        '''Read-only timespan of component in seconds.
+        '''
+        return timespantools.Timespan(
+            start_offset=self.start_offset_in_seconds, stop_offset=self.stop_offset_in_seconds)
 
     ### PRIVATE METHODS ###
 

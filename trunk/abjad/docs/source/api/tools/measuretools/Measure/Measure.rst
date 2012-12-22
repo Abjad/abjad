@@ -103,6 +103,14 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.target_duration
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.timespan
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.timespan_in_seconds
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 Read/write Properties
 ---------------------
 
