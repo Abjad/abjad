@@ -401,10 +401,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         selector._score_specification = self.score_specification
         return selector
 
-    # TODO: remove in favor of self.select_background_measures('Voice 1')
-    def select_time_signatures(self, voice_name, time_relation=None):
-        return self.select_background_measures(voice_name, time_relation=time_relation)
-
     def set_aggregate(self, source, contexts=None, persist=True):
         r'''Set aggregate of `contexts` to `source`.
 

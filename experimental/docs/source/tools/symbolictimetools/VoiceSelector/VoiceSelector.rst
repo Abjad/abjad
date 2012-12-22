@@ -165,10 +165,6 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.select_time_signatures
-
-    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.set_aggregate
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

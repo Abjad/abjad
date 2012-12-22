@@ -167,10 +167,6 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.select_time_signatures
-
-    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.set_aggregate
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

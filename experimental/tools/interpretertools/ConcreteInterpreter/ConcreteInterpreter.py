@@ -78,9 +78,8 @@ class ConcreteInterpreter(Interpreter):
     def background_measure_selector_to_time_signatures(self, selector):
         assert isinstance(selector, symbolictimetools.BackgroundMeasureSelector)
         segment_specification = self.get_start_segment_specification(selector.start_segment_identifier)
-        # TODO: eventually extend BackgroundMeasureSelector with voice_name property
         single_context_settings = self.get_single_context_settings_that_start_during_segment(
-            segment_specification, 'Voice 1', 'time_signatures', include_improper_parentage=True)
+            segment_specification, selector.voice_name, 'time_signatures', include_improper_parentage=True)
         assert len(single_context_settings) == 1
         single_context_setting = single_context_settings[0]
         absolute_request = single_context_setting.request

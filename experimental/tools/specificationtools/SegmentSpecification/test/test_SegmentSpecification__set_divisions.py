@@ -11,7 +11,7 @@ def test_SegmentSpecification__set_divisions_01():
 
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
-    divisions = red_segment.select_time_signatures('Voice 1')
+    divisions = red_segment.select_background_measures('Voice 1')
     divisions = divisions.reverse()
     red_segment.set_divisions(divisions, contexts=['Voice 1'])
     red_segment.set_rhythm(library.sixteenths)

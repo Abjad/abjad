@@ -167,10 +167,6 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. automethod:: experimental.tools.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.select_time_signatures
-
-    Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
-
 .. automethod:: experimental.tools.symbolictimetools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.set_aggregate
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`

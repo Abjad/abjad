@@ -125,18 +125,15 @@
 26. Remove SymbolicTimespan.adjust_timespan_offsets().
     Teach SymbolicTimespan.set_timespan_offsets() to handle negative values instead.
 
-27. Add 'voice_name' positional parameter to SymbolicTimespan.select_background_measures('Voice 1').
-    This will mean making BackgroundMeasureSelector inherit from VoiceSelector.
-
-28. Perhaps Request and Selector need to inherit from a common superclass.
+27. Perhaps Request and Selector need to inherit from a common superclass.
     All such classes implement a certain set of (delayed evaluation) modifications.
     So perhaps there's the idea of a ModificationCarrier somewhere in the object model.
 
-29. Extend SymbolicTimepan._divide_by_ratio() to coerce 3 to (1, 1, 1)
+28. Extend SymbolicTimepan._divide_by_ratio() to coerce 3 to (1, 1, 1)
     the same way that timespantools.Timespan.divide_by_ratio() does.
 
-30. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
+29. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
     to red_segment.select_background_measures('Voice 1')[:1] for consistency.
     This will mean removing start=None and stop=None keywords from select() methods.
 
-31. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+30. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
