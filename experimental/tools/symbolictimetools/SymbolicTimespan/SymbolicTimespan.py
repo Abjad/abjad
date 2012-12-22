@@ -23,7 +23,16 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+
+    ::
+
         >>> red_segment = score_specification.append_segment(name='red')
+        >>> setting = red_segment.set_time_signatures([(4, 8), (3, 8)])
+
+    ::
+        
+        >>> blue_segment = score_specification.append_segment(name='blue')
+        >>> setting = blue_segment.set_time_signatures([(9, 16), (3, 16)])
 
     The examples below refer to the score and segment specifications defined above.
     '''
@@ -46,6 +55,14 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
+
+            >>> red_segment.select() == red_segment.select()
+            True
+
+        Otherwise false::
+
+            >>> red_segment.select() == blue_segment.select()
+            False
 
         Return boolean.
         '''
@@ -189,7 +206,10 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         '''Read-only list of timespan_modifications to be applied 
         to symbolic timespan during evaluation.
 
-        Return list.
+            >>> red_segment.select().timespan_modifications
+            ObjectInventory([])
+
+        Return object inventory of zero or more strings.
         '''
         return self._timespan_modifications
 
@@ -216,6 +236,34 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
     # TODO: extnd to interpret 3 as (1, 1, 1)
     def divide_by_ratio(self, ratio):
+        '''Divide timespan by `ratio`::
+
+            >>> timespans = red_segment.select().divide_by_ratio((2, 3))
+
+        ::
+    
+            >>> z(timespans[0])
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                timespan_modifications=datastructuretools.ObjectInventory([
+                    'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
+                    ])
+                )
+
+        ::
+
+            >>> z(timespans[1])
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                timespan_modifications=datastructuretools.ObjectInventory([
+                    'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
+                    ])
+                )
+
+        Return tuple of newly constructed timespans with appended modification.
+        '''
         result = []
         for part in range(len(ratio)):
             new_symbolic_timespan = self._clone()
@@ -228,6 +276,15 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
     def scale(self, multiplier):
         '''Scale timespan duration by `multiplier`.
+
+            >>> z(red_segment.select().scale(Multiplier(4, 5)))
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                timespan_modifications=datastructuretools.ObjectInventory([
+                    'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
+                    ])
+                )
 
         Return copy of timespan with appended modification.
         '''
@@ -256,17 +313,14 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         Return background measure selector.
         '''
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.BackgroundMeasureSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice_name,
-            time_relation=time_relation)
+            time_relation=time_relation
+            )
         selector._score_specification = self.score_specification
         return selector
 
@@ -287,17 +341,14 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         Return beat selector.
         '''
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.BeatSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice_name,
-            time_relation=time_relation)
+            time_relation=time_relation
+            )
         selector._score_specification = self.score_specification
         return selector
 
@@ -318,17 +369,14 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         Return division selector.
         '''
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.DivisionSelector(
             anchor=self._timespan_abbreviation,
             start_identifier=start, 
             stop_identifier=stop, 
             voice_name=voice_name,
-            time_relation=time_relation)
+            time_relation=time_relation
+            )
         selector._score_specification = self.score_specification
         return selector
 
@@ -349,11 +397,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         Return counttime component selector.
         '''
-        assert isinstance(voice_name, (str, type(None)))
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
@@ -361,7 +404,8 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             klass=leaftools.Leaf, 
             start_identifier=start, 
             stop_identifier=stop, 
-            voice_name=voice_name)
+            voice_name=voice_name
+            )
         selector._score_specification = self.score_specification
         return selector
 
@@ -386,10 +430,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
         Return counttime component selector.
         '''
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
-        assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
@@ -397,7 +437,8 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             klass=(notetools.Note, chordtools.Chord),
             start_identifier=start, 
             stop_identifier=stop, 
-            voice_name=voice_name)
+            voice_name=voice_name
+            )
         selector._score_specification = self.score_specification
         return selector
 

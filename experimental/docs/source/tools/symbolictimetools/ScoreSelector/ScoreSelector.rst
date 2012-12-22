@@ -260,7 +260,7 @@ Special Methods
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__ne__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__repr__
 

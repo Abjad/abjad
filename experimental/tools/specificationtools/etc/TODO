@@ -137,3 +137,6 @@
     This will mean removing start=None and stop=None keywords from select() methods.
 
 30. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+
+31. Remove definitions of _clone() from system.
+    Use correctly implemented deepcopy instead.

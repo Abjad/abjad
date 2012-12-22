@@ -16,6 +16,7 @@ class VoiceSelector(Selector):
 
     def __init__(self, anchor=None, start_identifier=None, stop_identifier=None, voice_name=None,
         time_relation=None, timespan_modifications=None, selector_modifications=None, modifications=None):
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         Selector.__init__(self,
             anchor=anchor, 
             start_identifier=start_identifier, 
@@ -25,7 +26,6 @@ class VoiceSelector(Selector):
             selector_modifications=selector_modifications, 
             modifications=modifications
             )
-        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         self._voice_name = voice_name
 
     ### PUBLIC READ-ONLY PROPERTIES ###
