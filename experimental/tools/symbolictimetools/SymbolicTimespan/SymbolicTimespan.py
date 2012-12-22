@@ -120,7 +120,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
     def _clone(self):
         return copy.deepcopy(self)
 
-    # TODO: extend to coerce ratio of 3 to (1, 1, 1) just like Timespan.divide_by_ratio()
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -234,7 +233,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    # TODO: extnd to interpret 3 as (1, 1, 1)
     def divide_by_ratio(self, ratio):
         '''Divide timespan by `ratio`::
 
@@ -262,9 +260,48 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
                     ])
                 )
 
+        Coerce integer `ratio` to ``Ratio(ratio*[1])``::
+
+            >>> timespans = red_segment.select().divide_by_ratio(3)
+
+        ::
+
+            >>> z(timespans[0])
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                timespan_modifications=datastructuretools.ObjectInventory([
+                    'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
+                    ])
+                )
+
+        ::
+
+            >>> z(timespans[1])
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                timespan_modifications=datastructuretools.ObjectInventory([
+                    'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
+                    ])
+                )
+
+        ::
+
+            >>> z(timespans[2])
+            symbolictimetools.SegmentSelector(
+                start_identifier='red',
+                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                timespan_modifications=datastructuretools.ObjectInventory([
+                    'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
+                    ])
+                )
+
         Return tuple of newly constructed timespans with appended modification.
         '''
         result = []
+        if mathtools.is_positive_integer_equivalent_number(ratio):
+            ratio = int(ratio) * [1]
         for part in range(len(ratio)):
             new_symbolic_timespan = self._clone()
             timespan_modification = \
