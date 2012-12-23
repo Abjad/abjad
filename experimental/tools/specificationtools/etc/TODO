@@ -145,3 +145,5 @@
 
 31. Call self._apply_selector_modifications(selected_objects, start_offset) from within
     every selector _get_offsets() implementation.
+
+32. Rename settingtools.Command to something better. Perhaps OffsetResolved(Single/Multiple)Setting.

@@ -50,8 +50,6 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def apply_source_transforms_to_target(self, source, target):
-        if isinstance(source, settingtools.Command):
-            assert source.modifications == []
         assert hasattr(source, 'modifications')
         if hasattr(source, 'modifications'):
             evaluation_context = {

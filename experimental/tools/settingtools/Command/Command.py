@@ -2,10 +2,10 @@ import abc
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
+from abjad.tools import timerelationtools 
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools 
 from experimental.tools import requesttools 
-from abjad.tools import timerelationtools 
 
 
 class Command(AbjadObject):
