@@ -147,6 +147,10 @@
     every selector _get_offsets() implementation.
 
 32. Rename settingtools.Command to something better. Perhaps OffsetResolved(Single/Multiple)Setting.
+    The term 'command' is currentlybeing used in two different ways in the system.
+    Command is first used to refer to a setting whose exact temporal scope has been resolved.
+    Command is also used to refer to the setting (or, really, source-of-setting) active at a given offset.
+    The term should be used in only one way.
 
 33. Migrate requesttools.apply_modifications() to a method bound to Request or Selector or both.
 

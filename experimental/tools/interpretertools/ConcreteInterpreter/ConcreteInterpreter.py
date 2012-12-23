@@ -67,7 +67,6 @@ class ConcreteInterpreter(Interpreter):
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
             raise exceptions.CyclicSpecificationError(absolute_request)
-        #time_signatures = requesttools.apply_modifications(selector, absolute_request.payload)
         time_signatures = selector._apply_modifications(absolute_request.payload)
         return time_signatures
 
@@ -156,7 +155,7 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
-        result = requesttools.apply_modifications(rhythm_material_request, result)
+        result = rhythm_material_request._apply_modifications(result)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
@@ -205,7 +204,7 @@ class ConcreteInterpreter(Interpreter):
             assert division_region_command.request.attribute == 'divisions'
             division_command_request = division_region_command.request
             divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
-            divisions = requesttools.apply_modifications(division_command_request, divisions)
+            divisions = division_command_request._apply_modifications(divisions)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
@@ -213,7 +212,7 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, symbolictimetools.BeatSelector):
             start_offset, stop_offset = division_region_command.offsets
             divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
-            divisions = requesttools.apply_modifications(division_region_command.request, divisions)
+            divisions = division_region_command.request._apply_modifications(divisions)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
@@ -270,8 +269,8 @@ class ConcreteInterpreter(Interpreter):
             trimmed_division_region_expressions)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        trimmed_division_region_expressions = requesttools.apply_modifications(
-            division_selector, trimmed_division_region_expressions)
+        trimmed_division_region_expressions = division_selector._apply_modifications(
+            trimmed_division_region_expressions)
         trimmed_division_region_expressions.sort() 
         return trimmed_division_region_expressions
 
@@ -738,7 +737,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(source_command.request, requesttools.AbsoluteRequest)
         assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
-        rhythm_maker = requesttools.apply_modifications(rhythm_command_request, rhythm_maker)
+        rhythm_maker = rhythm_command_request._apply_modifications(rhythm_maker)
         return rhythm_maker
 
     # do we eventually need to do this with time signature settings, too?
@@ -893,5 +892,5 @@ class ConcreteInterpreter(Interpreter):
         assert command_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(command_request.symbolic_offset)
         time_signatures = segment_specification.time_signatures[:]
-        time_signatures = requesttools.apply_modifications(command_request, time_signatures)
+        time_signatures = command_request._apply_modifications(time_signatures)
         return time_signatures
