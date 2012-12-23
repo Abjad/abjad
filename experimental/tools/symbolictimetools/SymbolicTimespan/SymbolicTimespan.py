@@ -104,9 +104,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
             assert start_offset <= stop_offset
         return start_offset, stop_offset
         
-    def _clone(self):
-        return copy.deepcopy(self)
-
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset
         original_duration = original_stop_offset - original_start_offset
@@ -275,7 +272,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         if mathtools.is_positive_integer_equivalent_number(ratio):
             ratio = int(ratio) * [1]
         for part in range(len(ratio)):
-            new_symbolic_timespan = self._clone()
+            new_symbolic_timespan = copy.deepcopy(self)
             timespan_modification = \
                 'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
             timespan_modification = timespan_modification.format(ratio, part)
@@ -301,7 +298,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         timespan_modification = \
             'self._scale(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(multiplier)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.timespan_modifications.append(timespan_modification)
         return result
 
@@ -511,7 +508,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         timespan_modification = \
             'self._set_duration(original_start_offset, original_stop_offset, {!r})'
         timespan_modification = timespan_modification.format(duration)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.timespan_modifications.append(timespan_modification)
         return result
 
@@ -555,7 +552,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         timespan_modification = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         timespan_modification = timespan_modification.format(start_offset, stop_offset)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.timespan_modifications.append(timespan_modification)
         return result
 
@@ -671,6 +668,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         timespan_modification = \
             'self._translate_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
         timespan_modification = timespan_modification.format(start_offset_translation, stop_offset_translation)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.timespan_modifications.append(timespan_modification)
         return result

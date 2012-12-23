@@ -77,7 +77,8 @@ class Specification(SymbolicTimespan):
 
     ### PRIVATE METHODS ###
 
-    def _clone(self):
+    # TODO: this can be removed once Specification no longer inherits from SymbolicTimespan
+    def __deepcopy__(self, memo):
         return self.select()
 
     def _context_token_to_context_names(self, context_token):

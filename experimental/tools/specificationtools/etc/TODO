@@ -135,12 +135,10 @@
 
 28. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
 
-29. Remove definitions of _clone() from system.
-    Use correctly implemented deepcopy instead.
 
-30. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
+29. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
     to red_segment.select_background_measures('Voice 1')[:1] for consistency.
     This will mean removing start=None and stop=None keywords from select() methods.
 
-31. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
+30. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.

@@ -51,7 +51,7 @@ class Request(AbjadObject):
         '''Return copy of request with appended modification.
         '''
         modification = 'result = target.__getitem__({!r})'.format(expr)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
 
@@ -66,9 +66,6 @@ class Request(AbjadObject):
         return tuple(result)
 
     ### PRIVATE METHODS ###
-
-    def _clone(self):
-        return copy.deepcopy(self)
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty modifications list.
@@ -102,7 +99,7 @@ class Request(AbjadObject):
         '''
         assert mathtools.is_nonnegative_integer(length)
         modification = 'result = sequencetools.repeat_sequence_to_length(target, {!r})'.format(length)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
         
@@ -110,7 +107,7 @@ class Request(AbjadObject):
         '''Return copy of request with appended modification.
         '''
         modification = 'result = target.reverse()'
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
 
@@ -120,7 +117,7 @@ class Request(AbjadObject):
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
         modification = 'result = request._rotate(target, {!r})'.format(index)    
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
 

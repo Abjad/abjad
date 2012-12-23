@@ -47,9 +47,29 @@ class Selector(SymbolicTimespan):
         '''Return copy of request with appended modification.
         '''
         modification = 'result = target.__getitem__({!r})'.format(expr)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
+
+#        for part in range(len(ratio)):
+#            selector = copy.deepcopy(self)
+#            selector_modification = \
+#                'self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
+#            selector_modification = selector_modification.format(ratio, part)
+#            selector._selector_modifications.append(selector_modification)
+#            result.append(selector)
+#        return tuple(result)
+#
+#    def _partition_objects_by_ratio(self, elements, original_start_offset, ratio, part):
+#        parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
+#        selected_part = parts[part]
+#        parts_before = parts[:part]
+#        durations_before = [
+#            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
+#        duration_before = sum(durations_before)
+#        start_offset = durationtools.Offset(duration_before)
+#        new_start_offset = original_start_offset + start_offset
+#        return selected_part, new_start_offset
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
@@ -233,7 +253,7 @@ class Selector(SymbolicTimespan):
         '''
         assert mathtools.is_nonnegative_integer(length)
         modification = 'result = sequencetools.repeat_sequence_to_length(target, {!r})'.format(length)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
 
@@ -241,7 +261,7 @@ class Selector(SymbolicTimespan):
         '''Return copy of request with appended modification.
         '''
         modification = 'result = target.reverse()'
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
 
@@ -251,7 +271,7 @@ class Selector(SymbolicTimespan):
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
         modification = 'result = request._rotate(target, {!r})'.format(index)
-        result = self._clone()
+        result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
 
