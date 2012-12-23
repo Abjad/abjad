@@ -135,7 +135,6 @@
 
 28. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
 
-
 29. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
     to red_segment.select_background_measures('Voice 1')[:1] for consistency.
     This will mean removing start=None and stop=None keywords from select() methods.
@@ -145,3 +144,6 @@
 
 31. Call self._apply_selector_modifications(selected_objects, start_offset) from within
     every selector _get_offsets() implementation.
+
+32. Change private selector._selector_modifications.append(selector_modification)
+    to public selector.selector_modifications.append(selector_modification).

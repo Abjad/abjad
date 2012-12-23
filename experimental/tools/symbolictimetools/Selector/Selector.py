@@ -50,26 +50,22 @@ class Selector(SymbolicTimespan):
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
+        # TODO: replace the implementation above with the implementation below. I think.
+        #selector_modification = 'self._slice_selected_objects(elements, start_offset, {!r})'
+        #selector_modification = selector_modification.format(expr)
+        #result = copy.deepcopy(self)
+        #result._selector_modifications.append(selector_modification)
+        #return result
 
-#        for part in range(len(ratio)):
-#            selector = copy.deepcopy(self)
-#            selector_modification = \
-#                'self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
-#            selector_modification = selector_modification.format(ratio, part)
-#            selector._selector_modifications.append(selector_modification)
-#            result.append(selector)
-#        return tuple(result)
-#
-#    def _partition_objects_by_ratio(self, elements, original_start_offset, ratio, part):
-#        parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
-#        selected_part = parts[part]
-#        parts_before = parts[:part]
-#        durations_before = [
-#            sum([durationtools.Duration(x) for x in part_before]) for part_before in parts_before]
-#        duration_before = sum(durations_before)
-#        start_offset = durationtools.Offset(duration_before)
-#        new_start_offset = original_start_offset + start_offset
-#        return selected_part, new_start_offset
+    def _slice_elements(self, elements, original_start_offset, expr):
+        assert isinstance(expr, slice)
+        start_index, stop_index, stride = expr.indices(len(elements))
+        selected_elements = elements[expr]
+        elements_before = elements[:start_index]
+        duration_before = sum([durationtools.Duration(x) for x in elements_before])
+        start_offset = durationtools.Offset(duration_before)
+        new_start_offset = original_start_offset + start_offset
+        return selected_elements, new_start_offset
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 

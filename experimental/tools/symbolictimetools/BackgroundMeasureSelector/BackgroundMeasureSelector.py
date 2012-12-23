@@ -1,7 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-#from experimental.tools.symbolictimetools.Selector import Selector
 from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
 
 
