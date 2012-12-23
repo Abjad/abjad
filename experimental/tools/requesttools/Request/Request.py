@@ -70,7 +70,7 @@ class Request(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _apply_modifications(self, payload):
+    def _apply_modifications(self, payload, start_offset=None):
         from experimental.tools import settingtools
         payload_klasses = (
             list, tuple,
@@ -94,7 +94,7 @@ class Request(AbjadObject):
                 payload = target
             else:
                 payload = evaluation_context['result']
-        return payload
+        return payload, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty modifications list.
@@ -168,6 +168,7 @@ class Request(AbjadObject):
                 'self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector.selector_modifications.append(selector_modification)
+            #selector.modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
 

@@ -161,3 +161,18 @@
 35. Remove SymbolicTimeObject.
 
 36. Possibly remove Selector.selector_modifications in favor of Request.modifications.
+    Start by merging Selector._apply_selector_modifications() into Request._apply_modifications().
+    This will mean making the input (and output) signatures of Request._apply_modifications()
+    to match the input (and output) signatures of Selector._apply_selector_modifications().
+    Part of the work here is understanding the difference between these two methods.
+    It looks like Request 'modifications' apply in somewhat simpler way than selector modifications.
+    Simpler how? Request modifications apply without reference to input object start time.
+    The current request modifications are these: 
+        Request.repeat_to_length(length)
+        Request.reverse()
+        Request.rotate()
+    It seems like none of these change the start time of the input objects.
+    Compare to these methods ...
+        Request.partition_objects_by_ratio(ratio)
+        Request.partition_objects_by_ratio_of_durations(ratio)
+    ... which do potentially change the start of input objects.
