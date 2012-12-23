@@ -70,31 +70,28 @@ class Request(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _apply_modifications(self, payload, start_offset=None):
+    def _apply_modifications(self, elements, start_offset):
         from experimental.tools import settingtools
-        payload_klasses = (
-            list, tuple,
-            rhythmmakertools.RhythmMaker,
-            settingtools.OffsetPositionedExpression,
-            )
-        assert isinstance(payload, payload_klasses), repr(payload)
         evaluation_context = {
             'Duration': durationtools.Duration,
+            'NonreducedFraction': mathtools.NonreducedFraction,
+            'Offset': durationtools.Offset,
+            'Ratio': mathtools.Ratio,
             'RotationIndicator': settingtools.RotationIndicator,
-            'request': self,
+            'self': self,
             'result': None,
             'sequencetools': sequencetools,
             }
         for modification in self.modifications:
             assert 'target' in modification
-            target = copy.deepcopy(payload)
+            target = copy.deepcopy(elements)
             evaluation_context['target'] = target
             exec(modification, evaluation_context)
             if evaluation_context['result'] is None:
-                payload = target
+                elements = target
             else:
-                payload = evaluation_context['result']
-        return payload, start_offset
+                elements = evaluation_context['result']
+        return elements, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty modifications list.
@@ -148,6 +145,16 @@ class Request(AbjadObject):
             return sequence.rotate(n)
         else:
             return sequencetools.rotate_sequence(sequence, n)
+
+    def _slice_selected_objects(self, elements, original_start_offset, expr):
+        assert isinstance(expr, slice)
+        start_index, stop_index, stride = expr.indices(len(elements))
+        selected_elements = elements[expr]
+        elements_before = elements[:start_index]
+        duration_before = sum([durationtools.Duration(x) for x in elements_before])
+        start_offset = durationtools.Offset(duration_before)
+        new_start_offset = original_start_offset + start_offset
+        return selected_elements, new_start_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -206,7 +213,8 @@ class Request(AbjadObject):
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        modification = 'result = request._rotate(target, {!r})'.format(index)    
+        #modification = 'result = request._rotate(target, {!r})'.format(index)    
+        modification = 'result = self._rotate(target, {!r})'.format(index)    
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result

@@ -43,16 +43,6 @@ class Selector(SymbolicTimespan, Request):
         result._score_specification = self.score_specification
         return result
 
-    def _slice_elements(self, elements, original_start_offset, expr):
-        assert isinstance(expr, slice)
-        start_index, stop_index, stride = expr.indices(len(elements))
-        selected_elements = elements[expr]
-        elements_before = elements[:start_index]
-        duration_before = sum([durationtools.Duration(x) for x in elements_before])
-        start_offset = durationtools.Offset(duration_before)
-        new_start_offset = original_start_offset + start_offset
-        return selected_elements, new_start_offset
-
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
@@ -69,11 +59,16 @@ class Selector(SymbolicTimespan, Request):
     ### PRIVATE METHODS ###
 
     def _apply_selector_modifications(self, elements, start_offset):
+        from experimental.tools import settingtools
         evaluation_context = {
-            'self': self, 
-            'Offset': durationtools.Offset, 
+            'Duration': durationtools.Duration,
             'NonreducedFraction': mathtools.NonreducedFraction,
+            'Offset': durationtools.Offset,
             'Ratio': mathtools.Ratio,
+            'RotationIndicator': settingtools.RotationIndicator,
+            'self': self,
+            'result': None,
+            'sequencetools': sequencetools,
             }
         for selector_modification in self._selector_modifications:
             selector_modification = selector_modification.replace('elements', repr(elements))
