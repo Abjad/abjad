@@ -23,10 +23,6 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.tools.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.modifications
-
-    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.tools.settingtools.RhythmCommand.RhythmCommand.RhythmCommand.offsets
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`

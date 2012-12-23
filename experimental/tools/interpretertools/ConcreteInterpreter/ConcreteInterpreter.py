@@ -769,7 +769,6 @@ class ConcreteInterpreter(Interpreter):
             single_context_setting.context_name,
             start_offset,
             stop_offset,
-            modifications=single_context_setting.modifications,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':

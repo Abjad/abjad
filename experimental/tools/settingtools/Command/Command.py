@@ -23,7 +23,7 @@ class Command(AbjadObject):
 
     ### INTIAILIZER ###
 
-    def __init__(self, request, context_name, start_offset, stop_offset, modifications=None, fresh=None):
+    def __init__(self, request, context_name, start_offset, stop_offset, fresh=None):
         from experimental.tools import symbolictimetools
         assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
@@ -35,8 +35,6 @@ class Command(AbjadObject):
         self._context_name = context_name
         self._start_offset = start_offset
         self._stop_offset = stop_offset
-        modifications = modifications or []
-        self._modifications = datastructuretools.ObjectInventory(modifications)
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -53,16 +51,6 @@ class Command(AbjadObject):
 
     def __lt__(self, expr):
         return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
-
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    @property
-    def _keyword_argument_name_value_strings(self):
-        result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'modifications=ObjectInventory([])' in result:
-            result = list(result)
-            result.remove('modifications=ObjectInventory([])')
-        return tuple(result)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -98,10 +86,6 @@ class Command(AbjadObject):
         Return boolean.
         '''
         return self._fresh
-
-    @property
-    def modifications(self):
-        return self._modifications
 
     @property
     def offsets(self):

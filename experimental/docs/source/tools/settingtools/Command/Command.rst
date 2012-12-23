@@ -17,8 +17,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.fresh
 
-.. autoattribute:: experimental.tools.settingtools.Command.Command.Command.modifications
-
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.offsets
 
 .. autoattribute:: experimental.tools.settingtools.Command.Command.Command.request

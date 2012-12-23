@@ -23,10 +23,6 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
 
-.. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.modifications
-
-    Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`
-
 .. autoattribute:: experimental.tools.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persist
 
     Inherited from :py:class:`settingtools.Setting <experimental.tools.settingtools.Setting.Setting.Setting>`

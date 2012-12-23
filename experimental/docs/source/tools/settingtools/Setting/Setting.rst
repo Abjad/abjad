@@ -15,8 +15,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.fresh
 
-.. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.modifications
-
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.persist
 
 .. autoattribute:: experimental.tools.settingtools.Setting.Setting.Setting.request

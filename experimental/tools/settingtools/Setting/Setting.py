@@ -18,7 +18,7 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, request, anchor, modifications=None, fresh=True, persist=True, truncate=None):
+    def __init__(self, attribute, request, anchor, fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None)))
@@ -28,8 +28,6 @@ class Setting(AbjadObject):
         self._attribute = attribute
         self._request = request
         self._anchor = anchor
-        modifications = modifications or []
-        self._modifications = datastructuretools.ObjectInventory(modifications)
         self._fresh = fresh
         self._persist = persist
         self._truncate = truncate
@@ -74,10 +72,6 @@ class Setting(AbjadObject):
         Return boolean.
         '''
         return self._fresh
-
-    @property
-    def modifications(self):
-        return self._modifications
 
     @property
     def persist(self):

@@ -23,10 +23,6 @@ Read-only Properties
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.modifications
-
-    Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
-
 .. autoattribute:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.offsets
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
