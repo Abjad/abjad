@@ -3,6 +3,7 @@ import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools
@@ -68,6 +69,32 @@ class Request(AbjadObject):
         return tuple(result)
 
     ### PRIVATE METHODS ###
+
+    def _apply_modifications(self, payload):
+        from experimental.tools import settingtools
+        payload_klasses = (
+            list, tuple,
+            rhythmmakertools.RhythmMaker,
+            settingtools.OffsetPositionedExpression,
+            )
+        assert isinstance(payload, payload_klasses), repr(payload)
+        evaluation_context = {
+            'Duration': durationtools.Duration,
+            'RotationIndicator': settingtools.RotationIndicator,
+            'request': self,
+            'result': None,
+            'sequencetools': sequencetools,
+            }
+        for modification in self.modifications:
+            assert 'target' in modification
+            target = copy.deepcopy(payload)
+            evaluation_context['target'] = target
+            exec(modification, evaluation_context)
+            if evaluation_context['result'] is None:
+                payload = target
+            else:
+                payload = evaluation_context['result']
+        return payload
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty modifications list.
