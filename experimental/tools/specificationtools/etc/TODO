@@ -43,7 +43,12 @@
 
 9.  Extend BackgroundMeasureSelector._get_offsets() to return 
     (start_offset, stop_offset, selected_objects) triple.
-    Then extend all selector _get_offsets() methods and do the same.
+    Then extend all selector _get_offsets() methods and do the same:
+        BeatSelector._get_offsets()
+        CounttimeComponentSelector._get_offsets()
+        DivisionSelector._get_offsets()
+        ScoreSelector._get_offsets() ?
+        SegmentSelector._get_offsets() ?
 
 10. Audit to get rid of string-based keys everywhere in interpreter.
 
