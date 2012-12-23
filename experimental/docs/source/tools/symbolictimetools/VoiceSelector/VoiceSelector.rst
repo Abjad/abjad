@@ -119,11 +119,11 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.partition_objects_by_ratio
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.partition_objects_by_ratio_of_durations
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector.repeat_to_length
 

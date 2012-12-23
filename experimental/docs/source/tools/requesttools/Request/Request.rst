@@ -18,6 +18,10 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.requesttools.Request.Request.Request.partition_objects_by_ratio
+
+.. automethod:: experimental.tools.requesttools.Request.Request.Request.partition_objects_by_ratio_of_durations
+
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.repeat_to_length
 
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.reverse
