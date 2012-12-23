@@ -43,20 +43,6 @@ class Selector(SymbolicTimespan, Request):
         result._score_specification = self.score_specification
         return result
 
-    def __getitem__(self, expr):
-        '''Return copy of request with appended modification.
-        '''
-        modification = 'result = target.__getitem__({!r})'.format(expr)
-        result = copy.deepcopy(self)
-        result.modifications.append(modification)
-        return result
-        # TODO: replace the implementation above with the implementation below. I think.
-        #selector_modification = 'self._slice_selected_objects(elements, start_offset, {!r})'
-        #selector_modification = selector_modification.format(expr)
-        #result = copy.deepcopy(self)
-        #result.selector_modifications.append(selector_modification)
-        #return result
-
     def _slice_elements(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
         start_index, stop_index, stride = expr.indices(len(elements))
@@ -71,13 +57,13 @@ class Selector(SymbolicTimespan, Request):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = SymbolicTimespan._keyword_argument_name_value_strings.fget(self)
+        result = Request._keyword_argument_name_value_strings.fget(self)
         if 'selector_modifications=ObjectInventory([])' in result:
             result = list(result)
             result.remove('selector_modifications=ObjectInventory([])')
-        if 'modifications=ObjectInventory([])' in result:
+        if 'timespan_modifications=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('modifications=ObjectInventory([])')
+            result.remove('timespan_modifications=ObjectInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -99,11 +85,10 @@ class Selector(SymbolicTimespan, Request):
         '''Do not show empty selector modifications list.
         '''
         filtered_result = []
-        result = SymbolicTimespan._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'selector_modifications=datastructuretools.ObjectInventory([])' in string and \
-                not 'modifications=datastructuretools.ObjectInventory([])' in string:
+            if not 'selector_modifications=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     
@@ -127,7 +112,8 @@ class Selector(SymbolicTimespan, Request):
             else:
                 return durationtools.Duration(x)
         element_durations = [duration_helper(x) for x in elements]
-        element_tokens = durationtools.durations_to_nonreduced_fractions_with_common_denominator(element_durations)
+        element_tokens = durationtools.durations_to_nonreduced_fractions_with_common_denominator(
+            element_durations)
         common_denominator = element_tokens[0].denominator
         element_tokens = [common_denominator * token for token in element_tokens]
         token_parts = sequencetools.partition_sequence_by_ratio_of_weights(element_tokens, ratio)
@@ -162,10 +148,6 @@ class Selector(SymbolicTimespan, Request):
         Return pair.
         '''
         return self.start_identifier, self.stop_identifier
-
-    @property
-    def modifications(self):
-        return self._modifications
 
     @property
     def selector_modifications(self):
@@ -243,36 +225,3 @@ class Selector(SymbolicTimespan, Request):
             selector.selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
-
-    def repeat_to_length(self, length):
-        '''Return copy of request with appended modification.
-        '''
-        assert mathtools.is_nonnegative_integer(length)
-        modification = 'result = sequencetools.repeat_sequence_to_length(target, {!r})'.format(length)
-        result = copy.deepcopy(self)
-        result.modifications.append(modification)
-        return result
-
-    def reverse(self):
-        '''Return copy of request with appended modification.
-        '''
-        modification = 'result = target.reverse()'
-        result = copy.deepcopy(self)
-        result.modifications.append(modification)
-        return result
-
-    def rotate(self, index):
-        '''Return copy of request with appended modification.
-        '''
-        from experimental.tools import settingtools
-        assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        modification = 'result = request._rotate(target, {!r})'.format(index)
-        result = copy.deepcopy(self)
-        result.modifications.append(modification)
-        return result
-
-    def _rotate(self, sequence, n):
-        if hasattr(sequence, 'rotate'):
-            return sequence.rotate(n)
-        else:
-            return sequencetools.rotate_sequence(sequence, n)

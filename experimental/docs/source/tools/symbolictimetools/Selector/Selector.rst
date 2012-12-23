@@ -39,6 +39,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.modifications
 
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -101,9 +103,15 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.repeat_to_length
 
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.reverse
 
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.rotate
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.scale
 
@@ -209,6 +217,8 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.__getitem__
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.Selector.Selector.Selector.__gt__
 

@@ -43,7 +43,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.modifications
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.offsets
 
@@ -123,15 +123,15 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.repeat_to_length
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.reverse
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.rotate
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.scale
 
@@ -238,7 +238,7 @@ Special Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.__getitem__
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.__gt__
 

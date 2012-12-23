@@ -155,3 +155,5 @@
     This will help conform to the Timespan interface.
 
 35. Remove SymbolicTimeObject.
+
+36. Possibly remove Selector.selector_modifications in favor of Request.modifications.

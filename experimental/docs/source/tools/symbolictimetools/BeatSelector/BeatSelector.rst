@@ -43,7 +43,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.modifications
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.offsets
 
@@ -129,15 +129,15 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.repeat_to_length
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.reverse
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.rotate
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.scale
 
@@ -244,7 +244,7 @@ Special Methods
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.__getitem__
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.__gt__
 

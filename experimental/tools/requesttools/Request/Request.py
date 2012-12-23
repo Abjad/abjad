@@ -50,6 +50,12 @@ class Request(AbjadObject):
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
+        # TODO: replace the implementation above with the implementation below. I think.
+        #selector_modification = 'self._slice_selected_objects(elements, start_offset, {!r})'
+        #selector_modification = selector_modification.format(expr)
+        #result = copy.deepcopy(self)
+        #result.selector_modifications.append(selector_modification)
+        #return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
@@ -73,6 +79,12 @@ class Request(AbjadObject):
             if not 'modifications=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
+
+    def _rotate(self, sequence, n):
+        if hasattr(sequence, 'rotate'):
+            return sequence.rotate(n)
+        else:
+            return sequencetools.rotate_sequence(sequence, n)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -108,9 +120,3 @@ class Request(AbjadObject):
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
-
-    def _rotate(self, sequence, n):
-        if hasattr(sequence, 'rotate'):
-            return sequence.rotate(n)
-        else:
-            return sequencetools.rotate_sequence(sequence, n)

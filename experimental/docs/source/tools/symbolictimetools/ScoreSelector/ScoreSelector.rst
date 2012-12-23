@@ -43,7 +43,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.modifications
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.offsets
 
@@ -125,15 +125,15 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.repeat_to_length
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.reverse
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.rotate
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.scale
 
@@ -240,7 +240,7 @@ Special Methods
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__getitem__
 
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.__gt__
 
