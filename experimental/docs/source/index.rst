@@ -228,7 +228,6 @@ Unstable packages (load manually)
 
    tools/requesttools/apply_request_transforms
    tools/requesttools/expr_to_request
-   tools/requesttools/set_transforms_on_request
 
 :py:mod:`segmenttools <('abjad.tools.', 'abjad.demos.')segmenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

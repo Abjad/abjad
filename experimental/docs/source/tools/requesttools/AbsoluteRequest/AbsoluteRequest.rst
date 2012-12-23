@@ -9,14 +9,6 @@ requesttools.AbsoluteRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.count
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
-.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.index
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.modifications
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`

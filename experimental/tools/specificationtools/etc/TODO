@@ -148,10 +148,10 @@
 
 32. Rename settingtools.Command to something better. Perhaps OffsetResolved(Single/Multiple)Setting.
 
-33. Merge requesttools.apply_request_transforms() into
-    ConcreteInterpreter.apply_source_transforms_to_target().
-    Then remove from ConcreteInterpreter and implement on Request or Selector or on a superclass of both.
+33. Migrate requesttools.apply_request_transforms() to a method bound to Request or Selector or both.
 
 34. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
+
+35. Remove SymbolicTimeObject.

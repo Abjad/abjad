@@ -9,14 +9,6 @@ requesttools.StatalServerRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.count
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.index
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.modifications
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`

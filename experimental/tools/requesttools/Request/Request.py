@@ -25,13 +25,9 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, modifications=None, index=None, count=None):
-        assert isinstance(index, (int, type(None))), repr(index)
-        assert isinstance(count, (int, type(None))), repr(count)
+    def __init__(self, modifications=None):
         modifications = modifications or []
         self._modifications = datastructuretools.ObjectInventory(modifications)
-        self._index = index
-        self._count = count
 
     ### SPECIAL METHODS ###
 
@@ -79,14 +75,6 @@ class Request(AbjadObject):
         return filtered_result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def count(self):
-        return self._count
-
-    @property
-    def index(self):
-        return self._index
 
     @property
     def modifications(self):

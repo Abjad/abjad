@@ -9,10 +9,6 @@ requesttools.Request
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.count
-
-.. autoattribute:: experimental.tools.requesttools.Request.Request.Request.index
-
 .. autoattribute:: experimental.tools.requesttools.Request.Request.Request.modifications
 
 .. autoattribute:: experimental.tools.requesttools.Request.Request.Request.storage_format

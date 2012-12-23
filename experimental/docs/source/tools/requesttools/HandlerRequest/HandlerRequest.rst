@@ -9,15 +9,7 @@ requesttools.HandlerRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.count
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.handler
-
-.. autoattribute:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.index
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.modifications
 
