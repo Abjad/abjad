@@ -142,3 +142,6 @@
 
 30. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
+
+31. Call self._apply_selector_modifications(selected_objects, start_offset) from within
+    every selector _get_offsets() implementation.
