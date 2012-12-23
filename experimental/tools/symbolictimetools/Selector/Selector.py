@@ -5,10 +5,11 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
+from experimental.tools.requesttools.Request import Request
 from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimespan
 
 
-class Selector(SymbolicTimespan):
+class Selector(SymbolicTimespan, Request):
     r'''.. versionadded:: 1.0
 
     Abstract base class from which concrete selectors inherit.
@@ -27,14 +28,13 @@ class Selector(SymbolicTimespan):
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
+        Request.__init__(self, modifications=modifications)
         self._anchor = anchor
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier
         self._time_relation = time_relation
         selector_modifications = selector_modifications or []
         self._selector_modifications = datastructuretools.ObjectInventory(selector_modifications)
-        modifications = modifications or []
-        self._modifications = datastructuretools.ObjectInventory(modifications)
 
     ### SPECIAL METHODS ###
 
