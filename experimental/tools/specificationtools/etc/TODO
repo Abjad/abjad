@@ -151,3 +151,7 @@
 33. Merge requesttools.apply_request_transforms() into
     ConcreteInterpreter.apply_source_transforms_to_target().
     Then remove from ConcreteInterpreter and implement on Request or Selector or on a superclass of both.
+
+34. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
+    Replace with OffsetPositionedExpression.set_offsets() or similar.
+    This will help conform to the Timespan interface.

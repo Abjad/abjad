@@ -49,21 +49,21 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
-    def apply_source_transforms_to_target(self, source, target):
-        assert hasattr(source, 'modifications')
-        if hasattr(source, 'modifications'):
-            evaluation_context = {
-                'Duration': durationtools.Duration,
-                'RotationIndicator': settingtools.RotationIndicator,
-                'request': source,
-                'target': target,
-                }
-            for modification in source.modifications:
-                assert 'target' in modification
-                if '=' in modification:
-                    exec(modification, evaluation_context)
-                else:
-                    eval(modification, evaluation_context)
+#    def apply_source_transforms_to_target(self, source, target):
+#        assert hasattr(source, 'modifications')
+#        if hasattr(source, 'modifications'):
+#            evaluation_context = {
+#                'Duration': durationtools.Duration,
+#                'RotationIndicator': settingtools.RotationIndicator,
+#                'request': source,
+#                'target': target,
+#                }
+#            for modification in source.modifications:
+#                assert 'target' in modification
+#                if '=' in modification:
+#                    exec(modification, evaluation_context)
+#                else:
+#                    eval(modification, evaluation_context)
 
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
@@ -171,7 +171,7 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
-        self.apply_source_transforms_to_target(rhythm_material_request, result)
+        result = requesttools.apply_request_transforms(rhythm_material_request, result)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
@@ -285,7 +285,8 @@ class ConcreteInterpreter(Interpreter):
             trimmed_division_region_expressions)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        self.apply_source_transforms_to_target(division_selector, trimmed_division_region_expressions)
+        trimmed_division_region_expressions = requesttools.apply_request_transforms(
+            division_selector, trimmed_division_region_expressions)
         trimmed_division_region_expressions.sort() 
         return trimmed_division_region_expressions
 
