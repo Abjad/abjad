@@ -71,6 +71,7 @@ class Selector(SymbolicTimespan, Request):
             'sequencetools': sequencetools,
             }
         for selector_modification in self._selector_modifications:
+            assert 'elements' in selector_modification
             selector_modification = selector_modification.replace('elements', repr(elements))
             selector_modification = selector_modification.replace('start_offset', repr(start_offset))
             elements, start_offset = eval(selector_modification, evaluation_context)

@@ -47,7 +47,7 @@ class Request(AbjadObject):
     def __getitem__(self, expr):
         '''Return copy of request with appended modification.
         '''
-        modification = 'result = target.__getitem__({!r})'.format(expr)
+        modification = 'result = elements.__getitem__({!r})'.format(expr)
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
@@ -78,19 +78,16 @@ class Request(AbjadObject):
             'Offset': durationtools.Offset,
             'Ratio': mathtools.Ratio,
             'RotationIndicator': settingtools.RotationIndicator,
+            'elements': elements,
             'self': self,
             'result': None,
             'sequencetools': sequencetools,
             }
         for modification in self.modifications:
-            assert 'target' in modification
-            target = copy.deepcopy(elements)
-            evaluation_context['target'] = target
+            assert 'elements' in modification
+            evaluation_context['elements'] = copy.deepcopy(elements)
             exec(modification, evaluation_context)
-            if evaluation_context['result'] is None:
-                elements = target
-            else:
-                elements = evaluation_context['result']
+            elements = evaluation_context['result'] or evaluation_context['elements']
         return elements, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
@@ -195,7 +192,7 @@ class Request(AbjadObject):
         '''Return copy of request with appended modification.
         '''
         assert mathtools.is_nonnegative_integer(length)
-        modification = 'result = sequencetools.repeat_sequence_to_length(target, {!r})'.format(length)
+        modification = 'result = sequencetools.repeat_sequence_to_length(elements, {!r})'.format(length)
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
@@ -203,7 +200,7 @@ class Request(AbjadObject):
     def reverse(self):
         '''Return copy of request with appended modification.
         '''
-        modification = 'result = target.reverse()'
+        modification = 'result = elements.reverse()'
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
@@ -213,8 +210,7 @@ class Request(AbjadObject):
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        #modification = 'result = request._rotate(target, {!r})'.format(index)    
-        modification = 'result = self._rotate(target, {!r})'.format(index)    
+        modification = 'result = self._rotate(elements, {!r})'.format(index)    
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
