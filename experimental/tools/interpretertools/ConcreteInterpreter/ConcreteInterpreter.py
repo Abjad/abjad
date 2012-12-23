@@ -49,22 +49,6 @@ class ConcreteInterpreter(Interpreter):
 
     ### PUBLIC METHODS ###
 
-#    def apply_source_transforms_to_target(self, source, target):
-#        assert hasattr(source, 'modifications')
-#        if hasattr(source, 'modifications'):
-#            evaluation_context = {
-#                'Duration': durationtools.Duration,
-#                'RotationIndicator': settingtools.RotationIndicator,
-#                'request': source,
-#                'target': target,
-#                }
-#            for modification in source.modifications:
-#                assert 'target' in modification
-#                if '=' in modification:
-#                    exec(modification, evaluation_context)
-#                else:
-#                    eval(modification, evaluation_context)
-
     def attribute_to_command_klass(self, attribute):
         if attribute == 'divisions':
             return settingtools.DivisionCommand
