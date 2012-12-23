@@ -54,7 +54,7 @@ class Selector(SymbolicTimespan):
         #selector_modification = 'self._slice_selected_objects(elements, start_offset, {!r})'
         #selector_modification = selector_modification.format(expr)
         #result = copy.deepcopy(self)
-        #result._selector_modifications.append(selector_modification)
+        #result.selector_modifications.append(selector_modification)
         #return result
 
     def _slice_elements(self, elements, original_start_offset, expr):
@@ -228,7 +228,7 @@ class Selector(SymbolicTimespan):
             selector_modification = \
                 'self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
-            selector._selector_modifications.append(selector_modification)
+            selector.selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
 
@@ -240,7 +240,7 @@ class Selector(SymbolicTimespan):
             selector_modification = \
                 'self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
-            selector._selector_modifications.append(selector_modification)
+            selector.selector_modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
 

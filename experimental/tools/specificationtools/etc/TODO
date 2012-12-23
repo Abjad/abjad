@@ -134,6 +134,7 @@
     So perhaps there's the idea of a ModificationCarrier somewhere in the object model.
 
 28. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+    Remove Specification.__deepcopy__ override afterwards.
 
 29. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
     to red_segment.select_background_measures('Voice 1')[:1] for consistency.
@@ -144,6 +145,3 @@
 
 31. Call self._apply_selector_modifications(selected_objects, start_offset) from within
     every selector _get_offsets() implementation.
-
-32. Change private selector._selector_modifications.append(selector_modification)
-    to public selector.selector_modifications.append(selector_modification).
