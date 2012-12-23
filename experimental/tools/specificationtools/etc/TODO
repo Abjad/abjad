@@ -125,7 +125,7 @@
 25. Eventually add something like offset modifications to SymbolicOffset class.
     Modification methods include SymbolicOffset.translate() and possibly others.
 
-26. Eventually remove the sundry interpreter calls to requesttools.apply_request_transforms().
+26. Eventually remove the sundry interpreter calls to requesttools.apply_modifications().
     There should be no reason for paired calls coming one after the other.
     There's got to be some way to completely centralize modifier application.
 
@@ -148,7 +148,7 @@
 
 32. Rename settingtools.Command to something better. Perhaps OffsetResolved(Single/Multiple)Setting.
 
-33. Migrate requesttools.apply_request_transforms() to a method bound to Request or Selector or both.
+33. Migrate requesttools.apply_modifications() to a method bound to Request or Selector or both.
 
 34. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.

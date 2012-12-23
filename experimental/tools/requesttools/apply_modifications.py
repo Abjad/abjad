@@ -4,7 +4,7 @@ from abjad.tools import rhythmmakertools
 from abjad.tools import sequencetools
 
 
-def apply_request_transforms(request, payload):
+def apply_modifications(request, payload):
     r'''.. versionadded:: 1.0 
     
     Apply `request` modifications to `payload`.

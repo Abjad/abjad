@@ -226,7 +226,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/requesttools/apply_request_transforms
+   tools/requesttools/apply_modifications
    tools/requesttools/expr_to_request
 
 :py:mod:`segmenttools <('abjad.tools.', 'abjad.demos.')segmenttools>`
