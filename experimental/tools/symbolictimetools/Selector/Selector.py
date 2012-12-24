@@ -22,7 +22,7 @@ class Selector(SymbolicTimespan, Request):
     ### INTIALIZER ###
 
     def __init__(self, anchor=None, start_identifier=None, stop_identifier=None, 
-        time_relation=None, timespan_modifications=None, selector_modifications=None, modifications=None):
+        time_relation=None, timespan_modifications=None, modifications=None):
         from experimental.tools import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
@@ -33,8 +33,6 @@ class Selector(SymbolicTimespan, Request):
         self._start_identifier = start_identifier
         self._stop_identifier = stop_identifier
         self._time_relation = time_relation
-        selector_modifications = selector_modifications or []
-        self._selector_modifications = datastructuretools.ObjectInventory(selector_modifications)
 
     ### SPECIAL METHODS ###
 
@@ -48,9 +46,6 @@ class Selector(SymbolicTimespan, Request):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Request._keyword_argument_name_value_strings.fget(self)
-        if 'selector_modifications=ObjectInventory([])' in result:
-            result = list(result)
-            result.remove('selector_modifications=ObjectInventory([])')
         if 'timespan_modifications=ObjectInventory([])' in result:
             result = list(result)
             result.remove('timespan_modifications=ObjectInventory([])')
@@ -61,13 +56,8 @@ class Selector(SymbolicTimespan, Request):
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty selector modifications list.
         '''
-        filtered_result = []
-        result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
+        return Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
-        for string in result:
-            if not 'selector_modifications=datastructuretools.ObjectInventory([])' in string:
-                filtered_result.append(string)
-        return filtered_result
     
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
@@ -89,10 +79,6 @@ class Selector(SymbolicTimespan, Request):
         Return pair.
         '''
         return self.start_identifier, self.stop_identifier
-
-    @property
-    def selector_modifications(self):
-        return self._selector_modifications
 
     @property
     def start_identifier(self):

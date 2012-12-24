@@ -53,10 +53,6 @@ Read-only Properties
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimeObject <experimental.tools.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.selector_modifications
-
-    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
-
 .. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.start_identifier
 
     Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`

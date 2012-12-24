@@ -49,8 +49,6 @@ Read-only Properties
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimeObject <experimental.tools.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.selector_modifications
-
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_identifier
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_offset

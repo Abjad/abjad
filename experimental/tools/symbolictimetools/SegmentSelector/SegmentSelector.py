@@ -77,7 +77,7 @@ class SegmentSelector(Selector):
 
     def __init__(self, anchor=None, 
         start_identifier=None, stop_identifier=None, time_relation=None, 
-        timespan_modifications=None, selector_modifications=None, modifications=None):
+        timespan_modifications=None, modifications=None):
         if isinstance(stop_identifier, tuple):
             assert len(stop_identifier) == 2
             stop_identifier = self._make_identifier_expression(*stop_identifier)
@@ -87,7 +87,6 @@ class SegmentSelector(Selector):
             stop_identifier=stop_identifier,
             time_relation=time_relation,
             timespan_modifications=timespan_modifications,
-            selector_modifications=selector_modifications,
             modifications=modifications)
 
     ### PRIVATE METHODS ###

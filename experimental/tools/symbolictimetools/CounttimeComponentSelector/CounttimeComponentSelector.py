@@ -75,7 +75,7 @@ class CounttimeComponentSelector(VoiceSelector):
 
     def __init__(self, anchor=None, klass=None, predicate=None, 
         start_identifier=None, stop_identifier=None, voice_name=None, time_relation=None,
-        timespan_modifications=None, selector_modifications=None, modifications=None):
+        timespan_modifications=None, modifications=None):
         from experimental.tools import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
@@ -83,7 +83,6 @@ class CounttimeComponentSelector(VoiceSelector):
             anchor=anchor, start_identifier=start_identifier, stop_identifier=stop_identifier, 
             voice_name=voice_name, time_relation=time_relation, 
             timespan_modifications=timespan_modifications, 
-            selector_modifications=selector_modifications,
             modifications=modifications)
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
