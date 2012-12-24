@@ -66,15 +66,17 @@ class Selector(SymbolicTimespan, Request):
             'Offset': durationtools.Offset,
             'Ratio': mathtools.Ratio,
             'RotationIndicator': settingtools.RotationIndicator,
+            'elements': elements,
             'self': self,
             'result': None,
             'sequencetools': sequencetools,
             }
         for selector_modification in self._selector_modifications:
             assert 'elements' in selector_modification
-            selector_modification = selector_modification.replace('elements', repr(elements))
+            evaluation_context['elements'] = copy.deepcopy(elements)
             selector_modification = selector_modification.replace('start_offset', repr(start_offset))
-            elements, start_offset = eval(selector_modification, evaluation_context)
+            exec(selector_modification, evaluation_context)
+            elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):

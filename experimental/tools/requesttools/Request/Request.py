@@ -86,6 +86,7 @@ class Request(AbjadObject):
         for modification in self.modifications:
             assert 'elements' in modification
             evaluation_context['elements'] = copy.deepcopy(elements)
+            modification = modification.replace('start_offset', repr(start_offset))
             exec(modification, evaluation_context)
             elements = evaluation_context['result'] or evaluation_context['elements']
         return elements, start_offset
@@ -169,10 +170,9 @@ class Request(AbjadObject):
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             selector_modification = \
-                'self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
+                'result = self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector.selector_modifications.append(selector_modification)
-            #selector.modifications.append(selector_modification)
             result.append(selector)
         return tuple(result)
 
@@ -182,7 +182,7 @@ class Request(AbjadObject):
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
             selector_modification = \
-                'self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
+                'result = self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             selector_modification = selector_modification.format(ratio, part)
             selector.selector_modifications.append(selector_modification)
             result.append(selector)
