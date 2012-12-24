@@ -67,8 +67,7 @@ class ConcreteInterpreter(Interpreter):
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
             raise exceptions.CyclicSpecificationError(absolute_request)
-        start_offset = segment_specification.start_offset # new line
-        time_signatures, start_offset = selector._apply_modifications(absolute_request.payload, start_offset)
+        time_signatures, dummy = selector._apply_modifications(absolute_request.payload, None)
         return time_signatures
 
     def calculate_score_and_segment_durations(self):

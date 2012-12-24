@@ -70,11 +70,12 @@ class Selector(SymbolicTimespan, Request):
             'self': self,
             'result': None,
             'sequencetools': sequencetools,
+            'start_offset': start_offset,
             }
         for selector_modification in self._selector_modifications:
             assert 'elements' in selector_modification
             evaluation_context['elements'] = copy.deepcopy(elements)
-            selector_modification = selector_modification.replace('start_offset', repr(start_offset))
+            evaluation_context['start_offset'] = start_offset
             exec(selector_modification, evaluation_context)
             elements, start_offset = evaluation_context['result']
         return elements, start_offset

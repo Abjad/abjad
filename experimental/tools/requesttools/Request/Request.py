@@ -47,16 +47,16 @@ class Request(AbjadObject):
     def __getitem__(self, expr):
         '''Return copy of request with appended modification.
         '''
-        modification = 'result = elements.__getitem__({!r})'.format(expr)
+#        modification = 'result = elements.__getitem__({!r})'.format(expr)
+#        result = copy.deepcopy(self)
+#        result.modifications.append(modification)
+#        return result
+        # TODO: replace the implementation above with the implementation below. I think.
+        modification = 'result = self._slice_selected_objects(elements, start_offset, {!r})'
+        modification = modification.format(expr)
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
-        # TODO: replace the implementation above with the implementation below. I think.
-        #selector_modification = 'self._slice_selected_objects(elements, start_offset, {!r})'
-        #selector_modification = selector_modification.format(expr)
-        #result = copy.deepcopy(self)
-        #result.selector_modifications.append(selector_modification)
-        #return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 
@@ -80,15 +80,16 @@ class Request(AbjadObject):
             'RotationIndicator': settingtools.RotationIndicator,
             'elements': elements,
             'self': self,
+            'start_offset': start_offset,
             'result': None,
             'sequencetools': sequencetools,
             }
         for modification in self.modifications:
             assert 'elements' in modification
             evaluation_context['elements'] = copy.deepcopy(elements)
-            modification = modification.replace('start_offset', repr(start_offset))
+            evaluation_context['start_offset'] = start_offset
             exec(modification, evaluation_context)
-            elements = evaluation_context['result'] or evaluation_context['elements']
+            elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
@@ -138,11 +139,27 @@ class Request(AbjadObject):
         new_start_offset = original_start_offset + duration_before
         return selected_part, new_start_offset
 
-    def _rotate(self, sequence, n):
-        if hasattr(sequence, 'rotate'):
-            return sequence.rotate(n)
+    def _repeat_to_length(self, elements, length, original_start_offset):
+        elements = sequencetools.repeat_sequence_to_length(elements, length)
+        new_start_offset = original_start_offset
+        return elements, new_start_offset
+
+    def _reverse(self, elements, original_start_offset):
+        if hasattr(elements, 'reverse'):
+            result = elements.reverse()
+            elements = result or elements
         else:
-            return sequencetools.rotate_sequence(sequence, n)
+            raise Exception
+        new_start_offset = original_start_offset
+        return elements, new_start_offset
+
+    def _rotate(self, elements, n, original_start_offset):
+        if hasattr(elements, 'rotate'):
+            elements.rotate(n)
+        else:
+            elements = sequencetools.rotate_sequence(elements, n)
+        new_start_offset = original_start_offset
+        return elements, new_start_offset
 
     def _slice_selected_objects(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
@@ -151,7 +168,10 @@ class Request(AbjadObject):
         elements_before = elements[:start_index]
         duration_before = sum([durationtools.Duration(x) for x in elements_before])
         start_offset = durationtools.Offset(duration_before)
-        new_start_offset = original_start_offset + start_offset
+        if original_start_offset is not None:
+            new_start_offset = original_start_offset + start_offset
+        else:
+            new_start_offset = None
         return selected_elements, new_start_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -192,7 +212,7 @@ class Request(AbjadObject):
         '''Return copy of request with appended modification.
         '''
         assert mathtools.is_nonnegative_integer(length)
-        modification = 'result = sequencetools.repeat_sequence_to_length(elements, {!r})'.format(length)
+        modification = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
@@ -200,7 +220,7 @@ class Request(AbjadObject):
     def reverse(self):
         '''Return copy of request with appended modification.
         '''
-        modification = 'result = elements.reverse()'
+        modification = 'result = self._reverse(elements, start_offset)'
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
@@ -210,7 +230,7 @@ class Request(AbjadObject):
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        modification = 'result = self._rotate(elements, {!r})'.format(index)    
+        modification = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
         result = copy.deepcopy(self)
         result.modifications.append(modification)
         return result
