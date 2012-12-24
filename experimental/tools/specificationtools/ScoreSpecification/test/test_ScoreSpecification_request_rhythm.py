@@ -14,7 +14,7 @@ def test_ScoreSpecification_request_rhythm_01():
     maker = rhythmmakertools.TaleaRhythmMaker([1, 2, 3], 32)
     maker.beam_cells_together = True
     red_segment.set_rhythm(maker, contexts=['Voice 1'])
-    first_division = red_segment.select_divisions('Voice 1', 0, 1)
+    first_division = red_segment.select_divisions('Voice 1')[:1]
     red_rhythm_cell = first_division.select_leaves('Voice 1')
     red_rhythm_cell = red_rhythm_cell.reverse()
     red_segment.set_rhythm(red_rhythm_cell, contexts=['Voice 2'])

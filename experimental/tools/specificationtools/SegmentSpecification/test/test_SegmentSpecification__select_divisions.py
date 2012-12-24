@@ -55,7 +55,7 @@ def test_SegmentSpecification__select_divisions_03():
     red_segment.set_time_signatures(4 * [(2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.thirty_seconds)
-    antepenultimate_division = red_segment.select_divisions('Voice 1', -3, -2)
+    antepenultimate_division = red_segment.select_divisions('Voice 1')[-3:-2]
     antepenultimate_division.set_rhythm(library.sixteenths)
     score = score_specification.interpret()
 

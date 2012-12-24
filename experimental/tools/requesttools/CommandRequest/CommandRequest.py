@@ -18,7 +18,7 @@ class CommandRequest(Request):
 
     ::
 
-        >>> measure = red_segment.select_background_measures('Voice 1', 4, 5)
+        >>> measure = red_segment.select_background_measures('Voice 1')[4:5]
         >>> command_request = measure.start_offset.request_division_command('Voice 1')
 
     ::
@@ -30,9 +30,10 @@ class CommandRequest(Request):
             symbolictimetools.SymbolicOffset(
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
-                    start_identifier=4,
-                    stop_identifier=5,
-                    voice_name='Voice 1'
+                    voice_name='Voice 1',
+                    modifications=datastructuretools.ObjectInventory([
+                        'result = self._slice_selected_objects(elements, start_offset, slice(4, 5, None))'
+                        ])
                     )
                 )
             )
@@ -88,9 +89,10 @@ class CommandRequest(Request):
             symbolictimetools.SymbolicOffset(
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
-                    start_identifier=4,
-                    stop_identifier=5,
-                    voice_name='Voice 1'
+                    voice_name='Voice 1',
+                    modifications=datastructuretools.ObjectInventory([
+                        'result = self._slice_selected_objects(elements, start_offset, slice(4, 5, None))'
+                        ])
                     )
                 )
 

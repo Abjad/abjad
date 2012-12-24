@@ -304,18 +304,17 @@ class SymbolicTimespan(Timespan):
         result.timespan_modifications.append(timespan_modification)
         return result
 
-    def select_background_measures(self, voice_name, start=None, stop=None, time_relation=None):
-        '''Select the first five voice ``1`` background measures 
+    def select_background_measures(self, voice_name, time_relation=None):
+        '''Select voice ``1`` background measures 
         that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_background_measures('Voice 1', stop=5)
+            >>> selector = red_segment.select_background_measures('Voice 1')
 
         ::
 
             >>> z(selector)
             symbolictimetools.BackgroundMeasureSelector(
                 anchor='red',
-                stop_identifier=5,
                 voice_name='Voice 1'
                 )
 
@@ -324,8 +323,6 @@ class SymbolicTimespan(Timespan):
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.BackgroundMeasureSelector(
             anchor=self._timespan_abbreviation,
-            start_identifier=start, 
-            stop_identifier=stop, 
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -360,18 +357,16 @@ class SymbolicTimespan(Timespan):
         selector._score_specification = self.score_specification
         return selector
 
-    def select_divisions(self, voice_name, start=None, stop=None, time_relation=None):
-        '''Select the first five voice ``1`` divisions 
-        that start during segment ``'red'``::
+    def select_divisions(self, voice_name, time_relation=None):
+        '''Select voice ``1`` divisions that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_divisions('Voice 1', stop=5)
+            >>> selector = red_segment.select_divisions('Voice 1')
 
         ::
             
             >>> z(selector)
             symbolictimetools.DivisionSelector(
                 anchor='red',
-                stop_identifier=5,
                 voice_name='Voice 1'
                 )
 
@@ -380,8 +375,6 @@ class SymbolicTimespan(Timespan):
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.DivisionSelector(
             anchor=self._timespan_abbreviation,
-            start_identifier=start, 
-            stop_identifier=stop, 
             voice_name=voice_name,
             time_relation=time_relation
             )

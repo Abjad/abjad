@@ -147,9 +147,9 @@ def test_schematic_examples__X_series_04():
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     divisions = red_segment.divide_by_ratio([1, 1, 1])
     red_segment.set_divisions(divisions)
-    left = red_segment.select_divisions('Voice 1', 0, 1)
-    middle = red_segment.select_divisions('Voice 1', 1, 2)
-    right = red_segment.select_divisions('Voice 1', 2, 3)
+    left = red_segment.select_divisions('Voice 1')[:1]
+    middle = red_segment.select_divisions('Voice 1')[1:2]
+    right = red_segment.select_divisions('Voice 1')[2:3]
     left.set_rhythm(library.equal_divisions(16), contexts=['Voice 1'])
     middle.set_rhythm(library.equal_divisions(8), contexts=['Voice 1'])
     right.set_rhythm(library.equal_divisions(4), contexts=['Voice 1'])
@@ -196,7 +196,7 @@ def test_schematic_examples__X_series_05():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. ] }", contexts=['Voice 1'])
-    first_division = red_segment.select_divisions('Voice 1', 0, 1)
+    first_division = red_segment.select_divisions('Voice 1')[:1]
     voice_1_rhythmic_cell = first_division.select_leaves('Voice 1')
     indicator = settingtools.RotationIndicator(Duration(-1, 32), fracture_spanners=False)
     red_segment.set_rhythm(voice_1_rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
@@ -232,7 +232,7 @@ def test_schematic_examples__X_series_06():
     red_segment.set_time_signatures([(4, 8), (3, 8)])
     red_segment.set_divisions([(10, 32)])
     red_segment.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
-    first_division = red_segment.select_divisions('Voice 1', 0, 1)
+    first_division = red_segment.select_divisions('Voice 1')[:1]
     rhythmic_cell = first_division.select_leaves('Voice 1')
     indicator = settingtools.RotationIndicator(-1, fracture_spanners=False)
     red_segment.set_rhythm(rhythmic_cell.rotate(indicator), contexts=['Voice 2'])
@@ -274,8 +274,8 @@ def test_schematic_examples__X_series_07():
     score_specification = specificationtools.ScoreSpecification(score_template)
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures([(4, 8), (3, 8)])
-    first_measure = red_segment.select_background_measures('Voice 1', 0, 1)
-    second_measure = red_segment.select_background_measures('Voice 1', 1, 2)
+    first_measure = red_segment.select_background_measures('Voice 1')[:1]
+    second_measure = red_segment.select_background_measures('Voice 1')[1:2]
     first_measure.set_rhythm("{ c'32 [ c'16 c'16. c'8 ] }", contexts=['Voice 1'])
     cell = first_measure.select_leaves('Voice 1')
     second_measure.set_rhythm(cell.rotate(Duration(-1, 32)), contexts=['Voice 1'])

@@ -11,7 +11,7 @@ def test_multiple_segment_solo__nonpersistent_overlapping_division_selectors_01(
     red_segment = score_specification.append_segment(name='red')
     red_segment.set_time_signatures(4 * [(3, 16)])
     red_segment.set_divisions([(1, 16)], truncate=True)
-    middle_two_measures = red_segment.select_background_measures('Voice 1', 1, 3)
+    middle_two_measures = red_segment.select_background_measures('Voice 1')[1:3]
     middle_two_measures.set_divisions([(2, 16)], persist=False)
     red_segment.set_rhythm(library.thirty_seconds)
     blue_segment = score_specification.append_segment(name='blue')

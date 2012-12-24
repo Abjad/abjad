@@ -94,7 +94,7 @@ def test_single_segment_solo__rhythm_context_cascade_05():
     red_segment.set_time_signatures([(4, 8), (3, 8), (2, 8)])
     red_segment.set_divisions([(3, 16)])
     red_segment.set_rhythm(library.sixteenths)
-    selector = red_segment.select_background_measures('Voice 1', 1, 2)
+    selector = red_segment.select_background_measures('Voice 1')[1:2]
     selector.set_rhythm(library.thirty_seconds, contexts=['Voice 1'])
     score = score_specification.interpret()
 
