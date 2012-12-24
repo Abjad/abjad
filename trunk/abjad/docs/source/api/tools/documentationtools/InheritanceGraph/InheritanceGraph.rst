@@ -9,6 +9,8 @@ documentationtools.InheritanceGraph
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.addresses
+
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.graphviz_format
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.root_class
@@ -140,8 +142,6 @@ Special Methods
     Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__repr__
-
-    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__setitem__
 

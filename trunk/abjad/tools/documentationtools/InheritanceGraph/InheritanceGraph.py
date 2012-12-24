@@ -1,6 +1,8 @@
+import importlib
 import inspect
 import types
-from abjad.tools.datastructuretools import ImmutableDictionary
+from abjad.tools import abctools
+from abjad.tools.datastructuretools.ImmutableDictionary import ImmutableDictionary
 
 
 class InheritanceGraph(ImmutableDictionary):
@@ -63,66 +65,110 @@ class InheritanceGraph(ImmutableDictionary):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_root_class')
+    __slots__ = ('_addresses', '_root_class')
 
     # TODO: what default should this take?
     #_default_positional_input_arguments = ()
 
     ### INITIALIZER ###
 
-    def __init__(self, args, root_class=None):
-        assert 0 < len(args)
-        assert isinstance(root_class, (types.TypeType, type(None)))
-        self._root_class = root_class
+    def __init__(self, addresses, root_class=None):
 
+        # cache args as a tuple of strings or None in self.addresses,
+        # to make _default_positional_input_arguments happy
         klasses = []
-        for x in args:
+        cached_addresses = []
+        assert 0 < len(addresses)
+        for x in addresses:
             if isinstance(x, types.TypeType):
                 klasses.append(x)
-            elif type(x) is types.ModuleType:
-                klasses.extend([klass for klass in x.__dict__.values() if isinstance(klass, types.TypeType)])
-            else:
+                address = (x.__module__, x.__name__)
+            elif isinstance(x, types.ModuleType):
+                klasses.extend(klass for klass in x.__dict__.values()
+                    if isinstance(klass, types.TypeType))
+                address = (x.__name__,)
+            elif isinstance(x, types.InstanceType):
                 klasses.append(x.__class__)
+                address = (x.__class__.__module__, x.__class__.__name__)
+            elif isinstance(x, tuple):
+                assert len(x) in (1, 2)
+                assert all(isinstance(y, str) for y in x)
+                if len(x) == 1:
+                    module_name, class_name = x[0], None
+                else:
+                    module_name, class_name = x
+                module = importlib.import_module(module_name)
+                if class_name:
+                    klasses.append(getattr(module, class_name))
+                else:
+                    klasses.extend(klass for klass in module.__dict__.values()
+                        if isinstance(klass, types.TypeType))
+                address = x
+            else:
+                raise ValueError
+            cached_addresses.append(address)
+        self._addresses = tuple(cached_addresses)
 
-        if self.root_class is None:
+        # cache root class as a tuple of strings or None,
+        # to make _default_positional_input_arguments happy
+        if isinstance(root_class, tuple):
+            assert len(root_class) == 2
+            assert all(isinstance(x, str) for x in root_class)
+            module_name, class_name = root_class
+            module = importlib.import_module(module_name)
+            klass = getattr(module, class_name)
+            self._root_class = root_class
+            root_class = klass
+        elif isinstance(root_class, types.TypeType):
+            self._root_class = (root_class.__module__, root_class.__name__)
+        elif isinstance(root_class, type(None)):
+            self._root_class = None
+        else:
+            raise ValueError
+
+        # collect klasses into a {parent: children} graph
+        if root_class is None:
             graph = {}
-
-            def _recurse(klass):
+            def recurse(klass):
                 if klass not in graph:
                     graph[klass] = []
                 for base in klass.__bases__:
                     if base not in graph:
                         graph[base] = []
-                        _recurse(base)
+                        recurse(base)
                     if klass not in graph[base]:
                         graph[base].append(klass)
-
             for klass in klasses:
-                _recurse(klass)
-
+                recurse(klass)
         else:
-            graph = {self.root_class: []}
-
-            def _recurse(klass):
-                if self.root_class in inspect.getmro(klass) and klass not in graph:                    
+            graph = {root_class: []}
+            def recurse(klass):
+                if root_class in inspect.getmro(klass) and klass not in graph:      
                     graph[klass] = []
                 for base in klass.__bases__:
                     if base in graph:
                         if klass not in graph[base]:
                             graph[base].append(klass)
-                    elif self.root_class in inspect.getmro(base):
+                    elif root_class in inspect.getmro(base):
                         graph[base] = [klass]
-                        _recurse(base)
-
+                        recurse(base)
             for klass in klasses:
-                _recurse(klass)
-
-        for k, v in graph.iteritems():
-            graph[k] = tuple(sorted(v))
+                recurse(klass)
+        for parent, children in graph.iteritems():
+            graph[parent] = tuple(sorted(children,
+                key=lambda x: (x.__module__, x.__name__)))
 
         dict.__init__(self, graph)
 
-    ### PUBLIC PROPERTIES ###
+    ### SPECIAL METHODS ###
+
+    __repr__ = abctools.AbjadObject.__repr__
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def addresses(self):
+        return self._addresses
 
     @property
     def graphviz_format(self):
