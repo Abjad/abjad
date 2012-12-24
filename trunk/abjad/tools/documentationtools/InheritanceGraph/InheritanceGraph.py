@@ -5,9 +5,7 @@ from abjad.tools.datastructuretools import ImmutableDictionary
 
 class InheritanceGraph(ImmutableDictionary):
     '''Generates a graph of a class or collection of 
-    classes as a dictionary of parent-children relationships::
-
-        >>> from abjad.tools.documentationtools import InheritanceGraph
+    classes as a dictionary of parent-children relationships:
 
     ::
 
@@ -26,7 +24,7 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        >>> graph = InheritanceGraph(F, E)
+        >>> graph = documentationtools.InheritanceGraph((F, E))
 
     ::
 
@@ -51,7 +49,8 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        >>> graph = InheritanceGraph(A, B, C, D, E, F, root_class=B)
+        >>> graph = documentationtools.InheritanceGraph(
+        ...     (A, B, C, D, E, F), root_class=B)
         >>> for parent, children in sorted(graph.items()): # doctest: +SKIP
         ...     parent, tuple(sorted(children))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
@@ -71,20 +70,16 @@ class InheritanceGraph(ImmutableDictionary):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, args, root_class=None):
         assert 0 < len(args)
-
-        if 'root_class' in kwargs:
-            assert isinstance(kwargs['root_class'], types.TypeType)
-            self._root_class = kwargs['root_class']
-        else:
-            self._root_class = None
+        assert isinstance(root_class, (types.TypeType, type(None)))
+        self._root_class = root_class
 
         klasses = []
         for x in args:
             if isinstance(x, types.TypeType):
                 klasses.append(x)
-            elif type(x).__name__ == 'module':
+            elif type(x) is types.ModuleType:
                 klasses.extend([klass for klass in x.__dict__.values() if isinstance(klass, types.TypeType)])
             else:
                 klasses.append(x.__class__)
@@ -145,10 +140,11 @@ class InheritanceGraph(ImmutableDictionary):
 
         for klass in self:
             name = get_klass_name(klass)
+            split_name = '\\n'.join(name.split('.'))
             if inspect.isabstract(klass):
-                result += ['\t"{}" [shape=diamond];'.format(name)]
+                result += ['\t"{}" [shape=oval, label="{}"];'.format(name, split_name)]
             else:
-                result += ['\t"{}" [shape=box];'.format(name)]
+                result += ['\t"{}" [shape=box, label="{}"];'.format(name, split_name)]
 
         for parent, children in self.iteritems():
             for child in children:
