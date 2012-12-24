@@ -125,54 +125,21 @@
 25. Eventually add something like offset modifications to SymbolicOffset class.
     Modification methods include SymbolicOffset.translate() and possibly others.
 
-26. Eventually remove the sundry interpreter calls to requesttools.apply_modifications().
-    There should be no reason for paired calls coming one after the other.
-    There's got to be some way to completely centralize modifier application.
-
-27. Perhaps Request and Selector need to inherit from a common superclass.
-    All such classes implement a certain set of (delayed evaluation) modifications.
-    So perhaps there's the idea of a ModificationCarrier somewhere in the object model.
-
-28. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+26. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
     Remove Specification.__deepcopy__ override afterwards.
 
-29. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
+27. Maybe change red_segment.select_background_measures('Voice 1', 0, 1) everywhere
     to red_segment.select_background_measures('Voice 1')[:1] for consistency.
     This will mean removing start=None and stop=None keywords from select() methods.
 
-30. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
+28. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-31. Call self._apply_selector_modifications(selected_objects, start_offset) from within
+29. Call self._apply_modifications(selected_objects, start_offset) from within
     every selector _get_offsets() implementation.
 
-32. Rename settingtools.Command to something better. Perhaps OffsetResolved(Single/Multiple)Setting.
-    The term 'command' is currentlybeing used in two different ways in the system.
-    Command is first used to refer to a setting whose exact temporal scope has been resolved.
-    Command is also used to refer to the setting (or, really, source-of-setting) active at a given offset.
-    The term should be used in only one way.
-
-33. Migrate requesttools.apply_modifications() to a method bound to Request or Selector or both.
-
-34. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
+30. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
 
-35. Remove SymbolicTimeObject.
-
-36. Possibly remove Selector.selector_modifications in favor of Request.modifications.
-    Start by merging Selector._apply_selector_modifications() into Request._apply_modifications().
-    This will mean making the input (and output) signatures of Request._apply_modifications()
-    to match the input (and output) signatures of Selector._apply_selector_modifications().
-    Part of the work here is understanding the difference between these two methods.
-    It looks like Request 'modifications' apply in somewhat simpler way than selector modifications.
-    Simpler how? Request modifications apply without reference to input object start time.
-    The current request modifications are these: 
-        Request.repeat_to_length(length)
-        Request.reverse()
-        Request.rotate()
-    It seems like none of these change the start time of the input objects.
-    Compare to these methods ...
-        Request.partition_objects_by_ratio(ratio)
-        Request.partition_objects_by_ratio_of_durations(ratio)
-    ... which do potentially change the start of input objects.
+31. Remove SymbolicTimeObject.

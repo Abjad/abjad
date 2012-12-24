@@ -189,10 +189,10 @@ class Request(AbjadObject):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            selector_modification = \
+            modification = \
                 'result = self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
-            selector_modification = selector_modification.format(ratio, part)
-            selector.selector_modifications.append(selector_modification)
+            modification = modification.format(ratio, part)
+            selector.modifications.append(modification)
             result.append(selector)
         return tuple(result)
 
@@ -201,10 +201,10 @@ class Request(AbjadObject):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            selector_modification = \
+            modification = \
                 'result = self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
-            selector_modification = selector_modification.format(ratio, part)
-            selector.selector_modifications.append(selector_modification)
+            modification = modification.format(ratio, part)
+            selector.modifications.append(modification)
             result.append(selector)
         return tuple(result)
 

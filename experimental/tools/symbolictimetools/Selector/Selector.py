@@ -58,28 +58,6 @@ class Selector(SymbolicTimespan, Request):
 
     ### PRIVATE METHODS ###
 
-    def _apply_selector_modifications(self, elements, start_offset):
-        from experimental.tools import settingtools
-        evaluation_context = {
-            'Duration': durationtools.Duration,
-            'NonreducedFraction': mathtools.NonreducedFraction,
-            'Offset': durationtools.Offset,
-            'Ratio': mathtools.Ratio,
-            'RotationIndicator': settingtools.RotationIndicator,
-            'elements': elements,
-            'self': self,
-            'result': None,
-            'sequencetools': sequencetools,
-            'start_offset': start_offset,
-            }
-        for selector_modification in self._selector_modifications:
-            assert 'elements' in selector_modification
-            evaluation_context['elements'] = copy.deepcopy(elements)
-            evaluation_context['start_offset'] = start_offset
-            exec(selector_modification, evaluation_context)
-            elements, start_offset = evaluation_context['result']
-        return elements, start_offset
-
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty selector modifications list.
         '''

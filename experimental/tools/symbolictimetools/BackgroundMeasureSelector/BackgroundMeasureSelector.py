@@ -116,7 +116,7 @@ class BackgroundMeasureSelector(VoiceSelector):
         duration_before = sum(durations_before)
         start_offset = durationtools.Offset(duration_before)
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
-        time_signatures, start_offset = self._apply_selector_modifications(time_signatures, start_offset)
+        time_signatures, start_offset = self._apply_modifications(time_signatures, start_offset)
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)
         stop_offset = start_offset + duration
