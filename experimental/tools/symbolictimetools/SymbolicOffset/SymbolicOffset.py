@@ -1,8 +1,8 @@
 from abjad.tools import durationtools
-from experimental.tools.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SymbolicOffset(SymbolicTimeObject):
+class SymbolicOffset(AbjadObject):
     r'''.. versionadded:: 1.0
 
     ::
@@ -143,7 +143,6 @@ class SymbolicOffset(SymbolicTimeObject):
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental.tools import specificationtools
         from experimental.tools import symbolictimetools
-        SymbolicTimeObject.__init__(self)
         assert isinstance(anchor, (
             symbolictimetools.SymbolicTimespan, 
             type(None), str)), repr(anchor)

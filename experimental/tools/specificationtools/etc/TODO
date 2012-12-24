@@ -141,5 +141,3 @@
 30. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
-
-31. Remove SymbolicTimeObject.

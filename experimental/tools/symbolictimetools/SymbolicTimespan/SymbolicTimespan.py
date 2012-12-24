@@ -9,10 +9,9 @@ from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timerelationtools
 from abjad.tools.timespantools.Timespan import Timespan
-from experimental.tools.symbolictimetools.SymbolicTimeObject import SymbolicTimeObject
 
 
-class SymbolicTimespan(Timespan, SymbolicTimeObject):
+class SymbolicTimespan(Timespan):
     r'''.. versionadded:: 1.0
 
     ::
@@ -46,7 +45,6 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
     def __init__(self, timespan_modifications=None):
         from experimental.tools import specificationtools
         Timespan.__init__(self)
-        SymbolicTimeObject.__init__(self)
         timespan_modifications = timespan_modifications or []
         self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
 
@@ -76,7 +74,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
 
     @property
     def _keyword_argument_name_value_strings(self):
-        result = SymbolicTimeObject._keyword_argument_name_value_strings.fget(self)
+        result = Timespan._keyword_argument_name_value_strings.fget(self)
         if 'timespan_modifications=ObjectInventory([])' in result:
             result = list(result)
             result.remove('timespan_modifications=ObjectInventory([])')
@@ -128,7 +126,7 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         '''Do not show empty offset modifications list.
         '''
         filtered_result = []
-        result = SymbolicTimeObject._get_tools_package_qualified_keyword_argument_repr_pieces(
+        result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
             if not 'timespan_modifications=datastructuretools.ObjectInventory([])' in string:
@@ -187,6 +185,10 @@ class SymbolicTimespan(Timespan, SymbolicTimeObject):
         return new_start_offset, new_stop_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_specification(self):
+        return self._score_specification
 
     @property
     def timespan_modifications(self):

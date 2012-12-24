@@ -39,8 +39,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.score_specification
 
-    Inherited from :py:class:`symbolictimetools.SymbolicTimeObject <experimental.tools.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
-
 .. autoattribute:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.start_offset
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`

@@ -17,10 +17,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.multiplier
 
-.. autoattribute:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.score_specification
-
-    Inherited from :py:class:`symbolictimetools.SymbolicTimeObject <experimental.tools.symbolictimetools.SymbolicTimeObject.SymbolicTimeObject.SymbolicTimeObject>`
-
 .. autoattribute:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.start_segment_identifier
 
 .. autoattribute:: experimental.tools.symbolictimetools.SymbolicOffset.SymbolicOffset.SymbolicOffset.storage_format

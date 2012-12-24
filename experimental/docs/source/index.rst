@@ -305,7 +305,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/symbolictimetools/Selector/Selector
-   tools/symbolictimetools/SymbolicTimeObject/SymbolicTimeObject
    tools/symbolictimetools/SymbolicTimespan/SymbolicTimespan
    tools/symbolictimetools/VoiceSelector/VoiceSelector
 
