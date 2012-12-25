@@ -14,4 +14,4 @@ def test_SegmentSpecification__cyclic_rhythm_specification_01():
     blue_rhythm = blue_segment.select_leaves('Voice 1')
     red_segment.set_rhythm(blue_rhythm)
 
-    assert py.test.raises(exceptions.CyclicSpecificationError, 'score_specification.interpret()')
+    assert py.test.raises(Exception, 'score_specification.interpret()')

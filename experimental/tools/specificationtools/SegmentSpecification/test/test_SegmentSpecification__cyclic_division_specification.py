@@ -15,4 +15,4 @@ def test_SegmentSpecification__cyclic_division_specification_01():
     red_segment.set_divisions(blue_divisions)
     blue_segment.set_divisions(red_divisions)
 
-    assert py.test.raises(exceptions.CyclicSpecificationError, 'score_specification.interpret()')
+    assert py.test.raises(Exception, 'score_specification.interpret()')

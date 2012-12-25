@@ -89,7 +89,7 @@
     Make sure the command is ignored at first and then interpreted correctly in a later pass.
 
 19. Add some tests to show this:
-        measures = red_segment.select_background_measures('Voice 1', 10, 20)
+        measures = red_segment.select_background_measures('Voice 1')[10:20]
         measures = measures[2:4]
     This will show the composition of multiple slice selections in a row.
 
@@ -106,7 +106,7 @@
     This will show selecting background measures from more than one segment.
 
 22. Add some tests to show this:
-        measures = red_segment.select_background_measures('Voice 1', 10, 20)
+        measures = red_segment.select_background_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
@@ -128,9 +128,7 @@
 26. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
     Remove Specification.__deepcopy__ override afterwards.
 
-27. Remove start=None and stop=None keywords from all select() methods.
-    This will mean removing start_identifier=None and stop_identifier=None
-    properties from all selector classes.
+27. Remove start_identifier=None and stop_identifier=None properties from all selector classes.
 
 28. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
@@ -172,9 +170,6 @@
         leaves.partition_objects_by_ratio() ...
     ... and so on.
 
-35. Remove (all) specificationtools exceptions.
-    Remove (all or nearly all) Abjad exceptions.
-
-36. It's possible that 'modifications' should be renamed 'request_modifications'.
+35. It's possible that 'modifications' should be renamed 'request_modifications'.
     Because the stack implements on the Request class.
     And because the name would then parallel the 'timespan_modifications' stack.

@@ -1,7 +1,6 @@
 import copy
 from abjad.tools import *
 from experimental.tools import divisiontools
-from experimental.tools import exceptions
 from experimental.tools import helpertools
 from experimental.tools import library
 from experimental.tools import requesttools
@@ -66,7 +65,7 @@ class ConcreteInterpreter(Interpreter):
         single_context_setting = single_context_settings[0]
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
-            raise exceptions.CyclicSpecificationError(absolute_request)
+            raise Exception('cyclic specification error: {!r}'.format(absolute_request))
         time_signatures, dummy = selector._apply_modifications(absolute_request.payload, None)
         return time_signatures
 
@@ -492,7 +491,7 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.contexts[voice.name]['division_region_expressions'].sort()
             # check to see if we made absolutely no intepretive progress in this iteration through loop
             if current_commands == previous_commands:
-                raise exceptions.CyclicSpecificationError
+                raise Exception('cyclic specification error.')
             else:
                 previous_commands = current_commands
 
@@ -607,7 +606,7 @@ class ConcreteInterpreter(Interpreter):
                         rhythm_region_expression)
                     self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()
             if self.score_specification.all_rhythm_quintuples == previous_all_rhythm_quintuples:
-                raise exceptions.CyclicSpecificationError('cyclic rhythm specification')
+                raise Exception('cyclic rhythm specification.')
 
     def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
         return settingtools.RhythmCommand(

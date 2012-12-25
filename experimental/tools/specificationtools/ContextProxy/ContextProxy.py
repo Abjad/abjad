@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from experimental.tools.exceptions import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -33,9 +32,9 @@ class ContextProxy(AbjadObject, OrderedDict):
     def get_setting(self, attribute=None):
         settings = self.get_settings(attribute=attribute)
         if not settings:
-            raise MissingContextSettingError('no settings for {!r} found.'.format(attribute))
+            raise Exception('no settings for {!r} found.'.format(attribute))
         elif 1 < len(settings):
-            raise ExtraContextSettingError('multiple settings for {!r} found.'.format(attribute))
+            raise Exception('multiple settings for {!r} found.'.format(attribute))
         assert len(settings) == 1
         return settings[0]
 
