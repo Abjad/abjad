@@ -9,6 +9,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
         >>> from experimental.tools import *
 
+    ::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+        >>> blue_segment = score_specification.append_segment(name='blue')
+
     Mixed-source timespan.
 
     Mixed-source timespan starting at the left edge of the last measure
@@ -16,14 +23,12 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     and stoppding at the right edge of the first measure 
     that starts during segment ``'blue'``::
 
-        >>> measure = symbolictimetools.BackgroundMeasureSelector(
-        ... anchor='red', start_identifier=-1)
+        >>> measure = red_segment.select_background_measures('Voice 1')[-1:]
         >>> start_offset = symbolictimetools.SymbolicOffset(anchor=measure)
 
     ::
 
-        >>> measure = symbolictimetools.BackgroundMeasureSelector(
-        ... anchor='blue', stop_identifier=1)
+        >>> measure = blue_segment.select_background_measures('Voice 1')[:1]
         >>> stop_offset = symbolictimetools.SymbolicOffset(anchor=measure, edge=Right)
         
     ::
@@ -38,13 +43,19 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
             start_offset=symbolictimetools.SymbolicOffset(
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
-                    start_identifier=-1
+                    voice_name='Voice 1',
+                    modifications=datastructuretools.ObjectInventory([
+                        'result = self._slice_selected_objects(elements, start_offset, slice(-1, None, None))'
+                        ])
                     )
                 ),
             stop_offset=symbolictimetools.SymbolicOffset(
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='blue',
-                    stop_identifier=1
+                    voice_name='Voice 1',
+                    modifications=datastructuretools.ObjectInventory([
+                        'result = self._slice_selected_objects(elements, start_offset, slice(None, 1, None))'
+                        ])
                     ),
                 edge=Right
                 )

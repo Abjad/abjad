@@ -173,3 +173,7 @@
 35. It's possible that 'modifications' should be renamed 'request_modifications'.
     Because the stack implements on the Request class.
     And because the name would then parallel the 'timespan_modifications' stack.
+
+36. Add a test to show this:
+        note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
+        offset = note_selector.stop_offset

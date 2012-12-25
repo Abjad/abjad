@@ -77,6 +77,10 @@ Methods
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.divide_by_ratio
 
+.. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.is_tangent_to
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.scale
 
 .. automethod:: experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan.select_background_measures

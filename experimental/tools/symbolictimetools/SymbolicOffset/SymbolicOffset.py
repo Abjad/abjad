@@ -9,131 +9,32 @@ class SymbolicOffset(AbjadObject):
 
         >>> from experimental.tools import *
 
-    Infinitely thin vertical line coincident with an arbitrary object-relative offset in score.
-
-    Symbolic offset indicating the left edge of score::
-
-        >>> symbolictimetools.SymbolicOffset()
-        SymbolicOffset()
-
-    Symbolic offset indicating the right edge of score::
-
-        >>> symbolictimetools.SymbolicOffset(edge=Right)
-        SymbolicOffset(edge=Right)
-
-    Symbolic offset ``1/8`` of a whole note into score::
-
-        >>> symbolictimetools.SymbolicOffset(addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(addendum=Offset(1, 8))
-
-    Symbolic offset one third of the way into score::
-
-        >>> symbolictimetools.SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3))
-        SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3))
-
-    Symbolic offset ``1/8`` of a whole note after the first third of score::
-
-        >>> symbolictimetools.SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
-
-    Symbolic offset indicating the left edge of segment ``'red'``::
-
-        >>> symbolictimetools.SymbolicOffset(anchor='red')
-        SymbolicOffset(anchor='red')
-
-    Symbolic offset indicating the right edge of segment ``'red'``::
-
-        >>> symbolictimetools.SymbolicOffset(anchor='red', edge=Right)
-        SymbolicOffset(anchor='red', edge=Right)
-
-    Symbolic offset indicating ``1/8`` of a whole note after the left edge of
-    segment ``'red'``::
-
-        >>> symbolictimetools.SymbolicOffset(anchor='red', addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(anchor='red', addendum=Offset(1, 8))
-
-    Symbolic offset indicating one third of the way into segment ``'red'``::
-
-        >>> symbolictimetools.SymbolicOffset(anchor='red', edge=Right, multiplier=Multiplier(1, 3))
-        SymbolicOffset(anchor='red', edge=Right, multiplier=Multiplier(1, 3))
-
-    Symbolic offset indicating ``1/8`` of a whole note after the right edge of the 
-    first third of segment ``'red'``::
-    
-        >>> symbolictimetools.SymbolicOffset(anchor='red', edge=Right, 
-        ... multiplier=Multiplier(1, 3), addendum=durationtools.Offset(1, 8))
-        SymbolicOffset(anchor='red', edge=Right, multiplier=Multiplier(1, 3), addendum=Offset(1, 8))
-
-    Symbolic offset indicating the left edge of voice ``1`` note ``10`` that starts
-    during segment ``'red'``::
-
-        >>> note = symbolictimetools.CounttimeComponentSelector(
-        ... anchor='red', klass=Note, start_identifier=10, stop_identifier=11, voice_name='Voice 1')
-
     ::
-
-        >>> offset = symbolictimetools.SymbolicOffset(anchor=note)
-
-    ::
-
-        >>> z(offset)
-        symbolictimetools.SymbolicOffset(
-            anchor=symbolictimetools.CounttimeComponentSelector(
-                anchor='red',
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11,
-                voice_name='Voice 1'
-                )
-            )
-
-    Timepoint anchors can be arbitrary timespans. This allows recursion into the model.
-
-    Symbolic offset one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
-
-        >>> stop = helpertools.SegmentIdentifierExpression("'blue' + 1")
-        >>> segments = symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=stop)
-
-    ::
-    
-        >>> offset = symbolictimetools.SymbolicOffset(anchor=segments, edge=Right, multiplier=Multiplier(1, 3))
-
-    ::
-    
-        >>> z(offset)
-        symbolictimetools.SymbolicOffset(
-            anchor=symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'blue' + 1")
-                ),
-            edge=Right,
-            multiplier=durationtools.Multiplier(1, 3)
-            )
-
-    Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
-    during segment ``'red'``::
-
-        >>> offset = symbolictimetools.SymbolicOffset(anchor=note, edge=Right)
-
-    ::
-
-        >>> z(offset)
-        symbolictimetools.SymbolicOffset(
-            anchor=symbolictimetools.CounttimeComponentSelector(
-                anchor='red',
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11,
-                voice_name='Voice 1'
-                ),
-            edge=Right
-            )
-
-    Score and segment specification for examples below::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
+
+    Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
+    during segment ``'red'``::
+
+        >>> notes = red_segment.select_notes_and_chords('Voice 1')
+        >>> offset = notes.stop_offset
+
+    ::
+
+        >>> z(offset)
+        symbolictimetools.SymbolicOffset(
+            anchor=symbolictimetools.CounttimeComponentSelector(
+                anchor='red',
+                klass=helpertools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
+                voice_name='Voice 1'
+                ),
+            edge=Right
+            )
 
     Symbolic offsets are immutable.
     '''
@@ -201,9 +102,10 @@ class SymbolicOffset(AbjadObject):
             >>> z(offset.anchor)
             symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
-                klass=notetools.Note,
-                start_identifier=10,
-                stop_identifier=11,
+                klass=helpertools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
                 voice_name='Voice 1'
                 )
 

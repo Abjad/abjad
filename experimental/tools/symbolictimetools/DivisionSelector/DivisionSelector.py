@@ -29,18 +29,6 @@ class DivisionSelector(VoiceSelector):
             anchor='red'
             )
 
-    Select the last two divisions that start during segment ``'red'``::
-
-        >>> division_selector = symbolictimetools.DivisionSelector(anchor='red', start_identifier=-2)
-
-    ::
-
-        >>> z(division_selector)
-        symbolictimetools.DivisionSelector(
-            anchor='red',
-            start_identifier=-2
-            )
-
     Division selectors are immutable.
     '''
     
