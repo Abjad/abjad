@@ -163,6 +163,38 @@ class Timespan(BoundedObject):
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
+    def is_tangent_to(self, expr):
+        '''True when `expr` has offsets
+        and `self.stop_offset` equals `expr.start_offset`::
+
+            >>> timespan_1 = timespantools.Timespan(5, 10)
+            >>> timespan_2 = timespantools.Timespan(10, 15)
+
+        ::
+
+            >>> timespan_1.is_tangent_to(timespan_2)
+            True
+
+        Or when `expr.stop_offset` equals `self.start_offset`::
+
+            >>> timespan_2.is_tangent_to(timespan_1)
+            True    
+
+        Otherwise false::
+
+            >>> timespan_1.is_tangent_to('text')
+            False
+
+        Return boolean.
+        '''
+        if hasattr(expr, 'start_offset'):
+            if self.stop_offset == expr.start_offset:
+                return True
+        if hasattr(expr, 'stop_offset'):
+            if expr.stop_offset == self.start_offset:
+                return True
+        return False
+
     def scale(self, multiplier):
         '''Scale timespan by `multiplier`::
 

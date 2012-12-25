@@ -63,6 +63,8 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.divide_by_ratio
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.scale
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.set_duration
