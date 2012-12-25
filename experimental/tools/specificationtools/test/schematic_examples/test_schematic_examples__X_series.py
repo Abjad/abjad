@@ -287,7 +287,7 @@ def test_schematic_examples__X_series_07():
     second_measure.set_rhythm(cell.rotate(Duration(-7, 32)), contexts=['Voice 4'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(2, 8)])
-    timespan = red_segment.select_leaves('Voice 1', start=4)
+    timespan = red_segment.select_leaves('Voice 1')[4:]
     voice_1_rhythm = timespan.select_leaves('Voice 1')
     voice_2_rhythm = timespan.select_leaves('Voice 2')
     voice_3_rhythm = timespan.select_leaves('Voice 3')
@@ -339,7 +339,7 @@ def test_schematic_examples__X_series_08():
     red_segment.set_rhythm(maker, contexts=['Voice 4'])
     blue_segment = score_specification.append_segment(name='blue')
     blue_segment.set_time_signatures(2 * [(3, 16)])
-    timespan = red_segment.select_leaves('Voice 1', start=-10)
+    timespan = red_segment.select_leaves('Voice 1')[-10:]
     last_leaves = timespan.select_leaves('Voice 1')
     blue_segment.set_rhythm(last_leaves, contexts=['Voice 1', 'Voice 2', 'Voice 3'])
     score = score_specification.interpret()

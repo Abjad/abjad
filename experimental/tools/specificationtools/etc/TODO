@@ -141,3 +141,40 @@
 30. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
+
+31. Implement an official way to do this: time_relation._timespan_1 = timespan_1.
+    The result should be a newly created time relation because time relations
+    are to be treated as value objects.
+
+32. Replace ...
+        previous_rhythm_region_expression.stop_offset == current_rhythm_region_expression.start_offset
+    ... with ...
+        previous_rhythm_region_expression.is_tangent_to(current_rhythm_region_expression) 
+    ... from timeintervaltools.
+    Note that there need to be left- and right-hand versions of the predicate.
+    Is there a way to say timespan_1.stops_when_timespan_starts(timespan_2)?
+    It's possible that everything in timerelationtools defines something like
+    a "timespan inequality interface". It's then reasonable to suggest implementing
+    all such inequalitie on the core Timespan class.
+
+33. Add Request.repeat_to_duration() method to accompany Request.repeat_to_length().
+
+34. Author tests to show each request modification applied to each voice selector.
+    Six reqeust methods applied to each of four voice selectors gives 24 tests:
+        measures.partition_objects_by_ratio()
+        measures.partition_objects_by_ratio_of_durations()
+        measures.repeat_to_length()
+        measures.repeat_to_duration() 
+        measures.reverse()
+        measures.rotate()
+        beats.partition_objects_by_ratio() ...
+        divisions.partition_objects_by_ratio() ...
+        leaves.partition_objects_by_ratio() ...
+    ... and so on.
+
+35. Remove (all) specificationtools exceptions.
+    Remove (all or nearly all) Abjad exceptions.
+
+36. It's possible that 'modifications' should be renamed 'request_modifications'.
+    Because the stack implements on the Request class.
+    And because the name would then parallel the 'timespan_modifications' stack.

@@ -104,8 +104,7 @@ class CounttimeComponentSelector(VoiceSelector):
             return selectiontools.Selection()
         if not rhythm_region_expressions[0].start_offset == durationtools.Offset(0):
             return selectiontools.Selection()
-        counttime_components = []
-        total_counttime_components = 0
+        counttime_component_pairs = []
         previous_rhythm_region_expression = None
         start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
         timespan_1 = timespantools.Timespan(start_offset, stop_offset)
@@ -124,15 +123,9 @@ class CounttimeComponentSelector(VoiceSelector):
                 if time_relation(timespan_2=counttime_component,
                     score_specification=score_specification,
                     context_name=voice_name):
-                    counttime_components.append((
+                    counttime_component_pairs.append((
                         counttime_component, current_rhythm_region_expression.start_offset))
-                    total_counttime_components += 1
-                    if total_counttime_components == self.stop_identifier:
-                        break
-            if total_counttime_components == self.stop_identifier:
-                break
-        counttime_components = counttime_components[self.start_identifier:self.stop_identifier]
-        counttime_component_pairs = counttime_components
+        counttime_component_pairs, dummy = self._apply_modifications(counttime_component_pairs, None)
         first_component, first_component_expression_offset = counttime_component_pairs[0]
         last_component, last_component_expression_offset = counttime_component_pairs[-1]
         start_offset = first_component_expression_offset + first_component.start_offset

@@ -329,18 +329,16 @@ class SymbolicTimespan(Timespan):
         selector._score_specification = self.score_specification
         return selector
 
-    def select_beats(self, voice_name, start=None, stop=None, time_relation=None):
-        '''Select the first five voice ``1`` beats 
-        that start during segment ``'red'``::
+    def select_beats(self, voice_name, time_relation=None):
+        '''Select voice ``1`` beats that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_beats('Voice 1', stop=5)
+            >>> selector = red_segment.select_beats('Voice 1')
 
         ::
 
             >>> z(selector)
             symbolictimetools.BeatSelector(
                 anchor='red',
-                stop_identifier=5,
                 voice_name='Voice 1'
                 )
 
@@ -349,8 +347,6 @@ class SymbolicTimespan(Timespan):
         from experimental.tools import symbolictimetools
         selector = symbolictimetools.BeatSelector(
             anchor=self._timespan_abbreviation,
-            start_identifier=start, 
-            stop_identifier=stop, 
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -381,10 +377,10 @@ class SymbolicTimespan(Timespan):
         selector._score_specification = self.score_specification
         return selector
 
-    def select_leaves(self, voice_name, start=None, stop=None, time_relation=None):
-        '''Select the first ``40`` voice ``1`` leaves that start during segment ``'red'``::
+    def select_leaves(self, voice_name, time_relation=None):
+        '''Select voice ``1`` leaves that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_leaves('Voice 1', stop=40)
+            >>> selector = red_segment.select_leaves('Voice 1')
 
         ::
 
@@ -392,7 +388,6 @@ class SymbolicTimespan(Timespan):
             symbolictimetools.CounttimeComponentSelector(
                 anchor='red',
                 klass=leaftools.Leaf,
-                stop_identifier=40,
                 voice_name='Voice 1'
                 )
 
@@ -403,18 +398,15 @@ class SymbolicTimespan(Timespan):
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
-            start_identifier=start, 
-            stop_identifier=stop, 
             voice_name=voice_name
             )
         selector._score_specification = self.score_specification
         return selector
 
-    def select_notes_and_chords(self, voice_name, start=None, stop=None, time_relation=None):
-        '''Select the first ``40`` voice ``1`` notes and chords 
-        that start during segment ``'red'``::
+    def select_notes_and_chords(self, voice_name, time_relation=None):
+        '''Select voice ``1`` notes and chords that start during segment ``'red'``::
 
-            >>> selector = red_segment.select_notes_and_chords('Voice 1', stop=40)
+            >>> selector = red_segment.select_notes_and_chords('Voice 1')
 
         ::
 
@@ -425,7 +417,6 @@ class SymbolicTimespan(Timespan):
                     notetools.Note,
                     chordtools.Chord
                     ]),
-                stop_identifier=40,
                 voice_name='Voice 1'
                 )
 
@@ -436,8 +427,6 @@ class SymbolicTimespan(Timespan):
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),
-            start_identifier=start, 
-            stop_identifier=stop, 
             voice_name=voice_name
             )
         selector._score_specification = self.score_specification

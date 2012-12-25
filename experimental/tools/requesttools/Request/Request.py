@@ -47,11 +47,6 @@ class Request(AbjadObject):
     def __getitem__(self, expr):
         '''Return copy of request with appended modification.
         '''
-#        modification = 'result = elements.__getitem__({!r})'.format(expr)
-#        result = copy.deepcopy(self)
-#        result.modifications.append(modification)
-#        return result
-        # TODO: replace the implementation above with the implementation below. I think.
         modification = 'result = self._slice_selected_objects(elements, start_offset, {!r})'
         modification = modification.format(expr)
         result = copy.deepcopy(self)
@@ -86,7 +81,7 @@ class Request(AbjadObject):
             }
         for modification in self.modifications:
             assert 'elements' in modification
-            evaluation_context['elements'] = copy.deepcopy(elements)
+            evaluation_context['elements'] = elements
             evaluation_context['start_offset'] = start_offset
             exec(modification, evaluation_context)
             elements, start_offset = evaluation_context['result']
@@ -145,11 +140,10 @@ class Request(AbjadObject):
         return elements, new_start_offset
 
     def _reverse(self, elements, original_start_offset):
-        if hasattr(elements, 'reverse'):
-            result = elements.reverse()
-            elements = result or elements
+        if elements.__class__.__name__ == 'list':
+            elements = type(elements)(reversed(elements))
         else:
-            raise Exception
+            elements = elements.reverse() or elements
         new_start_offset = original_start_offset
         return elements, new_start_offset
 
@@ -166,9 +160,9 @@ class Request(AbjadObject):
         start_index, stop_index, stride = expr.indices(len(elements))
         selected_elements = elements[expr]
         elements_before = elements[:start_index]
-        duration_before = sum([durationtools.Duration(x) for x in elements_before])
-        start_offset = durationtools.Offset(duration_before)
         if original_start_offset is not None:
+            duration_before = sum([durationtools.Duration(x) for x in elements_before])
+            start_offset = durationtools.Offset(duration_before)
             new_start_offset = original_start_offset + start_offset
         else:
             new_start_offset = None
