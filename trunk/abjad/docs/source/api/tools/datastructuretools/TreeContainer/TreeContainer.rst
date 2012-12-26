@@ -9,6 +9,8 @@ datastructuretools.TreeContainer
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.children
+
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.depth
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
@@ -24,6 +26,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.improper_parentage
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.nodes
 
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.parent
 
@@ -41,24 +45,47 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.append
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.extend
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.index
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.insert
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.pop
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.remove
+
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__eq__
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__contains__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__delitem__
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__eq__
 
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__getitem__
+
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__iter__
+
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__len__
 
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__lt__
 
@@ -70,4 +97,4 @@ Special Methods
 
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+.. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__setitem__

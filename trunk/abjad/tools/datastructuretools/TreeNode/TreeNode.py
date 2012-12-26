@@ -8,16 +8,17 @@ class TreeNode(AbjadObject):
     Return `TreeNode` instance.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ('_parent',)
-
     ### INITIALIZER ###
 
     def __init__(self):
         self._parent = None    
 
     ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        if type(self) == type(other):
+            return True
+        return False
 
     ### PRIVATE METHODS ###
 
