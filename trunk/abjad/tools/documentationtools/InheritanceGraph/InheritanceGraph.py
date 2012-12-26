@@ -65,47 +65,63 @@ class InheritanceGraph(ImmutableDictionary):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_addresses', '_root_class')
+    __slots__ = ('_addresses', '_primary_classes', '_recurse_into_submodules',
+        '_root_class')
 
     # TODO: what default should this take?
     #_default_positional_input_arguments = ()
 
     ### INITIALIZER ###
 
-    def __init__(self, addresses, root_class=None):
+    def __init__(self, addresses, recurse_into_submodules=True, root_class=None):
+
+        self._recurse_into_submodules = bool(recurse_into_submodules)
+
+        visited_modules = set([])
+        def submodule_recurse(module):
+            result = []
+            for obj in module.__dict__.values():
+                if isinstance(obj, types.TypeType):
+                    result.append(obj)
+                elif isinstance(obj, types.ModuleType) and obj not in visited_modules:
+                    visited_modules.add(obj)
+                    result.extend(submodule_recurse(obj))
+            return result 
 
         # cache args as a tuple of strings or None in self.addresses,
         # to make _default_positional_input_arguments happy
         klasses = []
+        primary_classes = set([])
         cached_addresses = []
         assert 0 < len(addresses)
         for x in addresses:
-            if isinstance(x, types.TypeType):
-                klasses.append(x)
-                address = (x.__module__, x.__name__)
-            elif isinstance(x, types.ModuleType):
-                klasses.extend(klass for klass in x.__dict__.values()
-                    if isinstance(klass, types.TypeType))
-                address = (x.__name__,)
-            elif isinstance(x, types.InstanceType):
-                klasses.append(x.__class__)
-                address = (x.__class__.__module__, x.__class__.__name__)
-            elif isinstance(x, tuple):
-                assert len(x) in (1, 2)
-                assert all(isinstance(y, str) for y in x)
-                if len(x) == 1:
-                    module_name, class_name = x[0], None
+            if isinstance(x, (types.TypeType, types.InstanceType)) or \
+                (isinstance(x, tuple) and len(x) == 2):
+
+                if isinstance(x, types.TypeType):
+                    klass = x
+                elif isinstance(x, types.InstanceType):
+                    klass = x.__class__        
                 else:
                     module_name, class_name = x
-                module = importlib.import_module(module_name)
-                if class_name:
-                    klasses.append(getattr(module, class_name))
+                    module = importlib.import_module(module_name)
+                    klass = getattr(module, class_name)
+                klasses.append(klass)
+                primary_classes.add(klass)
+                address = (klass.__module__, klass.__name__)
+
+            elif isinstance(x, (str, types.ModuleType)):
+                if isinstance(x, types.ModuleType):
+                    module = x
                 else:
-                    klasses.extend(klass for klass in module.__dict__.values()
-                        if isinstance(klass, types.TypeType))
-                address = x
-            else:
-                raise ValueError
+                    module = importlib.import_module(x)
+                for y in module.__dict__.itervalues():
+                    if isinstance(y, types.TypeType):
+                        klasses.append(y)
+                        primary_classes.add(y)
+                    elif isinstance(y, types.ModuleType) and self.recurse_into_submodules:
+                        klasses.extend(submodule_recurse(y))
+                address = module.__name__
             cached_addresses.append(address)
         self._addresses = tuple(cached_addresses)
 
@@ -119,12 +135,16 @@ class InheritanceGraph(ImmutableDictionary):
             klass = getattr(module, class_name)
             self._root_class = root_class
             root_class = klass
+            primary_classes.add(root_class)
         elif isinstance(root_class, types.TypeType):
             self._root_class = (root_class.__module__, root_class.__name__)
+            primary_classes.add(root_class)
         elif isinstance(root_class, type(None)):
             self._root_class = None
         else:
             raise ValueError
+
+        self._primary_classes = frozenset(primary_classes)
 
         # collect klasses into a {parent: children} graph
         if root_class is None:
@@ -174,35 +194,75 @@ class InheritanceGraph(ImmutableDictionary):
     def graphviz_format(self):
         result = ['digraph I {']
 
-        def get_klass_name(klass):
-            parts = klass.__module__.split('.') + [klass.__name__]
+        def make_unique(name):
+            parts = name.split('.')
             name = [parts[0]]
             for part in parts[1:]:
                 if part != name[-1]:
                     name.append(part)
             if name[0] in ('abjad', 'experimental'):
-                return '.'.join(name[-2:])
+                return '.'.join(name[2:])
             return '.'.join(name)
 
-        for klass in self:
-            name = get_klass_name(klass)
-            split_name = '\\n'.join(name.split('.'))
-            if inspect.isabstract(klass):
-                result += ['\t"{}" [shape=oval, label="{}"];'.format(name, split_name)]
-            else:
-                result += ['\t"{}" [shape=box, label="{}"];'.format(name, split_name)]
+        def get_klass_name(klass):
+            return make_unique(klass.__module__ + '.' + klass.__name__)
 
-        for parent, children in self.iteritems():
+        if self.root_class is None:
+            root = '__builtin__.object'
+        else:
+            root = make_unique('.'.join(self.root_class))
+        result += ['\tgraph [ranksep=3, root="{}"]'.format(root)]
+
+        for klass in sorted(self, key=lambda x: (x.__module__, x.__name__)):
+            name = get_klass_name(klass)
+            label = '\\n'.join(name.split('.'))
+            # abstract / concrete
+            if inspect.isabstract(klass):
+                shape = 'oval'
+            else:
+                shape = 'box'
+            # primary
+            if klass in self.primary_classes:
+                style = 'bold'
+            else:
+                style = 'dashed'
+            # root package
+            #if klass.__module__.startswith('abjad.'):
+            #    color = 'blue'
+            #elif klass.__module__.startswith('experimental.'):
+            #    color = 'red'
+            #else:
+            #    color = 'black'
+            #result += ['\t"{}" [shape={}, label="{}", style={}, color={}, fontcolor={}];'.format(
+            #    name, shape, label, style, color, color)]
+            result += ['\t"{}" [shape={}, label="{}", style={}];'.format(
+                name, shape, label, style)]
+
+        for parent in sorted(self, key=lambda x: (x.__module__, x.__name__)):
+            children = sorted(self[parent], key=lambda x: (x.__module__, x.__name__))
             for child in children:
                 parent_name = get_klass_name(parent)
                 child_name = get_klass_name(child)
+                #if child.__module__.startswith('abjad.'):
+                #    color = 'blue'
+                #elif child.__module__.startswith('experimental.'):
+                #    color = 'red'
+                #else:
+                #    color = 'black'
+                #result += ['\t"{}" -> "{}" [color={}];'.format(parent_name, child_name, color)]
                 result += ['\t"{}" -> "{}";'.format(parent_name, child_name)]
 
         result += ['}']
 
         return '\n'.join(result)
         
+    @property
+    def primary_classes(self):
+        return self._primary_classes
 
+    @property
+    def recurse_into_submodules(self):
+        return self._recurse_into_submodules
 
     @property
     def root_class(self):
