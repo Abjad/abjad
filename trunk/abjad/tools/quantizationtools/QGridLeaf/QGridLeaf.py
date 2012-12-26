@@ -26,8 +26,8 @@ class QGridLeaf(RhythmTreeNode):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_duration', '_is_divisible', '_offset', '_offsets_are_current',
-        '_parent', '_q_event_proxies')
+    #__slots__ = ('_duration', '_is_divisible', '_offset', '_offsets_are_current',
+    #    '_parent', '_q_event_proxies')
 
     ### INITIALIZER ###
 

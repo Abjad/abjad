@@ -111,12 +111,18 @@ class RhythmTreeParser(Parser):
     def p_container__LPAREN__DURATION__node_list_closed__RPAREN(self, p):
         '''container : LPAREN DURATION node_list_closed RPAREN'''
         from abjad.tools import rhythmtreetools
-        p[0] = rhythmtreetools.RhythmTreeContainer(abs(p[2]), p[3])
+        p[0] = rhythmtreetools.RhythmTreeContainer(
+            children=p[3],
+            duration=abs(p[2]),
+            )
 
     def p_leaf__INTEGER(self, p):
         '''leaf : DURATION'''
         from abjad.tools import rhythmtreetools
-        p[0] = rhythmtreetools.RhythmTreeLeaf(abs(p[1]), 0 < p[1])
+        p[0] = rhythmtreetools.RhythmTreeLeaf(
+            duration=abs(p[1]),
+            is_pitched=0 < p[1],
+            )
 
     def p_node__container(self, p):
         '''node : container'''

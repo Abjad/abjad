@@ -10,15 +10,11 @@ from abjad.tools.datastructuretools.TreeNode import TreeNode
 class RhythmTreeNode(TreeNode):
     '''Abstract base class of nodes in a rhythm tree structure.'''
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ('_duration', '_offset', '_offsets_are_current', '_parent')
-
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, duration):
-        TreeNode.__init__(self)
+    def __init__(self, duration=1, name=None):
+        TreeNode.__init__(self, name=name)
         self._offset = durationtools.Offset(0)
         self._offsets_are_current = False
         self.duration = duration
@@ -28,33 +24,6 @@ class RhythmTreeNode(TreeNode):
     @abc.abstractmethod
     def __call__(self, pulse_duration):
         raise NotImplemented
-
-    def __copy__(self, *args):
-        return self.__deepcopy__(None)
-        
-    @abc.abstractmethod
-    def __deepcopy__(self, memo):
-        raise NotImplemented
-
-    @abc.abstractmethod
-    def __getnewargs__(self):
-        raise NotImplemented
-
-    def __getstate__(self):
-        state = {}
-        for klass in inspect.getmro(self.__class__):
-            if hasattr(klass, '__slots__'):
-                for slot in klass.__slots__:
-                    if slot not in state:
-                        state[slot] = getattr(self, slot)
-        return state
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    def __setstate__(self, state):
-        for key, value in state.iteritems():
-            setattr(self, key, value)
 
     ### PRIVATE METHODS ###
 
@@ -106,11 +75,11 @@ class RhythmTreeNode(TreeNode):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer(1)
-            >>> b = rhythmtreetools.RhythmTreeContainer(2)
-            >>> c = rhythmtreetools.RhythmTreeLeaf(3)
-            >>> d = rhythmtreetools.RhythmTreeLeaf(4)
-            >>> e = rhythmtreetools.RhythmTreeLeaf(5)
+            >>> a = rhythmtreetools.RhythmTreeContainer(duration=1)
+            >>> b = rhythmtreetools.RhythmTreeContainer(duration=2)
+            >>> c = rhythmtreetools.RhythmTreeLeaf(duration=3)
+            >>> d = rhythmtreetools.RhythmTreeLeaf(duration=4)
+            >>> e = rhythmtreetools.RhythmTreeLeaf(duration=5)
 
         ::
 
@@ -272,7 +241,7 @@ class RhythmTreeNode(TreeNode):
 
             ::
 
-                >>> node = rhythmtreetools.RhythmTreeLeaf(1)
+                >>> node = rhythmtreetools.RhythmTreeLeaf(duration=1)
                 >>> node.duration
                 Duration(1, 1)
 

@@ -123,12 +123,12 @@ class MetricalHierarchy(AbjadObject):
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = rhythmtreetools.RhythmTreeContainer(duration)
+                            child = rhythmtreetools.RhythmTreeContainer(duration=duration)
                             node.append(child)
                             recurse(child, factors, denominator, decrease_durations_monotonically)
                     else:
                         for _ in range(factor):
-                            node.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
+                            node.append(rhythmtreetools.RhythmTreeLeaf(duration=(1, denominator)))
                 else:
                     parts = [3]
                     total = 3
@@ -139,18 +139,18 @@ class MetricalHierarchy(AbjadObject):
                             parts.insert(0, 2)
                         total += 2
                     for part in parts:
-                        grouping = rhythmtreetools.RhythmTreeContainer(part * duration)
+                        grouping = rhythmtreetools.RhythmTreeContainer(duration=part * duration)
                         if factors:
                             for _ in range(part):
-                                child = rhythmtreetools.RhythmTreeContainer(duration)
+                                child = rhythmtreetools.RhythmTreeContainer(duration=duration)
                                 grouping.append(child)
                                 recurse(child, factors, denominator, decrease_durations_monotonically)
                         else:
                             for _ in range(part):
-                                grouping.append(rhythmtreetools.RhythmTreeLeaf((1, denominator)))
+                                grouping.append(rhythmtreetools.RhythmTreeLeaf(duration=(1, denominator)))
                         node.append(grouping)
             else:
-                node.extend([rhythmtreetools.RhythmTreeLeaf((1, denominator)) 
+                node.extend([rhythmtreetools.RhythmTreeLeaf(duration=(1, denominator)) 
                     for _ in range(node.duration.numerator)])
 
         decrease_durations_monotonically = bool(decrease_durations_monotonically)
@@ -186,7 +186,7 @@ class MetricalHierarchy(AbjadObject):
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = rhythmtreetools.RhythmTreeContainer(fraction)
+            root = rhythmtreetools.RhythmTreeContainer(duration=fraction)
             recurse(root, factors, denominator, decrease_durations_monotonically)
 
         else:

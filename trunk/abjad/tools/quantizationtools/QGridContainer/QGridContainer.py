@@ -12,8 +12,8 @@ class QGridContainer(RhythmTreeContainer):
 
         >>> container
         quantizationtools.QGridContainer(
-            duration=durationtools.Duration(1, 1),
-            children=()
+            children=(),
+            duration=durationtools.Duration(1, 1)
             )
 
     Used internally by ``QGrid``.
@@ -23,8 +23,7 @@ class QGridContainer(RhythmTreeContainer):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ()
-
+    #__slots__ = ()
 
     ### SPECIAL METHODS ###
     

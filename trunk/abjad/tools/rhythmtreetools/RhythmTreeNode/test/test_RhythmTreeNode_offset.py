@@ -4,13 +4,13 @@ from abjad.tools.rhythmtreetools import RhythmTreeContainer, RhythmTreeLeaf
 
 def test_RhythmTreeNode_offset_01():
 
-    tree = RhythmTreeContainer(1, [
-        RhythmTreeLeaf(1),
-        RhythmTreeContainer(2, [
-            RhythmTreeLeaf(3),
-            RhythmTreeLeaf(2)
+    tree = RhythmTreeContainer(duration=1, children=[
+        RhythmTreeLeaf(duration=1),
+        RhythmTreeContainer(duration=2, children=[
+            RhythmTreeLeaf(duration=3),
+            RhythmTreeLeaf(duration=2)
         ]),
-        RhythmTreeLeaf(2)
+        RhythmTreeLeaf(duration=2)
     ])
 
     assert tree.start_offset == Offset(0)

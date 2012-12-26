@@ -3,19 +3,19 @@ from abjad.tools import rhythmtreetools
 
 def test_RhythmTreeContainer___eq___01():
 
-    a = rhythmtreetools.RhythmTreeContainer(1, [])
-    b = rhythmtreetools.RhythmTreeContainer(1, [])
+    a = rhythmtreetools.RhythmTreeContainer(children=[])
+    b = rhythmtreetools.RhythmTreeContainer(children=[])
 
     assert a == b
 
 
 def test_RhythmTreeContainer___eq___02():
 
-    a = rhythmtreetools.RhythmTreeContainer(1, [
-        rhythmtreetools.RhythmTreeLeaf(1)
+    a = rhythmtreetools.RhythmTreeContainer(children=[
+        rhythmtreetools.RhythmTreeLeaf()
         ])
-    b = rhythmtreetools.RhythmTreeContainer(1, [
-        rhythmtreetools.RhythmTreeLeaf(1)
+    b = rhythmtreetools.RhythmTreeContainer(children=[
+        rhythmtreetools.RhythmTreeLeaf()
         ])
 
     assert a == b
@@ -23,16 +23,16 @@ def test_RhythmTreeContainer___eq___02():
 
 def test_RhythmTreeContainer___eq___03():
 
-    a = rhythmtreetools.RhythmTreeContainer(1, [])
-    b = rhythmtreetools.RhythmTreeContainer(2, [])
-    c = rhythmtreetools.RhythmTreeContainer(1, [
-        rhythmtreetools.RhythmTreeLeaf(1)
+    a = rhythmtreetools.RhythmTreeContainer(children=[])
+    b = rhythmtreetools.RhythmTreeContainer(duration=2, children=[])
+    c = rhythmtreetools.RhythmTreeContainer(duration=1, children=[
+        rhythmtreetools.RhythmTreeLeaf(duration=1)
         ])
-    d = rhythmtreetools.RhythmTreeContainer(2, [
-        rhythmtreetools.RhythmTreeLeaf(1)
+    d = rhythmtreetools.RhythmTreeContainer(duration=2, children=[
+        rhythmtreetools.RhythmTreeLeaf(duration=1)
         ])
-    e = rhythmtreetools.RhythmTreeContainer(2, [
-        rhythmtreetools.RhythmTreeLeaf(2)
+    e = rhythmtreetools.RhythmTreeContainer(duration=2, children=[
+        rhythmtreetools.RhythmTreeLeaf(duration=2)
         ])
 
     assert a != b

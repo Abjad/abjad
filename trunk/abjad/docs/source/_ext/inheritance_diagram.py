@@ -185,7 +185,7 @@ class InheritanceGraph(object):
             fullname = '%s.%s' % (module, cls.__name__)
 
         if fullname.startswith(('abjad', 'experimental')):
-            pieces = fullname.split('.')
+            pieces = fullname.split('.')[2:]
             unique_pieces = [pieces[0]]
             for piece in pieces[1:]:
                 if piece != unique_pieces[-1]:

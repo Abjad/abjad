@@ -4,7 +4,7 @@ import copy
 
 def test_RhythmTreeLeaf___copy___01():
 
-    leaf = rhythmtreetools.RhythmTreeLeaf(1)
+    leaf = rhythmtreetools.RhythmTreeLeaf(duration=1)
 
     copied = copy.copy(leaf)
 
@@ -14,7 +14,7 @@ def test_RhythmTreeLeaf___copy___01():
 
 def test_RhythmTreeLeaf___copy___02():
 
-    leaf = rhythmtreetools.RhythmTreeLeaf(2, True)
+    leaf = rhythmtreetools.RhythmTreeLeaf(duration=2, is_pitched=True)
 
     copied = copy.copy(leaf)
 

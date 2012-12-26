@@ -86,6 +86,10 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.is_divisible
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.name
+
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
 Special Methods
 ---------------
 
@@ -99,7 +103,7 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__getstate__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__gt__
 
@@ -115,10 +119,10 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__ne__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setstate__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`

@@ -13,7 +13,8 @@ def test_RhythmTreeContainer___init___01():
 
 def test_RhythmTreeContainer___init___02():
 
-    container = rhythmtreetools.RhythmTreeContainer(2, [])
+    container = rhythmtreetools.RhythmTreeContainer(
+        duration=2, children=[])
 
     assert container.children == ()
     assert container.duration == 2
@@ -23,9 +24,9 @@ def test_RhythmTreeContainer___init___02():
 
 def test_RhythmTreeContainer___init___03():
 
-    leaf_a = rhythmtreetools.RhythmTreeLeaf(1)
-    leaf_b = rhythmtreetools.RhythmTreeLeaf(2)
-    leaf_c = rhythmtreetools.RhythmTreeLeaf(1)
+    leaf_a = rhythmtreetools.RhythmTreeLeaf(duration=1)
+    leaf_b = rhythmtreetools.RhythmTreeLeaf(duration=2)
+    leaf_c = rhythmtreetools.RhythmTreeLeaf(duration=1)
 
     assert leaf_a.start_offset == 0
     assert leaf_a.parent is None
@@ -36,7 +37,8 @@ def test_RhythmTreeContainer___init___03():
     assert leaf_c.start_offset == 0
     assert leaf_c.parent is None
 
-    container = rhythmtreetools.RhythmTreeContainer(4, [leaf_a, leaf_b, leaf_c])
+    container = rhythmtreetools.RhythmTreeContainer(
+        duration=4, children=[leaf_a, leaf_b, leaf_c])
 
     assert container.children == (leaf_a, leaf_b, leaf_c)
     assert container.duration == 4
@@ -51,3 +53,4 @@ def test_RhythmTreeContainer___init___03():
 
     assert leaf_c.start_offset == 3
     assert leaf_c.parent is container
+

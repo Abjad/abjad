@@ -3,19 +3,19 @@ from abjad.tools import quantizationtools
 
 def test_QGridContainer___eq___01():
 
-    a = quantizationtools.QGridContainer(1, [])
-    b = quantizationtools.QGridContainer(1, [])
+    a = quantizationtools.QGridContainer(duration=1, children=[])
+    b = quantizationtools.QGridContainer(duration=1, children=[])
 
     assert a == b
 
 
 def test_QGridContainer___eq___02():
 
-    a = quantizationtools.QGridContainer(1, [
-        quantizationtools.QGridLeaf(1)
+    a = quantizationtools.QGridContainer(duration=1, children=[
+        quantizationtools.QGridLeaf(duration=1)
         ])
-    b = quantizationtools.QGridContainer(1, [
-        quantizationtools.QGridLeaf(1)
+    b = quantizationtools.QGridContainer(duration=1, children=[
+        quantizationtools.QGridLeaf(duration=1)
         ])
 
     assert a == b
@@ -23,15 +23,15 @@ def test_QGridContainer___eq___02():
 
 def test_QGridContainer___eq___03():
 
-    a = quantizationtools.QGridContainer(1, [])
-    b = quantizationtools.QGridContainer(2, [])
-    c = quantizationtools.QGridContainer(1, [
-        quantizationtools.QGridLeaf(1)
+    a = quantizationtools.QGridContainer(duration=1, children=[])
+    b = quantizationtools.QGridContainer(duration=2, children=[])
+    c = quantizationtools.QGridContainer(duration=1, children=[
+        quantizationtools.QGridLeaf(duration=1)
         ])
-    d = quantizationtools.QGridContainer(2, [
-        quantizationtools.QGridLeaf(1)
+    d = quantizationtools.QGridContainer(duration=2, children=[
+        quantizationtools.QGridLeaf(duration=1)
         ])
-    e = quantizationtools.QGridContainer(2, [
+    e = quantizationtools.QGridContainer(duration=2, children=[
         quantizationtools.QGridLeaf(2)
         ])
 

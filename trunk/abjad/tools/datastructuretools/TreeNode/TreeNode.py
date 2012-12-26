@@ -1,3 +1,4 @@
+import copy
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
@@ -10,15 +11,42 @@ class TreeNode(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, name=None):
+        self.name = name
         self._parent = None    
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self, *args):
+        return type(self)(
+            *[copy.deepcopy(x) for x in self.__getnewargs__()]
+            )
+
+    __deepcopy__ = __copy__
 
     def __eq__(self, other):
         if type(self) == type(other):
             return True
         return False
+
+    def __getnewargs__(self):
+        return self._positional_argument_values + self._keyword_argument_values
+
+    def __getstate__(self):
+        state = {}
+        for name in self._positional_argument_names:
+            state['_' + name] = getattr(self, name)
+        for name in self._keyword_argument_names:
+            state['_' + name] = getattr(self, name)
+        state['_parent'] = self._parent
+        return state
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __setstate__(self, state):
+        for key, value in state.iteritems():
+            setattr(self, key, value)
 
     ### PRIVATE METHODS ###
 
@@ -58,22 +86,25 @@ class TreeNode(AbjadObject):
 
         ::
 
-            >>> rtm = '(4 ((2 (1 1)) (2 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
+            >>> a.append(b)
+            >>> b.append(c)
         
         ::
 
-            >>> tree.depth
+            >>> a.depth
             0
 
         ::
 
-            >>> tree[0].depth
+            >>> a[0].depth
             1
 
         ::
 
-            >>> tree[0][0].depth
+            >>> a[0][0].depth
             2
 
         Return int.
@@ -92,24 +123,38 @@ class TreeNode(AbjadObject):
 
         ::
 
-            >>> rtm = '(4 ((2 (1 1)) (2 (1 1))))'
-            >>> tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
-            >>> inventory = tree.depthwise_inventory
+            >>> a = datastructuretools.TreeContainer(name='a')
+            >>> b = datastructuretools.TreeContainer(name='b')
+            >>> c = datastructuretools.TreeContainer(name='c')
+            >>> d = datastructuretools.TreeContainer(name='d')
+            >>> e = datastructuretools.TreeContainer(name='e')
+            >>> f = datastructuretools.TreeContainer(name='f')
+            >>> g = datastructuretools.TreeContainer(name='g')
+            
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+            >>> c.extend([f, g])
+
+        ::
+
+            >>> inventory = a.depthwise_inventory
             >>> for depth in sorted(inventory):
             ...     print 'DEPTH: {}'.format(depth)
             ...     for node in inventory[depth]:
-            ...         print str(node.duration), str(node.start_offset)
+            ...         print node.name 
             ...
             DEPTH: 0
-            4 0
+            a
             DEPTH: 1
-            2 0
-            2 2
+            b
+            c
             DEPTH: 2
-            1 0
-            1 1
-            1 2
-            1 3
+            d
+            e
+            f
+            g
 
         Return dictionary.
         '''
@@ -140,9 +185,9 @@ class TreeNode(AbjadObject):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer()
-            >>> b = rhythmtreetools.RhythmTreeContainer()
-            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
 
         ::
 
@@ -164,7 +209,7 @@ class TreeNode(AbjadObject):
             >>> c.improper_parentage == (c, b, a)
             True
 
-        Return tuple of `RhythmTreeNode` instances.
+        Return tuple of `TreeNode` instances.
         '''
         node = self
         parentage = [node]
@@ -179,9 +224,9 @@ class TreeNode(AbjadObject):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer()
-            >>> b = rhythmtreetools.RhythmTreeContainer()
-            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
 
         ::
 
@@ -203,7 +248,7 @@ class TreeNode(AbjadObject):
             >>> c.parent is b
             True
 
-        Return `RhythmTreeNode` instance.
+        Return `TreeNode` instance.
         '''
         return self._parent
 
@@ -215,9 +260,9 @@ class TreeNode(AbjadObject):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer()
-            >>> b = rhythmtreetools.RhythmTreeContainer()
-            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
 
         ::
 
@@ -239,7 +284,7 @@ class TreeNode(AbjadObject):
             >>> c.proper_parentage == (b, a)
             True
 
-        Return tuple of `RhythmTreeNode` instances.
+        Return tuple of `TreeNode` instances.
         '''
         return self.improper_parentage[1:]
 
@@ -250,9 +295,9 @@ class TreeNode(AbjadObject):
 
         ::
 
-            >>> a = rhythmtreetools.RhythmTreeContainer()
-            >>> b = rhythmtreetools.RhythmTreeContainer()
-            >>> c = rhythmtreetools.RhythmTreeLeaf()
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
 
         ::
 
@@ -275,3 +320,13 @@ class TreeNode(AbjadObject):
             node = node.parent
         return node
 
+    ### READ/WRITE PROPERTIES ###
+
+    @apply
+    def name():
+        def fget(self):
+            return self._name
+        def fset(self, arg):
+            assert isinstance(arg, (str, type(None))) 
+            self._name = arg
+        return property(**locals())

@@ -89,12 +89,12 @@ class QGrid(AbjadObject):
         from abjad.tools import quantizationtools
 
         if root_node is None:
-            root_node = quantizationtools.QGridLeaf(1)
+            root_node = quantizationtools.QGridLeaf(duration=1)
         assert isinstance(root_node,
             (quantizationtools.QGridLeaf, quantizationtools.QGridContainer))
 
         if next_downbeat is None:
-            next_downbeat = quantizationtools.QGridLeaf(1)
+            next_downbeat = quantizationtools.QGridLeaf(duration=1)
         assert isinstance(next_downbeat, quantizationtools.QGridLeaf)
 
         self._root_node = root_node
@@ -263,8 +263,9 @@ class QGrid(AbjadObject):
         '''
         from abjad.tools import quantizationtools
         container = quantizationtools.QGridContainer(
-            leaf.duration, [
-                quantizationtools.QGridLeaf(subdivision) for subdivision in subdivisions
+            duration=leaf.duration,
+            children=[
+                quantizationtools.QGridLeaf(duration=subdivision) for subdivision in subdivisions
             ])
         if leaf.parent is not None:
             index = leaf.parent.index(leaf)

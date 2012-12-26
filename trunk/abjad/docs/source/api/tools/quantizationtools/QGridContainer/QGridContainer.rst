@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.children
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.contents_duration
 
@@ -41,7 +41,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.nodes
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parent
 
@@ -98,32 +98,36 @@ Read/write Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.name
+
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
 Methods
 -------
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.append
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.extend
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.index
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.insert
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.pop
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.remove
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 Special Methods
 ---------------
@@ -138,11 +142,11 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__contains__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__delitem__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__eq__
 
@@ -154,11 +158,11 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__getitem__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__getstate__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__gt__
 
@@ -166,7 +170,7 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__iter__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__le__
 
@@ -174,7 +178,7 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__len__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__lt__
 
@@ -182,7 +186,7 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__ne__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__repr__
 
@@ -192,4 +196,4 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setstate__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`

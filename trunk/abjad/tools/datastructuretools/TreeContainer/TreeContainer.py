@@ -1,4 +1,3 @@
-import copy
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
@@ -30,8 +29,8 @@ class TreeContainer(TreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, children=None):
-        TreeNode.__init__(self)
+    def __init__(self, children=None, name=None):
+        TreeNode.__init__(self, name=name)
         self._children = []
         if children is None:
             pass
@@ -68,13 +67,6 @@ class TreeContainer(TreeNode):
             if x is expr:
                 return True
         return False
-
-    def __deepcopy__(self, memo):
-        args = self.__getnewargs__()
-        return type(self)(
-            args[0],
-            [copy.deepcopy(x) for x in args[1]]
-            )
 
     def __delitem__(self, i):
         '''Find node at index or slice `i` in container and detach from parentage:
@@ -163,9 +155,6 @@ class TreeContainer(TreeNode):
         Return `TreeNode` instance.    
         '''
         return self._children[i]
-
-    def __getnewargs__(self):
-        return (self.children,)
 
     def __iter__(self):
         for child in self._children:

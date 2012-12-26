@@ -3,10 +3,10 @@ from abjad import *
 
 def test_RhythmTreeContainer_extend_01():
 
-    leaf_a = rhythmtreetools.RhythmTreeLeaf(3)
-    leaf_b = rhythmtreetools.RhythmTreeLeaf(3)
-    leaf_c = rhythmtreetools.RhythmTreeLeaf(2)
-    leaf_d = rhythmtreetools.RhythmTreeLeaf(1)
+    leaf_a = rhythmtreetools.RhythmTreeLeaf(duration=3)
+    leaf_b = rhythmtreetools.RhythmTreeLeaf(duration=3)
+    leaf_c = rhythmtreetools.RhythmTreeLeaf(duration=2)
+    leaf_d = rhythmtreetools.RhythmTreeLeaf(duration=1)
 
     container = rhythmtreetools.RhythmTreeContainer()
 

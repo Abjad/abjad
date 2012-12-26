@@ -27,6 +27,11 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Read/write Properties
+---------------------
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.name
+
 Special Methods
 ---------------
 
@@ -35,6 +40,8 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__getstate__
 
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__gt__
 
@@ -50,8 +57,8 @@ Special Methods
 
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__ne__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__repr__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__setstate__

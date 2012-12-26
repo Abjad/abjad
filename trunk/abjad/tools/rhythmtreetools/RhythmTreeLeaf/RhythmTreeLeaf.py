@@ -41,8 +41,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=1, is_pitched=True):
-        RhythmTreeNode.__init__(self, duration)
+    def __init__(self, duration=1, is_pitched=True, name=None):
+        RhythmTreeNode.__init__(self, duration=duration, name=name)
         self.is_pitched = is_pitched
 
     ### SPECIAL METHODS ###
@@ -64,18 +64,12 @@ class RhythmTreeLeaf(RhythmTreeNode):
             return notetools.make_notes(0, total_duration)
         return resttools.make_rests(total_duration)
 
-    def __deepcopy__(self, memo):
-        return type(self)(*self.__getnewargs__())
-
     def __eq__(self, other):
         if type(self) == type(other):
             if self.duration == other.duration:
                 if self.is_pitched == other.is_pitched:
                     return True
         return False
-
-    def __getnewargs__(self):
-        return (self.duration, self.is_pitched)
 
     def __repr__(self):
         result = ['{}('.format(self._class_name)]
