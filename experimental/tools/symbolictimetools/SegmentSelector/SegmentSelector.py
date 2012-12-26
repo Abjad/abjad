@@ -10,67 +10,72 @@ class SegmentSelector(Selector):
 
         >>> from experimental.tools import *
 
+    ::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+        >>> blue_segment = score_specification.append_segment(name='blue')
+        >>> green_segment = score_specification.append_segment(name='green')
+
     Select all segments in score::
 
-        >>> symbolictimetools.SegmentSelector()
+        >>> score_specification.select_segments()
         SegmentSelector()
 
-    Select segments from ``3`` forward::
+    Select the first two segments in score::
 
-        >>> symbolictimetools.SegmentSelector(start_identifier=3)
-        SegmentSelector(start_identifier=3)
+        >>> segments = score_specification.select_segments()[:2]
 
-    Select segments up to but not including ``6``::
+    ::
 
-        >>> symbolictimetools.SegmentSelector(stop_identifier=6)
-        SegmentSelector(stop_identifier=6)
+        >>> z(segments)
+        symbolictimetools.SegmentSelector(
+            modifications=datastructuretools.ObjectInventory([
+                'result = self._slice_selected_objects(elements, start_offset, slice(None, 2, None))'
+                ])
+            )
 
-    Select segments up to and including ``6``::
+    Select segments up to but not including ``'green'``::
 
-        >>> symbolictimetools.SegmentSelector(stop_identifier=6+1)
-        SegmentSelector(stop_identifier=7)
+        >>> segments = score_specification.select_segments()[:'green']
 
-    Select segments from ``3`` up to but not including ``6``::
+    ::
 
-        >>> symbolictimetools.SegmentSelector(start_identifier=3, stop_identifier=6)
-        SegmentSelector(start_identifier=3, stop_identifier=6)
+        >>> z(segments)
+        symbolictimetools.SegmentSelector(
+            modifications=datastructuretools.ObjectInventory([
+                "result = self._slice_selected_objects(elements, start_offset, slice(None, 'green', None))"
+                ])
+            )
 
-    Select segments from ``3`` up to and including ``6``::
+    Select segments up to and including ``'green'``::
 
-        >>> symbolictimetools.SegmentSelector(start_identifier=3, stop_identifier=6+1)
-        SegmentSelector(start_identifier=3, stop_identifier=7)
+        >>> segments = score_specification.select_segments()[:('green', 1)]
 
-    Select segments from ``'red'`` forward::
+    ::
 
-        >>> symbolictimetools.SegmentSelector(start_identifier='red')
-        SegmentSelector(start_identifier='red')
+        >>> z(segments)
+        symbolictimetools.SegmentSelector(
+            modifications=datastructuretools.ObjectInventory([
+                "result = self._slice_selected_objects(elements, start_offset, slice(None, ('green', 1), None))"
+                ])
+            )
 
-    Select segments up to but not including ``'blue'``::
+    Select segment ``'red'``::
 
-        >>> symbolictimetools.SegmentSelector(stop_identifier='blue')
-        SegmentSelector(stop_identifier='blue')
+        >>> segments = score_specification.select_segments()['red':('red', 1)]
 
-    Select segments up to and including ``'blue'``::
+    ::
 
-        >>> symbolictimetools.SegmentSelector(stop_identifier=('blue', 1))
-        SegmentSelector(stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
+        >>> z(segments)
+        symbolictimetools.SegmentSelector(
+            modifications=datastructuretools.ObjectInventory([
+                "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                ])
+            )
 
-    Select segments from ``'red'`` up to but not including ``'blue'``::
-
-        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier='blue')
-        SegmentSelector(start_identifier='red', stop_identifier='blue')
-
-    Select segments from ``'red'`` up to and including ``'blue'``::
-
-        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=('blue', 1))
-        SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'blue' + 1"))
-
-    Select three segments from ``'red'``::
-
-        >>> symbolictimetools.SegmentSelector(start_identifier='red', stop_identifier=('red', 3))
-        SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
-
-    All segment selector properties are read-only.
+    Segment selector properties are read only.
     '''
 
     ### INITIALIZER ###

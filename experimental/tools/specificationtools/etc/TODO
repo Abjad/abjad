@@ -180,3 +180,5 @@
 34. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
+
+35. Implement a ModificationInventory class.
