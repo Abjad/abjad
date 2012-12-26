@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depth
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.depthwise_inventory
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graph_order
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.improper_parentage
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.parent
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.parentage_ratios
 
@@ -53,13 +53,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.proper_parentage
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.q_event_proxies
 
-.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.root_node
+.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.root
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.rtm_format
 

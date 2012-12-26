@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_RhythmTreeNode_root_node_01():
+def test_RhythmTreeNode_root_01():
 
     leaf = rhythmtreetools.RhythmTreeLeaf()
     subsubcontainer = rhythmtreetools.RhythmTreeContainer()
@@ -12,7 +12,7 @@ def test_RhythmTreeNode_root_node_01():
     subcontainer.append(subsubcontainer)
     subsubcontainer.append(leaf)
 
-    assert leaf.root_node == container
-    assert subsubcontainer.root_node == container
-    assert subcontainer.root_node == container
-    assert container.root_node == container
+    assert leaf.root == container
+    assert subsubcontainer.root == container
+    assert subcontainer.root == container
+    assert container.root == container

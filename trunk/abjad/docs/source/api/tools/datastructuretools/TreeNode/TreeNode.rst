@@ -9,6 +9,20 @@ datastructuretools.TreeNode
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.depth
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.depthwise_inventory
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.graph_order
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.improper_parentage
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.parent
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.proper_parentage
+
+.. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.root
+
 .. autoattribute:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

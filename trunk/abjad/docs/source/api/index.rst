@@ -2175,14 +2175,6 @@ Abjad internal packages
 :py:mod:`datastructuretools <('abjad.tools.', 'abjad.demos.')datastructuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/datastructuretools/TreeContainer/TreeContainer
-   tools/datastructuretools/TreeNode/TreeNode
-
 .. rubric:: concrete classes
 
 .. toctree::
@@ -2192,6 +2184,8 @@ Abjad internal packages
    tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
    tools/datastructuretools/ObjectInventory/ObjectInventory
    tools/datastructuretools/OrdinalConstant/OrdinalConstant
+   tools/datastructuretools/TreeContainer/TreeContainer
+   tools/datastructuretools/TreeNode/TreeNode
 
 :py:mod:`decoratortools <('abjad.tools.', 'abjad.demos.')decoratortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

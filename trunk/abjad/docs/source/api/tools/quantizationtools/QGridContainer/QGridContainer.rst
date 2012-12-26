@@ -19,15 +19,15 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.depth
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.depthwise_inventory
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graph_order
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.graphviz_format
 
@@ -35,7 +35,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.improper_parentage
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.leaves
 
@@ -45,7 +45,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parent
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.parentage_ratios
 
@@ -69,11 +69,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.proper_parentage
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
-.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.root_node
+.. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.root
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.rtm_format
 
