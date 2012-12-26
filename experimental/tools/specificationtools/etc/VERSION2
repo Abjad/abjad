@@ -1,0 +1,8 @@
+1.  Overwrite existing divisions with new divisions:
+        divisions = red_segment.select_divisions('Voice 1')[5:10]
+        red_segment.set_divisions([(2, 16)], timespan=divisions)
+    (Note that overwriting existing time signatures with new time signatures makes no sense.)
+
+2.  Overwrite existing rhythms with new rhythms:
+        leaves = red_segment.select_leaves('Voice 1')[5:10]
+        red_segment.set_rhythm(library.thirty_seconds, timespan=leaves)

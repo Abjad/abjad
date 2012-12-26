@@ -85,95 +85,98 @@
 
 17. Audit all symbolic timespan docstrings and make sure everything is modern.
 
-18. Add some tests to show selecting leaves that don't yet exist.
-    Make sure the command is ignored at first and then interpreted correctly in a later pass.
+18. Add some tests to show this:
+        measures = red_segment.select_background_measures('Voice 1')
+        measures = measures[10:20]
+        measures = measures[2:4]
+    This will show getitem composition.
 
 19. Add some tests to show this:
-        measures = red_segment.select_background_measures('Voice 1')[10:20]
-        measures = measures[2:4]
-    This will show the composition of multiple slice selections in a row.
-
-20. Add some tests to show this:
-        segments = score_specification.select_segments('red', ('blue' + 1))
+        segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
-    This will show anchoring to a segment selector that selects more than one segment.
+    THis will show setting divisions for (potentially) more than one segment.
+
+20. Add some tests to show this:
+        segments = score_specification.select_segments()['red':('blue'+1)]
+        middle_measures = segments.select_background_measures('Voice 1')[3:6]
+    This will show selecting background measures from (potentially) more than one segment.
 
 21. Add some tests to show this:
-        segments = score_specification.select_segments('red', ('blue' + 1))
-        middle_measures = segments.select_background_measures('Voice 1', 3, 6)
-    This will show selecting background measures from more than one segment.
-
-22. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-23. Add some tests to show this:
+22. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
-    This will show slice selection following after partition.
+    This will show slice selection following partition.
 
-24. Add some tests to show this:
-        segment = red_segment.select()
-        first_half_of_red_segment = segment.divide_by_ratio((1, 1))[0]
+23. Add some tests to show this:
+        first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
-    This will show background measures that start during the first half of a segment.
+    This will show selecting background measures that start during a duration-partitioned part of segment.
 
-25. Eventually add something like offset modifications to SymbolicOffset class.
+24. Extend SymbolicOffset with an 'offset_modifications' stack.
     Modification methods include SymbolicOffset.translate() and possibly others.
 
-26. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+25. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
     Remove Specification.__deepcopy__ override afterwards.
 
-27. Remove start_identifier=None and stop_identifier=None properties from all selector classes.
+26. Remove start_identifier=None and stop_identifier=None properties from SegmentSelector.
+    Replace with getitem.
 
-28. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
+27. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-29. Call self._apply_modifications(selected_objects, start_offset) from within
-    every selector _get_offsets() implementation.
+28. Implement BeatSelector._get_offsets().
 
-30. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
+29. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
 
-31. Implement an official way to do this: time_relation._timespan_1 = timespan_1.
-    The result should be a newly created time relation because time relations
-    are to be treated as value objects.
+30. Implement an official way to do this: time_relation._timespan_1 = timespan_1.
+    The result should be a newly created time relation.
+    Perhaps RhythmMaker.set() can be used as a model here.
+    So new_time_relation = time_relation.set(timespan_1=timespan_1).
 
-32. Replace ...
+31. Implement the complete "timespan inequality interface" on Timespan.
+    Then replace ...
         previous_rhythm_region_expression.stop_offset == current_rhythm_region_expression.start_offset
     ... with ...
-        previous_rhythm_region_expression.is_tangent_to(current_rhythm_region_expression) 
-    ... from timeintervaltools.
-    Note that there need to be left- and right-hand versions of the predicate.
-    Is there a way to say timespan_1.stops_when_timespan_starts(timespan_2)?
-    It's possible that everything in timerelationtools defines something like
-    a "timespan inequality interface". It's then reasonable to suggest implementing
-    all such inequalitie on the core Timespan class.
+        previous_rhythm_region_expression.stops_when_expr_starts(current_rhythm_region_expression) 
+    ... instead.
 
-33. Add Request.repeat_to_duration() method to accompany Request.repeat_to_length().
-
-34. Author tests to show each request modification applied to each voice selector.
-    Six reqeust methods applied to each of four voice selectors gives 24 tests:
+32. Author tests to show each request modification applied to each voice selector.
+    Five reqeust methods applied to each of four voice selectors gives ...
         measures.partition_objects_by_ratio()
         measures.partition_objects_by_ratio_of_durations()
         measures.repeat_to_length()
-        measures.repeat_to_duration() 
         measures.reverse()
         measures.rotate()
-        beats.partition_objects_by_ratio() ...
-        divisions.partition_objects_by_ratio() ...
-        leaves.partition_objects_by_ratio() ...
-    ... and so on.
+        divisions.partition_objects_by_ratio()
+        divisions.partition_objects_by_ratio_of_durations()
+        divisions.repeat_to_length()
+        divisions.reverse()
+        divisions.rotate()
+        beats.partition_objects_by_ratio()
+        beats.partition_objects_by_ratio_of_durations()
+        beats.repeat_to_length()
+        beats.reverse()
+        beats.rotate()
+        leaves.partition_objects_by_ratio()
+        leaves.partition_objects_by_ratio_of_durations()
+        leaves.repeat_to_length()
+        leaves.reverse()
+        leaves.rotate()
+    ... a total of 20 tests.
 
-35. It's possible that 'modifications' should be renamed 'request_modifications'.
+33. It's possible that 'modifications' should be renamed 'request_modifications'.
     Because the stack implements on the Request class.
     And because the name would then parallel the 'timespan_modifications' stack.
 
-36. Add a test to show this:
+34. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
