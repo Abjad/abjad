@@ -2175,6 +2175,14 @@ Abjad internal packages
 :py:mod:`datastructuretools <('abjad.tools.', 'abjad.demos.')datastructuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/datastructuretools/TreeContainer/TreeContainer
+   tools/datastructuretools/TreeNode/TreeNode
+
 .. rubric:: concrete classes
 
 .. toctree::
@@ -2402,6 +2410,11 @@ Abjad internal packages
    :maxdepth: 1
 
    tools/lilypondparsertools/lilypond_enharmonic_transpose
+   tools/lilypondparsertools/list_known_contexts
+   tools/lilypondparsertools/list_known_grobs
+   tools/lilypondparsertools/list_known_languages
+   tools/lilypondparsertools/list_known_markup_functions
+   tools/lilypondparsertools/list_known_music_functions
    tools/lilypondparsertools/parse_reduced_ly_syntax
 
 :py:mod:`offsettools <('abjad.tools.', 'abjad.demos.')offsettools>`
