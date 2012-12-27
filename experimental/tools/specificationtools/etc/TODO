@@ -165,10 +165,3 @@
         leaves.reverse()
         leaves.rotate()
     ... a total of 24 tests.
-
-30. Implement the complete "timespan inequality interface" on Timespan.
-    Then replace ...
-        previous_rhythm_region_expression.stop_offset == current_rhythm_region_expression.start_offset
-    ... with ...
-        previous_rhythm_region_expression.stops_when_expr_starts(current_rhythm_region_expression) 
-    ... instead.

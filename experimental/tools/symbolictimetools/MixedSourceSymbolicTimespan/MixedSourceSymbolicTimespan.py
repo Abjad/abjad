@@ -82,9 +82,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         Return boolean.
         '''
         if isintance(expr, type(self)):
-            if self.start_offset == timespan_2.start_offset:
-                if self.stop_offset == timespan_2.stop_offset:
-                    return True
+            return self.is_congruent_to_expr(expr)
         return False
 
     ### PRIVATE METHODS ###

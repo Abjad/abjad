@@ -91,8 +91,8 @@ class CounttimeComponentSelector(Selector):
             time_relation = self.time_relation.set(timespan_1=timespan_1)
         for current_rhythm_region_expression in rhythm_region_expressions:
             if previous_rhythm_region_expression is not None:
-                if not previous_rhythm_region_expression.stop_offset == \
-                    current_rhythm_region_expression.start_offset:
+                if not previous_rhtyhm_region_expression.stops_when_expr_starts(
+                    current_rhythm_region_expression):
                     return selectiontools.Selection()
             for counttime_component in iterationtools.iterate_components_in_expr(
                 current_rhythm_region_expression.music, klass=self.klass):
