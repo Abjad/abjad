@@ -119,7 +119,7 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-24. Extend SymbolicOffset with an 'offset_modifications' stack.
+24. Extend SymbolicOffset with an 'offset_request_modifications' stack.
     Modification methods include SymbolicOffset.translate() and possibly others.
 
 25. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
@@ -170,22 +170,18 @@
         leaves.rotate()
     ... a total of 20 tests.
 
-32. It's possible that 'modifications' should be renamed 'request_modifications'.
-    Because the stack implements on the Request class.
-    And because the name would then parallel the 'timespan_modifications' stack.
-
-33. Add a test to show this:
+32. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
-34. Implement a ModificationInventory class.
+33. Implement a ModificationInventory class.
 
-35. Rename _set_start_segment_identifier().
+34. Rename _set_start_segment_identifier().
     Maybe should be called _set_anchor(). Not sure.
     In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
     If that turns out to be the case then "start segment specification" is
     something like "anchor segment specification".
 
-36. Add voice_name to Selector. Then remove VoiceSelector from the class hierarchy.
+35. Add voice_name to Selector. Then remove VoiceSelector from the class hierarchy.
 
-37. Change context_names=['Grouped Rhythmic Staves Score'] to context_names=None everywhere.
+36. Change context_names=['Grouped Rhythmic Staves Score'] to context_names=None everywhere.

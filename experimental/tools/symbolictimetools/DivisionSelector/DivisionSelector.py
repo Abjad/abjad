@@ -70,7 +70,7 @@ class DivisionSelector(VoiceSelector):
                 context_name=voice_name):
                 divisions.append(division)
         start_offset = divisions[0].start_offset
-        divisions, start_offset = self._apply_modifications(divisions, start_offset)
+        divisions, start_offset = self._apply_request_modifications(divisions, start_offset)
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
         start_offset, stop_offset = self._apply_timespan_modifications(start_offset, stop_offset)

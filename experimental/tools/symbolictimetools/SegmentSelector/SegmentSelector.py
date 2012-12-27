@@ -31,7 +31,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            modifications=datastructuretools.ObjectInventory([
+            request_modifications=datastructuretools.ObjectInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
@@ -44,7 +44,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            modifications=datastructuretools.ObjectInventory([
+            request_modifications=datastructuretools.ObjectInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
@@ -57,7 +57,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            modifications=datastructuretools.ObjectInventory([
+            request_modifications=datastructuretools.ObjectInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
@@ -70,7 +70,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            modifications=datastructuretools.ObjectInventory([
+            request_modifications=datastructuretools.ObjectInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])
             )
@@ -109,7 +109,7 @@ class SegmentSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     # TODO: Eventually extend to work without anchor being defined.
-    #       Evaluate request modifications instead.
+    #       Evaluate request request_modifications instead.
     @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.

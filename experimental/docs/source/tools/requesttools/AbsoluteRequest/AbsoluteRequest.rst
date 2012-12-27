@@ -9,11 +9,11 @@ requesttools.AbsoluteRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.modifications
+.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.payload
+
+.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.request_modifications
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
-.. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.payload
 
 .. autoattribute:: experimental.tools.requesttools.AbsoluteRequest.AbsoluteRequest.AbsoluteRequest.storage_format
 

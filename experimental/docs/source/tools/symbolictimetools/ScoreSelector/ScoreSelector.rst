@@ -37,13 +37,13 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.modifications
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.request_modifications
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.score_specification
 

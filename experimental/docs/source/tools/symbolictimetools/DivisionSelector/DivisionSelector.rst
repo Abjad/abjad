@@ -37,13 +37,13 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.modifications
-
-    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
-
 .. autoattribute:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. autoattribute:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.request_modifications
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
 .. autoattribute:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.score_specification
 

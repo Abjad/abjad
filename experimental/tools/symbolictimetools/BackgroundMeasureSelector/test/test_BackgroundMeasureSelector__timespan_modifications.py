@@ -143,7 +143,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_07():
 
 
 def test_BackgroundMeasureSelector__timespan_modifications_08():
-    '''Stacked timespan modifications applied in composition.
+    '''Stacked timespan request_modifications applied in composition.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

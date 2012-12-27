@@ -1,6 +1,5 @@
 import abc
 import copy
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
@@ -21,12 +20,12 @@ class Selector(SymbolicTimespan, Request):
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, time_relation=None, modifications=None, timespan_modifications=None):
+    def __init__(self, anchor=None, time_relation=None, request_modifications=None, timespan_modifications=None):
         from experimental.tools import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__(self, modifications=modifications)
+        Request.__init__(self, request_modifications=request_modifications)
         SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         self._anchor = anchor
         self._time_relation = time_relation
@@ -51,10 +50,15 @@ class Selector(SymbolicTimespan, Request):
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty selector modifications list.
+        '''Do not show empty selector request_modifications list.
         '''
-        return Request._get_tools_package_qualified_keyword_argument_repr_pieces(
+        filtered_result = []
+        result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
+        for string in result:
+            if not 'timespan_modifications=datastructuretools.ObjectInventory([])' in string:
+                filtered_result.append(string)
+        return filtered_result
     
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)

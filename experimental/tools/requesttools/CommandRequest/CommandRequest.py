@@ -31,7 +31,7 @@ class CommandRequest(Request):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    modifications=datastructuretools.ObjectInventory([
+                    request_modifications=datastructuretools.ObjectInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
@@ -48,11 +48,11 @@ class CommandRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute, voice_name, symbolic_offset, modifications=None):
+    def __init__(self, attribute, voice_name, symbolic_offset, request_modifications=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
-        Request.__init__(self, modifications=modifications)
+        Request.__init__(self, request_modifications=request_modifications)
         self._attribute = attribute
         self._voice_name = voice_name
         self._symbolic_offset = symbolic_offset
@@ -90,7 +90,7 @@ class CommandRequest(Request):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    modifications=datastructuretools.ObjectInventory([
+                    request_modifications=datastructuretools.ObjectInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )

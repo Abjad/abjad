@@ -122,7 +122,7 @@ class SymbolicTimespan(Timespan):
         pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty offset modifications list.
+        '''Do not show empty offset request_modifications list.
         '''
         filtered_result = []
         result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
@@ -213,7 +213,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                modifications=datastructuretools.ObjectInventory([
+                request_modifications=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
                 timespan_modifications=datastructuretools.ObjectInventory([
@@ -226,7 +226,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                modifications=datastructuretools.ObjectInventory([
+                request_modifications=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
                 timespan_modifications=datastructuretools.ObjectInventory([
@@ -243,7 +243,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                modifications=datastructuretools.ObjectInventory([
+                request_modifications=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
                 timespan_modifications=datastructuretools.ObjectInventory([
@@ -256,7 +256,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                modifications=datastructuretools.ObjectInventory([
+                request_modifications=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
                 timespan_modifications=datastructuretools.ObjectInventory([
@@ -269,7 +269,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[2])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                modifications=datastructuretools.ObjectInventory([
+                request_modifications=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
                 timespan_modifications=datastructuretools.ObjectInventory([
@@ -297,7 +297,7 @@ class SymbolicTimespan(Timespan):
             >>> z(red_segment.select().scale(Multiplier(4, 5)))
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                modifications=datastructuretools.ObjectInventory([
+                request_modifications=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
                 timespan_modifications=datastructuretools.ObjectInventory([

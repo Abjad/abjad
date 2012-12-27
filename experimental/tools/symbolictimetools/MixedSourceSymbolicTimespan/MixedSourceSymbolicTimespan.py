@@ -44,7 +44,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    modifications=datastructuretools.ObjectInventory([
+                    request_modifications=datastructuretools.ObjectInventory([
                         'result = self.___getitem__(elements, start_offset, slice(-1, None, None))'
                         ])
                     )
@@ -53,7 +53,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='blue',
                     voice_name='Voice 1',
-                    modifications=datastructuretools.ObjectInventory([
+                    request_modifications=datastructuretools.ObjectInventory([
                         'result = self.___getitem__(elements, start_offset, slice(None, 1, None))'
                         ])
                     ),

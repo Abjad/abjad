@@ -26,9 +26,9 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, modifications=None):
-        modifications = modifications or []
-        self._modifications = datastructuretools.ObjectInventory(modifications)
+    def __init__(self, request_modifications=None):
+        request_modifications = request_modifications or []
+        self._request_modifications = datastructuretools.ObjectInventory(request_modifications)
 
     ### SPECIAL METHODS ###
 
@@ -50,7 +50,7 @@ class Request(AbjadObject):
         modification = 'result = self.___getitem__(elements, start_offset, {!r})'
         modification = modification.format(expr)
         result = copy.deepcopy(self)
-        result.modifications.append(modification)
+        result.request_modifications.append(modification)
         return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
@@ -58,14 +58,14 @@ class Request(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'modifications=ObjectInventory([])' in result:
+        if 'request_modifications=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('modifications=ObjectInventory([])')
+            result.remove('request_modifications=ObjectInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
 
-    def _apply_modifications(self, elements, start_offset):
+    def _apply_request_modifications(self, elements, start_offset):
         from experimental.tools import settingtools
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -79,7 +79,7 @@ class Request(AbjadObject):
             'result': None,
             'sequencetools': sequencetools,
             }
-        for modification in self.modifications:
+        for modification in self.request_modifications:
             assert 'elements' in modification
             evaluation_context['elements'] = elements
             evaluation_context['start_offset'] = start_offset
@@ -88,13 +88,13 @@ class Request(AbjadObject):
         return elements, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty modifications list.
+        '''Do not show empty request_modifications list.
         '''
         filtered_result = []
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'modifications=datastructuretools.ObjectInventory([])' in string:
+            if not 'request_modifications=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -171,13 +171,13 @@ class Request(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def modifications(self):
-        return self._modifications
+    def request_modifications(self):
+        return self._request_modifications
 
     ### PUBLIC METHODS ###
 
     def partition_objects_by_ratio(self, ratio):
-        '''Return tuple of newly constructed requests with modifications appended.
+        '''Return tuple of newly constructed requests with request_modifications appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
@@ -186,7 +186,7 @@ class Request(AbjadObject):
             modification = \
                 'result = self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
             modification = modification.format(ratio, part)
-            selector.modifications.append(modification)
+            selector.request_modifications.append(modification)
             result.append(selector)
         return tuple(result)
 
@@ -198,7 +198,7 @@ class Request(AbjadObject):
             modification = \
                 'result = self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             modification = modification.format(ratio, part)
-            selector.modifications.append(modification)
+            selector.request_modifications.append(modification)
             result.append(selector)
         return tuple(result)
 
@@ -208,7 +208,7 @@ class Request(AbjadObject):
         assert mathtools.is_nonnegative_integer(length)
         modification = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
         result = copy.deepcopy(self)
-        result.modifications.append(modification)
+        result.request_modifications.append(modification)
         return result
         
     def reverse(self):
@@ -216,7 +216,7 @@ class Request(AbjadObject):
         '''
         modification = 'result = self._reverse(elements, start_offset)'
         result = copy.deepcopy(self)
-        result.modifications.append(modification)
+        result.request_modifications.append(modification)
         return result
 
     def rotate(self, index):
@@ -226,5 +226,5 @@ class Request(AbjadObject):
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
         modification = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
         result = copy.deepcopy(self)
-        result.modifications.append(modification)
+        result.request_modifications.append(modification)
         return result

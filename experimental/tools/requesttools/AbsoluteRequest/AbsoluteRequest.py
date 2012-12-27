@@ -29,9 +29,9 @@ class AbsoluteRequest(Request):
 
     ### INTIAILIZER ###
 
-    def __init__(self, payload, modifications=None):
+    def __init__(self, payload, request_modifications=None):
         from abjad.tools import rhythmmakertools
-        Request.__init__(self, modifications=modifications)
+        Request.__init__(self, request_modifications=request_modifications)
         assert isinstance(payload, (tuple, list, str, rhythmmakertools.RhythmMaker)), repr(payload)
         self._payload = payload
 
