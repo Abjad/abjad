@@ -180,14 +180,10 @@
 
 34. Implement a ModificationInventory class.
 
-35. Change the keyword order of Selector(timespan_modifications=None, modifications=None)
-    to Selector(request_modifications=None, timespan_modifications=None).
-    This helps keep the order of modifier application in mind.
-
-36. Rename ___getitem__() to ____getitem__().
-
-37. Rename _set_start_segment_identifier().
+35. Rename _set_start_segment_identifier().
     Maybe should be called _set_anchor(). Not sure.
     In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
     If that turns out to be the case then "start segment specification" is
     something like "anchor segment specification".
+
+36. Add voice_name to Selector. Then remove VoiceSelector from the class hierarchy.

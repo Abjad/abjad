@@ -78,16 +78,6 @@ class SegmentSelector(Selector):
     Segment selector properties are read only.
     '''
 
-    ### INITIALIZER ###
-
-    # TODO: remove in favor of Selector.__init__
-    def __init__(self, anchor=None, time_relation=None, timespan_modifications=None, modifications=None):
-        Selector.__init__(self, 
-            anchor=anchor,
-            time_relation=time_relation,
-            timespan_modifications=timespan_modifications,
-            modifications=modifications)
-
     ### PRIVATE METHODS ###
 
     def _get_offsets(self, score_specification, context_name):
