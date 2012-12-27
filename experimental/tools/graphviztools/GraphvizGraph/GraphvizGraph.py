@@ -67,6 +67,54 @@ class GraphvizGraph(TreeContainer):
         >>> start.attributes['shape'] = 'Mdiamond'
         >>> end.attributes['shape'] = 'Msquare'
 
+    Access the computed graphviz format of the graph:
+
+    ::
+
+        >>> print graph.graphviz_format
+        digraph G {
+            subgraph cluster_0 {
+                color=lightgrey
+                style=filled
+                label="process #1"
+                node [color=white, style=filled];
+                a0;
+                a1;
+                a2;
+                a3;
+                a0 -> a1;
+                a1 -> a2;
+                a2 -> a3;
+                a3 -> a0;
+            }
+            subgraph cluster_1 {
+                color=blue
+                label="process #2"
+                node [style=filled];
+                b0;
+                b1;
+                b2;
+                b3;
+                b0 -> b1;
+                b1 -> b2;
+                b2 -> b3;
+            }
+            start [shape=Mdiamond];
+            end [shape=Msquare];
+            a1 -> b3;
+            a3 -> end;
+            b2 -> a3;
+            b3 -> end;
+            start -> a0;
+            start -> b0;
+        }
+
+    View the graph:
+
+    ::
+
+        >>> iotools.graph(graph) # doctest: +SKIP
+
     Return GraphvizGraph instance.
     '''
 
@@ -115,10 +163,70 @@ class GraphvizGraph(TreeContainer):
 
     @property
     def graphviz_format(self):
-        result = []
-        return result
+        edges = set([])
+        for node in self.nodes[1:]:
+            edges.update(node._edges)
+
+        edge_parents = {}
+        for edge in edges:
+            last_parent = None
+            tail_parentage = list(edge.tail.proper_parentage)
+            head_parentage = list(edge.head.proper_parentage)
+            while len(tail_parentage) and len(head_parentage) and \
+                tail_parentage[-1] is head_parentage[-1]:
+                last_parent = tail_parentage[-1]
+                tail_parentage.pop()
+                head_parentage.pop()
+            if last_parent is None:
+                raise Exception
+            if last_parent not in edge_parents:
+                edge_parents[last_parent] = []
+            edge_parents[last_parent].append(edge)
+
+        result = ['digraph {} {{'.format(self.name)]
+
+        def recurse(node, indent=0, prefix='subgraph'):
+            indent_one = indent * '\t'
+            indent_two = (indent + 1) * '\t'
+            result = ['{}{} {} {{'.format(indent_one, prefix, node.name)]
+            for name, value in node.attributes.items():
+                result.append('{}{}'.format(indent_two, self._format_attribute(name, value)))
+            if len(node.node_attributes):
+                result.append('{}node {};'.format(
+                    indent_two, self._format_attribute_list(node.node_attributes)))
+            if len(node.edge_attributes):
+                result.append('{}edge {};'.format(
+                    indent_two, self._format_attribute_list(node.edge_attributes)))
+            for child in node:
+                if isinstance(child, type(self)):
+                    result.extend(recurse(child, indent=indent+1))
+                else:
+                    result.append(indent_two + child._graphviz_format_contributions)
+            if node in edge_parents:
+                edge_contributions = []
+                for edge in edge_parents[node]:
+                    edge_contributions.append(indent_two + edge._graphviz_format_contributions)
+                edge_contributions.sort()
+                result.extend(edge_contributions)
+            result.append('{}}}'.format(indent_one))
+            return result
+
+        return '\n'.join(recurse(self, indent=0, prefix='digraph'))
 
     @property
     def node_attributes(self):
         return self._node_attributes
+
+    ### PRIVATE METHODS ###
+
+    def _format_attribute(self, name, value):
+        if isinstance(value, str) and ' ' in value:
+            return '{}="{}"'.format(name, value)
+        return '{}={}'.format(name, value)
+
+    def _format_attribute_list(self, attributes):
+        result = []
+        for k, v in sorted(attributes.items()):
+            result.append(self._format_attribute(k, v))
+        return '[{}]'.format(', '.join(result))
 

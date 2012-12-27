@@ -6,7 +6,12 @@ class GraphvizEdge(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, attributes=None):
+        assert isinstance(attributes, (dict, type(None)))
+        if attributes is None:
+            self._attributes = {}
+        else:
+            self._attributes = copy.copy(attributes)
         self._head = None
         self._tail = None
 
@@ -42,16 +47,32 @@ class GraphvizEdge(AbjadObject):
         self._tail = None
         self._head = None
 
-    ### READ-ONLY PRIVATE ATTRIBUTES ###
+    def _format_attribute(self, name, value):
+        if isinstance(value, str) and ' ' in value:
+            return '{}="{}"'.format(name, value)
+        return '{}={}'.format(name, value)
+
+    def _format_attribute_list(self, attributes):
+        result = []
+        for k, v in sorted(attributes.items()):
+            result.append(self._format_attribute(k, v))
+        return '[{}]'.format(', '.join(result))
+
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
-    def _graphviz_format_pieces(self):
-        return '{} -> {};'.format(
-            self.tail.name,
-            self.head.name,
-            )
+    def _graphviz_format_contributions(self):
+        if len(self.attributes):
+            return '{} -> {} {};'.format(
+                self.tail.name, self.head.name, 
+                self._format_attribute_list(self.attributes))
+        return '{} -> {};'.format(self.tail.name, self.head.name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
+
+    @property
+    def attributes(self):
+        return self._attributes
 
     @property
     def head(self):
