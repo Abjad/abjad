@@ -13,20 +13,33 @@ class DivisionSelector(VoiceSelector):
 
         >>> from experimental.tools import *
 
-    Select all divisions that start during score::
+    ::
 
-        >>> symbolictimetools.DivisionSelector()
-        DivisionSelector()
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
 
-    Select all divisions that start during segment ``'red'``::
+    Select voice ``1`` divisions that start during score::
 
-        >>> division_selector = symbolictimetools.DivisionSelector(anchor='red')
+        >>> selector = score_specification.select_divisions('Voice 1')
+
+    ::
+        
+        >>> z(selector)
+        symbolictimetools.DivisionSelector(
+            voice_name='Voice 1'
+            )
+
+    Select voice ``1`` divisions that start during segment ``'red'``::
+
+        >>> selector = red_segment.select_divisions('Voice 1')
 
     ::
 
-        >>> z(division_selector)
+        >>> z(selector)
         symbolictimetools.DivisionSelector(
-            anchor='red'
+            anchor='red',
+            voice_name='Voice 1'
             )
 
     Division selectors are immutable.

@@ -187,3 +187,5 @@
     something like "anchor segment specification".
 
 36. Add voice_name to Selector. Then remove VoiceSelector from the class hierarchy.
+
+37. Change context_names=['Grouped Rhythmic Staves Score'] to context_names=None everywhere.
