@@ -99,11 +99,55 @@ Read/write Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.contains_expr_improperly
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.curtails_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.delays_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.divide_by_ratio
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.happens_during
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.intersects_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.is_congruent_to_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.is_tangent_to
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.overlaps_all_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.overlaps_only_start_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.overlaps_only_stop_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.overlaps_start_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.overlaps_stop_of_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -215,9 +259,69 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_after_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_after_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_before_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_during_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_when_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.starts_when_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_after_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_after_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_before_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_during_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_when_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.stops_when_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.translate_offsets
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.trisects_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 Special Methods
 ---------------

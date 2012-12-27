@@ -99,11 +99,55 @@ Read/write Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.contains_expr_improperly
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.curtails_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.delays_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.divide_by_ratio
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.happens_during
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.intersects_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.is_congruent_to_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.is_tangent_to
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.overlaps_all_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.overlaps_only_start_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.overlaps_only_stop_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.overlaps_start_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.overlaps_stop_of_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -215,9 +259,69 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_after_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_after_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_before_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_during_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_when_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.starts_when_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_after_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_after_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_before_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_during_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_when_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.stops_when_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.translate_offsets
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.DivisionSelector.DivisionSelector.DivisionSelector.trisects_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 Special Methods
 ---------------

@@ -97,11 +97,55 @@ Read/write Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.contains_expr_improperly
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.curtails_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.delays_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.divide_by_ratio
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.happens_during
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.intersects_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_congruent_to_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.is_tangent_to
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.overlaps_all_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.overlaps_only_start_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.overlaps_only_stop_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.overlaps_start_of_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.overlaps_stop_of_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -213,9 +257,69 @@ Methods
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_after_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_after_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_before_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_during_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_when_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.starts_when_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_after_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_after_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_before_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_before_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_during_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_when_expr_starts
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.stops_when_expr_stops
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.translate_offsets
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+
+.. automethod:: experimental.tools.symbolictimetools.SegmentSelector.SegmentSelector.SegmentSelector.trisects_expr
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 Special Methods
 ---------------
