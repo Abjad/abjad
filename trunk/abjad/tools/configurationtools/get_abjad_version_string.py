@@ -4,7 +4,7 @@ def get_abjad_version_string():
     Get Abjad version string::
 
         >>> configurationtools.get_abjad_version_string()
-        '2.11'
+        '2.12'
 
     Return string.
     '''
