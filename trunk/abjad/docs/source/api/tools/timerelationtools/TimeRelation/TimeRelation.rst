@@ -19,6 +19,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.template
 
+Methods
+-------
+
+.. automethod:: abjad.tools.timerelationtools.TimeRelation.TimeRelation.TimeRelation.set
+
 Special Methods
 ---------------
 

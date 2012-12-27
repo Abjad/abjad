@@ -100,6 +100,14 @@ class AbjadObject(object):
         return self._positional_argument_values + self._keyword_argument_values
 
     @property
+    def _keyword_argument_dictionary(self):
+        names = self._keyword_argument_names
+        values = self._keyword_argument_values
+        assert len(names) == len(values)
+        result = dict(zip(names, values))
+        return result
+
+    @property
     def _keyword_argument_name_value_strings(self):
         from abjad.tools import introspectiontools
         result = []
