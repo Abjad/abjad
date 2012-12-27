@@ -269,6 +269,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/settingtools/DivisionCommand/DivisionCommand
+   tools/settingtools/ModifierInventory/ModifierInventory
    tools/settingtools/MultipleContextSetting/MultipleContextSetting
    tools/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
    tools/settingtools/OffsetPositionedDivisionList/OffsetPositionedDivisionList
