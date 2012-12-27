@@ -264,10 +264,9 @@ class SegmentSpecification(Specification):
     ### PUBLIC METHODS ###
 
     def select(self):
-        '''Select segment::
-
-            >>> red_segment.select()
-            SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 1"))
+        '''Select segment.
+        
+        .. note: will probably be replaced with a `timespan` property.
 
         Return segment selector.
         '''

@@ -30,7 +30,7 @@ class BackgroundMeasureSelector(VoiceSelector):
     Select all the measures that start during the three contiguous segments 
     starting with ``'red'``::
 
-        >>> segments = score_specification.select_segments('red', ('red', 3))
+        >>> segments = score_specification.select_segments()['red':('red', 3)]
         >>> measures = segments.select_background_measures('Voice 1')
 
     ::
@@ -38,8 +38,9 @@ class BackgroundMeasureSelector(VoiceSelector):
         >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 3")
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 3), None))"
+                    ])
                 ),
             voice_name='Voice 1'
             )

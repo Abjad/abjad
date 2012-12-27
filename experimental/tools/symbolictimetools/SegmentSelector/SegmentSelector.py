@@ -86,6 +86,10 @@ class SegmentSelector(Selector):
         if isinstance(stop_identifier, tuple):
             assert len(stop_identifier) == 2
             stop_identifier = self._make_identifier_expression(*stop_identifier)
+        #if start_identifier is not None:
+        #    raise Exception(start_identifier)
+        #if stop_identifier is not None:
+        #    raise Exception(stop_identifier)
         Selector.__init__(self, 
             anchor=anchor,
             start_identifier=start_identifier,

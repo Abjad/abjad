@@ -625,10 +625,10 @@ class ScoreSpecification(Specification):
         return selector
 
     def select_segments(self, start=None, stop=None):
-        '''Select segments::
+        '''Select segments in score::
 
-            >>> score_specification.select_segments('red', ('red', 3))
-            SegmentSelector(start_identifier='red', stop_identifier=SegmentIdentifierExpression("'red' + 3"))
+            >>> score_specification.select_segments()
+            SegmentSelector()
 
         Return segment selector.
         '''

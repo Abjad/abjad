@@ -43,7 +43,6 @@ class SymbolicTimespan(Timespan):
     ### INITIALIZER ###
 
     def __init__(self, timespan_modifications=None):
-        from experimental.tools import specificationtools
         Timespan.__init__(self)
         timespan_modifications = timespan_modifications or []
         self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
