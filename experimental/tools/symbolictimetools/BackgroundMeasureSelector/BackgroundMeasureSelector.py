@@ -38,7 +38,7 @@ class BackgroundMeasureSelector(VoiceSelector):
         >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                     ])
                 ),

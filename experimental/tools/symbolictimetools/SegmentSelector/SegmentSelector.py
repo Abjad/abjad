@@ -31,7 +31,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifiers=datastructuretools.ObjectInventory([
+            request_modifiers=settingtools.ModifierInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
@@ -44,7 +44,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifiers=datastructuretools.ObjectInventory([
+            request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
@@ -57,7 +57,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifiers=datastructuretools.ObjectInventory([
+            request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
@@ -70,7 +70,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifiers=datastructuretools.ObjectInventory([
+            request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])
             )

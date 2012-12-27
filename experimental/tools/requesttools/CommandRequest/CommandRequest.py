@@ -31,7 +31,7 @@ class CommandRequest(Request):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    request_modifiers=datastructuretools.ObjectInventory([
+                    request_modifiers=settingtools.ModifierInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
@@ -90,7 +90,7 @@ class CommandRequest(Request):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    request_modifiers=datastructuretools.ObjectInventory([
+                    request_modifiers=settingtools.ModifierInventory([
                         'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )

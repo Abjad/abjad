@@ -42,9 +42,9 @@ class Selector(SymbolicTimespan, Request):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Request._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifiers=ObjectInventory([])' in result:
+        if 'timespan_modifiers=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifiers=ObjectInventory([])')
+            result.remove('timespan_modifiers=ModifierInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -56,7 +56,7 @@ class Selector(SymbolicTimespan, Request):
         result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifiers=datastructuretools.ObjectInventory([])' in string:
+            if not 'timespan_modifiers=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     

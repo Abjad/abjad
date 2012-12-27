@@ -2,7 +2,6 @@ import abc
 import copy
 import numbers
 from abjad.tools import chordtools
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
@@ -43,9 +42,10 @@ class SymbolicTimespan(Timespan):
     ### INITIALIZER ###
 
     def __init__(self, timespan_modifiers=None):
+        from experimental.tools import settingtools
         Timespan.__init__(self)
         timespan_modifiers = timespan_modifiers or []
-        self._timespan_modifiers = datastructuretools.ObjectInventory(timespan_modifiers)
+        self._timespan_modifiers = settingtools.ModifierInventory(timespan_modifiers)
 
     ### SPECIAL METHODS ###
 
@@ -74,9 +74,9 @@ class SymbolicTimespan(Timespan):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Timespan._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifiers=ObjectInventory([])' in result:
+        if 'timespan_modifiers=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifiers=ObjectInventory([])')
+            result.remove('timespan_modifiers=ModifierInventory([])')
         return tuple(result)
 
     @property
@@ -128,7 +128,7 @@ class SymbolicTimespan(Timespan):
         result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifiers=datastructuretools.ObjectInventory([])' in string:
+            if not 'timespan_modifiers=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -195,7 +195,7 @@ class SymbolicTimespan(Timespan):
         to symbolic timespan during evaluation.
 
             >>> red_segment.select().timespan_modifiers
-            ObjectInventory([])
+            ModifierInventory([])
 
         Return object inventory of zero or more strings.
         '''
@@ -213,10 +213,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifiers=datastructuretools.ObjectInventory([
+                timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ])
                 )
@@ -226,10 +226,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifiers=datastructuretools.ObjectInventory([
+                timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ])
                 )
@@ -243,10 +243,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifiers=datastructuretools.ObjectInventory([
+                timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ])
                 )
@@ -256,10 +256,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifiers=datastructuretools.ObjectInventory([
+                timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ])
                 )
@@ -269,10 +269,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[2])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifiers=datastructuretools.ObjectInventory([
+                timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ])
                 )
@@ -297,10 +297,10 @@ class SymbolicTimespan(Timespan):
             >>> z(red_segment.select().scale(Multiplier(4, 5)))
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifiers=datastructuretools.ObjectInventory([
+                request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifiers=datastructuretools.ObjectInventory([
+                timespan_modifiers=settingtools.ModifierInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ])
                 )

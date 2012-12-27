@@ -1,6 +1,5 @@
 import abc
 import copy
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import rhythmmakertools
@@ -27,8 +26,9 @@ class Request(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, request_modifiers=None):
+        from experimental.tools import settingtools
         request_modifiers = request_modifiers or []
-        self._request_modifiers = datastructuretools.ObjectInventory(request_modifiers)
+        self._request_modifiers = settingtools.ModifierInventory(request_modifiers)
 
     ### SPECIAL METHODS ###
 
@@ -58,9 +58,9 @@ class Request(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'request_modifiers=ObjectInventory([])' in result:
+        if 'request_modifiers=ModifierInventory([])' in result:
             result = list(result)
-            result.remove('request_modifiers=ObjectInventory([])')
+            result.remove('request_modifiers=ModifierInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
@@ -94,7 +94,7 @@ class Request(AbjadObject):
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'request_modifiers=datastructuretools.ObjectInventory([])' in string:
+            if not 'request_modifiers=settingtools.ModifierInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
