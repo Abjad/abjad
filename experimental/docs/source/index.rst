@@ -94,7 +94,7 @@ Unstable packages (load manually)
 :py:mod:`graphviztools <('abjad.tools.', 'abjad.demos.')graphviztools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abstract classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1

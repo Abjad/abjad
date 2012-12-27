@@ -9,12 +9,18 @@ graphviztools.GraphvizEdge
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.graphviztools.GraphvizEdge.GraphvizEdge.GraphvizEdge.head
+
 .. autoattribute:: experimental.tools.graphviztools.GraphvizEdge.GraphvizEdge.GraphvizEdge.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.tools.graphviztools.GraphvizEdge.GraphvizEdge.GraphvizEdge.tail
+
 Special Methods
 ---------------
+
+.. automethod:: experimental.tools.graphviztools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__call__
 
 .. automethod:: experimental.tools.graphviztools.GraphvizEdge.GraphvizEdge.GraphvizEdge.__eq__
 
