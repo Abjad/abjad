@@ -70,6 +70,10 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
+.. autoattribute:: experimental.tools.graphviztools.GraphvizCluster.GraphvizCluster.GraphvizCluster.is_digraph
+
+    Inherited from :py:class:`graphviztools.GraphvizGraph <experimental.tools.graphviztools.GraphvizGraph.GraphvizGraph.GraphvizGraph>`
+
 .. autoattribute:: experimental.tools.graphviztools.GraphvizCluster.GraphvizCluster.GraphvizCluster.name
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`

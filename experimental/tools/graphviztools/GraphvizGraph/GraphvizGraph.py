@@ -124,6 +124,7 @@ class GraphvizGraph(TreeContainer):
         attributes=None,
         children=None,
         edge_attributes=None,
+        is_digraph=True,
         name=None,
         node_attributes=None
         ):
@@ -143,6 +144,7 @@ class GraphvizGraph(TreeContainer):
             self._node_attributes = {}
         else:
             self._node_attributes = copy.copy(node_attributes)
+        self._is_digraph = bool(is_digraph)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -211,11 +213,23 @@ class GraphvizGraph(TreeContainer):
             result.append('{}}}'.format(indent_one))
             return result
 
-        return '\n'.join(recurse(self, indent=0, prefix='digraph'))
+        if self.is_digraph:
+            return '\n'.join(recurse(self, indent=0, prefix='digraph'))
+        return '\n'.join(recurse(self, indent=0, prefix='graph'))
 
     @property
     def node_attributes(self):
         return self._node_attributes
+
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def is_digraph():
+        def fget(self):
+            return self._is_digraph
+        def fset(self, arg):
+            self._is_digraph = bool(arg)
+        return property(**locals())
 
     ### PRIVATE METHODS ###
 

@@ -6,7 +6,7 @@ class GraphvizEdge(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, attributes=None):
+    def __init__(self, attributes=None, is_directed=True):
         assert isinstance(attributes, (dict, type(None)))
         if attributes is None:
             self._attributes = {}
@@ -14,6 +14,7 @@ class GraphvizEdge(AbjadObject):
             self._attributes = copy.copy(attributes)
         self._head = None
         self._tail = None
+        self._is_directed = bool(is_directed)
 
     ### SPECIAL METHODS ###
 
@@ -62,11 +63,14 @@ class GraphvizEdge(AbjadObject):
 
     @property
     def _graphviz_format_contributions(self):
+        connection = '->'
+        if not self.is_directed:
+            connection = '--'
         if len(self.attributes):
-            return '{} -> {} {};'.format(
-                self.tail.name, self.head.name, 
+            return '{} {} {} {};'.format(
+                self.tail.name, connection, self.head.name, 
                 self._format_attribute_list(self.attributes))
-        return '{} -> {};'.format(self.tail.name, self.head.name)
+        return '{} {} {};'.format(self.tail.name, connection, self.head.name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -81,4 +85,16 @@ class GraphvizEdge(AbjadObject):
     @property
     def tail(self):
         return self._tail
+
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def is_directed():
+        def fget(self):
+            return self._is_directed
+        def fset(self, arg):
+            self._is_directed = bool(arg)
+        return property(**locals())
 
