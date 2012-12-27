@@ -434,34 +434,34 @@ class MetricalHierarchy(AbjadObject):
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=durationtools.Duration(1, 4),
-                                is_pitched=True,
+                                duration=Duration(1, 4),
+                                is_pitched=True
                                 ),
                             RhythmTreeLeaf(
-                                duration=durationtools.Duration(1, 4),
-                                is_pitched=True,
+                                duration=Duration(1, 4),
+                                is_pitched=True
                                 ),
                             RhythmTreeLeaf(
-                                duration=durationtools.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                        ),
+                                duration=Duration(1, 4),
+                                is_pitched=True
+                                )
+                            ),
                         duration=NonreducedFraction(3, 4)
                         ),
                     RhythmTreeContainer(
                         children=(
                             RhythmTreeLeaf(
-                                duration=durationtools.Duration(1, 4),
-                                is_pitched=True,
+                                duration=Duration(1, 4),
+                                is_pitched=True
                                 ),
                             RhythmTreeLeaf(
-                                duration=durationtools.Duration(1, 4),
-                                is_pitched=True,
-                                ),
-                        ),
+                                duration=Duration(1, 4),
+                                is_pitched=True
+                                )
+                            ),
                         duration=NonreducedFraction(2, 4)
-                        ),
-                ),
+                        )
+                    ),
                 duration=NonreducedFraction(5, 4)
                 )
 

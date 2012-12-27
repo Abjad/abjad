@@ -190,6 +190,8 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__repr__
 
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
 .. automethod:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.__setitem__
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeContainer <abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer>`

@@ -59,6 +59,4 @@ Special Methods
 
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode.__setstate__

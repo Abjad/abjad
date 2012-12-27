@@ -108,6 +108,8 @@ Special Methods
 
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__repr__
 
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__setitem__
 
 .. automethod:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.__setstate__

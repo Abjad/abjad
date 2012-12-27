@@ -18,7 +18,8 @@ class TreeContainer(TreeNode):
         TreeContainer(
             children=(
                 TreeNode(),
-            ))
+                )
+            )
 
     Return `TreeContainer` instance.
     '''
@@ -163,26 +164,6 @@ class TreeContainer(TreeNode):
     def __len__(self):
         '''Return nonnegative integer number of nodes in container.'''
         return len(self._children)
-
-    def __repr__(self):
-        if self.children:
-            result = ['{}('.format(self._class_name)]
-            result.append('\tchildren=(')
-            if 1 < len(self.children):
-                for child in self.children[:-1]:
-                    pieces = ['\t\t' + x for x in repr(child).split('\n')]
-                    result.extend(pieces[:-1])
-                    result.append(pieces[-1] + ',')
-                pieces = ['\t\t' + x for x in repr(self.children[-1]).split('\n')]
-                result.extend(pieces)
-                result.append('\t))')
-            else:
-                pieces = ['\t\t' + x for x in repr(self.children[0]).split('\n')]
-                result.extend(pieces[:-1])
-                result.append(pieces[-1] + ',')
-                result.append('\t))')
-            return '\n'.join(result)
-        return '{}()'.format(self._class_name)
             
     def __setitem__(self, i, expr):
         '''Set `expr` in self at nonnegative integer index `i`, or set `expr` in self at slice i.
@@ -382,7 +363,8 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                ))
+                    )
+                )
 
         ::
 
@@ -392,7 +374,8 @@ class TreeContainer(TreeNode):
                 children=(
                     TreeNode(),
                     TreeNode()
-                ))
+                    )
+                )
 
         Return `None`.
         '''
@@ -423,7 +406,8 @@ class TreeContainer(TreeNode):
                 children=(
                     TreeNode(),
                     TreeNode()
-                ))
+                    )
+                )
 
         Return `None`.
         '''
@@ -485,7 +469,8 @@ class TreeContainer(TreeNode):
                 children=(
                     TreeNode(),
                     TreeNode()
-                ))
+                    )
+                )
 
         ::
 
@@ -499,7 +484,8 @@ class TreeContainer(TreeNode):
                     TreeNode(),
                     TreeNode(),
                     TreeNode()
-                ))
+                    )
+                )
 
 
         Return `None`.
@@ -529,7 +515,8 @@ class TreeContainer(TreeNode):
                 children=(
                     TreeNode(),
                     TreeNode()
-                ))
+                    )
+                )
 
         ::
 
@@ -546,7 +533,8 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                ))
+                    )
+                )
 
         Return node.
         '''
@@ -574,7 +562,8 @@ class TreeContainer(TreeNode):
                 children=(
                     TreeNode(),
                     TreeNode()
-                ))
+                    )
+                )
 
         ::
 
@@ -586,9 +575,11 @@ class TreeContainer(TreeNode):
             TreeContainer(
                 children=(
                     TreeNode(),
-                ))
+                    )
+                )
 
         Return `None`.
         '''
         i = self.index(node)
         del(self[i])
+

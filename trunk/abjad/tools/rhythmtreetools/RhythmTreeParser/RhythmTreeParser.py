@@ -19,31 +19,31 @@ class RhythmTreeParser(Parser):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=durationtools.Duration(1, 1),
-                    is_pitched=True,
+                    duration=Duration(1, 1),
+                    is_pitched=True
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
-                            duration=durationtools.Duration(1, 1),
-                            is_pitched=True,
+                            duration=Duration(1, 1),
+                            is_pitched=True
                             ),
                         RhythmTreeLeaf(
-                            duration=durationtools.Duration(1, 1),
-                            is_pitched=False,
+                            duration=Duration(1, 1),
+                            is_pitched=False
                             ),
                         RhythmTreeLeaf(
-                            duration=durationtools.Duration(1, 1),
-                            is_pitched=True,
-                            ),
-                    ),
+                            duration=Duration(1, 1),
+                            is_pitched=True
+                            )
+                        ),
                     duration=Duration(2, 1)
                     ),
                 RhythmTreeLeaf(
-                    duration=durationtools.Duration(2, 1),
-                    is_pitched=False,
-                    ),
-            ),
+                    duration=Duration(2, 1),
+                    is_pitched=False
+                    )
+                ),
             duration=Duration(1, 1)
             )
 

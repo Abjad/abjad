@@ -13,8 +13,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
         >>> leaf = rhythmtreetools.RhythmTreeLeaf(duration=5, is_pitched=True)
         >>> leaf
         RhythmTreeLeaf(
-            duration=durationtools.Duration(5, 1),
-            is_pitched=True,
+            duration=Duration(5, 1),
+            is_pitched=True
             )
     
     Call with a pulse duration to generate Abjad leaf objects:
@@ -70,12 +70,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
                 if self.is_pitched == other.is_pitched:
                     return True
         return False
-
-    def __repr__(self):
-        result = ['{}('.format(self._class_name)]
-        result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces())
-        result.append('\t)')
-        return '\n'.join(result)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

@@ -30,14 +30,14 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=durationtools.Duration(1, 1),
-                    is_pitched=True,
+                    duration=Duration(1, 1),
+                    is_pitched=True
                     ),
                 RhythmTreeLeaf(
-                    duration=durationtools.Duration(2, 1),
-                    is_pitched=True,
-                    ),
-            ),
+                    duration=Duration(2, 1),
+                    is_pitched=True
+                    )
+                ),
             duration=Duration(1, 1)
             )
 
@@ -51,23 +51,23 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         RhythmTreeContainer(
             children=(
                 RhythmTreeLeaf(
-                    duration=durationtools.Duration(1, 1),
-                    is_pitched=True,
+                    duration=Duration(1, 1),
+                    is_pitched=True
                     ),
                 RhythmTreeContainer(
                     children=(
                         RhythmTreeLeaf(
-                            duration=durationtools.Duration(3, 1),
-                            is_pitched=True,
+                            duration=Duration(3, 1),
+                            is_pitched=True
                             ),
                         RhythmTreeLeaf(
-                            duration=durationtools.Duration(2, 1),
-                            is_pitched=True,
-                            ),
-                    ),
+                            duration=Duration(2, 1),
+                            is_pitched=True
+                            )
+                        ),
                     duration=Duration(2, 1)
-                    ),
-            ),
+                    )
+                ),
             duration=Duration(1, 1)
             )
 
@@ -133,29 +133,30 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             RhythmTreeContainer(
                 children=(
                     RhythmTreeLeaf(
-                        duration=durationtools.Duration(1, 1),
-                        is_pitched=True,
+                        duration=Duration(1, 1),
+                        is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=durationtools.Duration(1, 1),
-                        is_pitched=True,
+                        duration=Duration(1, 1),
+                        is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=durationtools.Duration(1, 1),
-                        is_pitched=True,
+                        duration=Duration(1, 1),
+                        is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=durationtools.Duration(3, 1),
-                        is_pitched=True,
+                        duration=Duration(3, 1),
+                        is_pitched=True
                         ),
                     RhythmTreeLeaf(
-                        duration=durationtools.Duration(4, 1),
-                        is_pitched=True,
-                        ),
-                ),
+                        duration=Duration(4, 1),
+                        is_pitched=True
+                        )
+                    ),
                 duration=Duration(3, 1)
                 )
 
+        Return new RhythmTreeContainer.
         '''
         from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
         if isinstance(expr, str):
@@ -213,19 +214,6 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                 if self.children == other.children:
                     return True
         return False
-
-    def __repr__(self):
-        result = ['{}('.format(self._class_name)]
-        if self.children:
-            result.append('\tchildren=(')
-            for child in self.children:
-                pieces = ['\t\t' + x for x in repr(child).split('\n')]
-                result.extend(pieces[:-1])
-                result.append(pieces[-1] + ',')
-            result.append('\t),')
-        result.append('\tduration={!r}'.format(self.duration))
-        result.append('\t)')
-        return '\n'.join(result)
 
     def __setitem__(self, i, expr):
         '''Set `expr` in self at nonnegative integer index `i`, or set `expr` in self at slice i.

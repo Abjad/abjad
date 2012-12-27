@@ -44,6 +44,68 @@ class TreeNode(AbjadObject):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __repr__(self):
+
+        def format_mapping(name, value):
+            if not value:
+                return None
+            result = ['\t{}={{'.format(name)]
+            items = sorted(value.items())
+            if 1 < len(items):
+                for item in items[:-1]:
+                    result.append('\t\t{!r}: {!r},'.format(*item))
+            result.append('\t\t{!r}: {!r}'.format(*items[-1]))
+            result.append('\t\t}')
+            return result
+
+        def format_tuple(name, value):
+            if not value:
+                return None
+            result=['\t{}=('.format(name)]
+            items = [repr(x).splitlines() for x in value]
+            if 1 < len(items):
+                for item in items[:-1]:
+                    result.extend('\t\t' + x for x in item[:-1])
+                    result.append('\t\t' + item[-1] + ',')
+                result.extend('\t\t' + x for x in items[-1])
+            else:
+                result.extend('\t\t' + x for x in items[0][:-1])
+                result.append('\t\t' + items[0][-1] + ',')
+            result.append('\t\t)')
+            return result
+
+        def format_other(name, value):
+            if value is None:
+                return None
+            item = repr(value).splitlines()
+            result = ['\t{}={}'.format(name, item[0])]
+            result.extend('\t\t' + x for x in item[1:])
+            return result
+
+        attr_pieces = []
+        for name in self._keyword_argument_names:
+            value = getattr(self, name)
+            if isinstance(value, (list, tuple)):
+                attr_piece = format_tuple(name, value)
+            elif isinstance(value, dict):
+                attr_piece = format_mapping(name, value)
+            else:
+                attr_piece = format_other(name, value)
+            if attr_piece is not None:
+                attr_pieces.append(attr_piece)
+
+        if not attr_pieces:
+            return '{}()'.format(self._class_name)
+
+        result = ['{}('.format(self._class_name)]
+        if 1 < len(attr_pieces):
+            for attr_piece in attr_pieces[:-1]:
+                attr_piece[-1] += ','
+                result.extend(attr_piece)
+        result.extend(attr_pieces[-1]) 
+        result.append('\t)')
+        return '\n'.join(result)
+
     def __setstate__(self, state):
         for key, value in state.iteritems():
             setattr(self, key, value)

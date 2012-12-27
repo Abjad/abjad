@@ -123,6 +123,8 @@ Special Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
 
+    Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
+
 .. automethod:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setstate__
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
