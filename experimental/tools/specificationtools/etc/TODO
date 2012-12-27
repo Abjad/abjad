@@ -182,3 +182,9 @@
         offset = note_selector.stop_offset
 
 35. Implement a ModificationInventory class.
+
+36. Change the keyword order of Selector(timespan_modifications=None, modifications=None)
+    to Selector(request_modifications=None, timespan_modifications=None).
+    This helps keep the order of modifier application in mind.
+
+37. Rename _slice_selected_objects() to ____getitem__().

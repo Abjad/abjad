@@ -212,10 +212,12 @@ class SymbolicTimespan(Timespan):
     
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                anchor='red',
                 timespan_modifications=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
+                    ]),
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -223,10 +225,12 @@ class SymbolicTimespan(Timespan):
 
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                anchor='red',
                 timespan_modifications=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
+                    ]),
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -238,10 +242,12 @@ class SymbolicTimespan(Timespan):
 
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                anchor='red',
                 timespan_modifications=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
+                    ]),
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -249,10 +255,12 @@ class SymbolicTimespan(Timespan):
 
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                anchor='red',
                 timespan_modifications=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
+                    ]),
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -260,10 +268,12 @@ class SymbolicTimespan(Timespan):
 
             >>> z(timespans[2])
             symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                anchor='red',
                 timespan_modifications=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
+                    ]),
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -286,10 +296,12 @@ class SymbolicTimespan(Timespan):
 
             >>> z(red_segment.select().scale(Multiplier(4, 5)))
             symbolictimetools.SegmentSelector(
-                start_identifier='red',
-                stop_identifier=helpertools.SegmentIdentifierExpression("'red' + 1"),
+                anchor='red',
                 timespan_modifications=datastructuretools.ObjectInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
+                    ]),
+                modifications=datastructuretools.ObjectInventory([
+                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 

@@ -124,13 +124,18 @@ class SegmentSelector(Selector):
     # TODO: eventually extend method to work with segment selectors that select more than one segment
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
-        self._start_identifier = segment_identifier
-        self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)
+        #self._start_identifier = segment_identifier
+        #self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)
+        self._anchor = segment_identifier
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    # TODO: Eventually extend to work without anchor being defined.
+    #       Evaluate request modifications to find start segment identifier instead.
     @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.
         '''
-        return self.start_identifier
+        #return self.start_identifier
+        assert isinstance(self.anchor, str)
+        return self.anchor
