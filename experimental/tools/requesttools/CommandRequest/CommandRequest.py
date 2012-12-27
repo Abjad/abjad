@@ -32,7 +32,7 @@ class CommandRequest(Request):
                     anchor='red',
                     voice_name='Voice 1',
                     modifications=datastructuretools.ObjectInventory([
-                        'result = self._slice_selected_objects(elements, start_offset, slice(4, 5, None))'
+                        'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
                 )
@@ -91,7 +91,7 @@ class CommandRequest(Request):
                     anchor='red',
                     voice_name='Voice 1',
                     modifications=datastructuretools.ObjectInventory([
-                        'result = self._slice_selected_objects(elements, start_offset, slice(4, 5, None))'
+                        'result = self.___getitem__(elements, start_offset, slice(4, 5, None))'
                         ])
                     )
                 )

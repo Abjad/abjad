@@ -184,7 +184,7 @@
     to Selector(request_modifications=None, timespan_modifications=None).
     This helps keep the order of modifier application in mind.
 
-36. Rename _slice_selected_objects() to ____getitem__().
+36. Rename ___getitem__() to ____getitem__().
 
 37. Rename _set_start_segment_identifier().
     Maybe should be called _set_anchor(). Not sure.

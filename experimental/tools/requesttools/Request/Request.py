@@ -47,7 +47,7 @@ class Request(AbjadObject):
     def __getitem__(self, expr):
         '''Return copy of request with appended modification.
         '''
-        modification = 'result = self._slice_selected_objects(elements, start_offset, {!r})'
+        modification = 'result = self.___getitem__(elements, start_offset, {!r})'
         modification = modification.format(expr)
         result = copy.deepcopy(self)
         result.modifications.append(modification)
@@ -155,7 +155,7 @@ class Request(AbjadObject):
         new_start_offset = original_start_offset
         return elements, new_start_offset
 
-    def _slice_selected_objects(self, elements, original_start_offset, expr):
+    def ___getitem__(self, elements, original_start_offset, expr):
         assert isinstance(expr, slice)
         start_index, stop_index, stride = expr.indices(len(elements))
         selected_elements = elements[expr]

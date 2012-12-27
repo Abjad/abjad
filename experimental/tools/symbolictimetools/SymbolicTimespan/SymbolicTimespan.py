@@ -217,7 +217,7 @@ class SymbolicTimespan(Timespan):
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ]),
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -230,7 +230,7 @@ class SymbolicTimespan(Timespan):
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ]),
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -247,7 +247,7 @@ class SymbolicTimespan(Timespan):
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ]),
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -260,7 +260,7 @@ class SymbolicTimespan(Timespan):
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ]),
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -273,7 +273,7 @@ class SymbolicTimespan(Timespan):
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ]),
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 
@@ -301,7 +301,7 @@ class SymbolicTimespan(Timespan):
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ]),
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 1), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ])
                 )
 

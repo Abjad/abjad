@@ -39,7 +39,7 @@ class BackgroundMeasureSelector(VoiceSelector):
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
                 modifications=datastructuretools.ObjectInventory([
-                    "result = self._slice_selected_objects(elements, start_offset, slice('red', ('red', 3), None))"
+                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                     ])
                 ),
             voice_name='Voice 1'

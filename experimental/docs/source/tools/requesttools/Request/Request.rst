@@ -31,6 +31,8 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.tools.requesttools.Request.Request.Request.___getitem__
+
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.__eq__
 
 .. automethod:: experimental.tools.requesttools.Request.Request.Request.__ge__

@@ -45,7 +45,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     anchor='red',
                     voice_name='Voice 1',
                     modifications=datastructuretools.ObjectInventory([
-                        'result = self._slice_selected_objects(elements, start_offset, slice(-1, None, None))'
+                        'result = self.___getitem__(elements, start_offset, slice(-1, None, None))'
                         ])
                     )
                 ),
@@ -54,7 +54,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                     anchor='blue',
                     voice_name='Voice 1',
                     modifications=datastructuretools.ObjectInventory([
-                        'result = self._slice_selected_objects(elements, start_offset, slice(None, 1, None))'
+                        'result = self.___getitem__(elements, start_offset, slice(None, 1, None))'
                         ])
                     ),
                 edge=Right
