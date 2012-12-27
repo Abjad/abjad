@@ -320,7 +320,6 @@ Unstable packages (load manually)
 
    tools/symbolictimetools/Selector/Selector
    tools/symbolictimetools/SymbolicTimespan/SymbolicTimespan
-   tools/symbolictimetools/VoiceSelector/VoiceSelector
 
 .. rubric:: concrete classes
 

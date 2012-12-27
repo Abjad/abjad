@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class SymbolicOffset(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 

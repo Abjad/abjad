@@ -24,12 +24,11 @@ class MultipleContextSetting(Setting):
 
         >>> z(multiple_context_setting)
         settingtools.MultipleContextSetting(
-            'time_signatures',
-            requesttools.AbsoluteRequest(
+            attribute='time_signatures',
+            request=requesttools.AbsoluteRequest(
                 [(4, 8), (3, 8)]
                 ),
-            'red',
-            context_names=['Grouped Rhythmic Staves Score'],
+            anchor='red',
             persist=True
             )
 
@@ -42,8 +41,10 @@ class MultipleContextSetting(Setting):
 
     ### INITIAILIZER ###
 
-    def __init__(self, attribute, request, anchor, context_names=None, persist=True, truncate=None):
-        Setting.__init__(self, attribute, request, anchor, persist=persist, truncate=truncate)
+    def __init__(self, attribute=None, request=None, anchor=None, context_names=None, 
+            persist=True, truncate=None):
+        Setting.__init__(self, attribute=attribute, request=request, anchor=anchor, 
+            persist=persist, truncate=truncate)
         assert isinstance(context_names, (list, type(None))), repr(context_names)
         self._context_names = context_names
 
@@ -62,14 +63,25 @@ class MultipleContextSetting(Setting):
     def unpack(self):
         from experimental.tools import settingtools
         single_context_settings = []
-        for context_name in self.context_names:
+        if self.context_names is None:
             anchor = copy.deepcopy(self.anchor)
             single_context_setting = settingtools.SingleContextSetting(
                 self.attribute, 
                 self.request, 
                 anchor,
-                context_name=context_name,
+                context_name=None,
                 persist=self.persist, 
                 truncate=self.truncate)
             single_context_settings.append(single_context_setting)
+        else:
+            for context_name in self.context_names:
+                anchor = copy.deepcopy(self.anchor)
+                single_context_setting = settingtools.SingleContextSetting(
+                    self.attribute, 
+                    self.request, 
+                    anchor,
+                    context_name=context_name,
+                    persist=self.persist, 
+                    truncate=self.truncate)
+                single_context_settings.append(single_context_setting)
         return single_context_settings

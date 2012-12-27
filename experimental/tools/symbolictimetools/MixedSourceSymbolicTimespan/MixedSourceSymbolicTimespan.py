@@ -3,7 +3,7 @@ from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimesp
 
 
 class MixedSourceSymbolicTimespan(SymbolicTimespan):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 
@@ -24,17 +24,16 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     that starts during segment ``'blue'``::
 
         >>> measure = red_segment.select_background_measures('Voice 1')[-1:]
-        >>> start_offset = symbolictimetools.SymbolicOffset(anchor=measure)
+        >>> start_offset = measure.start_offset
 
     ::
 
         >>> measure = blue_segment.select_background_measures('Voice 1')[:1]
-        >>> stop_offset = symbolictimetools.SymbolicOffset(anchor=measure, edge=Right)
+        >>> stop_offset = measure.stop_offset
         
     ::
 
-        >>> timespan = symbolictimetools.MixedSourceSymbolicTimespan(
-        ... start_offset=start_offset, stop_offset=stop_offset)
+        >>> timespan = symbolictimetools.MixedSourceSymbolicTimespan(start_offset, stop_offset)
 
     ::
 

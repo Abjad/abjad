@@ -9,7 +9,7 @@ from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimesp
 
 
 class Selector(SymbolicTimespan, Request):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Abstract base class from which concrete selectors inherit.
     '''
@@ -20,14 +20,18 @@ class Selector(SymbolicTimespan, Request):
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, time_relation=None, request_modifiers=None, timespan_modifiers=None):
+    def __init__(self, anchor=None, voice_name=None, time_relation=None, 
+        request_modifiers=None, timespan_modifiers=None):
         from experimental.tools import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
+        assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         Request.__init__(self, request_modifiers=request_modifiers)
         SymbolicTimespan.__init__(self, timespan_modifiers=timespan_modifiers)
         self._anchor = anchor
+        assert voice_name is not None
+        self._voice_name = voice_name
         self._time_relation = time_relation
 
     ### SPECIAL METHODS ###
@@ -103,3 +107,11 @@ class Selector(SymbolicTimespan, Request):
         Return time relation or none.
         '''
         return self._time_relation
+
+    @property
+    def voice_name(self):
+        '''Voice name of selector.
+
+        Return string.
+        '''
+        return self._voice_name

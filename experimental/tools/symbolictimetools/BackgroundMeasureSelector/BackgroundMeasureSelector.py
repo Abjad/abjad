@@ -1,11 +1,11 @@
 from abjad.tools import durationtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
+from experimental.tools.symbolictimetools.Selector import Selector
 
 
-class BackgroundMeasureSelector(VoiceSelector):
-    r'''.. versionadded:: 1.0
+class BackgroundMeasureSelector(Selector):
+    r'''
 
     ::
 
@@ -19,25 +19,38 @@ class BackgroundMeasureSelector(VoiceSelector):
 
     Select voice ``1`` measures that start during score::
 
-        >>> score_specification.select_background_measures('Voice 1')
-        BackgroundMeasureSelector(voice_name='Voice 1')
-
-    Select voice ``1`` measures starting during segment ``'red'``::
-
-        >>> red_segment.select_background_measures('Voice 1')
-        BackgroundMeasureSelector(anchor='red', voice_name='Voice 1')
-
-    Select all the measures that start during the three contiguous segments 
-    starting with ``'red'``::
-
-        >>> segments = score_specification.select_segments()['red':('red', 3)]
-        >>> measures = segments.select_background_measures('Voice 1')
+        >>> selector = score_specification.select_background_measures('Voice 1')
 
     ::
 
-        >>> z(measures)
+        >>> z(selector)
+        symbolictimetools.BackgroundMeasureSelector(
+            voice_name='Voice 1'
+            )
+
+    Select voice ``1`` measures starting during segment ``'red'``::
+
+        >>> selector = red_segment.select_background_measures('Voice 1')
+
+    ::
+
+        >>> z(selector)
+        symbolictimetools.BackgroundMeasureSelector(
+            anchor='red',
+            voice_name='Voice 1'
+            )
+
+    Select voice ``1`` measures that start during three contiguous segments::
+
+        >>> segments = score_specification.select_segments('Voice 1')['red':('red', 3)]
+        >>> selector = segments.select_background_measures('Voice 1')
+
+    ::
+
+        >>> z(selector)
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                     ])

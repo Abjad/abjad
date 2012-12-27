@@ -41,18 +41,13 @@
     There is in fact an Interpreter.get_start_segment_specification() method right now.
     How does this relate to the "reanchoring" of settings during interpretation?
 
-9.  Extend BackgroundMeasureSelector._get_offsets() to return 
-    (start_offset, stop_offset, selected_objects) triple.
-    Then extend all selector _get_offsets() methods and do the same:
-        BeatSelector._get_offsets()
-        CounttimeComponentSelector._get_offsets()
-        DivisionSelector._get_offsets()
-        ScoreSelector._get_offsets() ?
-        SegmentSelector._get_offsets() ?
+9.  Rename _set_start_segment_identifier().
+    Maybe should be called _set_anchor(). Not sure.
+    In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
+    If that turns out to be the case then "start segment specification" is
+    something like "anchor segment specification".
 
-10. Audit to get rid of string-based keys everywhere in interpreter.
-
-11. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
+10. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
         selector = red_segment.select_segment_offsets(Offset(3, 16), Offset(6, 16))
         rhythm = red_segment.select_leaves('Voice 1', timespan=selector)
@@ -71,73 +66,105 @@
     ... instead.
     This will simplify the X9 composer interface.
 
+11. Unskip all experimental tests before 2.11 build.
+
 12. Finish timerelationtools class docstrings before 2.11 build.
 
 13. Finish timespantools package docstrings before 2.11 build.
 
-14. Unskip all experimental tests before 2.11 build.
+14. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
 
-15. Add examples to the docstrings of all experimental class methods and properties before 2.11 build.
+15. Audit to get rid of string-based keys everywhere in interpreter.
 
-16. Audit all selector doc strings and make sure that examples are as compact and modern as possible.
-    Also audit to make sure that all selector doc string examples are made with
-    reference to instantiated score and segment specifications (rather than initialized by hand).
+16. Extend SymbolicOffset with an 'offset_request_modifiers' stack.
+    Modification methods include SymbolicOffset.translate() and possibly others.
 
-17. Audit all symbolic timespan docstrings and make sure everything is modern.
+17. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+    Remove Specification.__deepcopy__ override afterwards.
 
-18. Add some tests to show this:
+18. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
+    Replace with OffsetPositionedExpression.set_offsets() or similar.
+    This will help conform to the Timespan interface.
+
+19. Extend BackgroundMeasureSelector._get_offsets() to return 
+    (start_offset, stop_offset, selected_objects) triple.
+    Then extend all selector _get_offsets() methods and do the same:
+        BeatSelector._get_offsets()
+        CounttimeComponentSelector._get_offsets()
+        DivisionSelector._get_offsets()
+        ScoreSelector._get_offsets() ?
+        SegmentSelector._get_offsets() ?
+
+20. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
+    Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
+
+21. Add a test to show this:
+        note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
+        offset = note_selector.stop_offset
+
+22. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
 
-19. Add some tests to show this:
+23. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
-    THis will show setting divisions for (potentially) more than one segment.
+    This will show setting divisions for (potentially) more than one segment.
 
-20. Add some tests to show this:
+24. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_background_measures('Voice 1')[3:6]
     This will show selecting background measures from (potentially) more than one segment.
 
-21. Add some tests to show this:
+25. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-22. Add some tests to show this:
+26. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
-23. Add some tests to show this:
+27. Add some tests to show this:
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-24. Extend SymbolicOffset with an 'offset_request_modifiers' stack.
-    Modification methods include SymbolicOffset.translate() and possibly others.
+28. Implement BeatSelector._get_offsets().
 
-25. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
-    Remove Specification.__deepcopy__ override afterwards.
-
-26. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
-    Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
-
-27. Implement BeatSelector._get_offsets().
-
-28. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
-    Replace with OffsetPositionedExpression.set_offsets() or similar.
-    This will help conform to the Timespan interface.
-
-29. Implement an official way to do this: time_relation._timespan_1 = timespan_1.
-    The result should be a newly created time relation.
-    Perhaps RhythmMaker.set() can be used as a model here.
-    So new_time_relation = time_relation.set(timespan_1=timespan_1).
+29. Author tests to show each request modifier applied to each selector.
+    Four selectors times six request methods each gives ...
+        measures.__getitem__()
+        measures.partition_objects_by_ratio()
+        measures.partition_objects_by_ratio_of_durations()
+        measures.repeat_to_length()
+        measures.reverse()
+        measures.rotate()
+        divisions.__getitem__()    
+        divisions.partition_objects_by_ratio()
+        divisions.partition_objects_by_ratio_of_durations()
+        divisions.repeat_to_length()
+        divisions.reverse()
+        divisions.rotate()
+        beats.__getitem__()
+        beats.partition_objects_by_ratio()
+        beats.partition_objects_by_ratio_of_durations()
+        beats.repeat_to_length()
+        beats.reverse()
+        beats.rotate()
+        leaves.__getitem__()
+        leaves.partition_objects_by_ratio()
+        leaves.partition_objects_by_ratio_of_durations()
+        leaves.repeat_to_length()
+        leaves.reverse()
+        leaves.rotate()
+    ... a total of 24 tests.
 
 30. Implement the complete "timespan inequality interface" on Timespan.
     Then replace ...
@@ -145,43 +172,3 @@
     ... with ...
         previous_rhythm_region_expression.stops_when_expr_starts(current_rhythm_region_expression) 
     ... instead.
-
-31. Author tests to show each request modifier applied to each voice selector.
-    Five reqeust methods applied to each of four voice selectors gives ...
-        measures.partition_objects_by_ratio()
-        measures.partition_objects_by_ratio_of_durations()
-        measures.repeat_to_length()
-        measures.reverse()
-        measures.rotate()
-        divisions.partition_objects_by_ratio()
-        divisions.partition_objects_by_ratio_of_durations()
-        divisions.repeat_to_length()
-        divisions.reverse()
-        divisions.rotate()
-        beats.partition_objects_by_ratio()
-        beats.partition_objects_by_ratio_of_durations()
-        beats.repeat_to_length()
-        beats.reverse()
-        beats.rotate()
-        leaves.partition_objects_by_ratio()
-        leaves.partition_objects_by_ratio_of_durations()
-        leaves.repeat_to_length()
-        leaves.reverse()
-        leaves.rotate()
-    ... a total of 20 tests.
-
-32. Add a test to show this:
-        note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
-        offset = note_selector.stop_offset
-
-33. Implement a ModificationInventory class.
-
-34. Rename _set_start_segment_identifier().
-    Maybe should be called _set_anchor(). Not sure.
-    In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
-    If that turns out to be the case then "start segment specification" is
-    something like "anchor segment specification".
-
-35. Add voice_name to Selector. Then remove VoiceSelector from the class hierarchy.
-
-36. Change context_names=['Grouped Rhythmic Staves Score'] to context_names=None everywhere.

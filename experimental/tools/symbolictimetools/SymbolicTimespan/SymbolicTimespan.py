@@ -11,7 +11,7 @@ from abjad.tools.timespantools.Timespan import Timespan
 
 
 class SymbolicTimespan(Timespan):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
         
@@ -53,12 +53,12 @@ class SymbolicTimespan(Timespan):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
 
-            >>> red_segment.select() == red_segment.select()
+            >>> red_segment.select('Voice 1') == red_segment.select('Voice 1')
             True
 
         Otherwise false::
 
-            >>> red_segment.select() == blue_segment.select()
+            >>> red_segment.select('Voice 1') == blue_segment.select('Voice 1')
             False
 
         Return boolean.
@@ -194,7 +194,7 @@ class SymbolicTimespan(Timespan):
         '''Read-only list of timespan_modifiers to be applied 
         to symbolic timespan during evaluation.
 
-            >>> red_segment.select().timespan_modifiers
+            >>> red_segment.select('Voice 1').timespan_modifiers
             ModifierInventory([])
 
         Return object inventory of zero or more strings.
@@ -206,13 +206,14 @@ class SymbolicTimespan(Timespan):
     def divide_by_ratio(self, ratio):
         '''Divide timespan by `ratio`::
 
-            >>> timespans = red_segment.select().divide_by_ratio((2, 3))
+            >>> timespans = red_segment.select('Voice 1').divide_by_ratio((2, 3))
 
         ::
     
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -226,6 +227,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -236,13 +238,14 @@ class SymbolicTimespan(Timespan):
 
         Coerce integer `ratio` to ``Ratio(ratio*[1])``::
 
-            >>> timespans = red_segment.select().divide_by_ratio(3)
+            >>> timespans = red_segment.select('Voice 1').divide_by_ratio(3)
 
         ::
 
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -256,6 +259,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -269,6 +273,7 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[2])
             symbolictimetools.SegmentSelector(
                 anchor='red',
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -294,9 +299,10 @@ class SymbolicTimespan(Timespan):
     def scale(self, multiplier):
         '''Scale timespan duration by `multiplier`.
 
-            >>> z(red_segment.select().scale(Multiplier(4, 5)))
+            >>> z(red_segment.select('Voice 1').scale(Multiplier(4, 5)))
             symbolictimetools.SegmentSelector(
                 anchor='red',
+                voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -479,11 +485,11 @@ class SymbolicTimespan(Timespan):
 
             >>> z(setting)
             settingtools.MultipleContextSetting(
-                'divisions',
-                requesttools.AbsoluteRequest(
+                attribute='divisions',
+                request=requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                'red',
+                anchor='red',
                 context_names=['Voice 1', 'Voice 3'],
                 persist=True
                 )
@@ -596,8 +602,8 @@ class SymbolicTimespan(Timespan):
 
             >>> z(setting)
             settingtools.MultipleContextSetting(
-                'rhythm',
-                requesttools.AbsoluteRequest(
+                attribute='rhythm',
+                request=requesttools.AbsoluteRequest(
                     rhythmmakertools.TaleaRhythmMaker(
                         [1],
                         16,
@@ -608,8 +614,7 @@ class SymbolicTimespan(Timespan):
                         tie_split_notes=False
                         )
                     ),
-                'red',
-                context_names=['Grouped Rhythmic Staves Score'],
+                anchor='red',
                 persist=True
                 )
 
@@ -636,12 +641,11 @@ class SymbolicTimespan(Timespan):
 
             >>> z(setting)
             settingtools.MultipleContextSetting(
-                'time_signatures',
-                requesttools.AbsoluteRequest(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
                     [(3, 8), (4, 8)]
                     ),
-                'red',
-                context_names=['Grouped Rhythmic Staves Score'],
+                anchor='red',
                 persist=True
                 )
 

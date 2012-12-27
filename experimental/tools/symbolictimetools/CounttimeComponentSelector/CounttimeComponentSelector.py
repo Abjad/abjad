@@ -4,22 +4,48 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from experimental.tools import helpertools
-from experimental.tools.symbolictimetools.VoiceSelector import VoiceSelector
+from experimental.tools.symbolictimetools.Selector import Selector
 
 
-class CounttimeComponentSelector(VoiceSelector):
-    r'''.. versionadded:: 1.0
+class CounttimeComponentSelector(Selector):
+    r'''
 
     ::
 
         >>> from experimental.tools import *
 
-    Select all voice ``1`` counttime components::
+    ::
 
-        >>> symbolictimetools.CounttimeComponentSelector(voice_name='Voice 1')
-        CounttimeComponentSelector(voice_name='Voice 1')
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
 
-    Counttime component symbolic timespans are immutable.
+    Select voice ``1`` leaves that start during score::
+
+        >>> selector = score_specification.select_leaves('Voice 1')
+
+    ::
+        
+        >>> z(selector)
+        symbolictimetools.CounttimeComponentSelector(
+            klass=leaftools.Leaf,
+            voice_name='Voice 1'
+            )
+
+    Select voice ``1`` leaves that start during segment ``'red'``::
+
+        >>> selector = red_segment.select_leaves('Voice 1')
+
+    ::
+
+        >>> z(selector)
+        symbolictimetools.CounttimeComponentSelector(
+            anchor='red',
+            klass=leaftools.Leaf,
+            voice_name='Voice 1'
+            )
+
+    Counttime component selectors are immutable.
     '''
 
     ### INITIALIZER ###
@@ -30,7 +56,7 @@ class CounttimeComponentSelector(VoiceSelector):
         from experimental.tools import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
-        VoiceSelector.__init__(self, 
+        Selector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, time_relation=time_relation, 
             request_modifiers=request_modifiers,
@@ -62,8 +88,7 @@ class CounttimeComponentSelector(VoiceSelector):
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:
-            time_relation = self.time_relation
-            time_relation._timespan_1 = timespan_1
+            time_relation = self.time_relation.set(timespan_1=timespan_1)
         for current_rhythm_region_expression in rhythm_region_expressions:
             if previous_rhythm_region_expression is not None:
                 if not previous_rhythm_region_expression.stop_offset == \

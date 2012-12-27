@@ -79,11 +79,13 @@ class Specification(SymbolicTimespan):
 
     # TODO: this can be removed once Specification no longer inherits from SymbolicTimespan
     def __deepcopy__(self, memo):
-        return self.select()
+        # voice indication is a hack
+        return self.select('Voice 1')
 
     def _context_token_to_context_names(self, context_token):
         if context_token is None:
-            context_names = [self.score_name] 
+            #context_names = [self.score_name] 
+            context_names = None
         elif context_token == [self.score_name]:
             context_names = context_token
         elif isinstance(context_token, type(self)):

@@ -263,14 +263,15 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def select(self):
+    def select(self, voice_name):
         '''Select segment.
         
         .. note: will probably be replaced with a `timespan` property.
 
         Return segment selector.
         '''
-        selector = symbolictimetools.SegmentSelector(anchor=self.specification_name)
+        assert isinstance(voice_name, str)
+        selector = symbolictimetools.SegmentSelector(anchor=self.specification_name, voice_name=voice_name)
         selector._score_specification = self.score_specification
         selector = selector[self.specification_name:(self.specification_name, 1)]
         return selector

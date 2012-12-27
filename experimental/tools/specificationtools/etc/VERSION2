@@ -6,3 +6,5 @@
 2.  Overwrite existing rhythms with new rhythms:
         leaves = red_segment.select_leaves('Voice 1')[5:10]
         red_segment.set_rhythm(library.thirty_seconds, timespan=leaves)
+
+3.  Implement voice intermittency.

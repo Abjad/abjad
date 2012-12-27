@@ -612,26 +612,38 @@ class ScoreSpecification(Specification):
             stop_offset = None
         return start_offset, stop_offset
 
-    def select(self):
+    def select(self, voice_name):
         '''Select score::
 
-            >>> score_specification.select()
-            ScoreSelector()
+            >>> selector = score_specification.select('Voice 1')
+
+        ::
+
+            >>> z(selector)
+            symbolictimetools.ScoreSelector(
+                voice_name='Voice 1'
+                )
 
         Return score selector.
         '''
-        selector = symbolictimetools.ScoreSelector()
+        selector = symbolictimetools.ScoreSelector(voice_name=voice_name)
         selector._score_specification = self
         return selector
 
-    def select_segments(self):
-        '''Select segments in score::
+    def select_segments(self, voice_name):
+        '''Select voice ``1`` segments in score::
 
-            >>> score_specification.select_segments()
-            SegmentSelector()
+            >>> selector = score_specification.select_segments('Voice 1')
+
+        ::
+
+            >>> z(selector)
+            symbolictimetools.SegmentSelector(
+                voice_name='Voice 1'
+                )
 
         Return segment selector.
         '''
-        selector = symbolictimetools.SegmentSelector()
+        selector = symbolictimetools.SegmentSelector(voice_name=voice_name)
         selector._score_specification = self
         return selector

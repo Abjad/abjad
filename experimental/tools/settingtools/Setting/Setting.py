@@ -18,7 +18,7 @@ class Setting(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, attribute, request, anchor, fresh=True, persist=True, truncate=None):
+    def __init__(self, attribute=None, request=None, anchor=None, fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
         assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None)))

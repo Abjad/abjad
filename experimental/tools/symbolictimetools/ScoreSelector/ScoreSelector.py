@@ -4,16 +4,28 @@ from experimental.tools.symbolictimetools.Selector import Selector
 
 
 class ScoreSelector(Selector):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 
         >>> from experimental.tools import *
 
-    Score selector::
+    ::
 
-        >>> symbolictimetools.ScoreSelector()
-        ScoreSelector()
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    Select voice ``1`` score::
+
+        >>> selector = score_specification.select('Voice 1')
+
+    ::
+
+        >>> z(selector)
+        symbolictimetools.ScoreSelector(
+            voice_name='Voice 1'
+            )
     
     All score selector properties are read-only.
     '''

@@ -73,6 +73,10 @@ Read-only Properties
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
+.. autoattribute:: experimental.tools.symbolictimetools.ScoreSelector.ScoreSelector.ScoreSelector.voice_name
+
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
+
 Read/write Properties
 ---------------------
 

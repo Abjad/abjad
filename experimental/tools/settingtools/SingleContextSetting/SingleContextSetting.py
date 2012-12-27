@@ -39,11 +39,11 @@ class SingleContextSetting(Setting):
 
         >>> z(single_context_setting)
         settingtools.SingleContextSetting(
-            'divisions',
-            requesttools.AbsoluteRequest(
+            attribute='divisions',
+            request=requesttools.AbsoluteRequest(
                 [(3, 16)]
                 ),
-            'red',
+            anchor='red',
             context_name='Voice 1',
             fresh=True,
             persist=True
@@ -58,9 +58,10 @@ class SingleContextSetting(Setting):
 
     ### INITIALIZER ###
 
-    def __init__(self, 
-        attribute, request, anchor, context_name=None, fresh=True, persist=True, truncate=None):
-        Setting.__init__(self, attribute, request, anchor, fresh=fresh, persist=persist, truncate=truncate)
+    def __init__(self, attribute=None, request=None, anchor=None, context_name=None, 
+        fresh=True, persist=True, truncate=None):
+        Setting.__init__(self, attribute=attribute, request=request, anchor=anchor, 
+            fresh=fresh, persist=persist, truncate=truncate)
         assert isinstance(context_name, (str, type(None)))
         self._context_name = context_name
 
@@ -80,11 +81,11 @@ class SingleContextSetting(Setting):
 
             >>> z(single_context_setting)
             settingtools.SingleContextSetting(
-                'divisions',
-                requesttools.AbsoluteRequest(
+                attribute='divisions',
+                request=requesttools.AbsoluteRequest(
                     [(3, 16)]
                     ),
-                'red',
+                anchor='red',
                 context_name='Voice 1',
                 fresh=True,
                 persist=True

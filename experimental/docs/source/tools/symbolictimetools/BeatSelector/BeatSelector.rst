@@ -75,7 +75,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.voice_name
 
-    Inherited from :py:class:`symbolictimetools.VoiceSelector <experimental.tools.symbolictimetools.VoiceSelector.VoiceSelector.VoiceSelector>`
+    Inherited from :py:class:`symbolictimetools.Selector <experimental.tools.symbolictimetools.Selector.Selector.Selector>`
 
 Read/write Properties
 ---------------------

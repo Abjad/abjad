@@ -4,7 +4,7 @@ from experimental.tools.symbolictimetools.Selector import Selector
 
 
 class SegmentSelector(Selector):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 
@@ -18,58 +18,68 @@ class SegmentSelector(Selector):
         >>> blue_segment = score_specification.append_segment(name='blue')
         >>> green_segment = score_specification.append_segment(name='green')
 
-    Select all segments in score::
+    Select voice ``1`` segments in score::
 
-        >>> score_specification.select_segments()
-        SegmentSelector()
-
-    Select the first two segments in score::
-
-        >>> segments = score_specification.select_segments()[:2]
+        >>> selector = score_specification.select_segments('Voice 1')
 
     ::
 
-        >>> z(segments)
+        >>> z(selector)
         symbolictimetools.SegmentSelector(
+            voice_name='Voice 1'
+            )
+
+    Select the first two voice ``1`` segments in score::
+
+        >>> selector = score_specification.select_segments('Voice 1')[:2]
+
+    ::
+
+        >>> z(selector)
+        symbolictimetools.SegmentSelector(
+            voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
 
-    Select segments up to but not including ``'green'``::
+    Select voice ``1`` segments up to but not including ``'green'``::
 
-        >>> segments = score_specification.select_segments()[:'green']
+        >>> selector = score_specification.select_segments('Voice 1')[:'green']
 
     ::
 
-        >>> z(segments)
+        >>> z(selector)
         symbolictimetools.SegmentSelector(
+            voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
 
-    Select segments up to and including ``'green'``::
+    Select voice ``1`` segments up to and including ``'green'``::
 
-        >>> segments = score_specification.select_segments()[:('green', 1)]
+        >>> selector = score_specification.select_segments('Voice 1')[:('green', 1)]
 
     ::
 
-        >>> z(segments)
+        >>> z(selector)
         symbolictimetools.SegmentSelector(
+            voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
 
-    Select segment ``'red'``::
+    Select voice ``1`` segment ``'red'``::
 
-        >>> segments = score_specification.select_segments()['red':('red', 1)]
+        >>> selector = score_specification.select_segments('Voice 1')['red':('red', 1)]
 
     ::
 
-        >>> z(segments)
+        >>> z(selector)
         symbolictimetools.SegmentSelector(
+            voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])

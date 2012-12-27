@@ -341,6 +341,8 @@ class ConcreteInterpreter(Interpreter):
                 segment_specification, context_name, proper=False)
         for context_name in context_names:
             for element in expr:
+                if element.context_name is None:
+                    return element
                 if element.context_name == context_name:
                     return element
 
