@@ -1,14 +1,13 @@
 import abc
 import copy
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.timespantools.Timespan import Timespan
 from experimental.tools import helpertools 
 from experimental.tools import requesttools 
 
 
-class Command(AbjadObject):
+class Command(Timespan):
     '''.. versionadded:: 1.0
 
     Command indicating period of time to which request will apply.
@@ -31,10 +30,9 @@ class Command(AbjadObject):
         stop_offset = durationtools.Offset(stop_offset)
         assert start_offset <= stop_offset
         assert isinstance(fresh, (bool, type(None))), repr(fresh)
+        Timespan.__init__(self, start_offset=start_offset, stop_offset=stop_offset)
         self._request = request
         self._context_name = context_name
-        self._start_offset = start_offset
-        self._stop_offset = stop_offset
         self._fresh = fresh
 
     ### SPECIAL METHODS ###
@@ -71,14 +69,6 @@ class Command(AbjadObject):
         return self._context_name
 
     @property
-    def duration(self):
-        '''Command duration.
-            
-        Return duration.
-        ''' 
-        return self.stop_offset - self.start_offset
-
-    @property
     def fresh(self):
         '''True when command was generated in response 
         to an explicit user command. Otherwise false.
@@ -88,42 +78,12 @@ class Command(AbjadObject):
         return self._fresh
 
     @property
-    def offsets(self):
-        '''Return pair.
-        '''
-        return self.start_offset, self.stop_offset
-
-    @property
     def request(self):
         '''Command request.
         
         Return request object.
         ''' 
         return self._request
-
-    @property
-    def start_offset(self):
-        '''Score start offset of command.
-
-        Return offset.
-        '''
-        return self._start_offset
-
-    @property
-    def stop_offset(self):
-        '''Score stop offset of command.
-
-        Return offset.
-        '''
-        return self._stop_offset
-
-    @property
-    def vector(self):
-        '''Command mandatory argument values.
-
-        Return tuple.
-        '''
-        return self._positional_argument_values
 
     ### PUBLIC METHODS ###
 
