@@ -15,8 +15,6 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.identifiers
-
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.is_closed
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
@@ -49,13 +47,9 @@ Read-only Properties
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_identifier
-
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_offset
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.start_segment_identifier
-
-.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.stop_identifier
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.stop_offset
 

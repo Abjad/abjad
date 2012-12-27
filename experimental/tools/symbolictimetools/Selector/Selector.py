@@ -21,8 +21,7 @@ class Selector(SymbolicTimespan, Request):
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, start_identifier=None, stop_identifier=None, 
-        time_relation=None, timespan_modifications=None, modifications=None):
+    def __init__(self, anchor=None, time_relation=None, timespan_modifications=None, modifications=None):
         from experimental.tools import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
@@ -30,8 +29,6 @@ class Selector(SymbolicTimespan, Request):
         SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
         Request.__init__(self, modifications=modifications)
         self._anchor = anchor
-        self._start_identifier = start_identifier
-        self._stop_identifier = stop_identifier
         self._time_relation = time_relation
 
     ### SPECIAL METHODS ###
@@ -73,22 +70,6 @@ class Selector(SymbolicTimespan, Request):
         return self._anchor
 
     @property
-    def identifiers(self):
-        '''Slice selector start- and stop-identifiers.
-
-        Return pair.
-        '''
-        return self.start_identifier, self.stop_identifier
-
-    @property
-    def start_identifier(self):
-        '''Slice selector start identifier.
-
-        Return integer, string, held expression or none.
-        '''
-        return self._start_identifier
-
-    @property
     def start_offset(self):
         from experimental.tools import symbolictimetools
         return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation)
@@ -107,22 +88,14 @@ class Selector(SymbolicTimespan, Request):
             return self.anchor.start_segment_identifier
 
     @property
-    def stop_identifier(self):
-        '''Slice selector stop identifier.
-
-        Return integer, string, held expression or none.
-        '''
-        return self._stop_identifier
-
-    @property
     def stop_offset(self):
         from experimental.tools import symbolictimetools
         return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
 
     @property
     def time_relation(self):
-        '''Inequality of selector.
+        '''Time relation of selector.
         
-        Return time_relation or none.
+        Return time relation or none.
         '''
         return self._time_relation

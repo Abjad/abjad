@@ -125,31 +125,28 @@
 25. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
     Remove Specification.__deepcopy__ override afterwards.
 
-26. Remove start_identifier=None and stop_identifier=None properties from SegmentSelector.
-    Replace with getitem.
-
-27. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
+26. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-28. Implement BeatSelector._get_offsets().
+27. Implement BeatSelector._get_offsets().
 
-29. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
+28. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
 
-30. Implement an official way to do this: time_relation._timespan_1 = timespan_1.
+29. Implement an official way to do this: time_relation._timespan_1 = timespan_1.
     The result should be a newly created time relation.
     Perhaps RhythmMaker.set() can be used as a model here.
     So new_time_relation = time_relation.set(timespan_1=timespan_1).
 
-31. Implement the complete "timespan inequality interface" on Timespan.
+30. Implement the complete "timespan inequality interface" on Timespan.
     Then replace ...
         previous_rhythm_region_expression.stop_offset == current_rhythm_region_expression.start_offset
     ... with ...
         previous_rhythm_region_expression.stops_when_expr_starts(current_rhythm_region_expression) 
     ... instead.
 
-32. Author tests to show each request modification applied to each voice selector.
+31. Author tests to show each request modification applied to each voice selector.
     Five reqeust methods applied to each of four voice selectors gives ...
         measures.partition_objects_by_ratio()
         measures.partition_objects_by_ratio_of_durations()
@@ -173,18 +170,24 @@
         leaves.rotate()
     ... a total of 20 tests.
 
-33. It's possible that 'modifications' should be renamed 'request_modifications'.
+32. It's possible that 'modifications' should be renamed 'request_modifications'.
     Because the stack implements on the Request class.
     And because the name would then parallel the 'timespan_modifications' stack.
 
-34. Add a test to show this:
+33. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
-35. Implement a ModificationInventory class.
+34. Implement a ModificationInventory class.
 
-36. Change the keyword order of Selector(timespan_modifications=None, modifications=None)
+35. Change the keyword order of Selector(timespan_modifications=None, modifications=None)
     to Selector(request_modifications=None, timespan_modifications=None).
     This helps keep the order of modifier application in mind.
 
-37. Rename _slice_selected_objects() to ____getitem__().
+36. Rename _slice_selected_objects() to ____getitem__().
+
+37. Rename _set_start_segment_identifier().
+    Maybe should be called _set_anchor(). Not sure.
+    In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
+    If that turns out to be the case then "start segment specification" is
+    something like "anchor segment specification".

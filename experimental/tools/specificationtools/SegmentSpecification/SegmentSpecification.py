@@ -270,9 +270,6 @@ class SegmentSpecification(Specification):
 
         Return segment selector.
         '''
-        #selector = symbolictimetools.SegmentSelector(
-        #    start_identifier=self.specification_name, 
-        #    stop_identifier=(self.specification_name, 1))
         selector = symbolictimetools.SegmentSelector(anchor=self.specification_name)
         selector._score_specification = self.score_specification
         selector = selector[self.specification_name:(self.specification_name, 1)]

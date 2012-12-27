@@ -56,7 +56,6 @@ class DivisionSelector(VoiceSelector):
                 score_specification=score_specification, 
                 context_name=voice_name):
                 divisions.append(division)
-        divisions = divisions[self.start_identifier:self.stop_identifier]
         start_offset = divisions[0].start_offset
         divisions, start_offset = self._apply_modifications(divisions, start_offset)
         start_offset = divisions[0].start_offset

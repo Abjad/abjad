@@ -56,22 +56,14 @@ class BackgroundMeasureSelector(VoiceSelector):
 
         Ignore `context_name`. 
 
-        First slice according to self.start, self.stop if set.
         Then apply any modifications in selector modifications stack.
 
         Return pair.
         '''
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
+        time_signatures = segment_specification.time_signatures[:]
         segment_name = segment_specification.segment_name
-        start, stop = self.identifiers
-        start = start or 0
-        stop = stop or None
-        time_signatures = segment_specification.time_signatures[start:stop]
-        durations = [durationtools.Duration(x) for x in segment_specification.time_signatures]     
-        durations_before = durations[:start]
-        duration_before = sum(durations_before)
-        start_offset = durationtools.Offset(duration_before)
-        start_offset = score_specification.segment_offset_to_score_offset(segment_name, start_offset)
+        start_offset = score_specification.segment_offset_to_score_offset(segment_name, 0)
         time_signatures, start_offset = self._apply_modifications(time_signatures, start_offset)
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)

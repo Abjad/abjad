@@ -624,7 +624,7 @@ class ScoreSpecification(Specification):
         selector._score_specification = self
         return selector
 
-    def select_segments(self, start=None, stop=None):
+    def select_segments(self):
         '''Select segments in score::
 
             >>> score_specification.select_segments()
@@ -632,6 +632,6 @@ class ScoreSpecification(Specification):
 
         Return segment selector.
         '''
-        selector = symbolictimetools.SegmentSelector(start_identifier=start, stop_identifier=stop)
+        selector = symbolictimetools.SegmentSelector()
         selector._score_specification = self
         return selector

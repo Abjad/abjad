@@ -80,20 +80,10 @@ class SegmentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, 
-        start_identifier=None, stop_identifier=None, time_relation=None, 
-        timespan_modifications=None, modifications=None):
-        if isinstance(stop_identifier, tuple):
-            assert len(stop_identifier) == 2
-            stop_identifier = self._make_identifier_expression(*stop_identifier)
-        #if start_identifier is not None:
-        #    raise Exception(start_identifier)
-        #if stop_identifier is not None:
-        #    raise Exception(stop_identifier)
+    # TODO: remove in favor of Selector.__init__
+    def __init__(self, anchor=None, time_relation=None, timespan_modifications=None, modifications=None):
         Selector.__init__(self, 
             anchor=anchor,
-            start_identifier=start_identifier,
-            stop_identifier=stop_identifier,
             time_relation=time_relation,
             timespan_modifications=timespan_modifications,
             modifications=modifications)
@@ -124,18 +114,15 @@ class SegmentSelector(Selector):
     # TODO: eventually extend method to work with segment selectors that select more than one segment
     def _set_start_segment_identifier(self, segment_identifier):
         assert isinstance(segment_identifier, str)
-        #self._start_identifier = segment_identifier
-        #self._stop_identifier = self._make_identifier_expression(segment_identifier, 1)
         self._anchor = segment_identifier
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     # TODO: Eventually extend to work without anchor being defined.
-    #       Evaluate request modifications to find start segment identifier instead.
+    #       Evaluate request modifications instead.
     @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.
         '''
-        #return self.start_identifier
         assert isinstance(self.anchor, str)
         return self.anchor
