@@ -26,9 +26,9 @@ class Request(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, request_modifications=None):
-        request_modifications = request_modifications or []
-        self._request_modifications = datastructuretools.ObjectInventory(request_modifications)
+    def __init__(self, request_modifiers=None):
+        request_modifiers = request_modifiers or []
+        self._request_modifiers = datastructuretools.ObjectInventory(request_modifiers)
 
     ### SPECIAL METHODS ###
 
@@ -45,12 +45,12 @@ class Request(AbjadObject):
         return self._keyword_argument_values == expr._keyword_argument_values
 
     def __getitem__(self, expr):
-        '''Return copy of request with appended modification.
+        '''Return copy of request with appended modifier.
         '''
-        modification = 'result = self.___getitem__(elements, start_offset, {!r})'
-        modification = modification.format(expr)
+        modifier = 'result = self.___getitem__(elements, start_offset, {!r})'
+        modifier = modifier.format(expr)
         result = copy.deepcopy(self)
-        result.request_modifications.append(modification)
+        result.request_modifiers.append(modifier)
         return result
 
     ### PRIVATE READ-ONLY PROPERTIES ###
@@ -58,14 +58,14 @@ class Request(AbjadObject):
     @property
     def _keyword_argument_name_value_strings(self):
         result = AbjadObject._keyword_argument_name_value_strings.fget(self)
-        if 'request_modifications=ObjectInventory([])' in result:
+        if 'request_modifiers=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('request_modifications=ObjectInventory([])')
+            result.remove('request_modifiers=ObjectInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
 
-    def _apply_request_modifications(self, elements, start_offset):
+    def _apply_request_modifiers(self, elements, start_offset):
         from experimental.tools import settingtools
         evaluation_context = {
             'Duration': durationtools.Duration,
@@ -79,22 +79,22 @@ class Request(AbjadObject):
             'result': None,
             'sequencetools': sequencetools,
             }
-        for modification in self.request_modifications:
-            assert 'elements' in modification
+        for modifier in self.request_modifiers:
+            assert 'elements' in modifier
             evaluation_context['elements'] = elements
             evaluation_context['start_offset'] = start_offset
-            exec(modification, evaluation_context)
+            exec(modifier, evaluation_context)
             elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty request_modifications list.
+        '''Do not show empty request_modifiers list.
         '''
         filtered_result = []
         result = AbjadObject._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'request_modifications=datastructuretools.ObjectInventory([])' in string:
+            if not 'request_modifiers=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -171,22 +171,22 @@ class Request(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def request_modifications(self):
-        return self._request_modifications
+    def request_modifiers(self):
+        return self._request_modifiers
 
     ### PUBLIC METHODS ###
 
     def partition_objects_by_ratio(self, ratio):
-        '''Return tuple of newly constructed requests with request_modifications appended.
+        '''Return tuple of newly constructed requests with request_modifiers appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            modification = \
+            modifier = \
                 'result = self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
-            modification = modification.format(ratio, part)
-            selector.request_modifications.append(modification)
+            modifier = modifier.format(ratio, part)
+            selector.request_modifiers.append(modifier)
             result.append(selector)
         return tuple(result)
 
@@ -195,36 +195,36 @@ class Request(AbjadObject):
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             selector = copy.deepcopy(self)
-            modification = \
+            modifier = \
                 'result = self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
-            modification = modification.format(ratio, part)
-            selector.request_modifications.append(modification)
+            modifier = modifier.format(ratio, part)
+            selector.request_modifiers.append(modifier)
             result.append(selector)
         return tuple(result)
 
     def repeat_to_length(self, length):
-        '''Return copy of request with appended modification.
+        '''Return copy of request with appended modifier.
         '''
         assert mathtools.is_nonnegative_integer(length)
-        modification = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
+        modifier = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
         result = copy.deepcopy(self)
-        result.request_modifications.append(modification)
+        result.request_modifiers.append(modifier)
         return result
         
     def reverse(self):
-        '''Return copy of request with appended modification.
+        '''Return copy of request with appended modifier.
         '''
-        modification = 'result = self._reverse(elements, start_offset)'
+        modifier = 'result = self._reverse(elements, start_offset)'
         result = copy.deepcopy(self)
-        result.request_modifications.append(modification)
+        result.request_modifiers.append(modifier)
         return result
 
     def rotate(self, index):
-        '''Return copy of request with appended modification.
+        '''Return copy of request with appended modifier.
         '''
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
-        modification = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
+        modifier = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
         result = copy.deepcopy(self)
-        result.request_modifications.append(modification)
+        result.request_modifiers.append(modifier)
         return result

@@ -42,10 +42,10 @@ class SymbolicTimespan(Timespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, timespan_modifications=None):
+    def __init__(self, timespan_modifiers=None):
         Timespan.__init__(self)
-        timespan_modifications = timespan_modifications or []
-        self._timespan_modifications = datastructuretools.ObjectInventory(timespan_modifications)
+        timespan_modifiers = timespan_modifiers or []
+        self._timespan_modifiers = datastructuretools.ObjectInventory(timespan_modifiers)
 
     ### SPECIAL METHODS ###
 
@@ -74,9 +74,9 @@ class SymbolicTimespan(Timespan):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Timespan._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifications=ObjectInventory([])' in result:
+        if 'timespan_modifiers=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifications=ObjectInventory([])')
+            result.remove('timespan_modifiers=ObjectInventory([])')
         return tuple(result)
 
     @property
@@ -87,17 +87,17 @@ class SymbolicTimespan(Timespan):
 
     ### PRIVATE METHODS ###
 
-    def _apply_timespan_modifications(self, start_offset, stop_offset):
+    def _apply_timespan_modifiers(self, start_offset, stop_offset):
         evaluation_context = {
             'self': self,
             'Duration': durationtools.Duration,
             'Multiplier': durationtools.Multiplier,
             'Offset': durationtools.Offset,
             }
-        for timespan_modification in self.timespan_modifications:
-            timespan_modification = timespan_modification.replace('original_start_offset', repr(start_offset))
-            timespan_modification = timespan_modification.replace('original_stop_offset', repr(stop_offset))
-            start_offset, stop_offset = eval(timespan_modification, evaluation_context)
+        for timespan_modifier in self.timespan_modifiers:
+            timespan_modifier = timespan_modifier.replace('original_start_offset', repr(start_offset))
+            timespan_modifier = timespan_modifier.replace('original_stop_offset', repr(stop_offset))
+            start_offset, stop_offset = eval(timespan_modifier, evaluation_context)
             assert start_offset <= stop_offset
         return start_offset, stop_offset
         
@@ -122,13 +122,13 @@ class SymbolicTimespan(Timespan):
         pass
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty offset request_modifications list.
+        '''Do not show empty offset request_modifiers list.
         '''
         filtered_result = []
         result = Timespan._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifications=datastructuretools.ObjectInventory([])' in string:
+            if not 'timespan_modifiers=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
 
@@ -190,16 +190,16 @@ class SymbolicTimespan(Timespan):
         return self._score_specification
 
     @property
-    def timespan_modifications(self):
-        '''Read-only list of timespan_modifications to be applied 
+    def timespan_modifiers(self):
+        '''Read-only list of timespan_modifiers to be applied 
         to symbolic timespan during evaluation.
 
-            >>> red_segment.select().timespan_modifications
+            >>> red_segment.select().timespan_modifiers
             ObjectInventory([])
 
         Return object inventory of zero or more strings.
         '''
-        return self._timespan_modifications
+        return self._timespan_modifiers
 
     ### PUBLIC METHODS ###
 
@@ -213,10 +213,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifications=datastructuretools.ObjectInventory([
+                timespan_modifiers=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ])
                 )
@@ -226,10 +226,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifications=datastructuretools.ObjectInventory([
+                timespan_modifiers=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ])
                 )
@@ -243,10 +243,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[0])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifications=datastructuretools.ObjectInventory([
+                timespan_modifiers=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ])
                 )
@@ -256,10 +256,10 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[1])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifications=datastructuretools.ObjectInventory([
+                timespan_modifiers=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ])
                 )
@@ -269,25 +269,25 @@ class SymbolicTimespan(Timespan):
             >>> z(timespans[2])
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifications=datastructuretools.ObjectInventory([
+                timespan_modifiers=datastructuretools.ObjectInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ])
                 )
 
-        Return tuple of newly constructed timespans with appended modification.
+        Return tuple of newly constructed timespans with appended modifier.
         '''
         result = []
         if mathtools.is_positive_integer_equivalent_number(ratio):
             ratio = int(ratio) * [1]
         for part in range(len(ratio)):
             new_symbolic_timespan = copy.deepcopy(self)
-            timespan_modification = \
+            timespan_modifier = \
                 'self._divide_by_ratio(original_start_offset, original_stop_offset, {!r}, {!r})'
-            timespan_modification = timespan_modification.format(ratio, part)
-            new_symbolic_timespan.timespan_modifications.append(timespan_modification)
+            timespan_modifier = timespan_modifier.format(ratio, part)
+            new_symbolic_timespan.timespan_modifiers.append(timespan_modifier)
             result.append(new_symbolic_timespan)
         return tuple(result)
 
@@ -297,22 +297,22 @@ class SymbolicTimespan(Timespan):
             >>> z(red_segment.select().scale(Multiplier(4, 5)))
             symbolictimetools.SegmentSelector(
                 anchor='red',
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
-                timespan_modifications=datastructuretools.ObjectInventory([
+                timespan_modifiers=datastructuretools.ObjectInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ])
                 )
 
-        Return copy of timespan with appended modification.
+        Return copy of timespan with appended modifier.
         '''
         multiplier = durationtools.Multiplier(multiplier)
-        timespan_modification = \
+        timespan_modifier = \
             'self._scale(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(multiplier)
+        timespan_modifier = timespan_modifier.format(multiplier)
         result = copy.deepcopy(self)
-        result.timespan_modifications.append(timespan_modification)
+        result.timespan_modifiers.append(timespan_modifier)
         return result
 
     def select_background_measures(self, voice_name, time_relation=None):
@@ -497,14 +497,14 @@ class SymbolicTimespan(Timespan):
     def set_duration(self, duration):
         '''Set timespan duration to `duration`.
 
-        Return copy of timespan with appended modification.
+        Return copy of timespan with appended modifier.
         '''
         duration = durationtools.Duration(duration)
-        timespan_modification = \
+        timespan_modifier = \
             'self._set_duration(original_start_offset, original_stop_offset, {!r})'
-        timespan_modification = timespan_modification.format(duration)
+        timespan_modifier = timespan_modifier.format(duration)
         result = copy.deepcopy(self)
-        result.timespan_modifications.append(timespan_modification)
+        result.timespan_modifiers.append(timespan_modifier)
         return result
 
     def set_dynamics(self, source, contexts=None, persist=True):
@@ -538,17 +538,17 @@ class SymbolicTimespan(Timespan):
         '''Set timespan start offset to `start_offset`
         and stop offset to `stop_offset`.
 
-        Return copy of timespan with appended modification.
+        Return copy of timespan with appended modifier.
         '''
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
         if stop_offset is not None:
             stop_offset = durationtools.Offset(stop_offset) 
-        timespan_modification = \
+        timespan_modifier = \
             'self._set_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_modification = timespan_modification.format(start_offset, stop_offset)
+        timespan_modifier = timespan_modifier.format(start_offset, stop_offset)
         result = copy.deepcopy(self)
-        result.timespan_modifications.append(timespan_modification)
+        result.timespan_modifiers.append(timespan_modifier)
         return result
 
     def set_pitch_class_application(self, source, contexts=None, persist=True):
@@ -654,15 +654,15 @@ class SymbolicTimespan(Timespan):
         '''Translate timespan start offset by `start_offset_translation`
         and stop offset by `stop_offset_translation`.
 
-        Return copy of timespan with appended modification.
+        Return copy of timespan with appended modifier.
         '''
         start_offset_translation = start_offset_translation or 0
         stop_offset_translation = stop_offset_translation or 0
         start_offset_translation = durationtools.Duration(start_offset_translation)
         stop_offset_translation = durationtools.Duration(stop_offset_translation)
-        timespan_modification = \
+        timespan_modifier = \
             'self._translate_offsets(original_start_offset, original_stop_offset, {!r}, {!r})'
-        timespan_modification = timespan_modification.format(start_offset_translation, stop_offset_translation)
+        timespan_modifier = timespan_modifier.format(start_offset_translation, stop_offset_translation)
         result = copy.deepcopy(self)
-        result.timespan_modifications.append(timespan_modification)
+        result.timespan_modifiers.append(timespan_modifier)
         return result

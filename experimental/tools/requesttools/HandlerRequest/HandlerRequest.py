@@ -16,9 +16,9 @@ class HandlerRequest(Request):
 
     ### INITIALIZER ###
 
-    def __init__(self, handler, request_modifications=None):
+    def __init__(self, handler, request_modifiers=None):
         assert isinstance(handler, handlertools.Handler)
-        Request.__init__(self, request_modifications=request_modifications)
+        Request.__init__(self, request_modifiers=request_modifiers)
         self._handler = handler
 
     ### READ-ONLY PROPERTIES ###

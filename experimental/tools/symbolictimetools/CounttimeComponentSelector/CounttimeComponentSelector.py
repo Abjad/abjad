@@ -26,15 +26,15 @@ class CounttimeComponentSelector(VoiceSelector):
 
     def __init__(self, anchor=None, klass=None, predicate=None, 
         voice_name=None, time_relation=None,
-        request_modifications=None, timespan_modifications=None):
+        request_modifiers=None, timespan_modifiers=None):
         from experimental.tools import symbolictimetools
         assert klass is None or helpertools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         VoiceSelector.__init__(self, 
             anchor=anchor, 
             voice_name=voice_name, time_relation=time_relation, 
-            request_modifications=request_modifications,
-            timespan_modifications=timespan_modifications)
+            request_modifiers=request_modifiers,
+            timespan_modifiers=timespan_modifiers)
         if isinstance(klass, tuple):
             klass = helpertools.KlassInventory(klass)
         self._klass = klass
@@ -76,7 +76,7 @@ class CounttimeComponentSelector(VoiceSelector):
                     context_name=voice_name):
                     counttime_component_pairs.append((
                         counttime_component, current_rhythm_region_expression.start_offset))
-        counttime_component_pairs, dummy = self._apply_request_modifications(counttime_component_pairs, None)
+        counttime_component_pairs, dummy = self._apply_request_modifiers(counttime_component_pairs, None)
         first_component, first_component_expression_offset = counttime_component_pairs[0]
         last_component, last_component_expression_offset = counttime_component_pairs[-1]
         start_offset = first_component_expression_offset + first_component.start_offset

@@ -119,13 +119,13 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-24. Extend SymbolicOffset with an 'offset_request_modifications' stack.
+24. Extend SymbolicOffset with an 'offset_request_modifiers' stack.
     Modification methods include SymbolicOffset.translate() and possibly others.
 
 25. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
     Remove Specification.__deepcopy__ override afterwards.
 
-26. Looks like modifications stack may not be copied over from segment to segment for persistent settings.
+26. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
 27. Implement BeatSelector._get_offsets().
@@ -146,7 +146,7 @@
         previous_rhythm_region_expression.stops_when_expr_starts(current_rhythm_region_expression) 
     ... instead.
 
-31. Author tests to show each request modification applied to each voice selector.
+31. Author tests to show each request modifier applied to each voice selector.
     Five reqeust methods applied to each of four voice selectors gives ...
         measures.partition_objects_by_ratio()
         measures.partition_objects_by_ratio_of_durations()

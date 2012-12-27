@@ -20,13 +20,13 @@ class Selector(SymbolicTimespan, Request):
 
     ### INTIALIZER ###
 
-    def __init__(self, anchor=None, time_relation=None, request_modifications=None, timespan_modifications=None):
+    def __init__(self, anchor=None, time_relation=None, request_modifiers=None, timespan_modifiers=None):
         from experimental.tools import symbolictimetools
         assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None))), repr(anchor)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
-        Request.__init__(self, request_modifications=request_modifications)
-        SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
+        Request.__init__(self, request_modifiers=request_modifiers)
+        SymbolicTimespan.__init__(self, timespan_modifiers=timespan_modifiers)
         self._anchor = anchor
         self._time_relation = time_relation
 
@@ -42,21 +42,21 @@ class Selector(SymbolicTimespan, Request):
     @property
     def _keyword_argument_name_value_strings(self):
         result = Request._keyword_argument_name_value_strings.fget(self)
-        if 'timespan_modifications=ObjectInventory([])' in result:
+        if 'timespan_modifiers=ObjectInventory([])' in result:
             result = list(result)
-            result.remove('timespan_modifications=ObjectInventory([])')
+            result.remove('timespan_modifiers=ObjectInventory([])')
         return tuple(result)
 
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
-        '''Do not show empty selector request_modifications list.
+        '''Do not show empty selector request_modifiers list.
         '''
         filtered_result = []
         result = Request._get_tools_package_qualified_keyword_argument_repr_pieces(
             self, is_indented=is_indented)
         for string in result:
-            if not 'timespan_modifications=datastructuretools.ObjectInventory([])' in string:
+            if not 'timespan_modifiers=datastructuretools.ObjectInventory([])' in string:
                 filtered_result.append(string)
         return filtered_result
     

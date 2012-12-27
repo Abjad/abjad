@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.attribute
 
-.. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.request_modifications
+.. autoattribute:: experimental.tools.requesttools.CommandRequest.CommandRequest.CommandRequest.request_modifiers
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 

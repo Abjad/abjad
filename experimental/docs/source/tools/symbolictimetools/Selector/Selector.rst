@@ -39,7 +39,7 @@ Read-only Properties
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_modifications
+.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.request_modifiers
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
@@ -59,7 +59,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.time_relation
 
-.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.timespan_modifications
+.. autoattribute:: experimental.tools.symbolictimetools.Selector.Selector.Selector.timespan_modifiers
 
     Inherited from :py:class:`symbolictimetools.SymbolicTimespan <experimental.tools.symbolictimetools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
 

@@ -2,7 +2,7 @@ from abjad import *
 from experimental.tools import *
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_01():
+def test_BackgroundMeasureSelector__timespan_modifiers_01():
     '''Scale timespan.
     '''
 
@@ -22,7 +22,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_01():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_02():
+def test_BackgroundMeasureSelector__timespan_modifiers_02():
     '''Set timespan duration.
     '''
 
@@ -42,7 +42,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_02():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_03():
+def test_BackgroundMeasureSelector__timespan_modifiers_03():
     '''Set timespan start offset.
     '''
 
@@ -62,7 +62,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_03():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_04():
+def test_BackgroundMeasureSelector__timespan_modifiers_04():
     '''Set timespan stop offset.
     '''
 
@@ -82,7 +82,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_04():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_05():
+def test_BackgroundMeasureSelector__timespan_modifiers_05():
     '''Translate timespan.
     '''
 
@@ -102,7 +102,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_06():
+def test_BackgroundMeasureSelector__timespan_modifiers_06():
     '''Translate timespan start offset.
     '''
 
@@ -122,7 +122,7 @@ def test_BackgroundMeasureSelector__timespan_modifications_06():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_07():
+def test_BackgroundMeasureSelector__timespan_modifiers_07():
     '''Translate timespan stop offset.
     '''
 
@@ -142,8 +142,8 @@ def test_BackgroundMeasureSelector__timespan_modifications_07():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__timespan_modifications_08():
-    '''Stacked timespan request_modifications applied in composition.
+def test_BackgroundMeasureSelector__timespan_modifiers_08():
+    '''Stacked timespan request_modifiers applied in composition.
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)

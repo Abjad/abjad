@@ -16,9 +16,9 @@ class StatalServerRequest(Request):
 
     ### INITIALIZER ###
     
-    def __init__(self, statal_server, request_modifications=None):
+    def __init__(self, statal_server, request_modifiers=None):
         assert isinstance(server, statalservertools.StatalServer)
-        Request.__init__(self, request_modifications=request_modifications)
+        Request.__init__(self, request_modifiers=request_modifiers)
         self._statal_server = statal_server
 
     ### SPECIAL METHODS ###

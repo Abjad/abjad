@@ -15,14 +15,14 @@ class VoiceSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, voice_name=None,
-        time_relation=None, request_modifications=None, timespan_modifications=None):
+        time_relation=None, request_modifiers=None, timespan_modifiers=None):
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert voice_name is not None
         Selector.__init__(self,
             anchor=anchor, 
             time_relation=time_relation, 
-            request_modifications=request_modifications,
-            timespan_modifications=timespan_modifications
+            request_modifiers=request_modifiers,
+            timespan_modifiers=timespan_modifiers
             )
         self._voice_name = voice_name
 

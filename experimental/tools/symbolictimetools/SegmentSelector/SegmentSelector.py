@@ -31,7 +31,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifications=datastructuretools.ObjectInventory([
+            request_modifiers=datastructuretools.ObjectInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
                 ])
             )
@@ -44,7 +44,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifications=datastructuretools.ObjectInventory([
+            request_modifiers=datastructuretools.ObjectInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
                 ])
             )
@@ -57,7 +57,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifications=datastructuretools.ObjectInventory([
+            request_modifiers=datastructuretools.ObjectInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
                 ])
             )
@@ -70,7 +70,7 @@ class SegmentSelector(Selector):
 
         >>> z(segments)
         symbolictimetools.SegmentSelector(
-            request_modifications=datastructuretools.ObjectInventory([
+            request_modifiers=datastructuretools.ObjectInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                 ])
             )
@@ -90,7 +90,7 @@ class SegmentSelector(Selector):
         '''
         offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
         start_offset, stop_offset = offsets
-        offsets = self._apply_timespan_modifications(start_offset, stop_offset)
+        offsets = self._apply_timespan_modifiers(start_offset, stop_offset)
         return offsets
 
     def _make_identifier_expression(self, segment_name, addendum):
@@ -109,7 +109,7 @@ class SegmentSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     # TODO: Eventually extend to work without anchor being defined.
-    #       Evaluate request request_modifications instead.
+    #       Evaluate request request_modifiers instead.
     @property
     def start_segment_identifier(self):
         '''Temporary hack. Generalize later.

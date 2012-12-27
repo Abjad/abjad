@@ -66,7 +66,7 @@ class ConcreteInterpreter(Interpreter):
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
             raise Exception('cyclic specification error: {!r}'.format(absolute_request))
-        time_signatures, dummy = selector._apply_request_modifications(absolute_request.payload, None)
+        time_signatures, dummy = selector._apply_request_modifiers(absolute_request.payload, None)
         return time_signatures
 
     def calculate_score_and_segment_durations(self):
@@ -154,8 +154,8 @@ class ConcreteInterpreter(Interpreter):
             result.music.extend(rhythm_region_expression.music)
         #self._debug(result, 'result')
         assert wellformednesstools.is_well_formed_component(result.music)
-        #result = rhythm_material_request._apply_request_modifications(result)
-        result, new_start_offset = rhythm_material_request._apply_request_modifications(
+        #result = rhythm_material_request._apply_request_modifiers(result)
+        result, new_start_offset = rhythm_material_request._apply_request_modifiers(
             result, result.start_offset)
         result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
@@ -206,7 +206,7 @@ class ConcreteInterpreter(Interpreter):
             division_command_request = division_region_command.request
             divisions = self.division_command_request_to_divisions(division_command_request, voice_name)
             start_offset = division_region_command.start_offset # new line
-            divisions, start_offset = division_command_request._apply_request_modifications(divisions, start_offset)
+            divisions, start_offset = division_command_request._apply_request_modifiers(divisions, start_offset)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
@@ -214,8 +214,8 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, symbolictimetools.BeatSelector):
             start_offset, stop_offset = division_region_command.offsets
             divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
-            #divisions = division_region_command.request._apply_request_modifications(divisions)
-            divisions, start_offset = division_region_command.request._apply_request_modifications(
+            #divisions = division_region_command.request._apply_request_modifiers(divisions)
+            divisions, start_offset = division_region_command.request._apply_request_modifiers(
                 divisions, start_offset)
             division_region_command._request = divisions
             division_region_expression = self.division_region_command_to_division_region_expression(
@@ -273,10 +273,10 @@ class ConcreteInterpreter(Interpreter):
             trimmed_division_region_expressions)
         keep_timespan = timespantools.Timespan(start_offset, stop_offset)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        #trimmed_division_region_expressions = division_selector._apply_request_modifications(
+        #trimmed_division_region_expressions = division_selector._apply_request_modifiers(
         #    trimmed_division_region_expressions)
         start_offset = trimmed_division_region_expressions.start_offset
-        trimmed_division_region_expressions, start_offset = division_selector._apply_request_modifications(
+        trimmed_division_region_expressions, start_offset = division_selector._apply_request_modifiers(
             trimmed_division_region_expressions, start_offset)
         trimmed_division_region_expressions.sort() 
         return trimmed_division_region_expressions
@@ -744,8 +744,8 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(source_command.request, requesttools.AbsoluteRequest)
         assert isinstance(source_command.request.payload, rhythmmakertools.RhythmMaker)
         rhythm_maker = copy.deepcopy(source_command.request.payload)
-        #rhythm_maker = rhythm_command_request._apply_request_modifications(rhythm_maker)
-        rhythm_maker, start_offset = rhythm_command_request._apply_request_modifications(
+        #rhythm_maker = rhythm_command_request._apply_request_modifiers(rhythm_maker)
+        rhythm_maker, start_offset = rhythm_command_request._apply_request_modifiers(
             rhythm_maker, source_command.start_offset)
         return rhythm_maker
 
@@ -901,7 +901,7 @@ class ConcreteInterpreter(Interpreter):
         assert command_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(command_request.symbolic_offset)
         time_signatures = segment_specification.time_signatures[:]
-        #time_signatures = command_request._apply_request_modifications(time_signatures)
+        #time_signatures = command_request._apply_request_modifiers(time_signatures)
         start_offset = segment_specification.start_offset
-        time_signatures, start_offset = command_request._apply_request_modifications(time_signatures, start_offset)
+        time_signatures, start_offset = command_request._apply_request_modifiers(time_signatures, start_offset)
         return time_signatures

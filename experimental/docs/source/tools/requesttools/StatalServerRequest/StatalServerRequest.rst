@@ -9,7 +9,7 @@ requesttools.StatalServerRequest
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.request_modifications
+.. autoattribute:: experimental.tools.requesttools.StatalServerRequest.StatalServerRequest.StatalServerRequest.request_modifiers
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 

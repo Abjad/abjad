@@ -44,7 +44,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
-                    request_modifications=datastructuretools.ObjectInventory([
+                    request_modifiers=datastructuretools.ObjectInventory([
                         'result = self.___getitem__(elements, start_offset, slice(-1, None, None))'
                         ])
                     )
@@ -53,7 +53,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                 anchor=symbolictimetools.BackgroundMeasureSelector(
                     anchor='blue',
                     voice_name='Voice 1',
-                    request_modifications=datastructuretools.ObjectInventory([
+                    request_modifiers=datastructuretools.ObjectInventory([
                         'result = self.___getitem__(elements, start_offset, slice(None, 1, None))'
                         ])
                     ),
@@ -66,12 +66,12 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_offset=None, stop_offset=None, timespan_modifications=None):
+    def __init__(self, start_offset=None, stop_offset=None, timespan_modifiers=None):
         from experimental.tools import specificationtools
         from experimental.tools import symbolictimetools
         assert isinstance(start_offset, (symbolictimetools.SymbolicOffset, type(None))), repr(start_offset)
         assert isinstance(stop_offset, (symbolictimetools.SymbolicOffset, type(None))), repr(stop_offset)
-        SymbolicTimespan.__init__(self, timespan_modifications=timespan_modifications)
+        SymbolicTimespan.__init__(self, timespan_modifiers=timespan_modifiers)
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 

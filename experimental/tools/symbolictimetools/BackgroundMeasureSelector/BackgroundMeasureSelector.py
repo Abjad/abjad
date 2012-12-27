@@ -38,7 +38,7 @@ class BackgroundMeasureSelector(VoiceSelector):
         >>> z(measures)
         symbolictimetools.BackgroundMeasureSelector(
             anchor=symbolictimetools.SegmentSelector(
-                request_modifications=datastructuretools.ObjectInventory([
+                request_modifiers=datastructuretools.ObjectInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"
                     ])
                 ),
@@ -56,7 +56,7 @@ class BackgroundMeasureSelector(VoiceSelector):
 
         Ignore `context_name`. 
 
-        Then apply any request_modifications in selector request_modifications stack.
+        Then apply any request_modifiers in selector request_modifiers stack.
 
         Return pair.
         '''
@@ -64,9 +64,9 @@ class BackgroundMeasureSelector(VoiceSelector):
         time_signatures = segment_specification.time_signatures[:]
         segment_name = segment_specification.segment_name
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, 0)
-        time_signatures, start_offset = self._apply_request_modifications(time_signatures, start_offset)
+        time_signatures, start_offset = self._apply_request_modifiers(time_signatures, start_offset)
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)
         stop_offset = start_offset + duration
-        start_offset, stop_offset = self._apply_timespan_modifications(start_offset, stop_offset)
+        start_offset, stop_offset = self._apply_timespan_modifiers(start_offset, stop_offset)
         return start_offset, stop_offset
