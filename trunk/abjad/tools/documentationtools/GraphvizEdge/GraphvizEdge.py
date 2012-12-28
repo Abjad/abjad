@@ -49,7 +49,7 @@ class GraphvizEdge(AbjadObject):
         self._head = None
 
     def _format_attribute(self, name, value):
-        if isinstance(value, str) and ' ' in value:
+        if isinstance(value, str):
             return '{}="{}"'.format(name, value)
         return '{}={}'.format(name, value)
 
@@ -67,10 +67,10 @@ class GraphvizEdge(AbjadObject):
         if not self.is_directed:
             connection = '--'
         if len(self.attributes):
-            return '{} {} {} {};'.format(
+            return '"{}" {} "{}" {};'.format(
                 self.tail.name, connection, self.head.name, 
                 self._format_attribute_list(self.attributes))
-        return '{} {} {};'.format(self.tail.name, connection, self.head.name)
+        return '"{}" {} "{}";'.format(self.tail.name, connection, self.head.name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 

@@ -17,7 +17,7 @@ class GraphvizNode(TreeNode):
     ### PRIVATE METHODS ###
 
     def _format_attribute(self, name, value):
-        if isinstance(value, str) and ' ' in value:
+        if isinstance(value, str):
             return '{}="{}"'.format(name, value)
         return '{}={}'.format(name, value)
 
@@ -32,9 +32,9 @@ class GraphvizNode(TreeNode):
     @property
     def _graphviz_format_contributions(self):
         if len(self.attributes):
-            return '{} {};'.format(self.name,
+            return '"{}" {};'.format(self.name,
                 self._format_attribute_list(self.attributes))
-        return '{};'.format(self.name)
+        return '"{}";'.format(self.name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

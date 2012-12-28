@@ -104,6 +104,8 @@ class InheritanceGraph(AbjadObject):
         self._child_parents_mapping = child_parents_mapping
         self._parent_children_mapping = parent_children_mapping
 
+        self._immediate_klasses = main_immediate_klasses.intersection(self._parent_children_mapping.viewkeys())
+
     ### PRIVATE METHODS ###
 
     def _build_basic_mappings(self, klasses):
@@ -174,7 +176,6 @@ class InheritanceGraph(AbjadObject):
                 if parent in invalid_klasses:
                     invalid_klasses.remove(parent)
                     recurse_upward(parent, invalid_klasses)
-
         def recurse_downward(klass, invalid_klasses):
             for child in parent_children_mapping[klass]:
                 if child in invalid_klasses:
@@ -182,6 +183,7 @@ class InheritanceGraph(AbjadObject):
                     recurse_downward(child, invalid_klasses)
         invalid_klasses = set(child_parents_mapping.keys() + parent_children_mapping.keys())
         for klass in self.lineage_klasses:
+            invalid_klasses.remove(klass)
             recurse_upward(klass, invalid_klasses)
             recurse_downward(klass, invalid_klasses)
         for klass in invalid_klasses:
@@ -218,27 +220,90 @@ class InheritanceGraph(AbjadObject):
 
     @property
     def graphviz_graph(self):
+        from abjad.tools import documentationtools
 
-        def make_unique(name):
-            parts = name.split('.')
+        def get_klass_name_pieces(klass):
+            parts = (klass.__module__ + '.' + klass.__name__).split('.')
             name = [parts[0]]
             for part in parts[1:]:
                 if part != name[-1]:
                     name.append(part)
             if name[0] in ('abjad', 'experimental'):
-                return '.'.join(name[2:])
-            return '.'.join(name)
+                return name[2:]
+            return name
 
-        def get_klass_name(klass):
-            return make_unique(klass.__module__ + '.' + klass.__name__)
+        klass_nodes = {}
+        module_clusters = {}
 
-        if self.root_class is None:
-            root = '__builtin__.object'
-        else:
-            root = make_unique('.'.join(self.root_class))
-        result += ['\tgraph [ranksep=3, root="{}"]'.format(root)]
+        graph = documentationtools.GraphvizGraph(
+            name='InheritanceGraph',
+            attributes={
+                'overlap': 'prism',
+                'splines': 'true',
+            },
+            node_attributes={
+                'colorscheme': 'set312',
+                'style': 'filled',
+            },
+            )
 
-        raise NotImplemented
+        for klass in sorted(self.parent_children_mapping,
+            key=lambda x: (x.__module__, x.__name__)):
+            pieces = get_klass_name_pieces(klass)
+
+            if pieces[0] not in module_clusters:
+                cluster = documentationtools.GraphvizCluster(
+                    name='cluster_{}'.format(pieces[0]),
+                    attributes={
+                        'label': pieces[0],
+                    },
+                    )
+                graph.append(cluster)
+                module_clusters[pieces[0]] = cluster
+            else:
+                cluster = module_clusters[pieces[0]]
+
+            node = documentationtools.GraphvizNode(
+                name='.'.join(pieces),
+                )
+            node.attributes['label'] = '\\n'.join(pieces)                    
+
+            cluster.append(node)
+            klass_nodes[klass] = node
+
+            if klass in self.immediate_klasses:
+                pass
+
+            if klass in self.root_klasses:
+                node.attributes['style'] = 'bold'
+
+            if klass in self.lineage_klasses:
+                pass
+
+            if inspect.isabstract(klass):
+                node.attributes['shape'] = 'oval'
+            else:
+                node.attributes['shape'] = 'box'
+
+        for parent, children in self.parent_children_mapping.iteritems():
+            for child in children:
+                parent_node = klass_nodes[parent]
+                child_node = klass_nodes[child]
+                documentationtools.GraphvizEdge()(parent_node, child_node)
+
+        for i, module_name in enumerate(sorted(module_clusters)):
+            cluster = module_clusters[module_name]
+            color = i % 12 + 1
+            for node in cluster:
+                node.attributes['color'] = color
+                node.attributes['group'] = i
+            #graph.extend(cluster[:])
+            #graph.remove(cluster)
+
+        if self.root_addresses is None:
+            graph.attributes['root'] = '__builtin__.object'        
+
+        return graph
 
     @property
     def immediate_klasses(self):

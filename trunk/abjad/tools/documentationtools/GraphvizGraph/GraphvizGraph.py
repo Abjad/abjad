@@ -190,9 +190,9 @@ class GraphvizGraph(TreeContainer):
         def recurse(node, indent=0, prefix='subgraph'):
             indent_one = indent * '\t'
             indent_two = (indent + 1) * '\t'
-            result = ['{}{} {} {{'.format(indent_one, prefix, node.name)]
+            result = ['{}{} "{}" {{'.format(indent_one, prefix, node.name)]
             for name, value in node.attributes.items():
-                result.append('{}{}'.format(indent_two, self._format_attribute(name, value)))
+                result.append('{}{};'.format(indent_two, self._format_attribute(name, value)))
             if len(node.node_attributes):
                 result.append('{}node {};'.format(
                     indent_two, self._format_attribute_list(node.node_attributes)))
@@ -234,7 +234,7 @@ class GraphvizGraph(TreeContainer):
     ### PRIVATE METHODS ###
 
     def _format_attribute(self, name, value):
-        if isinstance(value, str) and ' ' in value:
+        if isinstance(value, str):
             return '{}="{}"'.format(name, value)
         return '{}={}'.format(name, value)
 
