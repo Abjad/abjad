@@ -68,10 +68,14 @@ class OffsetPositionedExpression(Timespan):
 
         Operate in place and return none.
         '''
-        if stop_offset is not None and stop_offset < self.stop_offset:
-            self._set_stop_offset(stop_offset)
-        if start_offset is not None and self.start_offset < start_offset:
-            self._set_start_offset(start_offset)
+        if stop_offset is not None:
+            stop_offset = durationtools.Offset(stop_offset)
+            if stop_offset < self.stop_offset:
+                self._set_stop_offset(stop_offset)
+        if start_offset is not None:
+            start_offset = durationtools.Offset(start_offset)
+            if self.start_offset < start_offset:
+                self._set_start_offset(start_offset)
 
     @abc.abstractmethod
     def _set_start_offset(self, start_offset):

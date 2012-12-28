@@ -62,7 +62,6 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
     ### PUBLIC METHODS ###
     
-    # TODO: rename to split()
     def fracture(self, slice_index):
         assert isinstance(slice_index, int)
         left_division_list, right_division_list = self.division_list.fracture(slice_index)
@@ -73,11 +72,41 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         return left_result, right_result
 
     def fuse(self, expr):
+        '''Fuse if expression stops when `expr` starts::
+
+            >>> expr_1 = settingtools.OffsetPositionedDivisionList(2 * [(3, 16)], 'Voice 1')
+            >>> expr_2 = settingtools.OffsetPositionedDivisionList(
+            ...     2 * [(2, 16)], 'Voice 1', start_offset=(6, 16))
+
+        ::
+
+            >>> expr_1.stops_when_expr_starts(expr_2)
+            True
+
+        ::
+
+            >>> new_expr = expr_1.fuse(expr_2)
+
+        ::
+        
+            >>> z(new_expr)
+            settingtools.OffsetPositionedDivisionList(
+                divisiontools.DivisionList(
+                    [Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]'), Division('[2, 16]')]
+                    ),
+                voice_name='Voice 1',
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(5, 8)
+                )
+
+        Return newly constructed expression.
+        '''
         assert isinstance(expr, type(self)), repr(expr)
         assert self.stops_when_expr_starts(expr), repr(expr)
         assert self.voice_name == expr.voice_name, repr(expr)
         division_list = self.division_list + expr.division_list
         result = type(self)(division_list, voice_name=self.voice_name, start_offset=self.start_offset)
+        return result
 
     def reverse(self):
         self.division_list.reverse()
@@ -91,24 +120,38 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr
-            OffsetPositionedDivisionList(DivisionList('[3, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(3, 4))
+            >>> z(expr)
+            settingtools.OffsetPositionedDivisionList(
+                divisiontools.DivisionList(
+                    [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
+                    ),
+                voice_name='Voice 1',
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(3, 4)
+                )
 
         ::
 
-            >>> expr._set_start_offset((1, 16))
+            >>> expr.set_offsets(start_offset=(1, 16))
 
         ::
 
-            >>> expr
-            OffsetPositionedDivisionList(DivisionList('[2, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(1, 16), stop_offset=Offset(3, 4))
+            >>> z(expr)
+            settingtools.OffsetPositionedDivisionList(
+                divisiontools.DivisionList(
+                    [Division('[2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
+                    ),
+                voice_name='Voice 1',
+                start_offset=durationtools.Offset(1, 16),
+                stop_offset=durationtools.Offset(3, 4)
+                )
 
         ::
 
             >>> expr.duration
             Duration(11, 16)
 
-        Adjust start offset.
+        Set start offset.
         
         Operate in place and return none.
         '''
@@ -132,24 +175,38 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr
-            OffsetPositionedDivisionList(DivisionList('[3, 16], [3, 16], [3, 16], [3, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(3, 4))
+            >>> z(expr)
+            settingtools.OffsetPositionedDivisionList(
+                divisiontools.DivisionList(
+                    [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')]
+                    ),
+                voice_name='Voice 1',
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(3, 4)
+                )
 
         ::
 
-            >>> expr._set_stop_offset((11, 16))
+            >>> expr.set_offsets(stop_offset=(11, 16))
 
         ::
 
-            >>> expr
-            OffsetPositionedDivisionList(DivisionList('[3, 16], [3, 16], [3, 16], [2, 16]'), voice_name='Voice 1', start_offset=Offset(0, 1), stop_offset=Offset(11, 16))
+            >>> z(expr)
+            settingtools.OffsetPositionedDivisionList(
+                divisiontools.DivisionList(
+                    [Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16]')]
+                    ),
+                voice_name='Voice 1',
+                start_offset=durationtools.Offset(0, 1),
+                stop_offset=durationtools.Offset(11, 16)
+                )
 
         ::
 
             >>> expr.duration
             Duration(11, 16)
 
-        Adjust stop offset.
+        Set stop offset.
         
         Operate in place and return none.
         '''
