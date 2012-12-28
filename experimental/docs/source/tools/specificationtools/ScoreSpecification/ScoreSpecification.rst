@@ -177,19 +177,15 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_offset_to_segment_identifier
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_offsets_to_segment_offset_pairs
-
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_identifier_expression_to_segment_index
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_identifier_expression_to_timespan
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_segment_index
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_segment_offsets
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_timespan
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_offset_to_score_offset
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_offsets_to_score_offsets
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select
 

@@ -491,9 +491,6 @@ class ScoreSpecification(Specification):
             segment_start_offset = segment_stop_offset
         raise Exception('score offset {!r} is beyond score duration.'.format(score_offset))
 
-    def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
-        raise NotImplementedError('implement this at some point.')
-
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
 
@@ -566,20 +563,20 @@ class ScoreSpecification(Specification):
         segment_specification = self.segment_specifications[segment_name]
         return self.segment_specifications.index(segment_specification)
 
-    def segment_name_to_segment_offsets(self, segment_name, segment_count=1):
+    def segment_name_to_timespan(self, segment_name, segment_count=1):
         r'''Segment name to segment offsets::
 
-            >>> score_specification.segment_name_to_segment_offsets('red')
-            (Offset(0, 1), Offset(0, 1))
+            >>> score_specification.segment_name_to_timespan('red')
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
 
-        Return pair of start- and stop-offsets.
+        Return timespan.
         '''
         if hasattr(self, 'segment_offset_pairs'):
             start_segment_index = self.segment_name_to_segment_index(segment_name)        
             stop_segment_index = start_segment_index + segment_count - 1
             start_offset_pair = self.segment_offset_pairs[start_segment_index]
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
-            return start_offset_pair[0], stop_offset_pair[1]
+            return timespantools.Timespan(start_offset_pair[0], stop_offset_pair[1])
 
     def segment_offset_to_score_offset(self, segment_name, segment_offset):
         r'''Change `segment_name` and `segment_offset` to score offset.
@@ -589,29 +586,9 @@ class ScoreSpecification(Specification):
 
         .. note:: Add example.
         '''
-        segment_start_offset, segment_stop_offset = self.segment_name_to_segment_offsets(segment_name)
-        score_offset = segment_start_offset + segment_offset
+        timespan = self.segment_name_to_timespan(segment_name)
+        score_offset = timespan.start_offset + segment_offset
         return score_offset
-
-    def segment_offsets_to_score_offsets(self,
-        segment_identifier, segment_start_offset=None, segment_stop_offset=None):
-        '''Change `segment_start_offset` and `segment_stop_offset`
-        to start offset and stop offset.
-
-        .. note:: Add example.
-
-        Return pair.
-        '''
-        if segment_start_offset is not None:
-            start_offset = self.segment_offset_to_score_offset(segment_identifier, segment_start_offset)
-        else:
-            start_offset = None
-        if segment_stop_offset is not None:
-            stop_offset = self.segment_offset_to_score_offset(
-                segment_identifier, segment_stop_offset)
-        else:
-            stop_offset = None
-        return start_offset, stop_offset
 
     def select(self, voice_name):
         '''Select score::
