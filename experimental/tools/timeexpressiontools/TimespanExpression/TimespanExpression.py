@@ -1,23 +1,20 @@
-import abc
 import copy
-import numbers
 from abjad.tools import chordtools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
-from abjad.tools import timerelationtools
 from abjad.tools.timespantools.Timespan import Timespan
 
 
 class TimespanExpression(Timespan):
-    r'''
+    r'''Timespan expression.
 
     ::
         
         >>> from experimental.tools import *
 
-    Abstract base class from which conrete symbolic timespans inherit.
+    ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
@@ -34,10 +31,6 @@ class TimespanExpression(Timespan):
 
     The examples below refer to the score and segment specifications defined above.
     '''
-
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = abc.ABCMeta
 
     ### INITIALIZER ###
 
@@ -112,14 +105,13 @@ class TimespanExpression(Timespan):
         new_stop_offset = new_start_offset + selected_duration_shard
         return new_start_offset, new_stop_offset
 
-    @abc.abstractmethod
     def _get_offsets(self, score_specification, context_name):
         '''Get start offset and stop offset of symbolic timespan
         when applied to `context_name` in `score_specification`.
 
         Return pair.
         '''
-        pass
+        raise NotImplemented
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty offset request_modifiers list.

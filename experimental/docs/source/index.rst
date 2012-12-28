@@ -241,13 +241,6 @@ Unstable packages (load manually)
 :py:mod:`selectortools <('abjad.tools.', 'abjad.demos.')selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/selectortools/Selector/Selector
-
 .. rubric:: concrete classes
 
 .. toctree::
@@ -259,6 +252,7 @@ Unstable packages (load manually)
    tools/selectortools/DivisionSelector/DivisionSelector
    tools/selectortools/ScoreSelector/ScoreSelector
    tools/selectortools/SegmentSelector/SegmentSelector
+   tools/selectortools/Selector/Selector
 
 :py:mod:`settingtools <('abjad.tools.', 'abjad.demos.')settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -322,13 +316,6 @@ Unstable packages (load manually)
 :py:mod:`timeexpressiontools <('abjad.tools.', 'abjad.demos.')timeexpressiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/timeexpressiontools/TimespanExpression/TimespanExpression
-
 .. rubric:: concrete classes
 
 .. toctree::
@@ -336,3 +323,4 @@ Unstable packages (load manually)
 
    tools/timeexpressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
    tools/timeexpressiontools/OffsetExpression/OffsetExpression
+   tools/timeexpressiontools/TimespanExpression/TimespanExpression
