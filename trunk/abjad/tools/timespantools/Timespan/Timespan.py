@@ -333,6 +333,40 @@ class Timespan(BoundedObject):
         result = type(self)(new_start_offset, new_stop_offset)
         return result
 
+    def split_at_offset(self, offset):
+        '''Split into two parts when `offset` happens during timespan::
+
+            >>> timespan = timespantools.Timespan(0, 5)
+
+        ::
+
+            >>> left, right = timespan.split_at_offset(Offset(2))
+
+        ::
+
+            >>> left
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(2, 1))
+
+        ::
+
+            >>> right
+            Timespan(start_offset=Offset(2, 1), stop_offset=Offset(5, 1))
+
+        Otherwise return a copy of timespan::
+
+            >>> timespan.split_at_offset(Offset(12))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(5, 1))
+    
+        Return one or two newly constructed timespans.
+        '''
+        offset = durationtools.Offset(offset)
+        if self.start_offset < offset < self.stop_offset: 
+            left = type(self)(self.start_offset, offset)
+            right = type(self)(offset, self.stop_offset)
+            return left, right
+        else:
+            return type(self)(self.start_offset, self.stop_offset)
+
     def starts_after_expr_starts(self, expr):
         if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
             return timerelationtools.timespan_2_starts_after_timespan_1_starts(expr, self)

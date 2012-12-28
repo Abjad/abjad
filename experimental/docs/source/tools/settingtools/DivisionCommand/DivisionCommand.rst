@@ -159,6 +159,10 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.split_at_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.starts_after_expr_starts
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`

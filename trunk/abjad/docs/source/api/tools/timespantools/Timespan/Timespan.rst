@@ -95,6 +95,8 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.set_offsets
 
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.split_at_offset
+
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_expr_starts
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.starts_after_expr_stops

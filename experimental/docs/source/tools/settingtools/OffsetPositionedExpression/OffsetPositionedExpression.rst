@@ -135,6 +135,10 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.set_offsets
 
+.. automethod:: experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.split_at_offset
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression.starts_after_expr_starts
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`

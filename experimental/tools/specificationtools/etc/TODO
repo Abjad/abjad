@@ -166,7 +166,3 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
-
-32. Implement Timespan.split(offset) to return zero, one or two newly constructed timespans.
-
-33. Implement Spanner.timespan.
