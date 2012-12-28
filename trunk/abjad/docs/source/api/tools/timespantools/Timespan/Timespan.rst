@@ -69,13 +69,15 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.divide_by_ratio
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.happens_during
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.fuse
+
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.happens_during_expr
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.intersects_expr
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_congruent_to_expr
 
-.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to
+.. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.is_tangent_to_expr
 
 .. automethod:: abjad.tools.timespantools.Timespan.Timespan.Timespan.overlaps_all_of_expr
 

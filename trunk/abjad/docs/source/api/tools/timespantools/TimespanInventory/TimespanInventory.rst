@@ -47,6 +47,8 @@ Methods
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.fuse
+
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespan_that_satisfies_time_relation
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.get_timespans_that_satisfy_time_relation

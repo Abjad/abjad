@@ -124,6 +124,43 @@ class TimespanInventory(ObjectInventory):
             elif timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1, timespan_2):
                 self.remove(timespan_1)
 
+    def fuse(self):
+        '''Fuse timespans if all are contiguous.
+
+            >>> example_inventory = timespantools.TimespanInventory()
+
+        ::
+
+            >>> example_inventory.append(timespantools.Timespan(0, 3))
+            >>> example_inventory.append(timespantools.Timespan(3, 6))
+            >>> example_inventory.append(timespantools.Timespan(6, 10))
+
+        ::
+
+            >>> example_inventory.fuse()
+
+        ::
+
+            >>> z(example_inventory)
+            timespantools.TimespanInventory([
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(10, 1)
+                    )
+                ])
+
+        Operate in-place and return none.
+
+        Raise exception on noncontiguous timespans.
+        '''
+        assert self.all_are_contiguous, repr(self)
+        if len(self) == 0:
+            return
+        result = self[0]
+        for timespan in self[1:]:
+            result = result.fuse(timespan)
+        self[:] = [result]
+
     def get_timespan_that_satisfies_time_relation(self, time_relation):
         r'''Get timespan that satisifies `time_relation`::
 

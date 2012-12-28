@@ -176,7 +176,26 @@ class Timespan(BoundedObject):
         result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
-    def happens_during(self, expr):
+    def fuse(self, expr):
+        '''Fuse if timespan stops when `expr` starts::
+
+            >>> timespan_1 = timespantools.Timespan(0, 5)
+            >>> timespan_2 = timespantools.Timespan(5, 10)
+
+        ::
+
+            >>> timespan_1.fuse(timespan_2)
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+
+        Raise exception when timespan does not stop when `expr` starts.
+
+        Return newly created timespan.
+        '''
+        assert isinstance(expr, type(self)), repr(expr)
+        assert self.stops_when_expr_starts(expr), repr(expr)
+        return type(self)(self.start_offset, expr.stop_offset)
+
+    def happens_during_expr(self, expr):
         if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
             return timerelationtools.timespan_2_happens_during_timespan_1(expr, self)
 
@@ -188,7 +207,7 @@ class Timespan(BoundedObject):
         if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
             return timerelationtools.timespan_2_is_congruent_to_timespan_1(expr, self)
 
-    def is_tangent_to(self, expr):
+    def is_tangent_to_expr(self, expr):
         '''True when `expr` has offsets
         and `self.stop_offset` equals `expr.start_offset`::
 
@@ -197,17 +216,17 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan_1.is_tangent_to(timespan_2)
+            >>> timespan_1.is_tangent_to_expr(timespan_2)
             True
 
         Or when `expr.stop_offset` equals `self.start_offset`::
 
-            >>> timespan_2.is_tangent_to(timespan_1)
+            >>> timespan_2.is_tangent_to_expr(timespan_1)
             True    
 
         Otherwise false::
 
-            >>> timespan_1.is_tangent_to('text')
+            >>> timespan_1.is_tangent_to_expr('text')
             False
 
         Return boolean.
