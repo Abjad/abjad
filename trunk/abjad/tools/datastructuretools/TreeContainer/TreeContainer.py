@@ -238,6 +238,10 @@ class TreeContainer(TreeNode):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _leaf_klass(self):
+        return TreeNode
+
+    @property
     def _node_klass(self):
         return TreeNode
 
@@ -278,6 +282,48 @@ class TreeContainer(TreeNode):
         Return tuple of `TreeNode` instances.
         '''
         return tuple(self._children)
+
+    @property
+    def leaves(self):
+        '''The leaves of a `TreeContainer` instance:
+
+        ::
+
+            >>> a = datastructuretools.TreeContainer(name='a')
+            >>> b = datastructuretools.TreeContainer(name='b')
+            >>> c = datastructuretools.TreeNode(name='c')
+            >>> d = datastructuretools.TreeNode(name='d')
+            >>> e = datastructuretools.TreeContainer(name='e')
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+
+        ::
+
+            >>> for leaf in a.leaves:
+            ...     print leaf.name
+            ...
+            d
+            e
+            c
+
+        Return tuple.
+        '''
+        def recurse(node):
+            result = []
+            for child in node:
+                if not hasattr(child, 'children'):
+                    if isinstance(child, self._leaf_klass):
+                        result.append(child)
+                elif not child.children:
+                    if isinstance(child, self._leaf_klass):
+                        result.append(child)
+                else:
+                    result.extend(recurse(child))
+            return result
+        return tuple(recurse(self))
 
     @property
     def nodes(self):
