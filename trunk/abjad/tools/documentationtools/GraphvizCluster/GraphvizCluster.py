@@ -1,4 +1,4 @@
-from experimental.tools.graphviztools.GraphvizGraph import GraphvizGraph
+from abjad.tools.documentationtools.GraphvizGraph import GraphvizGraph
 
 
 class GraphvizCluster(GraphvizGraph):
@@ -31,8 +31,8 @@ class GraphvizCluster(GraphvizGraph):
 
     @property
     def _node_klass(self):
-        from experimental.tools import graphviztools
-        return (graphviztools.GraphvizCluster, graphviztools.GraphvizNode)
+        from abjad.tools import documentationtools
+        return (documentationtools.GraphvizCluster, documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
  

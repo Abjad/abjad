@@ -1,7 +1,6 @@
 from abjad import *
 
 import constrainttools
-import graphviztools
 import handlertools
 import helpertools
 import interpretertools

@@ -2254,6 +2254,10 @@ Abjad internal packages
    tools/documentationtools/Documenter/Documenter
    tools/documentationtools/FunctionCrawler/FunctionCrawler
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
+   tools/documentationtools/GraphvizCluster/GraphvizCluster
+   tools/documentationtools/GraphvizEdge/GraphvizEdge
+   tools/documentationtools/GraphvizGraph/GraphvizGraph
+   tools/documentationtools/GraphvizNode/GraphvizNode
    tools/documentationtools/InheritanceGraph/InheritanceGraph
    tools/documentationtools/ModuleCrawler/ModuleCrawler
    tools/documentationtools/Pipe/Pipe

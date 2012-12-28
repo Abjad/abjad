@@ -91,19 +91,6 @@ Unstable packages (load manually)
    tools/divisiontools/Division/Division
    tools/divisiontools/DivisionList/DivisionList
 
-:py:mod:`graphviztools <('abjad.tools.', 'abjad.demos.')graphviztools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/graphviztools/GraphvizCluster/GraphvizCluster
-   tools/graphviztools/GraphvizEdge/GraphvizEdge
-   tools/graphviztools/GraphvizGraph/GraphvizGraph
-   tools/graphviztools/GraphvizNode/GraphvizNode
-
 :py:mod:`handlertools <('abjad.tools.', 'abjad.demos.')handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

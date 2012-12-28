@@ -39,6 +39,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.leaves
 
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
+
 .. autoattribute:: abjad.tools.quantizationtools.QGridContainer.QGridContainer.QGridContainer.nodes
 
     Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`

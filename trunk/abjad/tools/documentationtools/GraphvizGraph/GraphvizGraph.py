@@ -7,24 +7,24 @@ class GraphvizGraph(TreeContainer):
 
     ::
 
-        >>> graph = graphviztools.GraphvizGraph(name='G')
+        >>> graph = documentationtools.GraphvizGraph(name='G')
 
     Create other graphviz objects to insert into the graph:
 
     ::
 
-        >>> cluster_0 = graphviztools.GraphvizCluster(name='cluster_0')
-        >>> cluster_1 = graphviztools.GraphvizCluster(name='cluster_1')
-        >>> a0 = graphviztools.GraphvizNode(name='a0')
-        >>> a1 = graphviztools.GraphvizNode(name='a1')
-        >>> a2 = graphviztools.GraphvizNode(name='a2')
-        >>> a3 = graphviztools.GraphvizNode(name='a3')
-        >>> b0 = graphviztools.GraphvizNode(name='b0')
-        >>> b1 = graphviztools.GraphvizNode(name='b1')
-        >>> b2 = graphviztools.GraphvizNode(name='b2')
-        >>> b3 = graphviztools.GraphvizNode(name='b3')
-        >>> start = graphviztools.GraphvizNode(name='start')
-        >>> end = graphviztools.GraphvizNode(name='end')
+        >>> cluster_0 = documentationtools.GraphvizCluster(name='cluster_0')
+        >>> cluster_1 = documentationtools.GraphvizCluster(name='cluster_1')
+        >>> a0 = documentationtools.GraphvizNode(name='a0')
+        >>> a1 = documentationtools.GraphvizNode(name='a1')
+        >>> a2 = documentationtools.GraphvizNode(name='a2')
+        >>> a3 = documentationtools.GraphvizNode(name='a3')
+        >>> b0 = documentationtools.GraphvizNode(name='b0')
+        >>> b1 = documentationtools.GraphvizNode(name='b1')
+        >>> b2 = documentationtools.GraphvizNode(name='b2')
+        >>> b3 = documentationtools.GraphvizNode(name='b3')
+        >>> start = documentationtools.GraphvizNode(name='start')
+        >>> end = documentationtools.GraphvizNode(name='end')
 
     Group objects together into a tree:
 
@@ -38,19 +38,19 @@ class GraphvizGraph(TreeContainer):
 
     ::
 
-        >>> edge = graphviztools.GraphvizEdge()(start, a0)
-        >>> edge = graphviztools.GraphvizEdge()(start, b0)
-        >>> edge = graphviztools.GraphvizEdge()(a0, a1)
-        >>> edge = graphviztools.GraphvizEdge()(a1, a2)
-        >>> edge = graphviztools.GraphvizEdge()(a1, b3)
-        >>> edge = graphviztools.GraphvizEdge()(a2, a3)
-        >>> edge = graphviztools.GraphvizEdge()(a3, a0)
-        >>> edge = graphviztools.GraphvizEdge()(a3, end)
-        >>> edge = graphviztools.GraphvizEdge()(b0, b1)
-        >>> edge = graphviztools.GraphvizEdge()(b1, b2)
-        >>> edge = graphviztools.GraphvizEdge()(b2, b3)
-        >>> edge = graphviztools.GraphvizEdge()(b2, a3)
-        >>> edge = graphviztools.GraphvizEdge()(b3, end)
+        >>> edge = documentationtools.GraphvizEdge()(start, a0)
+        >>> edge = documentationtools.GraphvizEdge()(start, b0)
+        >>> edge = documentationtools.GraphvizEdge()(a0, a1)
+        >>> edge = documentationtools.GraphvizEdge()(a1, a2)
+        >>> edge = documentationtools.GraphvizEdge()(a1, b3)
+        >>> edge = documentationtools.GraphvizEdge()(a2, a3)
+        >>> edge = documentationtools.GraphvizEdge()(a3, a0)
+        >>> edge = documentationtools.GraphvizEdge()(a3, end)
+        >>> edge = documentationtools.GraphvizEdge()(b0, b1)
+        >>> edge = documentationtools.GraphvizEdge()(b1, b2)
+        >>> edge = documentationtools.GraphvizEdge()(b2, b3)
+        >>> edge = documentationtools.GraphvizEdge()(b2, a3)
+        >>> edge = documentationtools.GraphvizEdge()(b3, end)
 
     Add attributes to style the objects:
 
@@ -150,8 +150,8 @@ class GraphvizGraph(TreeContainer):
 
     @property
     def _node_klass(self):
-        from experimental.tools import graphviztools
-        return (graphviztools.GraphvizCluster, graphviztools.GraphvizNode)
+        from abjad.tools import documentationtools
+        return (documentationtools.GraphvizCluster, documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -19,11 +19,11 @@ class GraphvizEdge(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, *args):
-        from experimental.tools import graphviztools
+        from abjad.tools import documentationtools
         if args:
             assert len(args) == 2
             assert all(isinstance(x,
-                (graphviztools.GraphvizCluster, graphviztools.GraphvizNode))
+                (documentationtools.GraphvizCluster, documentationtools.GraphvizNode))
                 for x in args)
             tail, head = args
             self._disconnect()

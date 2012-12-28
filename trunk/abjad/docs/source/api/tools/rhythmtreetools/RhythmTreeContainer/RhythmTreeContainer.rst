@@ -33,6 +33,10 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.leaves
+
+    Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
+
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeContainer.RhythmTreeContainer.RhythmTreeContainer.nodes
 
     Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`

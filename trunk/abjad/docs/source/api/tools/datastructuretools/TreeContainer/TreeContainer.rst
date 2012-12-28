@@ -27,6 +27,8 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.leaves
+
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.nodes
 
 .. autoattribute:: abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer.parent
