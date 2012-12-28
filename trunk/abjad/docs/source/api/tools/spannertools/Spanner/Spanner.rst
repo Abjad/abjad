@@ -31,6 +31,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.timespan
+
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.written_duration
 
 Methods

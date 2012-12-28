@@ -49,6 +49,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.timespan
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 .. autoattribute:: abjad.tools.spannertools.SlurSpanner.SlurSpanner.SlurSpanner.written_duration
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`

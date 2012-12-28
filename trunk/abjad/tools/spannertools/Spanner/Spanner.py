@@ -4,6 +4,7 @@ from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import lilypondproxytools
+from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -434,6 +435,12 @@ class Spanner(AbjadObject):
             return self[-1].stop_offset
         else:
             return Duration(0)
+
+    @property
+    def timespan(self):
+        '''Read-only timespan of spanner.
+        '''
+        return timespantools.Timespan(start_offset=self.start_offset, stop_offset=self.stop_offset)
 
     @property
     def written_duration(self):

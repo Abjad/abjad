@@ -49,6 +49,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.timespan
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 .. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.written_duration
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
