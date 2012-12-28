@@ -32,7 +32,7 @@ Methods
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_command_request_to_divisions
 
-.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_region_command_to_division_region_expression
+.. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_region_command_to_division_region_expressions
 
 .. automethod:: experimental.tools.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.division_selector_to_division_region_expressions
 

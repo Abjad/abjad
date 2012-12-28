@@ -469,25 +469,24 @@ class ConcreteInterpreter(Interpreter):
             current_commands = {}
             redo = False
             for voice in iterationtools.iterate_voices_in_expr(self.score):
-                #self._debug(voice, 'voice')
-                division_region_commands = \
+                voice_division_region_commands = \
                     self.score_specification.contexts[voice.name]['division_region_commands']
-                current_commands[voice] = division_region_commands[:]
-                division_region_commands_to_reattempt = []
-                for division_region_command in division_region_commands:
+                voice_division_region_expressions = \
+                    self.score_specification.contexts[voice.name]['division_region_expressions']
+                current_commands[voice] = voice_division_region_commands[:]
+                voice_division_region_commands_to_reattempt = []
+                for division_region_command in voice_division_region_commands:
                     division_region_expressions = self.division_region_command_to_division_region_expressions(
                         division_region_command, voice.name)
                     if division_region_expressions is not None:
                         assert isinstance(division_region_expressions, list)
-                        self.score_specification.contexts[voice.name]['division_region_expressions'].extend(
-                            division_region_expressions)
+                        voice_division_region_expressions.extend(division_region_expressions)
                     else:
-                        division_region_commands_to_reattempt.append(division_region_command)
+                        voice_division_region_commands_to_reattempt.append(division_region_command)
                         redo = True
-                self.score_specification.contexts[voice.name]['division_region_commands'] = \
-                    division_region_commands_to_reattempt[:]
+                voice_division_region_commands[:] = voice_division_region_commands_to_reattempt[:]
                 # sort may have to happen as each expression adds in, above
-                self.score_specification.contexts[voice.name]['division_region_expressions'].sort()
+                voice_division_region_expressions.sort()
             # check to see if we made absolutely no intepretive progress in this iteration through loop
             if current_commands == previous_commands:
                 raise Exception('cyclic specification error.')
