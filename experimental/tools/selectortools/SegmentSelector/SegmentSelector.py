@@ -1,3 +1,4 @@
+from abjad.tools import timespantools
 from experimental.tools import helpertools
 from experimental.tools import segmenttools
 from experimental.tools.selectortools.Selector import Selector
@@ -90,7 +91,7 @@ class SegmentSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, context_name):
+    def _get_timespan(self, score_specification, context_name):
         '''Evaluate start and stop offsets of selector when applied
         to `score_specification`.
 
@@ -101,7 +102,7 @@ class SegmentSelector(Selector):
         timespan = score_specification.segment_identifier_expression_to_timespan(
             self.start_segment_identifier)
         offsets = self._apply_timespan_modifiers(*timespan.offsets)
-        return offsets
+        return timespantools.Timespan(*offsets)
 
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)

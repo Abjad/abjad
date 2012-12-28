@@ -1,3 +1,4 @@
+from abjad.tools import timespantools
 from experimental.tools import helpertools
 from experimental.tools import segmenttools
 from experimental.tools.selectortools.Selector import Selector
@@ -32,12 +33,12 @@ class ScoreSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, context_name):
+    def _get_timespan(self, score_specification, context_name):
         '''Return `score_specification` start and stop offsets.
     
         Ignore `context_name`.
         '''
-        return score_specification.offsets
+        return timespantools.Timespan(*score_specification.offsets)
 
     def _set_start_segment_identifier(self, segment_identifier):
         raise Exception('{!r} can not be reanchored.'.format(self))

@@ -86,14 +86,14 @@
     Replace with OffsetPositionedExpression.set_offsets() or similar.
     This will help conform to the Timespan interface.
 
-19. Extend BackgroundMeasureSelector._get_offsets() to return 
+19. Extend BackgroundMeasureSelector._get_timespan() to return 
     (start_offset, stop_offset, selected_objects) triple.
-    Then extend all selector _get_offsets() methods and do the same:
-        BeatSelector._get_offsets()
-        CounttimeComponentSelector._get_offsets()
-        DivisionSelector._get_offsets()
-        ScoreSelector._get_offsets() ?
-        SegmentSelector._get_offsets() ?
+    Then extend all selector _get_timespan() methods and do the same:
+        BeatSelector._get_timespan()
+        CounttimeComponentSelector._get_timespan()
+        DivisionSelector._get_timespan()
+        ScoreSelector._get_timespan() ?
+        SegmentSelector._get_timespan() ?
 
 20. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
@@ -136,16 +136,19 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-28. Compress ...
-        result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
-        return result
-    ... to a single line.
-    This will streamline Request.
+28. Extract the "set interface" from TimespanExpression.
+    Implement "set interface" in new SettingMaker class.
+    It will no longer be necessary for TimespanExpression to inherit from SettingMaker.
+    Instead some class lower in the hierarchy can (multiply) inherit from SettingMaker.
+    Perhaps Selector can inherit from SettingMaker.
+    This will clean up TimespanExpression significantly.
+    TimespanExpression interface will then map almost one-to-one to Timespan interface.
 
-29. Implement BeatSelector._get_offsets().
+29. Rename Request to RequestMaker to parallel SettingMaker?
 
-30. Author tests to show each request modifier applied to each selector.
+30. Implement BeatSelector._get_timespan().
+
+31. Author tests to show each request modifier applied to each selector.
     Remaining tests to author:
         divisions.__getitem__()    
         divisions.partition_objects_by_ratio()
@@ -169,17 +172,11 @@
         leaves.reverse()
         leaves.rotate()
 
-31. Extract the "set interface" from TimespanExpression.
-    Implement "set interface" in new SettingMaker class.
-    It will no longer be necessary for TimespanExpression to inherit from SettingMaker.
-    Instead some class lower in the hierarchy can (multiply) inherit from SettingMaker.
-    Perhaps Selector can inherit from SettingMaker.
-    This will clean up TimespanExpression significantly.
-    TimespanExpression interface will then map almost one-to-one to Timespan interface.
-
-32. Rename Request to RequestMaker to parallel SettingMaker?
+32. Compress ...
+        result = copy.deepcopy(self)
+        result.request_modifiers.append(modifier)
+        return result
+    ... to a single line.
+    This will streamline Request.
 
 33. Change _apply_timespan_modifiers(start_offset, stop_offset) to _apply_timespan_modifiers(timespan).
-
-34. Change Selector._get_offsets() to Selector._get_timespan().
-    Return timespan instead of offset pair.

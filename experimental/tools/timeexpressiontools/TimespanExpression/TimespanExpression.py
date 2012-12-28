@@ -105,7 +105,7 @@ class TimespanExpression(Timespan):
         new_stop_offset = new_start_offset + selected_duration_shard
         return new_start_offset, new_stop_offset
 
-    def _get_offsets(self, score_specification, context_name):
+    def _get_timespan(self, score_specification, context_name):
         '''Get start offset and stop offset of symbolic timespan
         when applied to `context_name` in `score_specification`.
 

@@ -132,9 +132,8 @@ class ConcreteInterpreter(Interpreter):
             source_timespan = self.score_specification.segment_identifier_expression_to_timespan(
                 rhythm_material_request.anchor)
         else:
-            source_score_offsets = rhythm_material_request.anchor._get_offsets(
+            source_timespan = rhythm_material_request.anchor._get_timespan(
                 self.score_specification, rhythm_material_request.voice_name)
-            source_timespan = timespantools.Timespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
@@ -256,8 +255,7 @@ class ConcreteInterpreter(Interpreter):
         if isinstance(anchor, str):
             source_timespan = self.score_specification.segment_identifier_expression_to_timespan(anchor)
         else:
-            start_offset, stop_offset = anchor._get_offsets(self.score_specification, voice_name)
-            source_timespan = timespantools.Timespan(start_offset, stop_offset)
+            source_timespan = anchor._get_timespan(self.score_specification, voice_name)
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
         #self._debug(division_region_expressions, 'division region expressions')
@@ -757,9 +755,7 @@ class ConcreteInterpreter(Interpreter):
             timespan = self.score_specification.segment_identifier_expression_to_timespan(
                 single_context_setting.anchor)
         else:
-            start_offset, stop_offset = single_context_setting.anchor._get_offsets(
-                self.score_specification, voice_name)
-            timespan = timespantools.Timespan(start_offset, stop_offset)
+            timespan = single_context_setting.anchor._get_timespan(self.score_specification, voice_name)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
@@ -892,9 +888,8 @@ class ConcreteInterpreter(Interpreter):
         for element in expr:
             if isinstance(element, timeexpressiontools.TimespanExpression):
                 context_name = None
-                start_offset, stop_offset = element._get_offsets(self.score_specification, context_name)
-                duration = stop_offset - start_offset
-                result.append(duration)
+                timespan = element._get_timespan(self.score_specification, context_name)
+                result.append(timespan.duration)
             else:
                 result.append(element)
         return result
@@ -904,7 +899,6 @@ class ConcreteInterpreter(Interpreter):
         assert command_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(command_request.symbolic_offset)
         time_signatures = segment_specification.time_signatures[:]
-        #time_signatures = command_request._apply_request_modifiers(time_signatures)
         start_offset = segment_specification.start_offset
         time_signatures, start_offset = command_request._apply_request_modifiers(time_signatures, start_offset)
         return time_signatures

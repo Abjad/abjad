@@ -172,8 +172,7 @@ class OffsetExpression(AbjadObject):
         if isinstance(self.anchor, str):
             timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
         else:
-            start_offset, stop_offset = self.anchor._get_offsets(score_specification, context_name)
-            timespan = timespantools.Timespan(start_offset, stop_offset)
+            timespan = self.anchor._get_timespan(score_specification, context_name)
         if edge == Left:
             score_offset = timespan.start_offset
         else:

@@ -47,7 +47,7 @@ class DivisionSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, voice_name):
+    def _get_timespan(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
 
@@ -72,19 +72,4 @@ class DivisionSelector(Selector):
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
         start_offset, stop_offset = self._apply_timespan_modifiers(start_offset, stop_offset)
-        return start_offset, stop_offset
-        if self.time_relation is None:
-            time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
-        else:
-            time_relation = self.time_relation.set(timespan_1=timespan_1)
-        for division in voice_division_list:
-            if time_relation(timespan_2=division, 
-                score_specification=score_specification, 
-                context_name=voice_name):
-                divisions.append(division)
-        start_offset = divisions[0].start_offset
-        divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
-        start_offset = divisions[0].start_offset
-        stop_offset = divisions[-1].stop_offset
-        start_offset, stop_offset = self._apply_timespan_modifiers(start_offset, stop_offset)
-        return start_offset, stop_offset
+        return timespantools.Timespan(start_offset, stop_offset)

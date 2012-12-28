@@ -53,8 +53,8 @@ class SegmentSpecification(Specification):
 
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, context_name=None):
-        return self.offsets
+    def _get_timespan(self, score_specification, context_name=None):
+        return timespantools.Timespan(*self.offsets)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 

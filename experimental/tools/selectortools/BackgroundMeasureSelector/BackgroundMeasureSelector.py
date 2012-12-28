@@ -2,11 +2,12 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
+from abjad.tools import timespantools
 from experimental.tools.selectortools.Selector import Selector
 
 
 class BackgroundMeasureSelector(Selector):
-    r'''
+    r'''Background measure selector.
 
     ::
 
@@ -64,7 +65,7 @@ class BackgroundMeasureSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, context_name):
+    def _get_timespan(self, score_specification, context_name):
         r'''Evaluate start and stop offsets when selector is applied
         to `score_specification`.
 
@@ -84,4 +85,4 @@ class BackgroundMeasureSelector(Selector):
         duration = sum(durations)
         stop_offset = start_offset + duration
         start_offset, stop_offset = self._apply_timespan_modifiers(start_offset, stop_offset)
-        return start_offset, stop_offset
+        return timespantools.Timespan(start_offset, stop_offset)

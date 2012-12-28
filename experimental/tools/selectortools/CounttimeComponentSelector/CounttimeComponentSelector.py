@@ -68,7 +68,7 @@ class CounttimeComponentSelector(Selector):
     
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, voice_name):
+    def _get_timespan(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of symbolic timespan when applied
         to `voice_name` in `score_specification`.
 
@@ -105,7 +105,7 @@ class CounttimeComponentSelector(Selector):
         last_component, last_component_expression_offset = counttime_component_pairs[-1]
         start_offset = first_component_expression_offset + first_component.start_offset
         stop_offset = last_component_expression_offset + last_component.stop_offset
-        return start_offset, stop_offset
+        return timespantools.Timespan(start_offset, stop_offset)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 

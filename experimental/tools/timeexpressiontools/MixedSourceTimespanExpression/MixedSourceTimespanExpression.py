@@ -87,7 +87,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
 
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, context_name):
+    def _get_timespan(self, score_specification, context_name):
         '''Evaluate start and stop offsets of symbolic timespan when applied
         to `context_name` in `score_specification`.
 

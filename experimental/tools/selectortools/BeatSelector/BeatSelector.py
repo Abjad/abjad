@@ -46,10 +46,10 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_offsets(self, score_specification, voice_name):
+    def _get_timespan(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.
 
         Return offset pair.
         '''
-        raise NotImplementedError('implement me')
+        raise NotImplementedError

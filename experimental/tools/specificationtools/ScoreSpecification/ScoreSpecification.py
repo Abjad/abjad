@@ -61,9 +61,9 @@ class ScoreSpecification(Specification):
             else:
                 return candidate_segment_number
 
-    def _get_offsets(self, score_specification, context_name):
+    def _get_timespan(self, score_specification, context_name):
         assert score_specification is self # is this right?
-        return self.offsets
+        return timespantools.Timespan(*self.offsets)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
