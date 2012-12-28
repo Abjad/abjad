@@ -117,9 +117,9 @@ class TimespanInventory(ObjectInventory):
         from abjad.tools import timerelationtools
         for timespan_1 in self[:]:
             if timerelationtools.timespan_2_curtails_timespan_1(timespan_1, timespan_2):
-                timespan_1.trim_to_stop_offset(timespan_2.start_offset)
+                timespan_1.set_offsets(stop_offset=timespan_2.start_offset)
             elif timerelationtools.timespan_2_delays_timespan_1(timespan_1, timespan_2):
-                timespan_1.trim_to_start_offset(timespan_2.stop_offset)
+                timespan_1.set_offsets(start_offset=timespan_2.stop_offset)
             elif timerelationtools.timespan_2_contains_timespan_1_improperly(timespan_1, timespan_2):
                 self.remove(timespan_1)
 
@@ -220,12 +220,12 @@ class TimespanInventory(ObjectInventory):
             elif not timerelationtools.timespan_2_intersects_timespan_1(timespan_1, keep_timespan):
                 self.remove(timespan_1)
             elif timerelationtools.timespan_2_delays_timespan_1(timespan_1, keep_timespan):
-                timespan_1.trim_to_stop_offset(keep_timespan.stop_offset)
+                timespan_1.set_offsets(stop_offset=keep_timespan.stop_offset)
             elif timerelationtools.timespan_2_curtails_timespan_1(timespan_1, keep_timespan):
-                timespan_1.trim_to_start_offset(keep_timespan.start_offset)
+                timespan_1.set_offsets(start_offset=keep_timespan.start_offset)
             elif timerelationtools.timespan_2_trisects_timespan_1(timespan_1, keep_timespan):
-                timespan_1.trim_to_start_offset(keep_timespan.start_offset)
-                timespan_1.trim_to_stop_offset(keep_timespan.stop_offset)
+                timespan_1.set_offsets(start_offset=keep_timespan.start_offset)
+                timespan_1.set_offsets(stop_offset=keep_timespan.stop_offset)
             else:
                 raise ValueError
 
@@ -245,7 +245,7 @@ class TimespanInventory(ObjectInventory):
             self.append(new_timespan)
             current_timespan_index += 1
         if stop_offset < self.stop_offset:
-            self[-1].trim_to_stop_offset(stop_offset)
+            self[-1].set_offsets(stop_offset=stop_offset)
 
     def reverse(self):
         '''Flip timespans about time axis.
