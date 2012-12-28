@@ -23,8 +23,8 @@ class Command(Timespan):
     ### INTIAILIZER ###
 
     def __init__(self, request, context_name, start_offset, stop_offset, fresh=None):
-        from experimental.tools import symbolictimetools
-        assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
+        from experimental.tools import timeexpressiontools
+        assert isinstance(request, (requesttools.Request, timeexpressiontools.SymbolicTimespan)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)

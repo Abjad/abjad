@@ -3,7 +3,7 @@ from abjad.tools import *
 from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import settingtools
-from experimental.tools import symbolictimetools
+from experimental.tools import timeexpressiontools
 from abjad.tools import timerelationtools
 from experimental.tools.specificationtools.Specification import Specification
 
@@ -621,13 +621,13 @@ class ScoreSpecification(Specification):
         ::
 
             >>> z(selector)
-            symbolictimetools.ScoreSelector(
+            timeexpressiontools.ScoreSelector(
                 voice_name='Voice 1'
                 )
 
         Return score selector.
         '''
-        selector = symbolictimetools.ScoreSelector(voice_name=voice_name)
+        selector = timeexpressiontools.ScoreSelector(voice_name=voice_name)
         selector._score_specification = self
         return selector
 
@@ -639,12 +639,12 @@ class ScoreSpecification(Specification):
         ::
 
             >>> z(selector)
-            symbolictimetools.SegmentSelector(
+            timeexpressiontools.SegmentSelector(
                 voice_name='Voice 1'
                 )
 
         Return segment selector.
         '''
-        selector = symbolictimetools.SegmentSelector(voice_name=voice_name)
+        selector = timeexpressiontools.SegmentSelector(voice_name=voice_name)
         selector._score_specification = self
         return selector

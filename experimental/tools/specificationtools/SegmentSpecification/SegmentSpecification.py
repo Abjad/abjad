@@ -3,7 +3,7 @@ from abjad.tools import *
 from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import settingtools
-from experimental.tools import symbolictimetools
+from experimental.tools import timeexpressiontools
 from experimental.tools.specificationtools.Specification import Specification
 
 
@@ -237,7 +237,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        return symbolictimetools.SymbolicOffset(anchor=self.specification_name, edge=Left)
+        return timeexpressiontools.SymbolicOffset(anchor=self.specification_name, edge=Left)
 
     @property
     def symbolic_stop_offset(self):
@@ -248,7 +248,7 @@ class SegmentSpecification(Specification):
 
         Return symbolic offset.
         '''
-        return symbolictimetools.SymbolicOffset(anchor=self.specification_name, edge=Right)
+        return timeexpressiontools.SymbolicOffset(anchor=self.specification_name, edge=Right)
 
     @property
     def time_signatures(self):
@@ -271,7 +271,7 @@ class SegmentSpecification(Specification):
         Return segment selector.
         '''
         assert isinstance(voice_name, str)
-        selector = symbolictimetools.SegmentSelector(anchor=self.specification_name, voice_name=voice_name)
+        selector = timeexpressiontools.SegmentSelector(anchor=self.specification_name, voice_name=voice_name)
         selector._score_specification = self.score_specification
         selector = selector[self.specification_name:(self.specification_name, 1)]
         return selector

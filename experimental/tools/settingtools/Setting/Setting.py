@@ -2,7 +2,7 @@ import abc
 from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import requesttools
-from experimental.tools import symbolictimetools
+from experimental.tools import timeexpressiontools
 
 
 class Setting(AbjadObject):
@@ -20,8 +20,8 @@ class Setting(AbjadObject):
     @abc.abstractmethod
     def __init__(self, attribute=None, request=None, anchor=None, fresh=True, persist=True, truncate=None):
         assert isinstance(attribute, str)
-        assert isinstance(request, (requesttools.Request, symbolictimetools.SymbolicTimespan)), repr(request)
-        assert isinstance(anchor, (symbolictimetools.SymbolicTimespan, str, type(None)))
+        assert isinstance(request, (requesttools.Request, timeexpressiontools.SymbolicTimespan)), repr(request)
+        assert isinstance(anchor, (timeexpressiontools.SymbolicTimespan, str, type(None)))
         assert isinstance(fresh, bool)
         assert isinstance(persist, bool)
         assert isinstance(truncate, (bool, type(None)))

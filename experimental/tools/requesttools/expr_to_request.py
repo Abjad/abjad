@@ -26,7 +26,7 @@ def expr_to_request(expr):
     from experimental.tools import handlertools
     from experimental.tools import requesttools
     from experimental.tools import statalservertools
-    from experimental.tools import symbolictimetools
+    from experimental.tools import timeexpressiontools
 
     # probably precautionary: prune expr of any incoming references
     expr = copy.deepcopy(expr)
@@ -39,7 +39,7 @@ def expr_to_request(expr):
         return requesttool.HandlerRequest(expr)
     elif isinstance(expr, (tuple, list, str, rhythmmakertools.RhythmMaker)):
         return requesttools.AbsoluteRequest(expr)
-    elif isinstance(expr, symbolictimetools.SymbolicTimespan):
+    elif isinstance(expr, timeexpressiontools.SymbolicTimespan):
         return expr
     else:
         raise TypeError('do not know how to change {!r} to request object.'.format(expr))

@@ -4,7 +4,7 @@ from experimental.tools.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.tools.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.tools.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.tools.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.tools.symbolictimetools.SymbolicOffset import SymbolicOffset
+from experimental.tools.timeexpressiontools.SymbolicOffset import SymbolicOffset
 
 
 def test_MultipleContextSettingInventory___repr___01():

@@ -1,0 +1,251 @@
+from abjad.tools import durationtools
+from abjad.tools import timespantools
+from abjad.tools.abctools.AbjadObject import AbjadObject
+
+
+class SymbolicOffset(AbjadObject):
+    r'''
+
+    ::
+
+        >>> from experimental.tools import *
+
+    ::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
+        >>> red_segment = score_specification.append_segment(name='red')
+
+    Symbolic offset indicating the right edge of voice ``1`` note ``10`` that starts
+    during segment ``'red'``::
+
+        >>> notes = red_segment.select_notes_and_chords('Voice 1')
+        >>> offset = notes.stop_offset
+
+    ::
+
+        >>> z(offset)
+        timeexpressiontools.SymbolicOffset(
+            anchor=timeexpressiontools.CounttimeComponentSelector(
+                anchor='red',
+                klass=helpertools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
+                voice_name='Voice 1'
+                ),
+            edge=Right
+            )
+
+    Symbolic offsets are immutable.
+    '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
+        from experimental.tools import specificationtools
+        from experimental.tools import timeexpressiontools
+        assert isinstance(anchor, (
+            timeexpressiontools.SymbolicTimespan, 
+            type(None), str)), repr(anchor)
+        assert edge in (Left, Right, None), repr(edge)
+        if multiplier is not None:
+            multiplier = durationtools.Multiplier(multiplier)
+        if addendum is not None:
+            addendum = durationtools.Offset(addendum)
+        self._anchor = anchor
+        self._multiplier = multiplier
+        self._edge = edge
+        self._addendum = addendum
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        '''True when `other` is a offset with score object indicator,
+        edge and addendum all indicating those of `self`.
+        
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(other, type(self)):
+            return False
+        elif not self.anchor == other.anchor:
+            return False
+        elif not self.edge == other.edge:
+            return False
+        elif not self.multiplier == other.multiplier:
+            return False
+        elif not self.addendum == other.addendum:
+            return False
+        else:
+            return True
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def addendum(self):
+        '''Symbolic offset addendum specified by user.
+
+            >>> offset.addendum is None
+            True
+
+        Value of none is interpreted as ``Offset(0)``.
+            
+        Return offset or none.
+        '''
+        return self._addendum
+
+    @property
+    def anchor(self):
+        '''Symbolic offset anchor specified by user.
+        
+            >>> z(offset.anchor)
+            timeexpressiontools.CounttimeComponentSelector(
+                anchor='red',
+                klass=helpertools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
+                voice_name='Voice 1'
+                )
+
+        Value of none is taken equal the entire score.
+
+        Return anchor or none.
+        '''
+        return self._anchor
+
+    @property
+    def edge(self):
+        '''Symbolic offset edge indicator specified by user.
+        
+            >>> offset.edge
+            Right
+
+        Value of none is interpreted as ``Left``.
+
+        Return boolean or none.
+        '''
+        return self._edge
+
+    @property
+    def multiplier(self):
+        '''Symbolic offset multiplier specified by user.
+
+            >>> offset.multiplier is None
+            True
+
+        Value of none is interpreted as ``Multiplier(1)``.
+
+        Return multiplier or none.
+        '''
+        return self._multiplier
+
+    @property
+    def start_segment_identifier(self):
+        '''Symbolic offset start segment identifier.
+
+            >>> offset.start_segment_identifier
+            'red'
+
+        Delegate to ``self.anchor.start_segment_identifier``.
+
+        Return string or none.
+        '''
+        if isinstance(self.anchor, str):
+            return self.anchor
+        else:
+            return self.anchor.start_segment_identifier
+
+    ### PUBLIC METHODS ###
+
+    def get_score_offset(self, score_specification, context_name):
+        '''Evaluate score offset of symbolic offset when applied
+        to `context_name` in `score_specification`.
+
+        .. note:: add example.
+
+        Return offset.
+        '''
+        edge = self.edge or Left
+        if isinstance(self.anchor, str):
+            timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
+        else:
+            start_offset, stop_offset = self.anchor._get_offsets(score_specification, context_name)
+            timespan = timespantools.Timespan(start_offset, stop_offset)
+        if edge == Left:
+            score_offset = timespan.start_offset
+        else:
+            score_offset = timespan.stop_offset
+        multiplier = self.multiplier or durationtools.Multiplier(1)
+        score_offset = multiplier * score_offset
+        offset = self.addendum or durationtools.Offset(0)
+        score_offset = score_offset + offset
+        return score_offset
+
+    def request_division_command(self, voice):
+        r'''Request voice ``1`` division command
+        active at start of segment ``'red'``::
+
+            >>> request = red_segment.start_offset.request_division_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'divisions',
+                'Voice 1',
+                timeexpressiontools.SymbolicOffset(
+                    anchor='red'
+                    )
+                )
+
+        Return command request.        
+        '''
+        from experimental.tools import requesttools
+        return requesttools.CommandRequest('divisions', voice, symbolic_offset=self)
+
+    def request_rhythm_command(self, voice):
+        r'''Request voice ``1`` rhythm command 
+        active at start of segment ``'red'``::
+
+            >>> request = red_segment.start_offset.request_rhythm_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'rhythm',
+                'Voice 1',
+                timeexpressiontools.SymbolicOffset(
+                    anchor='red'
+                    )
+                )
+
+        Return command request.        
+        '''
+        from experimental.tools import requesttools
+        return requesttools.CommandRequest('rhythm', voice, symbolic_offset=self)
+
+    def request_time_signature_command(self, voice):
+        r'''Request voice ``1`` time signature command
+        active at start of segment ``'red'``::
+
+            >>> request = red_segment.start_offset.request_time_signature_command('Voice 1')
+
+        ::
+
+            >>> z(request)
+            requesttools.CommandRequest(
+                'time_signatures',
+                'Voice 1',
+                timeexpressiontools.SymbolicOffset(
+                    anchor='red'
+                    )
+                )
+
+        Return command request.
+        '''
+        from experimental.tools import requesttools
+        return requesttools.CommandRequest('time_signatures', voice, symbolic_offset=self)

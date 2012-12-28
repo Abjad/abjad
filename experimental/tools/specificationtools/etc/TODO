@@ -172,7 +172,7 @@
 31. Change Selector._get_offsets() to Selector._get_timespan().
     Return timespan instead of offset pair.
 
-32. Change symbolictimetools to timeexpressiontools.
+32. Change timeexpressiontools to timeexpressiontools.
     We really want to have 'timespan' always everywhere mean only Timespan.
     Removing the idea of (qualified) 'symbolic' timespan will help this the most.
     Rename ...

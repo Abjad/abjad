@@ -4,8 +4,8 @@ from abjad.tools import *
 from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import settingtools
-from experimental.tools import symbolictimetools
-from experimental.tools.symbolictimetools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools import timeexpressiontools
+from experimental.tools.timeexpressiontools.SymbolicTimespan import SymbolicTimespan
 
 
 class Specification(SymbolicTimespan):
@@ -166,13 +166,13 @@ class Specification(SymbolicTimespan):
 
     @property
     def start_offset(self):
-        from experimental.tools import symbolictimetools
-        return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation)
+        from experimental.tools import timeexpressiontools
+        return timeexpressiontools.SymbolicOffset(anchor=self._timespan_abbreviation)
 
     @property
     def stop_offset(self):
-        from experimental.tools import symbolictimetools
-        return symbolictimetools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
+        from experimental.tools import timeexpressiontools
+        return timeexpressiontools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
 
     ### PUBLIC METHODS ###
 

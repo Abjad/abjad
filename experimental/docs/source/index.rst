@@ -297,27 +297,27 @@ Unstable packages (load manually)
 
    tools/statalservertools/StatalServer/StatalServer
 
-:py:mod:`symbolictimetools <('abjad.tools.', 'abjad.demos.')symbolictimetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timeexpressiontools <('abjad.tools.', 'abjad.demos.')timeexpressiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   tools/symbolictimetools/Selector/Selector
-   tools/symbolictimetools/SymbolicTimespan/SymbolicTimespan
+   tools/timeexpressiontools/Selector/Selector
+   tools/timeexpressiontools/SymbolicTimespan/SymbolicTimespan
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   tools/symbolictimetools/BackgroundMeasureSelector/BackgroundMeasureSelector
-   tools/symbolictimetools/BeatSelector/BeatSelector
-   tools/symbolictimetools/CounttimeComponentSelector/CounttimeComponentSelector
-   tools/symbolictimetools/DivisionSelector/DivisionSelector
-   tools/symbolictimetools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
-   tools/symbolictimetools/ScoreSelector/ScoreSelector
-   tools/symbolictimetools/SegmentSelector/SegmentSelector
-   tools/symbolictimetools/SymbolicOffset/SymbolicOffset
+   tools/timeexpressiontools/BackgroundMeasureSelector/BackgroundMeasureSelector
+   tools/timeexpressiontools/BeatSelector/BeatSelector
+   tools/timeexpressiontools/CounttimeComponentSelector/CounttimeComponentSelector
+   tools/timeexpressiontools/DivisionSelector/DivisionSelector
+   tools/timeexpressiontools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   tools/timeexpressiontools/ScoreSelector/ScoreSelector
+   tools/timeexpressiontools/SegmentSelector/SegmentSelector
+   tools/timeexpressiontools/SymbolicOffset/SymbolicOffset

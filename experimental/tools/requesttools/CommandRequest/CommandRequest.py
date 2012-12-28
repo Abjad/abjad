@@ -1,4 +1,4 @@
-from experimental.tools import symbolictimetools
+from experimental.tools import timeexpressiontools
 from experimental.tools.requesttools.Request import Request
 
 
@@ -27,8 +27,8 @@ class CommandRequest(Request):
         requesttools.CommandRequest(
             'divisions',
             'Voice 1',
-            symbolictimetools.SymbolicOffset(
-                anchor=symbolictimetools.BackgroundMeasureSelector(
+            timeexpressiontools.SymbolicOffset(
+                anchor=timeexpressiontools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
                     request_modifiers=settingtools.ModifierInventory([
@@ -51,7 +51,7 @@ class CommandRequest(Request):
     def __init__(self, attribute, voice_name, symbolic_offset, request_modifiers=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
-        assert isinstance(symbolic_offset, symbolictimetools.SymbolicOffset)
+        assert isinstance(symbolic_offset, timeexpressiontools.SymbolicOffset)
         Request.__init__(self, request_modifiers=request_modifiers)
         self._attribute = attribute
         self._voice_name = voice_name
@@ -86,8 +86,8 @@ class CommandRequest(Request):
         '''Command request symbolic offset specified by user.
 
             >>> z(command_request.symbolic_offset)
-            symbolictimetools.SymbolicOffset(
-                anchor=symbolictimetools.BackgroundMeasureSelector(
+            timeexpressiontools.SymbolicOffset(
+                anchor=timeexpressiontools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
                     request_modifiers=settingtools.ModifierInventory([
