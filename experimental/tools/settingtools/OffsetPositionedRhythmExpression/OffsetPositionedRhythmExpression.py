@@ -11,7 +11,7 @@ from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPos
 
 
 class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Offset-positioned rhythm expression.
 

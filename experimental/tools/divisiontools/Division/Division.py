@@ -6,7 +6,7 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
 
 class Division(NonreducedFraction, BoundedObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Bounded nonreduced fraction.
 

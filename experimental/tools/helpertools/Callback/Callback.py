@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Callback(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Callback with string representation.
     '''

@@ -1,5 +1,5 @@
 def expr_to_segment_name(expr):
-    r'''.. versionadded:: 1.0
+    r'''
     
     Change segment specification to segment name::
 

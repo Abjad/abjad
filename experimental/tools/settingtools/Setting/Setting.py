@@ -6,7 +6,7 @@ from experimental.tools import timeexpressiontools
 
 
 class Setting(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Abstract setting class from which concrete settings inherit.
     '''

@@ -3,7 +3,7 @@ from experimental.tools.requesttools.Request import Request
 
 
 class CommandRequest(Request):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Request `attribute` command active at `symbolic_offset` in `voice_name`::
 

@@ -3,7 +3,7 @@ from experimental.tools import helpertools
 
 
 class DivisionList(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Division lists model time-contiguous divisions.
 

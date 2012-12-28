@@ -4,7 +4,7 @@ from experimental.tools.settingtools.MultipleContextSetting import MultipleConte
 
 
 class MultipleContextSettingInventory(ObjectInventory):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Multiple-context setting inventory.
     '''

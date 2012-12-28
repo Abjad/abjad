@@ -12,7 +12,7 @@ from experimental.tools.interpretertools.Interpreter import Interpreter
 
 
 class ConcreteInterpreter(Interpreter):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Concrete interpreter.
 
@@ -228,7 +228,7 @@ class ConcreteInterpreter(Interpreter):
             if division_region_expressions is None:
                 return
             # NEXT: working here
-            #assert len(division_region_expressions) == 1, repr(division_region_expressions)
+            assert division_region_expressions.all_are_contiguous, repr(division_region_expressions)
             for division_region_expression in division_region_expressions:
                 division_region_expression._voice_name = voice_name
             addendum = division_region_command.start_offset - division_region_expressions[0].start_offset

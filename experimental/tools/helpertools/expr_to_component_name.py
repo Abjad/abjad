@@ -1,5 +1,5 @@
 def expr_to_component_name(expr):
-    r'''.. versionadded:: 1.0
+    r'''
     
     Change component to component name::
 

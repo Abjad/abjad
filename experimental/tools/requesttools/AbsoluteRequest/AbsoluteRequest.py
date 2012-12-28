@@ -2,7 +2,7 @@ from experimental.tools.requesttools.Request import Request
 
 
 class AbsoluteRequest(Request):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 

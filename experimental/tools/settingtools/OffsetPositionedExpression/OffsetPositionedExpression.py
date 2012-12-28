@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class OffsetPositionedExpression(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Offset-positioned expression.
 

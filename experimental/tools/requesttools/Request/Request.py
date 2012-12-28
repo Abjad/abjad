@@ -9,7 +9,7 @@ from experimental.tools import helpertools
 
 
 class Request(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Base class from which other request classes inherit.
 

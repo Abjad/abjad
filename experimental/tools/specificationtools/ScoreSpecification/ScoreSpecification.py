@@ -9,7 +9,7 @@ from experimental.tools.specificationtools.Specification import Specification
 
 
 class ScoreSpecification(Specification):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 

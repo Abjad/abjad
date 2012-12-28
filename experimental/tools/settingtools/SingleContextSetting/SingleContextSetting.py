@@ -4,7 +4,7 @@ from experimental.tools.settingtools.Setting import Setting
 
 
 class SingleContextSetting(Setting):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 

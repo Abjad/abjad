@@ -2,7 +2,7 @@ import copy
 
 
 def expr_to_request(expr):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Change request `expr` to request object.
 

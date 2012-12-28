@@ -8,7 +8,7 @@ from experimental.tools import requesttools
 
 
 class Command(Timespan):
-    '''.. versionadded:: 1.0
+    '''
 
     Command indicating period of time to which request will apply.
 

@@ -5,7 +5,7 @@ from abjad.tools import tuplettools
 
 
 def is_counttime_component_klass_expr(expr):
-    r'''.. versionadded:: 1.0
+    r'''
 
     True when `expr` is a subclass of ``Measure``, ``Tuplet`` or ``Leaf``.
 

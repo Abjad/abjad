@@ -2,7 +2,7 @@ import os
 
 
 def read_test_output(full_file_name, current_function_name):
-    r'''.. versionadded:: 1.0
+    r'''
     '''
     segment_ly_file_name = '{}.ly'.format(current_function_name)
     directory_name = os.path.dirname(full_file_name)

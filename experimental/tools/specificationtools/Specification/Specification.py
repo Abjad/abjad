@@ -9,7 +9,7 @@ from experimental.tools.timeexpressiontools.TimespanExpression import TimespanEx
 
 
 class Specification(TimespanExpression):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 

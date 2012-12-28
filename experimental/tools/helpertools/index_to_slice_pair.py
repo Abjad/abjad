@@ -1,5 +1,5 @@
 def index_to_slice_pair(index):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Change integer `index` to slice pair.
     '''

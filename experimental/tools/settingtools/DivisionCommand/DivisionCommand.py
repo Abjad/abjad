@@ -3,7 +3,7 @@ from experimental.tools.settingtools.Command import Command
 
 
 class DivisionCommand(Command):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Command indicating durated period of time 
     to which an evaluated request will apply.

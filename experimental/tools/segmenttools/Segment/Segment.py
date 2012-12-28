@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Segment(AbjadObject):
-    r'''.. versionadded:: 1.0
+    r'''
 
     The current implementation of ``specificationtools`` directs
     user interaction towards the ``SegmentSpecification`` class.

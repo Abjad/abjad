@@ -2,11 +2,9 @@ from abjad.tools import abctools
 
 
 class RotationIndicator(abctools.AbjadObject):
-    r'''.. versionadded:: 2.11
+    r'''Rotation indicator.
 
     .. note:: add example.
-
-    Rotation indicator.
     '''
 
     def __init__(self, index, level=None, fracture_spanners=None):

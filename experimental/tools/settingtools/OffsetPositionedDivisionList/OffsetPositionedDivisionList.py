@@ -6,7 +6,7 @@ from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPos
 
 
 class OffsetPositionedDivisionList(OffsetPositionedExpression):
-    r'''.. versionadded:: 1.0
+    r'''
 
     ::
 

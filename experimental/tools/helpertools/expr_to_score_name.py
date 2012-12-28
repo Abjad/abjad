@@ -1,5 +1,5 @@
 def expr_to_score_name(expr):
-    r'''.. versionadded:: 1.0
+    r'''
     
     Change score specification to score specification name::
 

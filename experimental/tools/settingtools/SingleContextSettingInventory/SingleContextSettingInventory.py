@@ -3,7 +3,7 @@ from experimental.tools import helpertools
 
 
 class SingleContextSettingInventory(ObjectInventory):
-    r'''.. versionadded:: 1.0
+    r'''
 
     Single-context setting inventory.
     '''

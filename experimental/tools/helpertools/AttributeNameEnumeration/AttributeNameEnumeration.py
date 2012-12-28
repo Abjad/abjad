@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 
 class AttributeNameEnumeration(OrderedDict):
-    r'''.. versionadded:: 1.0
+    r'''
 
     The allowable attribute names known to the ``specificationtools`` classes::
 
