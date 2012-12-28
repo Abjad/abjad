@@ -166,3 +166,5 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
+
+32. Probably OK to remove 'objects' from partition_objects_by_ratio[_of_durations]().
