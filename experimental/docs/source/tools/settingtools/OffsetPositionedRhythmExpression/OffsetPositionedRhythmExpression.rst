@@ -91,7 +91,11 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.happens_during
+.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.fuse
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.happens_during_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -103,7 +107,7 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.is_tangent_to
+.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.is_tangent_to_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 

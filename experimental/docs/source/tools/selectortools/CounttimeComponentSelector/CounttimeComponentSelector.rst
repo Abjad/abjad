@@ -119,7 +119,11 @@ Methods
 
     Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
-.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.happens_during
+.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.fuse
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.happens_during_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -131,7 +135,7 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.is_tangent_to
+.. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.is_tangent_to_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 

@@ -95,7 +95,11 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.fracture
 
-.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.happens_during
+.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.fuse
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.happens_during_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -107,7 +111,7 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.is_tangent_to
+.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.is_tangent_to_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 

@@ -111,7 +111,7 @@ Methods
 
     Inherited from :py:class:`settingtools.Command <experimental.tools.settingtools.Command.Command.Command>`
 
-.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.happens_during
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.happens_during_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -123,7 +123,7 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.is_tangent_to
+.. automethod:: experimental.tools.settingtools.DivisionCommand.DivisionCommand.DivisionCommand.is_tangent_to_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 

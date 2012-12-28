@@ -131,9 +131,13 @@ Methods
 
     Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.fuse
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_start_segment_specification
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.happens_during
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.happens_during_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -147,7 +151,7 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.is_tangent_to
+.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.is_tangent_to_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 

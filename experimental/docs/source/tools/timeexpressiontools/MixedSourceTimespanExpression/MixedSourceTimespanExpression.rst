@@ -91,7 +91,11 @@ Methods
 
     Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
-.. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.happens_during
+.. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.fuse
+
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.happens_during_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
@@ -103,7 +107,7 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.is_tangent_to
+.. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.is_tangent_to_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
