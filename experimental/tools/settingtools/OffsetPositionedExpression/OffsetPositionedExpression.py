@@ -1,9 +1,9 @@
 import abc
 from abjad.tools import durationtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.timespantools.Timespan import Timespan
 
 
-class OffsetPositionedExpression(AbjadObject):
+class OffsetPositionedExpression(Timespan):
     r'''
 
     Offset-positioned expression.
@@ -29,7 +29,7 @@ class OffsetPositionedExpression(AbjadObject):
             start_offset = durationtools.Offset(0)
         else:
             start_offset = durationtools.Offset(start_offset)
-        self._start_offset = start_offset
+        Timespan.__init__(self, start_offset=start_offset)
 
     ### SPECIAL METHODS ###
 
@@ -41,24 +41,6 @@ class OffsetPositionedExpression(AbjadObject):
     @abc.abstractproperty
     def duration(self):
         pass
-
-    @property
-    def offsets(self):
-        '''Start- and stop-offsets of offset-positioned expression.
-
-        Return pair.
-        '''
-        return self.start_offset, self.stop_offset
-
-    @property
-    def start_offset(self):
-        '''Offset-positioned expression start offset.
-
-        Assigned at initialization.
-
-        Return offset.
-        '''
-        return self._start_offset
 
     @property
     def stop_offset(self):
