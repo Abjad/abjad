@@ -82,7 +82,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
     def reverse(self):
         self.division_list.reverse()
 
-    def trim_to_start_offset(self, start_offset):
+    def _set_start_offset(self, start_offset):
         '''Trim to start offset.
 
         ::
@@ -96,7 +96,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr.trim_to_start_offset((1, 16))
+            >>> expr._set_start_offset((1, 16))
 
         ::
 
@@ -123,7 +123,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         self._division_list = division_list
         self._start_offset = start_offset
 
-    def trim_to_stop_offset(self, stop_offset):
+    def _set_stop_offset(self, stop_offset):
         '''Trim to stop offset.
 
         ::
@@ -137,7 +137,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr.trim_to_stop_offset((11, 16))
+            >>> expr._set_stop_offset((11, 16))
 
         ::
 

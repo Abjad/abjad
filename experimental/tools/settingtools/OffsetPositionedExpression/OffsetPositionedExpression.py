@@ -69,12 +69,12 @@ class OffsetPositionedExpression(Timespan):
         Operate in place and return none.
         '''
         if stop_offset is not None and stop_offset < self.stop_offset:
-            self.trim_to_stop_offset(stop_offset)
+            self._set_stop_offset(stop_offset)
         if start_offset is not None and self.start_offset < start_offset:
-            self.trim_to_start_offset(start_offset)
+            self._set_start_offset(start_offset)
 
     @abc.abstractmethod
-    def trim_to_start_offset(self, start_offset):
+    def _set_start_offset(self, start_offset):
         '''Trim to start offset.
 
         Adjust start offset.
@@ -84,7 +84,7 @@ class OffsetPositionedExpression(Timespan):
         pass
 
     @abc.abstractmethod
-    def trim_to_stop_offset(self, stop_offset):
+    def _set_stop_offset(self, stop_offset):
         '''Trim to stop offset.
 
         Adjust stop offset.
