@@ -28,7 +28,7 @@ class CommandRequest(Request):
             'divisions',
             'Voice 1',
             timeexpressiontools.OffsetExpression(
-                anchor=timeexpressiontools.BackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
                     request_modifiers=settingtools.ModifierInventory([
@@ -87,7 +87,7 @@ class CommandRequest(Request):
 
             >>> z(command_request.symbolic_offset)
             timeexpressiontools.OffsetExpression(
-                anchor=timeexpressiontools.BackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
                     request_modifiers=settingtools.ModifierInventory([

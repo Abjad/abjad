@@ -211,7 +211,7 @@ class TimespanExpression(Timespan):
         ::
     
             >>> z(timespans[0])
-            timeexpressiontools.SegmentSelector(
+            selectortools.SegmentSelector(
                 anchor='red',
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
@@ -225,7 +225,7 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(timespans[1])
-            timeexpressiontools.SegmentSelector(
+            selectortools.SegmentSelector(
                 anchor='red',
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
@@ -243,7 +243,7 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(timespans[0])
-            timeexpressiontools.SegmentSelector(
+            selectortools.SegmentSelector(
                 anchor='red',
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
@@ -257,7 +257,7 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(timespans[1])
-            timeexpressiontools.SegmentSelector(
+            selectortools.SegmentSelector(
                 anchor='red',
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
@@ -271,7 +271,7 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(timespans[2])
-            timeexpressiontools.SegmentSelector(
+            selectortools.SegmentSelector(
                 anchor='red',
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
@@ -300,7 +300,7 @@ class TimespanExpression(Timespan):
         '''Scale timespan duration by `multiplier`.
 
             >>> z(red_segment.select('Voice 1').scale(Multiplier(4, 5)))
-            timeexpressiontools.SegmentSelector(
+            selectortools.SegmentSelector(
                 anchor='red',
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
@@ -330,15 +330,15 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(selector)
-            timeexpressiontools.BackgroundMeasureSelector(
+            selectortools.BackgroundMeasureSelector(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return background measure selector.
         '''
-        from experimental.tools import timeexpressiontools
-        selector = timeexpressiontools.BackgroundMeasureSelector(
+        from experimental.tools import selectortools
+        selector = selectortools.BackgroundMeasureSelector(
             anchor=self._timespan_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
@@ -354,15 +354,15 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(selector)
-            timeexpressiontools.BeatSelector(
+            selectortools.BeatSelector(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return beat selector.
         '''
-        from experimental.tools import timeexpressiontools
-        selector = timeexpressiontools.BeatSelector(
+        from experimental.tools import selectortools
+        selector = selectortools.BeatSelector(
             anchor=self._timespan_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
@@ -378,15 +378,15 @@ class TimespanExpression(Timespan):
         ::
             
             >>> z(selector)
-            timeexpressiontools.DivisionSelector(
+            selectortools.DivisionSelector(
                 anchor='red',
                 voice_name='Voice 1'
                 )
 
         Return division selector.
         '''
-        from experimental.tools import timeexpressiontools
-        selector = timeexpressiontools.DivisionSelector(
+        from experimental.tools import selectortools
+        selector = selectortools.DivisionSelector(
             anchor=self._timespan_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
@@ -402,7 +402,7 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(selector)
-            timeexpressiontools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentSelector(
                 anchor='red',
                 klass=leaftools.Leaf,
                 voice_name='Voice 1'
@@ -410,8 +410,8 @@ class TimespanExpression(Timespan):
 
         Return counttime component selector.
         '''
-        from experimental.tools import timeexpressiontools
-        selector = timeexpressiontools.CounttimeComponentSelector(
+        from experimental.tools import selectortools
+        selector = selectortools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
@@ -428,7 +428,7 @@ class TimespanExpression(Timespan):
         ::
 
             >>> z(selector)
-            timeexpressiontools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentSelector(
                 anchor='red',
                 klass=helpertools.KlassInventory([
                     notetools.Note,
@@ -439,8 +439,8 @@ class TimespanExpression(Timespan):
 
         Return counttime component selector.
         '''
-        from experimental.tools import timeexpressiontools
-        selector = timeexpressiontools.CounttimeComponentSelector(
+        from experimental.tools import selectortools
+        selector = selectortools.CounttimeComponentSelector(
             anchor=self._timespan_abbreviation,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),

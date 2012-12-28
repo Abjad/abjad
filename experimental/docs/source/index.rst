@@ -238,6 +238,28 @@ Unstable packages (load manually)
 
    tools/segmenttools/Segment/Segment
 
+:py:mod:`selectortools <('abjad.tools.', 'abjad.demos.')selectortools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/selectortools/Selector/Selector
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
+   tools/selectortools/BeatSelector/BeatSelector
+   tools/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
+   tools/selectortools/DivisionSelector/DivisionSelector
+   tools/selectortools/ScoreSelector/ScoreSelector
+   tools/selectortools/SegmentSelector/SegmentSelector
+
 :py:mod:`settingtools <('abjad.tools.', 'abjad.demos.')settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -305,7 +327,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/timeexpressiontools/Selector/Selector
    tools/timeexpressiontools/TimespanExpression/TimespanExpression
 
 .. rubric:: concrete classes
@@ -313,11 +334,5 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/timeexpressiontools/BackgroundMeasureSelector/BackgroundMeasureSelector
-   tools/timeexpressiontools/BeatSelector/BeatSelector
-   tools/timeexpressiontools/CounttimeComponentSelector/CounttimeComponentSelector
-   tools/timeexpressiontools/DivisionSelector/DivisionSelector
    tools/timeexpressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
    tools/timeexpressiontools/OffsetExpression/OffsetExpression
-   tools/timeexpressiontools/ScoreSelector/ScoreSelector
-   tools/timeexpressiontools/SegmentSelector/SegmentSelector

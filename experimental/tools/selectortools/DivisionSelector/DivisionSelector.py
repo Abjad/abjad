@@ -3,7 +3,7 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from experimental.tools import divisiontools
-from experimental.tools.timeexpressiontools.Selector import Selector
+from experimental.tools.selectortools.Selector import Selector
 
 
 class DivisionSelector(Selector):
@@ -26,7 +26,7 @@ class DivisionSelector(Selector):
     ::
         
         >>> z(selector)
-        timeexpressiontools.DivisionSelector(
+        selectortools.DivisionSelector(
             voice_name='Voice 1'
             )
 
@@ -37,7 +37,7 @@ class DivisionSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.DivisionSelector(
+        selectortools.DivisionSelector(
             anchor='red',
             voice_name='Voice 1'
             )

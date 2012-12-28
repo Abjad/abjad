@@ -4,7 +4,7 @@ from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
 from experimental.tools import helpertools
-from experimental.tools.timeexpressiontools.Selector import Selector
+from experimental.tools.selectortools.Selector import Selector
 
 
 class CounttimeComponentSelector(Selector):
@@ -27,7 +27,7 @@ class CounttimeComponentSelector(Selector):
     ::
         
         >>> z(selector)
-        timeexpressiontools.CounttimeComponentSelector(
+        selectortools.CounttimeComponentSelector(
             klass=leaftools.Leaf,
             voice_name='Voice 1'
             )
@@ -39,7 +39,7 @@ class CounttimeComponentSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.CounttimeComponentSelector(
+        selectortools.CounttimeComponentSelector(
             anchor='red',
             klass=leaftools.Leaf,
             voice_name='Voice 1'

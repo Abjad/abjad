@@ -26,7 +26,7 @@ class OffsetExpression(AbjadObject):
 
         >>> z(offset)
         timeexpressiontools.OffsetExpression(
-            anchor=timeexpressiontools.CounttimeComponentSelector(
+            anchor=selectortools.CounttimeComponentSelector(
                 anchor='red',
                 klass=helpertools.KlassInventory([
                     notetools.Note,
@@ -101,7 +101,7 @@ class OffsetExpression(AbjadObject):
         '''Symbolic offset anchor specified by user.
         
             >>> z(offset.anchor)
-            timeexpressiontools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentSelector(
                 anchor='red',
                 klass=helpertools.KlassInventory([
                     notetools.Note,

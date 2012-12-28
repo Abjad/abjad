@@ -1,6 +1,6 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from experimental.tools.timeexpressiontools.Selector import Selector
+from experimental.tools.selectortools.Selector import Selector
 
 
 class BeatSelector(Selector):
@@ -25,7 +25,7 @@ class BeatSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.BeatSelector(
+        selectortools.BeatSelector(
             voice_name='Voice 1'
             )
 
@@ -36,7 +36,7 @@ class BeatSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.BeatSelector(
+        selectortools.BeatSelector(
             anchor='red',
             voice_name='Voice 1'
             )

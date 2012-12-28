@@ -1,6 +1,6 @@
 from experimental.tools import helpertools
 from experimental.tools import segmenttools
-from experimental.tools.timeexpressiontools.Selector import Selector
+from experimental.tools.selectortools.Selector import Selector
 
 
 class SegmentSelector(Selector):
@@ -25,7 +25,7 @@ class SegmentSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.SegmentSelector(
+        selectortools.SegmentSelector(
             voice_name='Voice 1'
             )
 
@@ -36,7 +36,7 @@ class SegmentSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.SegmentSelector(
+        selectortools.SegmentSelector(
             voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 'result = self.___getitem__(elements, start_offset, slice(None, 2, None))'
@@ -50,7 +50,7 @@ class SegmentSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.SegmentSelector(
+        selectortools.SegmentSelector(
             voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, 'green', None))"
@@ -64,7 +64,7 @@ class SegmentSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.SegmentSelector(
+        selectortools.SegmentSelector(
             voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice(None, ('green', 1), None))"
@@ -78,7 +78,7 @@ class SegmentSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.SegmentSelector(
+        selectortools.SegmentSelector(
             voice_name='Voice 1',
             request_modifiers=settingtools.ModifierInventory([
                 "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"

@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
-from experimental.tools.timeexpressiontools.Selector import Selector
+from experimental.tools.selectortools.Selector import Selector
 
 
 class BackgroundMeasureSelector(Selector):
@@ -25,7 +25,7 @@ class BackgroundMeasureSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.BackgroundMeasureSelector(
+        selectortools.BackgroundMeasureSelector(
             voice_name='Voice 1'
             )
 
@@ -36,7 +36,7 @@ class BackgroundMeasureSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.BackgroundMeasureSelector(
+        selectortools.BackgroundMeasureSelector(
             anchor='red',
             voice_name='Voice 1'
             )
@@ -49,8 +49,8 @@ class BackgroundMeasureSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.BackgroundMeasureSelector(
-            anchor=timeexpressiontools.SegmentSelector(
+        selectortools.BackgroundMeasureSelector(
+            anchor=selectortools.SegmentSelector(
                 voice_name='Voice 1',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 3), None))"

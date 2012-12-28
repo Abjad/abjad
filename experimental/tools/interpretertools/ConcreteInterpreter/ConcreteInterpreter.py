@@ -4,6 +4,7 @@ from experimental.tools import divisiontools
 from experimental.tools import helpertools
 from experimental.tools import library
 from experimental.tools import requesttools
+from experimental.tools import selectortools
 from experimental.tools import settingtools
 from experimental.tools import specificationtools
 from experimental.tools import timeexpressiontools
@@ -58,7 +59,7 @@ class ConcreteInterpreter(Interpreter):
 
     # TODO: why is this not bound to BackgroundMeasureSelector?
     def background_measure_selector_to_time_signatures(self, selector):
-        assert isinstance(selector, timeexpressiontools.BackgroundMeasureSelector)
+        assert isinstance(selector, selectortools.BackgroundMeasureSelector)
         segment_specification = self.get_start_segment_specification(selector.start_segment_identifier)
         single_context_settings = self.get_single_context_settings_that_start_during_segment(
             segment_specification, selector.voice_name, 'time_signatures', include_improper_parentage=True)
@@ -123,7 +124,7 @@ class ConcreteInterpreter(Interpreter):
 
     def counttime_component_selector_to_rhythm_region_expression(
         self, rhythm_material_request, start_offset, stop_offset, rhythm_command):
-        assert isinstance(rhythm_material_request, timeexpressiontools.CounttimeComponentSelector)
+        assert isinstance(rhythm_material_request, selectortools.CounttimeComponentSelector)
         #self._debug(rhythm_material_request, 'rhythm request')
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_material_request.voice_name
@@ -214,7 +215,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
-        elif isinstance(division_region_command.request, timeexpressiontools.BeatSelector):
+        elif isinstance(division_region_command.request, selectortools.BeatSelector):
             start_offset, stop_offset = division_region_command.offsets
             divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
             #divisions = division_region_command.request._apply_request_modifiers(divisions)
@@ -224,7 +225,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_expression = self.division_region_command_to_division_region_expression(
                 division_region_command, voice_name)
             return division_region_expression
-        elif isinstance(division_region_command.request, timeexpressiontools.DivisionSelector):
+        elif isinstance(division_region_command.request, selectortools.DivisionSelector):
             division_region_expressions = self.division_selector_to_division_region_expressions(
                 division_region_command.request) 
             if division_region_expressions is None:
@@ -235,7 +236,7 @@ class ConcreteInterpreter(Interpreter):
             division_region_expressions.translate_timespans(addendum)
             division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
             return division_region_expressions
-        elif isinstance(division_region_command.request, timeexpressiontools.BackgroundMeasureSelector):
+        elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
             time_signatures = self.background_measure_selector_to_time_signatures(division_region_command.request)
             divisions = [divisiontools.Division(x) for x in time_signatures]
         else:
@@ -248,7 +249,7 @@ class ConcreteInterpreter(Interpreter):
             )
 
     def division_selector_to_division_region_expressions(self, division_selector):
-        assert isinstance(division_selector, timeexpressiontools.DivisionSelector)
+        assert isinstance(division_selector, selectortools.DivisionSelector)
         #self._debug(division_selector, 'division selector')
         anchor = division_selector.anchor
         voice_name = division_selector.voice_name
@@ -296,7 +297,7 @@ class ConcreteInterpreter(Interpreter):
                 rhythm_maker = self.rhythm_command_request_to_rhythm_maker(
                     rhythm_command.request, rhythm_command.request.voice_name)
                 result.append((rhythm_maker, division_list, start_offset, rhythm_command))
-            elif isinstance(rhythm_command.request, timeexpressiontools.CounttimeComponentSelector):
+            elif isinstance(rhythm_command.request, selectortools.CounttimeComponentSelector):
                 if result and self.rhythm_command_prolongs_expr(rhythm_command, result[-1][0]):
                     last_start_offset = result.pop()[1]
                     new_entry = (rhythm_command,
@@ -592,7 +593,7 @@ class ConcreteInterpreter(Interpreter):
                         *rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
-                elif isinstance(rhythm_quadruple[0], timeexpressiontools.CounttimeComponentSelector):
+                elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     rhythm_region_expression = self.counttime_component_selector_to_rhythm_region_expression(
                         *rhythm_quadruple)
                 else:
@@ -644,7 +645,7 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(time_signature_setting.request, requesttools.CommandRequest):
             time_signatures = self.time_signature_command_request_to_time_signatures(
                 time_signature_setting.request)
-        elif isinstance(time_signature_setting.request, timeexpressiontools.BackgroundMeasureSelector):
+        elif isinstance(time_signature_setting.request, selectortools.BackgroundMeasureSelector):
             time_signatures = self.background_measure_selector_to_time_signatures(time_signature_setting.request)
         else:
             raise TypeError(time_signature_setting.request)
@@ -704,14 +705,14 @@ class ConcreteInterpreter(Interpreter):
         # check that current rhythm command bears a rhythm material request
         assert isinstance(current_rhythm_command, settingtools.RhythmCommand)
         current_material_request = current_rhythm_command.request
-        assert isinstance(current_material_request, timeexpressiontools.CounttimeComponentSelector)
+        assert isinstance(current_material_request, selectortools.CounttimeComponentSelector)
         # fuse only if expr is also a rhythm command that bears a rhythm material request
         if not isinstance(expr, settingtools.RhythmCommand):
             return False
         else:
             previous_rhythm_command = expr
         previous_material_request = getattr(previous_rhythm_command, 'request', None)
-        if not isinstance(previous_material_request, timeexpressiontools.CounttimeComponentSelector):
+        if not isinstance(previous_material_request, selectortools.CounttimeComponentSelector):
             return False
         # fuse only if current and previous commands request same material
         if not current_material_request == previous_material_request:

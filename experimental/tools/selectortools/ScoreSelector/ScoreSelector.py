@@ -1,6 +1,6 @@
 from experimental.tools import helpertools
 from experimental.tools import segmenttools
-from experimental.tools.timeexpressiontools.Selector import Selector
+from experimental.tools.selectortools.Selector import Selector
 
 
 class ScoreSelector(Selector):
@@ -23,7 +23,7 @@ class ScoreSelector(Selector):
     ::
 
         >>> z(selector)
-        timeexpressiontools.ScoreSelector(
+        selectortools.ScoreSelector(
             voice_name='Voice 1'
             )
     

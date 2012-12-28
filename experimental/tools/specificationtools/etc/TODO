@@ -169,13 +169,7 @@
         leaves.reverse()
         leaves.rotate()
 
-31. Change Selector._get_offsets() to Selector._get_timespan().
-    Return timespan instead of offset pair.
-
-32. Migrate all selector classes to new selectortools package.
-    This will clean up both timeexpressiontools package and selectortools package.
-
-33. Extract the "set interface" from TimespanExpression.
+31. Extract the "set interface" from TimespanExpression.
     Implement "set interface" in new SettingMaker class.
     It will no longer be necessary for TimespanExpression to inherit from SettingMaker.
     Instead some class lower in the hierarchy can (multiply) inherit from SettingMaker.
@@ -183,6 +177,9 @@
     This will clean up TimespanExpression significantly.
     TimespanExpression interface will then map almost one-to-one to Timespan interface.
 
-34. Rename Request to RequestMaker to parallel SettingMaker?
+32. Rename Request to RequestMaker to parallel SettingMaker?
 
-35. Change _apply_timespan_modifiers(start_offset, stop_offset) to _apply_timespan_modifiers(timespan).
+33. Change _apply_timespan_modifiers(start_offset, stop_offset) to _apply_timespan_modifiers(timespan).
+
+34. Change Selector._get_offsets() to Selector._get_timespan().
+    Return timespan instead of offset pair.

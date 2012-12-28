@@ -40,7 +40,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
         >>> z(timespan)
         timeexpressiontools.MixedSourceTimespanExpression(
             start_offset=timeexpressiontools.OffsetExpression(
-                anchor=timeexpressiontools.BackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
                     request_modifiers=settingtools.ModifierInventory([
@@ -49,7 +49,7 @@ class MixedSourceTimespanExpression(TimespanExpression):
                     )
                 ),
             stop_offset=timeexpressiontools.OffsetExpression(
-                anchor=timeexpressiontools.BackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     anchor='blue',
                     voice_name='Voice 1',
                     request_modifiers=settingtools.ModifierInventory([
