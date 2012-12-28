@@ -49,7 +49,7 @@ def expr_to_timespan(expr):
     from abjad.tools import timerelationtools
     from abjad.tools import timespantools
 
-    if 'SymbolicTimespan' in expr.__class__.__name__:
+    if 'TimespanExpression' in expr.__class__.__name__:
         return expr
     elif 'Selector' in expr.__class__.__name__:
         return expr

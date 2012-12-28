@@ -159,7 +159,7 @@ class ConcreteInterpreter(Interpreter):
         assert wellformednesstools.is_well_formed_component(result.music)
         result, new_start_offset = rhythm_material_request._apply_request_modifiers(
             result, result.start_offset)
-        result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
 
@@ -571,7 +571,7 @@ class ConcreteInterpreter(Interpreter):
         if rhythm_region_expression.stop_offset < stop_offset:
             rhythm_region_expression.repeat_to_stop_offset(stop_offset)
         elif stop_offset < rhythm_region_expression.stop_offset:
-            rhythm_region_expression.trim_to_stop_offset(stop_offset)
+            rhythm_region_expression._set_stop_offset(stop_offset)
         return rhythm_region_expression
 
     def make_rhythm_region_expressions(self):

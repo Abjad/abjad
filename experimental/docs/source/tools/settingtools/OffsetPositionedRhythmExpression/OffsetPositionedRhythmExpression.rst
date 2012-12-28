@@ -75,10 +75,6 @@ Read/write Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.adjust_to_offsets
-
-    Inherited from :py:class:`settingtools.OffsetPositionedExpression <experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
-
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.contains_expr_improperly
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -147,7 +143,7 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.set_offsets
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`settingtools.OffsetPositionedExpression <experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.starts_after_expr_starts
 
@@ -208,10 +204,6 @@ Methods
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.translate_offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
-.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trim_to_start_offset
-
-.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trim_to_stop_offset
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.trisects_expr
 
