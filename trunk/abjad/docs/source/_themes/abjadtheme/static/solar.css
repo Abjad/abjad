@@ -236,8 +236,9 @@ cite, code, tt {
 }
 
 hr {
-    border: 1px solid #eee;
-    margin: 2em;
+    border: 0px;
+    border-bottom: 1px dotted #eee;
+    margin: 1em;
 }
 
 .highlight {

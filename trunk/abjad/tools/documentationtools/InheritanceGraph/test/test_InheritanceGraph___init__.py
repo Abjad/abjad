@@ -15,7 +15,7 @@ def test_InheritanceGraph___init___02():
         (
             abjad,
         ),
-        root_class=abctools.AbjadObject
+        root_addresses=(abctools.AbjadObject,)
         )
 
 
@@ -42,7 +42,7 @@ def test_InheritanceGraph___init___05():
         (
             'abjad',
         ),
-        root_class=('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject')
+        root_addresses=(('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject'),)
         )
 
 
@@ -53,6 +53,6 @@ def test_InheritanceGraph___init___06():
             'abjad.tools.measuretools',
             'abjad.tools.notetools',
         ),
-        root_class=('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject')
+        root_addresses=(('abjad.tools.abctools.AbjadObject.AbjadObject', 'AbjadObject'),)
         )
 

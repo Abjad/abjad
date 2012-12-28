@@ -94,24 +94,29 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     def _create_package_toc(self, package_name, package_modules):
         result = []
         result.extend(self._create_package_title(package_name))
+
         if package_modules['abstract_classes']:
-            result.append('.. rubric:: abstract classes\n')
             result.extend(self._create_toc_directive())
             for obj in package_modules['abstract_classes']:
                 result.append(self._module_name_to_toc_entry(obj.module_name))
             result.append('')
+        
         if package_modules['concrete_classes']:
-            result.append('.. rubric:: concrete classes\n')
+            if package_modules['abstract_classes']:
+                result.append('\n--------\n')
             result.extend(self._create_toc_directive())
             for obj in package_modules['concrete_classes']:
                 result.append(self._module_name_to_toc_entry(obj.module_name))
             result.append('')
+
         if package_modules['functions']:
-            result.append('.. rubric:: functions\n')
+            if package_modules['concrete_classes'] or package_modules['abstract_classes']:
+                result.append('\n--------\n')
             result.extend(self._create_toc_directive())
             for obj in package_modules['functions']:
                 result.append(self._module_name_to_toc_entry(obj.module_name))
             result.append('')
+
         return result
 
     def _create_section_title(self, title):
