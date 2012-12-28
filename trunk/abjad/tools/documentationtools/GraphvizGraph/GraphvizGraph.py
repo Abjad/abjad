@@ -72,41 +72,41 @@ class GraphvizGraph(TreeContainer):
     ::
 
         >>> print graph.graphviz_format
-        digraph G {
-            subgraph cluster_0 {
-                color=lightgrey
-                style=filled
-                label="process #1"
-                node [color=white, style=filled];
-                a0;
-                a1;
-                a2;
-                a3;
-                a0 -> a1;
-                a1 -> a2;
-                a2 -> a3;
-                a3 -> a0;
+        digraph "G" {
+            subgraph "cluster_0" {
+                color="lightgrey";
+                style="filled";
+                label="process #1";
+                node [color="white", style="filled"];
+                "a0";
+                "a1";
+                "a2";
+                "a3";
+                "a0" -> "a1";
+                "a1" -> "a2";
+                "a2" -> "a3";
+                "a3" -> "a0";
             }
-            subgraph cluster_1 {
-                color=blue
-                label="process #2"
-                node [style=filled];
-                b0;
-                b1;
-                b2;
-                b3;
-                b0 -> b1;
-                b1 -> b2;
-                b2 -> b3;
+            subgraph "cluster_1" {
+                color="blue";
+                label="process #2";
+                node [style="filled"];
+                "b0";
+                "b1";
+                "b2";
+                "b3";
+                "b0" -> "b1";
+                "b1" -> "b2";
+                "b2" -> "b3";
             }
-            start [shape=Mdiamond];
-            end [shape=Msquare];
-            a1 -> b3;
-            a3 -> end;
-            b2 -> a3;
-            b3 -> end;
-            start -> a0;
-            start -> b0;
+            "start" [shape="Mdiamond"];
+            "end" [shape="Msquare"];
+            "a1" -> "b3";
+            "a3" -> "end";
+            "b2" -> "a3";
+            "b3" -> "end";
+            "start" -> "a0";
+            "start" -> "b0";
         }
 
     View the graph:
