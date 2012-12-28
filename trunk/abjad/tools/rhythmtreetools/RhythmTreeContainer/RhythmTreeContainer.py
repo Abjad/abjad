@@ -299,6 +299,11 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
+    def _leaf_klass(self):
+        from abjad.tools import rhythmtreetools
+        return rhythmtreetools.RhythmTreeLeaf
+
+    @property
     def _node_klass(self):
         return RhythmTreeNode
 

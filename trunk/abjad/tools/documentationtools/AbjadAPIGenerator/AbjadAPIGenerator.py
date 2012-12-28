@@ -50,9 +50,9 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         all_visited_modules = []
         for code_path, docs_path, package_prefix in self.path_definitions:
             if not os.path.exists(code_path):
-                os.mkdir(code_path)
+                os.makedirs(code_path)
             if not os.path.exists(docs_path):
-                os.mkdir(docs_path)
+                os.makedirs(docs_path)
             crawler = APICrawler(code_path, docs_path, self.root_package,
                 ignored_directories=ignored_directories, prefix=package_prefix)
             all_visited_modules.extend(crawler())
