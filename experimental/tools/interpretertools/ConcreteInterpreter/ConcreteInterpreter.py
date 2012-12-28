@@ -233,7 +233,7 @@ class ConcreteInterpreter(Interpreter):
                 division_region_expression._voice_name = voice_name
             addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
             division_region_expressions.translate_timespans(addendum)
-            division_region_expressions.adjust_to_stop_offset(division_region_command.stop_offset)
+            division_region_expressions.set_offsets(stop_offset=division_region_command.stop_offset)
             division_region_expressions = list(division_region_expressions)
             return division_region_expressions
         elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
