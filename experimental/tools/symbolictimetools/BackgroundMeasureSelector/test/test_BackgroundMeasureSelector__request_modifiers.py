@@ -99,7 +99,7 @@ def test_BackgroundMeasureSelector__request_modifiers_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__request_modifiers_05():
+def test_BackgroundMeasureSelector__request_modifiers_06():
     '''Reverse measures.
     '''
 
@@ -119,7 +119,7 @@ def test_BackgroundMeasureSelector__request_modifiers_05():
     assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
-def test_BackgroundMeasureSelector__request_modifiers_06():
+def test_BackgroundMeasureSelector__request_modifiers_07():
     '''Rotate measures.
     '''
 

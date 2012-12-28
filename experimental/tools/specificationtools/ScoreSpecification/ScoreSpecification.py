@@ -554,6 +554,16 @@ class ScoreSpecification(Specification):
         segment_index = eval(modified_string)
         return segment_index
 
+    def segment_identifier_expression_to_timespan(self, segment_identifier_expression):
+        '''Change `segment_identifier_expression` to timespan.
+
+        Return timespan.
+        '''
+        segment_index = self.segment_identifier_expression_to_segment_index(
+            segment_identifier_expression)
+        start_offset, stop_offset = self.segment_offset_pairs[segment_index]
+        return timespantools.Timespan(start_offset, stop_offset)
+
     def segment_name_to_segment_index(self, segment_name):
         r'''Segment name to segment index::
 

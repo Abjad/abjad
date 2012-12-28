@@ -168,3 +168,15 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
+
+31. Change Selector._get_offsets() to Selector._get_timespan().
+    Return timespan instead of offset pair.
+
+32. Change symbolictimetools to selectortools.
+    We really want to have 'timespan' always everywhere mean only Timespan.
+    Removing the idea of (qualified) 'symbolic' timespan will help this the most.
+    Rename ...
+        SymbolicTimespan ==> TimespanSelector
+        MixedSourceSymbolicTimespan ==> MixedSourceTimespanSelector
+        SymbolicOffset ==> OffsetSelector
+    ... to do this.
