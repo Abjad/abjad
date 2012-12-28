@@ -3,7 +3,7 @@ from experimental.tools import *
 from experimental.tools.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.tools.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
 from experimental.tools.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.tools.timeexpressiontools.SymbolicOffset import SymbolicOffset
+from experimental.tools.timeexpressiontools.OffsetExpression import OffsetExpression
 
 
 def test_MultipleContextSettingInventory_storage_format_01():

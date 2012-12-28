@@ -889,7 +889,7 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(expr, (tuple, list))
         result = []
         for element in expr:
-            if isinstance(element, timeexpressiontools.SymbolicTimespan):
+            if isinstance(element, timeexpressiontools.TimespanExpression):
                 context_name = None
                 start_offset, stop_offset = element._get_offsets(self.score_specification, context_name)
                 duration = stop_offset - start_offset

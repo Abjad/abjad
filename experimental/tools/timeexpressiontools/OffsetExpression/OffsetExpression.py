@@ -3,7 +3,7 @@ from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SymbolicOffset(AbjadObject):
+class OffsetExpression(AbjadObject):
     r'''
 
     ::
@@ -25,7 +25,7 @@ class SymbolicOffset(AbjadObject):
     ::
 
         >>> z(offset)
-        timeexpressiontools.SymbolicOffset(
+        timeexpressiontools.OffsetExpression(
             anchor=timeexpressiontools.CounttimeComponentSelector(
                 anchor='red',
                 klass=helpertools.KlassInventory([
@@ -46,7 +46,7 @@ class SymbolicOffset(AbjadObject):
         from experimental.tools import specificationtools
         from experimental.tools import timeexpressiontools
         assert isinstance(anchor, (
-            timeexpressiontools.SymbolicTimespan, 
+            timeexpressiontools.TimespanExpression, 
             type(None), str)), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         if multiplier is not None:
@@ -196,7 +196,7 @@ class SymbolicOffset(AbjadObject):
             requesttools.CommandRequest(
                 'divisions',
                 'Voice 1',
-                timeexpressiontools.SymbolicOffset(
+                timeexpressiontools.OffsetExpression(
                     anchor='red'
                     )
                 )
@@ -218,7 +218,7 @@ class SymbolicOffset(AbjadObject):
             requesttools.CommandRequest(
                 'rhythm',
                 'Voice 1',
-                timeexpressiontools.SymbolicOffset(
+                timeexpressiontools.OffsetExpression(
                     anchor='red'
                     )
                 )
@@ -240,7 +240,7 @@ class SymbolicOffset(AbjadObject):
             requesttools.CommandRequest(
                 'time_signatures',
                 'Voice 1',
-                timeexpressiontools.SymbolicOffset(
+                timeexpressiontools.OffsetExpression(
                     anchor='red'
                     )
                 )

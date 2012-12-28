@@ -51,7 +51,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.score_specification
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. autoattribute:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.start_offset
 
@@ -75,7 +75,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.timespan_modifiers
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. autoattribute:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.voice_name
 
@@ -117,7 +117,7 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.divide_by_ratio
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.happens_during
 
@@ -181,91 +181,91 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.scale
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.select_background_measures
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.select_beats
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.select_divisions
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.select_leaves
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.select_notes_and_chords
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_aggregate
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_articulations
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_chord_treatment
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_divisions
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_duration
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_dynamics
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_marks
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_markup
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_offsets
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_pitch_class_application
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_pitch_class_transform
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_pitch_classes
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_registration
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_rhythm
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_tempo
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_time_signatures
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.starts_after_expr_starts
 
@@ -325,7 +325,7 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.translate_offsets
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.trisects_expr
 
@@ -340,7 +340,7 @@ Special Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__eq__
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.__ge__
 

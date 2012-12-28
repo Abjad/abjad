@@ -39,7 +39,7 @@ def expr_to_request(expr):
         return requesttool.HandlerRequest(expr)
     elif isinstance(expr, (tuple, list, str, rhythmmakertools.RhythmMaker)):
         return requesttools.AbsoluteRequest(expr)
-    elif isinstance(expr, timeexpressiontools.SymbolicTimespan):
+    elif isinstance(expr, timeexpressiontools.TimespanExpression):
         return expr
     else:
         raise TypeError('do not know how to change {!r} to request object.'.format(expr))

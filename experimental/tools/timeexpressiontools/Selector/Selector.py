@@ -5,10 +5,10 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools import timerelationtools
 from experimental.tools.requesttools.Request import Request
-from experimental.tools.timeexpressiontools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
 
 
-class Selector(SymbolicTimespan, Request):
+class Selector(TimespanExpression, Request):
     r'''
 
     Abstract base class from which concrete selectors inherit.
@@ -23,12 +23,12 @@ class Selector(SymbolicTimespan, Request):
     def __init__(self, anchor=None, voice_name=None, time_relation=None, 
         request_modifiers=None, timespan_modifiers=None):
         from experimental.tools import timeexpressiontools
-        assert isinstance(anchor, (timeexpressiontools.SymbolicTimespan, str, type(None))), repr(anchor)
+        assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None))), repr(anchor)
         assert isinstance(voice_name, (str, type(None))), repr(voice_name)
         assert isinstance(time_relation, (timerelationtools.TimeRelation, type(None))), repr(time_relation)
         assert time_relation is None or time_relation.is_fully_unloaded, repr(time_relation)
         Request.__init__(self, request_modifiers=request_modifiers)
-        SymbolicTimespan.__init__(self, timespan_modifiers=timespan_modifiers)
+        TimespanExpression.__init__(self, timespan_modifiers=timespan_modifiers)
         self._anchor = anchor
         assert voice_name is not None
         self._voice_name = voice_name
@@ -80,7 +80,7 @@ class Selector(SymbolicTimespan, Request):
     @property
     def start_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.SymbolicOffset(anchor=self._timespan_abbreviation)
+        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation)
 
     @property
     def start_segment_identifier(self):
@@ -98,7 +98,7 @@ class Selector(SymbolicTimespan, Request):
     @property
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
+        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation, edge=Right)
 
     @property
     def time_relation(self):

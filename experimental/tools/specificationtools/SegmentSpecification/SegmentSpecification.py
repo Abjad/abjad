@@ -233,22 +233,22 @@ class SegmentSpecification(Specification):
         '''Segment specification symbolic start offset::
 
             >>> red_segment.symbolic_start_offset
-            SymbolicOffset(anchor='red', edge=Left)
+            OffsetExpression(anchor='red', edge=Left)
 
         Return symbolic offset.
         '''
-        return timeexpressiontools.SymbolicOffset(anchor=self.specification_name, edge=Left)
+        return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Left)
 
     @property
     def symbolic_stop_offset(self):
         '''Segment specification symbolic stop offset::
 
             >>> red_segment.symbolic_stop_offset
-            SymbolicOffset(anchor='red', edge=Right)
+            OffsetExpression(anchor='red', edge=Right)
 
         Return symbolic offset.
         '''
-        return timeexpressiontools.SymbolicOffset(anchor=self.specification_name, edge=Right)
+        return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Right)
 
     @property
     def time_signatures(self):

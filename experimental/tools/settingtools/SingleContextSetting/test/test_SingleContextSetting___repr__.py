@@ -1,6 +1,6 @@
 from experimental.tools.requesttools.AbsoluteRequest import AbsoluteRequest
 from experimental.tools.settingtools.SingleContextSetting import SingleContextSetting
-from experimental.tools.timeexpressiontools.SymbolicOffset import SymbolicOffset
+from experimental.tools.timeexpressiontools.OffsetExpression import OffsetExpression
 
 
 def test_SingleContextSetting___repr___01():

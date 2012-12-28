@@ -10,7 +10,7 @@ from abjad.tools import timerelationtools
 from abjad.tools.timespantools.Timespan import Timespan
 
 
-class SymbolicTimespan(Timespan):
+class TimespanExpression(Timespan):
     r'''
 
     ::

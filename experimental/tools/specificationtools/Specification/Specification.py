@@ -5,10 +5,10 @@ from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import settingtools
 from experimental.tools import timeexpressiontools
-from experimental.tools.timeexpressiontools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
 
 
-class Specification(SymbolicTimespan):
+class Specification(TimespanExpression):
     r'''.. versionadded:: 1.0
 
     ::
@@ -53,7 +53,7 @@ class Specification(SymbolicTimespan):
     @abc.abstractmethod
     def __init__(self, score_specification, score_template):
         from experimental.tools import specificationtools
-        SymbolicTimespan.__init__(self)
+        TimespanExpression.__init__(self)
         self._score_specification = score_specification
         self._score_template = score_template
         self._score_model = score_template()
@@ -77,7 +77,7 @@ class Specification(SymbolicTimespan):
 
     ### PRIVATE METHODS ###
 
-    # TODO: this can be removed once Specification no longer inherits from SymbolicTimespan
+    # TODO: this can be removed once Specification no longer inherits from TimespanExpression
     def __deepcopy__(self, memo):
         # voice indication is a hack
         return self.select('Voice 1')
@@ -167,12 +167,12 @@ class Specification(SymbolicTimespan):
     @property
     def start_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.SymbolicOffset(anchor=self._timespan_abbreviation)
+        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation)
 
     @property
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.SymbolicOffset(anchor=self._timespan_abbreviation, edge=Right)
+        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation, edge=Right)
 
     ### PUBLIC METHODS ###
 

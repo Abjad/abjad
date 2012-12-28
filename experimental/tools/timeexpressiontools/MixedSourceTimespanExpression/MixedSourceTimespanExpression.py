@@ -1,8 +1,8 @@
 from abjad.tools import abctools
-from experimental.tools.timeexpressiontools.SymbolicTimespan import SymbolicTimespan
+from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
 
 
-class MixedSourceSymbolicTimespan(SymbolicTimespan):
+class MixedSourceTimespanExpression(TimespanExpression):
     r'''
 
     ::
@@ -33,13 +33,13 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
         
     ::
 
-        >>> timespan = timeexpressiontools.MixedSourceSymbolicTimespan(start_offset, stop_offset)
+        >>> timespan = timeexpressiontools.MixedSourceTimespanExpression(start_offset, stop_offset)
 
     ::
 
         >>> z(timespan)
-        timeexpressiontools.MixedSourceSymbolicTimespan(
-            start_offset=timeexpressiontools.SymbolicOffset(
+        timeexpressiontools.MixedSourceTimespanExpression(
+            start_offset=timeexpressiontools.OffsetExpression(
                 anchor=timeexpressiontools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
@@ -48,7 +48,7 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
                         ])
                     )
                 ),
-            stop_offset=timeexpressiontools.SymbolicOffset(
+            stop_offset=timeexpressiontools.OffsetExpression(
                 anchor=timeexpressiontools.BackgroundMeasureSelector(
                     anchor='blue',
                     voice_name='Voice 1',
@@ -68,9 +68,9 @@ class MixedSourceSymbolicTimespan(SymbolicTimespan):
     def __init__(self, start_offset=None, stop_offset=None, timespan_modifiers=None):
         from experimental.tools import specificationtools
         from experimental.tools import timeexpressiontools
-        assert isinstance(start_offset, (timeexpressiontools.SymbolicOffset, type(None))), repr(start_offset)
-        assert isinstance(stop_offset, (timeexpressiontools.SymbolicOffset, type(None))), repr(stop_offset)
-        SymbolicTimespan.__init__(self, timespan_modifiers=timespan_modifiers)
+        assert isinstance(start_offset, (timeexpressiontools.OffsetExpression, type(None))), repr(start_offset)
+        assert isinstance(stop_offset, (timeexpressiontools.OffsetExpression, type(None))), repr(stop_offset)
+        TimespanExpression.__init__(self, timespan_modifiers=timespan_modifiers)
         self._start_offset = start_offset
         self._stop_offset = stop_offset
 

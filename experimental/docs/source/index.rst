@@ -306,7 +306,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    tools/timeexpressiontools/Selector/Selector
-   tools/timeexpressiontools/SymbolicTimespan/SymbolicTimespan
+   tools/timeexpressiontools/TimespanExpression/TimespanExpression
 
 .. rubric:: concrete classes
 
@@ -317,7 +317,7 @@ Unstable packages (load manually)
    tools/timeexpressiontools/BeatSelector/BeatSelector
    tools/timeexpressiontools/CounttimeComponentSelector/CounttimeComponentSelector
    tools/timeexpressiontools/DivisionSelector/DivisionSelector
-   tools/timeexpressiontools/MixedSourceSymbolicTimespan/MixedSourceSymbolicTimespan
+   tools/timeexpressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
+   tools/timeexpressiontools/OffsetExpression/OffsetExpression
    tools/timeexpressiontools/ScoreSelector/ScoreSelector
    tools/timeexpressiontools/SegmentSelector/SegmentSelector
-   tools/timeexpressiontools/SymbolicOffset/SymbolicOffset

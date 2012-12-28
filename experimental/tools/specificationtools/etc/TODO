@@ -76,10 +76,10 @@
 
 15. Audit to get rid of string-based keys everywhere in interpreter.
 
-16. Extend SymbolicOffset with an 'offset_request_modifiers' stack.
-    Modification methods include SymbolicOffset.translate() and possibly others.
+16. Extend OffsetExpression with an 'offset_request_modifiers' stack.
+    Modification methods include OffsetExpression.translate() and possibly others.
 
-17. Make Specification aggregate a symbolic timespan rather than inheriting from SymbolicTimespan.
+17. Make Specification aggregate a symbolic timespan rather than inheriting from TimespanExpression.
     Remove Specification.__deepcopy__ override afterwards.
 
 18. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
@@ -172,24 +172,16 @@
 31. Change Selector._get_offsets() to Selector._get_timespan().
     Return timespan instead of offset pair.
 
-32. Change timeexpressiontools to timeexpressiontools.
-    We really want to have 'timespan' always everywhere mean only Timespan.
-    Removing the idea of (qualified) 'symbolic' timespan will help this the most.
-    Rename ...
-        SymbolicTimespan ==> TimespanExpression
-        SymbolicOffset ==> OffsetExpression
-        MixedSourceSymbolicTimespan ==> MixedSourceTimespanExpression
-    ... to do this.
-    Then migrate all selector classes to new selectortools package.
+32. Migrate all selector classes to new selectortools package.
     This will clean up both timeexpressiontools package and selectortools package.
 
-33. Extract the "set interface" from SymbolicTimespan.
+33. Extract the "set interface" from TimespanExpression.
     Implement "set interface" in new SettingMaker class.
-    It will no longer be necessary for SymbolicTimespan to inherit from SettingMaker.
+    It will no longer be necessary for TimespanExpression to inherit from SettingMaker.
     Instead some class lower in the hierarchy can (multiply) inherit from SettingMaker.
     Perhaps Selector can inherit from SettingMaker.
-    This will clean up SymbolicTimespan significantly.
-    SymbolicTimespan interface will then map almost one-to-one to Timespan interface.
+    This will clean up TimespanExpression significantly.
+    TimespanExpression interface will then map almost one-to-one to Timespan interface.
 
 34. Rename Request to RequestMaker to parallel SettingMaker?
 

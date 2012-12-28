@@ -24,7 +24,7 @@ class Command(Timespan):
 
     def __init__(self, request, context_name, start_offset, stop_offset, fresh=None):
         from experimental.tools import timeexpressiontools
-        assert isinstance(request, (requesttools.Request, timeexpressiontools.SymbolicTimespan)), repr(request)
+        assert isinstance(request, (requesttools.Request, timeexpressiontools.TimespanExpression)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         start_offset = durationtools.Offset(start_offset)
         stop_offset = durationtools.Offset(stop_offset)

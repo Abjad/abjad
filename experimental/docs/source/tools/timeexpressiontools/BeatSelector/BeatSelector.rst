@@ -47,7 +47,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.score_specification
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. autoattribute:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.start_offset
 
@@ -71,7 +71,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.timespan_modifiers
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. autoattribute:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.voice_name
 
@@ -113,7 +113,7 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.divide_by_ratio
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.happens_during
 
@@ -177,91 +177,91 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.scale
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.select_background_measures
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.select_beats
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.select_divisions
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.select_leaves
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.select_notes_and_chords
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_aggregate
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_articulations
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_chord_treatment
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_divisions
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_duration
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_dynamics
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_marks
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_markup
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_offsets
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_pitch_class_application
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_pitch_class_transform
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_pitch_classes
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_registration
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_rhythm
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_tempo
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.set_time_signatures
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.starts_after_expr_starts
 
@@ -321,7 +321,7 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.translate_offsets
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.trisects_expr
 
@@ -336,7 +336,7 @@ Special Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.__eq__
 
-    Inherited from :py:class:`timeexpressiontools.SymbolicTimespan <experimental.tools.timeexpressiontools.SymbolicTimespan.SymbolicTimespan.SymbolicTimespan>`
+    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
 .. automethod:: experimental.tools.timeexpressiontools.BeatSelector.BeatSelector.BeatSelector.__ge__
 

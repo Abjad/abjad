@@ -27,7 +27,7 @@ class CommandRequest(Request):
         requesttools.CommandRequest(
             'divisions',
             'Voice 1',
-            timeexpressiontools.SymbolicOffset(
+            timeexpressiontools.OffsetExpression(
                 anchor=timeexpressiontools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
@@ -51,7 +51,7 @@ class CommandRequest(Request):
     def __init__(self, attribute, voice_name, symbolic_offset, request_modifiers=None):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(voice_name, str), repr(voice_name)
-        assert isinstance(symbolic_offset, timeexpressiontools.SymbolicOffset)
+        assert isinstance(symbolic_offset, timeexpressiontools.OffsetExpression)
         Request.__init__(self, request_modifiers=request_modifiers)
         self._attribute = attribute
         self._voice_name = voice_name
@@ -86,7 +86,7 @@ class CommandRequest(Request):
         '''Command request symbolic offset specified by user.
 
             >>> z(command_request.symbolic_offset)
-            timeexpressiontools.SymbolicOffset(
+            timeexpressiontools.OffsetExpression(
                 anchor=timeexpressiontools.BackgroundMeasureSelector(
                     anchor='red',
                     voice_name='Voice 1',
