@@ -224,18 +224,21 @@ class ConcreteInterpreter(Interpreter):
             return division_region_expressions
         elif isinstance(division_region_command.request, selectortools.DivisionSelector):
             division_selector = division_region_command.request
-            division_region_expressions = self.division_selector_to_division_region_expressions(division_selector)
-            if division_region_expressions is None:
+            division_region_expression = self.division_selector_to_division_region_expression(division_selector)
+            #self._debug(division_region_expression, 'drx')
+            if division_region_expression is None:
                 return
-            # NEXT: working here
-            assert division_region_expressions.all_are_contiguous, repr(division_region_expressions)
-            for division_region_expression in division_region_expressions:
-                division_region_expression._voice_name = voice_name
-            addendum = division_region_command.start_offset - division_region_expressions[0].start_offset
-            division_region_expressions.translate_timespans(addendum)
-            division_region_expressions.set_offsets(stop_offset=division_region_command.stop_offset)
-            division_region_expressions = list(division_region_expressions)
-            return division_region_expressions
+            divisions = division_region_expression.divisions[:]
+            region_duration = division_region_command.duration
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            divisions = [divisiontools.Division(x) for x in divisions]
+            # TODO: implement OffsetPositionedDivisionList.set() to handle the following line cleanly
+            division_region_expression.division_list._divisions = divisions
+            #self._debug(division_region_expression, 'drx')
+            addendum = division_region_command.start_offset - division_region_expression.start_offset
+            division_region_expression = division_region_expression.translate_offsets(
+                start_offset_translation=addendum, stop_offset_translation=addendum)
+            return [division_region_expression]
         elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
             time_signatures = self.background_measure_selector_to_time_signatures(division_region_command.request)
             divisions = [divisiontools.Division(x) for x in time_signatures]
@@ -249,7 +252,7 @@ class ConcreteInterpreter(Interpreter):
             stop_offset=division_region_command.stop_offset
             )]
 
-    def division_selector_to_division_region_expressions(self, division_selector):
+    def division_selector_to_division_region_expression(self, division_selector):
         assert isinstance(division_selector, selectortools.DivisionSelector)
         #self._debug(division_selector, 'division selector')
         anchor = division_selector.anchor
@@ -260,13 +263,11 @@ class ConcreteInterpreter(Interpreter):
             source_timespan = anchor._get_timespan(self.score_specification, voice_name)
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
-        #self._debug(division_region_expressions, 'division region expressions')
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
             timespan_time_relation)
         division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
-        #self._debug(division_region_expressions, 'drx')
         if not division_region_expressions:
             return
         if not division_region_expressions.all_are_contiguous:
@@ -275,19 +276,20 @@ class ConcreteInterpreter(Interpreter):
         trimmed_division_region_expressions = timespantools.TimespanInventory(
             trimmed_division_region_expressions)
         trimmed_division_region_expressions.keep_material_that_intersects_timespan(source_timespan)
-
-        # NEXT: working here to remove the following two calls
-        start_offset = trimmed_division_region_expressions.start_offset
-        trimmed_division_region_expressions, start_offset = division_selector._apply_request_modifiers(
-            trimmed_division_region_expressions, start_offset)
-
         trimmed_division_region_expressions.sort() 
-        #assert len(trimmed_division_region_expressions) == 1
-        # NEXT: figure out a way to fuse the inventory contents back to a single division region expression.
-        #       Then extract divisions from division region expression.
-        #       Then apply request modifications to divisions.
-        #       Then return list of raw divisions or possibly newly created single division region expression.
-        return trimmed_division_region_expressions
+        assert trimmed_division_region_expressions.all_are_contiguous
+        trimmed_division_region_expressions.fuse()
+        assert len(trimmed_division_region_expressions) == 1
+        final_expression = trimmed_division_region_expressions[0]
+        divisions = trimmed_division_region_expressions[0].divisions
+        start_offset = trimmed_division_region_expressions[0].start_offset
+        divisions, start_offset = division_selector._apply_request_modifiers(divisions, start_offset)
+        result = settingtools.OffsetPositionedDivisionList(
+            divisions, 
+            voice_name=final_expression.voice_name,
+            start_offset=start_offset
+            )
+        return result
 
     def dump_rhythm_region_expressions_into_voices(self):
         for voice in iterationtools.iterate_voices_in_expr(self.score):

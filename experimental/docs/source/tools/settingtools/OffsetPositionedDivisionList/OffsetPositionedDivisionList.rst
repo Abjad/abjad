@@ -205,8 +205,6 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.translate_offsets
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
-
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.trisects_expr
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`

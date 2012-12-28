@@ -283,13 +283,13 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
+					\set stemRightBeamCount = #1
+					c'32
 				}
 				{
-					\set stemLeftBeamCount = #0
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #3
-					c'32 [
+					c'32
 					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #3
 					c'32
@@ -377,13 +377,13 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
+					\set stemRightBeamCount = #1
+					c'32
 				}
 				{
-					\set stemLeftBeamCount = #0
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #3
-					c'32 [
+					c'32
 					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #3
 					c'32
@@ -455,6 +455,46 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #1
+					c'32
+				}
+				{
+					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #1
+					c'32
+				}
+				{
+					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #0
 					c'32 ]
 				}
@@ -495,17 +535,11 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
+					\set stemRightBeamCount = #1
+					c'32
 				}
 				{
-					\set stemLeftBeamCount = #0
-					\set stemRightBeamCount = #3
-					c'32 [
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
@@ -522,40 +556,6 @@
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #3
 					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #1
-					c'32
-				}
-				{
-					\set stemLeftBeamCount = #1
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
-				}
-				{
-					\set stemLeftBeamCount = #0
-					\set stemRightBeamCount = #3
-					c'32 [
 					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #3
 					c'32
@@ -627,26 +627,6 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
-				}
-				{
-					\set stemLeftBeamCount = #0
-					\set stemRightBeamCount = #3
-					c'32 [
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #3
-					c'32
-					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #1
 					c'32
 				}
@@ -687,6 +667,26 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #1
+					c'32
+				}
+				{
+					\set stemLeftBeamCount = #1
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
+					\set stemRightBeamCount = #3
+					c'32
+					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #0
 					c'32 ]
 				}
@@ -721,13 +721,13 @@
 					\set stemRightBeamCount = #3
 					c'32
 					\set stemLeftBeamCount = #3
-					\set stemRightBeamCount = #0
-					c'32 ]
+					\set stemRightBeamCount = #1
+					c'32
 				}
 				{
-					\set stemLeftBeamCount = #0
+					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #3
-					c'32 [
+					c'32
 					\set stemLeftBeamCount = #3
 					\set stemRightBeamCount = #3
 					c'32
