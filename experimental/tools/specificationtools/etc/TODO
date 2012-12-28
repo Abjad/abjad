@@ -173,3 +173,7 @@
     Probably is redundant. But better to leave the redundancy in place until
     the two different uses of 'command' disambiguate (ie, 'region command' 
     versus 'command request'.)
+
+32. Implement Timespan.split(offset) to return zero, one or two newly constructed timespans.
+
+33. Implement Spanner.timespan.

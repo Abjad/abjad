@@ -62,6 +62,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
     ### PUBLIC METHODS ###
     
+    # TODO: rename to split()
     def fracture(self, slice_index):
         assert isinstance(slice_index, int)
         left_division_list, right_division_list = self.division_list.fracture(slice_index)
@@ -70,6 +71,13 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         right_result = type(self)(
             right_division_list, voice_name=self.voice_name, start_offset=left_result.stop_offset)
         return left_result, right_result
+
+    def fuse(self, expr):
+        assert isinstance(expr, type(self)), repr(expr)
+        assert self.stops_when_expr_starts(expr), repr(expr)
+        assert self.voice_name == expr.voice_name, repr(expr)
+        division_list = self.division_list + expr.division_list
+        result = type(self)(division_list, voice_name=self.voice_name, start_offset=self.start_offset)
 
     def reverse(self):
         self.division_list.reverse()

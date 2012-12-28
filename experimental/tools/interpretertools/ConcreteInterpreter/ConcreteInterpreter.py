@@ -571,7 +571,7 @@ class ConcreteInterpreter(Interpreter):
         if rhythm_region_expression.stop_offset < stop_offset:
             rhythm_region_expression.repeat_to_stop_offset(stop_offset)
         elif stop_offset < rhythm_region_expression.stop_offset:
-            rhythm_region_expression.trim_to_stop_offset(stop_offset)
+            rhythm_region_expression.set_offsets(stop_offset=stop_offset)
         return rhythm_region_expression
 
     def make_rhythm_region_expressions(self):
