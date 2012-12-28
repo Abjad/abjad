@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools import notetools
+from abjad.tools import timespantools
 from abjad.tools.timespantools.Timespan import Timespan
 
 
@@ -80,7 +81,9 @@ class TimespanExpression(Timespan):
 
     ### PRIVATE METHODS ###
 
-    def _apply_timespan_modifiers(self, start_offset, stop_offset):
+    def _apply_timespan_modifiers(self, timespan):
+        assert isinstance(timespan, timespantools.Timespan)
+        start_offset, stop_offset = timespan.offsets
         evaluation_context = {
             'self': self,
             'Duration': durationtools.Duration,
@@ -92,7 +95,7 @@ class TimespanExpression(Timespan):
             timespan_modifier = timespan_modifier.replace('original_stop_offset', repr(stop_offset))
             start_offset, stop_offset = eval(timespan_modifier, evaluation_context)
             assert start_offset <= stop_offset
-        return start_offset, stop_offset
+        return timespantools.Timespan(start_offset, stop_offset)
         
     def _divide_by_ratio(self, start_offset, stop_offset, ratio, the_part):
         original_start_offset, original_stop_offset = start_offset, stop_offset

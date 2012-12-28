@@ -178,5 +178,3 @@
         return result
     ... to a single line.
     This will streamline Request.
-
-33. Change _apply_timespan_modifiers(start_offset, stop_offset) to _apply_timespan_modifiers(timespan).

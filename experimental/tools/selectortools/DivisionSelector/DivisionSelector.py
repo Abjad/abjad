@@ -71,5 +71,6 @@ class DivisionSelector(Selector):
         divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
         start_offset = divisions[0].start_offset
         stop_offset = divisions[-1].stop_offset
-        start_offset, stop_offset = self._apply_timespan_modifiers(start_offset, stop_offset)
-        return timespantools.Timespan(start_offset, stop_offset)
+        timespan = timespantools.Timespan(start_offset, stop_offset)
+        timespan = self._apply_timespan_modifiers(timespan)
+        return timespan

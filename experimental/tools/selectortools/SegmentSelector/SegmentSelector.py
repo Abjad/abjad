@@ -99,10 +99,10 @@ class SegmentSelector(Selector):
 
         Return offset.
         '''
-        timespan = score_specification.segment_identifier_expression_to_timespan(
-            self.start_segment_identifier)
-        offsets = self._apply_timespan_modifiers(*timespan.offsets)
-        return timespantools.Timespan(*offsets)
+        start_segment_identifier = self.start_segment_identifier
+        timespan = score_specification.segment_identifier_expression_to_timespan(start_segment_identifier)
+        timespan = self._apply_timespan_modifiers(timespan)
+        return timespan
 
     def _make_identifier_expression(self, segment_name, addendum):
         assert isinstance(segment_name, str)
