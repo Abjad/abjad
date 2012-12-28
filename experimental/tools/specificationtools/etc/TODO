@@ -136,32 +136,35 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-28. Implement BeatSelector._get_offsets().
+28. Compress ...
+        result = copy.deepcopy(self)
+        result.request_modifiers.append(modifier)
+        return result
+    ... to a single line.
+    This will streamline Request.
 
-29. Author tests to show each request modifier applied to each selector.
-    Four selectors times six request methods each gives ...
-        measures.__getitem__()
-        measures.partition_objects_by_ratio()
-        measures.partition_objects_by_ratio_of_durations()
-        measures.repeat_to_length()
-        measures.reverse()
-        measures.rotate()
+29. Implement BeatSelector._get_offsets().
+
+30. Author tests to show each request modifier applied to each selector.
+    Remaining tests to author:
         divisions.__getitem__()    
         divisions.partition_objects_by_ratio()
         divisions.partition_objects_by_ratio_of_durations()
+        divisions.repeat_to_duration()
         divisions.repeat_to_length()
         divisions.reverse()
         divisions.rotate()
         beats.__getitem__()
         beats.partition_objects_by_ratio()
         beats.partition_objects_by_ratio_of_durations()
+        beats.repeat_to_duration()
         beats.repeat_to_length()
         beats.reverse()
         beats.rotate()
         leaves.__getitem__()
         leaves.partition_objects_by_ratio()
         leaves.partition_objects_by_ratio_of_durations()
+        leaves.repeat_to_duration()
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
-    ... a total of 24 tests.

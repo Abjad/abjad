@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import measuretools
 from abjad.tools import sequencetools
 from experimental.tools.symbolictimetools.Selector import Selector
@@ -75,6 +76,7 @@ class BackgroundMeasureSelector(Selector):
         '''
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         time_signatures = segment_specification.time_signatures[:]
+        time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         segment_name = segment_specification.segment_name
         start_offset = score_specification.segment_offset_to_score_offset(segment_name, 0)
         time_signatures, start_offset = self._apply_request_modifiers(time_signatures, start_offset)

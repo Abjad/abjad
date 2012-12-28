@@ -134,6 +134,11 @@ class Request(AbjadObject):
         new_start_offset = original_start_offset + duration_before
         return selected_part, new_start_offset
 
+    def _repeat_to_duration(self, elements, duration, original_start_offset):
+        elements = sequencetools.repeat_sequence_to_weight_exactly(elements, duration)
+        new_start_offset = original_start_offset
+        return elements, new_start_offset
+
     def _repeat_to_length(self, elements, length, original_start_offset):
         elements = sequencetools.repeat_sequence_to_length(elements, length)
         new_start_offset = original_start_offset
@@ -201,6 +206,15 @@ class Request(AbjadObject):
             selector.request_modifiers.append(modifier)
             result.append(selector)
         return tuple(result)
+
+    def repeat_to_duration(self, duration):
+        '''Return copy of request with appended modifier.
+        '''
+        duration = durationtools.Duration(duration)
+        modifier = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
+        result = copy.deepcopy(self)
+        result.request_modifiers.append(modifier)
+        return result
 
     def repeat_to_length(self, length):
         '''Return copy of request with appended modifier.

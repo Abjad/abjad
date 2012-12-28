@@ -56,6 +56,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError(attribute)
 
+    # TODO: why is this not bound to BackgroundMeasureSelector?
     def background_measure_selector_to_time_signatures(self, selector):
         assert isinstance(selector, symbolictimetools.BackgroundMeasureSelector)
         segment_specification = self.get_start_segment_specification(selector.start_segment_identifier)
@@ -66,7 +67,9 @@ class ConcreteInterpreter(Interpreter):
         absolute_request = single_context_setting.request
         if not isinstance(absolute_request, requesttools.AbsoluteRequest):
             raise Exception('cyclic specification error: {!r}'.format(absolute_request))
-        time_signatures, dummy = selector._apply_request_modifiers(absolute_request.payload, None)
+        time_signatures = absolute_request.payload
+        time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
+        time_signatures, dummy = selector._apply_request_modifiers(time_signatures, None)
         return time_signatures
 
     def calculate_score_and_segment_durations(self):

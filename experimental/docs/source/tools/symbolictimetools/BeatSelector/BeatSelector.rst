@@ -159,6 +159,10 @@ Methods
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
+.. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.repeat_to_duration
+
+    Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
+
 .. automethod:: experimental.tools.symbolictimetools.BeatSelector.BeatSelector.BeatSelector.repeat_to_length
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
