@@ -47,11 +47,11 @@ class InheritanceGraph(AbjadObject):
 
     __slots__ = (
         '_addresses',
-        '_class_lookup',
+        '_child_parents_mapping',
         '_immediate_klasses',
-        '_inheritance_graph',
         '_lineage_addresses',
         '_lineage_klasses',
+        '_parent_children_mapping',
         '_recurse_into_submodules',
         '_root_addresses',
         '_root_klasses'
@@ -70,76 +70,137 @@ class InheritanceGraph(AbjadObject):
         ):
 
         self._recurse_into_submodules = bool(recurse_into_submodules)
-        visited_modules = set([])
-
-        def submodule_recurse(module):
-            result = []
-            for obj in module.__dict__.values():
-                if isinstance(obj, types.TypeType):
-                    result.append(obj)
-                elif isinstance(obj, types.ModuleType) and obj not in visited_modules:
-                    visited_modules.add(obj)
-                    result.extend(submodule_recurse(obj))
-            return result 
-
-        def collect_klasses(addresses, recurse_into_submodules):
-            all_klasses = set([])
-            immediate_klasses = set([])
-            cached_addresses = []
-            assert 0 < len(addresses)
-            for x in addresses:
-                if isinstance(x, (types.TypeType, types.InstanceType)) or \
-                    (isinstance(x, tuple) and len(x) == 2):
-                    if isinstance(x, types.TypeType):
-                        klass = x
-                    elif isinstance(x, types.InstanceType):
-                        klass = x.__class__        
-                    else:
-                        module_name, class_name = x
-                        module = importlib.import_module(module_name)
-                        klass = getattr(module, class_name)
-                    all_klasses.add(klass)
-                    immediate_klasses.add(klass)
-                    address = (klass.__module__, klass.__name__)
-                elif isinstance(x, (str, types.ModuleType)):
-                    if isinstance(x, types.ModuleType):
-                        module = x
-                    else:
-                        module = importlib.import_module(x)
-                    for y in module.__dict__.itervalues():
-                        if isinstance(y, types.TypeType):
-                            all_klasses.add(y)
-                            immediate_klasses.add(y)
-                        elif isinstance(y, types.ModuleType) and recurse_into_submodules:
-                            all_klasses.update(submodule_recurse(y))
-                    address = module.__name__
-                cached_addresses.append(address)
-            return all_klasses, immediate_klasses, tuple(cached_addresses)
 
         # main addresses
         if addresses is None:
             addresses = ('abjad',)
-        main_all_klasses, main_immediate_klasses, main_cached_addresses = \
-            collect_klasses(addresses, self.recurse_into_submodules)
+        all_main_klasses, main_immediate_klasses, main_cached_addresses = \
+            self._collect_klasses(addresses, self.recurse_into_submodules)
         self._addresses = main_cached_addresses
 
         # lineage addresses
         if lineage_addresses is not None: 
-            lineage_all_klasses, lineage_immediate_klasses, lineage_cached_addresses = \
-                collect_klasses(lineage_addresses, False)
+            all_lineage_klasses, lineage_immediate_klasses, lineage_cached_addresses = \
+                self._collect_klasses(lineage_addresses, False)
             self._lineage_addresses = lineage_cached_addresses
+            self._lineage_klasses = frozenset(all_lineage_klasses)
         else:
             self._lineage_addresses = None
+            self._lineage_klasses = frozenset([])
 
         # root addresses
         if root_addresses is not None:
-            root_all_klasses, root_immediate_klasses, root_cached_addresses = \
-                collect_klasses(root_addresses, False)
+            all_root_klasses, root_immediate_klasses, root_cached_addresses = \
+                self._collect_klasses(root_addresses, False)
             self._root_addresses = root_cached_addresses
+            self._root_klasses = frozenset(all_root_klasses)
         else:
             self._root_addresses = None
+            self._root_klasses = frozenset([object])
 
-        # inspect.getmro()
+        child_parents_mapping, parent_children_mapping = self._build_basic_mappings(all_main_klasses)
+        self._strip_nonlineage_klasses(child_parents_mapping, parent_children_mapping)
+
+        self._child_parents_mapping = child_parents_mapping
+        self._parent_children_mapping = parent_children_mapping
+
+    ### PRIVATE METHODS ###
+
+    def _build_basic_mappings(self, klasses):
+        child_parents_mapping = {}
+        parent_children_mapping = {}
+        invalid_klasses = set([])
+        def recurse(klass):
+            if klass in child_parents_mapping:
+                return True
+            elif klass in invalid_klasses:
+                return False
+            mro = list(inspect.getmro(klass))
+            while len(mro) and mro[-1] not in self.root_klasses:
+                mro.pop()
+            if not mro:
+                invalid_klasses.add(klass)
+                return False
+            parents = [x for x in klass.__bases__ if recurse(x)]
+            child_parents_mapping[klass] = set(parents)
+            parent_children_mapping[klass] = set([])
+            for parent in parents:
+                parent_children_mapping[parent].add(klass)
+            return True
+        for klass in klasses:
+            recurse(klass)        
+        return child_parents_mapping, parent_children_mapping
+
+    def _collect_klasses(self, addresses, recurse_into_submodules):
+        all_klasses = set([])
+        cached_addresses = []
+        immediate_klasses = set([])
+        visited_modules = set([])
+        assert 0 < len(addresses)
+        for x in addresses:
+            if isinstance(x, (types.TypeType, types.InstanceType)) or \
+                (isinstance(x, tuple) and len(x) == 2):
+                if isinstance(x, types.TypeType):
+                    klass = x
+                elif isinstance(x, types.InstanceType):
+                    klass = x.__class__        
+                else:
+                    module_name, class_name = x
+                    module = importlib.import_module(module_name)
+                    klass = getattr(module, class_name)
+                all_klasses.add(klass)
+                immediate_klasses.add(klass)
+                address = (klass.__module__, klass.__name__)
+            elif isinstance(x, (str, types.ModuleType)):
+                if isinstance(x, types.ModuleType):
+                    module = x
+                else:
+                    module = importlib.import_module(x)
+                for y in module.__dict__.itervalues():
+                    if isinstance(y, types.TypeType):
+                        all_klasses.add(y)
+                        immediate_klasses.add(y)
+                    elif isinstance(y, types.ModuleType) and recurse_into_submodules:
+                        all_klasses.update(self._submodule_recurse(y, visited_modules))
+                address = module.__name__
+            cached_addresses.append(address)
+        return all_klasses, immediate_klasses, tuple(cached_addresses)
+
+    def _strip_nonlineage_klasses(self, child_parents_mapping, parent_children_mapping):
+        if not self.lineage_klasses:
+            return
+        def recurse_upward(klass, invalid_klasses):
+            for parent in child_parents_mapping[klass]:
+                if parent in invalid_klasses:
+                    invalid_klasses.remove(parent)
+                    recurse_upward(parent, invalid_klasses)
+
+        def recurse_downward(klass, invalid_klasses):
+            for child in parent_children_mapping[klass]:
+                if child in invalid_klasses:
+                    invalid_klasses.remove(child)
+                    recurse_downward(child, invalid_klasses)
+        invalid_klasses = set(child_parents_mapping.keys() + parent_children_mapping.keys())
+        for klass in self.lineage_klasses:
+            recurse_upward(klass, invalid_klasses)
+            recurse_downward(klass, invalid_klasses)
+        for klass in invalid_klasses:
+            for child in parent_children_mapping[klass]:
+                child_parents_mapping[child].remove(klass)
+            for parent in child_parents_mapping[klass]:
+                parent_children_mapping[parent].remove(klass)
+            del(parent_children_mapping[klass])
+            del(child_parents_mapping[klass]) 
+
+    def _submodule_recurse(self, module, visited_modules):
+        result = []
+        for obj in module.__dict__.values():
+            if isinstance(obj, types.TypeType):
+                result.append(obj)
+            elif isinstance(obj, types.ModuleType) and obj not in visited_modules:
+                visited_modules.add(obj)
+                result.extend(self._submodule_recurse(obj, visited_modules))
+        return result 
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -148,8 +209,8 @@ class InheritanceGraph(AbjadObject):
         return self._addresses
 
     @property
-    def class_lookup(self):
-        return self._class_lookup
+    def child_parents_mapping(self):
+        return self._child_parents_mapping
 
     @property
     def graphviz_format(self):
@@ -184,16 +245,16 @@ class InheritanceGraph(AbjadObject):
         return self._immediate_klasses
 
     @property
-    def inheritance_graph(self):
-        return self._inheritance_graph
-
-    @property
     def lineage_addresses(self):
         return self._lineage_addresses
 
     @property
     def lineage_klasses(self):
         return self._lineage_klasses
+
+    @property
+    def parent_children_mapping(self):
+        return self._parent_children_mapping
 
     @property
     def recurse_into_submodules(self):

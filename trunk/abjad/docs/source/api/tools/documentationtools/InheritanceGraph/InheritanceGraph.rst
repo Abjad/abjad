@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.addresses
 
-.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.class_lookup
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.child_parents_mapping
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.graphviz_format
 
@@ -19,11 +19,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.immediate_klasses
 
-.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.inheritance_graph
-
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_addresses
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.lineage_klasses
+
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.parent_children_mapping
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.recurse_into_submodules
 
