@@ -87,6 +87,11 @@ class Request(AbjadObject):
             elements, start_offset = evaluation_context['result']
         return elements, start_offset
 
+    def _copy_and_append_modifier(self, modifier):
+        result = copy.deepcopy(self)
+        result.request_modifiers.append(modifier)
+        return result
+
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty request_modifiers list.
         '''
@@ -187,24 +192,20 @@ class Request(AbjadObject):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
-            selector = copy.deepcopy(self)
             modifier = \
                 'result = self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
             modifier = modifier.format(ratio, part)
-            selector.request_modifiers.append(modifier)
-            result.append(selector)
+            result.append(self._copy_and_append_modifier(modifier))
         return tuple(result)
 
     def partition_objects_by_ratio_of_durations(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
-            selector = copy.deepcopy(self)
             modifier = \
                 'result = self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             modifier = modifier.format(ratio, part)
-            selector.request_modifiers.append(modifier)
-            result.append(selector)
+            result.append(self._copy_and_append_modifier(modifier))
         return tuple(result)
 
     def repeat_to_duration(self, duration):
@@ -212,26 +213,20 @@ class Request(AbjadObject):
         '''
         duration = durationtools.Duration(duration)
         modifier = 'result = self._repeat_to_duration(elements, {!r}, start_offset)'.format(duration)
-        result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
-        return result
+        return self._copy_and_append_modifier(modifier)
 
     def repeat_to_length(self, length):
         '''Return copy of request with appended modifier.
         '''
         assert mathtools.is_nonnegative_integer(length)
         modifier = 'result = self._repeat_to_length(elements, {!r}, start_offset)'.format(length)
-        result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
-        return result
+        return self._copy_and_append_modifier(modifier)
         
     def reverse(self):
         '''Return copy of request with appended modifier.
         '''
         modifier = 'result = self._reverse(elements, start_offset)'
-        result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
-        return result
+        return self._copy_and_append_modifier(modifier)
 
     def rotate(self, index):
         '''Return copy of request with appended modifier.
@@ -239,6 +234,4 @@ class Request(AbjadObject):
         from experimental.tools import settingtools
         assert isinstance(index, (int, durationtools.Duration, settingtools.RotationIndicator))
         modifier = 'result = self._rotate(elements, {!r}, start_offset)'.format(index)    
-        result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
-        return result
+        return self._copy_and_append_modifier(modifier)

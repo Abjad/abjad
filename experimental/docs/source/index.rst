@@ -10,6 +10,8 @@ Demos and example packages
 :py:mod:`microlanguage <('abjad.tools.', 'abjad.demos.')microlanguage>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -18,13 +20,14 @@ Demos and example packages
 :py:mod:`windungen <('abjad.tools.', 'abjad.demos.')windungen>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
 .. toctree::
    :maxdepth: 1
 
    demos/windungen/WindungenScoreTemplate/WindungenScoreTemplate
 
-
---------
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -44,14 +47,15 @@ Unstable packages (load manually)
 :py:mod:`breakpointtools <('abjad.tools.', 'abjad.demos.')breakpointtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
    tools/breakpointtools/BreakPoint/BreakPoint
    tools/breakpointtools/BreakPointFunctionSet/BreakPointFunctionSet
 
-
---------
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -60,6 +64,8 @@ Unstable packages (load manually)
 
 :py:mod:`constrainttools <('abjad.tools.', 'abjad.demos.')constrainttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -77,6 +83,8 @@ Unstable packages (load manually)
 :py:mod:`divisiontools <('abjad.tools.', 'abjad.demos.')divisiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -86,6 +94,8 @@ Unstable packages (load manually)
 :py:mod:`handlertools <('abjad.tools.', 'abjad.demos.')handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -94,8 +104,7 @@ Unstable packages (load manually)
    tools/handlertools/dynamics/DynamicHandler/DynamicHandler
    tools/handlertools/pitch/PitchHandler/PitchHandler
 
-
---------
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -115,6 +124,8 @@ Unstable packages (load manually)
 :py:mod:`helpertools <('abjad.tools.', 'abjad.demos.')helpertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -123,8 +134,7 @@ Unstable packages (load manually)
    tools/helpertools/KlassInventory/KlassInventory
    tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
 
-
---------
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -142,13 +152,14 @@ Unstable packages (load manually)
 :py:mod:`interpretertools <('abjad.tools.', 'abjad.demos.')interpretertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
    tools/interpretertools/Interpreter/Interpreter
 
-
---------
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -157,6 +168,8 @@ Unstable packages (load manually)
 
 :py:mod:`lyrictools <('abjad.tools.', 'abjad.demos.')lyrictools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -171,6 +184,8 @@ Unstable packages (load manually)
 :py:mod:`metricmodulationtools <('abjad.tools.', 'abjad.demos.')metricmodulationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: functions
+
 .. toctree::
    :maxdepth: 1
 
@@ -178,6 +193,8 @@ Unstable packages (load manually)
 
 :py:mod:`parsertools <('abjad.tools.', 'abjad.demos.')parsertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -187,13 +204,14 @@ Unstable packages (load manually)
 :py:mod:`requesttools <('abjad.tools.', 'abjad.demos.')requesttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
    tools/requesttools/Request/Request
 
-
---------
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -203,8 +221,7 @@ Unstable packages (load manually)
    tools/requesttools/HandlerRequest/HandlerRequest
    tools/requesttools/StatalServerRequest/StatalServerRequest
 
-
---------
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -214,6 +231,8 @@ Unstable packages (load manually)
 :py:mod:`segmenttools <('abjad.tools.', 'abjad.demos.')segmenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -221,6 +240,8 @@ Unstable packages (load manually)
 
 :py:mod:`selectortools <('abjad.tools.', 'abjad.demos.')selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -236,6 +257,8 @@ Unstable packages (load manually)
 :py:mod:`settingtools <('abjad.tools.', 'abjad.demos.')settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -243,8 +266,7 @@ Unstable packages (load manually)
    tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    tools/settingtools/Setting/Setting
 
-
---------
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -263,13 +285,14 @@ Unstable packages (load manually)
 :py:mod:`specificationtools <('abjad.tools.', 'abjad.demos.')specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
 .. toctree::
    :maxdepth: 1
 
    tools/specificationtools/Specification/Specification
 
-
---------
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -283,6 +306,8 @@ Unstable packages (load manually)
 :py:mod:`statalservertools <('abjad.tools.', 'abjad.demos.')statalservertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
 .. toctree::
    :maxdepth: 1
 
@@ -290,6 +315,8 @@ Unstable packages (load manually)
 
 :py:mod:`timeexpressiontools <('abjad.tools.', 'abjad.demos.')timeexpressiontools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
