@@ -96,7 +96,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         for element in copies:
             self.music.extend(element)
         assert stop_offset <= self.stop_offset
-        self._set_stop_offset(stop_offset)
+        self.trim_to_stop_offset(stop_offset)
 
     def reverse(self):
         '''Reverse rhythm.
@@ -194,7 +194,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                 spanner._components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
             assert wellformednesstools.is_well_formed_component(self.music)
 
-    def _set_start_offset(self, start_offset):
+    def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
 
         .. note:: add example.
@@ -213,7 +213,7 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         self._music = trimmed_music
         self._start_offset = start_offset
 
-    def _set_stop_offset(self, stop_offset):
+    def trim_to_stop_offset(self, stop_offset):
         '''Trim to stop offset.
 
         .. note:: add example.

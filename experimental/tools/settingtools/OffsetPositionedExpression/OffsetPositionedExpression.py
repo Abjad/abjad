@@ -4,7 +4,9 @@ from abjad.tools.timespantools.Timespan import Timespan
 
 
 class OffsetPositionedExpression(Timespan):
-    r'''Offset-positioned expression.
+    r'''
+
+    Offset-positioned expression.
 
     Base class from which concrete expressions inherit.
 
@@ -34,28 +36,6 @@ class OffsetPositionedExpression(Timespan):
     def __lt__(self, expr):
         return self.start_offset < expr.start_offset
 
-    ### PRIVATE METHODS ###
-
-    @abc.abstractmethod
-    def _set_start_offset(self, start_offset):
-        '''Trim to start offset.
-
-        Adjust start offset.
-          
-        Operate in place and return none.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def _set_stop_offset(self, stop_offset):
-        '''Trim to stop offset.
-
-        Adjust stop offset.
-          
-        Operate in place and return none.
-        '''
-        pass
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -83,14 +63,32 @@ class OffsetPositionedExpression(Timespan):
 
     ### PUBLIC METHODS ###
 
-    def set_offsets(self, start_offset=None, stop_offset=None):
-        '''Set `start_offset` and `stop_offset`.
-
-        Trim material as required.
+    def adjust_to_offsets(self, start_offset=None, stop_offset=None):
+        '''Adjust to offsets.
 
         Operate in place and return none.
         '''
-        if stop_offset is not None and stop_offset < self.stop_offset:
-            self._set_stop_offset(stop_offset)
-        if start_offset is not None and self.start_offset < start_offset:
-            self._set_start_offset(start_offset)
+        if stop_offset < self.stop_offset:
+            self.trim_to_stop_offset(stop_offset)
+        if self.start_offset < start_offset:
+            self.trim_to_start_offset(start_offset)
+
+    @abc.abstractmethod
+    def trim_to_start_offset(self, start_offset):
+        '''Trim to start offset.
+
+        Adjust start offset.
+          
+        Operate in place and return none.
+        '''
+        pass
+
+    @abc.abstractmethod
+    def trim_to_stop_offset(self, stop_offset):
+        '''Trim to stop offset.
+
+        Adjust stop offset.
+          
+        Operate in place and return none.
+        '''
+        pass

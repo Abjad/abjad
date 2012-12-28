@@ -6,11 +6,13 @@ from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPos
 
 
 class OffsetPositionedDivisionList(OffsetPositionedExpression):
-    r'''Offset-positioned division expression.
+    r'''
 
     ::
 
         >>> from experimental.tools import *
+
+    Offset-positioned division expression.
 
     Composers do not create offset-positioned division expressions
     because division expression arise as a byproduct of interpretation.
@@ -72,7 +74,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
     def reverse(self):
         self.division_list.reverse()
 
-    def _set_start_offset(self, start_offset):
+    def trim_to_start_offset(self, start_offset):
         '''Trim to start offset.
 
         ::
@@ -86,7 +88,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr._set_start_offset((1, 16))
+            >>> expr.trim_to_start_offset((1, 16))
 
         ::
 
@@ -113,7 +115,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
         self._division_list = division_list
         self._start_offset = start_offset
 
-    def _set_stop_offset(self, stop_offset):
+    def trim_to_stop_offset(self, stop_offset):
         '''Trim to stop offset.
 
         ::
@@ -127,7 +129,7 @@ class OffsetPositionedDivisionList(OffsetPositionedExpression):
 
         ::
 
-            >>> expr._set_stop_offset((11, 16))
+            >>> expr.trim_to_stop_offset((11, 16))
 
         ::
 

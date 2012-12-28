@@ -82,7 +82,11 @@
 17. Make Specification aggregate a symbolic timespan rather than inheriting from TimespanExpression.
     Remove Specification.__deepcopy__ override afterwards.
 
-18. Extend BackgroundMeasureSelector._get_timespan() to return 
+18. Rename (and possibly change) OffsetPositionedExpression.adjust_to_offsets().
+    Replace with OffsetPositionedExpression.set_offsets() or similar.
+    This will help conform to the Timespan interface.
+
+19. Extend BackgroundMeasureSelector._get_timespan() to return 
     (start_offset, stop_offset, selected_objects) triple.
     Then extend all selector _get_timespan() methods and do the same:
         BeatSelector._get_timespan()
@@ -91,48 +95,48 @@
         ScoreSelector._get_timespan() ?
         SegmentSelector._get_timespan() ?
 
-19. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
+20. Looks like modifiers stack may not be copied over from segment to segment for persistent settings.
     Fix test_multiple_segment_solo__persistent_overlapping_division_selectors_03() to debug.
 
-20. Add a test to show this:
+21. Add a test to show this:
         note_selector = red_segment.select_notes_and_chords('Voice 1')[10:11]
         offset = note_selector.stop_offset
 
-21. Add some tests to show this:
+22. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         measures = measures[10:20]
         measures = measures[2:4]
     This will show getitem composition.
 
-22. Add some tests to show this:
+23. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_part = segments.set_offset(start=(3, 4), stop=(-3, 4))
         score_specification.set_divisions([(1, 16)])
         middle_part.set_divisions([(3, 16)])
     This will show setting divisions for (potentially) more than one segment.
 
-23. Add some tests to show this:
+24. Add some tests to show this:
         segments = score_specification.select_segments()['red':('blue'+1)]
         middle_measures = segments.select_background_measures('Voice 1')[3:6]
     This will show selecting background measures from (potentially) more than one segment.
 
-24. Add some tests to show this:
+25. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')[10:20]
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
-25. Add some tests to show this:
+26. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
         middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
-26. Add some tests to show this:
+27. Add some tests to show this:
         first_half_of_red_segment = red_segment.timespan.divide_by_ratio((1, 1))[0]
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-27. Extract the "set interface" from TimespanExpression.
+28. Extract the "set interface" from TimespanExpression.
     Implement "set interface" in new SettingMaker class.
     It will no longer be necessary for TimespanExpression to inherit from SettingMaker.
     Instead some class lower in the hierarchy can (multiply) inherit from SettingMaker.
@@ -140,11 +144,11 @@
     This will clean up TimespanExpression significantly.
     TimespanExpression interface will then map almost one-to-one to Timespan interface.
 
-28. Rename Request to RequestMaker to parallel SettingMaker?
+29. Rename Request to RequestMaker to parallel SettingMaker?
 
-29. Implement BeatSelector._get_timespan().
+30. Implement BeatSelector._get_timespan().
 
-30. Author tests to show each request modifier applied to each selector.
+31. Author tests to show each request modifier applied to each selector.
     Remaining tests to author:
         divisions.__getitem__()    
         divisions.partition_objects_by_ratio()
@@ -168,7 +172,7 @@
         leaves.reverse()
         leaves.rotate()
 
-31. Is the idea of a 'region command' redundant? Is it the case that all commands
+32. Is the idea of a 'region command' redundant? Is it the case that all commands
     always define a region? This might be so if all commands always encompass a timespan.
     Probably is redundant. But better to leave the redundancy in place until
     the two different uses of 'command' disambiguate (ie, 'region command' 

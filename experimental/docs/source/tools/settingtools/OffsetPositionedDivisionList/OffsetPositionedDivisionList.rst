@@ -77,6 +77,10 @@ Read/write Properties
 Methods
 -------
 
+.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.adjust_to_offsets
+
+    Inherited from :py:class:`settingtools.OffsetPositionedExpression <experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
+
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.contains_expr_improperly
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -143,7 +147,7 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.set_offsets
 
-    Inherited from :py:class:`settingtools.OffsetPositionedExpression <experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
+    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.starts_after_expr_starts
 
@@ -204,6 +208,10 @@ Methods
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.translate_offsets
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+
+.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.trim_to_start_offset
+
+.. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.trim_to_stop_offset
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedDivisionList.OffsetPositionedDivisionList.OffsetPositionedDivisionList.trisects_expr
 
