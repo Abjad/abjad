@@ -159,7 +159,7 @@ class ConcreteInterpreter(Interpreter):
         assert wellformednesstools.is_well_formed_component(result.music)
         result, new_start_offset = rhythm_material_request._apply_request_modifiers(
             result, result.start_offset)
-        result.adjust_to_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
         result.repeat_to_stop_offset(stop_offset)
         return result
 

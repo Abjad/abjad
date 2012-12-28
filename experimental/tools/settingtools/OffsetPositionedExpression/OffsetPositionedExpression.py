@@ -63,14 +63,14 @@ class OffsetPositionedExpression(Timespan):
 
     ### PUBLIC METHODS ###
 
-    def adjust_to_offsets(self, start_offset=None, stop_offset=None):
+    def set_offsets(self, start_offset=None, stop_offset=None):
         '''Adjust to offsets.
 
         Operate in place and return none.
         '''
-        if stop_offset < self.stop_offset:
+        if stop_offset is not None and stop_offset < self.stop_offset:
             self.trim_to_stop_offset(stop_offset)
-        if self.start_offset < start_offset:
+        if start_offset is not None and self.start_offset < start_offset:
             self.trim_to_start_offset(start_offset)
 
     @abc.abstractmethod

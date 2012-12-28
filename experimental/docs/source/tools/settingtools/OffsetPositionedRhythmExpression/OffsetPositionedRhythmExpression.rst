@@ -75,10 +75,6 @@ Read/write Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.adjust_to_offsets
-
-    Inherited from :py:class:`settingtools.OffsetPositionedExpression <experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
-
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.contains_expr_improperly
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
@@ -147,7 +143,7 @@ Methods
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.set_offsets
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`settingtools.OffsetPositionedExpression <experimental.tools.settingtools.OffsetPositionedExpression.OffsetPositionedExpression.OffsetPositionedExpression>`
 
 .. automethod:: experimental.tools.settingtools.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.OffsetPositionedRhythmExpression.starts_after_expr_starts
 
