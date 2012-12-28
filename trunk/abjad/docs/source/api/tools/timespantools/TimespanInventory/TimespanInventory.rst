@@ -33,8 +33,6 @@ Read/write Properties
 Methods
 -------
 
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.adjust_to_stop_offset
-
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.append
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
@@ -79,15 +77,13 @@ Methods
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.rotate
 
+.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.set_offsets
+
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.sort
 
     Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.translate_timespans
-
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.trim_to_start_offset
-
-.. automethod:: abjad.tools.timespantools.TimespanInventory.TimespanInventory.TimespanInventory.trim_to_stop_offset
 
 Special Methods
 ---------------
