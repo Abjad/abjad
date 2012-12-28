@@ -172,9 +172,8 @@
         leaves.reverse()
         leaves.rotate()
 
-32. Compress ...
-        result = copy.deepcopy(self)
-        result.request_modifiers.append(modifier)
-        return result
-    ... to a single line.
-    This will streamline Request.
+32. Is the idea of a 'region command' redundant? Is it the case that all commands
+    always define a region? This might be so if all commands always encompass a timespan.
+    Probably is redundant. But better to leave the redundancy in place until
+    the two different uses of 'command' disambiguate (ie, 'region command' 
+    versus 'command request'.)
