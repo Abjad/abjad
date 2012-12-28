@@ -83,8 +83,7 @@ class CounttimeComponentSelector(Selector):
             return selectiontools.Selection()
         counttime_component_pairs = []
         previous_rhythm_region_expression = None
-        start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
-        timespan_1 = timespantools.Timespan(start_offset, stop_offset)
+        timespan_1 = score_specification.segment_identifier_expression_to_timespan(self.anchor)
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:

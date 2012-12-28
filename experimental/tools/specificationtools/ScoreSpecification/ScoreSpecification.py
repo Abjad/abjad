@@ -494,15 +494,6 @@ class ScoreSpecification(Specification):
     def score_offsets_to_segment_offset_pairs(self, start_offset=None, stop_offset=None):
         raise NotImplementedError('implement this at some point.')
 
-    def segment_identifier_expression_to_offsets(self, segment_identifier_expression):
-        '''Change `segment_identifier_expression` to start offset and stop offset.
-
-        Return pair of offsets.
-        '''
-        segment_index = self.segment_identifier_expression_to_segment_index(
-            segment_identifier_expression)
-        return self.segment_offset_pairs[segment_index]
-
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::
 

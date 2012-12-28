@@ -172,11 +172,25 @@
 31. Change Selector._get_offsets() to Selector._get_timespan().
     Return timespan instead of offset pair.
 
-32. Change symbolictimetools to selectortools.
+32. Change symbolictimetools to timeexpressiontools.
     We really want to have 'timespan' always everywhere mean only Timespan.
     Removing the idea of (qualified) 'symbolic' timespan will help this the most.
     Rename ...
-        SymbolicTimespan ==> TimespanSelector
-        MixedSourceSymbolicTimespan ==> MixedSourceTimespanSelector
-        SymbolicOffset ==> OffsetSelector
+        SymbolicTimespan ==> TimespanExpression
+        SymbolicOffset ==> OffsetExpression
+        MixedSourceSymbolicTimespan ==> MixedSourceTimespanExpression
     ... to do this.
+    Then migrate all selector classes to new selectortools package.
+    This will clean up both timeexpressiontools package and selectortools package.
+
+33. Extract the "set interface" from SymbolicTimespan.
+    Implement "set interface" in new SettingMaker class.
+    It will no longer be necessary for SymbolicTimespan to inherit from SettingMaker.
+    Instead some class lower in the hierarchy can (multiply) inherit from SettingMaker.
+    Perhaps Selector can inherit from SettingMaker.
+    This will clean up SymbolicTimespan significantly.
+    SymbolicTimespan interface will then map almost one-to-one to Timespan interface.
+
+34. Rename Request to RequestMaker to parallel SettingMaker?
+
+35. Change _apply_timespan_modifiers(start_offset, stop_offset) to _apply_timespan_modifiers(timespan).

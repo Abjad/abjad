@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import timespantools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -169,13 +170,14 @@ class SymbolicOffset(AbjadObject):
         '''
         edge = self.edge or Left
         if isinstance(self.anchor, str):
-            start_offset, stop_offset = score_specification.segment_identifier_expression_to_offsets(self.anchor)
+            timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
         else:
             start_offset, stop_offset = self.anchor._get_offsets(score_specification, context_name)
+            timespan = timespantools.Timespan(start_offset, stop_offset)
         if edge == Left:
-            score_offset = start_offset
+            score_offset = timespan.start_offset
         else:
-            score_offset = stop_offset
+            score_offset = timespan.stop_offset
         multiplier = self.multiplier or durationtools.Multiplier(1)
         score_offset = multiplier * score_offset
         offset = self.addendum or durationtools.Offset(0)

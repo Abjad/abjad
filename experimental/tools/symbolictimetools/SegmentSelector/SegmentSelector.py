@@ -98,9 +98,9 @@ class SegmentSelector(Selector):
 
         Return offset.
         '''
-        offsets = score_specification.segment_identifier_expression_to_offsets(self.start_segment_identifier)
-        start_offset, stop_offset = offsets
-        offsets = self._apply_timespan_modifiers(start_offset, stop_offset)
+        timespan = score_specification.segment_identifier_expression_to_timespan(
+            self.start_segment_identifier)
+        offsets = self._apply_timespan_modifiers(*timespan.offsets)
         return offsets
 
     def _make_identifier_expression(self, segment_name, addendum):

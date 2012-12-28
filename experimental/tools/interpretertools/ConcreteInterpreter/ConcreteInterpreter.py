@@ -128,12 +128,12 @@ class ConcreteInterpreter(Interpreter):
         #self._debug((start_offset, stop_offset), 'offsets')
         voice_name = rhythm_material_request.voice_name
         if isinstance(rhythm_material_request.anchor, str):
-            source_score_offsets = self.score_specification.segment_identifier_expression_to_offsets(
+            source_timespan = self.score_specification.segment_identifier_expression_to_timespan(
                 rhythm_material_request.anchor)
         else:
             source_score_offsets = rhythm_material_request.anchor._get_offsets(
                 self.score_specification, rhythm_material_request.voice_name)
-        source_timespan = timespantools.Timespan(*source_score_offsets)
+            source_timespan = timespantools.Timespan(*source_score_offsets)
         #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             self.score_specification.contexts[voice_name]['rhythm_region_expressions']
@@ -253,14 +253,13 @@ class ConcreteInterpreter(Interpreter):
         anchor = division_selector.anchor
         voice_name = division_selector.voice_name
         if isinstance(anchor, str):
-            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(anchor)
+            source_timespan = self.score_specification.segment_identifier_expression_to_timespan(anchor)
         else:
             start_offset, stop_offset = anchor._get_offsets(self.score_specification, voice_name)
-        #self._debug((voice_name, start_offset, stop_offset), 'request parameters')
+            source_timespan = timespantools.Timespan(start_offset, stop_offset)
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
         #self._debug(division_region_expressions, 'division region expressions')
-        source_timespan = timespantools.Timespan(start_offset, stop_offset)
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
             timespan_1=source_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
@@ -274,10 +273,7 @@ class ConcreteInterpreter(Interpreter):
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
         trimmed_division_region_expressions = timespantools.TimespanInventory(
             trimmed_division_region_expressions)
-        keep_timespan = timespantools.Timespan(start_offset, stop_offset)
-        trimmed_division_region_expressions.keep_material_that_intersects_timespan(keep_timespan)
-        #trimmed_division_region_expressions = division_selector._apply_request_modifiers(
-        #    trimmed_division_region_expressions)
+        trimmed_division_region_expressions.keep_material_that_intersects_timespan(source_timespan)
         start_offset = trimmed_division_region_expressions.start_offset
         trimmed_division_region_expressions, start_offset = division_selector._apply_request_modifiers(
             trimmed_division_region_expressions, start_offset)
@@ -757,17 +753,18 @@ class ConcreteInterpreter(Interpreter):
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         if isinstance(single_context_setting.anchor, str):
-            start_offset, stop_offset = self.score_specification.segment_identifier_expression_to_offsets(
+            timespan = self.score_specification.segment_identifier_expression_to_timespan(
                 single_context_setting.anchor)
         else:
             start_offset, stop_offset = single_context_setting.anchor._get_offsets(
                 self.score_specification, voice_name)
+            timespan = timespantools.Timespan(start_offset, stop_offset)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
             single_context_setting.context_name,
-            start_offset,
-            stop_offset,
+            timespan.start_offset,
+            timespan.stop_offset,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':
