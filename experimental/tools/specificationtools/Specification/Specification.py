@@ -1,15 +1,13 @@
 import abc
-import numbers
 from abjad.tools import *
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import settingtools
 from experimental.tools import timeexpressiontools
-from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
-from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class Specification(SelectMethodMixin, SetMethodMixin):
+class Specification(AbjadObject):
     r'''
 
     ::

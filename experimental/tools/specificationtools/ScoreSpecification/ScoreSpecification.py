@@ -4,11 +4,12 @@ from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import selectortools
 from experimental.tools import settingtools
-from abjad.tools import timerelationtools
+from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.specificationtools.Specification import Specification
+from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class ScoreSpecification(Specification):
+class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
     r'''
 
     ::
