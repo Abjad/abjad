@@ -6,11 +6,11 @@ from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timespantools
 from abjad.tools.timespantools.Timespan import Timespan
-from experimental.tools.settingtools.SettingMakerMixin import SettingMakerMixin
+from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class TimespanExpression(Timespan, SelectMethodMixin, SettingMakerMixin):
+class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
     r'''Timespan expression.
 
     ::

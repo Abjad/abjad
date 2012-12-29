@@ -205,19 +205,19 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_aggregate
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_articulations
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_chord_treatment
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_divisions
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_duration
 
@@ -225,15 +225,15 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_dynamics
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_marks
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_markup
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_offsets
 
@@ -241,31 +241,31 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_pitch_class_application
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_pitch_class_transform
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_pitch_classes
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_registration
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_rhythm
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_tempo
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.set_time_signatures
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.split_at_offset
 

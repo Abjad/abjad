@@ -1,7 +1,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class SettingMakerMixin(AbjadObject):
+class SetMethodMixin(AbjadObject):
     '''Setting-maker mix-in.
 
     ::

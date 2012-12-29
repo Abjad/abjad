@@ -173,19 +173,19 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_aggregate
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_articulations
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_chord_treatment
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_divisions
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_duration
 
@@ -193,15 +193,15 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_dynamics
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_marks
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_markup
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_offsets
 
@@ -209,31 +209,31 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_pitch_class_application
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_pitch_class_transform
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_pitch_classes
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_registration
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_rhythm
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_tempo
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.set_time_signatures
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.split_at_offset
 

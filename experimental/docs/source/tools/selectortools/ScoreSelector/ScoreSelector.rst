@@ -205,19 +205,19 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_aggregate
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_articulations
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_chord_treatment
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_divisions
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_duration
 
@@ -225,15 +225,15 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_dynamics
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_marks
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_markup
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_offsets
 
@@ -241,31 +241,31 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_pitch_class_application
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_pitch_class_transform
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_pitch_classes
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_registration
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_rhythm
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_tempo
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.set_time_signatures
 
-    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
+    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 .. automethod:: experimental.tools.selectortools.ScoreSelector.ScoreSelector.ScoreSelector.split_at_offset
 
