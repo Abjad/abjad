@@ -67,6 +67,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.time_signatures
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.timespan
+
 Methods
 -------
 

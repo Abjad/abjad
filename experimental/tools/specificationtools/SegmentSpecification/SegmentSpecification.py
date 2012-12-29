@@ -51,11 +51,6 @@ class SegmentSpecification(Specification):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
-    ### PRIVATE METHODS ###
-
-    def _get_timespan(self, score_specification, context_name=None):
-        return timespantools.Timespan(*self.offsets)
-
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
@@ -261,9 +256,3 @@ class SegmentSpecification(Specification):
         Return list of zero or more nonreduced fractions.
         '''
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
-
-    @property
-    def timespan(self):
-        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
-        timespan._score_specification = self.score_specification
-        return timespan

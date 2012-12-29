@@ -61,10 +61,6 @@ class ScoreSpecification(Specification):
             else:
                 return candidate_segment_number
 
-    def _get_timespan(self, score_specification, context_name):
-        assert score_specification is self # is this right?
-        return timespantools.Timespan(*self.offsets)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -399,14 +395,11 @@ class ScoreSpecification(Specification):
             result.extend(segment_specification.time_signatures)
         return result
 
-    # TODO: make it possible to uncomment the following property definition
-#    @property
-#    def timespan(self):
-#        # TODO: Emtpy string here is a hack.
-#        #       Eventually replace with TimespanExpression anchored to None.
-#        selector = selectortools.ScoreSelector(voice_name='')
-#        selector._score_specification = self
-#        return selector
+    @property
+    def timespan(self):
+        timespan = timeexpressiontools.TimespanExpression()
+        timespan._score_specification = self.score_specification
+        return timespan
 
     ### PUBLIC METHODS ###
 

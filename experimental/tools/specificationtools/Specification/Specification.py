@@ -167,3 +167,9 @@ class Specification(SelectMethodMixin, SetMethodMixin):
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+
+    @property
+    def timespan(self):
+        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
+        timespan._score_specification = self.score_specification
+        return timespan

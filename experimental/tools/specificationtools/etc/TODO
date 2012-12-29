@@ -46,6 +46,7 @@
     In fact it's possible that the entire notion of "start segment identifier" reduces to "anchor".
     If that turns out to be the case then "start segment specification" is
     something like "anchor segment specification".
+    And more generally we have "anchor specification" to allow both score- and segment-anchoring.
 
 10. Implement some sort of "cake slice" management interface on SegmentSpecification and ScoreSpecification.
     Currently we must use ...
@@ -76,8 +77,8 @@
 
 15. Audit to get rid of string-based keys everywhere in interpreter.
 
-16. Extend OffsetExpression with an 'offset_request_modifiers' stack.
-    Modification methods include OffsetExpression.translate() and possibly others.
+16. Extend OffsetExpression with an 'offset_modifiers' stack.
+    Modifier methods include OffsetExpression.translate() and possibly others.
 
 17. Extend BackgroundMeasureSelector._get_timespan() to return 
     (start_offset, stop_offset, selected_objects) triple.
@@ -135,7 +136,7 @@
         measures = first_half_of_red_segment.select_background_measures('Voice 1')
     This will show selecting background measures that start during a duration-partitioned part of segment.
 
-27. Rename Request to RequestMaker to parallel SettingMaker?
+27. Rename Request to RequestMethodMixin to parallel SetMethodMixin.
 
 28. Implement BeatSelector._get_timespan().
 
@@ -156,12 +157,7 @@
         leaves.reverse()
         leaves.rotate()
 
-30. Extend TimespanExpression with 'anchor' property.
-    Anchor either to None (for score) or to string (for segment).
-    Then reimplement SegmentSpecification.timespan to return TimespanExpression(anchor=self.segment_name).
-    And ScoreSpecification.timespan to return TimespanExpression(anchor=None).
-
-31. Create SegmentProxy and ScoreProxy classes to encapsulate the composer interface
+30. Create SegmentProxy and ScoreProxy classes to encapsulate the composer interface
     functionality currently impelemented on SegmentSpecification and ScoreSpecification, respectively.
     This will clean up the SegmentSpecification and ScoreSpecification classes considerably.
     Will also ensure that SegmentProxy and ScoreProxy have only (public) composer-facing
