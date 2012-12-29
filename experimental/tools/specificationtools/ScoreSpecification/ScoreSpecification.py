@@ -615,13 +615,15 @@ class ScoreSpecification(Specification):
         if isinstance(segment_identifier_expression, int):
             return segment_identifier_expression
         if isinstance(segment_identifier_expression, str):
-            return self.segment_name_to_segment_index(segment_identifier_expression)
+            segment_specification = self.segment_specifications[segment_identifier_expression]
+            return self.segment_specifications.index(segment_specification)
         quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
         quoted_segment_names = quoted_string_pattern.findall(segment_identifier_expression.string)
         modified_string = str(segment_identifier_expression.string)
         for quoted_segment_name in quoted_segment_names:
             segment_name = quoted_segment_name[1:-1]
-            segment_index = self.segment_name_to_segment_index(segment_name)
+            segment_specification = self.segment_specifications[segment_name]
+            segment_index = self.segment_specifications.index(segment_specification)
             modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
         segment_index = eval(modified_string)
         return segment_index
@@ -638,17 +640,6 @@ class ScoreSpecification(Specification):
             segment_identifier_expression)
         segment_specification = self[segment_index]
         return segment_specification.timespan
-
-    def segment_name_to_segment_index(self, segment_name):
-        r'''Segment name to segment index::
-
-            >>> score_specification.segment_name_to_segment_index('red')
-            0
-
-        Return nonnegative integer.
-        '''
-        segment_specification = self.segment_specifications[segment_name]
-        return self.segment_specifications.index(segment_specification)
 
     def segment_offset_to_score_offset(self, segment_name, segment_offset):
         r'''Change `segment_name` and `segment_offset` to score offset::
