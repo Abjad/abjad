@@ -74,15 +74,15 @@ class ConcreteInterpreter(Interpreter):
         return time_signatures
 
     def calculate_score_and_segment_durations(self):
-        '''Set ``'segment_durations'`` property on score specification.
+        '''Set ``'start_offset'`` and ``'stop_offset'`` on score specification.
 
         Set ``'score_duration'`` property on score specification.
 
-        Set ``'start_offset'`` to ``Offset(0)`` on score specification.
-
-        Set ``'stop_offset'`` on score specification.
+        Set ``'segment_durations'`` property on score specification.
 
         Set ``'segment_offset_pairs'`` property on score specification.
+
+        Set ``'start_offset'`` and ``'stop_offset'`` on every segment specification.
         '''
         segment_durations = [x.duration for x in self.score_specification.segment_specifications]
         if sequencetools.all_are_numbers(segment_durations):
@@ -96,6 +96,11 @@ class ConcreteInterpreter(Interpreter):
             segment_offset_pairs = [
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
             self.score_specification._segment_offset_pairs = segment_offset_pairs
+            for segment_offset_pair, segment_specification in zip(
+                segment_offset_pairs, self.score_specification.segment_specifications):
+                start_offset, stop_offset = segment_offset_pair
+                segment_specification._start_offset = start_offset
+                segment_specification._stop_offset = stop_offset
 
     def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
         if attribute in self.score_specification.single_context_settings_by_context[context_name]:

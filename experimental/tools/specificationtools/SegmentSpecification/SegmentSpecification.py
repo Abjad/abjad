@@ -252,29 +252,31 @@ class SegmentSpecification(Specification):
         '''
         return self.segment_name
 
-#    @property
-#    def start_offset(self):
-#        '''Segment specification start offset::
-#
-#            >>> red_segment.start_offset
-#
-#        Populate during interpretation.
-#
-#        Return offset.
-#        '''
-#        return Specification.start_offset.fget(self)
-#
-#    @property
-#    def stop_offset(self):
-#        '''Segment specification stop offset::
-#
-#            >>> red_segment.stop_offset
-#
-#        Populate during interpretation.
-#
-#        Return offset.
-#        '''
-#        return Specification.stop_offset.fget(self)
+    @property
+    def start_offset(self):
+        '''Segment specification start offset::
+
+            >>> red_segment.start_offset
+            Offset(0, 1)
+
+        Populate during interpretation.
+
+        Return offset.
+        '''
+        return Specification.start_offset.fget(self)
+
+    @property
+    def stop_offset(self):
+        '''Segment specification stop offset::
+
+            >>> red_segment.stop_offset
+            Offset(9, 8)
+
+        Populate during interpretation.
+
+        Return offset.
+        '''
+        return Specification.stop_offset.fget(self)
 
     @property
     def storage_format(self):
