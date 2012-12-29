@@ -63,7 +63,7 @@ class RunDoctestsScript(DirectoryScript):
                     total_modules += 1
                     full_file_name = os.path.abspath(os.path.join(dir_path, file_name))
                     doctest.testfile(full_file_name, module_relative = False, globs = globs,
-                       optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
+                       optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS|doctest.REPORT_NDIFF)
         print 'Total modules: %s' % total_modules
 
     def setup_argument_parser(self, parser):
