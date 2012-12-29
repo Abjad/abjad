@@ -242,6 +242,7 @@ Unstable packages (load manually)
    tools/settingtools/Command/Command
    tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    tools/settingtools/Setting/Setting
+   tools/settingtools/SettingMakerMixin/SettingMakerMixin
 
 
 --------
