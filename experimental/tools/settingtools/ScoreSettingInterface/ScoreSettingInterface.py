@@ -21,6 +21,11 @@ class ScoreSettingInterface(SettingInterface):
 
     All score setting interface properties are read-only.
     '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, score_specification):
+        SettingInterface.__init__(self, score_specification)
     
     ### PUBLIC METHODS ###
 

@@ -1,3 +1,4 @@
+import abc
 from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
@@ -10,8 +11,13 @@ class SettingInterface(SelectMethodMixin, SetMethodMixin):
     Composers make settings against score and segment setting interfaces.
     '''
 
+    ### CLASS ATTRIBUTES ##
+
+    __metaclass__ = abc.ABCMeta
+
     ### INITIALIZER ###
 
+    @abc.abstractmethod
     def __init__(self, score_specification):
         self._score_specification = score_specification
 
