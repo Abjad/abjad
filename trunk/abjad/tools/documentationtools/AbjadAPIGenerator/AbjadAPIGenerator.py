@@ -104,7 +104,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         
         if package_modules['concrete_classes']:
             if package_modules['abstract_classes']:
-                result.append('\n--------\n')
+                result.append('--------\n')
             result.extend(self._create_toc_directive())
             for obj in package_modules['concrete_classes']:
                 result.append(self._module_name_to_toc_entry(obj.module_name))
@@ -112,7 +112,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         if package_modules['functions']:
             if package_modules['concrete_classes'] or package_modules['abstract_classes']:
-                result.append('\n--------\n')
+                result.append('--------\n')
             result.extend(self._create_toc_directive())
             for obj in package_modules['functions']:
                 result.append(self._module_name_to_toc_entry(obj.module_name))
