@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.score_specification
 
+    Inherited from :py:class:`settingtools.SettingInterface <experimental.tools.settingtools.SettingInterface.SettingInterface.SettingInterface>`
+
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.segment_name
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.specification_name

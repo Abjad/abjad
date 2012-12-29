@@ -1,5 +1,44 @@
-from abjad.tools.abctools import AbjadObject
+from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
+from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class SettingInterface(AbjadObject):
-    pass
+class SettingInterface(SelectMethodMixin, SetMethodMixin):
+    r'''Setting interface.
+    '''
+
+    ### INITIALIZER ###
+
+    def __init__(self, score_specification):
+        self._score_specification = score_specification
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        return '{}()'.format(self._class_name)
+
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _anchor_abbreviation(self):
+        return self.specification_name
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_specification(self):
+        '''Read-only reference to score against which segment specification is defined.
+
+        Return score specification.
+        '''
+        return self._score_specification
+
+    @property
+    def specification_name(self):
+        return
+
+    @property
+    def timespan(self):
+        from experimental.tools import timeexpressiontools
+        timespan = timeexpressiontools.TimespanExpression()
+        timespan._score_specification = self.score_specification
+        return timespan

@@ -1,8 +1,7 @@
-from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
-from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
+from experimental.tools.settingtools.SettingInterface import SettingInterface
 
 
-class SegmentSettingInterface(SelectMethodMixin, SetMethodMixin):
+class SegmentSettingInterface(SettingInterface):
     r'''Segment setting interface.
 
     ::
@@ -30,8 +29,7 @@ class SegmentSettingInterface(SelectMethodMixin, SetMethodMixin):
 
     def __init__(self, score_specification, segment_name):
         assert isinstance(segment_name, str), segment_name
-        #SettingInterface.__init__(self, score_specification)
-        self._score_specification = score_specification
+        SettingInterface.__init__(self, score_specification)
         self._segment_name = segment_name
 
     ### SPECIAL METHODS ###
@@ -39,21 +37,7 @@ class SegmentSettingInterface(SelectMethodMixin, SetMethodMixin):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _anchor_abbreviation(self):
-        return self.specification_name
-
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def score_specification(self):
-        '''Read-only reference to score against which segment specification is defined.
-
-        Return score specification.
-        '''
-        return self._score_specification
 
     @property
     def segment_name(self):

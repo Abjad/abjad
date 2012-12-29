@@ -11,13 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.ScoreSettingInterface.ScoreSettingInterface.ScoreSettingInterface.score_specification
 
+    Inherited from :py:class:`settingtools.SettingInterface <experimental.tools.settingtools.SettingInterface.SettingInterface.SettingInterface>`
+
 .. autoattribute:: experimental.tools.settingtools.ScoreSettingInterface.ScoreSettingInterface.ScoreSettingInterface.specification_name
+
+    Inherited from :py:class:`settingtools.SettingInterface <experimental.tools.settingtools.SettingInterface.SettingInterface.SettingInterface>`
 
 .. autoattribute:: experimental.tools.settingtools.ScoreSettingInterface.ScoreSettingInterface.ScoreSettingInterface.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.tools.settingtools.ScoreSettingInterface.ScoreSettingInterface.ScoreSettingInterface.timespan
+
+    Inherited from :py:class:`settingtools.SettingInterface <experimental.tools.settingtools.SettingInterface.SettingInterface.SettingInterface>`
 
 Methods
 -------
@@ -128,3 +134,5 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.tools.settingtools.ScoreSettingInterface.ScoreSettingInterface.ScoreSettingInterface.__repr__
+
+    Inherited from :py:class:`settingtools.SettingInterface <experimental.tools.settingtools.SettingInterface.SettingInterface.SettingInterface>`
