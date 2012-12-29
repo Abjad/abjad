@@ -73,29 +73,31 @@ class ConcreteInterpreter(Interpreter):
         time_signatures, dummy = selector._apply_request_modifiers(time_signatures, None)
         return time_signatures
 
-    def calculate_score_and_segment_durations(self):
-        '''Set ``'start_offset'`` and ``'stop_offset'`` on score specification.
+    def calculate_score_and_segment_timespans(self):
+        '''Set ``'timespan'`` on score specification.
 
-        Set ``'start_offset'`` and ``'stop_offset'`` on every segment specification.
-
-        Set ``'segment_offset_pairs'`` property on score specification.
+        Set ``'timespan'`` on segment specifications.
         '''
         segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
             for x in self.score_specification.segment_specifications]
         if sequencetools.all_are_numbers(segment_durations):
-            self.score_specification._segment_durations = segment_durations
             score_duration = sum(segment_durations)
+            score_start_offset = durationtools.Offset(0)
+            score_stop_offset = durationtools.Offset(score_duration)
             self.score_specification._start_offset = durationtools.Offset(0)
             self.score_specification._stop_offset = durationtools.Offset(score_duration)
+            score_timespan = timespantools.Timespan(score_start_offset, score_stop_offset)
+            self.score_specification._timespan = score_timespan
             segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(segment_durations)
             segment_offset_pairs = [
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
-            self.score_specification._segment_offset_pairs = segment_offset_pairs
             for segment_offset_pair, segment_specification in zip(
                 segment_offset_pairs, self.score_specification.segment_specifications):
                 start_offset, stop_offset = segment_offset_pair
                 segment_specification._start_offset = start_offset
                 segment_specification._stop_offset = stop_offset
+                timespan = timespantools.Timespan(start_offset, stop_offset)
+                segment_specification._timespan = timespan
 
     def clear_persistent_single_context_settings_by_context(self, context_name, attribute):
         if attribute in self.score_specification.single_context_settings_by_context[context_name]:
@@ -454,7 +456,7 @@ class ConcreteInterpreter(Interpreter):
     def interpret_time_signatures(self):
         self.populate_all_time_signature_commands()
         self.make_time_signatures()
-        self.calculate_score_and_segment_durations()
+        self.calculate_score_and_segment_timespans()
 
     def make_default_region_command(self, voice_name, start_offset, stop_offset, attribute):
         if attribute == 'divisions':

@@ -339,19 +339,6 @@ class ScoreSpecification(Specification):
         return [segment_specification.segment_name for segment_specification in self.segment_specifications]
 
     @property
-    def segment_offset_pairs(self):
-        r'''Score specification segment offset pairs.
-
-            >>> score_specification.segment_offset_pairs
-            [(Offset(0, 1), Offset(9, 8)), (Offset(9, 8), Offset(13, 8)), (Offset(13, 8), Offset(9, 4))]
-
-        Only available after time signature interpretation completes.
-
-        Return list of pairs.
-        '''
-        return self._segment_offset_pairs
-
-    @property
     def segment_specification_class(self):
         r'''Segment specification class of score specification::
 
@@ -649,8 +636,8 @@ class ScoreSpecification(Specification):
         '''
         segment_index = self.segment_identifier_expression_to_segment_index(
             segment_identifier_expression)
-        start_offset, stop_offset = self.segment_offset_pairs[segment_index]
-        return timespantools.Timespan(start_offset, stop_offset)
+        segment_specification = self[segment_index]
+        return segment_specification.timespan
 
     def segment_name_to_segment_index(self, segment_name):
         r'''Segment name to segment index::
@@ -663,21 +650,6 @@ class ScoreSpecification(Specification):
         segment_specification = self.segment_specifications[segment_name]
         return self.segment_specifications.index(segment_specification)
 
-    def segment_name_to_timespan(self, segment_name, segment_count=1):
-        r'''Segment name to segment offsets::
-
-            >>> score_specification.segment_name_to_timespan('red')
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 8))
-
-        Return timespan.
-        '''
-        if hasattr(self, 'segment_offset_pairs'):
-            start_segment_index = self.segment_name_to_segment_index(segment_name)        
-            stop_segment_index = start_segment_index + segment_count - 1
-            start_offset_pair = self.segment_offset_pairs[start_segment_index]
-            stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
-            return timespantools.Timespan(start_offset_pair[0], stop_offset_pair[1])
-
     def segment_offset_to_score_offset(self, segment_name, segment_offset):
         r'''Change `segment_name` and `segment_offset` to score offset::
 
@@ -686,6 +658,6 @@ class ScoreSpecification(Specification):
 
         Return offset.
         '''
-        timespan = self.segment_name_to_timespan(segment_name)
+        timespan = self.segment_identifier_expression_to_timespan(segment_name)
         score_offset = timespan.start_offset + segment_offset
         return score_offset

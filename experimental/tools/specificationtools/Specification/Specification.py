@@ -126,4 +126,4 @@ class Specification(AbjadObject):
 
     @property
     def timespan(self):
-        return timespantools.Timespan(self._start_offset, self._stop_offset)
+        return self._timespan
