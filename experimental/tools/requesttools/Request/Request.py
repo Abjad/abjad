@@ -103,7 +103,7 @@ class Request(AbjadObject):
                 filtered_result.append(string)
         return filtered_result
 
-    def _partition_objects_by_ratio(self, elements, original_start_offset, ratio, part):
+    def _partition_by_ratio(self, elements, original_start_offset, ratio, part):
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(elements, ratio)
         selected_part = parts[part]
         parts_before = parts[:part]
@@ -114,7 +114,7 @@ class Request(AbjadObject):
         new_start_offset = original_start_offset + start_offset
         return selected_part, new_start_offset
 
-    def _partition_objects_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
+    def _partition_by_ratio_of_durations(self, elements, original_start_offset, ratio, part):
         def duration_helper(x):
             if hasattr(x, 'prolated_duration'):
                 return x.prolated_duration
@@ -186,24 +186,24 @@ class Request(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def partition_objects_by_ratio(self, ratio):
+    def partition_by_ratio(self, ratio):
         '''Return tuple of newly constructed requests with request_modifiers appended.
         '''
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             modifier = \
-                'result = self._partition_objects_by_ratio(elements, start_offset, {!r}, {!r})'
+                'result = self._partition_by_ratio(elements, start_offset, {!r}, {!r})'
             modifier = modifier.format(ratio, part)
             result.append(self._copy_and_append_modifier(modifier))
         return tuple(result)
 
-    def partition_objects_by_ratio_of_durations(self, ratio):
+    def partition_by_ratio_of_durations(self, ratio):
         result = []
         ratio = mathtools.Ratio(ratio)
         for part in range(len(ratio)):
             modifier = \
-                'result = self._partition_objects_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
+                'result = self._partition_by_ratio_of_durations(elements, start_offset, {!r}, {!r})'
             modifier = modifier.format(ratio, part)
             result.append(self._copy_and_append_modifier(modifier))
         return tuple(result)

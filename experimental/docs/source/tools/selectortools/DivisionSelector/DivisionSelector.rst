@@ -155,11 +155,11 @@ Methods
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
-.. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_objects_by_ratio
+.. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_by_ratio
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
-.. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_objects_by_ratio_of_durations
+.. automethod:: experimental.tools.selectortools.DivisionSelector.DivisionSelector.DivisionSelector.partition_by_ratio_of_durations
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 

@@ -22,11 +22,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.partition_objects_by_ratio
+.. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.partition_by_ratio
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 
-.. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.partition_objects_by_ratio_of_durations
+.. automethod:: experimental.tools.requesttools.HandlerRequest.HandlerRequest.HandlerRequest.partition_by_ratio_of_durations
 
     Inherited from :py:class:`requesttools.Request <experimental.tools.requesttools.Request.Request.Request>`
 

@@ -124,12 +124,12 @@
 
 25. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')[10:20]
-        middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
+        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
     This will show partitioning only part of a segment's measures.
 
 26. Add some tests to show this:
         measures = red_segment.select_background_measures('Voice 1')
-        middle_third_of_measures = measures.partition_objects_by_ratio((1, 1, 1))[1]
+        middle_third_of_measures = measures.partition_by_ratio((1, 1, 1))[1]
         measure = middle_third_of_measures[:1]
     This will show slice selection following partition.
 
@@ -153,18 +153,16 @@
 31. Author tests to show each request modifier applied to each selector.
     Remaining tests to author:
         beats.__getitem__()
-        beats.partition_objects_by_ratio()
-        beats.partition_objects_by_ratio_of_durations()
+        beats.partition_by_ratio()
+        beats.partition_by_ratio_of_durations()
         beats.repeat_to_duration()
         beats.repeat_to_length()
         beats.reverse()
         beats.rotate()
         leaves.__getitem__()
-        leaves.partition_objects_by_ratio()
-        leaves.partition_objects_by_ratio_of_durations()
+        leaves.partition_by_ratio()
+        leaves.partition_by_ratio_of_durations()
         leaves.repeat_to_duration()
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
-
-32. Probably OK to remove 'objects' from partition_objects_by_ratio[_of_durations]().
