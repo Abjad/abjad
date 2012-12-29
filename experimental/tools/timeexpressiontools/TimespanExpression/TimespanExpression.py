@@ -185,6 +185,31 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         return self._score_specification
 
     @property
+    def start_offset(self):
+        '''Timespan expression start offset.
+
+        Return offset expression.
+        '''            
+        from experimental.tools import timeexpressiontools
+        return timeexpressiontools.OffsetExpression(anchor=self)
+
+    @property
+    def start_segment_identifier(self):
+        if isinstance(self.anchor, str):
+            return self.anchor
+        else:
+            return self.anchor.start_segment_identifier
+
+    @property
+    def stop_offset(self):
+        '''Timespan expression stop offset.
+
+        Return offset expression.
+        '''            
+        from experimental.tools import timeexpressiontools
+        return timeexpressiontools.OffsetExpression(anchor=self)
+
+    @property
     def timespan_modifiers(self):
         '''Read-only list of timespan_modifiers to be applied 
         to symbolic timespan during evaluation.

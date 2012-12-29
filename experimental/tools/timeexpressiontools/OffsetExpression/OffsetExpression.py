@@ -196,7 +196,9 @@ class OffsetExpression(AbjadObject):
                 'divisions',
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
-                    anchor='red'
+                    anchor=timeexpressiontools.TimespanExpression(
+                        anchor='red'
+                        )
                     )
                 )
 
@@ -218,7 +220,9 @@ class OffsetExpression(AbjadObject):
                 'rhythm',
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
-                    anchor='red'
+                    anchor=timeexpressiontools.TimespanExpression(
+                        anchor='red'
+                        )
                     )
                 )
 
@@ -240,7 +244,9 @@ class OffsetExpression(AbjadObject):
                 'time_signatures',
                 'Voice 1',
                 timeexpressiontools.OffsetExpression(
-                    anchor='red'
+                    anchor=timeexpressiontools.TimespanExpression(
+                        anchor='red'
+                        )
                     )
                 )
 

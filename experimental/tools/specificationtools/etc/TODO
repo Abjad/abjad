@@ -156,9 +156,3 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
-
-30. Create SegmentProxy and ScoreProxy classes to encapsulate the composer interface
-    functionality currently impelemented on SegmentSpecification and ScoreSpecification, respectively.
-    This will clean up the SegmentSpecification and ScoreSpecification classes considerably.
-    Will also ensure that SegmentProxy and ScoreProxy have only (public) composer-facing
-    properties and methods.

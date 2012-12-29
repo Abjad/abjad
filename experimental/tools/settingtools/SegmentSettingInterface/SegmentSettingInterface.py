@@ -78,31 +78,27 @@ class SegmentSettingInterface(SettingInterface):
         '''
         return self.segment_name
 
-    # TODO: decide between this and self.symbolic_start_offset
     @property
     def start_offset(self):
         '''Segment setting interface start offset::
 
             >>> red_segment.start_offset
-            OffsetExpression(anchor='red')
+            OffsetExpression(anchor=TimespanExpression(anchor='red'))
 
         Return offset expression.
         '''
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
+        return self.timespan.start_offset
 
-    # TODO: decide between this and self.symbolic_stop_offset
     @property
     def stop_offset(self):
         '''Segment setting interface stop offset::
 
             >>> red_segment.stop_offset
-            OffsetExpression(anchor='red', edge=Right)
+            OffsetExpression(anchor=TimespanExpression(anchor='red'))
 
         Return offset expression.
         '''
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+        return self.timespan.stop_offset
 
     @property
     def storage_format(self):

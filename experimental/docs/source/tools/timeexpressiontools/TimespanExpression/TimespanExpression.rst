@@ -43,11 +43,9 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.start_offset
 
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
+.. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.start_segment_identifier
 
 .. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.stop_offset
-
-    Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.storage_format
 
