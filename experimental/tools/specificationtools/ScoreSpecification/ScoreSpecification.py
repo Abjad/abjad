@@ -536,14 +536,6 @@ class ScoreSpecification(Specification):
             result.extend(segment_specification.time_signatures)
         return result
 
-    # TODO: maybe remove in favor of ScoreSettingInterface.timespan
-    # TODO: reimplement to return literal Timespan object during interpretation
-    @property
-    def timespan(self):
-        timespan = timeexpressiontools.TimespanExpression()
-        timespan._score_specification = self.score_specification
-        return timespan
-
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):

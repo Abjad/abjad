@@ -65,7 +65,7 @@ class Specification(AbjadObject):
 
     @property
     def _anchor_abbreviation(self):
-        '''Form of symbolic timespan suitable for writing to disk.
+        '''Form of specification suitable for writing to disk.
         '''
         return self.specification_name
 
@@ -151,11 +151,3 @@ class Specification(AbjadObject):
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
-
-    # TODO: maybe migrate to SegmentSettingInterface, ScoreSettingInterface
-    # TODO: then define as literal timespan
-    @property
-    def timespan(self):
-        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
-        timespan._score_specification = self.score_specification
-        return timespan
