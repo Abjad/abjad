@@ -3,7 +3,7 @@ import subprocess
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
 
 
-def graph(expr, image_format='pdf'):
+def graph(expr, image_format='pdf', layout='dot'):
     '''Graph `expr` with graphviz, and open resulting image in the default image viewer:
 
     ::
@@ -29,6 +29,7 @@ def graph(expr, image_format='pdf'):
     from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 
     assert image_format in ('pdf', 'png')
+    assert layout in ('circo', 'dot', 'fdp', 'neato', 'osage', 'sfdp', 'twopi')
 
     graphviz_format = expr.graphviz_format
 
@@ -41,8 +42,8 @@ def graph(expr, image_format='pdf'):
     with open(dot_path, 'w') as f:
         f.write(graphviz_format)
 
-    command = 'dot -T{} {} -o {}'.format(image_format, dot_path, img_path)
-    p = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    command = '{} -v -T{} {} -o {}'.format(layout, image_format, dot_path, img_path)
+    subprocess.call(command, shell=True)
 
     pdf_viewer = ABJCFG['pdf_viewer']
     ABJADOUTPUT = ABJCFG['abjad_output']

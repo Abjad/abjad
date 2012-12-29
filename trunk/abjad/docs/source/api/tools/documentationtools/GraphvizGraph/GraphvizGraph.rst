@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.attributes
 
+    Inherited from :py:class:`documentationtools.GraphvizObject <abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject>`
+
 .. autoattribute:: abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph.children
 
     Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`

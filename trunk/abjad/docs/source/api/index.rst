@@ -2199,6 +2199,7 @@ Abjad internal packages
    tools/documentationtools/GraphvizEdge/GraphvizEdge
    tools/documentationtools/GraphvizGraph/GraphvizGraph
    tools/documentationtools/GraphvizNode/GraphvizNode
+   tools/documentationtools/GraphvizObject/GraphvizObject
    tools/documentationtools/InheritanceGraph/InheritanceGraph
    tools/documentationtools/ModuleCrawler/ModuleCrawler
    tools/documentationtools/Pipe/Pipe

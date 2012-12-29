@@ -1,17 +1,13 @@
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
-class GraphvizEdge(AbjadObject):
+class GraphvizEdge(GraphvizObject):
     '''A Graphviz edge.'''
 
     ### INITIALIZER ###
 
     def __init__(self, attributes=None, is_directed=True):
-        assert isinstance(attributes, (dict, type(None)))
-        if attributes is None:
-            self._attributes = {}
-        else:
-            self._attributes = copy.copy(attributes)
+        GraphvizObject.__init__(self, attributes=attributes)
         self._head = None
         self._tail = None
         self._is_directed = bool(is_directed)
@@ -48,17 +44,6 @@ class GraphvizEdge(AbjadObject):
         self._tail = None
         self._head = None
 
-    def _format_attribute(self, name, value):
-        if isinstance(value, str):
-            return '{}="{}"'.format(name, value)
-        return '{}={}'.format(name, value)
-
-    def _format_attribute_list(self, attributes):
-        result = []
-        for k, v in sorted(attributes.items()):
-            result.append(self._format_attribute(k, v))
-        return '[{}]'.format(', '.join(result))
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
@@ -73,10 +58,6 @@ class GraphvizEdge(AbjadObject):
         return '"{}" {} "{}";'.format(self.tail.name, connection, self.head.name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
-
-    @property
-    def attributes(self):
-        return self._attributes
 
     @property
     def head(self):

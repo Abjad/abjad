@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizCluster.GraphvizCluster.GraphvizCluster.attributes
 
-    Inherited from :py:class:`documentationtools.GraphvizGraph <abjad.tools.documentationtools.GraphvizGraph.GraphvizGraph.GraphvizGraph>`
+    Inherited from :py:class:`documentationtools.GraphvizObject <abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject>`
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizCluster.GraphvizCluster.GraphvizCluster.children
 

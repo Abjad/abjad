@@ -1,8 +1,9 @@
 import copy
 from abjad.tools.datastructuretools import TreeContainer
+from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
-class GraphvizGraph(TreeContainer):
+class GraphvizGraph(TreeContainer, GraphvizObject):
     '''Abjad model of a Graphviz graph:
 
     ::
@@ -75,8 +76,8 @@ class GraphvizGraph(TreeContainer):
         digraph "G" {
             subgraph "cluster_0" {
                 color="lightgrey";
-                style="filled";
                 label="process #1";
+                style="filled";
                 node [color="white", style="filled"];
                 "a0";
                 "a1";
@@ -129,13 +130,9 @@ class GraphvizGraph(TreeContainer):
         node_attributes=None
         ):
         TreeContainer.__init__(self, children=children, name=name)
-        assert isinstance(attributes, (dict, type(None)))
+        GraphvizObject.__init__(self, attributes=attributes)
         assert isinstance(edge_attributes, (dict, type(None)))
         assert isinstance(node_attributes, (dict, type(None)))
-        if attributes is None:
-            self._attributes = {}
-        else:
-            self._attributes = copy.copy(attributes)
         if edge_attributes is None:
             self._edge_attributes = {}
         else:
@@ -154,10 +151,6 @@ class GraphvizGraph(TreeContainer):
         return (documentationtools.GraphvizCluster, documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def attributes(self):
-        return self._attributes
 
     @property
     def edge_attributes(self):
@@ -191,7 +184,7 @@ class GraphvizGraph(TreeContainer):
             indent_one = indent * '\t'
             indent_two = (indent + 1) * '\t'
             result = ['{}{} "{}" {{'.format(indent_one, prefix, node.name)]
-            for name, value in node.attributes.items():
+            for name, value in sorted(node.attributes.items()):
                 result.append('{}{};'.format(indent_two, self._format_attribute(name, value)))
             if len(node.node_attributes):
                 result.append('{}node {};'.format(
@@ -230,17 +223,4 @@ class GraphvizGraph(TreeContainer):
         def fset(self, arg):
             self._is_digraph = bool(arg)
         return property(**locals())
-
-    ### PRIVATE METHODS ###
-
-    def _format_attribute(self, name, value):
-        if isinstance(value, str):
-            return '{}="{}"'.format(name, value)
-        return '{}={}'.format(name, value)
-
-    def _format_attribute_list(self, attributes):
-        result = []
-        for k, v in sorted(attributes.items()):
-            result.append(self._format_attribute(k, v))
-        return '[{}]'.format(', '.join(result))
 

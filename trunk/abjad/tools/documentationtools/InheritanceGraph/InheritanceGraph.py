@@ -54,7 +54,9 @@ class InheritanceGraph(AbjadObject):
         '_parent_children_mapping',
         '_recurse_into_submodules',
         '_root_addresses',
-        '_root_klasses'
+        '_root_klasses',
+        '_use_clusters',
+        '_use_groups',
         )
 
     # TODO: what default should this take?
@@ -67,9 +69,13 @@ class InheritanceGraph(AbjadObject):
         lineage_addresses=None,
         recurse_into_submodules=True,
         root_addresses=None,
+        use_clusters=True,
+        use_groups=True,
         ):
 
         self._recurse_into_submodules = bool(recurse_into_submodules)
+        self._use_clusters = bool(use_clusters)
+        self._use_groups = bool(use_groups)
 
         # main addresses
         if addresses is None:
@@ -183,7 +189,8 @@ class InheritanceGraph(AbjadObject):
                     recurse_downward(child, invalid_klasses)
         invalid_klasses = set(child_parents_mapping.keys() + parent_children_mapping.keys())
         for klass in self.lineage_klasses:
-            invalid_klasses.remove(klass)
+            if klass in invalid_klasses:
+                invalid_klasses.remove(klass)
             recurse_upward(klass, invalid_klasses)
             recurse_downward(klass, invalid_klasses)
         for klass in invalid_klasses:
@@ -238,12 +245,23 @@ class InheritanceGraph(AbjadObject):
         graph = documentationtools.GraphvizGraph(
             name='InheritanceGraph',
             attributes={
+                'color': 'lightslategrey',
+                'fontname': 'Arial',
+                'fontsize': 18,
                 'overlap': 'prism',
-                'splines': 'true',
+                'penwidth': 2,
+                'ranksep': 1,
+                'splines': 'spline',
+                'style': 'dotted,rounded',
+            },
+            edge_attributes={
+                'penwidth': 2,
             },
             node_attributes={
-                'colorscheme': 'set312',
-                'style': 'filled',
+                'colorscheme': 'pastel19',
+                'fontname': 'Arial',
+                'penwidth': 2,
+                'style': 'filled,rounded',
             },
             )
 
@@ -275,13 +293,14 @@ class InheritanceGraph(AbjadObject):
                 pass
 
             if klass in self.root_klasses:
-                node.attributes['style'] = 'bold'
+                pass
 
             if klass in self.lineage_klasses:
                 pass
 
             if inspect.isabstract(klass):
                 node.attributes['shape'] = 'oval'
+                node.attributes['style'] = 'bold'
             else:
                 node.attributes['shape'] = 'box'
 
@@ -293,12 +312,14 @@ class InheritanceGraph(AbjadObject):
 
         for i, module_name in enumerate(sorted(module_clusters)):
             cluster = module_clusters[module_name]
-            color = i % 12 + 1
+            color = i % 9 + 1
             for node in cluster:
                 node.attributes['color'] = color
-                node.attributes['group'] = i
-            #graph.extend(cluster[:])
-            #graph.remove(cluster)
+                if self.use_groups:
+                    node.attributes['group'] = i
+            if not self.use_clusters:
+                graph.extend(cluster[:])
+                graph.remove(cluster)
 
         if self.root_addresses is None:
             graph.attributes['root'] = '__builtin__.object'        
@@ -332,3 +353,11 @@ class InheritanceGraph(AbjadObject):
     @property
     def root_klasses(self):
         return self._root_klasses
+
+    @property
+    def use_clusters(self):
+        return self._use_clusters
+
+    @property
+    def use_groups(self):
+        return self._use_groups

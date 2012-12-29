@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.attributes
 
+    Inherited from :py:class:`documentationtools.GraphvizObject <abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject>`
+
 .. autoattribute:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.head
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizEdge.GraphvizEdge.GraphvizEdge.storage_format
