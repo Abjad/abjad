@@ -79,6 +79,13 @@ class Timespan(BoundedObject):
         if offset is not None:
             return durationtools.Offset(offset)
 
+    def _implements_timespan_interface(self, expr):
+        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+            return True
+        if hasattr(expr, 'timespan'):
+            return True
+        return False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -140,15 +147,15 @@ class Timespan(BoundedObject):
     ### PUBLIC METHODS ###
 
     def contains_expr_improperly(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_contains_timespan_1_improperly(expr, self)
 
     def curtails_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_curtails_timespan_1(expr, self)
 
     def delays_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_delays_timespan_1(expr, self)
 
     def divide_by_ratio(self, ratio):
@@ -196,15 +203,15 @@ class Timespan(BoundedObject):
         return type(self)(self.start_offset, expr.stop_offset)
 
     def happens_during_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_happens_during_timespan_1(expr, self)
 
     def intersects_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_intersects_timespan_1(expr, self)
 
     def is_congruent_to_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_is_congruent_to_timespan_1(expr, self)
 
     def is_tangent_to_expr(self, expr):
@@ -240,23 +247,23 @@ class Timespan(BoundedObject):
         return False
 
     def overlaps_all_of_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_overlaps_all_of_timespan_1(expr, self)
 
     def overlaps_only_start_of_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_overlaps_only_start_of_timespan_1(expr, self)
 
     def overlaps_only_stop_of_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_overlaps_only_stop_of_timespan_1(expr, self)
 
     def overlaps_start_of_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_overlaps_start_of_timespan_1(expr, self)
 
     def overlaps_stop_of_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_overlaps_stop_of_timespan_1(expr, self)
 
     def scale(self, multiplier):
@@ -368,59 +375,59 @@ class Timespan(BoundedObject):
             return type(self)(self.start_offset, self.stop_offset)
 
     def starts_after_expr_starts(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_after_timespan_1_starts(expr, self)
 
     def starts_after_expr_stops(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_after_timespan_1_stops(expr, self)
 
     def starts_before_expr_starts(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_before_timespan_1_starts(expr, self)
 
     def starts_before_expr_stops(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_before_timespan_1_stops(expr, self)
 
     def starts_during_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_during_timespan_1(expr, self)
 
     def starts_when_expr_starts(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_when_timespan_1_starts(expr, self)
 
     def starts_when_expr_stops(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_starts_when_timespan_1_stops(expr, self)
 
     def stops_after_expr_starts(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_after_timespan_1_starts(expr, self)
 
     def stops_after_expr_stops(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_after_timespan_1_stops(expr, self)
 
     def stops_before_expr_starts(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_before_timespan_1_starts(expr, self)
 
     def stops_before_expr_stops(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_before_timespan_1_stops(expr, self)
 
     def stops_during_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_during_timespan_1(expr, self)
 
     def stops_when_expr_starts(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_when_timespan_1_starts(expr, self)
 
     def stops_when_expr_stops(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_stops_when_timespan_1_stops(expr, self)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
@@ -446,5 +453,5 @@ class Timespan(BoundedObject):
         return result
 
     def trisects_expr(self, expr):
-        if hasattr(expr, 'start_offset') and hasattr(expr, 'stop_offset'):
+        if self._implements_timespan_interface(expr):
             return timerelationtools.timespan_2_trisects_timespan_1(expr, self)
