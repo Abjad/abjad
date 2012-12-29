@@ -13,6 +13,8 @@ Read-only Properties
 
     Inherited from :py:class:`documentationtools.GraphvizObject <abjad.tools.documentationtools.GraphvizObject.GraphvizObject.GraphvizObject>`
 
+.. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.canonical_name
+
 .. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.children
 
     Inherited from :py:class:`datastructuretools.TreeContainer <abjad.tools.datastructuretools.TreeContainer.TreeContainer.TreeContainer>`
@@ -73,6 +75,8 @@ Read-only Properties
 
 Read/write Properties
 ---------------------
+
+.. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.is_cluster
 
 .. autoattribute:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph.is_digraph
 

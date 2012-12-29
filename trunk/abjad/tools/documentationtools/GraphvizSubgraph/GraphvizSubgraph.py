@@ -10,6 +10,7 @@ class GraphvizSubgraph(GraphvizGraph):
         attributes=None,
         children=None,
         edge_attributes=None,
+        is_cluster=True,
         name=None,
         node_attributes=None
         ):
@@ -20,6 +21,7 @@ class GraphvizSubgraph(GraphvizGraph):
             name=name,
             node_attributes=node_attributes
             )
+        self.is_cluster = is_cluster
         self._edges = set([])
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -37,7 +39,25 @@ class GraphvizSubgraph(GraphvizGraph):
     ### READ-ONLY PUBLIC PROPERTIES ###
  
     @property
+    def canonical_name(self):
+        if self.name is not None:
+            return self.name
+        prefix = 'subgraph_'
+        if self.is_cluster:
+            prefix = 'cluster_'
+        return prefix + '_'.join(str(x) for x in self.graph_order)
+
+    @property
     def edges(self):
         return tuple(self._edges)
 
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def is_cluster():
+        def fget(self):
+            return self._is_cluster
+        def fset(self, arg):
+            self._is_cluster = bool(arg)
+        return property(**locals())
 

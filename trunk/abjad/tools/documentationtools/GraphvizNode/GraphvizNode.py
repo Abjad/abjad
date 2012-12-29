@@ -15,14 +15,21 @@ class GraphvizNode(TreeNode, GraphvizObject):
 
     @property
     def _graphviz_format_contributions(self):
+        node_def = '"{}"'.format(self.canonical_name)
         if len(self.attributes):
             result = []
             result.extend(self._format_attribute_list(self.attributes))
-            result[0] = '"{}" {}'.format(self.name, result[0])
+            result[0] = '{} {}'.format(node_def, result[0])
             return result
-        return ['"{}";'.format(self.name)]
+        return [node_def + ';']
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def canonical_name(self):
+        if self.name is not None:
+            return self.name
+        return 'node_' + '_'.join(str(x) for x in self.graph_order)
 
     @property
     def edges(self):

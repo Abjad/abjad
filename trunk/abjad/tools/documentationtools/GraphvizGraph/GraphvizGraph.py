@@ -117,6 +117,39 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
         >>> iotools.graph(graph) # doctest: +SKIP
 
+    Graphs can also be created without defining names.  Canonical names
+    will be automatically determined for all members whose `name` is None:
+
+    ::
+
+        >>> graph = documentationtools.GraphvizGraph()
+        >>> graph.append(documentationtools.GraphvizSubgraph())
+        >>> graph[0].append(documentationtools.GraphvizNode())
+        >>> graph[0].append(documentationtools.GraphvizNode())
+        >>> graph[0].append(documentationtools.GraphvizNode())
+        >>> graph[0].append(documentationtools.GraphvizSubgraph())
+        >>> graph[0][-1].append(documentationtools.GraphvizNode())
+        >>> graph.append(documentationtools.GraphvizNode())
+        >>> edge = documentationtools.GraphvizEdge()(graph[0][1], graph[1])
+        >>> edge = documentationtools.GraphvizEdge()(graph[0][0], graph[0][-1][0])
+
+    ::
+
+        >>> print graph.graphviz_format
+        digraph "Graph" {
+            subgraph "cluster_0" {
+                "node_0_0";
+                "node_0_1";
+                "node_0_2";
+                subgraph "cluster_0_3" {
+                    "node_0_3_0";
+                }
+                "node_0_0" -> "node_0_3_0";
+            }
+            "node_1";
+            "node_0_1" -> "node_1";
+        }
+
     Return GraphvizGraph instance.
     '''
 
@@ -149,6 +182,12 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def canonical_name(self):
+        if self.name is not None:
+            return self.name
+        return 'Graph'
+
+    @property
     def edge_attributes(self):
         return self._edge_attributes
 
@@ -174,12 +213,10 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 edge_parents[last_parent] = []
             edge_parents[last_parent].append(edge)
 
-        result = ['digraph {} {{'.format(self.name)]
-
         def recurse(node, indent=0, prefix='subgraph'):
             indent_one = indent * '\t'
             indent_two = (indent + 1) * '\t'
-            result = ['{}{} "{}" {{'.format(indent_one, prefix, node.name)]
+            result = ['{}{} "{}" {{'.format(indent_one, prefix, node.canonical_name)]
             if len(node.attributes):
                 contributions = self._format_attribute_list(node.attributes) 
                 contributions[0] = 'graph {}'.format(contributions[0])
@@ -201,7 +238,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             if node in edge_parents:
                 edge_contributions = []
                 for edge in sorted(edge_parents[node], 
-                    key=lambda x: (x.tail.name, x.head.name)):
+                    key=lambda x: (x.tail.canonical_name, x.head.canonical_name)):
                     edge_contributions.extend(indent_two + x \
                         for x in edge._graphviz_format_contributions)
                 result.extend(edge_contributions)
