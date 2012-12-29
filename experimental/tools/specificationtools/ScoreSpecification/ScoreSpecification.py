@@ -55,10 +55,30 @@ class ScoreSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
+        '''Get segment specification from segment specification name::
+
+            >>> score_specification['yellow']
+            SegmentSpecification('yellow')
+
+        Get segment specification from segment specification index::
+
+            >>> score_specification[2]
+            SegmentSpecification('yellow')
+
+        Return segment specification.
+        '''
         return self.segment_specifications.__getitem__(expr)
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.segment_specifications)
+        '''Score specification interpreter representation::
+
+            >>> score_specification
+            ScoreSpecification('red', 'orange', 'yellow')
+
+        Return string.
+        '''
+        segment_specification_names = [repr(x.specification_name) for x in self.segment_specifications]
+        return '{}({})'.format(self._class_name, ', '.join(segment_specification_names))
 
     ### PRIVATE METHODS ###
 
@@ -76,9 +96,32 @@ class ScoreSpecification(Specification):
 
     @property
     def all_division_region_commands(self):
-        '''Read-only list of all division region commands.
+        '''Read-only list of all division region commands::
 
-        Populated at the beginning of division interpretation by interpreter.
+            >>> for x in score_specification.all_division_region_commands:
+            ...     z(x)
+            settingtools.DivisionCommand(
+                requesttools.AbsoluteRequest(
+                    [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
+                    ),
+                'Voice 1',
+                durationtools.Offset(0, 1),
+                durationtools.Offset(9, 4),
+                fresh=True,
+                truncate=True
+                )
+            settingtools.DivisionCommand(
+                requesttools.AbsoluteRequest(
+                    [(2, 8), (3, 8), (4, 8), (4, 16), (4, 16), (5, 16), (5, 16)]
+                    ),
+                'Voice 2',
+                durationtools.Offset(0, 1),
+                durationtools.Offset(9, 4),
+                fresh=True,
+                truncate=True
+                )
+
+        Populate during interpretation.
 
         Return list.
         '''
@@ -88,6 +131,11 @@ class ScoreSpecification(Specification):
     def all_rhythm_quintuples(self):
         '''Read-only list of all rhythm quintuples.
 
+            >>> for x in score_specification.all_rhythm_quintuples:
+            ...     z(x)
+
+        Popluate during interpretation. Then consume during interpretation.
+
         Return list.
         '''
         return self._all_rhythm_quintuples
@@ -96,7 +144,27 @@ class ScoreSpecification(Specification):
     def all_rhythm_region_commands(self):
         '''Read-only list of all rhythm region commands.
 
-        Populated at the beginning of rhythm interpretation by interpreter.
+            >>> for x in score_specification.all_rhythm_region_commands:
+            ...     z(x)
+            settingtools.RhythmCommand(
+                requesttools.AbsoluteRequest(
+                    rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        )
+                    ),
+                None,
+                durationtools.Offset(0, 1),
+                durationtools.Offset(9, 4),
+                fresh=True
+                )
+
+        Populate during interpretation
 
         Return list.
         '''
@@ -106,7 +174,10 @@ class ScoreSpecification(Specification):
     def all_time_signature_commands(self):
         '''Read-only list of all time signature settings.
 
-        Populated at the beginning of time signature interpretation by interpreter.
+            >>> for x in score_specification.all_time_signature_commands:
+            ...     z(x)
+
+        Populate during interpretation. Then consume during interpretation.
 
         Return list.
         '''
@@ -167,7 +238,7 @@ class ScoreSpecification(Specification):
 
     @property
     def interface(self):
-        '''Read-only reference to score setting interface.
+        '''Read-only reference to score setting interface::
 
             >>> score_specification.interface
             ScoreSettingInterface()
@@ -176,6 +247,57 @@ class ScoreSpecification(Specification):
         '''
         return self._interface
 
+    @property
+    def multiple_context_settings(self):
+        '''Read-only reference to multiple context settings::
+
+            >>> for x in score_specification.multiple_context_settings:
+            ...     z(x)
+            settingtools.MultipleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(2, 8), (3, 8), (4, 8)]
+                    ),
+                anchor='red',
+                persist=True
+                )
+            settingtools.MultipleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(4, 16), (4, 16)]
+                    ),
+                anchor='orange',
+                persist=True
+                )
+            settingtools.MultipleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(5, 16), (5, 16)]
+                    ),
+                anchor='yellow',
+                persist=True
+                )
+            settingtools.MultipleContextSetting(
+                attribute='rhythm',
+                request=requesttools.AbsoluteRequest(
+                    rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        )
+                    ),
+                anchor='red',
+                persist=True
+                )
+
+        Return context setting proxy.
+        '''
+        return Specification.multiple_context_settings.fget(self)
+    
     @property
     def offsets(self):
         r'''Score specification start and stop offsets.
@@ -207,6 +329,17 @@ class ScoreSpecification(Specification):
         return self._score_duration
 
     @property
+    def score_model(self):
+        '''Score specification score model::
+
+            >>> score_specification.score_model
+            Score-"Grouped Rhythmic Staves Score"<<1>>
+
+        Return Abjad score object.
+        '''
+        return Specification.score_model.fget(self)
+
+    @property
     def score_name(self):
         r'''Score specification score name::
 
@@ -222,7 +355,7 @@ class ScoreSpecification(Specification):
         '''Read-only reference to self.
 
             >>> score_specification.score_specification
-            ScoreSpecification(SegmentSpecificationInventory([SegmentSpecification('red'), SegmentSpecification('orange'), SegmentSpecification('yellow')]))
+            ScoreSpecification('red', 'orange', 'yellow')
 
         Return self.
         '''
@@ -512,7 +645,8 @@ class ScoreSpecification(Specification):
 
             >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression(
             ... "'red' + 'orange' + 'yellow'")
-            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
+            >>> score_specification.segment_identifier_expression_to_segment_index(
+            ... segment_identifier_expression)
             3
 
         Evaluate strings directlly::

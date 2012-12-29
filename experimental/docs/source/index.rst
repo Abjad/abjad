@@ -7,22 +7,21 @@ Demos and example packages
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`microlanguage <('abjad.tools.', 'abjad.demos.')microlanguage>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`microlanguage <experimental.demos.microlanguage>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    demos/microlanguage/ToyLanguageParser/ToyLanguageParser
 
-:py:mod:`windungen <('abjad.tools.', 'abjad.demos.')windungen>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`windungen <experimental.demos.windungen>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    demos/windungen/WindungenScoreTemplate/WindungenScoreTemplate
-
 
 --------
 
@@ -41,15 +40,14 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`breakpointtools <('abjad.tools.', 'abjad.demos.')breakpointtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`breakpointtools <experimental.tools.breakpointtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/breakpointtools/BreakPoint/BreakPoint
    tools/breakpointtools/BreakPointFunctionSet/BreakPointFunctionSet
-
 
 --------
 
@@ -58,8 +56,8 @@ Unstable packages (load manually)
 
    tools/breakpointtools/BreakPointFunction/BreakPointFunction
 
-:py:mod:`constrainttools <('abjad.tools.', 'abjad.demos.')constrainttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`constrainttools <experimental.tools.constrainttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -74,8 +72,8 @@ Unstable packages (load manually)
    tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
    tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-:py:mod:`divisiontools <('abjad.tools.', 'abjad.demos.')divisiontools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`divisiontools <experimental.tools.divisiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -83,8 +81,8 @@ Unstable packages (load manually)
    tools/divisiontools/Division/Division
    tools/divisiontools/DivisionList/DivisionList
 
-:py:mod:`handlertools <('abjad.tools.', 'abjad.demos.')handlertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`handlertools <experimental.tools.handlertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -93,7 +91,6 @@ Unstable packages (load manually)
    tools/handlertools/articulations/ArticulationHandler/ArticulationHandler
    tools/handlertools/dynamics/DynamicHandler/DynamicHandler
    tools/handlertools/pitch/PitchHandler/PitchHandler
-
 
 --------
 
@@ -112,8 +109,8 @@ Unstable packages (load manually)
    tools/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
    tools/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
 
-:py:mod:`helpertools <('abjad.tools.', 'abjad.demos.')helpertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`helpertools <experimental.tools.helpertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -122,7 +119,6 @@ Unstable packages (load manually)
    tools/helpertools/Callback/Callback
    tools/helpertools/KlassInventory/KlassInventory
    tools/helpertools/SegmentIdentifierExpression/SegmentIdentifierExpression
-
 
 --------
 
@@ -139,14 +135,13 @@ Unstable packages (load manually)
    tools/helpertools/read_test_output
    tools/helpertools/write_test_output
 
-:py:mod:`interpretertools <('abjad.tools.', 'abjad.demos.')interpretertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`interpretertools <experimental.tools.interpretertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/interpretertools/Interpreter/Interpreter
-
 
 --------
 
@@ -155,8 +150,8 @@ Unstable packages (load manually)
 
    tools/interpretertools/ConcreteInterpreter/ConcreteInterpreter
 
-:py:mod:`lyrictools <('abjad.tools.', 'abjad.demos.')lyrictools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`lyrictools <experimental.tools.lyrictools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -168,30 +163,29 @@ Unstable packages (load manually)
    tools/lyrictools/LyricText/LyricText
    tools/lyrictools/Lyrics/Lyrics
 
-:py:mod:`metricmodulationtools <('abjad.tools.', 'abjad.demos.')metricmodulationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`metricmodulationtools <experimental.tools.metricmodulationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/metricmodulationtools/yield_prolation_rewrite_pairs
 
-:py:mod:`parsertools <('abjad.tools.', 'abjad.demos.')parsertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`parsertools <experimental.tools.parsertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/parsertools/ENPParser/ENPParser
 
-:py:mod:`requesttools <('abjad.tools.', 'abjad.demos.')requesttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`requesttools <experimental.tools.requesttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/requesttools/Request/Request
-
 
 --------
 
@@ -203,7 +197,6 @@ Unstable packages (load manually)
    tools/requesttools/HandlerRequest/HandlerRequest
    tools/requesttools/StatalServerRequest/StatalServerRequest
 
-
 --------
 
 .. toctree::
@@ -211,16 +204,16 @@ Unstable packages (load manually)
 
    tools/requesttools/expr_to_request
 
-:py:mod:`segmenttools <('abjad.tools.', 'abjad.demos.')segmenttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`segmenttools <experimental.tools.segmenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/segmenttools/Segment/Segment
 
-:py:mod:`selectortools <('abjad.tools.', 'abjad.demos.')selectortools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`selectortools <experimental.tools.selectortools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -233,8 +226,8 @@ Unstable packages (load manually)
    tools/selectortools/SegmentSelector/SegmentSelector
    tools/selectortools/Selector/Selector
 
-:py:mod:`settingtools <('abjad.tools.', 'abjad.demos.')settingtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`settingtools <experimental.tools.settingtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -243,7 +236,6 @@ Unstable packages (load manually)
    tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
-
 
 --------
 
@@ -264,14 +256,13 @@ Unstable packages (load manually)
    tools/settingtools/SingleContextSetting/SingleContextSetting
    tools/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 
-:py:mod:`specificationtools <('abjad.tools.', 'abjad.demos.')specificationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`specificationtools <experimental.tools.specificationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/specificationtools/Specification/Specification
-
 
 --------
 
@@ -284,22 +275,21 @@ Unstable packages (load manually)
    tools/specificationtools/SegmentSpecification/SegmentSpecification
    tools/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
 
-:py:mod:`statalservertools <('abjad.tools.', 'abjad.demos.')statalservertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`statalservertools <experimental.tools.statalservertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/statalservertools/StatalServer/StatalServer
 
-:py:mod:`timeexpressiontools <('abjad.tools.', 'abjad.demos.')timeexpressiontools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`timeexpressiontools <experimental.tools.timeexpressiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/timeexpressiontools/SelectMethodMixin/SelectMethodMixin
-
 
 --------
 
