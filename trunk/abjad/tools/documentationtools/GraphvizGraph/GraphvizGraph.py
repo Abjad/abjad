@@ -75,10 +75,11 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         >>> print graph.graphviz_format
         digraph "G" {
             subgraph "cluster_0" {
-                color="lightgrey";
-                label="process #1";
-                style="filled";
-                node [color="white", style="filled"];
+                graph [color="lightgrey",
+                    label="process #1",
+                    style="filled"];
+                node [color="white",
+                    style="filled"];
                 "a0";
                 "a1";
                 "a2";
@@ -89,8 +90,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 "a3" -> "a0";
             }
             subgraph "cluster_1" {
-                color="blue";
-                label="process #2";
+                graph [color="blue",
+                    label="process #2"];
                 node [style="filled"];
                 "b0";
                 "b1";
@@ -133,14 +134,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         GraphvizObject.__init__(self, attributes=attributes)
         assert isinstance(edge_attributes, (dict, type(None)))
         assert isinstance(node_attributes, (dict, type(None)))
-        if edge_attributes is None:
-            self._edge_attributes = {}
-        else:
-            self._edge_attributes = copy.copy(edge_attributes)
-        if node_attributes is None:
-            self._node_attributes = {}
-        else:
-            self._node_attributes = copy.copy(node_attributes)
+        self._verify_attributes(edge_attributes, '_edge_attributes')
+        self._verify_attributes(node_attributes, '_node_attributes')
         self._is_digraph = bool(is_digraph)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -148,7 +143,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     @property
     def _node_klass(self):
         from abjad.tools import documentationtools
-        return (documentationtools.GraphvizCluster, documentationtools.GraphvizNode)
+        return (documentationtools.GraphvizCluster,
+            documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -184,24 +180,30 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             indent_one = indent * '\t'
             indent_two = (indent + 1) * '\t'
             result = ['{}{} "{}" {{'.format(indent_one, prefix, node.name)]
-            for name, value in sorted(node.attributes.items()):
-                result.append('{}{};'.format(indent_two, self._format_attribute(name, value)))
+            if len(node.attributes):
+                contributions = self._format_attribute_list(node.attributes) 
+                contributions[0] = 'graph {}'.format(contributions[0])
+                result.extend(indent_two + x for x in contributions)
             if len(node.node_attributes):
-                result.append('{}node {};'.format(
-                    indent_two, self._format_attribute_list(node.node_attributes)))
+                contributions = self._format_attribute_list(node.node_attributes) 
+                contributions[0] = 'node {}'.format(contributions[0])
+                result.extend(indent_two + x for x in contributions)
             if len(node.edge_attributes):
-                result.append('{}edge {};'.format(
-                    indent_two, self._format_attribute_list(node.edge_attributes)))
+                contributions = self._format_attribute_list(node.edge_attributes) 
+                contributions[0] = 'edge {}'.format(contributions[0])
+                result.extend(indent_two + x for x in contributions)
             for child in node:
                 if isinstance(child, type(self)):
                     result.extend(recurse(child, indent=indent+1))
                 else:
-                    result.append(indent_two + child._graphviz_format_contributions)
+                    result.extend(indent_two + x \
+                        for x in child._graphviz_format_contributions)
             if node in edge_parents:
                 edge_contributions = []
-                for edge in edge_parents[node]:
-                    edge_contributions.append(indent_two + edge._graphviz_format_contributions)
-                edge_contributions.sort()
+                for edge in sorted(edge_parents[node], 
+                    key=lambda x: (x.tail.name, x.head.name)):
+                    edge_contributions.extend(indent_two + x \
+                        for x in edge._graphviz_format_contributions)
                 result.extend(edge_contributions)
             result.append('{}}}'.format(indent_one))
             return result

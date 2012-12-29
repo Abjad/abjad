@@ -178,11 +178,15 @@ class InheritanceGraph(AbjadObject):
         if not self.lineage_klasses:
             return
         def recurse_upward(klass, invalid_klasses):
+            if klass not in child_parents_mapping:
+                return
             for parent in child_parents_mapping[klass]:
                 if parent in invalid_klasses:
                     invalid_klasses.remove(parent)
                     recurse_upward(parent, invalid_klasses)
         def recurse_downward(klass, invalid_klasses):
+            if klass not in parent_children_mapping:
+                return
             for child in parent_children_mapping[klass]:
                 if child in invalid_klasses:
                     invalid_klasses.remove(child)

@@ -2188,6 +2188,14 @@ Abjad internal packages
 .. toctree::
    :maxdepth: 1
 
+   tools/documentationtools/GraphvizObject/GraphvizObject
+
+
+--------
+
+.. toctree::
+   :maxdepth: 1
+
    tools/documentationtools/APICrawler/APICrawler
    tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
    tools/documentationtools/ClassCrawler/ClassCrawler
@@ -2199,7 +2207,6 @@ Abjad internal packages
    tools/documentationtools/GraphvizEdge/GraphvizEdge
    tools/documentationtools/GraphvizGraph/GraphvizGraph
    tools/documentationtools/GraphvizNode/GraphvizNode
-   tools/documentationtools/GraphvizObject/GraphvizObject
    tools/documentationtools/InheritanceGraph/InheritanceGraph
    tools/documentationtools/ModuleCrawler/ModuleCrawler
    tools/documentationtools/Pipe/Pipe

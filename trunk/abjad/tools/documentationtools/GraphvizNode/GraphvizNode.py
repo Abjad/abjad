@@ -16,9 +16,11 @@ class GraphvizNode(TreeNode, GraphvizObject):
     @property
     def _graphviz_format_contributions(self):
         if len(self.attributes):
-            return '"{}" {};'.format(self.name,
-                self._format_attribute_list(self.attributes))
-        return '"{}";'.format(self.name)
+            result = []
+            result.extend(self._format_attribute_list(self.attributes))
+            result[0] = '"{}" {}'.format(self.name, result[0])
+            return result
+        return ['"{}";'.format(self.name)]
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
