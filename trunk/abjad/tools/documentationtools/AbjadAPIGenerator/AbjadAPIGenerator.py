@@ -56,7 +56,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             crawler = APICrawler(code_path, docs_path, self.root_package,
                 ignored_directories=ignored_directories, prefix=package_prefix)
             all_visited_modules.extend(crawler())
-        package_dictionary = self._sort_modules(all_visited_modules)
+        package_dictionary, tools_package_dictionary = self._sort_modules(all_visited_modules)
 
         if verbose:
             print 'Now making API index ...'
@@ -70,7 +70,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
                 result.extend(self._create_section_title(
                     self._package_descriptions[package_group]))
                 for package_name, package in sorted(packages.items()):
-                    result.extend(self._create_package_toc(package_name, package))
+                    result.extend(self._create_package_toc(package_name, package, tools_package_dictionary))
 
         f = open(self.docs_api_index_path, 'w')
         f.write('\n'.join(result))
@@ -86,14 +86,15 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     def _create_heading(self, text, character='='):
         return [text, character * len(text), '']
 
-    def _create_package_title(self, package_name):
-        result = self._create_heading(':py:mod:`%s <%s%s>`' % 
-            (package_name, self.package_prefix, package_name), '~')
+    def _create_package_title(self, package_name, tools_package_dictionary):
+        result = self._create_heading(
+            ':py:mod:`{} <{}>`'.format(package_name, tools_package_dictionary[package_name]),
+            '~')
         return result
 
-    def _create_package_toc(self, package_name, package_modules):
+    def _create_package_toc(self, package_name, package_modules, tools_package_dictionary):
         result = []
-        result.extend(self._create_package_title(package_name))
+        result.extend(self._create_package_title(package_name, tools_package_dictionary))
 
         if package_modules['abstract_classes']:
             result.extend(self._create_toc_directive())
