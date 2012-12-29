@@ -864,14 +864,14 @@ class ConcreteInterpreter(Interpreter):
                 voice_name, self.score_specification.timespan.start_offset, self.score_specification.timespan.stop_offset, attribute)
             return [region_command]
         if not region_commands[0].starts_when_expr_starts(self.score_specification):
-            #region_command = self.make_default_region_command(
-            #    voice_name, self.score_specification.start_offset, region_commands[0].start_offset, attribute)
             region_command = self.make_default_region_command(
-                voice_name, self.score_specification.timespan.start_offset, region_commands[0].start_offset, attribute)
+                voice_name, self.score_specification.timespan.start_offset, 
+                region_commands[0].start_offset, attribute)
             region_commands.insert(0, region_command)
         if not region_commands[-1].stops_when_expr_stops(self.score_specification):
             region_command = self.make_default_region_command(
-                voice_name, region_commands[-1].stop_offset, self.score_specification.stop_offset, attribute)
+                voice_name, region_commands[-1].stop_offset, 
+                self.score_specification.timespan.stop_offset, attribute)
             region_commands.append(region_command)
         if len(region_commands) == 1:
             return region_commands

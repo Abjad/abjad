@@ -117,13 +117,5 @@ class Specification(AbjadObject):
         return self._single_context_settings_by_context
 
     @property
-    def start_offset(self):
-        return self._start_offset
-
-    @property
-    def stop_offset(self):
-        return self._stop_offset
-
-    @property
     def timespan(self):
         return self._timespan

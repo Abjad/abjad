@@ -25,10 +25,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_settings_by_context
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.start_offset
-
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.stop_offset
-
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

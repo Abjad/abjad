@@ -438,32 +438,6 @@ class ScoreSpecification(Specification):
         return
 
     @property
-    def start_offset(self):
-        r'''Score specification start offset.
-
-            >>> score_specification.start_offset
-            Offset(0, 1)
-
-        Populate during interpretation.
-
-        Return offset.
-        '''
-        return self.timespan.start_offset
-
-    @property
-    def stop_offset(self):
-        r'''Score specification stop offset.
-
-            >>> score_specification.stop_offset
-            Offset(9, 4)
-
-        Populate during interpretation.
-
-        Return offset.
-        '''
-        return self.timespan.stop_offset
-
-    @property
     def storage_format(self):
         r'''Score specification storage format::
 
@@ -501,6 +475,13 @@ class ScoreSpecification(Specification):
 
     @property
     def timespan(self):
+        '''Score specification timespan::
+
+            >>> score_specification.timespan
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 4))
+
+        Return timespan.
+        '''
         return Specification.timespan.fget(self)
 
     ### PUBLIC METHODS ###
