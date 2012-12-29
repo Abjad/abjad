@@ -2,41 +2,20 @@ import abc
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.tools import helpertools
-from experimental.tools import requesttools
-from experimental.tools import settingtools
 from experimental.tools import timeexpressiontools
 
 
 class Specification(AbjadObject):
-    r'''
+    r'''Specification.
 
-    ::
+    Abstract base class from which score specification and 
+    segment specification classes inherit.
 
-        >>> from experimental.tools import *
-
-    Abstract base class from which concrete specification classes inherit.
-
-    Score and segment specifications constitute the primary vehicle of composition.
-
-    Composers make settings against score and segment specifications.
-
-    Interpreter code interprets score and segment specifications.
+    Interpreter interprets score and segment specifications.
 
     Abjad score object results from interpretation.
 
-    The examples below reference the following segment specification::
-
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        >>> red_segment = score_specification.append_segment(name='red')
-        >>> red_segment = score_specification['red']
-
-    ::
-            
-        >>> red_segment
-        SegmentSpecification('red')
-
-    Return specification instance.
+    Specification properties are immutable.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -48,9 +27,9 @@ class Specification(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, score_specification, score_template):
+    def __init__(self, score_template):
+        from experimental.tools import settingtools
         from experimental.tools import specificationtools
-        self._score_specification = score_specification
         self._score_template = score_template
         self._score_model = score_template()
         self._abbreviated_context_names = []
@@ -63,6 +42,7 @@ class Specification(AbjadObject):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
+    # TODO: remove in favor of self.specification_name
     @property
     def _anchor_abbreviation(self):
         '''Form of specification suitable for writing to disk.
@@ -123,10 +103,6 @@ class Specification(AbjadObject):
     @property
     def score_name(self):
         return self._score_name
-
-    @abc.abstractproperty
-    def score_specification(self):
-        pass
 
     @property
     def score_template(self):

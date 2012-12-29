@@ -21,8 +21,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_name
 
-.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_specification
-
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_template
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.segment_name

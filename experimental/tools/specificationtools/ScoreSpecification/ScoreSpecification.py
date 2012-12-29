@@ -43,7 +43,7 @@ class ScoreSpecification(Specification):
 
     def __init__(self, score_template):
         from experimental.tools import specificationtools
-        Specification.__init__(self, self, score_template)
+        Specification.__init__(self, score_template)
         self._all_division_region_commands = []
         self._all_rhythm_quintuples = []
         self._all_rhythm_region_commands = []
@@ -351,17 +351,6 @@ class ScoreSpecification(Specification):
         return Specification.score_name.fget(self)
 
     @property
-    def score_specification(self):
-        '''Read-only reference to self.
-
-            >>> score_specification.score_specification
-            ScoreSpecification('red', 'orange', 'yellow')
-
-        Return self.
-        '''
-        return self
-        
-    @property
     def score_template(self):
         r'''Score specification score template::
 
@@ -439,8 +428,52 @@ class ScoreSpecification(Specification):
     def single_context_settings(self):
         r'''Score specification single-context settings::
 
-            >>> score_specification.single_context_settings
-            SingleContextSettingInventory([SingleContextSetting(attribute='time_signatures', request=AbsoluteRequest([(2, 8), (3, 8), (4, 8)]), anchor='red', fresh=True, persist=True), SingleContextSetting(attribute='time_signatures', request=AbsoluteRequest([(4, 16), (4, 16)]), anchor='orange', fresh=True, persist=True), SingleContextSetting(attribute='time_signatures', request=AbsoluteRequest([(5, 16), (5, 16)]), anchor='yellow', fresh=True, persist=True), SingleContextSetting(attribute='rhythm', request=AbsoluteRequest(TaleaRhythmMaker('sixteenths')), anchor='red', fresh=True, persist=True)])
+            >>> for x in score_specification.single_context_settings:
+            ...     z(x)
+            settingtools.SingleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(2, 8), (3, 8), (4, 8)]
+                    ),
+                anchor='red',
+                fresh=True,
+                persist=True
+                )
+            settingtools.SingleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(4, 16), (4, 16)]
+                    ),
+                anchor='orange',
+                fresh=True,
+                persist=True
+                )
+            settingtools.SingleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(5, 16), (5, 16)]
+                    ),
+                anchor='yellow',
+                fresh=True,
+                persist=True
+                )
+            settingtools.SingleContextSetting(
+                attribute='rhythm',
+                request=requesttools.AbsoluteRequest(
+                    rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        )
+                    ),
+                anchor='red',
+                fresh=True,
+                persist=True
+                )
 
         Return single-context setting inventory.
         '''
@@ -526,8 +559,15 @@ class ScoreSpecification(Specification):
     def time_signatures(self):
         r'''Score specification time signatures::
 
-            >>> score_specification.time_signatures
-            [NonreducedFraction(2, 8), NonreducedFraction(3, 8), NonreducedFraction(4, 8), NonreducedFraction(4, 16), NonreducedFraction(4, 16), NonreducedFraction(5, 16), NonreducedFraction(5, 16)]
+            >>> for x in score_specification.time_signatures:
+            ...     x
+            NonreducedFraction(2, 8)
+            NonreducedFraction(3, 8)
+            NonreducedFraction(4, 8)
+            NonreducedFraction(4, 16)
+            NonreducedFraction(4, 16)
+            NonreducedFraction(5, 16)
+            NonreducedFraction(5, 16)
 
         Return list of zero or more nonreduced fractions.
         '''
@@ -550,18 +590,14 @@ class ScoreSpecification(Specification):
         '''
         name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
-        segment_specification = self.segment_specification_class(self, self.score_template, name)
+        segment_specification = self.segment_specification_class(self.score_template, name)
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
-        segment_setting_interface = settingtools.SegmentSettingInterface(self.score_specification, name)
+        segment_setting_interface = settingtools.SegmentSettingInterface(self, name)
         return segment_setting_interface
 
     def get_start_segment_specification(self, expr):
-        r'''Get start segment specification from `expr`.
-
-        Use ``expr.start_segment_identifier`` to return segment specification.
-
-        Otherwise use `expr` directly to return segment specification::
+        r'''Get start segment specification from `expr`::
 
             >>> score_specification.get_start_segment_specification(1)
             SegmentSpecification('orange')

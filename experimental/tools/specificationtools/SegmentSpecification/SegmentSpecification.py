@@ -47,9 +47,9 @@ class SegmentSpecification(Specification):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_specification, score_template, segment_name):
+    def __init__(self, score_template, segment_name):
         assert isinstance(segment_name, str), segment_name
-        Specification.__init__(self, score_specification, score_template)
+        Specification.__init__(self, score_template)
         self._segment_name = segment_name
         self._time_signatures = []
 
@@ -161,18 +161,6 @@ class SegmentSpecification(Specification):
         Return string.
         '''
         return Specification.score_name.fget(self)
-
-    # TODO: maybe able to migrate to SegmentSpecificationInterface
-    @property
-    def score_specification(self):
-        '''Read-only reference to score against which segment specification is defined::
-
-            >>> red_segment.score_specification
-            ScoreSpecification('red', 'orange', 'yellow')
-
-        Return score specification.
-        '''
-        return self._score_specification
 
     @property
     def score_template(self):
@@ -294,11 +282,6 @@ class SegmentSpecification(Specification):
 
             >>> z(red_segment)
             specificationtools.SegmentSpecification(
-                specificationtools.ScoreSpecification(
-                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                        staff_count=2
-                        )
-                    ),
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
                     staff_count=2
                     ),

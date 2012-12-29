@@ -35,8 +35,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_specification
-
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_template
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_durations

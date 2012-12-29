@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.score_name
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.score_specification
-
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.score_template
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.single_context_settings

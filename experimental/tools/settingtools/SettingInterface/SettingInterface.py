@@ -4,6 +4,10 @@ from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMetho
 
 class SettingInterface(SelectMethodMixin, SetMethodMixin):
     r'''Setting interface.
+
+    Score and segment setting interfaces constitute the primary vehicle of composition.
+
+    Composers make settings against score and segment setting interfaces.
     '''
 
     ### INITIALIZER ###
