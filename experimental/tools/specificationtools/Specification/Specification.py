@@ -66,8 +66,6 @@ class Specification(AbjadObject):
     @property
     def _anchor_abbreviation(self):
         '''Form of symbolic timespan suitable for writing to disk.
-        
-        Specifications alias this property to specification name.
         '''
         return self.specification_name
 
@@ -116,18 +114,10 @@ class Specification(AbjadObject):
 
     @property
     def multiple_context_settings(self):
-        '''Secification multiple-context settings.
-
-        Return multiple-context setting inventory.
-        '''
         return self._multiple_context_settings
 
     @property
     def score_model(self):
-        '''Secification score model.
-
-        Return Abjad score object.
-        '''
         return self._score_model
 
     @property
@@ -163,6 +153,7 @@ class Specification(AbjadObject):
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
 
     # TODO: maybe migrate to SegmentSettingInterface, ScoreSettingInterface
+    # TODO: then define as literal timespan
     @property
     def timespan(self):
         timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)

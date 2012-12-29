@@ -14,12 +14,12 @@ class ScoreSpecification(Specification):
 
         >>> from experimental.tools import *
 
-    ::
+    The examples below reference the score specification defined here::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
         >>> score_specification = specificationtools.ScoreSpecification(template)
 
-    With three named segments::
+    ::
 
         >>> red_segment = score_specification.append_segment(name='red')
         >>> orange_segment = score_specification.append_segment(name='orange')
@@ -36,7 +36,7 @@ class ScoreSpecification(Specification):
 
         >>> score = score_specification.interpret()
     
-    All score specification properties are read-only.
+    Score specification properties are read-only.
     '''
 
     ### INITIALIZER ###

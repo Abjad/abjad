@@ -14,17 +14,33 @@ class SegmentSpecification(Specification):
 
         >>> from experimental.tools import *
 
-    The examples below reference the following segment specification::
+    The examples below reference the segment specifications defined here::
 
-        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        >>> red_segment = score_specification.append_segment(name='red')
-        >>> red_segment = score_specification['red']
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
+        >>> score_specification = specificationtools.ScoreSpecification(template)
 
     ::
-            
-        >>> red_segment
-        SegmentSpecification('red')
+
+        >>> red_segment = score_specification.append_segment(name='red')
+        >>> orange_segment = score_specification.append_segment(name='orange')
+        >>> yellow_segment = score_specification.append_segment(name='yellow')
+
+    ::
+
+        >>> setting = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+        >>> setting = orange_segment.set_time_signatures([(4, 16), (4, 16)])
+        >>> setting = yellow_segment.set_time_signatures([(5, 16), (5, 16)])
+        >>> setting = red_segment.set_rhythm(library.sixteenths)
+
+    ::
+
+        >>> red_segment = score_specification['red']
+        >>> orange_segment = score_specification['orange']
+        >>> yellow_segment = score_specification['yellow']
+
+    ::
+
+        >>> score = score_specification.interpret()
 
     Segment specification properties are read-only.
     '''
@@ -63,10 +79,6 @@ class SegmentSpecification(Specification):
             'Voice 1'
             'Staff 2'
             'Voice 2'
-            'Staff 3'
-            'Voice 3'
-            'Staff 4'
-            'Voice 4'
 
         Return list of strings.
         '''
@@ -83,12 +95,8 @@ class SegmentSpecification(Specification):
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
             'Staff 2'
-            'Staff 3'
-            'Staff 4'
             'Voice 1'
             'Voice 2'
-            'Voice 3'
-            'Voice 4'
 
         Return context proxy dictionary.
         '''
@@ -99,7 +107,7 @@ class SegmentSpecification(Specification):
         '''Segment specification duration.
 
             >>> red_segment.duration
-            Duration(0, 1)
+            Duration(9, 8)
 
         Return duration.
         '''
@@ -130,7 +138,7 @@ class SegmentSpecification(Specification):
         r'''Segment specification score template::
 
             >>> red_segment.score_template
-            GroupedRhythmicStavesScoreTemplate(staff_count=4)
+            GroupedRhythmicStavesScoreTemplate(staff_count=2)
 
         Return score template.
         '''
@@ -151,8 +159,34 @@ class SegmentSpecification(Specification):
     def single_context_settings(self):
         r'''Segment specification single-context settings::
 
-            >>> red_segment.single_context_settings
-            SingleContextSettingInventory([])
+            >>> for x in red_segment.single_context_settings:
+            ...     z(x)
+            settingtools.SingleContextSetting(
+                attribute='time_signatures',
+                request=requesttools.AbsoluteRequest(
+                    [(2, 8), (3, 8), (4, 8)]
+                    ),
+                anchor='red',
+                fresh=True,
+                persist=True
+                )
+            settingtools.SingleContextSetting(
+                attribute='rhythm',
+                request=requesttools.AbsoluteRequest(
+                    rhythmmakertools.TaleaRhythmMaker(
+                        [1],
+                        16,
+                        prolation_addenda=[],
+                        secondary_divisions=[],
+                        beam_each_cell=False,
+                        beam_cells_together=True,
+                        tie_split_notes=False
+                        )
+                    ),
+                anchor='red',
+                fresh=True,
+                persist=True
+                )
 
         Return single-context setting inventory.
         '''
@@ -169,12 +203,8 @@ class SegmentSpecification(Specification):
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
             'Staff 2'
-            'Staff 3'
-            'Staff 4'
             'Voice 1'
             'Voice 2'
-            'Voice 3'
-            'Voice 4'
 
         Return context proxy dictionary.
         '''
@@ -198,11 +228,11 @@ class SegmentSpecification(Specification):
             specificationtools.SegmentSpecification(
                 specificationtools.ScoreSpecification(
                     scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                        staff_count=4
+                        staff_count=2
                         )
                     ),
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=4
+                    staff_count=2
                     ),
                 'red'
                 )
@@ -240,7 +270,7 @@ class SegmentSpecification(Specification):
         '''Time signatures set on segment during time signature interpretation.
 
                 >>> red_segment.time_signatures
-                []
+                [NonreducedFraction(2, 8), NonreducedFraction(3, 8), NonreducedFraction(4, 8)]
 
         Return list of zero or more nonreduced fractions.
         '''
