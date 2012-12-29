@@ -163,3 +163,9 @@
     Anchor either to None (for score) or to string (for segment).
     Then reimplement SegmentSpecification.timespan to return TimespanExpression(anchor=self.segment_name).
     And ScoreSpecification.timespan to return TimespanExpression(anchor=None).
+
+32. Create SegmentProxy and ScoreProxy classes to encapsulate the composer interface
+    functionality currently impelemented on SegmentSpecification and ScoreSpecification, respectively.
+    This will clean up the SegmentSpecification and ScoreSpecification classes considerably.
+    Will also ensure that SegmentProxy and ScoreProxy have only (public) composer-facing
+    properties and methods.

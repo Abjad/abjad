@@ -5,10 +5,11 @@ from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import settingtools
 from experimental.tools import timeexpressiontools
-from experimental.tools.timeexpressiontools.TimespanExpression import TimespanExpression
+from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
+from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class Specification(TimespanExpression):
+class Specification(SelectMethodMixin, SetMethodMixin):
     r'''
 
     ::
@@ -53,7 +54,6 @@ class Specification(TimespanExpression):
     @abc.abstractmethod
     def __init__(self, score_specification, score_template):
         from experimental.tools import specificationtools
-        TimespanExpression.__init__(self)
         self._score_specification = score_specification
         self._score_template = score_template
         self._score_model = score_template()
@@ -67,6 +67,7 @@ class Specification(TimespanExpression):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
+    # TODO: I think this really wants to be just self.anchor
     @property
     def _timespan_abbreviation(self):
         '''Form of symbolic timespan suitable for writing to disk.
@@ -84,7 +85,6 @@ class Specification(TimespanExpression):
 
     def _context_token_to_context_names(self, context_token):
         if context_token is None:
-            #context_names = [self.score_name] 
             context_names = None
         elif context_token == [self.score_name]:
             context_names = context_token
