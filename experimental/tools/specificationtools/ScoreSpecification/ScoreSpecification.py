@@ -64,17 +64,6 @@ class ScoreSpecification(Specification):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def abbreviated_context_names(self):
-        r'''Score specification abbreviated context names::
-
-            >>> score_specification.abbreviated_context_names
-            ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
-
-        Return list of strings.
-        '''
-        return Specification.abbreviated_context_names.fget(self)
-
-    @property
     def all_division_region_commands(self):
         '''Read-only list of all division region commands.
 

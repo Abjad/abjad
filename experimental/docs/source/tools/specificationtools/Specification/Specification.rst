@@ -9,8 +9,6 @@ specificationtools.Specification
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.abbreviated_context_names
-
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.context_names
 
 .. autoattribute:: experimental.tools.specificationtools.Specification.Specification.Specification.contexts

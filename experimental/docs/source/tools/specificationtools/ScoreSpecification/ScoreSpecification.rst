@@ -9,8 +9,6 @@ specificationtools.ScoreSpecification
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.abbreviated_context_names
-
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.all_division_region_commands
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.all_rhythm_quintuples

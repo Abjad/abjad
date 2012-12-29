@@ -80,10 +80,10 @@ class Specification(AbjadObject):
             context_names = context_token
         elif isinstance(context_token, type(self)):
             context_names = [context_token.score_name]
-        elif context_token in self.abbreviated_context_names:
+        elif context_token in self._abbreviated_context_names:
             context_names = [context_token]
         elif isinstance(context_token, (tuple, list)) and all([
-            x in self.abbreviated_context_names for x in context_token]):
+            x in self._abbreviated_context_names for x in context_token]):
             context_names = context_token
         elif isinstance(context_token, contexttools.Context):
             context_names = [context_token.name]
@@ -105,10 +105,6 @@ class Specification(AbjadObject):
                 self._context_names.append(context.name)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def abbreviated_context_names(self):
-        return self._abbreviated_context_names
 
     @property
     def context_names(self):
