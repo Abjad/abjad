@@ -154,6 +154,37 @@ class TreeContainer(TreeNode):
             >>> a[2] is f
             True
 
+        If `i` is a string, the container will attempt to
+        return the single child node, at any depth, whose
+        `name` matches `i`:
+
+        ::
+
+            >>> foo = datastructuretools.TreeContainer(name='foo')
+            >>> bar = datastructuretools.TreeContainer(name='bar')
+            >>> baz = datastructuretools.TreeNode(name='baz')
+            >>> quux = datastructuretools.TreeNode(name='quux')
+
+        ::
+
+            >>> foo.append(bar)
+            >>> bar.extend([baz, quux])
+
+        ::
+
+            >>> foo['bar'] is bar
+            True
+
+        ::
+
+            >>> foo['baz'] is baz
+            True
+
+        ::
+
+            >>> foo['quux'] is quux
+            True
+
         Return `TreeNode` instance.    
         '''
         if isinstance(i, (int, slice)):
