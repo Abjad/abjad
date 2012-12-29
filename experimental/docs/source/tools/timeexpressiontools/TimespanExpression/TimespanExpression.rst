@@ -133,13 +133,23 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_background_measures
 
+    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_beats
+
+    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_divisions
 
+    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_leaves
 
+    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
+
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.select_notes_and_chords
+
+    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.set_aggregate
 

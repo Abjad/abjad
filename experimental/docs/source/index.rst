@@ -295,6 +295,14 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   tools/timeexpressiontools/SelectMethodMixin/SelectMethodMixin
+
+
+--------
+
+.. toctree::
+   :maxdepth: 1
+
    tools/timeexpressiontools/MixedSourceTimespanExpression/MixedSourceTimespanExpression
    tools/timeexpressiontools/OffsetExpression/OffsetExpression
    tools/timeexpressiontools/TimespanExpression/TimespanExpression
