@@ -168,6 +168,11 @@ class ScoreSpecification(Specification):
     @property
     def interface(self):
         '''Read-only reference to score setting interface.
+
+            >>> score_specification.interface
+            ScoreSettingInterface()
+
+        Return score setting interface.
         '''
         return self._interface
 
@@ -175,7 +180,8 @@ class ScoreSpecification(Specification):
     def offsets(self):
         r'''Score specification start and stop offsets.
 
-        .. note:: add example.
+            >>> score_specification.offsets
+            (Offset(0, 1), Offset(9, 4))
 
         Start offset always equal to ``0``.
 
@@ -191,7 +197,8 @@ class ScoreSpecification(Specification):
     def score_duration(self):
         r'''Score specification score duration.
 
-        .. note:: add example.
+            >>> score_specification.score_duration
+            Duration(9, 4)
 
         Only available after time signature interpretation completes.
 
@@ -236,7 +243,8 @@ class ScoreSpecification(Specification):
     def segment_durations(self):
         r'''Score specification segment durations.
 
-        .. note:: add example.
+            >>> score_specification.segment_durations
+            [Duration(9, 8), Duration(1, 2), Duration(5, 8)]
 
         Only available after time signature interpretation completes.
 
@@ -259,7 +267,8 @@ class ScoreSpecification(Specification):
     def segment_offset_pairs(self):
         r'''Score specification segment offset pairs.
 
-        .. note:: add example.
+            >>> score_specification.segment_offset_pairs
+            [(Offset(0, 1), Offset(9, 8)), (Offset(9, 8), Offset(13, 8)), (Offset(13, 8), Offset(9, 4))]
 
         Only available after time signature interpretation completes.
 
@@ -325,6 +334,9 @@ class ScoreSpecification(Specification):
     @property
     def specification_name(self):
         '''Generalized way of refering to both score and segment specifications.
+
+            >>> score_specification.specification_name is None
+            True
         
         Specification name of score is always none.
 
@@ -336,7 +348,8 @@ class ScoreSpecification(Specification):
     def start_offset(self):
         r'''Score specification start offset.
 
-        .. note:: add example.
+            >>> score_specification.start_offset
+            Offset(0, 1)
 
         Always equal to ``0``.
 
@@ -350,7 +363,8 @@ class ScoreSpecification(Specification):
     def stop_offset(self):
         r'''Score specification stop offset.
 
-        .. note:: add example.
+            >>> score_specification.stop_offset
+            Offset(9, 4)
 
         Always equal to duration of entire score.
 
@@ -390,6 +404,7 @@ class ScoreSpecification(Specification):
         return result
 
     # TODO: maybe remove in favor of ScoreSettingInterface.timespan
+    # TODO: reimplement to return literal Timespan object during interpretation
     @property
     def timespan(self):
         timespan = timeexpressiontools.TimespanExpression()
@@ -455,7 +470,10 @@ class ScoreSpecification(Specification):
         return interpreter(self)
 
     def score_offset_to_segment_identifier(self, score_offset):
-        r'''Change `score_offset` to segment_identifier.
+        r'''Change `score_offset` to segment_identifier::
+
+            >>> score_specification.score_offset_to_segment_identifier(Offset(5, 4))
+            'orange'
 
         This is the same as finding the name of the segment
         in which `score_offset` falls.
@@ -472,24 +490,28 @@ class ScoreSpecification(Specification):
         r'''Segment index expression to segment index::
 
             >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'red'")
-            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
+            >>> score_specification.segment_identifier_expression_to_segment_index(
+            ... segment_identifier_expression)
             0
 
         ::
 
             >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'orange'")
-            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
+            >>> score_specification.segment_identifier_expression_to_segment_index(
+            ... segment_identifier_expression)
             1
 
         ::
 
             >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'yellow'")
-            >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
+            >>> score_specification.segment_identifier_expression_to_segment_index(
+            ... segment_identifier_expression)
             2
 
         ::
 
-            >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression("'red' + 'orange' + 'yellow'")
+            >>> segment_identifier_expression = helpertools.SegmentIdentifierExpression(
+            ... "'red' + 'orange' + 'yellow'")
             >>> score_specification.segment_identifier_expression_to_segment_index(segment_identifier_expression)
             3
 
@@ -520,7 +542,10 @@ class ScoreSpecification(Specification):
         return segment_index
 
     def segment_identifier_expression_to_timespan(self, segment_identifier_expression):
-        '''Change `segment_identifier_expression` to timespan.
+        '''Change `segment_identifier_expression` to timespan::
+
+            >>> score_specification.segment_identifier_expression_to_timespan('yellow')
+            Timespan(start_offset=Offset(13, 8), stop_offset=Offset(9, 4))
 
         Return timespan.
         '''
@@ -556,12 +581,12 @@ class ScoreSpecification(Specification):
             return timespantools.Timespan(start_offset_pair[0], stop_offset_pair[1])
 
     def segment_offset_to_score_offset(self, segment_name, segment_offset):
-        r'''Change `segment_name` and `segment_offset` to score offset.
+        r'''Change `segment_name` and `segment_offset` to score offset::
 
-        If segment offset ``(7, 8)`` is in segment ``'blue'``, how far from the
-        beginning of the entire score is this point?
+            >>> score_specification.segment_offset_to_score_offset('yellow', 0)
+            Offset(13, 8)
 
-        .. note:: Add example.
+        Return offset.
         '''
         timespan = self.segment_name_to_timespan(segment_name)
         score_offset = timespan.start_offset + segment_offset
