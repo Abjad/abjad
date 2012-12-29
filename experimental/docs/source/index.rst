@@ -243,6 +243,7 @@ Unstable packages (load manually)
    tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
+   tools/settingtools/SettingInterface/SettingInterface
 
 
 --------
