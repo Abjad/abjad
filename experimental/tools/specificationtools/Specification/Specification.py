@@ -67,9 +67,8 @@ class Specification(SelectMethodMixin, SetMethodMixin):
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
-    # TODO: I think this really wants to be just self.anchor
     @property
-    def _timespan_abbreviation(self):
+    def _anchor_abbreviation(self):
         '''Form of symbolic timespan suitable for writing to disk.
         
         Specifications alias this property to specification name.
@@ -162,9 +161,9 @@ class Specification(SelectMethodMixin, SetMethodMixin):
     @property
     def start_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation)
+        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
 
     @property
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation, edge=Right)
+        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)

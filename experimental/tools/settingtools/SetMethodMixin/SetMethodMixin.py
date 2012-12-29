@@ -28,7 +28,7 @@ class SetMethodMixin(AbjadObject):
         multiple_context_setting = settingtools.MultipleContextSetting(
             attribute,
             request,
-            self._timespan_abbreviation,
+            self._anchor_abbreviation,
             context_names=context_names,
             persist=persist,
             truncate=truncate

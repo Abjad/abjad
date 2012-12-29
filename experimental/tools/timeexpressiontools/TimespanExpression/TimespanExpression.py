@@ -70,7 +70,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         return tuple(result)
 
     @property
-    def _timespan_abbreviation(self):
+    def _anchor_abbreviation(self):
         '''Form of symbolic timespan suitable for writing to disk.
         '''
         return self

@@ -80,7 +80,7 @@ class Selector(TimespanExpression, Request):
     @property
     def start_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation)
+        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
 
     @property
     def start_segment_identifier(self):
@@ -98,7 +98,7 @@ class Selector(TimespanExpression, Request):
     @property
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation, edge=Right)
+        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
 
     @property
     def time_relation(self):

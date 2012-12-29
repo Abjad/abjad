@@ -38,7 +38,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import selectortools
         selector = selectortools.BackgroundMeasureSelector(
-            anchor=self._timespan_abbreviation,
+            anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -62,7 +62,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import selectortools
         selector = selectortools.BeatSelector(
-            anchor=self._timespan_abbreviation,
+            anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -86,7 +86,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import selectortools
         selector = selectortools.DivisionSelector(
-            anchor=self._timespan_abbreviation,
+            anchor=self._anchor_abbreviation,
             voice_name=voice_name,
             time_relation=time_relation
             )
@@ -111,7 +111,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import selectortools
         selector = selectortools.CounttimeComponentSelector(
-            anchor=self._timespan_abbreviation,
+            anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             klass=leaftools.Leaf, 
             voice_name=voice_name
@@ -140,7 +140,7 @@ class SelectMethodMixin(AbjadObject):
         '''
         from experimental.tools import selectortools
         selector = selectortools.CounttimeComponentSelector(
-            anchor=self._timespan_abbreviation,
+            anchor=self._anchor_abbreviation,
             time_relation=time_relation, 
             klass=(notetools.Note, chordtools.Chord),
             voice_name=voice_name
