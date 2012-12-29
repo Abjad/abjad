@@ -282,19 +282,6 @@ class ScoreSpecification(Specification):
         return Specification.multiple_context_settings.fget(self)
     
     @property
-    def offsets(self):
-        r'''Score specification start and stop offsets.
-
-            >>> score_specification.offsets
-            (Offset(0, 1), Offset(9, 4))
-
-        Populate during interpretation.
-
-        Return offset pair.
-        '''
-        return self.timespan.offsets
-
-    @property
     def score_model(self):
         '''Score specification score model::
 

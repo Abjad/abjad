@@ -25,8 +25,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.multiple_context_settings
 
-.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.offsets
-
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_model
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
