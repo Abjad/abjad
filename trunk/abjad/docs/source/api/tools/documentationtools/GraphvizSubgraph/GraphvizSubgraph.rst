@@ -1,5 +1,5 @@
 documentationtools.GraphvizSubgraph
-==================================
+===================================
 
 .. inheritance-diagram:: abjad.tools.documentationtools.GraphvizSubgraph.GraphvizSubgraph.GraphvizSubgraph
    :private-bases:
