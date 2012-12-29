@@ -898,6 +898,5 @@ class ConcreteInterpreter(Interpreter):
         assert command_request.attribute == 'time_signatures'
         segment_specification = self.get_start_segment_specification(command_request.symbolic_offset)
         time_signatures = segment_specification.time_signatures[:]
-        start_offset = segment_specification.start_offset
-        time_signatures, start_offset = command_request._apply_request_modifiers(time_signatures, start_offset)
+        time_signatures, dummy = command_request._apply_request_modifiers(time_signatures, None)
         return time_signatures

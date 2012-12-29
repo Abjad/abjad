@@ -252,29 +252,29 @@ class SegmentSpecification(Specification):
         '''
         return self.segment_name
 
-    # TODO: name this self.symbolic_start_offset?
-    @property
-    def start_offset(self):
-        '''Segment specification symbolic start offset::
-
-            >>> red_segment.start_offset
-            OffsetExpression(anchor='red')
-
-        Return offset.
-        '''
-        return Specification.start_offset.fget(self)
-
-    # TODO: name this self.symbolic_stop_offset?
-    @property
-    def stop_offset(self):
-        '''Segment specification symbolic stop offset::
-
-            >>> red_segment.stop_offset
-            OffsetExpression(anchor='red', edge=Right)
-
-        Return offset.
-        '''
-        return Specification.stop_offset.fget(self)
+#    @property
+#    def start_offset(self):
+#        '''Segment specification start offset::
+#
+#            >>> red_segment.start_offset
+#
+#        Populate during interpretation.
+#
+#        Return offset.
+#        '''
+#        return Specification.start_offset.fget(self)
+#
+#    @property
+#    def stop_offset(self):
+#        '''Segment specification stop offset::
+#
+#            >>> red_segment.stop_offset
+#
+#        Populate during interpretation.
+#
+#        Return offset.
+#        '''
+#        return Specification.stop_offset.fget(self)
 
     @property
     def storage_format(self):
@@ -291,30 +291,6 @@ class SegmentSpecification(Specification):
         Return string.
         '''
         return Specification.storage_format.fget(self)
-
-    # TODO: maybe migrate to SegmentSettingInterface
-    @property
-    def symbolic_start_offset(self):
-        '''Segment specification symbolic start offset::
-
-            >>> red_segment.symbolic_start_offset
-            OffsetExpression(anchor='red', edge=Left)
-
-        Return symbolic offset.
-        '''
-        return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Left)
-
-    # TODO: maybe migrate to SegmentSettingInterface
-    @property
-    def symbolic_stop_offset(self):
-        '''Segment specification symbolic stop offset::
-
-            >>> red_segment.symbolic_stop_offset
-            OffsetExpression(anchor='red', edge=Right)
-
-        Return symbolic offset.
-        '''
-        return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Right)
 
     @property
     def time_signatures(self):

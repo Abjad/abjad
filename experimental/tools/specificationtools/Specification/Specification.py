@@ -116,14 +116,10 @@ class Specification(AbjadObject):
     def single_context_settings_by_context(self):
         return self._single_context_settings_by_context
 
-    # TODO: decide between this and self.symbolic_start_offset
     @property
     def start_offset(self):
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
+        return self._start_offset
 
-    # TODO: decide between this and self.symbolic_stop_offset
     @property
     def stop_offset(self):
-        from experimental.tools import timeexpressiontools
-        return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
+        return self._stop_offset

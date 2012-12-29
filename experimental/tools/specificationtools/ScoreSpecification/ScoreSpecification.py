@@ -517,13 +517,12 @@ class ScoreSpecification(Specification):
             >>> score_specification.start_offset
             Offset(0, 1)
 
-        Always equal to ``0``.
-
-        Only available after time signature interpreation.
+        Populate during interpretation.
 
         Return offset.
         '''
-        return self._start_offset
+        #return self._start_offset
+        return Specification.start_offset.fget(self)
 
     @property
     def stop_offset(self):
@@ -532,13 +531,12 @@ class ScoreSpecification(Specification):
             >>> score_specification.stop_offset
             Offset(9, 4)
 
-        Always equal to duration of entire score.
-
-        Only available after time signature interpreation.
+        Populate during interpretation.
 
         Return offset.
         '''
-        return self._stop_offset
+        #return self._stop_offset
+        return Specification.stop_offset.fget(self)
 
     @property
     def storage_format(self):
