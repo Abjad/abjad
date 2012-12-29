@@ -241,6 +241,7 @@ Unstable packages (load manually)
 
    tools/settingtools/Command/Command
    tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
+   tools/settingtools/ScoreSettingInterface/ScoreSettingInterface
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
 
