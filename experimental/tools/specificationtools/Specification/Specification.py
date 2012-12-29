@@ -78,11 +78,6 @@ class Specification(SelectMethodMixin, SetMethodMixin):
 
     ### PRIVATE METHODS ###
 
-    # TODO: this can be removed once Specification no longer inherits from TimespanExpression
-    def __deepcopy__(self, memo):
-        # voice indication is a hack
-        return self.select('Voice 1')
-
     def _context_token_to_context_names(self, context_token):
         if context_token is None:
             context_names = None

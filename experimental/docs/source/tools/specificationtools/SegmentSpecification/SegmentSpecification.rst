@@ -60,8 +60,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select
-
 .. automethod:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_background_measures
 
     Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`

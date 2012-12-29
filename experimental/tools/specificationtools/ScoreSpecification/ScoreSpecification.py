@@ -599,24 +599,6 @@ class ScoreSpecification(Specification):
         score_offset = timespan.start_offset + segment_offset
         return score_offset
 
-    def select(self, voice_name):
-        '''Select score::
-
-            >>> selector = score_specification.select('Voice 1')
-
-        ::
-
-            >>> z(selector)
-            selectortools.ScoreSelector(
-                voice_name='Voice 1'
-                )
-
-        Return score selector.
-        '''
-        selector = selectortools.ScoreSelector(voice_name=voice_name)
-        selector._score_specification = self
-        return selector
-
     def select_segments(self, voice_name):
         '''Select voice ``1`` segments in score::
 

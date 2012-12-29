@@ -43,12 +43,12 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
 
-            >>> red_segment.select('Voice 1') == red_segment.select('Voice 1')
+            >>> red_segment.timespan == red_segment.timespan
             True
 
         Otherwise false::
 
-            >>> red_segment.select('Voice 1') == blue_segment.select('Voice 1')
+            >>> red_segment.timespan == blue_segment.timespan
             False
 
         Return boolean.
@@ -168,7 +168,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         '''Read-only list of timespan_modifiers to be applied 
         to symbolic timespan during evaluation.
 
-            >>> red_segment.select('Voice 1').timespan_modifiers
+            >>> red_segment.timespan.timespan_modifiers
             ModifierInventory([])
 
         Return object inventory of zero or more strings.

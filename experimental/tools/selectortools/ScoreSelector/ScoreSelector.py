@@ -17,16 +17,7 @@ class ScoreSelector(Selector):
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         >>> red_segment = score_specification.append_segment(name='red')
 
-    Select voice ``1`` score::
-
-        >>> selector = score_specification.select('Voice 1')
-
-    ::
-
-        >>> z(selector)
-        selectortools.ScoreSelector(
-            voice_name='Voice 1'
-            )
+    .. note:: class may be removed.
     
     All score selector properties are read-only.
     '''

@@ -88,8 +88,6 @@ Methods
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_offset_to_score_offset
 
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select
-
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_background_measures
 
     Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
