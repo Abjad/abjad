@@ -6,9 +6,10 @@ from abjad.tools import mathtools
 from abjad.tools import notetools
 from abjad.tools import timespantools
 from abjad.tools.timespantools.Timespan import Timespan
+from experimental.tools.settingtools.SettingMakerMixin import SettingMakerMixin
 
 
-class TimespanExpression(Timespan):
+class TimespanExpression(Timespan, SettingMakerMixin):
     r'''Timespan expression.
 
     ::
@@ -155,22 +156,22 @@ class TimespanExpression(Timespan):
             new_stop_offset = original_stop_offset
         return new_start_offset, new_stop_offset
 
-    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
-        from experimental.tools import requesttools
-        from experimental.tools import settingtools
-        request = requesttools.expr_to_request(source)
-        assert self.score_specification is not None
-        context_names = self.score_specification._context_token_to_context_names(contexts)
-        multiple_context_setting = settingtools.MultipleContextSetting(
-            attribute, 
-            request, 
-            self._timespan_abbreviation,
-            context_names=context_names,
-            persist=persist, 
-            truncate=truncate
-            )
-        self.score_specification.multiple_context_settings.append(multiple_context_setting)
-        return multiple_context_setting
+#    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
+#        from experimental.tools import requesttools
+#        from experimental.tools import settingtools
+#        request = requesttools.expr_to_request(source)
+#        assert self.score_specification is not None
+#        context_names = self.score_specification._context_token_to_context_names(contexts)
+#        multiple_context_setting = settingtools.MultipleContextSetting(
+#            attribute, 
+#            request, 
+#            self._timespan_abbreviation,
+#            context_names=context_names,
+#            persist=persist, 
+#            truncate=truncate
+#            )
+#        self.score_specification.multiple_context_settings.append(multiple_context_setting)
+#        return multiple_context_setting
 
     def _translate_offsets(self, original_start_offset, original_stop_offset, 
         start_offset_translation, stop_offset_translation):
@@ -444,57 +445,6 @@ class TimespanExpression(Timespan):
         selector._score_specification = self.score_specification
         return selector
 
-    def set_aggregate(self, source, contexts=None, persist=True):
-        r'''Set aggregate of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'aggregate'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_articulations(self, source, contexts=None, persist=True):
-        r'''Set articulations of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'articulations'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_chord_treatment(self, source, contexts=None, persist=True):
-        r'''Set chord treatment of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'chord_treatment'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_divisions(self, source, contexts=None, persist=True, truncate=None):
-        r'''Set divisions `contexts` to `source`::
-
-            >>> setting = red_segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
-
-        ::
-
-            >>> z(setting)
-            settingtools.MultipleContextSetting(
-                attribute='divisions',
-                request=requesttools.AbsoluteRequest(
-                    [(3, 16)]
-                    ),
-                anchor='red',
-                context_names=['Voice 1', 'Voice 3'],
-                persist=True
-                )
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'divisions'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, truncate=truncate, persist=persist)
-
     def set_duration(self, duration):
         '''Set timespan duration to `duration`.
 
@@ -507,33 +457,6 @@ class TimespanExpression(Timespan):
         result = copy.deepcopy(self)
         result.timespan_modifiers.append(timespan_modifier)
         return result
-
-    def set_dynamics(self, source, contexts=None, persist=True):
-        r'''Set dynamics of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'dynamics'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_marks(self, source, contexts=None, persist=True):
-        r'''Set marks of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'marks'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_markup(self, source, contexts=None, persist=True):
-        r'''Set markup of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'markup'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
 
     def set_offsets(self, start_offset=None, stop_offset=None):
         '''Set timespan start offset to `start_offset`
@@ -551,103 +474,6 @@ class TimespanExpression(Timespan):
         result = copy.deepcopy(self)
         result.timespan_modifiers.append(timespan_modifier)
         return result
-
-    def set_pitch_class_application(self, source, contexts=None, persist=True):
-        r'''Set pitch-class application of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'pitch_class_application'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_pitch_class_transform(self, source, contexts=None, persist=True):
-        r'''Set pitch-class transform of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'pitch_class_transform'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_pitch_classes(self, source, contexts=None, persist=True):
-        r'''Set pitch-classes of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'pitch_classes'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_registration(self, source, contexts=None, persist=True):
-        r'''Set registration of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'registration'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_rhythm(self, source, contexts=None, persist=True):
-        r'''Set rhythm of `contexts` to `source`.
-
-            >>> setting = red_segment.set_rhythm(library.sixteenths)
-
-        ::
-
-            >>> z(setting)
-            settingtools.MultipleContextSetting(
-                attribute='rhythm',
-                request=requesttools.AbsoluteRequest(
-                    rhythmmakertools.TaleaRhythmMaker(
-                        [1],
-                        16,
-                        prolation_addenda=[],
-                        secondary_divisions=[],
-                        beam_each_cell=False,
-                        beam_cells_together=True,
-                        tie_split_notes=False
-                        )
-                    ),
-                anchor='red',
-                persist=True
-                )
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'rhythm'
-        return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
-
-    def set_tempo(self, source, contexts=None, persist=True):
-        r'''Set tempo of `contexts` to `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'tempo'
-        return self._store_multiple_context_setting(attribute, source, 
-            contexts=contexts, persist=persist)
-
-    def set_time_signatures(self, source, contexts=None, persist=True):
-        r'''Set time signatures of `contexts` to `source`.
-
-            >>> setting = red_segment.set_time_signatures([(3, 8), (4, 8)])
-
-        ::
-
-            >>> z(setting)
-            settingtools.MultipleContextSetting(
-                attribute='time_signatures',
-                request=requesttools.AbsoluteRequest(
-                    [(3, 8), (4, 8)]
-                    ),
-                anchor='red',
-                persist=True
-                )
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        attribute = 'time_signatures'
-        return self._store_multiple_context_setting(attribute, source, contexts=contexts, persist=persist)
 
     def translate_offsets(self, start_offset_translation=None, stop_offset_translation=None):
         '''Translate timespan start offset by `start_offset_translation`

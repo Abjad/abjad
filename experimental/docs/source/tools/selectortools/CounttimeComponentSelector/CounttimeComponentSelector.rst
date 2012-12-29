@@ -209,19 +209,19 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_aggregate
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_articulations
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_chord_treatment
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_divisions
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_duration
 
@@ -229,15 +229,15 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_dynamics
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_marks
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_markup
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_offsets
 
@@ -245,31 +245,31 @@ Methods
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_pitch_class_application
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_pitch_class_transform
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_pitch_classes
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_registration
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_rhythm
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_tempo
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.set_time_signatures
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.split_at_offset
 

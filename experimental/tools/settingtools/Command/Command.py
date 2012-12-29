@@ -4,7 +4,6 @@ from abjad.tools import durationtools
 from abjad.tools import timerelationtools 
 from abjad.tools.timespantools.Timespan import Timespan
 from experimental.tools import helpertools 
-from experimental.tools import requesttools 
 
 
 class Command(Timespan):
@@ -23,6 +22,7 @@ class Command(Timespan):
     ### INTIAILIZER ###
 
     def __init__(self, request, context_name, start_offset, stop_offset, fresh=None):
+        from experimental.tools import requesttools 
         from experimental.tools import timeexpressiontools
         assert isinstance(request, (requesttools.Request, timeexpressiontools.TimespanExpression)), repr(request)
         assert isinstance(context_name, (str, type(None))), repr(context_name)

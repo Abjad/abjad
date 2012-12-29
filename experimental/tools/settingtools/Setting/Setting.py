@@ -1,8 +1,5 @@
 import abc
-from abjad.tools import datastructuretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.tools import requesttools
-from experimental.tools import timeexpressiontools
 
 
 class Setting(AbjadObject):
@@ -19,6 +16,8 @@ class Setting(AbjadObject):
 
     @abc.abstractmethod
     def __init__(self, attribute=None, request=None, anchor=None, fresh=True, persist=True, truncate=None):
+        from experimental.tools import requesttools
+        from experimental.tools import timeexpressiontools
         assert isinstance(attribute, str)
         assert isinstance(request, (requesttools.Request, timeexpressiontools.TimespanExpression)), repr(request)
         assert isinstance(anchor, (timeexpressiontools.TimespanExpression, str, type(None)))

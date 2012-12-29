@@ -157,19 +157,19 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_aggregate
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_articulations
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_chord_treatment
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_divisions
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_duration
 
@@ -177,15 +177,15 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_dynamics
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_marks
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_markup
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_offsets
 
@@ -193,31 +193,31 @@ Methods
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch_class_application
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch_class_transform
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_pitch_classes
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_registration
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_rhythm
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_tempo
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.set_time_signatures
 
-    Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
+    Inherited from :py:class:`settingtools.SettingMakerMixin <experimental.tools.settingtools.SettingMakerMixin.SettingMakerMixin.SettingMakerMixin>`
 
 .. automethod:: experimental.tools.timeexpressiontools.MixedSourceTimespanExpression.MixedSourceTimespanExpression.MixedSourceTimespanExpression.split_at_offset
 
