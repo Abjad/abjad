@@ -262,6 +262,15 @@ class SegmentSpecification(Specification):
         '''
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
 
+    @property
+    def timespan(self):
+        # TODO: Emtpy string here is a hack.
+        #       Eventually replace with TimespanExpression anchored only to segment name.
+        selector = selectortools.SegmentSelector(anchor=self.specification_name, voice_name='')
+        selector._score_specification = self.score_specification
+        selector = selector[self.specification_name:(self.specification_name, 1)]
+        return selector
+
     ### PUBLIC METHODS ###
 
     def select(self, voice_name):

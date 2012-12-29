@@ -399,6 +399,15 @@ class ScoreSpecification(Specification):
             result.extend(segment_specification.time_signatures)
         return result
 
+    # TODO: make it possible to uncomment the following property definition
+#    @property
+#    def timespan(self):
+#        # TODO: Emtpy string here is a hack.
+#        #       Eventually replace with TimespanExpression anchored to None.
+#        selector = selectortools.ScoreSelector(voice_name='')
+#        selector._score_specification = self
+#        return selector
+
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):

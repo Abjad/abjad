@@ -156,23 +156,6 @@ class TimespanExpression(Timespan, SettingMakerMixin):
             new_stop_offset = original_stop_offset
         return new_start_offset, new_stop_offset
 
-#    def _store_multiple_context_setting(self, attribute, source, contexts=None, persist=True, truncate=None):
-#        from experimental.tools import requesttools
-#        from experimental.tools import settingtools
-#        request = requesttools.expr_to_request(source)
-#        assert self.score_specification is not None
-#        context_names = self.score_specification._context_token_to_context_names(contexts)
-#        multiple_context_setting = settingtools.MultipleContextSetting(
-#            attribute, 
-#            request, 
-#            self._timespan_abbreviation,
-#            context_names=context_names,
-#            persist=persist, 
-#            truncate=truncate
-#            )
-#        self.score_specification.multiple_context_settings.append(multiple_context_setting)
-#        return multiple_context_setting
-
     def _translate_offsets(self, original_start_offset, original_stop_offset, 
         start_offset_translation, stop_offset_translation):
         new_start_offset = original_start_offset + start_offset_translation
@@ -202,14 +185,14 @@ class TimespanExpression(Timespan, SettingMakerMixin):
     def divide_by_ratio(self, ratio):
         '''Divide timespan by `ratio`::
 
-            >>> timespans = red_segment.select('Voice 1').divide_by_ratio((2, 3))
+            >>> timespans = red_segment.timespan.divide_by_ratio((2, 3))
 
         ::
     
             >>> z(timespans[0])
             selectortools.SegmentSelector(
                 anchor='red',
-                voice_name='Voice 1',
+                voice_name='',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -223,7 +206,7 @@ class TimespanExpression(Timespan, SettingMakerMixin):
             >>> z(timespans[1])
             selectortools.SegmentSelector(
                 anchor='red',
-                voice_name='Voice 1',
+                voice_name='',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -234,14 +217,14 @@ class TimespanExpression(Timespan, SettingMakerMixin):
 
         Coerce integer `ratio` to ``Ratio(ratio*[1])``::
 
-            >>> timespans = red_segment.select('Voice 1').divide_by_ratio(3)
+            >>> timespans = red_segment.timespan.divide_by_ratio(3)
 
         ::
 
             >>> z(timespans[0])
             selectortools.SegmentSelector(
                 anchor='red',
-                voice_name='Voice 1',
+                voice_name='',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -255,7 +238,7 @@ class TimespanExpression(Timespan, SettingMakerMixin):
             >>> z(timespans[1])
             selectortools.SegmentSelector(
                 anchor='red',
-                voice_name='Voice 1',
+                voice_name='',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -269,7 +252,7 @@ class TimespanExpression(Timespan, SettingMakerMixin):
             >>> z(timespans[2])
             selectortools.SegmentSelector(
                 anchor='red',
-                voice_name='Voice 1',
+                voice_name='',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),
@@ -295,10 +278,10 @@ class TimespanExpression(Timespan, SettingMakerMixin):
     def scale(self, multiplier):
         '''Scale timespan duration by `multiplier`.
 
-            >>> z(red_segment.select('Voice 1').scale(Multiplier(4, 5)))
+            >>> z(red_segment.timespan.scale(Multiplier(4, 5)))
             selectortools.SegmentSelector(
                 anchor='red',
-                voice_name='Voice 1',
+                voice_name='',
                 request_modifiers=settingtools.ModifierInventory([
                     "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
                     ]),

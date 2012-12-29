@@ -173,9 +173,3 @@ class Specification(TimespanExpression):
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._timespan_abbreviation, edge=Right)
-
-    ### PUBLIC METHODS ###
-
-    @abc.abstractmethod
-    def select(self):
-        pass

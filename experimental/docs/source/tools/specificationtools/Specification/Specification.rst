@@ -151,8 +151,6 @@ Methods
 
     Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`
 
-.. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.select
-
 .. automethod:: experimental.tools.specificationtools.Specification.Specification.Specification.select_background_measures
 
     Inherited from :py:class:`timeexpressiontools.TimespanExpression <experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression>`

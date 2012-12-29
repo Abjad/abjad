@@ -158,3 +158,8 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
+
+31. Extend TimespanExpression with 'anchor' property.
+    Anchor either to None (for score) or to string (for segment).
+    Then reimplement SegmentSpecification.timespan to return TimespanExpression(anchor=self.segment_name).
+    And ScoreSpecification.timespan to return TimespanExpression(anchor=None).
