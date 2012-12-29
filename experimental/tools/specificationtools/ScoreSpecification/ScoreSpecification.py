@@ -16,7 +16,7 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=2)
         >>> score_specification = specificationtools.ScoreSpecification(template)
 
     With three named segments::
@@ -25,6 +25,17 @@ class ScoreSpecification(Specification):
         >>> orange_segment = score_specification.append_segment(name='orange')
         >>> yellow_segment = score_specification.append_segment(name='yellow')
 
+    ::
+
+        >>> setting = red_segment.set_time_signatures([(2, 8), (3, 8), (4, 8)])
+        >>> setting = orange_segment.set_time_signatures([(4, 16), (4, 16)])
+        >>> setting = yellow_segment.set_time_signatures([(5, 16), (5, 16)])
+        >>> setting = red_segment.set_rhythm(library.sixteenths)
+
+    ::
+
+        >>> score = score_specification.interpret()
+    
     All score specification properties are read-only.
     '''
 
@@ -114,10 +125,6 @@ class ScoreSpecification(Specification):
             'Voice 1'
             'Staff 2'
             'Voice 2'
-            'Staff 3'
-            'Voice 3'
-            'Staff 4'
-            'Voice 4'
 
         Return list of strings.
         '''
@@ -134,12 +141,8 @@ class ScoreSpecification(Specification):
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
             'Staff 2'
-            'Staff 3'
-            'Staff 4'
             'Voice 1'
             'Voice 2'
-            'Voice 3'
-            'Voice 4'
 
         Return context proxy dictionary.
         '''
@@ -150,7 +153,7 @@ class ScoreSpecification(Specification):
         r'''Score specification duration::
 
             >>> score_specification.duration
-            Duration(0, 1)
+            Duration(9, 4)
 
         Return duration.
         '''
@@ -223,7 +226,7 @@ class ScoreSpecification(Specification):
         r'''Score specification score template::
 
             >>> score_specification.score_template
-            GroupedRhythmicStavesScoreTemplate(staff_count=4)
+            GroupedRhythmicStavesScoreTemplate(staff_count=2)
 
         Return score template.
         '''
@@ -295,7 +298,7 @@ class ScoreSpecification(Specification):
         r'''Score specification single-context settings::
 
             >>> score_specification.single_context_settings
-            SingleContextSettingInventory([])
+            SingleContextSettingInventory([SingleContextSetting(attribute='time_signatures', request=AbsoluteRequest([(2, 8), (3, 8), (4, 8)]), anchor='red', fresh=True, persist=True), SingleContextSetting(attribute='time_signatures', request=AbsoluteRequest([(4, 16), (4, 16)]), anchor='orange', fresh=True, persist=True), SingleContextSetting(attribute='time_signatures', request=AbsoluteRequest([(5, 16), (5, 16)]), anchor='yellow', fresh=True, persist=True), SingleContextSetting(attribute='rhythm', request=AbsoluteRequest(TaleaRhythmMaker('sixteenths')), anchor='red', fresh=True, persist=True)])
 
         Return single-context setting inventory.
         '''
@@ -312,12 +315,8 @@ class ScoreSpecification(Specification):
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
             'Staff 2'
-            'Staff 3'
-            'Staff 4'
             'Voice 1'
             'Voice 2'
-            'Voice 3'
-            'Voice 4'
 
         Return context proxy dictionary.
         '''
@@ -368,7 +367,7 @@ class ScoreSpecification(Specification):
             >>> z(score_specification)
             specificationtools.ScoreSpecification(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=4
+                    staff_count=2
                     )
                 )
 
@@ -381,7 +380,7 @@ class ScoreSpecification(Specification):
         r'''Score specification time signatures::
 
             >>> score_specification.time_signatures
-            []
+            [NonreducedFraction(2, 8), NonreducedFraction(3, 8), NonreducedFraction(4, 8), NonreducedFraction(4, 16), NonreducedFraction(4, 16), NonreducedFraction(5, 16), NonreducedFraction(5, 16)]
 
         Return list of zero or more nonreduced fractions.
         '''
@@ -444,30 +443,9 @@ class ScoreSpecification(Specification):
             >>> score = score_specification.interpret()
 
         ::
-
-            >>> f(score)
-            \context Score = "Grouped Rhythmic Staves Score" <<
-                \context TimeSignatureContext = "TimeSignatureContext" {
-                }
-                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
-                    \context RhythmicStaff = "Staff 1" {
-                        \context Voice = "Voice 1" {
-                        }
-                    }
-                    \context RhythmicStaff = "Staff 2" {
-                        \context Voice = "Voice 2" {
-                        }
-                    }
-                    \context RhythmicStaff = "Staff 3" {
-                        \context Voice = "Voice 3" {
-                        }
-                    }
-                    \context RhythmicStaff = "Staff 4" {
-                        \context Voice = "Voice 4" {
-                        }
-                    }
-                >>
-            >>
+    
+            >>> isinstance(score, scoretools.Score)
+            True
 
         Return Abjad score object.
         '''
@@ -566,7 +544,7 @@ class ScoreSpecification(Specification):
         r'''Segment name to segment offsets::
 
             >>> score_specification.segment_name_to_timespan('red')
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(0, 1))
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(9, 8))
 
         Return timespan.
         '''
