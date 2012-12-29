@@ -30,10 +30,8 @@ class Specification(SelectMethodMixin, SetMethodMixin):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        
-    ::
-    
         >>> red_segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification['red']
 
     ::
             
@@ -158,16 +156,19 @@ class Specification(SelectMethodMixin, SetMethodMixin):
     def single_context_settings_by_context(self):
         return self._single_context_settings_by_context
 
+    # TODO: decide between this and self.symbolic_start_offset
     @property
     def start_offset(self):
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
 
+    # TODO: decide between this and self.symbolic_stop_offset
     @property
     def stop_offset(self):
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
 
+    # TODO: maybe migrate to SegmentSettingInterface, ScoreSettingInterface
     @property
     def timespan(self):
         timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)

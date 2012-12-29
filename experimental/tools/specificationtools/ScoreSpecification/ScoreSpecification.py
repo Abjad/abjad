@@ -407,7 +407,7 @@ class ScoreSpecification(Specification):
         r'''Append segment specification to score specification::
 
             >>> score_specification.append_segment(name='green')
-            SegmentSpecification('green')
+            SegmentSettingInterface('green')
 
         Assign segment `name` or first unused segment number to segment.
 
@@ -418,7 +418,9 @@ class ScoreSpecification(Specification):
         segment_specification = self.segment_specification_class(self, self.score_template, name)
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
-        return segment_specification
+        segment_setting_interface = settingtools.SegmentSettingInterface(self.score_specification, name)
+        #return segment_specification
+        return segment_setting_interface
 
     def get_start_segment_specification(self, expr):
         r'''Get start segment specification from `expr`.

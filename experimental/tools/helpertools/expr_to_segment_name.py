@@ -15,7 +15,7 @@ def expr_to_segment_name(expr):
     ::
 
         >>> red_segment
-        SegmentSpecification('red')
+        SegmentSettingInterface('red')
 
     ::
 
@@ -32,7 +32,10 @@ def expr_to_segment_name(expr):
     Return string.
     '''
     from experimental.tools import specificationtools
+    from experimental.tools import settingtools
     if isinstance(expr, specificationtools.SegmentSpecification):
+        return expr.segment_name
+    if isinstance(expr, settingtools.SegmentSettingInterface):
         return expr.segment_name
     elif isinstance(expr, str):
         return expr

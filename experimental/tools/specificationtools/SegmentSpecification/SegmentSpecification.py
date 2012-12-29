@@ -9,7 +9,7 @@ from experimental.tools.specificationtools.Specification import Specification
 
 
 class SegmentSpecification(Specification):
-    r'''
+    r'''Segment specification.
 
     ::
 
@@ -19,17 +19,15 @@ class SegmentSpecification(Specification):
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
-        
-    ::
-    
         >>> red_segment = score_specification.append_segment(name='red')
+        >>> red_segment = score_specification['red']
 
     ::
             
         >>> red_segment
         SegmentSpecification('red')
 
-    ``SegmentSpecification`` properties are read-only.
+    Segment specification properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -130,6 +128,7 @@ class SegmentSpecification(Specification):
         '''
         return Specification.score_name.fget(self)
 
+    # TODO: maybe able to migrate to SegmentSpecificationInterface
     @property
     def score_specification(self):
         '''Read-only reference to score against which segment specification is defined.
@@ -224,6 +223,7 @@ class SegmentSpecification(Specification):
         '''
         return Specification.storage_format.fget(self)
 
+    # TODO: maybe migrate to SegmentSettingInterface
     @property
     def symbolic_start_offset(self):
         '''Segment specification symbolic start offset::
@@ -235,6 +235,7 @@ class SegmentSpecification(Specification):
         '''
         return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Left)
 
+    # TODO: maybe migrate to SegmentSettingInterface
     @property
     def symbolic_stop_offset(self):
         '''Segment specification symbolic stop offset::
