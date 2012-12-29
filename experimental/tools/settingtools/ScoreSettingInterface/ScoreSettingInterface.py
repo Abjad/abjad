@@ -26,6 +26,58 @@ class ScoreSettingInterface(SettingInterface):
 
     def __init__(self, score_specification):
         SettingInterface.__init__(self, score_specification)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_specification(self):
+        '''Score setting interface score specification reference::
+
+            >>> score_specification.interface.score_specification
+            ScoreSpecification('red', 'orange', 'yellow')
+
+        Return score specification.
+        '''
+        return SettingInterface.score_specification.fget(self)
+
+    @property
+    def specification_name(self):
+        '''Score setting interface specification name::
+
+            >>> score_specification.interface.specification_name is None
+            True
+
+        Return none.
+        '''
+        return SettingInterface.specification_name.fget(self)
+
+    @property
+    def storage_format(self):
+        '''Score setting interface storage format::
+
+            >>> z(score_specification.interface)
+            settingtools.ScoreSettingInterface(
+                specificationtools.ScoreSpecification(
+                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                        staff_count=4
+                        )
+                    )
+                )
+
+        Return string.
+        '''
+        return SettingInterface.storage_format.fget(self)
+
+    @property
+    def timespan(self):
+        '''Score setting interface timespan::
+
+            >>> score_specification.interface.timespan
+            TimespanExpression()
+
+        Return timespan expression.
+        '''
+        return SettingInterface.timespan.fget(self)
     
     ### PUBLIC METHODS ###
 

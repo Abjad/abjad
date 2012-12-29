@@ -11,8 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.score_specification
 
-    Inherited from :py:class:`settingtools.SettingInterface <experimental.tools.settingtools.SettingInterface.SettingInterface.SettingInterface>`
-
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.segment_name
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.specification_name
@@ -22,8 +20,6 @@ Read-only Properties
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.stop_offset
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.storage_format
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.symbolic_start_offset
 

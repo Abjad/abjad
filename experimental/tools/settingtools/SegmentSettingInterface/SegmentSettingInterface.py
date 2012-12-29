@@ -40,6 +40,21 @@ class SegmentSettingInterface(SettingInterface):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def score_specification(self):
+        '''Segment setting interface score specification reference::
+
+            >>> z(red_segment.score_specification)
+            specificationtools.ScoreSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=4
+                    )
+                )
+
+        Return score specification.
+        '''
+        return SettingInterface.score_specification.fget(self)
+
+    @property
     def segment_name(self):
         '''Segment specification name::
 
@@ -52,7 +67,10 @@ class SegmentSettingInterface(SettingInterface):
 
     @property
     def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications.
+        '''Generalized way of refering to both score and segment specifications::
+
+            >>> red_segment.specification_name
+            'red'
 
         Specification name of segment specification is same as segment name.
 
@@ -63,41 +81,80 @@ class SegmentSettingInterface(SettingInterface):
     # TODO: decide between this and self.symbolic_start_offset
     @property
     def start_offset(self):
+        '''Segment setting interface start offset::
+
+            >>> red_segment.start_offset
+            OffsetExpression(anchor='red')
+
+        Return offset expression.
+        '''
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation)
 
     # TODO: decide between this and self.symbolic_stop_offset
     @property
     def stop_offset(self):
+        '''Segment setting interface stop offset::
+
+            >>> red_segment.stop_offset
+            OffsetExpression(anchor='red', edge=Right)
+
+        Return offset expression.
+        '''
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self._anchor_abbreviation, edge=Right)
 
     @property
+    def storage_format(self):
+        '''Segment setting interface storage format::
+
+            >>> z(red_segment)
+            settingtools.SegmentSettingInterface(
+                specificationtools.ScoreSpecification(
+                    scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                        staff_count=4
+                        )
+                    ),
+                'red'
+                )
+
+        Return string.
+        '''
+        return SettingInterface.storage_format.fget(self)
+
+    @property
     def symbolic_start_offset(self):
-        '''Segment specification symbolic start offset::
+        '''Segment setting interface symbolic start offset::
 
             >>> red_segment.symbolic_start_offset
             OffsetExpression(anchor='red', edge=Left)
 
-        Return symbolic offset.
+        Return offset expression.
         '''
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Left)
 
     @property
     def symbolic_stop_offset(self):
-        '''Segment specification symbolic stop offset::
+        '''Segment setting interface symbolic stop offset::
 
             >>> red_segment.symbolic_stop_offset
             OffsetExpression(anchor='red', edge=Right)
 
-        Return symbolic offset.
+        Return offset expression.
         '''
         from experimental.tools import timeexpressiontools
         return timeexpressiontools.OffsetExpression(anchor=self.specification_name, edge=Right)
 
     @property
     def timespan(self):
+        '''Segment setting interface timespan::
+
+            >>> red_segment.timespan
+            TimespanExpression(anchor='red')
+
+        Return timespan expression.
+        '''
         from experimental.tools import timeexpressiontools
         timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
         timespan._score_specification = self.score_specification
