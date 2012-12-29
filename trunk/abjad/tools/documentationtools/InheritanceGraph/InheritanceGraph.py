@@ -274,7 +274,7 @@ class InheritanceGraph(AbjadObject):
             pieces = get_klass_name_pieces(klass)
 
             if pieces[0] not in module_clusters:
-                cluster = documentationtools.GraphvizCluster(
+                cluster = documentationtools.GraphvizSubgraph(
                     name='cluster_{}'.format(pieces[0]),
                     attributes={
                         'label': pieces[0],

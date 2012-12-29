@@ -14,8 +14,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> cluster_0 = documentationtools.GraphvizCluster(name='cluster_0')
-        >>> cluster_1 = documentationtools.GraphvizCluster(name='cluster_1')
+        >>> cluster_0 = documentationtools.GraphvizSubgraph(name='cluster_0')
+        >>> cluster_1 = documentationtools.GraphvizSubgraph(name='cluster_1')
         >>> a0 = documentationtools.GraphvizNode(name='a0')
         >>> a1 = documentationtools.GraphvizNode(name='a1')
         >>> a2 = documentationtools.GraphvizNode(name='a2')
@@ -143,7 +143,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     @property
     def _node_klass(self):
         from abjad.tools import documentationtools
-        return (documentationtools.GraphvizCluster,
+        return (documentationtools.GraphvizSubgraph,
             documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

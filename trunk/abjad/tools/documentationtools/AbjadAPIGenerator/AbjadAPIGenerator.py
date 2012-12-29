@@ -138,12 +138,16 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     def _sort_modules(self, objects):
 
         packages = {}
+        module_mapping = {}
 
         for obj in sorted(objects, key=lambda x: x.module_name):
 
             tools_package_name = obj.module_name.split('.')[self.tools_package_path_index]
             tools_package_path = '.'.join(obj.module_name.split('.')[:self.tools_package_path_index + 1])
             tools_package_module = importlib.import_module(tools_package_path)
+
+            if tools_package_name not in module_mapping:
+                module_mapping[tools_package_name] = tools_package_path
 
             if hasattr(tools_package_module, '_documentation_section'):
                 declared_documentation_section = getattr(tools_package_module, '_documentation_section')
@@ -168,7 +172,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             else:
                 collection[tools_package_name]['functions'].append(obj)
 
-        return packages
+        return packages, module_mapping
         
 
     ### PUBLIC PROPERTIES ###

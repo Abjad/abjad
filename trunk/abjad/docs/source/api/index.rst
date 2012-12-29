@@ -2203,7 +2203,7 @@ Abjad internal packages
    tools/documentationtools/Documenter/Documenter
    tools/documentationtools/FunctionCrawler/FunctionCrawler
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
-   tools/documentationtools/GraphvizCluster/GraphvizCluster
+   tools/documentationtools/GraphvizSubgraph/GraphvizSubgraph
    tools/documentationtools/GraphvizEdge/GraphvizEdge
    tools/documentationtools/GraphvizGraph/GraphvizGraph
    tools/documentationtools/GraphvizNode/GraphvizNode

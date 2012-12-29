@@ -1,7 +1,7 @@
 from abjad.tools.documentationtools.GraphvizGraph import GraphvizGraph
 
 
-class GraphvizCluster(GraphvizGraph):
+class GraphvizSubgraph(GraphvizGraph):
     '''A Graphviz cluster subgraph.'''
 
     ### INITIALIZER ###
@@ -32,7 +32,7 @@ class GraphvizCluster(GraphvizGraph):
     @property
     def _node_klass(self):
         from abjad.tools import documentationtools
-        return (documentationtools.GraphvizCluster, documentationtools.GraphvizNode)
+        return (documentationtools.GraphvizSubgraph, documentationtools.GraphvizNode)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
  
