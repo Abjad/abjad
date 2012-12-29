@@ -13,8 +13,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.contexts
 
-.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.duration
-
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.multiple_context_settings
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_model
@@ -38,6 +36,8 @@ Read-only Properties
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.storage_format
 
 .. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.time_signatures
+
+.. autoattribute:: experimental.tools.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.timespan
 
 Special Methods
 ---------------

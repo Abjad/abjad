@@ -220,23 +220,6 @@ class ScoreSpecification(Specification):
         return Specification.contexts.fget(self)
 
     @property
-    def duration(self):
-        r'''Score specification duration::
-
-            >>> score_specification.duration
-            Duration(9, 4)
-
-        Return duration.
-        '''
-
-        result = []
-        for segment_specification in self.segment_specifications:
-            duration = segment_specification.duration
-            if duration is not None:
-                result.append(duration)
-        return durationtools.Duration(sum(result))
-
-    @property
     def interface(self):
         '''Read-only reference to score setting interface::
 
@@ -305,28 +288,11 @@ class ScoreSpecification(Specification):
             >>> score_specification.offsets
             (Offset(0, 1), Offset(9, 4))
 
-        Start offset always equal to ``0``.
-
-        Stop offset always equal to score duration.
-
-        Only available after time signature interpretation completes.
+        Populate during interpretation.
 
         Return offset pair.
         '''
-        return self.start_offset, self.stop_offset
-
-    @property
-    def score_duration(self):
-        r'''Score specification score duration.
-
-            >>> score_specification.score_duration
-            Duration(9, 4)
-
-        Only available after time signature interpretation completes.
-
-        Return duration.
-        '''
-        return self._score_duration
+        return self.timespan.offsets
 
     @property
     def score_model(self):
@@ -360,19 +326,6 @@ class ScoreSpecification(Specification):
         Return score template.
         '''
         return Specification.score_template.fget(self)
-
-    @property
-    def segment_durations(self):
-        r'''Score specification segment durations.
-
-            >>> score_specification.segment_durations
-            [Duration(9, 8), Duration(1, 2), Duration(5, 8)]
-
-        Only available after time signature interpretation completes.
-
-        Return list of durations.
-        '''
-        return self._segment_durations
 
     @property
     def segment_names(self):
@@ -521,8 +474,7 @@ class ScoreSpecification(Specification):
 
         Return offset.
         '''
-        #return self._start_offset
-        return Specification.start_offset.fget(self)
+        return self.timespan.start_offset
 
     @property
     def stop_offset(self):
@@ -535,8 +487,7 @@ class ScoreSpecification(Specification):
 
         Return offset.
         '''
-        #return self._stop_offset
-        return Specification.stop_offset.fget(self)
+        return self.timespan.stop_offset
 
     @property
     def storage_format(self):
@@ -573,6 +524,10 @@ class ScoreSpecification(Specification):
         for segment_specification in self.segment_specifications:
             result.extend(segment_specification.time_signatures)
         return result
+
+    @property
+    def timespan(self):
+        return Specification.timespan.fget(self)
 
     ### PUBLIC METHODS ###
 
@@ -627,23 +582,6 @@ class ScoreSpecification(Specification):
 
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
-
-    def score_offset_to_segment_identifier(self, score_offset):
-        r'''Change `score_offset` to segment_identifier::
-
-            >>> score_specification.score_offset_to_segment_identifier(Offset(5, 4))
-            'orange'
-
-        This is the same as finding the name of the segment
-        in which `score_offset` falls.
-        '''
-        segment_start_offset, segment_stop_offset = durationtools.Offset(0), None
-        for segment in self.segment_specifications:
-            segment_stop_offset = segment_start_offset + segment.duration
-            if segment_start_offset <= score_offset < segment_stop_offset:
-                return segment.segment_name
-            segment_start_offset = segment_stop_offset
-        raise Exception('score offset {!r} is beyond score duration.'.format(score_offset))
 
     def segment_identifier_expression_to_segment_index(self, segment_identifier_expression):
         r'''Segment index expression to segment index::

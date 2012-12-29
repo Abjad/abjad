@@ -119,17 +119,6 @@ class SegmentSpecification(Specification):
         return Specification.contexts.fget(self)
 
     @property
-    def duration(self):
-        '''Segment specification duration.
-
-            >>> red_segment.duration
-            Duration(9, 8)
-
-        Return duration.
-        '''
-        return durationtools.Duration(sum([durationtools.Duration(x) for x in self.time_signatures]))
-
-    @property
     def multiple_context_settings(self):
         '''Segment specification multiple-context settings::
 
@@ -304,3 +293,7 @@ class SegmentSpecification(Specification):
         Return list of zero or more nonreduced fractions.
         '''
         return [mathtools.NonreducedFraction(x) for x in self._time_signatures]
+
+    @property
+    def timespan(self): 
+        return Specification.timespan.fget(self)

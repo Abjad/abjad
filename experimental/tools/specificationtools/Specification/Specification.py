@@ -123,3 +123,7 @@ class Specification(AbjadObject):
     @property
     def stop_offset(self):
         return self._stop_offset
+
+    @property
+    def timespan(self):
+        return timespantools.Timespan(self._start_offset, self._stop_offset)

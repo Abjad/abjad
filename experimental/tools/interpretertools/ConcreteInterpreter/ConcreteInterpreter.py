@@ -76,23 +76,18 @@ class ConcreteInterpreter(Interpreter):
     def calculate_score_and_segment_durations(self):
         '''Set ``'start_offset'`` and ``'stop_offset'`` on score specification.
 
-        Set ``'score_duration'`` property on score specification.
-
-        Set ``'segment_durations'`` property on score specification.
+        Set ``'start_offset'`` and ``'stop_offset'`` on every segment specification.
 
         Set ``'segment_offset_pairs'`` property on score specification.
-
-        Set ``'start_offset'`` and ``'stop_offset'`` on every segment specification.
         '''
-        segment_durations = [x.duration for x in self.score_specification.segment_specifications]
+        segment_durations = [durationtools.Duration(sum(x.time_signatures)) 
+            for x in self.score_specification.segment_specifications]
         if sequencetools.all_are_numbers(segment_durations):
             self.score_specification._segment_durations = segment_durations
-            self.score_specification._score_duration = sum(self.score_specification.segment_durations)
+            score_duration = sum(segment_durations)
             self.score_specification._start_offset = durationtools.Offset(0)
-            self.score_specification._stop_offset = durationtools.Offset(
-                self.score_specification.score_duration)
-            segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(
-                self.score_specification.segment_durations)
+            self.score_specification._stop_offset = durationtools.Offset(score_duration)
+            segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(segment_durations)
             segment_offset_pairs = [
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
             self.score_specification._segment_offset_pairs = segment_offset_pairs
@@ -861,12 +856,16 @@ class ConcreteInterpreter(Interpreter):
         if not region_commands and not self.score_specification.time_signatures:
             return []
         elif not region_commands and self.score_specification.time_signatures:
+            #region_command = self.make_default_region_command(
+            #    voice_name, self.score_specification.start_offset, self.score_specification.stop_offset, attribute)
             region_command = self.make_default_region_command(
-                voice_name, self.score_specification.start_offset, self.score_specification.stop_offset, attribute)
+                voice_name, self.score_specification.timespan.start_offset, self.score_specification.timespan.stop_offset, attribute)
             return [region_command]
         if not region_commands[0].starts_when_expr_starts(self.score_specification):
+            #region_command = self.make_default_region_command(
+            #    voice_name, self.score_specification.start_offset, region_commands[0].start_offset, attribute)
             region_command = self.make_default_region_command(
-                voice_name, self.score_specification.start_offset, region_commands[0].start_offset, attribute)
+                voice_name, self.score_specification.timespan.start_offset, region_commands[0].start_offset, attribute)
             region_commands.insert(0, region_command)
         if not region_commands[-1].stops_when_expr_stops(self.score_specification):
             region_command = self.make_default_region_command(
