@@ -31,9 +31,11 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, timespan_modifiers=None):
+    def __init__(self, anchor=None, timespan_modifiers=None):
         from experimental.tools import settingtools
         Timespan.__init__(self)
+        assert isinstance(anchor, (str, type(None))), repr(anchor)
+        self._anchor = anchor
         timespan_modifiers = timespan_modifiers or []
         self._timespan_modifiers = settingtools.ModifierInventory(timespan_modifiers)
 
@@ -62,18 +64,18 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
+    def _anchor_abbreviation(self):
+        '''Form of symbolic timespan suitable for writing to disk.
+        '''
+        return self
+
+    @property
     def _keyword_argument_name_value_strings(self):
         result = Timespan._keyword_argument_name_value_strings.fget(self)
         if 'timespan_modifiers=ModifierInventory([])' in result:
             result = list(result)
             result.remove('timespan_modifiers=ModifierInventory([])')
         return tuple(result)
-
-    @property
-    def _anchor_abbreviation(self):
-        '''Form of symbolic timespan suitable for writing to disk.
-        '''
-        return self
 
     ### PRIVATE METHODS ###
 
@@ -158,6 +160,10 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         return new_start_offset, new_stop_offset
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def anchor(self):
+        return self._anchor
 
     @property
     def score_specification(self):

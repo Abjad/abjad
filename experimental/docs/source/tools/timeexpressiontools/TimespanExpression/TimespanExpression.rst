@@ -9,6 +9,8 @@ timeexpressiontools.TimespanExpression
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.anchor
+
 .. autoattribute:: experimental.tools.timeexpressiontools.TimespanExpression.TimespanExpression.TimespanExpression.duration
 
     Inherited from :py:class:`timespantools.Timespan <abjad.tools.timespantools.Timespan.Timespan.Timespan>`
