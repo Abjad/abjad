@@ -264,12 +264,6 @@ class SegmentSpecification(Specification):
 
     @property
     def timespan(self):
-        # TODO: Emtpy string here is a hack.
-        #       Eventually replace with TimespanExpression anchored only to segment name.
-        selector = selectortools.SegmentSelector(anchor=self.specification_name, voice_name='')
-        selector._score_specification = self.score_specification
-        selector = selector[self.specification_name:(self.specification_name, 1)]
-        return selector
-#        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
-#        timespan._score_specification = self.score_specification
-#        return timespan
+        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
+        timespan._score_specification = self.score_specification
+        return timespan

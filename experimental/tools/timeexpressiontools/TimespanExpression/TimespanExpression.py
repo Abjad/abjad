@@ -112,12 +112,19 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         return new_start_offset, new_stop_offset
 
     def _get_timespan(self, score_specification, context_name):
-        '''Get start offset and stop offset of symbolic timespan
-        when applied to `context_name` in `score_specification`.
+        '''Evaluate timespan expression when 
+        applied to `context_name` in `score_specification`.
 
         Return pair.
         '''
-        raise NotImplementedError
+        if isinstance(self.anchor, str):
+            timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
+        elif self.anchor is None:
+            timespan = score_specification.timespan
+        else:
+            raise NotImplementedError
+        timespan = self._apply_timespan_modifiers(timespan)
+        return timespan
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty offset request_modifiers list.
@@ -158,6 +165,9 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
             new_stop_offset = original_stop_offset
         return new_start_offset, new_stop_offset
 
+    def _set_start_segment_identifier(self, segment_identifier):
+        self._anchor = segment_identifier
+
     def _translate_offsets(self, original_start_offset, original_stop_offset, 
         start_offset_translation, stop_offset_translation):
         new_start_offset = original_start_offset + start_offset_translation
@@ -196,12 +206,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
     
             >>> z(timespans[0])
-            selectortools.SegmentSelector(
+            timeexpressiontools.TimespanExpression(
                 anchor='red',
-                voice_name='',
-                request_modifiers=settingtools.ModifierInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
-                    ]),
                 timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 0)'
                     ])
@@ -210,12 +216,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[1])
-            selectortools.SegmentSelector(
+            timeexpressiontools.TimespanExpression(
                 anchor='red',
-                voice_name='',
-                request_modifiers=settingtools.ModifierInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
-                    ]),
                 timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, (2, 3), 1)'
                     ])
@@ -228,12 +230,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[0])
-            selectortools.SegmentSelector(
+            timeexpressiontools.TimespanExpression(
                 anchor='red',
-                voice_name='',
-                request_modifiers=settingtools.ModifierInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
-                    ]),
                 timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 0)'
                     ])
@@ -242,12 +240,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[1])
-            selectortools.SegmentSelector(
+            timeexpressiontools.TimespanExpression(
                 anchor='red',
-                voice_name='',
-                request_modifiers=settingtools.ModifierInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
-                    ]),
                 timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 1)'
                     ])
@@ -256,12 +250,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         ::
 
             >>> z(timespans[2])
-            selectortools.SegmentSelector(
+            timeexpressiontools.TimespanExpression(
                 anchor='red',
-                voice_name='',
-                request_modifiers=settingtools.ModifierInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
-                    ]),
                 timespan_modifiers=settingtools.ModifierInventory([
                     'self._divide_by_ratio(original_start_offset, original_stop_offset, [1, 1, 1], 2)'
                     ])
@@ -284,13 +274,13 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
     def scale(self, multiplier):
         '''Scale timespan duration by `multiplier`.
 
-            >>> z(red_segment.timespan.scale(Multiplier(4, 5)))
-            selectortools.SegmentSelector(
+            >>> timespan = red_segment.timespan.scale(Multiplier(4, 5))
+
+        ::
+
+            >>> z(timespan)
+            timeexpressiontools.TimespanExpression(
                 anchor='red',
-                voice_name='',
-                request_modifiers=settingtools.ModifierInventory([
-                    "result = self.___getitem__(elements, start_offset, slice('red', ('red', 1), None))"
-                    ]),
                 timespan_modifiers=settingtools.ModifierInventory([
                     'self._scale(original_start_offset, original_stop_offset, Multiplier(4, 5))'
                     ])
