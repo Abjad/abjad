@@ -56,12 +56,28 @@ class SegmentSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
+        '''Get context with name::
+
+            >>> red_segment['Voice 1']
+            ContextProxy()
+
+        Also get multiple-context setting with integer `expr`.
+
+        Return multiple-context setting or context proxy.
+        '''
         if isinstance(expr, int):
             return self.multiple_context_settings.__getitem__(expr)
         else:
             return self.contexts.__getitem__(expr) 
         
     def __repr__(self):
+        '''Segment specification interpreter representation::
+
+            >>> red_segment
+            SegmentSpecification('red')
+
+        Return string.
+        '''
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
@@ -114,6 +130,28 @@ class SegmentSpecification(Specification):
         return durationtools.Duration(sum([durationtools.Duration(x) for x in self.time_signatures]))
 
     @property
+    def multiple_context_settings(self):
+        '''Segment specification multiple-context settings::
+
+            >>> for x in red_segment.multiple_context_settings:
+            ...     z(x)
+
+        Return setting inventory.
+        '''
+        return Specification.multiple_context_settings.fget(self)
+
+    @property
+    def score_model(self):
+        '''Segment specification score model::
+
+            >>> red_segment.score_model
+            Score-"Grouped Rhythmic Staves Score"<<1>>
+
+        Return Abjad score object.
+        '''
+        return Specification.score_model.fget(self)
+
+    @property
     def score_name(self):
         r'''Segment specification score name::
 
@@ -127,7 +165,10 @@ class SegmentSpecification(Specification):
     # TODO: maybe able to migrate to SegmentSpecificationInterface
     @property
     def score_specification(self):
-        '''Read-only reference to score against which segment specification is defined.
+        '''Read-only reference to score against which segment specification is defined::
+
+            >>> red_segment.score_specification
+            ScoreSpecification('red', 'orange', 'yellow')
 
         Return score specification.
         '''
@@ -212,13 +253,40 @@ class SegmentSpecification(Specification):
 
     @property
     def specification_name(self):
-        '''Generalized way of refering to both score and segment specifications.
+        '''Generalized way of refering to both score and segment specifications::
+
+            >>> red_segment.specification_name
+            'red'
 
         Specification name of segment specification is same as segment name.
 
         Return string.
         '''
         return self.segment_name
+
+    # TODO: name this self.symbolic_start_offset?
+    @property
+    def start_offset(self):
+        '''Segment specification symbolic start offset::
+
+            >>> red_segment.start_offset
+            OffsetExpression(anchor='red')
+
+        Return offset.
+        '''
+        return Specification.start_offset.fget(self)
+
+    # TODO: name this self.symbolic_stop_offset?
+    @property
+    def stop_offset(self):
+        '''Segment specification symbolic stop offset::
+
+            >>> red_segment.stop_offset
+            OffsetExpression(anchor='red', edge=Right)
+
+        Return offset.
+        '''
+        return Specification.stop_offset.fget(self)
 
     @property
     def storage_format(self):
