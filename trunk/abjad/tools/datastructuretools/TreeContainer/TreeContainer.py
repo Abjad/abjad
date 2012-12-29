@@ -33,6 +33,7 @@ class TreeContainer(TreeNode):
     def __init__(self, children=None, name=None):
         TreeNode.__init__(self, name=name)
         self._children = []
+        self._named_children = {}
         if children is None:
             pass
         elif isinstance(children, (list, tuple)):
@@ -155,7 +156,13 @@ class TreeContainer(TreeNode):
 
         Return `TreeNode` instance.    
         '''
-        return self._children[i]
+        if isinstance(i, (int, slice)):
+            return self._children[i]
+        elif isinstance(i, str):
+            children = self._named_children[i]
+            if 1 == len(children):
+                return tuple(children)[0]
+        raise ValueError
 
     def __iter__(self):
         for child in self._children:

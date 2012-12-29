@@ -12,8 +12,9 @@ class TreeNode(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, name=None):
-        self.name = name
+        self._name = None
         self._parent = None    
+        self.name = name
 
     ### SPECIAL METHODS ###
 
@@ -128,10 +129,39 @@ class TreeNode(AbjadObject):
                 setattr(node, name, False)
 
     def _switch_parent(self, new_parent):
+
+        name_dictionary = {}
+        if hasattr(self, '_named_children'):
+            for name, children in self._named_children.iteritems():
+                name_dictionary[name] = copy.copy(children)
+        if hasattr(self, 'name') and self.name is not None:
+            if self.name not in name_dictionary:
+                name_dictionary[self.name] = set([])
+            name_dictionary[self.name].add(self)
+
+        if self._parent is not None and name_dictionary:
+            for parent in self.proper_parentage_parentage:
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    for node in name_dictionary[name]:
+                        named_children[name].remove(node)
+                    if not named_children[name]:
+                        del named_children[name]
+
         if self._parent is not None:
             index = self._parent.index(self)
             self._parent._children.pop(index)
         self._parent = new_parent
+
+        if new_parent is not None and name_dictionary:
+            for parent in self.proper_parentage:
+                named_children = parent._named_children
+                for name in name_dictionary:
+                    if name in named_children:
+                        named_children[name].update(name_dictionary[name])
+                    else:
+                        named_children[name] = copy.copy(name_dictionary[name])
+
         self._mark_entire_tree_for_later_update()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
@@ -389,6 +419,19 @@ class TreeNode(AbjadObject):
         def fget(self):
             return self._name
         def fset(self, arg):
-            assert isinstance(arg, (str, type(None))) 
+            assert isinstance(arg, (str, type(None)))
+            old_name = self._name
+            for parent in self.proper_parentage:
+                named_children = parent._named_children
+                if old_name is not None:
+                    named_children[old_name].remove(self)
+                    if not named_children[old_name]:
+                        del named_children[old_name]
+                if arg is not None:
+                    if arg not in named_children:
+                        named_children[arg] = set([self])
+                    else:
+                        named_children[arg].add(self)
             self._name = arg
         return property(**locals())
+
