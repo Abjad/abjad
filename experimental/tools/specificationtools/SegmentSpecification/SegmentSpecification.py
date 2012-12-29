@@ -270,3 +270,6 @@ class SegmentSpecification(Specification):
         selector._score_specification = self.score_specification
         selector = selector[self.specification_name:(self.specification_name, 1)]
         return selector
+#        timespan = timeexpressiontools.TimespanExpression(anchor=self.specification_name)
+#        timespan._score_specification = self.score_specification
+#        return timespan

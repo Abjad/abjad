@@ -41,6 +41,11 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
     ### SPECIAL METHODS ###
 
+    def __deepcopy__(self, memo):
+        result = type(self)(*self._input_argument_values)
+        result._score_specification = self.score_specification
+        return result
+
     def __eq__(self, expr):
         '''True when mandatory and keyword arguments compare equal.
         Otherwise false.
@@ -112,7 +117,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
         Return pair.
         '''
-        raise NotImplemented
+        raise NotImplementedError
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty offset request_modifiers list.
