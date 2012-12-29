@@ -65,7 +65,7 @@ class SvnUpdateScript(DirectoryScript):
     def process_args(self, args):
 
         if args.clean:
-            clean_args = ['--pyc', '--pycache', '--tmp', args.path]
+            clean_args = [args.path]
             clean_script = CleanScript()
             clean_script(clean_args)
 
