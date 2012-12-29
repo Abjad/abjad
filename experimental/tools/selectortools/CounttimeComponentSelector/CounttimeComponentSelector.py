@@ -22,7 +22,7 @@ class CounttimeComponentSelector(Selector):
 
     Select voice ``1`` leaves that start during score::
 
-        >>> selector = score_specification.select_leaves('Voice 1')
+        >>> selector = score_specification.interface.select_leaves('Voice 1')
 
     ::
         

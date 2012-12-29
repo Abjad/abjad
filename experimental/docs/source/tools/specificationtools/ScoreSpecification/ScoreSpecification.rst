@@ -25,6 +25,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.duration
 
+.. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interface
+
 .. autoattribute:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.multiple_context_settings
 
     Inherited from :py:class:`specificationtools.Specification <experimental.tools.specificationtools.Specification.Specification.Specification>`
@@ -89,84 +91,6 @@ Methods
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_timespan
 
 .. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_offset_to_score_offset
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_background_measures
-
-    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_beats
-
-    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_divisions
-
-    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_leaves
-
-    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_notes_and_chords
-
-    Inherited from :py:class:`timeexpressiontools.SelectMethodMixin <experimental.tools.timeexpressiontools.SelectMethodMixin.SelectMethodMixin.SelectMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_segments
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_aggregate
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_articulations
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_chord_treatment
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_divisions
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_dynamics
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_marks
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_markup
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_pitch_class_application
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_pitch_class_transform
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_pitch_classes
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_registration
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_rhythm
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_tempo
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
-
-.. automethod:: experimental.tools.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.set_time_signatures
-
-    Inherited from :py:class:`settingtools.SetMethodMixin <experimental.tools.settingtools.SetMethodMixin.SetMethodMixin.SetMethodMixin>`
 
 Special Methods
 ---------------

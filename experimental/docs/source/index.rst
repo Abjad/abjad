@@ -241,7 +241,6 @@ Unstable packages (load manually)
 
    tools/settingtools/Command/Command
    tools/settingtools/OffsetPositionedExpression/OffsetPositionedExpression
-   tools/settingtools/ScoreSettingInterface/ScoreSettingInterface
    tools/settingtools/SetMethodMixin/SetMethodMixin
    tools/settingtools/Setting/Setting
 
@@ -259,6 +258,7 @@ Unstable packages (load manually)
    tools/settingtools/OffsetPositionedRhythmExpression/OffsetPositionedRhythmExpression
    tools/settingtools/RhythmCommand/RhythmCommand
    tools/settingtools/RotationIndicator/RotationIndicator
+   tools/settingtools/ScoreSettingInterface/ScoreSettingInterface
    tools/settingtools/SegmentSettingInterface/SegmentSettingInterface
    tools/settingtools/SingleContextSetting/SingleContextSetting
    tools/settingtools/SingleContextSettingInventory/SingleContextSettingInventory

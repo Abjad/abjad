@@ -21,7 +21,7 @@ class DivisionSelector(Selector):
 
     Select voice ``1`` divisions that start during score::
 
-        >>> selector = score_specification.select_divisions('Voice 1')
+        >>> selector = score_specification.interface.select_divisions('Voice 1')
 
     ::
         

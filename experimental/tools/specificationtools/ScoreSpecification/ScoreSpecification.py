@@ -4,19 +4,17 @@ from experimental.tools import helpertools
 from experimental.tools import requesttools
 from experimental.tools import selectortools
 from experimental.tools import settingtools
-from experimental.tools.settingtools.SetMethodMixin import SetMethodMixin
 from experimental.tools.specificationtools.Specification import Specification
-from experimental.tools.timeexpressiontools.SelectMethodMixin import SelectMethodMixin
 
 
-class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
-    r'''
+class ScoreSpecification(Specification):
+    r'''Score specification.
 
     ::
 
         >>> from experimental.tools import *
 
-    Score specification::
+    ::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(template)
@@ -41,6 +39,7 @@ class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
         self._all_time_signature_commands = []
         self._segment_specifications = specificationtools.SegmentSpecificationInventory()
         self._segment_specification_class = specificationtools.SegmentSpecification
+        self._interface = settingtools.ScoreSettingInterface(self)
 
     ### SPECIAL METHODS ###
 
@@ -173,6 +172,12 @@ class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
             if duration is not None:
                 result.append(duration)
         return durationtools.Duration(sum(result))
+
+    @property
+    def interface(self):
+        '''Read-only reference to score setting interface.
+        '''
+        return self._interface
 
     @property
     def offsets(self):
@@ -396,6 +401,7 @@ class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
             result.extend(segment_specification.time_signatures)
         return result
 
+    # TODO: maybe remove in favor of ScoreSettingInterface.timespan
     @property
     def timespan(self):
         timespan = timeexpressiontools.TimespanExpression()
@@ -420,7 +426,6 @@ class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
         segment_specification._score_specification = self
         self.segment_specifications.append(segment_specification)
         segment_setting_interface = settingtools.SegmentSettingInterface(self.score_specification, name)
-        #return segment_specification
         return segment_setting_interface
 
     def get_start_segment_specification(self, expr):
@@ -594,21 +599,3 @@ class ScoreSpecification(Specification, SelectMethodMixin, SetMethodMixin):
         timespan = self.segment_name_to_timespan(segment_name)
         score_offset = timespan.start_offset + segment_offset
         return score_offset
-
-    def select_segments(self, voice_name):
-        '''Select voice ``1`` segments in score::
-
-            >>> selector = score_specification.select_segments('Voice 1')
-
-        ::
-
-            >>> z(selector)
-            selectortools.SegmentSelector(
-                voice_name='Voice 1'
-                )
-
-        Return segment selector.
-        '''
-        selector = selectortools.SegmentSelector(voice_name=voice_name)
-        selector._score_specification = self
-        return selector

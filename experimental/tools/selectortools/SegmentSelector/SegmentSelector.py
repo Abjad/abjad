@@ -21,7 +21,7 @@ class SegmentSelector(Selector):
 
     Select voice ``1`` segments in score::
 
-        >>> selector = score_specification.select_segments('Voice 1')
+        >>> selector = score_specification.interface.select_segments('Voice 1')
 
     ::
 
@@ -32,7 +32,7 @@ class SegmentSelector(Selector):
 
     Select the first two voice ``1`` segments in score::
 
-        >>> selector = score_specification.select_segments('Voice 1')[:2]
+        >>> selector = score_specification.interface.select_segments('Voice 1')[:2]
 
     ::
 
@@ -46,7 +46,7 @@ class SegmentSelector(Selector):
 
     Select voice ``1`` segments up to but not including ``'green'``::
 
-        >>> selector = score_specification.select_segments('Voice 1')[:'green']
+        >>> selector = score_specification.interface.select_segments('Voice 1')[:'green']
 
     ::
 
@@ -60,7 +60,7 @@ class SegmentSelector(Selector):
 
     Select voice ``1`` segments up to and including ``'green'``::
 
-        >>> selector = score_specification.select_segments('Voice 1')[:('green', 1)]
+        >>> selector = score_specification.interface.select_segments('Voice 1')[:('green', 1)]
 
     ::
 
@@ -74,7 +74,7 @@ class SegmentSelector(Selector):
 
     Select voice ``1`` segment ``'red'``::
 
-        >>> selector = score_specification.select_segments('Voice 1')['red':('red', 1)]
+        >>> selector = score_specification.interface.select_segments('Voice 1')['red':('red', 1)]
 
     ::
 

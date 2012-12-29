@@ -20,7 +20,7 @@ class BeatSelector(Selector):
     
     Select voice ``1`` beats that start during score::
 
-        >>> selector = score_specification.select_beats('Voice 1')
+        >>> selector = score_specification.interface.select_beats('Voice 1')
 
     ::
 
