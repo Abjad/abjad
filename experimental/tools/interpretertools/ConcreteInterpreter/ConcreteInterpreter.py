@@ -187,7 +187,9 @@ class ConcreteInterpreter(Interpreter):
             return [division_region_expression]
         elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
             background_measure_selector = division_region_command.request
-            time_signatures = background_measure_selector._get_time_signatures(self.score_specification)
+            timespan, time_signatures = \
+                background_measure_selector._get_timespan_and_selected_objects(
+                self.score_specification, None)
             divisions = [divisiontools.Division(x) for x in time_signatures]
         else:
             raise TypeError(division_region_command.request)
@@ -333,7 +335,7 @@ class ConcreteInterpreter(Interpreter):
     def get_start_segment_specification(self, expr):
         return self.score_specification.get_start_segment_specification(expr)
 
-    # TODO: Migrate to ScoreSpecification? Or migrate to BackgroundMeasureSelector? Not clear yet.
+    # TODO: Migrate to ScoreSpecification?
     def get_time_signature_slice(self, start_offset, stop_offset):
         time_signatures = self.score_specification.time_signatures
         assert time_signatures
@@ -572,7 +574,8 @@ class ConcreteInterpreter(Interpreter):
                 time_signature_setting.request)
         elif isinstance(time_signature_setting.request, selectortools.BackgroundMeasureSelector):
             background_measure_selector = time_signature_setting.request
-            time_signatures = background_measure_selector._get_time_signatures(self.score_specification)
+            time_signatures = background_measure_selector._get_time_signatures_without_timespan(
+                self.score_specification)
         else:
             raise TypeError(time_signature_setting.request)
         if time_signatures:

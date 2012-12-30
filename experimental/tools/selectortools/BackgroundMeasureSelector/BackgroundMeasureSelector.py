@@ -65,7 +65,9 @@ class BackgroundMeasureSelector(Selector):
 
     ### PRIVATE METHODS ###
 
-    def _get_time_signatures(self, score_specification, voice_name=None, start_offset=None, stop_offset=None):
+    # using during time signature interpretation before segment start offsets are calculated
+    def _get_time_signatures_without_timespan(self, score_specification, 
+        voice_name=None, start_offset=None, stop_offset=None):
         start_segment_specification = score_specification.get_start_segment_specification(self)
         time_signatures = start_segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
@@ -83,8 +85,7 @@ class BackgroundMeasureSelector(Selector):
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         start_offset = start_segment_specification.timespan.start_offset
         time_signatures, start_offset = self._apply_request_modifiers(time_signatures, start_offset)
-        durations = [durationtools.Duration(x) for x in time_signatures]
-        duration = sum(durations)
+        duration = sum([durationtools.Duration(x) for x in time_signatures])
         stop_offset = start_offset + duration
         timespan = timespantools.Timespan(start_offset, stop_offset)
         return timespan, time_signatures
