@@ -14,8 +14,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> cluster_0 = documentationtools.GraphvizSubgraph(name='cluster_0')
-        >>> cluster_1 = documentationtools.GraphvizSubgraph(name='cluster_1')
+        >>> cluster_0 = documentationtools.GraphvizSubgraph(name='0')
+        >>> cluster_1 = documentationtools.GraphvizSubgraph(name='1')
         >>> a0 = documentationtools.GraphvizNode(name='a0')
         >>> a1 = documentationtools.GraphvizNode(name='a1')
         >>> a2 = documentationtools.GraphvizNode(name='a2')
@@ -74,7 +74,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
         >>> print graph.graphviz_format
         digraph "G" {
-            subgraph "cluster_cluster_0" {
+            subgraph "cluster_0" {
                 graph [color="lightgrey",
                     label="process #1",
                     style="filled"];
@@ -89,7 +89,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 "a2" -> "a3";
                 "a3" -> "a0";
             }
-            subgraph "cluster_cluster_1" {
+            subgraph "cluster_1" {
                 graph [color="blue",
                     label="process #2"];
                 node [style="filled"];
