@@ -46,6 +46,22 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
+    def _get_naive_time_signature_beat_slice(self, score_specification, voice_name, 
+        start_offset, stop_offset):
+        time_signatures = score_specification.time_signatures
+        assert time_signatures
+        naive_beats = []
+        for time_signature in time_signatures:
+            numerator, denominator = time_signature.pair
+            naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
+        slice_duration = stop_offset - start_offset
+        weights = [start_offset, slice_duration]
+        shards = sequencetools.split_sequence_by_weights(
+            naive_beats, weights, cyclic=False, overhang=False)
+        result = shards[1]
+        result = [x.pair for x in result]
+        return result
+
     def _get_timespan(self, score_specification, voice_name):
         '''Evaluate start and stop offsets of selector when applied
         to `voice_name` in `score_specification`.

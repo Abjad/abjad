@@ -216,10 +216,13 @@ class ConcreteInterpreter(Interpreter):
                 division_region_command, voice_name)
             return division_region_expressions
         elif isinstance(division_region_command.request, selectortools.BeatSelector):
+            beat_selector = division_region_command.request
             start_offset, stop_offset = division_region_command.offsets
-            divisions = self.get_naive_time_signature_beat_slice(start_offset, stop_offset)
-            divisions, start_offset = division_region_command.request._apply_request_modifiers(
-                divisions, start_offset)
+            divisions = beat_selector._get_naive_time_signature_beat_slice(
+                self.score_specification, division_region_command.voice_name, start_offset, stop_offset)
+            # TODO: migrate the following line to BeatSelector._get_timespan?
+            divisions, start_offset = beat_selector._apply_request_modifiers(divisions, start_offset)
+            # TODO: implement Command.set(request=divisions) to do this cleanly:
             division_region_command._request = divisions
             division_region_expressions = self.division_region_command_to_division_region_expressions(
                 division_region_command, voice_name)
@@ -357,22 +360,6 @@ class ConcreteInterpreter(Interpreter):
                     return element
                 if element.context_name == context_name:
                     return element
-
-    # TODO: migrate to ScoreSpecification? Or migrate to BeatSelector? Not clear yet.
-    def get_naive_time_signature_beat_slice(self, start_offset, stop_offset):
-        time_signatures = self.score_specification.time_signatures
-        assert time_signatures
-        naive_beats = []
-        for time_signature in time_signatures:
-            numerator, denominator = time_signature.pair
-            naive_beats.extend(numerator * [mathtools.NonreducedFraction(1, denominator)])
-        slice_duration = stop_offset - start_offset
-        weights = [start_offset, slice_duration]
-        shards = sequencetools.split_sequence_by_weights(
-            naive_beats, weights, cyclic=False, overhang=False)
-        result = shards[1]
-        result = [x.pair for x in result]
-        return result
 
     def get_raw_commands_for_voice(self, context_name, attribute):
         commands = []
