@@ -57,22 +57,6 @@ class ConcreteInterpreter(Interpreter):
         else:
             raise NotImplementedError(attribute)
 
-    # TODO: why is this not bound to BackgroundMeasureSelector?
-    def background_measure_selector_to_time_signatures(self, selector):
-        assert isinstance(selector, selectortools.BackgroundMeasureSelector)
-        segment_specification = self.get_start_segment_specification(selector.start_segment_identifier)
-        single_context_settings = self.get_single_context_settings_that_start_during_segment(
-            segment_specification, selector.voice_name, 'time_signatures', include_improper_parentage=True)
-        assert len(single_context_settings) == 1
-        single_context_setting = single_context_settings[0]
-        absolute_request = single_context_setting.request
-        if not isinstance(absolute_request, requesttools.AbsoluteRequest):
-            raise Exception('cyclic specification error: {!r}'.format(absolute_request))
-        time_signatures = absolute_request.payload
-        time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
-        time_signatures, dummy = selector._apply_request_modifiers(time_signatures, None)
-        return time_signatures
-
     def calculate_score_and_segment_timespans(self):
         '''Set ``'timespan'`` on score specification.
 
@@ -202,7 +186,8 @@ class ConcreteInterpreter(Interpreter):
                 start_offset_translation=addendum, stop_offset_translation=addendum)
             return [division_region_expression]
         elif isinstance(division_region_command.request, selectortools.BackgroundMeasureSelector):
-            time_signatures = self.background_measure_selector_to_time_signatures(division_region_command.request)
+            background_measure_selector = division_region_command.request
+            time_signatures = background_measure_selector._get_time_signatures(self.score_specification)
             divisions = [divisiontools.Division(x) for x in time_signatures]
         else:
             raise TypeError(division_region_command.request)
@@ -586,7 +571,8 @@ class ConcreteInterpreter(Interpreter):
             time_signatures = self.time_signature_command_request_to_time_signatures(
                 time_signature_setting.request)
         elif isinstance(time_signature_setting.request, selectortools.BackgroundMeasureSelector):
-            time_signatures = self.background_measure_selector_to_time_signatures(time_signature_setting.request)
+            background_measure_selector = time_signature_setting.request
+            time_signatures = background_measure_selector._get_time_signatures(self.score_specification)
         else:
             raise TypeError(time_signature_setting.request)
         if time_signatures:
