@@ -74,7 +74,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
         >>> print graph.graphviz_format
         digraph "G" {
-            subgraph "cluster_0" {
+            subgraph "cluster_cluster_0" {
                 graph [color="lightgrey",
                     label="process #1",
                     style="filled"];
@@ -89,7 +89,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 "a2" -> "a3";
                 "a3" -> "a0";
             }
-            subgraph "cluster_1" {
+            subgraph "cluster_cluster_1" {
                 graph [color="blue",
                     label="process #2"];
                 node [style="filled"];
