@@ -367,9 +367,7 @@ class MetricalHierarchy(AbjadObject):
                 id_ -> id_1;
                 id_1 -> id_1_0;
                 id_1 -> id_1_1;
-            }
-
-        Which looks like this:
+            }:
 
         ::
 
