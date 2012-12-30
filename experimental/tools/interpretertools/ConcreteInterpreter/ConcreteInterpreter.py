@@ -585,6 +585,9 @@ class ConcreteInterpreter(Interpreter):
                     rhythm_region_expression = \
                         self.counttime_component_selector_to_rhythm_region_expression(
                         counttime_component_selector, start_offset, stop_offset)
+                    #rhythm_region_expression = \
+                    #    counttime_component_selector._get_rhythm_region_expression(
+                    #    self.score_specification, voice_name, start_offset, stop_offset)
                 else:
                     raise TypeError(rhythm_quadruple[0])
                 if rhythm_region_expression is not None:

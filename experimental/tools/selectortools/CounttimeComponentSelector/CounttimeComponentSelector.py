@@ -1,14 +1,16 @@
+import copy
 from abjad.tools import durationtools
 from abjad.tools import iterationtools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
 from abjad.tools import timespantools
+from abjad.tools import wellformednesstools
 from experimental.tools import helpertools
 from experimental.tools.selectortools.Selector import Selector
 
 
 class CounttimeComponentSelector(Selector):
-    r'''
+    r'''Counttime component selector.
 
     ::
 
@@ -106,6 +108,45 @@ class CounttimeComponentSelector(Selector):
         start_offset = first_component_expression_offset + first_component.start_offset
         stop_offset = last_component_expression_offset + last_component.stop_offset
         return timespantools.Timespan(start_offset, stop_offset)
+
+    def _get_rhythm_region_expression(self, score_specification, voice_name,
+        start_offset=None, stop_offset=None):
+        from experimental.tools import settingtools
+        #voice_name = counttime_component_selector.voice_name
+        if isinstance(self.anchor, str):
+            source_timespan = self.score_specification.segment_identifier_expression_to_timespan(self.anchor)
+        else:
+            source_timespan = self.anchor._get_timespan(score_specification, self.voice_name)
+        #self._debug(source_timespan, 'source timespan')
+        rhythm_region_expressions = \
+            score_specification.contexts[voice_name]['rhythm_region_expressions']
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
+        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=source_timespan)
+        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_time_relation(
+            timespan_time_relation)
+        #self._debug(rhythm_region_expressions, 'rhythm region expressions')
+        if not rhythm_region_expressions:
+            return
+        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
+        rhythm_region_expressions = timespantools.TimespanInventory(rhythm_region_expressions)
+        rhythm_region_expressions.sort()
+        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
+        #self._debug(source_timespan, 'source timespan', blank=True)
+        assert source_timespan.is_well_formed, repr(source_timespan)
+        rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
+        result = settingtools.OffsetPositionedRhythmExpression(
+            voice_name=voice_name, start_offset=start_offset)
+        for rhythm_region_expression in rhythm_region_expressions:
+            result.music.extend(rhythm_region_expression.music)
+        #self._debug(result, 'result')
+        assert wellformednesstools.is_well_formed_component(result.music)
+        #result, new_start_offset = counttime_component_selector._apply_request_modifiers(
+        #    result, result.start_offset)
+        result, new_start_offset = self._apply_request_modifiers(result, result.start_offset)
+        result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
+        result.repeat_to_stop_offset(stop_offset)
+        return result
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 

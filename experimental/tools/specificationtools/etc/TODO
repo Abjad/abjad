@@ -152,3 +152,6 @@
 29. Relace Command.offsets with Command.timespan.
 
 30. Implement Command.set(request=divisions).
+
+31. Audit ConcreteInterpreter calls to timerelationtools.
+    See if they can be replaced by bound timespan inequality methods.

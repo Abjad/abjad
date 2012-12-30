@@ -190,7 +190,6 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
                     return
                 else:
                     split_offset = components_at_level[-(rotation_indicator.index+1)].stop_offset
-            #elif isinstance(rotation_indicator.index, durationtools.Duration):
             else:
                 index = durationtools.Duration(rotation_indicator.index)
                 if 0 <= index:
