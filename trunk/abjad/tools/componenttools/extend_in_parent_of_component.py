@@ -6,6 +6,8 @@ def extend_in_parent_of_component(component, new_components, left=False, grow_sp
     Example 1. Extend `new_component` in parent of `component`.
     Grow spanners:
 
+    ::
+
         >>> voice = Voice("c'8 [ d'8 e'8 ]")
 
     ::
