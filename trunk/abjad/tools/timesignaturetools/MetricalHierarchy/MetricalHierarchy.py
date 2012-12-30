@@ -351,23 +351,31 @@ class MetricalHierarchy(AbjadObject):
         ::
 
             >>> print metrical_hierarchy.graphviz_format
-            digraph G {
-                id_ [label="5/4", shape=triangle];
-                id_0 [label="3/4", shape=triangle];
-                id_0_0 [label="1/4", shape=box];
-                id_0_1 [label="1/4", shape=box];
-                id_0_2 [label="1/4", shape=box];
-                id_1 [label="2/4", shape=triangle];
-                id_1_0 [label="1/4", shape=box];
-                id_1_1 [label="1/4", shape=box];
-                id_ -> id_0;
-                id_0 -> id_0_0;
-                id_0 -> id_0_1;
-                id_0 -> id_0_2;
-                id_ -> id_1;
-                id_1 -> id_1_0;
-                id_1 -> id_1_1;
-            }:
+            digraph "G" {
+                "node_0" [label="5/4",
+                    shape="triangle"];
+                "node_1" [label="3/4",
+                    shape="triangle"];
+                "node_2" [label="1/4",
+                    shape="box"];
+                "node_3" [label="1/4",
+                    shape="box"];
+                "node_4" [label="1/4",
+                    shape="box"];
+                "node_5" [label="2/4",
+                    shape="triangle"];
+                "node_6" [label="1/4",
+                    shape="box"];
+                "node_7" [label="1/4",
+                    shape="box"];
+                "node_0" -> "node_1";
+                "node_0" -> "node_5";
+                "node_1" -> "node_2";
+                "node_1" -> "node_3";
+                "node_1" -> "node_4";
+                "node_5" -> "node_6";
+                "node_5" -> "node_7";
+            }
 
         ::
 

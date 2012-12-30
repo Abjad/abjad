@@ -64,6 +64,14 @@ class RhythmTreeNode(TreeNode):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def graphviz_format(self):
+        return self.graphviz_graph.graphviz_format
+
+    @abc.abstractproperty
+    def graphviz_graph(self):
+        raise NotImplemented
+
+    @property
     def parentage_ratios(self):
         '''A sequence describing the relative durations of the nodes in a
         node's improper parentage.

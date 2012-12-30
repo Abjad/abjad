@@ -80,6 +80,18 @@ class RhythmTreeLeaf(RhythmTreeNode):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def graphviz_graph(self):
+        graph = documentationtools.GraphvizGraph(name='G')
+        node = documentationtools.GraphvizNode(
+            attributes={
+                label: str(self.duration),
+                shape: 'box'
+            }
+            )
+        graph.append(node)
+        return graph
+
+    @property
     def rtm_format(self):
         '''The node's RTM format:
 

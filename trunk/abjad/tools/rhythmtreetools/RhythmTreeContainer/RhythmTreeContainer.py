@@ -1,3 +1,4 @@
+from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import tietools
@@ -342,26 +343,23 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         return sum([x.duration for x in self])
 
     @property
-    def graphviz_format(self):
-        node_map = {}
-        nodes = []
-        edges = []
+    def graphviz_graph(self):
+        graph = documentationtools.GraphvizGraph(name='G')
+        node_mapping = {}
         for node in self.nodes:
-            node_id = 'id_' + '_'.join(str(x) for x in node.graph_order)
-            node_label = '"{}"'.format(node.duration)
+            graphviz_node = documentationtools.GraphvizNode()
+            graphviz_node.attributes['label'] = str(node.duration)
             if isinstance(node, type(self)):
-                node_shape = 'triangle'
+                graphviz_node.attributes['shape'] = 'triangle'   
             else:
-                node_shape = 'box'
-            nodes.append('{} [label={}, shape={}];'.format(
-                node_id, node_label, node_shape))
-            node_map[node] = node_id
+                graphviz_node.attributes['shape'] = 'box'
+            graph.append(graphviz_node)
+            node_mapping[node] = graphviz_node
             if node.parent is not None:
-                edges.append('{} -> {};'.format(node_map[node.parent], node_map[node]))
-        graph = 'digraph G {{\n{}\n{}\n}}'.format(
-            '\t' + '\n\t'.join(nodes),
-            '\t' + '\n\t'.join(edges)
-            )
+                documentationtools.GraphvizEdge()(
+                    node_mapping[node.parent],
+                    node_mapping[node],
+                    )
         return graph
 
     @property
