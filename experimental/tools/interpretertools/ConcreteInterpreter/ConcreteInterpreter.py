@@ -518,6 +518,9 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_expression.set_offsets(stop_offset=stop_offset)
         return rhythm_region_expression
 
+    # TODO: optimize by changing 
+    #       self.score_specification.contexts[voice_name]['rhythm_region_expressions']
+    #       to voice_rhythm_region_expressions in this method.
     def make_rhythm_region_expressions(self):
         #self._debug(len(self.score_specification.all_rhythm_quintuples), 'quintuple count')
         while self.score_specification.all_rhythm_quintuples:
@@ -526,8 +529,6 @@ class ConcreteInterpreter(Interpreter):
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
                 rhythm_quadruple = rhythm_quintuple[1:]
-                #self._debug(rhythm_quadruple, 'rhythm quadruple')
-                #self._debug(rhythm_quadruple[0], 'rhythm quadruple 0')
                 if isinstance(rhythm_quadruple[0], str):
                     rhythm_region_expression = self.make_rhythm_region_expression_from_parseable_string(
                         *rhythm_quadruple)
@@ -535,15 +536,18 @@ class ConcreteInterpreter(Interpreter):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
+                    #self._debug((start_offset, stop_offset), 'offsets')
                     rhythm_region_expression = \
                         counttime_component_selector._get_rhythm_region_expression(
                         self.score_specification, counttime_component_selector.voice_name, 
                         start_offset, stop_offset)
+                    #self._debug(rhythm_region_expression, 'rrx')
                 else:
                     raise TypeError(rhythm_quadruple[0])
                 if rhythm_region_expression is not None:
                     self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
                     start_offset, stop_offset = rhythm_region_expression.offsets
+                    #self._debug((start_offset, stop_offset), 'offsets')
                     self.score_specification.contexts[voice_name][
                         'rhythm_region_expressions'].delete_material_that_intersects_timespan(
                             rhythm_region_expression)
