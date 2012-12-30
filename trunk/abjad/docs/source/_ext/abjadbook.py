@@ -140,7 +140,7 @@ def render_graphviz(self, code, absolute_path):
         f.write(code)
     command = 'dot -v -Tpng -o {} {}'.format(absolute_path, tmp_path)
     subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    command = 'convert -trim -resample 30%% {} {}'.format(absolute_path, absolute_path)
+    command = 'convert -trim -resample 50%% {} {}'.format(absolute_path, absolute_path)
     subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
@@ -170,7 +170,6 @@ def render_abjad_book_node(self, code, kind):
         relative_path = file_name
         absolute_path = os.path.join(self.builder.outdir, file_name)
     if os.path.isfile(absolute_path):
-        print 'ALREADY EXISTS'
         return relative_path, absolute_path
     # render
     if kind == 'lilypond':
