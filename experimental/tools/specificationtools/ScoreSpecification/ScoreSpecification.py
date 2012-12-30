@@ -616,15 +616,3 @@ class ScoreSpecification(Specification):
             segment_identifier_expression)
         segment_specification = self[segment_index]
         return segment_specification.timespan
-
-    def segment_offset_to_score_offset(self, segment_name, segment_offset):
-        r'''Change `segment_name` and `segment_offset` to score offset::
-
-            >>> score_specification.segment_offset_to_score_offset('yellow', 0)
-            Offset(13, 8)
-
-        Return offset.
-        '''
-        timespan = self.segment_identifier_expression_to_timespan(segment_name)
-        score_offset = timespan.start_offset + segment_offset
-        return score_offset

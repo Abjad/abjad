@@ -79,7 +79,7 @@ class BackgroundMeasureSelector(Selector):
         time_signatures = segment_specification.time_signatures[:]
         time_signatures = [mathtools.NonreducedFraction(x) for x in time_signatures]
         segment_name = segment_specification.segment_name
-        start_offset = score_specification.segment_offset_to_score_offset(segment_name, 0)
+        start_offset = score_specification[segment_name].timespan.start_offset
         time_signatures, start_offset = self._apply_request_modifiers(time_signatures, start_offset)
         durations = [durationtools.Duration(x) for x in time_signatures]
         duration = sum(durations)
