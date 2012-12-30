@@ -1,3 +1,4 @@
+import copy
 from abjad.tools import durationtools
 from abjad.tools import selectiontools
 from abjad.tools import timerelationtools
@@ -48,11 +49,6 @@ class DivisionSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _get_timespan(self, score_specification, voice_name):
-        '''Evaluate start and stop offsets of selector when applied
-        to `voice_name` in `score_specification`.
-
-        Return offset pair.
-        '''
         voice_division_list = score_specification.contexts[voice_name]['voice_division_list']
         divisions = []
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
@@ -74,3 +70,38 @@ class DivisionSelector(Selector):
         timespan = timespantools.Timespan(start_offset, stop_offset)
         timespan = self._apply_timespan_modifiers(timespan)
         return timespan
+
+    def _get_division_region_expression(self, score_specification, voice_name,
+        start_offset=None, stop_offset=None):
+        from experimental.tools import settingtools
+        assert voice_name == self.voice_name
+        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
+        voice_proxy = score_specification.contexts[voice_name]
+        division_region_expressions = voice_proxy['division_region_expressions']
+        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
+            timespan_1=anchor_timespan)
+        division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
+            timespan_time_relation)
+        division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
+        if not division_region_expressions:
+            return
+        if not division_region_expressions.all_are_contiguous:
+            return
+        trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
+        trimmed_division_region_expressions = timespantools.TimespanInventory(
+            trimmed_division_region_expressions)
+        trimmed_division_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
+        trimmed_division_region_expressions.sort() 
+        assert trimmed_division_region_expressions.all_are_contiguous
+        trimmed_division_region_expressions.fuse()
+        assert len(trimmed_division_region_expressions) == 1
+        final_expression = trimmed_division_region_expressions[0]
+        divisions = trimmed_division_region_expressions[0].divisions
+        start_offset = trimmed_division_region_expressions[0].start_offset
+        divisions, start_offset = self._apply_request_modifiers(divisions, start_offset)
+        result = settingtools.OffsetPositionedDivisionList(
+            divisions, 
+            voice_name=final_expression.voice_name,
+            start_offset=start_offset
+            )
+        return result
