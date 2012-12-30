@@ -124,49 +124,6 @@ class ConcreteInterpreter(Interpreter):
         context_names = [context.name for context in parentage]
         return context_names
 
-    # TODO: migrate to CounttimeComponentSelector?
-    def counttime_component_selector_to_rhythm_region_expression(
-        self, counttime_component_selector, start_offset, stop_offset):
-        assert isinstance(counttime_component_selector, selectortools.CounttimeComponentSelector)
-        #self._debug(counttime_component_selector, 'counttime component selector')
-        #self._debug((start_offset, stop_offset), 'offsets')
-        voice_name = counttime_component_selector.voice_name
-        if isinstance(counttime_component_selector.anchor, str):
-            source_timespan = self.score_specification.segment_identifier_expression_to_timespan(
-                counttime_component_selector.anchor)
-        else:
-            source_timespan = counttime_component_selector.anchor._get_timespan(
-                self.score_specification, counttime_component_selector.voice_name)
-        #self._debug(source_timespan, 'source timespan')
-        rhythm_region_expressions = \
-            self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
-        timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
-            timespan_1=source_timespan)
-        rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_time_relation(
-            timespan_time_relation)
-        #self._debug(rhythm_region_expressions, 'rhythm region expressions')
-        if not rhythm_region_expressions:
-            return
-        rhythm_region_expressions = copy.deepcopy(rhythm_region_expressions)
-        rhythm_region_expressions = timespantools.TimespanInventory(rhythm_region_expressions)
-        rhythm_region_expressions.sort()
-        #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
-        #self._debug(source_timespan, 'source timespan', blank=True)
-        assert source_timespan.is_well_formed, repr(source_timespan)
-        rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
-        result = settingtools.OffsetPositionedRhythmExpression(
-            voice_name=voice_name, start_offset=start_offset)
-        for rhythm_region_expression in rhythm_region_expressions:
-            result.music.extend(rhythm_region_expression.music)
-        #self._debug(result, 'result')
-        assert wellformednesstools.is_well_formed_component(result.music)
-        result, new_start_offset = counttime_component_selector._apply_request_modifiers(
-            result, result.start_offset)
-        result.set_offsets(start_offset=start_offset, stop_offset=stop_offset)
-        result.repeat_to_stop_offset(stop_offset)
-        return result
-
     def division_command_request_to_divisions(self, division_command_request, voice_name):
         assert isinstance(division_command_request, requesttools.CommandRequest)
         assert division_command_request.attribute == 'divisions'
@@ -583,11 +540,9 @@ class ConcreteInterpreter(Interpreter):
                 elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
                     rhythm_region_expression = \
-                        self.counttime_component_selector_to_rhythm_region_expression(
-                        counttime_component_selector, start_offset, stop_offset)
-                    #rhythm_region_expression = \
-                    #    counttime_component_selector._get_rhythm_region_expression(
-                    #    self.score_specification, voice_name, start_offset, stop_offset)
+                        counttime_component_selector._get_rhythm_region_expression(
+                        self.score_specification, counttime_component_selector.voice_name, 
+                        start_offset, stop_offset)
                 else:
                     raise TypeError(rhythm_quadruple[0])
                 if rhythm_region_expression is not None:
