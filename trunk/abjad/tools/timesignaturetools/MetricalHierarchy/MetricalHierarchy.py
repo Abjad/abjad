@@ -371,25 +371,9 @@ class MetricalHierarchy(AbjadObject):
 
         Which looks like this:
 
-        .. graphviz:
+        ::
 
-            digraph G {
-                id_ [label="5/4", shape=triangle];
-                id_0 [label="3/4", shape=triangle];
-                id_0_0 [label="1/4", shape=box];
-                id_0_1 [label="1/4", shape=box];
-                id_0_2 [label="1/4", shape=box];
-                id_1 [label="2/4", shape=triangle];
-                id_1_0 [label="1/4", shape=box];
-                id_1_1 [label="1/4", shape=box];
-                id_ -> id_0;
-                id_0 -> id_0_0;
-                id_0 -> id_0_1;
-                id_0 -> id_0_2;
-                id_ -> id_1;
-                id_1 -> id_1_0;
-                id_1 -> id_1_1;
-            }
+            >>> iotools.graph(metrical_hierarchy) # doctest: +SKIP
 
         Return string.
         '''
