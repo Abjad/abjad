@@ -153,10 +153,7 @@
 
 30. Implement Command.set(request=divisions).
 
-31. Audit ConcreteInterpreter calls to timerelationtools.
-    See if they can be replaced by bound timespan inequality methods.
-
-32. Rename select test collateral with 'select'.
+31. Rename select test collateral with 'select'.
     The files are these:
         test_ScoreSpecification_request_rhythm.py
         test_SegmentSpecification__request_divisions_between_voices.py
