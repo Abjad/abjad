@@ -1,3 +1,6 @@
+from abjad.tools import markuptools
+
+
 def make_reference_manual_lilypond_file(music=None):
     r'''.. versionadded:: 2.9
 
@@ -9,8 +12,6 @@ def make_reference_manual_lilypond_file(music=None):
     ::
 
         >>> f(lilypond_file) # doctest: +SKIP
-        % Abjad revision 5653
-        % 2012-05-19 11:21
 
         \version "2.15.37"
         \language "english"
@@ -81,5 +82,8 @@ def make_reference_manual_lilypond_file(music=None):
 
     context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 32))
     context_block.set.tupletFullLength = True
+
+    lilypond_file.file_initial_system_comments[:] = []
+    lilypond_file.header_block.tagline = markuptools.Markup('""')
 
     return lilypond_file
