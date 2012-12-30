@@ -518,43 +518,36 @@ class ConcreteInterpreter(Interpreter):
             rhythm_region_expression.set_offsets(stop_offset=stop_offset)
         return rhythm_region_expression
 
-    # TODO: optimize by changing 
-    #       self.score_specification.contexts[voice_name]['rhythm_region_expressions']
-    #       to voice_rhythm_region_expressions in this method.
     def make_rhythm_region_expressions(self):
-        #self._debug(len(self.score_specification.all_rhythm_quintuples), 'quintuple count')
         while self.score_specification.all_rhythm_quintuples:
-            #self._debug(len(self.score_specification.all_rhythm_quintuples), 'len')
-            previous_all_rhythm_quintuples = self.score_specification.all_rhythm_quintuples[:]
+            made_progress = False
             for rhythm_quintuple in self.score_specification.all_rhythm_quintuples[:]:
                 voice_name = rhythm_quintuple[0]
+                voice_proxy = self.score_specification.contexts[voice_name]
+                voice_rhythm_region_expressions = voice_proxy['rhythm_region_expressions']
                 rhythm_quadruple = rhythm_quintuple[1:]
                 if isinstance(rhythm_quadruple[0], str):
-                    rhythm_region_expression = self.make_rhythm_region_expression_from_parseable_string(
-                        *rhythm_quadruple)
+                    rhythm_region_expression = \
+                        self.make_rhythm_region_expression_from_parseable_string(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], rhythmmakertools.RhythmMaker):
                     rhythm_region_expression = self.make_rhythm_region_expression(*rhythm_quadruple)
                 elif isinstance(rhythm_quadruple[0], selectortools.CounttimeComponentSelector):
                     counttime_component_selector, start_offset, stop_offset = rhythm_quadruple[:3]
-                    #self._debug((start_offset, stop_offset), 'offsets')
                     rhythm_region_expression = \
                         counttime_component_selector._get_rhythm_region_expression(
                         self.score_specification, counttime_component_selector.voice_name, 
                         start_offset, stop_offset)
-                    #self._debug(rhythm_region_expression, 'rrx')
                 else:
                     raise TypeError(rhythm_quadruple[0])
                 if rhythm_region_expression is not None:
                     self.score_specification.all_rhythm_quintuples.remove(rhythm_quintuple)
+                    made_progress = True
                     start_offset, stop_offset = rhythm_region_expression.offsets
-                    #self._debug((start_offset, stop_offset), 'offsets')
-                    self.score_specification.contexts[voice_name][
-                        'rhythm_region_expressions'].delete_material_that_intersects_timespan(
+                    voice_rhythm_region_expressions.delete_material_that_intersects_timespan(
                             rhythm_region_expression)
-                    self.score_specification.contexts[voice_name]['rhythm_region_expressions'].append(
-                        rhythm_region_expression)
-                    self.score_specification.contexts[voice_name]['rhythm_region_expressions'].sort()
-            if self.score_specification.all_rhythm_quintuples == previous_all_rhythm_quintuples:
+                    voice_rhythm_region_expressions.append(rhythm_region_expression)
+                    voice_rhythm_region_expressions.sort()
+            if not made_progress:
                 raise Exception('cyclic rhythm specification.')
 
     def make_skip_token_rhythm_command(self, voice_name, start_offset, stop_offset):
