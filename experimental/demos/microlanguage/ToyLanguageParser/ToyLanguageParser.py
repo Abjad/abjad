@@ -122,6 +122,10 @@ class ToyLanguageParser(Parser):
 
     ### creating pitch cells ###
 
+    def p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R(self, p):
+        '''pitch_cell : PARENTHESIS_L pitches PARENTHESIS_R'''
+        p[0] = pitchtools.NamedChromaticPitchSegment(p[2])
+
     def p_pitches__pitch(self, p):
         '''pitches : pitch'''
         p[0] = [p[1]]
@@ -129,10 +133,6 @@ class ToyLanguageParser(Parser):
     def p_pitches__pitches__pitch(self, p):
         '''pitches : pitches pitch'''
         p[0] = p[1] + [p[2]]
-
-    def p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R(self, p):
-        '''pitch_cell : PARENTHESIS_L pitches PARENTHESIS_R'''
-        p[0] = pitchtools.NamedChromaticPitchSegment(p[2])
 
     ### expressions ###
 

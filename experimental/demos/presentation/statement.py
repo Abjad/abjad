@@ -8,17 +8,7 @@ class Statement(object):
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def text( ):
-        def fget(self):
-            return self._text
-        def fset(self, arg):
-            if not isinstance(arg, basestring):
-                raise TypeError('must be string: "%s".' % arg)
-            self._text = arg
-        return property(**locals( ))
-
-    @apply
-    def code( ):
+    def code():
         def fget(self):
             return self._code
         def fset(self, arg):
@@ -28,4 +18,14 @@ class Statement(object):
                 self._code = arg
             else:
                 raise TypeError('must be a list or a tuple of executable strings: "%s".' % arg)
-        return property(**locals( ))
+        return property(**locals())
+
+    @apply
+    def text():
+        def fget(self):
+            return self._text
+        def fset(self, arg):
+            if not isinstance(arg, basestring):
+                raise TypeError('must be string: "%s".' % arg)
+            self._text = arg
+        return property(**locals())

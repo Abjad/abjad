@@ -8,9 +8,13 @@ from abjad.tools.scoretemplatetools import ScoreTemplate
 
 class WindungenScoreTemplate(ScoreTemplate):
 
+    ### INITIALIZER ###
+
     def __init__(self, staff_count=2):
         assert 0 < staff_count
         self.staff_count = int(staff_count)
+
+    ### SPECIAL METHODS ###
 
     def __call__(self):
         staves = []

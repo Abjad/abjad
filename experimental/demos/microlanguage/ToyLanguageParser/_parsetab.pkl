@@ -2,7 +2,7 @@ S'3.2'
 p1
 .S'LALR'
 p1
-.S"1\x96\xf5'p\xbd1<\x93\xd1\x8b\x87&V\x15\xef"
+.S'<\xd0"k\x8e\x13@\x89\xd6Il\xd8\xfb/\xf0J'
 p1
 .(dp1
 I0
@@ -79,9 +79,9 @@ I-5
 ssI10
 (dp23
 g6
-I-8
+I-9
 sg19
-I-8
+I-9
 ssI11
 (dp24
 g3
@@ -116,13 +116,13 @@ I-15
 ssI15
 (dp29
 g6
-I-9
+I-10
 sg19
-I-9
+I-10
 ssI16
 (dp30
 g8
-I-10
+I-8
 ssI17
 (dp31
 S'APOSTROPHE'
@@ -290,7 +290,7 @@ p6
 I1
 S'p_apostrophes__APOSTROPHE'
 p7
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p8
 I96
 tp9
@@ -301,7 +301,7 @@ p11
 I2
 S'p_apostrophes__apostrophes__APOSTROPHE'
 p12
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p13
 I100
 tp14
@@ -312,7 +312,7 @@ p16
 I1
 S'p_commas__COMMA'
 p17
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p18
 I104
 tp19
@@ -323,7 +323,7 @@ p21
 I2
 S'p_commas__commas__commas'
 p22
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p23
 I108
 tp24
@@ -334,7 +334,7 @@ p26
 I1
 S'p_pitch__PITCHNAME'
 p27
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p28
 I112
 tp29
@@ -345,7 +345,7 @@ p31
 I2
 S'p_pitch__PITCHNAME__apostrophes'
 p32
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p33
 I116
 tp34
@@ -356,40 +356,40 @@ p36
 I2
 S'p_pitch__PITCHNAME__commas'
 p37
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p38
 I120
 tp39
-a(S'pitches -> pitch'
+a(S'pitch_cell -> PARENTHESIS_L pitches PARENTHESIS_R'
 p40
-S'pitches'
+S'pitch_cell'
 p41
-I1
-S'p_pitches__pitch'
+I3
+S'p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R'
 p42
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p43
 I126
 tp44
-a(S'pitches -> pitches pitch'
+a(S'pitches -> pitch'
 p45
 S'pitches'
 p46
-I2
-S'p_pitches__pitches__pitch'
+I1
+S'p_pitches__pitch'
 p47
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p48
 I130
 tp49
-a(S'pitch_cell -> PARENTHESIS_L pitches PARENTHESIS_R'
+a(S'pitches -> pitches pitch'
 p50
-S'pitch_cell'
+S'pitches'
 p51
-I3
-S'p_pitch_cell__PARENTHESIS_L__pitches__PARENTHESIS_R'
+I2
+S'p_pitches__pitches__pitch'
 p52
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p53
 I134
 tp54
@@ -400,7 +400,7 @@ p56
 I1
 S'p_expression__IDENTIFIER'
 p57
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p58
 I140
 tp59
@@ -411,7 +411,7 @@ p61
 I1
 S'p_expression__pitch_cell'
 p62
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p63
 I144
 tp64
@@ -422,7 +422,7 @@ p66
 I3
 S'p_assignment__IDENTIFIER__EQUALS__expression'
 p67
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p68
 I150
 tp69
@@ -433,7 +433,7 @@ p71
 I2
 S'p_statement__assignment__SEMICOLON'
 p72
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p73
 I159
 tp74
@@ -444,7 +444,7 @@ p76
 I2
 S'p_statement__expression__SEMICOLON'
 p77
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p78
 I163
 tp79
@@ -455,7 +455,7 @@ p81
 I1
 S'p_start__EMPTY'
 p82
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p83
 I169
 tp84
@@ -466,7 +466,7 @@ p86
 I2
 S'p_start__start__statement'
 p87
-S'/home/josiah/Documents/Projects/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
+S'/Users/trevorbaca/Documents/abjad/experimental/demos/microlanguage/ToyLanguageParser/ToyLanguageParser.py'
 p88
 I173
 tp89

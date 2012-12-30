@@ -62,6 +62,47 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
         '''
         return len(self.music.leaves)
 
+    ### PRIVATE METHODS ###
+
+    def _set_start_offset(self, start_offset):
+        '''Trim to start offset.
+
+        .. note:: add example.
+        
+        Adjust start offset.
+        
+        Operate in place and return none.
+        '''
+        start_offset = durationtools.Offset(start_offset)
+        assert self.start_offset <= start_offset
+        duration_to_trim = start_offset - self.start_offset
+        result = componenttools.split_components_at_offsets(
+            [self.music], [duration_to_trim], cyclic=False, fracture_spanners=True)
+        trimmed_music = result[-1][0]
+        assert wellformednesstools.is_well_formed_component(trimmed_music)
+        self._music = trimmed_music
+        self._start_offset = start_offset
+
+    def _set_stop_offset(self, stop_offset):
+        '''Trim to stop offset.
+
+        .. note:: add example.
+
+        Operate in place and return none.
+        '''
+        stop_offset = durationtools.Offset(stop_offset)
+        assert stop_offset <= self.stop_offset
+        duration_to_trim = self.stop_offset - stop_offset
+        duration_to_keep = self.music.prolated_duration - duration_to_trim
+        result = componenttools.split_components_at_offsets(
+            [self.music], [duration_to_keep], cyclic=False, fracture_spanners=True)
+        trimmed_music = result[0][0]
+        if not wellformednesstools.is_well_formed_component(trimmed_music):
+            self._debug(trimmed_music, 'trimmed music')
+            wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_music)
+        assert wellformednesstools.is_well_formed_component(trimmed_music)
+        self._music = trimmed_music
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -196,42 +237,3 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
             for spanner in spannertools.get_spanners_attached_to_any_improper_child_of_component(self.music):
                 spanner._components.sort(lambda x, y: cmp(x.parentage.score_index, y.parentage.score_index))
             assert wellformednesstools.is_well_formed_component(self.music)
-
-    def _set_start_offset(self, start_offset):
-        '''Trim to start offset.
-
-        .. note:: add example.
-        
-        Adjust start offset.
-        
-        Operate in place and return none.
-        '''
-        start_offset = durationtools.Offset(start_offset)
-        assert self.start_offset <= start_offset
-        duration_to_trim = start_offset - self.start_offset
-        result = componenttools.split_components_at_offsets(
-            [self.music], [duration_to_trim], cyclic=False, fracture_spanners=True)
-        trimmed_music = result[-1][0]
-        assert wellformednesstools.is_well_formed_component(trimmed_music)
-        self._music = trimmed_music
-        self._start_offset = start_offset
-
-    def _set_stop_offset(self, stop_offset):
-        '''Trim to stop offset.
-
-        .. note:: add example.
-
-        Operate in place and return none.
-        '''
-        stop_offset = durationtools.Offset(stop_offset)
-        assert stop_offset <= self.stop_offset
-        duration_to_trim = self.stop_offset - stop_offset
-        duration_to_keep = self.music.prolated_duration - duration_to_trim
-        result = componenttools.split_components_at_offsets(
-            [self.music], [duration_to_keep], cyclic=False, fracture_spanners=True)
-        trimmed_music = result[0][0]
-        if not wellformednesstools.is_well_formed_component(trimmed_music):
-            self._debug(trimmed_music, 'trimmed music')
-            wellformednesstools.tabulate_well_formedness_violations_in_expr(trimmed_music)
-        assert wellformednesstools.is_well_formed_component(trimmed_music)
-        self._music = trimmed_music

@@ -65,6 +65,19 @@ class Request(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def ___getitem__(self, elements, original_start_offset, expr):
+        assert isinstance(expr, slice)
+        start_index, stop_index, stride = expr.indices(len(elements))
+        selected_elements = elements[expr]
+        elements_before = elements[:start_index]
+        if original_start_offset is not None:
+            duration_before = sum([self._duration_helper(x) for x in elements_before])
+            start_offset = durationtools.Offset(duration_before)
+            new_start_offset = original_start_offset + start_offset
+        else:
+            new_start_offset = None
+        return selected_elements, new_start_offset
+
     def _apply_request_modifiers(self, elements, start_offset):
         from experimental.tools import settingtools
         evaluation_context = {
@@ -91,6 +104,15 @@ class Request(AbjadObject):
         result = copy.deepcopy(self)
         result.request_modifiers.append(modifier)
         return result
+
+    def _duration_helper(self, expr):
+        if hasattr(expr, 'duration'):
+            return expr.duration
+        elif hasattr(expr, 'prolated_duration'):
+            return expr.prolated_duration
+        else:
+            duration = durationtools.Duration(expr)
+            return duration
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         '''Do not show empty request_modifiers list.
@@ -164,28 +186,6 @@ class Request(AbjadObject):
             elements = sequencetools.rotate_sequence(elements, n)
         new_start_offset = original_start_offset
         return elements, new_start_offset
-
-    def ___getitem__(self, elements, original_start_offset, expr):
-        assert isinstance(expr, slice)
-        start_index, stop_index, stride = expr.indices(len(elements))
-        selected_elements = elements[expr]
-        elements_before = elements[:start_index]
-        if original_start_offset is not None:
-            duration_before = sum([self._duration_helper(x) for x in elements_before])
-            start_offset = durationtools.Offset(duration_before)
-            new_start_offset = original_start_offset + start_offset
-        else:
-            new_start_offset = None
-        return selected_elements, new_start_offset
-
-    def _duration_helper(self, expr):
-        if hasattr(expr, 'duration'):
-            return expr.duration
-        elif hasattr(expr, 'prolated_duration'):
-            return expr.prolated_duration
-        else:
-            duration = durationtools.Duration(expr)
-            return duration
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

@@ -48,6 +48,16 @@ class BeatSelector(Selector):
 
     ### PRIVATE METHODS ###
 
+    def _get_timespan(self, score_specification, voice_name):
+        '''Evaluate start and stop offsets of selector when applied
+        to `voice_name` in `score_specification`.
+
+        Return offset pair.
+        '''
+        timespan, beats = self._get_timespan_and_selected_objects(score_specification, voice_name)
+        timespan = self._apply_timespan_modifiers(timespan)
+        return timespan
+
     def _get_timespan_and_selected_objects(self, score_specification, voice_name, 
         start_offset=None, stop_offset=None):
         time_signatures = score_specification.time_signatures
@@ -70,13 +80,3 @@ class BeatSelector(Selector):
         result_timespan = timespantools.Timespan(start_offset, stop_offset)
         result = [x.pair for x in result]
         return result_timespan, result
-
-    def _get_timespan(self, score_specification, voice_name):
-        '''Evaluate start and stop offsets of selector when applied
-        to `voice_name` in `score_specification`.
-
-        Return offset pair.
-        '''
-        timespan, beats = self._get_timespan_and_selected_objects(score_specification, voice_name)
-        timespan = self._apply_timespan_modifiers(timespan)
-        return timespan

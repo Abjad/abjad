@@ -48,12 +48,12 @@ class BreakPointFunction(AbjadObject):
         raise NotImplemented
 
     @property
-    def minimum_x(self):
-        return self._sorted_xs[-1]
-
-    @property
     def maximum_y(self):
         raise NotImplemented
+
+    @property
+    def minimum_x(self):
+        return self._sorted_xs[-1]
 
     @property
     def points(self):

@@ -34,6 +34,28 @@ class OffsetPositionedExpression(Timespan):
     def __lt__(self, expr):
         return self.start_offset < expr.start_offset
 
+    ### PRIVATE METHODS ###
+
+    @abc.abstractmethod
+    def _set_start_offset(self, start_offset):
+        '''Trim to start offset.
+
+        Adjust start offset.
+          
+        Operate in place and return none.
+        '''
+        pass
+
+    @abc.abstractmethod
+    def _set_stop_offset(self, stop_offset):
+        '''Trim to stop offset.
+
+        Adjust stop offset.
+          
+        Operate in place and return none.
+        '''
+        pass
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
@@ -74,23 +96,3 @@ class OffsetPositionedExpression(Timespan):
             start_offset = durationtools.Offset(start_offset)
             if self.start_offset < start_offset:
                 self._set_start_offset(start_offset)
-
-    @abc.abstractmethod
-    def _set_start_offset(self, start_offset):
-        '''Trim to start offset.
-
-        Adjust start offset.
-          
-        Operate in place and return none.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def _set_stop_offset(self, stop_offset):
-        '''Trim to stop offset.
-
-        Adjust stop offset.
-          
-        Operate in place and return none.
-        '''
-        pass

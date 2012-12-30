@@ -13,12 +13,6 @@ class Presentation(object):
 
     ### PRIVATE METHODS ###
 
-    def _print_header(self):
-        print "\n\t* * * *    %s    * * * *" % self.title
-        print "\n%s" % self.subtitle
-        print "\n%s" % self.abstract
-
-
     def _is_executable(self, arg):
         kwds = ['for', 'while', 'if', 'else']
         if '=' in arg and not '==' in arg:
@@ -27,6 +21,11 @@ class Presentation(object):
             if w in arg:
                 return True
         return False
+
+    def _print_header(self):
+        print "\n\t* * * *    %s    * * * *" % self.title
+        print "\n%s" % self.subtitle
+        print "\n%s" % self.abstract
 
     ### PUBLIC METHODS ###
 
