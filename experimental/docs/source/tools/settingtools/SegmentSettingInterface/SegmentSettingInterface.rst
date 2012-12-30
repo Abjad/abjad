@@ -15,10 +15,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.specification_name
 
-.. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.start_offset
-
-.. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.stop_offset
-
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.storage_format
 
 .. autoattribute:: experimental.tools.settingtools.SegmentSettingInterface.SegmentSettingInterface.SegmentSettingInterface.timespan

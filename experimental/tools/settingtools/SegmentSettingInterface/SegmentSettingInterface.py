@@ -79,28 +79,6 @@ class SegmentSettingInterface(SettingInterface):
         return self.segment_name
 
     @property
-    def start_offset(self):
-        '''Segment setting interface start offset::
-
-            >>> red_segment.start_offset
-            OffsetExpression(anchor=TimespanExpression(anchor='red'))
-
-        Return offset expression.
-        '''
-        return self.timespan.start_offset
-
-    @property
-    def stop_offset(self):
-        '''Segment setting interface stop offset::
-
-            >>> red_segment.stop_offset
-            OffsetExpression(anchor=TimespanExpression(anchor='red'))
-
-        Return offset expression.
-        '''
-        return self.timespan.stop_offset
-
-    @property
     def storage_format(self):
         '''Segment setting interface storage format::
 
