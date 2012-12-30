@@ -522,6 +522,23 @@ class ScoreSpecification(Specification):
         segment_setting_interface = settingtools.SegmentSettingInterface(self, name)
         return segment_setting_interface
 
+    def get_anchor_timespan(self, expr, voice_name):
+        '''Get timespan of ``expr.anchor``.
+
+            >>> score_specification.get_anchor_timespan(orange_segment.timespan, None)
+            Timespan(start_offset=Offset(9, 8), stop_offset=Offset(13, 8))
+
+        Return timespan.
+        '''
+        assert hasattr(expr, 'anchor')
+        if isinstance(expr.anchor, str):
+            return self[expr.anchor].timespan
+        elif expr.anchor is None:
+            return self.timespan
+        else:
+            return expr.anchor._get_timespan(self, voice_name)
+        
+    # TODO: possibly remove in favor of self.get_anchor_timespan().
     def get_start_segment_specification(self, expr):
         r'''Get start segment specification from `expr`::
 

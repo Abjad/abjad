@@ -117,13 +117,8 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
 
         Return pair.
         '''
-        if isinstance(self.anchor, str):
-            timespan = score_specification[self.anchor].timespan
-        elif self.anchor is None:
-            timespan = score_specification.timespan
-        else:
-            raise NotImplementedError
-        timespan = self._apply_timespan_modifiers(timespan)
+        anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
+        timespan = self._apply_timespan_modifiers(anchor_timespan)
         return timespan
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):

@@ -109,8 +109,5 @@ class SingleContextSetting(Setting):
         new_setting = copy.deepcopy(self)
         new_setting._fresh = False
         segment_name = helpertools.expr_to_segment_name(segment)
-        if isinstance(new_setting.anchor, str):
-            new_setting._anchor = segment_name 
-        else:
-            new_setting.anchor._set_start_segment_identifier(segment_name)
+        new_setting._set_start_segment_identifier(segment_name)
         return new_setting

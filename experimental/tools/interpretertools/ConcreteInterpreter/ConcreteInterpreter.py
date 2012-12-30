@@ -214,19 +214,15 @@ class ConcreteInterpreter(Interpreter):
             stop_offset=division_region_command.stop_offset
             )]
 
+    # TODO: migrate to DivisionSelector
     def division_selector_to_division_region_expression(self, division_selector):
         assert isinstance(division_selector, selectortools.DivisionSelector)
-        #self._debug(division_selector, 'division selector')
-        anchor = division_selector.anchor
         voice_name = division_selector.voice_name
-        if isinstance(anchor, str):
-            source_timespan = self.score_specification[anchor].timespan
-        else:
-            source_timespan = anchor._get_timespan(self.score_specification, voice_name)
+        anchor_timespan = self.score_specification.get_anchor_timespan(division_selector, voice_name)
         division_region_expressions = \
             self.score_specification.contexts[voice_name]['division_region_expressions']
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
-            timespan_1=source_timespan)
+            timespan_1=anchor_timespan)
         division_region_expressions = division_region_expressions.get_timespans_that_satisfy_time_relation(
             timespan_time_relation)
         division_region_expressions = timespantools.TimespanInventory(division_region_expressions)
@@ -237,7 +233,7 @@ class ConcreteInterpreter(Interpreter):
         trimmed_division_region_expressions = copy.deepcopy(division_region_expressions)
         trimmed_division_region_expressions = timespantools.TimespanInventory(
             trimmed_division_region_expressions)
-        trimmed_division_region_expressions.keep_material_that_intersects_timespan(source_timespan)
+        trimmed_division_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
         trimmed_division_region_expressions.sort() 
         assert trimmed_division_region_expressions.all_are_contiguous
         trimmed_division_region_expressions.fuse()
@@ -699,16 +695,13 @@ class ConcreteInterpreter(Interpreter):
 
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
-        if isinstance(single_context_setting.anchor, str):
-            timespan = self.score_specification[single_context_setting.anchor].timespan
-        else:
-            timespan = single_context_setting.anchor._get_timespan(self.score_specification, voice_name)
+        anchor_timespan = self.score_specification.get_anchor_timespan(single_context_setting, voice_name)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)
         command = command_klass(
             single_context_setting.request, 
             single_context_setting.context_name,
-            timespan.start_offset,
-            timespan.stop_offset,
+            anchor_timespan.start_offset,
+            anchor_timespan.stop_offset,
             fresh=single_context_setting.fresh
             )
         if single_context_setting.attribute == 'divisions':

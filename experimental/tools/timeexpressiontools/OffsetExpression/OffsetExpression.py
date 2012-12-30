@@ -169,14 +169,11 @@ class OffsetExpression(AbjadObject):
         Return offset.
         '''
         edge = self.edge or Left
-        if isinstance(self.anchor, str):
-            timespan = score_specification[self.anchor].timespan
-        else:
-            timespan = self.anchor._get_timespan(score_specification, context_name)
+        anchor_timespan = score_specification.get_anchor_timespan(self, context_name)
         if edge == Left:
-            score_offset = timespan.start_offset
+            score_offset = anchor_timespan.start_offset
         else:
-            score_offset = timespan.stop_offset
+            score_offset = anchor_timespan.stop_offset
         multiplier = self.multiplier or durationtools.Multiplier(1)
         score_offset = multiplier * score_offset
         offset = self.addendum or durationtools.Offset(0)

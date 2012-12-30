@@ -113,15 +113,12 @@ class CounttimeComponentSelector(Selector):
         start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
-        if isinstance(self.anchor, str):
-            source_timespan = score_specification[self.anchor].timespan
-        else:
-            source_timespan = self.anchor._get_timespan(score_specification, self.voice_name)
+        anchor_timespan = score_specification.get_anchor_timespan(self, voice_name)
         rhythm_region_expressions = \
             score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
         timespan_time_relation = timerelationtools.timespan_2_intersects_timespan_1(
-            timespan_1=source_timespan)
+            timespan_1=anchor_timespan)
         rhythm_region_expressions = rhythm_region_expressions.get_timespans_that_satisfy_time_relation(
             timespan_time_relation)
         #self._debug(rhythm_region_expressions, 'rhythm region expressions')
@@ -131,9 +128,9 @@ class CounttimeComponentSelector(Selector):
         rhythm_region_expressions = timespantools.TimespanInventory(rhythm_region_expressions)
         rhythm_region_expressions.sort()
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')
-        #self._debug(source_timespan, 'source timespan', blank=True)
-        assert source_timespan.is_well_formed, repr(source_timespan)
-        rhythm_region_expressions.keep_material_that_intersects_timespan(source_timespan)
+        #self._debug(anchor_timespan, 'source timespan', blank=True)
+        assert anchor_timespan.is_well_formed, repr(anchor_timespan)
+        rhythm_region_expressions.keep_material_that_intersects_timespan(anchor_timespan)
         result = settingtools.OffsetPositionedRhythmExpression(
             voice_name=voice_name, start_offset=start_offset)
         for rhythm_region_expression in rhythm_region_expressions:

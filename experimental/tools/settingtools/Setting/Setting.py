@@ -45,6 +45,15 @@ class Setting(AbjadObject):
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
 
+    ### PRIVATE METHODS ###
+
+    def _set_start_segment_identifier(self, segment_identifier):
+        assert isinstance(segment_identifier, str)
+        if isinstance(self.anchor, str):
+            self._anchor = segment_identifier
+        else:
+            self.anchor._set_start_segment_identifier(segment_identifier)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
