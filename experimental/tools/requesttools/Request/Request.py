@@ -171,12 +171,21 @@ class Request(AbjadObject):
         selected_elements = elements[expr]
         elements_before = elements[:start_index]
         if original_start_offset is not None:
-            duration_before = sum([durationtools.Duration(x) for x in elements_before])
+            duration_before = sum([self._duration_helper(x) for x in elements_before])
             start_offset = durationtools.Offset(duration_before)
             new_start_offset = original_start_offset + start_offset
         else:
             new_start_offset = None
         return selected_elements, new_start_offset
+
+    def _duration_helper(self, expr):
+        if hasattr(expr, 'duration'):
+            return expr.duration
+        elif hasattr(expr, 'prolated_duration'):
+            return expr.prolated_duration
+        else:
+            duration = durationtools.Duration(expr)
+            return duration
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

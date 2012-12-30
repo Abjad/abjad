@@ -4,9 +4,7 @@ from abjad.tools.timespantools.Timespan import Timespan
 
 
 class OffsetPositionedExpression(Timespan):
-    r'''
-
-    Offset-positioned expression.
+    r'''Offset-positioned expression.
 
     Base class from which concrete expressions inherit.
 

@@ -11,9 +11,7 @@ from experimental.tools.settingtools.OffsetPositionedExpression import OffsetPos
 
 
 class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
-    r'''
-
-    Offset-positioned rhythm expression.
+    r'''Offset-positioned rhythm expression.
 
     One voice of counttime components. 
     Counttime components are tuplets, notes, rests and chords.
@@ -52,7 +50,12 @@ class OffsetPositionedRhythmExpression(OffsetPositionedExpression):
 
     __deepcopy__ = __copy__
 
-    def __len__(self):
+    def __getitem__(self, expr):
+        # it's possible that music deepcopy will be required.
+        # try returning references first and see if it causes problems.
+        return self.music.__getitem__(expr)
+
+    def __len__(self): 
         '''Defined equal to number of leaves in ``self.music``.
     
         Return nonnegative integer.

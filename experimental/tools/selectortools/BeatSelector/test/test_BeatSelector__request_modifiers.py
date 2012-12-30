@@ -1,6 +1,5 @@
 from abjad import *
 from experimental.tools import *
-import py
 
 
 def test_BeatSelector__request_modifiers_01():

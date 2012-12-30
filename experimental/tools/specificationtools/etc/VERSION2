@@ -8,3 +8,7 @@
         red_segment.set_rhythm(library.thirty_seconds, timespan=leaves)
 
 3.  Implement voice intermittency.
+
+4.  Create leaves somewhere.
+    Then select a slice of leaves.
+    Then overwrite that slice with a different rhythm-maker.
