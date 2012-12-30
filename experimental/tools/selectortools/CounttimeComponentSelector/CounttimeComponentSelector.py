@@ -112,12 +112,11 @@ class CounttimeComponentSelector(Selector):
     def _get_rhythm_region_expression(self, score_specification, voice_name,
         start_offset=None, stop_offset=None):
         from experimental.tools import settingtools
-        #voice_name = counttime_component_selector.voice_name
+        assert voice_name == self.voice_name
         if isinstance(self.anchor, str):
-            source_timespan = self.score_specification.segment_identifier_expression_to_timespan(self.anchor)
+            source_timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
         else:
             source_timespan = self.anchor._get_timespan(score_specification, self.voice_name)
-        #self._debug(source_timespan, 'source timespan')
         rhythm_region_expressions = \
             score_specification.contexts[voice_name]['rhythm_region_expressions']
         #self._debug_values(rhythm_region_expressions, 'rhythm region expressions')

@@ -55,19 +55,27 @@ class ScoreSpecification(Specification):
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
-        '''Get segment specification from segment specification name::
+        '''Get segment specification from segment name::
 
             >>> score_specification['yellow']
             SegmentSpecification('yellow')
 
-        Get segment specification from segment specification index::
+        Get segment specification from segment index::
 
             >>> score_specification[2]
             SegmentSpecification('yellow')
 
+        Get segment specification from segment identifier expression::
+
+            >>> expression = helpertools.SegmentIdentifierExpression("'red' + 2")
+            >>> score_specification[expression]
+            SegmentSpecification('yellow')
+
         Return segment specification.
         '''
-        return self.segment_specifications.__getitem__(expr)
+        segment_index = self.segment_identifier_expression_to_segment_index(expr) 
+        segment_specification = self.segment_specifications[segment_index]
+        return segment_specification
 
     def __repr__(self):
         '''Score specification interpreter representation::
