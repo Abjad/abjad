@@ -220,7 +220,7 @@ class ConcreteInterpreter(Interpreter):
         anchor = division_selector.anchor
         voice_name = division_selector.voice_name
         if isinstance(anchor, str):
-            source_timespan = self.score_specification.segment_identifier_expression_to_timespan(anchor)
+            source_timespan = self.score_specification[anchor].timespan
         else:
             source_timespan = anchor._get_timespan(self.score_specification, voice_name)
         division_region_expressions = \
@@ -700,8 +700,7 @@ class ConcreteInterpreter(Interpreter):
     # do we eventually need to do this with time signature settings, too?
     def single_context_setting_to_command(self, single_context_setting, segment_specification, voice_name):
         if isinstance(single_context_setting.anchor, str):
-            timespan = self.score_specification.segment_identifier_expression_to_timespan(
-                single_context_setting.anchor)
+            timespan = self.score_specification[single_context_setting.anchor].timespan
         else:
             timespan = single_context_setting.anchor._get_timespan(self.score_specification, voice_name)
         command_klass = self.attribute_to_command_klass(single_context_setting.attribute)

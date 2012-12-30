@@ -57,7 +57,7 @@ class DivisionSelector(Selector):
         divisions = []
         segment_specification = score_specification.get_start_segment_specification(self.anchor)
         specification_name = segment_specification.specification_name
-        timespan_1 = score_specification.segment_identifier_expression_to_timespan(specification_name)
+        timespan_1 = score_specification[specification_name].timespan
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:

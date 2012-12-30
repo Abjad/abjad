@@ -118,7 +118,7 @@ class TimespanExpression(Timespan, SelectMethodMixin, SetMethodMixin):
         Return pair.
         '''
         if isinstance(self.anchor, str):
-            timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
+            timespan = score_specification[self.anchor].timespan
         elif self.anchor is None:
             timespan = score_specification.timespan
         else:

@@ -100,7 +100,7 @@ class SegmentSelector(Selector):
         Return offset.
         '''
         start_segment_identifier = self.start_segment_identifier
-        timespan = score_specification.segment_identifier_expression_to_timespan(start_segment_identifier)
+        timespan = score_specification[start_segment_identifier].timespan
         timespan = self._apply_timespan_modifiers(timespan)
         return timespan
 

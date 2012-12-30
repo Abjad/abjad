@@ -85,7 +85,7 @@ class CounttimeComponentSelector(Selector):
             return selectiontools.Selection()
         counttime_component_pairs = []
         previous_rhythm_region_expression = None
-        timespan_1 = score_specification.segment_identifier_expression_to_timespan(self.anchor)
+        timespan_1 = score_specification[self.anchor].timespan
         if self.time_relation is None:
             time_relation = timerelationtools.timespan_2_starts_during_timespan_1(timespan_1=timespan_1)
         else:
@@ -114,7 +114,7 @@ class CounttimeComponentSelector(Selector):
         from experimental.tools import settingtools
         assert voice_name == self.voice_name
         if isinstance(self.anchor, str):
-            source_timespan = score_specification.segment_identifier_expression_to_timespan(self.anchor)
+            source_timespan = score_specification[self.anchor].timespan
         else:
             source_timespan = self.anchor._get_timespan(score_specification, self.voice_name)
         rhythm_region_expressions = \

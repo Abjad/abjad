@@ -603,16 +603,3 @@ class ScoreSpecification(Specification):
             modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
         segment_index = eval(modified_string)
         return segment_index
-
-    def segment_identifier_expression_to_timespan(self, segment_identifier_expression):
-        '''Change `segment_identifier_expression` to timespan::
-
-            >>> score_specification.segment_identifier_expression_to_timespan('yellow')
-            Timespan(start_offset=Offset(13, 8), stop_offset=Offset(9, 4))
-
-        Return timespan.
-        '''
-        segment_index = self.segment_identifier_expression_to_segment_index(
-            segment_identifier_expression)
-        segment_specification = self[segment_index]
-        return segment_specification.timespan
