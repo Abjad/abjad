@@ -140,7 +140,7 @@ class TreeNode(AbjadObject):
             name_dictionary[self.name].add(self)
 
         if self._parent is not None and name_dictionary:
-            for parent in self.proper_parentage_parentage:
+            for parent in self.proper_parentage:
                 named_children = parent._named_children
                 for name in name_dictionary:
                     for node in name_dictionary[name]:
