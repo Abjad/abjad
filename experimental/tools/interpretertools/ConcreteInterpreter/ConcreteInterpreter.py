@@ -218,10 +218,8 @@ class ConcreteInterpreter(Interpreter):
         elif isinstance(division_region_command.request, selectortools.BeatSelector):
             beat_selector = division_region_command.request
             start_offset, stop_offset = division_region_command.offsets
-            divisions = beat_selector._get_naive_time_signature_beat_slice(
+            timespan, divisions = beat_selector._get_timespan_and_selected_objects(
                 self.score_specification, division_region_command.voice_name, start_offset, stop_offset)
-            # TODO: migrate the following line to BeatSelector._get_timespan?
-            divisions, start_offset = beat_selector._apply_request_modifiers(divisions, start_offset)
             # TODO: implement Command.set(request=divisions) to do this cleanly:
             division_region_command._request = divisions
             division_region_expressions = self.division_region_command_to_division_region_expressions(

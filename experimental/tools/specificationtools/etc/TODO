@@ -80,14 +80,15 @@
 16. Extend OffsetExpression with an 'offset_modifiers' stack.
     Modifier methods include OffsetExpression.translate() and possibly others.
 
-17. Extend BackgroundMeasureSelector._get_timespan() to return 
-    (start_offset, stop_offset, selected_objects) triple.
-    Then extend all selector _get_timespan() methods and do the same:
+17. Extend all selector _get_timespan() methods to return
+    (timespan, selected_objects) pair:
+        BackgroundMeasureSelector._get_timespan()
         BeatSelector._get_timespan()
         CounttimeComponentSelector._get_timespan()
         DivisionSelector._get_timespan()
         ScoreSelector._get_timespan() ?
         SegmentSelector._get_timespan() ?
+    Then possibly rename _get_timespan() to something more descriptive.
 
 18. Is the idea of a 'region command' redundant? Is it the case that all commands
     always define a region? This might be so if all commands always encompass a timespan.
@@ -138,17 +139,8 @@
 
 27. Rename Request to RequestMethodMixin to parallel SetMethodMixin.
 
-28. Implement BeatSelector._get_timespan().
-
-29. Author tests to show each request modifier applied to each selector.
+28. Author tests to show each request modifier applied to each selector.
     Remaining tests to author:
-        beats.__getitem__()
-        beats.partition_by_ratio()
-        beats.partition_by_ratio_of_durations()
-        beats.repeat_to_duration()
-        beats.repeat_to_length()
-        beats.reverse()
-        beats.rotate()
         leaves.__getitem__()
         leaves.partition_by_ratio()
         leaves.partition_by_ratio_of_durations()
@@ -156,3 +148,7 @@
         leaves.repeat_to_length()
         leaves.reverse()
         leaves.rotate()
+
+29. Relace Command.offsets with Command.timespan.
+
+30. Implement Command.set(request=divisions).
