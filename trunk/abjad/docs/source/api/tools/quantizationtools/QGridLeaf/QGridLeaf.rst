@@ -21,6 +21,12 @@ Read-only Properties
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
 
+.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graphviz_format
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.graphviz_graph
+
 .. autoattribute:: abjad.tools.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.improper_parentage
 
     Inherited from :py:class:`datastructuretools.TreeNode <abjad.tools.datastructuretools.TreeNode.TreeNode.TreeNode>`
