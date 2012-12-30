@@ -30,7 +30,6 @@ def rewrite_line(line):
         return line, False
     if line.startswith('show('):
         object_name = line[5:]
-        #print "BOOOOOOO", object_name
         kind = 'lilypond'
     elif line.startswith('iotools.graph('):
         object_name = line[14:]
@@ -79,10 +78,6 @@ def on_doctree_read(app, doctree):
     if not docname.startswith(transform_path):
         return
 
-    #print 
-    #print docname
-    #print
-
     environment = {'__builtins__': __builtins__}
     exec('from abjad import *\n', environment)
 
@@ -95,18 +90,9 @@ def on_doctree_read(app, doctree):
         lines_to_execute = []
         previous_line_number = 0
 
-        #print 'ALL LINES: {}'.format(j)
-        #for i, line in all_lines:
-        #    print '\t' + line
-        #print 'ORIGINAL LINES:'
-        #for line in original_lines:
-        #    print '\t' + line
         for i, line in all_lines:
             lines_to_execute.append(line)
             if line.startswith('__abjad_book__ ='):
-                #print 'EXECUTING:'
-                #for line in lines_to_execute:
-                #    print '\t' + line
                 if '__abjad_book__' in environment:
                     del(environment['__abjad_book__'])
                 try:
@@ -127,9 +113,6 @@ def on_doctree_read(app, doctree):
                 previous_line_number = i + 1
 
         if lines_to_execute:
-            #print 'EXECUTING:'
-            #for line in lines_to_execute:
-            #    print '\t' + line
             try:
                 exec('\n'.join(lines_to_execute), environment)
             except:
@@ -145,12 +128,9 @@ def on_doctree_read(app, doctree):
         if replacement_blocks:
             literal_block.replace_self(replacement_blocks)
 
-        #print
-
 
 def on_build_finished(app, exc):
-    #shutil.rmtree(app.builder._abjadbook_tempdir)
-    pass
+    shutil.rmtree(app.builder._abjadbook_tempdir)
 
 
 def render_graphviz(self, code, absolute_path):
@@ -158,18 +138,10 @@ def render_graphviz(self, code, absolute_path):
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.dot'
     with open(tmp_path, 'w') as f:
         f.write(code)
-    #print 'RENDERING: GRAPHVIZ'
-    #print
-    #print '\tABS: ' + absolute_path
-    #print '\tTMP: ' + tmp_path
-    #print
-    #for line in code.splitlines():
-    #    print '\t' + line
-    #print
     command = 'dot -v -Tpng -o {} {}'.format(absolute_path, tmp_path)
-    #print '\t' + command
     subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #print
+    command = 'convert -trim -resample 30%% {} {}'.format(absolute_path, absolute_path)
+    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 def render_lilypond(self, code, absolute_path):
@@ -178,23 +150,10 @@ def render_lilypond(self, code, absolute_path):
         os.path.basename(os.path.splitext(absolute_path)[0])) + '.ly'
     with open(tmp_path, 'w') as f:
         f.write(code)
-    #print 'RENDERING: LILYPOND'
-    #print
-    #print '\tABS: ' + absolute_path
-    #print '\tTMP: ' + tmp_path
-    #print
-    #for line in code.splitlines():
-    #    print '\t' + line
-    #print
-    #print '\tEXISTS? {!r}'.format(os.path.exists(tmp_path))
     command = 'lilypond --png -dresolution=300 -o {} {}'.format(abs_path, tmp_path)
-    #print '\t' + command
     subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #print '\tEXISTS? {!r}'.format(os.path.exists(absolute_path))
     command = 'convert -trim -resample 30%% {} {}'.format(absolute_path, absolute_path)
-    #print '\t' + command
     subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #print
 
 
 def render_abjad_book_node(self, code, kind):
